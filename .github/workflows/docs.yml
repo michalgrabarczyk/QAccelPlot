@@ -11,6 +11,17 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      version:
+        description: Version directory to publish, or main
+        required: true
+        default: main
+        type: string
+      publish_stable:
+        description: Also replace the site root and latest with this version
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -26,6 +37,34 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Resolve documentation deployment
+        id: deployment
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+          REQUESTED_STABLE: ${{ inputs.publish_stable }}
+        run: |
+          version="${REQUESTED_VERSION:-main}"
+          if [[ "$version" == "main" ]]; then
+            channel="development"
+          elif [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            channel="stable"
+            cmake_version="$(sed -n 's/^[[:space:]]*VERSION[[:space:]]*\([0-9][0-9.]*\)[[:space:]]*$/\1/p' CMakeLists.txt | head -n 1)"
+            if [[ "$version" != "$cmake_version" ]]; then
+              echo "Requested version $version does not match CMake version $cmake_version" >&2
+              exit 1
+            fi
+          else
+            echo "Version must be 'main' or a semantic version such as 0.1.0" >&2
+            exit 1
+          fi
+          if [[ "${REQUESTED_STABLE:-false}" == "true" && "$version" == "main" ]]; then
+            echo "Development documentation cannot be published as stable" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "channel=$channel" >> "$GITHUB_OUTPUT"
+          echo "publish_stable=${REQUESTED_STABLE:-false}" >> "$GITHUB_OUTPUT"
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -39,16 +78,34 @@ jobs:
           sudo apt-get install -y doxygen graphviz
           python -m pip install -r docs/requirements.txt
 
-      - name: Build main documentation
+      - name: Build documentation
         env:
-          QACCELPLOT_DOCS_VERSION: main
-          QACCELPLOT_DOCS_CHANNEL: development
+          QACCELPLOT_DOCS_VERSION: ${{ steps.deployment.outputs.version }}
+          QACCELPLOT_DOCS_CHANNEL: ${{ steps.deployment.outputs.channel }}
         run: bash scripts/build-docs.sh
 
-      - name: Deploy main documentation
+      - name: Stage documentation
+        env:
+          QACCELPLOT_DOCS_VERSION: ${{ steps.deployment.outputs.version }}
+          QACCELPLOT_PUBLISH_STABLE: ${{ steps.deployment.outputs.publish_stable }}
+        run: |
+          mkdir -p build/pages
+          if [[ "$QACCELPLOT_DOCS_VERSION" == "main" ]]; then
+            mkdir -p build/pages/main
+            cp -a build/site/. build/pages/main/
+          else
+            mkdir -p "build/pages/$QACCELPLOT_DOCS_VERSION"
+            cp -a build/site/. "build/pages/$QACCELPLOT_DOCS_VERSION/"
+            if [[ "$QACCELPLOT_PUBLISH_STABLE" == "true" ]]; then
+              cp -a build/site/. build/pages/
+              mkdir -p build/pages/latest
+              cp -a build/site/. build/pages/latest/
+            fi
+          fi
+
+      - name: Deploy documentation
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/site
-          destination_dir: main
+          publish_dir: build/pages
           keep_files: true
