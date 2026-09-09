@@ -98,22 +98,22 @@ handoff to the UI thread. See [Background data production](cookbook/background-d
   [`examples`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples)
   for runnable applications.
 
-[plot-rect]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ad8106ed7a0613158e29ed0137edbd248
-[viewport-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7dc4f6741ca21456941ee90ca647fcbe
-[viewport-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ae7112f0aac515a9fad256f21696f3e31
-[data-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
-[data-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85
-[rescale-to-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a1a4057e12caae2776590a0ce4bc38a84
-[series-x-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#a250150d8eaea44c2608375839747b2b2
-[series-y-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#ae021f84424e1ea4ad44576961ac7d402
-[plot-x-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a08bb4bde1c498ad50fdfa8e48d41adf7
-[plot-y-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af489c97d929d1092be24f0e780c06a83
-[plot-x2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8
-[plot-y2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ab940a26d0902b92808a8ee0885cb7455
-[extra-axes]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a2aa8566edaee068e3517f5085fe9276b
-[data-to-pixel-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a64aa564d1fae3a901d22897b8c70d514
-[data-to-pixel-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af6e974159b9a04649636768ff923d797
-[pixel-to-data-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a484d049dd7188040e0c450bb9590ac0c
-[pixel-to-data-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#abd81402f2c90d2287bb1ca41f1a35e49
-[is-inside-plot-area]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a4d3dc663c405407222f8e1dcac3294f2
-[post-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c
+[plot-rect]: ../api/classQAccelPlot_1_1QAccelPlot.html#ad8106ed7a0613158e29ed0137edbd248
+[viewport-min]: ../api/classQAccelPlot_1_1Axis.html#a7dc4f6741ca21456941ee90ca647fcbe
+[viewport-max]: ../api/classQAccelPlot_1_1Axis.html#ae7112f0aac515a9fad256f21696f3e31
+[data-min]: ../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
+[data-max]: ../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85
+[rescale-to-data]: ../api/classQAccelPlot_1_1Axis.html#a1a4057e12caae2776590a0ce4bc38a84
+[series-x-axis]: ../api/classQAccelPlot_1_1PlotSeries.html#a250150d8eaea44c2608375839747b2b2
+[series-y-axis]: ../api/classQAccelPlot_1_1PlotSeries.html#ae021f84424e1ea4ad44576961ac7d402
+[plot-x-axis]: ../api/classQAccelPlot_1_1QAccelPlot.html#a08bb4bde1c498ad50fdfa8e48d41adf7
+[plot-y-axis]: ../api/classQAccelPlot_1_1QAccelPlot.html#af489c97d929d1092be24f0e780c06a83
+[plot-x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8
+[plot-y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.html#ab940a26d0902b92808a8ee0885cb7455
+[extra-axes]: ../api/classQAccelPlot_1_1QAccelPlot.html#a2aa8566edaee068e3517f5085fe9276b
+[data-to-pixel-x]: ../api/classQAccelPlot_1_1QAccelPlot.html#a64aa564d1fae3a901d22897b8c70d514
+[data-to-pixel-y]: ../api/classQAccelPlot_1_1QAccelPlot.html#af6e974159b9a04649636768ff923d797
+[pixel-to-data-x]: ../api/classQAccelPlot_1_1QAccelPlot.html#a484d049dd7188040e0c450bb9590ac0c
+[pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.html#abd81402f2c90d2287bb1ca41f1a35e49
+[is-inside-plot-area]: ../api/classQAccelPlot_1_1QAccelPlot.html#a4d3dc663c405407222f8e1dcac3294f2
+[post-data]: ../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c
