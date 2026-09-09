@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "interactive_tools",
+  "description": "The default 1200x800 Interactive Tools example with a terrain profile and one short active gold ruler in the left third of the plot.",
+  "expected_image": {
+    "width": 1200,
+    "height": 800,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "A heading and instruction line appear above a toolbar and one large terrain plot. Controls and plot remain inside the window and do not obscure one another."
+    },
+    {
+      "id": "tool_controls",
+      "severity": "medium",
+      "expectation": "The toolbar intentionally has four adjacent controls grouped on the left—Add ruler, Add angle, Add point, and Add region—followed by an empty flexible gap and exactly two controls grouped on the right—Delete selected and Clear. All six labels are readable. Seeing only those two controls on the right is the expected layout, not evidence that controls are missing. Fail only when a named control is visibly absent, clipped, overlapped, or unreadable."
+    },
+    {
+      "id": "terrain_plot",
+      "severity": "high",
+      "expectation": "A continuous terrain elevation profile spans most of the Distance (m) axis. The Elevation (m) axis, ticks, and grid are readable and visually aligned with the plot."
+    },
+    {
+      "id": "initial_ruler",
+      "severity": "medium",
+      "expectation": "One active gold/yellow ruler is visible in the left third of the terrain plot. It is intentionally a short, thin, slightly upward-sloping line from approximately (120 m, 40 m) to (340 m, 46 m), not a ruler spanning the entire left half. A small filled circular handle appears at each end, and a dark label near the line reads approximately 'd = 220.08'. The handles are subtle, roughly 12 pixels across, and the label may overlap the terrain curve; these are expected styling, not defects."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and toolbar button text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The blue terrain curve, thin gold ruler line, its two small gold endpoint dots, axes, controls, and labels are visible; the plot is not blank, corrupted, or clipped."
+    }
+  ]
+}

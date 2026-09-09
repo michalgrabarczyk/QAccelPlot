@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "quickstart",
+  "description": "The default 840x560 Quickstart example showing daily outdoor temperature and a six-hour forecast.",
+  "expected_image": {
+    "width": 840,
+    "height": 560,
+    "minimum_file_size_bytes": 20000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "The Daily temperature heading and description appear above one plot. The plot and its contents fit within the window without unintended overlap or clipping."
+    },
+    {
+      "id": "axes_and_legend",
+      "severity": "high",
+      "expectation": "The Time of day (h) and Temperature (°C) axes, their tick labels, and a legend naming Outdoor temperature and Six-hour forecast are visible and readable."
+    },
+    {
+      "id": "outdoor_curve",
+      "severity": "medium",
+      "expectation": "A smooth solid outdoor-temperature curve spans the full day, rising from cooler values to a daytime high and then falling."
+    },
+    {
+      "id": "forecast_curve",
+      "severity": "medium",
+      "expectation": "A visually distinct dashed forecast line spans the plot through several visible diamond markers and broadly follows the daily temperature trend."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and description text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "Both curves, markers, axes, grid, labels, and legend are distinguishable; the plot is not blank, corrupted, or clipped."
+    }
+  ]
+}

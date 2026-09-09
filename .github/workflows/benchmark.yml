@@ -1,0 +1,117 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+name: Benchmarks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-benchmarks:
+    name: Qt private API ${{ matrix.qt_private_api }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - qt_private_api: 'ON'
+            benchmark_data_dir: dev/bench/private-api-on
+          - qt_private_api: 'OFF'
+            benchmark_data_dir: dev/bench/private-api-off
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake xvfb libgl1-mesa-dev libxkbcommon-x11-0 libxcb-cursor0
+      
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.3'
+          host: 'linux'
+          target: 'desktop'
+          modules: 'qtshadertools'
+
+      - name: Configure CMake
+        run: >
+          cmake -B build
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_TESTS=OFF
+          -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
+
+      - name: Build Benchmarks
+        run: cmake --build build --config Release --target QAccelPlotBenchDataIngestion QAccelPlotBenchmarkRegression -j2
+
+      - name: Run Data Ingestion Benchmark
+        run: ./build/benchmarks/regression/QAccelPlotBenchDataIngestion --output ingestion_results.json
+
+      - name: Run Rendering Benchmark (OpenGL)
+        # Exercise the actual shader and texture-upload paths through Mesa under Xvfb.
+        env:
+          QSG_RENDER_LOOP: basic
+          QSG_RHI_BACKEND: opengl
+        run: xvfb-run -a ./build/benchmarks/regression/QAccelPlotBenchmarkRegression --output render_results.json
+
+      - name: Format Results for GitHub Benchmark Action
+        run: >
+          python3 benchmarks/common/format_benchmark_for_github.py
+          ingestion_results.json render_results.json
+          --bigger-is-better-output github_benchmark_bigger.json
+          --smaller-is-better-output github_benchmark_smaller.json
+
+      - name: Store Benchmark Results (Higher Is Better)
+        if: github.event_name != 'pull_request'
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: QAccelPlot Performance (Higher Is Better, Private API ${{ matrix.qt_private_api }})
+          tool: customBiggerIsBetter
+          output-file-path: github_benchmark_bigger.json
+          benchmark-data-dir-path: ${{ matrix.benchmark_data_dir }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          alert-threshold: '135%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@${{ github.actor }}'
+
+      - name: Store Benchmark Results (Lower Is Better)
+        if: github.event_name != 'pull_request'
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: QAccelPlot Performance (Lower Is Better, Private API ${{ matrix.qt_private_api }})
+          tool: customSmallerIsBetter
+          output-file-path: github_benchmark_smaller.json
+          benchmark-data-dir-path: ${{ matrix.benchmark_data_dir }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          alert-threshold: '135%'
+          comment-on-alert: true
+          fail-on-alert: true
+          alert-comment-cc-users: '@${{ github.actor }}'
+
+      - name: Upload Benchmark Results
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-results-private-api-${{ matrix.qt_private_api }}
+          path: |
+            ingestion_results.json
+            render_results.json
+            github_benchmark_bigger.json
+            github_benchmark_smaller.json

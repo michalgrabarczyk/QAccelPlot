@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "realtime",
+  "description": "The deterministic 900x600 screenshot mode of the Realtime vibration sensor example.",
+  "expected_image": {
+    "width": 900,
+    "height": 600,
+    "minimum_file_size_bytes": 25000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "The Realtime vibration sensor heading and description appear above one large plot, with a Pause control at the upper right. All elements fit in the window."
+    },
+    {
+      "id": "axes",
+      "severity": "high",
+      "expectation": "The Time before present (s) axis runs from about -20 to 0, and the Acceleration (g) axis shows positive and negative values. Titles and tick labels are readable."
+    },
+    {
+      "id": "vibration_signal",
+      "severity": "medium",
+      "expectation": "A continuous vibration waveform spans the full twenty-second window with repeated oscillations and occasional taller positive impacts. The curve is visibly varied rather than flat or empty."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and Pause control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The waveform is distinguishable from the grid and stays in the plot area; axes, labels, and controls are not blank, corrupted, or materially clipped."
+    }
+  ]
+}

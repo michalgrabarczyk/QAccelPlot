@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "styling_and_transitions",
+  "description": "The default 880x1120 Styling and Transitions example, showing styling controls and three vertically stacked plot panels.",
+  "expected_image": {
+    "width": 880,
+    "height": 1120,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "Marker, line-pattern, and line-weight plot panels are stacked vertically below the styling controls. Panels and controls do not overlap or extend beyond the window."
+    },
+    {
+      "id": "text_and_labels",
+      "severity": "high",
+      "expectation": "Visible control text, legends, axis titles, and tick labels are readable and not cut off at window or panel boundaries. Rotated axis titles are intentional."
+    },
+    {
+      "id": "marker_panel",
+      "severity": "medium",
+      "expectation": "The top panel shows a blue sample signal with visible markers. Its marker shape responds to the Shape control."
+    },
+    {
+      "id": "line_patterns_panel",
+      "severity": "medium",
+      "expectation": "The middle panel shows several offset sample signals with visibly distinct solid, dash, dot-dash, and dotted patterns."
+    },
+    {
+      "id": "line_weights_panel",
+      "severity": "medium",
+      "expectation": "The bottom panel shows several offset sample signals with clearly different 1 px, 2 px, 4 px, and 6 px line weights."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels in all three panels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Grid lines, curves, fills, and axes remain visually distinguishable."
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+# ---------------------------------------------------------------------------
+# QAccelPlot – Doxygen configuration
+# This file is processed by CMake (configure_file) to substitute @VAR@
+# placeholders. To run Doxygen directly without CMake, replace the @…@
+# markers with literal values first.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Project identity
+# ---------------------------------------------------------------------------
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+PROJECT_BRIEF          = "@PROJECT_DESCRIPTION@"
+OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
+
+# ---------------------------------------------------------------------------
+# Input
+# ---------------------------------------------------------------------------
+INPUT                  = "@QACCELPLOT_DOXYGEN_INPUT@"
+RECURSIVE              = YES
+FILE_PATTERNS          = *.hpp *.h
+# Exclude internal implementation details that are not part of the public API
+EXCLUDE_PATTERNS       = */shaders/* \
+                         */moc_* \
+                         *_p.hpp
+
+# ---------------------------------------------------------------------------
+# Comment extraction
+# ---------------------------------------------------------------------------
+# /// triple-slash style is the project standard.
+# QT_AUTOBRIEF treats the first sentence of a /// block as the \brief,
+# so explicit \brief tags are optional on single-line comments.
+QT_AUTOBRIEF           = YES
+JAVADOC_AUTOBRIEF      = NO
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+# ---------------------------------------------------------------------------
+# Output formats
+# ---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+
+# ---------------------------------------------------------------------------
+# Diagrams (requires Graphviz dot; silently disabled when not found)
+# ---------------------------------------------------------------------------
+HAVE_DOT               = @DOXYGEN_HAVE_DOT@
+DOT_PATH               = "@DOXYGEN_DOT_PATH@"
+CLASS_DIAGRAMS         = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+
+# ---------------------------------------------------------------------------
+# Source browsing
+# ---------------------------------------------------------------------------
+SOURCE_BROWSER         = NO
+VERBATIM_HEADERS       = NO
+
+# ---------------------------------------------------------------------------
+# Warnings
+# ---------------------------------------------------------------------------
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+WARN_AS_ERROR          = NO
+QUIET                  = NO

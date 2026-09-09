@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "pulsar_showcase",
+  "description": "The deterministic screenshot mode of the Cosmic Pulsar (CP 1919) 3D waterfall showcase.",
+  "expected_image": {
+    "width": 766,
+    "height": 852,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_composition",
+      "severity": "high",
+      "expectation": "A dark, atmospheric portrait plot displaying a dense stack of horizontal ridges resembling the iconic pulsar radio waterfall, with a centered title and balanced horizontal margins."
+    },
+    {
+      "id": "layered_ridges_occlusion",
+      "severity": "high",
+      "expectation": "A dense set of closely spaced ridges is layered vertically with clear depth and continuity. There should be no large missing sections, severe unintended merging, or clipping; minor visual overlap from perspective and antialiasing is acceptable."
+    },
+    {
+      "id": "pulsar_emission_structure",
+      "severity": "high",
+      "expectation": "The central emission corridor features jagged, multi-peak radio scintillation spikes that rise above the flat baseline wings."
+    },
+    {
+      "id": "spectral_color_progression",
+      "severity": "medium",
+      "expectation": "The ridges show a clear Viridis-like progression from bright yellow near the top through green and teal/blue toward purple in the foreground. Normal backend-specific shade and interpolation differences are acceptable, but a missing, reversed, or substantially broken progression is not."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The ridge field is rendered smoothly with antialiasing, without clipped lines, large missing groups of curves, or corrupted regions, and text remains crisp."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "The centered plot title and x-axis tick labels have crisp, legible glyph edges without clipping, blur, or raster corruption."
+    }
+  ]
+}

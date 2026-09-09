@@ -1,0 +1,30 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+# QAccelPlotConfig.cmake.in
+# This file is configured by CMake into QAccelPlotConfig.cmake.
+# Consumers use it via:
+#
+#   find_package(QAccelPlot REQUIRED)
+#   target_link_libraries(myApp PRIVATE QAccelPlot::QAccelPlot)
+#   qt_import_qml_plugins(myApp)   # required for static QML modules
+
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# QAccelPlot requires these Qt modules at link time.
+find_dependency(Qt6 6.2 COMPONENTS Core Gui Quick)
+if(@QACCELPLOT_USE_QT_PRIVATE_API@ AND NOT TARGET Qt6::QuickPrivate)
+    # Static builds retain a link-only dependency on the implementation module.
+    # This does not expose Qt private types through QAccelPlot's public ABI.
+    find_dependency(Qt6 COMPONENTS QuickPrivate)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/QAccelPlotTargets.cmake")
+
+check_required_components(QAccelPlot)

@@ -1,0 +1,76 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+name: Build and unit tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Qt private API ${{ matrix.qt_private_api }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        qt_private_api: ['ON', 'OFF']
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure CMake
+        run: >-
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_INSTALL=ON
+          -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
+
+      - name: Build library, examples, and unit tests
+        run: >-
+          cmake --build build --config Release --parallel 2 --target
+          QAccelPlot
+          QAccelPlotExamples
+          tst_axis_tick_painter
+          tst_spatial_grid
+          tst_formatters
+          tst_transitions
+          tst_axis_mapping
+          tst_plot_appearance
+          tst_math_utils
+          tst_gradient_coordinates
+          tst_line_curve_data
+          tst_material_comparison
+          tst_rectangle_list_data
+
+      - name: Run unit tests
+        run: >-
+          xvfb-run -a ctest --test-dir build -C Release --output-on-failure
+          -R '^tst_(axis_tick_painter|spatial_grid|formatters|transitions|axis_mapping|plot_appearance|math_utils|gradient_coordinates|line_curve_data|material_comparison|rectangle_list_data)$'

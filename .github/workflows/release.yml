@@ -1,0 +1,137 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-pages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+          cache: pip
+          cache-dependency-path: docs/requirements.txt
+
+      - name: Resolve release version
+        id: version
+        shell: bash
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate release metadata
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || {
+            echo "Tagged commit is not reachable from main" >&2
+            exit 1
+          }
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists" >&2
+            exit 1
+          fi
+          python scripts/validate-release.py \
+            --tag "$GITHUB_REF_NAME" \
+            --notes-output build/release-notes.md
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0 doxygen graphviz
+          python -m pip install -r docs/requirements.txt
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure release verification build
+        run: >-
+          cmake -S . -B build/verify -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_INSTALL=OFF
+
+      - name: Build library, examples, and tests
+        run: cmake --build build/verify --config Release --parallel 2
+
+      - name: Run unit tests
+        run: >-
+          xvfb-run -a ctest --test-dir build/verify -C Release --output-on-failure
+          -R '^tst_(axis_tick_painter|spatial_grid|formatters|transitions|axis_mapping|plot_appearance|math_utils|gradient_coordinates|line_curve_data|material_comparison|rectangle_list_data)$'
+
+      - name: Build release documentation
+        env:
+          QACCELPLOT_DOCS_VERSION: ${{ steps.version.outputs.version }}
+          QACCELPLOT_DOCS_CHANNEL: stable
+        run: |
+          bash scripts/build-docs.sh
+          cat >> build/release-notes.md <<EOF
+
+          ## Documentation
+
+          - Stable documentation: https://michalgrabarczyk.github.io/QAccelPlot/
+          - Documentation for ${{ steps.version.outputs.version }}: https://michalgrabarczyk.github.io/QAccelPlot/${{ steps.version.outputs.version }}/
+          - Development documentation: https://michalgrabarczyk.github.io/QAccelPlot/main/
+          EOF
+
+      - name: Publish exact version documentation
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/site
+          destination_dir: ${{ steps.version.outputs.version }}
+          keep_files: true
+
+      - name: Publish latest documentation
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/site
+          destination_dir: latest
+          keep_files: true
+
+      - name: Publish stable documentation at site root
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/site
+          keep_files: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: QAccelPlot ${{ github.ref_name }}
+          body_path: build/release-notes.md
+          draft: false
+          prerelease: false

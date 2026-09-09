@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "annotations",
+  "description": "The default 1200x800 Annotations example, showing a process-response curve with data-anchored labels, an event marker, and a warning range.",
+  "expected_image": {
+    "width": 1200,
+    "height": 800,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "A title and explanatory sentence appear above one large plot. The plot, annotations, axes, and legend do not overlap the window boundary or each other in a way that hides their meaning."
+    },
+    {
+      "id": "curve_and_axes",
+      "severity": "high",
+      "expectation": "A continuous pressure-response curve spans the plot. The Process time (s) and Pressure response (units) axes, ticks, grid, and Pressure response legend are visible and readable."
+    },
+    {
+      "id": "point_annotations",
+      "severity": "medium",
+      "expectation": "Distinct peak and pressure-drop markers are visibly attached near a high and a low point of the curve, with readable labels that remain inside the plot. Their displayed numeric values may vary with generated sample data and must not be judged for exact equality."
+    },
+    {
+      "id": "range_and_event_annotations",
+      "severity": "medium",
+      "expectation": "A vertical Valve opened event line and label are visible, together with a translucent horizontal Warning range band and its label. The curve and grid remain distinguishable through or around these annotations."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick title and description text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The plot is not blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Text and graphics are not visibly clipped."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "performance_showcase",
+  "description": "The default 1400x900 Performance Showcase example with the live-data controls, metric cards, and high-density curve.",
+  "expected_image": {
+    "width": 1400,
+    "height": 900,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "A narrow live-dataset control panel occupies the left side. The live-point heading, four metric cards, and one large plot occupy the right side without overlap or clipping."
+    },
+    {
+      "id": "workload_controls",
+      "severity": "medium",
+      "expectation": "The data point count, workload preset buttons, rectangle annotation toggle, and rectangle count area are visible and readable. Disabled rectangle controls may appear muted when annotation is off."
+    },
+    {
+      "id": "metric_cards",
+      "severity": "medium",
+      "expectation": "Distinct DISPLAY FPS, DATA UPDATE RATE, FRAME TIME, and CURVE THROUGHPUT cards are present with a prominent value and smaller explanatory text. DISPLAY FPS is described as frames presented per second, while DATA UPDATE RATE is expressed in Hz and described as newly generated datasets applied to the plot. Exact values are environment-dependent performance telemetry and must not be judged for equality or speed."
+    },
+    {
+      "id": "dense_curve",
+      "severity": "high",
+      "expectation": "A continuous high-density oscillating curve spans the Sample domain plot between approximately -10 and 10 Amplitude. Repeated peaks and troughs are visible rather than a blank plot or solid block."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick metric-card and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The dense curve remains distinguishable from the grid, and the axes, cards, controls, and text are not corrupted or materially clipped."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+# Build directories
+build/
+build-*/
+
+# Qt & Compiler output
+*.stackdump
+*.qsb
+*.user
+*.user.*
+
+# IDEs & Editors
+.vscode/
+.vs/
+.idea/
+*.suo
+*.vcxproj.user
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+*.log
+*.tmp
+*.bak
+*.orig
+*.swp
+*~

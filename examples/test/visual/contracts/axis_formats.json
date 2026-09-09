@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "axis_formats",
+  "description": "The default 1000x720 Axis Formats example on its Date and time tab.",
+  "expected_image": {
+    "width": 1000,
+    "height": 720,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "The title and description appear above a three-tab bar, a format control row, and one large plot. These regions are aligned and do not overlap or extend beyond the window."
+    },
+    {
+      "id": "default_tab_and_controls",
+      "severity": "medium",
+      "expectation": "Date and time is visibly selected while Logarithmic and Categories remain available. The explanatory text and Label format combo box are readable."
+    },
+    {
+      "id": "formatted_time_axis",
+      "severity": "high",
+      "expectation": "The horizontal Trace time axis shows clock-formatted labels progressing from about 09:30:00 to 09:31:00 rather than raw millisecond values. The Response time (ms) vertical axis is also present. If the screenshot resolution is insufficient to read the exact tick text, report uncertain; do not fail solely because the labels are small or blurred."
+    },
+    {
+      "id": "response_curve",
+      "severity": "medium",
+      "expectation": "A continuous response-time curve with multiple variations and two prominent bursts is visible across the plotting area. Exact raster shape and minor sampling differences are acceptable."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick title, tab, and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The plot, grid, ticks, curve, controls, and text are visually distinguishable; nothing important is blank, corrupted, or clipped."
+    }
+  ]
+}
