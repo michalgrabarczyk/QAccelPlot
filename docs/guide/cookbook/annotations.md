@@ -110,12 +110,12 @@ Complete sources:
 - [`examples/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/annotations)
 - [`examples/interactive_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interactive_tools)
 
-[plot-rect]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ad8106ed7a0613158e29ed0137edbd248
-[data-to-pixel-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a64aa564d1fae3a901d22897b8c70d514
-[data-to-pixel-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af6e974159b9a04649636768ff923d797
-[pixel-to-data-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a484d049dd7188040e0c450bb9590ac0c
-[pixel-to-data-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#abd81402f2c90d2287bb1ca41f1a35e49
-[data-anchor]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_data_anchor.html
-[rectangle-list]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html
-[rectangle-list-set-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#aaead3aa540e3521e1e6a365bdc313d6c
-[hovered-index]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#afb85815f91d34b3a35bbf957e9aa5e09
+[plot-rect]: ../../api/classQAccelPlot_1_1QAccelPlot.html#ad8106ed7a0613158e29ed0137edbd248
+[data-to-pixel-x]: ../../api/classQAccelPlot_1_1QAccelPlot.html#a64aa564d1fae3a901d22897b8c70d514
+[data-to-pixel-y]: ../../api/classQAccelPlot_1_1QAccelPlot.html#af6e974159b9a04649636768ff923d797
+[pixel-to-data-x]: ../../api/classQAccelPlot_1_1QAccelPlot.html#a484d049dd7188040e0c450bb9590ac0c
+[pixel-to-data-y]: ../../api/classQAccelPlot_1_1QAccelPlot.html#abd81402f2c90d2287bb1ca41f1a35e49
+[data-anchor]: ../../api/classQAccelPlot_1_1DataAnchor.html
+[rectangle-list]: ../../api/classQAccelPlot_1_1RectangleList.html
+[rectangle-list-set-data]: ../../api/classQAccelPlot_1_1RectangleList.html#aaead3aa540e3521e1e6a365bdc313d6c
+[hovered-index]: ../../api/classQAccelPlot_1_1RectangleList.html#afb85815f91d34b3a35bbf957e9aa5e09

@@ -57,6 +57,12 @@ markdown_extensions:
   - toc:
       permalink: true
 
+# Doxygen pages are added after MkDocs renders the guide, so MkDocs cannot see
+# those relative targets during its validation pass.
+validation:
+  links:
+    not_found: ignore
+
 nav:
   - Home: index.md
   - Getting started: getting-started.md

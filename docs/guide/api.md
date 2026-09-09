@@ -10,7 +10,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 # API reference
 
 The generated
-[QAccelPlot API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)
+[QAccelPlot API reference](api.md)
 documents public C++ and QML types, properties, methods, signals, and enums.
 
 When the complete documentation site is built, Doxygen replaces this page at
@@ -21,4 +21,3 @@ development server, build the Doxygen target separately:
 cmake -S . -B build -DQACCELPLOT_BUILD_DOCS=ON
 cmake --build build --target qaccelplot_docs
 ```
-
