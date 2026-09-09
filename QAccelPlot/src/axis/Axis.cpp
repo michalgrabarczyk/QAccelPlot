@@ -280,6 +280,21 @@ void Axis::setAxisLinePadding(const int padding)
     update();
 }
 
+qreal Axis::layoutSize() const
+{
+    return layoutSize_;
+}
+
+void Axis::setLayoutSize(const qreal size)
+{
+    const auto clampedSize = std::max(qreal{0.0}, size);
+    if (nearly_equal(layoutSize_, clampedSize)) {
+        return;
+    }
+    layoutSize_ = clampedSize;
+    emit layoutSizeChanged();
+}
+
 AxisTicker* Axis::ticker() const
 {
     return ticker_;
