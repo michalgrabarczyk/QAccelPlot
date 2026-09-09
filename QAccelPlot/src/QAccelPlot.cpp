@@ -523,6 +523,7 @@ void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
         connect(axis, &Axis::dataMaxChanged, plot, &QAccelPlot::update);
         connect(axis, &Axis::rangeChanged, plot, [plot] { plot->update(); });
         connect(axis, &QQuickItem::visibleChanged, plot, &QAccelPlot::layoutAxes);
+        connect(axis, &Axis::layoutSizeChanged, plot, &QAccelPlot::layoutAxes);
         plot->extraAxes_.append(axis);
         plot->layoutAxes();
     }
@@ -550,6 +551,7 @@ void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
         disconnect(axis, &Axis::dataMaxChanged, plot, nullptr);
         disconnect(axis, &Axis::rangeChanged, plot, nullptr);
         disconnect(axis, &QQuickItem::visibleChanged, plot, nullptr);
+        disconnect(axis, &Axis::layoutSizeChanged, plot, nullptr);
     }
     plot->extraAxes_.clear();
     plot->layoutAxes();
@@ -604,6 +606,7 @@ void QAccelPlot::connectAxis(Axis* axis, Axis::Orientation orientation)
     connect(axis, &Axis::dataMaxChanged, this, syncAndUpdate);
     connect(axis, &Axis::rangeChanged, this, syncAndUpdate);
     connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
+    connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
 }
 
 void QAccelPlot::disconnectAxis(Axis* axis)
@@ -616,6 +619,7 @@ void QAccelPlot::disconnectAxis(Axis* axis)
     disconnect(axis, &Axis::dataMaxChanged, this, nullptr);
     disconnect(axis, &Axis::rangeChanged, this, nullptr);
     disconnect(axis, &QQuickItem::visibleChanged, this, nullptr);
+    disconnect(axis, &Axis::layoutSizeChanged, this, nullptr);
 }
 
 void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
@@ -663,16 +667,14 @@ void QAccelPlot::layoutAxes()
 {
     const auto w = width();
     const auto h = height();
-    const auto axisSize = qreal{50};
-
     auto extraBottomHeight = qreal{0};
     for (const auto* axis : extraAxes_) {
         if (axis->isVisible() && axis->orientation() == Axis::Horizontal) {
-            extraBottomHeight += axisSize + axis->inwardTickOverlap();
+            extraBottomHeight += axis->layoutSize() + axis->inwardTickOverlap();
         }
     }
 
-    const auto visibleAxisSize = [axisSize](const Axis* axis) { return axis && axis->isVisible() ? axisSize : qreal{0}; };
+    const auto visibleAxisSize = [](const Axis* axis) { return axis && axis->isVisible() ? axis->layoutSize() : qreal{0}; };
     const auto leftW = visibleAxisSize(yAxis_);
     const auto rightW = visibleAxisSize(y2Axis_);
     const auto topH = visibleAxisSize(x2Axis_);
@@ -696,15 +698,15 @@ void QAccelPlot::layoutAxes()
         const auto ov = yAxis_->inwardTickOverlap();
         const auto lOv = yAxis_->labelOverflow();
         yAxis_->setPosition(QPointF(padding_, plotY - lOv));
-        yAxis_->setSize(QSizeF(axisSize + ov, plotH + 2.0 * lOv));
+        yAxis_->setSize(QSizeF(yAxis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (yAxis_) {
         yAxis_->setSize(QSizeF{});
     }
     if (y2Axis_ && y2Axis_->isVisible()) {
         const auto ov = y2Axis_->inwardTickOverlap();
         const auto lOv = y2Axis_->labelOverflow();
-        y2Axis_->setPosition(QPointF(w - padding_ - axisSize - ov, plotY - lOv));
-        y2Axis_->setSize(QSizeF(axisSize + ov, plotH + 2.0 * lOv));
+        y2Axis_->setPosition(QPointF(w - padding_ - y2Axis_->layoutSize() - ov, plotY - lOv));
+        y2Axis_->setSize(QSizeF(y2Axis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (y2Axis_) {
         y2Axis_->setSize(QSizeF{});
     }
@@ -712,7 +714,7 @@ void QAccelPlot::layoutAxes()
         const auto ov = xAxis_->inwardTickOverlap();
         const auto lOv = xAxis_->labelOverflow();
         xAxis_->setPosition(QPointF(plotX - lOv, h - padding_ - botH - ov));
-        xAxis_->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+        xAxis_->setSize(QSizeF(plotW + 2.0 * lOv, xAxis_->layoutSize() + ov));
     } else if (xAxis_) {
         xAxis_->setSize(QSizeF{});
     }
@@ -720,7 +722,7 @@ void QAccelPlot::layoutAxes()
         const auto ov = x2Axis_->inwardTickOverlap();
         const auto lOv = x2Axis_->labelOverflow();
         x2Axis_->setPosition(QPointF(plotX - lOv, padding_));
-        x2Axis_->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+        x2Axis_->setSize(QSizeF(plotW + 2.0 * lOv, x2Axis_->layoutSize() + ov));
     } else if (x2Axis_) {
         x2Axis_->setSize(QSizeF{});
     }
@@ -738,13 +740,13 @@ void QAccelPlot::layoutAxes()
         const auto ov = axis->inwardTickOverlap();
         const auto lOv = axis->labelOverflow();
         if (axis->orientation() == Axis::Horizontal) {
-            axis->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+            axis->setSize(QSizeF(plotW + 2.0 * lOv, axis->layoutSize() + ov));
             axis->setPosition(QPointF(plotX - lOv, currentBot));
-            currentBot += axisSize + ov;
+            currentBot += axis->layoutSize() + ov;
         } else {
-            axis->setSize(QSizeF(axisSize, plotH + 2.0 * lOv));
+            axis->setSize(QSizeF(axis->layoutSize(), plotH + 2.0 * lOv));
             axis->setPosition(QPointF(currentLeft, plotY - lOv));
-            currentLeft += axisSize;
+            currentLeft += axis->layoutSize();
         }
     }
 }
