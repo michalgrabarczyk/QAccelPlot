@@ -1,0 +1,1514 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and benchmarking methodology.">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/performance/">
+      
+      
+        <link rel="prev" href="../concepts/">
+      
+      
+        <link rel="next" href="../performance-comparison/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Performance - QAccelPlot v0.1.0 Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<meta property="og:description" content="QAccelPlot performance guide — data-ingestion API comparison, efficient buffer strategies, worker-thread handoff, hover cost analysis, and benchmarking methodology.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "0.1.0",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#performance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot v0.1.0 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot v0.1.0 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#select-the-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select the data path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-buffers-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build buffers efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-work-off-critical-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep work off critical paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-rendering-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional rendering costs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional rendering costs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hover-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hover interactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-rendering-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other rendering costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-a-hardware-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use a hardware backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-the-texture-upload-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select the texture upload mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benchmarking-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benchmarking tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benchmarking tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-included-benchmarks-measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the included benchmarks measure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#select-the-data-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select the data path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-buffers-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build buffers efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keep-work-off-critical-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep work off critical paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-rendering-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional rendering costs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional rendering costs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hover-interactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hover interactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-rendering-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other rendering costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-a-hardware-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use a hardware backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#select-the-texture-upload-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Select the texture upload mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benchmarking-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benchmarking tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benchmarking tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-included-benchmarks-measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the included benchmarks measure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!--
+SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+-->
+
+<h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
+<p>Performance is a core design goal of QAccelPlot. Its GPU-rendered series are
+designed for large data sets, including plots that use visual effects.</p>
+<p>Actual throughput depends on more than point count. Update frequency, data
+conversion, range scans, series count, line style, effects, window size,
+graphics backend, and display refresh rate all contribute. Measure the workload
+that resembles your application.</p>
+<h2 id="select-the-data-path">Select the data path<a class="headerlink" href="#select-the-data-path" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Use it when</th>
+<th>Main cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114"><code>setData(QList&lt;QPointF&gt;)</code></a></td>
+<td>Data originates in QML or convenience matters most</td>
+<td>Allocation plus conversion to interleaved floats</td>
+</tr>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aad067a9b84289a5c73637905cbc61a69"><code>setData(xs, ys)</code></a></td>
+<td>Existing C++ data is stored as separate double vectors</td>
+<td>Allocation plus double-to-float interleaving</td>
+</tr>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ad79086eb28ddc5112e534c8cdbfa03ef"><code>setDataF(const float*, count)</code></a></td>
+<td>Existing interleaved memory cannot be transferred</td>
+<td>One copy plus a range scan</td>
+</tr>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td>The caller is on the curve's thread, normally the UI thread</td>
+<td>Range scan; buffer ownership is moved immediately</td>
+</tr>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td>Axis data ranges are fixed or maintained separately</td>
+<td>Skips the range scan and signals</td>
+</tr>
+<tr>
+<td><code>setDataFNoRange(const float*, count)</code></td>
+<td>Existing interleaved memory remains caller-owned and axis ranges are maintained separately</td>
+<td>One reusable-buffer copy; skips the range scan and signals</td>
+</tr>
+<tr>
+<td><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td>A worker thread owns the completed buffer</td>
+<td>Queues the same moved-buffer handoff, followed by the normal range scan</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> transfers the
+buffer immediately and must be called on the curve's thread, normally the UI
+thread. <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> is its
+worker-thread-safe counterpart: it queues that same transfer to the curve's
+thread.</p>
+<p>Start with <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
+C++ data sets. Move to <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> only after
+confirming that range calculation matters and after arranging accurate
+<a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a>/<a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a> values yourself.</p>
+<div class="admonition caution">
+<p class="admonition-title">No-range updates change the contract</p>
+<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> does not report new extents to
+attached axes. If the data can leave the declared range, update the axes
+yourself or periodically use a range-calculating path. Otherwise rescaling
+and clipping behavior will be incorrect.</p>
+</div>
+<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a549c74098a67f68d77ea45e9a0e32649"><code>setDataFNoRangeWithCache()</code></a> is an advanced
+path used by the performance showcase and benchmark harness. It is valuable
+when an application can prepare the renderer's vertex cache off the UI/render
+path, but it couples application code more closely to renderer details. Prefer
+the simpler moved-buffer APIs until measurements justify that complexity. A
+supplied cache must exactly match the current point count and renderer layout;
+invalid caches are rejected and rendering falls back to normal vertex assembly.</p>
+<h2 id="build-buffers-efficiently">Build buffers efficiently<a class="headerlink" href="#build-buffers-efficiently" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Store points as interleaved floats: <code>[x0, y0, x1, y1, ...]</code>.</li>
+<li>Reserve or resize the vector once before filling it.</li>
+<li>Move the completed vector instead of copying it.</li>
+<li>Reuse producer-side buffers after ownership returns through your handoff
+  scheme.</li>
+<li>Publish at the rate the renderer can consume. Generating many intermediate
+  frames that will never be displayed wastes CPU time.</li>
+</ul>
+<p>For worker-thread production and one-batch handoff, see
+<a href="../cookbook/background-data/">Background data production</a>.</p>
+<p>For a stable streaming window, set the axis data range explicitly and use
+<a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> for subsequent frames. The
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>
+demonstrates this pattern.</p>
+<h2 id="keep-work-off-critical-paths">Keep work off critical paths<a class="headerlink" href="#keep-work-off-critical-paths" title="Permanent link">&para;</a></h2>
+<p>Generate or transform expensive data on a worker thread. Transfer only a
+completed buffer to the UI thread; never write directly to a <code>QQuickItem</code> from
+the worker. <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData()</code></a> is the simplest safe handoff when
+automatic range calculation is acceptable.</p>
+<p>If producers are faster than display, keep at most one completed batch, or use
+a queue with a fixed limit. This applies backpressure, preventing memory growth
+and avoiding work on frames that will never be displayed. The
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp"><code>performance_showcase</code> worker</a>
+uses the one-batch approach and waits until the UI thread consumes the previous
+batch.</p>
+<h2 id="optional-rendering-costs">Optional rendering costs<a class="headerlink" href="#optional-rendering-costs" title="Permanent link">&para;</a></h2>
+<h3 id="hover-interactions">Hover interactions<a class="headerlink" href="#hover-interactions" title="Permanent link">&para;</a></h3>
+<p><code>LineCurve</code> hover tests use cached bounding boxes for blocks of 512 points.
+Each pointer move checks those boxes, then tests only the surviving segments or
+markers: <code>O(N / 512 + K)</code>, where <code>K</code> is the number of candidates. The worst
+case remains <code>O(N)</code> when many blocks overlap the pointer. For normal data
+updates, the bounds are built during data handoff rather than on the first
+hover. Built-in hover feedback and changes to solid-curve color or line width
+update material uniforms without rebuilding vertex geometry; gradient effects
+may require additional per-vertex work.</p>
+<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#afb85815f91d34b3a35bbf957e9aa5e09"><code>QAccelPlot.RectangleList.hoveredIndex</code></a> uses a spatial grid, giving an <code>O(1)</code>
+lookup per pointer move after the grid is built when its data changes.</p>
+<h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Point markers add geometry and fragment work for every visible point.</li>
+<li>Gradient effects require additional material and domain work.</li>
+<li>Transitions update intermediate data while animation is active.</li>
+<li>Many separate series add per-node and per-material overhead even when their
+  total point count is unchanged.</li>
+<li>Larger windows and high-DPI displays increase fragment workload.</li>
+</ul>
+<p>Changing uniform-like properties such as line width, marker size, or color is
+usually cheaper than changing the data or line topology, but it still schedules
+a redraw.</p>
+<h2 id="use-a-hardware-backend">Use a hardware backend<a class="headerlink" href="#use-a-hardware-backend" title="Permanent link">&para;</a></h2>
+<p>QAccelPlot's custom curve rendering requires a hardware Qt Quick Scene Graph
+backend. OpenGL, Direct3D, Vulkan, and Metal are supported through Qt's RHI
+shaders; the software backend skips custom curve rendering and emits a warning.</p>
+<p>Check <code>QSG_RHI_BACKEND</code>, <code>QT_QUICK_BACKEND</code>, remote-desktop behavior, and driver
+availability when a curve is blank or unexpectedly slow.</p>
+<h2 id="select-the-texture-upload-mode">Select the texture upload mode<a class="headerlink" href="#select-the-texture-upload-mode" title="Permanent link">&para;</a></h2>
+<p>QAccelPlot keeps curve coordinates in a compact GPU data texture. By default,
+when <code>Qt6::QuickPrivate</code> is available, live updates use
+<code>QSGPlainTexture::setImage()</code> to replace the image contents in place. This
+narrowly scoped private call avoids recreating the scene-graph texture every
+frame and provides a material performance advantage for very large,
+continuously updated data sets. Private Qt types stay confined to one internal
+implementation file and are not exposed through public headers or ABI.</p>
+<p>Configure with <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> when private dependencies
+are unacceptable for packaging or deployment. The public-only path retains the
+same compact data-texture shaders and uses
+<code>QQuickWindow::createTextureFromImage()</code> to recreate the live data texture.
+Gradient textures always use this public recreation path because gradient stop
+changes are infrequent.</p>
+<p>Benchmark both modes against the application's real workload. The included
+live scenarios cover 1M, 2M, 5M, and 10M points and can be built separately:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-private<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>ON
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-public<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
+</code></pre></div>
+<h2 id="benchmarking-tips">Benchmarking tips<a class="headerlink" href="#benchmarking-tips" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Build QAccelPlot and the application in Release mode.</li>
+<li>Warm up shader compilation, allocations, and caches before recording.</li>
+<li>Record presented frames (<a href="https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped"><code>QQuickWindow::frameSwapped</code></a>), not timer callbacks.</li>
+<li>For generated or streamed data, separately report how many new datasets are
+   applied per second. Presented FPS can be higher because several frames may
+   display the same dataset.</li>
+<li>Report frame-time distribution as well as average FPS.</li>
+<li>Record Qt version, OS, GPU, driver, graphics API, resolution, and device
+   pixel ratio.</li>
+<li>Separate static rendering, live updates, and data-ingestion measurements.</li>
+<li>Repeat the test and publish the scenario with the result.</li>
+</ol>
+<p>The Performance Showcase displays both <strong>Display FPS</strong> and <strong>Data
+Update Rate</strong>. Display FPS counts frames presented to the screen. Data Update
+Rate is expressed in hertz and counts newly generated curve datasets applied to
+the plot each second; this is the cadence that determines how fluid the changing
+curve appears. The showcase generates its sine data on a background worker using
+a lookup table, so this rate includes data preparation and application. The
+worker keeps at most one completed batch pending and waits for its consumption
+before generating the next batch.</p>
+<p>The Data Update Rate card also reports the <strong>peak update gap</strong>: the longest
+wall-clock interval between consecutive dataset applications during the last
+reporting period.</p>
+<h3 id="what-the-included-benchmarks-measure">What the included benchmarks measure<a class="headerlink" href="#what-the-included-benchmarks-measure" title="Permanent link">&para;</a></h3>
+<p>Data generation is excluded from the benchmarks.</p>
+<p>Graphical and headless frame timing starts immediately before the curve data or
+viewport is updated and ends after <code>QQuickRenderControl::endFrame()</code> returns.
+Because the runner uses offscreen frames, this includes data copying,
+scene-graph synchronization, texture staging, rendering, command submission,
+and GPU completion. Frame intervals are recorded separately for sustained-FPS
+calculations.</p>
+<p>Warmup is wall-clock based rather than assuming a 60 Hz presentation rate. This
+matters because the offscreen runners are uncapped and can process many more than
+60 frames per second.</p>
+<p>Static scenarios keep one source buffer and perform the same bounded viewport pan
+in the graphical and headless runners. Multi-curve throughput counts all points
+across all curves. The separate CPU ingestion and vertex-cache executables isolate
+those operations without rendering.</p>
+<p>Build the included benchmarks with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-DQACCELPLOT_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-DQACCELPLOT_BUILD_TESTS<span class="o">=</span>OFF
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</code></pre></div>
+<p>The benchmark scenarios live in
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp"><code>benchmarks/common/BenchmarkScenario.cpp</code></a>.
+Treat their results as measurements of the recorded machine and scenario, not
+as a guarantee for every application.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../concepts/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Concepts and architecture">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Concepts and architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../performance-comparison/" class="md-footer__link md-footer__link--next" aria-label="Next: Performance comparison">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Performance comparison
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

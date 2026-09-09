@@ -1,0 +1,1512 @@
+# QAccelPlot — Complete Documentation
+
+> This file is auto-generated from the QAccelPlot documentation source.
+> It provides the complete library documentation in a single file for AI agent ingestion.
+
+
+---
+
+<!-- source: docs/guide/index.md -->
+
+# QAccelPlot
+
+QAccelPlot is a hardware-accelerated plotting library for Qt Quick. It combines
+QML-friendly plot composition with C++ data paths designed for large and
+frequently changing data sets, rendering through the Qt Scene Graph using GPU
+shaders for real-time 2D data visualization.
+
+### Key capabilities
+
+- **GPU-rendered line curves** with solid, dashed, and marker-only styles
+- **Gradient fills and strokes** for visual effects on curves
+- **Multiple data-ingestion APIs** from convenience QML to efficient C++ buffers
+- **Real-time performance** — hundreds of thousands of points at display refresh rate
+- **Interactive** — built-in pan, zoom, hover detection, and custom tool support
+- **Multiple axes** — primary, secondary, and extra axes for different scales
+- **Annotations** — data-attached labels, regions, and measurement overlays
+- **Animated transitions** — morph and draw transitions for data updates
+
+### Quick start
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    id: plot
+    anchors.fill: parent
+    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10; side: QAccelPlot.Axis.Bottom }
+    yAxis: QAccelPlot.Axis { viewportMin: -1; viewportMax: 1; side: QAccelPlot.Axis.Left }
+    QAccelPlot.LineCurve { xAxis: plot.xAxis; yAxis: plot.yAxis; color: "steelblue" }
+}
+```
+
+See [Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/) for the full build and data setup.
+
+## Explore the documentation
+
+- **[Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — Build your first QAccelPlot application.
+- **[Architecture](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — See how plots, axes, series, and the Qt
+  Scene Graph fit together.
+- **[Performance](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Choose the right data-ingestion path and
+  measure rendering throughput.
+- **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Solve common plotting tasks with focused
+  recipes.
+- **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Answers to common questions about licensing, performance,
+  threading, and compatibility.
+- **[API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Look up types, properties, methods, signals,
+  and enums.
+
+The runnable [`examples`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples)
+are the authoritative demonstrations. The guide explains the decisions behind
+them and links back to complete source files.
+
+## Requirements
+
+- CMake 3.16 or newer
+- A C++17 compiler
+- Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools
+- A hardware Qt Quick Scene Graph backend for curve rendering
+
+The default optimized mode also uses the matching `QuickPrivate` component for
+in-place live-data texture updates. A completely public-Qt-only build is
+available with `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF`. QAccelPlot is currently
+built and distributed as a static library.
+
+## Licensing
+
+QAccelPlot is offered under GPLv3 with the Universal FOSS Exception or under a
+separate commercial license. Read the
+[`LICENSING.md`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md)
+overview before distributing an application. Your use of Qt is governed
+separately by the license for your Qt installation.
+
+
+---
+
+<!-- source: docs/guide/getting-started.md -->
+
+# Getting started
+
+This walkthrough embeds QAccelPlot with CMake, creates a minimal QML plot, and
+loads its data from C++. It uses this project layout:
+
+```text
+my-plot-app/
+├── CMakeLists.txt
+├── main.cpp
+└── qml/
+    └── Main.qml
+```
+
+## 1. Add QAccelPlot to the build
+
+Create `CMakeLists.txt`:
+
+```cmake
+cmake_minimum_required(VERSION 3.22)
+
+project(MyPlotApp VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Quick ShaderTools)
+
+include(FetchContent)
+FetchContent_Declare(
+    QAccelPlot
+    GIT_REPOSITORY https://github.com/michalgrabarczyk/QAccelPlot.git
+    GIT_TAG v0.1.0
+)
+FetchContent_MakeAvailable(QAccelPlot)
+
+qt_add_executable(MyPlotApp MANUAL_FINALIZATION
+    main.cpp
+)
+
+set_source_files_properties(qml/Main.qml PROPERTIES QT_RESOURCE_ALIAS Main.qml)
+qt_add_resources(MyPlotApp "app_qml"
+    PREFIX "/app"
+    FILES qml/Main.qml
+)
+
+target_link_libraries(MyPlotApp PRIVATE
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Quick
+    QAccelPlot::QAccelPlot
+)
+
+qt_import_qml_plugins(MyPlotApp)
+qt_finalize_executable(MyPlotApp)
+
+# Windows has no build RPATH, so deploy Qt for direct Explorer launches.
+if(WIN32)
+    find_program(MY_PLOT_APP_WINDEPLOYQT
+        NAMES windeployqt
+        HINTS "${Qt6_DIR}/../../../bin"
+        REQUIRED
+    )
+
+    add_custom_command(TARGET MyPlotApp POST_BUILD
+        COMMAND "${MY_PLOT_APP_WINDEPLOYQT}"
+            --qmldir "${CMAKE_CURRENT_SOURCE_DIR}/qml"
+            --no-translations
+            "$<TARGET_FILE:MyPlotApp>"
+        COMMENT "Deploying the Qt runtime beside MyPlotApp"
+        VERBATIM
+    )
+endif()
+```
+
+`QAccelPlot::QAccelPlot` is the application-facing target. It brings in both
+the backing library and the static QML plugin. When QAccelPlot is included as a
+subproject, its examples, tests, benchmarks, and install rules default to off.
+The `ShaderTools` component is required when building QAccelPlot from source so
+that its GLSL shaders can be compiled and embedded in the library.
+
+To use an existing source checkout instead, replace the `FetchContent` block
+with:
+
+```cmake
+add_subdirectory(path/to/QAccelPlot)
+```
+
+## 2. Create the plot
+
+Create `qml/Main.qml`:
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+Window {
+    width: 800
+    height: 500
+    visible: true
+    title: "QAccelPlot example"
+
+    QAccelPlot.Plot {
+        id: plot
+        anchors.fill: parent
+        legendVisible: false
+
+        xAxis: QAccelPlot.Axis {
+            viewportMin: 0
+            viewportMax: 10
+            dataMin: 0
+            dataMax: 10
+            side: QAccelPlot.Axis.Bottom
+            label: "Time (s)"
+        }
+
+        yAxis: QAccelPlot.Axis {
+            viewportMin: -1.2
+            viewportMax: 1.2
+            dataMin: -1.2
+            dataMax: 1.2
+            side: QAccelPlot.Axis.Left
+            label: "Amplitude"
+            axisTitlePadding: 34
+        }
+
+        QAccelPlot.LineCurve {
+            objectName: "curve"
+            xAxis: plot.xAxis
+            yAxis: plot.yAxis
+            color: "darkorange"
+            lineWidth: 2
+        }
+    }
+}
+```
+
+Every series must be connected to an X and Y axis. [`viewportMin`][viewport-min]
+and [`viewportMax`][viewport-max] define what is visible; [`dataMin`][data-min]
+and [`dataMax`][data-max] describe the known data extent used when rescaling.
+
+## 3. Supply data from C++
+
+Create `main.cpp`:
+
+```cpp
+#include "series/LineCurve.hpp"
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+
+#include <vector>
+
+int main(int argc, char* argv[])
+{
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/app/Main.qml")));
+
+    auto* root = engine.rootObjects().value(0);
+    auto* curve = root
+        ? root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("curve"))
+        : nullptr;
+    if (!curve) {
+        return -1;
+    }
+
+    const std::vector<double> times { 0, 2.5, 5, 7.5, 10 };
+    const std::vector<double> amplitudes { 0, 0.8, -0.6, 0.4, 0 };
+    curve->setData(times, amplitudes);
+    return app.exec();
+}
+```
+
+[`setData()`][set-data-vectors] accepts separate X and Y vectors, which is a convenient fit for
+small, static data sets. For larger or frequently updated data, see the
+[Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/) for more efficient data-ingestion paths.
+
+## 4. Configure and build
+
+```sh
+cmake -S . -B build \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
+cmake --build build --config Release
+```
+
+The `QACCELPLOT_USE_QT_PRIVATE_API` flag affects performance; see
+the [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-texture-upload-mode).
+
+## Default interaction
+
+- Drag inside the plot area to pan all attached axes.
+- Use the mouse wheel over the plot to zoom all axes around the pointer.
+- Use the mouse wheel over an individual axis to zoom only that axis.
+- Double-click the plot to rescale all axes to their data ranges.
+- Double-click an axis to rescale that axis only.
+
+See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshooting/) for common setup issues.
+
+[viewport-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7dc4f6741ca21456941ee90ca647fcbe
+[viewport-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ae7112f0aac515a9fad256f21696f3e31
+[data-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
+[data-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85
+[set-data-vectors]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aad067a9b84289a5c73637905cbc61a69
+
+
+---
+
+<!-- source: docs/guide/concepts.md -->
+
+# Concepts and architecture
+
+QAccelPlot separates plot composition, coordinate mapping, data ownership, and
+rendering. Understanding those boundaries makes both QML composition and
+high-rate C++ updates straightforward.
+
+![QAccelPlot architecture](assets/architecture.svg)
+
+## Plot and PlotView
+
+`PlotView` is the C++ plot container. It owns the plot area, lays out primary,
+secondary, and extra axes, exposes coordinate conversion helpers, handles the
+default pan and zoom behavior, and discovers series added as child items.
+
+`Plot` is the convenient QML wrapper used by most applications. It adds a
+`Legend` and the `legendVisible` property while retaining the complete
+`PlotView` interface.
+
+The plot rectangle is available as [`plotRect`][plot-rect]. It excludes the space reserved
+for axes and padding, and is useful when placing clipped overlays or custom
+tools above the data.
+
+## Axes and ranges
+
+An `Axis` has two related ranges:
+
+- The **viewport range** ([`viewportMin`][viewport-min], [`viewportMax`][viewport-max]) is currently visible.
+- The **data range** ([`dataMin`][data-min], [`dataMax`][data-max]) describes the extent reported by
+  attached series.
+
+Panning and zooming change the viewport. Calling [`rescaleToData()`][rescale-to-data] copies the
+current data range into the viewport. A series reports its extent through the
+axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
+
+The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
+[`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
+sides, while [`extraAxes`][extra-axes] supports additional independently scaled
+axes. Each series explicitly selects the axes it uses.
+
+`AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
+and label formatting. Built-in formatters cover numeric, date/time,
+logarithmic, and categorical labels. A `TickLabelFormatter` can also invoke a
+JavaScript callback for application-specific labels.
+
+## Series
+
+`PlotSeries` contains the properties shared by data-bearing items: its name,
+axes, plot rectangle, and legend symbol.
+
+`LineCurve` renders a line, optional point markers, line styles, gradients, and
+fills. It stores points internally as interleaved floats. Data can arrive from
+QML for convenience or through C++ buffer APIs for high throughput.
+
+`RectangleList` renders a set of data-space rectangles and reports its hovered
+rectangle index. It is useful for ranges, events, bars, or large collections of
+simple rectangular shapes.
+
+## Composition and overlays
+
+The grid and series render within the plot, while ordinary QML items can be
+placed above them. `DataAnchor` maps one or two data coordinates into a QML
+item's geometry, allowing labels, event lines, regions, and drag handles to
+remain attached to the data while the user pans or zooms.
+
+For more specialized interaction, `PlotView` provides [`dataToPixelX()`][data-to-pixel-x],
+[`dataToPixelY()`][data-to-pixel-y], [`pixelToDataX()`][pixel-to-data-x],
+[`pixelToDataY()`][pixel-to-data-y], and [`isInsidePlotArea()`][is-inside-plot-area].
+Plot mouse events can be accepted by a custom tool to
+prevent the default pan behavior.
+
+## Rendering and threads
+
+Qt Quick owns the scene. QML objects and public setters normally run on the UI
+thread, while Qt synchronizes scene state to the Scene Graph render thread.
+QAccelPlot curve renderers create persistent Scene Graph nodes and use
+precompiled shaders for the active graphics API.
+
+The software Qt Quick backend cannot execute QAccelPlot's custom curve shaders.
+Data production may happen on a worker thread, but UI objects must not be
+mutated directly from that worker. Use [`LineCurve::postData()`][post-data] or queue the
+handoff to the UI thread. See [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+## Where to find detail
+
+- Use this guide for workflows and design decisions.
+- Use the [Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/) for complete patterns.
+- Use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/) for individual properties, methods, and enums.
+- Use the repository's
+  [`examples`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples)
+  for runnable applications.
+
+[plot-rect]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ad8106ed7a0613158e29ed0137edbd248
+[viewport-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7dc4f6741ca21456941ee90ca647fcbe
+[viewport-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ae7112f0aac515a9fad256f21696f3e31
+[data-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
+[data-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85
+[rescale-to-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a1a4057e12caae2776590a0ce4bc38a84
+[series-x-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#a250150d8eaea44c2608375839747b2b2
+[series-y-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#ae021f84424e1ea4ad44576961ac7d402
+[plot-x-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a08bb4bde1c498ad50fdfa8e48d41adf7
+[plot-y-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af489c97d929d1092be24f0e780c06a83
+[plot-x2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8
+[plot-y2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ab940a26d0902b92808a8ee0885cb7455
+[extra-axes]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a2aa8566edaee068e3517f5085fe9276b
+[data-to-pixel-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a64aa564d1fae3a901d22897b8c70d514
+[data-to-pixel-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af6e974159b9a04649636768ff923d797
+[pixel-to-data-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a484d049dd7188040e0c450bb9590ac0c
+[pixel-to-data-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#abd81402f2c90d2287bb1ca41f1a35e49
+[is-inside-plot-area]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a4d3dc663c405407222f8e1dcac3294f2
+[post-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c
+
+
+---
+
+<!-- source: docs/guide/performance.md -->
+
+# Performance
+
+Performance is a core design goal of QAccelPlot. Its GPU-rendered series are
+designed for large data sets, including plots that use visual effects.
+
+Actual throughput depends on more than point count. Update frequency, data
+conversion, range scans, series count, line style, effects, window size,
+graphics backend, and display refresh rate all contribute. Measure the workload
+that resembles your application.
+
+## Select the data path
+
+| API | Use it when | Main cost |
+| --- | --- | --- |
+| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML or convenience matters most | Allocation plus conversion to interleaved floats |
+| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors | Allocation plus double-to-float interleaving |
+| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
+| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
+| [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
+| `setDataFNoRange(const float*, count)` | Existing interleaved memory remains caller-owned and axis ranges are maintained separately | One reusable-buffer copy; skips the range scan and signals |
+| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff, followed by the normal range scan |
+
+[`setDataF(std::vector<float>&&, count)`][set-data-f-moved] transfers the
+buffer immediately and must be called on the curve's thread, normally the UI
+thread. [`postData(std::vector<float>&&, count)`][post-data] is its
+worker-thread-safe counterpart: it queues that same transfer to the curve's
+thread.
+
+Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
+C++ data sets. Move to [`setDataFNoRange()`][set-data-f-no-range] only after
+confirming that range calculation matters and after arranging accurate
+[`dataMin`][data-min]/[`dataMax`][data-max] values yourself.
+
+!!! caution "No-range updates change the contract"
+
+    [`setDataFNoRange()`][set-data-f-no-range] does not report new extents to
+    attached axes. If the data can leave the declared range, update the axes
+    yourself or periodically use a range-calculating path. Otherwise rescaling
+    and clipping behavior will be incorrect.
+
+[`setDataFNoRangeWithCache()`][set-data-f-no-range-with-cache] is an advanced
+path used by the performance showcase and benchmark harness. It is valuable
+when an application can prepare the renderer's vertex cache off the UI/render
+path, but it couples application code more closely to renderer details. Prefer
+the simpler moved-buffer APIs until measurements justify that complexity. A
+supplied cache must exactly match the current point count and renderer layout;
+invalid caches are rejected and rendering falls back to normal vertex assembly.
+
+## Build buffers efficiently
+
+- Store points as interleaved floats: `[x0, y0, x1, y1, ...]`.
+- Reserve or resize the vector once before filling it.
+- Move the completed vector instead of copying it.
+- Reuse producer-side buffers after ownership returns through your handoff
+  scheme.
+- Publish at the rate the renderer can consume. Generating many intermediate
+  frames that will never be displayed wastes CPU time.
+
+For worker-thread production and one-batch handoff, see
+[Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+For a stable streaming window, set the axis data range explicitly and use
+[`setDataFNoRange()`][set-data-f-no-range] for subsequent frames. The
+[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
+demonstrates this pattern.
+
+## Keep work off critical paths
+
+Generate or transform expensive data on a worker thread. Transfer only a
+completed buffer to the UI thread; never write directly to a `QQuickItem` from
+the worker. [`postData()`][post-data] is the simplest safe handoff when
+automatic range calculation is acceptable.
+
+If producers are faster than display, keep at most one completed batch, or use
+a queue with a fixed limit. This applies backpressure, preventing memory growth
+and avoiding work on frames that will never be displayed. The
+[`performance_showcase` worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp)
+uses the one-batch approach and waits until the UI thread consumes the previous
+batch.
+
+## Optional rendering costs
+
+### Hover interactions
+
+`LineCurve` hover tests use cached bounding boxes for blocks of 512 points.
+Each pointer move checks those boxes, then tests only the surviving segments or
+markers: `O(N / 512 + K)`, where `K` is the number of candidates. The worst
+case remains `O(N)` when many blocks overlap the pointer. For normal data
+updates, the bounds are built during data handoff rather than on the first
+hover. Built-in hover feedback and changes to solid-curve color or line width
+update material uniforms without rebuilding vertex geometry; gradient effects
+may require additional per-vertex work.
+
+[`QAccelPlot.RectangleList.hoveredIndex`][hovered-index] uses a spatial grid, giving an `O(1)`
+lookup per pointer move after the grid is built when its data changes.
+
+### Other rendering costs
+
+- Point markers add geometry and fragment work for every visible point.
+- Gradient effects require additional material and domain work.
+- Transitions update intermediate data while animation is active.
+- Many separate series add per-node and per-material overhead even when their
+  total point count is unchanged.
+- Larger windows and high-DPI displays increase fragment workload.
+
+Changing uniform-like properties such as line width, marker size, or color is
+usually cheaper than changing the data or line topology, but it still schedules
+a redraw.
+
+## Use a hardware backend
+
+QAccelPlot's custom curve rendering requires a hardware Qt Quick Scene Graph
+backend. OpenGL, Direct3D, Vulkan, and Metal are supported through Qt's RHI
+shaders; the software backend skips custom curve rendering and emits a warning.
+
+Check `QSG_RHI_BACKEND`, `QT_QUICK_BACKEND`, remote-desktop behavior, and driver
+availability when a curve is blank or unexpectedly slow.
+
+## Select the texture upload mode
+
+QAccelPlot keeps curve coordinates in a compact GPU data texture. By default,
+when `Qt6::QuickPrivate` is available, live updates use
+`QSGPlainTexture::setImage()` to replace the image contents in place. This
+narrowly scoped private call avoids recreating the scene-graph texture every
+frame and provides a material performance advantage for very large,
+continuously updated data sets. Private Qt types stay confined to one internal
+implementation file and are not exposed through public headers or ABI.
+
+Configure with `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` when private dependencies
+are unacceptable for packaging or deployment. The public-only path retains the
+same compact data-texture shaders and uses
+`QQuickWindow::createTextureFromImage()` to recreate the live data texture.
+Gradient textures always use this public recreation path because gradient stop
+changes are infrequent.
+
+Benchmark both modes against the application's real workload. The included
+live scenarios cover 1M, 2M, 5M, and 10M points and can be built separately:
+
+```sh
+cmake -S . -B build-private -DCMAKE_BUILD_TYPE=Release \
+  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
+  -DQACCELPLOT_USE_QT_PRIVATE_API=ON
+cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
+  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
+  -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
+```
+
+## Benchmarking tips
+
+1. Build QAccelPlot and the application in Release mode.
+2. Warm up shader compilation, allocations, and caches before recording.
+3. Record presented frames ([`QQuickWindow::frameSwapped`][frame-swapped]), not timer callbacks.
+4. For generated or streamed data, separately report how many new datasets are
+   applied per second. Presented FPS can be higher because several frames may
+   display the same dataset.
+5. Report frame-time distribution as well as average FPS.
+6. Record Qt version, OS, GPU, driver, graphics API, resolution, and device
+   pixel ratio.
+7. Separate static rendering, live updates, and data-ingestion measurements.
+8. Repeat the test and publish the scenario with the result.
+
+The Performance Showcase displays both **Display FPS** and **Data
+Update Rate**. Display FPS counts frames presented to the screen. Data Update
+Rate is expressed in hertz and counts newly generated curve datasets applied to
+the plot each second; this is the cadence that determines how fluid the changing
+curve appears. The showcase generates its sine data on a background worker using
+a lookup table, so this rate includes data preparation and application. The
+worker keeps at most one completed batch pending and waits for its consumption
+before generating the next batch.
+
+The Data Update Rate card also reports the **peak update gap**: the longest
+wall-clock interval between consecutive dataset applications during the last
+reporting period.
+
+### What the included benchmarks measure
+
+Data generation is excluded from the benchmarks.
+
+Graphical and headless frame timing starts immediately before the curve data or
+viewport is updated and ends after `QQuickRenderControl::endFrame()` returns.
+Because the runner uses offscreen frames, this includes data copying,
+scene-graph synchronization, texture staging, rendering, command submission,
+and GPU completion. Frame intervals are recorded separately for sustained-FPS
+calculations.
+
+Warmup is wall-clock based rather than assuming a 60 Hz presentation rate. This
+matters because the offscreen runners are uncapped and can process many more than
+60 frames per second.
+
+Static scenarios keep one source buffer and perform the same bounded viewport pan
+in the graphical and headless runners. Multi-curve throughput counts all points
+across all curves. The separate CPU ingestion and vertex-cache executables isolate
+those operations without rendering.
+
+Build the included benchmarks with:
+
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
+  -DQACCELPLOT_BUILD_EXAMPLES=OFF \
+  -DQACCELPLOT_BUILD_TESTS=OFF
+cmake --build build --config Release
+```
+
+The benchmark scenarios live in
+[`benchmarks/common/BenchmarkScenario.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp).
+Treat their results as measurements of the recorded machine and scenario, not
+as a guarantee for every application.
+
+[set-data-points]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114
+[set-data-vectors]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aad067a9b84289a5c73637905cbc61a69
+[set-data-f-copy]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ad79086eb28ddc5112e534c8cdbfa03ef
+[set-data-f-moved]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6
+[set-data-f-no-range]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30
+[set-data-f-no-range-with-cache]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a549c74098a67f68d77ea45e9a0e32649
+[post-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c
+[hovered-index]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#afb85815f91d34b3a35bbf957e9aa5e09
+[data-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
+[data-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85
+[frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
+
+
+---
+
+<!-- source: docs/guide/faq.md -->
+
+# FAQ
+
+## What is QAccelPlot?
+
+QAccelPlot is a high-performance plotting library for Qt Quick. It uses the Qt
+Scene Graph for hardware-accelerated GPU rendering and provides QML-friendly
+plot components backed by C++. It is designed for real-time visualization of
+large data sets — hundreds of thousands of points at display refresh rate.
+
+## How does QAccelPlot differ from QCustomPlot or Qt Charts?
+
+QCustomPlot renders on the CPU using `QPainter` inside a `QWidget`.
+Qt Charts also uses `QPainter` (or a Qt Quick `ChartView`).
+QAccelPlot renders through the Qt Quick Scene Graph using precompiled GPU
+shaders (OpenGL, Direct3D, Vulkan, Metal via RHI), which makes it
+significantly faster for large and frequently updated data sets in QML
+applications. QAccelPlot is designed exclusively for Qt Quick, not Qt Widgets.
+
+## What licenses are available?
+
+QAccelPlot is dual-licensed:
+
+1. **Open source** — GPLv3 with the Universal FOSS Exception. This permits
+   linking with applications distributed under OSI-approved or FSF-free
+   licenses.
+2. **Commercial** — A separate commercial license for proprietary or
+   closed-source products. Contact
+   [qaccelplot@gmail.com](mailto:qaccelplot@gmail.com) for details.
+
+See [LICENSING.md](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md)
+for the full explanation.
+
+## Which Qt versions are supported?
+
+Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools modules. The default
+optimized build also uses the matching `QuickPrivate` component for in-place
+live-data texture updates. Configure with
+`-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` for a public-Qt-only build that does not
+find or link QuickPrivate.
+
+No private Qt types are exposed through QAccelPlot's public headers or ABI. The
+private API is isolated because it provides substantially better performance
+for huge, continuously updated data sets; the public fallback favors packaging
+portability over maximum live-update throughput.
+
+## What graphics backends does QAccelPlot support?
+
+QAccelPlot works with any hardware Qt Quick Scene Graph backend: OpenGL,
+Direct3D 11/12, Vulkan, and Metal. The **software backend cannot render
+QAccelPlot curves** because it cannot execute custom shaders. If your curve is
+blank, check that `QSG_RHI_BACKEND` and `QT_QUICK_BACKEND` are not set to
+`software`.
+
+## How many data points can QAccelPlot handle?
+
+QAccelPlot is designed for hundreds of thousands of points per curve. Actual
+throughput depends on update frequency, series count, line style, effects,
+window size, graphics backend, and display refresh rate. Use the included
+[benchmarks](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks)
+to measure your specific workload.
+
+## What is the fastest way to supply data?
+
+For maximum throughput, use
+[`setDataF(std::vector<float>&&, int)`](https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6)
+which moves an already-interleaved float buffer with zero allocation. For
+fixed axis ranges, `setDataFNoRange()` additionally skips the range scan.
+See the [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path) for a
+comparison of all data-ingestion APIs.
+
+## When should I use `postData()` instead of `setDataF()`?
+
+Use [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c)
+when data is produced on a **worker thread**. It queues the buffer transfer to
+the UI thread safely. `setDataF()` must be called on the curve's own thread
+(normally the UI thread). Never write directly to a `QQuickItem` from a worker.
+
+## Is QAccelPlot thread-safe?
+
+QML objects and their properties must be accessed on the UI thread. Data
+*production* can happen on any thread, but the handoff to the curve must go
+through `postData()` or be queued to the UI thread. See
+[Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+## Does QAccelPlot work with Qt Widgets?
+
+No. QAccelPlot is designed exclusively for Qt Quick. It relies on the Qt Quick
+Scene Graph for rendering and does not provide a `QWidget`-based API. If your
+application uses Qt Widgets, consider embedding QAccelPlot inside a
+`QQuickWidget` or using a different plotting library.
+
+## Can I use QAccelPlot in a commercial product?
+
+Yes. If your product is distributed under a qualifying open-source license
+(OSI-approved or FSF-free), you can use the open-source GPLv3 + Universal FOSS
+Exception license at no cost. For proprietary or closed-source distribution,
+obtain a [commercial license](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/COMMERCIAL-LICENSING.md).
+
+## Why is my curve blank?
+
+Check these conditions:
+
+1. The `LineCurve` has both `xAxis` and `yAxis` assigned.
+2. At least two points exist when a line is enabled.
+3. The viewport includes the point coordinates.
+4. The Qt Quick renderer is not using the software backend.
+5. The data buffer contains exactly two floats per declared point.
+
+See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshooting/) for more details.
+
+
+---
+
+<!-- source: docs/guide/troubleshooting.md -->
+
+# Troubleshooting
+
+## `module "QAccelPlot" is not installed`
+
+QAccelPlot is a static QML module. Verify that the application links
+`QAccelPlot::QAccelPlot`, calls `qt_import_qml_plugins()` before finalization,
+and imports `QAccelPlot` in QML. The canonical target carries both the backing
+library and static QML plugin.
+See the complete CMake fragment in [Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/).
+
+Delete the application build directory after changing static QML plugin
+linkage; stale generated import files can otherwise obscure the fix.
+
+## CMake cannot find `QuickPrivate`
+
+QAccelPlot's default optimized mode uses one narrowly scoped Qt Quick private
+API for in-place live-data texture updates. Qt 6.11 and newer package
+`QuickPrivate` as a separately discoverable component. Install the
+private/development package matching the exact Qt build, and ensure CMake is
+not mixing Qt installations.
+
+Inspect `Qt6_DIR`, `CMAKE_PREFIX_PATH`, the compiler architecture, and the Qt
+version reported during configuration. A package from a different Qt patch,
+compiler, or architecture is not interchangeable.
+
+If private Qt dependencies are unsuitable for the target environment, use:
+
+```sh
+cmake -S . -B build -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
+```
+
+This mode does not find or link QuickPrivate. It uses only public Qt API and
+recreates the live data texture rather than updating it in place, which can be
+slower for huge data sets updated every frame.
+
+## The axes appear but the curve is blank
+
+Check these conditions:
+
+1. The `LineCurve` has both [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] assigned.
+2. At least two points exist when a line is enabled, or one point when only a
+   marker is enabled.
+3. The viewport includes the point coordinates.
+4. The Qt Quick renderer is not using the software backend.
+5. The data buffer contains exactly two floats per declared point.
+
+Run with Qt logging enabled and look for the QAccelPlot warning that custom
+rendering is unavailable on the software backend.
+
+## Rescale does not show all new data
+
+[`setDataFNoRange()`][set-data-f-no-range] intentionally skips data-range
+calculation. Set accurate [`dataMin`][data-min] and [`dataMax`][data-max]
+values on the axes, or occasionally update through [`setDataF()`][set-data-f]
+before calling [`rescaleToData()`][rescale-to-data] or
+[`rescaleAllAxes()`][rescale-all-axes].
+
+If several series share an axis, remember that each series contributes to the
+axis data range.
+
+## A real-time plot stutters
+
+- Confirm that the data producer is not running on the UI thread.
+- Use a Release build.
+- Move interleaved float buffers rather than rebuilding `QList<QPointF>` values.
+- Avoid publishing more frames than the display can present.
+- Temporarily disable markers, gradients, transitions, and sharp-corner
+  preservation to isolate rendering cost.
+- Measure [`frameSwapped`][frame-swapped] intervals and producer throughput separately.
+
+Continue with the [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/) and the
+[Background data production recipe](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+## Reporting a problem
+
+Include:
+
+- A minimal reproducer or the closest included example.
+- QAccelPlot version.
+- Qt version and installation source.
+- OS, compiler, architecture, GPU, and driver.
+- Active Qt Quick graphics API.
+- Release or Debug configuration.
+- Logs, screenshots, or benchmark JSON where relevant.
+
+Report bugs and compatibility findings through
+[GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
+
+[series-x-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#a250150d8eaea44c2608375839747b2b2
+[series-y-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#ae021f84424e1ea4ad44576961ac7d402
+[set-data-f-no-range]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30
+[data-min]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
+[data-max]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85
+[set-data-f]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6
+[rescale-to-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a1a4057e12caae2776590a0ce4bc38a84
+[rescale-all-axes]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a6ab962feb97d0bfccb268ac54bce8c77
+[frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
+
+
+---
+
+<!-- source: docs/guide/cookbook/index.md -->
+
+# Cookbook
+
+Browse these use-case guides to learn how to build common QAccelPlot plots.
+Each guide explains the approach and links to a complete runnable example.
+
+| Use case | Covers |
+| --- | --- |
+| [Basic static plot](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/basic-plot/) | Axes, several curves, markers, and a legend |
+| [Real-time scrolling data](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/realtime/) | A fixed window updated once per rendered frame |
+| [Axis formats](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-formats/) | Date/time, categories, logarithmic scales, and custom labels |
+| [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
+| [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
+| [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
+| [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
+
+For method-by-method detail, use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/). For choosing a
+data path, use the [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/).
+
+
+---
+
+<!-- source: docs/guide/cookbook/basic-plot.md -->
+
+# Basic static plot
+
+A `Plot` needs axes and one or more series. Each series names the axes that map
+its data and optionally supplies a `name` for the legend.
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    id: plot
+
+    xAxis: QAccelPlot.Axis {
+        viewportMin: 0
+        viewportMax: 24
+        dataMin: 0
+        dataMax: 24
+        side: QAccelPlot.Axis.Bottom
+        label: "Time of day (h)"
+    }
+
+    yAxis: QAccelPlot.Axis {
+        viewportMin: 16
+        viewportMax: 27
+        dataMin: 16
+        dataMax: 27
+        side: QAccelPlot.Axis.Left
+        label: "Temperature (°C)"
+    }
+
+    legend: QAccelPlot.Legend {
+        series: plot.series
+    }
+
+    QAccelPlot.LineCurve {
+        name: "Measured"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "tomato"
+        lineWidth: 3
+        Component.onCompleted: setData([
+            Qt.point(0, 18), Qt.point(6, 19.5),
+            Qt.point(12, 25), Qt.point(18, 23.5), Qt.point(24, 18)
+        ])
+    }
+
+    QAccelPlot.LineCurve {
+        name: "Forecast"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "dodgerblue"
+        lineWidth: 2
+        lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
+        markerShape: QAccelPlot.LineCurve.Diamond
+        markerSize: 5
+    }
+}
+```
+
+[`QAccelPlot.Plot.series`][plot-series] is maintained automatically as series items are added
+or removed. Binding it to `QAccelPlot.Legend.series` keeps legend entries
+synchronized.
+
+QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114)
+is convenient for small or infrequently changed data. For larger data sets or
+frequent updates, choose a data-ingestion path in the
+[Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
+
+Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)
+
+[plot-series]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a4e47d828812b5d9e14d95a330b97af86
+
+
+---
+
+<!-- source: docs/guide/cookbook/realtime.md -->
+
+# Real-time scrolling data
+
+A scrolling plot normally keeps a fixed axis range and replaces the visible
+buffer at the display cadence.
+
+## Declare stable ranges
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    id: plot
+
+    xAxis: QAccelPlot.Axis {
+        viewportMin: -20
+        viewportMax: 0
+        dataMin: -20
+        dataMax: 0
+        side: QAccelPlot.Axis.Bottom
+        label: "Time before present (s)"
+    }
+
+    yAxis: QAccelPlot.Axis {
+        viewportMin: -2.5
+        viewportMax: 2.5
+        dataMin: -2.5
+        dataMax: 2.5
+        side: QAccelPlot.Axis.Left
+        label: "Acceleration (g)"
+    }
+
+    QAccelPlot.LineCurve {
+        objectName: "vibrationCurve"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        lineWidth: 2.5
+    }
+}
+```
+
+## Update after animation processing
+
+The included example listens to [`QQuickWindow::afterAnimating`][after-animating],
+produces the current interleaved buffer, and skips repeated range scans:
+
+```cpp
+QObject::connect(window, &QQuickWindow::afterAnimating, &app, [curve]() {
+    auto points = buildCurrentWindow();
+    curve->setDataFNoRange(std::move(points), pointCount);
+});
+```
+
+Initialize once with [`setDataF()`][set-data-f] or declare accurate axis data ranges before
+using the no-range path. If the signal can exceed those bounds, update the
+ranges explicitly.
+
+For sampled signals, anchor samples to a stable time grid. Re-evaluating every
+sample at a slightly different phase each frame can look like waveform jitter
+rather than horizontal motion.
+
+When buffer generation could compete with rendering, move it to a worker
+thread. See [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) for safe handoff
+patterns.
+
+Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
+
+[after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating
+[set-data-f]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6
+
+
+---
+
+<!-- source: docs/guide/cookbook/axis-formats.md -->
+
+# Axis formats
+
+Axis values remain numeric. A formatter changes only the displayed tick text.
+
+## Date and time
+
+Use milliseconds since the Unix epoch as X values and attach a
+`QAccelPlot.DateTimeTickLabelFormatter`:
+
+```qml
+xAxis: QAccelPlot.Axis {
+    viewportMin: traceStart
+    viewportMax: traceEnd
+    side: QAccelPlot.Axis.Bottom
+
+    ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
+        dateTimeFormat: "hh:mm:ss.zzz"
+    }
+}
+```
+
+## Categories
+
+Map integer coordinates to labels with `QAccelPlot.TextTickLabelFormatter`:
+
+```qml
+xAxis: QAccelPlot.Axis {
+    viewportMin: 0
+    viewportMax: 6
+    side: QAccelPlot.Axis.Bottom
+    ticker.tickCount: 6
+    ticker.subtickCount: 0
+    ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    }
+}
+```
+
+The data points still use X coordinates `0` through `6`.
+
+## Logarithmic axes
+
+Enable a base-10 logarithmic mapping and use logarithmic labels:
+
+```qml
+QAccelPlot.LogTickLabelFormatter { id: logLabels }
+
+xAxis: QAccelPlot.Axis {
+    viewportMin: 20
+    viewportMax: 20000
+    dataMin: 20
+    dataMax: 20000
+    logScale: true
+    side: QAccelPlot.Axis.Bottom
+    ticker.tickLabelFormatter: logLabels
+}
+```
+
+Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
+
+## Application-specific labels
+
+`QAccelPlot.NumericTickLabelFormatter` provides the normal numeric presentation. For
+specialized formatting, assign a JavaScript callback to a
+`QAccelPlot.TickLabelFormatter`'s [`tickLabel`][tick-label] property; keep the function inexpensive
+because it runs for every generated tick label.
+
+For example, a temperature-monitoring plot can append units while retaining numeric
+data values:
+
+```qml
+yAxis: QAccelPlot.Axis {
+    viewportMin: 18
+    viewportMax: 26
+    side: QAccelPlot.Axis.Left
+    label: "Temperature"
+
+    ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
+        tickLabel: function (temperature) {
+            return temperature.toFixed(1) + " °C"
+        }
+    }
+}
+```
+
+Complete source: [`examples/axis_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axis_formats)
+
+[tick-label]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_tick_label_formatter.html#ac653e2484200ea89af8facc8cffab00b
+
+
+---
+
+<!-- source: docs/guide/cookbook/multiple-axes.md -->
+
+# Multiple axes
+
+Each series independently chooses its X and Y axes. This permits several units
+or sampling domains to share a plot area.
+
+## Secondary axes
+
+Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    id: plot
+
+    xAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Bottom }
+    yAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Left }
+    y2Axis: QAccelPlot.Axis {
+        side: QAccelPlot.Axis.Right
+        viewportMin: 0
+        viewportMax: 100
+        label: "Load (%)"
+    }
+
+    QAccelPlot.LineCurve {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+    }
+
+    QAccelPlot.LineCurve {
+        xAxis: plot.xAxis
+        yAxis: plot.y2Axis
+    }
+}
+```
+
+## Extra axes
+
+Use [`extraAxes`](https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a2aa8566edaee068e3517f5085fe9276b)
+when more than two axes are needed in one orientation. They are laid out in
+declaration order: extra horizontal axes stack below the primary X axis, while
+extra vertical axes stack from the plot's left edge inward.
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    id: plot
+
+    xAxis: QAccelPlot.Axis {
+        viewportMin: 0
+        viewportMax: 10
+        side: QAccelPlot.Axis.Bottom
+        label: "Slow time (s)"
+    }
+
+    extraAxes: [
+        QAccelPlot.Axis {
+            id: fastAxis
+            orientation: QAccelPlot.Axis.Horizontal
+            side: QAccelPlot.Axis.Bottom
+            viewportMin: 0
+            viewportMax: 0.5
+            label: "Fast time (s)"
+        }
+    ]
+
+    QAccelPlot.LineCurve {
+        xAxis: fastAxis
+        yAxis: plot.yAxis
+    }
+}
+```
+
+Coloring each axis to match its series reduces ambiguity. Disable or customize
+the grid if ticks from different domains would imply a false correspondence.
+
+Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
+
+[x2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8
+[y2-axis]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ab940a26d0902b92808a8ee0885cb7455
+
+
+---
+
+<!-- source: docs/guide/cookbook/styling.md -->
+
+# Styling and transitions
+
+## Shared palette
+
+QAccelPlot exposes its light and dark palettes as a read-only
+singleton. Importing the module with an alias keeps the generic `Colors` name
+out of the application's unqualified type namespace:
+
+```qml
+import QtQuick
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    plotAreaColor: QAccelPlot.Colors.dark.plotArea
+    axesAreaColor: QAccelPlot.Colors.dark.axesArea
+
+    QAccelPlot.LineCurve {
+        color: QAccelPlot.Colors.dark.seriesPrimary
+    }
+}
+```
+
+The palette is opt-in; importing QAccelPlot does not automatically change plot
+or application colors.
+
+## Lines and markers
+
+```qml
+QAccelPlot.LineCurve {
+    color: "dodgerblue"
+    lineWidth: 2
+    lineStyle: QAccelPlot.DashLine {
+        pattern: [14, 5, 3, 5]
+    }
+    markerShape: QAccelPlot.LineCurve.Diamond
+    markerSize: 5
+    antialiasingEnabled: true
+    antialiasingFeather: 1
+}
+```
+
+Use `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, or `QAccelPlot.NoLine`.
+`QAccelPlot.NoLine` combined with a marker shape creates a marker-only series.
+A dash pattern alternates on/off lengths in pixels.
+
+## Gradient stroke and fill
+
+Effects are attached through the curve's [`effects`][effects] property:
+
+```qml
+QAccelPlot.LineCurve {
+    effects: [
+        QAccelPlot.GradientFill {
+            direction: QAccelPlot.GradientDirection.Vertical
+            baseline: QAccelPlot.GradientFillBaseline.Value
+            baselineValue: 0
+            gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
+            gradientValueMin: -4
+            gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
+            gradientValueMax: 8
+            opacity: 0.65
+            gradient: Gradient {
+                GradientStop { position: 0; color: "royalblue" }
+                GradientStop { position: 1; color: "goldenrod" }
+            }
+        }
+    ]
+}
+```
+
+Explicit gradient bounds make the visual mapping stable while the viewport
+changes. Axis- or data-derived bounds are useful when the colors should track
+the current domain.
+
+## Animated data changes
+
+Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] when old and new samples should
+interpolate, or a `QAccelPlot.DrawTransition` to reveal the new curve:
+
+```qml
+QAccelPlot.MorphTransition {
+    id: morph
+    duration: 500
+    easing.type: Easing.InOutCubic
+}
+
+QAccelPlot.LineCurve {
+    transition: morph
+}
+```
+
+Transitions create work on intermediate frames. Disable them for sustained
+high-frequency updates unless animation is part of the intended result.
+
+Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
+
+[effects]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#afd2dc2f55a0ebc51ce212ea522342c0e
+[transition]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aeec8b6c794c1bba729633ca946965577
+
+
+---
+
+<!-- source: docs/guide/cookbook/annotations.md -->
+
+# Annotations and tools
+
+## Attach QML items to data
+
+Create a clipped layer matching [`plotRect`][plot-rect], then place `QAccelPlot.DataAnchor`
+items inside it. Because the layer's origin is the plot area's top-left, pass a
+local plot rectangle to each anchor:
+
+```qml
+Item {
+    id: annotationLayer
+    z: 1
+    x: plot.plotRect.x
+    y: plot.plotRect.y
+    width: plot.plotRect.width
+    height: plot.plotRect.height
+    clip: true
+
+    QAccelPlot.DataAnchor {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
+        dataX1: 42
+        dataY1: plot.yAxis.viewportMin
+        dataX2: 42
+        dataY2: plot.yAxis.viewportMax
+
+        Rectangle {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.left
+            width: 3
+            color: "tomato"
+        }
+    }
+}
+```
+
+[`QAccelPlot.DataAnchor`][data-anchor] maps a data-space point, line, or rectangular extent
+to its item geometry. It can contain any QML content—such as a `Rectangle`,
+`Canvas`, `Text`, or interaction handlers—which then follows panning and
+zooming. Set matching X and/or Y coordinates for point or line anchors; use
+all four bounds for a rectangle or range. This approach suits a modest number
+of rich, individually interactive annotations: each `QAccelPlot.DataAnchor`
+and its QML content adds `QQuickItem`s to the scene. For thousands of simple
+regions, prefer [`QAccelPlot.RectangleList`][rectangle-list], which represents the collection
+with one `QQuickItem`.
+
+## Highlight many data regions
+
+Use [`QAccelPlot.RectangleList`][rectangle-list] for many data-space rectangles, such as event
+windows or maintenance intervals, instead of creating one QML item per region.
+Its [`setData()`][rectangle-list-set-data] method accepts rectangle bounds, and
+[`hoveredIndex`][hovered-index] identifies the region under the pointer for a
+tooltip or selection:
+
+```qml
+QAccelPlot.RectangleList {
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    color: "goldenrod"
+
+    Component.onCompleted: setData([
+        { x1: 8, y1: -1.2, x2: 12, y2: 1.2 },
+        { x1: 19, y1: -1.2, x2: 22, y2: 1.2 }
+    ])
+}
+```
+
+The hover lookup uses a spatial grid after data changes, so it remains suitable
+for large collections. See [Hover interactions](https://michalgrabarczyk.github.io/QAccelPlot/performance/#hover-interactions)
+for the performance characteristics.
+
+## Build interactive tools
+
+The plot exposes both conversion directions:
+
+```qml
+onMousePressed: event => {
+    if (event.button === Qt.RightButton) {
+        const dataX = pixelToDataX(event.x)
+        const dataY = pixelToDataY(event.y)
+        createToolAt(dataX, dataY)
+        event.accept()
+    }
+}
+```
+
+Use [`dataToPixelX()`][data-to-pixel-x] and [`dataToPixelY()`][data-to-pixel-y]
+to position handles. Use [`pixelToDataX()`][pixel-to-data-x] and
+[`pixelToDataY()`][pixel-to-data-y] while dragging them. Accept a plot event
+when the tool has consumed it so the same gesture does not start default
+panning.
+
+When a tool lives in a layer translated to [`plotRect`][plot-rect], convert between plot and
+layer coordinates by adding or subtracting the plot rectangle origin. The
+complete interactive example wraps those conversions in a small layer API.
+
+Complete sources:
+
+- [`examples/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/annotations)
+- [`examples/interactive_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interactive_tools)
+
+[plot-rect]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#ad8106ed7a0613158e29ed0137edbd248
+[data-to-pixel-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a64aa564d1fae3a901d22897b8c70d514
+[data-to-pixel-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#af6e974159b9a04649636768ff923d797
+[pixel-to-data-x]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a484d049dd7188040e0c450bb9590ac0c
+[pixel-to-data-y]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#abd81402f2c90d2287bb1ca41f1a35e49
+[data-anchor]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_data_anchor.html
+[rectangle-list]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html
+[rectangle-list-set-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#aaead3aa540e3521e1e6a365bdc313d6c
+[hovered-index]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_rectangle_list.html#afb85815f91d34b3a35bbf957e9aa5e09
+
+
+---
+
+<!-- source: docs/guide/cookbook/background-data.md -->
+
+# Background data production
+
+Large or computationally expensive buffers should be produced away from the UI
+thread. The producer owns its working memory; the UI receives only completed
+frames.
+
+## Simplest handoff
+
+[`LineCurve::postData()`][post-data] is thread-safe. It moves the buffer into a
+queued call that runs [`setDataF()`][set-data-f] on the curve's thread:
+
+```cpp
+void Producer::publish(QAccelPlot::LineCurve* curve)
+{
+    auto points = buildInterleavedPoints();
+    const auto count = static_cast<int>(points.size() / 2);
+    curve->postData(std::move(points), count);
+}
+```
+
+## One-batch handoff
+
+For high-rate updates, retain one completed batch. The worker prepares the next
+batch off the UI thread, then waits to publish it until the previous batch has
+been consumed. Once per display frame, the UI thread takes the completed batch
+and moves it into the curve.
+
+This applies backpressure and avoids an unbounded queue of frames that can no
+longer be displayed on time.
+
+```cpp
+DataBatch batch;
+if (worker.tryConsume(batch)) {
+    curve->setDataFNoRange(std::move(batch.points), batch.pointCount);
+}
+```
+
+Use the no-range form only when axes already contain valid data bounds. If the
+range changes, publish the new bounds on the UI thread or use
+[`postData()`][post-data] / [`setDataF()`][set-data-f] so QAccelPlot calculates
+them.
+
+The advanced performance showcase also prebuilds deterministic vertex data on
+the worker. Treat that as an optimization to adopt only after profiling the
+simpler handoff.
+
+Complete sources:
+
+- [`examples/performance_showcase`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/performance_showcase)
+- [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
+
+[post-data]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c
+[set-data-f]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6
+
+
+---
+
+<!-- source: docs/guide/api.md -->
+
+# API reference
+
+The generated
+[QAccelPlot API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)
+documents public C++ and QML types, properties, methods, signals, and enums.
+
+When the complete documentation site is built, Doxygen replaces this page at
+the same `/api/` location. If you are reading the guide through a local MkDocs
+development server, build the Doxygen target separately:
+
+```sh
+cmake -S . -B build -DQACCELPLOT_BUILD_DOCS=ON
+cmake --build build --target qaccelplot_docs
+```
