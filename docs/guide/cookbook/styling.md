@@ -103,5 +103,5 @@ high-frequency updates unless animation is part of the intended result.
 
 Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
 
-[effects]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#afd2dc2f55a0ebc51ce212ea522342c0e
-[transition]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aeec8b6c794c1bba729633ca946965577
+[effects]: ../../api/classQAccelPlot_1_1LineCurve.html#afd2dc2f55a0ebc51ce212ea522342c0e
+[transition]: ../../api/classQAccelPlot_1_1LineCurve.html#aeec8b6c794c1bba729633ca946965577

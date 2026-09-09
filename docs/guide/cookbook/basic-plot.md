@@ -70,11 +70,11 @@ QAccelPlot.Plot {
 or removed. Binding it to `QAccelPlot.Legend.series` keeps legend entries
 synchronized.
 
-QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114)
+QML [`setData()`](../../api/classQAccelPlot_1_1LineCurve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114)
 is convenient for small or infrequently changed data. For larger data sets or
 frequent updates, choose a data-ingestion path in the
 [Performance guide](../performance.md#select-the-data-path).
 
 Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)
 
-[plot-series]: https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a4e47d828812b5d9e14d95a330b97af86
+[plot-series]: ../../api/classQAccelPlot_1_1QAccelPlot.html#a4e47d828812b5d9e14d95a330b97af86

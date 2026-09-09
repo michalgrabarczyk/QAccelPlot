@@ -26,6 +26,9 @@ OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
 INPUT                  = "@QACCELPLOT_DOXYGEN_INPUT@"
 RECURSIVE              = YES
 FILE_PATTERNS          = *.hpp *.h
+# Keep generated filenames stable across host operating systems. Guide links
+# target names such as classQAccelPlot_1_1LineCurve.html.
+CASE_SENSE_NAMES       = YES
 # Exclude internal implementation details that are not part of the public API
 EXCLUDE_PATTERNS       = */shaders/* \
                          */moc_* \
