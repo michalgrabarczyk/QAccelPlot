@@ -1,0 +1,30 @@
+# QAccelPlot
+
+> QAccelPlot is a high-performance, hardware-accelerated plotting library for
+> Qt Quick. It uses the Qt Scene Graph for GPU-rendered 2D line plots with
+> optional markers, dashes, gradients, fills, and annotations, and provides
+> QML-friendly components backed by C++. Designed for real-time visualization
+> of large data sets at display refresh rate. Dual-licensed under GPLv3 with
+> the Universal FOSS Exception, or a separate commercial license.
+
+## Docs
+
+- [Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/): Build your first QAccelPlot application with CMake and QML
+- [Concepts and Architecture](https://michalgrabarczyk.github.io/QAccelPlot/concepts/): How Plot, PlotView, Axes, LineCurve, and the Qt Scene Graph fit together
+- [Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/): Data-ingestion paths from convenience QML to zero-copy C++ buffers, benchmarking tips
+- [Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/): Recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, and background data production
+- [FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/): Frequently asked questions about licensing, performance, threading, and compatibility
+- [API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/): Generated C++ and QML type documentation — properties, methods, signals, and enums
+- [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshooting/): Common setup and runtime issues with solutions
+
+## Code
+
+- [Library Source](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/QAccelPlot/src): C++ library implementation
+- [QML Types](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/QAccelPlot/qml): Plot, Legend, and Colors QML wrappers
+- [Examples](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples): Complete runnable applications (quickstart, realtime, annotations, axis_formats, custom_axis, interactive_tools, performance_showcase, styling_and_transitions)
+- [Benchmarks](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/benchmarks): Performance measurement scenarios
+
+## Licensing
+
+- [Licensing Overview](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md): Detailed explanation of open-source and commercial options
+- [Commercial Licensing](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/COMMERCIAL-LICENSING.md): Contact route for proprietary use

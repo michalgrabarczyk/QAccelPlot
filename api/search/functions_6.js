@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['gradient_0',['gradient',['../classQAccelPlot_1_1GradientStroke.html#a280a7223d642d5982c0edee19b19891f',1,'QAccelPlot::GradientStroke::gradient()'],['../classQAccelPlot_1_1GradientFill.html#a1673b39f57534d35374d5a4c78ce6eb8',1,'QAccelPlot::GradientFill::gradient() const']]],
+  ['gradientchanged_1',['gradientchanged',['../classQAccelPlot_1_1GradientFill.html#a36c54758981c2a3f263ef48aba58a078',1,'QAccelPlot::GradientFill::gradientChanged()'],['../classQAccelPlot_1_1GradientStroke.html#a110402e070406c086458e465af320bbe',1,'QAccelPlot::GradientStroke::gradientChanged()']]],
+  ['gradientfill_2',['GradientFill',['../classQAccelPlot_1_1GradientFill.html#a0d065a5049043b6fcba28bfccc01b422',1,'QAccelPlot::GradientFill']]],
+  ['gradientstroke_3',['GradientStroke',['../classQAccelPlot_1_1GradientStroke.html#aa29355fe8b5b136c5db2d0fc744c710f',1,'QAccelPlot::GradientStroke']]],
+  ['gradientvaluemax_4',['gradientvaluemax',['../classQAccelPlot_1_1GradientFill.html#ad1c8e8e5ddc6ee8b1edcb2c673baef62',1,'QAccelPlot::GradientFill::gradientValueMax()'],['../classQAccelPlot_1_1GradientStroke.html#acb5b5dd910ee6945cb9bfb887d5ac50e',1,'QAccelPlot::GradientStroke::gradientValueMax()']]],
+  ['gradientvaluemaxchanged_5',['gradientvaluemaxchanged',['../classQAccelPlot_1_1GradientFill.html#a30861c51107d1c13cf861aa8d0fd4cd8',1,'QAccelPlot::GradientFill::gradientValueMaxChanged()'],['../classQAccelPlot_1_1GradientStroke.html#a0bdb609f57e4ac40f7ea7da9f2b5b7ea',1,'QAccelPlot::GradientStroke::gradientValueMaxChanged()']]],
+  ['gradientvaluemaxsource_6',['gradientvaluemaxsource',['../classQAccelPlot_1_1GradientFill.html#aee82a64d35bf79fa235a12ed91442f0b',1,'QAccelPlot::GradientFill::gradientValueMaxSource()'],['../classQAccelPlot_1_1GradientStroke.html#aea8244a28cd48e4688e4428ae4151e31',1,'QAccelPlot::GradientStroke::gradientValueMaxSource()']]],
+  ['gradientvaluemaxsourcechanged_7',['gradientvaluemaxsourcechanged',['../classQAccelPlot_1_1GradientFill.html#a8e18b240ee11bb27805dac2d2b7938ad',1,'QAccelPlot::GradientFill::gradientValueMaxSourceChanged()'],['../classQAccelPlot_1_1GradientStroke.html#a01ba4689775a620eb6c8ebada7a23963',1,'QAccelPlot::GradientStroke::gradientValueMaxSourceChanged()']]],
+  ['gradientvaluemin_8',['gradientvaluemin',['../classQAccelPlot_1_1GradientFill.html#a17562081aa791be02a14a15a4c36e8a1',1,'QAccelPlot::GradientFill::gradientValueMin()'],['../classQAccelPlot_1_1GradientStroke.html#a92d45ca7656a5f8e0f1feb8ccc7bc2cd',1,'QAccelPlot::GradientStroke::gradientValueMin()']]],
+  ['gradientvalueminchanged_9',['gradientvalueminchanged',['../classQAccelPlot_1_1GradientFill.html#a4b9d502b75092262d429d9d348f211c6',1,'QAccelPlot::GradientFill::gradientValueMinChanged()'],['../classQAccelPlot_1_1GradientStroke.html#a04568535dcda6405c1c8a7ee3cd3e6cc',1,'QAccelPlot::GradientStroke::gradientValueMinChanged()']]],
+  ['gradientvalueminsource_10',['gradientvalueminsource',['../classQAccelPlot_1_1GradientFill.html#a981eae35fb4db9823a5d5aa0d4a47295',1,'QAccelPlot::GradientFill::gradientValueMinSource()'],['../classQAccelPlot_1_1GradientStroke.html#a9c383456ed928a6ec74a9d535ec64e2e',1,'QAccelPlot::GradientStroke::gradientValueMinSource()']]],
+  ['gradientvalueminsourcechanged_11',['gradientvalueminsourcechanged',['../classQAccelPlot_1_1GradientFill.html#ab63937ee08bd448bea7898fb3dfba12b',1,'QAccelPlot::GradientFill::gradientValueMinSourceChanged()'],['../classQAccelPlot_1_1GradientStroke.html#a1e8ed604c882f3fa8b5591f972881d18',1,'QAccelPlot::GradientStroke::gradientValueMinSourceChanged()']]],
+  ['grid_12',['grid',['../classQAccelPlot_1_1Grid.html#af8f709a023a9ca32d784ed692372bb0d',1,'QAccelPlot::Grid::Grid()'],['../classQAccelPlot_1_1QAccelPlot.html#a55e4559da3179562d56343b6fcc15d5b',1,'QAccelPlot::QAccelPlot::grid()']]],
+  ['gridcolor_13',['gridColor',['../classQAccelPlot_1_1Grid.html#a4aae6a64a69805e8818db98c34a10892',1,'QAccelPlot::Grid']]],
+  ['gridcolorchanged_14',['gridColorChanged',['../classQAccelPlot_1_1Grid.html#a7b8eb9295a2c247f1ddce0dc6b20746f',1,'QAccelPlot::Grid']]],
+  ['gridhorizontallinesvisible_15',['gridHorizontalLinesVisible',['../classQAccelPlot_1_1Grid.html#a6198885bb819061aa961e8a6dee2407c',1,'QAccelPlot::Grid']]],
+  ['gridhorizontallinesvisiblechanged_16',['gridHorizontalLinesVisibleChanged',['../classQAccelPlot_1_1Grid.html#ac051c6974eb9a653196a3f6250b93362',1,'QAccelPlot::Grid']]],
+  ['gridnode_17',['GridNode',['../classQAccelPlot_1_1GridNode.html#a70a9d0fd82e11be8335c53b66e0eeeee',1,'QAccelPlot::GridNode']]],
+  ['gridverticallinesvisible_18',['gridVerticalLinesVisible',['../classQAccelPlot_1_1Grid.html#a82f58aee90a1fac095f6344575f4f6bf',1,'QAccelPlot::Grid']]],
+  ['gridverticallinesvisiblechanged_19',['gridVerticalLinesVisibleChanged',['../classQAccelPlot_1_1Grid.html#ae065d9b2d3bb35d63503a20a4a845373',1,'QAccelPlot::Grid']]],
+  ['gridvisible_20',['gridVisible',['../classQAccelPlot_1_1Grid.html#a6adf4c02569d824e663071259b50422f',1,'QAccelPlot::Grid']]],
+  ['gridvisiblechanged_21',['gridVisibleChanged',['../classQAccelPlot_1_1Grid.html#a8c62d36211b250ae311af9305dd7215f',1,'QAccelPlot::Grid']]]
+];
