@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788939023487,
+  "lastUpdate": 1788955673940,
   "repoUrl": "https://github.com/michalgrabarczyk/QAccelPlot",
   "entries": {
     "QAccelPlot Performance (Higher Is Better, Private API OFF)": [
@@ -347,6 +347,180 @@ window.BENCHMARK_DATA = {
           {
             "name": "live_multi_4x500k (Throughput)",
             "value": 3.953603275136329,
+            "unit": "Mpts/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michalgrabarczyk@hotmail.com",
+            "name": "Michal Grabarczyk",
+            "username": "michalgrabarczyk"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "54d4d353743601d7ca78555cd619c9cba8a5b425",
+          "message": "Merge pull request #1 from michalgrabarczyk/dev/fix-api-doc-links\n\nFix versioned API documentation links",
+          "timestamp": "2026-09-09T13:59:28+02:00",
+          "tree_id": "5918dc94458bfb95b680a2319258271a143ce5dd",
+          "url": "https://github.com/michalgrabarczyk/QAccelPlot/commit/54d4d353743601d7ca78555cd619c9cba8a5b425"
+        },
+        "date": 1788955673017,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "data_ingestion_2m (Avg FPS)",
+            "value": 587.0982491812058,
+            "unit": "fps"
+          },
+          {
+            "name": "data_ingestion_2m (Throughput)",
+            "value": 1174.1964983624116,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "vertex_cache_2m (Avg FPS)",
+            "value": 176.6269899069417,
+            "unit": "fps"
+          },
+          {
+            "name": "vertex_cache_2m (Throughput)",
+            "value": 353.2539798138834,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "static_10k (Avg FPS)",
+            "value": 87.38127305722729,
+            "unit": "fps"
+          },
+          {
+            "name": "static_10k (Throughput)",
+            "value": 0.8738127305722729,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "static_100k (Avg FPS)",
+            "value": 29.984667771914044,
+            "unit": "fps"
+          },
+          {
+            "name": "static_100k (Throughput)",
+            "value": 2.998466777191404,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "static_1m (Avg FPS)",
+            "value": 4.601618937816714,
+            "unit": "fps"
+          },
+          {
+            "name": "static_1m (Throughput)",
+            "value": 4.601618937816714,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "static_2m (Avg FPS)",
+            "value": 2.369107733988267,
+            "unit": "fps"
+          },
+          {
+            "name": "static_2m (Throughput)",
+            "value": 4.738215467976533,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "static_5m (Avg FPS)",
+            "value": 0.9593254561842304,
+            "unit": "fps"
+          },
+          {
+            "name": "static_5m (Throughput)",
+            "value": 4.796627280921152,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_100k (Avg FPS)",
+            "value": 28.661870239832904,
+            "unit": "fps"
+          },
+          {
+            "name": "live_100k (Throughput)",
+            "value": 2.8661870239832905,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_500k (Avg FPS)",
+            "value": 7.381603910716454,
+            "unit": "fps"
+          },
+          {
+            "name": "live_500k (Throughput)",
+            "value": 3.690801955358227,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_1m (Avg FPS)",
+            "value": 3.8488426878900563,
+            "unit": "fps"
+          },
+          {
+            "name": "live_1m (Throughput)",
+            "value": 3.8488426878900563,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_2m (Avg FPS)",
+            "value": 1.9811513139181296,
+            "unit": "fps"
+          },
+          {
+            "name": "live_2m (Throughput)",
+            "value": 3.962302627836259,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_5m (Avg FPS)",
+            "value": 0.8868992003024142,
+            "unit": "fps"
+          },
+          {
+            "name": "live_5m (Throughput)",
+            "value": 4.434496001512071,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_10m (Avg FPS)",
+            "value": 0.40906720883387315,
+            "unit": "fps"
+          },
+          {
+            "name": "live_10m (Throughput)",
+            "value": 4.0906720883387315,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_multi_4x100k (Avg FPS)",
+            "value": 9.272094341404012,
+            "unit": "fps"
+          },
+          {
+            "name": "live_multi_4x100k (Throughput)",
+            "value": 3.708837736561605,
+            "unit": "Mpts/sec"
+          },
+          {
+            "name": "live_multi_4x500k (Avg FPS)",
+            "value": 1.9658535556366181,
+            "unit": "fps"
+          },
+          {
+            "name": "live_multi_4x500k (Throughput)",
+            "value": 3.9317071112732362,
             "unit": "Mpts/sec"
           }
         ]
