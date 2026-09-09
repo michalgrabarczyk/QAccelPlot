@@ -90,13 +90,12 @@ void AxisTickPainter::paintTicks(
 
 void AxisTickPainter::paintTick(const PaintContext& ctx, const qreal value, const Params& params, const MapToPosition& mapToPosition)
 {
-    constexpr static auto kVerticalLabelWidth = qreal{40.0};
     const auto label = params.ticker->tickLabelFormatter()->format(value, params.tickStep);
+    const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, label);
 
     if (params.orientation == Axis::Horizontal) {
         const auto x = ctx.rect.x() + mapToPosition(value, ctx.rect.width());
         const auto center = QPointF{x, ctx.axisY};
-        const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, label);
         auto labelRect = QRectF{};
         if (params.side == Axis::Bottom) {
             ctx.painter->drawLine(center + QPointF(0, params.ticker->tickLengthOut()), center + QPointF(0, -params.ticker->tickLengthIn()));
@@ -126,13 +125,13 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const qreal value, cons
         auto alignment = int{};
         if (params.side == Axis::Left) {
             ctx.painter->drawLine(center + QPointF(-params.ticker->tickLengthOut(), 0), center + QPointF(params.ticker->tickLengthIn(), 0));
-            labelRect = QRectF(center.x() - params.ticker->tickLengthOut() - params.ticker->tickLabelPadding() - kVerticalLabelWidth,
-                y - kMinimumTickLabelHeight / 2.0, kVerticalLabelWidth, kMinimumTickLabelHeight);
+            const auto labelRight = center.x() - params.ticker->tickLengthOut() - params.ticker->tickLabelPadding();
+            labelRect = QRectF(ctx.rect.left(), y - labelSize.height() / 2.0, std::max(qreal{0.0}, labelRight - ctx.rect.left()), labelSize.height());
             alignment = Qt::AlignRight | Qt::AlignVCenter;
         } else {
             ctx.painter->drawLine(center + QPointF(params.ticker->tickLengthOut(), 0), center + QPointF(-params.ticker->tickLengthIn(), 0));
-            labelRect = QRectF(center.x() + params.ticker->tickLengthOut() + params.ticker->tickLabelPadding(), y - kMinimumTickLabelHeight / 2.0,
-                kVerticalLabelWidth, kMinimumTickLabelHeight);
+            const auto labelLeft = center.x() + params.ticker->tickLengthOut() + params.ticker->tickLabelPadding();
+            labelRect = QRectF(labelLeft, y - labelSize.height() / 2.0, std::max(qreal{0.0}, ctx.rect.right() - labelLeft), labelSize.height());
             alignment = Qt::AlignLeft | Qt::AlignVCenter;
         }
         if (params.clampEdgeLabels) {
