@@ -990,8 +990,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 thread. The producer owns its working memory; the UI receives only completed
 frames.</p>
 <h2 id="simplest-handoff">Simplest handoff<a class="headerlink" href="#simplest-handoff" title="Permanent link">&para;</a></h2>
-<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>LineCurve::postData()</code></a> is thread-safe. It moves the buffer into a
-queued call that runs <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a> on the curve's thread:</p>
+<p><a href="../../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>LineCurve::postData()</code></a> is thread-safe. It moves the buffer into a
+queued call that runs <a href="../../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a> on the curve's thread:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Producer::publish</span><span class="p">(</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">*</span><span class="w"> </span><span class="n">curve</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buildInterleavedPoints</span><span class="p">();</span>
@@ -1013,7 +1013,7 @@ longer be displayed on time.</p>
 </code></pre></div>
 <p>Use the no-range form only when axes already contain valid data bounds. If the
 range changes, publish the new bounds on the UI thread or use
-<a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData()</code></a> / <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a> so QAccelPlot calculates
+<a href="../../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData()</code></a> / <a href="../../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a> so QAccelPlot calculates
 them.</p>
 <p>The advanced performance showcase also prebuilds deterministic vertex data on
 the worker. Treat that as an optimization to adopt only after profiling the

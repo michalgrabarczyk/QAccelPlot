@@ -1098,7 +1098,7 @@ slower for huge data sets updated every frame.</p>
 <h2 id="the-axes-appear-but-the-curve-is-blank">The axes appear but the curve is blank<a class="headerlink" href="#the-axes-appear-but-the-curve-is-blank" title="Permanent link">&para;</a></h2>
 <p>Check these conditions:</p>
 <ol>
-<li>The <code>LineCurve</code> has both <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#a250150d8eaea44c2608375839747b2b2"><code>xAxis</code></a> and <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_plot_series.html#ae021f84424e1ea4ad44576961ac7d402"><code>yAxis</code></a> assigned.</li>
+<li>The <code>LineCurve</code> has both <a href="../api/classQAccelPlot_1_1PlotSeries.html#a250150d8eaea44c2608375839747b2b2"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries.html#ae021f84424e1ea4ad44576961ac7d402"><code>yAxis</code></a> assigned.</li>
 <li>At least two points exist when a line is enabled, or one point when only a
    marker is enabled.</li>
 <li>The viewport includes the point coordinates.</li>
@@ -1108,11 +1108,11 @@ slower for huge data sets updated every frame.</p>
 <p>Run with Qt logging enabled and look for the QAccelPlot warning that custom
 rendering is unavailable on the software backend.</p>
 <h2 id="rescale-does-not-show-all-new-data">Rescale does not show all new data<a class="headerlink" href="#rescale-does-not-show-all-new-data" title="Permanent link">&para;</a></h2>
-<p><a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> intentionally skips data-range
-calculation. Set accurate <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a> and <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a>
-values on the axes, or occasionally update through <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a>
-before calling <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_axis.html#a1a4057e12caae2776590a0ce4bc38a84"><code>rescaleToData()</code></a> or
-<a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_q_accel_plot.html#a6ab962feb97d0bfccb268ac54bce8c77"><code>rescaleAllAxes()</code></a>.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> intentionally skips data-range
+calculation. Set accurate <a href="../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a>
+values on the axes, or occasionally update through <a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a>
+before calling <a href="../api/classQAccelPlot_1_1Axis.html#a1a4057e12caae2776590a0ce4bc38a84"><code>rescaleToData()</code></a> or
+<a href="../api/classQAccelPlot_1_1QAccelPlot.html#a6ab962feb97d0bfccb268ac54bce8c77"><code>rescaleAllAxes()</code></a>.</p>
 <p>If several series share an axis, remember that each series contributes to the
 axis data range.</p>
 <h2 id="a-real-time-plot-stutters">A real-time plot stutters<a class="headerlink" href="#a-real-time-plot-stutters" title="Permanent link">&para;</a></h2>
