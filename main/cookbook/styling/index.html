@@ -1068,7 +1068,7 @@ or application colors.</p>
 <code>QAccelPlot.NoLine</code> combined with a marker shape creates a marker-only series.
 A dash pattern alternates on/off lengths in pixels.</p>
 <h2 id="gradient-stroke-and-fill">Gradient stroke and fill<a class="headerlink" href="#gradient-stroke-and-fill" title="Permanent link">&para;</a></h2>
-<p>Effects are attached through the curve's <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#afd2dc2f55a0ebc51ce212ea522342c0e"><code>effects</code></a> property:</p>
+<p>Effects are attached through the curve's <a href="../../api/classQAccelPlot_1_1LineCurve.html#afd2dc2f55a0ebc51ce212ea522342c0e"><code>effects</code></a> property:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFill</span> <span class="p">{</span>
@@ -1092,7 +1092,7 @@ A dash pattern alternates on/off lengths in pixels.</p>
 changes. Axis- or data-derived bounds are useful when the colors should track
 the current domain.</p>
 <h2 id="animated-data-changes">Animated data changes<a class="headerlink" href="#animated-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_q_accel_plot_1_1_line_curve.html#aeec8b6c794c1bba729633ca946965577"><code>transition</code></a> when old and new samples should
+<p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve.html#aeec8b6c794c1bba729633ca946965577"><code>transition</code></a> when old and new samples should
 interpolate, or a <code>QAccelPlot.DrawTransition</code> to reveal the new curve:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="kd">id: morph</span>
