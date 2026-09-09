@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1788938763245,
+  "lastUpdate": 1788938765521,
   "repoUrl": "https://github.com/michalgrabarczyk/QAccelPlot",
   "entries": {
     "QAccelPlot Performance (Higher Is Better, Private API ON)": [
@@ -523,6 +523,180 @@ window.BENCHMARK_DATA = {
           {
             "name": "live_multi_4x500k (P99 Frame Interval)",
             "value": 538.02854497,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "michalgrabarczyk@hotmail.com",
+            "name": "Michal Grabarczyk",
+            "username": "michalgrabarczyk"
+          },
+          "committer": {
+            "email": "michalgrabarczyk@hotmail.com",
+            "name": "Michal Grabarczyk",
+            "username": "michalgrabarczyk"
+          },
+          "distinct": true,
+          "id": "6881f4085c18d4cffa49f29f9083e75a8f657337",
+          "message": "Publish all three docs pages in one go",
+          "timestamp": "2026-09-09T09:21:47+02:00",
+          "tree_id": "4f7fd531981c0a87b4bf142f27f9305533f8b350",
+          "url": "https://github.com/michalgrabarczyk/QAccelPlot/commit/6881f4085c18d4cffa49f29f9083e75a8f657337"
+        },
+        "date": 1788938764729,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "data_ingestion_2m (P99 Frame Time)",
+            "value": 1.7921614499999994,
+            "unit": "ms"
+          },
+          {
+            "name": "data_ingestion_2m (P99 Frame Interval)",
+            "value": 1.7921614499999994,
+            "unit": "ms"
+          },
+          {
+            "name": "vertex_cache_2m (P99 Frame Time)",
+            "value": 6.12885723,
+            "unit": "ms"
+          },
+          {
+            "name": "vertex_cache_2m (P99 Frame Interval)",
+            "value": 6.12885723,
+            "unit": "ms"
+          },
+          {
+            "name": "static_10k (P99 Frame Time)",
+            "value": 13.96760028,
+            "unit": "ms"
+          },
+          {
+            "name": "static_10k (P99 Frame Interval)",
+            "value": 14.0281164,
+            "unit": "ms"
+          },
+          {
+            "name": "static_100k (P99 Frame Time)",
+            "value": 55.90118819999998,
+            "unit": "ms"
+          },
+          {
+            "name": "static_100k (P99 Frame Interval)",
+            "value": 55.956869759999975,
+            "unit": "ms"
+          },
+          {
+            "name": "static_1m (P99 Frame Time)",
+            "value": 251.08511799,
+            "unit": "ms"
+          },
+          {
+            "name": "static_1m (P99 Frame Interval)",
+            "value": 251.14599987999998,
+            "unit": "ms"
+          },
+          {
+            "name": "static_2m (P99 Frame Time)",
+            "value": 438.10067284,
+            "unit": "ms"
+          },
+          {
+            "name": "static_2m (P99 Frame Interval)",
+            "value": 438.1634002,
+            "unit": "ms"
+          },
+          {
+            "name": "static_5m (P99 Frame Time)",
+            "value": 1090.0081187600001,
+            "unit": "ms"
+          },
+          {
+            "name": "static_5m (P99 Frame Interval)",
+            "value": 1090.08587864,
+            "unit": "ms"
+          },
+          {
+            "name": "live_100k (P99 Frame Time)",
+            "value": 64.14881425,
+            "unit": "ms"
+          },
+          {
+            "name": "live_100k (P99 Frame Interval)",
+            "value": 64.21538525,
+            "unit": "ms"
+          },
+          {
+            "name": "live_500k (P99 Frame Time)",
+            "value": 155.07272710000024,
+            "unit": "ms"
+          },
+          {
+            "name": "live_500k (P99 Frame Interval)",
+            "value": 155.13214414000026,
+            "unit": "ms"
+          },
+          {
+            "name": "live_1m (P99 Frame Time)",
+            "value": 266.0511103,
+            "unit": "ms"
+          },
+          {
+            "name": "live_1m (P99 Frame Interval)",
+            "value": 266.11488319,
+            "unit": "ms"
+          },
+          {
+            "name": "live_2m (P99 Frame Time)",
+            "value": 519.09873019,
+            "unit": "ms"
+          },
+          {
+            "name": "live_2m (P99 Frame Interval)",
+            "value": 519.16596779,
+            "unit": "ms"
+          },
+          {
+            "name": "live_5m (P99 Frame Time)",
+            "value": 1298.1426554,
+            "unit": "ms"
+          },
+          {
+            "name": "live_5m (P99 Frame Interval)",
+            "value": 1298.2074472,
+            "unit": "ms"
+          },
+          {
+            "name": "live_10m (P99 Frame Time)",
+            "value": 2585.1228736000003,
+            "unit": "ms"
+          },
+          {
+            "name": "live_10m (P99 Frame Interval)",
+            "value": 2585.1847235600003,
+            "unit": "ms"
+          },
+          {
+            "name": "live_multi_4x100k (P99 Frame Time)",
+            "value": 113.04862435999999,
+            "unit": "ms"
+          },
+          {
+            "name": "live_multi_4x100k (P99 Frame Interval)",
+            "value": 113.11300051999999,
+            "unit": "ms"
+          },
+          {
+            "name": "live_multi_4x500k (P99 Frame Time)",
+            "value": 549.95381614,
+            "unit": "ms"
+          },
+          {
+            "name": "live_multi_4x500k (P99 Frame Interval)",
+            "value": 550.0177400499999,
             "unit": "ms"
           }
         ]
