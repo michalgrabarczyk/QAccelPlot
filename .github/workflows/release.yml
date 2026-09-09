@@ -104,27 +104,21 @@ jobs:
           - Development documentation: https://michalgrabarczyk.github.io/QAccelPlot/main/
           EOF
 
-      - name: Publish exact version documentation
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/site
-          destination_dir: ${{ steps.version.outputs.version }}
-          keep_files: true
+      - name: Stage release documentation
+        env:
+          QACCELPLOT_RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          mkdir -p build/pages
+          cp -a build/site/. build/pages/
+          mkdir -p "build/pages/${QACCELPLOT_RELEASE_VERSION}" build/pages/latest
+          cp -a build/site/. "build/pages/${QACCELPLOT_RELEASE_VERSION}/"
+          cp -a build/site/. build/pages/latest/
 
-      - name: Publish latest documentation
+      - name: Publish release documentation
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/site
-          destination_dir: latest
-          keep_files: true
-
-      - name: Publish stable documentation at site root
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/site
+          publish_dir: build/pages
           keep_files: true
 
       - name: Create GitHub Release
