@@ -24,7 +24,7 @@ OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
 # Input
 # ---------------------------------------------------------------------------
 INPUT                  = "@QACCELPLOT_DOXYGEN_INPUT@" \
-                         "docs/api-mainpage.dox"
+                         "@QACCELPLOT_DOXYGEN_MAINPAGE@"
 RECURSIVE              = YES
 FILE_PATTERNS          = *.hpp *.h *.dox
 # Keep generated filenames stable across host operating systems. Guide links
