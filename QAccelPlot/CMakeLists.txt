@@ -38,6 +38,9 @@ file(GLOB QACCELPLOT_QML_FILES
 set_source_files_properties(qml/Colors.qml
     PROPERTIES QT_QML_SINGLETON_TYPE TRUE
 )
+set_source_files_properties(qml/LegendSymbol.qml
+    PROPERTIES QT_QML_INTERNAL_TYPE TRUE
+)
 
 # ---------------------------------------------------------------------------
 # Library target
@@ -68,6 +71,7 @@ qt_add_qml_module(QAccelPlot
     OUTPUT_TARGETS _qaccelplot_qml_targets
     URI QAccelPlot
     VERSION 1.0
+    DEPENDENCIES QtQuick
     RESOURCE_PREFIX /qt-project.org/imports
     QML_FILES
         ${QACCELPLOT_QML_FILES}
