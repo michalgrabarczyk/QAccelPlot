@@ -11,8 +11,6 @@
 #include <QMouseEvent>
 #include <QtTest/QtTest>
 
-#include <memory>
-
 class TestablePlot final : public QAccelPlot::QAccelPlot {
 public:
     using QAccelPlot::QAccelPlot::mouseMoveEvent;
@@ -99,13 +97,13 @@ void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
     plot.setSize({400.0, 300.0});
     plot.setPadding(10.0);
 
-    auto* xAxis = new QAccelPlot::Axis{};
+    auto* xAxis = new QAccelPlot::Axis{&plot};
     xAxis->setLayoutSize(70.0);
-    auto* yAxis = new QAccelPlot::Axis{};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
     yAxis->setLayoutSize(90.0);
-    auto* x2Axis = new QAccelPlot::Axis{};
+    auto* x2Axis = new QAccelPlot::Axis{&plot};
     x2Axis->setLayoutSize(40.0);
-    auto* y2Axis = new QAccelPlot::Axis{};
+    auto* y2Axis = new QAccelPlot::Axis{&plot};
     y2Axis->setLayoutSize(60.0);
     plot.setXAxis(xAxis);
     plot.setYAxis(yAxis);
@@ -130,32 +128,30 @@ void TestPlotAppearance::extraAxesUseIndividualLayoutSizes()
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
-    auto* xAxis = new QAccelPlot::Axis{};
+    auto* xAxis = new QAccelPlot::Axis{&plot};
     xAxis->setLayoutSize(60.0);
     plot.setXAxis(xAxis);
 
-    auto horizontalAxis = std::make_unique<QAccelPlot::Axis>();
+    auto* horizontalAxis = new QAccelPlot::Axis{&plot};
     horizontalAxis->setLayoutSize(30.0);
-    auto verticalAxis = std::make_unique<QAccelPlot::Axis>();
+    auto* verticalAxis = new QAccelPlot::Axis{&plot};
     verticalAxis->setSide(QAccelPlot::Axis::Left);
     verticalAxis->setLayoutSize(75.0);
 
     auto extraAxes = plot.extraAxes();
-    extraAxes.append(&extraAxes, horizontalAxis.get());
-    extraAxes.append(&extraAxes, verticalAxis.get());
+    extraAxes.append(&extraAxes, horizontalAxis);
+    extraAxes.append(&extraAxes, verticalAxis);
 
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 132.0));
     QCOMPARE(horizontalAxis->height(), 38.0);
     QCOMPARE(verticalAxis->width(), 75.0);
-
-    extraAxes.clear(&extraAxes);
 }
 
 void TestPlotAppearance::acceptedReleaseEndsDrag()
 {
     auto plot = TestablePlot{};
     plot.setSize({200.0, 100.0});
-    auto* axis = new QAccelPlot::Axis{};
+    auto* axis = new QAccelPlot::Axis{&plot};
     axis->setViewportMin(0.0);
     axis->setViewportMax(100.0);
     plot.setXAxis(axis);
@@ -183,8 +179,8 @@ void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
     plot.setSize({300.0, 200.0});
     plot.setPadding(10.0);
 
-    auto* xAxis = new QAccelPlot::Axis{};
-    auto* yAxis = new QAccelPlot::Axis{};
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
     plot.setXAxis(xAxis);
     plot.setYAxis(yAxis);
 
@@ -213,7 +209,7 @@ void TestPlotAppearance::hiddenAxisRetainsCoordinateMapping()
     plot.setSize({300.0, 200.0});
     plot.setPadding(10.0);
 
-    auto* yAxis = new QAccelPlot::Axis{};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
     yAxis->setViewportMin(-20.0);
     yAxis->setViewportMax(80.0);
     yAxis->setVisible(false);
@@ -242,9 +238,9 @@ void TestPlotAppearance::hiddenExtraAxisDoesNotReserveLayoutSpace()
     plot.setSize({300.0, 250.0});
     plot.setPadding(10.0);
 
-    auto extraAxis = std::make_unique<QAccelPlot::Axis>();
+    auto* extraAxis = new QAccelPlot::Axis{&plot};
     auto extraAxes = plot.extraAxes();
-    extraAxes.append(&extraAxes, extraAxis.get());
+    extraAxes.append(&extraAxes, extraAxis);
     const auto visiblePlotRect = plot.plotRect();
 
     extraAxis->setVisible(false);
@@ -254,8 +250,6 @@ void TestPlotAppearance::hiddenExtraAxisDoesNotReserveLayoutSpace()
     extraAxis->setVisible(true);
     QCOMPARE(plot.plotRect(), visiblePlotRect);
     QVERIFY(!extraAxis->size().isEmpty());
-
-    extraAxes.clear(&extraAxes);
 }
 
 QTEST_MAIN(TestPlotAppearance)
