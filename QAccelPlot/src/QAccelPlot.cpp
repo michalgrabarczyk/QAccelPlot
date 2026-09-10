@@ -86,6 +86,19 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     connect(border_, &PlotBorder::widthChanged, this, &QAccelPlot::update);
 }
 
+QAccelPlot::~QAccelPlot()
+{
+    for (auto* axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
+        if (axis) {
+            disconnectAxisSignals(axis);
+        }
+    }
+
+    for (auto* axis : std::as_const(extraAxes_)) {
+        disconnectAxisSignals(axis);
+    }
+}
+
 qreal QAccelPlot::dataToPixelX(qreal dataValue) const
 {
     if (!xAxis_) {
