@@ -278,6 +278,7 @@ Item {
                     dataMax: 6
                     side: QAccelPlot.Axis.Left
                     axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Net grid power (kW)"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
@@ -360,6 +361,7 @@ Item {
                     dataMax: 30
                     side: QAccelPlot.Axis.Left
                     axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Battery temperature (°C)"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
