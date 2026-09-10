@@ -93,6 +93,8 @@ Item {
                 dataMin: 20
                 dataMax: 95
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Response time (ms)"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
