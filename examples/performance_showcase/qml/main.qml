@@ -173,6 +173,8 @@ Window {
                     dataMin: -10
                     dataMax: 10
                     side: QAccelPlot.Axis.Left
+                    axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Amplitude"
                     baselineColor: colorPalette.axisLine
                     labelColor: colorPalette.axisLabel

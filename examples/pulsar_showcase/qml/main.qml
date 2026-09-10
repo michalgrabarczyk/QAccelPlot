@@ -132,6 +132,8 @@ Window {
                 dataMin: 0.0
                 dataMax: 560.0
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
             }
 
             Component {

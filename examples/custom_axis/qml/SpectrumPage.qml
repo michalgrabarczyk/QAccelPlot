@@ -88,6 +88,8 @@ Item {
                 dataMin: 0
                 dataMax: 1.1
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Relative intensity"
                 baselineColor: root.palette.axisLine
                 baselineWidth: 2
