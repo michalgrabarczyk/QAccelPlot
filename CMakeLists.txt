@@ -135,6 +135,7 @@ if(QACCELPLOT_BUILD_DOCS)
 
     # Collect all public header directories as the INPUT for Doxygen
     set(QACCELPLOT_DOXYGEN_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/QAccelPlot/src")
+    set(QACCELPLOT_DOXYGEN_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/docs/api-mainpage.dox")
 
     # Output goes into <build>/docs/html so it never pollutes the source tree
     set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")

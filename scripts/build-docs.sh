@@ -4,6 +4,11 @@ set -euo pipefail
 DOCS_VERSION="${QACCELPLOT_DOCS_VERSION:-main}"
 DOCS_CHANNEL="${QACCELPLOT_DOCS_CHANNEL:-development}"
 DOCS_TITLE="QAccelPlot Documentation"
+DOXYGEN_MAINPAGE="$PWD/docs/api-mainpage.dox"
+
+if command -v cygpath >/dev/null 2>&1; then
+  DOXYGEN_MAINPAGE="$(cygpath -am "$DOXYGEN_MAINPAGE")"
+fi
 
 if [[ "$DOCS_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   DOCS_TITLE="QAccelPlot v${DOCS_VERSION} Documentation"
@@ -26,6 +31,7 @@ sed \
   -e 's|@PROJECT_DESCRIPTION@|High-performance Qt Quick plotting library|g' \
   -e 's|@DOXYGEN_OUTPUT_DIR@|build/api-docs|g' \
   -e 's|@QACCELPLOT_DOXYGEN_INPUT@|QAccelPlot/src|g' \
+  -e "s|@QACCELPLOT_DOXYGEN_MAINPAGE@|${DOXYGEN_MAINPAGE}|g" \
   -e 's|@DOXYGEN_HAVE_DOT@|YES|g' \
   -e 's|@DOXYGEN_DOT_PATH@||g' \
   docs/Doxyfile.in > build/api-docs/Doxyfile
