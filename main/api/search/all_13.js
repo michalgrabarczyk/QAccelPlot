@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['valid_0',['valid',['../classQAccelPlot_1_1LineCurveVertexCache.html#a7ff00c6e743df04ae3d37a9489435aff',1,'QAccelPlot::LineCurveVertexCache']]],
-  ['value_1',['Value',['../namespaceQAccelPlot_1_1GradientFillBaselineNS.html#aa8f6062e4bc8ee393ed7593de895b3bea689202409e48743b914713f96d93947c',1,'QAccelPlot::GradientFillBaselineNS']]],
-  ['vertexcache_2',['vertexcache',['../structQAccelPlot_1_1LineCurveRenderParams.html#a10152470065abb408038036ccf05637f',1,'QAccelPlot::LineCurveRenderParams::vertexCache'],['../structQAccelPlot_1_1PointCurveRenderParams.html#ad5f4d27e5b86b555dea526542be25ab9',1,'QAccelPlot::PointCurveRenderParams::vertexCache']]],
-  ['vertical_3',['Vertical',['../namespaceQAccelPlot_1_1GradientDirectionNS.html#a592d1d184b9aeb9df76de0150dc35a20a06ce2a25e5d12c166a36f654dbea6012',1,'QAccelPlot::GradientDirectionNS']]],
-  ['viewportmax_4',['viewportmax',['../classQAccelPlot_1_1Axis.html#a0e36fc39ef75b402bc6d313ec034a6c0',1,'QAccelPlot::Axis::viewportMax()'],['../structQAccelPlot_1_1AxisTickPainter_1_1Params.html#ac38c8b5701419967eb00a6c9dc180723',1,'QAccelPlot::AxisTickPainter::Params::viewportMax'],['../classQAccelPlot_1_1Axis.html#ae7112f0aac515a9fad256f21696f3e31',1,'QAccelPlot::Axis::viewportMax']]],
-  ['viewportmaxchanged_5',['viewportMaxChanged',['../classQAccelPlot_1_1Axis.html#a2761f073b29c720b39edec4d99601e6f',1,'QAccelPlot::Axis']]],
-  ['viewportmin_6',['viewportmin',['../classQAccelPlot_1_1Axis.html#a7dc4f6741ca21456941ee90ca647fcbe',1,'QAccelPlot::Axis::viewportMin'],['../structQAccelPlot_1_1AxisTickPainter_1_1Params.html#a3b54cfd880d0e8eb0d2b089eab7019ac',1,'QAccelPlot::AxisTickPainter::Params::viewportMin'],['../classQAccelPlot_1_1Axis.html#a7e609c5b9eefca817ca60c2d3bce8286',1,'QAccelPlot::Axis::viewportMin() const']]],
-  ['viewportminchanged_7',['viewportMinChanged',['../classQAccelPlot_1_1Axis.html#a82400193ff348ca22055b4917779a449',1,'QAccelPlot::Axis']]],
-  ['viewportsize_8',['viewportsize',['../classQAccelPlot_1_1DataTextureMaterial.html#a33c065d9638eb6faf76732bae044d19e',1,'QAccelPlot::DataTextureMaterial::viewportSize'],['../classQAccelPlot_1_1PointMaterial.html#a3ff9a8bc102feba5af72ffe2380d7b22',1,'QAccelPlot::PointMaterial::viewportSize'],['../structQAccelPlot_1_1LineCurveRenderParams.html#a196c4f42c192ceb037b6e55061d5b297',1,'QAccelPlot::LineCurveRenderParams::viewportSize'],['../structQAccelPlot_1_1PointCurveRenderParams.html#a852f2f89105135c93e882381ccf64118',1,'QAccelPlot::PointCurveRenderParams::viewportSize']]]
+  ['update_0',['update',['../classQAccelPlot_1_1GridNode.html#a8f3379579bde6537cf9f8efc9a7e1fc6',1,'QAccelPlot::GridNode']]],
+  ['updatedatarange_1',['updateDataRange',['../classQAccelPlot_1_1Axis.html#accc4d32dea6f0f4770a50d7a30c0ec2e',1,'QAccelPlot::Axis']]],
+  ['upload_2',['upload',['../classQAccelPlot_1_1GradientTexture.html#aa73f6b5c719053d97b0a638614a6e6b2',1,'QAccelPlot::GradientTexture']]],
+  ['uploadtexture_3',['uploadTexture',['../classQAccelPlot_1_1DataTextureMaterial.html#a345e7672ca0bc009f6a2ffe536069163',1,'QAccelPlot::DataTextureMaterial']]],
+  ['usevertexcolor_4',['usevertexcolor',['../classQAccelPlot_1_1DataTextureMaterial.html#aeca4b9436551afba413a9739957b3b9a',1,'QAccelPlot::DataTextureMaterial::useVertexColor'],['../classQAccelPlot_1_1PointMaterial.html#a961bcb0f626902f72d9f18128262ebc1',1,'QAccelPlot::PointMaterial::useVertexColor']]]
 ];

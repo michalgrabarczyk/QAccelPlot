@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QAccelPlot: Main Page</title>
+<title>QAccelPlot: QAccelPlot API reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,10 +69,90 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">QAccelPlot Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">QAccelPlot API reference </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p>QAccelPlot is a hardware-accelerated 2D plotting library for Qt Quick. It provides QML-friendly plot components backed by C++17 and the Qt Scene Graph.</p>
+<p>This reference documents the public C++ classes that implement the QML API. For installation instructions and task-oriented examples, start with the <a href="../getting-started/">Getting started guide</a>.</p>
+<h1><a class="anchor" id="api_quick_start"></a>
+Quick start</h1>
+<div class="fragment"><div class="line">import QtQuick</div>
+<div class="line">import QAccelPlot as QAccelPlot</div>
+<div class="line"> </div>
+<div class="line">QAccelPlot.Plot {</div>
+<div class="line">    id: plot</div>
+<div class="line"> </div>
+<div class="line">    xAxis: QAccelPlot.Axis {</div>
+<div class="line">        viewportMin: 0</div>
+<div class="line">        viewportMax: 10</div>
+<div class="line">        side: QAccelPlot.Axis.Bottom</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    yAxis: QAccelPlot.Axis {</div>
+<div class="line">        viewportMin: -1</div>
+<div class="line">        viewportMax: 1</div>
+<div class="line">        side: QAccelPlot.Axis.Left</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    QAccelPlot.LineCurve {</div>
+<div class="line">        xAxis: plot.xAxis</div>
+<div class="line">        yAxis: plot.yAxis</div>
+<div class="line">        color: &quot;darkorange&quot;</div>
+<div class="line">        lineWidth: 2</div>
+<div class="line"> </div>
+<div class="line">        Component.onCompleted: setData([</div>
+<div class="line">            Qt.point(0, 0),</div>
+<div class="line">            Qt.point(2.5, 0.8),</div>
+<div class="line">            Qt.point(5, -0.6),</div>
+<div class="line">            Qt.point(7.5, 0.4),</div>
+<div class="line">            Qt.point(10, 0)</div>
+<div class="line">        ])</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>The QML <code>Plot</code> component is the recommended application-level entry point. It wraps <a class="el" href="classQAccelPlot_1_1QAccelPlot.html">PlotView</a>, the native plot canvas documented in this reference.</p>
+<h1><a class="anchor" id="api_key_types"></a>
+Key types</h1>
+<ul>
+<li><a class="el" href="classQAccelPlot_1_1QAccelPlot.html">PlotView</a> — plot canvas, layout, navigation, coordinate conversion, grid, and series collection.</li>
+<li><a class="el" href="classQAccelPlot_1_1Axis.html">QAccelPlot::Axis</a> — visible ranges, scaling, ticks, labels, panning, and zooming.</li>
+<li><a class="el" href="classQAccelPlot_1_1LineCurve.html">QAccelPlot::LineCurve</a> — GPU-rendered lines, markers, data ingestion, effects, transitions, and hover handling.</li>
+<li><a class="el" href="classQAccelPlot_1_1RectangleList.html">QAccelPlot::RectangleList</a> — hardware-accelerated collections of data-space rectangles.</li>
+<li><a class="el" href="classQAccelPlot_1_1DataAnchor.html">QAccelPlot::DataAnchor</a> — positions QML overlays at data coordinates.</li>
+<li><a class="el" href="classQAccelPlot_1_1PlotMouseEvent.html">QAccelPlot::PlotMouseEvent</a> — mouse positions expressed in plot and data coordinates.</li>
+</ul>
+<h1><a class="anchor" id="api_customization"></a>
+Styling and formatting</h1>
+<ul>
+<li>Line styles: <a class="el" href="classQAccelPlot_1_1SolidLine.html">QAccelPlot::SolidLine</a>, <a class="el" href="classQAccelPlot_1_1DashLine.html">QAccelPlot::DashLine</a>, and <a class="el" href="classQAccelPlot_1_1NoLine.html">QAccelPlot::NoLine</a>.</li>
+<li>Curve effects: <a class="el" href="classQAccelPlot_1_1GradientFill.html">QAccelPlot::GradientFill</a> and <a class="el" href="classQAccelPlot_1_1GradientStroke.html">QAccelPlot::GradientStroke</a>.</li>
+<li>Transitions: <a class="el" href="classQAccelPlot_1_1DrawTransition.html">QAccelPlot::DrawTransition</a> and <a class="el" href="classQAccelPlot_1_1MorphTransition.html">QAccelPlot::MorphTransition</a>.</li>
+<li>Tick labels: <a class="el" href="classQAccelPlot_1_1NumericTickLabelFormatter.html">QAccelPlot::NumericTickLabelFormatter</a>, <a class="el" href="classQAccelPlot_1_1DateTimeTickLabelFormatter.html">QAccelPlot::DateTimeTickLabelFormatter</a>, <a class="el" href="classQAccelPlot_1_1LogTickLabelFormatter.html">QAccelPlot::LogTickLabelFormatter</a>, and <a class="el" href="classQAccelPlot_1_1TextTickLabelFormatter.html">QAccelPlot::TextTickLabelFormatter</a>.</li>
+</ul>
+<h1><a class="anchor" id="api_data"></a>
+Feeding curve data</h1>
+<p>Choose the simplest API appropriate for the data source:</p>
+<ul>
+<li>Use <code>setData()</code> for QML data or conventional C++ point containers.</li>
+<li>Use the moved-buffer <code>setDataF()</code> overload for large interleaved <code>std::vector&lt;float&gt;</code> buffers produced on the curve's thread.</li>
+<li>Use <code>postData()</code> to transfer a completed buffer safely from a worker thread.</li>
+<li>Use <code>setDataFNoRange()</code> only when axis data ranges are maintained separately.</li>
+</ul>
+<p>See the <a href="../performance/">Performance guide</a> for a detailed comparison of the available data paths.</p>
+<h1><a class="anchor" id="api_runtime"></a>
+Runtime requirements</h1>
+<p>QAccelPlot requires Qt 6.2 or newer and a hardware Qt Quick Scene Graph backend, such as OpenGL, Direct3D, Vulkan, or Metal. The Qt Quick software backend cannot render the custom curve shaders.</p>
+<p>Never mutate a QQuickItem directly from a worker thread. Use <a class="el" href="classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c">LineCurve::postData()</a> or queue the operation to the item's thread.</p>
+<h1><a class="anchor" id="api_more"></a>
+More documentation</h1>
+<ul>
+<li><a href="../concepts/">Concepts and architecture</a></li>
+<li><a href="../cookbook/">Cookbook</a></li>
+<li><a href="../performance/">Performance guide</a></li>
+<li><a href="../troubleshooting/">Troubleshooting</a></li>
+<li><a href="../faq/">Frequently asked questions</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
