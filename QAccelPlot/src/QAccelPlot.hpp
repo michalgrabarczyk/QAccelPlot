@@ -75,6 +75,8 @@ class QAccelPlot : public QQuickItem {
 public:
     /// \brief Constructs a PlotView with the given \a parent.
     explicit QAccelPlot(QQuickItem* parent = nullptr);
+    /// \brief Destroys the plot after disconnecting attached axis signals.
+    ~QAccelPlot() override;
 
     /// \brief Converts a horizontal data-space value to an item-local pixel X coordinate.
     Q_INVOKABLE qreal dataToPixelX(qreal dataValue) const;
@@ -191,6 +193,9 @@ private:
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    void connectAxisSignals(Axis* axis);
+    void disconnectAxisSignals(Axis* axis);
+    void axisDestroyed(QObject* object);
     void connectAxis(Axis* axis, Axis::Orientation orientation);
     void disconnectAxis(Axis* axis);
     bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);

@@ -1131,6 +1131,29 @@ Complete source: [`examples/axis_formats`](https://github.com/michalgrabarczyk/Q
 Each series independently chooses its X and Y axes. This permits several units
 or sampling domains to share a plot area.
 
+## Axis layout size
+
+Each axis reserves 50 pixels of layout space by default. Set `layoutSize` to
+choose the height of a horizontal axis or the width of a vertical axis:
+
+```qml
+yAxis: QAccelPlot.Axis {
+    side: QAccelPlot.Axis.Left
+    layoutSize: 90
+    label: "Temperature"
+}
+
+xAxis: QAccelPlot.Axis {
+    side: QAccelPlot.Axis.Bottom
+    layoutSize: 70
+    label: "Time"
+}
+```
+
+Axis layout is intentionally explicit: label text, fonts, and formatters do not
+change `layoutSize` automatically. Choose a value large enough for the configured
+tick labels and axis title.
+
 ## Secondary axes
 
 Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:

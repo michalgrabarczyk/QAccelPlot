@@ -86,6 +86,19 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     connect(border_, &PlotBorder::widthChanged, this, &QAccelPlot::update);
 }
 
+QAccelPlot::~QAccelPlot()
+{
+    for (auto* axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
+        if (axis) {
+            disconnectAxisSignals(axis);
+        }
+    }
+
+    for (auto* axis : std::as_const(extraAxes_)) {
+        disconnectAxisSignals(axis);
+    }
+}
+
 qreal QAccelPlot::dataToPixelX(qreal dataValue) const
 {
     if (!xAxis_) {
@@ -515,14 +528,7 @@ void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
     QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
     if (axis) {
         axis->setParentItem(plot);
-        connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-        // Keep plot updated when extra axis ranges change so annotations follow data values
-        connect(axis, &Axis::viewportMinChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::viewportMaxChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::dataMinChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::dataMaxChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::rangeChanged, plot, [plot] { plot->update(); });
-        connect(axis, &QQuickItem::visibleChanged, plot, &QAccelPlot::layoutAxes);
+        plot->connectAxisSignals(axis);
         plot->extraAxes_.append(axis);
         plot->layoutAxes();
     }
@@ -542,14 +548,8 @@ void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
 {
     QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
     for (const auto axis : plot->extraAxes_) {
+        plot->disconnectAxisSignals(axis);
         axis->setParentItem(nullptr);
-        disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-        disconnect(axis, &Axis::viewportMinChanged, plot, nullptr);
-        disconnect(axis, &Axis::viewportMaxChanged, plot, nullptr);
-        disconnect(axis, &Axis::dataMinChanged, plot, nullptr);
-        disconnect(axis, &Axis::dataMaxChanged, plot, nullptr);
-        disconnect(axis, &Axis::rangeChanged, plot, nullptr);
-        disconnect(axis, &QQuickItem::visibleChanged, plot, nullptr);
     }
     plot->extraAxes_.clear();
     plot->layoutAxes();
@@ -592,30 +592,73 @@ void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const bool zoomi
     zoomAxis(axis, factor, ratio);
 }
 
+void QAccelPlot::connectAxisSignals(Axis* axis)
+{
+    connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::rangeChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
+}
+
+void QAccelPlot::disconnectAxisSignals(Axis* axis)
+{
+    disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
+    disconnect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::update);
+    disconnect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
+}
+
+void QAccelPlot::axisDestroyed(QObject* object)
+{
+    auto layoutChanged = false;
+    if (xAxis_ == object) {
+        xAxis_ = nullptr;
+        layoutChanged = true;
+        emit xAxisChanged();
+    }
+    if (yAxis_ == object) {
+        yAxis_ = nullptr;
+        layoutChanged = true;
+        emit yAxisChanged();
+    }
+    if (x2Axis_ == object) {
+        x2Axis_ = nullptr;
+        layoutChanged = true;
+        emit x2AxisChanged();
+    }
+    if (y2Axis_ == object) {
+        y2Axis_ = nullptr;
+        layoutChanged = true;
+        emit y2AxisChanged();
+    }
+
+    const auto removedExtraAxis = extraAxes_.removeIf([object](Axis* axis) { return axis == object; });
+    if (layoutChanged || removedExtraAxis > 0) {
+        layoutAxes();
+    }
+}
+
 void QAccelPlot::connectAxis(Axis* axis, Axis::Orientation orientation)
 {
     axis->setParentItem(this);
     axis->setOrientation(orientation);
-    connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-    auto syncAndUpdate = [this] { update(); };
-    connect(axis, &Axis::viewportMinChanged, this, syncAndUpdate);
-    connect(axis, &Axis::viewportMaxChanged, this, syncAndUpdate);
-    connect(axis, &Axis::dataMinChanged, this, syncAndUpdate);
-    connect(axis, &Axis::dataMaxChanged, this, syncAndUpdate);
-    connect(axis, &Axis::rangeChanged, this, syncAndUpdate);
-    connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
+    connectAxisSignals(axis);
 }
 
 void QAccelPlot::disconnectAxis(Axis* axis)
 {
+    disconnectAxisSignals(axis);
     axis->setParentItem(nullptr);
-    disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-    disconnect(axis, &Axis::viewportMinChanged, this, nullptr);
-    disconnect(axis, &Axis::viewportMaxChanged, this, nullptr);
-    disconnect(axis, &Axis::dataMinChanged, this, nullptr);
-    disconnect(axis, &Axis::dataMaxChanged, this, nullptr);
-    disconnect(axis, &Axis::rangeChanged, this, nullptr);
-    disconnect(axis, &QQuickItem::visibleChanged, this, nullptr);
 }
 
 void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
@@ -663,16 +706,14 @@ void QAccelPlot::layoutAxes()
 {
     const auto w = width();
     const auto h = height();
-    const auto axisSize = qreal{50};
-
     auto extraBottomHeight = qreal{0};
     for (const auto* axis : extraAxes_) {
         if (axis->isVisible() && axis->orientation() == Axis::Horizontal) {
-            extraBottomHeight += axisSize + axis->inwardTickOverlap();
+            extraBottomHeight += axis->layoutSize() + axis->inwardTickOverlap();
         }
     }
 
-    const auto visibleAxisSize = [axisSize](const Axis* axis) { return axis && axis->isVisible() ? axisSize : qreal{0}; };
+    const auto visibleAxisSize = [](const Axis* axis) { return axis && axis->isVisible() ? axis->layoutSize() : qreal{0}; };
     const auto leftW = visibleAxisSize(yAxis_);
     const auto rightW = visibleAxisSize(y2Axis_);
     const auto topH = visibleAxisSize(x2Axis_);
@@ -696,15 +737,15 @@ void QAccelPlot::layoutAxes()
         const auto ov = yAxis_->inwardTickOverlap();
         const auto lOv = yAxis_->labelOverflow();
         yAxis_->setPosition(QPointF(padding_, plotY - lOv));
-        yAxis_->setSize(QSizeF(axisSize + ov, plotH + 2.0 * lOv));
+        yAxis_->setSize(QSizeF(yAxis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (yAxis_) {
         yAxis_->setSize(QSizeF{});
     }
     if (y2Axis_ && y2Axis_->isVisible()) {
         const auto ov = y2Axis_->inwardTickOverlap();
         const auto lOv = y2Axis_->labelOverflow();
-        y2Axis_->setPosition(QPointF(w - padding_ - axisSize - ov, plotY - lOv));
-        y2Axis_->setSize(QSizeF(axisSize + ov, plotH + 2.0 * lOv));
+        y2Axis_->setPosition(QPointF(w - padding_ - y2Axis_->layoutSize() - ov, plotY - lOv));
+        y2Axis_->setSize(QSizeF(y2Axis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (y2Axis_) {
         y2Axis_->setSize(QSizeF{});
     }
@@ -712,7 +753,7 @@ void QAccelPlot::layoutAxes()
         const auto ov = xAxis_->inwardTickOverlap();
         const auto lOv = xAxis_->labelOverflow();
         xAxis_->setPosition(QPointF(plotX - lOv, h - padding_ - botH - ov));
-        xAxis_->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+        xAxis_->setSize(QSizeF(plotW + 2.0 * lOv, xAxis_->layoutSize() + ov));
     } else if (xAxis_) {
         xAxis_->setSize(QSizeF{});
     }
@@ -720,7 +761,7 @@ void QAccelPlot::layoutAxes()
         const auto ov = x2Axis_->inwardTickOverlap();
         const auto lOv = x2Axis_->labelOverflow();
         x2Axis_->setPosition(QPointF(plotX - lOv, padding_));
-        x2Axis_->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+        x2Axis_->setSize(QSizeF(plotW + 2.0 * lOv, x2Axis_->layoutSize() + ov));
     } else if (x2Axis_) {
         x2Axis_->setSize(QSizeF{});
     }
@@ -738,13 +779,13 @@ void QAccelPlot::layoutAxes()
         const auto ov = axis->inwardTickOverlap();
         const auto lOv = axis->labelOverflow();
         if (axis->orientation() == Axis::Horizontal) {
-            axis->setSize(QSizeF(plotW + 2.0 * lOv, axisSize + ov));
+            axis->setSize(QSizeF(plotW + 2.0 * lOv, axis->layoutSize() + ov));
             axis->setPosition(QPointF(plotX - lOv, currentBot));
-            currentBot += axisSize + ov;
+            currentBot += axis->layoutSize() + ov;
         } else {
-            axis->setSize(QSizeF(axisSize, plotH + 2.0 * lOv));
+            axis->setSize(QSizeF(axis->layoutSize(), plotH + 2.0 * lOv));
             axis->setPosition(QPointF(currentLeft, plotY - lOv));
-            currentLeft += axisSize;
+            currentLeft += axis->layoutSize();
         }
     }
 }

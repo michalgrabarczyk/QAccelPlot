@@ -83,6 +83,8 @@ Window {
                 dataMin: 16
                 dataMax: 27
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Temperature (°C)"
                 baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel

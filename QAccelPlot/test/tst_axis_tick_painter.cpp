@@ -49,6 +49,7 @@ private slots:
     void computeNiceStep_negativeOnlyRange();
     void computeNiceStep_residualAtTwoBoundary();
     void paintTicks_timeLabelsMatchUnclippedReference();
+    void paintTicks_verticalLabelsUseAvailableWidth();
 };
 
 void TestAxisTickPainter::computeNiceStep_roundRange()
@@ -194,6 +195,55 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
             QVERIFY2(actual == expected, qPrintable(QStringLiteral("Label '%1' at %2 degrees was clipped").arg(label).arg(rotation)));
         }
     }
+}
+
+void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
+{
+    constexpr auto kImageWidth = 120;
+    constexpr auto kImageHeight = 80;
+    constexpr auto kAxisX = qreal{110.0};
+    constexpr auto kOldLabelLeft = 70;
+
+    auto font = QFont{};
+    font.setPixelSize(12);
+    const auto label = QStringLiteral("09:31:00.000");
+    auto formatter = FixedTickLabelFormatter{label};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(1);
+    ticker.setSubtickCount(0);
+    ticker.setTickLength(0.0);
+    ticker.setTickLabelPadding(0.0);
+    ticker.setTickLabelFont(font);
+    ticker.setTickColor(Qt::transparent);
+    ticker.setTickLabelColor(Qt::white);
+    ticker.setTickLabelFormatter(&formatter);
+
+    auto actual = QImage{kImageWidth, kImageHeight, QImage::Format_ARGB32_Premultiplied};
+    actual.fill(Qt::transparent);
+    {
+        auto painter = QPainter{&actual};
+        painter.setPen(Qt::transparent);
+        auto params = QAccelPlot::AxisTickPainter::Params{};
+        params.viewportMin = 0.25;
+        params.viewportMax = 0.75;
+        params.orientation = QAccelPlot::Axis::Vertical;
+        params.side = QAccelPlot::Axis::Left;
+        params.ticker = &ticker;
+        QAccelPlot::AxisTickPainter::paintTicks(&painter, actual.rect(), kAxisX, 0.0, params,
+            [](qreal, qreal) { return qreal{40.0}; });
+    }
+
+    auto foundPixelOutsideOldLabelRect = false;
+    for (auto y = 0; y < actual.height() && !foundPixelOutsideOldLabelRect; ++y) {
+        for (auto x = 0; x < kOldLabelLeft; ++x) {
+            if (actual.pixelColor(x, y).alpha() != 0) {
+                foundPixelOutsideOldLabelRect = true;
+                break;
+            }
+        }
+    }
+
+    QVERIFY2(foundPixelOutsideOldLabelRect, "Vertical tick label did not use the available axis width");
 }
 
 QTEST_MAIN(TestAxisTickPainter)

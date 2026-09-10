@@ -254,6 +254,8 @@ Window {
                 dataMin: 0
                 dataMax: 80
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Elevation (m)"
                 baselineColor: colorPalette.axisLine
                 baselineWidth: 2

@@ -154,6 +154,8 @@ Item {
                 dataMin: -1.2
                 dataMax: 1.2
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Value"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel

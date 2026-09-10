@@ -60,6 +60,8 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(int axisTitlePadding READ axisTitlePadding WRITE setAxisTitlePadding NOTIFY axisTitlePaddingChanged)
     /// \brief Pixels of padding between the plot area edge and the axis baseline. Default: 0.
     Q_PROPERTY(int axisLinePadding READ axisLinePadding WRITE setAxisLinePadding NOTIFY axisLinePaddingChanged)
+    /// \brief Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.
+    Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
     /// \brief Read-only constant: tick appearance configuration object.
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
     /// \brief Whether the axis uses a base-10 logarithmic scale. Default: \c false.
@@ -155,6 +157,11 @@ public:
     /// \brief Sets the axis line padding to \a padding pixels.
     void setAxisLinePadding(int padding);
 
+    /// \brief Returns the layout thickness in pixels.
+    qreal layoutSize() const;
+    /// \brief Sets the layout thickness to \a size pixels. Negative values are clamped to zero.
+    void setLayoutSize(qreal size);
+
     /// \brief Returns the tick configuration object.
     AxisTicker* ticker() const;
 
@@ -229,6 +236,8 @@ signals:
     void axisTitlePaddingChanged();
     /// \brief Emitted when the axisLinePadding property changes.
     void axisLinePaddingChanged();
+    /// \brief Emitted when the layoutSize property changes.
+    void layoutSizeChanged();
     /// \brief Emitted when the logScale property changes.
     void logScaleChanged();
     /// \brief Emitted when the zoomScaleFactor property changes.
@@ -277,6 +286,7 @@ private:
     QColor hoverColor_{QColor(Qt::blue)};
     int axisTitlePadding_{30};
     int axisLinePadding_{0};
+    qreal layoutSize_{50.0};
     bool logScale_{false};
     double zoomScaleFactor_{0.9};
     bool extendWidgetForLabels_{true};

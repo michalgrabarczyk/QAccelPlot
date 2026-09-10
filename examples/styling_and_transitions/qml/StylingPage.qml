@@ -128,6 +128,8 @@ Item {
                     dataMin: 0
                     dataMax: 1.1
                     side: QAccelPlot.Axis.Left
+                    axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Signal"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
@@ -190,6 +192,8 @@ Item {
                     dataMin: -0.1
                     dataMax: 4.1
                     side: QAccelPlot.Axis.Left
+                    axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Style offset"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
@@ -289,6 +293,8 @@ Item {
                     dataMin: -0.1
                     dataMax: 4.1
                     side: QAccelPlot.Axis.Left
+                    axisTitlePadding: 40
+                    layoutSize: 60
                     label: "Line weight"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
