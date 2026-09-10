@@ -32,6 +32,7 @@ private slots:
     void hiddenAxesDoNotReserveLayoutSpace();
     void hiddenAxisRetainsCoordinateMapping();
     void hiddenExtraAxisDoesNotReserveLayoutSpace();
+    void destroyedAxesAreUnregistered();
 };
 
 void TestPlotAppearance::border_defaultsToDisabled()
@@ -250,6 +251,27 @@ void TestPlotAppearance::hiddenExtraAxisDoesNotReserveLayoutSpace()
     extraAxis->setVisible(true);
     QCOMPARE(plot.plotRect(), visiblePlotRect);
     QVERIFY(!extraAxis->size().isEmpty());
+}
+
+void TestPlotAppearance::destroyedAxesAreUnregistered()
+{
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({300.0, 250.0});
+    plot.setPadding(10.0);
+
+    auto* xAxis = new QAccelPlot::Axis;
+    plot.setXAxis(xAxis);
+    delete xAxis;
+    QCOMPARE(plot.xAxis(), nullptr);
+
+    auto* extraAxis = new QAccelPlot::Axis;
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+    QCOMPARE(extraAxes.count(&extraAxes), 1);
+
+    delete extraAxis;
+    QCOMPARE(extraAxes.count(&extraAxes), 0);
+    QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 230.0));
 }
 
 QTEST_MAIN(TestPlotAppearance)
