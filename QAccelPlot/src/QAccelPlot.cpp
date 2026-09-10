@@ -515,15 +515,7 @@ void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
     QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
     if (axis) {
         axis->setParentItem(plot);
-        connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-        // Keep plot updated when extra axis ranges change so annotations follow data values
-        connect(axis, &Axis::viewportMinChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::viewportMaxChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::dataMinChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::dataMaxChanged, plot, &QAccelPlot::update);
-        connect(axis, &Axis::rangeChanged, plot, [plot] { plot->update(); });
-        connect(axis, &QQuickItem::visibleChanged, plot, &QAccelPlot::layoutAxes);
-        connect(axis, &Axis::layoutSizeChanged, plot, &QAccelPlot::layoutAxes);
+        plot->connectAxisSignals(axis);
         plot->extraAxes_.append(axis);
         plot->layoutAxes();
     }
@@ -543,15 +535,8 @@ void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
 {
     QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
     for (const auto axis : plot->extraAxes_) {
+        plot->disconnectAxisSignals(axis);
         axis->setParentItem(nullptr);
-        disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-        disconnect(axis, &Axis::viewportMinChanged, plot, nullptr);
-        disconnect(axis, &Axis::viewportMaxChanged, plot, nullptr);
-        disconnect(axis, &Axis::dataMinChanged, plot, nullptr);
-        disconnect(axis, &Axis::dataMaxChanged, plot, nullptr);
-        disconnect(axis, &Axis::rangeChanged, plot, nullptr);
-        disconnect(axis, &QQuickItem::visibleChanged, plot, nullptr);
-        disconnect(axis, &Axis::layoutSizeChanged, plot, nullptr);
     }
     plot->extraAxes_.clear();
     plot->layoutAxes();
@@ -594,32 +579,73 @@ void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const bool zoomi
     zoomAxis(axis, factor, ratio);
 }
 
+void QAccelPlot::connectAxisSignals(Axis* axis)
+{
+    connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::rangeChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
+}
+
+void QAccelPlot::disconnectAxisSignals(Axis* axis)
+{
+    disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
+    disconnect(axis, &Axis::viewportMinChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::viewportMaxChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::update);
+    disconnect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
+}
+
+void QAccelPlot::axisDestroyed(QObject* object)
+{
+    auto layoutChanged = false;
+    if (xAxis_ == object) {
+        xAxis_ = nullptr;
+        layoutChanged = true;
+        emit xAxisChanged();
+    }
+    if (yAxis_ == object) {
+        yAxis_ = nullptr;
+        layoutChanged = true;
+        emit yAxisChanged();
+    }
+    if (x2Axis_ == object) {
+        x2Axis_ = nullptr;
+        layoutChanged = true;
+        emit x2AxisChanged();
+    }
+    if (y2Axis_ == object) {
+        y2Axis_ = nullptr;
+        layoutChanged = true;
+        emit y2AxisChanged();
+    }
+
+    const auto removedExtraAxis = extraAxes_.removeIf([object](Axis* axis) { return axis == object; });
+    if (layoutChanged || removedExtraAxis > 0) {
+        layoutAxes();
+    }
+}
+
 void QAccelPlot::connectAxis(Axis* axis, Axis::Orientation orientation)
 {
     axis->setParentItem(this);
     axis->setOrientation(orientation);
-    connect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-    auto syncAndUpdate = [this] { update(); };
-    connect(axis, &Axis::viewportMinChanged, this, syncAndUpdate);
-    connect(axis, &Axis::viewportMaxChanged, this, syncAndUpdate);
-    connect(axis, &Axis::dataMinChanged, this, syncAndUpdate);
-    connect(axis, &Axis::dataMaxChanged, this, syncAndUpdate);
-    connect(axis, &Axis::rangeChanged, this, syncAndUpdate);
-    connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
-    connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
+    connectAxisSignals(axis);
 }
 
 void QAccelPlot::disconnectAxis(Axis* axis)
 {
+    disconnectAxisSignals(axis);
     axis->setParentItem(nullptr);
-    disconnect(axis, &Axis::doubleClicked, axis, &Axis::rescaleToData);
-    disconnect(axis, &Axis::viewportMinChanged, this, nullptr);
-    disconnect(axis, &Axis::viewportMaxChanged, this, nullptr);
-    disconnect(axis, &Axis::dataMinChanged, this, nullptr);
-    disconnect(axis, &Axis::dataMaxChanged, this, nullptr);
-    disconnect(axis, &Axis::rangeChanged, this, nullptr);
-    disconnect(axis, &QQuickItem::visibleChanged, this, nullptr);
-    disconnect(axis, &Axis::layoutSizeChanged, this, nullptr);
 }
 
 void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRatio)
