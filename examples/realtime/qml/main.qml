@@ -108,6 +108,7 @@ Window {
                 dataMax: 2.5
                 side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
+                layoutSize: 60
                 label: "Acceleration (g)"
                 baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel

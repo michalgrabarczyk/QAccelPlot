@@ -67,6 +67,7 @@ Item {
                 dataMax: 1.8
                 side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
+                layoutSize: 60
                 label: "Amplitude"
                 baselineColor: root.palette.axisLine
                 baselineWidth: 2

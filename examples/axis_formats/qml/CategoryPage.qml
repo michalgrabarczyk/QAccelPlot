@@ -63,6 +63,8 @@ Item {
                 dataMin: 20
                 dataMax: 55
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Electricity use (kWh)"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel

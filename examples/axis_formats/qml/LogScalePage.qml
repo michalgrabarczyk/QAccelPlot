@@ -90,6 +90,8 @@ Item {
                 dataMin: -18
                 dataMax: 3
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Relative level (dB)"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
