@@ -54,6 +54,7 @@ Item {
                 dataMin: -0.5
                 dataMax: 1.2
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
                 label: "Lead I (mV)"
                 baselineColor: root.palette.axisLine
                 hoverColor: root.palette.hover
@@ -99,6 +100,7 @@ Item {
                 dataMin: -0.7
                 dataMax: 1.5
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
                 label: "Lead II (mV)"
                 baselineColor: root.palette.axisLine
                 hoverColor: root.palette.hover
@@ -162,6 +164,7 @@ Item {
                 dataMin: -1
                 dataMax: 1
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
                 label: "Respiration"
                 baselineColor: root.palette.axisLine
                 hoverColor: root.palette.hover
