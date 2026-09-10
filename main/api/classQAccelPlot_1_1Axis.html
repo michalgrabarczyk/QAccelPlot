@@ -190,6 +190,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>axisTitlePaddingChang
 void&#160;</td><td class="memItemRight" valign="bottom"><b>axisLinePaddingChanged</b> ()</td></tr>
 <tr class="memdesc:af6c682b2be358db849090494749c699b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the axisLinePadding property changes. <br /></td></tr>
 <tr class="separator:af6c682b2be358db849090494749c699b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa543a9309019f009654cd0eb329622d1" id="r_aa543a9309019f009654cd0eb329622d1"><td class="memItemLeft" align="right" valign="top"><a id="aa543a9309019f009654cd0eb329622d1" name="aa543a9309019f009654cd0eb329622d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>layoutSizeChanged</b> ()</td></tr>
+<tr class="memdesc:aa543a9309019f009654cd0eb329622d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the layoutSize property changes. <br /></td></tr>
+<tr class="separator:aa543a9309019f009654cd0eb329622d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8067516775c316543db13099af942265" id="r_a8067516775c316543db13099af942265"><td class="memItemLeft" align="right" valign="top"><a id="a8067516775c316543db13099af942265" name="a8067516775c316543db13099af942265"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>logScaleChanged</b> ()</td></tr>
 <tr class="memdesc:a8067516775c316543db13099af942265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the logScale property changes. <br /></td></tr>
@@ -325,6 +329,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>axisLinePadding</b> ()
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setAxisLinePadding</b> (int padding)</td></tr>
 <tr class="memdesc:aa8db1f6d1b9455ac66ecc98a91f8c3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the axis line padding to <em>padding</em> pixels. <br /></td></tr>
 <tr class="separator:aa8db1f6d1b9455ac66ecc98a91f8c3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb52d6a8bee3ca1d8d3b79236fcc208f" id="r_adb52d6a8bee3ca1d8d3b79236fcc208f"><td class="memItemLeft" align="right" valign="top"><a id="adb52d6a8bee3ca1d8d3b79236fcc208f" name="adb52d6a8bee3ca1d8d3b79236fcc208f"></a>
+qreal&#160;</td><td class="memItemRight" valign="bottom"><b>layoutSize</b> () const</td></tr>
+<tr class="memdesc:adb52d6a8bee3ca1d8d3b79236fcc208f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the layout thickness in pixels. <br /></td></tr>
+<tr class="separator:adb52d6a8bee3ca1d8d3b79236fcc208f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9157d5dc4cf978b807650e083baab6c6" id="r_a9157d5dc4cf978b807650e083baab6c6"><td class="memItemLeft" align="right" valign="top"><a id="a9157d5dc4cf978b807650e083baab6c6" name="a9157d5dc4cf978b807650e083baab6c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setLayoutSize</b> (qreal size)</td></tr>
+<tr class="memdesc:a9157d5dc4cf978b807650e083baab6c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the layout thickness to <em>size</em> pixels. Negative values are clamped to zero. <br /></td></tr>
+<tr class="separator:a9157d5dc4cf978b807650e083baab6c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e14dd389bbd1c794e12ca490c54c8ae" id="r_a7e14dd389bbd1c794e12ca490c54c8ae"><td class="memItemLeft" align="right" valign="top"><a id="a7e14dd389bbd1c794e12ca490c54c8ae" name="a7e14dd389bbd1c794e12ca490c54c8ae"></a>
 <a class="el" href="classQAccelPlot_1_1AxisTicker.html">AxisTicker</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ticker</b> () const</td></tr>
 <tr class="memdesc:a7e14dd389bbd1c794e12ca490c54c8ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the tick configuration object. <br /></td></tr>
@@ -459,6 +471,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>axisTitlePadding</b></
 int&#160;</td><td class="memItemRight" valign="bottom"><b>axisLinePadding</b></td></tr>
 <tr class="memdesc:af9d423494fca37359998a9f2bd8a74d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pixels of padding between the plot area edge and the axis baseline. Default: 0. <br /></td></tr>
 <tr class="separator:af9d423494fca37359998a9f2bd8a74d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8551f09e2566c991e79177fd0616abac" id="r_a8551f09e2566c991e79177fd0616abac"><td class="memItemLeft" align="right" valign="top"><a id="a8551f09e2566c991e79177fd0616abac" name="a8551f09e2566c991e79177fd0616abac"></a>
+qreal&#160;</td><td class="memItemRight" valign="bottom"><b>layoutSize</b></td></tr>
+<tr class="memdesc:a8551f09e2566c991e79177fd0616abac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50. <br /></td></tr>
+<tr class="separator:a8551f09e2566c991e79177fd0616abac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6873a52bfe65db20dda17a9f5c535bc4" id="r_a6873a52bfe65db20dda17a9f5c535bc4"><td class="memItemLeft" align="right" valign="top"><a id="a6873a52bfe65db20dda17a9f5c535bc4" name="a6873a52bfe65db20dda17a9f5c535bc4"></a>
 <a class="el" href="classQAccelPlot_1_1AxisTicker.html">AxisTicker</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ticker</b></td></tr>
 <tr class="memdesc:a6873a52bfe65db20dda17a9f5c535bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read-only constant: tick appearance configuration object. <br /></td></tr>

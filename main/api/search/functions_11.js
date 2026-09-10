@@ -13,7 +13,7 @@ var searchData=
   ['ticklabelfont_10',['tickLabelFont',['../classQAccelPlot_1_1AxisTicker.html#ab8e00464c6042b4dcfe1928daf2044be',1,'QAccelPlot::AxisTicker']]],
   ['ticklabelfontchanged_11',['tickLabelFontChanged',['../classQAccelPlot_1_1AxisTicker.html#abe58adab2e89c4a660c4f8cfb84fc362',1,'QAccelPlot::AxisTicker']]],
   ['ticklabelformatchanged_12',['tickLabelFormatChanged',['../classQAccelPlot_1_1AxisTicker.html#a8243e3f90c0fd12627cb6e4970e8b73b',1,'QAccelPlot::AxisTicker']]],
-  ['ticklabelformatter_13',['ticklabelformatter',['../classQAccelPlot_1_1TickLabelFormatter.html#a6abf21321f9724038fa9ac3ddc246344',1,'QAccelPlot::TickLabelFormatter::TickLabelFormatter()'],['../classQAccelPlot_1_1AxisTicker.html#a5fa91bc9be6e08611528a77010fb7604',1,'QAccelPlot::AxisTicker::tickLabelFormatter() const']]],
+  ['ticklabelformatter_13',['ticklabelformatter',['../classQAccelPlot_1_1AxisTicker.html#a5fa91bc9be6e08611528a77010fb7604',1,'QAccelPlot::AxisTicker::tickLabelFormatter()'],['../classQAccelPlot_1_1TickLabelFormatter.html#a6abf21321f9724038fa9ac3ddc246344',1,'QAccelPlot::TickLabelFormatter::TickLabelFormatter()']]],
   ['ticklabelformatterchanged_14',['tickLabelFormatterChanged',['../classQAccelPlot_1_1AxisTicker.html#a069711931afd430f496e34109f62d936',1,'QAccelPlot::AxisTicker']]],
   ['ticklabelpadding_15',['tickLabelPadding',['../classQAccelPlot_1_1AxisTicker.html#ac71939d660cb699f6947348c3311df78',1,'QAccelPlot::AxisTicker']]],
   ['ticklabelpaddingchanged_16',['tickLabelPaddingChanged',['../classQAccelPlot_1_1AxisTicker.html#a448f4bb956599d0f30bbf0a79c54da57',1,'QAccelPlot::AxisTicker']]],
