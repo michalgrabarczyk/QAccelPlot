@@ -94,6 +94,8 @@ Window {
                 dataMin: -6
                 dataMax: 8
                 side: QAccelPlot.Axis.Left
+                axisTitlePadding: 40
+                layoutSize: 60
                 label: "Pressure response (units)"
                 baselineColor: colorPalette.axisLine
                 baselineWidth: 3
