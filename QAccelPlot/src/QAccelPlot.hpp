@@ -75,6 +75,8 @@ class QAccelPlot : public QQuickItem {
 public:
     /// \brief Constructs a PlotView with the given \a parent.
     explicit QAccelPlot(QQuickItem* parent = nullptr);
+    /// \brief Destroys the plot after disconnecting attached axis signals.
+    ~QAccelPlot() override;
 
     /// \brief Converts a horizontal data-space value to an item-local pixel X coordinate.
     Q_INVOKABLE qreal dataToPixelX(qreal dataValue) const;
