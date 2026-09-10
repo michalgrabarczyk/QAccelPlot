@@ -191,6 +191,9 @@ private:
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    void connectAxisSignals(Axis* axis);
+    void disconnectAxisSignals(Axis* axis);
+    void axisDestroyed(QObject* object);
     void connectAxis(Axis* axis, Axis::Orientation orientation);
     void disconnectAxis(Axis* axis);
     bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
