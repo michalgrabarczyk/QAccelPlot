@@ -23,9 +23,10 @@ OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
 # ---------------------------------------------------------------------------
 # Input
 # ---------------------------------------------------------------------------
-INPUT                  = "@QACCELPLOT_DOXYGEN_INPUT@"
+INPUT                  = "@QACCELPLOT_DOXYGEN_INPUT@" \
+                         "@QACCELPLOT_DOXYGEN_MAINPAGE@"
 RECURSIVE              = YES
-FILE_PATTERNS          = *.hpp *.h
+FILE_PATTERNS          = *.hpp *.h *.dox
 # Keep generated filenames stable across host operating systems. Guide links
 # target names such as classQAccelPlot_1_1LineCurve.html.
 CASE_SENSE_NAMES       = YES
