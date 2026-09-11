@@ -34,9 +34,10 @@ private slots:
     void datetime_formatChanged_emitsSignal();
 
     // LogTickLabelFormatter
-    void log_exactPowerOfTen_exponentialNotation();
+    void log_exactPowerOfTen_superscriptNotation();
     void log_nonPowerOfTen_generalNotation();
     void log_negativePower();
+    void log_multiDigitPowers();
 
     // TextTickLabelFormatter
     void text_validIndex_returnsLabel();
@@ -54,7 +55,7 @@ private slots:
     // Corner cases
     void numeric_zeroValue_precisionZero();
     void numeric_verySmallTickStep_highPrecision();
-    void log_nearPowerBelowThreshold_usesExponential();
+    void log_nearPowerBelowThreshold_usesSuperscript();
     void log_nearPowerAboveThreshold_usesGeneral();
     void text_fractionalValueRoundsToIndex();
 };
@@ -127,12 +128,12 @@ void TestFormatters::datetime_formatChanged_emitsSignal()
 // LogTickLabelFormatter
 // ---------------------------------------------------------------------------
 
-void TestFormatters::log_exactPowerOfTen_exponentialNotation()
+void TestFormatters::log_exactPowerOfTen_superscriptNotation()
 {
     auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(fmt.format(1.0, 1.0), QStringLiteral("1e0"));
-    QCOMPARE(fmt.format(100.0, 1.0), QStringLiteral("1e2"));
-    QCOMPARE(fmt.format(1000.0, 1.0), QStringLiteral("1e3"));
+    QCOMPARE(fmt.format(1.0, 1.0), QStringLiteral("10\u2070"));
+    QCOMPARE(fmt.format(100.0, 1.0), QStringLiteral("10\u00B2"));
+    QCOMPARE(fmt.format(1000.0, 1.0), QStringLiteral("10\u00B3"));
 }
 
 void TestFormatters::log_nonPowerOfTen_generalNotation()
@@ -145,7 +146,14 @@ void TestFormatters::log_nonPowerOfTen_generalNotation()
 void TestFormatters::log_negativePower()
 {
     auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(fmt.format(0.001, 1.0), QStringLiteral("1e-3"));
+    QCOMPARE(fmt.format(0.001, 1.0), QStringLiteral("10\u207B\u00B3"));
+}
+
+void TestFormatters::log_multiDigitPowers()
+{
+    auto fmt = QAccelPlot::LogTickLabelFormatter{};
+    QCOMPARE(fmt.format(1e12, 1.0), QStringLiteral("10\u00B9\u00B2"));
+    QCOMPARE(fmt.format(1e-12, 1.0), QStringLiteral("10\u207B\u00B9\u00B2"));
 }
 
 // ---------------------------------------------------------------------------
@@ -257,12 +265,12 @@ void TestFormatters::numeric_verySmallTickStep_highPrecision()
     QCOMPARE(fmt.format(0.123456789, 1e-4), QStringLiteral("0.12346"));
 }
 
-void TestFormatters::log_nearPowerBelowThreshold_usesExponential()
+void TestFormatters::log_nearPowerBelowThreshold_usesSuperscript()
 {
     auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    // value = 10^1.005 → logValue≈1.005, |1.005-1|=0.005 < 0.01 → "1e1"
+    // value = 10^1.005 → logValue≈1.005, |1.005-1|=0.005 < 0.01 → "10¹"
     const auto value = std::pow(10.0, 1.005);
-    QCOMPARE(fmt.format(value, 1.0), QStringLiteral("1e1"));
+    QCOMPARE(fmt.format(value, 1.0), QStringLiteral("10\u00B9"));
 }
 
 void TestFormatters::log_nearPowerAboveThreshold_usesGeneral()
