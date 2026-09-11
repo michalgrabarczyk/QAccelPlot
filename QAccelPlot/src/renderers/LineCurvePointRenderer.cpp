@@ -55,13 +55,13 @@ QColor evaluateGradientColor(const GradientColorPayload& gradientPayload, const 
     return gradientPayload.stops.back().color;
 }
 
-float normalizedGradientValue(const GradientColorPayload& gradientPayload, const float dataX, const float dataY)
+float normalizedGradientValue(const GradientColorPayload& gradientPayload, const qreal dataX, const qreal dataY)
 {
     const auto valueMin = *gradientPayload.gradientValueMin;
     const auto valueMax = *gradientPayload.gradientValueMax;
-    const auto axisRange = std::max(valueMax - valueMin, kMinGradientRangeEpsilon);
+    const auto axisRange = std::max(valueMax - valueMin, static_cast<qreal>(kMinGradientRangeEpsilon));
     const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
-    return std::clamp((value - valueMin) / axisRange, 0.0f, 1.0f);
+    return static_cast<float>(std::clamp((value - valueMin) / axisRange, 0.0, 1.0));
 }
 
 QSGGeometryNode* createPointNode(const int vertexCount)
@@ -93,8 +93,8 @@ QSGGeometryNode* createPointNode(const int vertexCount)
     return node;
 }
 
-void assemblePointVertices(
-    QSGGeometry* geometry, const std::vector<float>& data, const int pointCount, const QColor& effectiveColor, const GradientColorPayload& gradientPayload)
+void assemblePointVertices(QSGGeometry* geometry, const std::vector<float>& data, const CurveDataView sourceData, const int pointCount,
+    const QColor& effectiveColor, const GradientColorPayload& gradientPayload)
 {
     auto* vertices = static_cast<PointVertex*>(geometry->vertexData());
     const auto* src = data.data();
@@ -115,7 +115,7 @@ void assemblePointVertices(
         auto b = baseB;
         auto a = baseA;
         if (hasGradient) {
-            const auto normalizedValue = normalizedGradientValue(gradientPayload, px, py);
+            const auto normalizedValue = normalizedGradientValue(gradientPayload, sourceData.x(index), sourceData.y(index));
             const auto c = evaluateGradientColor(gradientPayload, normalizedValue);
             r = static_cast<float>(c.redF());
             g = static_cast<float>(c.greenF());
@@ -159,10 +159,10 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
     const auto radiusSquared = params.hitThreshold * params.hitThreshold;
 
     for (const auto& chunk : params.chunks) {
-        const auto screenLeft = params.xAxis->coordToPixel(static_cast<qreal>(chunk.minX), params.width);
-        const auto screenRight = params.xAxis->coordToPixel(static_cast<qreal>(chunk.maxX), params.width);
-        const auto screenTop = params.yAxis->coordToPixel(static_cast<qreal>(chunk.minY), params.height);
-        const auto screenBottom = params.yAxis->coordToPixel(static_cast<qreal>(chunk.maxY), params.height);
+        const auto screenLeft = params.xAxis->coordToPixel(chunk.minX, params.width);
+        const auto screenRight = params.xAxis->coordToPixel(chunk.maxX, params.width);
+        const auto screenTop = params.yAxis->coordToPixel(chunk.minY, params.height);
+        const auto screenBottom = params.yAxis->coordToPixel(chunk.maxY, params.height);
         const auto screenMinX = std::min(screenLeft, screenRight);
         const auto screenMaxX = std::max(screenLeft, screenRight);
         const auto screenMinY = std::min(screenTop, screenBottom);
@@ -174,8 +174,8 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
 
         const auto pointEnd = chunk.start + chunk.count;
         for (auto index = chunk.start; index < pointEnd; ++index) {
-            const auto delta = QPointF{params.xAxis->coordToPixel(params.data[index * 2], params.width),
-                                   params.yAxis->coordToPixel(params.data[index * 2 + 1], params.height)}
+            const auto delta
+                = QPointF{params.xAxis->coordToPixel(params.data.x(index), params.width), params.yAxis->coordToPixel(params.data.y(index), params.height)}
                 - point;
             if (QPointF::dotProduct(delta, delta) < radiusSquared) {
                 return true;
@@ -220,7 +220,7 @@ QSGNode* LineCurvePointRenderer::paint(QSGNode* oldNode, const PointCurveRenderP
         if (params.vertexCache && params.vertexCache->size() == expectedCacheBytes && !useVertexColor) {
             std::memcpy(node->geometry()->vertexData(), params.vertexCache->data(), expectedCacheBytes);
         } else {
-            assemblePointVertices(node->geometry(), params.data, params.pointCount, effectiveColor, params.gradientPayload);
+            assemblePointVertices(node->geometry(), params.data, params.sourceData, params.pointCount, effectiveColor, params.gradientPayload);
         }
         node->markDirty(QSGNode::DirtyGeometry);
     }
