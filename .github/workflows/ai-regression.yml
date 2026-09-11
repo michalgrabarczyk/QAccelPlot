@@ -175,12 +175,6 @@ jobs:
           "QT_PLUGIN_PATH=$qtRoot\plugins" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "QML2_IMPORT_PATH=$qtRoot\qml" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Install OpenAI dependency
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai
-
       - name: Install Linux runtime dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install --yes xvfb libgl1-mesa-dri libxcb-cursor0 libxkbcommon-x11-0
@@ -235,13 +229,6 @@ jobs:
       - name: Validate every screenshot and contract
         run: ctest --test-dir build -C Release --output-on-failure -L visual-validation
 
-      - name: Run OpenAI visual judges
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          AI_VISUAL_MODEL: gpt-5.4-nano
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: ctest --test-dir build -C Release --output-on-failure -L ai-inspection
-
       - name: Upload visual acceptance artifacts
         if: always()
         id: upload-visual-artifacts
@@ -252,7 +239,6 @@ jobs:
           overwrite: true
           path: |
             build/examples/test/screenshots/
-            build/examples/test/visual-reports/
             build/Testing/Temporary/LastTest.log
 
       - name: Add visual artifact link to job summary
@@ -260,4 +246,73 @@ jobs:
         shell: bash
         run: |
           echo "### Visual acceptance artifact" >> "$GITHUB_STEP_SUMMARY"
-          echo "[Download screenshots and reports](${{ steps.upload-visual-artifacts.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download screenshots](${{ steps.upload-visual-artifacts.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+
+  ai-judge:
+    name: Capped AI visual review
+    needs:
+      - detect-impact
+      - all-examples-rhi
+    if: >-
+      always() &&
+      github.event_name == 'workflow_dispatch' &&
+      inputs.ai_mode != 'off' &&
+      needs.detect-impact.result == 'success' &&
+      needs.all-examples-rhi.result == 'success' &&
+      (inputs.ai_mode == 'full' || needs.detect-impact.outputs.scope != 'none')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    env:
+      AI_VISUAL_MODEL: gpt-5.4-nano
+      AI_VISUAL_INPUT_PRICE_USD_PER_MILLION: '0.20'
+      AI_VISUAL_CACHED_INPUT_PRICE_USD_PER_MILLION: '0.02'
+      AI_VISUAL_OUTPUT_PRICE_USD_PER_MILLION: '1.25'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install AI review dependencies
+        run: pip install openai Pillow
+
+      - name: Download matrix screenshots
+        uses: actions/download-artifact@v8
+        with:
+          pattern: visual-*
+          path: visual-artifacts
+
+      - name: Review representative and outlier renders
+        env:
+          AI_MODE: ${{ inputs.ai_mode }}
+          AI_EXAMPLES: ${{ inputs.ai_mode == 'full' && 'all' || needs.detect-impact.outputs.examples }}
+        run: >-
+          python examples/test/visual/ai_visual_matrix.py
+          --artifacts visual-artifacts
+          --contracts examples/test/visual/contracts
+          --reports visual-reports
+          --summary visual-reports/summary.md
+          --mode "$AI_MODE"
+          --examples "$AI_EXAMPLES"
+          --max-requests 24
+
+      - name: Add AI cost summary
+        if: always()
+        run: |
+          if [ -f visual-reports/summary.md ]; then
+            cat visual-reports/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload AI reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-visual-reports
+          if-no-files-found: warn
+          overwrite: true
+          path: visual-reports/
