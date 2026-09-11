@@ -171,11 +171,13 @@ def markdown_summary(
         for key in ("input_tokens", "cached_input_tokens", "output_tokens", "reasoning_tokens", "total_tokens")
     }
     total_cost = sum(float(report["estimated_cost_usd"]) for report in reports)
+    failed_render_count = sum(report["verdict"] == "fail" for report in reports)
     lines = [
         "## AI visual acceptance",
         "",
         f"- Model: `{model}`",
         f"- Paid requests: {len(reports)} of {len(manifest)} captured candidates",
+        f"- Failed renders: {failed_render_count}",
         f"- Tokens: {totals['input_tokens']} input ({totals['cached_input_tokens']} cached), "
         f"{totals['output_tokens']} output, {totals['reasoning_tokens']} reasoning",
         f"- Estimated API cost: ${total_cost:.6f}",
@@ -184,19 +186,58 @@ def markdown_summary(
         "|---|---:|---:|---:|---:|---:|",
     ]
     for report in reports:
-        rendering = report["rendering"]
-        identity = (
-            f"{report['contract']} / Qt {rendering['qt_version']} / "
-            f"{rendering['actual_graphics_api']}"
-        )
         usage = report["usage"]
         lines.append(
-            f"| {identity} | {report['verdict']} | {usage['input_tokens']} | "
+            f"| {capture_label(report)} | {report['verdict']} | {usage['input_tokens']} | "
             f"{usage['cached_input_tokens']} | {usage['output_tokens']} | "
             f"${float(report['estimated_cost_usd']):.6f} |"
         )
-    lines.append("")
+    lines.extend(failed_checks_table(reports))
     return "\n".join(lines)
+
+
+def capture_label(report: dict[str, object]) -> str:
+    rendering = report["rendering"]
+    matrix = report.get("matrix", {})
+    os_name = matrix.get("os_name", "unknown OS")
+    return (
+        f"{report['contract']} / Qt {rendering['qt_version']} / "
+        f"{rendering['actual_graphics_api']} / {os_name}"
+    )
+
+
+def markdown_cell(value: object) -> str:
+    return " ".join(str(value).splitlines()).replace("|", "\\|")
+
+
+def failed_checks_table(reports: list[dict[str, object]]) -> list[str]:
+    failed_checks = [
+        (report, check)
+        for report in reports
+        for check in report["checks"]
+        if check["status"] == "fail"
+    ]
+    lines = ["", "## Failed AI checks", ""]
+    if not failed_checks:
+        return lines + ["No AI checks failed.", ""]
+
+    lines.extend(
+        [
+            "| Capture | Failed check | Severity | Confidence | Blocking | Reason |",
+            "|---|---|---:|---:|---:|---|",
+        ]
+    )
+    for report, check in sorted(
+        failed_checks,
+        key=lambda item: (not item[1]["blocking"], capture_label(item[0]), item[1]["id"]),
+    ):
+        lines.append(
+            f"| {capture_label(report)} | `{check['id']}` | {check['severity']} | "
+            f"{float(check['confidence']):.2f} | {'yes' if check['blocking'] else 'no'} | "
+            f"{markdown_cell(check['evidence'])} |"
+        )
+    lines.append("")
+    return lines
 
 
 def parse_arguments() -> argparse.Namespace:

@@ -280,8 +280,8 @@ Do not infer a defect from font size, weight, contrast, color, rotation, or norm
 antialiasing.
 
 Return one result for every check ID. Set evidence to an empty string for `pass`; for
-`fail` or `uncertain`, use at most 160 characters of visible evidence with its location.
-Set summary to an empty string when every check passes, otherwise keep it concise.
+`fail` or `uncertain`, provide concise visible evidence with its location. Set summary
+to an empty string when every check passes, otherwise keep it concise.
 
 Visual contract:
 """.strip() + "\n" + json.dumps(model_contract, separators=(",", ":"), ensure_ascii=False) + render_context
@@ -290,8 +290,6 @@ Visual contract:
 def validate_model_response(result: Any, contract: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(result, dict) or not isinstance(result.get("summary"), str) or not isinstance(result.get("checks"), list):
         raise VisualAcceptanceError("AI response does not contain a summary and checks array.")
-    if len(result["summary"]) > 240:
-        raise VisualAcceptanceError("AI response summary exceeds 240 characters.")
 
     expected_ids = {check["id"] for check in contract["checks"]}
     seen_ids: set[str] = set()
@@ -314,8 +312,6 @@ def validate_model_response(result: Any, contract: dict[str, Any]) -> dict[str, 
             raise VisualAcceptanceError(f"AI response contains invalid evidence for {check_id}.")
         if check["status"] != "pass" and not evidence.strip():
             raise VisualAcceptanceError(f"AI response contains no evidence for {check_id}.")
-        if len(evidence) > 160:
-            raise VisualAcceptanceError(f"AI response evidence exceeds 160 characters for {check_id}.")
 
     missing_ids = expected_ids.difference(seen_ids)
     if missing_ids:
