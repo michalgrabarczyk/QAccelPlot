@@ -58,5 +58,5 @@ Complete sources:
 - [`examples/performance_showcase`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/performance_showcase)
 - [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
 
-[post-data]: ../../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c
-[set-data-f]: ../../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6
+[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22

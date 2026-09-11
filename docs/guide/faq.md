@@ -71,7 +71,7 @@ to measure your specific workload.
 ## What is the fastest way to supply data?
 
 For maximum throughput, use
-[`setDataF(std::vector<float>&&, int)`](../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6)
+[`setDataF(std::vector<float>&&, int)`](api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22)
 which moves an already-interleaved float buffer with zero allocation. For
 fixed axis ranges, `setDataFNoRange()` additionally skips the range scan.
 See the [Performance guide](performance.md#select-the-data-path) for a
@@ -79,7 +79,7 @@ comparison of all data-ingestion APIs.
 
 ## When should I use `postData()` instead of `setDataF()`?
 
-Use [`postData()`](../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c)
+Use [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata)
 when data is produced on a **worker thread**. It queues the buffer transfer to
 the UI thread safely. `setDataF()` must be called on the curve's own thread
 (normally the UI thread). Never write directly to a `QQuickItem` from a worker.
