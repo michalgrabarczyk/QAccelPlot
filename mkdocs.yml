@@ -41,6 +41,35 @@ theme:
 
 plugins:
   - search
+  - mkdoxy:
+      doxygen-bin-path: !ENV [QACCELPLOT_DOXYGEN, doxygen]
+      projects:
+        QAccelPlot:
+          src-dirs: QAccelPlot/src
+          api-path: api
+          full-doc: true
+          template-dir: docs/mkdoxy-templates
+          doxy-cfg:
+            PROJECT_NAME: QAccelPlot
+            PROJECT_NUMBER: !ENV [QACCELPLOT_DOCS_VERSION, main]
+            PROJECT_BRIEF: High-performance Qt Quick plotting library
+            FILE_PATTERNS: "*.hpp *.h *.dox"
+            RECURSIVE: true
+            CASE_SENSE_NAMES: true
+            EXCLUDE_PATTERNS: "*/shaders/* */moc_* *_p.hpp"
+            QT_AUTOBRIEF: true
+            JAVADOC_AUTOBRIEF: false
+            EXTRACT_ALL: false
+            EXTRACT_PRIVATE: false
+            EXTRACT_STATIC: true
+            HIDE_UNDOC_MEMBERS: false
+            HIDE_UNDOC_CLASSES: false
+            SOURCE_BROWSER: false
+            VERBATIM_HEADERS: false
+            WARN_IF_UNDOCUMENTED: true
+            WARN_IF_DOC_ERROR: true
+            WARN_NO_PARAMDOC: false
+            WARN_AS_ERROR: false
 
 markdown_extensions:
   - admonition
@@ -56,12 +85,6 @@ markdown_extensions:
       alternate_style: true
   - toc:
       permalink: true
-
-# Doxygen pages are added after MkDocs renders the guide, so MkDocs cannot see
-# those relative targets during its validation pass.
-validation:
-  links:
-    not_found: ignore
 
 nav:
   - Home: index.md
@@ -82,7 +105,13 @@ nav:
   - Versioning and releases: versioning.md
   - FAQ: faq.md
   - Troubleshooting: troubleshooting.md
-  - API reference: api.md
+  - API reference:
+      - Overview: api.md
+      - Class list: api/annotated.md
+      - Class index: api/classes.md
+      - Class hierarchy: api/hierarchy.md
+      - Namespaces: api/namespaces.md
+      - Files: api/files.md
 
 copyright: Copyright &copy; 2026 Michal Grabarczyk
 

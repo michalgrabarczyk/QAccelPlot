@@ -216,15 +216,15 @@ The benchmark scenarios live in
 Treat their results as measurements of the recorded machine and scenario, not
 as a guarantee for every application.
 
-[set-data-points]: ../api/classQAccelPlot_1_1LineCurve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114
-[set-data-vectors]: ../api/classQAccelPlot_1_1LineCurve.html#aad067a9b84289a5c73637905cbc61a69
-[set-data-f-copy]: ../api/classQAccelPlot_1_1LineCurve.html#ad79086eb28ddc5112e534c8cdbfa03ef
-[set-data-f-moved]: ../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6
-[set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30
-[set-data-f-no-range-copy]: ../api/classQAccelPlot_1_1LineCurve.html#a0cb6f8ea1a797ee69886a4508266d7db
-[set-data-f-no-range-with-cache]: ../api/classQAccelPlot_1_1LineCurve.html#a549c74098a67f68d77ea45e9a0e32649
-[post-data]: ../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c
-[hovered-index]: ../api/classQAccelPlot_1_1RectangleList.html#afb85815f91d34b3a35bbf957e9aa5e09
-[data-min]: ../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
-[data-max]: ../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85
+[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-12
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
+[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
+[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
+[set-data-f-no-range-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-22
+[set-data-f-no-range-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorangewithcache-12
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[hovered-index]: api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
+[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
+[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

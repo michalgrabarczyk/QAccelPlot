@@ -95,12 +95,12 @@ Include:
 Report bugs and compatibility findings through
 [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
 
-[series-x-axis]: ../api/classQAccelPlot_1_1PlotSeries.html#a250150d8eaea44c2608375839747b2b2
-[series-y-axis]: ../api/classQAccelPlot_1_1PlotSeries.html#ae021f84424e1ea4ad44576961ac7d402
-[set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30
-[data-min]: ../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
-[data-max]: ../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6
-[rescale-to-data]: ../api/classQAccelPlot_1_1Axis.html#a1a4057e12caae2776590a0ce4bc38a84
-[rescale-all-axes]: ../api/classQAccelPlot_1_1QAccelPlot.html#a6ab962feb97d0bfccb268ac54bce8c77
+[series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
+[series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
+[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
+[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
+[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
+[set-data-f]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
+[rescale-all-axes]: api/classQAccelPlot_1_1QAccelPlot.md#function-rescaleallaxes
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
