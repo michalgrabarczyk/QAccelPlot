@@ -17,7 +17,13 @@ PROJECT_ROOT = VISUAL_DIR.parent.parent.parent
 sys.path.insert(0, str(VISUAL_DIR))
 
 from ai_visual_acceptance import VisualAcceptanceError  # noqa: E402
-from ai_visual_matrix import Capture, discover_captures, parse_examples, select_captures  # noqa: E402
+from ai_visual_matrix import (  # noqa: E402
+    Capture,
+    discover_captures,
+    markdown_summary,
+    parse_examples,
+    select_captures,
+)
 
 
 def load_impact_module():
@@ -111,6 +117,41 @@ class MatrixSelectionTests(unittest.TestCase):
         self.assertEqual(len(captures), 1)
         self.assertEqual(captures[0].contract, "quickstart")
         self.assertEqual(captures[0].backend, "opengl")
+
+    def test_summary_explains_failed_checks(self):
+        report = {
+            "contract": "interactive_tools",
+            "verdict": "fail",
+            "rendering": {"qt_version": "6.2.4", "actual_graphics_api": "opengl"},
+            "matrix": {"os_name": "ubuntu-24.04"},
+            "usage": {
+                "input_tokens": 2000,
+                "cached_input_tokens": 0,
+                "output_tokens": 200,
+                "reasoning_tokens": 0,
+                "total_tokens": 2200,
+            },
+            "estimated_cost_usd": 0.00065,
+            "checks": [
+                {
+                    "id": "tool_controls",
+                    "status": "fail",
+                    "severity": "high",
+                    "confidence": 0.93,
+                    "blocking": True,
+                    "evidence": "Controls overlap | lower panel.",
+                }
+            ],
+        }
+
+        summary = markdown_summary([report], [{"capture": "candidate"}], "gpt-5.4-nano")
+
+        self.assertIn("- Failed renders: 1", summary)
+        self.assertIn("## Failed AI checks", summary)
+        self.assertIn("interactive_tools / Qt 6.2.4 / opengl / ubuntu-24.04", summary)
+        self.assertIn("`tool_controls`", summary)
+        self.assertIn("| high | 0.93 | yes |", summary)
+        self.assertIn("Controls overlap \\| lower panel.", summary)
 
 
 if __name__ == "__main__":

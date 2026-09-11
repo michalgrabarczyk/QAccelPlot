@@ -152,6 +152,17 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("steps.upload-visual-artifacts.outputs.artifact-url", workflow)
         self.assertNotIn("qt_arch:", workflow)
 
+    def test_workflow_names_distinguish_basic_and_ai_runs(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        self.assertRegex(workflow, r"(?m)^name: Visual Acceptance$")
+        self.assertIn("Basic visual acceptance — PR #{0}", workflow)
+        self.assertIn("Basic visual acceptance — manual run", workflow)
+        self.assertIn("Capture & validate / Qt ${{ matrix.qt_version }}", workflow)
+        self.assertIn("AI visual acceptance — {0}", workflow)
+        self.assertIn("name: Optional AI visual acceptance", workflow)
+        self.assertIn("name: Review selected renders with AI", workflow)
+        self.assertNotIn("AI visual acceptance — not requested", workflow)
+
     def test_ai_visual_inspection_only_runs_for_manual_dispatch(self):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
         self.assertRegex(workflow, r"(?m)^  pull_request:\s*$")
@@ -163,7 +174,17 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", ai_job)
         self.assertIn("python examples/test/visual/ai_visual_matrix.py", ai_job)
         self.assertIn("--max-requests 24", ai_job)
-        self.assertIn("pattern: visual-*", ai_job)
+        self.assertIn("name: all-visual-screenshots", ai_job)
+
+    def test_workflow_provides_one_combined_screenshot_download(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        bundle_job = workflow.split("\n  bundle-screenshots:\n", maxsplit=1)[1].split("\n  ai-judge:\n", maxsplit=1)[0]
+        self.assertIn("name: Bundle all visual screenshots", bundle_job)
+        self.assertIn("pattern: visual-*", bundle_job)
+        self.assertIn("name: all-visual-screenshots", bundle_job)
+        self.assertIn('destination="all-visual-screenshots/$artifact_name/screenshots"', bundle_job)
+        self.assertIn("find \"$artifact_dir\" -type f -path '*/screenshots/*'", bundle_job)
+        self.assertIn("steps.upload-combined-screenshots.outputs.artifact-url", bundle_job)
 
     def test_workflow_gates_paid_review_by_changed_files_and_mode(self):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
@@ -218,6 +239,13 @@ class VisualAcceptanceTests(unittest.TestCase):
         next(check for check in result["checks"] if check["status"] == "fail")["evidence"] = ""
         with self.assertRaisesRegex(VisualAcceptanceError, "no evidence"):
             validate_model_response(result, self.contract)
+
+    def test_long_evidence_does_not_reject_a_paid_response(self):
+        result = self.model_result(failed_id="overall_layout")
+        failure = next(check for check in result["checks"] if check["status"] == "fail")
+        failure["evidence"] = "Visible evidence remains useful in the JSON report. " * 8
+        result["summary"] = "A detailed response is accepted after the API call has already been billed. " * 5
+        validate_model_response(result, self.contract)
 
     def test_prompt_distinguishes_unreadable_details_from_visible_defects(self):
         prompt = build_prompt(self.contract)
