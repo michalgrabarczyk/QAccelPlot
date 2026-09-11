@@ -54,7 +54,7 @@ if(TARGET QAccelPlotExampleStylingAndTransitions)
             --screenshot "${_light_theme_screenshot}"
     )
     set_tests_properties(smoke_QAccelPlotExampleStylingAndTransitionsLight PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1"
+        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
         TIMEOUT 15
     )
 endif()

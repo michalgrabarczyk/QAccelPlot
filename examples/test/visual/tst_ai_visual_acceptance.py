@@ -41,6 +41,7 @@ EXAMPLES_DIR = PROJECT_ROOT / "examples"
 EXAMPLE_TESTS_DIR = VISUAL_DIR.parent
 CONTRACT_PATH = CONTRACTS_DIR / "styling_and_transitions.json"
 AI_WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "ai-regression.yml"
+TEST_HELPERS_PATH = PROJECT_ROOT / "cmake" / "QAccelPlotTestHelpers.cmake"
 
 
 def camel_to_snake(value):
@@ -151,6 +152,12 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("overwrite: true", workflow)
         self.assertIn("steps.upload-visual-artifacts.outputs.artifact-url", workflow)
         self.assertNotIn("qt_arch:", workflow)
+
+    def test_screenshot_tests_disable_hover(self):
+        test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
+        example_tests = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
+        self.assertIn("QACCELPLOT_HOVER_ENABLED=0", test_helpers)
+        self.assertIn("QACCELPLOT_HOVER_ENABLED=0", example_tests)
 
     def test_workflow_names_distinguish_basic_and_ai_runs(self):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")

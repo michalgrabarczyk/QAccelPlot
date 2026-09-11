@@ -30,13 +30,20 @@ constexpr auto kLogScaleMinPositiveValue = 1e-10;
 constexpr auto kHorizontalLabelOverflow = 25.0;
 constexpr auto kVerticalLabelOverflow = 10.0;
 
+bool hoverEnabled()
+{
+    auto isInteger = false;
+    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
+    return !isInteger || value != 0;
+}
+
 }
 
 Axis::Axis(QQuickItem* parent, Side side)
     : QQuickPaintedItem(parent)
     , ticker_(new AxisTicker(this))
 {
-    setAcceptHoverEvents(true);
+    setAcceptHoverEvents(hoverEnabled());
     setAcceptedMouseButtons(Qt::LeftButton);
     connect(ticker_, &AxisTicker::tickColorChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLabelColorChanged, this, [this]() { update(); });

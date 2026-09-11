@@ -17,8 +17,30 @@ class RectangleListDataTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void hoverEnvironmentControlsAcceptance();
     void invalidRawArgumentsAreRejected();
 };
+
+void RectangleListDataTest::hoverEnvironmentControlsAcceptance()
+{
+    constexpr auto variableName = "QACCELPLOT_HOVER_ENABLED";
+    const auto wasSet = qEnvironmentVariableIsSet(variableName);
+    const auto previousValue = qgetenv(variableName);
+
+    qunsetenv(variableName);
+    const auto defaultRectangles = RectangleList{};
+    qputenv(variableName, "0");
+    const auto hoverDisabledRectangles = RectangleList{};
+
+    if (wasSet) {
+        qputenv(variableName, previousValue);
+    } else {
+        qunsetenv(variableName);
+    }
+
+    QVERIFY(defaultRectangles.acceptHoverEvents());
+    QVERIFY(!hoverDisabledRectangles.acceptHoverEvents());
+}
 
 void RectangleListDataTest::invalidRawArgumentsAreRejected()
 {
