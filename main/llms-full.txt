@@ -334,7 +334,9 @@ axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] prope
 The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
 [`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
 sides, while [`extraAxes`][extra-axes] supports additional independently scaled
-axes. Each series explicitly selects the axes it uses.
+axes. Assigning a named axis automatically selects its side: `xAxis` is bottom,
+`x2Axis` is top, `yAxis` is left, and `y2Axis` is right. Extra axes specify
+their own `side`. Each series explicitly selects the axes it uses.
 
 `AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
@@ -898,7 +900,6 @@ QAccelPlot.Plot {
         viewportMax: 24
         dataMin: 0
         dataMax: 24
-        side: QAccelPlot.Axis.Bottom
         label: "Time of day (h)"
     }
 
@@ -907,7 +908,6 @@ QAccelPlot.Plot {
         viewportMax: 27
         dataMin: 16
         dataMax: 27
-        side: QAccelPlot.Axis.Left
         label: "Temperature (°C)"
     }
 
@@ -1139,13 +1139,11 @@ choose the height of a horizontal axis or the width of a vertical axis:
 
 ```qml
 yAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Left
     layoutSize: 90
     label: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Bottom
     layoutSize: 70
     label: "Time"
 }
@@ -1157,7 +1155,9 @@ tick labels and axis title.
 
 ## Secondary axes
 
-Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:
+Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side.
+The plot assigns sides automatically: `xAxis` is bottom, `x2Axis` is top,
+`yAxis` is left, and `y2Axis` is right.
 
 ```qml
 import QtQuick
@@ -1166,10 +1166,9 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    xAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis {}
+    yAxis: QAccelPlot.Axis {}
     y2Axis: QAccelPlot.Axis {
-        side: QAccelPlot.Axis.Right
         viewportMin: 0
         viewportMax: 100
         label: "Load (%)"
@@ -1204,7 +1203,6 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        side: QAccelPlot.Axis.Bottom
         label: "Slow time (s)"
     }
 

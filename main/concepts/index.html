@@ -1102,7 +1102,9 @@ axes assigned to its <a href="../api/classQAccelPlot_1_1PlotSeries.html#a250150d
 <p>The primary axes are <a href="../api/classQAccelPlot_1_1QAccelPlot.html#a08bb4bde1c498ad50fdfa8e48d41adf7"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1QAccelPlot.html#af489c97d929d1092be24f0e780c06a83"><code>yAxis</code></a>.
 <a href="../api/classQAccelPlot_1_1QAccelPlot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8"><code>x2Axis</code></a> and <a href="../api/classQAccelPlot_1_1QAccelPlot.html#ab940a26d0902b92808a8ee0885cb7455"><code>y2Axis</code></a> provide the opposite
 sides, while <a href="../api/classQAccelPlot_1_1QAccelPlot.html#a2aa8566edaee068e3517f5085fe9276b"><code>extraAxes</code></a> supports additional independently scaled
-axes. Each series explicitly selects the axes it uses.</p>
+axes. Assigning a named axis automatically selects its side: <code>xAxis</code> is bottom,
+<code>x2Axis</code> is top, <code>yAxis</code> is left, and <code>y2Axis</code> is right. Extra axes specify
+their own <code>side</code>. Each series explicitly selects the axes it uses.</p>
 <p><code>AxisTicker</code> controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
 logarithmic, and categorical labels. A <code>TickLabelFormatter</code> can also invoke a
