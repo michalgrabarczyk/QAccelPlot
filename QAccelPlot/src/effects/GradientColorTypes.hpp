@@ -81,9 +81,9 @@ struct GradientColorPayload {
     GradientDirection direction{GradientDirection::Horizontal}; ///< \brief Gradient direction.
     std::vector<GradientStopData> stops;                        ///< \brief Color stops in position order.
     /// \brief Fixed min for gradient normalisation; \c std::nullopt = derived from data range.
-    std::optional<float> gradientValueMin;
+    std::optional<qreal> gradientValueMin;
     /// \brief Fixed max for gradient normalisation; \c std::nullopt = derived from data range.
-    std::optional<float> gradientValueMax;
+    std::optional<qreal> gradientValueMax;
 };
 
 /// \brief Render-thread snapshot of gradient fill (area-under-curve) parameters.
@@ -101,11 +101,11 @@ struct GradientFillPayload {
     GradientDirection direction{GradientDirection::Horizontal}; ///< \brief Gradient direction.
     std::vector<GradientStopData> stops;                        ///< \brief Color stops in position order.
     /// \brief Fixed min for gradient normalisation; \c std::nullopt = derived from data range.
-    std::optional<float> gradientValueMin;
+    std::optional<qreal> gradientValueMin;
     /// \brief Fixed max for gradient normalisation; \c std::nullopt = derived from data range.
-    std::optional<float> gradientValueMax;
+    std::optional<qreal> gradientValueMax;
     GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; ///< \brief Baseline mode.
-    float baselineValue{0.0f};                                        ///< \brief Fixed baseline data value when mode is \c Value.
+    qreal baselineValue{0.0};                                         ///< \brief Fixed baseline data value when mode is \c Value.
     float opacity{1.0f};                                              ///< \brief Overall opacity of the fill in [0, 1].
 };
 

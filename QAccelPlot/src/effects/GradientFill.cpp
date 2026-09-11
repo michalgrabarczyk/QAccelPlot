@@ -176,12 +176,10 @@ GradientFillPayload GradientFill::payload() const
     auto payload = GradientFillPayload{};
     payload.enabled = enabled();
     payload.direction = direction_;
-    payload.gradientValueMin
-        = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<float>{static_cast<float>(gradientValueMin_)} : std::nullopt;
-    payload.gradientValueMax
-        = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<float>{static_cast<float>(gradientValueMax_)} : std::nullopt;
+    payload.gradientValueMin = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMin_} : std::nullopt;
+    payload.gradientValueMax = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMax_} : std::nullopt;
     payload.baseline = baseline_;
-    payload.baselineValue = static_cast<float>(baselineValue_);
+    payload.baselineValue = baselineValue_;
     payload.opacity = static_cast<float>(opacity_);
 
     if (!payload.enabled || !gradient_) {
