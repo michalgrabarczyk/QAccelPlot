@@ -66,6 +66,7 @@ xAxis: QAccelPlot.Axis {
 ```
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
+Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
 
 ## Application-specific labels
 
