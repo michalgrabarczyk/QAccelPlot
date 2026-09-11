@@ -32,7 +32,7 @@ MODEL_RESPONSE_SCHEMA: dict[str, Any] = {
     "properties": {
         "summary": {
             "type": "string",
-            "description": "A concise overall visual assessment grounded only in visible evidence.",
+            "description": "Empty for a clean pass; otherwise a concise overall assessment.",
         },
         "checks": {
             "type": "array",
@@ -47,12 +47,18 @@ MODEL_RESPONSE_SCHEMA: dict[str, Any] = {
                     "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
                     "evidence": {
                         "type": "string",
-                        "description": "What is visibly present or wrong, including its approximate location.",
+                        "description": "Empty for pass; concise visible evidence for fail or uncertain.",
                     },
                 },
             },
         },
     },
+}
+
+DEFAULT_PRICING_USD_PER_MILLION = {
+    "input": 0.20,
+    "cached_input": 0.02,
+    "output": 1.25,
 }
 
 
@@ -233,43 +239,59 @@ def validate_capture_resolution(metadata: dict[str, Any], image_dimensions: tupl
         raise VisualAcceptanceError(f"PNG dimensions {image_dimensions} do not match captured pixels {captured_size}.")
 
 
+def build_model_contract(contract: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "name": contract["name"],
+        "description": contract["description"],
+        "checks": [
+            {"id": check["id"], "expectation": check["expectation"]}
+            for check in contract["checks"]
+        ],
+    }
+
+
+def build_render_context(render_metadata: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "graphics_api": render_metadata["actual_graphics_api"],
+        "qt_version": render_metadata["qt_version"],
+        "width": render_metadata["captured_pixel_width"],
+        "height": render_metadata["captured_pixel_height"],
+        "device_pixel_ratio": render_metadata["effective_device_pixel_ratio"],
+    }
+
+
 def build_prompt(contract: dict[str, Any], render_metadata: dict[str, Any] | None = None) -> str:
+    model_contract = build_model_contract(contract)
     render_context = ""
     if render_metadata:
-        render_context = "\n\nRender context:\n" + json.dumps(render_metadata, indent=2, ensure_ascii=False)
+        render_context = "\nRender context: " + json.dumps(
+            build_render_context(render_metadata), separators=(",", ":"), ensure_ascii=False
+        )
     return """
-You are a strict visual QA judge for a plotting-library example. Judge the supplied
-screenshot on its own against the visual contract below. There is no baseline image.
+You are a strict visual QA judge. Judge only the supplied plotting screenshot; there is
+no baseline. Assess visible evidence only, never infer exact data correctness. Minor
+antialiasing and platform spacing differences are acceptable. Use `uncertain` when a
+detail cannot be verified; a `fail` requires a concrete visible contradiction.
 
-Assess only properties that are visibly observable. Do not claim that exact numerical
-data is correct from appearance alone. Use `uncertain` when the screenshot does not
-provide enough visual evidence. Minor sub-pixel antialiasing and small platform-specific
-spacing differences are acceptable. A low-resolution text-rasterization defect requires
-concrete visible evidence such as square pixel blocks, doubled or jagged stair-step glyph
-edges, or uniformly upscaled glyphs. Such a defect must fail the text_raster_quality
-check. Do not infer a rasterization defect merely from a smaller font size, lighter font
-weight, lower contrast, gray coloring, rotation, or normal antialiasing. Compare text
-sharpness only between text with genuinely comparable size, weight, orientation, and
-contrast. Do not penalize variations explicitly allowed by the contract.
+For text_raster_quality, fail only for concrete artifacts such as square pixel blocks,
+doubled or jagged stair-step glyph edges, uniformly upscaled glyphs, or materially softer
+text than nearby text with genuinely comparable size, weight, orientation, and contrast.
+Do not infer a defect from font size, weight, contrast, color, rotation, or normal
+antialiasing.
 
-Return exactly one result for every contract check ID. Evidence must identify the visible
-feature and its approximate panel or screen location. A `fail` requires a concrete visible
-defect, not merely a possible concern. If a label, tick ordering, or small detail is too
-small to verify and there is no sharper nearby UI text for comparison, report `uncertain`
-rather than `fail`. When plot labels show concrete low-resolution artifacts, or remain
-materially blurrier than nearby text with genuinely comparable typography, report `fail`
-for text_raster_quality rather than `uncertain`. Do not treat inability to verify another
-requirement as evidence that it is wrong. Mark other checks as `fail` only when the
-screenshot visibly contradicts the expectation (for example, raw numeric labels are
-clearly shown where formatted labels are required, or axes actually overlap).
+Return one result for every check ID. Set evidence to an empty string for `pass`; for
+`fail` or `uncertain`, use at most 160 characters of visible evidence with its location.
+Set summary to an empty string when every check passes, otherwise keep it concise.
 
 Visual contract:
-""".strip() + "\n" + json.dumps(contract, indent=2, ensure_ascii=False) + render_context
+""".strip() + "\n" + json.dumps(model_contract, separators=(",", ":"), ensure_ascii=False) + render_context
 
 
 def validate_model_response(result: Any, contract: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(result, dict) or not isinstance(result.get("summary"), str) or not isinstance(result.get("checks"), list):
         raise VisualAcceptanceError("AI response does not contain a summary and checks array.")
+    if len(result["summary"]) > 240:
+        raise VisualAcceptanceError("AI response summary exceeds 240 characters.")
 
     expected_ids = {check["id"] for check in contract["checks"]}
     seen_ids: set[str] = set()
@@ -287,8 +309,13 @@ def validate_model_response(result: Any, contract: dict[str, Any]) -> dict[str, 
         confidence = check.get("confidence")
         if not isinstance(confidence, (int, float)) or isinstance(confidence, bool) or not 0.0 <= confidence <= 1.0:
             raise VisualAcceptanceError(f"AI response contains invalid confidence for {check_id}.")
-        if not isinstance(check.get("evidence"), str) or not check["evidence"].strip():
+        evidence = check.get("evidence")
+        if not isinstance(evidence, str):
+            raise VisualAcceptanceError(f"AI response contains invalid evidence for {check_id}.")
+        if check["status"] != "pass" and not evidence.strip():
             raise VisualAcceptanceError(f"AI response contains no evidence for {check_id}.")
+        if len(evidence) > 160:
+            raise VisualAcceptanceError(f"AI response evidence exceeds 160 characters for {check_id}.")
 
     missing_ids = expected_ids.difference(seen_ids)
     if missing_ids:
@@ -341,7 +368,7 @@ def call_openai(
     model: str,
     api_key: str,
     render_metadata: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], dict[str, int]]:
     try:
         from openai import OpenAI
     except ImportError as error:
@@ -374,7 +401,7 @@ def call_openai(
                     "schema": build_response_schema(contract),
                 }
             },
-            max_output_tokens=4096,
+            max_output_tokens=1024,
             store=False,
         )
     except Exception as error:
@@ -385,7 +412,82 @@ def call_openai(
         parsed = json.loads(raw_response)
     except (TypeError, json.JSONDecodeError) as error:
         raise VisualAcceptanceError(f"Unable to parse OpenAI response: {raw_response or '<no text response>'}") from error
-    return validate_model_response(parsed, contract)
+    return validate_model_response(parsed, contract), extract_response_usage(response)
+
+
+def object_value(value: Any, name: str, default: Any = None) -> Any:
+    if isinstance(value, dict):
+        return value.get(name, default)
+    return getattr(value, name, default)
+
+
+def extract_response_usage(response: Any) -> dict[str, int]:
+    usage = object_value(response, "usage")
+    if usage is None:
+        raise VisualAcceptanceError("OpenAI response contains no usage telemetry.")
+    input_details = object_value(usage, "input_tokens_details", {})
+    output_details = object_value(usage, "output_tokens_details", {})
+    return {
+        "input_tokens": int(object_value(usage, "input_tokens", 0) or 0),
+        "cached_input_tokens": int(object_value(input_details, "cached_tokens", 0) or 0),
+        "output_tokens": int(object_value(usage, "output_tokens", 0) or 0),
+        "reasoning_tokens": int(object_value(output_details, "reasoning_tokens", 0) or 0),
+        "total_tokens": int(object_value(usage, "total_tokens", 0) or 0),
+    }
+
+
+def load_pricing() -> dict[str, float]:
+    environment_names = {
+        "input": "AI_VISUAL_INPUT_PRICE_USD_PER_MILLION",
+        "cached_input": "AI_VISUAL_CACHED_INPUT_PRICE_USD_PER_MILLION",
+        "output": "AI_VISUAL_OUTPUT_PRICE_USD_PER_MILLION",
+    }
+    try:
+        return {
+            name: float(os.environ.get(environment_names[name], default))
+            for name, default in DEFAULT_PRICING_USD_PER_MILLION.items()
+        }
+    except ValueError as error:
+        raise VisualAcceptanceError(f"Invalid AI visual pricing configuration: {error}") from error
+
+
+def estimate_cost_usd(usage: dict[str, int], pricing: dict[str, float]) -> float:
+    cached_tokens = min(usage["cached_input_tokens"], usage["input_tokens"])
+    uncached_tokens = usage["input_tokens"] - cached_tokens
+    cost = (
+        uncached_tokens * pricing["input"]
+        + cached_tokens * pricing["cached_input"]
+        + usage["output_tokens"] * pricing["output"]
+    ) / 1_000_000
+    return round(cost, 8)
+
+
+def judge_image(
+    image_path: Path,
+    contract_path: Path,
+    metadata_path: Path,
+    model: str,
+    api_key: str,
+    pricing: dict[str, float] | None = None,
+) -> dict[str, Any]:
+    contract = load_contract(contract_path)
+    dimensions = validate_image(image_path, contract)
+    render_metadata = load_render_metadata(metadata_path)
+    validate_capture_resolution(render_metadata, dimensions)
+    model_result, usage = call_openai(image_path, contract, model, api_key, render_metadata)
+    decision = evaluate_result(model_result, contract)
+    effective_pricing = pricing or load_pricing()
+    return {
+        "contract": contract["name"],
+        "image": str(image_path),
+        "image_dimensions": {"width": dimensions[0], "height": dimensions[1]},
+        "rendering": render_metadata,
+        "model": model,
+        "usage": usage,
+        "pricing_usd_per_million_tokens": effective_pricing,
+        "estimated_cost_usd": estimate_cost_usd(usage, effective_pricing),
+        **decision,
+    }
 
 
 def write_report(path: Path, report: dict[str, Any]) -> None:
@@ -424,26 +526,25 @@ def main() -> int:
         if not api_key:
             raise VisualAcceptanceError("OPENAI_API_KEY environment variable is not set.")
 
-        model_result = call_openai(args.image, contract, args.model, api_key, render_metadata)
-        decision = evaluate_result(model_result, contract)
-        report = {
-            "contract": contract["name"],
-            "image": str(args.image),
-            "image_dimensions": {"width": dimensions[0], "height": dimensions[1]},
-            "rendering": render_metadata,
-            "model": args.model,
-            **decision,
-        }
+        report = judge_image(args.image, args.contract, metadata_path, args.model, api_key)
         if args.report:
             write_report(args.report, report)
 
-        print(f"{decision['verdict'].upper()}: {decision['summary']}")
-        for check in decision["checks"]:
+        summary = report["summary"] or "All visible checks passed."
+        print(f"{report['verdict'].upper()}: {summary}")
+        for check in report["checks"]:
+            evidence = f" — {check['evidence']}" if check["evidence"] else ""
             print(
                 f"- {check['id']}: {check['status']} "
-                f"(confidence={check['confidence']:.2f}, severity={check['severity']}) — {check['evidence']}"
+                f"(confidence={check['confidence']:.2f}, severity={check['severity']}){evidence}"
             )
-        return 1 if decision["verdict"] == "fail" else 0
+        print(
+            f"Usage: {report['usage']['input_tokens']} input "
+            f"({report['usage']['cached_input_tokens']} cached), "
+            f"{report['usage']['output_tokens']} output; "
+            f"estimated cost ${report['estimated_cost_usd']:.6f}"
+        )
+        return 1 if report["verdict"] == "fail" else 0
     except VisualAcceptanceError as error:
         if args.report:
             write_report(args.report, {"verdict": "error", "error": str(error)})
