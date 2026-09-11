@@ -10,10 +10,54 @@ name: AI Visual Acceptance (Experimental)
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      ai_mode:
+        description: Paid AI review mode
+        type: choice
+        default: representative
+        options:
+          - representative
+          - full
+          - off
+      base_ref:
+        description: Branch used to detect visual changes
+        type: string
+        default: main
 
 jobs:
+  detect-impact:
+    name: Detect AI visual impact
+    runs-on: ubuntu-24.04
+    outputs:
+      scope: ${{ steps.impact.outputs.scope }}
+      examples: ${{ steps.impact.outputs.examples }}
+      changed_count: ${{ steps.impact.outputs.changed_count }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Classify changed files
+        id: impact
+        env:
+          BASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || format('origin/{0}', inputs.base_ref) }}
+        run: python .github/scripts/ai_visual_impact.py --base "$BASE_REF" --github-output "$GITHUB_OUTPUT"
+
+      - name: Summarize AI scope
+        env:
+          SCOPE: ${{ steps.impact.outputs.scope }}
+          EXAMPLES: ${{ steps.impact.outputs.examples }}
+          CHANGED_COUNT: ${{ steps.impact.outputs.changed_count }}
+        run: |
+          echo "### AI visual impact" >> "$GITHUB_STEP_SUMMARY"
+          echo "Changed files: $CHANGED_COUNT" >> "$GITHUB_STEP_SUMMARY"
+          echo "Scope: $SCOPE" >> "$GITHUB_STEP_SUMMARY"
+          echo "Examples: ${EXAMPLES:-none}" >> "$GITHUB_STEP_SUMMARY"
+
   all-examples-rhi:
     name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.backend }} / ${{ matrix.platform.os }}
+    needs: detect-impact
     runs-on: ${{ matrix.platform.os }}
     strategy:
       fail-fast: false
