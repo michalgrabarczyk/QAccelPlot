@@ -15,7 +15,7 @@ namespace QAccelPlot {
 
 /// \brief A tick label formatter that produces power-of-ten labels for logarithmic axes.
 ///
-/// Formats each tick value as "10^n".
+/// Formats each power-of-ten tick value using a superscript exponent, such as "10²".
 ///
 /// \sa NumericTickLabelFormatter, TickLabelFormatter
 class LogTickLabelFormatter : public TickLabelFormatter {
