@@ -75,4 +75,4 @@ patterns.
 Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
 
 [after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating
-[set-data-f]: ../../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
