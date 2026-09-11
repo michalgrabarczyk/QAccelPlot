@@ -207,8 +207,8 @@ the [Performance guide](performance.md#select-the-texture-upload-mode).
 
 See [Troubleshooting](troubleshooting.md) for common setup issues.
 
-[viewport-min]: ../api/classQAccelPlot_1_1Axis.html#a7dc4f6741ca21456941ee90ca647fcbe
-[viewport-max]: ../api/classQAccelPlot_1_1Axis.html#ae7112f0aac515a9fad256f21696f3e31
-[data-min]: ../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25
-[data-max]: ../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85
-[set-data-vectors]: ../api/classQAccelPlot_1_1LineCurve.html#aad067a9b84289a5c73637905cbc61a69
+[viewport-min]: api/classQAccelPlot_1_1Axis.md#property-viewportmin-12
+[viewport-max]: api/classQAccelPlot_1_1Axis.md#property-viewportmax-12
+[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
+[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
