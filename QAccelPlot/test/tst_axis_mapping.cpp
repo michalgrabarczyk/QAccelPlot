@@ -42,6 +42,7 @@ private slots:
     void linear_invertedMinMax_stillMaps();
     void log_mapFromPosition_roundTrip();
     void dataRange_updateReplacesRange();
+    void viewportRange_acceptsMicrosecondEpochChanges();
     void constructor_sideSetsOrientation();
 };
 
@@ -212,6 +213,19 @@ void TestAxisMapping::dataRange_updateReplacesRange()
     negativeAxis.updateDataRange(-20.0, -10.0);
     QCOMPARE(negativeAxis.dataMin(), -20.0);
     QCOMPARE(negativeAxis.dataMax(), -10.0);
+}
+
+void TestAxisMapping::viewportRange_acceptsMicrosecondEpochChanges()
+{
+    constexpr auto epochMilliseconds = qreal{1'789'032'600'000.0};
+    auto axis = QAccelPlot::Axis{};
+    auto minimumSpy = QSignalSpy{&axis, &QAccelPlot::Axis::viewportMinChanged};
+
+    axis.setViewportMin(epochMilliseconds);
+    axis.setViewportMin(epochMilliseconds + 0.001);
+
+    QCOMPARE(minimumSpy.count(), 2);
+    QCOMPARE(axis.viewportMin(), epochMilliseconds + 0.001);
 }
 
 void TestAxisMapping::constructor_sideSetsOrientation()

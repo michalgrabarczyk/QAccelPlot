@@ -16,7 +16,7 @@ Item {
     required property var typography
     property int formatIndex: 0
     readonly property var formats: ["hh:mm:ss", "mm:ss", "hh:mm:ss.zzz"]
-    readonly property real traceStart: new Date(1970, 0, 1, 9, 30, 0, 0).getTime()
+    readonly property real traceStart: new Date(2026, 8, 10, 9, 30, 0, 0).getTime()
     readonly property real traceEnd: traceStart + 60000
 
     function responseTimeAt(seconds) {

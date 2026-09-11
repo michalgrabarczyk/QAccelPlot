@@ -63,7 +63,7 @@ bool DataTransition::running() const
     return running_;
 }
 
-void DataTransition::start(const std::vector<float>& currentData, const int currentPointCount, std::vector<float>&& newData, const int newPointCount)
+void DataTransition::start(const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount)
 {
     fromData_ = currentData;
     fromPointCount_ = currentPointCount;
@@ -83,7 +83,7 @@ void DataTransition::cancel()
     setRunning(false);
 }
 
-bool DataTransition::advance(std::vector<float>& outData, int& outPointCount)
+bool DataTransition::advance(std::vector<double>& outData, int& outPointCount)
 {
     if (!running_) {
         return false;
@@ -92,7 +92,7 @@ bool DataTransition::advance(std::vector<float>& outData, int& outPointCount)
     const auto elapsed = animTimer_.elapsed();
     const auto dur = std::max(duration_, 1);
     const auto progress = std::clamp(static_cast<qreal>(elapsed) / dur, 0.0, 1.0);
-    const auto easedProgress = static_cast<float>(easing_.valueForProgress(progress));
+    const auto easedProgress = easing_.valueForProgress(progress);
 
     interpolate(easedProgress, fromData_, fromPointCount_, toData_, toPointCount_, outData, outPointCount);
 

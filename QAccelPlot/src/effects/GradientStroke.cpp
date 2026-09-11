@@ -171,10 +171,8 @@ GradientColorPayload GradientStroke::payload() const
         payload.stops.push_back(extendedStop);
     }
 
-    payload.gradientValueMin
-        = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<float>{static_cast<float>(gradientValueMin_)} : std::nullopt;
-    payload.gradientValueMax
-        = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<float>{static_cast<float>(gradientValueMax_)} : std::nullopt;
+    payload.gradientValueMin = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMin_} : std::nullopt;
+    payload.gradientValueMax = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMax_} : std::nullopt;
 
     return payload;
 }

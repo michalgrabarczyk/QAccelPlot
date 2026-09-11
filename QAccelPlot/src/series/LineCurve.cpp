@@ -51,8 +51,8 @@ bool hoverEnabled()
 }
 
 // Fallback data-range bounds used when no axis is attached to resolve gradient normalization.
-constexpr auto kFallbackDataMin = float{0.0f};
-constexpr auto kFallbackDataMax = float{1.0f};
+constexpr auto kFallbackDataMin = qreal{0.0};
+constexpr auto kFallbackDataMax = qreal{1.0};
 
 }
 
@@ -209,10 +209,12 @@ QQmlListProperty<LineCurveEffect> LineCurve::effects()
 
 void LineCurve::appendData(const qreal x, const qreal y)
 {
-    data_.push_back(static_cast<float>(x));
-    data_.push_back(static_cast<float>(y));
+    promoteFloatDataToDouble();
+    data_.push_back(static_cast<double>(x));
+    data_.push_back(static_cast<double>(y));
     pointCount_++;
     updateDataRanges(data_, pointCount_);
+    rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
     invalidateData();
     update();
 }
@@ -223,6 +225,12 @@ void LineCurve::clearData()
         transition_->cancel();
     }
     data_.clear();
+    dataF_.clear();
+    renderData_.clear();
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    renderLogScaleX_ = false;
+    renderLogScaleY_ = false;
     pointCount_ = 0;
     invalidateVertices();
     chunks_.clear();
@@ -234,10 +242,10 @@ void LineCurve::clearData()
 void LineCurve::setData(const QList<QPointF>& data)
 {
     auto newCount = static_cast<int>(data.size());
-    std::vector<float> newData(newCount * 2);
+    auto newData = std::vector<double>(static_cast<std::size_t>(newCount) * 2);
     for (int i = 0; i < newCount; ++i) {
-        newData[i * 2] = static_cast<float>(data[i].x());
-        newData[i * 2 + 1] = static_cast<float>(data[i].y());
+        newData[static_cast<std::size_t>(i) * 2] = static_cast<double>(data[i].x());
+        newData[static_cast<std::size_t>(i) * 2 + 1] = static_cast<double>(data[i].y());
     }
     updateDataRanges(newData, newCount);
     applyNewData(std::move(newData), newCount);
@@ -246,10 +254,10 @@ void LineCurve::setData(const QList<QPointF>& data)
 void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>& ys)
 {
     const auto newCount = static_cast<int>(std::min(xs.size(), ys.size()));
-    auto newData = std::vector<float>(static_cast<std::size_t>(newCount) * 2);
+    auto newData = std::vector<double>(static_cast<std::size_t>(newCount) * 2);
     for (auto i = int{0}; i < newCount; ++i) {
-        newData[static_cast<std::size_t>(i * 2)] = static_cast<float>(xs[static_cast<std::size_t>(i)]);
-        newData[static_cast<std::size_t>(i * 2 + 1)] = static_cast<float>(ys[static_cast<std::size_t>(i)]);
+        newData[static_cast<std::size_t>(i * 2)] = xs[static_cast<std::size_t>(i)];
+        newData[static_cast<std::size_t>(i * 2 + 1)] = ys[static_cast<std::size_t>(i)];
     }
     updateDataRanges(newData, newCount);
     applyNewData(std::move(newData), newCount);
@@ -319,7 +327,14 @@ void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int po
     }
 
     pointCount_ = pointCount;
-    data_ = std::move(data);
+    dataType_ = DataType::Float;
+    data_.clear();
+    renderData_.clear();
+    dataF_ = std::move(data);
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    renderLogScaleX_ = false;
+    renderLogScaleY_ = false;
     installVertexCache(std::move(vertexCache));
     dataChanged_ = true;
     chunksValid_ = false;
@@ -399,6 +414,11 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
+    if (dataType_ == DataType::Double && (renderLogScaleX_ != xAxis()->logScale() || renderLogScaleY_ != yAxis()->logScale())) {
+        rebuildDoubleRenderData(xAxis()->logScale(), yAxis()->logScale());
+        invalidateVertices();
+    }
+
     // When the style changes the node type must be recreated from scratch.
     if (styleChanged_) {
         delete oldNode;
@@ -406,19 +426,31 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         styleChanged_ = false;
     }
 
-    const auto pr = resolvePlotRect(this);
-    const auto domainMin = QVector2D(xAxis()->viewportMin(), yAxis()->viewportMin());
-    const auto domainMax = QVector2D(xAxis()->viewportMax(), yAxis()->viewportMax());
-    const auto viewportSize = QVector2D(pr.width(), pr.height());
-    const auto gradientPayload = resolveGradientColorPayload();
-    const auto gradientFillPayload = resolveGradientFillPayload();
-
     auto stillAnimating = false;
     if (dataChanged_ && transition_ && transition_->running()) {
         stillAnimating = transition_->advance(data_, pointCount_);
+        dataType_ = DataType::Double;
+        rebuildDoubleRenderData(xAxis()->logScale(), yAxis()->logScale());
         // Transition mutates data_ each frame; mark chunks stale so the main thread
         // rebuilds them on the next contains() call with the current interpolated data.
         chunksValid_ = false;
+    }
+
+    const auto pr = resolvePlotRect(this);
+    const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
+    const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    const auto viewportSize = QVector2D(pr.width(), pr.height());
+    const auto gradientPayload = resolveGradientColorPayload();
+    const auto gradientFillPayload = resolveGradientFillPayload();
+    auto renderGradientPayload = gradientPayload;
+    if (dataType_ == DataType::Double && renderGradientPayload.isValid()) {
+        const auto origin = renderGradientPayload.direction == GradientDirection::Horizontal ? renderOriginX_ : renderOriginY_;
+        if (renderGradientPayload.gradientValueMin.has_value()) {
+            renderGradientPayload.gradientValueMin = *renderGradientPayload.gradientValueMin - origin;
+        }
+        if (renderGradientPayload.gradientValueMax.has_value()) {
+            renderGradientPayload.gradientValueMax = *renderGradientPayload.gradientValueMax - origin;
+        }
     }
 
     const auto* cache = vertexCache_.data();
@@ -448,16 +480,17 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     QSGNode* pointNode = nullptr;
 
     if (hasLine) {
-        const auto lineParams = LineCurveRenderParams{window(), data_, pointCount_, dataChanged_, color_, hovered_, lineWidth_, domainMin, domainMax,
-            viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
-            gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_};
+        const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), pointCount_, dataChanged_, color_, hovered_, lineWidth_,
+            domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_,
+            renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
     }
 
     if (hasPoints) {
         const auto shapeType = static_cast<int>(markerShape_) - 1;
-        const auto pointParams = PointCurveRenderParams{data_, pointCount_, dataChanged_, color_, hovered_, markerSize_, domainMin, domainMax, viewportSize,
-            xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload, hasLine ? nullptr : cache, shapeType};
+        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), pointCount_, dataChanged_, color_, hovered_, markerSize_, domainMin,
+            domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
+            hasLine ? nullptr : cache, shapeType};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -536,12 +569,12 @@ bool LineCurve::contains(const QPointF& point) const
     const qreal h = height();
 
     if (markerShape_ != PointShape::None) {
-        return pointRenderer_.contains(point, CurveHitTestParams{data_, pointCount_, chunks_, xAxis(), yAxis(), w, h, markerSize_});
+        return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), pointCount_, chunks_, xAxis(), yAxis(), w, h, markerSize_});
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {
         constexpr static auto kLineHitRadiusPx = qreal{10.0}; // Hit-test radius in pixels for line-based curves.
-        return lineRenderer_.contains(point, CurveHitTestParams{data_, pointCount_, chunks_, xAxis(), yAxis(), w, h, kLineHitRadiusPx});
+        return lineRenderer_.contains(point, CurveHitTestParams{sourceDataView(), pointCount_, chunks_, xAxis(), yAxis(), w, h, kLineHitRadiusPx});
     }
 
     return false;
@@ -620,11 +653,11 @@ GradientColorPayload LineCurve::resolveGradientColorPayload() const
                 // This makes gradient colors data-relative and invariant to pan/zoom.
                 if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
                     if (payload.direction == GradientDirection::Horizontal) {
-                        payload.gradientValueMin = xAxis() ? static_cast<float>(xAxis()->dataMin()) : kFallbackDataMin;
-                        payload.gradientValueMax = xAxis() ? static_cast<float>(xAxis()->dataMax()) : kFallbackDataMax;
+                        payload.gradientValueMin = xAxis() ? xAxis()->dataMin() : kFallbackDataMin;
+                        payload.gradientValueMax = xAxis() ? xAxis()->dataMax() : kFallbackDataMax;
                     } else {
-                        payload.gradientValueMin = yAxis() ? static_cast<float>(yAxis()->dataMin()) : kFallbackDataMin;
-                        payload.gradientValueMax = yAxis() ? static_cast<float>(yAxis()->dataMax()) : kFallbackDataMax;
+                        payload.gradientValueMin = yAxis() ? yAxis()->dataMin() : kFallbackDataMin;
+                        payload.gradientValueMax = yAxis() ? yAxis()->dataMax() : kFallbackDataMax;
                     }
                 }
                 return payload;
@@ -647,11 +680,11 @@ GradientFillPayload LineCurve::resolveGradientFillPayload() const
             if (payload.isValid()) {
                 if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
                     if (payload.direction == GradientDirection::Horizontal) {
-                        payload.gradientValueMin = xAxis() ? static_cast<float>(xAxis()->dataMin()) : kFallbackDataMin;
-                        payload.gradientValueMax = xAxis() ? static_cast<float>(xAxis()->dataMax()) : kFallbackDataMax;
+                        payload.gradientValueMin = xAxis() ? xAxis()->dataMin() : kFallbackDataMin;
+                        payload.gradientValueMax = xAxis() ? xAxis()->dataMax() : kFallbackDataMax;
                     } else {
-                        payload.gradientValueMin = yAxis() ? static_cast<float>(yAxis()->dataMin()) : kFallbackDataMin;
-                        payload.gradientValueMax = yAxis() ? static_cast<float>(yAxis()->dataMax()) : kFallbackDataMax;
+                        payload.gradientValueMin = yAxis() ? yAxis()->dataMin() : kFallbackDataMin;
+                        payload.gradientValueMax = yAxis() ? yAxis()->dataMax() : kFallbackDataMax;
                     }
                 }
                 return payload;
@@ -686,21 +719,45 @@ void LineCurve::updateDataRanges(const std::vector<float>& buf, const int count)
     setDataRanges(xMin, xMax, yMin, yMax);
 }
 
+void LineCurve::updateDataRanges(const std::vector<double>& buf, const int count)
+{
+    if (buf.empty() || count == 0) {
+        clearDataRanges();
+        return;
+    }
+
+    auto xMin = std::numeric_limits<qreal>::max();
+    auto xMax = std::numeric_limits<qreal>::lowest();
+    auto yMin = std::numeric_limits<qreal>::max();
+    auto yMax = std::numeric_limits<qreal>::lowest();
+
+    for (auto i = int{0}; i < count; ++i) {
+        const auto x = static_cast<qreal>(buf[static_cast<std::size_t>(i) * 2]);
+        const auto y = static_cast<qreal>(buf[static_cast<std::size_t>(i) * 2 + 1]);
+        xMin = std::min(xMin, x);
+        xMax = std::max(xMax, x);
+        yMin = std::min(yMin, y);
+        yMax = std::max(yMax, y);
+    }
+
+    setDataRanges(xMin, xMax, yMin, yMax);
+}
+
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)
 {
     if (transition_ && transition_->enabled()) {
-        transition_->start(data_, pointCount_, std::move(newData), newPointCount);
-
-        // Size working buffers so updatePaintNode doesn't discard the node
-        const auto maxCount = std::max(pointCount_, newPointCount);
-        pointCount_ = maxCount;
-        data_.resize(maxCount * 2);
-
-        invalidateData(); // transition mutates data_ each frame; can't pre-build vertex cache
-        update();
+        auto preciseData = std::vector<double>(newData.begin(), newData.end());
+        applyNewData(std::move(preciseData), newPointCount);
     } else {
+        dataType_ = DataType::Float;
         pointCount_ = newPointCount;
-        data_ = std::move(newData);
+        data_.clear();
+        renderData_.clear();
+        dataF_ = std::move(newData);
+        renderOriginX_ = 0.0;
+        renderOriginY_ = 0.0;
+        renderLogScaleX_ = false;
+        renderLogScaleY_ = false;
         refreshVertexCacheForDataChange();
 
         // Pre-build chunk AABBs on the caller thread alongside the vertex cache so that
@@ -710,6 +767,33 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
         dataChanged_ = true;
         update();
     }
+}
+
+void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
+{
+    if (transition_ && transition_->enabled()) {
+        promoteFloatDataToDouble();
+        dataType_ = DataType::Double;
+        transition_->start(data_, pointCount_, std::move(newData), newPointCount);
+
+        const auto maxCount = std::max(pointCount_, newPointCount);
+        pointCount_ = maxCount;
+        data_.resize(static_cast<std::size_t>(maxCount) * 2);
+
+        invalidateData();
+        update();
+        return;
+    }
+
+    dataType_ = DataType::Double;
+    pointCount_ = newPointCount;
+    dataF_.clear();
+    data_ = std::move(newData);
+    rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
+    refreshVertexCacheForDataChange();
+    rebuildChunks();
+    dataChanged_ = true;
+    update();
 }
 
 bool LineCurve::validateRawDataArguments(const float* xyInterleaved, const int pointCount) const
@@ -743,10 +827,79 @@ bool LineCurve::validateVectorDataArguments(const std::vector<float>& data, cons
 void LineCurve::copyRawData(const float* xyInterleaved, const int pointCount)
 {
     const auto floatCount = static_cast<std::size_t>(pointCount) * 2;
-    data_.resize(floatCount);
+    dataType_ = DataType::Float;
+    data_.clear();
+    renderData_.clear();
+    dataF_.resize(floatCount);
     if (floatCount > 0) {
-        std::memcpy(data_.data(), xyInterleaved, floatCount * sizeof(float));
+        std::memcpy(dataF_.data(), xyInterleaved, floatCount * sizeof(float));
     }
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    renderLogScaleX_ = false;
+    renderLogScaleY_ = false;
+}
+
+void LineCurve::promoteFloatDataToDouble()
+{
+    if (dataType_ == DataType::Double) {
+        return;
+    }
+
+    data_.assign(dataF_.begin(), dataF_.end());
+    dataF_.clear();
+    dataType_ = DataType::Double;
+    rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
+}
+
+void LineCurve::rebuildDoubleRenderData(const bool logScaleX, const bool logScaleY)
+{
+    if (dataType_ != DataType::Double) {
+        return;
+    }
+
+    renderLogScaleX_ = logScaleX;
+    renderLogScaleY_ = logScaleY;
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    auto foundOriginX = logScaleX;
+    auto foundOriginY = logScaleY;
+
+    for (auto i = int{0}; i < pointCount_; ++i) {
+        const auto x = data_[static_cast<std::size_t>(i) * 2];
+        const auto y = data_[static_cast<std::size_t>(i) * 2 + 1];
+        if (!foundOriginX && std::isfinite(x)) {
+            renderOriginX_ = x;
+            foundOriginX = true;
+        }
+        if (!foundOriginY && std::isfinite(y)) {
+            renderOriginY_ = y;
+            foundOriginY = true;
+        }
+        if (foundOriginX && foundOriginY) {
+            break;
+        }
+    }
+
+    renderData_.resize(static_cast<std::size_t>(pointCount_) * 2);
+    for (auto i = int{0}; i < pointCount_; ++i) {
+        const auto offset = static_cast<std::size_t>(i) * 2;
+        renderData_[offset] = static_cast<float>(data_[offset] - renderOriginX_);
+        renderData_[offset + 1] = static_cast<float>(data_[offset + 1] - renderOriginY_);
+    }
+}
+
+const std::vector<float>& LineCurve::renderData() const
+{
+    return dataType_ == DataType::Double ? renderData_ : dataF_;
+}
+
+CurveDataView LineCurve::sourceDataView() const
+{
+    if (dataType_ == DataType::Double) {
+        return CurveDataView{nullptr, data_.data()};
+    }
+    return CurveDataView{dataF_.data(), nullptr};
 }
 
 void LineCurve::refreshVertexCacheForDataChange()
@@ -816,11 +969,11 @@ void LineCurve::rebuildVertexCache()
     }
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
     if (lineStyle_ && lineStyle_->showLine() && !isDash && pointCount_ >= 2) {
-        vertexCache_.rebuild(
-            LineCurveVertexCache::Layout::Line, pointCount_, [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(data_, pointCount_, bytes); });
+        vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, pointCount_,
+            [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), pointCount_, bytes); });
     } else if (markerShape_ != PointShape::None && pointCount_ >= 1) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, pointCount_,
-            [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(data_, pointCount_, bytes); });
+            [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), pointCount_, bytes); });
     } else {
         vertexCache_.invalidate();
     }
@@ -842,13 +995,14 @@ void LineCurve::rebuildChunks() const
         // line segments bridging adjacent chunks are fully covered.
         const auto aabbBegin = std::max(0, start - 1);
         const auto aabbEnd = std::min(start + count, pointCount_ - 1); // inclusive
-        auto chunk = CurveChunk{start, count, std::numeric_limits<float>::max(), std::numeric_limits<float>::lowest(), std::numeric_limits<float>::max(),
-            std::numeric_limits<float>::lowest()};
+        auto chunk = CurveChunk{start, count, std::numeric_limits<qreal>::max(), std::numeric_limits<qreal>::lowest(), std::numeric_limits<qreal>::max(),
+            std::numeric_limits<qreal>::lowest()};
+        const auto sourceData = sourceDataView();
         for (auto i = aabbBegin; i <= aabbEnd; ++i) {
-            chunk.minX = std::min(chunk.minX, data_[static_cast<std::size_t>(i * 2)]);
-            chunk.maxX = std::max(chunk.maxX, data_[static_cast<std::size_t>(i * 2)]);
-            chunk.minY = std::min(chunk.minY, data_[static_cast<std::size_t>(i * 2 + 1)]);
-            chunk.maxY = std::max(chunk.maxY, data_[static_cast<std::size_t>(i * 2 + 1)]);
+            chunk.minX = std::min(chunk.minX, sourceData.x(i));
+            chunk.maxX = std::max(chunk.maxX, sourceData.x(i));
+            chunk.minY = std::min(chunk.minY, sourceData.y(i));
+            chunk.maxY = std::max(chunk.maxY, sourceData.y(i));
         }
         chunks_.push_back(chunk);
     }

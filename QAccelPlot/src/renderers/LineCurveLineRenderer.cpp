@@ -38,7 +38,7 @@ struct GradientFillVertex {
     float gradientCoordinate;
 };
 
-float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, const float dataX, const float dataY)
+float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, const qreal dataX, const qreal dataY)
 {
     const auto valueMin = *gradientPayload.gradientValueMin;
     const auto valueMax = *gradientPayload.gradientValueMax;
@@ -103,13 +103,11 @@ QSGGeometryNode* createFillNode(const int vertexCount)
     return node;
 }
 
-void assembleFillVertices(QSGGeometry* geometry, const std::vector<float>& data, const int pointCount, const int sampledPointCount, Axis* xAxis, Axis* yAxis,
+void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const int pointCount, const int sampledPointCount, Axis* xAxis, Axis* yAxis,
     const qreal width, const qreal height, const GradientFillPayload& gradientFillPayload)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
-    const auto* src = data.data();
-    const auto baselineData
-        = (gradientFillPayload.baseline == GradientFillBaseline::AxisMinimum) ? static_cast<float>(yAxis->viewportMin()) : gradientFillPayload.baselineValue;
+    const auto baselineData = (gradientFillPayload.baseline == GradientFillBaseline::AxisMinimum) ? yAxis->viewportMin() : gradientFillPayload.baselineValue;
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
 
     for (int index = 0; index < sampledPointCount; ++index) {
@@ -118,8 +116,8 @@ void assembleFillVertices(QSGGeometry* geometry, const std::vector<float>& data,
             sourceIndex = static_cast<int>((static_cast<long long>(index) * (pointCount - 1)) / (sampledPointCount - 1));
         }
 
-        const auto px = src[sourceIndex * 2];
-        const auto py = src[sourceIndex * 2 + 1];
+        const auto px = data.x(sourceIndex);
+        const auto py = data.y(sourceIndex);
         const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
         const auto yPixel = static_cast<float>(yAxis->coordToPixel(py, height));
 
@@ -225,10 +223,10 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
         // mouse is farther than hitThreshold from it. coordToPixel is monotone for
         // linear scale and for log scale, so taking min/max of the two mapped extremes
         // always produces the correct screen-space interval.
-        const auto screenLeft = params.xAxis->coordToPixel(static_cast<qreal>(chunk.minX), params.width);
-        const auto screenRight = params.xAxis->coordToPixel(static_cast<qreal>(chunk.maxX), params.width);
-        const auto screenTop = params.yAxis->coordToPixel(static_cast<qreal>(chunk.minY), params.height);
-        const auto screenBottom = params.yAxis->coordToPixel(static_cast<qreal>(chunk.maxY), params.height);
+        const auto screenLeft = params.xAxis->coordToPixel(chunk.minX, params.width);
+        const auto screenRight = params.xAxis->coordToPixel(chunk.maxX, params.width);
+        const auto screenTop = params.yAxis->coordToPixel(chunk.minY, params.height);
+        const auto screenBottom = params.yAxis->coordToPixel(chunk.maxY, params.height);
         const auto screenMinX = std::min(screenLeft, screenRight);
         const auto screenMaxX = std::max(screenLeft, screenRight);
         const auto screenMinY = std::min(screenTop, screenBottom);
@@ -243,10 +241,10 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
         const auto segStart = std::max(0, chunk.start - 1);
         const auto segEnd = std::min(chunk.start + chunk.count, params.pointCount - 1);
         for (auto index = segStart; index < segEnd; ++index) {
-            const auto p1 = QPointF{
-                params.xAxis->coordToPixel(params.data[index * 2], params.width), params.yAxis->coordToPixel(params.data[index * 2 + 1], params.height)};
-            const auto p2 = QPointF{params.xAxis->coordToPixel(params.data[(index + 1) * 2], params.width),
-                params.yAxis->coordToPixel(params.data[(index + 1) * 2 + 1], params.height)};
+            const auto p1
+                = QPointF{params.xAxis->coordToPixel(params.data.x(index), params.width), params.yAxis->coordToPixel(params.data.y(index), params.height)};
+            const auto p2 = QPointF{
+                params.xAxis->coordToPixel(params.data.x(index + 1), params.width), params.yAxis->coordToPixel(params.data.y(index + 1), params.height)};
             const auto lineLengthSquared = QPointF::dotProduct(p2 - p1, p2 - p1);
             const auto t = (lineLengthSquared == 0.0) ? 0.0 : std::max(0.0, std::min(1.0, QPointF::dotProduct(point - p1, p2 - p1) / lineLengthSquared));
             const auto projection = p1 + t * (p2 - p1);
@@ -318,8 +316,8 @@ void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const 
         fillNode->geometry()->allocate(fillVertexCount);
     }
     if (fillEnabled && fillVertexCount > 0) {
-        assembleFillVertices(fillNode->geometry(), params.data, params.pointCount, sampledFillPointCount, params.xAxis, params.yAxis, params.viewportSize.x(),
-            params.viewportSize.y(), params.gradientFillPayload);
+        assembleFillVertices(fillNode->geometry(), params.sourceData, params.pointCount, sampledFillPointCount, params.xAxis, params.yAxis,
+            params.viewportSize.x(), params.viewportSize.y(), params.gradientFillPayload);
         fillNode->markDirty(QSGNode::DirtyGeometry);
         auto* material = static_cast<GradientFillMaterial*>(fillNode->material());
         material->opacity = params.gradientFillPayload.opacity;
@@ -361,12 +359,12 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
     }
     auto arcLengths = std::vector<float>(params.pointCount);
     auto cumLen = 0.0f;
-    auto prevPx = static_cast<float>(params.xAxis->coordToPixel(params.data[0], params.viewportSize.x()));
-    auto prevPy = static_cast<float>(params.yAxis->coordToPixel(params.data[1], params.viewportSize.y()));
+    auto prevPx = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(0), params.viewportSize.x()));
+    auto prevPy = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(0), params.viewportSize.y()));
     arcLengths[0] = 0.0f;
     for (auto i = 1; i < params.pointCount; ++i) {
-        const auto px = static_cast<float>(params.xAxis->coordToPixel(params.data[i * 2], params.viewportSize.x()));
-        const auto py = static_cast<float>(params.yAxis->coordToPixel(params.data[i * 2 + 1], params.viewportSize.y()));
+        const auto px = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()));
+        const auto py = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y()));
         const auto dx = px - prevPx;
         const auto dy = py - prevPy;
         cumLen += std::sqrt(dx * dx + dy * dy);
