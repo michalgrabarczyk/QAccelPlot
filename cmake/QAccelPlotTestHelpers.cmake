@@ -53,7 +53,7 @@ function(add_qaccelplot_example_visual_tests target contract_name)
         COMMAND $<TARGET_FILE:${target}> --screenshot "${_screenshot}"
     )
     set_tests_properties(smoke_${target} PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1"
+        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
         LABELS "visual-smoke"
         TIMEOUT 15
     )

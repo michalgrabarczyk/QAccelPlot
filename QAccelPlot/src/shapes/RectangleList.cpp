@@ -20,11 +20,22 @@
 
 namespace QAccelPlot {
 
+namespace {
+
+bool hoverEnabled()
+{
+    auto isInteger = false;
+    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
+    return !isInteger || value != 0;
+}
+
+}
+
 RectangleList::RectangleList(QQuickItem* parent)
     : PlotSeries(parent)
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(true);
+    setAcceptHoverEvents(hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
 }

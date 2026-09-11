@@ -19,6 +19,7 @@ class LineCurveDataTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void hoverEnvironmentControlsAcceptance();
     void compatibleLineCacheCanBeReused();
     void incompatibleCacheCannotBeReused();
     void emptyCacheClearsCachedState();
@@ -49,6 +50,27 @@ std::vector<char> makeLineCache(const std::vector<float>& data, const int pointC
 }
 
 } // namespace
+
+void LineCurveDataTest::hoverEnvironmentControlsAcceptance()
+{
+    constexpr auto variableName = "QACCELPLOT_HOVER_ENABLED";
+    const auto wasSet = qEnvironmentVariableIsSet(variableName);
+    const auto previousValue = qgetenv(variableName);
+
+    qunsetenv(variableName);
+    const auto defaultCurve = LineCurve{};
+    qputenv(variableName, "0");
+    const auto hoverDisabledCurve = LineCurve{};
+
+    if (wasSet) {
+        qputenv(variableName, previousValue);
+    } else {
+        qunsetenv(variableName);
+    }
+
+    QVERIFY(defaultCurve.acceptHoverEvents());
+    QVERIFY(!hoverDisabledCurve.acceptHoverEvents());
+}
 
 void LineCurveDataTest::compatibleLineCacheCanBeReused()
 {
