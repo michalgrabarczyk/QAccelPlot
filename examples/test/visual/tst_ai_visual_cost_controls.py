@@ -134,12 +134,12 @@ class MatrixSelectionTests(unittest.TestCase):
             "estimated_cost_usd": 0.00065,
             "checks": [
                 {
-                    "id": "tool_controls",
+                    "id": "terrain_plot",
                     "status": "fail",
                     "severity": "high",
                     "confidence": 0.93,
                     "blocking": True,
-                    "evidence": "Controls overlap | lower panel.",
+                    "evidence": "Terrain curve is missing | lower plot.",
                 }
             ],
         }
@@ -149,9 +149,9 @@ class MatrixSelectionTests(unittest.TestCase):
         self.assertIn("- Failed renders: 1", summary)
         self.assertIn("## Failed AI checks", summary)
         self.assertIn("interactive_tools / Qt 6.2.4 / opengl / ubuntu-24.04", summary)
-        self.assertIn("`tool_controls`", summary)
+        self.assertIn("`terrain_plot`", summary)
         self.assertIn("| high | 0.93 | yes |", summary)
-        self.assertIn("Controls overlap \\| lower panel.", summary)
+        self.assertIn("Terrain curve is missing \\| lower plot.", summary)
 
 
 if __name__ == "__main__":
