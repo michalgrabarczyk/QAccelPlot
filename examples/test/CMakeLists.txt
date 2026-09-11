@@ -65,4 +65,8 @@ if(Python3_Interpreter_FOUND)
         NAME tst_ai_visual_acceptance
         COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_acceptance.py"
     )
+    add_test(
+        NAME tst_ai_visual_cost_controls
+        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_cost_controls.py"
+    )
 endif()
