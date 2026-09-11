@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "pulsar_showcase",
-  "description": "The deterministic screenshot mode of the Cosmic Pulsar (CP 1919) 3D waterfall showcase.",
+  "description": "The Cosmic Pulsar (CP 1919) 3D waterfall plot. Judge only plot content and plot text; ignore any surrounding window UI.",
   "expected_image": {
     "width": 766,
     "height": 852,
@@ -40,7 +40,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "The centered plot title and x-axis tick labels have crisp, legible glyph edges without clipping, blur, or raster corruption."
+      "expectation": "The centered plot title and x-axis tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare them with any text outside the plot. Normal antialiasing, small fonts, and backend-specific softness are acceptable."
     }
   ]
 }

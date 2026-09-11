@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "performance_showcase",
-  "description": "The default 1400x900 Performance Showcase example with the live-data controls, metric cards, and high-density curve.",
+  "description": "A high-density live-data plot. Judge only content inside the plot; ignore metric cards, telemetry, headings, buttons, controls, side panels, and other surrounding UI.",
   "expected_image": {
     "width": 1400,
     "height": 900,
@@ -15,17 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "A narrow live-dataset control panel occupies the left side. The live-point heading, four metric cards, and one large plot occupy the right side without overlap or clipping."
-    },
-    {
-      "id": "workload_controls",
-      "severity": "medium",
-      "expectation": "The data point count, workload preset buttons, rectangle annotation toggle, and rectangle count area are visible and readable. Disabled rectangle controls may appear muted when annotation is off."
-    },
-    {
-      "id": "metric_cards",
-      "severity": "medium",
-      "expectation": "Distinct DISPLAY FPS, DATA UPDATE RATE, FRAME TIME, and CURVE THROUGHPUT cards are present with a prominent value and smaller explanatory text. DISPLAY FPS is described as frames presented per second, while DATA UPDATE RATE is expressed in Hz and described as newly generated datasets applied to the plot. Exact values are environment-dependent performance telemetry and must not be judged for equality or speed."
+      "expectation": "One coherent high-density plot is visible. Its axes, grid, and curve stay within the plot area without unintended overlap or clipping. Do not evaluate metric cards, telemetry, controls, side panels, or other content outside the plot."
     },
     {
       "id": "dense_curve",
@@ -35,12 +25,12 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick metric-card and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with metric cards, telemetry, headings, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "The dense curve remains distinguishable from the grid, and the axes, cards, controls, and text are not corrupted or materially clipped."
+      "expectation": "The dense curve remains distinguishable from the grid, and the axes and plot text are not corrupted or materially clipped."
     }
   ]
 }

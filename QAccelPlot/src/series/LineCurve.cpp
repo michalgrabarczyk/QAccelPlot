@@ -43,6 +43,13 @@ bool supportsCustomShaderRendering(const QQuickWindow* window)
     return rendererInterface->graphicsApi() != QSGRendererInterface::Software;
 }
 
+bool hoverEnabled()
+{
+    auto isInteger = false;
+    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
+    return !isInteger || value != 0;
+}
+
 // Fallback data-range bounds used when no axis is attached to resolve gradient normalization.
 constexpr auto kFallbackDataMin = float{0.0f};
 constexpr auto kFallbackDataMax = float{1.0f};
@@ -53,7 +60,7 @@ LineCurve::LineCurve(QQuickItem* parent)
     : PlotSeries(parent)
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(true);
+    setAcceptHoverEvents(hoverEnabled());
 }
 
 QColor LineCurve::color() const

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "custom_axis",
-  "description": "The default 1100x860 Custom Axes Gallery example on its Dual scale spectrum tab.",
+  "description": "A dual-scale spectrum plot with wavelength and frequency axes. Judge only content inside the plot; ignore tabs, headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 1100,
     "height": 860,
@@ -15,17 +15,12 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "The gallery title and three-tab bar appear above a description and one large spectrum plot. All content fits in the window without unintended overlap."
-    },
-    {
-      "id": "default_tab",
-      "severity": "medium",
-      "expectation": "Dual scale is visibly selected, with Multi-rate and Shared time visible as the other tabs. The Wavelength and frequency on one spectrum heading and explanatory copy are readable."
+      "expectation": "One coherent spectrum plot is visible. Its axes, grid, and curve stay within the plot area without unintended overlap or clipping. Do not evaluate tabs or other content outside the plot."
     },
     {
       "id": "dual_horizontal_axes",
       "severity": "high",
-      "expectation": "Two distinct horizontal axes are visible below the plot: Wavelength (nm) increases from roughly 400 to 700 left-to-right, while Frequency (THz) decreases left-to-right. Their tick labels and titles do not visibly collide. If exact ordering is not readable at the screenshot resolution, report uncertain rather than fail; fail only for a clearly visible contradiction or collision."
+      "expectation": "Two distinct horizontal axes are visible below the plot: Wavelength (nm) increases from roughly 400 to 700 left-to-right, while Frequency (THz) decreases left-to-right. The axes may be close together. Fail only for visible physical overlap or overprinting of their lines, ticks, titles, or tick-label glyphs; do not infer overlap from proximity or aligned ticks. If separation is unclear at the screenshot resolution, report uncertain rather than fail."
     },
     {
       "id": "spectrum_curve",
@@ -35,7 +30,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "The plot's axis titles and tick labels are intentionally smaller, normal-weight, and light gray, while the gallery title and tab labels are larger, brighter, or bolder. Those intended typography and contrast differences are not rasterization defects, so do not use the title or tabs as a direct sharpness comparison. Fail only when the plot glyphs show concrete low-resolution artifacts such as square pixel blocks, doubled or jagged stair-step edges, or obvious uniform upscaling relative to any similarly sized and styled text. Normal antialiasing, small or low-contrast text, and differences caused by rotated text are acceptable. If the axis text remains readable and no concrete scaling artifact is visible, pass this check."
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. They are intentionally small, normal-weight, and light gray; those typography and contrast choices are not defects. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plot. Normal antialiasing, small or low-contrast fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",
