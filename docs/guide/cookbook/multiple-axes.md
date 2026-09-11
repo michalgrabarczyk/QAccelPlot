@@ -19,13 +19,11 @@ choose the height of a horizontal axis or the width of a vertical axis:
 
 ```qml
 yAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Left
     layoutSize: 90
     label: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Bottom
     layoutSize: 70
     label: "Time"
 }
@@ -37,7 +35,9 @@ tick labels and axis title.
 
 ## Secondary axes
 
-Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:
+Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side.
+The plot assigns sides automatically: `xAxis` is bottom, `x2Axis` is top,
+`yAxis` is left, and `y2Axis` is right.
 
 ```qml
 import QtQuick
@@ -46,10 +46,9 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    xAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis {}
+    yAxis: QAccelPlot.Axis {}
     y2Axis: QAccelPlot.Axis {
-        side: QAccelPlot.Axis.Right
         viewportMin: 0
         viewportMax: 100
         label: "Load (%)"
@@ -84,7 +83,6 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        side: QAccelPlot.Axis.Bottom
         label: "Slow time (s)"
     }
 

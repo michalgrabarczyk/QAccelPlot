@@ -155,7 +155,6 @@ Window {
                     viewportMax: 1000
                     dataMin: 0
                     dataMax: 1000
-                    side: QAccelPlot.Axis.Bottom
                     label: "Sample domain"
                     baselineColor: colorPalette.axisLine
                     labelColor: colorPalette.axisLabel
@@ -172,7 +171,6 @@ Window {
                     viewportMax: 10
                     dataMin: -10
                     dataMax: 10
-                    side: QAccelPlot.Axis.Left
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Amplitude"
