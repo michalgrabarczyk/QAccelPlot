@@ -1075,7 +1075,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">ticker.tickLabelFormatter:</span> <span class="nx">logLabels</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>Logarithmic ranges must remain positive. Do not pass zero or negative bounds.</p>
+<p>Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
+Power-of-ten ticks use superscript exponents, such as <code>10²</code>, <code>10³</code>, and <code>10⁻³</code>.</p>
 <h2 id="application-specific-labels">Application-specific labels<a class="headerlink" href="#application-specific-labels" title="Permanent link">&para;</a></h2>
 <p><code>QAccelPlot.NumericTickLabelFormatter</code> provides the normal numeric presentation. For
 specialized formatting, assign a JavaScript callback to a
