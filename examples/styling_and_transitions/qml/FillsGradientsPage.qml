@@ -259,7 +259,6 @@ Item {
                     viewportMax: 6
                     dataMin: -6
                     dataMax: 6
-                    side: QAccelPlot.Axis.Bottom
                     label: "Hours from solar noon"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
@@ -276,7 +275,6 @@ Item {
                     viewportMax: 6
                     dataMin: -4
                     dataMax: 6
-                    side: QAccelPlot.Axis.Left
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Net grid power (kW)"
@@ -342,7 +340,6 @@ Item {
                     viewportMax: 100
                     dataMin: 0
                     dataMax: 100
-                    side: QAccelPlot.Axis.Bottom
                     label: "State of charge (%)"
                     baselineColor: root.palette.axisLine
                     labelColor: root.palette.axisLabel
@@ -359,7 +356,6 @@ Item {
                     viewportMax: 30
                     dataMin: 20
                     dataMax: 30
-                    side: QAccelPlot.Axis.Left
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Battery temperature (°C)"

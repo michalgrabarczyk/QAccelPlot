@@ -40,7 +40,6 @@ Item {
                 viewportMax: 6
                 dataMin: 0
                 dataMax: 6
-                side: QAccelPlot.Axis.Bottom
                 label: "Day of week"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
@@ -62,7 +61,6 @@ Item {
                 viewportMax: 55
                 dataMin: 20
                 dataMax: 55
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Electricity use (kWh)"

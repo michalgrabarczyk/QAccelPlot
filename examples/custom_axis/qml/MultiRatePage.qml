@@ -47,7 +47,6 @@ Item {
                 viewportMax: 10
                 dataMin: 0
                 dataMax: 10
-                side: QAccelPlot.Axis.Bottom
                 label: "Slow channel time (s)"
                 baselineColor: root.palette.seriesPrimary
                 baselineWidth: 2
@@ -65,7 +64,6 @@ Item {
                 viewportMax: 1.8
                 dataMin: -1.8
                 dataMax: 1.8
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Amplitude"
