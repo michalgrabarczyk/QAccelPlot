@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1LineVertex" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineVertex</compoundname>
+    <includes local="no">LineCurveLineRenderer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a33dd6d19b6f619daf25b47228ed25174" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::LineVertex::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>QAccelPlot::LineVertex::id</qualifiedname>
+        <briefdescription>
+<para>Point index in the data buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="56" column="11" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1abb4967b13a53b4d927a64de3a2387122" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::LineVertex::side</definition>
+        <argsstring></argsstring>
+        <name>side</name>
+        <qualifiedname>QAccelPlot::LineVertex::side</qualifiedname>
+        <briefdescription>
+<para>Side of the line (-0.5 or +0.5) for screen-space extrusion. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="57" column="11" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1aaf45bcb9964af2a7d06f4e652b63ab0e" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char QAccelPlot::LineVertex::r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <qualifiedname>QAccelPlot::LineVertex::r</qualifiedname>
+        <briefdescription>
+<para>Red channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="58" column="19" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a46318ac9e093d08ec825821bac280f71" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char QAccelPlot::LineVertex::g</definition>
+        <argsstring></argsstring>
+        <name>g</name>
+        <qualifiedname>QAccelPlot::LineVertex::g</qualifiedname>
+        <briefdescription>
+<para>Green channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="59" column="19" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1ac9926ead2026e56c691438da45670b88" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char QAccelPlot::LineVertex::b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <qualifiedname>QAccelPlot::LineVertex::b</qualifiedname>
+        <briefdescription>
+<para>Blue channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="60" column="19" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a1f49eae0fcbdb15688abae266bcb2468" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char QAccelPlot::LineVertex::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <qualifiedname>QAccelPlot::LineVertex::a</qualifiedname>
+        <briefdescription>
+<para>Alpha channel (used when <computeroutput>useVertexColor</computeroutput> is true). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="61" column="19" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineVertex_1a4739bf28534bcb6366e14aec5d64d42d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::LineVertex::arcLength</definition>
+        <argsstring></argsstring>
+        <name>arcLength</name>
+        <qualifiedname>QAccelPlot::LineVertex::arcLength</qualifiedname>
+        <briefdescription>
+<para>Cumulative screen-space arc length in pixels; 0 for solid lines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="62" column="11" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="55" column="1" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="55" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1LineVertex_1a1f49eae0fcbdb15688abae266bcb2468" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>a</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a4739bf28534bcb6366e14aec5d64d42d" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>arcLength</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1ac9926ead2026e56c691438da45670b88" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>b</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a46318ac9e093d08ec825821bac280f71" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>g</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1a33dd6d19b6f619daf25b47228ed25174" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>id</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1aaf45bcb9964af2a7d06f4e652b63ab0e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>r</name></member>
+      <member refid="structQAccelPlot_1_1LineVertex_1abb4967b13a53b4d927a64de3a2387122" prot="public" virt="non-virtual"><scope>QAccelPlot::LineVertex</scope><name>side</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

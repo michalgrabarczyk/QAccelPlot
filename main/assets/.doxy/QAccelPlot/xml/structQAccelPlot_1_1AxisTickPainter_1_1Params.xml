@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1AxisTickPainter_1_1Params" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTickPainter::Params</compoundname>
+    <includes local="no">AxisTickPainter.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3b54cfd880d0e8eb0d2b089eab7019ac" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::Params::viewportMin</definition>
+        <argsstring></argsstring>
+        <name>viewportMin</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::viewportMin</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> minimum value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="30" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1ac38c8b5701419967eb00a6c9dc180723" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::Params::viewportMax</definition>
+        <argsstring></argsstring>
+        <name>viewportMax</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::viewportMax</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> maximum value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="31" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a4df969288041178d1c7ad3cb8bb8a28c" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis_1a8b3fd2b5709a90d5d87766c52768aa36" kindref="member">Axis::Orientation</ref></type>
+        <definition>Axis::Orientation QAccelPlot::AxisTickPainter::Params::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::orientation</qualifiedname>
+        <initializer>{Axis::Horizontal}</initializer>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="32" column="27" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49f15832adc78dbc352a2506e34c7787" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Axis::Side</ref></type>
+        <definition>Axis::Side QAccelPlot::AxisTickPainter::Params::side</definition>
+        <argsstring></argsstring>
+        <name>side</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::side</qualifiedname>
+        <initializer>{Axis::Left}</initializer>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> side. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="33" column="20" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1adb56ac74318650978e492cd908c26cac" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisTickPainter::Params::logScale</definition>
+        <argsstring></argsstring>
+        <name>logScale</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::logScale</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether log-scale tick placement is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="34" column="14" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49e1ad29634894f9c4e3201e5552c64f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisTickPainter::Params::hovered</definition>
+        <argsstring></argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::hovered</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether the axis is currently hovered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="35" column="14" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a170a3d7f8fb11782d5da486a1d7f7094" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>const AxisTicker* QAccelPlot::AxisTickPainter::Params::ticker</definition>
+        <argsstring></argsstring>
+        <name>ticker</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::ticker</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Tick style configuration object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="36" column="26" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a7c0a3268ca5e6ce97ab4283b9f36ba55" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTickPainter::Params::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::hoverColor</qualifiedname>
+        <briefdescription>
+<para>Label/tick color when hovered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="37" column="16" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a8e7a3ac3dfd15851de972a80f959a526" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTickPainter::Params::defaultSubtickColor</definition>
+        <argsstring></argsstring>
+        <name>defaultSubtickColor</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::defaultSubtickColor</qualifiedname>
+        <briefdescription>
+<para>Sub-tick color when not hovered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="38" column="16" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3942781e297f6c2267da42e2561e2393" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::Params::tickStep</definition>
+        <argsstring></argsstring>
+        <name>tickStep</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::tickStep</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Computed major tick step (filled by <computeroutput>paintLinearTicks</computeroutput>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="39" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a268c77662a3f1abf15c1344f546276c5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisTickPainter::Params::clampEdgeLabels</definition>
+        <argsstring></argsstring>
+        <name>clampEdgeLabels</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::clampEdgeLabels</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether labels at the extremes are clamped inward. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="40" column="14" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a55da5f11220dbbc111e56bc1f20ec17b" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::Params::labelOverflow</definition>
+        <argsstring></argsstring>
+        <name>labelOverflow</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::Params::labelOverflow</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Extra space reserved for edge label overflow. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="41" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>All inputs required for a single paint call, bundled to reduce parameter count. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::AxisTickPainter::Params</label>
+        <link refid="structQAccelPlot_1_1AxisTickPainter_1_1Params"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ticker</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::AxisTicker</label>
+        <link refid="classQAccelPlot_1_1AxisTicker"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="29" column="5" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="29" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a268c77662a3f1abf15c1344f546276c5" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>clampEdgeLabels</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a8e7a3ac3dfd15851de972a80f959a526" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>defaultSubtickColor</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a7c0a3268ca5e6ce97ab4283b9f36ba55" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>hoverColor</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49e1ad29634894f9c4e3201e5552c64f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>hovered</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a55da5f11220dbbc111e56bc1f20ec17b" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>labelOverflow</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1adb56ac74318650978e492cd908c26cac" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>logScale</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a4df969288041178d1c7ad3cb8bb8a28c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>orientation</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49f15832adc78dbc352a2506e34c7787" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>side</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a170a3d7f8fb11782d5da486a1d7f7094" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>ticker</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3942781e297f6c2267da42e2561e2393" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>tickStep</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1ac38c8b5701419967eb00a6c9dc180723" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>viewportMax</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3b54cfd880d0e8eb0d2b089eab7019ac" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>viewportMin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

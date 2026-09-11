@@ -1,0 +1,931 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Grid" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Grid</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">Grid.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1ad18ba8c75daa8a2ae30d0d8569360ca5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSqreal</type>
+        <definition>QML_ANONYMOUSqreal QAccelPlot::Grid::lineWidth</definition>
+        <argsstring></argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::lineWidth</qualifiedname>
+        <read>lineWidth</read>
+        <write>setLineWidth</write>
+        <briefdescription>
+<para>Width in pixels of the major grid lines. Default: 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="26" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1ae6f7de6fe0d6a7933d6142639eb97d66" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Grid::subGridLineWidth</definition>
+        <argsstring></argsstring>
+        <name>subGridLineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::subGridLineWidth</qualifiedname>
+        <read>subGridLineWidth</read>
+        <write>setSubGridLineWidth</write>
+        <briefdescription>
+<para>Width in pixels of the sub-grid lines. Default: 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="28" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1ae5110ca5927cbb58dc4b8db1978891d6" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::gridColor</definition>
+        <argsstring></argsstring>
+        <name>gridColor</name>
+        <qualifiedname>QAccelPlot::Grid::gridColor</qualifiedname>
+        <read>gridColor</read>
+        <write>setGridColor</write>
+        <briefdescription>
+<para>Color of the major grid lines. Default: <computeroutput>#8c8c8c</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="30" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a8d1d4b359b69e1b3275c5ea02fabbfbb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::subGridColor</definition>
+        <argsstring></argsstring>
+        <name>subGridColor</name>
+        <qualifiedname>QAccelPlot::Grid::subGridColor</qualifiedname>
+        <read>subGridColor</read>
+        <write>setSubGridColor</write>
+        <briefdescription>
+<para>Color of the sub-grid lines. Default: <computeroutput>#b4b4b4</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="32" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1aa91b5f651d93e746cb299af57534cec1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVisible</definition>
+        <argsstring></argsstring>
+        <name>gridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridVisible</qualifiedname>
+        <read>gridVisible</read>
+        <write>setGridVisible</write>
+        <briefdescription>
+<para>Whether major grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="34" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a9ac67fc6344da5a803011ceddda99e60" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVisible</definition>
+        <argsstring></argsstring>
+        <name>subGridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVisible</qualifiedname>
+        <read>subGridVisible</read>
+        <write>setSubGridVisible</write>
+        <briefdescription>
+<para>Whether sub-grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="36" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a7e542a217e2f929d2c7d7184ab66ed8e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridHorizontalLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>gridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridHorizontalLinesVisible</qualifiedname>
+        <read>gridHorizontalLinesVisible</read>
+        <write>setGridHorizontalLinesVisible</write>
+        <briefdescription>
+<para>Whether horizontal major grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="38" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a1d4340346d0ad506fa7d061794c9cef3" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVerticalLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>gridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridVerticalLinesVisible</qualifiedname>
+        <read>gridVerticalLinesVisible</read>
+        <write>setGridVerticalLinesVisible</write>
+        <briefdescription>
+<para>Whether vertical major grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="40" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a1959a4a4ee85c54ff0500ccd65f7ad5f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridHorizontalLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>subGridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridHorizontalLinesVisible</qualifiedname>
+        <read>subGridHorizontalLinesVisible</read>
+        <write>setSubGridHorizontalLinesVisible</write>
+        <briefdescription>
+<para>Whether horizontal sub-grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="42" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Grid_1a5b712ac38a46a71d125ed6e45ee48437" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVerticalLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>subGridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVerticalLinesVisible</qualifiedname>
+        <read>subGridVerticalLinesVisible</read>
+        <write>setSubGridVerticalLinesVisible</write>
+        <briefdescription>
+<para>Whether vertical sub-grid lines are visible. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="45" column="5" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1adf022c82f0a6d245d4df611c2f928bcd" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Grid::lineWidth_</definition>
+        <argsstring></argsstring>
+        <name>lineWidth_</name>
+        <qualifiedname>QAccelPlot::Grid::lineWidth_</qualifiedname>
+        <initializer>{2.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="124" column="11" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="124" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a978bc3c864a3f26b70efe395dc8bca20" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Grid::subGridLineWidth_</definition>
+        <argsstring></argsstring>
+        <name>subGridLineWidth_</name>
+        <qualifiedname>QAccelPlot::Grid::subGridLineWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="125" column="11" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1ae2fc60639730efa0d882caff4d310beb" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::gridColor_</definition>
+        <argsstring></argsstring>
+        <name>gridColor_</name>
+        <qualifiedname>QAccelPlot::Grid::gridColor_</qualifiedname>
+        <initializer>{&quot;#8c8c8c&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="126" column="12" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="126" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a5f6da844501ad007dabd3eb66d177d6d" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::subGridColor_</definition>
+        <argsstring></argsstring>
+        <name>subGridColor_</name>
+        <qualifiedname>QAccelPlot::Grid::subGridColor_</qualifiedname>
+        <initializer>{&quot;#b4b4b4&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="127" column="12" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1ae538faf09703edbc33c5c9144224a770" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVisible_</definition>
+        <argsstring></argsstring>
+        <name>gridVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::gridVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="128" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a6a9d3c308fcfaa5dc4fabd7f816ebcd5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVisible_</definition>
+        <argsstring></argsstring>
+        <name>subGridVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="129" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="129" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a4fd198e6e64dac42d434ab74510c5385" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridHorizontalLinesVisible_</definition>
+        <argsstring></argsstring>
+        <name>gridHorizontalLinesVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::gridHorizontalLinesVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="130" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a71461437cef6b57cb3c6e5db8634cbd0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVerticalLinesVisible_</definition>
+        <argsstring></argsstring>
+        <name>gridVerticalLinesVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::gridVerticalLinesVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="131" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1aa0c197c399ec7f68911d3db98789537b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridHorizontalLinesVisible_</definition>
+        <argsstring></argsstring>
+        <name>subGridHorizontalLinesVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::subGridHorizontalLinesVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="132" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Grid_1a3106b01297e11536d4e71a84d111e437" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVerticalLinesVisible_</definition>
+        <argsstring></argsstring>
+        <name>subGridVerticalLinesVisible_</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVerticalLinesVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="133" column="10" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="133" bodyend="133"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1af8f709a023a9ca32d784ed692372bb0d" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Grid::Grid</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>Grid</name>
+        <qualifiedname>QAccelPlot::Grid::Grid</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1Grid" kindref="compound">Grid</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="49" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1aca024a17e23fa5ce8259b25a6a66b997" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Grid::lineWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::lineWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the major grid line width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="52" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a98a114d56ab62e07dfd6383db6e6b309" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setLineWidth</definition>
+        <argsstring>(qreal w)</argsstring>
+        <name>setLineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::setLineWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Sets the major grid line width to <emphasis>w</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="54" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a1691fd24efebe50ecb9a02e74006eaaf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Grid::subGridLineWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>subGridLineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::subGridLineWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the sub-grid line width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="57" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1aafdb73234361d4050e86a00e55ee26e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setSubGridLineWidth</definition>
+        <argsstring>(qreal w)</argsstring>
+        <name>setSubGridLineWidth</name>
+        <qualifiedname>QAccelPlot::Grid::setSubGridLineWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Sets the sub-grid line width to <emphasis>w</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="59" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a4aae6a64a69805e8818db98c34a10892" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::gridColor</definition>
+        <argsstring>() const</argsstring>
+        <name>gridColor</name>
+        <qualifiedname>QAccelPlot::Grid::gridColor</qualifiedname>
+        <briefdescription>
+<para>Returns the major grid line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="62" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a7bdab4cde6ff0bbd347c47d27d659efd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setGridColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setGridColor</name>
+        <qualifiedname>QAccelPlot::Grid::setGridColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the major grid line color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="64" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a226fade74173b09f084142f267e09ad8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::Grid::subGridColor</definition>
+        <argsstring>() const</argsstring>
+        <name>subGridColor</name>
+        <qualifiedname>QAccelPlot::Grid::subGridColor</qualifiedname>
+        <briefdescription>
+<para>Returns the sub-grid line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="67" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1ac3c27047cdc493867de2c0c4ca233db1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setSubGridColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setSubGridColor</name>
+        <qualifiedname>QAccelPlot::Grid::setSubGridColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the sub-grid line color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="69" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a6adf4c02569d824e663071259b50422f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>gridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if major grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="72" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a1ecae7ca20c762d2193068306709d3ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setGridVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setGridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setGridVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets major grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="74" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1ab64e7cd259306e37f1fe4c4d17d7a2b3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>subGridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if sub-grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1aa3235412c3767c64a0f3548b7b863f2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setSubGridVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setSubGridVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setSubGridVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets sub-grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="79" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a6198885bb819061aa961e8a6dee2407c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridHorizontalLinesVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>gridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridHorizontalLinesVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if horizontal major grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="82" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a47c2d40743327539f934d2d026fe6050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setGridHorizontalLinesVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setGridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setGridHorizontalLinesVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets horizontal major grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="84" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a82f58aee90a1fac095f6344575f4f6bf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::gridVerticalLinesVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>gridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::gridVerticalLinesVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if vertical major grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="87" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a17a12690a521cab8fb27eae4d495b2b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setGridVerticalLinesVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setGridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setGridVerticalLinesVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets vertical major grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="89" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a506297bdada421996dd5ceccb5938e43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridHorizontalLinesVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>subGridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridHorizontalLinesVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if horizontal sub-grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="92" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a6def9522e6640e28d7f53b8d7b5ba0fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setSubGridHorizontalLinesVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setSubGridHorizontalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setSubGridHorizontalLinesVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets horizontal sub-grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="94" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a796236984b2d9f46211142835319b46e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Grid::subGridVerticalLinesVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>subGridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVerticalLinesVisible</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if vertical sub-grid lines are visible. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="97" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Grid_1a0731725661e361a2da448e8dbedd1f80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::setSubGridVerticalLinesVisible</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>setSubGridVerticalLinesVisible</name>
+        <qualifiedname>QAccelPlot::Grid::setSubGridVerticalLinesVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+<para>Sets vertical sub-grid line visibility to <emphasis>on</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="99" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1afce554e352750b484ad15329fe7e878a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::lineWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>lineWidthChanged</name>
+        <qualifiedname>QAccelPlot::Grid::lineWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the lineWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="103" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a65582d77d09dcd2cb2c07327725e9ad5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::subGridLineWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subGridLineWidthChanged</name>
+        <qualifiedname>QAccelPlot::Grid::subGridLineWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subGridLineWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="105" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a7b8eb9295a2c247f1ddce0dc6b20746f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::gridColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gridColorChanged</name>
+        <qualifiedname>QAccelPlot::Grid::gridColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gridColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="107" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a8c0ae7dbd62bf332b883437f1417be9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::subGridColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subGridColorChanged</name>
+        <qualifiedname>QAccelPlot::Grid::subGridColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subGridColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="109" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a8c62d36211b250ae311af9305dd7215f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::gridVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gridVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::gridVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gridVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="111" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1ae445a306404a3e0a962fd6869af34e14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::subGridVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subGridVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subGridVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="113" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1ac051c6974eb9a653196a3f6250b93362" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::gridHorizontalLinesVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gridHorizontalLinesVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::gridHorizontalLinesVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gridHorizontalLinesVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="115" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1ae065d9b2d3bb35d63503a20a4a845373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::gridVerticalLinesVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gridVerticalLinesVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::gridVerticalLinesVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gridVerticalLinesVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="117" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a59d4789206a8ce6d1a145a9ce24ad6d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::subGridHorizontalLinesVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subGridHorizontalLinesVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::subGridHorizontalLinesVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subGridHorizontalLinesVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="119" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1Grid_1a229cba323065b9a07db1ed052ed3a1f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Grid::subGridVerticalLinesVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subGridVerticalLinesVisibleChanged</name>
+        <qualifiedname>QAccelPlot::Grid::subGridVerticalLinesVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subGridVerticalLinesVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/Grid.hpp" line="121" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Configuration object that controls the appearance of the plot grid. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Exposed as a CONSTANT property on <computeroutput>PlotView</computeroutput>. Major grid lines are drawn at the same positions as the X/Y axis ticks; sub-grid lines are drawn between them.</para>
+<para><simplesect kind="see"><para>PlotView </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Grid</label>
+        <link refid="classQAccelPlot_1_1Grid"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Grid</label>
+        <link refid="classQAccelPlot_1_1Grid"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/grid/Grid.hpp" line="22" column="1" bodyfile="QAccelPlot/src/grid/Grid.hpp" bodystart="22" bodyend="134"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Grid_1af8f709a023a9ca32d784ed692372bb0d" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>Grid</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae5110ca5927cbb58dc4b8db1978891d6" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a4aae6a64a69805e8818db98c34a10892" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae2fc60639730efa0d882caff4d310beb" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridColor_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a7b8eb9295a2c247f1ddce0dc6b20746f" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a7e542a217e2f929d2c7d7184ab66ed8e" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a6198885bb819061aa961e8a6dee2407c" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a4fd198e6e64dac42d434ab74510c5385" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridHorizontalLinesVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ac051c6974eb9a653196a3f6250b93362" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridHorizontalLinesVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a1d4340346d0ad506fa7d061794c9cef3" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a82f58aee90a1fac095f6344575f4f6bf" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a71461437cef6b57cb3c6e5db8634cbd0" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVerticalLinesVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae065d9b2d3bb35d63503a20a4a845373" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVerticalLinesVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1aa91b5f651d93e746cb299af57534cec1" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a6adf4c02569d824e663071259b50422f" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae538faf09703edbc33c5c9144224a770" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a8c62d36211b250ae311af9305dd7215f" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>gridVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ad18ba8c75daa8a2ae30d0d8569360ca5" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1aca024a17e23fa5ce8259b25a6a66b997" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1adf022c82f0a6d245d4df611c2f928bcd" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>lineWidth_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1afce554e352750b484ad15329fe7e878a" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>lineWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a7bdab4cde6ff0bbd347c47d27d659efd" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setGridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a47c2d40743327539f934d2d026fe6050" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setGridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a17a12690a521cab8fb27eae4d495b2b1" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setGridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a1ecae7ca20c762d2193068306709d3ba" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setGridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a98a114d56ab62e07dfd6383db6e6b309" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setLineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ac3c27047cdc493867de2c0c4ca233db1" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setSubGridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a6def9522e6640e28d7f53b8d7b5ba0fe" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setSubGridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1aafdb73234361d4050e86a00e55ee26e9" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setSubGridLineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a0731725661e361a2da448e8dbedd1f80" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setSubGridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1aa3235412c3767c64a0f3548b7b863f2a" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>setSubGridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a8d1d4b359b69e1b3275c5ea02fabbfbb" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a226fade74173b09f084142f267e09ad8" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridColor</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a5f6da844501ad007dabd3eb66d177d6d" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridColor_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a8c0ae7dbd62bf332b883437f1417be9d" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a1959a4a4ee85c54ff0500ccd65f7ad5f" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a506297bdada421996dd5ceccb5938e43" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridHorizontalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1aa0c197c399ec7f68911d3db98789537b" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridHorizontalLinesVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a59d4789206a8ce6d1a145a9ce24ad6d3" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridHorizontalLinesVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae6f7de6fe0d6a7933d6142639eb97d66" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridLineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a1691fd24efebe50ecb9a02e74006eaaf" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridLineWidth</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a978bc3c864a3f26b70efe395dc8bca20" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridLineWidth_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a65582d77d09dcd2cb2c07327725e9ad5" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridLineWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a5b712ac38a46a71d125ed6e45ee48437" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a796236984b2d9f46211142835319b46e" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVerticalLinesVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a3106b01297e11536d4e71a84d111e437" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVerticalLinesVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a229cba323065b9a07db1ed052ed3a1f3" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVerticalLinesVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a9ac67fc6344da5a803011ceddda99e60" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ab64e7cd259306e37f1fe4c4d17d7a2b3" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVisible</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1a6a9d3c308fcfaa5dc4fabd7f816ebcd5" prot="private" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVisible_</name></member>
+      <member refid="classQAccelPlot_1_1Grid_1ae445a306404a3e0a962fd6869af34e14" prot="public" virt="non-virtual"><scope>QAccelPlot::Grid</scope><name>subGridVisibleChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

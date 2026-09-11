@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::GridNode::GridLineCollectionParams</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1aa7fdb570122cc91ec90cb775deb404fe" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>const Axis* QAccelPlot::GridNode::GridLineCollectionParams::axis</definition>
+        <argsstring></argsstring>
+        <name>axis</name>
+        <qualifiedname>QAccelPlot::GridNode::GridLineCollectionParams::axis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/GridNode.hpp" line="42" column="20" bodyfile="QAccelPlot/src/grid/GridNode.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1a5f4f093ddd83f57cae9c675552a39fb6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::GridNode::GridLineCollectionParams::gridLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>gridLinesVisible</name>
+        <qualifiedname>QAccelPlot::GridNode::GridLineCollectionParams::gridLinesVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/GridNode.hpp" line="43" column="14" bodyfile="QAccelPlot/src/grid/GridNode.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1a0b05dad628d723c86eaaaa12e08cb15e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::GridNode::GridLineCollectionParams::subGridLinesVisible</definition>
+        <argsstring></argsstring>
+        <name>subGridLinesVisible</name>
+        <qualifiedname>QAccelPlot::GridNode::GridLineCollectionParams::subGridLinesVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/GridNode.hpp" line="44" column="14" bodyfile="QAccelPlot/src/grid/GridNode.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1aaa0c25516fdafdc558b25c05b5f18c1b" prot="public" static="no" mutable="no">
+        <type>std::function&lt; QRectF(qreal dataValue, qreal halfWidth)&gt;</type>
+        <definition>std::function&lt;QRectF(qreal dataValue, qreal halfWidth)&gt; QAccelPlot::GridNode::GridLineCollectionParams::makeRect</definition>
+        <argsstring></argsstring>
+        <name>makeRect</name>
+        <qualifiedname>QAccelPlot::GridNode::GridLineCollectionParams::makeRect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/grid/GridNode.hpp" line="46" column="23" bodyfile="QAccelPlot/src/grid/GridNode.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::GridNode::GridLineCollectionParams</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>axis</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/grid/GridNode.hpp" line="41" column="5" bodyfile="QAccelPlot/src/grid/GridNode.hpp" bodystart="41" bodyend="47"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1aa7fdb570122cc91ec90cb775deb404fe" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode::GridLineCollectionParams</scope><name>axis</name></member>
+      <member refid="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1a5f4f093ddd83f57cae9c675552a39fb6" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode::GridLineCollectionParams</scope><name>gridLinesVisible</name></member>
+      <member refid="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1aaa0c25516fdafdc558b25c05b5f18c1b" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode::GridLineCollectionParams</scope><name>makeRect</name></member>
+      <member refid="structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams_1a0b05dad628d723c86eaaaa12e08cb15e" prot="public" virt="non-virtual"><scope>QAccelPlot::GridNode::GridLineCollectionParams</scope><name>subGridLinesVisible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

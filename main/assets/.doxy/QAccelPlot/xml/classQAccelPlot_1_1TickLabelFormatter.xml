@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1TickLabelFormatter" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>QAccelPlot::TickLabelFormatter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::DateTimeTickLabelFormatter</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1LogTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::LogTickLabelFormatter</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1NumericTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::NumericTickLabelFormatter</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::TextTickLabelFormatter</derivedcompoundref>
+    <includes local="no">TickLabelFormatter.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQJSValue</type>
+        <definition>QML_ANONYMOUSQJSValue QAccelPlot::TickLabelFormatter::tickLabel</definition>
+        <argsstring></argsstring>
+        <name>tickLabel</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::tickLabel</qualifiedname>
+        <read>tickLabel</read>
+        <write>setTickLabel</write>
+        <briefdescription>
+<para>Optional JavaScript callback <computeroutput>function(value, tickStep)</computeroutput> that overrides <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="27" column="5" bodyfile="QAccelPlot/src/formatters/TickLabelFormatter.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1TickLabelFormatter_1a3ca0c93bb6a280377ae34fc1ecf1c312" prot="private" static="no" mutable="no">
+        <type>QJSValue</type>
+        <definition>QJSValue QAccelPlot::TickLabelFormatter::tickLabel_</definition>
+        <argsstring></argsstring>
+        <name>tickLabel_</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::tickLabel_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="54" column="14" bodyfile="QAccelPlot/src/formatters/TickLabelFormatter.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::TickLabelFormatter::TickLabelFormatter</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>TickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::TickLabelFormatter</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="31" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TickLabelFormatter::format</definition>
+        <argsstring>(qreal value, qreal tickStep) const</argsstring>
+        <name>format</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::format</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Returns the display string for <emphasis>value</emphasis> at the given <emphasis>tickStep</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calls the <computeroutput>tickLabel</computeroutput> JS callback if set; otherwise delegates to <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="36" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QJSValue</type>
+        <definition>QJSValue QAccelPlot::TickLabelFormatter::tickLabel</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabel</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::tickLabel</qualifiedname>
+        <briefdescription>
+<para>Returns the optional JavaScript override callback. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="39" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TickLabelFormatter::setTickLabel</definition>
+        <argsstring>(const QJSValue &amp;tickLabel)</argsstring>
+        <name>setTickLabel</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::setTickLabel</qualifiedname>
+        <param>
+          <type>const QJSValue &amp;</type>
+          <declname>tickLabel</declname>
+        </param>
+        <briefdescription>
+<para>Sets the JavaScript override callback to <emphasis>tickLabel</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="41" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TickLabelFormatter::tickLabelChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelChanged</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::tickLabelChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabel property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::TickLabelFormatter::formatChanged</definition>
+        <argsstring>()</argsstring>
+        <name>formatChanged</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::formatChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted whenever a property that affects formatted output changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="47" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>QString</type>
+        <definition>virtual QString QAccelPlot::TickLabelFormatter::doFormat</definition>
+        <argsstring>(qreal value, qreal tickStep) const =0</argsstring>
+        <name>doFormat</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::doFormat</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a645a7a42c679a92684baec50280f41bc">doFormat</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LogTickLabelFormatter_1a9cf7767769458b35befc9f2c2455d31e">doFormat</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1NumericTickLabelFormatter_1adf4fcaeb623da82077c1b56957fcc6fb">doFormat</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1TextTickLabelFormatter_1a383f71783d6e3052200b1f01087362a2">doFormat</reimplementedby>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Subclass entry point — returns the formatted label for <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="51" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for tick label formatters. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Subclasses implement <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat()</ref></computeroutput> to produce a display string for each tick value. An optional <computeroutput>tickLabel</computeroutput> JavaScript callback can override the default formatting at the QML level.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1LogTickLabelFormatter" kindref="compound">LogTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::DateTimeTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1DateTimeTickLabelFormatter"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::LogTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1LogTickLabelFormatter"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::NumericTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1NumericTickLabelFormatter"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::TextTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TextTickLabelFormatter"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp" line="22" column="1" bodyfile="QAccelPlot/src/formatters/TickLabelFormatter.hpp" bodystart="22" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" prot="protected" virt="pure-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>format</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>setTickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a3ca0c93bb6a280377ae34fc1ecf1c312" prot="private" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabel_</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabelChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>TickLabelFormatter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

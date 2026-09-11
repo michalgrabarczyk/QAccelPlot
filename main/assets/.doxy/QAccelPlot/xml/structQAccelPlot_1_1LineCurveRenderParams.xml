@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1LineCurveRenderParams" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineCurveRenderParams</compoundname>
+    <includes local="no">LineCurveLineRenderer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a35b40f97e803dcc2f276e18356c079d6" prot="public" static="no" mutable="no">
+        <type>QQuickWindow *</type>
+        <definition>QQuickWindow* QAccelPlot::LineCurveRenderParams::window</definition>
+        <argsstring></argsstring>
+        <name>window</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::window</qualifiedname>
+        <briefdescription>
+<para>Window providing the texture upload context. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="32" column="18" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a06fb8f0c28c9935dbaca769670a83be5" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; float &gt; &amp;</type>
+        <definition>const std::vector&lt;float&gt;&amp; QAccelPlot::LineCurveRenderParams::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::data</qualifiedname>
+        <briefdescription>
+<para>Interleaved XY float data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="33" column="23" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a60435699444bc4a3ba63f382b39a31ec" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineCurveRenderParams::pointCount</definition>
+        <argsstring></argsstring>
+        <name>pointCount</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::pointCount</qualifiedname>
+        <briefdescription>
+<para>Number of points in <computeroutput>data</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="34" column="9" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1aa001597698a42ca5f23577f7f46e5b72" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveRenderParams::dataChanged</definition>
+        <argsstring></argsstring>
+        <name>dataChanged</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::dataChanged</qualifiedname>
+        <briefdescription>
+<para>Whether the data buffer has changed since the last frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="35" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1aca21633d9af62b39ab1c6416292b39c2" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::LineCurveRenderParams::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::color</qualifiedname>
+        <briefdescription>
+<para>Base line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="36" column="12" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a3cff84fce5e226790d3b031f68fa6430" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveRenderParams::hovered</definition>
+        <argsstring></argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::hovered</qualifiedname>
+        <briefdescription>
+<para>Whether the curve is currently hovered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="37" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a8fbf1943db4b40f9318bc3eb4b99f768" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::LineCurveRenderParams::lineWidth</definition>
+        <argsstring></argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::lineWidth</qualifiedname>
+        <briefdescription>
+<para>Line width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="38" column="11" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a8573d66d03e69fe44a49d6d1994f72f6" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineCurveRenderParams::domainMin</definition>
+        <argsstring></argsstring>
+        <name>domainMin</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::domainMin</qualifiedname>
+        <briefdescription>
+<para>Minimum data-space coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="39" column="15" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a9b78b39ca3183a85cdf514b9890d9ad9" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineCurveRenderParams::domainMax</definition>
+        <argsstring></argsstring>
+        <name>domainMax</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::domainMax</qualifiedname>
+        <briefdescription>
+<para>Maximum data-space coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="40" column="15" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a196c4f42c192ceb037b6e55061d5b297" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineCurveRenderParams::viewportSize</definition>
+        <argsstring></argsstring>
+        <name>viewportSize</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::viewportSize</qualifiedname>
+        <briefdescription>
+<para>Viewport size in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="41" column="15" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1ad1b558a4423a698ca00a5a35a99c11ed" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::LineCurveRenderParams::xAxis</definition>
+        <argsstring></argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::xAxis</qualifiedname>
+        <briefdescription>
+<para>Horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="42" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1adefacd8b4398dfc710ac8fda5437de86" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::LineCurveRenderParams::yAxis</definition>
+        <argsstring></argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::yAxis</qualifiedname>
+        <briefdescription>
+<para>Vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="43" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1aced0dea62296b62750e78f3cd16a22e9" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveRenderParams::logScaleX</definition>
+        <argsstring></argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::logScaleX</qualifiedname>
+        <briefdescription>
+<para>Whether the X axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="44" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a17be9314421a97e9f7c010f50788e77c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveRenderParams::logScaleY</definition>
+        <argsstring></argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::logScaleY</qualifiedname>
+        <briefdescription>
+<para>Whether the Y axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="45" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1aa1857064adf1a10bfab82832c6b1baed" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveRenderParams::antialiasingEnabled</definition>
+        <argsstring></argsstring>
+        <name>antialiasingEnabled</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::antialiasingEnabled</qualifiedname>
+        <briefdescription>
+<para>Whether GPU-side anti-aliasing is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="46" column="10" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1afab5d95af1d7038fdedfde2bec1d9baf" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::LineCurveRenderParams::antialiasingFeather</definition>
+        <argsstring></argsstring>
+        <name>antialiasingFeather</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::antialiasingFeather</qualifiedname>
+        <briefdescription>
+<para>Anti-aliasing feather width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="47" column="11" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a180ea503150f49a7c07fc363d1b78e67" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref> &amp;</type>
+        <definition>const GradientColorPayload&amp; QAccelPlot::LineCurveRenderParams::gradientPayload</definition>
+        <argsstring></argsstring>
+        <name>gradientPayload</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::gradientPayload</qualifiedname>
+        <briefdescription>
+<para>Gradient stroke parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="48" column="32" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a2cf199f8410c7c1c0de3810050ea0a07" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structQAccelPlot_1_1GradientFillPayload" kindref="compound">GradientFillPayload</ref> &amp;</type>
+        <definition>const GradientFillPayload&amp; QAccelPlot::LineCurveRenderParams::gradientFillPayload</definition>
+        <argsstring></argsstring>
+        <name>gradientFillPayload</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::gradientFillPayload</qualifiedname>
+        <briefdescription>
+<para>Gradient fill parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="49" column="31" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a10152470065abb408038036ccf05637f" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; char &gt; *</type>
+        <definition>const std::vector&lt;char&gt;* QAccelPlot::LineCurveRenderParams::vertexCache</definition>
+        <argsstring></argsstring>
+        <name>vertexCache</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::vertexCache</qualifiedname>
+        <briefdescription>
+<para>Pre-built vertex buffer, or <computeroutput>nullptr</computeroutput> to build on the render thread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="50" column="23" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveRenderParams_1a4ab4ba8b8debf5085265dc7b8e887531" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
+        <definition>const LineStyle* QAccelPlot::LineCurveRenderParams::lineStyle</definition>
+        <argsstring></argsstring>
+        <name>lineStyle</name>
+        <qualifiedname>QAccelPlot::LineCurveRenderParams::lineStyle</qualifiedname>
+        <briefdescription>
+<para>Active line style (dash pattern etc.). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="51" column="21" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Input parameters for <ref refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" kindref="member">LineCurveLineRenderer::paint()</ref>, assembled on the main thread. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::GradientColorPayload</label>
+        <link refid="structQAccelPlot_1_1GradientColorPayload"/>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::GradientFillPayload</label>
+        <link refid="structQAccelPlot_1_1GradientFillPayload"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LineCurveRenderParams</label>
+        <link refid="structQAccelPlot_1_1LineCurveRenderParams"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>xAxis</edgelabel>
+          <edgelabel>yAxis</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>gradientPayload</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>gradientFillPayload</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>lineStyle</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>QObject</label>
+      </node>
+      <node id="3">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="31" column="1" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="31" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aa1857064adf1a10bfab82832c6b1baed" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>antialiasingEnabled</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1afab5d95af1d7038fdedfde2bec1d9baf" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>antialiasingFeather</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aca21633d9af62b39ab1c6416292b39c2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>color</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a06fb8f0c28c9935dbaca769670a83be5" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>data</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aa001597698a42ca5f23577f7f46e5b72" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>dataChanged</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a9b78b39ca3183a85cdf514b9890d9ad9" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>domainMax</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a8573d66d03e69fe44a49d6d1994f72f6" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>domainMin</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a2cf199f8410c7c1c0de3810050ea0a07" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>gradientFillPayload</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a180ea503150f49a7c07fc363d1b78e67" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>gradientPayload</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a3cff84fce5e226790d3b031f68fa6430" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>hovered</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a4ab4ba8b8debf5085265dc7b8e887531" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>lineStyle</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a8fbf1943db4b40f9318bc3eb4b99f768" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>lineWidth</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aced0dea62296b62750e78f3cd16a22e9" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>logScaleX</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a17be9314421a97e9f7c010f50788e77c" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>logScaleY</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a60435699444bc4a3ba63f382b39a31ec" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>pointCount</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a10152470065abb408038036ccf05637f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>vertexCache</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a196c4f42c192ceb037b6e55061d5b297" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>viewportSize</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a35b40f97e803dcc2f276e18356c079d6" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>window</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1ad1b558a4423a698ca00a5a35a99c11ed" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>xAxis</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveRenderParams_1adefacd8b4398dfc710ac8fda5437de86" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveRenderParams</scope><name>yAxis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineStyle" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineStyle</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1DashLine" prot="public" virt="non-virtual">QAccelPlot::DashLine</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1NoLine" prot="public" virt="non-virtual">QAccelPlot::NoLine</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1SolidLine" prot="public" virt="non-virtual">QAccelPlot::SolidLine</derivedcompoundref>
+    <includes local="no">LineStyle.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSbool</type>
+        <definition>QML_ANONYMOUSbool QAccelPlot::LineStyle::showLine</definition>
+        <argsstring></argsstring>
+        <name>showLine</name>
+        <qualifiedname>QAccelPlot::LineStyle::showLine</qualifiedname>
+        <read>showLine</read>
+        <briefdescription>
+<para>Whether the line should be rendered. Subclasses override to suppress (e.g. <ref refid="classQAccelPlot_1_1NoLine" kindref="compound">NoLine</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="38" column="5" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::LineStyle::LineStyle</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>LineStyle</name>
+        <qualifiedname>QAccelPlot::LineStyle::LineStyle</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="42" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineStyle_1a93fcf892e51f33f4f41a040f3a91d7d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool QAccelPlot::LineStyle::showLine</definition>
+        <argsstring>() const</argsstring>
+        <name>showLine</name>
+        <qualifiedname>QAccelPlot::LineStyle::showLine</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1NoLine_1a24d0be58709fc5175082802242ffef5c">showLine</reimplementedby>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if the line should be rendered. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="45" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structQAccelPlot_1_1DashParameters" kindref="compound">DashParameters</ref></type>
+        <definition>virtual DashParameters QAccelPlot::LineStyle::dashParameters</definition>
+        <argsstring>() const</argsstring>
+        <name>dashParameters</name>
+        <qualifiedname>QAccelPlot::LineStyle::dashParameters</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1DashLine_1af71fe41ca2c42f49499868bcabb160f1">dashParameters</reimplementedby>
+        <briefdescription>
+<para>Returns the dash parameters for this style. Default: disabled dash. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="47" column="28"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1LineStyle_1aac0ae1f4156eb7ce665fb08934e86249" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineStyle::styleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>styleChanged</name>
+        <qualifiedname>QAccelPlot::LineStyle::styleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when any style property changes, triggering a curve redraw. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="51" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for all line styles. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Subclasses control whether a line is drawn (<computeroutput><ref refid="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" kindref="member">showLine()</ref></computeroutput>) and supply dash parameters to the renderer via <computeroutput><ref refid="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab" kindref="member">dashParameters()</ref></computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SolidLine" kindref="compound">SolidLine</ref>, <ref refid="classQAccelPlot_1_1NoLine" kindref="compound">NoLine</ref>, <ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::DashLine</label>
+        <link refid="classQAccelPlot_1_1DashLine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::NoLine</label>
+        <link refid="classQAccelPlot_1_1NoLine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>QAccelPlot::SolidLine</label>
+        <link refid="classQAccelPlot_1_1SolidLine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="33" column="1" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="33" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab" prot="public" virt="virtual"><scope>QAccelPlot::LineStyle</scope><name>dashParameters</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStyle</scope><name>LineStyle</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStyle</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a93fcf892e51f33f4f41a040f3a91d7d6" prot="public" virt="virtual"><scope>QAccelPlot::LineStyle</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1aac0ae1f4156eb7ce665fb08934e86249" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStyle</scope><name>styleChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

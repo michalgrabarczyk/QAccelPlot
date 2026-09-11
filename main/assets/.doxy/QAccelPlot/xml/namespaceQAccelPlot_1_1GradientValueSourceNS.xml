@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1GradientValueSourceNS" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::GradientValueSourceNS</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Source</name>
+        <qualifiedname>QAccelPlot::GradientValueSourceNS::Source</qualifiedname>
+        <enumvalue id="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721ae9fb04d50834f3ec1f30b610896f7e38" prot="public">
+          <name>DataRange</name>
+          <briefdescription>
+<para>Range is derived from the curve&apos;s current data range. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721a4457d440870ad6d42bab9082d9bf9b61" prot="public">
+          <name>Fixed</name>
+          <briefdescription>
+<para>Range is set explicitly via <computeroutput>gradientValueMin</computeroutput> / <computeroutput>gradientValueMax</computeroutput>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Determines how the gradient normalisation range is resolved. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="54" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="54" bodyend="57"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Namespace exposing the <computeroutput>GradientValueSource</computeroutput> enum to QML. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="49" column="1"/>
+  </compounddef>
+</doxygen>

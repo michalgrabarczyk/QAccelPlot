@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineCurveVertexCache" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>QAccelPlot::LineCurveVertexCache</compoundname>
+    <includes local="no">LineCurveVertexCache.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Layout</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::Layout</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a4803e6b9e63dabf04de980788d6a13c4" prot="public">
+          <name>Line</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110a75dd5f1160a3f02b6fae89c54361a1b3" prot="public">
+          <name>Points</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Renderer geometry represented by the cached bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="24" column="5" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classQAccelPlot_1_1LineCurveVertexCache_1afae18dc0c61d860d70795d31064ab125" prot="public" static="no">
+        <type>std::function&lt; void(std::vector&lt; char &gt; &amp;)&gt;</type>
+        <definition>using QAccelPlot::LineCurveVertexCache::Builder =  std::function&lt;void(std::vector&lt;char&gt;&amp;)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Builder</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::Builder</qualifiedname>
+        <briefdescription>
+<para>Function that writes a complete cache into the supplied reusable byte buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="27" column="5" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveVertexCache_1a307a22803b7438b0959ebc5e4a3bb9fd" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; char &gt;</type>
+        <definition>std::vector&lt;char&gt; QAccelPlot::LineCurveVertexCache::bytes_</definition>
+        <argsstring></argsstring>
+        <name>bytes_</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::bytes_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="69" column="17" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveVertexCache_1a40d7258ae57ebcf1f5abc599ce1861b1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveVertexCache::valid_</definition>
+        <argsstring></argsstring>
+        <name>valid_</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::valid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="70" column="10" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveVertexCache_1a785a347479d658c31b9d801afad0f453" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kindref="member">Layout</ref></type>
+        <definition>Layout QAccelPlot::LineCurveVertexCache::layout_</definition>
+        <argsstring></argsstring>
+        <name>layout_</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::layout_</qualifiedname>
+        <initializer>{Layout::None}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="71" column="12" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveVertexCache_1ac90e5bc777d8c3dc227470fa91e3d50f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineCurveVertexCache::pointCount_</definition>
+        <argsstring></argsstring>
+        <name>pointCount_</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::pointCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="72" column="9" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a12e7efd8fbd4b50d616c0189f52bff44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveVertexCache::install</definition>
+        <argsstring>(std::vector&lt; char &gt; &amp;&amp;bytes, Layout layout, int pointCount, std::size_t expectedSize)</argsstring>
+        <name>install</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::install</qualifiedname>
+        <param>
+          <type>std::vector&lt; char &gt; &amp;&amp;</type>
+          <declname>bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kindref="member">Layout</ref></type>
+          <declname>layout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>expectedSize</declname>
+        </param>
+        <briefdescription>
+<para>Installs externally built cache <emphasis>bytes</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns <computeroutput>true</computeroutput> when the byte count matches <emphasis>expectedSize</emphasis> and the supplied metadata describes a usable cache. On failure, the cache is cleared. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="33" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a9723e5a2902701f179aa003c1b327905" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveVertexCache::rebuild</definition>
+        <argsstring>(Layout layout, int pointCount, const Builder &amp;builder)</argsstring>
+        <name>rebuild</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::rebuild</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kindref="member">Layout</ref></type>
+          <declname>layout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1LineCurveVertexCache_1afae18dc0c61d860d70795d31064ab125" kindref="member">Builder</ref> &amp;</type>
+          <declname>builder</declname>
+        </param>
+        <briefdescription>
+<para>Rebuilds the cache with <emphasis>builder</emphasis> while retaining reusable allocation capacity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The rebuilt cache is valid only when the builder produces bytes and the supplied <emphasis>layout</emphasis> and <emphasis>pointCount</emphasis> are usable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a0f2757d13dc532cdffa6d4389a21304b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveVertexCache::isReusableForDataChange</definition>
+        <argsstring>(Layout requiredLayout, int pointCount) const noexcept</argsstring>
+        <name>isReusableForDataChange</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::isReusableForDataChange</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kindref="member">Layout</ref></type>
+          <declname>requiredLayout</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns whether this cache can survive a data change with the requested layout. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Solid-line cache vertices contain no XY values and can therefore be reused when the point count remains unchanged. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="45" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a823419e4b3e0a68159a68f0574c0656a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveVertexCache::invalidate</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>invalidate</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::invalidate</qualifiedname>
+        <briefdescription>
+<para>Marks the cache unusable while retaining its byte allocation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a1f0861655060cca4820bb5a801a449f9" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveVertexCache::clear</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::clear</qualifiedname>
+        <briefdescription>
+<para>Removes all cached bytes and resets the compatibility metadata. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a3c4b6e4a4d25dd17c6625b99ff1eea67" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::vector&lt; char &gt; *</type>
+        <definition>const std::vector&lt; char &gt; * QAccelPlot::LineCurveVertexCache::data</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::data</qualifiedname>
+        <briefdescription>
+<para>Returns the cached bytes when valid, or <computeroutput>nullptr</computeroutput> otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="54" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a0ec15a535a0e4205f00c071dcb11889b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const std::vector&lt; char &gt; &amp;</type>
+        <definition>const std::vector&lt; char &gt; &amp; QAccelPlot::LineCurveVertexCache::bytes</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>bytes</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::bytes</qualifiedname>
+        <briefdescription>
+<para>Returns the owned byte buffer, including retained invalid storage. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="57" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a7ff00c6e743df04ae3d37a9489435aff" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveVertexCache::valid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::valid</qualifiedname>
+        <briefdescription>
+<para>Returns whether the cache contains compatible, usable data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="60" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1a75321154c0b8194d82ec31f8a5d15c54" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" kindref="member">Layout</ref></type>
+        <definition>Layout QAccelPlot::LineCurveVertexCache::layout</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>layout</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::layout</qualifiedname>
+        <briefdescription>
+<para>Returns the renderer geometry represented by the cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="63" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveVertexCache_1adc8876337927a277948372330f7a0364" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::LineCurveVertexCache::pointCount</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>pointCount</name>
+        <qualifiedname>QAccelPlot::LineCurveVertexCache::pointCount</qualifiedname>
+        <briefdescription>
+<para>Returns the point count associated with the cache. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="66" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Owns a <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>&apos;s pre-built vertex bytes and the metadata required to use them safely. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A cache is valid only for the vertex layout and point count recorded when it was installed or rebuilt. Invalidating a cache preserves its allocation for reuse; clearing it also releases the stored bytes. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/series/LineCurveVertexCache.hpp" line="21" column="1" bodyfile="QAccelPlot/src/series/LineCurveVertexCache.hpp" bodystart="21" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1afae18dc0c61d860d70795d31064ab125" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>Builder</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a0ec15a535a0e4205f00c071dcb11889b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>bytes</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a307a22803b7438b0959ebc5e4a3bb9fd" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>bytes_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a1f0861655060cca4820bb5a801a449f9" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a3c4b6e4a4d25dd17c6625b99ff1eea67" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a12e7efd8fbd4b50d616c0189f52bff44" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>install</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a823419e4b3e0a68159a68f0574c0656a" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>invalidate</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a0f2757d13dc532cdffa6d4389a21304b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>isReusableForDataChange</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a5d6071fcad71f0c11c8c69bf75e50110" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>Layout</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a75321154c0b8194d82ec31f8a5d15c54" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>layout</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a785a347479d658c31b9d801afad0f453" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>layout_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1adc8876337927a277948372330f7a0364" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>pointCount</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1ac90e5bc777d8c3dc227470fa91e3d50f" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>pointCount_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a9723e5a2902701f179aa003c1b327905" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>rebuild</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a7ff00c6e743df04ae3d37a9489435aff" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>valid</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveVertexCache_1a40d7258ae57ebcf1f5abc599ce1861b1" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveVertexCache</scope><name>valid_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

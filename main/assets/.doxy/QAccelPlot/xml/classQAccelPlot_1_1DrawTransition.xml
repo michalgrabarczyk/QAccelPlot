@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DrawTransition" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DrawTransition</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1DataTransition" prot="public" virt="non-virtual">QAccelPlot::DataTransition</basecompoundref>
+    <includes local="no">DrawTransition.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DrawTransition_1a69f652e7372b06d1d54bca34a736238e" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DrawTransition::DrawTransition</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>DrawTransition</name>
+        <qualifiedname>QAccelPlot::DrawTransition::DrawTransition</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/transitions/DrawTransition.hpp" line="25" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DrawTransition_1ac36e75a8ea0f5a47c63b6e1a2121c81b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DrawTransition::interpolate</definition>
+        <argsstring>(float easedProgress, const std::vector&lt; float &gt; &amp;fromData, int fromPointCount, const std::vector&lt; float &gt; &amp;toData, int toPointCount, std::vector&lt; float &gt; &amp;outData, int &amp;outPointCount) override</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>QAccelPlot::DrawTransition::interpolate</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1DataTransition_1a7f724ef15d1e432af39cc831b9a45d53">interpolate</reimplements>
+        <param>
+          <type>float</type>
+          <declname>easedProgress</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>fromData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fromPointCount</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>toData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>toPointCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;</type>
+          <declname>outData</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>outPointCount</declname>
+        </param>
+        <briefdescription>
+<para>Advances the transition by progressively revealing the target curve up to <emphasis>easedProgress</emphasis> (0–1). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/transitions/DrawTransition.hpp" line="29" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>An animation transition that reveals the target curve by drawing it point-by-point from start to end. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Assign to <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1aeec8b6c794c1bba729633ca946965577" kindref="member">LineCurve::transition</ref></computeroutput> to animate data updates with a progressive draw-in effect.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1MorphTransition" kindref="compound">MorphTransition</ref>, <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::DrawTransition</label>
+        <link refid="classQAccelPlot_1_1DrawTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::DataTransition</label>
+        <link refid="classQAccelPlot_1_1DataTransition"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::DrawTransition</label>
+        <link refid="classQAccelPlot_1_1DrawTransition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/transitions/DrawTransition.hpp" line="19" column="1" bodyfile="QAccelPlot/src/transitions/DrawTransition.hpp" bodystart="19" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataTransition_1a5de6c6267d3a6b329aab1a960356ab3b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>advance</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>cancel</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>DataTransition</name></member>
+      <member refid="classQAccelPlot_1_1DrawTransition_1a69f652e7372b06d1d54bca34a736238e" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>DrawTransition</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa85f2edef24b72eb568690609ab60fa" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>duration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adb5d9d25b47e39a4fb73fd0a30bc5e75" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>durationChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1aaa1bed54eccf52c687a98295269c3d7c" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1abcc106afb46ed281fcc49e2793dd5ff7" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>easing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>easingChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a7b3a05823431f464182370e387dc0b41" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1DrawTransition_1ac36e75a8ea0f5a47c63b6e1a2121c81b" prot="protected" virt="virtual"><scope>QAccelPlot::DrawTransition</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>running</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>runningChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setDuration</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setEasing</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a81a1b5fd01e2e83b40fdd6bb3128b375" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

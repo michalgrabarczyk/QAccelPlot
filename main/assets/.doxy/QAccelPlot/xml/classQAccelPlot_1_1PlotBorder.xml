@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PlotBorder" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotBorder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">PlotBorder.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotBorder_1ae4e370649dd03c1cf82569a8e5db7403" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQColor</type>
+        <definition>QML_ANONYMOUSQColor QAccelPlot::PlotBorder::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::PlotBorder::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Border color. Default: transparent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="21" column="5" bodyfile="QAccelPlot/src/PlotBorder.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotBorder_1a55cec99155271c3e8e81ec0281f39070" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotBorder::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::PlotBorder::width</qualifiedname>
+        <read>width</read>
+        <write>setWidth</write>
+        <briefdescription>
+<para>Border width in pixels. Default: 0 (disabled). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="23" column="5" bodyfile="QAccelPlot/src/PlotBorder.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotBorder_1aec79c534b0c8028cec6f46294b1a257e" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotBorder::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::PlotBorder::color_</qualifiedname>
+        <initializer>{Qt::transparent}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="39" column="12" bodyfile="QAccelPlot/src/PlotBorder.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotBorder_1ade1877e1b049c48ac235920cd0ac035a" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotBorder::width_</definition>
+        <argsstring></argsstring>
+        <name>width_</name>
+        <qualifiedname>QAccelPlot::PlotBorder::width_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="40" column="11" bodyfile="QAccelPlot/src/PlotBorder.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotBorder_1a77afd94c28cb2a4867635b53bdf3bf9b" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotBorder::PlotBorder</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>PlotBorder</name>
+        <qualifiedname>QAccelPlot::PlotBorder::PlotBorder</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="26" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotBorder_1aebaa6e2b8f0b08a0f698a8a8e1e605e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotBorder::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::PlotBorder::color</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="28" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotBorder_1acabfb85d4044ce232f89815262d0af67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotBorder::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::PlotBorder::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="29" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotBorder_1acf84137cbcc2a6c0bc711d5cdb43bbbe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotBorder::width</definition>
+        <argsstring>() const</argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::PlotBorder::width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="31" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotBorder_1a58d99a3df3a90b996b3c4693967ce0c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotBorder::setWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setWidth</name>
+        <qualifiedname>QAccelPlot::PlotBorder::setWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="32" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotBorder_1acb6d5cda84b2f1c8abd0458db8ab978a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotBorder::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::PlotBorder::colorChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="35" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotBorder_1a1c29c9cc54500ad745cd264122746974" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotBorder::widthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>widthChanged</name>
+        <qualifiedname>QAccelPlot::PlotBorder::widthChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/PlotBorder.hpp" line="36" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Decorative frame configuration exposed by <computeroutput>PlotView::border</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::PlotBorder</label>
+        <link refid="classQAccelPlot_1_1PlotBorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::PlotBorder</label>
+        <link refid="classQAccelPlot_1_1PlotBorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/PlotBorder.hpp" line="17" column="1" bodyfile="QAccelPlot/src/PlotBorder.hpp" bodystart="17" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotBorder_1ae4e370649dd03c1cf82569a8e5db7403" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1aebaa6e2b8f0b08a0f698a8a8e1e605e5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1aec79c534b0c8028cec6f46294b1a257e" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1acb6d5cda84b2f1c8abd0458db8ab978a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1a77afd94c28cb2a4867635b53bdf3bf9b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>PlotBorder</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1acabfb85d4044ce232f89815262d0af67" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1a58d99a3df3a90b996b3c4693967ce0c1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>setWidth</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1a55cec99155271c3e8e81ec0281f39070" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1acf84137cbcc2a6c0bc711d5cdb43bbbe" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1ade1877e1b049c48ac235920cd0ac035a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>width_</name></member>
+      <member refid="classQAccelPlot_1_1PlotBorder_1a1c29c9cc54500ad745cd264122746974" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotBorder</scope><name>widthChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

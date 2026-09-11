@@ -908,9 +908,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -924,7 +954,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1012,7 +1226,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="annotations-and-tools">Annotations and tools<a class="headerlink" href="#annotations-and-tools" title="Permanent link">&para;</a></h1>
 <h2 id="attach-qml-items-to-data">Attach QML items to data<a class="headerlink" href="#attach-qml-items-to-data" title="Permanent link">&para;</a></h2>
-<p>Create a clipped layer matching <a href="../../api/classQAccelPlot_1_1QAccelPlot.html#ad8106ed7a0613158e29ed0137edbd248"><code>plotRect</code></a>, then place <code>QAccelPlot.DataAnchor</code>
+<p>Create a clipped layer matching <a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a>, then place <code>QAccelPlot.DataAnchor</code>
 items inside it. Because the layer's origin is the plot area's top-left, pass a
 local plot rectangle to each anchor:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">Item</span> <span class="p">{</span>
@@ -1043,20 +1257,20 @@ local plot rectangle to each anchor:</p>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="p">}</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="p">}</span>
 </code></pre></div>
-<p><a href="../../api/classQAccelPlot_1_1DataAnchor.html"><code>QAccelPlot.DataAnchor</code></a> maps a data-space point, line, or rectangular extent
+<p><a href="../../api/classQAccelPlot_1_1DataAnchor/"><code>QAccelPlot.DataAnchor</code></a> maps a data-space point, line, or rectangular extent
 to its item geometry. It can contain any QML content—such as a <code>Rectangle</code>,
 <code>Canvas</code>, <code>Text</code>, or interaction handlers—which then follows panning and
 zooming. Set matching X and/or Y coordinates for point or line anchors; use
 all four bounds for a rectangle or range. This approach suits a modest number
 of rich, individually interactive annotations: each <code>QAccelPlot.DataAnchor</code>
 and its QML content adds <code>QQuickItem</code>s to the scene. For thousands of simple
-regions, prefer <a href="../../api/classQAccelPlot_1_1RectangleList.html"><code>QAccelPlot.RectangleList</code></a>, which represents the collection
+regions, prefer <a href="../../api/classQAccelPlot_1_1RectangleList/"><code>QAccelPlot.RectangleList</code></a>, which represents the collection
 with one <code>QQuickItem</code>.</p>
 <h2 id="highlight-many-data-regions">Highlight many data regions<a class="headerlink" href="#highlight-many-data-regions" title="Permanent link">&para;</a></h2>
-<p>Use <a href="../../api/classQAccelPlot_1_1RectangleList.html"><code>QAccelPlot.RectangleList</code></a> for many data-space rectangles, such as event
+<p>Use <a href="../../api/classQAccelPlot_1_1RectangleList/"><code>QAccelPlot.RectangleList</code></a> for many data-space rectangles, such as event
 windows or maintenance intervals, instead of creating one QML item per region.
-Its <a href="../../api/classQAccelPlot_1_1RectangleList.html#aaead3aa540e3521e1e6a365bdc313d6c"><code>setData()</code></a> method accepts rectangle bounds, and
-<a href="../../api/classQAccelPlot_1_1RectangleList.html#afb85815f91d34b3a35bbf957e9aa5e09"><code>hoveredIndex</code></a> identifies the region under the pointer for a
+Its <a href="../../api/classQAccelPlot_1_1RectangleList/#function-setdata"><code>setData()</code></a> method accepts rectangle bounds, and
+<a href="../../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>hoveredIndex</code></a> identifies the region under the pointer for a
 tooltip or selection:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleList</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
@@ -1083,12 +1297,12 @@ for the performance characteristics.</p>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">}</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
 </code></pre></div>
-<p>Use <a href="../../api/classQAccelPlot_1_1QAccelPlot.html#a64aa564d1fae3a901d22897b8c70d514"><code>dataToPixelX()</code></a> and <a href="../../api/classQAccelPlot_1_1QAccelPlot.html#af6e974159b9a04649636768ff923d797"><code>dataToPixelY()</code></a>
-to position handles. Use <a href="../../api/classQAccelPlot_1_1QAccelPlot.html#a484d049dd7188040e0c450bb9590ac0c"><code>pixelToDataX()</code></a> and
-<a href="../../api/classQAccelPlot_1_1QAccelPlot.html#abd81402f2c90d2287bb1ca41f1a35e49"><code>pixelToDataY()</code></a> while dragging them. Accept a plot event
+<p>Use <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a> and <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>
+to position handles. Use <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatax"><code>pixelToDataX()</code></a> and
+<a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatay"><code>pixelToDataY()</code></a> while dragging them. Accept a plot event
 when the tool has consumed it so the same gesture does not start default
 panning.</p>
-<p>When a tool lives in a layer translated to <a href="../../api/classQAccelPlot_1_1QAccelPlot.html#ad8106ed7a0613158e29ed0137edbd248"><code>plotRect</code></a>, convert between plot and
+<p>When a tool lives in a layer translated to <a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a>, convert between plot and
 layer coordinates by adding or subtracting the plot rectangle origin. The
 complete interactive example wraps those conversions in a small layer API.</p>
 <p>Complete sources:</p>

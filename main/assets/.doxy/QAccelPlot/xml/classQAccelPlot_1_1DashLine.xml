@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DashLine" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DashLine</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1LineStyle" prot="public" virt="non-virtual">QAccelPlot::LineStyle</basecompoundref>
+    <includes local="no">DashLine.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::DashLine::pattern</definition>
+        <argsstring></argsstring>
+        <name>pattern</name>
+        <qualifiedname>QAccelPlot::DashLine::pattern</qualifiedname>
+        <read>pattern</read>
+        <write>setPattern</write>
+        <briefdescription>
+<para>Alternating dash/gap lengths in pixels, e.g. <computeroutput></computeroutput>[10, 5] for a 10px dash with 5px gap. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="27" column="5" bodyfile="QAccelPlot/src/linestyles/DashLine.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1DashLine_1addbda53db03ecaf83c8a9b233c557fd6" prot="private" static="no" mutable="no">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt;qreal&gt; QAccelPlot::DashLine::pattern_</definition>
+        <argsstring></argsstring>
+        <name>pattern_</name>
+        <qualifiedname>QAccelPlot::DashLine::pattern_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="46" column="11" bodyfile="QAccelPlot/src/linestyles/DashLine.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DashLine_1af61bd74d6f50b76371090b6165801aeb" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DashLine::DashLine</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>DashLine</name>
+        <qualifiedname>QAccelPlot::DashLine::DashLine</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="31" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DashLine_1a6c950a23055d54b347dc7cdecf7e2a11" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; qreal &gt;</type>
+        <definition>QList&lt; qreal &gt; QAccelPlot::DashLine::pattern</definition>
+        <argsstring>() const</argsstring>
+        <name>pattern</name>
+        <qualifiedname>QAccelPlot::DashLine::pattern</qualifiedname>
+        <briefdescription>
+<para>Returns the current dash pattern. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="34" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DashLine_1a40c09a924c79205d9816176e8fd15837" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DashLine::setPattern</definition>
+        <argsstring>(const QList&lt; qreal &gt; &amp;pattern)</argsstring>
+        <name>setPattern</name>
+        <qualifiedname>QAccelPlot::DashLine::setPattern</qualifiedname>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>pattern</declname>
+        </param>
+        <briefdescription>
+<para>Sets the dash pattern to <emphasis>pattern</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="36" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DashLine_1af71fe41ca2c42f49499868bcabb160f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structQAccelPlot_1_1DashParameters" kindref="compound">DashParameters</ref></type>
+        <definition>DashParameters QAccelPlot::DashLine::dashParameters</definition>
+        <argsstring>() const override</argsstring>
+        <name>dashParameters</name>
+        <qualifiedname>QAccelPlot::DashLine::dashParameters</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab">dashParameters</reimplements>
+        <briefdescription>
+<para>Returns a render-thread-safe snapshot of the dash parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="39" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1DashLine_1a312a97e3ebdd73f3991e6b296e3b4ebd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DashLine::patternChanged</definition>
+        <argsstring>()</argsstring>
+        <name>patternChanged</name>
+        <qualifiedname>QAccelPlot::DashLine::patternChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the pattern property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="43" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A line style that renders the curve as a customisable dashed line. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput>pattern</computeroutput> property accepts a list of alternating dash and gap lengths in pixels, following the same convention as SVG <computeroutput>stroke-dasharray</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SolidLine" kindref="compound">SolidLine</ref>, <ref refid="classQAccelPlot_1_1NoLine" kindref="compound">NoLine</ref>, <ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::DashLine</label>
+        <link refid="classQAccelPlot_1_1DashLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::DashLine</label>
+        <link refid="classQAccelPlot_1_1DashLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/linestyles/DashLine.hpp" line="22" column="1" bodyfile="QAccelPlot/src/linestyles/DashLine.hpp" bodystart="22" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DashLine_1af61bd74d6f50b76371090b6165801aeb" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>DashLine</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1af71fe41ca2c42f49499868bcabb160f1" prot="public" virt="virtual"><scope>QAccelPlot::DashLine</scope><name>dashParameters</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>LineStyle</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1a14b888662b5d21842fe482d174e64c83" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>pattern</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1a6c950a23055d54b347dc7cdecf7e2a11" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>pattern</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1addbda53db03ecaf83c8a9b233c557fd6" prot="private" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>pattern_</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1a312a97e3ebdd73f3991e6b296e3b4ebd" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>patternChanged</name></member>
+      <member refid="classQAccelPlot_1_1DashLine_1a40c09a924c79205d9816176e8fd15837" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>setPattern</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a93fcf892e51f33f4f41a040f3a91d7d6" prot="public" virt="virtual"><scope>QAccelPlot::DashLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1aac0ae1f4156eb7ce665fb08934e86249" prot="public" virt="non-virtual"><scope>QAccelPlot::DashLine</scope><name>styleChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

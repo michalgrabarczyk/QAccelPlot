@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1DashParameters" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::DashParameters</compoundname>
+    <includes local="no">LineStyle.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashParameters_1a50a4e18351f8f24bd4ed54af3782d887" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DashParameters::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::DashParameters::enabled</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para><computeroutput>true</computeroutput> when dashed rendering is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="20" column="10" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashParameters_1a3f11b73a02145ea4c36a14317a06d8e3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::DashParameters::period</definition>
+        <argsstring></argsstring>
+        <name>period</name>
+        <qualifiedname>QAccelPlot::DashParameters::period</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Total dash+gap cycle length in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="21" column="11" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashParameters_1a09a4085c5ef669eeb14a2ca9317c95a4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::DashParameters::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::DashParameters::offset</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Phase offset into the dash pattern in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="22" column="11" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashParameters_1a3d0d1c84016bae183dc11c770e48204f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::DashParameters::patternSize</definition>
+        <argsstring></argsstring>
+        <name>patternSize</name>
+        <qualifiedname>QAccelPlot::DashParameters::patternSize</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of valid entries in <computeroutput>pattern</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="23" column="9" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1DashParameters_1a73af145e2afeba928c821e121a4e8217" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::DashParameters::pattern[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>pattern</name>
+        <qualifiedname>QAccelPlot::DashParameters::pattern</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+<para>Alternating dash/gap lengths (up to 8 entries). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="24" column="11" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="24" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Plain-data snapshot of dash rendering parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Extracted from a <computeroutput><ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref></computeroutput> on the main thread so the line renderer never needs to touch the QObject hierarchy directly. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="19" column="1" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="19" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1DashParameters_1a50a4e18351f8f24bd4ed54af3782d887" prot="public" virt="non-virtual"><scope>QAccelPlot::DashParameters</scope><name>enabled</name></member>
+      <member refid="structQAccelPlot_1_1DashParameters_1a09a4085c5ef669eeb14a2ca9317c95a4" prot="public" virt="non-virtual"><scope>QAccelPlot::DashParameters</scope><name>offset</name></member>
+      <member refid="structQAccelPlot_1_1DashParameters_1a73af145e2afeba928c821e121a4e8217" prot="public" virt="non-virtual"><scope>QAccelPlot::DashParameters</scope><name>pattern</name></member>
+      <member refid="structQAccelPlot_1_1DashParameters_1a3d0d1c84016bae183dc11c770e48204f" prot="public" virt="non-virtual"><scope>QAccelPlot::DashParameters</scope><name>patternSize</name></member>
+      <member refid="structQAccelPlot_1_1DashParameters_1a3f11b73a02145ea4c36a14317a06d8e3" prot="public" virt="non-virtual"><scope>QAccelPlot::DashParameters</scope><name>period</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

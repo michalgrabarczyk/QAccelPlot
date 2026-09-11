@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1CurveChunk" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::CurveChunk</compoundname>
+    <includes local="no">CurveRendererParams.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1ad7d25fe9c85afbd758299b50790140bf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::CurveChunk::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <qualifiedname>QAccelPlot::CurveChunk::start</qualifiedname>
+        <briefdescription>
+<para>Index of the first point in the data buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="22" column="9" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1ad720681fbd2bedf7a0ca403f667c8a34" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::CurveChunk::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::CurveChunk::count</qualifiedname>
+        <briefdescription>
+<para>Number of points owned by this chunk. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="23" column="9" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1a05d60637f950c842d4bc2ade5d21acde" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CurveChunk::minX</definition>
+        <argsstring></argsstring>
+        <name>minX</name>
+        <qualifiedname>QAccelPlot::CurveChunk::minX</qualifiedname>
+        <briefdescription>
+<para>Minimum X of the data-space AABB (extended to bridging points). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="24" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1ae7d006eb22a397b450bac6f2310a1fde" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CurveChunk::maxX</definition>
+        <argsstring></argsstring>
+        <name>maxX</name>
+        <qualifiedname>QAccelPlot::CurveChunk::maxX</qualifiedname>
+        <briefdescription>
+<para>Maximum X of the data-space AABB (extended to bridging points). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="25" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1a4d32d1aebabd5823b57c753b2993635b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CurveChunk::minY</definition>
+        <argsstring></argsstring>
+        <name>minY</name>
+        <qualifiedname>QAccelPlot::CurveChunk::minY</qualifiedname>
+        <briefdescription>
+<para>Minimum Y of the data-space AABB (extended to bridging points). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="26" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveChunk_1a6ba9ca30af94c9ad21434b06b0b2cc16" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::CurveChunk::maxY</definition>
+        <argsstring></argsstring>
+        <name>maxY</name>
+        <qualifiedname>QAccelPlot::CurveChunk::maxY</qualifiedname>
+        <briefdescription>
+<para>Maximum Y of the data-space AABB (extended to bridging points). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="27" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The AABB is stored in data-space so it never needs rebuilding during pan/zoom — only when the underlying data changes. It intentionally extends one point beyond each chunk boundary so that line segments bridging adjacent chunks are always covered. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="21" column="1" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="21" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1CurveChunk_1ad720681fbd2bedf7a0ca403f667c8a34" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1CurveChunk_1ae7d006eb22a397b450bac6f2310a1fde" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>maxX</name></member>
+      <member refid="structQAccelPlot_1_1CurveChunk_1a6ba9ca30af94c9ad21434b06b0b2cc16" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>maxY</name></member>
+      <member refid="structQAccelPlot_1_1CurveChunk_1a05d60637f950c842d4bc2ade5d21acde" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>minX</name></member>
+      <member refid="structQAccelPlot_1_1CurveChunk_1a4d32d1aebabd5823b57c753b2993635b" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>minY</name></member>
+      <member refid="structQAccelPlot_1_1CurveChunk_1ad7d25fe9c85afbd758299b50790140bf" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveChunk</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

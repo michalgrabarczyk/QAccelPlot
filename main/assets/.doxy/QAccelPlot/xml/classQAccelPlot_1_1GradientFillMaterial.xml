@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1GradientFillMaterial" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::GradientFillMaterial</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QSGMaterial</basecompoundref>
+    <includes local="no">GradientFillMaterial.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientFillMaterial_1a74bb9af6f4825bcb89b7157b883f4ffc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::GradientFillMaterial::opacity</definition>
+        <argsstring></argsstring>
+        <name>opacity</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::opacity</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="25" column="11" bodyfile="QAccelPlot/src/materials/GradientFillMaterial.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientFillMaterial_1a3236f769c13657b9c56d3ab8df53eca2" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref></type>
+        <definition>GradientTexture QAccelPlot::GradientFillMaterial::gradientTexture</definition>
+        <argsstring></argsstring>
+        <name>gradientTexture</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::gradientTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="26" column="21" bodyfile="QAccelPlot/src/materials/GradientFillMaterial.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientFillMaterial_1a930bb9bd21f1a36b1053b3d2b5a4fa14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GradientFillMaterial::GradientFillMaterial</definition>
+        <argsstring>()</argsstring>
+        <name>GradientFillMaterial</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::GradientFillMaterial</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="19" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientFillMaterial_1a0a3526ac30c2c7292fbb9efceeade2e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialType *</type>
+        <definition>QSGMaterialType * QAccelPlot::GradientFillMaterial::type</definition>
+        <argsstring>() const override</argsstring>
+        <name>type</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="21" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientFillMaterial_1ad88bdce0aa96f4c703594fbfb09056e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialShader *</type>
+        <definition>QSGMaterialShader * QAccelPlot::GradientFillMaterial::createShader</definition>
+        <argsstring>(QSGRendererInterface::RenderMode) const override</argsstring>
+        <name>createShader</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::createShader</qualifiedname>
+        <param>
+          <type>QSGRendererInterface::RenderMode</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="22" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientFillMaterial_1a0b0a29e263211885e4f6e1bfb581aaf2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::GradientFillMaterial::compare</definition>
+        <argsstring>(const QSGMaterial *other) const override</argsstring>
+        <name>compare</name>
+        <qualifiedname>QAccelPlot::GradientFillMaterial::compare</qualifiedname>
+        <param>
+          <type>const QSGMaterial *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="23" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Scene-graph material that evaluates fill gradients per fragment. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::GradientFillMaterial</label>
+        <link refid="classQAccelPlot_1_1GradientFillMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGMaterial</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::GradientFillMaterial</label>
+        <link refid="classQAccelPlot_1_1GradientFillMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>gradientTexture</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::GradientTexture</label>
+        <link refid="classQAccelPlot_1_1GradientTexture"/>
+      </node>
+      <node id="2">
+        <label>QSGMaterial</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/materials/GradientFillMaterial.hpp" line="17" column="1" bodyfile="QAccelPlot/src/materials/GradientFillMaterial.hpp" bodystart="17" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1a0b0a29e263211885e4f6e1bfb581aaf2" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>compare</name></member>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1ad88bdce0aa96f4c703594fbfb09056e9" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>createShader</name></member>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1a930bb9bd21f1a36b1053b3d2b5a4fa14" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>GradientFillMaterial</name></member>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1a3236f769c13657b9c56d3ab8df53eca2" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>gradientTexture</name></member>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1a74bb9af6f4825bcb89b7157b883f4ffc" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>opacity</name></member>
+      <member refid="classQAccelPlot_1_1GradientFillMaterial_1a0a3526ac30c2c7292fbb9efceeade2e6" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFillMaterial</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

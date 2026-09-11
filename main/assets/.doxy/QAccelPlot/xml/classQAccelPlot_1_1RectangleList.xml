@@ -1,0 +1,579 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1RectangleList" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::RectangleList</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <includes local="no">RectangleList.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1RectangleList_1_1RectVertex" prot="private">QAccelPlot::RectangleList::RectVertex</innerclass>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleList_1ab7dcda8abdfe6d2e5cacb7a9d9cfd11c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleList::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::RectangleList::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Fill color applied to all rectangles. Default: semi-transparent blue. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="35" column="5" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleList_1a0f06adfa96de42945be362cef7d879b9" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::RectangleList::count</qualifiedname>
+        <read>count</read>
+        <briefdescription>
+<para>Read-only: number of rectangles currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="37" column="5" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleList_1afb85815f91d34b3a35bbf957e9aa5e09" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::hoveredIndex</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoveredIndex</qualifiedname>
+        <read>hoveredIndex</read>
+        <briefdescription>
+<para>Read-only: index of the rectangle under the cursor, or -1 when none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="39" column="5" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a364ecdc65dc3d5d7cb2b41c917d54901" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleList::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::RectangleList::color_</qualifiedname>
+        <initializer>{QColor(0, 0, 255, 50)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="88" column="12" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a1255a86b7e7c901f85d586cb37addd7e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::hoveredIndex_</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex_</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoveredIndex_</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="89" column="9" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a4cbb1121b94566b48753ba0f8e4c0a61" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::RectangleList::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>QAccelPlot::RectangleList::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="91" column="17" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a01a031f9192c4d0dc27fd8be2f80c799" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::rectCount_</definition>
+        <argsstring></argsstring>
+        <name>rectCount_</name>
+        <qualifiedname>QAccelPlot::RectangleList::rectCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="92" column="9" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a19e595f752dbdb7b3ec59932589b6cee" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::RectangleList::dataChanged_</definition>
+        <argsstring></argsstring>
+        <name>dataChanged_</name>
+        <qualifiedname>QAccelPlot::RectangleList::dataChanged_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="93" column="10" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1ae061ab58107693c8798fa6aace2d9ca7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; RectVertex &gt;</type>
+        <definition>std::vector&lt;RectVertex&gt; QAccelPlot::RectangleList::vertexCache_</definition>
+        <argsstring></argsstring>
+        <name>vertexCache_</name>
+        <qualifiedname>QAccelPlot::RectangleList::vertexCache_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="94" column="17" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a51fc7ef98fdf269aa52733c1c181194f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::RectangleList::vertexCacheValid_</definition>
+        <argsstring></argsstring>
+        <name>vertexCacheValid_</name>
+        <qualifiedname>QAccelPlot::RectangleList::vertexCacheValid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="95" column="10" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleList_1a4b9d53661e4a1b6b116b05a501ec8c8d" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></type>
+        <definition>SpatialGrid QAccelPlot::RectangleList::spatialGrid_</definition>
+        <argsstring></argsstring>
+        <name>spatialGrid_</name>
+        <qualifiedname>QAccelPlot::RectangleList::spatialGrid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="96" column="17" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1a8ceccfe8fa3827ca39741106195912dd" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::RectangleList::RectangleList</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>RectangleList</name>
+        <qualifiedname>QAccelPlot::RectangleList::RectangleList</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="43" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1a4ff9d70f8365e709a431807c4c3b52ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleList::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::RectangleList::color</qualifiedname>
+        <briefdescription>
+<para>Returns the rectangle fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="46" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1ad88eef0ebc4890e3871ac16c72c010fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::RectangleList::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1ac2b88872407ccf0a5fefbba9ce965766" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::RectangleList::count</qualifiedname>
+        <briefdescription>
+<para>Returns the number of rectangles currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="51" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::RectangleList::hoveredIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoveredIndex</qualifiedname>
+        <briefdescription>
+<para>Returns the index of the hovered rectangle, or -1 if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="53" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1aaead3aa540e3521e1e6a365bdc313d6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::RectangleList::setData</definition>
+        <argsstring>(const QVariantList &amp;rects)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::RectangleList::setData</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>rects</declname>
+        </param>
+        <briefdescription>
+<para>Loads rectangles from <emphasis>rects</emphasis>, a QML list of objects with <computeroutput>x1</computeroutput>, <computeroutput>y1</computeroutput>, <computeroutput>x2</computeroutput>, <computeroutput>y2</computeroutput> properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="56" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1aa2a39792ecec84bbf1190cdf0f37e586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::setRawData</definition>
+        <argsstring>(const float *data, int rectCount)</argsstring>
+        <name>setRawData</name>
+        <qualifiedname>QAccelPlot::RectangleList::setRawData</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rectCount</declname>
+        </param>
+        <briefdescription>
+<para>Loads rectangles from a C++ raw float array (<emphasis>data</emphasis> must have <emphasis>rectCount</emphasis> × 4 floats: x1, y1, x2, y2). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="59" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleList_1a10c3250bf698158afe0b8337ef617461" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::RectangleList::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="63" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleList_1a60895961bbd88e59a4f72e3f2acb2e14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::countChanged</definition>
+        <argsstring>()</argsstring>
+        <name>countChanged</name>
+        <qualifiedname>QAccelPlot::RectangleList::countChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the rectangle count changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="65" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleList_1a417dd70d38b73655c7d28afea5b72c5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::hoveredIndexChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoveredIndexChanged</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoveredIndexChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hovered rectangle index changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="67" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1ab516c589f39fb4944e945a48aacbc2c8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::RectangleList::updatePaintNode</definition>
+        <argsstring>(QSGNode *oldNode, UpdatePaintNodeData *) override</argsstring>
+        <name>updatePaintNode</name>
+        <qualifiedname>QAccelPlot::RectangleList::updatePaintNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>UpdatePaintNodeData *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="70" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1addaa4d1d572c8f13bbd11598b6a2b9de" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::hoverMoveEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverMoveEvent</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoverMoveEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="71" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1ad82d14e9396949683e2b904f5ccf6ef2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::hoverLeaveEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverLeaveEvent</name>
+        <qualifiedname>QAccelPlot::RectangleList::hoverLeaveEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="72" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1ad9a581d225447d7ce44006d4e01624ee" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::RectangleList::validateRawDataArguments</definition>
+        <argsstring>(const float *data, int rectCount) const</argsstring>
+        <name>validateRawDataArguments</name>
+        <qualifiedname>QAccelPlot::RectangleList::validateRawDataArguments</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rectCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::buildSpatialGrid</definition>
+        <argsstring>()</argsstring>
+        <name>buildSpatialGrid</name>
+        <qualifiedname>QAccelPlot::RectangleList::buildSpatialGrid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::buildVertexCache</definition>
+        <argsstring>()</argsstring>
+        <name>buildVertexCache</name>
+        <qualifiedname>QAccelPlot::RectangleList::buildVertexCache</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleList::updateDataRanges</definition>
+        <argsstring>()</argsstring>
+        <name>updateDataRanges</name>
+        <qualifiedname>QAccelPlot::RectangleList::updateDataRanges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="78" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>All rectangles are stored as interleaved floats (x1, y1, x2, y2) and uploaded to the GPU as a data texture, making it suitable for tens of thousands of rectangles. Hover detection uses an internal <computeroutput><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></computeroutput> for O(1) hit tests.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::RectangleList</label>
+        <link refid="classQAccelPlot_1_1RectangleList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::RectangleList</label>
+        <link refid="classQAccelPlot_1_1RectangleList"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/shapes/RectangleList.hpp" line="30" column="1" bodyfile="QAccelPlot/src/shapes/RectangleList.hpp" bodystart="30" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>buildSpatialGrid</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>buildVertexCache</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>clearDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ab7dcda8abdfe6d2e5cacb7a9d9cfd11c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a4ff9d70f8365e709a431807c4c3b52ab" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a364ecdc65dc3d5d7cb2b41c917d54901" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a10c3250bf698158afe0b8337ef617461" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a0f06adfa96de42945be362cef7d879b9" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ac2b88872407ccf0a5fefbba9ce965766" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a60895961bbd88e59a4f72e3f2acb2e14" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a4cbb1121b94566b48753ba0f8e4c0a61" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>data_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a19e595f752dbdb7b3ec59932589b6cee" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>dataChanged_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1afb85815f91d34b3a35bbf957e9aa5e09" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a1255a86b7e7c901f85d586cb37addd7e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a417dd70d38b73655c7d28afea5b72c5a" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndexChanged</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ad82d14e9396949683e2b904f5ccf6ef2" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoverLeaveEvent</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1addaa4d1d572c8f13bbd11598b6a2b9de" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoverMoveEvent</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>LegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>legendSymbolChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a8ceccfe8fa3827ca39741106195912dd" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>RectangleList</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a01a031f9192c4d0dc27fd8be2f80c799" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>rectCount_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ad88eef0ebc4890e3871ac16c72c010fc" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1aaead3aa540e3521e1e6a365bdc313d6c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setLegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1aa2a39792ecec84bbf1190cdf0f37e586" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setRawData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a4b9d53661e4a1b6b116b05a501ec8c8d" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>spatialGrid_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>updateDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ab516c589f39fb4944e945a48aacbc2c8" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>updatePaintNode</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ad9a581d225447d7ce44006d4e01624ee" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>validateRawDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1ae061ab58107693c8798fa6aace2d9ca7" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>vertexCache_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleList_1a51fc7ef98fdf269aa52733c1c181194f" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>vertexCacheValid_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>xDataRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>yDataRangeChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

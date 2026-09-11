@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineCurveLineRenderer" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineCurveLineRenderer</compoundname>
+    <includes local="no">LineCurveLineRenderer.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1aa3fd5b32404b8e54f73ab1a06a9dd837" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveLineRenderer::buildVertexCache</definition>
+        <argsstring>(const std::vector&lt; float &gt; &amp;data, int pointCount, std::vector&lt; char &gt; &amp;cache) const</argsstring>
+        <name>buildVertexCache</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::buildVertexCache</qualifiedname>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; char &gt; &amp;</type>
+          <declname>cache</declname>
+        </param>
+        <briefdescription>
+<para>Pre-builds the vertex buffer into <emphasis>cache</emphasis> on the calling thread (main thread safe). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Writes neutral RGBA (1,1,1,1); solid and gradient shaders obtain their colors from their materials. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="74" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveLineRenderer::contains</definition>
+        <argsstring>(const QPointF &amp;point, const CurveHitTestParams &amp;params) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveHitTestParams" kindref="compound">CurveHitTestParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if <emphasis>point</emphasis> lies within <emphasis>params.hitThreshold</emphasis> pixels of the curve. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::LineCurveLineRenderer::paint</definition>
+        <argsstring>(QSGNode *oldNode, const LineCurveRenderParams &amp;params) const</argsstring>
+        <name>paint</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::paint</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Updates the scene graph node tree for this curve. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When <emphasis>params.vertexCache</emphasis> is non-null the vertex data is transferred via a fast <computeroutput>memcpy</computeroutput>; otherwise geometry is built in-place on the render thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="83" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveLineRenderer::updateFillGeometry</definition>
+        <argsstring>(QSGGeometryNode *fillNode, const LineCurveRenderParams &amp;params) const</argsstring>
+        <name>updateFillGeometry</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::updateFillGeometry</qualifiedname>
+        <param>
+          <type>QSGGeometryNode *</type>
+          <declname>fillNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="86" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveLineRenderer::updateLineMaterial</definition>
+        <argsstring>(LineMaterial *material, const LineCurveRenderParams &amp;params, const QColor &amp;effectiveColor, bool useVertexColor, const DashParameters &amp;dashParams) const</argsstring>
+        <name>updateLineMaterial</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::updateLineMaterial</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineMaterial" kindref="compound">LineMaterial</ref> *</type>
+          <declname>material</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>effectiveColor</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useVertexColor</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DashParameters" kindref="compound">DashParameters</ref> &amp;</type>
+          <declname>dashParams</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="87" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; QAccelPlot::LineCurveLineRenderer::computeArcLengths</definition>
+        <argsstring>(const LineCurveRenderParams &amp;params, const DashParameters &amp;dashParams) const</argsstring>
+        <name>computeArcLengths</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::computeArcLengths</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1DashParameters" kindref="compound">DashParameters</ref> &amp;</type>
+          <declname>dashParams</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="89" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1abfab712d021f205b5f87da1134df7eb5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveLineRenderer::updateLineVertices</definition>
+        <argsstring>(QSGGeometry *geometry, const LineCurveRenderParams &amp;params, bool useVertexColor, const QColor &amp;effectiveColor, const std::vector&lt; float &gt; &amp;arcLengths) const</argsstring>
+        <name>updateLineVertices</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::updateLineVertices</qualifiedname>
+        <param>
+          <type>QSGGeometry *</type>
+          <declname>geometry</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useVertexColor</declname>
+        </param>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>effectiveColor</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>arcLengths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="90" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Internal renderer responsible for building and updating QSGNode line geometry for a <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Supports solid and dashed lines, gradient stroke, gradient fill, and optional pre-built vertex caches assembled on the main thread for reduced render-thread stalls. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" line="69" column="1" bodyfile="QAccelPlot/src/renderers/LineCurveLineRenderer.hpp" bodystart="69" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa3fd5b32404b8e54f73ab1a06a9dd837" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>buildVertexCache</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>computeArcLengths</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>paint</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateFillGeometry</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineMaterial</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abfab712d021f205b5f87da1134df7eb5" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineVertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

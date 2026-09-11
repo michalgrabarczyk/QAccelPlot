@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DataAnchor" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataAnchor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <includes local="no">DataAnchor.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1a37fd52f63d507c55b6b0ab789eed07f1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::DataAnchor::xAxis</definition>
+        <argsstring></argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::xAxis</qualifiedname>
+        <read>xAxis</read>
+        <write>setXAxis</write>
+        <briefdescription>
+<para>The horizontal axis used to map data X coordinates to pixel positions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="44" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1a81147e43394261254f089b11cf383f1d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::DataAnchor::yAxis</definition>
+        <argsstring></argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::yAxis</qualifiedname>
+        <read>yAxis</read>
+        <write>setYAxis</write>
+        <briefdescription>
+<para>The vertical axis used to map data Y coordinates to pixel positions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="47" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1a4f95699d1c680ea24fe57b3ba3da6e87" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::DataAnchor::plotRect</definition>
+        <argsstring></argsstring>
+        <name>plotRect</name>
+        <qualifiedname>QAccelPlot::DataAnchor::plotRect</qualifiedname>
+        <read>plotRect</read>
+        <write>setPlotRect</write>
+        <briefdescription>
+<para>The pixel rectangle of the plot canvas, used together with the axes to compute the item&apos;s position and size. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="51" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1aa51e760c8987f943e94052bf654154d7" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX1</definition>
+        <argsstring></argsstring>
+        <name>dataX1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX1</qualifiedname>
+        <read>dataX1</read>
+        <write>setDataX1</write>
+        <briefdescription>
+<para>X data coordinate of the first (left) edge of the anchor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="54" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1ad6f428a2431188fbf2ebf810fb39fad7" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY1</definition>
+        <argsstring></argsstring>
+        <name>dataY1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY1</qualifiedname>
+        <read>dataY1</read>
+        <write>setDataY1</write>
+        <briefdescription>
+<para>Y data coordinate of the first (bottom or top) edge of the anchor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="57" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1a8e2e008dfc5518a7d6678ae50f4259de" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX2</definition>
+        <argsstring></argsstring>
+        <name>dataX2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX2</qualifiedname>
+        <read>dataX2</read>
+        <write>setDataX2</write>
+        <briefdescription>
+<para>X data coordinate of the second (right) edge of the anchor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="60" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1a62efc7e7d3404554f96eecf186835795" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY2</definition>
+        <argsstring></argsstring>
+        <name>dataY2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY2</qualifiedname>
+        <read>dataY2</read>
+        <write>setDataY2</write>
+        <briefdescription>
+<para>Y data coordinate of the second (top or bottom) edge of the anchor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="63" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1DataAnchor_1ae24e2c6d74b7516db139408815c991cf" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::hoverThreshold</definition>
+        <argsstring></argsstring>
+        <name>hoverThreshold</name>
+        <qualifiedname>QAccelPlot::DataAnchor::hoverThreshold</qualifiedname>
+        <read>hoverThreshold</read>
+        <write>setHoverThreshold</write>
+        <briefdescription>
+<para>Radius in pixels by which <ref refid="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" kindref="member">contains()</ref> expands the logical hit area. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Useful for zero-size anchors (point or line) where the item&apos;s bounding rect would otherwise have no area to interact with. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="69" column="5" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a60fc5873607bad159971f9567c1fb904" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::DataAnchor::xAxis_</definition>
+        <argsstring></argsstring>
+        <name>xAxis_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::xAxis_</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="141" column="10" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="141" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a0375184b45e4ca453344771ca848fe1d" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::DataAnchor::yAxis_</definition>
+        <argsstring></argsstring>
+        <name>yAxis_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::yAxis_</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="142" column="10" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="142" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a38367d0ba309b8d1836b12c761fc3806" prot="private" static="no" mutable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::DataAnchor::plotRect_</definition>
+        <argsstring></argsstring>
+        <name>plotRect_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::plotRect_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="143" column="12" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1aa500ede1a56131158654d7a7545282eb" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX1_</definition>
+        <argsstring></argsstring>
+        <name>dataX1_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX1_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="144" column="11" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a63876022a28b728343479822fb5edb49" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY1_</definition>
+        <argsstring></argsstring>
+        <name>dataY1_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY1_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="145" column="11" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="145" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a186c1a3b10d8b7559e7eeb957c4fd658" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX2_</definition>
+        <argsstring></argsstring>
+        <name>dataX2_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX2_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="146" column="11" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a915f92deb5b20ccea9ddc108b1182101" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY2_</definition>
+        <argsstring></argsstring>
+        <name>dataY2_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY2_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="147" column="11" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="147" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataAnchor_1a2f5adb4c5207cec8ecbbc8fa967ed3b0" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::hoverThreshold_</definition>
+        <argsstring></argsstring>
+        <name>hoverThreshold_</name>
+        <qualifiedname>QAccelPlot::DataAnchor::hoverThreshold_</qualifiedname>
+        <initializer>{8.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="148" column="11" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="148" bodyend="148"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1ad4dcfe67c9deefef397eca9a240cc390" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DataAnchor::DataAnchor</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>DataAnchor</name>
+        <qualifiedname>QAccelPlot::DataAnchor::DataAnchor</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="73" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a3f6e1e72c9f9e3aca8650acaeebb3f8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis * QAccelPlot::DataAnchor::xAxis</definition>
+        <argsstring>() const</argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::xAxis</qualifiedname>
+        <briefdescription>
+<para>Returns the horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1ac836d2cdaf3c2b368812203e46b1c381" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setXAxis</definition>
+        <argsstring>(Axis *axis)</argsstring>
+        <name>setXAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setXAxis</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Sets the horizontal axis to <emphasis>axis</emphasis>, reconnecting range-change tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="78" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a44424bce96456e4c42bc3b10c427cf4d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis * QAccelPlot::DataAnchor::yAxis</definition>
+        <argsstring>() const</argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::yAxis</qualifiedname>
+        <briefdescription>
+<para>Returns the vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1aea4d2ef7e14224c3cf2ece1a21c93c90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setYAxis</definition>
+        <argsstring>(Axis *axis)</argsstring>
+        <name>setYAxis</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setYAxis</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Sets the vertical axis to <emphasis>axis</emphasis>, reconnecting range-change tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="83" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1aee47686f6ee0294f845b889f0371a084" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::DataAnchor::plotRect</definition>
+        <argsstring>() const</argsstring>
+        <name>plotRect</name>
+        <qualifiedname>QAccelPlot::DataAnchor::plotRect</qualifiedname>
+        <briefdescription>
+<para>Returns the plot canvas pixel rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="86" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a3e83cd29ff580c59d0b73e3d01fd4a10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setPlotRect</definition>
+        <argsstring>(const QRectF &amp;rect)</argsstring>
+        <name>setPlotRect</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setPlotRect</qualifiedname>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+<para>Sets the plot canvas pixel rectangle to <emphasis>rect</emphasis>, triggering a geometry update. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="88" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1ad1ff94cc0ce44f21f8b09d6234623fae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX1</definition>
+        <argsstring>() const</argsstring>
+        <name>dataX1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX1</qualifiedname>
+        <briefdescription>
+<para>Returns the X data coordinate of the first edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="91" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1abc9965151615b71d9600c20101a17f27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setDataX1</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setDataX1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setDataX1</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the X data coordinate of the first edge to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="93" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a3928b5ee7ad4850199002ca16bc23024" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY1</definition>
+        <argsstring>() const</argsstring>
+        <name>dataY1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY1</qualifiedname>
+        <briefdescription>
+<para>Returns the Y data coordinate of the first edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="96" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1af71bcfc9672ae79f0e9df69d6d90a60b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setDataY1</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setDataY1</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setDataY1</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the Y data coordinate of the first edge to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1aa6b7722fd44bcbb8271412632fbb09a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataX2</definition>
+        <argsstring>() const</argsstring>
+        <name>dataX2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX2</qualifiedname>
+        <briefdescription>
+<para>Returns the X data coordinate of the second edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="101" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a9b3507d4130a5426cd3cd209dbca3044" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setDataX2</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setDataX2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setDataX2</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the X data coordinate of the second edge to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="103" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1ae9eca662c229412c00b2f41755903bd9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::dataY2</definition>
+        <argsstring>() const</argsstring>
+        <name>dataY2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY2</qualifiedname>
+        <briefdescription>
+<para>Returns the Y data coordinate of the second edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="106" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1aa1fed5c7aeb094f9ab19e26dffaa8c45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setDataY2</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setDataY2</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setDataY2</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the Y data coordinate of the second edge to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="108" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1af8be3d58d7bf41dbd5b1efbf1087dd2a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::DataAnchor::hoverThreshold</definition>
+        <argsstring>() const</argsstring>
+        <name>hoverThreshold</name>
+        <qualifiedname>QAccelPlot::DataAnchor::hoverThreshold</qualifiedname>
+        <briefdescription>
+<para>Returns the hover threshold in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="111" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1af564a6f49b5acb3fbc79caf495fe6a3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::setHoverThreshold</definition>
+        <argsstring>(qreal threshold)</argsstring>
+        <name>setHoverThreshold</name>
+        <qualifiedname>QAccelPlot::DataAnchor::setHoverThreshold</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+<para>Sets the hover threshold to <emphasis>threshold</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="113" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataAnchor::contains</definition>
+        <argsstring>(const QPointF &amp;point) const override</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::DataAnchor::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if <emphasis>point</emphasis> falls within the item&apos;s bounding rect expanded by hoverThreshold on all sides. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Point in item-local coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="118" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a6d1a1bc806312b82115e1e40d941f263" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::xAxisChanged</definition>
+        <argsstring>()</argsstring>
+        <name>xAxisChanged</name>
+        <qualifiedname>QAccelPlot::DataAnchor::xAxisChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the xAxis property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a8cb0f68382ef96ae3f292ad26f5ce4a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::yAxisChanged</definition>
+        <argsstring>()</argsstring>
+        <name>yAxisChanged</name>
+        <qualifiedname>QAccelPlot::DataAnchor::yAxisChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the yAxis property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="124" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1af1367ea1ca01b416e396e4c57f2943b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::plotRectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>plotRectChanged</name>
+        <qualifiedname>QAccelPlot::DataAnchor::plotRectChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the plotRect property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a9de4358e142c66a1d3231f7aa4e2115d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::dataX1Changed</definition>
+        <argsstring>()</argsstring>
+        <name>dataX1Changed</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX1Changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataX1 property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="128" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1ac7293110d240bf63cc73b866881c4d7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::dataY1Changed</definition>
+        <argsstring>()</argsstring>
+        <name>dataY1Changed</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY1Changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataY1 property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a8e59e0b2f7b3cb94aa6f9821d3f12383" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::dataX2Changed</definition>
+        <argsstring>()</argsstring>
+        <name>dataX2Changed</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataX2Changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataX2 property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="132" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a52e85600515cf9fb5e0ad03e67bab5b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::dataY2Changed</definition>
+        <argsstring>()</argsstring>
+        <name>dataY2Changed</name>
+        <qualifiedname>QAccelPlot::DataAnchor::dataY2Changed</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dataY2 property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="134" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1DataAnchor_1a3b62c968bf2e879ab6c9bf25a9ad8ba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::hoverThresholdChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoverThresholdChanged</name>
+        <qualifiedname>QAccelPlot::DataAnchor::hoverThresholdChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hoverThreshold property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="136" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataAnchor_1af424922e0f32b06e5d6f0999aa7d96ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataAnchor::updateGeometry</definition>
+        <argsstring>()</argsstring>
+        <name>updateGeometry</name>
+        <qualifiedname>QAccelPlot::DataAnchor::updateGeometry</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="139" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A QQuickItem that tracks a data-coordinate rectangle in pixel space. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Declare <ref refid="classQAccelPlot_1_1DataAnchor" kindref="compound">DataAnchor</ref> as a direct child of PlotView and nest any visual QML items (Rectangle, Text, HoverHandler, TapHandler …) inside it — they will follow pan and zoom automatically as the axes change.</para>
+<para><simplesect kind="par"><title>Usage patterns</title><para><itemizedlist>
+<listitem><para><bold>Point annotation</bold>: set <computeroutput>dataX1</computeroutput> == <computeroutput>dataX2</computeroutput> and <computeroutput>dataY1</computeroutput> == <computeroutput>dataY2</computeroutput>. The item has zero size but <ref refid="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" kindref="member">contains()</ref> still responds within hoverThreshold.</para>
+</listitem><listitem><para><bold>Vertical line</bold>: set <computeroutput>dataX1</computeroutput> == <computeroutput>dataX2</computeroutput> and different Y values. The item has zero width but a non-zero height.</para>
+</listitem><listitem><para><bold>Rectangle / range band</bold>: supply four distinct data coordinates.</para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+The <ref refid="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" kindref="member">contains()</ref> override expands the logical hit area by hoverThreshold in every direction, so HoverHandler and TapHandler work correctly on zero-size anchors.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::DataAnchor</label>
+        <link refid="classQAccelPlot_1_1DataAnchor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::DataAnchor</label>
+        <link refid="classQAccelPlot_1_1DataAnchor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="39" column="1" bodyfile="QAccelPlot/src/annotations/DataAnchor.hpp" bodystart="39" bodyend="149"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a2d4ff666ce153eb6f08813e2dbcb20d6" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ad4dcfe67c9deefef397eca9a240cc390" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>DataAnchor</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aa51e760c8987f943e94052bf654154d7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ad1ff94cc0ce44f21f8b09d6234623fae" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aa500ede1a56131158654d7a7545282eb" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX1_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a9de4358e142c66a1d3231f7aa4e2115d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX1Changed</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a8e2e008dfc5518a7d6678ae50f4259de" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aa6b7722fd44bcbb8271412632fbb09a7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a186c1a3b10d8b7559e7eeb957c4fd658" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX2_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a8e59e0b2f7b3cb94aa6f9821d3f12383" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataX2Changed</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ad6f428a2431188fbf2ebf810fb39fad7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a3928b5ee7ad4850199002ca16bc23024" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a63876022a28b728343479822fb5edb49" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY1_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ac7293110d240bf63cc73b866881c4d7d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY1Changed</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a62efc7e7d3404554f96eecf186835795" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ae9eca662c229412c00b2f41755903bd9" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a915f92deb5b20ccea9ddc108b1182101" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY2_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a52e85600515cf9fb5e0ad03e67bab5b9" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>dataY2Changed</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ae24e2c6d74b7516db139408815c991cf" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>hoverThreshold</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1af8be3d58d7bf41dbd5b1efbf1087dd2a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>hoverThreshold</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a2f5adb4c5207cec8ecbbc8fa967ed3b0" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>hoverThreshold_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a3b62c968bf2e879ab6c9bf25a9ad8ba3" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>hoverThresholdChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a4f95699d1c680ea24fe57b3ba3da6e87" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aee47686f6ee0294f845b889f0371a084" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a38367d0ba309b8d1836b12c761fc3806" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>plotRect_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1af1367ea1ca01b416e396e4c57f2943b7" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1abc9965151615b71d9600c20101a17f27" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setDataX1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a9b3507d4130a5426cd3cd209dbca3044" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setDataX2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1af71bcfc9672ae79f0e9df69d6d90a60b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setDataY1</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aa1fed5c7aeb094f9ab19e26dffaa8c45" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setDataY2</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1af564a6f49b5acb3fbc79caf495fe6a3d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setHoverThreshold</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a3e83cd29ff580c59d0b73e3d01fd4a10" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1ac836d2cdaf3c2b368812203e46b1c381" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1aea4d2ef7e14224c3cf2ece1a21c93c90" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1af424922e0f32b06e5d6f0999aa7d96ec" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>updateGeometry</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a37fd52f63d507c55b6b0ab789eed07f1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a3f6e1e72c9f9e3aca8650acaeebb3f8d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a60fc5873607bad159971f9567c1fb904" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>xAxis_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a6d1a1bc806312b82115e1e40d941f263" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a81147e43394261254f089b11cf383f1d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a44424bce96456e4c42bc3b10c427cf4d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a0375184b45e4ca453344771ca848fe1d" prot="private" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>yAxis_</name></member>
+      <member refid="classQAccelPlot_1_1DataAnchor_1a8cb0f68382ef96ae3f292ad26f5ce4a1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataAnchor</scope><name>yAxisChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="GradientFill_8hpp" kind="file" language="C++">
+    <compoundname>GradientFill.hpp</compoundname>
+    <includes refid="LineCurveEffect_8hpp" local="yes">effects/LineCurveEffect.hpp</includes>
+    <includes refid="GradientColorTypes_8hpp" local="yes">effects/GradientColorTypes.hpp</includes>
+    <includes local="no">QMetaObject</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QVector</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/effects/GradientFill.hpp</label>
+        <link refid="GradientFill_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QMetaObject</label>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QVector</label>
+      </node>
+      <node id="5">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1GradientFill" prot="public">QAccelPlot::GradientFill</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;effects/LineCurveEffect.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;effects/GradientColorTypes.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QMetaObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QVector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="classQAccelPlot_1_1GradientFill" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa94199e3c0863d2166b71b0481d695c0" kindref="member">direction</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa94199e3c0863d2166b71b0481d695c0" kindref="member">direction</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a4eed12038ed1688ec5ea07e0233aaaa3" kindref="member">setDirection</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1af82b411512117911e2219826767e1148" kindref="member">directionChanged</ref>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QObject*<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" kindref="member">gradient</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" kindref="member">gradient</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a8be30081de750e3dbff081a924162f20" kindref="member">setGradient</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a36c54758981c2a3f263ef48aba58a078" kindref="member">gradientChanged</ref>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa443693dddba0ca390bb4e18d45237e0" kindref="member">gradientValueMinSource</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa443693dddba0ca390bb4e18d45237e0" kindref="member">gradientValueMinSource</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1ae76fb74b0ff259a11c178c66939f7c7d" kindref="member">setGradientValueMinSource</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1ab63937ee08bd448bea7898fb3dfba12b" kindref="member">gradientValueMinSourceChanged</ref>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5747a93a055595c3760bb48a805a2e99" kindref="member">gradientValueMin</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5747a93a055595c3760bb48a805a2e99" kindref="member">gradientValueMin</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a34fd99bef65c36f645212a6db50d36d4" kindref="member">setGradientValueMin</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a4b9d502b75092262d429d9d348f211c6" kindref="member">gradientValueMinChanged</ref>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5f188c0cd51f458361fab24c5cb22853" kindref="member">gradientValueMaxSource</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5f188c0cd51f458361fab24c5cb22853" kindref="member">gradientValueMaxSource</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1ad2160fa480a20bdd418397590fedc405" kindref="member">setGradientValueMaxSource</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a8e18b240ee11bb27805dac2d2b7938ad" kindref="member">gradientValueMaxSourceChanged</ref>)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a841f70c3ac6019b37351232ab591bf0d" kindref="member">gradientValueMax</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a841f70c3ac6019b37351232ab591bf0d" kindref="member">gradientValueMax</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1afd8e9c78c17e0f81aec62973f4cc344d" kindref="member">setGradientValueMax</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a30861c51107d1c13cf861aa8d0fd4cd8" kindref="member">gradientValueMaxChanged</ref>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaseline</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a840193ef0918c48f810189931cdfe072" kindref="member">baseline</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a840193ef0918c48f810189931cdfe072" kindref="member">baseline</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a6eadaf6f66e8e977eb56c177cb8b449e" kindref="member">setBaseline</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aef643de3faf0970b533948fa06aa2172" kindref="member">baselineChanged</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a0630ee03843284ef4ff40feb0a835b11" kindref="member">baselineValue</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a0630ee03843284ef4ff40feb0a835b11" kindref="member">baselineValue</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a04cb4035c703fb23b544609ce5a1d9b0" kindref="member">setBaselineValue</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1ab6e6d4f3150f6e667ce90916b86cd21c" kindref="member">baselineValueChanged</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" kindref="member">opacity</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" kindref="member">opacity</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1GradientFill_1ae5d5f4caaff9ec7751523ab83e6cc5bb" kindref="member">setOpacity</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1GradientFill_1afb0ecb83c685d1b12cf181d478952cdb" kindref="member">opacityChanged</ref>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa94199e3c0863d2166b71b0481d695c0" kindref="member">direction</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a4eed12038ed1688ec5ea07e0233aaaa3" kindref="member">setDirection</ref>(<ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa94199e3c0863d2166b71b0481d695c0" kindref="member">direction</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>QObject*<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" kindref="member">gradient</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a8be30081de750e3dbff081a924162f20" kindref="member">setGradient</ref>(QObject*<sp/><ref refid="classQAccelPlot_1_1GradientFill_1aaace799b23f8de73c8954faa612a8d40" kindref="member">gradient</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aa443693dddba0ca390bb4e18d45237e0" kindref="member">gradientValueMinSource</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1ae76fb74b0ff259a11c178c66939f7c7d" kindref="member">setGradientValueMinSource</ref>(<ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/>source);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5747a93a055595c3760bb48a805a2e99" kindref="member">gradientValueMin</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a34fd99bef65c36f645212a6db50d36d4" kindref="member">setGradientValueMin</ref>(qreal<sp/>value);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a5f188c0cd51f458361fab24c5cb22853" kindref="member">gradientValueMaxSource</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1ad2160fa480a20bdd418397590fedc405" kindref="member">setGradientValueMaxSource</ref>(<ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/>source);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a841f70c3ac6019b37351232ab591bf0d" kindref="member">gradientValueMax</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1afd8e9c78c17e0f81aec62973f4cc344d" kindref="member">setGradientValueMax</ref>(qreal<sp/>value);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaseline</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a840193ef0918c48f810189931cdfe072" kindref="member">baseline</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a6eadaf6f66e8e977eb56c177cb8b449e" kindref="member">setBaseline</ref>(<ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaseline</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a840193ef0918c48f810189931cdfe072" kindref="member">baseline</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a0630ee03843284ef4ff40feb0a835b11" kindref="member">baselineValue</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a04cb4035c703fb23b544609ce5a1d9b0" kindref="member">setBaselineValue</ref>(qreal<sp/>value);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" kindref="member">opacity</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1ae5d5f4caaff9ec7751523ab83e6cc5bb" kindref="member">setOpacity</ref>(qreal<sp/>value);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1GradientFillPayload" kindref="compound">GradientFillPayload</ref><sp/><ref refid="classQAccelPlot_1_1GradientFill_1af815012823c34725a8d720fdbf81af15" kindref="member">payload</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1af82b411512117911e2219826767e1148" kindref="member">directionChanged</ref>();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a36c54758981c2a3f263ef48aba58a078" kindref="member">gradientChanged</ref>();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1ab63937ee08bd448bea7898fb3dfba12b" kindref="member">gradientValueMinSourceChanged</ref>();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a4b9d502b75092262d429d9d348f211c6" kindref="member">gradientValueMinChanged</ref>();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a8e18b240ee11bb27805dac2d2b7938ad" kindref="member">gradientValueMaxSourceChanged</ref>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1a30861c51107d1c13cf861aa8d0fd4cd8" kindref="member">gradientValueMaxChanged</ref>();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1aef643de3faf0970b533948fa06aa2172" kindref="member">baselineChanged</ref>();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1ab6e6d4f3150f6e667ce90916b86cd21c" kindref="member">baselineValueChanged</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1GradientFill_1afb0ecb83c685d1b12cf181d478952cdb" kindref="member">opacityChanged</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reconnectGradientSignals();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>disconnectGradientSignals();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onGradientObjectChanged();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref><sp/>direction_{GradientDirection::Horizontal};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>QObject*<sp/>gradient_{</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>QVector&lt;QMetaObject::Connection&gt;<sp/>gradientConnections_;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/>gradientValueMinSource_{GradientValueSource::DataRange};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>gradientValueMin_{0.0};</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref><sp/>gradientValueMaxSource_{GradientValueSource::DataRange};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>gradientValueMax_{0.0};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaseline</ref><sp/>baseline_{GradientFillBaseline::AxisMinimum};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>baselineValue_{0.0};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>opacity_{0.35};</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/effects/GradientFill.hpp"/>
+  </compounddef>
+</doxygen>

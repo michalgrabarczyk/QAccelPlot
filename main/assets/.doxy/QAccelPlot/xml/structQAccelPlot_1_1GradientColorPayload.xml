@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1GradientColorPayload" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::GradientColorPayload</compoundname>
+    <includes local="no">GradientColorTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1aa5df1ef666471d9895bfacd00029eaaa" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::GradientColorPayload::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::enabled</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para><computeroutput>true</computeroutput> when gradient stroke is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="80" column="10" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1a4253a64cf89552e88f391bf34ab88d4b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+        <definition>GradientDirection QAccelPlot::GradientColorPayload::direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::direction</qualifiedname>
+        <initializer>{GradientDirection::Horizontal}</initializer>
+        <briefdescription>
+<para>Gradient direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="81" column="23" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1a107c9d2a580818a24ee6bf0a804cdeb3" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt;GradientStopData&gt; QAccelPlot::GradientColorPayload::stops</definition>
+        <argsstring></argsstring>
+        <name>stops</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::stops</qualifiedname>
+        <briefdescription>
+<para>Color stops in position order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="82" column="17" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1adf077bb2d79282911590fa356b4605e5" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; float &gt;</type>
+        <definition>std::optional&lt;float&gt; QAccelPlot::GradientColorPayload::gradientValueMin</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMin</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::gradientValueMin</qualifiedname>
+        <briefdescription>
+<para>Fixed min for gradient normalisation; <computeroutput>std::nullopt</computeroutput> = derived from data range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="84" column="19" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1adc8ee2f7ac5e2a0bd1415792a2c17f4f" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; float &gt;</type>
+        <definition>std::optional&lt;float&gt; QAccelPlot::GradientColorPayload::gradientValueMax</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMax</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::gradientValueMax</qualifiedname>
+        <briefdescription>
+<para>Fixed max for gradient normalisation; <computeroutput>std::nullopt</computeroutput> = derived from data range. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="86" column="19" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1GradientColorPayload_1a98d8aba8d3b840d27556f1bbffefea8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::GradientColorPayload::isValid</definition>
+        <argsstring>() const</argsstring>
+        <name>isValid</name>
+        <qualifiedname>QAccelPlot::GradientColorPayload::isValid</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if the payload has at least two stops and is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="75" column="10" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="75" bodyend="78"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Render-thread snapshot of gradient stroke (line-color) parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Assembled on the main thread and consumed by the line renderer without touching the QObject hierarchy. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="73" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="73" bodyend="87"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1a4253a64cf89552e88f391bf34ab88d4b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>direction</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1aa5df1ef666471d9895bfacd00029eaaa" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>enabled</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1adc8ee2f7ac5e2a0bd1415792a2c17f4f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMax</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1adf077bb2d79282911590fa356b4605e5" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMin</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1a98d8aba8d3b840d27556f1bbffefea8b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>isValid</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1a107c9d2a580818a24ee6bf0a804cdeb3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>stops</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

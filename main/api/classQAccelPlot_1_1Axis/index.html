@@ -1,0 +1,3476 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1Axis/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Class QAccelPlot::Axis - QAccelPlot Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "main",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-qaccelplotaxis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+<strong>Development documentation — main branch / unreleased.</strong>
+<a href="https://michalgrabarczyk.github.io/QAccelPlot/">View the latest stable documentation.</a>
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QAccelPlot Documentation" class="md-header__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class QAccelPlot::Axis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QAccelPlot Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum Orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum Side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Properties Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-axislinepadding-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property axisLinePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-axistitlepadding-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property axisTitlePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-baselinecolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property baselineColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-baselinewidth-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property baselineWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-datamax-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property dataMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-datamin-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property dataMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-hovercolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property hoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-hovered-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property hovered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-label-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property label
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-labelcolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property labelColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-labelfont-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property labelFont
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-layoutsize-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property layoutSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-logscale-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property logScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-orientation-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-side-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property side
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-ticker-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property ticker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-viewportmax-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property viewportMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-viewportmin-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property viewportMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-zoomscalefactor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property zoomScaleFactor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-slots-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Slots Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Slots Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slot-updatedatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        slot updateDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Signals Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal-axislinepaddingchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal axisLinePaddingChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-axistitlepaddingchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal axisTitlePaddingChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-baselinecolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal baselineColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-baselinewidthchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal baselineWidthChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-datamaxchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal dataMaxChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-dataminchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal dataMinChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-doubleclicked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal doubleClicked
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-hovercolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal hoverColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-hoveredchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal hoveredChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-labelchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal labelChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-labelcolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal labelColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-labelfontchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal labelFontChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-layoutsizechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal layoutSizeChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-logscalechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal logScaleChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-orientationchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal orientationChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-rangechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal rangeChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-sidechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal sideChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-viewportmaxchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal viewportMaxChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-viewportminchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal viewportMinChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-zoomscalefactorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal zoomScaleFactorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-axislinepadding-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function axisLinePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-axistitlepadding-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function axisTitlePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-baselinecolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function baselineColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-baselinewidth-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function baselineWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-coordtopixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function coordToPixel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-datamax-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function dataMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-datamin-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function dataMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hovercolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hovered-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hovered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-inwardtickoverlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function inwardTickOverlap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-label-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function label
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-labelcolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function labelColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-labelfont-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function labelFont
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-labeloverflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function labelOverflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-layoutsize-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function layoutSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-logscale-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function logScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-orientation-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-paint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function paint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pixeltocoord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pixelToCoord
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-rescaletodata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function rescaleToData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setaxislinepadding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setAxisLinePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setaxistitlepadding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setAxisTitlePadding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setbaselinecolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setBaselineColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setbaselinewidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setBaselineWidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatamax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatamin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-sethovercolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setHoverColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setlabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setLabel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setlabelcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setLabelColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setlabelfont" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setLabelFont
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setlayoutsize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setLayoutSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setlogscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setLogScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setorientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setOrientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setSide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setviewportmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setViewportMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setviewportmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setViewportMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setzoomscalefactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setZoomScaleFactor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-side-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function side
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-ticker-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function ticker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-togglelogscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function toggleLogScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-viewportmax-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function viewportMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-viewportmin-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function viewportMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-zoomscalefactor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function zoomScaleFactor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protected Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-hoverenterevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverEnterEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hoverleaveevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hoverLeaveEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-keypressevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function keyPressEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mousedoubleclickevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mouseDoubleClickEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mousemoveevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mouseMoveEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mousepressevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mousePressEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mousereleaseevent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mouseReleaseEvent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="class-qaccelplotaxis">Class QAccelPlot::Axis<a class="headerlink" href="#class-qaccelplotaxis" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>Axis</strong></a></p>
+<p><em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;Axis.hpp&gt;</code></li>
+</ul>
+<p>Inherits the following classes: QQuickPaintedItem</p>
+<h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  classQAccelPlot_1_1Axis["QAccelPlot::Axis"]
+
+  external_base_classQAccelPlot_1_1Axis_1["QQuickPaintedItem"]
+  external_base_classQAccelPlot_1_1Axis_1 --&gt; classQAccelPlot_1_1Axis
+</code></pre>
+<h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-orientation"><strong>Orientation</strong></a>  <br><em>Orientation of an axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-side"><strong>Side</strong></a>  <br><em>Side of the plot on which the axis is positioned.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-slots">Public Slots<a class="headerlink" href="#public-slots" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">slot void</td>
+<td style="text-align: left;"><a href="./#slot-updatedatarange"><strong>updateDataRange</strong></a> (qreal min, qreal max) <br><em>Replaces the tracked data range.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-properties">Public Properties<a class="headerlink" href="#public-properties" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="./#property-axislinepadding-12"><strong>axisLinePadding</strong></a>  <br><em>Pixels of padding between the plot area edge and the axis baseline. Default: 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="./#property-axistitlepadding-12"><strong>axisTitlePadding</strong></a>  <br><em>Pixels of padding between the axis line and the title text. Default: 30.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-baselinecolor-12"><strong>baselineColor</strong></a>  <br><em>Color of the axis baseline. Default:</em> <code>Qt::black</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-baselinewidth-12"><strong>baselineWidth</strong></a>  <br><em>Width in pixels of the axis baseline. Default: 2.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-datamax-12"><strong>dataMax</strong></a>  <br><em>Maximum data value seen by the curves bound to this axis. Default: 1.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-datamin-12"><strong>dataMin</strong></a>  <br><em>Minimum data value seen by the curves bound to this axis. Default: 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-hovercolor-12"><strong>hoverColor</strong></a>  <br><em>Tick and label color applied when the axis is hovered. Default:</em> <code>Qt::blue</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-hovered-12"><strong>hovered</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the axis widget.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QString</td>
+<td style="text-align: left;"><a href="./#property-label-12"><strong>label</strong></a>  <br><em>Optional axis label displayed alongside the axis line.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-labelcolor-12"><strong>labelColor</strong></a>  <br><em>Optional axis-label color. When invalid, the baselineColor is used.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QFont</td>
+<td style="text-align: left;"><a href="./#property-labelfont-12"><strong>labelFont</strong></a>  <br><em>Font used to render the axis label text. Default: application default font.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-layoutsize-12"><strong>layoutSize</strong></a>  <br><em>Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-logscale-12"><strong>logScale</strong></a>  <br><em>Whether the axis uses a base-10 logarithmic scale. Default:</em> <code>false</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="./#enum-orientation"><strong>Orientation</strong></a></td>
+<td style="text-align: left;"><a href="./#property-orientation-12"><strong>orientation</strong></a>  <br><a href="./"><em><strong>Axis</strong></em></a> <em>orientation:</em><code>Axis.Horizontal</code> <em>or</em><code>Axis.Vertical</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="./#enum-side"><strong>Side</strong></a></td>
+<td style="text-align: left;"><a href="./#property-side-12"><strong>side</strong></a>  <br><em>Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-ticker-12"><strong>ticker</strong></a>  <br><em>Read-only constant: tick appearance configuration object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-viewportmax-12"><strong>viewportMax</strong></a>  <br><em>Upper bound of the visible range. Default: 1.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-viewportmin-12"><strong>viewportMin</strong></a>  <br><em>Lower bound of the visible range. Default: 0.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property double</td>
+<td style="text-align: left;"><a href="./#property-zoomscalefactor-12"><strong>zoomScaleFactor</strong></a>  <br><em>Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-signals">Public Signals<a class="headerlink" href="#public-signals" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-axislinepaddingchanged"><strong>axisLinePaddingChanged</strong></a>  <br><em>Emitted when the axisLinePadding property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-axistitlepaddingchanged"><strong>axisTitlePaddingChanged</strong></a>  <br><em>Emitted when the axisTitlePadding property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-baselinecolorchanged"><strong>baselineColorChanged</strong></a>  <br><em>Emitted when the baselineColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-baselinewidthchanged"><strong>baselineWidthChanged</strong></a>  <br><em>Emitted when the baselineWidth property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-datamaxchanged"><strong>dataMaxChanged</strong></a>  <br><em>Emitted when the dataMax property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-dataminchanged"><strong>dataMinChanged</strong></a>  <br><em>Emitted when the dataMin property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-doubleclicked"><strong>doubleClicked</strong></a>  <br><em>Emitted when the user double-clicks the axis widget.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-hovercolorchanged"><strong>hoverColorChanged</strong></a>  <br><em>Emitted when the hoverColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-hoveredchanged"><strong>hoveredChanged</strong></a>  <br><em>Emitted when the hovered property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-labelchanged"><strong>labelChanged</strong></a>  <br><em>Emitted when the label property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-labelcolorchanged"><strong>labelColorChanged</strong></a>  <br><em>Emitted when the labelColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-labelfontchanged"><strong>labelFontChanged</strong></a>  <br><em>Emitted when the labelFont property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-layoutsizechanged"><strong>layoutSizeChanged</strong></a>  <br><em>Emitted when the layoutSize property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-logscalechanged"><strong>logScaleChanged</strong></a>  <br><em>Emitted when the logScale property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-orientationchanged"><strong>orientationChanged</strong></a>  <br><em>Emitted when the orientation property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-rangechanged"><strong>rangeChanged</strong></a>  <br><em>Emitted when either viewportMin or viewportMax changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-sidechanged"><strong>sideChanged</strong></a>  <br><em>Emitted when the side property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-viewportmaxchanged"><strong>viewportMaxChanged</strong></a>  <br><em>Emitted when the viewportMax property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-viewportminchanged"><strong>viewportMinChanged</strong></a>  <br><em>Emitted when the viewportMin property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-zoomscalefactorchanged"><strong>zoomScaleFactorChanged</strong></a>  <br><em>Emitted when the zoomScaleFactor property changes.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-axis"><strong>Axis</strong></a> (QQuickItem * parent=nullptr, <a href="./#enum-side"><strong>Side</strong></a> side=Bottom) <br><em>Constructs an</em> <a href="./"><em><strong>Axis</strong></em></a> <em>with the given__parent</em> <em>and initial__side</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-axislinepadding-22"><strong>axisLinePadding</strong></a> () const<br><em>Returns the axis line padding in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-axistitlepadding-22"><strong>axisTitlePadding</strong></a> () const<br><em>Returns the axis title padding in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-baselinecolor-22"><strong>baselineColor</strong></a> () const<br><em>Returns the axis baseline color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-baselinewidth-22"><strong>baselineWidth</strong></a> () const<br><em>Returns the axis baseline width in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-coordtopixel"><strong>coordToPixel</strong></a> (qreal value, qreal length) const<br><em>Maps a data-space</em> <em>value</em> <em>to a pixel position along an axis of__length</em> <em>pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-datamax-22"><strong>dataMax</strong></a> () const<br><em>Returns the maximum data value tracked by bound curves.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-datamin-22"><strong>dataMin</strong></a> () const<br><em>Returns the minimum data value tracked by bound curves.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-hovercolor-22"><strong>hoverColor</strong></a> () const<br><em>Returns the hovered tick/label color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-hovered-22"><strong>hovered</strong></a> () const<br><em>Returns</em> <code>true</code> <em>if the mouse is currently over the axis widget.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-inwardtickoverlap"><strong>inwardTickOverlap</strong></a> () const<br><em>Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="#function-label-22"><strong>label</strong></a> () const<br><em>Returns the axis label string.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-labelcolor-22"><strong>labelColor</strong></a> () const<br><em>Returns the axis-label color, or an invalid color when it follows baselineColor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QFont</td>
+<td style="text-align: left;"><a href="#function-labelfont-22"><strong>labelFont</strong></a> () const<br><em>Returns the axis label font.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-labeloverflow"><strong>labelOverflow</strong></a> () const<br><em>Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-layoutsize-22"><strong>layoutSize</strong></a> () const<br><em>Returns the layout thickness in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-logscale-22"><strong>logScale</strong></a> () const<br><em>Returns</em> <code>true</code> <em>when log scale is active.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-orientation"><strong>Orientation</strong></a></td>
+<td style="text-align: left;"><a href="#function-orientation-22"><strong>orientation</strong></a> () const<br><em>Returns the axis orientation.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-paint"><strong>paint</strong></a> (QPainter * painter) override<br><em>Paints the axis widget (tick marks, labels, label text, background).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-pixeltocoord"><strong>pixelToCoord</strong></a> (qreal pos, qreal length) const<br><em>Maps a pixel</em> <em>pos</em> <em>along an axis of__length</em> <em>pixels back to a data-space value.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-rescaletodata"><strong>rescaleToData</strong></a> () <br><em>Sets</em> <code>viewportMin</code> <em>and</em><code>viewportMax</code> <em>to the current</em><code>dataMin</code> <em>/</em><code>dataMax</code> <em>range.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setaxislinepadding"><strong>setAxisLinePadding</strong></a> (int padding) <br><em>Sets the axis line padding to</em> <em>padding</em> <em>pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setaxistitlepadding"><strong>setAxisTitlePadding</strong></a> (int padding) <br><em>Sets the axis title padding to</em> <em>padding</em> <em>pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setbaselinecolor"><strong>setBaselineColor</strong></a> (const QColor &amp; c) <br><em>Sets the axis baseline color to</em> <em>c</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setbaselinewidth"><strong>setBaselineWidth</strong></a> (qreal width) <br><em>Sets the axis baseline width to</em> <em>width</em> <em>pixels. Negative values are clamped to zero.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdatamax"><strong>setDataMax</strong></a> (qreal m) <br><em>Sets the tracked data maximum to</em> <em>m</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setdatamin"><strong>setDataMin</strong></a> (qreal m) <br><em>Sets the tracked data minimum to</em> <em>m</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-sethovercolor"><strong>setHoverColor</strong></a> (const QColor &amp; c) <br><em>Sets the hovered color to</em> <em>c</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setlabel"><strong>setLabel</strong></a> (const QString &amp; t) <br><em>Sets the axis label to</em> <em>t</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setlabelcolor"><strong>setLabelColor</strong></a> (const QColor &amp; c) <br><em>Sets the axis-label color to</em> <em>c</em> <em>. An invalid color restores the baselineColor fallback.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setlabelfont"><strong>setLabelFont</strong></a> (const QFont &amp; f) <br><em>Sets the axis label font to</em> <em>f</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setlayoutsize"><strong>setLayoutSize</strong></a> (qreal size) <br><em>Sets the layout thickness to</em> <em>size</em> <em>pixels. Negative values are clamped to zero.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setlogscale"><strong>setLogScale</strong></a> (bool on) <br><em>Sets log-scale mode to</em> <em>on</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setorientation"><strong>setOrientation</strong></a> (<a href="./#enum-orientation"><strong>Orientation</strong></a> o) <br><em>Sets the axis orientation to</em> <em>o</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setside"><strong>setSide</strong></a> (<a href="./#enum-side"><strong>Side</strong></a> s) <br><em>Sets the axis side to</em> <em>s</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setviewportmax"><strong>setViewportMax</strong></a> (qreal m) <br><em>Sets the upper bound of the visible range to</em> <em>m</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setviewportmin"><strong>setViewportMin</strong></a> (qreal m) <br><em>Sets the lower bound of the visible range to</em> <em>m</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setzoomscalefactor"><strong>setZoomScaleFactor</strong></a> (double factor) <br><em>Sets the zoom scale factor to</em> <em>factor</em> <em>(clamped to the range (0, 1)).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-side"><strong>Side</strong></a></td>
+<td style="text-align: left;"><a href="#function-side-22"><strong>side</strong></a> () const<br><em>Returns the axis side.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-ticker-22"><strong>ticker</strong></a> () const<br><em>Returns the tick configuration object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-togglelogscale"><strong>toggleLogScale</strong></a> () <br><em>Toggles the log-scale mode on or off.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-viewportmax-22"><strong>viewportMax</strong></a> () const<br><em>Returns the upper bound of the visible range.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-viewportmin-22"><strong>viewportMin</strong></a> () const<br><em>Returns the lower bound of the visible range.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">double</td>
+<td style="text-align: left;"><a href="#function-zoomscalefactor-22"><strong>zoomScaleFactor</strong></a> () const<br><em>Returns the zoom scale factor.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-hoverenterevent"><strong>hoverEnterEvent</strong></a> (QHoverEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-hoverleaveevent"><strong>hoverLeaveEvent</strong></a> (QHoverEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-keypressevent"><strong>keyPressEvent</strong></a> (QKeyEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-mousedoubleclickevent"><strong>mouseDoubleClickEvent</strong></a> (QMouseEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-mousemoveevent"><strong>mouseMoveEvent</strong></a> (QMouseEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-mousepressevent"><strong>mousePressEvent</strong></a> (QMouseEvent * event) override<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-mousereleaseevent"><strong>mouseReleaseEvent</strong></a> (QMouseEvent * event) override<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>Assign an <a href="./"><strong>Axis</strong></a> to the corresponding property of <code>PlotView</code> (<code>xAxis</code>, <code>yAxis</code>, etc.) to connect it to the plot. Tick appearance is configured via the <code>ticker</code> property. Supports linear and logarithmic scaling, mouse-driven pan/zoom, and custom label formatters. Set the inherited <code>visible</code> property to <code>false</code> to hide the axis and reclaim its layout space while preserving its range, coordinate mapping, and plot-wide navigation behavior.</p>
+<p><strong>See also:</strong> PlotView, <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a>, <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> </p>
+<h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="enum-orientation">enum Orientation<a class="headerlink" href="#enum-orientation" title="Permanent link">&para;</a></h3>
+<p><em>Orientation of an axis.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">Horizontal</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">Vertical</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">};</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="enum-side">enum Side<a class="headerlink" href="#enum-side" title="Permanent link">&para;</a></h3>
+<p><em>Side of the plot on which the axis is positioned.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">Side</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Left</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">Top</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Right</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">Bottom</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">};</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="property-axislinepadding-12">property axisLinePadding<a class="headerlink" href="#property-axislinepadding-12" title="Permanent link">&para;</a></h3>
+<p><em>Pixels of padding between the plot area edge and the axis baseline. Default: 0.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisLinePadding</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-axistitlepadding-12">property axisTitlePadding<a class="headerlink" href="#property-axistitlepadding-12" title="Permanent link">&para;</a></h3>
+<p><em>Pixels of padding between the axis line and the title text. Default: 30.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisTitlePadding</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-baselinecolor-12">property baselineColor<a class="headerlink" href="#property-baselinecolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Color of the axis baseline. Default:</em> <code>Qt::black</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-baselinewidth-12">property baselineWidth<a class="headerlink" href="#property-baselinewidth-12" title="Permanent link">&para;</a></h3>
+<p><em>Width in pixels of the axis baseline. Default: 2.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineWidth</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-datamax-12">property dataMax<a class="headerlink" href="#property-datamax-12" title="Permanent link">&para;</a></h3>
+<p><em>Maximum data value seen by the curves bound to this axis. Default: 1.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMax</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-datamin-12">property dataMin<a class="headerlink" href="#property-datamin-12" title="Permanent link">&para;</a></h3>
+<p><em>Minimum data value seen by the curves bound to this axis. Default: 0.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMin</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-hovercolor-12">property hoverColor<a class="headerlink" href="#property-hovercolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Tick and label color applied when the axis is hovered. Default:</em> <code>Qt::blue</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-hovered-12">property hovered<a class="headerlink" href="#property-hovered-12" title="Permanent link">&para;</a></h3>
+<p><em>Read-only:</em> <code>true</code> <em>while the mouse cursor is over the axis widget.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hovered</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-label-12">property label<a class="headerlink" href="#property-label-12" title="Permanent link">&para;</a></h3>
+<p><em>Optional axis label displayed alongside the axis line.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">label</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-labelcolor-12">property labelColor<a class="headerlink" href="#property-labelcolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Optional axis-label color. When invalid, the baselineColor is used.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-labelfont-12">property labelFont<a class="headerlink" href="#property-labelfont-12" title="Permanent link">&para;</a></h3>
+<p><em>Font used to render the axis label text. Default: application default font.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelFont</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-layoutsize-12">property layoutSize<a class="headerlink" href="#property-layoutsize-12" title="Permanent link">&para;</a></h3>
+<p><em>Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">layoutSize</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-logscale-12">property logScale<a class="headerlink" href="#property-logscale-12" title="Permanent link">&para;</a></h3>
+<p><em>Whether the axis uses a base-10 logarithmic scale. Default:</em> <code>false</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScale</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-orientation-12">property orientation<a class="headerlink" href="#property-orientation-12" title="Permanent link">&para;</a></h3>
+<p><a href="./"><em><strong>Axis</strong></em></a> <em>orientation:</em><code>Axis.Horizontal</code> <em>or</em><code>Axis.Vertical</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">orientation</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-side-12">property side<a class="headerlink" href="#property-side-12" title="Permanent link">&para;</a></h3>
+<p><em>Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">side</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-ticker-12">property ticker<a class="headerlink" href="#property-ticker-12" title="Permanent link">&para;</a></h3>
+<p><em>Read-only constant: tick appearance configuration object.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">AxisTicker</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">ticker</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-viewportmax-12">property viewportMax<a class="headerlink" href="#property-viewportmax-12" title="Permanent link">&para;</a></h3>
+<p><em>Upper bound of the visible range. Default: 1.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMax</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-viewportmin-12">property viewportMin<a class="headerlink" href="#property-viewportmin-12" title="Permanent link">&para;</a></h3>
+<p><em>Lower bound of the visible range. Default: 0.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMin</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-zoomscalefactor-12">property zoomScaleFactor<a class="headerlink" href="#property-zoomscalefactor-12" title="Permanent link">&para;</a></h3>
+<p><em>Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="p">;</span>
+</code></pre></div></p>
+<p>On a zoom-in step the range is multiplied by this value; on zoom-out by its reciprocal. Decrease the factor (e.g. 0.5) to zoom faster; increase it toward 1.0 (e.g. 0.95) to zoom more slowly. </p>
+<hr>
+<h2 id="public-slots-documentation">Public Slots Documentation<a class="headerlink" href="#public-slots-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="slot-updatedatarange">slot updateDataRange<a class="headerlink" href="#slot-updatedatarange" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the tracked data range.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">updateDataRange</span><span class="p">;</span>
+</code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>min</code> New minimum data value. </li>
+<li><code>max</code> New maximum data value. </li>
+</ul>
+<hr>
+<h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="signal-axislinepaddingchanged">signal axisLinePaddingChanged<a class="headerlink" href="#signal-axislinepaddingchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the axisLinePadding property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisLinePaddingChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-axistitlepaddingchanged">signal axisTitlePaddingChanged<a class="headerlink" href="#signal-axistitlepaddingchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the axisTitlePadding property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisTitlePaddingChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-baselinecolorchanged">signal baselineColorChanged<a class="headerlink" href="#signal-baselinecolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the baselineColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-baselinewidthchanged">signal baselineWidthChanged<a class="headerlink" href="#signal-baselinewidthchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the baselineWidth property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineWidthChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-datamaxchanged">signal dataMaxChanged<a class="headerlink" href="#signal-datamaxchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the dataMax property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMaxChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-dataminchanged">signal dataMinChanged<a class="headerlink" href="#signal-dataminchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the dataMin property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMinChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-doubleclicked">signal doubleClicked<a class="headerlink" href="#signal-doubleclicked" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the user double-clicks the axis widget.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">doubleClicked</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-hovercolorchanged">signal hoverColorChanged<a class="headerlink" href="#signal-hovercolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the hoverColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-hoveredchanged">signal hoveredChanged<a class="headerlink" href="#signal-hoveredchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the hovered property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoveredChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-labelchanged">signal labelChanged<a class="headerlink" href="#signal-labelchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the label property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-labelcolorchanged">signal labelColorChanged<a class="headerlink" href="#signal-labelcolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the labelColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-labelfontchanged">signal labelFontChanged<a class="headerlink" href="#signal-labelfontchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the labelFont property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelFontChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-layoutsizechanged">signal layoutSizeChanged<a class="headerlink" href="#signal-layoutsizechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the layoutSize property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">layoutSizeChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-logscalechanged">signal logScaleChanged<a class="headerlink" href="#signal-logscalechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the logScale property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScaleChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-orientationchanged">signal orientationChanged<a class="headerlink" href="#signal-orientationchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the orientation property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">orientationChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-rangechanged">signal rangeChanged<a class="headerlink" href="#signal-rangechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when either viewportMin or viewportMax changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">rangeChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-sidechanged">signal sideChanged<a class="headerlink" href="#signal-sidechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the side property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">sideChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-viewportmaxchanged">signal viewportMaxChanged<a class="headerlink" href="#signal-viewportmaxchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the viewportMax property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMaxChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-viewportminchanged">signal viewportMinChanged<a class="headerlink" href="#signal-viewportminchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the viewportMin property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMinChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-zoomscalefactorchanged">signal zoomScaleFactorChanged<a class="headerlink" href="#signal-zoomscalefactorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the zoomScaleFactor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">zoomScaleFactorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-axis">function Axis<a class="headerlink" href="#function-axis" title="Permanent link">&para;</a></h3>
+<p><em>Constructs an</em> <a href="./"><em><strong>Axis</strong></em></a> <em>with the given__parent</em> <em>and initial__side</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">Axis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span><span class="p">,</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="n">Side</span><span class="w"> </span><span class="n">side</span><span class="o">=</span><span class="n">Bottom</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-axislinepadding-22">function axisLinePadding<a class="headerlink" href="#function-axislinepadding-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis line padding in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisLinePadding</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-axistitlepadding-22">function axisTitlePadding<a class="headerlink" href="#function-axistitlepadding-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis title padding in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">axisTitlePadding</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-baselinecolor-22">function baselineColor<a class="headerlink" href="#function-baselinecolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis baseline color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-baselinewidth-22">function baselineWidth<a class="headerlink" href="#function-baselinewidth-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis baseline width in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">baselineWidth</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-coordtopixel">function coordToPixel<a class="headerlink" href="#function-coordtopixel" title="Permanent link">&para;</a></h3>
+<p><em>Maps a data-space</em> <em>value</em> <em>to a pixel position along an axis of__length</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">coordToPixel</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-datamax-22">function dataMax<a class="headerlink" href="#function-datamax-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the maximum data value tracked by bound curves.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-datamin-22">function dataMin<a class="headerlink" href="#function-datamin-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the minimum data value tracked by bound curves.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">dataMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-hovercolor-22">function hoverColor<a class="headerlink" href="#function-hovercolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the hovered tick/label color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-hovered-22">function hovered<a class="headerlink" href="#function-hovered-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>if the mouse is currently over the axis widget.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hovered</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-inwardtickoverlap">function inwardTickOverlap<a class="headerlink" href="#function-inwardtickoverlap" title="Permanent link">&para;</a></h3>
+<p><em>Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">inwardTickOverlap</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-label-22">function label<a class="headerlink" href="#function-label-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis label string.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">label</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-labelcolor-22">function labelColor<a class="headerlink" href="#function-labelcolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis-label color, or an invalid color when it follows baselineColor.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-labelfont-22">function labelFont<a class="headerlink" href="#function-labelfont-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis label font.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelFont</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-labeloverflow">function labelOverflow<a class="headerlink" href="#function-labeloverflow" title="Permanent link">&para;</a></h3>
+<p><em>Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelOverflow</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-layoutsize-22">function layoutSize<a class="headerlink" href="#function-layoutsize-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the layout thickness in pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">layoutSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-logscale-22">function logScale<a class="headerlink" href="#function-logscale-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>when log scale is active.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-orientation-22">function orientation<a class="headerlink" href="#function-orientation-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis orientation.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">orientation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-paint">function paint<a class="headerlink" href="#function-paint" title="Permanent link">&para;</a></h3>
+<p><em>Paints the axis widget (tick marks, labels, label text, background).</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">paint</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-pixeltocoord">function pixelToCoord<a class="headerlink" href="#function-pixeltocoord" title="Permanent link">&para;</a></h3>
+<p><em>Maps a pixel</em> <em>pos</em> <em>along an axis of__length</em> <em>pixels back to a data-space value.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">pixelToCoord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-rescaletodata">function rescaleToData<a class="headerlink" href="#function-rescaletodata" title="Permanent link">&para;</a></h3>
+<p><em>Sets</em> <code>viewportMin</code> <em>and</em><code>viewportMax</code> <em>to the current</em><code>dataMin</code> <em>/</em><code>dataMax</code> <em>range.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">rescaleToData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setaxislinepadding">function setAxisLinePadding<a class="headerlink" href="#function-setaxislinepadding" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis line padding to</em> <em>padding</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisLinePadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setaxistitlepadding">function setAxisTitlePadding<a class="headerlink" href="#function-setaxistitlepadding" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis title padding to</em> <em>padding</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisTitlePadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setbaselinecolor">function setBaselineColor<a class="headerlink" href="#function-setbaselinecolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis baseline color to</em> <em>c</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setbaselinewidth">function setBaselineWidth<a class="headerlink" href="#function-setbaselinewidth" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis baseline width to</em> <em>width</em> <em>pixels. Negative values are clamped to zero.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatamax">function setDataMax<a class="headerlink" href="#function-setdatamax" title="Permanent link">&para;</a></h3>
+<p><em>Sets the tracked data maximum to</em> <em>m</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatamin">function setDataMin<a class="headerlink" href="#function-setdatamin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the tracked data minimum to</em> <em>m</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-sethovercolor">function setHoverColor<a class="headerlink" href="#function-sethovercolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the hovered color to</em> <em>c</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlabel">function setLabel<a class="headerlink" href="#function-setlabel" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis label to</em> <em>t</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabel</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlabelcolor">function setLabelColor<a class="headerlink" href="#function-setlabelcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis-label color to</em> <em>c</em> <em>. An invalid color restores the baselineColor fallback.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlabelfont">function setLabelFont<a class="headerlink" href="#function-setlabelfont" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis label font to</em> <em>f</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelFont</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlayoutsize">function setLayoutSize<a class="headerlink" href="#function-setlayoutsize" title="Permanent link">&para;</a></h3>
+<p><em>Sets the layout thickness to</em> <em>size</em> <em>pixels. Negative values are clamped to zero.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLayoutSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlogscale">function setLogScale<a class="headerlink" href="#function-setlogscale" title="Permanent link">&para;</a></h3>
+<p><em>Sets log-scale mode to</em> <em>on</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLogScale</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span>
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setorientation">function setOrientation<a class="headerlink" href="#function-setorientation" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis orientation to</em> <em>o</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setOrientation</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">    </span><span class="n">Orientation</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setside">function setSide<a class="headerlink" href="#function-setside" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis side to</em> <em>s</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setSide</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="w">    </span><span class="n">Side</span><span class="w"> </span><span class="n">s</span>
+<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setviewportmax">function setViewportMax<a class="headerlink" href="#function-setviewportmax" title="Permanent link">&para;</a></h3>
+<p><em>Sets the upper bound of the visible range to</em> <em>m</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setviewportmin">function setViewportMin<a class="headerlink" href="#function-setviewportmin" title="Permanent link">&para;</a></h3>
+<p><em>Sets the lower bound of the visible range to</em> <em>m</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setzoomscalefactor">function setZoomScaleFactor<a class="headerlink" href="#function-setzoomscalefactor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the zoom scale factor to</em> <em>factor</em> <em>(clamped to the range (0, 1)).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setZoomScaleFactor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">factor</span>
+<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming. </p>
+<hr>
+
+<h3 id="function-side-22">function side<a class="headerlink" href="#function-side-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis side.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">side</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-ticker-22">function ticker<a class="headerlink" href="#function-ticker-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the tick configuration object.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">ticker</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-togglelogscale">function toggleLogScale<a class="headerlink" href="#function-togglelogscale" title="Permanent link">&para;</a></h3>
+<p><em>Toggles the log-scale mode on or off.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">toggleLogScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-viewportmax-22">function viewportMax<a class="headerlink" href="#function-viewportmax-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the upper bound of the visible range.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-viewportmin-22">function viewportMin<a class="headerlink" href="#function-viewportmin-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the lower bound of the visible range.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-zoomscalefactor-22">function zoomScaleFactor<a class="headerlink" href="#function-zoomscalefactor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the zoom scale factor.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-hoverenterevent">function hoverEnterEvent<a class="headerlink" href="#function-hoverenterevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-86-3" name="__codelineno-86-3" href="#__codelineno-86-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-hoverleaveevent">function hoverLeaveEvent<a class="headerlink" href="#function-hoverleaveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-keypressevent">function keyPressEvent<a class="headerlink" href="#function-keypressevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">keyPressEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a><span class="w">    </span><span class="n">QKeyEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-mousedoubleclickevent">function mouseDoubleClickEvent<a class="headerlink" href="#function-mousedoubleclickevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseDoubleClickEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-mousemoveevent">function mouseMoveEvent<a class="headerlink" href="#function-mousemoveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseMoveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-mousepressevent">function mousePressEvent<a class="headerlink" href="#function-mousepressevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mousePressEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-mousereleaseevent">function mouseReleaseEvent<a class="headerlink" href="#function-mousereleaseevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseReleaseEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/Axis.hpp</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

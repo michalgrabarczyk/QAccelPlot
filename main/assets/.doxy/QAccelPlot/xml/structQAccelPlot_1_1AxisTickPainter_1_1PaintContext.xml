@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTickPainter::PaintContext</compoundname>
+    <includes local="no">AxisTickPainter.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1a744d4202c7a9da597f84dbe047a931c1" prot="public" static="no" mutable="no">
+        <type>QPainter *</type>
+        <definition>QPainter* QAccelPlot::AxisTickPainter::PaintContext::painter</definition>
+        <argsstring></argsstring>
+        <name>painter</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::PaintContext::painter</qualifiedname>
+        <briefdescription>
+<para>Active painter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="49" column="18" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1a6d1301533177ffaed3100a35aa2f84dc" prot="public" static="no" mutable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::AxisTickPainter::PaintContext::rect</definition>
+        <argsstring></argsstring>
+        <name>rect</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::PaintContext::rect</qualifiedname>
+        <briefdescription>
+<para>Bounding rectangle of the axis widget. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="50" column="16" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1ace846e2b408dadaad76dc74d735fdd49" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::PaintContext::axisX</definition>
+        <argsstring></argsstring>
+        <name>axisX</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::PaintContext::axisX</qualifiedname>
+        <briefdescription>
+<para>Pixel X coordinate of the axis line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="51" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1abad0fe75b55bbaebd8fc1139b06de82a" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTickPainter::PaintContext::axisY</definition>
+        <argsstring></argsstring>
+        <name>axisY</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::PaintContext::axisY</qualifiedname>
+        <briefdescription>
+<para>Pixel Y coordinate of the axis line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="52" column="15" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Groups the QPainter context arguments passed into sub-painting helpers. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="48" column="5" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="48" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1ace846e2b408dadaad76dc74d735fdd49" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::PaintContext</scope><name>axisX</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1abad0fe75b55bbaebd8fc1139b06de82a" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::PaintContext</scope><name>axisY</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1a744d4202c7a9da597f84dbe047a931c1" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::PaintContext</scope><name>painter</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1a6d1301533177ffaed3100a35aa2f84dc" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::PaintContext</scope><name>rect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

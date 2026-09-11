@@ -1,0 +1,1737 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/class_member_variables/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Class Member Variables - QAccelPlot Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "main",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-member-variables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+<strong>Development documentation — main branch / unreleased.</strong>
+<a href="https://michalgrabarczyk.github.io/QAccelPlot/">View the latest stable documentation.</a>
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QAccelPlot Documentation" class="md-header__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class Member Variables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QAccelPlot Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        e
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        g
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        h
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        l
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        m
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        o
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        r
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        s
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        u
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        y
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        z
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="class-member-variables">Class Member Variables<a class="headerlink" href="#class-member-variables" title="Permanent link">&para;</a></h1>
+<h2 id="a">a<a class="headerlink" href="#a" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>axisLinePadding_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>axisTitlePadding_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>axisX</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a>)</li>
+<li><strong>axisY</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a>)</li>
+<li><strong>animTimer_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>antialiasingEnabled_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>antialiasingFeather_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>antialiasingEnabled</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>antialiasingFeather</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>a</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+<li><strong>arcLength</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>)</li>
+<li><strong>accepted_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>axesAreaColor_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>axis</strong> (<a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a>)</li>
+</ul>
+<h2 id="b">b<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>baselineColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>baselineWidth_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>baselineValue_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>)</li>
+<li><strong>baseline_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>)</li>
+<li><strong>baseline</strong> (<a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+<li><strong>baselineValue</strong> (<a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+<li><strong>bytes_</strong> (<a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
+<li><strong>b</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+<li><strong>button_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>border_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+</ul>
+<h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>clampEdgeLabels_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>clampEdgeLabels</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>customFormatterDestroyedConnection_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>customTickLabelFormatter_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>count</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>)</li>
+<li><strong>chunks</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
+<li><strong>color</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1GradientStopData/"><strong>QAccelPlot::GradientStopData</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>chunksValid_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>chunks_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>color_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>cornerX</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
+<li><strong>cornerY</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
+<li><strong>cellH_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>cellW_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>cells_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>cols_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>corner</strong> (<a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+</ul>
+<h2 id="d">d<a class="headerlink" href="#d" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>dataMax_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>dataMin_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>defaultSubtickColor</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>defaultTickLabelFormatter_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>data</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>dataX1_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
+<li><strong>dataX2_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
+<li><strong>dataY1_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
+<li><strong>dataY2_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
+<li><strong>dataTexture</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>)</li>
+<li><strong>domainMax</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>domainMin</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>duration_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>dateTimeFormat_</strong> (<a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>QAccelPlot::DateTimeTickLabelFormatter</strong></a>)</li>
+<li><strong>direction</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+<li><strong>direction_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>dataChanged_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>data_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>dataChanged</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>dashOffset</strong> (<a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>)</li>
+<li><strong>dashPattern</strong> (<a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>)</li>
+<li><strong>dashPatternSize</strong> (<a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>)</li>
+<li><strong>dashPeriod</strong> (<a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>)</li>
+</ul>
+<h2 id="e">e<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>extendWidgetForLabels_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>enabled</strong> (<a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a>, <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+<li><strong>easing_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>enabled_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>, <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>QAccelPlot::LineCurveEffect</strong></a>)</li>
+<li><strong>effects_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>extraAxes_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+</ul>
+<h2 id="f">f<a class="headerlink" href="#f" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>fromData_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>fromPointCount_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+</ul>
+<h2 id="g">g<a class="headerlink" href="#g" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>gradientValueMax</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>, <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>)</li>
+<li><strong>gradientValueMin</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>, <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>)</li>
+<li><strong>gradientConnections_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradientValueMaxSource_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradientValueMax_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradientValueMinSource_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradientValueMin_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradient_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>)</li>
+<li><strong>gradientTexture</strong> (<a href="../classQAccelPlot_1_1GradientFillMaterial/"><strong>QAccelPlot::GradientFillMaterial</strong></a>, <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>)</li>
+<li><strong>gradientDirection</strong> (<a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a>)</li>
+<li><strong>gridColor_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>gridHorizontalLinesVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>gridVerticalLinesVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>gridVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>gradientFillPayload</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
+<li><strong>gradientPayload</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>g</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+<li><strong>gridNode_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>grid_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>gridLinesVisible</strong> (<a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a>)</li>
+</ul>
+<h2 id="h">h<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>horizontalDataRanges_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>hoverColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>hovered_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>hoverColor</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>hovered</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>height</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
+<li><strong>hitThreshold</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
+<li><strong>hoverThreshold_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
+<li><strong>hoveredIndex_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+</ul>
+<h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>isDragging_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>imageBuffer_</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>)</li>
+<li><strong>image_</strong> (<a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a>)</li>
+<li><strong>id</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+<li><strong>itemBounds_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+</ul>
+<h2 id="l">l<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>labelColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>labelFont_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>label_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>lastMousePos_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>layoutSize_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>logScale_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>labelOverflow</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>logScale</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>logScaleX</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>logScaleY</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>lineWidth_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>lineRenderer_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>lineStyle_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>lineStyle</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
+<li><strong>lineWidth</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>)</li>
+<li><strong>layout_</strong> (<a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
+<li><strong>lastXMax_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+<li><strong>lastXMin_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+<li><strong>lastYMax_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+<li><strong>lastYMin_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+<li><strong>legendSymbol_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+<li><strong>labels_</strong> (<a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a>)</li>
+</ul>
+<h2 id="m">m<a class="headerlink" href="#m" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>maxX</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
+<li><strong>maxY</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
+<li><strong>minX</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
+<li><strong>minY</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
+<li><strong>markerShape_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>markerSize_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>modifiers_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>markerSize</strong> (<a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>mouseDoubleClickEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>mouseMoveEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>mousePressEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>mouseReleaseEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>maxX_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>maxY_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>minX_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>minY_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>max</strong> (<a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a>)</li>
+<li><strong>min</strong> (<a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a>)</li>
+<li><strong>makeRect</strong> (<a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a>)</li>
+</ul>
+<h2 id="n">n<a class="headerlink" href="#n" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>name_</strong> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>)</li>
+</ul>
+<h2 id="o">o<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>orientation_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>orientation</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>offset</strong> (<a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a>)</li>
+<li><strong>opacity_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>)</li>
+<li><strong>opacity</strong> (<a href="../classQAccelPlot_1_1GradientFillMaterial/"><strong>QAccelPlot::GradientFillMaterial</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+</ul>
+<h2 id="p">p<a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>painter</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a>)</li>
+<li><strong>pointCount</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>pattern_</strong> (<a href="../classQAccelPlot_1_1DashLine/"><strong>QAccelPlot::DashLine</strong></a>)</li>
+<li><strong>pattern</strong> (<a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a>)</li>
+<li><strong>patternSize</strong> (<a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a>)</li>
+<li><strong>period</strong> (<a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a>)</li>
+<li><strong>plotRect_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1GridNode/"><strong>QAccelPlot::GridNode</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>position</strong> (<a href="../structQAccelPlot_1_1GradientStopData/"><strong>QAccelPlot::GradientStopData</strong></a>)</li>
+<li><strong>pointCount_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
+<li><strong>pointRenderer_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>padding_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>plotAreaColor_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+</ul>
+<h2 id="r">r<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>rangeSourceConnections_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>rect</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a>)</li>
+<li><strong>running_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>r</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
+<li><strong>rectCount</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
+<li><strong>rectCount_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>rows_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+</ul>
+<h2 id="s">s<a class="headerlink" href="#s" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>side_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>side</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>, <a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>)</li>
+<li><strong>subtickColor_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>subtickCount_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>subtickLengthIn_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>subtickLengthOut_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>subtickWidth_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>start</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>)</li>
+<li><strong>stops</strong> (<a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a>, <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a>)</li>
+<li><strong>stops_</strong> (<a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a>)</li>
+<li><strong>subGridColor_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>subGridHorizontalLinesVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>subGridLineWidth_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>subGridVerticalLinesVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>subGridVisible_</strong> (<a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a>)</li>
+<li><strong>styleChanged_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>shapeType</strong> (<a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>series_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>spatialGrid_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>subGridLinesVisible</strong> (<a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a>)</li>
+</ul>
+<h2 id="t">t<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ticker_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>tickStep</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>ticker</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>tickColor_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickCount_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLabelColor_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLabelFont_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLabelPadding_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLabelRotation_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLengthIn_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickLengthOut_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>tickWidth_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>toData_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>toPointCount_</strong> (<a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
+<li><strong>texture_</strong> (<a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a>)</li>
+<li><strong>transition_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
+<li><strong>tickLabel_</strong> (<a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>QAccelPlot::TickLabelFormatter</strong></a>)</li>
+</ul>
+<h2 id="u">u<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>useVertexColor</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+</ul>
+<h2 id="v">v<a class="headerlink" href="#v" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>verticalDataRanges_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>viewportMax_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>viewportMin_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>viewportMax</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>viewportMin</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>viewportSize</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
+<li><strong>vertexCache_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>vertexCache</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
+<li><strong>valid_</strong> (<a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
+<li><strong>vertexCacheValid_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+</ul>
+<h2 id="w">w<a class="headerlink" href="#w" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>width</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
+<li><strong>window</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
+<li><strong>width_</strong> (<a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>)</li>
+</ul>
+<h2 id="x">x<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>xAxis</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
+<li><strong>xAxis_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>x_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>x</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
+<li><strong>x2Axis_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+</ul>
+<h2 id="y">y<a class="headerlink" href="#y" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>yAxis</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
+<li><strong>yAxis_</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>y_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
+<li><strong>y</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
+<li><strong>y2Axis_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+</ul>
+<h2 id="z">z<a class="headerlink" href="#z" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>zoomScaleFactor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

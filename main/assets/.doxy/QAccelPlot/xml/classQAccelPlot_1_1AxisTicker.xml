@@ -1,0 +1,1545 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1AxisTicker" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTicker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">AxisTicker.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a690e9a62cf1049ce81b2730239ff85ba" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQColor</type>
+        <definition>QML_ANONYMOUSQColor QAccelPlot::AxisTicker::tickColor</definition>
+        <argsstring></argsstring>
+        <name>tickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickColor</qualifiedname>
+        <read>tickColor</read>
+        <write>setTickColor</write>
+        <briefdescription>
+<para>Color of major tick marks. Default: <computeroutput>Qt::black</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="30" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a956edfb1e700ab75991efb417723ad53" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::tickLabelColor</definition>
+        <argsstring></argsstring>
+        <name>tickLabelColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelColor</qualifiedname>
+        <read>tickLabelColor</read>
+        <write>setTickLabelColor</write>
+        <briefdescription>
+<para>Optional color of tick labels. When invalid, the tickColor is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="32" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a3d260ba48c6dc2df77270138e74129eb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::tickCount</definition>
+        <argsstring></argsstring>
+        <name>tickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickCount</qualifiedname>
+        <read>tickCount</read>
+        <write>setTickCount</write>
+        <briefdescription>
+<para>Target number of major tick marks. Actual count is adjusted for &quot;nice&quot; values. Default: 5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="34" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1aa2d156b6495282908aacd12f65ae1b01" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::subtickCount</definition>
+        <argsstring></argsstring>
+        <name>subtickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickCount</qualifiedname>
+        <read>subtickCount</read>
+        <write>setSubtickCount</write>
+        <briefdescription>
+<para>Number of sub-tick intervals between adjacent major ticks. Default: 10. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="36" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1af3e75927f1a912cfdcd634ba932e7869" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLength</definition>
+        <argsstring></argsstring>
+        <name>tickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLength</qualifiedname>
+        <read>tickLength</read>
+        <write>setTickLength</write>
+        <briefdescription>
+<para>Convenience setter for both <computeroutput>tickLengthIn</computeroutput> and <computeroutput>tickLengthOut</computeroutput> simultaneously. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="38" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a94b0747bfdf0f525fd460f6c575dfeb5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLength</definition>
+        <argsstring></argsstring>
+        <name>subtickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLength</qualifiedname>
+        <read>subtickLength</read>
+        <write>setSubtickLength</write>
+        <briefdescription>
+<para>Convenience setter for both <computeroutput>subtickLengthIn</computeroutput> and <computeroutput>subtickLengthOut</computeroutput> simultaneously. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="40" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1abba681a93a9ec75529f2c41408e54bbc" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthIn</definition>
+        <argsstring></argsstring>
+        <name>tickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthIn</qualifiedname>
+        <read>tickLengthIn</read>
+        <write>setTickLengthIn</write>
+        <briefdescription>
+<para>Length in pixels of the portion of a major tick that extends into the plot area. Default: 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="42" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ae7641c008837a855c96552b8596267b4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthOut</definition>
+        <argsstring></argsstring>
+        <name>tickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthOut</qualifiedname>
+        <read>tickLengthOut</read>
+        <write>setTickLengthOut</write>
+        <briefdescription>
+<para>Length in pixels of the portion of a major tick that extends outside the plot area. Default: 8. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="44" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ab38d9e5675669858acbadfd3d3caa837" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthIn</definition>
+        <argsstring></argsstring>
+        <name>subtickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthIn</qualifiedname>
+        <read>subtickLengthIn</read>
+        <write>setSubtickLengthIn</write>
+        <briefdescription>
+<para>Inward length in pixels of sub-tick marks. Default: 4. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="46" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ac8c8df365aca9b2e8836f020c89fdc2f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthOut</definition>
+        <argsstring></argsstring>
+        <name>subtickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthOut</qualifiedname>
+        <read>subtickLengthOut</read>
+        <write>setSubtickLengthOut</write>
+        <briefdescription>
+<para>Outward length in pixels of sub-tick marks. Default: 4. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="48" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1af336cfbd076b6b30238d923e8e1b5b1d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::subtickColor</definition>
+        <argsstring></argsstring>
+        <name>subtickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickColor</qualifiedname>
+        <read>subtickColor</read>
+        <write>setSubtickColor</write>
+        <briefdescription>
+<para>Color of sub-tick marks. Default: <computeroutput>Qt::darkGray</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="50" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ac1d90c377c10805ba99ea3a78a91aefa" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickWidth</definition>
+        <argsstring></argsstring>
+        <name>tickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickWidth</qualifiedname>
+        <read>tickWidth</read>
+        <write>setTickWidth</write>
+        <briefdescription>
+<para>Width in pixels of major tick mark lines. Default: 2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="52" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a76fda4d3989f3a183d98e55c18792b85" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickWidth</definition>
+        <argsstring></argsstring>
+        <name>subtickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickWidth</qualifiedname>
+        <read>subtickWidth</read>
+        <write>setSubtickWidth</write>
+        <briefdescription>
+<para>Width in pixels of sub-tick mark lines. Default: 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="54" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ade42a60cedac3e1d67af6635846dbc4c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelPadding</definition>
+        <argsstring></argsstring>
+        <name>tickLabelPadding</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelPadding</qualifiedname>
+        <read>tickLabelPadding</read>
+        <write>setTickLabelPadding</write>
+        <briefdescription>
+<para>Spacing in pixels between a tick mark and its label. Default: 5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="56" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1a7bc6d4cb5cd023576723394227dc3fc4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelRotation</definition>
+        <argsstring></argsstring>
+        <name>tickLabelRotation</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelRotation</qualifiedname>
+        <read>tickLabelRotation</read>
+        <write>setTickLabelRotation</write>
+        <briefdescription>
+<para>Rotation angle in degrees applied to each tick label. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="58" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1ab1495ebb808a3b5ebcb25d6b7da05f48" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::AxisTicker::tickLabelFont</definition>
+        <argsstring></argsstring>
+        <name>tickLabelFont</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFont</qualifiedname>
+        <read>tickLabelFont</read>
+        <write>setTickLabelFont</write>
+        <briefdescription>
+<para>Font used to render tick labels. Default: application default font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="60" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1AxisTicker_1afe2ff06fa990024b3b2626503a86dc71" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> *</type>
+        <definition>TickLabelFormatter* QAccelPlot::AxisTicker::tickLabelFormatter</definition>
+        <argsstring></argsstring>
+        <name>tickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFormatter</qualifiedname>
+        <read>tickLabelFormatter</read>
+        <write>setTickLabelFormatter</write>
+        <briefdescription>
+<para>Optional custom formatter for tick labels. When <computeroutput>nullptr</computeroutput> the default <ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref> is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="62" column="5" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1ab861e43c778df79a9c81fa5ed22c87ec" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::tickColor_</definition>
+        <argsstring></argsstring>
+        <name>tickColor_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickColor_</qualifiedname>
+        <initializer>{QColor(Qt::black)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="192" column="12" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="192" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1af8828c1cdc1a7baf3e292253172921ac" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::tickLabelColor_</definition>
+        <argsstring></argsstring>
+        <name>tickLabelColor_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelColor_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="193" column="12" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1add667820768eff824762f4e5458e07f6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::tickCount_</definition>
+        <argsstring></argsstring>
+        <name>tickCount_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickCount_</qualifiedname>
+        <initializer>{5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="194" column="9" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="194" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a447eefef39e513c48db4181dd4ebed31" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::subtickCount_</definition>
+        <argsstring></argsstring>
+        <name>subtickCount_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickCount_</qualifiedname>
+        <initializer>{10}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="195" column="9" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="195" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1ab5bba2058e96a4c769947f7f9dc59a86" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthIn_</definition>
+        <argsstring></argsstring>
+        <name>tickLengthIn_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthIn_</qualifiedname>
+        <initializer>{8.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="196" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="196" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a560ba16d58f90fb7618c4f9d0fd7ea65" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthOut_</definition>
+        <argsstring></argsstring>
+        <name>tickLengthOut_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthOut_</qualifiedname>
+        <initializer>{8.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="197" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="197" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a75fdb43819aec72f72a08d286ad0d895" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthIn_</definition>
+        <argsstring></argsstring>
+        <name>subtickLengthIn_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthIn_</qualifiedname>
+        <initializer>{4.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="198" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="198" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a28e18c9a696922bb73d5f2a83401ed31" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthOut_</definition>
+        <argsstring></argsstring>
+        <name>subtickLengthOut_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthOut_</qualifiedname>
+        <initializer>{4.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="199" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1ae737443acfa69edff096cd2a68e9b840" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::subtickColor_</definition>
+        <argsstring></argsstring>
+        <name>subtickColor_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickColor_</qualifiedname>
+        <initializer>{QColor(Qt::darkGray)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="200" column="12" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="200" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1ac236c3322a9023ab38bc4b78639234d1" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickWidth_</definition>
+        <argsstring></argsstring>
+        <name>tickWidth_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickWidth_</qualifiedname>
+        <initializer>{2.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="201" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="201" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a9272f7ac317899f28f3f6606059f67ff" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickWidth_</definition>
+        <argsstring></argsstring>
+        <name>subtickWidth_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="202" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1aa62171c20e000c5874ae604e3ce35250" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelPadding_</definition>
+        <argsstring></argsstring>
+        <name>tickLabelPadding_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelPadding_</qualifiedname>
+        <initializer>{5.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="203" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="203" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a52542f09d003646aa7e6b32b1cd5c813" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelRotation_</definition>
+        <argsstring></argsstring>
+        <name>tickLabelRotation_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelRotation_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="204" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="204" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1ada1bb65b4c7d780a2017a8daf34015bc" prot="private" static="no" mutable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::AxisTicker::tickLabelFont_</definition>
+        <argsstring></argsstring>
+        <name>tickLabelFont_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFont_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="205" column="11" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a5970b3ab3e2cf433c87831c1433799bd" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> *</type>
+        <definition>TickLabelFormatter* QAccelPlot::AxisTicker::defaultTickLabelFormatter_</definition>
+        <argsstring></argsstring>
+        <name>defaultTickLabelFormatter_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::defaultTickLabelFormatter_</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="206" column="24" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a417aa49e0f65fc3e0724e442b34c71e6" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> &gt;</type>
+        <definition>QPointer&lt;TickLabelFormatter&gt; QAccelPlot::AxisTicker::customTickLabelFormatter_</definition>
+        <argsstring></argsstring>
+        <name>customTickLabelFormatter_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::customTickLabelFormatter_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="207" column="14" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1AxisTicker_1a2c1ca4af2e0590ecd1d735f69befd2c9" prot="private" static="no" mutable="no">
+        <type>QMetaObject::Connection</type>
+        <definition>QMetaObject::Connection QAccelPlot::AxisTicker::customFormatterDestroyedConnection_</definition>
+        <argsstring></argsstring>
+        <name>customFormatterDestroyedConnection_</name>
+        <qualifiedname>QAccelPlot::AxisTicker::customFormatterDestroyedConnection_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="208" column="29" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="208" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ac443b8813dba0bac046aa5b2b6267310" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::AxisTicker::AxisTicker</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>AxisTicker</name>
+        <qualifiedname>QAccelPlot::AxisTicker::AxisTicker</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="66" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ae440a48931c27071a6adb804de862213" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::tickColor</definition>
+        <argsstring>() const</argsstring>
+        <name>tickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickColor</qualifiedname>
+        <briefdescription>
+<para>Returns the major tick color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="69" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a7af48aa1f6344dc29c1e5dd87112785a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setTickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the major tick color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="71" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1aba0d424d2cfd795667fc842c0e0940b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::tickLabelColor</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelColor</qualifiedname>
+        <briefdescription>
+<para>Returns the tick-label color, or an invalid color when it follows tickColor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="74" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1aa921421638a47e32779e080afbf379d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLabelColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setTickLabelColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLabelColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tick-label color to <emphasis>c</emphasis>. An invalid color restores the tickColor fallback. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a90f43021503b5b9c33abfe3f576ad562" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::tickCount</definition>
+        <argsstring>() const</argsstring>
+        <name>tickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickCount</qualifiedname>
+        <briefdescription>
+<para>Returns the target number of major ticks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="79" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a5ff0bf6708efc812e931640990b9b84e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickCount</definition>
+        <argsstring>(int count)</argsstring>
+        <name>setTickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickCount</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Sets the target major tick count to <emphasis>count</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1acedd5c50fa300f30509b93b79a44da04" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::AxisTicker::subtickCount</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickCount</qualifiedname>
+        <briefdescription>
+<para>Returns the sub-tick interval count. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="84" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ac196fe03046e3d1b7ba8dd296ea7c9da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickCount</definition>
+        <argsstring>(int count)</argsstring>
+        <name>setSubtickCount</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickCount</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+<para>Sets the sub-tick interval count to <emphasis>count</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="86" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a54a830b08e40f2b91728dd58c91e0e27" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLength</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLength</qualifiedname>
+        <briefdescription>
+<para>Returns the shared inward+outward tick length (reads <computeroutput>tickLengthIn</computeroutput>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="89" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ac91251f29f6ebc8eb35f586294a99b60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLength</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setTickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLength</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets both <computeroutput>tickLengthIn</computeroutput> and <computeroutput>tickLengthOut</computeroutput> to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="91" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1acae4876e145bc2bc830bbe88bc39128c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLength</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLength</qualifiedname>
+        <briefdescription>
+<para>Returns the shared inward+outward sub-tick length (reads <computeroutput>subtickLengthIn</computeroutput>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="94" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a415e530b3a7b3f7cb5dd0b60852dc68a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickLength</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setSubtickLength</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickLength</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets both <computeroutput>subtickLengthIn</computeroutput> and <computeroutput>subtickLengthOut</computeroutput> to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a6c07f1899fbcf3af75953f56fff05f3e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthIn</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthIn</qualifiedname>
+        <briefdescription>
+<para>Returns the inward major tick length. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="99" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a4b34512b308aab49b7c267e47421086c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLengthIn</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setTickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLengthIn</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the inward major tick length to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="101" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1abc5becfa69bbedefab7a02f6e2630da0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLengthOut</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthOut</qualifiedname>
+        <briefdescription>
+<para>Returns the outward major tick length. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="104" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a46b78840f0029de8dab6a970ac777c46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLengthOut</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setTickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLengthOut</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the outward major tick length to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ad83f646b4ad60e0293e3468475d76730" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthIn</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthIn</qualifiedname>
+        <briefdescription>
+<para>Returns the inward sub-tick length. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="109" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a391199bad1fcc2991b0200f52411c5a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickLengthIn</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setSubtickLengthIn</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickLengthIn</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the inward sub-tick length to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="111" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a886e7c46acaab775d33f4abd0dc83225" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickLengthOut</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthOut</qualifiedname>
+        <briefdescription>
+<para>Returns the outward sub-tick length. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="114" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a53d5e312e09dd6501618860c49fa0a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickLengthOut</definition>
+        <argsstring>(qreal length)</argsstring>
+        <name>setSubtickLengthOut</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickLengthOut</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Sets the outward sub-tick length to <emphasis>length</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a59904884257d698a53f645aab7159bce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::AxisTicker::subtickColor</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickColor</qualifiedname>
+        <briefdescription>
+<para>Returns the sub-tick color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="119" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ae91de2edf9df1188e8d874ebd139b40e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickColor</definition>
+        <argsstring>(const QColor &amp;c)</argsstring>
+        <name>setSubtickColor</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+<para>Sets the sub-tick color to <emphasis>c</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="121" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ad1e8e29cf20780c598aaafa263a728d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>tickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the major tick line width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="124" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a9f669bc985fdae01532cb74c7a8bf4bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setTickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the major tick line width to <emphasis>width</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a8df3556123ca0f0be48b63e45b9cf451" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::subtickWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>subtickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the sub-tick line width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="129" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a0c221904adeef506e7f833a90ef87c46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setSubtickWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setSubtickWidth</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setSubtickWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the sub-tick line width to <emphasis>width</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ac71939d660cb699f6947348c3311df78" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelPadding</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelPadding</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelPadding</qualifiedname>
+        <briefdescription>
+<para>Returns the tick label padding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="134" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a8f15cb5ced683d8675d2725660dbbc04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLabelPadding</definition>
+        <argsstring>(qreal padding)</argsstring>
+        <name>setTickLabelPadding</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLabelPadding</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tick label padding to <emphasis>padding</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="136" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a5322d7bde46ba163a47329d442efaef6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTicker::tickLabelRotation</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelRotation</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelRotation</qualifiedname>
+        <briefdescription>
+<para>Returns the tick label rotation in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="139" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a51586392cdc007680e18cc36a971bb77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLabelRotation</definition>
+        <argsstring>(qreal rotation)</argsstring>
+        <name>setTickLabelRotation</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLabelRotation</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tick label rotation to <emphasis>rotation</emphasis> degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="141" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1ab8e00464c6042b4dcfe1928daf2044be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::AxisTicker::tickLabelFont</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelFont</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFont</qualifiedname>
+        <briefdescription>
+<para>Returns the tick label font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="144" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a0988479a747b416487d8a34ba6a1e0e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLabelFont</definition>
+        <argsstring>(const QFont &amp;f)</argsstring>
+        <name>setTickLabelFont</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLabelFont</qualifiedname>
+        <param>
+          <type>const QFont &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tick label font to <emphasis>f</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="146" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1a5fa91bc9be6e08611528a77010fb7604" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> *</type>
+        <definition>TickLabelFormatter * QAccelPlot::AxisTicker::tickLabelFormatter</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFormatter</qualifiedname>
+        <briefdescription>
+<para>Returns the custom tick label formatter, or <computeroutput>nullptr</computeroutput> if using the default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="149" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTicker_1aed9bf2c929734c9ba46d841849a89b49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::setTickLabelFormatter</definition>
+        <argsstring>(TickLabelFormatter *formatter)</argsstring>
+        <name>setTickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::AxisTicker::setTickLabelFormatter</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> *</type>
+          <declname>formatter</declname>
+        </param>
+        <briefdescription>
+<para>Sets the tick label formatter to <emphasis>formatter</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="151" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1aa23943d47ffa7c6118e3601ba7a8d55d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickColorChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="155" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1afd5d3644310258b427f6b7202f9cfe08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelColorChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabelColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="157" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1ac97ee7144a72bc33259ea931e3ca5482" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickCountChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickCountChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickCountChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickCount property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="159" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a26563476cb6b790954f1ce85ec9ad9e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickCountChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickCountChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickCountChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickCount property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a413f46a2f30c9928972cb4e6e5cc33af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLengthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLengthChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLength convenience property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="163" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a275e4bbd96af21461ce5dc12bbd58715" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickLengthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickLengthChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickLength convenience property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="165" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a84b50408664a0fddcef358ba35fb49b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLengthInChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLengthInChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthInChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLengthIn property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="167" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a34506f6cca43eb7e4641b16500dfa1d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLengthOutChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLengthOutChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLengthOutChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLengthOut property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a998bdf62f8ae6c3287b0fb0471687521" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickLengthInChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickLengthInChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthInChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickLengthIn property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="171" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1adda94c7b77f21b1bf17808587f2205fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickLengthOutChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickLengthOutChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickLengthOutChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickLengthOut property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="173" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1af1a8e50921a137e63590bdaee9af3c79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickColorChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="175" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a69aefe8aaf03b44a67e03412135b0114" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickWidthChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="177" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a7beca84ccfa58fffc27df9a19b3e7f2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::subtickWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>subtickWidthChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::subtickWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the subtickWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="179" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a448f4bb956599d0f30bbf0a79c54da57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelPaddingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelPaddingChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelPaddingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabelPadding property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="181" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1abc33d6794ef414dc51d41a6779307710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelRotationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelRotationChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelRotationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabelRotation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="183" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1abe58adab2e89c4a660c4f8cfb84fc362" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelFontChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelFontChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFontChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabelFont property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a069711931afd430f496e34109f62d936" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelFormatterChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelFormatterChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFormatterChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the tickLabelFormatter property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1AxisTicker_1a8243e3f90c0fd12627cb6e4970e8b73b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::AxisTicker::tickLabelFormatChanged</definition>
+        <argsstring>()</argsstring>
+        <name>tickLabelFormatChanged</name>
+        <qualifiedname>QAccelPlot::AxisTicker::tickLabelFormatChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the current formatter&apos;s output configuration changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="189" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controls the visual appearance of ticks, sub-ticks, and tick labels on an <computeroutput><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Accessible via the <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a6873a52bfe65db20dda17a9f5c535bc4" kindref="member">Axis::ticker</ref></computeroutput> CONSTANT property. Changes are applied on the next paint event.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::AxisTicker</label>
+        <link refid="classQAccelPlot_1_1AxisTicker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::AxisTicker</label>
+        <link refid="classQAccelPlot_1_1AxisTicker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/axis/AxisTicker.hpp" line="26" column="1" bodyfile="QAccelPlot/src/axis/AxisTicker.hpp" bodystart="26" bodyend="209"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac443b8813dba0bac046aa5b2b6267310" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>AxisTicker</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a2c1ca4af2e0590ecd1d735f69befd2c9" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>customFormatterDestroyedConnection_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a417aa49e0f65fc3e0724e442b34c71e6" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>customTickLabelFormatter_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a5970b3ab3e2cf433c87831c1433799bd" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>defaultTickLabelFormatter_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ae91de2edf9df1188e8d874ebd139b40e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac196fe03046e3d1b7ba8dd296ea7c9da" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a415e530b3a7b3f7cb5dd0b60852dc68a" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a391199bad1fcc2991b0200f52411c5a0" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a53d5e312e09dd6501618860c49fa0a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a0c221904adeef506e7f833a90ef87c46" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setSubtickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a7af48aa1f6344dc29c1e5dd87112785a" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a5ff0bf6708efc812e931640990b9b84e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aa921421638a47e32779e080afbf379d5" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLabelColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a0988479a747b416487d8a34ba6a1e0e9" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLabelFont</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aed9bf2c929734c9ba46d841849a89b49" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a8f15cb5ced683d8675d2725660dbbc04" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLabelPadding</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a51586392cdc007680e18cc36a971bb77" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLabelRotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac91251f29f6ebc8eb35f586294a99b60" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a4b34512b308aab49b7c267e47421086c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a46b78840f0029de8dab6a970ac777c46" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a9f669bc985fdae01532cb74c7a8bf4bc" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>setTickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1af336cfbd076b6b30238d923e8e1b5b1d" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a59904884257d698a53f645aab7159bce" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ae737443acfa69edff096cd2a68e9b840" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickColor_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1af1a8e50921a137e63590bdaee9af3c79" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aa2d156b6495282908aacd12f65ae1b01" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1acedd5c50fa300f30509b93b79a44da04" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a447eefef39e513c48db4181dd4ebed31" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickCount_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a26563476cb6b790954f1ce85ec9ad9e6" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickCountChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a94b0747bfdf0f525fd460f6c575dfeb5" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1acae4876e145bc2bc830bbe88bc39128c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a275e4bbd96af21461ce5dc12bbd58715" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ab38d9e5675669858acbadfd3d3caa837" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ad83f646b4ad60e0293e3468475d76730" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a75fdb43819aec72f72a08d286ad0d895" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthIn_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a998bdf62f8ae6c3287b0fb0471687521" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthInChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac8c8df365aca9b2e8836f020c89fdc2f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a886e7c46acaab775d33f4abd0dc83225" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a28e18c9a696922bb73d5f2a83401ed31" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthOut_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1adda94c7b77f21b1bf17808587f2205fd" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickLengthOutChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a76fda4d3989f3a183d98e55c18792b85" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a8df3556123ca0f0be48b63e45b9cf451" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a9272f7ac317899f28f3f6606059f67ff" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickWidth_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a7beca84ccfa58fffc27df9a19b3e7f2c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>subtickWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a690e9a62cf1049ce81b2730239ff85ba" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ae440a48931c27071a6adb804de862213" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ab861e43c778df79a9c81fa5ed22c87ec" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickColor_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aa23943d47ffa7c6118e3601ba7a8d55d" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a3d260ba48c6dc2df77270138e74129eb" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a90f43021503b5b9c33abfe3f576ad562" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickCount</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1add667820768eff824762f4e5458e07f6" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickCount_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac97ee7144a72bc33259ea931e3ca5482" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickCountChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a956edfb1e700ab75991efb417723ad53" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aba0d424d2cfd795667fc842c0e0940b7" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelColor</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1af8828c1cdc1a7baf3e292253172921ac" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelColor_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1afd5d3644310258b427f6b7202f9cfe08" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ab1495ebb808a3b5ebcb25d6b7da05f48" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFont</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ab8e00464c6042b4dcfe1928daf2044be" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFont</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ada1bb65b4c7d780a2017a8daf34015bc" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFont_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1abe58adab2e89c4a660c4f8cfb84fc362" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFontChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a8243e3f90c0fd12627cb6e4970e8b73b" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFormatChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1afe2ff06fa990024b3b2626503a86dc71" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a5fa91bc9be6e08611528a77010fb7604" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a069711931afd430f496e34109f62d936" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelFormatterChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ade42a60cedac3e1d67af6635846dbc4c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelPadding</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac71939d660cb699f6947348c3311df78" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelPadding</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1aa62171c20e000c5874ae604e3ce35250" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelPadding_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a448f4bb956599d0f30bbf0a79c54da57" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelPaddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a7bc6d4cb5cd023576723394227dc3fc4" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelRotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a5322d7bde46ba163a47329d442efaef6" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelRotation</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a52542f09d003646aa7e6b32b1cd5c813" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelRotation_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1abc33d6794ef414dc51d41a6779307710" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLabelRotationChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1af3e75927f1a912cfdcd634ba932e7869" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a54a830b08e40f2b91728dd58c91e0e27" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLength</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a413f46a2f30c9928972cb4e6e5cc33af" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1abba681a93a9ec75529f2c41408e54bbc" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a6c07f1899fbcf3af75953f56fff05f3e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthIn</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ab5bba2058e96a4c769947f7f9dc59a86" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthIn_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a84b50408664a0fddcef358ba35fb49b7" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthInChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ae7641c008837a855c96552b8596267b4" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1abc5becfa69bbedefab7a02f6e2630da0" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthOut</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a560ba16d58f90fb7618c4f9d0fd7ea65" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthOut_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a34506f6cca43eb7e4641b16500dfa1d9" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickLengthOutChanged</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac1d90c377c10805ba99ea3a78a91aefa" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ad1e8e29cf20780c598aaafa263a728d1" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickWidth</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1ac236c3322a9023ab38bc4b78639234d1" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickWidth_</name></member>
+      <member refid="classQAccelPlot_1_1AxisTicker_1a69aefe8aaf03b44a67e03412135b0114" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicker</scope><name>tickWidthChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

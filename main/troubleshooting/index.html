@@ -939,9 +939,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -955,7 +985,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1101,7 +1315,7 @@ slower for huge data sets updated every frame.</p>
 <h2 id="the-axes-appear-but-the-curve-is-blank">The axes appear but the curve is blank<a class="headerlink" href="#the-axes-appear-but-the-curve-is-blank" title="Permanent link">&para;</a></h2>
 <p>Check these conditions:</p>
 <ol>
-<li>The <code>LineCurve</code> has both <a href="../api/classQAccelPlot_1_1PlotSeries.html#a250150d8eaea44c2608375839747b2b2"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries.html#ae021f84424e1ea4ad44576961ac7d402"><code>yAxis</code></a> assigned.</li>
+<li>The <code>LineCurve</code> has both <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> assigned.</li>
 <li>At least two points exist when a line is enabled, or one point when only a
    marker is enabled.</li>
 <li>The viewport includes the point coordinates.</li>
@@ -1111,11 +1325,11 @@ slower for huge data sets updated every frame.</p>
 <p>Run with Qt logging enabled and look for the QAccelPlot warning that custom
 rendering is unavailable on the software backend.</p>
 <h2 id="rescale-does-not-show-all-new-data">Rescale does not show all new data<a class="headerlink" href="#rescale-does-not-show-all-new-data" title="Permanent link">&para;</a></h2>
-<p><a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> intentionally skips data-range
-calculation. Set accurate <a href="../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a>
-values on the axes, or occasionally update through <a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a>
-before calling <a href="../api/classQAccelPlot_1_1Axis.html#a1a4057e12caae2776590a0ce4bc38a84"><code>rescaleToData()</code></a> or
-<a href="../api/classQAccelPlot_1_1QAccelPlot.html#a6ab962feb97d0bfccb268ac54bce8c77"><code>rescaleAllAxes()</code></a>.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> intentionally skips data-range
+calculation. Set accurate <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a>
+values on the axes, or occasionally update through <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a>
+before calling <a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a> or
+<a href="../api/classQAccelPlot_1_1QAccelPlot/#function-rescaleallaxes"><code>rescaleAllAxes()</code></a>.</p>
 <p>If several series share an axis, remember that each series contributes to the
 axis data range.</p>
 <h2 id="a-real-time-plot-stutters">A real-time plot stutters<a class="headerlink" href="#a-real-time-plot-stutters" title="Permanent link">&para;</a></h2>
@@ -1198,13 +1412,13 @@ axis data range.</p>
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API reference">
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                API reference
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">

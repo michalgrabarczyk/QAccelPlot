@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SpatialGrid" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SpatialGrid</compoundname>
+    <includes local="no">SpatialGrid.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds" prot="private">QAccelPlot::SpatialGrid::ItemBounds</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1a2030db9403534f794cb347ea19e5ceab" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::minX_</definition>
+        <argsstring></argsstring>
+        <name>minX_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::minX_</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="43" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1a94002411249b0efadddd66dcfa5efe7a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::minY_</definition>
+        <argsstring></argsstring>
+        <name>minY_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::minY_</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="44" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1abf8c9856a33c33dc97fbd91e801ff66d" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::maxX_</definition>
+        <argsstring></argsstring>
+        <name>maxX_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::maxX_</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="45" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1ad8326373c9797f915bf00d14b99346c1" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::maxY_</definition>
+        <argsstring></argsstring>
+        <name>maxY_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::maxY_</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="46" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1adfac97e641581b9f117351814972ac6d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SpatialGrid::cols_</definition>
+        <argsstring></argsstring>
+        <name>cols_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::cols_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="47" column="9" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1ae256c0c263f38ddd883534adbdf39da7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SpatialGrid::rows_</definition>
+        <argsstring></argsstring>
+        <name>rows_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::rows_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="48" column="9" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1a8b877b447ca861fe230a25cd93d73a05" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::cellW_</definition>
+        <argsstring></argsstring>
+        <name>cellW_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::cellW_</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="49" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1a6e252b14cbf9de2a50d5132780df3bcc" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::SpatialGrid::cellH_</definition>
+        <argsstring></argsstring>
+        <name>cellH_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::cellH_</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="50" column="11" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1aa08265c5d78792becf70f7c0f57febda" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; ItemBounds &gt;</type>
+        <definition>std::vector&lt;ItemBounds&gt; QAccelPlot::SpatialGrid::itemBounds_</definition>
+        <argsstring></argsstring>
+        <name>itemBounds_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::itemBounds_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="51" column="17" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SpatialGrid_1ada905e5ad9eb3b05bdadb72684722883" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;int&gt; &gt; QAccelPlot::SpatialGrid::cells_</definition>
+        <argsstring></argsstring>
+        <name>cells_</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::cells_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="52" column="17" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SpatialGrid_1a27af9a12c4deadbc10bcf4cd488817e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SpatialGrid::build</definition>
+        <argsstring>(const float *data, int itemCount, int floatsPerItem=4)</argsstring>
+        <name>build</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::build</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>floatsPerItem</declname>
+          <defval>4</defval>
+        </param>
+        <briefdescription>
+<para>Rebuilds the spatial index from <emphasis>data</emphasis> containing <emphasis>itemCount</emphasis> axis-aligned rectangles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the flat float array (x1, y1, x2, y2 per item, with <emphasis>floatsPerItem</emphasis> stride). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>itemCount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of rectangles in <emphasis>data</emphasis>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>floatsPerItem</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of floats per rectangle entry (default 4). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="25" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SpatialGrid_1a1925e28b7342255e2a8a87b8420d42df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::SpatialGrid::query</definition>
+        <argsstring>(float x, float y) const</argsstring>
+        <name>query</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::query</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Returns the index of the topmost rectangle that contains point (<emphasis>x</emphasis>, <emphasis>y</emphasis>), or -1 if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="27" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SpatialGrid_1aec050dbe4ca294aa8e4b6561b670b71b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SpatialGrid::computeDataBounds</definition>
+        <argsstring>(const float *data, int itemCount, int floatsPerItem)</argsstring>
+        <name>computeDataBounds</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::computeDataBounds</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>floatsPerItem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SpatialGrid::computeGridDimensions</definition>
+        <argsstring>(int itemCount)</argsstring>
+        <name>computeGridDimensions</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::computeGridDimensions</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SpatialGrid_1a8eac80f44444015e46af281c378e7139" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SpatialGrid::fillSpatialGrid</definition>
+        <argsstring>(int itemCount)</argsstring>
+        <name>fillSpatialGrid</name>
+        <qualifiedname>QAccelPlot::SpatialGrid::fillSpatialGrid</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>itemCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="41" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable <emphasis>floatsPerItem</emphasis> stride. Intended for use by <ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref> and similar shape types. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/series/SpatialGrid.hpp" line="19" column="1" bodyfile="QAccelPlot/src/series/SpatialGrid.hpp" bodystart="19" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a27af9a12c4deadbc10bcf4cd488817e0" prot="public" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>build</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a6e252b14cbf9de2a50d5132780df3bcc" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>cellH_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1ada905e5ad9eb3b05bdadb72684722883" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>cells_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a8b877b447ca861fe230a25cd93d73a05" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>cellW_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1adfac97e641581b9f117351814972ac6d" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>cols_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1aec050dbe4ca294aa8e4b6561b670b71b" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>computeDataBounds</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>computeGridDimensions</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a8eac80f44444015e46af281c378e7139" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>fillSpatialGrid</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1aa08265c5d78792becf70f7c0f57febda" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>itemBounds_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1abf8c9856a33c33dc97fbd91e801ff66d" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>maxX_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1ad8326373c9797f915bf00d14b99346c1" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>maxY_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a2030db9403534f794cb347ea19e5ceab" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>minX_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a94002411249b0efadddd66dcfa5efe7a" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>minY_</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1a1925e28b7342255e2a8a87b8420d42df" prot="public" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>query</name></member>
+      <member refid="classQAccelPlot_1_1SpatialGrid_1ae256c0c263f38ddd883534adbdf39da7" prot="private" virt="non-virtual"><scope>QAccelPlot::SpatialGrid</scope><name>rows_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

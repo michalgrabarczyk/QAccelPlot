@@ -995,9 +995,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -1011,7 +1041,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1204,59 +1418,59 @@ that resembles your application.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#acf9463cc9f4c0e0eb7cc9d053b7e7114"><code>setData(QList&lt;QPointF&gt;)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData(QList&lt;QPointF&gt;)</code></a></td>
 <td>Data originates in QML or convenience matters most</td>
 <td>Allocation plus conversion to interleaved floats</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#aad067a9b84289a5c73637905cbc61a69"><code>setData(xs, ys)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData(xs, ys)</code></a></td>
 <td>Existing C++ data is stored as separate double vectors</td>
 <td>Allocation plus double-to-float interleaving</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#ad79086eb28ddc5112e534c8cdbfa03ef"><code>setDataF(const float*, count)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
 <td>Existing interleaved memory cannot be transferred</td>
 <td>One copy plus a range scan</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>The caller is on the curve's thread, normally the UI thread</td>
 <td>Range scan; buffer ownership is moved immediately</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>Axis data ranges are fixed or maintained separately</td>
 <td>Skips the range scan and signals</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#a0cb6f8ea1a797ee69886a4508266d7db"><code>setDataFNoRange(const float*, count)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-22"><code>setDataFNoRange(const float*, count)</code></a></td>
 <td>Existing interleaved memory remains caller-owned and axis ranges are maintained separately</td>
 <td>One reusable-buffer copy; skips the range scan and signals</td>
 </tr>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>A worker thread owns the completed buffer</td>
 <td>Queues the same moved-buffer handoff, followed by the normal range scan</td>
 </tr>
 </tbody>
 </table>
-<p><a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> transfers the
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> transfers the
 buffer immediately and must be called on the curve's thread, normally the UI
-thread. <a href="../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> is its
+thread. <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> is its
 worker-thread-safe counterpart: it queues that same transfer to the curve's
 thread.</p>
-<p>Start with <a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
-C++ data sets. Move to <a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> only after
+<p>Start with <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
+C++ data sets. Move to <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> only after
 confirming that range calculation matters and after arranging accurate
-<a href="../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a>/<a href="../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a> values yourself.</p>
+<a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>/<a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> values yourself.</p>
 <div class="admonition caution">
 <p class="admonition-title">No-range updates change the contract</p>
-<p><a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> does not report new extents to
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> does not report new extents to
 attached axes. If the data can leave the declared range, update the axes
 yourself or periodically use a range-calculating path. Otherwise rescaling
 and clipping behavior will be incorrect.</p>
 </div>
-<p><a href="../api/classQAccelPlot_1_1LineCurve.html#a549c74098a67f68d77ea45e9a0e32649"><code>setDataFNoRangeWithCache()</code></a> is an advanced
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorangewithcache-12"><code>setDataFNoRangeWithCache()</code></a> is an advanced
 path used by the performance showcase and benchmark harness. It is valuable
 when an application can prepare the renderer's vertex cache off the UI/render
 path, but it couples application code more closely to renderer details. Prefer
@@ -1276,13 +1490,13 @@ invalid caches are rejected and rendering falls back to normal vertex assembly.<
 <p>For worker-thread production and one-batch handoff, see
 <a href="../cookbook/background-data/">Background data production</a>.</p>
 <p>For a stable streaming window, set the axis data range explicitly and use
-<a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> for subsequent frames. The
+<a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for subsequent frames. The
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>
 demonstrates this pattern.</p>
 <h2 id="keep-work-off-critical-paths">Keep work off critical paths<a class="headerlink" href="#keep-work-off-critical-paths" title="Permanent link">&para;</a></h2>
 <p>Generate or transform expensive data on a worker thread. Transfer only a
 completed buffer to the UI thread; never write directly to a <code>QQuickItem</code> from
-the worker. <a href="../api/classQAccelPlot_1_1LineCurve.html#a8b3d0effe4bd115f091ad505a7787b2c"><code>postData()</code></a> is the simplest safe handoff when
+the worker. <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> is the simplest safe handoff when
 automatic range calculation is acceptable.</p>
 <p>If producers are faster than display, keep at most one completed batch, or use
 a queue with a fixed limit. This applies backpressure, preventing memory growth
@@ -1300,7 +1514,7 @@ updates, the bounds are built during data handoff rather than on the first
 hover. Built-in hover feedback and changes to solid-curve color or line width
 update material uniforms without rebuilding vertex geometry; gradient effects
 may require additional per-vertex work.</p>
-<p><a href="../api/classQAccelPlot_1_1RectangleList.html#afb85815f91d34b3a35bbf957e9aa5e09"><code>QAccelPlot.RectangleList.hoveredIndex</code></a> uses a spatial grid, giving an <code>O(1)</code>
+<p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>QAccelPlot.RectangleList.hoveredIndex</code></a> uses a spatial grid, giving an <code>O(1)</code>
 lookup per pointer move after the grid is built when its data changes.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
