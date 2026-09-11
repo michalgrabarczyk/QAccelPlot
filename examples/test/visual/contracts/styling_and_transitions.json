@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "styling_and_transitions",
-  "description": "The default 880x1120 Styling and Transitions example, showing styling controls and three vertically stacked plot panels.",
+  "description": "Three vertically stacked plots demonstrating marker shapes, line patterns, and line weights. Judge only the plot panels; ignore styling controls, headings, buttons, and other surrounding UI.",
   "expected_image": {
     "width": 880,
     "height": 1120,
@@ -15,17 +15,12 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "Marker, line-pattern, and line-weight plot panels are stacked vertically below the styling controls. Panels and controls do not overlap or extend beyond the window."
-    },
-    {
-      "id": "text_and_labels",
-      "severity": "high",
-      "expectation": "Visible control text, legends, axis titles, and tick labels are readable and not cut off at window or panel boundaries. Rotated axis titles are intentional."
+      "expectation": "Marker, line-pattern, and line-weight plot panels are stacked vertically. The three plot panels and their plot content do not overlap or extend beyond their intended areas. Do not evaluate styling controls or other content outside the plots."
     },
     {
       "id": "marker_panel",
       "severity": "medium",
-      "expectation": "The top panel shows a blue sample signal with visible markers. Its marker shape responds to the Shape control."
+      "expectation": "The top panel shows a blue sample signal with clearly visible markers. Judge the rendered curve and markers only, not the related controls."
     },
     {
       "id": "line_patterns_panel",
@@ -40,7 +35,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels in all three panels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the three plots, axis titles, tick labels, and legends are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

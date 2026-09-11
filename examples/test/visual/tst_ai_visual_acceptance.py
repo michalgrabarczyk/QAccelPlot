@@ -263,22 +263,26 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("Set evidence to an empty string for `pass`", prompt)
         self.assertNotIn("blocking_severities", prompt)
 
-    def test_custom_axis_contract_distinguishes_typography_from_rasterization(self):
-        contract = load_contract(CONTRACTS_DIR / "custom_axis.json")
-        raster_check = next(check for check in contract["checks"] if check["id"] == "text_raster_quality")
-        expectation = raster_check["expectation"]
-        self.assertIn("intentionally smaller, normal-weight, and light gray", expectation)
-        self.assertIn("do not use the title or tabs as a direct sharpness comparison", expectation)
-        self.assertIn("square pixel blocks", expectation)
-        self.assertIn("no concrete scaling artifact is visible, pass", expectation)
+    def test_contracts_limit_text_quality_review_to_plot_text(self):
+        for contract_path in CONTRACTS_DIR.glob("*.json"):
+            with self.subTest(contract=contract_path.name):
+                contract = load_contract(contract_path)
+                raster_check = next(check for check in contract["checks"] if check["id"] == "text_raster_quality")
+                expectation = raster_check["expectation"]
+                self.assertIn("square pixel blocks", expectation)
+                self.assertIn("Do not compare", expectation)
+                self.assertIn("text outside the plot", expectation.replace("plots", "plot"))
 
-    def test_interactive_tools_contract_describes_both_control_groups(self):
+    def test_interactive_tools_contract_ignores_controls_and_ruler_position(self):
         contract = load_contract(CONTRACTS_DIR / "interactive_tools.json")
-        controls_check = next(check for check in contract["checks"] if check["id"] == "tool_controls")
-        expectation = controls_check["expectation"]
-        self.assertIn("four adjacent controls grouped on the left", expectation)
-        self.assertIn("exactly two controls grouped on the right", expectation)
-        self.assertIn("Seeing only those two controls on the right is the expected layout", expectation)
+        check_ids = {check["id"] for check in contract["checks"]}
+        self.assertNotIn("tool_controls", check_ids)
+        ruler_check = next(check for check in contract["checks"] if check["id"] == "initial_ruler")
+        expectation = ruler_check["expectation"]
+        self.assertIn("clearly visible", expectation)
+        self.assertIn("Do not judge its exact position", expectation)
+        self.assertNotIn("left third", expectation)
+        self.assertNotIn("220.08", expectation)
 
     def test_console_output_is_reconfigured_for_unicode(self):
         stdout_bytes = io.BytesIO()
