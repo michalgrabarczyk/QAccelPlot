@@ -54,7 +54,8 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal baselineWidth READ baselineWidth WRITE setBaselineWidth NOTIFY baselineWidthChanged)
     /// \brief Tick and label color applied when the axis is hovered. Default: \c Qt::blue.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
-    /// \brief Which side of the plot the axis is drawn on: Left, Top, Right, or Bottom.
+    /// \brief Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis,
+    /// and y2Axis; set explicitly for an axis placed in extraAxes.
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
     /// \brief Pixels of padding between the axis line and the title text. Default: 30.
     Q_PROPERTY(int axisTitlePadding READ axisTitlePadding WRITE setAxisTitlePadding NOTIFY axisTitlePaddingChanged)

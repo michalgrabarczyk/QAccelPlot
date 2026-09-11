@@ -69,7 +69,6 @@ Item {
                 viewportMax: 700
                 dataMin: 400
                 dataMax: 700
-                side: QAccelPlot.Axis.Bottom
                 label: "Wavelength (nm)"
                 baselineColor: root.palette.seriesPrimary
                 baselineWidth: 2
@@ -87,7 +86,6 @@ Item {
                 viewportMax: 1.1
                 dataMin: 0
                 dataMax: 1.1
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative intensity"

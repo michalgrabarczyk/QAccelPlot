@@ -26,6 +26,7 @@ private slots:
     void border_clampsNegativeWidth();
     void baselineWidth_defaultsAndClamps();
     void layoutSize_defaultsAndClamps();
+    void namedAxesAssignSidesAutomatically();
     void customAxisLayoutSizesUpdatePlotRect();
     void extraAxesUseIndividualLayoutSizes();
     void acceptedReleaseEndsDrag();
@@ -90,6 +91,35 @@ void TestPlotAppearance::layoutSize_defaultsAndClamps()
     axis.setLayoutSize(75.0);
     QCOMPARE(axis.layoutSize(), 75.0);
     QCOMPARE(sizeChanged.count(), 2);
+}
+
+void TestPlotAppearance::namedAxesAssignSidesAutomatically()
+{
+    QAccelPlot::QAccelPlot plot;
+    auto* xAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Left};
+    auto* yAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Top};
+    auto* x2Axis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Bottom};
+    auto* y2Axis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Bottom};
+
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    plot.setX2Axis(x2Axis);
+    plot.setY2Axis(y2Axis);
+
+    QCOMPARE(xAxis->side(), QAccelPlot::Axis::Bottom);
+    QCOMPARE(xAxis->orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(yAxis->side(), QAccelPlot::Axis::Left);
+    QCOMPARE(yAxis->orientation(), QAccelPlot::Axis::Vertical);
+    QCOMPARE(x2Axis->side(), QAccelPlot::Axis::Top);
+    QCOMPARE(x2Axis->orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(y2Axis->side(), QAccelPlot::Axis::Right);
+    QCOMPARE(y2Axis->orientation(), QAccelPlot::Axis::Vertical);
+
+    auto* extraAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Top};
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+    QCOMPARE(extraAxis->side(), QAccelPlot::Axis::Top);
+    QCOMPARE(extraAxis->orientation(), QAccelPlot::Axis::Horizontal);
 }
 
 void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()

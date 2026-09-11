@@ -151,7 +151,7 @@ void QAccelPlot::setXAxis(Axis* axis)
     }
     xAxis_ = axis;
     if (xAxis_) {
-        connectAxis(xAxis_, Axis::Horizontal);
+        connectAxis(xAxis_, Axis::Bottom);
     }
     emit xAxisChanged();
     layoutAxes();
@@ -172,7 +172,7 @@ void QAccelPlot::setYAxis(Axis* axis)
     }
     yAxis_ = axis;
     if (yAxis_) {
-        connectAxis(yAxis_, Axis::Vertical);
+        connectAxis(yAxis_, Axis::Left);
     }
     emit yAxisChanged();
     layoutAxes();
@@ -193,7 +193,7 @@ void QAccelPlot::setX2Axis(Axis* axis)
     }
     x2Axis_ = axis;
     if (x2Axis_) {
-        connectAxis(x2Axis_, Axis::Horizontal);
+        connectAxis(x2Axis_, Axis::Top);
     }
     emit x2AxisChanged();
     layoutAxes();
@@ -214,7 +214,7 @@ void QAccelPlot::setY2Axis(Axis* axis)
     }
     y2Axis_ = axis;
     if (y2Axis_) {
-        connectAxis(y2Axis_, Axis::Vertical);
+        connectAxis(y2Axis_, Axis::Right);
     }
     emit y2AxisChanged();
     layoutAxes();
@@ -648,10 +648,10 @@ void QAccelPlot::axisDestroyed(QObject* object)
     }
 }
 
-void QAccelPlot::connectAxis(Axis* axis, Axis::Orientation orientation)
+void QAccelPlot::connectAxis(Axis* axis, Axis::Side side)
 {
     axis->setParentItem(this);
-    axis->setOrientation(orientation);
+    axis->setSide(side);
     connectAxisSignals(axis);
 }
 

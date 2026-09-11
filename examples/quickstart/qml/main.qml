@@ -64,7 +64,6 @@ Window {
                 viewportMax: 24
                 dataMin: 0
                 dataMax: 24
-                side: QAccelPlot.Axis.Bottom
                 label: "Time of day (h)"
                 baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
@@ -82,7 +81,6 @@ Window {
                 viewportMax: 27
                 dataMin: 16
                 dataMax: 27
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"

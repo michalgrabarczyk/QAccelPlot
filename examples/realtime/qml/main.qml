@@ -88,7 +88,6 @@ Window {
                 viewportMax: 0
                 dataMin: -20
                 dataMax: 0
-                side: QAccelPlot.Axis.Bottom
                 label: "Time before present (s)"
                 baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
@@ -106,7 +105,6 @@ Window {
                 viewportMax: 2.5
                 dataMin: -2.5
                 dataMax: 2.5
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"
