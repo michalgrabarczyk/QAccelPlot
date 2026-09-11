@@ -113,7 +113,6 @@ Window {
                 viewportMax: 800
                 dataMin: 0
                 dataMax: 1000
-                side: QAccelPlot.Axis.Bottom
                 baselineColor: colorPalette.axisLine
                 baselineWidth: 1
                 labelColor: colorPalette.axisLabel
@@ -131,7 +130,6 @@ Window {
                 viewportMax: 530.0
                 dataMin: 0.0
                 dataMax: 560.0
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
             }

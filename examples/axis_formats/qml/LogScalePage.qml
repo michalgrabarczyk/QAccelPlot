@@ -71,7 +71,6 @@ Item {
                 dataMin: 20
                 dataMax: 20000
                 logScale: root.logarithmic
-                side: QAccelPlot.Axis.Bottom
                 label: "Frequency (Hz)"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
@@ -89,7 +88,6 @@ Item {
                 viewportMax: 3
                 dataMin: -18
                 dataMax: 3
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative level (dB)"

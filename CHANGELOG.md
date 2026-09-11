@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Per-axis `layoutSize` control for explicitly reserving horizontal-axis height
   or vertical-axis width.
+- Automatic side assignment for the four named plot axes: `xAxis` uses the
+  bottom, `x2Axis` the top, `yAxis` the left, and `y2Axis` the right.
 
 ### Fixed
 
