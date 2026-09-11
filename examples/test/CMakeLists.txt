@@ -54,7 +54,7 @@ if(TARGET QAccelPlotExampleStylingAndTransitions)
             --screenshot "${_light_theme_screenshot}"
     )
     set_tests_properties(smoke_QAccelPlotExampleStylingAndTransitionsLight PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1"
+        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
         TIMEOUT 15
     )
 endif()
@@ -64,5 +64,9 @@ if(Python3_Interpreter_FOUND)
     add_test(
         NAME tst_ai_visual_acceptance
         COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_acceptance.py"
+    )
+    add_test(
+        NAME tst_ai_visual_cost_controls
+        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_cost_controls.py"
     )
 endif()

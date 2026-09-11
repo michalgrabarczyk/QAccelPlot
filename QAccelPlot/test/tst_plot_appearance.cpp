@@ -29,6 +29,7 @@ private slots:
     void namedAxesAssignSidesAutomatically();
     void customAxisLayoutSizesUpdatePlotRect();
     void extraAxesUseIndividualLayoutSizes();
+    void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
     void hiddenAxesDoNotReserveLayoutSpace();
     void hiddenAxisRetainsCoordinateMapping();
@@ -176,6 +177,27 @@ void TestPlotAppearance::extraAxesUseIndividualLayoutSizes()
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 132.0));
     QCOMPARE(horizontalAxis->height(), 38.0);
     QCOMPARE(verticalAxis->width(), 75.0);
+}
+
+void TestPlotAppearance::axisHoverEnvironmentControlsAcceptance()
+{
+    constexpr auto variableName = "QACCELPLOT_HOVER_ENABLED";
+    const auto wasSet = qEnvironmentVariableIsSet(variableName);
+    const auto previousValue = qgetenv(variableName);
+
+    qunsetenv(variableName);
+    const auto defaultAxis = QAccelPlot::Axis{};
+    qputenv(variableName, "0");
+    const auto hoverDisabledAxis = QAccelPlot::Axis{};
+
+    if (wasSet) {
+        qputenv(variableName, previousValue);
+    } else {
+        qunsetenv(variableName);
+    }
+
+    QVERIFY(defaultAxis.acceptHoverEvents());
+    QVERIFY(!hoverDisabledAxis.acceptHoverEvents());
 }
 
 void TestPlotAppearance::acceptedReleaseEndsDrag()
