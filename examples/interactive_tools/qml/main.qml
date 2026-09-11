@@ -235,7 +235,6 @@ Window {
                 viewportMax: 1000
                 dataMin: 0
                 dataMax: 1000
-                side: QAccelPlot.Axis.Bottom
                 label: "Distance (m)"
                 baselineColor: colorPalette.axisLine
                 baselineWidth: 2
@@ -253,7 +252,6 @@ Window {
                 viewportMax: 80
                 dataMin: 0
                 dataMax: 80
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Elevation (m)"

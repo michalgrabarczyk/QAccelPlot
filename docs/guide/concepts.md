@@ -44,7 +44,9 @@ axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] prope
 The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
 [`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
 sides, while [`extraAxes`][extra-axes] supports additional independently scaled
-axes. Each series explicitly selects the axes it uses.
+axes. Assigning a named axis automatically selects its side: `xAxis` is bottom,
+`x2Axis` is top, `yAxis` is left, and `y2Axis` is right. Extra axes specify
+their own `side`. Each series explicitly selects the axes it uses.
 
 `AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,

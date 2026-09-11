@@ -53,7 +53,6 @@ Item {
                 viewportMax: 1.2
                 dataMin: -0.5
                 dataMax: 1.2
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Lead I (mV)"
@@ -100,7 +99,6 @@ Item {
                 viewportMax: 1.5
                 dataMin: -0.7
                 dataMax: 1.5
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Lead II (mV)"
@@ -147,7 +145,6 @@ Item {
                 viewportMax: 10
                 dataMin: 0
                 dataMax: 10
-                side: QAccelPlot.Axis.Bottom
                 label: "Shared time (s) — pan or zoom here"
                 baselineColor: root.palette.axisLine
                 baselineWidth: 2
@@ -165,7 +162,6 @@ Item {
                 viewportMax: 1
                 dataMin: -1
                 dataMax: 1
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Respiration"

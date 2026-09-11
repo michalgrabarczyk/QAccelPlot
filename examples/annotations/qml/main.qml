@@ -75,7 +75,6 @@ Window {
                 viewportMax: 100
                 dataMin: 0
                 dataMax: 100
-                side: QAccelPlot.Axis.Bottom
                 label: "Process time (s)"
                 baselineColor: colorPalette.axisLine
                 baselineWidth: 3
@@ -93,7 +92,6 @@ Window {
                 viewportMax: 8
                 dataMin: -6
                 dataMax: 8
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Pressure response (units)"

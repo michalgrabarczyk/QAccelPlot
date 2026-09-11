@@ -34,8 +34,8 @@ class GridNode;
 /// \par Usage
 /// \code
 /// PlotView {
-///     Axis { id: xAxis; side: Axis.Bottom }
-///     Axis { id: yAxis; side: Axis.Left }
+///     Axis { id: xAxis }
+///     Axis { id: yAxis }
 ///     xAxis: xAxis
 ///     yAxis: yAxis
 ///     LineCurve { xAxis: xAxis; yAxis: yAxis; color: "steelblue" }
@@ -47,15 +47,15 @@ class QAccelPlot : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotView)
 
-    /// \brief Primary horizontal (bottom/top) axis.
+    /// \brief Primary horizontal axis; assigning it sets its side to \c Axis.Bottom.
     Q_PROPERTY(Axis* xAxis READ xAxis WRITE setXAxis NOTIFY xAxisChanged)
-    /// \brief Primary vertical (left/right) axis.
+    /// \brief Primary vertical axis; assigning it sets its side to \c Axis.Left.
     Q_PROPERTY(Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
-    /// \brief Optional secondary horizontal axis (opposite side to xAxis).
+    /// \brief Optional secondary horizontal axis; assigning it sets its side to \c Axis.Top.
     Q_PROPERTY(Axis* x2Axis READ x2Axis WRITE setX2Axis NOTIFY x2AxisChanged)
-    /// \brief Optional secondary vertical axis (opposite side to yAxis).
+    /// \brief Optional secondary vertical axis; assigning it sets its side to \c Axis.Right.
     Q_PROPERTY(Axis* y2Axis READ y2Axis WRITE setY2Axis NOTIFY y2AxisChanged)
-    /// \brief Additional axes beyond the primary four (linked via curves' axis properties).
+    /// \brief Additional axes beyond the primary four; each extra axis must supply its own side.
     Q_PROPERTY(QQmlListProperty<Axis> extraAxes READ extraAxes)
     /// \brief Uniform padding in pixels between the plot area and the canvas edge. Default: 24.
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
@@ -91,22 +91,22 @@ public:
 
     /// \brief Returns the primary horizontal axis.
     Axis* xAxis() const;
-    /// \brief Sets the primary horizontal axis to \a axis.
+    /// \brief Sets the primary horizontal axis to \a axis and assigns it to the bottom side.
     void setXAxis(Axis* axis);
 
     /// \brief Returns the primary vertical axis.
     Axis* yAxis() const;
-    /// \brief Sets the primary vertical axis to \a axis.
+    /// \brief Sets the primary vertical axis to \a axis and assigns it to the left side.
     void setYAxis(Axis* axis);
 
     /// \brief Returns the secondary horizontal axis, or \c nullptr if not set.
     Axis* x2Axis() const;
-    /// \brief Sets the secondary horizontal axis to \a axis.
+    /// \brief Sets the secondary horizontal axis to \a axis and assigns it to the top side.
     void setX2Axis(Axis* axis);
 
     /// \brief Returns the secondary vertical axis, or \c nullptr if not set.
     Axis* y2Axis() const;
-    /// \brief Sets the secondary vertical axis to \a axis.
+    /// \brief Sets the secondary vertical axis to \a axis and assigns it to the right side.
     void setY2Axis(Axis* axis);
 
     /// \brief Returns the QML list property for extra axes.
@@ -196,7 +196,7 @@ private:
     void connectAxisSignals(Axis* axis);
     void disconnectAxisSignals(Axis* axis);
     void axisDestroyed(QObject* object);
-    void connectAxis(Axis* axis, Axis::Orientation orientation);
+    void connectAxis(Axis* axis, Axis::Side side);
     void disconnectAxis(Axis* axis);
     bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
     bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
