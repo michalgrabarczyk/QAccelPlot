@@ -71,7 +71,6 @@ Item {
                 viewportMax: root.traceEnd
                 dataMin: root.traceStart
                 dataMax: root.traceEnd
-                side: QAccelPlot.Axis.Bottom
                 label: "Trace time"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
@@ -92,7 +91,6 @@ Item {
                 viewportMax: 95
                 dataMin: 20
                 dataMax: 95
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Response time (ms)"

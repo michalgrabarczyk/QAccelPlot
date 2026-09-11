@@ -136,7 +136,6 @@ Item {
                 viewportMax: 8
                 dataMin: 0
                 dataMax: 8
-                side: QAccelPlot.Axis.Bottom
                 label: "x"
                 baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
@@ -153,7 +152,6 @@ Item {
                 viewportMax: 1.2
                 dataMin: -1.2
                 dataMax: 1.2
-                side: QAccelPlot.Axis.Left
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Value"
