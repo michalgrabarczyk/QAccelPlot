@@ -95,4 +95,4 @@ yAxis: QAccelPlot.Axis {
 
 Complete source: [`examples/axis_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axis_formats)
 
-[tick-label]: ../../api/classQAccelPlot_1_1TickLabelFormatter.html#ac653e2484200ea89af8facc8cffab00b
+[tick-label]: ../api/classQAccelPlot_1_1TickLabelFormatter.md#property-ticklabel-12
