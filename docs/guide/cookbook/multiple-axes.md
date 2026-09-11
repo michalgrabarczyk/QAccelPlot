@@ -68,7 +68,7 @@ QAccelPlot.Plot {
 
 ## Extra axes
 
-Use [`extraAxes`](../../api/classQAccelPlot_1_1QAccelPlot.html#a2aa8566edaee068e3517f5085fe9276b)
+Use [`extraAxes`](../api/classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12)
 when more than two axes are needed in one orientation. They are laid out in
 declaration order: extra horizontal axes stack below the primary X axis, while
 extra vertical axes stack from the plot's left edge inward.
@@ -109,5 +109,5 @@ the grid if ticks from different domains would imply a false correspondence.
 
 Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
 
-[x2-axis]: ../../api/classQAccelPlot_1_1QAccelPlot.html#a8fd3ea82835224ee95f3c4ec4bd78ff8
-[y2-axis]: ../../api/classQAccelPlot_1_1QAccelPlot.html#ab940a26d0902b92808a8ee0885cb7455
+[x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
+[y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12

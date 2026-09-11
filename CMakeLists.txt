@@ -129,39 +129,20 @@ endif()
 # Enable with: cmake -DQACCELPLOT_BUILD_DOCS=ON ..
 # Then build:  cmake --build . --target qaccelplot_docs
 # ---------------------------------------------------------------------------
-option(QACCELPLOT_BUILD_DOCS "Generate API documentation with Doxygen" OFF)
+option(QACCELPLOT_BUILD_DOCS "Generate the MkDocs guide and Doxygen API reference" OFF)
 if(QACCELPLOT_BUILD_DOCS)
-    find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
-
-    # Collect all public header directories as the INPUT for Doxygen
-    set(QACCELPLOT_DOXYGEN_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/QAccelPlot/src")
-    set(QACCELPLOT_DOXYGEN_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/docs/api-mainpage.dox")
-
-    # Output goes into <build>/docs/html so it never pollutes the source tree
-    set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
-
-    # Dot / Graphviz — use it when the dot component was found
-    if(TARGET Doxygen::dot)
-        set(DOXYGEN_HAVE_DOT YES)
-        get_target_property(DOXYGEN_DOT_PATH Doxygen::dot IMPORTED_LOCATION)
-        # Strip the executable name — Doxygen wants the directory
-        get_filename_component(DOXYGEN_DOT_PATH "${DOXYGEN_DOT_PATH}" DIRECTORY)
-    else()
-        set(DOXYGEN_HAVE_DOT NO)
-        set(DOXYGEN_DOT_PATH "")
-    endif()
-
-    # Stamp the @VAR@ placeholders with real values
-    configure_file(
-        "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile"
-        @ONLY
-    )
+    find_package(Doxygen REQUIRED)
+    find_package(Python3 3.9 REQUIRED COMPONENTS Interpreter)
 
     add_custom_target(qaccelplot_docs
-        COMMAND Doxygen::doxygen "${CMAKE_CURRENT_BINARY_DIR}/docs/Doxyfile"
+        COMMAND "${CMAKE_COMMAND}" -E env
+            "QACCELPLOT_DOXYGEN=$<TARGET_FILE:Doxygen::doxygen>"
+            "QACCELPLOT_DOCS_VERSION=${PROJECT_VERSION}"
+            "QACCELPLOT_DOCS_CHANNEL=local"
+            "QACCELPLOT_DOCS_TITLE=QAccelPlot v${PROJECT_VERSION} Documentation"
+            "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/build-docs.py" build
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-        COMMENT "Generating QAccelPlot API documentation with Doxygen"
+        COMMENT "Generating the QAccelPlot documentation site with MkDocs and Doxygen"
         VERBATIM
     )
 endif()
