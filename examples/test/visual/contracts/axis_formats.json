@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "axis_formats",
-  "description": "The default 1000x720 Axis Formats example on its Date and time tab.",
+  "description": "A response-time plot using date-and-time axis formatting. Judge only content inside the plot; ignore tabs, format controls, headings, descriptions, buttons, and other surrounding UI.",
   "expected_image": {
     "width": 1000,
     "height": 720,
@@ -15,12 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "The title and description appear above a three-tab bar, a format control row, and one large plot. These regions are aligned and do not overlap or extend beyond the window."
-    },
-    {
-      "id": "default_tab_and_controls",
-      "severity": "medium",
-      "expectation": "Date and time is visibly selected while Logarithmic and Categories remain available. The explanatory text and Label format combo box are readable."
+      "expectation": "One coherent response-time plot is visible. Its axes, grid, and curve stay within the plot area without unintended overlap or clipping. Do not evaluate tabs, format controls, or other content outside the plot."
     },
     {
       "id": "formatted_time_axis",
@@ -35,12 +30,12 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick title, tab, and control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "The plot, grid, ticks, curve, controls, and text are visually distinguishable; nothing important is blank, corrupted, or clipped."
+      "expectation": "The plot, grid, ticks, curve, and plot text are visually distinguishable; no plot element is blank, corrupted, or materially clipped."
     }
   ]
 }

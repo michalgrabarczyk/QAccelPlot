@@ -27,6 +27,7 @@ from ai_visual_acceptance import (  # noqa: E402
     build_prompt,
     call_openai,
     configure_console_encoding,
+    estimate_cost_usd,
     evaluate_result,
     load_contract,
     load_render_metadata,
@@ -40,6 +41,7 @@ EXAMPLES_DIR = PROJECT_ROOT / "examples"
 EXAMPLE_TESTS_DIR = VISUAL_DIR.parent
 CONTRACT_PATH = CONTRACTS_DIR / "styling_and_transitions.json"
 AI_WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "ai-regression.yml"
+TEST_HELPERS_PATH = PROJECT_ROOT / "cmake" / "QAccelPlotTestHelpers.cmake"
 
 
 def camel_to_snake(value):
@@ -151,30 +153,55 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("steps.upload-visual-artifacts.outputs.artifact-url", workflow)
         self.assertNotIn("qt_arch:", workflow)
 
+    def test_screenshot_tests_disable_hover(self):
+        test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
+        example_tests = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
+        self.assertIn("QACCELPLOT_HOVER_ENABLED=0", test_helpers)
+        self.assertIn("QACCELPLOT_HOVER_ENABLED=0", example_tests)
+
+    def test_workflow_names_distinguish_basic_and_ai_runs(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        self.assertRegex(workflow, r"(?m)^name: Visual Acceptance$")
+        self.assertIn("Basic visual acceptance — PR #{0}", workflow)
+        self.assertIn("Basic visual acceptance — manual run", workflow)
+        self.assertIn("Capture & validate / Qt ${{ matrix.qt_version }}", workflow)
+        self.assertIn("AI visual acceptance — {0}", workflow)
+        self.assertIn("name: Optional AI visual acceptance", workflow)
+        self.assertIn("name: Review selected renders with AI", workflow)
+        self.assertNotIn("AI visual acceptance — not requested", workflow)
+
     def test_ai_visual_inspection_only_runs_for_manual_dispatch(self):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
         self.assertRegex(workflow, r"(?m)^  pull_request:\s*$")
         self.assertRegex(workflow, r"(?m)^  workflow_dispatch:\s*$")
+        matrix_job, ai_job = workflow.split("\n  ai-judge:\n", maxsplit=1)
+        self.assertNotIn("OPENAI_API_KEY", matrix_job)
+        self.assertNotIn("Run OpenAI visual judges", matrix_job)
+        self.assertIn("github.event_name == 'workflow_dispatch'", ai_job)
+        self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", ai_job)
+        self.assertIn("python examples/test/visual/ai_visual_matrix.py", ai_job)
+        self.assertIn("--max-requests 24", ai_job)
+        self.assertIn("name: all-visual-screenshots", ai_job)
 
-        def step_body(name: str) -> str:
-            match = re.search(
-                rf"(?ms)^      - name: {re.escape(name)}\n(?P<body>.*?)(?=^      - name: |\Z)",
-                workflow,
-            )
-            self.assertIsNotNone(match)
-            return match.group("body")
+    def test_workflow_provides_one_combined_screenshot_download(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        bundle_job = workflow.split("\n  bundle-screenshots:\n", maxsplit=1)[1].split("\n  ai-judge:\n", maxsplit=1)[0]
+        self.assertIn("name: Bundle all visual screenshots", bundle_job)
+        self.assertIn("pattern: visual-*", bundle_job)
+        self.assertIn("name: all-visual-screenshots", bundle_job)
+        self.assertIn('destination="all-visual-screenshots/$artifact_name/screenshots"', bundle_job)
+        self.assertIn("find \"$artifact_dir\" -type f -path '*/screenshots/*'", bundle_job)
+        self.assertIn("steps.upload-combined-screenshots.outputs.artifact-url", bundle_job)
 
-        for name in ("Install OpenAI dependency", "Run OpenAI visual judges"):
-            with self.subTest(name=name):
-                self.assertIn("if: github.event_name == 'workflow_dispatch'", step_body(name))
-
-        for name in (
-            "Capture every example (Linux)",
-            "Capture every example (Windows and macOS)",
-            "Validate every screenshot and contract",
-        ):
-            with self.subTest(name=name):
-                self.assertNotIn("github.event_name", step_body(name))
+    def test_workflow_gates_paid_review_by_changed_files_and_mode(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        self.assertIn("detect-impact:", workflow)
+        self.assertIn("ai_visual_impact.py --base", workflow)
+        self.assertIn("inputs.ai_mode != 'off'", workflow)
+        self.assertIn("needs.detect-impact.outputs.scope != 'none'", workflow)
+        self.assertIn("inputs.ai_mode == 'full'", workflow)
+        for mode in ("representative", "full", "off"):
+            self.assertRegex(workflow, rf"(?m)^          - {mode}$")
 
     def test_qt_611_windows_repository_workaround_uses_arch_specific_path(self):
         script = PROJECT_ROOT / ".github" / "scripts" / "aqt_windows_qt611.py"
@@ -208,30 +235,54 @@ class VisualAcceptanceTests(unittest.TestCase):
         with self.assertRaises(VisualAcceptanceError):
             validate_model_response(result, self.contract)
 
+    def test_pass_checks_can_omit_evidence_text(self):
+        result = self.model_result()
+        for check in result["checks"]:
+            check["evidence"] = ""
+        validate_model_response(result, self.contract)
+
+    def test_nonpass_checks_still_require_evidence(self):
+        result = self.model_result(failed_id="overall_layout")
+        next(check for check in result["checks"] if check["status"] == "fail")["evidence"] = ""
+        with self.assertRaisesRegex(VisualAcceptanceError, "no evidence"):
+            validate_model_response(result, self.contract)
+
+    def test_long_evidence_does_not_reject_a_paid_response(self):
+        result = self.model_result(failed_id="overall_layout")
+        failure = next(check for check in result["checks"] if check["status"] == "fail")
+        failure["evidence"] = "Visible evidence remains useful in the JSON report. " * 8
+        result["summary"] = "A detailed response is accepted after the API call has already been billed. " * 5
+        validate_model_response(result, self.contract)
+
     def test_prompt_distinguishes_unreadable_details_from_visible_defects(self):
         prompt = build_prompt(self.contract)
-        self.assertIn("report `uncertain`\nrather than `fail`", prompt)
-        self.assertIn("Do not treat inability to verify another\nrequirement", prompt)
-        self.assertIn("concrete visible evidence such as square pixel blocks", prompt)
-        self.assertIn("genuinely comparable size, weight, orientation, and\ncontrast", prompt)
-        self.assertIn("report `fail`\nfor text_raster_quality rather than `uncertain`", prompt)
+        self.assertIn("Use `uncertain` when a\ndetail cannot be verified", prompt)
+        self.assertIn("a `fail` requires a concrete visible contradiction", prompt)
+        self.assertIn("square pixel blocks", prompt)
+        self.assertIn("genuinely comparable size, weight, orientation, and contrast", prompt)
+        self.assertIn("Set evidence to an empty string for `pass`", prompt)
+        self.assertNotIn("blocking_severities", prompt)
 
-    def test_custom_axis_contract_distinguishes_typography_from_rasterization(self):
-        contract = load_contract(CONTRACTS_DIR / "custom_axis.json")
-        raster_check = next(check for check in contract["checks"] if check["id"] == "text_raster_quality")
-        expectation = raster_check["expectation"]
-        self.assertIn("intentionally smaller, normal-weight, and light gray", expectation)
-        self.assertIn("do not use the title or tabs as a direct sharpness comparison", expectation)
-        self.assertIn("square pixel blocks", expectation)
-        self.assertIn("no concrete scaling artifact is visible, pass", expectation)
+    def test_contracts_limit_text_quality_review_to_plot_text(self):
+        for contract_path in CONTRACTS_DIR.glob("*.json"):
+            with self.subTest(contract=contract_path.name):
+                contract = load_contract(contract_path)
+                raster_check = next(check for check in contract["checks"] if check["id"] == "text_raster_quality")
+                expectation = raster_check["expectation"]
+                self.assertIn("square pixel blocks", expectation)
+                self.assertIn("Do not compare", expectation)
+                self.assertIn("text outside the plot", expectation.replace("plots", "plot"))
 
-    def test_interactive_tools_contract_describes_both_control_groups(self):
+    def test_interactive_tools_contract_ignores_controls_and_ruler_position(self):
         contract = load_contract(CONTRACTS_DIR / "interactive_tools.json")
-        controls_check = next(check for check in contract["checks"] if check["id"] == "tool_controls")
-        expectation = controls_check["expectation"]
-        self.assertIn("four adjacent controls grouped on the left", expectation)
-        self.assertIn("exactly two controls grouped on the right", expectation)
-        self.assertIn("Seeing only those two controls on the right is the expected layout", expectation)
+        check_ids = {check["id"] for check in contract["checks"]}
+        self.assertNotIn("tool_controls", check_ids)
+        ruler_check = next(check for check in contract["checks"] if check["id"] == "initial_ruler")
+        expectation = ruler_check["expectation"]
+        self.assertIn("clearly visible", expectation)
+        self.assertIn("Do not judge its exact position", expectation)
+        self.assertNotIn("left third", expectation)
+        self.assertNotIn("220.08", expectation)
 
     def test_console_output_is_reconfigured_for_unicode(self):
         stdout_bytes = io.BytesIO()
@@ -302,7 +353,16 @@ class VisualAcceptanceTests(unittest.TestCase):
         class FakeResponses:
             def create(self, **kwargs):
                 request.update(kwargs)
-                return types.SimpleNamespace(output_text=json.dumps(expected_result))
+                return types.SimpleNamespace(
+                    output_text=json.dumps(expected_result),
+                    usage=types.SimpleNamespace(
+                        input_tokens=1200,
+                        input_tokens_details=types.SimpleNamespace(cached_tokens=200),
+                        output_tokens=300,
+                        output_tokens_details=types.SimpleNamespace(reasoning_tokens=25),
+                        total_tokens=1500,
+                    ),
+                )
 
         class FakeOpenAI:
             def __init__(self, *, api_key):
@@ -315,7 +375,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory, mock.patch.dict(sys.modules, {"openai": fake_openai}):
             image_path = Path(directory) / "screenshot.png"
             image_path.write_bytes(b"test image data")
-            result = call_openai(
+            result, usage = call_openai(
                 image_path,
                 self.contract,
                 "gpt-5.4-nano",
@@ -324,16 +384,28 @@ class VisualAcceptanceTests(unittest.TestCase):
             )
 
         self.assertEqual(result, expected_result)
+        self.assertEqual(
+            usage,
+            {
+                "input_tokens": 1200,
+                "cached_input_tokens": 200,
+                "output_tokens": 300,
+                "reasoning_tokens": 25,
+                "total_tokens": 1500,
+            },
+        )
         self.assertEqual(request["api_key"], "test-key")
         self.assertEqual(request["model"], "gpt-5.4-nano")
         self.assertEqual(request["reasoning"], {"effort": "none"})
         self.assertFalse(request["store"])
 
         content = request["input"][0]["content"]
-        self.assertIn('"actual_graphics_api": "opengl"', content[0]["text"])
+        self.assertIn('"graphics_api":"opengl"', content[0]["text"])
+        self.assertNotIn("blocking_severities", content[0]["text"])
         self.assertEqual(content[1]["type"], "input_image")
         self.assertTrue(content[1]["image_url"].startswith("data:image/png;base64,"))
         self.assertEqual(content[1]["detail"], "high")
+        self.assertEqual(request["max_output_tokens"], 1024)
 
         response_format = request["text"]["format"]
         self.assertEqual(response_format["type"], "json_schema")
@@ -341,6 +413,15 @@ class VisualAcceptanceTests(unittest.TestCase):
         checks_schema = response_format["schema"]["properties"]["checks"]
         self.assertEqual(checks_schema["minItems"], len(self.contract["checks"]))
         self.assertEqual(checks_schema["maxItems"], len(self.contract["checks"]))
+
+    def test_cost_estimate_separates_cached_input(self):
+        usage = {
+            "input_tokens": 1000,
+            "cached_input_tokens": 250,
+            "output_tokens": 100,
+        }
+        pricing = {"input": 0.20, "cached_input": 0.02, "output": 1.25}
+        self.assertEqual(estimate_cost_usd(usage, pricing), 0.00028)
 
 
 if __name__ == "__main__":

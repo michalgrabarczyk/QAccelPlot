@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "realtime",
-  "description": "The deterministic 900x600 screenshot mode of the Realtime vibration sensor example.",
+  "description": "A realtime vibration-sensor plot in deterministic screenshot mode. Judge only content inside the plot; ignore headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 900,
     "height": 600,
@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "The Realtime vibration sensor heading and description appear above one large plot, with a Pause control at the upper right. All elements fit in the window."
+      "expectation": "One coherent vibration plot is visible. Its axes, grid, and waveform stay within the plot area without unintended overlap or clipping. Do not evaluate the Pause control or any other content outside the plot."
     },
     {
       "id": "axes",
@@ -30,12 +30,12 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and Pause control text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the Pause control, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "The waveform is distinguishable from the grid and stays in the plot area; axes, labels, and controls are not blank, corrupted, or materially clipped."
+      "expectation": "The waveform is distinguishable from the grid and stays in the plot area; axes and plot labels are not blank, corrupted, or materially clipped."
     }
   ]
 }

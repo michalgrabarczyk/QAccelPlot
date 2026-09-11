@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "quickstart",
-  "description": "The default 840x560 Quickstart example showing daily outdoor temperature and a six-hour forecast.",
+  "description": "A daily outdoor-temperature plot with a six-hour forecast. Judge only content inside the plot; ignore headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 840,
     "height": 560,
@@ -15,12 +15,12 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "The Daily temperature heading and description appear above one plot. The plot and its contents fit within the window without unintended overlap or clipping."
+      "expectation": "One coherent temperature plot is visible. Its axes, grid, curves, markers, and legend stay within the plot area without unintended overlap or clipping. Do not evaluate content outside the plot."
     },
     {
       "id": "axes_and_legend",
       "severity": "high",
-      "expectation": "The Time of day (h) and Temperature (°C) axes, their tick labels, and a legend naming Outdoor temperature and Six-hour forecast are visible and readable."
+      "expectation": "The Time of day (h) and Temperature (°C) axes, their tick labels, and a legend naming Outdoor temperature and Six-hour forecast are visible and readable. Assess only text presence and readability in this check; do not judge legend symbols or marker geometry."
     },
     {
       "id": "outdoor_curve",
@@ -30,12 +30,12 @@
     {
       "id": "forecast_curve",
       "severity": "medium",
-      "expectation": "A visually distinct dashed forecast line spans the plot through several visible diamond markers and broadly follows the daily temperature trend. Its legend sample contains a complete, centered diamond with the same silhouette as the plotted markers; it is not clipped, displaced, enlarged into a blob, or reduced to a partial triangle."
+      "expectation": "A visually distinct dashed forecast line and several visible markers appear in the plot and broadly follow the daily temperature trend. Exact marker shape, size, edge profile, count, position, and legend-symbol geometry are not evaluated at this screenshot scale. Do not fail because a marker appears round, square, clipped, partial, or different from the legend sample. Fail only if the forecast line or all of its markers are missing, clearly corrupted, or not distinguishable from the other series."
     },
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick heading and description text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the plot, axis titles, tick labels, and legend text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, descriptions, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

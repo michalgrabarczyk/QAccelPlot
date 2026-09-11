@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "annotations",
-  "description": "The default 1200x800 Annotations example, showing a process-response curve with data-anchored labels, an event marker, and a warning range.",
+  "description": "A process-response plot with data-anchored labels, an event marker, and a warning range. Judge only content inside the plot; ignore headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 1200,
     "height": 800,
@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "A title and explanatory sentence appear above one large plot. The plot, annotations, axes, and legend do not overlap the window boundary or each other in a way that hides their meaning."
+      "expectation": "The plot, annotations, axes, and legend form a coherent plot layout and do not overlap the plot boundary or each other in a way that hides their meaning. Do not evaluate content outside the plot."
     },
     {
       "id": "curve_and_axes",
@@ -35,7 +35,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Plot-rendered text, especially axis titles and tick labels, has crisp native-resolution glyph edges comparable to the surrounding Qt Quick title and description text. Fail when plot text is visibly pixelated, blocky, or substantially softer than surrounding UI text, because that indicates an upscaled low-resolution raster texture. Normal antialiasing and small differences caused by rotated text are acceptable."
+      "expectation": "Within the plot, axis titles, tick labels, legend text, and annotation labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

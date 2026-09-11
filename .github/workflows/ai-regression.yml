@@ -5,15 +5,66 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-name: AI Visual Acceptance (Experimental)
+name: Visual Acceptance
+
+run-name: >-
+  ${{ github.event_name == 'pull_request'
+      && format('Basic visual acceptance — PR #{0}', github.event.pull_request.number)
+      || inputs.ai_mode == 'off'
+      && 'Basic visual acceptance — manual run'
+      || format('AI visual acceptance — {0}', inputs.ai_mode) }}
 
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      ai_mode:
+        description: Paid AI review mode
+        type: choice
+        default: representative
+        options:
+          - representative
+          - full
+          - off
+      base_ref:
+        description: Branch used to detect visual changes
+        type: string
+        default: main
 
 jobs:
+  detect-impact:
+    name: Determine visual review scope
+    runs-on: ubuntu-24.04
+    outputs:
+      scope: ${{ steps.impact.outputs.scope }}
+      examples: ${{ steps.impact.outputs.examples }}
+      changed_count: ${{ steps.impact.outputs.changed_count }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Classify changed files
+        id: impact
+        env:
+          BASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || format('origin/{0}', inputs.base_ref) }}
+        run: python .github/scripts/ai_visual_impact.py --base "$BASE_REF" --github-output "$GITHUB_OUTPUT"
+
+      - name: Summarize visual review scope
+        env:
+          SCOPE: ${{ steps.impact.outputs.scope }}
+          EXAMPLES: ${{ steps.impact.outputs.examples }}
+          CHANGED_COUNT: ${{ steps.impact.outputs.changed_count }}
+        run: |
+          echo "### Visual review scope" >> "$GITHUB_STEP_SUMMARY"
+          echo "Changed files: $CHANGED_COUNT" >> "$GITHUB_STEP_SUMMARY"
+          echo "Scope: $SCOPE" >> "$GITHUB_STEP_SUMMARY"
+          echo "Examples: ${EXAMPLES:-none}" >> "$GITHUB_STEP_SUMMARY"
+
   all-examples-rhi:
-    name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.backend }} / ${{ matrix.platform.os }}
+    name: Capture & validate / Qt ${{ matrix.qt_version }} / ${{ matrix.platform.backend }} / ${{ matrix.platform.os }}
+    needs: detect-impact
     runs-on: ${{ matrix.platform.os }}
     strategy:
       fail-fast: false
@@ -131,12 +182,6 @@ jobs:
           "QT_PLUGIN_PATH=$qtRoot\plugins" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "QML2_IMPORT_PATH=$qtRoot\qml" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Install OpenAI dependency
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai
-
       - name: Install Linux runtime dependencies
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install --yes xvfb libgl1-mesa-dri libxcb-cursor0 libxkbcommon-x11-0
@@ -191,13 +236,6 @@ jobs:
       - name: Validate every screenshot and contract
         run: ctest --test-dir build -C Release --output-on-failure -L visual-validation
 
-      - name: Run OpenAI visual judges
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          AI_VISUAL_MODEL: gpt-5.4-nano
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: ctest --test-dir build -C Release --output-on-failure -L ai-inspection
-
       - name: Upload visual acceptance artifacts
         if: always()
         id: upload-visual-artifacts
@@ -208,7 +246,6 @@ jobs:
           overwrite: true
           path: |
             build/examples/test/screenshots/
-            build/examples/test/visual-reports/
             build/Testing/Temporary/LastTest.log
 
       - name: Add visual artifact link to job summary
@@ -216,4 +253,112 @@ jobs:
         shell: bash
         run: |
           echo "### Visual acceptance artifact" >> "$GITHUB_STEP_SUMMARY"
-          echo "[Download screenshots and reports](${{ steps.upload-visual-artifacts.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download screenshots](${{ steps.upload-visual-artifacts.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+
+  bundle-screenshots:
+    name: Bundle all visual screenshots
+    needs: all-examples-rhi
+    if: always() && needs.all-examples-rhi.result == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Download matrix screenshot artifacts
+        uses: actions/download-artifact@v8
+        with:
+          pattern: visual-*
+          path: visual-artifacts
+
+      - name: Collect screenshots by matrix configuration
+        shell: bash
+        run: |
+          for artifact_dir in visual-artifacts/visual-*; do
+            artifact_name="$(basename "$artifact_dir")"
+            destination="all-visual-screenshots/$artifact_name/screenshots"
+            mkdir -p "$destination"
+            find "$artifact_dir" -type f -path '*/screenshots/*' -exec cp '{}' "$destination/" \;
+          done
+
+      - name: Upload combined screenshot artifact
+        id: upload-combined-screenshots
+        uses: actions/upload-artifact@v7
+        with:
+          name: all-visual-screenshots
+          if-no-files-found: error
+          overwrite: true
+          path: all-visual-screenshots/
+
+      - name: Add combined artifact link to job summary
+        if: steps.upload-combined-screenshots.outputs.artifact-url != ''
+        run: |
+          echo "### Combined visual screenshots" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download every matrix screenshot](${{ steps.upload-combined-screenshots.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+
+  ai-judge:
+    name: Optional AI visual acceptance
+    needs:
+      - detect-impact
+      - bundle-screenshots
+    if: >-
+      always() &&
+      github.event_name == 'workflow_dispatch' &&
+      inputs.ai_mode != 'off' &&
+      needs.detect-impact.result == 'success' &&
+      needs.bundle-screenshots.result == 'success' &&
+      (inputs.ai_mode == 'full' || needs.detect-impact.outputs.scope != 'none')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    env:
+      AI_VISUAL_MODEL: gpt-5.4-nano
+      AI_VISUAL_INPUT_PRICE_USD_PER_MILLION: '0.20'
+      AI_VISUAL_CACHED_INPUT_PRICE_USD_PER_MILLION: '0.02'
+      AI_VISUAL_OUTPUT_PRICE_USD_PER_MILLION: '1.25'
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install AI review dependencies
+        run: pip install openai Pillow
+
+      - name: Download combined screenshots
+        uses: actions/download-artifact@v8
+        with:
+          name: all-visual-screenshots
+          path: visual-artifacts
+
+      - name: Review selected renders with AI
+        env:
+          AI_MODE: ${{ inputs.ai_mode }}
+          AI_EXAMPLES: ${{ inputs.ai_mode == 'full' && 'all' || needs.detect-impact.outputs.examples }}
+        run: >-
+          python examples/test/visual/ai_visual_matrix.py
+          --artifacts visual-artifacts
+          --contracts examples/test/visual/contracts
+          --reports visual-reports
+          --summary visual-reports/summary.md
+          --mode "$AI_MODE"
+          --examples "$AI_EXAMPLES"
+          --max-requests 24
+
+      - name: Add AI cost summary
+        if: always()
+        run: |
+          if [ -f visual-reports/summary.md ]; then
+            cat visual-reports/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload AI reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ai-visual-reports
+          if-no-files-found: warn
+          overwrite: true
+          path: visual-reports/
