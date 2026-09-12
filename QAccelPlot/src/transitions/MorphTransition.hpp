@@ -27,8 +27,8 @@ public:
 
 protected:
     /// \brief Interpolates point positions between the two datasets at \a easedProgress (0–1).
-    void interpolate(float easedProgress, const std::vector<float>& fromData, int fromPointCount, const std::vector<float>& toData, int toPointCount,
-        std::vector<float>& outData, int& outPointCount) override;
+    void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
+        std::vector<double>& outData, int& outPointCount) override;
 };
 
 } // namespace QAccelPlot
