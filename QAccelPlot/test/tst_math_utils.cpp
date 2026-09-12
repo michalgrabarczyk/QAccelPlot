@@ -36,7 +36,7 @@ private slots:
     void near_zero_tiny_difference_areEqual();
     void near_zero_distinguishable_areNotEqual();
     void very_small_positive_values_areEqual();
-    void very_small_but_different_values_areNotEqual();
+    void very_small_values_withinAbsoluteTolerance_areEqual();
 
     // Extreme magnitudes
     void very_large_values_equal();
@@ -121,14 +121,17 @@ void TestMathUtils::different_values_areNotEqual()
 
 void TestMathUtils::values_within_default_epsilon_areEqual()
 {
-    // Difference is 1e-13, well within default eps_rel of 1e-12 at magnitude 1.0
-    QVERIFY(nearly_equal(1.0, 1.0 + 1e-13));
+    const auto adjacent = std::nextafter(1.0, 2.0);
+    QVERIFY(nearly_equal(1.0, adjacent));
 }
 
 void TestMathUtils::values_outside_default_epsilon_areNotEqual()
 {
-    // Difference is 1e-11, outside default eps_rel of 1e-12 at magnitude 1.0
-    QVERIFY(!nearly_equal(1.0, 1.0 + 1e-11));
+    auto separated = 1.0;
+    for (auto i = 0; i < 4; ++i) {
+        separated = std::nextafter(separated, 2.0);
+    }
+    QVERIFY(!nearly_equal(1.0, separated));
 }
 
 // ---------------------------------------------------------------------------
@@ -142,15 +145,12 @@ void TestMathUtils::near_zero_identical_areEqual()
 
 void TestMathUtils::near_zero_tiny_difference_areEqual()
 {
-    // Both values are so small that the absolute floor (double::min) handles them
-    const auto a = std::numeric_limits<double>::min(); // ~2.2e-308
-    QVERIFY(nearly_equal(a, a));
+    QVERIFY(nearly_equal(0.0, std::numeric_limits<double>::epsilon()));
 }
 
 void TestMathUtils::near_zero_distinguishable_areNotEqual()
 {
-    // 1e-20 and 2e-20 differ by 100% — should not be considered equal
-    QVERIFY(!nearly_equal(1e-20, 2e-20));
+    QVERIFY(!nearly_equal(1e-12, 2e-12));
 }
 
 void TestMathUtils::very_small_positive_values_areEqual()
@@ -159,9 +159,9 @@ void TestMathUtils::very_small_positive_values_areEqual()
     QVERIFY(nearly_equal(v, v));
 }
 
-void TestMathUtils::very_small_but_different_values_areNotEqual()
+void TestMathUtils::very_small_values_withinAbsoluteTolerance_areEqual()
 {
-    QVERIFY(!nearly_equal(1e-100, 2e-100));
+    QVERIFY(nearly_equal(1e-100, 2e-100));
 }
 
 // ---------------------------------------------------------------------------
@@ -175,15 +175,17 @@ void TestMathUtils::very_large_values_equal()
 
 void TestMathUtils::very_large_values_slightlyDifferent_areNotEqual()
 {
-    // Differs by 1e9 at magnitude 1e21 — larger than eps_rel * mag = 1e9,
-    // so should be considered not equal (boundary: 1e21 * 1e-12 = 1e9).
-    QVERIFY(!nearly_equal(1e21, 1e21 + 2e9));
+    auto separated = 1e21;
+    for (auto i = 0; i < 4; ++i) {
+        separated = std::nextafter(separated, std::numeric_limits<double>::infinity());
+    }
+    QVERIFY(!nearly_equal(1e21, separated));
 }
 
 void TestMathUtils::value_at_1e21_withinEpsilon_areEqual()
 {
-    // Differs by 1e8, well within 1e21 * 1e-12 = 1e9
-    QVERIFY(nearly_equal(1e21, 1e21 + 1e8));
+    const auto adjacent = std::nextafter(1e21, std::numeric_limits<double>::infinity());
+    QVERIFY(nearly_equal(1e21, adjacent));
 }
 
 // ---------------------------------------------------------------------------
@@ -236,9 +238,9 @@ void TestMathUtils::custom_eps_rel_looser_considersEqual()
 
 void TestMathUtils::custom_eps_rel_tighter_considersNotEqual()
 {
-    // 1e-14 difference at magnitude 1.0 — inside default 1e-12, outside tight 1e-15
-    QVERIFY(nearly_equal(1.0, 1.0 + 1e-14));
-    QVERIFY(!nearly_equal(1.0, 1.0 + 1e-14, 1e-15));
+    const auto adjacent = std::nextafter(1.0, 2.0);
+    QVERIFY(nearly_equal(1.0, adjacent));
+    QVERIFY(!nearly_equal(1.0, adjacent, std::numeric_limits<double>::epsilon() / 2.0, std::numeric_limits<double>::min()));
 }
 
 void TestMathUtils::custom_eps_abs_catchesNearZeroDifference()

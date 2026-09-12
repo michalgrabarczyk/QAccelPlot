@@ -17,6 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Legend line and marker samples now use the curve renderers, keeping marker
   shapes and dash patterns consistent across graphics backends and display scales.
+- Preserved double precision in `LineCurve::setData()` for modern Unix-epoch
+  timestamps and large coordinates while keeping the `F` ingestion APIs
+  float-based.
 
 ## [0.1.0] — 2026-09-08
 

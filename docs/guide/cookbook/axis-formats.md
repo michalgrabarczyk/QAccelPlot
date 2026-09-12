@@ -28,6 +28,11 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
+Supply epoch values through `setData()`, which retains double precision and
+keeps millisecond-scale differences visible at modern dates. APIs ending in
+`F` intentionally store coordinates as floats; around the current Unix epoch,
+that representation cannot distinguish nearby timestamps.
+
 ## Categories
 
 Map integer coordinates to labels with `QAccelPlot.TextTickLabelFormatter`:

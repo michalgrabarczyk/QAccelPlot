@@ -17,8 +17,8 @@ DrawTransition::DrawTransition(QObject* parent)
 {
 }
 
-void DrawTransition::interpolate(const float easedProgress, const std::vector<float>& /*fromData*/, const int /*fromPointCount*/,
-    const std::vector<float>& toData, const int toPointCount, std::vector<float>& outData, int& outPointCount)
+void DrawTransition::interpolate(const double easedProgress, const std::vector<double>& /*fromData*/, const int /*fromPointCount*/,
+    const std::vector<double>& toData, const int toPointCount, std::vector<double>& outData, int& outPointCount)
 {
     if (toPointCount <= 0) {
         outData.clear();

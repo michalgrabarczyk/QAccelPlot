@@ -28,6 +28,8 @@ private slots:
     void invalidVectorArgumentsAreRejected();
     void rawUpdateHonorsTransition();
     void axisAggregatesCurrentSeriesRanges();
+    void pointListDataPreservesModernEpochPrecision();
+    void separateDoubleDataPreservesModernEpochPrecision();
 };
 
 namespace {
@@ -227,6 +229,38 @@ void LineCurveDataTest::axisAggregatesCurrentSeriesRanges()
     first.clearData();
     QCOMPARE(axis.dataMin(), 0.0);
     QCOMPARE(axis.dataMax(), 1.0);
+}
+
+void LineCurveDataTest::pointListDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = qreal{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+
+    curve.setData(QList<QPointF>{
+        {epochMilliseconds, 1.0},
+        {epochMilliseconds + 1.0, 2.0},
+        {epochMilliseconds + 2.0, 3.0},
+    });
+
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 2.0);
+}
+
+void LineCurveDataTest::separateDoubleDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
+    const auto xs = std::vector<double>{epochMilliseconds, epochMilliseconds + 0.5, epochMilliseconds + 1.0};
+    const auto ys = std::vector<double>{10.0, 20.0, 30.0};
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+
+    curve.setData(xs, ys);
+
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
 }
 
 } // namespace QAccelPlot

@@ -21,7 +21,8 @@ namespace QAccelPlot {
 
 /// \brief Input parameters for LineCurvePointRenderer::paint(), assembled on the main thread.
 struct PointCurveRenderParams {
-    const std::vector<float>& data;              ///< \brief Interleaved XY float data.
+    const std::vector<float>& data;              ///< \brief GPU-ready interleaved XY float data.
+    CurveDataView sourceData;                    ///< \brief Original float or double data used by CPU-side operations.
     int pointCount;                              ///< \brief Number of points in \c data.
     bool dataChanged;                            ///< \brief Whether data has changed since the last frame.
     QColor color;                                ///< \brief Base marker color.

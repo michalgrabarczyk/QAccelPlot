@@ -13,33 +13,36 @@
 
 namespace QAccelPlot {
 
-// Default relative tolerance for nearly_equal.
+// Default relative tolerance for nearly_equal. Two machine-epsilon steps keep
+// the comparison close to representable double precision at every magnitude.
 // Can be overridden at compile time: -DQACCELPLOT_NEARLY_EQUAL_EPSILON=1e-9
 #ifndef QACCELPLOT_NEARLY_EQUAL_EPSILON
-inline constexpr double kNearlyEqualEpsilon = 1e-12;
+inline constexpr double kNearlyEqualEpsilon = 2.0 * std::numeric_limits<double>::epsilon();
 #else
 inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 #endif
 
 // Returns true if a and b are nearly equal using a combined relative + absolute
-// tolerance. Handles the full double range correctly, including values near zero
-// and values at extreme magnitudes (e.g. 1e-20 or 1e21).
+// tolerance.
 //
 //  - If a == b exactly (including both infinite with the same sign), returns true.
-//  - The relative test scales with max(|a|, |b|) * eps_rel.
+//  - The relative test scales with max(1, |a|, |b|) * eps_rel and therefore tracks
+//    a small number of representable steps instead of using a broad tolerance.
 //  - The absolute floor (eps_abs) prevents false negatives when both values are
 //    near zero, where a purely relative test would require unrealistic precision.
-[[nodiscard]] inline bool nearly_equal(double a, double b, double eps_rel = kNearlyEqualEpsilon, double eps_abs = std::numeric_limits<double>::min()) noexcept
+[[nodiscard]] inline bool nearly_equal(double a, double b, double eps_rel = kNearlyEqualEpsilon, double eps_abs = kNearlyEqualEpsilon) noexcept
 {
     if (a == b) {
         return true;
     }
-    const auto diff = std::abs(a - b);
-    const auto mag = std::max(std::abs(a), std::abs(b));
-    if (std::isinf(mag)) {
+
+    if (!std::isfinite(a) || !std::isfinite(b)) {
         return false;
     }
-    return diff <= eps_abs || diff <= mag * eps_rel;
+
+    const auto diff = std::abs(a - b);
+    const auto scale = std::max({1.0, std::abs(a), std::abs(b)});
+    return diff <= std::max(eps_abs, scale * eps_rel);
 }
 
 } // namespace QAccelPlot
