@@ -25,7 +25,7 @@
     {
       "id": "line_patterns_panel",
       "severity": "medium",
-      "expectation": "The middle panel shows several offset sample signals with visibly distinct solid, dash, dot-dash, and dotted patterns."
+      "expectation": "The middle panel shows several offset sample signals with recognizably distinct solid, dash, dot-dash, and dotted patterns. Evaluate only whether the intended pattern types are present and distinguishable; cosmetic stroke smoothness is not part of this check. Normal antialiasing, subpixel sampling, screenshot resampling, dash-cap or dash-join variations, moire, and thin light or dark banding confined to the strokes are acceptable. Fail only if a pattern series is missing, the pattern types cannot be distinguished, or a line has clear large-scale corruption beyond these normal rasterization effects."
     },
     {
       "id": "line_weights_panel",

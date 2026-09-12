@@ -27,7 +27,7 @@ on:
           - full
           - off
       base_ref:
-        description: Branch used to detect visual changes
+        description: Base branch for selecting representative examples (representative mode only)
         type: string
         default: main
 
