@@ -28,6 +28,8 @@ endif()
 option(QACCELPLOT_BUILD_EXAMPLES "Build the QAccelPlot example applications" ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_INSTALL        "Generate install targets for QAccelPlot"   ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_DEPLOY_EXAMPLES "Deploy Qt runtime files beside Windows examples" ON)
+option(QACCELPLOT_BUILD_TESTS "Build QAccelPlot unit tests" ${_QACCELPLOT_DEFAULT})
+option(QACCELPLOT_BUILD_BENCHMARKS "Build QAccelPlot benchmarks" ${_QACCELPLOT_DEFAULT})
 
 # ---------------------------------------------------------------------------
 # Language standard
@@ -104,9 +106,13 @@ endif()
 # ---------------------------------------------------------------------------
 # Tests
 # ---------------------------------------------------------------------------
-option(QACCELPLOT_BUILD_TESTS "Build QAccelPlot unit tests" ${_QACCELPLOT_DEFAULT})
 if(QACCELPLOT_BUILD_TESTS)
     enable_testing()
+
+    # Convenience aggregate target for building every compiled test:
+    #   cmake --build <build-dir> --target QAccelPlotTests
+    add_custom_target(QAccelPlotTests)
+
     add_subdirectory(QAccelPlot/test)
     if(QACCELPLOT_BUILD_EXAMPLES)
         add_subdirectory(examples/test)
@@ -119,7 +125,6 @@ endif()
 # ---------------------------------------------------------------------------
 # Benchmarks (opt-in)
 # ---------------------------------------------------------------------------
-option(QACCELPLOT_BUILD_BENCHMARKS "Build QAccelPlot benchmarks" ${_QACCELPLOT_DEFAULT})
 if(QACCELPLOT_BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
 endif()
