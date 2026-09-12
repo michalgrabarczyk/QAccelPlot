@@ -197,6 +197,10 @@ class VisualAcceptanceTests(unittest.TestCase):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
         self.assertIn("detect-impact:", workflow)
         self.assertIn("ai_visual_impact.py --base", workflow)
+        self.assertIn(
+            "description: Base branch for selecting representative examples (representative mode only)",
+            workflow,
+        )
         self.assertIn("inputs.ai_mode != 'off'", workflow)
         self.assertIn("needs.detect-impact.outputs.scope != 'none'", workflow)
         self.assertIn("inputs.ai_mode == 'full'", workflow)
@@ -283,6 +287,15 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("Do not judge its exact position", expectation)
         self.assertNotIn("left third", expectation)
         self.assertNotIn("220.08", expectation)
+
+    def test_styling_contract_does_not_grade_cosmetic_line_rasterization(self):
+        line_patterns_check = next(
+            check for check in self.contract["checks"] if check["id"] == "line_patterns_panel"
+        )
+        expectation = line_patterns_check["expectation"]
+        self.assertIn("cosmetic stroke smoothness is not part of this check", expectation)
+        self.assertIn("banding confined to the strokes are acceptable", expectation)
+        self.assertIn("Fail only if a pattern series is missing", expectation)
 
     def test_console_output_is_reconfigured_for_unicode(self):
         stdout_bytes = io.BytesIO()
