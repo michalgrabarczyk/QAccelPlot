@@ -26,14 +26,31 @@ namespace QAccelPlot {
 struct CurveChunk {
     int start;  
     int count;  
-    float minX; 
-    float maxX; 
-    float minY; 
-    float maxY; 
+    qreal minX; 
+    qreal maxX; 
+    qreal minY; 
+    qreal maxY; 
+};
+
+struct CurveDataView {
+    const float* floatData{nullptr};
+    const double* doubleData{nullptr};
+
+    qreal x(int index) const
+    {
+        const auto offset = static_cast<std::size_t>(index) * 2;
+        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
+    }
+
+    qreal y(int index) const
+    {
+        const auto offset = static_cast<std::size_t>(index) * 2 + 1;
+        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
+    }
 };
 
 struct CurveHitTestParams {
-    const std::vector<float>& data;        
+    CurveDataView data;                    
     int pointCount;                        
     const std::vector<CurveChunk>& chunks; 
     Axis* xAxis;                           

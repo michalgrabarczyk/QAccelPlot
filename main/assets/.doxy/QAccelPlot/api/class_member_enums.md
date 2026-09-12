@@ -3,6 +3,11 @@
 
 
 
+## d
+
+* **DataType** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+
+
 ## l
 
 * **Layout** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))

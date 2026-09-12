@@ -2318,7 +2318,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Data is stored internally as an interleaved <code>float</code> vector of XY pairs <code>[x0, y0, x1, y1, …]</code>. Multiple supply methods are available; for maximum throughput prefer <code>setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</code> or <code>postData()</code>, which move an already-interleaved float buffer with zero allocation and no type conversion. Convenience overloads (<code>setData(QList&lt;QPointF&gt;)</code>, <code>setData(xs,ys)</code>) perform the conversion internally at the cost of an allocation and a per-element double-to-float loop. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with hundreds of thousands of points.</p>
+<p>The <code>setData()</code> overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in <code>F</code> store interleaved float XY pairs <code>[x0, y0, x1, y1, …]</code>. For maximum throughput prefer <code>setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</code> or <code>postData()</code>, which move an already-interleaved float buffer with zero allocation and no type conversion. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with hundreds of thousands of points.</p>
 <p>**
 **</p>
 <p>Visual effects (gradient stroke, gradient fill) are attached via the <code>effects</code> list property.</p>

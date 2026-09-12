@@ -40,6 +40,7 @@ class LineMaterial;
 struct LineCurveRenderParams {
     QQuickWindow* window;                           
     const std::vector<float>& data;                 
+    CurveDataView sourceData;                       
     int pointCount;                                 
     bool dataChanged;                               
     QColor color;                                   

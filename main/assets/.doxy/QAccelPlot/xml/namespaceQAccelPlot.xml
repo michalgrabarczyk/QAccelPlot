@@ -6,6 +6,7 @@
     <innerclass refid="classQAccelPlot_1_1AxisTicker" prot="public">QAccelPlot::AxisTicker</innerclass>
     <innerclass refid="classQAccelPlot_1_1AxisTickPainter" prot="public">QAccelPlot::AxisTickPainter</innerclass>
     <innerclass refid="structQAccelPlot_1_1CurveChunk" prot="public">QAccelPlot::CurveChunk</innerclass>
+    <innerclass refid="structQAccelPlot_1_1CurveDataView" prot="public">QAccelPlot::CurveDataView</innerclass>
     <innerclass refid="structQAccelPlot_1_1CurveHitTestParams" prot="public">QAccelPlot::CurveHitTestParams</innerclass>
     <innerclass refid="classQAccelPlot_1_1DashLine" prot="public">QAccelPlot::DashLine</innerclass>
     <innerclass refid="structQAccelPlot_1_1DashParameters" prot="public">QAccelPlot::DashParameters</innerclass>
@@ -105,21 +106,21 @@
         <argsstring></argsstring>
         <name>kNearlyEqualEpsilon</name>
         <qualifiedname>QAccelPlot::kNearlyEqualEpsilon</qualifiedname>
-        <initializer>= 1e-12</initializer>
+        <initializer>= 2.0 * std::numeric_limits&lt;double&gt;::epsilon()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/MathUtils.hpp" line="19" column="25" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="19" bodyend="-1"/>
+        <location file="QAccelPlot/src/MathUtils.hpp" line="20" column="25" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
-      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1a9c3eec0880d558d76a346ee620a26225" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1a7bf07663badc325faab162a6bb3bcbf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>float</type>
         <definition>float QAccelPlot::unboundedGradientCoordinate</definition>
-        <argsstring>(const GradientDirection direction, const float value, const float minimum, const float maximum)</argsstring>
+        <argsstring>(const GradientDirection direction, const qreal value, const qreal minimum, const qreal maximum)</argsstring>
         <name>unboundedGradientCoordinate</name>
         <qualifiedname>QAccelPlot::unboundedGradientCoordinate</qualifiedname>
         <param>
@@ -127,15 +128,15 @@
           <declname>direction</declname>
         </param>
         <param>
-          <type>const float</type>
+          <type>const qreal</type>
           <declname>value</declname>
         </param>
         <param>
-          <type>const float</type>
+          <type>const qreal</type>
           <declname>minimum</declname>
         </param>
         <param>
-          <type>const float</type>
+          <type>const qreal</type>
           <declname>maximum</declname>
         </param>
         <briefdescription>
@@ -146,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" line="21" column="14" bodyfile="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" bodystart="21" bodyend="28"/>
+        <location file="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" line="21" column="14" bodyfile="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" bodystart="21" bodyend="27"/>
       </memberdef>
       <memberdef kind="function" id="GradientUtils_8hpp_1a0f5087bac1074c27bc00a3d8d5004090" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -172,10 +173,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/effects/GradientUtils.hpp" line="25" column="13" bodyfile="QAccelPlot/src/effects/GradientUtils.hpp" bodystart="25" bodyend="48"/>
       </memberdef>
-      <memberdef kind="function" id="MathUtils_8hpp_1a841b60d6c11065c3aa8a917d77625ace" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::nearly_equal</definition>
-        <argsstring>(double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=std::numeric_limits&lt; double &gt;::min()) noexcept</argsstring>
+        <argsstring>(double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=kNearlyEqualEpsilon) noexcept</argsstring>
         <name>nearly_equal</name>
         <qualifiedname>QAccelPlot::nearly_equal</qualifiedname>
         <param>
@@ -194,7 +195,7 @@
         <param>
           <type>double</type>
           <declname>eps_abs</declname>
-          <defval>std::numeric_limits&lt; double &gt;::min()</defval>
+          <defval>kNearlyEqualEpsilon</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -202,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/MathUtils.hpp" line="32" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="32" bodyend="43"/>
+        <location file="QAccelPlot/src/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="33" bodyend="46"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

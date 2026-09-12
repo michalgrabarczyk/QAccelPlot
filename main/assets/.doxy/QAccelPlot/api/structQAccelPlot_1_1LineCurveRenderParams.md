@@ -48,7 +48,7 @@ _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_
 |  bool | [**antialiasingEnabled**](#variable-antialiasingenabled)  <br>_Whether GPU-side anti-aliasing is active._  |
 |  qreal | [**antialiasingFeather**](#variable-antialiasingfeather)  <br>_Anti-aliasing feather width in pixels._  |
 |  QColor | [**color**](#variable-color)  <br>_Base line color._  |
-|  const std::vector&lt; float &gt; & | [**data**](#variable-data)  <br>_Interleaved XY float data._  |
+|  const std::vector&lt; float &gt; & | [**data**](#variable-data)  <br>_GPU-ready interleaved XY float data._  |
 |  bool | [**dataChanged**](#variable-datachanged)  <br>_Whether the data buffer has changed since the last frame._  |
 |  QVector2D | [**domainMax**](#variable-domainmax)  <br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](#variable-domainmin)  <br>_Minimum data-space coordinate._  |
@@ -60,6 +60,7 @@ _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_
 |  bool | [**logScaleX**](#variable-logscalex)  <br>_Whether the X axis uses log scale._  |
 |  bool | [**logScaleY**](#variable-logscaley)  <br>_Whether the Y axis uses log scale._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
+|  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**sourceData**](#variable-sourcedata)  <br>_Original float or double data used by CPU-side operations._  |
 |  const std::vector&lt; char &gt; \* | [**vertexCache**](#variable-vertexcache)  <br>_Pre-built vertex buffer, or_ `nullptr` _to build on the render thread._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br>_Viewport size in pixels._  |
 |  QQuickWindow \* | [**window**](#variable-window)  <br>_Window providing the texture upload context._  |
@@ -162,7 +163,7 @@ QColor QAccelPlot::LineCurveRenderParams::color;
 
 ### variable data {#variable-data}
 
-_Interleaved XY float data._ 
+_GPU-ready interleaved XY float data._ 
 ```C++
 const std::vector<float>& QAccelPlot::LineCurveRenderParams::data;
 ```
@@ -330,6 +331,21 @@ bool QAccelPlot::LineCurveRenderParams::logScaleY;
 _Number of points in_ `data` _._
 ```C++
 int QAccelPlot::LineCurveRenderParams::pointCount;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable sourceData {#variable-sourcedata}
+
+_Original float or double data used by CPU-side operations._ 
+```C++
+CurveDataView QAccelPlot::LineCurveRenderParams::sourceData;
 ```
 
 

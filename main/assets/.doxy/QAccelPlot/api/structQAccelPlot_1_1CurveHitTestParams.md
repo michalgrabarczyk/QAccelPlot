@@ -46,7 +46,7 @@ _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter 
 | Type | Name |
 | ---: | :--- |
 |  const std::vector&lt; [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) &gt; & | [**chunks**](#variable-chunks)  <br>_Precomputed chunk bounding boxes._  |
-|  const std::vector&lt; float &gt; & | [**data**](#variable-data)  <br>_Interleaved XY float data buffer._  |
+|  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**data**](#variable-data)  <br>_Interleaved XY source data without precision loss._  |
 |  qreal | [**height**](#variable-height)  <br>_Height of the curve item in pixels._  |
 |  qreal | [**hitThreshold**](#variable-hitthreshold)  <br>_Hit distance threshold in pixels._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
@@ -120,9 +120,9 @@ const std::vector<CurveChunk>& QAccelPlot::CurveHitTestParams::chunks;
 
 ### variable data {#variable-data}
 
-_Interleaved XY float data buffer._ 
+_Interleaved XY source data without precision loss._ 
 ```C++
-const std::vector<float>& QAccelPlot::CurveHitTestParams::data;
+CurveDataView QAccelPlot::CurveHitTestParams::data;
 ```
 
 

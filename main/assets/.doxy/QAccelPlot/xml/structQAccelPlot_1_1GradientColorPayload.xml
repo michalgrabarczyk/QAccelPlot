@@ -51,9 +51,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="82" column="17" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="82" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1adf077bb2d79282911590fa356b4605e5" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; float &gt;</type>
-        <definition>std::optional&lt;float&gt; QAccelPlot::GradientColorPayload::gradientValueMin</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1ae1618d1050dcc1cb54296cfc79bbcfc5" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; qreal &gt;</type>
+        <definition>std::optional&lt;qreal&gt; QAccelPlot::GradientColorPayload::gradientValueMin</definition>
         <argsstring></argsstring>
         <name>gradientValueMin</name>
         <qualifiedname>QAccelPlot::GradientColorPayload::gradientValueMin</qualifiedname>
@@ -66,9 +66,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="84" column="19" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="84" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1adc8ee2f7ac5e2a0bd1415792a2c17f4f" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; float &gt;</type>
-        <definition>std::optional&lt;float&gt; QAccelPlot::GradientColorPayload::gradientValueMax</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1GradientColorPayload_1acebc2cf507627daa489287a89ca48f08" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; qreal &gt;</type>
+        <definition>std::optional&lt;qreal&gt; QAccelPlot::GradientColorPayload::gradientValueMax</definition>
         <argsstring></argsstring>
         <name>gradientValueMax</name>
         <qualifiedname>QAccelPlot::GradientColorPayload::gradientValueMax</qualifiedname>
@@ -109,8 +109,8 @@
     <listofallmembers>
       <member refid="structQAccelPlot_1_1GradientColorPayload_1a4253a64cf89552e88f391bf34ab88d4b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>direction</name></member>
       <member refid="structQAccelPlot_1_1GradientColorPayload_1aa5df1ef666471d9895bfacd00029eaaa" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>enabled</name></member>
-      <member refid="structQAccelPlot_1_1GradientColorPayload_1adc8ee2f7ac5e2a0bd1415792a2c17f4f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMax</name></member>
-      <member refid="structQAccelPlot_1_1GradientColorPayload_1adf077bb2d79282911590fa356b4605e5" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMin</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1acebc2cf507627daa489287a89ca48f08" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMax</name></member>
+      <member refid="structQAccelPlot_1_1GradientColorPayload_1ae1618d1050dcc1cb54296cfc79bbcfc5" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>gradientValueMin</name></member>
       <member refid="structQAccelPlot_1_1GradientColorPayload_1a98d8aba8d3b840d27556f1bbffefea8b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>isValid</name></member>
       <member refid="structQAccelPlot_1_1GradientColorPayload_1a107c9d2a580818a24ee6bf0a804cdeb3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientColorPayload</scope><name>stops</name></member>
     </listofallmembers>

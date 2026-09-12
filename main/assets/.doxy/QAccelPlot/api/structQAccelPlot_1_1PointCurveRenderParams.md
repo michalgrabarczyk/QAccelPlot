@@ -48,7 +48,7 @@ _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1
 |  bool | [**antialiasingEnabled**](#variable-antialiasingenabled)  <br>_Whether GPU-side anti-aliasing is active._  |
 |  qreal | [**antialiasingFeather**](#variable-antialiasingfeather)  <br>_Anti-aliasing feather width in pixels._  |
 |  QColor | [**color**](#variable-color)  <br>_Base marker color._  |
-|  const std::vector&lt; float &gt; & | [**data**](#variable-data)  <br>_Interleaved XY float data._  |
+|  const std::vector&lt; float &gt; & | [**data**](#variable-data)  <br>_GPU-ready interleaved XY float data._  |
 |  bool | [**dataChanged**](#variable-datachanged)  <br>_Whether data has changed since the last frame._  |
 |  QVector2D | [**domainMax**](#variable-domainmax)  <br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](#variable-domainmin)  <br>_Minimum data-space coordinate._  |
@@ -59,6 +59,7 @@ _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1
 |  qreal | [**markerSize**](#variable-markersize)  <br>_Marker radius in pixels._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
 |  int | [**shapeType**](#variable-shapetype)  <br>_Marker shape index (matches_ `LineCurve::PointShape` _)._ |
+|  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**sourceData**](#variable-sourcedata)  <br>_Original float or double data used by CPU-side operations._  |
 |  const std::vector&lt; char &gt; \* | [**vertexCache**](#variable-vertexcache)  <br>_Pre-built vertex buffer, or_ `nullptr` _._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br>_Viewport size in pixels._  |
 
@@ -158,7 +159,7 @@ QColor QAccelPlot::PointCurveRenderParams::color;
 
 ### variable data {#variable-data}
 
-_Interleaved XY float data._ 
+_GPU-ready interleaved XY float data._ 
 ```C++
 const std::vector<float>& QAccelPlot::PointCurveRenderParams::data;
 ```
@@ -311,6 +312,21 @@ int QAccelPlot::PointCurveRenderParams::pointCount;
 _Marker shape index (matches_ `LineCurve::PointShape` _)._
 ```C++
 int QAccelPlot::PointCurveRenderParams::shapeType;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable sourceData {#variable-sourcedata}
+
+_Original float or double data used by CPU-side operations._ 
+```C++
+CurveDataView QAccelPlot::PointCurveRenderParams::sourceData;
 ```
 
 

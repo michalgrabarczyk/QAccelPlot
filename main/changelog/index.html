@@ -1298,6 +1298,9 @@
 <ul>
 <li>Legend line and marker samples now use the curve renderers, keeping marker
   shapes and dash patterns consistent across graphics backends and display scales.</li>
+<li>Preserved double precision in <code>LineCurve::setData()</code> for modern Unix-epoch
+  timestamps and large coordinates while keeping the <code>F</code> ingestion APIs
+  float-based.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

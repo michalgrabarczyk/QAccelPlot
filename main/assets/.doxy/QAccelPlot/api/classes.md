@@ -16,6 +16,8 @@
 
 * [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 

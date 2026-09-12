@@ -46,10 +46,10 @@ _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used f
 | Type | Name |
 | ---: | :--- |
 |  int | [**count**](#variable-count)  <br>_Number of points owned by this chunk._  |
-|  float | [**maxX**](#variable-maxx)  <br>_Maximum X of the data-space AABB (extended to bridging points)._  |
-|  float | [**maxY**](#variable-maxy)  <br>_Maximum Y of the data-space AABB (extended to bridging points)._  |
-|  float | [**minX**](#variable-minx)  <br>_Minimum X of the data-space AABB (extended to bridging points)._  |
-|  float | [**minY**](#variable-miny)  <br>_Minimum Y of the data-space AABB (extended to bridging points)._  |
+|  qreal | [**maxX**](#variable-maxx)  <br>_Maximum X of the data-space AABB (extended to bridging points)._  |
+|  qreal | [**maxY**](#variable-maxy)  <br>_Maximum Y of the data-space AABB (extended to bridging points)._  |
+|  qreal | [**minX**](#variable-minx)  <br>_Minimum X of the data-space AABB (extended to bridging points)._  |
+|  qreal | [**minY**](#variable-miny)  <br>_Minimum Y of the data-space AABB (extended to bridging points)._  |
 |  int | [**start**](#variable-start)  <br>_Index of the first point in the data buffer._  |
 
 
@@ -127,7 +127,7 @@ int QAccelPlot::CurveChunk::count;
 
 _Maximum X of the data-space AABB (extended to bridging points)._ 
 ```C++
-float QAccelPlot::CurveChunk::maxX;
+qreal QAccelPlot::CurveChunk::maxX;
 ```
 
 
@@ -142,7 +142,7 @@ float QAccelPlot::CurveChunk::maxX;
 
 _Maximum Y of the data-space AABB (extended to bridging points)._ 
 ```C++
-float QAccelPlot::CurveChunk::maxY;
+qreal QAccelPlot::CurveChunk::maxY;
 ```
 
 
@@ -157,7 +157,7 @@ float QAccelPlot::CurveChunk::maxY;
 
 _Minimum X of the data-space AABB (extended to bridging points)._ 
 ```C++
-float QAccelPlot::CurveChunk::minX;
+qreal QAccelPlot::CurveChunk::minX;
 ```
 
 
@@ -172,7 +172,7 @@ float QAccelPlot::CurveChunk::minX;
 
 _Minimum Y of the data-space AABB (extended to bridging points)._ 
 ```C++
-float QAccelPlot::CurveChunk::minY;
+qreal QAccelPlot::CurveChunk::minY;
 ```
 
 

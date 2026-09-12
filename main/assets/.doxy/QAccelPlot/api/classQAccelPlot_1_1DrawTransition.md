@@ -126,7 +126,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**DataTransition**](classQAccelPlot_1_1DataTransition.md#function-datatransition) (QObject \* parent=nullptr) <br>_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._ |
-|  bool | [**advance**](classQAccelPlot_1_1DataTransition.md#function-advance) (std::vector&lt; float &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
+|  bool | [**advance**](classQAccelPlot_1_1DataTransition.md#function-advance) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
 |  void | [**cancel**](classQAccelPlot_1_1DataTransition.md#function-cancel) () <br>_Cancels the running transition immediately._  |
 |  int | [**duration**](classQAccelPlot_1_1DataTransition.md#function-duration-22) () const<br>_Returns the animation duration in milliseconds._  |
 |  QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#function-easing-22) () const<br>_Returns the easing curve._  |
@@ -135,7 +135,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 |  void | [**setDuration**](classQAccelPlot_1_1DataTransition.md#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](classQAccelPlot_1_1DataTransition.md#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](classQAccelPlot_1_1DataTransition.md#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](classQAccelPlot_1_1DataTransition.md#function-start) (const std::vector&lt; float &gt; & currentData, int currentPointCount, std::vector&lt; float &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
+|  void | [**start**](classQAccelPlot_1_1DataTransition.md#function-start) (const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
 
 
 
@@ -186,7 +186,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](#function-interpolate) (float easedProgress, const std::vector&lt; float &gt; & fromData, int fromPointCount, const std::vector&lt; float &gt; & toData, int toPointCount, std::vector&lt; float &gt; & outData, int & outPointCount) override<br>_Advances the transition by progressively revealing the target curve up to_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) override<br>_Advances the transition by progressively revealing the target curve up to_ _easedProgress_ _(0–1)._ |
 
 
 ## Protected Functions inherited from QAccelPlot::DataTransition
@@ -195,7 +195,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](classQAccelPlot_1_1DataTransition.md#function-interpolate) (float easedProgress, const std::vector&lt; float &gt; & fromData, int fromPointCount, const std::vector&lt; float &gt; & toData, int toPointCount, std::vector&lt; float &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](classQAccelPlot_1_1DataTransition.md#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
 
 
 
@@ -245,12 +245,12 @@ explicit QAccelPlot::DrawTransition::DrawTransition (
 _Advances the transition by progressively revealing the target curve up to_ _easedProgress_ _(0–1)._
 ```C++
 virtual void QAccelPlot::DrawTransition::interpolate (
-    float easedProgress,
-    const std::vector< float > & fromData,
+    double easedProgress,
+    const std::vector< double > & fromData,
     int fromPointCount,
-    const std::vector< float > & toData,
+    const std::vector< double > & toData,
     int toPointCount,
-    std::vector< float > & outData,
+    std::vector< double > & outData,
     int & outPointCount
 ) override
 ```

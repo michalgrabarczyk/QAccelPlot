@@ -46,6 +46,7 @@
 | Type | Name |
 | ---: | :--- |
 | struct | [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) <br>_Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._  |
+| struct | [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) <br>_Read-only view over either interleaved float or double curve coordinates._  |
 | struct | [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) <br>_All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._ |
 
 

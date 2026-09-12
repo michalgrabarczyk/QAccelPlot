@@ -81,8 +81,8 @@ struct GradientColorPayload {
     bool enabled{false};                                        
     GradientDirection direction{GradientDirection::Horizontal}; 
     std::vector<GradientStopData> stops;                        
-    std::optional<float> gradientValueMin;
-    std::optional<float> gradientValueMax;
+    std::optional<qreal> gradientValueMin;
+    std::optional<qreal> gradientValueMax;
 };
 
 struct GradientFillPayload {
@@ -94,10 +94,10 @@ struct GradientFillPayload {
     bool enabled{false};                                        
     GradientDirection direction{GradientDirection::Horizontal}; 
     std::vector<GradientStopData> stops;                        
-    std::optional<float> gradientValueMin;
-    std::optional<float> gradientValueMax;
+    std::optional<qreal> gradientValueMin;
+    std::optional<qreal> gradientValueMax;
     GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; 
-    float baselineValue{0.0f};                                        
+    qreal baselineValue{0.0};                                         
     float opacity{1.0f};                                              
 };
 

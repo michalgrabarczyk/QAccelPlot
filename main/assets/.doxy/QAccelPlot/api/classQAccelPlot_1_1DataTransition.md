@@ -98,7 +98,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**DataTransition**](#function-datatransition) (QObject \* parent=nullptr) <br>_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._ |
-|  bool | [**advance**](#function-advance) (std::vector&lt; float &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
+|  bool | [**advance**](#function-advance) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
 |  void | [**cancel**](#function-cancel) () <br>_Cancels the running transition immediately._  |
 |  int | [**duration**](#function-duration-22) () const<br>_Returns the animation duration in milliseconds._  |
 |  QEasingCurve | [**easing**](#function-easing-22) () const<br>_Returns the easing curve._  |
@@ -107,7 +107,7 @@ flowchart TB
 |  void | [**setDuration**](#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](#function-start) (const std::vector&lt; float &gt; & currentData, int currentPointCount, std::vector&lt; float &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
+|  void | [**start**](#function-start) (const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
 
 
 
@@ -136,7 +136,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](#function-interpolate) (float easedProgress, const std::vector&lt; float &gt; & fromData, int fromPointCount, const std::vector&lt; float &gt; & toData, int toPointCount, std::vector&lt; float &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
 
 
 
@@ -306,7 +306,7 @@ explicit QAccelPlot::DataTransition::DataTransition (
 _Advances the animation by one frame, writing the interpolated data into_ _outData_ _._
 ```C++
 bool QAccelPlot::DataTransition::advance (
-    std::vector< float > & outData,
+    std::vector< double > & outData,
     int & outPointCount
 ) 
 ```
@@ -461,9 +461,9 @@ void QAccelPlot::DataTransition::setEnabled (
 _Starts a new transition from_ _currentData_ _to__newData_ _._
 ```C++
 void QAccelPlot::DataTransition::start (
-    const std::vector< float > & currentData,
+    const std::vector< double > & currentData,
     int currentPointCount,
-    std::vector< float > && newData,
+    std::vector< double > && newData,
     int newPointCount
 ) 
 ```
@@ -475,9 +475,9 @@ void QAccelPlot::DataTransition::start (
 **Parameters:**
 
 
-* `currentData` Current XY float buffer (copied as the _from_ state). 
+* `currentData` Current XY double buffer (copied as the _from_ state). 
 * `currentPointCount` Number of points in _currentData_. 
-* `newData` Target XY float buffer (moved as the _to_ state). 
+* `newData` Target XY double buffer (moved as the _to_ state). 
 * `newPointCount` Number of points in _newData_. 
 
 
@@ -497,12 +497,12 @@ void QAccelPlot::DataTransition::start (
 _Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._
 ```C++
 virtual void QAccelPlot::DataTransition::interpolate (
-    float easedProgress,
-    const std::vector< float > & fromData,
+    double easedProgress,
+    const std::vector< double > & fromData,
     int fromPointCount,
-    const std::vector< float > & toData,
+    const std::vector< double > & toData,
     int toPointCount,
-    std::vector< float > & outData,
+    std::vector< double > & outData,
     int & outPointCount
 ) = 0
 ```

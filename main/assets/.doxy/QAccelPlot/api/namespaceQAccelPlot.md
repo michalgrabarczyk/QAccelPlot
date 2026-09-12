@@ -50,6 +50,7 @@
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that paints tick marks and labels onto a QPainter for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
 | struct | [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) <br>_Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._  |
+| struct | [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) <br>_Read-only view over either interleaved float or double curve coordinates._  |
 | struct | [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) <br>_All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._ |
 | class | [**DashLine**](classQAccelPlot_1_1DashLine.md) <br>_A line style that renders the curve as a customisable dashed line._  |
 | struct | [**DashParameters**](structQAccelPlot_1_1DashParameters.md) <br>_Plain-data snapshot of dash rendering parameters._  |
@@ -111,7 +112,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `1e-12`<br> |
+|  constexpr double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
 
 
 
@@ -133,8 +134,8 @@
 | Type | Name |
 | ---: | :--- |
 |  void | [**appendStopFromObject**](#function-appendstopfromobject) (std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & outStops, QObject \* stopObject) <br>_Reads a QML gradient stop object and appends it to_ _outStops_ _._ |
-|  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=std::numeric\_limits&lt; double &gt;::min()) noexcept<br> |
-|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const float value, const float minimum, const float maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
+|  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
+|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
 
 
@@ -258,7 +259,7 @@ inline bool QAccelPlot::nearly_equal (
     double a,
     double b,
     double eps_rel=kNearlyEqualEpsilon,
-    double eps_abs=std::numeric_limits< double >::min()
+    double eps_abs=kNearlyEqualEpsilon
 ) noexcept
 ```
 
@@ -276,9 +277,9 @@ _Returns an unbounded palette coordinate for a data-space_ _value_ _._
 ```C++
 inline float QAccelPlot::unboundedGradientCoordinate (
     const GradientDirection direction,
-    const float value,
-    const float minimum,
-    const float maximum
+    const qreal value,
+    const qreal minimum,
+    const qreal maximum
 ) 
 ```
 

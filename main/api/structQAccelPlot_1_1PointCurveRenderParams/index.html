@@ -1259,6 +1259,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-sourcedata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable sourceData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-vertexcache" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1331,7 +1342,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">const std::vector&lt; float &gt; &amp;</td>
-<td style="text-align: left;"><a href="#variable-data"><strong>data</strong></a>  <br><em>Interleaved XY float data.</em></td>
+<td style="text-align: left;"><a href="#variable-data"><strong>data</strong></a>  <br><em>GPU-ready interleaved XY float data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1374,6 +1385,10 @@
 <td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>  <br><em>Marker shape index (matches</em> <code>LineCurve::PointShape</code> <em>).</em></td>
 </tr>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a></td>
+<td style="text-align: left;"><a href="#variable-sourcedata"><strong>sourceData</strong></a>  <br><em>Original float or double data used by CPU-side operations.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">const std::vector&lt; char &gt; *</td>
 <td style="text-align: left;"><a href="#variable-vertexcache"><strong>vertexCache</strong></a>  <br><em>Pre-built vertex buffer, or</em> <code>nullptr</code> <em>.</em></td>
 </tr>
@@ -1403,7 +1418,7 @@
 <hr>
 
 <h3 id="variable-data">variable data<a class="headerlink" href="#variable-data" title="Permanent link">&para;</a></h3>
-<p><em>Interleaved XY float data.</em> 
+<p><em>GPU-ready interleaved XY float data.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">data</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1468,15 +1483,21 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-sourcedata">variable sourceData<a class="headerlink" href="#variable-sourcedata" title="Permanent link">&para;</a></h3>
+<p><em>Original float or double data used by CPU-side operations.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">CurveDataView</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">sourceData</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-vertexcache">variable vertexCache<a class="headerlink" href="#variable-vertexcache" title="Permanent link">&para;</a></h3>
 <p><em>Pre-built vertex buffer, or</em> <code>nullptr</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">vertexCache</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">vertexCache</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-viewportsize">variable viewportSize<a class="headerlink" href="#variable-viewportsize" title="Permanent link">&para;</a></h3>
 <p><em>Viewport size in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

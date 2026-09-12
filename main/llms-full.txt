@@ -429,8 +429,8 @@ that resembles your application.
 
 | API | Use it when | Main cost |
 | --- | --- | --- |
-| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML or convenience matters most | Allocation plus conversion to interleaved floats |
-| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors | Allocation plus double-to-float interleaving |
+| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
+| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
@@ -442,6 +442,12 @@ buffer immediately and must be called on the curve's thread, normally the UI
 thread. [`postData(std::vector<float>&&, count)`][post-data] is its
 worker-thread-safe counterpart: it queues that same transfer to the curve's
 thread.
+
+Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
+coordinates, or small differences at a large offset. These paths retain the
+input as doubles and rebase the GPU buffer to keep nearby values distinct. The
+APIs whose names end in `F` intentionally store floats and should be used only
+when the coordinate values are representable at the required precision.
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets. Move to [`setDataFNoRange()`][set-data-f-no-range] only after
@@ -465,7 +471,8 @@ invalid caches are rejected and rendering falls back to normal vertex assembly.
 
 ## Build buffers efficiently
 
-- Store points as interleaved floats: `[x0, y0, x1, y1, ...]`.
+- For the `F` ingestion paths, store points as interleaved floats:
+  `[x0, y0, x1, y1, ...]`.
 - Reserve or resize the vector once before filling it.
 - Move the completed vector instead of copying it.
 - Reuse producer-side buffers after ownership returns through your handoff
@@ -1053,6 +1060,11 @@ xAxis: QAccelPlot.Axis {
     }
 }
 ```
+
+Supply epoch values through `setData()`, which retains double precision and
+keeps millisecond-scale differences visible at modern dates. APIs ending in
+`F` intentionally store coordinates as floats; around the current Unix epoch,
+that representation cannot distinguish nearby timestamps.
 
 ## Categories
 

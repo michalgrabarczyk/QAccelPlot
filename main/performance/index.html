@@ -1419,13 +1419,13 @@ that resembles your application.</p>
 <tbody>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData(QList&lt;QPointF&gt;)</code></a></td>
-<td>Data originates in QML or convenience matters most</td>
-<td>Allocation plus conversion to interleaved floats</td>
+<td>Data originates in QML, coordinates require double precision, or convenience matters most</td>
+<td>Allocation plus interleaving; coordinates remain doubles</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData(xs, ys)</code></a></td>
-<td>Existing C++ data is stored as separate double vectors</td>
-<td>Allocation plus double-to-float interleaving</td>
+<td>Existing C++ data is stored as separate double vectors or includes large coordinates</td>
+<td>Allocation plus interleaving; coordinates remain doubles</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
@@ -1459,6 +1459,11 @@ buffer immediately and must be called on the curve's thread, normally the UI
 thread. <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> is its
 worker-thread-safe counterpart: it queues that same transfer to the curve's
 thread.</p>
+<p>Use a <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData()</code></a> overload for Unix-epoch timestamps, large
+coordinates, or small differences at a large offset. These paths retain the
+input as doubles and rebase the GPU buffer to keep nearby values distinct. The
+APIs whose names end in <code>F</code> intentionally store floats and should be used only
+when the coordinate values are representable at the required precision.</p>
 <p>Start with <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
 C++ data sets. Move to <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> only after
 confirming that range calculation matters and after arranging accurate
@@ -1479,7 +1484,8 @@ supplied cache must exactly match the current point count and renderer layout;
 invalid caches are rejected and rendering falls back to normal vertex assembly.</p>
 <h2 id="build-buffers-efficiently">Build buffers efficiently<a class="headerlink" href="#build-buffers-efficiently" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Store points as interleaved floats: <code>[x0, y0, x1, y1, ...]</code>.</li>
+<li>For the <code>F</code> ingestion paths, store points as interleaved floats:
+  <code>[x0, y0, x1, y1, ...]</code>.</li>
 <li>Reserve or resize the vector once before filling it.</li>
 <li>Move the completed vector instead of copying it.</li>
 <li>Reuse producer-side buffers after ownership returns through your handoff

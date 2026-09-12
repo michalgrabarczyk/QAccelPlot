@@ -235,13 +235,19 @@
   <compound refid="structQAccelPlot_1_1CurveChunk" kind="struct"><name>QAccelPlot::CurveChunk</name>
     <member refid="structQAccelPlot_1_1CurveChunk_1ad7d25fe9c85afbd758299b50790140bf" kind="variable"><name>start</name></member>
     <member refid="structQAccelPlot_1_1CurveChunk_1ad720681fbd2bedf7a0ca403f667c8a34" kind="variable"><name>count</name></member>
-    <member refid="structQAccelPlot_1_1CurveChunk_1a05d60637f950c842d4bc2ade5d21acde" kind="variable"><name>minX</name></member>
-    <member refid="structQAccelPlot_1_1CurveChunk_1ae7d006eb22a397b450bac6f2310a1fde" kind="variable"><name>maxX</name></member>
-    <member refid="structQAccelPlot_1_1CurveChunk_1a4d32d1aebabd5823b57c753b2993635b" kind="variable"><name>minY</name></member>
-    <member refid="structQAccelPlot_1_1CurveChunk_1a6ba9ca30af94c9ad21434b06b0b2cc16" kind="variable"><name>maxY</name></member>
+    <member refid="structQAccelPlot_1_1CurveChunk_1ab508debe5433e74515178ae0c2b31978" kind="variable"><name>minX</name></member>
+    <member refid="structQAccelPlot_1_1CurveChunk_1ae981d9c41e9807d0d78086be0863d32b" kind="variable"><name>maxX</name></member>
+    <member refid="structQAccelPlot_1_1CurveChunk_1acdb4bba534d4764689c55e1d193189b8" kind="variable"><name>minY</name></member>
+    <member refid="structQAccelPlot_1_1CurveChunk_1a9a3bfc7581ac5bace5dea3158f8cda0a" kind="variable"><name>maxY</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1CurveDataView" kind="struct"><name>QAccelPlot::CurveDataView</name>
+    <member refid="structQAccelPlot_1_1CurveDataView_1a99c0db8d8f23654574a371b3ca0eed78" kind="variable"><name>floatData</name></member>
+    <member refid="structQAccelPlot_1_1CurveDataView_1a43a32de64e3da6235ee53fd8293029b9" kind="variable"><name>doubleData</name></member>
+    <member refid="structQAccelPlot_1_1CurveDataView_1ace66be76df9e39db284db9054a6cdc84" kind="function"><name>x</name></member>
+    <member refid="structQAccelPlot_1_1CurveDataView_1a13c3bcdbfc37d302a9f174ed34cb2030" kind="function"><name>y</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1CurveHitTestParams" kind="struct"><name>QAccelPlot::CurveHitTestParams</name>
-    <member refid="structQAccelPlot_1_1CurveHitTestParams_1a493a41c2b90c2151b5aae6c289cfbeae" kind="variable"><name>data</name></member>
+    <member refid="structQAccelPlot_1_1CurveHitTestParams_1a4483d89047b0d53c3910193cf20b8859" kind="variable"><name>data</name></member>
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1a00b6046415da14fe125ff424bd4bbd98" kind="variable"><name>pointCount</name></member>
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1a93a8c66d29a4b56bbd97821b07beb622" kind="variable"><name>chunks</name></member>
     <member refid="structQAccelPlot_1_1CurveHitTestParams_1a8255d73d3fd4c5eaa06ff91d80ead059" kind="variable"><name>xAxis</name></member>
@@ -343,8 +349,8 @@
     <member refid="classQAccelPlot_1_1DataTransition_1a2c42460c1f3a7376f5f105db39ff508d" kind="variable"><name>easing_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a58d2ee8d8403665f4efd1f85ffb4d4bd" kind="variable"><name>enabled_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a13cb90cef73c65a2822547aca7fed6ee" kind="variable"><name>running_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1ac8a1d141be2bc4a432712aad4027cd6b" kind="variable"><name>fromData_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1aacd772c9c61c468930a940e012016c83" kind="variable"><name>toData_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a0ae1dc8eff4935b0321b398134c3bc80" kind="variable"><name>fromData_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a74557d187ae1fc51f7af589127042075" kind="variable"><name>toData_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1aa060783c34f994cdc0da548388c6868c" kind="variable"><name>fromPointCount_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1aeed85a6430cb4a99d41300cfa3b6dca3" kind="variable"><name>toPointCount_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a5e94fe4b2570b47a989c938d86c28902" kind="variable"><name>animTimer_</name></member>
@@ -356,14 +362,14 @@
     <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" kind="function"><name>enabled</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" kind="function"><name>setEnabled</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" kind="function"><name>running</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a81a1b5fd01e2e83b40fdd6bb3128b375" kind="function"><name>start</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1ae058f161b51444d9439db6761ddd5512" kind="function"><name>start</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" kind="function"><name>cancel</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a5de6c6267d3a6b329aab1a960356ab3b" kind="function"><name>advance</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a2dedefb71ff7b3812a9e0b36d835cfb1" kind="function"><name>advance</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1adb5d9d25b47e39a4fb73fd0a30bc5e75" kind="signal"><name>durationChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" kind="signal"><name>easingChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" kind="signal"><name>enabledChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" kind="signal"><name>runningChanged</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a7f724ef15d1e432af39cc831b9a45d53" kind="function"><name>interpolate</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a4b227c5553fe7a558b9956202f709d55" kind="function"><name>interpolate</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1afb7e074e6e4c1e1538209a6eb14d2945" kind="function"><name>setRunning</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kind="class"><name>QAccelPlot::DateTimeTickLabelFormatter</name>
@@ -377,14 +383,14 @@
   </compound>
   <compound refid="classQAccelPlot_1_1DrawTransition" kind="class"><name>QAccelPlot::DrawTransition</name>
     <member refid="classQAccelPlot_1_1DrawTransition_1a69f652e7372b06d1d54bca34a736238e" kind="function"><name>DrawTransition</name></member>
-    <member refid="classQAccelPlot_1_1DrawTransition_1ac36e75a8ea0f5a47c63b6e1a2121c81b" kind="function"><name>interpolate</name></member>
+    <member refid="classQAccelPlot_1_1DrawTransition_1a94ed7d89adfa6c65063943b55c57b101" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1GradientColorPayload" kind="struct"><name>QAccelPlot::GradientColorPayload</name>
     <member refid="structQAccelPlot_1_1GradientColorPayload_1aa5df1ef666471d9895bfacd00029eaaa" kind="variable"><name>enabled</name></member>
     <member refid="structQAccelPlot_1_1GradientColorPayload_1a4253a64cf89552e88f391bf34ab88d4b" kind="variable"><name>direction</name></member>
     <member refid="structQAccelPlot_1_1GradientColorPayload_1a107c9d2a580818a24ee6bf0a804cdeb3" kind="variable"><name>stops</name></member>
-    <member refid="structQAccelPlot_1_1GradientColorPayload_1adf077bb2d79282911590fa356b4605e5" kind="variable"><name>gradientValueMin</name></member>
-    <member refid="structQAccelPlot_1_1GradientColorPayload_1adc8ee2f7ac5e2a0bd1415792a2c17f4f" kind="variable"><name>gradientValueMax</name></member>
+    <member refid="structQAccelPlot_1_1GradientColorPayload_1ae1618d1050dcc1cb54296cfc79bbcfc5" kind="variable"><name>gradientValueMin</name></member>
+    <member refid="structQAccelPlot_1_1GradientColorPayload_1acebc2cf507627daa489287a89ca48f08" kind="variable"><name>gradientValueMax</name></member>
     <member refid="structQAccelPlot_1_1GradientColorPayload_1a98d8aba8d3b840d27556f1bbffefea8b" kind="function"><name>isValid</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1GradientFill" kind="class"><name>QAccelPlot::GradientFill</name>
@@ -452,10 +458,10 @@
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a8d6304e16ad7d9d79675cb9147357e4c" kind="variable"><name>enabled</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a5d04f9e80e1e5d1ca74bf52c22788743" kind="variable"><name>direction</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1af1f4707adf69d6087a957a07375a16f9" kind="variable"><name>stops</name></member>
-    <member refid="structQAccelPlot_1_1GradientFillPayload_1a9910b3cc019a8743567a6f4822c8d882" kind="variable"><name>gradientValueMin</name></member>
-    <member refid="structQAccelPlot_1_1GradientFillPayload_1a2c717f16b2b4c5087c4b750502e5e976" kind="variable"><name>gradientValueMax</name></member>
+    <member refid="structQAccelPlot_1_1GradientFillPayload_1a946a212211cf5e7a935e2e19bc803f64" kind="variable"><name>gradientValueMin</name></member>
+    <member refid="structQAccelPlot_1_1GradientFillPayload_1a5a346dd249dba61c588bf54d93173f32" kind="variable"><name>gradientValueMax</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a13f3e98b07f1b5a64eac2c71d6652b04" kind="variable"><name>baseline</name></member>
-    <member refid="structQAccelPlot_1_1GradientFillPayload_1a38201f5db9fee378d4d38545eabb9356" kind="variable"><name>baselineValue</name></member>
+    <member refid="structQAccelPlot_1_1GradientFillPayload_1abff4b625ea4a086f6a4329ec9961440d" kind="variable"><name>baselineValue</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a62da7a418aaaf917230c85611e177000" kind="variable"><name>opacity</name></member>
     <member refid="structQAccelPlot_1_1GradientFillPayload_1a7d6f7ca15e728540201733bcc334c53e" kind="function"><name>isValid</name></member>
   </compound>
@@ -604,6 +610,9 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997acacc8b4d708cd6657a142e0ed0861e22e5" kind="enumvalue"><name>TriangleUp</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca84d5dab02246a5db0018fac6251bfeb8" kind="enumvalue"><name>TriangleDown</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997acae76b449b9fc8536af7557ffa6321d269" kind="enumvalue"><name>Cross</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468b" kind="enum"><name>DataType</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468ba22ae0e2b89e5e3d477f988cc36d3272b" kind="enumvalue"><name>Float</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468bad909d38d705ce75386dd86e611a82f5b" kind="enumvalue"><name>Double</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a6de2f4c6f817b272c89400ae79be709f" kind="property"><name>color</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8b4ed25a18930e331ca527bbe5042ae1" kind="property"><name>lineWidth</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a0eaa9a95ac71afbc392f9ea417cca6ad" kind="property"><name>hovered</name></member>
@@ -617,7 +626,14 @@
     <member refid="classQAccelPlot_1_1LineCurve_1aedcc3b0602b15ac7e34317cdaf5af93a" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae46bb43854c8650cd1e7c95e0750fd38" kind="variable"><name>lineWidth_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aaf9e303776ac5d6b31058e6580959d44" kind="variable"><name>hovered_</name></member>
-    <member refid="classQAccelPlot_1_1LineCurve_1a1b62ca821bb67dd88d2a5df69c5e1fb7" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1afcd2eeef6485b44c2151380b6557b6e1" kind="variable"><name>dataType_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a6ebcb25a2fb365fff9d93de2ba97180c" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1abf970ed7b2865bb8b524445d1180c82f" kind="variable"><name>dataF_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a2cca7caf4acda2d99deab8536308a616" kind="variable"><name>renderData_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a2759d4139fa0147d27902c0ff4fc57aa" kind="variable"><name>renderOriginX_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a782338228fa0147d39442f957e65c201" kind="variable"><name>renderOriginY_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a3bfbd54d97f65fd048c6ff08ddceeba5" kind="variable"><name>renderLogScaleX_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a73913d95ca22f4817780e438cc7cccfb" kind="variable"><name>renderLogScaleY_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa465dbb3eec4da47591d4073f1901037" kind="variable"><name>pointCount_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a9612c679a2f9445234edbd94ef221962" kind="variable"><name>transition_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a1ee2e5acc8b8e30e1c2e128c04f92a14" kind="variable"><name>lineStyle_</name></member>
@@ -677,10 +693,16 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a24845103565c8152a4ed5a9b8ded8588" kind="function"><name>resolveGradientColorPayload</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ac5c0cf8db24ffc1735f61a0ac9c71c01" kind="function"><name>resolveGradientFillPayload</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a022b41d79f435b73c0ef68fb09a80fce" kind="function"><name>updateDataRanges</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1af826e94992e7574e4b2615f6e5723842" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a2e1bf33a8d92d2effb22040d8953dd6c" kind="function"><name>applyNewData</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a3708fd7315379c245e852f85957717d8" kind="function"><name>applyNewData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a0758753db6656407ca74d0ea0b57a347" kind="function"><name>validateRawDataArguments</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad995206baa72eee166d4b74d5a404eed" kind="function"><name>validateVectorDataArguments</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a71b0efb77daa182858a2e6f74a1159a5" kind="function"><name>copyRawData</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a4839b063644cdcc98995ab50718a81b2" kind="function"><name>promoteFloatDataToDouble</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1aa56bc3b3f9e2e84bd21287b3a93333d3" kind="function"><name>rebuildDoubleRenderData</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a1da9b965cc317b70bc5cb0dc0e37ed9b" kind="function"><name>renderData</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1aa95c715a268a9807a462839e01482a78" kind="function"><name>sourceDataView</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa02993dd005fbf06d0aabe616a0a7298" kind="function"><name>refreshVertexCacheForDataChange</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5872dc1615b0de82634c08bbfaeaf406" kind="function"><name>installVertexCache</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1acffac7ccd8ece21ba780bc47d6fc1e18" kind="function"><name>expectedVertexCacheSize</name></member>
@@ -719,6 +741,7 @@
   <compound refid="structQAccelPlot_1_1LineCurveRenderParams" kind="struct"><name>QAccelPlot::LineCurveRenderParams</name>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a35b40f97e803dcc2f276e18356c079d6" kind="variable"><name>window</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a06fb8f0c28c9935dbaca769670a83be5" kind="variable"><name>data</name></member>
+    <member refid="structQAccelPlot_1_1LineCurveRenderParams_1ac88d98fc8347f5e2fb1fb7c65c538362" kind="variable"><name>sourceData</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1a60435699444bc4a3ba63f382b39a31ec" kind="variable"><name>pointCount</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aa001597698a42ca5f23577f7f46e5b72" kind="variable"><name>dataChanged</name></member>
     <member refid="structQAccelPlot_1_1LineCurveRenderParams_1aca21633d9af62b39ab1c6416292b39c2" kind="variable"><name>color</name></member>
@@ -795,7 +818,7 @@
   </compound>
   <compound refid="classQAccelPlot_1_1MorphTransition" kind="class"><name>QAccelPlot::MorphTransition</name>
     <member refid="classQAccelPlot_1_1MorphTransition_1add70f1c5550cd9d654dad57b686e8e3b" kind="function"><name>MorphTransition</name></member>
-    <member refid="classQAccelPlot_1_1MorphTransition_1a958ee3d9dec5794dca0cfb24f06a96be" kind="function"><name>interpolate</name></member>
+    <member refid="classQAccelPlot_1_1MorphTransition_1a2ccb2bd8095dff36432b75705496c56e" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1NoLine" kind="class"><name>QAccelPlot::NoLine</name>
     <member refid="classQAccelPlot_1_1NoLine_1ab466bd3547e18a64abd55a8c62ef68c3" kind="function"><name>NoLine</name></member>
@@ -904,6 +927,7 @@
   </compound>
   <compound refid="structQAccelPlot_1_1PointCurveRenderParams" kind="struct"><name>QAccelPlot::PointCurveRenderParams</name>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a760e8f29fc605b05f08966413c0e3a13" kind="variable"><name>data</name></member>
+    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1ba23bc662b1a429a78faebe12c2019" kind="variable"><name>sourceData</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aef6cff460337216ce9fe6622d5d98ad3" kind="variable"><name>pointCount</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab15e4141e0b60d86680b114a9dcaba2d" kind="variable"><name>dataChanged</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a57cd5d1f0c942535d273d3d2c36c1996" kind="variable"><name>color</name></member>
@@ -1126,9 +1150,9 @@
     <member refid="GradientColorTypes_8hpp_1a3128c25839dcba34322ff28cc4883a8f" kind="typedef"><name>GradientFillBaseline</name></member>
     <member refid="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" kind="typedef"><name>GradientValueSource</name></member>
     <member refid="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" kind="variable"><name>kNearlyEqualEpsilon</name></member>
-    <member refid="GradientCoordinateUtils_8hpp_1a9c3eec0880d558d76a346ee620a26225" kind="function"><name>unboundedGradientCoordinate</name></member>
+    <member refid="GradientCoordinateUtils_8hpp_1a7bf07663badc325faab162a6bb3bcbf5" kind="function"><name>unboundedGradientCoordinate</name></member>
     <member refid="GradientUtils_8hpp_1a0f5087bac1074c27bc00a3d8d5004090" kind="function"><name>appendStopFromObject</name></member>
-    <member refid="MathUtils_8hpp_1a841b60d6c11065c3aa8a917d77625ace" kind="function"><name>nearly_equal</name></member>
+    <member refid="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" kind="function"><name>nearly_equal</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot_1_1GradientDirectionNS" kind="namespace"><name>QAccelPlot::GradientDirectionNS</name>
     <member refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kind="enum"><name>Direction</name></member>

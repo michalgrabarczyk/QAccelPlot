@@ -125,15 +125,23 @@ private:
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
 
+    enum class DataType { Float, Double };
+
     void updateDataRanges(const std::vector<float>& buf, int count);
+    void updateDataRanges(const std::vector<double>& buf, int count);
     void applyNewData(std::vector<float>&& newData, int newPointCount);
+    void applyNewData(std::vector<double>&& newData, int newPointCount);
     bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);
+    void promoteFloatDataToDouble();
+    void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
+    const std::vector<float>& renderData() const;
+    CurveDataView sourceDataView() const;
     void refreshVertexCacheForDataChange();
     void installVertexCache(std::vector<char>&& vertexCache);
     std::size_t expectedVertexCacheSize() const;
-    // Rebuilds vertexCache_ from the current data_ and color on the calling thread.
+    // Rebuilds vertexCache_ from the current GPU-ready data and color on the calling thread.
     // Used after color/hover changes when no new data is arriving.
     void rebuildVertexCache();
     void rebuildChunks() const;
@@ -143,7 +151,14 @@ private:
     QColor color_{Qt::blue};
     qreal lineWidth_{1.0};
     bool hovered_{false};
-    std::vector<float> data_; // interleaved x,y pairs
+    DataType dataType_{DataType::Double};
+    std::vector<double> data_;      // precise interleaved x,y pairs used by setData()
+    std::vector<float> dataF_;      // interleaved x,y pairs used by the *F APIs
+    std::vector<float> renderData_; // origin-relative GPU data derived from data_
+    qreal renderOriginX_{0.0};
+    qreal renderOriginY_{0.0};
+    bool renderLogScaleX_{false};
+    bool renderLogScaleY_{false};
     int pointCount_{0};
     DataTransition* transition_{nullptr};
     LineStyle* lineStyle_{new SolidLine{}};

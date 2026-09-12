@@ -47,8 +47,8 @@ _Render-thread snapshot of gradient stroke (line-color) parameters._ [More...](#
 | ---: | :--- |
 |  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#variable-direction)   = `{GradientDirection::Horizontal}`<br>_Gradient direction._  |
 |  bool | [**enabled**](#variable-enabled)   = `{false}`<br>`true` _when gradient stroke is active._ |
-|  std::optional&lt; float &gt; | [**gradientValueMax**](#variable-gradientvaluemax)  <br>_Fixed max for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
-|  std::optional&lt; float &gt; | [**gradientValueMin**](#variable-gradientvaluemin)  <br>_Fixed min for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
+|  std::optional&lt; qreal &gt; | [**gradientValueMax**](#variable-gradientvaluemax)  <br>_Fixed max for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
+|  std::optional&lt; qreal &gt; | [**gradientValueMin**](#variable-gradientvaluemin)  <br>_Fixed min for gradient normalisation;_ `std::nullopt` _= derived from data range._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**stops**](#variable-stops)  <br>_Color stops in position order._  |
 
 
@@ -146,7 +146,7 @@ bool QAccelPlot::GradientColorPayload::enabled;
 
 _Fixed max for gradient normalisation;_ `std::nullopt` _= derived from data range._
 ```C++
-std::optional<float> QAccelPlot::GradientColorPayload::gradientValueMax;
+std::optional<qreal> QAccelPlot::GradientColorPayload::gradientValueMax;
 ```
 
 
@@ -161,7 +161,7 @@ std::optional<float> QAccelPlot::GradientColorPayload::gradientValueMax;
 
 _Fixed min for gradient normalisation;_ `std::nullopt` _= derived from data range._
 ```C++
-std::optional<float> QAccelPlot::GradientColorPayload::gradientValueMin;
+std::optional<qreal> QAccelPlot::GradientColorPayload::gradientValueMin;
 ```
 
 

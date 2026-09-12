@@ -1261,6 +1261,10 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">}</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
 </code></pre></div>
+<p>Supply epoch values through <code>setData()</code>, which retains double precision and
+keeps millisecond-scale differences visible at modern dates. APIs ending in
+<code>F</code> intentionally store coordinates as floats; around the current Unix epoch,
+that representation cannot distinguish nearby timestamps.</p>
 <h2 id="categories">Categories<a class="headerlink" href="#categories" title="Permanent link">&para;</a></h2>
 <p>Map integer coordinates to labels with <code>QAccelPlot.TextTickLabelFormatter</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>

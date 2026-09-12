@@ -27,19 +27,19 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1DrawTransition_1ac36e75a8ea0f5a47c63b6e1a2121c81b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DrawTransition_1a94ed7d89adfa6c65063943b55c57b101" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
         <definition>void QAccelPlot::DrawTransition::interpolate</definition>
-        <argsstring>(float easedProgress, const std::vector&lt; float &gt; &amp;fromData, int fromPointCount, const std::vector&lt; float &gt; &amp;toData, int toPointCount, std::vector&lt; float &gt; &amp;outData, int &amp;outPointCount) override</argsstring>
+        <argsstring>(double easedProgress, const std::vector&lt; double &gt; &amp;fromData, int fromPointCount, const std::vector&lt; double &gt; &amp;toData, int toPointCount, std::vector&lt; double &gt; &amp;outData, int &amp;outPointCount) override</argsstring>
         <name>interpolate</name>
         <qualifiedname>QAccelPlot::DrawTransition::interpolate</qualifiedname>
-        <reimplements refid="classQAccelPlot_1_1DataTransition_1a7f724ef15d1e432af39cc831b9a45d53">interpolate</reimplements>
+        <reimplements refid="classQAccelPlot_1_1DataTransition_1a4b227c5553fe7a558b9956202f709d55">interpolate</reimplements>
         <param>
-          <type>float</type>
+          <type>double</type>
           <declname>easedProgress</declname>
         </param>
         <param>
-          <type>const std::vector&lt; float &gt; &amp;</type>
+          <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>fromData</declname>
         </param>
         <param>
@@ -47,7 +47,7 @@
           <declname>fromPointCount</declname>
         </param>
         <param>
-          <type>const std::vector&lt; float &gt; &amp;</type>
+          <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>toData</declname>
         </param>
         <param>
@@ -55,7 +55,7 @@
           <declname>toPointCount</declname>
         </param>
         <param>
-          <type>std::vector&lt; float &gt; &amp;</type>
+          <type>std::vector&lt; double &gt; &amp;</type>
           <declname>outData</declname>
         </param>
         <param>
@@ -117,7 +117,7 @@
     </collaborationgraph>
     <location file="QAccelPlot/src/transitions/DrawTransition.hpp" line="19" column="1" bodyfile="QAccelPlot/src/transitions/DrawTransition.hpp" bodystart="19" bodyend="31"/>
     <listofallmembers>
-      <member refid="classQAccelPlot_1_1DataTransition_1a5de6c6267d3a6b329aab1a960356ab3b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>advance</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1a2dedefb71ff7b3812a9e0b36d835cfb1" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>advance</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>cancel</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>DataTransition</name></member>
       <member refid="classQAccelPlot_1_1DrawTransition_1a69f652e7372b06d1d54bca34a736238e" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>DrawTransition</name></member>
@@ -130,14 +130,14 @@
       <member refid="classQAccelPlot_1_1DataTransition_1a7b3a05823431f464182370e387dc0b41" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabled</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabled</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>enabledChanged</name></member>
-      <member refid="classQAccelPlot_1_1DrawTransition_1ac36e75a8ea0f5a47c63b6e1a2121c81b" prot="protected" virt="virtual"><scope>QAccelPlot::DrawTransition</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1DrawTransition_1a94ed7d89adfa6c65063943b55c57b101" prot="protected" virt="virtual"><scope>QAccelPlot::DrawTransition</scope><name>interpolate</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>running</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>running</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>runningChanged</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setDuration</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a5b87a984d607f1fcfc212b9212b0a36b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setEasing</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>setEnabled</name></member>
-      <member refid="classQAccelPlot_1_1DataTransition_1a81a1b5fd01e2e83b40fdd6bb3128b375" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>start</name></member>
+      <member refid="classQAccelPlot_1_1DataTransition_1ae058f161b51444d9439db6761ddd5512" prot="public" virt="non-virtual"><scope>QAccelPlot::DrawTransition</scope><name>start</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

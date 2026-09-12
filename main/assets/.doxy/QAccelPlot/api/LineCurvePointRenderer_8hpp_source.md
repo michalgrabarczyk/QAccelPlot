@@ -31,6 +31,7 @@ namespace QAccelPlot {
 
 struct PointCurveRenderParams {
     const std::vector<float>& data;              
+    CurveDataView sourceData;                    
     int pointCount;                              
     bool dataChanged;                            
     QColor color;                                

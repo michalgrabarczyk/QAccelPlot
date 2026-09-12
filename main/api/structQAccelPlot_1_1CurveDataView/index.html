@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1CurveHitTestParams/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1CurveDataView/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Struct QAccelPlot::CurveHitTestParams - QAccelPlot Documentation</title>
+        <title>Struct QAccelPlot::CurveDataView - QAccelPlot Documentation</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#struct-qaccelplotcurvehittestparams" class="md-skip">
+        <a href="#struct-qaccelplotcurvedataview" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Struct QAccelPlot::CurveHitTestParams
+              Struct QAccelPlot::CurveDataView
             
           </span>
         </div>
@@ -1093,6 +1093,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1105,10 +1116,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#variable-chunks" class="md-nav__link">
+  <a href="#variable-doubledata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable chunks
+        variable doubleData
       
     </span>
   </a>
@@ -1116,10 +1127,38 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-data" class="md-nav__link">
+  <a href="#variable-floatdata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable data
+        variable floatData
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function x
       
     </span>
   </a>
@@ -1127,65 +1166,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-height" class="md-nav__link">
+  <a href="#function-y" class="md-nav__link">
     <span class="md-ellipsis">
       
-        variable height
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-hitthreshold" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable hitThreshold
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-pointcount" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable pointCount
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-width" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable width
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-xaxis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable xAxis
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-yaxis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable yAxis
+        function y
       
     </span>
   </a>
@@ -1214,9 +1198,9 @@
 
 
 
-<h1 id="struct-qaccelplotcurvehittestparams">Struct QAccelPlot::CurveHitTestParams<a class="headerlink" href="#struct-qaccelplotcurvehittestparams" title="Permanent link">&para;</a></h1>
-<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>CurveHitTestParams</strong></a></p>
-<p><em>All inputs required for a</em> <code>contains()</code> <em>hit-test, bundled to reduce parameter count.</em></p>
+<h1 id="struct-qaccelplotcurvedataview">Struct QAccelPlot::CurveDataView<a class="headerlink" href="#struct-qaccelplotcurvedataview" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>CurveDataView</strong></a></p>
+<p><em>Read-only view over either interleaved float or double curve coordinates.</em> </p>
 <ul>
 <li><code>#include &lt;CurveRendererParams.hpp&gt;</code></li>
 </ul>
@@ -1230,85 +1214,58 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">const std::vector&lt; <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> &gt; &amp;</td>
-<td style="text-align: left;"><a href="#variable-chunks"><strong>chunks</strong></a>  <br><em>Precomputed chunk bounding boxes.</em></td>
+<td style="text-align: right;">const double *</td>
+<td style="text-align: left;"><a href="#variable-doubledata"><strong>doubleData</strong></a>   = <code>{nullptr}</code><br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a></td>
-<td style="text-align: left;"><a href="#variable-data"><strong>data</strong></a>  <br><em>Interleaved XY source data without precision loss.</em></td>
+<td style="text-align: right;">const float *</td>
+<td style="text-align: left;"><a href="#variable-floatdata"><strong>floatData</strong></a>   = <code>{nullptr}</code><br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-x"><strong>x</strong></a> (int index) const<br><em>Returns the X coordinate at</em> <em>index</em> <em>without narrowing double data.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-height"><strong>height</strong></a>  <br><em>Height of the curve item in pixels.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-hitthreshold"><strong>hitThreshold</strong></a>  <br><em>Hit distance threshold in pixels.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#variable-pointcount"><strong>pointCount</strong></a>  <br><em>Number of points in</em> <code>data</code> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-width"><strong>width</strong></a>  <br><em>Width of the curve item in pixels.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
-<td style="text-align: left;"><a href="#variable-xaxis"><strong>xAxis</strong></a>  <br><em>Horizontal axis for coordinate mapping.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
-<td style="text-align: left;"><a href="#variable-yaxis"><strong>yAxis</strong></a>  <br><em>Vertical axis for coordinate mapping.</em></td>
+<td style="text-align: left;"><a href="#function-y"><strong>y</strong></a> (int index) const<br><em>Returns the Y coordinate at</em> <em>index</em> <em>without narrowing double data.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-chunks">variable chunks<a class="headerlink" href="#variable-chunks" title="Permanent link">&para;</a></h3>
-<p><em>Precomputed chunk bounding boxes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CurveChunk</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">chunks</span><span class="p">;</span>
+<h3 id="variable-doubledata">variable doubleData<a class="headerlink" href="#variable-doubledata" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveDataView</span><span class="o">::</span><span class="n">doubleData</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-floatdata">variable floatData<a class="headerlink" href="#variable-floatdata" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveDataView</span><span class="o">::</span><span class="n">floatData</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-x">function x<a class="headerlink" href="#function-x" title="Permanent link">&para;</a></h3>
+<p><em>Returns the X coordinate at</em> <em>index</em> <em>without narrowing double data.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveDataView</span><span class="o">::</span><span class="n">x</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-data">variable data<a class="headerlink" href="#variable-data" title="Permanent link">&para;</a></h3>
-<p><em>Interleaved XY source data without precision loss.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">CurveDataView</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">data</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-height">variable height<a class="headerlink" href="#variable-height" title="Permanent link">&para;</a></h3>
-<p><em>Height of the curve item in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">height</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-hitthreshold">variable hitThreshold<a class="headerlink" href="#variable-hitthreshold" title="Permanent link">&para;</a></h3>
-<p><em>Hit distance threshold in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">hitThreshold</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-pointcount">variable pointCount<a class="headerlink" href="#variable-pointcount" title="Permanent link">&para;</a></h3>
-<p><em>Number of points in</em> <code>data</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-width">variable width<a class="headerlink" href="#variable-width" title="Permanent link">&para;</a></h3>
-<p><em>Width of the curve item in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">width</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-xaxis">variable xAxis<a class="headerlink" href="#variable-xaxis" title="Permanent link">&para;</a></h3>
-<p><em>Horizontal axis for coordinate mapping.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-yaxis">variable yAxis<a class="headerlink" href="#variable-yaxis" title="Permanent link">&para;</a></h3>
-<p><em>Vertical axis for coordinate mapping.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
+<h3 id="function-y">function y<a class="headerlink" href="#function-y" title="Permanent link">&para;</a></h3>
+<p><em>Returns the Y coordinate at</em> <em>index</em> <em>without narrowing double data.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveDataView</span><span class="o">::</span><span class="n">y</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

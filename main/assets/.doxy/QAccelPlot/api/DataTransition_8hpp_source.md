@@ -49,11 +49,11 @@ public:
 
     bool running() const;
 
-    void start(const std::vector<float>& currentData, int currentPointCount, std::vector<float>&& newData, int newPointCount);
+    void start(const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
 
     void cancel();
 
-    bool advance(std::vector<float>& outData, int& outPointCount);
+    bool advance(std::vector<double>& outData, int& outPointCount);
 
 signals:
     void durationChanged();
@@ -62,8 +62,8 @@ signals:
     void runningChanged();
 
 protected:
-    virtual void interpolate(float easedProgress, const std::vector<float>& fromData, int fromPointCount, const std::vector<float>& toData, int toPointCount,
-        std::vector<float>& outData, int& outPointCount)
+    virtual void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
+        std::vector<double>& outData, int& outPointCount)
         = 0;
 
 private:
@@ -74,8 +74,8 @@ private:
     bool enabled_{true};
     bool running_{false};
 
-    std::vector<float> fromData_;
-    std::vector<float> toData_;
+    std::vector<double> fromData_;
+    std::vector<double> toData_;
     int fromPointCount_{0};
     int toPointCount_{0};
     QElapsedTimer animTimer_;

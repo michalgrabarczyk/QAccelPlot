@@ -110,6 +110,7 @@
 * **defaultSubtickColor** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
 * **drawTickLabel** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **defaultTickLabelFormatter\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
+* **doubleData** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md))
 * **data** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **DashLine** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md))
 * **dashParameters** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md), [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md))
@@ -137,7 +138,10 @@
 * **direction** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **direction\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **disconnectGradientSignals** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
+* **DataType** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **dataChanged\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **dataF\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **dataType\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **data\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **dataChanged** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **dashOffset** ([**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md))
@@ -170,6 +174,7 @@
 
 ## f
 
+* **floatData** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md))
 * **fromData\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **fromPointCount\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **fillSpatialGrid** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
@@ -377,6 +382,7 @@
 * **pointCount\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **pointRenderer\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **postData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **promoteFloatDataToDouble** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **PlotBorder** ([**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md))
 * **PlotMouseEvent** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **PlotSeries** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -406,8 +412,15 @@
 * **running\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **reconnectGradientSignals** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **rebuildChunks** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **rebuildDoubleRenderData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **rebuildVertexCache** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **refreshVertexCacheForDataChange** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderData\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderLogScaleX\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderLogScaleY\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderOriginX\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **renderOriginY\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **resolveGradientColorPayload** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **resolveGradientFillPayload** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **rebuild** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
@@ -532,7 +545,9 @@
 * **setMarkerShape** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **setMarkerSize** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **setTransition** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **sourceDataView** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **styleChanged\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **sourceData** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **showLine** ([**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md), [**QAccelPlot::NoLine**](classQAccelPlot_1_1NoLine.md))
 * **setWidth** ([**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md))
 * **setAccepted** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
@@ -636,9 +651,9 @@
 
 ## x
 
+* **x** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **xAxis** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md), [**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **xAxis\_** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **x** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **x\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **x2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **x2Axis\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
@@ -646,9 +661,9 @@
 
 ## y
 
+* **y** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **yAxis** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md), [**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **yAxis\_** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **y** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **y\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **y2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **y2Axis\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))

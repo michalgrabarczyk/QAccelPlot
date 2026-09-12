@@ -4,20 +4,20 @@
     <compoundname>QAccelPlot::CurveHitTestParams</compoundname>
     <includes local="no">CurveRendererParams.hpp</includes>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a493a41c2b90c2151b5aae6c289cfbeae" prot="public" static="no" mutable="no">
-        <type>const std::vector&lt; float &gt; &amp;</type>
-        <definition>const std::vector&lt;float&gt;&amp; QAccelPlot::CurveHitTestParams::data</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a4483d89047b0d53c3910193cf20b8859" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref></type>
+        <definition>CurveDataView QAccelPlot::CurveHitTestParams::data</definition>
         <argsstring></argsstring>
         <name>data</name>
         <qualifiedname>QAccelPlot::CurveHitTestParams::data</qualifiedname>
         <briefdescription>
-<para>Interleaved XY float data buffer. </para>
+<para>Interleaved XY source data without precision loss. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="32" column="23" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="32" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="52" column="19" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a00b6046415da14fe125ff424bd4bbd98" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="33" column="9" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="33" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="53" column="9" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a93a8c66d29a4b56bbd97821b07beb622" prot="public" static="no" mutable="no">
         <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref> &gt; &amp;</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="34" column="23" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="34" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="54" column="23" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a8255d73d3fd4c5eaa06ff91d80ead059" prot="public" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="35" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="35" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="55" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a769a8e823ae5ce8b1e2cff4ddb8c2726" prot="public" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="36" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="36" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="56" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a4188a4ce63ef504701ab02e96c72b89c" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="37" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="37" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="57" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a82665620ee82fc7e8b33c073a5f1925d" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="38" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="38" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="58" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" prot="public" static="no" mutable="no">
         <type>qreal</type>
@@ -122,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="39" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="39" bodyend="-1"/>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="59" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -131,28 +131,35 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="2">
+      <node id="3">
         <label>QAccelPlot::Axis</label>
         <link refid="classQAccelPlot_1_1Axis"/>
-        <childnode refid="3" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::CurveDataView</label>
+        <link refid="structQAccelPlot_1_1CurveDataView"/>
       </node>
       <node id="1">
         <label>QAccelPlot::CurveHitTestParams</label>
         <link refid="structQAccelPlot_1_1CurveHitTestParams"/>
         <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
           <edgelabel>xAxis</edgelabel>
           <edgelabel>yAxis</edgelabel>
         </childnode>
       </node>
-      <node id="3">
+      <node id="4">
         <label>QQuickPaintedItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="31" column="1" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="31" bodyend="40"/>
+    <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="51" column="1" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="51" bodyend="60"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1CurveHitTestParams_1a93a8c66d29a4b56bbd97821b07beb622" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>chunks</name></member>
-      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a493a41c2b90c2151b5aae6c289cfbeae" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>data</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a4483d89047b0d53c3910193cf20b8859" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>data</name></member>
       <member refid="structQAccelPlot_1_1CurveHitTestParams_1a82665620ee82fc7e8b33c073a5f1925d" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>height</name></member>
       <member refid="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>hitThreshold</name></member>
       <member refid="structQAccelPlot_1_1CurveHitTestParams_1a00b6046415da14fe125ff424bd4bbd98" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>pointCount</name></member>

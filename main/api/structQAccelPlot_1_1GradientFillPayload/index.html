@@ -1284,8 +1284,8 @@
 <td style="text-align: left;"><a href="#variable-baseline"><strong>baseline</strong></a>   = <code>{GradientFillBaseline::AxisMinimum}</code><br><em>Baseline mode.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">float</td>
-<td style="text-align: left;"><a href="#variable-baselinevalue"><strong>baselineValue</strong></a>   = <code>{0.0f}</code><br><em>Fixed baseline data value when mode is</em> <code>Value</code> <em>.</em></td>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#variable-baselinevalue"><strong>baselineValue</strong></a>   = <code>{0.0}</code><br><em>Fixed baseline data value when mode is</em> <code>Value</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../namespaceQAccelPlot_1_1GradientDirectionNS/#enum-direction"><strong>GradientDirection</strong></a></td>
@@ -1296,11 +1296,11 @@
 <td style="text-align: left;"><a href="#variable-enabled"><strong>enabled</strong></a>   = <code>{false}</code><br><code>true</code> <em>when gradient fill is active.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::optional&lt; float &gt;</td>
+<td style="text-align: right;">std::optional&lt; qreal &gt;</td>
 <td style="text-align: left;"><a href="#variable-gradientvaluemax"><strong>gradientValueMax</strong></a>  <br><em>Fixed max for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::optional&lt; float &gt;</td>
+<td style="text-align: right;">std::optional&lt; qreal &gt;</td>
 <td style="text-align: left;"><a href="#variable-gradientvaluemin"><strong>gradientValueMin</strong></a>  <br><em>Fixed min for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em></td>
 </tr>
 <tr>
@@ -1339,7 +1339,7 @@
 
 <h3 id="variable-baselinevalue">variable baselineValue<a class="headerlink" href="#variable-baselinevalue" title="Permanent link">&para;</a></h3>
 <p><em>Fixed baseline data value when mode is</em> <code>Value</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">baselineValue</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">baselineValue</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -1357,13 +1357,13 @@
 
 <h3 id="variable-gradientvaluemax">variable gradientValueMax<a class="headerlink" href="#variable-gradientvaluemax" title="Permanent link">&para;</a></h3>
 <p><em>Fixed max for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMax</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMax</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-gradientvaluemin">variable gradientValueMin<a class="headerlink" href="#variable-gradientvaluemin" title="Permanent link">&para;</a></h3>
 <p><em>Fixed min for gradient normalisation;</em> <code>std::nullopt</code> <em>= derived from data range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFillPayload</span><span class="o">::</span><span class="n">gradientValueMin</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
