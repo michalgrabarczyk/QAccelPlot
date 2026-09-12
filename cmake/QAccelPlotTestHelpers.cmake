@@ -77,7 +77,7 @@ function(add_qaccelplot_example_visual_tests target contract_name)
             LABELS "visual-validation"
         )
 
-        if(NOT VISUAL_NO_AI_INSPECTION)
+        if(QACCELPLOT_BUILD_AI_VISUAL_TESTS AND NOT VISUAL_NO_AI_INSPECTION)
             add_test(
                 NAME ai_inspection_${contract_name}
                 COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/ai_visual_acceptance.py"
