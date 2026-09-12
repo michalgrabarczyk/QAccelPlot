@@ -181,6 +181,11 @@ cmake --build build --config Release --target QAccelPlotTests
 ctest --test-dir build --output-on-failure
 ```
 
+Screenshot smoke tests and deterministic visual validation are opt-in with
+`QACCELPLOT_BUILD_VISUAL_TESTS=ON`. Register the paid AI inspection tests as
+well with `QACCELPLOT_BUILD_AI_VISUAL_TESTS=ON`; both options require examples
+and unit tests to be enabled.
+
 The optimized Qt Quick private-API path is enabled when available. Configure
 with `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` for a public-only build; see
 [Texture upload modes](docs/guide/performance.md#select-the-texture-upload-mode).

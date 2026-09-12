@@ -30,6 +30,26 @@ option(QACCELPLOT_INSTALL        "Generate install targets for QAccelPlot"   ${_
 option(QACCELPLOT_DEPLOY_EXAMPLES "Deploy Qt runtime files beside Windows examples" ON)
 option(QACCELPLOT_BUILD_TESTS "Build QAccelPlot unit tests" ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_BUILD_BENCHMARKS "Build QAccelPlot benchmarks" ${_QACCELPLOT_DEFAULT})
+option(QACCELPLOT_BUILD_VISUAL_TESTS "Register screenshot and visual validation tests" OFF)
+option(QACCELPLOT_BUILD_AI_VISUAL_TESTS "Register paid AI visual inspection tests" OFF)
+
+if(QACCELPLOT_BUILD_VISUAL_TESTS AND NOT QACCELPLOT_BUILD_TESTS)
+    message(FATAL_ERROR
+        "QACCELPLOT_BUILD_VISUAL_TESTS requires QACCELPLOT_BUILD_TESTS=ON."
+    )
+endif()
+
+if(QACCELPLOT_BUILD_VISUAL_TESTS AND NOT QACCELPLOT_BUILD_EXAMPLES)
+    message(FATAL_ERROR
+        "QACCELPLOT_BUILD_VISUAL_TESTS requires QACCELPLOT_BUILD_EXAMPLES=ON."
+    )
+endif()
+
+if(QACCELPLOT_BUILD_AI_VISUAL_TESTS AND NOT QACCELPLOT_BUILD_VISUAL_TESTS)
+    message(FATAL_ERROR
+        "QACCELPLOT_BUILD_AI_VISUAL_TESTS requires QACCELPLOT_BUILD_VISUAL_TESTS=ON."
+    )
+endif()
 
 # ---------------------------------------------------------------------------
 # Language standard
