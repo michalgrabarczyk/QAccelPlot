@@ -21,15 +21,35 @@ namespace QAccelPlot {
 struct CurveChunk {
     int start;  ///< \brief Index of the first point in the data buffer.
     int count;  ///< \brief Number of points owned by this chunk.
-    float minX; ///< \brief Minimum X of the data-space AABB (extended to bridging points).
-    float maxX; ///< \brief Maximum X of the data-space AABB (extended to bridging points).
-    float minY; ///< \brief Minimum Y of the data-space AABB (extended to bridging points).
-    float maxY; ///< \brief Maximum Y of the data-space AABB (extended to bridging points).
+    qreal minX; ///< \brief Minimum X of the data-space AABB (extended to bridging points).
+    qreal maxX; ///< \brief Maximum X of the data-space AABB (extended to bridging points).
+    qreal minY; ///< \brief Minimum Y of the data-space AABB (extended to bridging points).
+    qreal maxY; ///< \brief Maximum Y of the data-space AABB (extended to bridging points).
+};
+
+/// \brief Read-only view over either interleaved float or double curve coordinates.
+struct CurveDataView {
+    const float* floatData{nullptr};
+    const double* doubleData{nullptr};
+
+    /// \brief Returns the X coordinate at \a index without narrowing double data.
+    qreal x(int index) const
+    {
+        const auto offset = static_cast<std::size_t>(index) * 2;
+        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
+    }
+
+    /// \brief Returns the Y coordinate at \a index without narrowing double data.
+    qreal y(int index) const
+    {
+        const auto offset = static_cast<std::size_t>(index) * 2 + 1;
+        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
+    }
 };
 
 /// \brief All inputs required for a \c contains() hit-test, bundled to reduce parameter count.
 struct CurveHitTestParams {
-    const std::vector<float>& data;        ///< \brief Interleaved XY float data buffer.
+    CurveDataView data;                    ///< \brief Interleaved XY source data without precision loss.
     int pointCount;                        ///< \brief Number of points in \c data.
     const std::vector<CurveChunk>& chunks; ///< \brief Precomputed chunk bounding boxes.
     Axis* xAxis;                           ///< \brief Horizontal axis for coordinate mapping.

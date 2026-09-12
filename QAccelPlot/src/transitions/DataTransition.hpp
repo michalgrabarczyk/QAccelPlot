@@ -59,11 +59,11 @@ public:
     bool running() const;
 
     /// \brief Starts a new transition from \a currentData to \a newData.
-    /// \param currentData Current XY float buffer (copied as the \e from state).
+    /// \param currentData Current XY double buffer (copied as the \e from state).
     /// \param currentPointCount Number of points in \a currentData.
-    /// \param newData Target XY float buffer (moved as the \e to state).
+    /// \param newData Target XY double buffer (moved as the \e to state).
     /// \param newPointCount Number of points in \a newData.
-    void start(const std::vector<float>& currentData, int currentPointCount, std::vector<float>&& newData, int newPointCount);
+    void start(const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
 
     /// \brief Cancels the running transition immediately.
     void cancel();
@@ -71,7 +71,7 @@ public:
     /// \brief Advances the animation by one frame, writing the interpolated data into \a outData.
     ///
     /// \return \c true if the animation is still running after this call.
-    bool advance(std::vector<float>& outData, int& outPointCount);
+    bool advance(std::vector<double>& outData, int& outPointCount);
 
 signals:
     /// \brief Emitted when the duration property changes.
@@ -85,8 +85,8 @@ signals:
 
 protected:
     /// \brief Subclass entry point — computes the interpolated dataset at \a easedProgress (0–1).
-    virtual void interpolate(float easedProgress, const std::vector<float>& fromData, int fromPointCount, const std::vector<float>& toData, int toPointCount,
-        std::vector<float>& outData, int& outPointCount)
+    virtual void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
+        std::vector<double>& outData, int& outPointCount)
         = 0;
 
 private:
@@ -97,8 +97,8 @@ private:
     bool enabled_{true};
     bool running_{false};
 
-    std::vector<float> fromData_;
-    std::vector<float> toData_;
+    std::vector<double> fromData_;
+    std::vector<double> toData_;
     int fromPointCount_{0};
     int toPointCount_{0};
     QElapsedTimer animTimer_;

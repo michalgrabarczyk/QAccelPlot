@@ -30,7 +30,8 @@ class LineMaterial;
 /// \brief Input parameters for LineCurveLineRenderer::paint(), assembled on the main thread.
 struct LineCurveRenderParams {
     QQuickWindow* window;                           ///< \brief Window providing the texture upload context.
-    const std::vector<float>& data;                 ///< \brief Interleaved XY float data.
+    const std::vector<float>& data;                 ///< \brief GPU-ready interleaved XY float data.
+    CurveDataView sourceData;                       ///< \brief Original float or double data used by CPU-side operations.
     int pointCount;                                 ///< \brief Number of points in \c data.
     bool dataChanged;                               ///< \brief Whether the data buffer has changed since the last frame.
     QColor color;                                   ///< \brief Base line color.
