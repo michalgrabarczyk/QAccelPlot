@@ -13,7 +13,7 @@ find_package(Qt6 REQUIRED COMPONENTS Test Quick)
 get_target_property(_qt_core_location Qt6::Core LOCATION)
 get_filename_component(_qt_bin_dir "${_qt_core_location}" DIRECTORY)
 
-function(add_qaccelplot_test name)
+function(add_qaccelplot_test name scope)
     qt_add_executable(${name} ${ARGN})
     target_link_libraries(${name} PRIVATE QAccelPlot Qt6::Test Qt6::Quick)
     # Expose QAccelPlot's private subdirectory headers to in-tree tests.
@@ -35,7 +35,12 @@ function(add_qaccelplot_test name)
     add_test(NAME ${name} COMMAND ${name})
     set_tests_properties(${name} PROPERTIES
         ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH}"
+        LABELS "unit-test;unit-test-${scope}"
     )
+
+    if(TARGET QAccelPlotTests)
+        add_dependencies(QAccelPlotTests ${name})
+    endif()
 endfunction()
 
 function(add_qaccelplot_example_visual_tests target contract_name)

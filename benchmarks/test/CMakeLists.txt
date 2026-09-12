@@ -10,7 +10,7 @@
 #
 include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
-add_qaccelplot_test(tst_benchmark_workload tst_benchmark_workload.cpp)
+add_qaccelplot_test(tst_benchmark_workload benchmarks tst_benchmark_workload.cpp)
 target_link_libraries(tst_benchmark_workload PRIVATE QAccelPlotBenchmarkCommon)
 target_include_directories(tst_benchmark_workload PRIVATE
     "${CMAKE_SOURCE_DIR}/benchmarks/common"

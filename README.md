@@ -174,6 +174,9 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DQACCELPLOT_BUILD_EXAMPLES=ON
 # Build library and examples
 cmake --build build --config Release
 
+# Build every compiled test executable
+cmake --build build --config Release --target QAccelPlotTests
+
 # Run tests
 ctest --test-dir build --output-on-failure
 ```

@@ -11,6 +11,7 @@ include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
 # ── Component unit tests ──────────────────────────────────────────────────────
 add_qaccelplot_test(tst_data_generation_worker
+    examples
     tst_data_generation_worker.cpp
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataGenerationWorker.cpp"
 )
@@ -19,6 +20,7 @@ target_include_directories(tst_data_generation_worker PRIVATE
 )
 
 add_qaccelplot_test(tst_data_delivery_metrics
+    examples
     tst_data_delivery_metrics.cpp
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataDeliveryMetrics.cpp"
 )
@@ -27,6 +29,7 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
 )
 
 add_qaccelplot_test(tst_sample_data_generators
+    examples
     tst_sample_data_generators.cpp
     "${CMAKE_SOURCE_DIR}/examples/common/src/SampleDataGenerators.cpp"
 )
