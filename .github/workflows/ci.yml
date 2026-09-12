@@ -74,3 +74,26 @@ jobs:
         run: >-
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
           -R '^tst_(axis_tick_painter|spatial_grid|formatters|transitions|axis_mapping|plot_appearance|math_utils|gradient_coordinates|line_curve_data|material_comparison|rectangle_list_data)$'
+
+      - name: Install QAccelPlot package
+        run: >-
+          cmake --install build --config Release
+          --prefix "${{ runner.temp }}/qaccelplot-install"
+
+      - name: Configure installed-package consumer
+        run: >-
+          cmake -S QAccelPlot/test/package_consumer -B package-consumer-build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DQAccelPlot_DIR="${{ runner.temp }}/qaccelplot-install/lib/cmake/QAccelPlot"
+
+      - name: Build installed-package consumer
+        run: cmake --build package-consumer-build --config Release --parallel 2
+
+      - name: Run installed-package consumer
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          QSG_RENDER_LOOP: basic
+          QSG_RHI_BACKEND: opengl
+        run: >-
+          xvfb-run -a ./package-consumer-build/QAccelPlotPackageConsumer
+          --screenshot "${{ runner.temp }}/qaccelplot-package-consumer.png"
