@@ -30,6 +30,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
+- `DataAnchor` no longer dereferences a dangling pointer after its `xAxis` or
+  `yAxis` is destroyed elsewhere; the axis reference is cleared automatically
+  instead.
 
 ## [0.1.0] — 2026-09-08
 
