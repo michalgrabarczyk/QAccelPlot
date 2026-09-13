@@ -46,6 +46,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The plot area is now relaid out when an axis's `axisLinePadding`,
   `orientation`, or ticker `tickLengthIn`/`subtickLengthIn` changes at
   runtime, instead of only on `visible` or `layoutSize` changes.
+- Extra axes now respect their `side`: a horizontal extra axis with
+  `side: Top` stacks above the plot instead of always below it, and a
+  vertical extra axis now reserves layout space and stacks on its declared
+  `side` (`Left` or `Right`) instead of always overlapping the plot's left
+  edge with no reserved space.
 
 ## [0.1.0] — 2026-09-08
 
