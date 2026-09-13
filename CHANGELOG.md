@@ -23,6 +23,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Reassigning a `LineCurve`'s `effects` list no longer deletes the effect
   objects, and effects destroyed elsewhere are removed from the list instead
   of leaving dangling entries.
+- A running `LineCurve` transition no longer overwrites data pushed through
+  `appendData()` or through a data-setting API called after disabling the
+  transition mid-animation: any in-flight transition is now cancelled before
+  the new data is applied directly.
 
 ## [0.1.0] — 2026-09-08
 
