@@ -31,6 +31,8 @@ private slots:
     void log_decadeMapsToHalfLength();
     void log_negativeValue_returnsZero();
     void log_zeroMin_returnsZero();
+    void log_enablingWithNonPositiveViewport_correctsToPositiveRange();
+    void log_enablingWithValidViewport_leavesViewportUnchanged();
 
     // Edge cases
     void zeroRange_returnsZero();
@@ -141,10 +143,30 @@ void TestAxisMapping::log_negativeValue_returnsZero()
 
 void TestAxisMapping::log_zeroMin_returnsZero()
 {
-    const auto axis = makeHorizontalAxis(0.0, 100.0);
+    const auto axis = makeHorizontalAxis(1.0, 100.0);
     axis->setLogScale(true);
-    // viewportMin <= 0 with log scale → guard returns 0
+    // Force an invalid viewport directly (bypassing the setLogScale() self-correction)
+    // to exercise the coordToPixel guard itself.
+    axis->setViewportMin(0.0);
     QCOMPARE(axis->coordToPixel(10.0, 500.0), 0.0);
+}
+
+void TestAxisMapping::log_enablingWithNonPositiveViewport_correctsToPositiveRange()
+{
+    const auto axis = makeHorizontalAxis(-10.0, -1.0);
+    axis->setLogScale(true);
+
+    QVERIFY(axis->viewportMin() > 0.0);
+    QVERIFY(axis->viewportMax() > axis->viewportMin());
+}
+
+void TestAxisMapping::log_enablingWithValidViewport_leavesViewportUnchanged()
+{
+    const auto axis = makeHorizontalAxis(1.0, 100.0);
+    axis->setLogScale(true);
+
+    QCOMPARE(axis->viewportMin(), 1.0);
+    QCOMPARE(axis->viewportMax(), 100.0);
 }
 
 // ---------------------------------------------------------------------------

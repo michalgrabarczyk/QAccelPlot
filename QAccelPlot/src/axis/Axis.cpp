@@ -27,8 +27,9 @@ namespace {
 constexpr auto kMinZoomScaleFactor = 0.0;
 constexpr auto kMaxZoomScaleFactor = 1.0;
 constexpr auto kLogScaleMinPositiveValue = 1e-10;
-// Multiplicative half-range used to synthesize a log-scale viewport around a single value.
-constexpr auto kFlatLogScaleRangeFactor = 10.0;
+// Multiplicative factor used to synthesize a valid log-scale range from a single positive value
+// (e.g. a flat-data viewport centered on it, or a fallback max above a clamped min).
+constexpr auto kLogScaleRangeFactor = 10.0;
 // Fraction of the value's own magnitude used as the linear half-range around a single value.
 constexpr auto kFlatLinearRangeFraction = 0.1;
 // Half-range used to synthesize a linear viewport when the value is exactly zero, where a
@@ -325,6 +326,14 @@ void Axis::setLogScale(const bool on)
         return;
     }
     logScale_ = on;
+    if (logScale_ && (viewportMin_ <= 0.0 || viewportMax_ <= 0.0)) {
+        // A non-positive viewport is invalid for log scale — coordToPixel() returns 0
+        // for every value in that case, collapsing every curve to a single point.
+        const auto newMin = viewportMin_ > 0.0 ? viewportMin_ : kLogScaleMinPositiveValue;
+        const auto newMax = viewportMax_ > newMin ? viewportMax_ : newMin * kLogScaleRangeFactor;
+        setViewportMin(newMin);
+        setViewportMax(newMax);
+    }
     emit logScaleChanged();
     emit rangeChanged(); // force curves to rebuild
     update();
@@ -367,8 +376,8 @@ void Axis::rescaleToData()
     // otherwise make this a no-op. Synthesize a small range around the value instead.
     if (logScale_) {
         const auto center = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
-        setViewportMin(center / kFlatLogScaleRangeFactor);
-        setViewportMax(center * kFlatLogScaleRangeFactor);
+        setViewportMin(center / kLogScaleRangeFactor);
+        setViewportMax(center * kLogScaleRangeFactor);
     } else {
         const auto half = dataMin_ != 0.0 ? std::abs(dataMin_) * kFlatLinearRangeFraction : kFlatLinearZeroHalfRange;
         setViewportMin(dataMin_ - half);
