@@ -15,6 +15,7 @@
 #include <QSGGeometryNode>
 
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 #include <limits>
 
@@ -76,10 +77,10 @@ void RectangleList::setData(const QVariantList& rects)
     for (auto i = 0; i < rectCount_; ++i) {
         const auto map = rects[i].toMap();
         const auto base = static_cast<size_t>(i) * 4;
-        data_[base] = map.value(QStringLiteral("x1")).toFloat();
-        data_[base + 1] = map.value(QStringLiteral("y1")).toFloat();
-        data_[base + 2] = map.value(QStringLiteral("x2")).toFloat();
-        data_[base + 3] = map.value(QStringLiteral("y2")).toFloat();
+        data_[base] = map.value(QStringLiteral("x1")).toDouble();
+        data_[base + 1] = map.value(QStringLiteral("y1")).toDouble();
+        data_[base + 2] = map.value(QStringLiteral("x2")).toDouble();
+        data_[base + 3] = map.value(QStringLiteral("y2")).toDouble();
     }
 
     dataChanged_ = true;
@@ -100,8 +101,8 @@ void RectangleList::setRawData(const float* data, const int rectCount)
     rectCount_ = rectCount;
     const auto floatCount = static_cast<size_t>(rectCount) * 4;
     data_.resize(floatCount);
-    if (floatCount > 0) {
-        memcpy(data_.data(), data, floatCount * sizeof(float));
+    for (size_t i = 0; i < floatCount; ++i) {
+        data_[i] = static_cast<double>(data[i]);
     }
 
     dataChanged_ = true;
@@ -111,7 +112,29 @@ void RectangleList::setRawData(const float* data, const int rectCount)
     update();
 }
 
-bool RectangleList::validateRawDataArguments(const float* data, const int rectCount) const
+void RectangleList::setRawData(const double* data, const int rectCount)
+{
+    if (!validateRawDataArguments(data, rectCount)) {
+        return;
+    }
+    if (rectCount != rectCount_) {
+        vertexCacheValid_ = false;
+    }
+    rectCount_ = rectCount;
+    const auto doubleCount = static_cast<size_t>(rectCount) * 4;
+    data_.resize(doubleCount);
+    if (doubleCount > 0) {
+        memcpy(data_.data(), data, doubleCount * sizeof(double));
+    }
+
+    dataChanged_ = true;
+    buildSpatialGrid();
+    updateDataRanges();
+    emit countChanged();
+    update();
+}
+
+bool RectangleList::validateRawDataArguments(const void* data, const int rectCount) const
 {
     if (rectCount < 0) {
         qCWarning(lcQAccelPlot) << "RectangleList data rectangle count cannot be negative:" << rectCount;
@@ -179,15 +202,16 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
     // Upload data texture
     if (dataChanged_ || nodeRecreated) {
+        rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
         const auto numFloats = rectCount_ * 4;
-        material->uploadTexture(material->dataTexture, window, data_.data(), numFloats);
+        material->uploadTexture(material->dataTexture, window, renderData_.data(), numFloats);
         dataChanged_ = false;
     }
 
     // Set material uniforms
     material->color = color_;
-    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin()), static_cast<float>(yAxis()->viewportMin()));
-    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax()), static_cast<float>(yAxis()->viewportMax()));
+    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
+    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     material->viewportSize = QVector2D(static_cast<float>(width()), static_cast<float>(height()));
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
@@ -226,7 +250,7 @@ void RectangleList::hoverMoveEvent(QHoverEvent* event)
         const auto x2 = std::max(data_[base], data_[base + 2]);
         const auto y2 = std::max(data_[base + 1], data_[base + 3]);
 
-        if (static_cast<float>(dataX) >= x1 && static_cast<float>(dataX) <= x2 && static_cast<float>(dataY) >= y1 && static_cast<float>(dataY) <= y2) {
+        if (dataX >= x1 && dataX <= x2 && dataY >= y1 && dataY <= y2) {
             newHovered = candidate;
         }
     }
@@ -247,7 +271,53 @@ void RectangleList::hoverLeaveEvent(QHoverEvent* /*event*/)
 
 void RectangleList::buildSpatialGrid()
 {
-    spatialGrid_.build(data_.data(), rectCount_);
+    // SpatialGrid only needs to narrow hover queries to a candidate rect — the final
+    // containment test in hoverMoveEvent() re-checks against the full double-precision
+    // data_, so a plain float cast here (no origin shift) is sufficient.
+    auto floatData = std::vector<float>(data_.size());
+    std::transform(data_.begin(), data_.end(), floatData.begin(), [](const double v) { return static_cast<float>(v); });
+    spatialGrid_.build(floatData.data(), rectCount_);
+}
+
+void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY)
+{
+    // Log-scale coordinates aren't translation-invariant (log10(x - origin) != log10(x) -
+    // log10(origin)), so origin-shifting is skipped for a log-scale axis, matching LineCurve.
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    auto foundOriginX = logScaleX;
+    auto foundOriginY = logScaleY;
+
+    for (auto i = 0; i < rectCount_ && !(foundOriginX && foundOriginY); ++i) {
+        const auto base = static_cast<size_t>(i) * 4;
+        if (!foundOriginX) {
+            if (std::isfinite(data_[base])) {
+                renderOriginX_ = data_[base];
+                foundOriginX = true;
+            } else if (std::isfinite(data_[base + 2])) {
+                renderOriginX_ = data_[base + 2];
+                foundOriginX = true;
+            }
+        }
+        if (!foundOriginY) {
+            if (std::isfinite(data_[base + 1])) {
+                renderOriginY_ = data_[base + 1];
+                foundOriginY = true;
+            } else if (std::isfinite(data_[base + 3])) {
+                renderOriginY_ = data_[base + 3];
+                foundOriginY = true;
+            }
+        }
+    }
+
+    renderData_.resize(data_.size());
+    for (auto i = 0; i < rectCount_; ++i) {
+        const auto base = static_cast<size_t>(i) * 4;
+        renderData_[base] = static_cast<float>(data_[base] - renderOriginX_);
+        renderData_[base + 1] = static_cast<float>(data_[base + 1] - renderOriginY_);
+        renderData_[base + 2] = static_cast<float>(data_[base + 2] - renderOriginX_);
+        renderData_[base + 3] = static_cast<float>(data_[base + 3] - renderOriginY_);
+    }
 }
 
 void RectangleList::updateDataRanges()
