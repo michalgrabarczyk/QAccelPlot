@@ -209,6 +209,7 @@ QQmlListProperty<LineCurveEffect> LineCurve::effects()
 
 void LineCurve::appendData(const qreal x, const qreal y)
 {
+    cancelRunningTransition();
     promoteFloatDataToDouble();
     data_.push_back(static_cast<double>(x));
     data_.push_back(static_cast<double>(y));
@@ -308,6 +309,7 @@ void LineCurve::setDataFNoRange(const float* xyInterleaved, const int pointCount
         return;
     }
 
+    cancelRunningTransition();
     copyRawData(xyInterleaved, pointCount);
     pointCount_ = pointCount;
     refreshVertexCacheForDataChange();
@@ -326,6 +328,7 @@ void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int po
         return;
     }
 
+    cancelRunningTransition();
     pointCount_ = pointCount;
     dataType_ = DataType::Float;
     data_.clear();
@@ -356,6 +359,7 @@ void LineCurve::setDataFNoRangeWithCache(const float* xyInterleaved, const int p
         return;
     }
 
+    cancelRunningTransition();
     copyRawData(xyInterleaved, pointCount);
     pointCount_ = pointCount;
     installVertexCache(std::move(vertexCache));
@@ -753,6 +757,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
         auto preciseData = std::vector<double>(newData.begin(), newData.end());
         applyNewData(std::move(preciseData), newPointCount);
     } else {
+        cancelRunningTransition();
         dataType_ = DataType::Float;
         pointCount_ = newPointCount;
         data_.clear();
@@ -789,6 +794,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         return;
     }
 
+    cancelRunningTransition();
     dataType_ = DataType::Double;
     pointCount_ = newPointCount;
     dataF_.clear();
@@ -1024,6 +1030,13 @@ void LineCurve::invalidateData()
     dataChanged_ = true;
     vertexCache_.invalidate();
     chunksValid_ = false;
+}
+
+void LineCurve::cancelRunningTransition()
+{
+    if (transition_ && transition_->running()) {
+        transition_->cancel();
+    }
 }
 
 } // namespace QAccelPlot
