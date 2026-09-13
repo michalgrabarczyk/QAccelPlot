@@ -29,6 +29,8 @@ private slots:
     void invalidRawArgumentsAreRejected();
     void invalidVectorArgumentsAreRejected();
     void rawUpdateHonorsTransition();
+    void disablingTransitionMidRunCancelsIt();
+    void appendDataCancelsRunningTransition();
     void axisAggregatesCurrentSeriesRanges();
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
@@ -190,6 +192,38 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     curve.setDataFNoRange(second.data(), 3);
 
     QVERIFY(transition.running());
+}
+
+void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
+{
+    auto curve = LineCurve{};
+    auto transition = MorphTransition{&curve};
+    curve.setTransition(&transition);
+
+    auto first = makeData(2);
+    curve.setDataFNoRange(first.data(), 2);
+    QVERIFY(transition.running());
+
+    transition.setEnabled(false);
+    auto second = makeData(3, 8.0f);
+    curve.setDataFNoRange(second.data(), 3);
+
+    QVERIFY(!transition.running());
+}
+
+void LineCurveDataTest::appendDataCancelsRunningTransition()
+{
+    auto curve = LineCurve{};
+    auto transition = MorphTransition{&curve};
+    curve.setTransition(&transition);
+
+    auto first = makeData(2);
+    curve.setDataFNoRange(first.data(), 2);
+    QVERIFY(transition.running());
+
+    curve.appendData(5.0, 6.0);
+
+    QVERIFY(!transition.running());
 }
 
 void LineCurveDataTest::axisAggregatesCurrentSeriesRanges()
