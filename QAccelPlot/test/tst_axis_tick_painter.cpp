@@ -31,6 +31,18 @@ private:
     QString label_;
 };
 
+class RecordingTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
+public:
+    mutable QList<QPair<qreal, qreal>> calls;
+
+protected:
+    QString doFormat(const qreal value, const qreal tickStep) const override
+    {
+        calls.append({value, tickStep});
+        return QString::number(value);
+    }
+};
+
 class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
@@ -50,6 +62,7 @@ private slots:
     void computeNiceStep_residualAtTwoBoundary();
     void paintTicks_timeLabelsMatchUnclippedReference();
     void paintTicks_verticalLabelsUseAvailableWidth();
+    void paintTicks_logScaleMajorTicksReceiveNonZeroStep();
 };
 
 void TestAxisTickPainter::computeNiceStep_roundRange()
@@ -243,6 +256,30 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
     }
 
     QVERIFY2(foundPixelOutsideOldLabelRect, "Vertical tick label did not use the available axis width");
+}
+
+void TestAxisTickPainter::paintTicks_logScaleMajorTicksReceiveNonZeroStep()
+{
+    auto formatter = RecordingTickLabelFormatter{};
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickLabelFormatter(&formatter);
+
+    auto image = QImage{200, 80, QImage::Format_ARGB32_Premultiplied};
+    auto painter = QPainter{&image};
+    auto params = QAccelPlot::AxisTickPainter::Params{};
+    params.viewportMin = 0.001;
+    params.viewportMax = 100.0;
+    params.orientation = QAccelPlot::Axis::Horizontal;
+    params.side = QAccelPlot::Axis::Bottom;
+    params.logScale = true;
+    params.ticker = &ticker;
+    QAccelPlot::AxisTickPainter::paintTicks(
+        &painter, QRectF{0.0, 0.0, 200.0, 80.0}, 0.0, 20.0, params, [](const qreal value, const qreal length) { return value * length; });
+
+    QVERIFY(!formatter.calls.isEmpty());
+    for (const auto& call : formatter.calls) {
+        QVERIFY2(call.second > 0.0, qPrintable(QStringLiteral("major tick %1 was formatted with tickStep %2").arg(call.first).arg(call.second)));
+    }
 }
 
 QTEST_MAIN(TestAxisTickPainter)

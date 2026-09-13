@@ -51,6 +51,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   vertical extra axis now reserves layout space and stacks on its declared
   `side` (`Left` or `Right`) instead of always overlapping the plot's left
   edge with no reserved space.
+- Log-scale axis labels no longer collapse to `"0.0"` or `"100.0"` for
+  small or large tick values; each major tick's own magnitude is now used
+  to derive its label precision.
 
 ## [0.1.0] — 2026-09-08
 
