@@ -23,7 +23,14 @@ QString NumericTickLabelFormatter::doFormat(const qreal value, const qreal tickS
     // (e.g. 0.1 → log10 = -1.0) still yields one decimal place rather than zero.
     constexpr static auto kPrecisionRoundingBias = double{0.5};
     const auto precision = (tickStep > 0.0) ? std::max(0, static_cast<int>(std::ceil(-std::log10(tickStep) + kPrecisionRoundingBias))) : 1;
-    return QString::number(value, 'f', precision);
+    auto text = QString::number(value, 'f', precision);
+    // A tiny negative value accumulated from floating-point tick-position arithmetic
+    // (e.g. loopStart + i*step) can round to zero at the display precision while
+    // keeping its sign, printing a misleading "-0.00". Strip the sign in that case.
+    if (text.startsWith(QLatin1Char('-')) && text.toDouble() == 0.0) {
+        text.remove(0, 1);
+    }
+    return text;
 }
 
 } // namespace QAccelPlot

@@ -54,6 +54,7 @@ void TestFormatters::numericFormat_data()
     QTest::newRow("negative-value") << -0.5 << 0.1 << QStringLiteral("-0.50");
     QTest::newRow("zero-value") << 0.0 << 10.0 << QStringLiteral("0");
     QTest::newRow("very-small-step") << 0.123456789 << 1e-4 << QStringLiteral("0.12346");
+    QTest::newRow("tiny-negative-rounds-to-positive-zero") << -1e-10 << 0.1 << QStringLiteral("0.00");
 }
 
 void TestFormatters::numericFormat()
