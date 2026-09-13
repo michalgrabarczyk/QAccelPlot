@@ -20,6 +20,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Preserved double precision in `LineCurve::setData()` for modern Unix-epoch
   timestamps and large coordinates while keeping the `F` ingestion APIs
   float-based.
+- Reassigning a `LineCurve`'s `effects` list no longer deletes the effect
+  objects, and effects destroyed elsewhere are removed from the list instead
+  of leaving dangling entries.
 
 ## [0.1.0] — 2026-09-08
 

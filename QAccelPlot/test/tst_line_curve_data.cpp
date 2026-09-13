@@ -5,10 +5,12 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "effects/GradientFill.hpp"
 #include "series/LineCurve.hpp"
 #include "series/LineCurveVertexCache.hpp"
 #include "transitions/MorphTransition.hpp"
 
+#include <QPointer>
 #include <QtTest/QtTest>
 
 #include <vector>
@@ -30,6 +32,8 @@ private slots:
     void axisAggregatesCurrentSeriesRanges();
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
+    void reassignedEffectsSurviveListClear();
+    void destroyedEffectIsRemovedFromList();
 };
 
 namespace {
@@ -261,6 +265,38 @@ void LineCurveDataTest::separateDoubleDataPreservesModernEpochPrecision()
 
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void LineCurveDataTest::reassignedEffectsSurviveListClear()
+{
+    auto owner = QObject{};
+    auto curve = LineCurve{};
+    auto effect = QPointer<GradientFill>{new GradientFill{&owner}};
+    auto effects = curve.effects();
+
+    // QML assigns a list property by clearing it and appending each element again.
+    effects.append(&effects, effect.data());
+    effects.clear(&effects);
+    effects.append(&effects, effect.data());
+    QCoreApplication::sendPostedEvents(nullptr, QEvent::DeferredDelete);
+
+    QVERIFY(!effect.isNull());
+    QCOMPARE(effect->parent(), &owner);
+    QCOMPARE(effects.count(&effects), 1);
+    QCOMPARE(effects.at(&effects, 0), effect.data());
+}
+
+void LineCurveDataTest::destroyedEffectIsRemovedFromList()
+{
+    auto curve = LineCurve{};
+    auto* effect = new GradientFill{};
+    auto effects = curve.effects();
+    effects.append(&effects, effect);
+    QCOMPARE(effects.count(&effects), 1);
+
+    delete effect;
+
+    QCOMPARE(effects.count(&effects), 0);
 }
 
 } // namespace QAccelPlot
