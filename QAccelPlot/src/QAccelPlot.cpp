@@ -293,6 +293,11 @@ PlotBorder* QAccelPlot::border() const
 
 void QAccelPlot::wheelEvent(QWheelEvent* event)
 {
+    if (event->angleDelta().y() == 0) {
+        QQuickItem::wheelEvent(event);
+        return;
+    }
+
     const auto pos = event->position();
     const auto zoomingIn = event->angleDelta().y() > 0;
 
