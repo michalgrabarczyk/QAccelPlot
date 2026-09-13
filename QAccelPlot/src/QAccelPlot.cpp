@@ -608,6 +608,10 @@ void QAccelPlot::connectAxisSignals(Axis* axis)
     connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
+    // Grid line positions are derived from tickCount/subtickCount (see GridNode::update()),
+    // so the plot must repaint when either changes, not just the axis widget itself.
+    connect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
 }
 
 void QAccelPlot::disconnectAxisSignals(Axis* axis)
@@ -621,6 +625,8 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
     disconnect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
+    disconnect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update);
+    disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update);
 }
 
 void QAccelPlot::axisDestroyed(QObject* object)
