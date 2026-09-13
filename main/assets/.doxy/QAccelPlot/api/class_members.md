@@ -78,6 +78,7 @@
 * **commit** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **comparisonKey** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **collectAxisGridLines** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
+* **cancelRunningTransition** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **chunksValid\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **chunks\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **clearData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))

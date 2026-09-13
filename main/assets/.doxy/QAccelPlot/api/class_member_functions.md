@@ -50,6 +50,7 @@
 * **commit** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **comparisonKey** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **collectAxisGridLines** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
+* **cancelRunningTransition** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **clearData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **clearEffects** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **color** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))

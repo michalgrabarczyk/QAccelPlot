@@ -147,6 +147,7 @@ private:
     void rebuildChunks() const;
     void invalidateVertices();
     void invalidateData();
+    void cancelRunningTransition();
 
     QColor color_{Qt::blue};
     qreal lineWidth_{1.0};

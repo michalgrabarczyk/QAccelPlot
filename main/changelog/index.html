@@ -1304,6 +1304,10 @@
 <li>Reassigning a <code>LineCurve</code>'s <code>effects</code> list no longer deletes the effect
   objects, and effects destroyed elsewhere are removed from the list instead
   of leaving dangling entries.</li>
+<li>A running <code>LineCurve</code> transition no longer overwrites data pushed through
+  <code>appendData()</code> or through a data-setting API called after disabling the
+  transition mid-animation: any in-flight transition is now cancelled before
+  the new data is applied directly.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
