@@ -49,5 +49,5 @@ void DataDeliveryMetricsTest::snapshotsResetIntervalCounters()
     QCOMPARE(snapshot.longestDataGapNanoseconds, std::int64_t{0});
 }
 
-QTEST_MAIN(DataDeliveryMetricsTest)
+QTEST_GUILESS_MAIN(DataDeliveryMetricsTest)
 #include "tst_data_delivery_metrics.moc"

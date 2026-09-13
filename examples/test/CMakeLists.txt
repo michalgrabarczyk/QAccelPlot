@@ -19,7 +19,7 @@ target_include_directories(tst_data_generation_worker PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
 )
 
-add_qaccelplot_test(tst_data_delivery_metrics
+add_qaccelplot_standalone_test(tst_data_delivery_metrics
     examples
     tst_data_delivery_metrics.cpp
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataDeliveryMetrics.cpp"
@@ -28,7 +28,7 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
 )
 
-add_qaccelplot_test(tst_sample_data_generators
+add_qaccelplot_standalone_test(tst_sample_data_generators
     examples
     tst_sample_data_generators.cpp
     "${CMAKE_SOURCE_DIR}/examples/common/src/SampleDataGenerators.cpp"
@@ -57,8 +57,15 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
                 --light-theme
                 --screenshot "${_light_theme_screenshot}"
         )
+        set(_light_theme_test_environment
+            "QT_FORCE_STDERR_LOGGING=1"
+            "QACCELPLOT_HOVER_ENABLED=0"
+        )
+        if(WIN32)
+            list(PREPEND _light_theme_test_environment "${_qaccelplot_windows_path_environment}")
+        endif()
         set_tests_properties(smoke_QAccelPlotExampleStylingAndTransitionsLight PROPERTIES
-            ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
+            ENVIRONMENT "${_light_theme_test_environment}"
             LABELS "visual-smoke"
             TIMEOUT 15
         )

@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "DrawTransition.hpp"
-#include "MorphTransition.hpp"
+#include "transitions/DrawTransition.hpp"
+#include "transitions/MorphTransition.hpp"
 
 #include <QtTest/QtTest>
 
