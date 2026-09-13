@@ -22,181 +22,142 @@ class TestFormatters : public QObject {
     Q_OBJECT
 
 private slots:
-    // NumericTickLabelFormatter
-    void numeric_precision_fromTickStep();
-    void numeric_zeroTickStep_usesPrecisionOne();
-    void numeric_largeTickStep_zeroPrecision();
-    void numeric_negativeValue();
+    void numericFormat_data();
+    void numericFormat();
 
-    // DateTimeTickLabelFormatter
     void datetime_defaultFormat();
     void datetime_customFormat();
     void datetime_formatChanged_emitsSignal();
 
-    // LogTickLabelFormatter
-    void log_exactPowerOfTen_superscriptNotation();
-    void log_nonPowerOfTen_generalNotation();
-    void log_negativePower();
-    void log_multiDigitPowers();
+    void logFormat_data();
+    void logFormat();
 
-    // TextTickLabelFormatter
-    void text_validIndex_returnsLabel();
-    void text_outOfBounds_returnsEmpty();
-    void text_negativeIndex_returnsEmpty();
-    void text_emptyList_returnsEmpty();
+    void textFormat_data();
+    void textFormat();
     void text_labelsChanged_emitsSignal();
 
-    // Formatter change propagation
     void ticker_formatterPropertyChange_emitsSignal();
     void ticker_formatterReplacement_emitsSignal();
     void ticker_nullFormatter_usesDefault();
     void ticker_destroyedFormatter_usesDefault();
-
-    // Corner cases
-    void numeric_zeroValue_precisionZero();
-    void numeric_verySmallTickStep_highPrecision();
-    void log_nearPowerBelowThreshold_usesSuperscript();
-    void log_nearPowerAboveThreshold_usesGeneral();
-    void text_fractionalValueRoundsToIndex();
 };
 
-// ---------------------------------------------------------------------------
-// NumericTickLabelFormatter
-// ---------------------------------------------------------------------------
-
-void TestFormatters::numeric_precision_fromTickStep()
+void TestFormatters::numericFormat_data()
 {
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    // tickStep=0.1 → precision=2; 1.23456 rounded to 2dp = "1.23"
-    QCOMPARE(fmt.format(1.23456, 0.1), QStringLiteral("1.23"));
+    QTest::addColumn<qreal>("value");
+    QTest::addColumn<qreal>("tickStep");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("fractional-step") << 1.23456 << 0.1 << QStringLiteral("1.23");
+    QTest::newRow("zero-step") << 1.5 << 0.0 << QStringLiteral("1.5");
+    QTest::newRow("large-step") << 1000.0 << 10.0 << QStringLiteral("1000");
+    QTest::newRow("negative-value") << -0.5 << 0.1 << QStringLiteral("-0.50");
+    QTest::newRow("zero-value") << 0.0 << 10.0 << QStringLiteral("0");
+    QTest::newRow("very-small-step") << 0.123456789 << 1e-4 << QStringLiteral("0.12346");
 }
 
-void TestFormatters::numeric_zeroTickStep_usesPrecisionOne()
+void TestFormatters::numericFormat()
 {
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    // tickStep <= 0 → precision=1
-    QCOMPARE(fmt.format(1.5, 0.0), QStringLiteral("1.5"));
-}
+    QFETCH(qreal, value);
+    QFETCH(qreal, tickStep);
+    QFETCH(QString, expected);
 
-void TestFormatters::numeric_largeTickStep_zeroPrecision()
-{
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    // tickStep=10.0 → -log10(10)+0.5 = -0.5, ceil(-0.5)=0 → precision=0
-    QCOMPARE(fmt.format(1000.0, 10.0), QStringLiteral("1000"));
+    const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    QCOMPARE(formatter.format(value, tickStep), expected);
 }
-
-void TestFormatters::numeric_negativeValue()
-{
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    QCOMPARE(fmt.format(-0.5, 0.1), QStringLiteral("-0.50"));
-}
-
-// ---------------------------------------------------------------------------
-// DateTimeTickLabelFormatter
-// ---------------------------------------------------------------------------
 
 void TestFormatters::datetime_defaultFormat()
 {
-    auto fmt = QAccelPlot::DateTimeTickLabelFormatter{};
-    // Use the same conversion the implementation uses, so the test is TZ-agnostic.
-    const auto ms = qint64{1000000000000};
-    const auto expected = QDateTime::fromMSecsSinceEpoch(ms).toString(QStringLiteral("yyyy-MM-dd HH:mm:ss"));
-    QCOMPARE(fmt.format(static_cast<qreal>(ms), 1.0), expected);
+    const auto formatter = QAccelPlot::DateTimeTickLabelFormatter{};
+    const auto milliseconds = qint64{1000000000000};
+    const auto expected = QDateTime::fromMSecsSinceEpoch(milliseconds).toString(QStringLiteral("yyyy-MM-dd HH:mm:ss"));
+    QCOMPARE(formatter.format(static_cast<qreal>(milliseconds), 1.0), expected);
 }
 
 void TestFormatters::datetime_customFormat()
 {
-    auto fmt = QAccelPlot::DateTimeTickLabelFormatter{};
-    fmt.setDateTimeFormat(QStringLiteral("yyyy"));
-    const auto ms = qint64{0};
-    const auto expected = QDateTime::fromMSecsSinceEpoch(ms).toString(QStringLiteral("yyyy"));
-    QCOMPARE(fmt.format(0.0, 1.0), expected);
+    auto formatter = QAccelPlot::DateTimeTickLabelFormatter{};
+    formatter.setDateTimeFormat(QStringLiteral("yyyy"));
+    const auto expected = QDateTime::fromMSecsSinceEpoch(0).toString(QStringLiteral("yyyy"));
+    QCOMPARE(formatter.format(0.0, 1.0), expected);
 }
 
 void TestFormatters::datetime_formatChanged_emitsSignal()
 {
-    auto fmt = QAccelPlot::DateTimeTickLabelFormatter{};
-    auto spy = QSignalSpy{&fmt, &QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormatChanged};
-    fmt.setDateTimeFormat(QStringLiteral("dd/MM/yyyy"));
+    auto formatter = QAccelPlot::DateTimeTickLabelFormatter{};
+    auto spy = QSignalSpy{&formatter, &QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormatChanged};
+    formatter.setDateTimeFormat(QStringLiteral("dd/MM/yyyy"));
     QCOMPARE(spy.count(), 1);
-    // Setting the same value should not emit again.
-    fmt.setDateTimeFormat(QStringLiteral("dd/MM/yyyy"));
+
+    formatter.setDateTimeFormat(QStringLiteral("dd/MM/yyyy"));
     QCOMPARE(spy.count(), 1);
 }
 
-// ---------------------------------------------------------------------------
-// LogTickLabelFormatter
-// ---------------------------------------------------------------------------
-
-void TestFormatters::log_exactPowerOfTen_superscriptNotation()
+void TestFormatters::logFormat_data()
 {
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(fmt.format(1.0, 1.0), QStringLiteral("10\u2070"));
-    QCOMPARE(fmt.format(100.0, 1.0), QStringLiteral("10\u00B2"));
-    QCOMPARE(fmt.format(1000.0, 1.0), QStringLiteral("10\u00B3"));
+    QTest::addColumn<qreal>("value");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("power-zero") << 1.0 << QStringLiteral("10\u2070");
+    QTest::newRow("power-two") << 100.0 << QStringLiteral("10\u00B2");
+    QTest::newRow("power-three") << 1000.0 << QStringLiteral("10\u00B3");
+    QTest::newRow("non-power") << 50.0 << QStringLiteral("50");
+    QTest::newRow("negative-power") << 0.001 << QStringLiteral("10\u207B\u00B3");
+    QTest::newRow("multi-digit-power") << 1e12 << QStringLiteral("10\u00B9\u00B2");
+    QTest::newRow("negative-multi-digit-power") << 1e-12 << QStringLiteral("10\u207B\u00B9\u00B2");
+
+    const auto belowThreshold = std::pow(10.0, 1.005);
+    const auto aboveThreshold = std::pow(10.0, 1.02);
+    QTest::newRow("near-power-below-threshold") << belowThreshold << QStringLiteral("10\u00B9");
+    QTest::newRow("near-power-above-threshold") << aboveThreshold << QString::number(aboveThreshold, 'g', 3);
 }
 
-void TestFormatters::log_nonPowerOfTen_generalNotation()
+void TestFormatters::logFormat()
 {
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    // 50 → log10(50)≈1.699, |1.699-2|=0.301 > 0.01 → 'g' notation
-    QCOMPARE(fmt.format(50.0, 1.0), QStringLiteral("50"));
+    QFETCH(qreal, value);
+    QFETCH(QString, expected);
+
+    const auto formatter = QAccelPlot::LogTickLabelFormatter{};
+    QCOMPARE(formatter.format(value, 1.0), expected);
 }
 
-void TestFormatters::log_negativePower()
+void TestFormatters::textFormat_data()
 {
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(fmt.format(0.001, 1.0), QStringLiteral("10\u207B\u00B3"));
+    QTest::addColumn<QStringList>("labels");
+    QTest::addColumn<qreal>("value");
+    QTest::addColumn<QString>("expected");
+
+    const auto alphabet = QStringList{QStringLiteral("alpha"), QStringLiteral("beta"), QStringLiteral("gamma")};
+    const auto numbers = QStringList{QStringLiteral("zero"), QStringLiteral("one"), QStringLiteral("two")};
+    QTest::newRow("first-label") << alphabet << 0.0 << QStringLiteral("alpha");
+    QTest::newRow("middle-label") << alphabet << 1.0 << QStringLiteral("beta");
+    QTest::newRow("last-label") << alphabet << 2.0 << QStringLiteral("gamma");
+    QTest::newRow("out-of-bounds") << QStringList{QStringLiteral("only")} << 5.0 << QString{};
+    QTest::newRow("negative-index") << QStringList{QStringLiteral("a"), QStringLiteral("b")} << -1.0 << QString{};
+    QTest::newRow("empty-list") << QStringList{} << 0.0 << QString{};
+    QTest::newRow("fraction-rounds-up") << numbers << 1.6 << QStringLiteral("two");
+    QTest::newRow("fraction-rounds-down") << numbers << 0.4 << QStringLiteral("zero");
 }
 
-void TestFormatters::log_multiDigitPowers()
+void TestFormatters::textFormat()
 {
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(fmt.format(1e12, 1.0), QStringLiteral("10\u00B9\u00B2"));
-    QCOMPARE(fmt.format(1e-12, 1.0), QStringLiteral("10\u207B\u00B9\u00B2"));
-}
+    QFETCH(QStringList, labels);
+    QFETCH(qreal, value);
+    QFETCH(QString, expected);
 
-// ---------------------------------------------------------------------------
-// TextTickLabelFormatter
-// ---------------------------------------------------------------------------
-
-void TestFormatters::text_validIndex_returnsLabel()
-{
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    fmt.setLabels({QStringLiteral("alpha"), QStringLiteral("beta"), QStringLiteral("gamma")});
-    QCOMPARE(fmt.format(0.0, 1.0), QStringLiteral("alpha"));
-    QCOMPARE(fmt.format(1.0, 1.0), QStringLiteral("beta"));
-    QCOMPARE(fmt.format(2.0, 1.0), QStringLiteral("gamma"));
-}
-
-void TestFormatters::text_outOfBounds_returnsEmpty()
-{
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    fmt.setLabels({QStringLiteral("only")});
-    QCOMPARE(fmt.format(5.0, 1.0), QString{});
-}
-
-void TestFormatters::text_negativeIndex_returnsEmpty()
-{
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    fmt.setLabels({QStringLiteral("a"), QStringLiteral("b")});
-    QCOMPARE(fmt.format(-1.0, 1.0), QString{});
-}
-
-void TestFormatters::text_emptyList_returnsEmpty()
-{
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    QCOMPARE(fmt.format(0.0, 1.0), QString{});
+    auto formatter = QAccelPlot::TextTickLabelFormatter{};
+    formatter.setLabels(labels);
+    QCOMPARE(formatter.format(value, 1.0), expected);
 }
 
 void TestFormatters::text_labelsChanged_emitsSignal()
 {
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    auto spy = QSignalSpy{&fmt, &QAccelPlot::TextTickLabelFormatter::labelsChanged};
-    fmt.setLabels({QStringLiteral("x")});
+    auto formatter = QAccelPlot::TextTickLabelFormatter{};
+    auto spy = QSignalSpy{&formatter, &QAccelPlot::TextTickLabelFormatter::labelsChanged};
+    formatter.setLabels({QStringLiteral("x")});
     QCOMPARE(spy.count(), 1);
-    // Same value: no signal.
-    fmt.setLabels({QStringLiteral("x")});
+
+    formatter.setLabels({QStringLiteral("x")});
     QCOMPARE(spy.count(), 1);
 }
 
@@ -249,45 +210,6 @@ void TestFormatters::ticker_destroyedFormatter_usesDefault()
     QVERIFY(ticker.tickLabelFormatter() != nullptr);
     QVERIFY(ticker.tickLabelFormatter() != formatterAddress);
     QCOMPARE(formatterChangedSpy.count(), 2);
-}
-
-void TestFormatters::numeric_zeroValue_precisionZero()
-{
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    // tickStep=10 → precision = ceil(-log10(10)+0.5) = ceil(-0.5) = 0 → "0"
-    QCOMPARE(fmt.format(0.0, 10.0), QStringLiteral("0"));
-}
-
-void TestFormatters::numeric_verySmallTickStep_highPrecision()
-{
-    auto fmt = QAccelPlot::NumericTickLabelFormatter{};
-    // tickStep=1e-4 → precision = ceil(-log10(1e-4)+0.5) = ceil(4.5) = 5
-    QCOMPARE(fmt.format(0.123456789, 1e-4), QStringLiteral("0.12346"));
-}
-
-void TestFormatters::log_nearPowerBelowThreshold_usesSuperscript()
-{
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    // value = 10^1.005 → logValue≈1.005, |1.005-1|=0.005 < 0.01 → "10¹"
-    const auto value = std::pow(10.0, 1.005);
-    QCOMPARE(fmt.format(value, 1.0), QStringLiteral("10\u00B9"));
-}
-
-void TestFormatters::log_nearPowerAboveThreshold_usesGeneral()
-{
-    auto fmt = QAccelPlot::LogTickLabelFormatter{};
-    // value = 10^1.02 → logValue≈1.02, |1.02-1|=0.02 > 0.01 → general 'g' notation
-    const auto value = std::pow(10.0, 1.02);
-    QCOMPARE(fmt.format(value, 1.0), QString::number(value, 'g', 3));
-}
-
-void TestFormatters::text_fractionalValueRoundsToIndex()
-{
-    auto fmt = QAccelPlot::TextTickLabelFormatter{};
-    fmt.setLabels({QStringLiteral("zero"), QStringLiteral("one"), QStringLiteral("two")});
-    // qRound(1.6)==2 → "two";  qRound(0.4)==0 → "zero"
-    QCOMPARE(fmt.format(1.6, 1.0), QStringLiteral("two"));
-    QCOMPARE(fmt.format(0.4, 1.0), QStringLiteral("zero"));
 }
 
 QTEST_GUILESS_MAIN(TestFormatters)
