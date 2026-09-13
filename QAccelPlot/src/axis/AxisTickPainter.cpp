@@ -196,10 +196,15 @@ void AxisTickPainter::paintLogScaleTicks(const PaintContext& ctx, const Params& 
     ctx.painter->setPen(savedPen);
 
     // Pass 2: major ticks
+    // Log-scale ticks have no single step (each decade is 10x the last), so pass each
+    // tick's own value as its "step" — the label formatter derives precision from it,
+    // and a value's own magnitude is a reasonable proxy for the precision it needs.
     for (auto exponent = logMin; exponent <= logMax; ++exponent) {
         const auto value = std::pow(10.0, exponent);
         if (value >= viewportLow && value <= viewportHigh) {
-            paintTick(ctx, value, params, mapToPosition);
+            auto p = params;
+            p.tickStep = value;
+            paintTick(ctx, value, p, mapToPosition);
         }
     }
 }
