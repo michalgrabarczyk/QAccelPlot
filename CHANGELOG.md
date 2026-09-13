@@ -97,6 +97,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   threaded render loop. A `tickLabel` JavaScript callback is therefore never
   invoked from the render thread, and it now receives `tickStep` as its
   second argument (previously always `undefined`).
+- Preserved double precision in `RectangleList` for modern Unix-epoch
+  timestamps and large coordinates: rectangles are stored and their data
+  range computed in double precision, and rendering uses an origin-relative
+  float buffer instead of storing raw coordinates as float. A new
+  `setRawData(const double*, int)` overload accepts double-precision data
+  directly.
 
 ## [0.1.0] — 2026-09-08
 
