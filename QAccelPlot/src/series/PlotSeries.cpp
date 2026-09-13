@@ -112,16 +112,16 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
 
 void PlotSeries::setDataRanges(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
 {
-    if (!std::isfinite(xMin) || !std::isfinite(xMax) || !std::isfinite(yMin) || !std::isfinite(yMax)) {
-        return;
-    }
-    if (!nearly_equal(xMin, lastXMin_) || !nearly_equal(xMax, lastXMax_)) {
+    const auto xFinite = std::isfinite(xMin) && std::isfinite(xMax);
+    const auto yFinite = std::isfinite(yMin) && std::isfinite(yMax);
+
+    if (xFinite && (!nearly_equal(xMin, lastXMin_) || !nearly_equal(xMax, lastXMax_))) {
         lastXMin_ = xMin;
         lastXMax_ = xMax;
         reportXDataRangeToAxis();
         emit xDataRangeChanged(xMin, xMax);
     }
-    if (!nearly_equal(yMin, lastYMin_) || !nearly_equal(yMax, lastYMax_)) {
+    if (yFinite && (!nearly_equal(yMin, lastYMin_) || !nearly_equal(yMax, lastYMax_))) {
         lastYMin_ = yMin;
         lastYMax_ = yMax;
         reportYDataRangeToAxis();

@@ -64,6 +64,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Enabling `logScale` (via the property, `toggleLogScale()`, or the `L` key)
   while the current viewport is non-positive now clamps it to a valid
   positive range instead of collapsing every curve to a single point.
+- A non-finite X or Y data range on a `PlotSeries` no longer blocks the
+  other axis's range update; each axis's range is now validated and
+  reported independently.
 
 ## [0.1.0] — 2026-09-08
 
