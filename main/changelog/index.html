@@ -1311,6 +1311,9 @@
 <li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.</li>
+<li><code>DataAnchor</code> no longer dereferences a dangling pointer after its <code>xAxis</code> or
+  <code>yAxis</code> is destroyed elsewhere; the axis reference is cleared automatically
+  instead.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

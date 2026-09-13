@@ -18,6 +18,7 @@
 
 
 * `#include "axis/Axis.hpp"`
+* `#include <QPointer>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`
 * `#include <QtQml/qqmlregistration.h>`

@@ -19,6 +19,7 @@
 
 #include "axis/Axis.hpp"
 
+#include <QPointer>
 #include <QQuickItem>
 #include <QRectF>
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
@@ -99,8 +100,8 @@ signals:
 private:
     void updateGeometry();
 
-    Axis* xAxis_{nullptr};
-    Axis* yAxis_{nullptr};
+    QPointer<Axis> xAxis_;
+    QPointer<Axis> yAxis_;
     QRectF plotRect_;
     qreal dataX1_{0.0};
     qreal dataY1_{0.0};
