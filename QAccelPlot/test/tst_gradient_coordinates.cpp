@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "GradientCoordinateUtils.hpp"
+#include "effects/GradientCoordinateUtils.hpp"
 
 #include <QtTest/QtTest>
 

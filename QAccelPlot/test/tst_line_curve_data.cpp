@@ -5,9 +5,9 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "MorphTransition.hpp"
 #include "series/LineCurve.hpp"
 #include "series/LineCurveVertexCache.hpp"
+#include "transitions/MorphTransition.hpp"
 
 #include <QtTest/QtTest>
 
