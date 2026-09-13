@@ -598,10 +598,16 @@ void LineCurve::appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveE
         return;
     }
 
-    effect->setParent(curve);
+    if (!effect->parent()) {
+        effect->setParent(curve);
+    }
     curve->effects_.append(effect);
 
     QObject::connect(effect, &LineCurveEffect::effectChanged, curve, [curve]() { curve->update(); });
+    QObject::connect(effect, &QObject::destroyed, curve, [curve, effect]() {
+        curve->effects_.removeAll(effect);
+        curve->update();
+    });
 
     curve->update();
 }
@@ -630,10 +636,8 @@ void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
         return;
     }
 
-    for (const auto effect : curve->effects_) {
-        if (effect) {
-            effect->deleteLater();
-        }
+    for (const auto effect : std::as_const(curve->effects_)) {
+        QObject::disconnect(effect, nullptr, curve, nullptr);
     }
     curve->effects_.clear();
     curve->update();
