@@ -46,9 +46,8 @@ class TestTransitions : public QObject {
 
 private slots:
     // MorphTransition
-    void morph_progressZero_outputEqualsFrom();
-    void morph_progressOne_outputEqualsTo();
-    void morph_progressHalf_outputIsMidpoint();
+    void morph_equalPointCounts_data();
+    void morph_equalPointCounts();
     void morph_modernEpochData_preservesSubFloatPrecision();
     void morph_expandingPointCount();
     void morph_shrinkingPointCount();
@@ -56,10 +55,8 @@ private slots:
     void morph_emptyTo_outputIsEmpty();
 
     // DrawTransition
-    void draw_progressZero_minimumTwoPoints();
-    void draw_progressOne_allPoints();
-    void draw_progressHalf_halfPointsRevealed();
-    void draw_outputIsPrefix_ofToData();
+    void draw_progress_data();
+    void draw_progress();
     void draw_emptyTo_outputIsEmpty();
     void draw_singlePointTo_outputIsSinglePoint();
 
@@ -78,55 +75,31 @@ private slots:
 // MorphTransition tests
 // ---------------------------------------------------------------------------
 
-void TestTransitions::morph_progressZero_outputEqualsFrom()
+void TestTransitions::morph_equalPointCounts_data()
 {
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f};
-    const auto to = std::vector<double>{9.0f, 8.0f, 7.0f, 6.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    QTest::addColumn<double>("progress");
 
-    t.callInterpolate(0.0f, from, 2, to, 2, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], from[0]);
-    QCOMPARE(out[1], from[1]);
-    QCOMPARE(out[2], from[2]);
-    QCOMPARE(out[3], from[3]);
+    QTest::newRow("start") << 0.0;
+    QTest::newRow("midpoint") << 0.5;
+    QTest::newRow("end") << 1.0;
 }
 
-void TestTransitions::morph_progressOne_outputEqualsTo()
+void TestTransitions::morph_equalPointCounts()
 {
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f};
-    const auto to = std::vector<double>{9.0f, 8.0f, 7.0f, 6.0f};
+    QFETCH(double, progress);
+
+    auto transition = TestMorphTransition{};
+    const auto from = std::vector<double>{1.0, 2.0, 3.0, 4.0};
+    const auto to = std::vector<double>{9.0, 8.0, 7.0, 6.0};
     auto out = std::vector<double>{};
     auto outCount = int{};
 
-    t.callInterpolate(1.0f, from, 2, to, 2, out, outCount);
+    transition.callInterpolate(progress, from, 2, to, 2, out, outCount);
 
     QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[1], to[1]);
-    QCOMPARE(out[2], to[2]);
-    QCOMPARE(out[3], to[3]);
-}
-
-void TestTransitions::morph_progressHalf_outputIsMidpoint()
-{
-    auto t = TestMorphTransition{};
-    const auto from = std::vector<double>{0.0f, 0.0f, 0.0f, 0.0f};
-    const auto to = std::vector<double>{4.0f, 8.0f, 2.0f, 6.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    t.callInterpolate(0.5f, from, 2, to, 2, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], 2.0f);
-    QCOMPARE(out[1], 4.0f);
-    QCOMPARE(out[2], 1.0f);
-    QCOMPARE(out[3], 3.0f);
+    for (auto index = std::size_t{0}; index < out.size(); ++index) {
+        QCOMPARE(out[index], from[index] + progress * (to[index] - from[index]));
+    }
 }
 
 void TestTransitions::morph_modernEpochData_preservesSubFloatPrecision()
@@ -215,62 +188,32 @@ void TestTransitions::morph_emptyTo_outputIsEmpty()
 // DrawTransition tests
 // ---------------------------------------------------------------------------
 
-void TestTransitions::draw_progressZero_minimumTwoPoints()
+void TestTransitions::draw_progress_data()
 {
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
+    QTest::addColumn<double>("progress");
+    QTest::addColumn<int>("expectedPointCount");
 
-    // progress=0 → ceil(4 * 0) = 0 → viewportMax(2, 0) = 2
-    t.callInterpolate(0.0f, {}, 0, to, 4, out, outCount);
-
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[1], to[1]);
+    QTest::newRow("start-keeps-minimum") << 0.0 << 2;
+    QTest::newRow("half") << 0.5 << 2;
+    QTest::newRow("three-quarters") << 0.75 << 3;
+    QTest::newRow("end") << 1.0 << 4;
 }
 
-void TestTransitions::draw_progressOne_allPoints()
+void TestTransitions::draw_progress()
 {
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f};
+    QFETCH(double, progress);
+    QFETCH(int, expectedPointCount);
+
+    auto transition = TestDrawTransition{};
+    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
     auto out = std::vector<double>{};
     auto outCount = int{};
 
-    t.callInterpolate(1.0f, {}, 0, to, 3, out, outCount);
+    transition.callInterpolate(progress, {}, 0, to, 4, out, outCount);
 
-    QCOMPARE(outCount, 3);
-    for (auto i = 0; i < 6; ++i) {
-        QCOMPARE(out[i], to[i]);
-    }
-}
-
-void TestTransitions::draw_progressHalf_halfPointsRevealed()
-{
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    // progress=0.5 → ceil(4 * 0.5) = ceil(2) = 2 → viewportMax(2, 2) = 2
-    t.callInterpolate(0.5f, {}, 0, to, 4, out, outCount);
-
-    QCOMPARE(outCount, 2);
-}
-
-void TestTransitions::draw_outputIsPrefix_ofToData()
-{
-    auto t = TestDrawTransition{};
-    const auto to = std::vector<double>{10.0f, 20.0f, 30.0f, 40.0f, 50.0f, 60.0f};
-    auto out = std::vector<double>{};
-    auto outCount = int{};
-
-    // progress=0.75 → ceil(3 * 0.75) = ceil(2.25) = 3 → all 3 points
-    t.callInterpolate(0.75f, {}, 0, to, 3, out, outCount);
-
-    QCOMPARE(outCount, 3);
-    for (auto i = 0; i < outCount * 2; ++i) {
-        QCOMPARE(out[i], to[i]);
+    QCOMPARE(outCount, expectedPointCount);
+    for (auto index = 0; index < outCount * 2; ++index) {
+        QCOMPARE(out[index], to[index]);
     }
 }
 
