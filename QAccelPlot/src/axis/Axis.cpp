@@ -27,6 +27,13 @@ namespace {
 constexpr auto kMinZoomScaleFactor = 0.0;
 constexpr auto kMaxZoomScaleFactor = 1.0;
 constexpr auto kLogScaleMinPositiveValue = 1e-10;
+// Multiplicative half-range used to synthesize a log-scale viewport around a single value.
+constexpr auto kFlatLogScaleRangeFactor = 10.0;
+// Fraction of the value's own magnitude used as the linear half-range around a single value.
+constexpr auto kFlatLinearRangeFraction = 0.1;
+// Half-range used to synthesize a linear viewport when the value is exactly zero, where a
+// magnitude-relative range would degenerate to zero width.
+constexpr auto kFlatLinearZeroHalfRange = 1.0;
 constexpr auto kHorizontalLabelOverflow = 25.0;
 constexpr auto kVerticalLabelOverflow = 10.0;
 
@@ -353,6 +360,19 @@ void Axis::rescaleToData()
             setViewportMin(dataMin_);
         }
         setViewportMax(dataMax_);
+        return;
+    }
+
+    // Flat data (a constant series or a single point): dataMin_ == dataMax_ would
+    // otherwise make this a no-op. Synthesize a small range around the value instead.
+    if (logScale_) {
+        const auto center = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
+        setViewportMin(center / kFlatLogScaleRangeFactor);
+        setViewportMax(center * kFlatLogScaleRangeFactor);
+    } else {
+        const auto half = dataMin_ != 0.0 ? std::abs(dataMin_) * kFlatLinearRangeFraction : kFlatLinearZeroHalfRange;
+        setViewportMin(dataMin_ - half);
+        setViewportMax(dataMin_ + half);
     }
 }
 
