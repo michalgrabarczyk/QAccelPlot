@@ -99,12 +99,12 @@ class VisualAcceptanceTests(unittest.TestCase):
 
         cmake_source = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
         registered_names = set(
-            re.findall(r"^add_qaccelplot_example_visual_tests\([^\s]+\s+([^\s\)]+)", cmake_source, re.MULTILINE)
+            re.findall(r"^\s*add_qaccelplot_example_visual_tests\([^\s]+\s+([^\s\)]+)", cmake_source, re.MULTILINE)
         )
         self.assertEqual(registered_names, contract_names)
         self.assertRegex(
             cmake_source,
-            r"(?m)^add_qaccelplot_example_visual_tests\(QAccelPlotExamplePulsarShowcase\s+pulsar_showcase NO_AI_INSPECTION\)$",
+            r"(?m)^\s*add_qaccelplot_example_visual_tests\(QAccelPlotExamplePulsarShowcase\s+pulsar_showcase NO_AI_INSPECTION\)$",
         )
 
         for path in contract_paths:
@@ -143,6 +143,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("matrix.qt_version != '6.2.4'", workflow)
         self.assertEqual(workflow.count("-DQACCELPLOT_INSTALL=OFF"), 3)
         self.assertEqual(workflow.count("-DQACCELPLOT_DEPLOY_EXAMPLES=OFF"), 3)
+        self.assertEqual(workflow.count("-DQACCELPLOT_BUILD_VISUAL_TESTS=ON"), 3)
         self.assertIn("libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools", workflow)
         self.assertIn("QT_SCALE_FACTOR: ${{ matrix.platform.os == 'ubuntu-24.04' && '1' || '0.5' }}", workflow)
         self.assertIn("'.github/scripts/aqt_windows_qt611.py',", workflow)

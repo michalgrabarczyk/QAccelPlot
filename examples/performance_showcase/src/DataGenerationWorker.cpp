@@ -112,7 +112,7 @@ void DataGenerationWorker::stop()
         return;
     }
 
-    conditionVariable_.notify_one();
+    conditionVariable_.notify_all();
 
     if (workerThread_.joinable()) {
         workerThread_.join();
@@ -145,6 +145,13 @@ void DataGenerationWorker::setRectangleCount(int rectangleCount)
 void DataGenerationWorker::setRectangleTestMode(bool enabled)
 {
     rectangleTestMode_.store(enabled, std::memory_order_relaxed);
+}
+
+bool DataGenerationWorker::waitForData(const std::chrono::milliseconds timeout)
+{
+    auto lock = std::unique_lock<std::mutex>{mutex_};
+    conditionVariable_.wait_for(lock, timeout, [this]() { return dataReady_ || !running_.load(std::memory_order_relaxed); });
+    return dataReady_;
 }
 
 bool DataGenerationWorker::tryConsume(DataGenerationBatch& batch)
@@ -232,6 +239,7 @@ void DataGenerationWorker::run()
             readyBatch_.rectangleCount = rectangleTestMode ? rectangleCount : 0;
             dataReady_ = true;
         }
+        conditionVariable_.notify_all();
 
         std::unique_lock<std::mutex> lock(mutex_);
         conditionVariable_.wait(lock, [this]() { return !dataReady_ || !running_.load(std::memory_order_relaxed); });

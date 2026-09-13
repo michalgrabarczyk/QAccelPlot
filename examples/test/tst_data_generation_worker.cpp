@@ -10,22 +10,17 @@
 #include <QtTest/QtTest>
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 
 namespace {
 
 bool waitForBatch(DataGenerationWorker& worker, DataGenerationBatch& batch)
 {
-    constexpr auto timeoutMs = 5'000;
-    auto elapsed = QElapsedTimer{};
-    elapsed.start();
-    while (elapsed.elapsed() < timeoutMs) {
-        if (worker.tryConsume(batch)) {
-            return true;
-        }
-        QTest::qWait(1);
+    if (!worker.waitForData(std::chrono::seconds{5})) {
+        return false;
     }
-    return false;
+    return worker.tryConsume(batch);
 }
 
 } // namespace
@@ -107,9 +102,8 @@ void DataGenerationWorkerTest::pendingBatchIsNotOverwritten()
     constexpr auto secondPhase = 1.25;
     worker.setPhase(firstPhase);
     worker.start();
-    QTest::qWait(50);
+    QVERIFY2(worker.waitForData(std::chrono::seconds{5}), "Timed out waiting for the first pending batch");
     worker.setPhase(secondPhase);
-    QTest::qWait(50);
 
     auto firstBatch = DataGenerationBatch{};
     QVERIFY2(worker.tryConsume(firstBatch), "Expected the worker's first pending batch");
@@ -121,5 +115,5 @@ void DataGenerationWorkerTest::pendingBatchIsNotOverwritten()
     QVERIFY(std::abs(secondBatch.curve1[1] - config.curve1Amplitude * std::sin(secondPhase)) < 0.003f);
 }
 
-QTEST_MAIN(DataGenerationWorkerTest)
+QTEST_GUILESS_MAIN(DataGenerationWorkerTest)
 #include "tst_data_generation_worker.moc"

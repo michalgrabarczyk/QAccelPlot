@@ -8,6 +8,7 @@
 #pragma once
 
 #include <atomic>
+#include <chrono>
 #include <condition_variable>
 #include <mutex>
 #include <thread>
@@ -51,6 +52,8 @@ public:
     void setRectangleCount(int rectangleCount);
     void setRectangleTestMode(bool enabled);
 
+    /// \brief Waits until a completed batch is pending or \a timeout elapses.
+    bool waitForData(std::chrono::milliseconds timeout);
     bool tryConsume(DataGenerationBatch& batch);
 
 private:

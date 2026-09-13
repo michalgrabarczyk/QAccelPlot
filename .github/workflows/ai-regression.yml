@@ -200,6 +200,7 @@ jobs:
           cmake -S . -B build -G Ninja
           -DCMAKE_BUILD_TYPE=Release
           -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
@@ -209,6 +210,7 @@ jobs:
         run: >-
           cmake -S . -B build -G "Visual Studio 18 2026" -A x64 -T v142
           -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
@@ -218,6 +220,7 @@ jobs:
         run: >-
           cmake -S . -B build -G "Visual Studio 18 2026" -A x64
           -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF

@@ -56,21 +56,10 @@ jobs:
       - name: Build library, examples, and unit tests
         run: >-
           cmake --build build --config Release --parallel 2 --target
-          QAccelPlot
           QAccelPlotExamples
-          tst_axis_tick_painter
-          tst_spatial_grid
-          tst_formatters
-          tst_transitions
-          tst_axis_mapping
-          tst_plot_appearance
-          tst_math_utils
-          tst_gradient_coordinates
-          tst_line_curve_data
-          tst_material_comparison
-          tst_rectangle_list_data
+          QAccelPlotTests
 
       - name: Run unit tests
         run: >-
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
-          -R '^tst_(axis_tick_painter|spatial_grid|formatters|transitions|axis_mapping|plot_appearance|math_utils|gradient_coordinates|line_curve_data|material_comparison|rectangle_list_data)$'
+          -L '^unit-test$'

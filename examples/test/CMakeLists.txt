@@ -11,6 +11,7 @@ include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
 # ── Component unit tests ──────────────────────────────────────────────────────
 add_qaccelplot_test(tst_data_generation_worker
+    examples
     tst_data_generation_worker.cpp
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataGenerationWorker.cpp"
 )
@@ -18,7 +19,8 @@ target_include_directories(tst_data_generation_worker PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
 )
 
-add_qaccelplot_test(tst_data_delivery_metrics
+add_qaccelplot_standalone_test(tst_data_delivery_metrics
+    examples
     tst_data_delivery_metrics.cpp
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataDeliveryMetrics.cpp"
 )
@@ -26,7 +28,8 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
 )
 
-add_qaccelplot_test(tst_sample_data_generators
+add_qaccelplot_standalone_test(tst_sample_data_generators
+    examples
     tst_sample_data_generators.cpp
     "${CMAKE_SOURCE_DIR}/examples/common/src/SampleDataGenerators.cpp"
 )
@@ -34,29 +37,39 @@ target_include_directories(tst_sample_data_generators PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/common/include"
 )
 
-# ── Visual acceptance (smoke + AI inspection) ─────────────────────────────────
-add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisFormats            axis_formats)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleCustomAxis             custom_axis)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleInteractiveTools       interactive_tools)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
-add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformanceShowcase    performance_showcase)
-add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsarShowcase         pulsar_showcase NO_AI_INSPECTION)
-add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions)
+# ── Visual acceptance (smoke + optional AI inspection) ────────────────────────
+if(QACCELPLOT_BUILD_VISUAL_TESTS)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisFormats            axis_formats)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleCustomAxis             custom_axis)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleInteractiveTools       interactive_tools)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformanceShowcase    performance_showcase)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsarShowcase         pulsar_showcase NO_AI_INSPECTION)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions)
 
-if(TARGET QAccelPlotExampleStylingAndTransitions)
-    set(_light_theme_screenshot "${CMAKE_CURRENT_BINARY_DIR}/screenshots/QAccelPlotExampleStylingAndTransitionsLight.png")
-    add_test(
-        NAME smoke_QAccelPlotExampleStylingAndTransitionsLight
-        COMMAND $<TARGET_FILE:QAccelPlotExampleStylingAndTransitions>
-            --light-theme
-            --screenshot "${_light_theme_screenshot}"
-    )
-    set_tests_properties(smoke_QAccelPlotExampleStylingAndTransitionsLight PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
-        TIMEOUT 15
-    )
+    if(TARGET QAccelPlotExampleStylingAndTransitions)
+        set(_light_theme_screenshot "${CMAKE_CURRENT_BINARY_DIR}/screenshots/QAccelPlotExampleStylingAndTransitionsLight.png")
+        add_test(
+            NAME smoke_QAccelPlotExampleStylingAndTransitionsLight
+            COMMAND $<TARGET_FILE:QAccelPlotExampleStylingAndTransitions>
+                --light-theme
+                --screenshot "${_light_theme_screenshot}"
+        )
+        set(_light_theme_test_environment
+            "QT_FORCE_STDERR_LOGGING=1"
+            "QACCELPLOT_HOVER_ENABLED=0"
+        )
+        if(WIN32)
+            list(PREPEND _light_theme_test_environment "${_qaccelplot_windows_path_environment}")
+        endif()
+        set_tests_properties(smoke_QAccelPlotExampleStylingAndTransitionsLight PROPERTIES
+            ENVIRONMENT "${_light_theme_test_environment}"
+            LABELS "visual-smoke"
+            TIMEOUT 15
+        )
+    endif()
 endif()
 
 find_package(Python3 COMPONENTS Interpreter QUIET)

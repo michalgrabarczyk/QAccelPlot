@@ -5,9 +5,9 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "DataTextureMaterial.hpp"
-#include "LineMaterial.hpp"
-#include "PointMaterial.hpp"
+#include "materials/DataTextureMaterial.hpp"
+#include "materials/LineMaterial.hpp"
+#include "materials/PointMaterial.hpp"
 
 #include <QSGTexture>
 #include <QtTest/QtTest>
