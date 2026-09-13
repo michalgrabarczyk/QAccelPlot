@@ -22,5 +22,6 @@ target_include_directories(tst_math_utils PRIVATE "${CMAKE_SOURCE_DIR}/QAccelPlo
 add_qaccelplot_test(tst_gradient_coordinates core tst_gradient_coordinates.cpp)
 add_qaccelplot_test(tst_line_curve_data      core tst_line_curve_data.cpp)
 add_qaccelplot_test(tst_material_comparison  core tst_material_comparison.cpp)
+add_qaccelplot_test(tst_line_curve_point_renderer core tst_line_curve_point_renderer.cpp)
 add_qaccelplot_test(tst_rectangle_list_data  core tst_rectangle_list_data.cpp)
 add_qaccelplot_test(tst_data_anchor          core tst_data_anchor.cpp)
