@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "AxisTickPainter.hpp"
-#include "TickLabelFormatter.hpp"
+#include "axis/AxisTickPainter.hpp"
+#include "formatters/TickLabelFormatter.hpp"
 
 #include <QImage>
 #include <QPainter>
@@ -229,8 +229,7 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
         params.orientation = QAccelPlot::Axis::Vertical;
         params.side = QAccelPlot::Axis::Left;
         params.ticker = &ticker;
-        QAccelPlot::AxisTickPainter::paintTicks(&painter, actual.rect(), kAxisX, 0.0, params,
-            [](qreal, qreal) { return qreal{40.0}; });
+        QAccelPlot::AxisTickPainter::paintTicks(&painter, actual.rect(), kAxisX, 0.0, params, [](qreal, qreal) { return qreal{40.0}; });
     }
 
     auto foundPixelOutsideOldLabelRect = false;

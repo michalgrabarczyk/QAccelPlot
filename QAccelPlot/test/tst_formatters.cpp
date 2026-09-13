@@ -5,18 +5,18 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "AxisTicker.hpp"
-#include "DateTimeTickLabelFormatter.hpp"
-#include "LogTickLabelFormatter.hpp"
-#include "NumericTickLabelFormatter.hpp"
-#include "TextTickLabelFormatter.hpp"
-
-#include <cmath>
-#include <memory>
+#include "axis/AxisTicker.hpp"
+#include "formatters/DateTimeTickLabelFormatter.hpp"
+#include "formatters/LogTickLabelFormatter.hpp"
+#include "formatters/NumericTickLabelFormatter.hpp"
+#include "formatters/TextTickLabelFormatter.hpp"
 
 #include <QDateTime>
 #include <QSignalSpy>
 #include <QtTest/QtTest>
+
+#include <cmath>
+#include <memory>
 
 class TestFormatters : public QObject {
     Q_OBJECT

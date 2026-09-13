@@ -7,40 +7,43 @@
 #
 # Shared test-creation helpers used by QAccelPlot/, examples/, and benchmarks/.
 #
-find_package(Qt6 REQUIRED COMPONENTS Test Quick)
+find_package(Qt6 REQUIRED COMPONENTS Test)
 
 # Qt path for setting the test environment on Windows so executables find Qt DLLs.
 get_target_property(_qt_core_location Qt6::Core LOCATION)
 get_filename_component(_qt_bin_dir "${_qt_core_location}" DIRECTORY)
+if(WIN32)
+    set(_qaccelplot_windows_path_environment "PATH=${_qt_bin_dir};$ENV{PATH}")
+    string(REPLACE ";" "\\;" _qaccelplot_windows_path_environment "${_qaccelplot_windows_path_environment}")
+endif()
 
-function(add_qaccelplot_test name scope)
-    qt_add_executable(${name} ${ARGN})
-    target_link_libraries(${name} PRIVATE QAccelPlot Qt6::Test Qt6::Quick)
-    # Expose QAccelPlot's private subdirectory headers to in-tree tests.
-    set(_qaccelplot_src "${CMAKE_SOURCE_DIR}/QAccelPlot/src")
-    target_include_directories(${name} PRIVATE
-        "${_qaccelplot_src}/annotations"
-        "${_qaccelplot_src}/axis"
-        "${_qaccelplot_src}/curves"
-        "${_qaccelplot_src}/effects"
-        "${_qaccelplot_src}/formatters"
-        "${_qaccelplot_src}/grid"
-        "${_qaccelplot_src}/linestyles"
-        "${_qaccelplot_src}/materials"
-        "${_qaccelplot_src}/renderers"
-        "${_qaccelplot_src}/series"
-        "${_qaccelplot_src}/shapes"
-        "${_qaccelplot_src}/transitions"
-    )
+function(_qaccelplot_register_test name scope)
     add_test(NAME ${name} COMMAND ${name})
     set_tests_properties(${name} PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH}"
         LABELS "unit-test;unit-test-${scope}"
     )
+    if(WIN32)
+        set_tests_properties(${name} PROPERTIES
+            ENVIRONMENT "${_qaccelplot_windows_path_environment}"
+        )
+    endif()
 
     if(TARGET QAccelPlotTests)
         add_dependencies(QAccelPlotTests ${name})
     endif()
+endfunction()
+
+function(add_qaccelplot_test name scope)
+    qt_add_executable(${name} ${ARGN})
+    target_link_libraries(${name} PRIVATE QAccelPlot Qt6::Test)
+    _qaccelplot_register_test(${name} ${scope})
+endfunction()
+
+# Use for tests whose sources do not depend directly on the plotting library.
+function(add_qaccelplot_standalone_test name scope)
+    qt_add_executable(${name} ${ARGN})
+    target_link_libraries(${name} PRIVATE Qt6::Test)
+    _qaccelplot_register_test(${name} ${scope})
 endfunction()
 
 function(add_qaccelplot_example_visual_tests target contract_name)
@@ -57,8 +60,15 @@ function(add_qaccelplot_example_visual_tests target contract_name)
         NAME smoke_${target}
         COMMAND $<TARGET_FILE:${target}> --screenshot "${_screenshot}"
     )
+    set(_visual_test_environment
+        "QT_FORCE_STDERR_LOGGING=1"
+        "QACCELPLOT_HOVER_ENABLED=0"
+    )
+    if(WIN32)
+        list(PREPEND _visual_test_environment "${_qaccelplot_windows_path_environment}")
+    endif()
     set_tests_properties(smoke_${target} PROPERTIES
-        ENVIRONMENT "PATH=${_qt_bin_dir};$ENV{PATH};QT_FORCE_STDERR_LOGGING=1;QACCELPLOT_HOVER_ENABLED=0"
+        ENVIRONMENT "${_visual_test_environment}"
         LABELS "visual-smoke"
         TIMEOUT 15
     )
