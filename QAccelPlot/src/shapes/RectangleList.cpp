@@ -146,6 +146,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;
     const auto vertexCount = rectCount_ * 6;
+    const auto nodeRecreated = !node;
 
     if (!node) {
         if (!vertexCacheValid_) {
@@ -177,7 +178,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     }
 
     // Upload data texture
-    if (dataChanged_) {
+    if (dataChanged_ || nodeRecreated) {
         const auto numFloats = rectCount_ * 4;
         material->uploadTexture(material->dataTexture, window, data_.data(), numFloats);
         dataChanged_ = false;
