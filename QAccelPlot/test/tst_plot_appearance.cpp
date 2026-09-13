@@ -34,6 +34,8 @@ private slots:
     void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
+    void tickOverlapChangeTriggersRelayout();
+    void labelOverflowChangeTriggersRelayout();
     void hiddenAxesDoNotReserveLayoutSpace();
     void hiddenAxisRetainsCoordinateMapping();
     void hiddenExtraAxisDoesNotReserveLayoutSpace();
@@ -247,6 +249,36 @@ void TestPlotAppearance::horizontalOnlyWheelScrollDoesNotZoom()
 
     QCOMPARE(axis->viewportMin(), minBefore);
     QCOMPARE(axis->viewportMax(), maxBefore);
+}
+
+void TestPlotAppearance::tickOverlapChangeTriggersRelayout()
+{
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({300.0, 200.0});
+    plot.setPadding(10.0);
+
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    const auto heightBefore = xAxis->height();
+
+    xAxis->ticker()->setTickLengthIn(50.0);
+
+    QCOMPARE(xAxis->height(), heightBefore + 42.0);
+}
+
+void TestPlotAppearance::labelOverflowChangeTriggersRelayout()
+{
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({300.0, 200.0});
+    plot.setPadding(10.0);
+
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    const auto widthBefore = xAxis->width();
+
+    xAxis->setOrientation(QAccelPlot::Axis::Vertical);
+
+    QCOMPARE(xAxis->width(), widthBefore - 30.0);
 }
 
 void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
