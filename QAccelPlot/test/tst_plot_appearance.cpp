@@ -9,6 +9,7 @@
 #include "axis/Axis.hpp"
 
 #include <QMouseEvent>
+#include <QWheelEvent>
 #include <QtTest/QtTest>
 
 class TestablePlot final : public QAccelPlot::QAccelPlot {
@@ -16,6 +17,7 @@ public:
     using QAccelPlot::QAccelPlot::mouseMoveEvent;
     using QAccelPlot::QAccelPlot::mousePressEvent;
     using QAccelPlot::QAccelPlot::mouseReleaseEvent;
+    using QAccelPlot::QAccelPlot::wheelEvent;
 };
 
 class TestPlotAppearance : public QObject {
@@ -31,6 +33,7 @@ private slots:
     void extraAxesUseIndividualLayoutSizes();
     void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
+    void horizontalOnlyWheelScrollDoesNotZoom();
     void hiddenAxesDoNotReserveLayoutSpace();
     void hiddenAxisRetainsCoordinateMapping();
     void hiddenExtraAxisDoesNotReserveLayoutSpace();
@@ -224,6 +227,26 @@ void TestPlotAppearance::acceptedReleaseEndsDrag()
 
     QCOMPARE(axis->viewportMin(), minAfterRelease);
     QCOMPARE(axis->viewportMax(), maxAfterRelease);
+}
+
+void TestPlotAppearance::horizontalOnlyWheelScrollDoesNotZoom()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({200.0, 100.0});
+    auto* axis = new QAccelPlot::Axis{&plot};
+    axis->setViewportMin(0.0);
+    axis->setViewportMax(100.0);
+    plot.setXAxis(axis);
+
+    const auto minBefore = axis->viewportMin();
+    const auto maxBefore = axis->viewportMax();
+
+    const auto pos = QPointF{100.0, 50.0};
+    auto horizontalScroll = QWheelEvent{pos, pos, QPoint(0, 0), QPoint(120, 0), Qt::NoButton, Qt::NoModifier, Qt::NoScrollPhase, false};
+    plot.wheelEvent(&horizontalScroll);
+
+    QCOMPARE(axis->viewportMin(), minBefore);
+    QCOMPARE(axis->viewportMax(), maxBefore);
 }
 
 void TestPlotAppearance::hiddenAxesDoNotReserveLayoutSpace()
