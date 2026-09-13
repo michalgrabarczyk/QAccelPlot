@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "materials/DataTextureMaterial.hpp"
+#include "QAccelPlotLogging.hpp"
 #include "materials/internal/DataTextureUpload.hpp"
 
 #include <QColorSpace>
@@ -19,6 +20,11 @@ namespace QAccelPlot {
 
 constexpr int kTextureWidth{2048};
 constexpr int kCommonUniformSize{116};
+// Conservative texture height bound below which virtually every RHI backend Qt Quick
+// supports (Direct3D 11/12, Metal, Vulkan, OpenGL 3.3+) is guaranteed to allow texture
+// creation. Actual hardware limits are commonly higher (e.g. 16384), but querying the live
+// RHI limit needs QRhi, which isn't available as public API in every supported Qt version.
+constexpr int kMaxSafeTextureHeight{8192};
 
 struct CommonUbo {
     float matrix[16];      // 0–63
@@ -103,6 +109,13 @@ void DataTextureMaterial::uploadTexture(std::unique_ptr<QSGTexture>& texture, QQ
     }
 
     const auto texHeight = (floatCount + kTextureWidth - 1) / kTextureWidth;
+    if (texHeight > kMaxSafeTextureHeight && !warnedAboutTextureSize_) {
+        warnedAboutTextureSize_ = true;
+        qCWarning(lcQAccelPlot) << "DataTextureMaterial: data texture height" << texHeight << "(for" << floatCount << "floats) exceeds the safe limit of"
+                                << kMaxSafeTextureHeight
+                                << "; texture creation may fail on some GPUs and the series may render nothing. Reduce the "
+                                   "number of points or rectangles.";
+    }
 
     // Reuse QImage storage across frames. The upload helper either updates the
     // scene-graph texture in place or recreates it through public Qt API,
