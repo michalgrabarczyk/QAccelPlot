@@ -35,6 +35,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   instead.
 - A horizontal-only wheel or touchpad scroll no longer zooms the plot out;
   it is now ignored by the zoom handler and passed through instead.
+- Tick labels near zero no longer render as a misleading `"-0.00"` when a
+  tiny negative value from accumulated tick-position arithmetic rounds to
+  zero at the display precision.
 
 ## [0.1.0] — 2026-09-08
 
