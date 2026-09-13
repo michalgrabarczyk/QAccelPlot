@@ -33,6 +33,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `DataAnchor` no longer dereferences a dangling pointer after its `xAxis` or
   `yAxis` is destroyed elsewhere; the axis reference is cleared automatically
   instead.
+- A horizontal-only wheel or touchpad scroll no longer zooms the plot out;
+  it is now ignored by the zoom handler and passed through instead.
 
 ## [0.1.0] — 2026-09-08
 
