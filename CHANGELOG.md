@@ -27,6 +27,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `appendData()` or through a data-setting API called after disabling the
   transition mid-animation: any in-flight transition is now cancelled before
   the new data is applied directly.
+- Major tick marks now honor fractional `tickWidth` values (e.g. `1.5`)
+  instead of truncating to an integer pixel width.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
