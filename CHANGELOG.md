@@ -40,6 +40,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   zero at the display precision.
 - Vertical gradients on markers now match the orientation of line strokes and
   fills instead of rendering upside down.
+- Changing an axis ticker's `tickCount` or `subtickCount` now refreshes the
+  plot grid immediately instead of leaving it stale until the next pan or
+  zoom.
 
 ## [0.1.0] — 2026-09-08
 
