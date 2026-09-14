@@ -1335,6 +1335,13 @@
 <li>Log-scale axis labels no longer collapse to <code>"0.0"</code> or <code>"100.0"</code> for
   small or large tick values; each major tick's own magnitude is now used
   to derive its label precision.</li>
+<li><code>Axis::rescaleToData()</code> (double-click rescale) no longer does nothing for
+  flat data — a constant series or a single point — and synthesizes a small
+  viewport around the value instead, proportional to the value's own
+  magnitude so a very small nonzero value isn't rendered indistinguishable
+  from zero. A log-scale axis with only non-positive data now gets a valid,
+  all-positive synthesized viewport instead of a mismatched
+  positive-min/non-positive-max range.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
