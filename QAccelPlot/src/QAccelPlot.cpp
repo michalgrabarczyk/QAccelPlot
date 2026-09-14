@@ -8,6 +8,7 @@
 #include "QAccelPlot.hpp"
 #include "MathUtils.hpp"
 #include "PlotMouseEvent.hpp"
+#include "QAccelPlotLogging.hpp"
 #include "axis/Axis.hpp"
 #include "grid/Grid.hpp"
 #include "grid/GridNode.hpp"
@@ -530,28 +531,46 @@ void QAccelPlot::rescaleAllAxes()
 
 void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
 {
-    QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
-    if (axis) {
-        axis->setParentItem(plot);
-        plot->connectAxisSignals(axis);
-        plot->extraAxes_.append(axis);
-        plot->layoutAxes();
+    auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    if (!plot || !axis) {
+        return;
     }
+    // An axis listed twice would otherwise be laid out twice, reserving its space twice.
+    if (plot->extraAxes_.contains(axis)) {
+        qCDebug(lcQAccelPlot) << "extra axis already registered, ignoring duplicate append";
+        return;
+    }
+
+    axis->setParentItem(plot);
+    plot->connectAxisSignals(axis);
+    plot->extraAxes_.append(axis);
+    plot->layoutAxes();
 }
 
 qsizetype QAccelPlot::extraAxisCount(QQmlListProperty<Axis>* list)
 {
-    return qobject_cast<QAccelPlot*>(list->object)->extraAxes_.size();
+    const auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    return plot ? plot->extraAxes_.size() : 0;
 }
 
 Axis* QAccelPlot::extraAxis(QQmlListProperty<Axis>* list, qsizetype index)
 {
-    return qobject_cast<QAccelPlot*>(list->object)->extraAxes_.at(index);
+    const auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    if (!plot || index < 0 || index >= plot->extraAxes_.size()) {
+        qCDebug(lcQAccelPlot) << "invalid list or out-of-bounds extra axis index" << index << ", returning nullptr";
+        return nullptr;
+    }
+
+    return plot->extraAxes_.at(index);
 }
 
 void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
 {
-    QAccelPlot* plot = qobject_cast<QAccelPlot*>(list->object);
+    auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
+    if (!plot) {
+        return;
+    }
+
     for (const auto axis : plot->extraAxes_) {
         plot->disconnectAxisSignals(axis);
         axis->setParentItem(nullptr);

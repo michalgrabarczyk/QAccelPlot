@@ -34,6 +34,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   is destroyed. Styles assigned from QML are still left untouched, and the
   curve no longer keeps a dangling reference when an assigned style is
   destroyed before it; it emits `lineStyleChanged` and repaints instead.
+- Appending the same axis to `extraAxes` twice no longer registers it twice
+  and reserves its layout space twice, and reading an out-of-range
+  `extraAxes` index returns `null` instead of tripping an assert.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
