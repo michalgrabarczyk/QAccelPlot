@@ -33,6 +33,8 @@ private slots:
     void extraAxesUseIndividualLayoutSizes();
     void topSideExtraAxisStacksAboveThePlot();
     void rightSideExtraAxisStacksRightOfThePlot();
+    void duplicateExtraAxisIsIgnored();
+    void outOfBoundsExtraAxisIndexReturnsNull();
     void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
@@ -219,6 +221,38 @@ void TestPlotAppearance::rightSideExtraAxisStacksRightOfThePlot()
 
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 222.0, 230.0));
     QCOMPARE(rightExtra->width(), 58.0);
+}
+
+void TestPlotAppearance::duplicateExtraAxisIsIgnored()
+{
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({300.0, 250.0});
+    plot.setPadding(10.0);
+
+    auto* extraAxis = new QAccelPlot::Axis{&plot};
+    extraAxis->setSide(QAccelPlot::Axis::Right);
+    extraAxis->setLayoutSize(50.0);
+
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+    const auto plotRectAfterFirstAppend = plot.plotRect();
+
+    extraAxes.append(&extraAxes, extraAxis);
+
+    QCOMPARE(extraAxes.count(&extraAxes), 1);
+    QCOMPARE(plot.plotRect(), plotRectAfterFirstAppend);
+}
+
+void TestPlotAppearance::outOfBoundsExtraAxisIndexReturnsNull()
+{
+    QAccelPlot::QAccelPlot plot;
+    auto* extraAxis = new QAccelPlot::Axis{&plot};
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+
+    QCOMPARE(extraAxes.at(&extraAxes, 0), extraAxis);
+    QCOMPARE(extraAxes.at(&extraAxes, 1), nullptr);
+    QCOMPARE(extraAxes.at(&extraAxes, -1), nullptr);
 }
 
 void TestPlotAppearance::axisHoverEnvironmentControlsAcceptance()
