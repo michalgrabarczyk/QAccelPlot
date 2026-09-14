@@ -43,6 +43,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Changing an axis ticker's `tickCount` or `subtickCount` now refreshes the
   plot grid immediately instead of leaving it stale until the next pan or
   zoom.
+- The plot area is now relaid out when an axis's `axisLinePadding`,
+  `orientation`, or ticker `tickLengthIn`/`subtickLengthIn` changes at
+  runtime, instead of only on `visible` or `layoutSize` changes.
 
 ## [0.1.0] — 2026-09-08
 
