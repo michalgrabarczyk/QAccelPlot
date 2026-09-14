@@ -7,6 +7,7 @@
 //
 #include "renderers/LineCurvePointRenderer.hpp"
 
+#include "effects/GradientCoordinateUtils.hpp"
 #include "materials/PointMaterial.hpp"
 #include "renderers/CurveRendererParams.hpp"
 
@@ -59,9 +60,8 @@ float normalizedGradientValue(const GradientColorPayload& gradientPayload, const
 {
     const auto valueMin = *gradientPayload.gradientValueMin;
     const auto valueMax = *gradientPayload.gradientValueMax;
-    const auto axisRange = std::max(valueMax - valueMin, static_cast<qreal>(kMinGradientRangeEpsilon));
     const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
-    return static_cast<float>(std::clamp((value - valueMin) / axisRange, 0.0, 1.0));
+    return std::clamp(unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax), 0.0f, 1.0f);
 }
 
 QSGGeometryNode* createPointNode(const int vertexCount)

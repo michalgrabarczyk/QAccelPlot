@@ -38,6 +38,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Tick labels near zero no longer render as a misleading `"-0.00"` when a
   tiny negative value from accumulated tick-position arithmetic rounds to
   zero at the display precision.
+- Vertical gradients on markers now match the orientation of line strokes and
+  fills instead of rendering upside down.
 
 ## [0.1.0] — 2026-09-08
 
