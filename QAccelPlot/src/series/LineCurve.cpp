@@ -125,10 +125,12 @@ void LineCurve::setLineStyle(LineStyle* style)
     }
     if (lineStyle_) {
         disconnect(lineStyle_, &LineStyle::styleChanged, this, &LineCurve::onLineStyleChanged);
+        disconnect(lineStyle_, &QObject::destroyed, this, &LineCurve::onLineStyleDestroyed);
     }
     lineStyle_ = style;
     if (lineStyle_) {
         connect(lineStyle_, &LineStyle::styleChanged, this, &LineCurve::onLineStyleChanged);
+        connect(lineStyle_, &QObject::destroyed, this, &LineCurve::onLineStyleDestroyed);
     }
     styleChanged_ = true;
     emit lineStyleChanged();
@@ -589,6 +591,13 @@ void LineCurve::onLineStyleChanged()
     styleChanged_ = true;
     invalidateVertices();
     update();
+}
+
+void LineCurve::onLineStyleDestroyed()
+{
+    // lineStyle_ is a QPointer and has already been cleared; repaint without the style.
+    emit lineStyleChanged();
+    onLineStyleChanged();
 }
 
 void LineCurve::appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect)
