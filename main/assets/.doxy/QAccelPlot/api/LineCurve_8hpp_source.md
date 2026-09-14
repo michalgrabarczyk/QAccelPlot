@@ -27,6 +27,7 @@
 #include "transitions/DataTransition.hpp"
 
 #include <QPointF>
+#include <QPointer>
 #include <QQmlListProperty>
 #include <QQuickItem>
 
@@ -116,6 +117,7 @@ signals:
 
 private:
     void onLineStyleChanged();
+    void onLineStyleDestroyed();
 
     static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
     static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
@@ -162,7 +164,7 @@ private:
     bool renderLogScaleY_{false};
     int pointCount_{0};
     DataTransition* transition_{nullptr};
-    LineStyle* lineStyle_{new SolidLine{}};
+    QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     PointShape markerShape_{PointShape::None};
     qreal markerSize_{4.0};
     bool antialiasingEnabled_{true};

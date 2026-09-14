@@ -26,6 +26,7 @@
 * `#include "series/PlotSeries.hpp"`
 * `#include "transitions/DataTransition.hpp"`
 * `#include <QPointF>`
+* `#include <QPointer>`
 * `#include <QQmlListProperty>`
 * `#include <QQuickItem>`
 * `#include <vector>`

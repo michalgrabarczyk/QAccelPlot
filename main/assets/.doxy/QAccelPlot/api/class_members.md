@@ -361,6 +361,7 @@
 * **opacity\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md))
 * **operator=** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
 * **onLineStyleChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **onLineStyleDestroyed** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onAxisRangeChanged** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 
 
