@@ -69,6 +69,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A non-finite X or Y data range on a `PlotSeries` no longer blocks the
   other axis's range update; each axis's range is now validated and
   reported independently.
+- Tick labels are now formatted on the GUI thread before rendering, rather
+  than inside `Axis::paint()`, which runs on the render thread with the
+  threaded render loop. A `tickLabel` JavaScript callback is therefore never
+  invoked from the render thread, and it now receives `tickStep` as its
+  second argument (previously always `undefined`).
 
 ## [0.1.0] — 2026-09-08
 

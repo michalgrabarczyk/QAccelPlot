@@ -12,6 +12,7 @@
 #include "formatters/TextTickLabelFormatter.hpp"
 
 #include <QDateTime>
+#include <QJSEngine>
 #include <QSignalSpy>
 #include <QtTest/QtTest>
 
@@ -40,6 +41,8 @@ private slots:
     void ticker_formatterReplacement_emitsSignal();
     void ticker_nullFormatter_usesDefault();
     void ticker_destroyedFormatter_usesDefault();
+
+    void tickLabelCallback_receivesValueAndTickStep();
 };
 
 void TestFormatters::numericFormat_data()
@@ -211,6 +214,15 @@ void TestFormatters::ticker_destroyedFormatter_usesDefault()
     QVERIFY(ticker.tickLabelFormatter() != nullptr);
     QVERIFY(ticker.tickLabelFormatter() != formatterAddress);
     QCOMPARE(formatterChangedSpy.count(), 2);
+}
+
+void TestFormatters::tickLabelCallback_receivesValueAndTickStep()
+{
+    auto engine = QJSEngine{};
+    auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '|' + tickStep; })")));
+
+    QCOMPARE(formatter.format(1.5, 0.1), QStringLiteral("1.5|0.1"));
 }
 
 QTEST_GUILESS_MAIN(TestFormatters)
