@@ -12,16 +12,19 @@
 
 namespace QAccelPlot {
 
+/// \brief Largest dash pattern the renderer can carry to the shader.
+inline constexpr int kMaxDashPatternSize = 8;
+
 /// \brief Plain-data snapshot of dash rendering parameters.
 ///
 /// Extracted from a \c DashLine on the main thread so the line renderer never
 /// needs to touch the QObject hierarchy directly.
 struct DashParameters {
-    bool enabled{false}; ///< \brief \c true when dashed rendering is active.
-    float period{0.0f};  ///< \brief Total dash+gap cycle length in pixels.
-    float offset{0.0f};  ///< \brief Phase offset into the dash pattern in pixels.
-    int patternSize{0};  ///< \brief Number of valid entries in \c pattern.
-    float pattern[8]{};  ///< \brief Alternating dash/gap lengths (up to 8 entries).
+    bool enabled{false};                  ///< \brief \c true when dashed rendering is active.
+    float period{0.0f};                   ///< \brief Total dash+gap cycle length in pixels.
+    float offset{0.0f};                   ///< \brief Phase offset into the dash pattern in pixels.
+    int patternSize{0};                   ///< \brief Number of valid entries in \c pattern.
+    float pattern[kMaxDashPatternSize]{}; ///< \brief Alternating dash/gap lengths.
 };
 
 /// \brief Abstract base class for all line styles.
