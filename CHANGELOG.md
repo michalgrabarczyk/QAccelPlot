@@ -40,6 +40,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A very large series or rectangle count that would produce a data texture
   taller than a safe cross-GPU limit now logs a clear warning explaining why
   it may render nothing, instead of failing silently.
+- `DashLine` now rejects a pattern containing a negative segment, and warns
+  when a pattern is longer than the eight segments the renderer supports
+  instead of silently dropping the rest.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
