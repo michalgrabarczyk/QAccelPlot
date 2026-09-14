@@ -723,17 +723,36 @@ void QAccelPlot::layoutAxes()
 {
     const auto w = width();
     const auto h = height();
+
+    // Extra axes reserve layout space on their own declared side, stacked outward
+    // (away from the plot) beyond the primary axis on that side.
+    auto extraTopHeight = qreal{0};
     auto extraBottomHeight = qreal{0};
+    auto extraLeftWidth = qreal{0};
+    auto extraRightWidth = qreal{0};
     for (const auto* axis : extraAxes_) {
-        if (axis->isVisible() && axis->orientation() == Axis::Horizontal) {
-            extraBottomHeight += axis->layoutSize() + axis->inwardTickOverlap();
+        if (!axis->isVisible()) {
+            continue;
+        }
+        if (axis->orientation() == Axis::Horizontal) {
+            if (axis->side() == Axis::Top) {
+                extraTopHeight += axis->layoutSize() + axis->inwardTickOverlap();
+            } else {
+                extraBottomHeight += axis->layoutSize() + axis->inwardTickOverlap();
+            }
+        } else {
+            if (axis->side() == Axis::Left) {
+                extraLeftWidth += axis->layoutSize() + axis->inwardTickOverlap();
+            } else {
+                extraRightWidth += axis->layoutSize() + axis->inwardTickOverlap();
+            }
         }
     }
 
     const auto visibleAxisSize = [](const Axis* axis) { return axis && axis->isVisible() ? axis->layoutSize() : qreal{0}; };
-    const auto leftW = visibleAxisSize(yAxis_);
-    const auto rightW = visibleAxisSize(y2Axis_);
-    const auto topH = visibleAxisSize(x2Axis_);
+    const auto leftW = visibleAxisSize(yAxis_) + extraLeftWidth;
+    const auto rightW = visibleAxisSize(y2Axis_) + extraRightWidth;
+    const auto topH = visibleAxisSize(x2Axis_) + extraTopHeight;
     const auto botH = visibleAxisSize(xAxis_) + extraBottomHeight;
 
     const auto plotX = padding_ + leftW;
@@ -753,7 +772,7 @@ void QAccelPlot::layoutAxes()
     if (yAxis_ && yAxis_->isVisible()) {
         const auto ov = yAxis_->inwardTickOverlap();
         const auto lOv = yAxis_->labelOverflow();
-        yAxis_->setPosition(QPointF(padding_, plotY - lOv));
+        yAxis_->setPosition(QPointF(plotX - yAxis_->layoutSize(), plotY - lOv));
         yAxis_->setSize(QSizeF(yAxis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (yAxis_) {
         yAxis_->setSize(QSizeF{});
@@ -761,7 +780,7 @@ void QAccelPlot::layoutAxes()
     if (y2Axis_ && y2Axis_->isVisible()) {
         const auto ov = y2Axis_->inwardTickOverlap();
         const auto lOv = y2Axis_->labelOverflow();
-        y2Axis_->setPosition(QPointF(w - padding_ - y2Axis_->layoutSize() - ov, plotY - lOv));
+        y2Axis_->setPosition(QPointF(plotX + plotW - ov, plotY - lOv));
         y2Axis_->setSize(QSizeF(y2Axis_->layoutSize() + ov, plotH + 2.0 * lOv));
     } else if (y2Axis_) {
         y2Axis_->setSize(QSizeF{});
@@ -769,7 +788,7 @@ void QAccelPlot::layoutAxes()
     if (xAxis_ && xAxis_->isVisible()) {
         const auto ov = xAxis_->inwardTickOverlap();
         const auto lOv = xAxis_->labelOverflow();
-        xAxis_->setPosition(QPointF(plotX - lOv, h - padding_ - botH - ov));
+        xAxis_->setPosition(QPointF(plotX - lOv, plotY + plotH - ov));
         xAxis_->setSize(QSizeF(plotW + 2.0 * lOv, xAxis_->layoutSize() + ov));
     } else if (xAxis_) {
         xAxis_->setSize(QSizeF{});
@@ -777,17 +796,19 @@ void QAccelPlot::layoutAxes()
     if (x2Axis_ && x2Axis_->isVisible()) {
         const auto ov = x2Axis_->inwardTickOverlap();
         const auto lOv = x2Axis_->labelOverflow();
-        x2Axis_->setPosition(QPointF(plotX - lOv, padding_));
+        x2Axis_->setPosition(QPointF(plotX - lOv, plotY - x2Axis_->layoutSize()));
         x2Axis_->setSize(QSizeF(plotW + 2.0 * lOv, x2Axis_->layoutSize() + ov));
     } else if (x2Axis_) {
         x2Axis_->setSize(QSizeF{});
     }
 
-    // Stack extra axes
-    // Extra horizontal axes are stacked below the primary x axis, all within
-    // the space reserved beneath the plot rectangle.
-    auto currentBot = h - padding_ - botH + visibleAxisSize(xAxis_);
-    auto currentLeft = padding_ + leftW;
+    // Stack extra axes outward from the plot on their own side: Bottom/Right extras grow
+    // away from the plot past their primary axis; Top/Left extras grow away from the plot
+    // starting at the widget edge, ending where their primary axis begins.
+    auto currentBottom = plotY + plotH + visibleAxisSize(xAxis_);
+    auto currentTop = padding_;
+    auto currentLeft = padding_;
+    auto currentRight = w - padding_;
     for (const auto axis : extraAxes_) {
         if (!axis->isVisible()) {
             axis->setSize(QSizeF{});
@@ -797,12 +818,22 @@ void QAccelPlot::layoutAxes()
         const auto lOv = axis->labelOverflow();
         if (axis->orientation() == Axis::Horizontal) {
             axis->setSize(QSizeF(plotW + 2.0 * lOv, axis->layoutSize() + ov));
-            axis->setPosition(QPointF(plotX - lOv, currentBot));
-            currentBot += axis->layoutSize() + ov;
+            if (axis->side() == Axis::Top) {
+                axis->setPosition(QPointF(plotX - lOv, currentTop));
+                currentTop += axis->layoutSize() + ov;
+            } else {
+                axis->setPosition(QPointF(plotX - lOv, currentBottom));
+                currentBottom += axis->layoutSize() + ov;
+            }
         } else {
-            axis->setSize(QSizeF(axis->layoutSize(), plotH + 2.0 * lOv));
-            axis->setPosition(QPointF(currentLeft, plotY - lOv));
-            currentLeft += axis->layoutSize();
+            axis->setSize(QSizeF(axis->layoutSize() + ov, plotH + 2.0 * lOv));
+            if (axis->side() == Axis::Left) {
+                axis->setPosition(QPointF(currentLeft, plotY - lOv));
+                currentLeft += axis->layoutSize() + ov;
+            } else {
+                currentRight -= axis->layoutSize() + ov;
+                axis->setPosition(QPointF(currentRight, plotY - lOv));
+            }
         }
     }
 }
