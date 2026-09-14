@@ -26,3 +26,4 @@ add_qaccelplot_test(tst_line_curve_point_renderer core tst_line_curve_point_rend
 add_qaccelplot_test(tst_rectangle_list_data  core tst_rectangle_list_data.cpp)
 add_qaccelplot_test(tst_data_anchor          core tst_data_anchor.cpp)
 add_qaccelplot_test(tst_axis_rescale         core tst_axis_rescale.cpp)
+add_qaccelplot_test(tst_plot_series_data_ranges core tst_plot_series_data_ranges.cpp)
