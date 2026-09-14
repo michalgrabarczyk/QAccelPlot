@@ -33,21 +33,14 @@ layout(std140, binding = 0) uniform buf {
 } ubuf;
 
 #include "math_utils.glsl"
+#include "point_shapes.glsl"
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_uv    = corner;
 
     // Precompute AA fade threshold for the fragment shader.
-    if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        float radius = max(ubuf.markerSize, 1e-4);
-        float featherNorm = max(ubuf.antialiasingFeather / radius, 0.01);
-        v_fadeStart = 1.0 - featherNorm;
-        v_softness = featherNorm;
-    } else {
-        v_fadeStart = 2.0; // sentinel: AA disabled
-        v_softness = 1.0;
-    }
+    computeMarkerFade(ubuf.markerSize, ubuf.antialiasingEnabled, ubuf.antialiasingFeather, v_fadeStart, v_softness);
 
     vec2 dMin = ubuf.domainMin;
     vec2 dMax = ubuf.domainMax;

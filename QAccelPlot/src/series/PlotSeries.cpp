@@ -8,6 +8,7 @@
 #include "series/PlotSeries.hpp"
 
 #include "MathUtils.hpp"
+#include "QAccelPlot.hpp"
 
 #include <cmath>
 
@@ -141,6 +142,19 @@ void PlotSeries::clearDataRanges()
     lastXMax_ = std::numeric_limits<qreal>::lowest();
     lastYMin_ = std::numeric_limits<qreal>::max();
     lastYMax_ = std::numeric_limits<qreal>::lowest();
+}
+
+QRectF PlotSeries::resolvePlotRect()
+{
+    if (const auto* plot = qobject_cast<QAccelPlot*>(parentItem())) {
+        const auto rect = plot->plotRect();
+        if (position() != rect.topLeft() || QSizeF(width(), height()) != rect.size()) {
+            setPosition(rect.topLeft());
+            setSize(rect.size());
+        }
+        return rect;
+    }
+    return QRectF(0, 0, width(), height());
 }
 
 void PlotSeries::onAxisRangeChanged()

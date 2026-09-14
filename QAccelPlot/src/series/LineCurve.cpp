@@ -370,19 +370,6 @@ void LineCurve::postData(std::vector<float>&& xyInterleaved, const int pointCoun
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setDataF(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
-static QRectF resolvePlotRect(LineCurve* curve)
-{
-    if (const auto fp = qobject_cast<QAccelPlot*>(curve->parentItem())) {
-        const auto pr = fp->plotRect();
-        if (curve->position() != pr.topLeft() || QSizeF(curve->width(), curve->height()) != pr.size()) {
-            curve->setPosition(pr.topLeft());
-            curve->setSize(pr.size());
-        }
-        return pr;
-    }
-    return QRectF(0, 0, curve->width(), curve->height());
-}
-
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
 {
     Q_UNUSED(updatePaintNodeData)
@@ -436,7 +423,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         chunksValid_ = false;
     }
 
-    const auto pr = resolvePlotRect(this);
+    const auto pr = resolvePlotRect();
     const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
     const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     const auto viewportSize = QVector2D(pr.width(), pr.height());

@@ -8,10 +8,11 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
-layout(location = 0) in vec4 v_color;
-layout(location = 1) in vec2 v_uv;     // -1..+1 across the billboard quad
-layout(location = 2) in float v_fadeStart;
-layout(location = 3) in float v_softness;
+layout(location = 0) in vec2 v_uv;
+layout(location = 1) in float v_colorT;
+layout(location = 2) in float v_useValue;
+layout(location = 3) in float v_fadeStart;
+layout(location = 4) in float v_softness;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -21,14 +22,19 @@ layout(std140, binding = 0) uniform buf {
     vec2  domainMin;
     vec2  domainMax;
     vec2  viewportSize;
-    float markerSize;
     float logScaleX;
     float logScaleY;
     float useVertexColor;
+    float markerSize;
     float antialiasingEnabled;
     float antialiasingFeather;
+    float valueMin;
+    float valueMax;
+    float stride;
     int   shapeType;
 } ubuf;
+
+layout(binding = 2) uniform sampler2D colorMapSampler;
 
 #include "point_shapes.glsl"
 
@@ -38,6 +44,10 @@ void main() {
         discard;
     }
 
-    float a = v_color.a * alpha;
-    fragColor = vec4(v_color.rgb * a, a);
+    // Sample the colormap unconditionally (keeps the sampler live on every backend),
+    // then pick it only for points that carry a finite value.
+    vec4 mapped = texture(colorMapSampler, vec2(v_colorT, 0.5));
+    vec4 c = mix(ubuf.color, mapped, step(0.5, v_useValue));
+    float a = c.a * alpha;
+    fragColor = vec4(c.rgb * a, a);
 }

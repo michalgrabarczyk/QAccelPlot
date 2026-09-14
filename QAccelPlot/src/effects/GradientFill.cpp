@@ -186,47 +186,7 @@ GradientFillPayload GradientFill::payload() const
         return payload;
     }
 
-    auto stopsVariant = QQmlProperty::read(gradient_, QStringLiteral("stops"));
-    if (stopsVariant.isValid()) {
-        const auto stopsList = stopsVariant.toList();
-        for (const auto& stopVariant : stopsList) {
-            auto* stopObject = stopVariant.value<QObject*>();
-            appendStopFromObject(payload.stops, stopObject);
-        }
-    }
-
-    if (payload.stops.empty()) {
-        const auto stopObjects = gradient_->children();
-        payload.stops.reserve(stopObjects.size());
-        for (auto* stopObject : stopObjects) {
-            appendStopFromObject(payload.stops, stopObject);
-        }
-    }
-
-    std::sort(payload.stops.begin(), payload.stops.end(), [](const auto& lhs, const auto& rhs) { return lhs.position < rhs.position; });
-
-    if (payload.stops.empty()) {
-        return payload;
-    }
-
-    if (payload.stops.size() == 1) {
-        auto duplicatedStop = payload.stops.front();
-        duplicatedStop.position = 1.0f;
-        payload.stops.push_back(duplicatedStop);
-    }
-
-    if (payload.stops.front().position > 0.0f) {
-        auto extendedStop = payload.stops.front();
-        extendedStop.position = 0.0f;
-        payload.stops.insert(payload.stops.begin(), extendedStop);
-    }
-
-    if (payload.stops.back().position < 1.0f) {
-        auto extendedStop = payload.stops.back();
-        extendedStop.position = 1.0f;
-        payload.stops.push_back(extendedStop);
-    }
-
+    payload.stops = readGradientStops(gradient_);
     return payload;
 }
 

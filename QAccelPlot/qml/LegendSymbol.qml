@@ -15,11 +15,16 @@ Item {
     property real requestedWidth: 28
 
     readonly property bool isFillSymbol: sourceSeries.legendSymbol === PlotSeries.Fill
+    readonly property bool isMarkerSymbol: sourceSeries.legendSymbol === PlotSeries.Marker
     readonly property color curveColor: sourceSeries.color !== undefined ? sourceSeries.color : "#808080"
     readonly property var curveLineStyle: sourceSeries.lineStyle !== undefined ? sourceSeries.lineStyle : null
-    readonly property bool showLine: curveLineStyle ? curveLineStyle.showLine : true
+    readonly property bool showLine: !isMarkerSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
     readonly property int curveMarker: sourceSeries.markerShape !== undefined ? sourceSeries.markerShape : LineCurve.None
-    readonly property real curveMarkerSize: sourceSeries.markerSize !== undefined ? Math.max(0, sourceSeries.markerSize) : 0
+    // Marker-only series such as dense point clouds often use tiny markers; keep their swatch legible.
+    readonly property real curveMarkerSize: {
+        const size = sourceSeries.markerSize !== undefined ? Math.max(0, sourceSeries.markerSize) : 0;
+        return isMarkerSymbol ? Math.min(Math.max(size, 3.5), 7) : size;
+    }
     readonly property real curveLineWidth: sourceSeries.lineWidth !== undefined ? Math.max(0, sourceSeries.lineWidth) : 1
     readonly property bool curveAntialiasingEnabled: sourceSeries.antialiasingEnabled !== undefined ? sourceSeries.antialiasingEnabled : true
     readonly property real curveAntialiasingFeather: sourceSeries.antialiasingFeather !== undefined ? sourceSeries.antialiasingFeather : 1

@@ -27,6 +27,7 @@ TARGET_TO_CONTRACT = {
     "QAccelPlotExampleCustomAxis": "custom_axis",
     "QAccelPlotExampleInteractiveTools": "interactive_tools",
     "QAccelPlotExamplePerformanceShowcase": "performance_showcase",
+    "QAccelPlotExamplePointCloud": "point_cloud",
     "QAccelPlotExampleQuickstart": "quickstart",
     "QAccelPlotExampleRealtime": "realtime",
     "QAccelPlotExampleStylingAndTransitions": "styling_and_transitions",

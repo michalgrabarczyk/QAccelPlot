@@ -130,6 +130,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | **[Interactive Tools](examples/interactive_tools/)** | Distance rulers, angle tools, rectangular selection, and point markers. |
 | **[Custom Axis](examples/custom_axis/)** | Multi-lead ECG layouts, multi-rate waveforms, and logarithmic frequency spectra. |
 | **[Axis Formats](examples/axis_formats/)** | Category, logarithmic, and date-time tick label formatters. |
+| **[Point Cloud](examples/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
 | **[Annotations](examples/annotations/)** | Dynamic callouts and overlays anchored directly to data coordinates. |
 | **[Quickstart](examples/quickstart/)** | Minimal standalone setup demonstrating basic plot configuration. |
 

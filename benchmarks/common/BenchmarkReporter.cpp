@@ -31,13 +31,19 @@ QString workloadName(const BenchmarkScenario& scenario)
     if (scenario.name().startsWith(QStringLiteral("vertex_cache"))) {
         return QStringLiteral("vertex_cache_build");
     }
+    if (scenario.name().startsWith(QStringLiteral("point_cloud_ingestion"))) {
+        return QStringLiteral("existing_buffer_ingestion");
+    }
+    if (scenario.name().startsWith(QStringLiteral("point_cloud_hover_index"))) {
+        return QStringLiteral("hover_index_build");
+    }
     return scenario.updateMode() == BenchmarkScenario::UpdateMode::Static ? QStringLiteral("static_buffer_bounded_pan")
                                                                           : QStringLiteral("existing_buffer_update_and_render");
 }
 
 int reportedSourceBufferCount(const BenchmarkScenario& scenario)
 {
-    if (scenario.name().startsWith(QStringLiteral("data_ingestion")) || scenario.name().startsWith(QStringLiteral("vertex_cache"))) {
+    if (scenario.isCpuOnly()) {
         return 1;
     }
     return scenario.updateMode() == BenchmarkScenario::UpdateMode::Static ? 1 : 2;
@@ -86,6 +92,8 @@ QString BenchmarkReporter::toJson() const
         obj[QStringLiteral("description")] = entry.scenario.description();
         obj[QStringLiteral("point_count")] = entry.scenario.pointCount();
         obj[QStringLiteral("curve_count")] = entry.scenario.curveCount();
+        obj[QStringLiteral("series_type")]
+            = entry.scenario.seriesType() == BenchmarkScenario::SeriesType::PointCloud ? QStringLiteral("point_cloud") : QStringLiteral("line_curve");
         obj[QStringLiteral("duration_seconds")] = entry.scenario.durationSeconds();
         obj[QStringLiteral("workload")] = workloadName(entry.scenario);
         obj[QStringLiteral("data_generation_included")] = false;

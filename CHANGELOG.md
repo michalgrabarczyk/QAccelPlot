@@ -12,6 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or vertical-axis width.
 - Automatic side assignment for the four named plot axes: `xAxis` uses the
   bottom, `x2Axis` the top, `yAxis` the left, and `y2Axis` the right.
+- `PointCloud` series for large unconnected scatter data: GPU markers in every
+  `LineCurve` marker shape, uniform or per-point value colormaps through a QML
+  `Gradient`, logarithmic axes, hover picking with `hoveredIndex`, and
+  thread-safe `postData()`. Non-finite and non-positive (on log axes) points are
+  skipped automatically.
+- `PlotSeries.LegendSymbol.Marker`, which draws only the marker shape in the
+  default legend.
+- `point_cloud` example and point-cloud benchmark scenarios.
 
 ### Fixed
 

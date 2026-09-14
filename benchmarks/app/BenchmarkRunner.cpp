@@ -26,11 +26,10 @@ BenchmarkRunner::BenchmarkRunner(QObject* parent)
     , reporter_("0.1.0")
     , availableScenarios_(BenchmarkScenario::defaultScenarios())
 {
-    // Filter out CPU-only scenarios — those have no rendering and shouldn't appear in the GUI
+    // Filter out CPU-only scenarios — those have no rendering and shouldn't appear in the GUI.
+    // The interactive runner drives LineCurve series only; PointCloud scenarios run headless.
     availableScenarios_.erase(std::remove_if(availableScenarios_.begin(), availableScenarios_.end(),
-                                  [](const BenchmarkScenario& s) {
-                                      return s.name().startsWith(QStringLiteral("data_ingestion")) || s.name().startsWith(QStringLiteral("vertex_cache"));
-                                  }),
+                                  [](const BenchmarkScenario& s) { return s.isCpuOnly() || s.seriesType() == BenchmarkScenario::SeriesType::PointCloud; }),
         availableScenarios_.end());
 
     QQuickWindow::setDefaultAlphaBuffer(true);

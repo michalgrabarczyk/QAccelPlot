@@ -12,6 +12,7 @@
 #include "ExistingDataBufferPool.hpp"
 #include "QAccelPlot.hpp"
 #include "series/LineCurve.hpp"
+#include "series/PointCloud.hpp"
 
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -144,8 +145,8 @@ private slots:
             const auto viewport = QAccelPlot::staticPanViewport(currentPointCount_, scenarioTimer_.elapsed());
             xAxis_->setViewportMin(viewport.minimum);
             xAxis_->setViewportMax(viewport.maximum);
-            for (auto* curve : curves_) {
-                curve->update();
+            for (auto* series : series_) {
+                series->update();
             }
         }
 
@@ -159,7 +160,7 @@ private slots:
         renderControl_->render();
         renderControl_->endFrame();
 
-        metrics_.endFrame(static_cast<int64_t>(currentPointCount_) * static_cast<int64_t>(curves_.size()));
+        metrics_.endFrame(static_cast<int64_t>(currentPointCount_) * static_cast<int64_t>(series_.size()));
 
         context_->doneCurrent();
 
@@ -195,7 +196,7 @@ private slots:
         const auto& scenario = scenarios_[currentScenarioIndex_];
 
         // Skip non-rendering scenarios
-        if (scenario.name().startsWith("data_ingestion") || scenario.name().startsWith("vertex_cache")) {
+        if (scenario.isCpuOnly()) {
             currentScenarioIndex_++;
             QMetaObject::invokeMethod(this, "runNextScenario", Qt::QueuedConnection);
             return;
@@ -220,20 +221,21 @@ private slots:
 
     void setupScenario(const QAccelPlot::BenchmarkScenario& scenario)
     {
-        for (auto* curve : curves_) {
-            delete curve;
+        for (auto* series : series_) {
+            delete series;
         }
-        curves_.clear();
+        series_.clear();
 
         currentPointCount_ = scenario.pointCount();
         currentUpdateMode_ = scenario.updateMode();
+        currentSeriesType_ = scenario.seriesType();
         currentFrameIndex_ = 0;
 
         for (auto i = 0; i < scenario.curveCount(); ++i) {
-            auto* curve = new QAccelPlot::LineCurve(plot_);
-            curve->setXAxis(xAxis_);
-            curve->setYAxis(yAxis_);
-            curves_.push_back(curve);
+            auto* series = createSeries();
+            series->setXAxis(xAxis_);
+            series->setYAxis(yAxis_);
+            series_.push_back(series);
         }
 
         xAxis_->setViewportMin(0);
@@ -244,11 +246,40 @@ private slots:
         dataBufferPool_.reset();
         dataBufferPool_ = std::make_unique<QAccelPlot::ExistingDataBufferPool>(
             currentPointCount_, scenario.curveCount(), QAccelPlot::sourceBufferCount(currentUpdateMode_));
-        for (size_t i = 0; i < curves_.size(); ++i) {
+        pointValues_.clear();
+        if (currentSeriesType_ == QAccelPlot::BenchmarkScenario::SeriesType::PointCloud
+            && currentUpdateMode_ != QAccelPlot::BenchmarkScenario::UpdateMode::Static) {
+            pointValues_.resize(static_cast<std::size_t>(currentPointCount_));
+            for (auto i = std::size_t{0}; i < pointValues_.size(); ++i) {
+                pointValues_[i] = static_cast<float>(i % 256) / 255.0f;
+            }
+        }
+        for (size_t i = 0; i < series_.size(); ++i) {
             const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), 0);
-            curves_[i]->setDataFNoRangeWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
+            if (auto* curve = qobject_cast<QAccelPlot::LineCurve*>(series_[i])) {
+                curve->setDataFNoRangeWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
+            } else {
+                setPointCloudData(static_cast<QAccelPlot::PointCloud*>(series_[i]), dataPtr);
+            }
         }
         dataBufferPool_->discardVertexCache();
+    }
+
+    QAccelPlot::PlotSeries* createSeries()
+    {
+        if (currentSeriesType_ == QAccelPlot::BenchmarkScenario::SeriesType::PointCloud) {
+            auto* cloud = new QAccelPlot::PointCloud(plot_);
+            cloud->setMarkerSize(1.5);
+            return cloud;
+        }
+        return new QAccelPlot::LineCurve(plot_);
+    }
+
+    void setPointCloudData(QAccelPlot::PointCloud* cloud, const float* dataPtr)
+    {
+        // Copying from an existing buffer mirrors LineCurve::setDataFNoRange(const float*, int).
+        auto xy = std::vector<float>(dataPtr, dataPtr + static_cast<std::size_t>(currentPointCount_) * 2);
+        cloud->setDataFNoRange(std::move(xy), std::vector<float>(pointValues_), currentPointCount_);
     }
 
     void updateData()
@@ -257,9 +288,13 @@ private slots:
             return;
         }
         ++currentFrameIndex_;
-        for (size_t i = 0; i < curves_.size(); ++i) {
+        for (size_t i = 0; i < series_.size(); ++i) {
             const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), currentFrameIndex_);
-            curves_[i]->setDataFNoRange(dataPtr, currentPointCount_);
+            if (auto* curve = qobject_cast<QAccelPlot::LineCurve*>(series_[i])) {
+                curve->setDataFNoRange(dataPtr, currentPointCount_);
+            } else {
+                setPointCloudData(static_cast<QAccelPlot::PointCloud*>(series_[i]), dataPtr);
+            }
         }
         requestRender();
     }
@@ -294,7 +329,8 @@ private:
     QAccelPlot::QAccelPlot* plot_{nullptr};
     QAccelPlot::Axis* xAxis_{nullptr};
     QAccelPlot::Axis* yAxis_{nullptr};
-    std::vector<QAccelPlot::LineCurve*> curves_;
+    std::vector<QAccelPlot::PlotSeries*> series_;
+    std::vector<float> pointValues_;
 
     std::vector<QAccelPlot::BenchmarkScenario> scenarios_;
     size_t currentScenarioIndex_{0};
@@ -308,6 +344,7 @@ private:
     int currentPointCount_{0};
     int currentFrameIndex_{0};
     QAccelPlot::BenchmarkScenario::UpdateMode currentUpdateMode_;
+    QAccelPlot::BenchmarkScenario::SeriesType currentSeriesType_{QAccelPlot::BenchmarkScenario::SeriesType::LineCurve};
 
     bool renderRequested_{false};
     bool scenarioRunning_{false};

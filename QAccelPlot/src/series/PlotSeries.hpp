@@ -29,7 +29,7 @@ namespace QAccelPlot {
 /// plot-area layout, data-range reporting, and legend metadata. Concrete series
 /// remain responsible for their data model, rendering, and hit testing.
 ///
-/// \sa LineCurve, RectangleList, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleList, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -48,7 +48,10 @@ class PlotSeries : public QQuickItem {
 
 public:
     /// \brief Supported default legend symbols.
-    enum class LegendSymbol { Line, Fill };
+    ///
+    /// \c Line draws the series line style and marker, \c Fill a filled swatch, and \c Marker only
+    /// the series marker shape (used by unconnected series such as \c PointCloud).
+    enum class LegendSymbol { Line, Fill, Marker };
     Q_ENUM(LegendSymbol)
 
     explicit PlotSeries(QQuickItem* parent = nullptr);
@@ -85,6 +88,12 @@ protected:
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     /// \brief Clears cached extents after a series has been emptied.
     void clearDataRanges();
+    /// \brief Aligns the item geometry with the parent plot's plot area and returns the item-local rectangle.
+    ///
+    /// A series constructed in C++ with the plot as its parent is added before its own constructor
+    /// runs, so \c PlotView cannot assign \c plotRect at that point. Call this from
+    /// \c updatePaintNode to adopt the plot area lazily. Without a parent plot, returns the current size.
+    QRectF resolvePlotRect();
 
 private:
     void onAxisRangeChanged();

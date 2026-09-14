@@ -22,6 +22,7 @@ EXAMPLES = {
     "custom_axis",
     "interactive_tools",
     "performance_showcase",
+    "point_cloud",
     "quickstart",
     "realtime",
     "styling_and_transitions",

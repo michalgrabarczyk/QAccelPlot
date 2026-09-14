@@ -28,6 +28,8 @@ methods, signals, and enums.
   ticks, labels, panning, and zooming.
 - [`LineCurve`](api/classQAccelPlot_1_1LineCurve.md) provides GPU-rendered
   lines, markers, data ingestion, effects, transitions, and hover handling.
+- [`PointCloud`](api/classQAccelPlot_1_1PointCloud.md) renders large sets of
+  unconnected points as markers, colored uniformly or by per-point values.
 - [`RectangleList`](api/classQAccelPlot_1_1RectangleList.md) renders
   collections of data-space rectangles.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) positions QML overlays
@@ -56,8 +58,8 @@ backend, such as OpenGL, Direct3D, Vulkan, or Metal. The Qt Quick software
 backend cannot render the custom curve shaders.
 
 Never mutate a `QQuickItem` directly from a worker thread. Use
-[`LineCurve::postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata)
-or queue the operation to the item's thread.
+[`LineCurve::postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata),
+`PointCloud::postData()`, or queue the operation to the item's thread.
 
 To preview the complete site locally, install the documentation dependencies
 and run MkDocs:

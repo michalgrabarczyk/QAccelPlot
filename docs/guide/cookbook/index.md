@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, and background data production."
+description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, point clouds, and background data production."
 ---
 
 <!--
@@ -20,6 +20,7 @@ Each guide explains the approach and links to a complete runnable example.
 | [Multiple axes](multiple-axes.md) | Secondary scales and signals with different domains |
 | [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |
+| [Point clouds](point-clouds.md) | Large unconnected scatter data, value colormaps, and hover picking |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](../api.md). For choosing a

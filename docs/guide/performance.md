@@ -110,6 +110,12 @@ may require additional per-vertex work.
 [`QAccelPlot.RectangleList.hoveredIndex`][hovered-index] uses a spatial grid, giving an `O(1)`
 lookup per pointer move after the grid is built when its data changes.
 
+`QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
+is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
+answers each move by scanning only the cells within the hover radius. When a
+cloud is replaced every frame while the pointer rests over it, the rebuild
+repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+
 ### Other rendering costs
 
 - Point markers add geometry and fragment work for every visible point.

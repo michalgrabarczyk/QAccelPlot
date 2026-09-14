@@ -334,7 +334,9 @@ axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] prope
 The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
 [`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
 sides, while [`extraAxes`][extra-axes] supports additional independently scaled
-axes. Each series explicitly selects the axes it uses.
+axes. Assigning a named axis automatically selects its side: `xAxis` is bottom,
+`x2Axis` is top, `yAxis` is left, and `y2Axis` is right. Extra axes specify
+their own `side`. Each series explicitly selects the axes it uses.
 
 `AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
@@ -427,8 +429,8 @@ that resembles your application.
 
 | API | Use it when | Main cost |
 | --- | --- | --- |
-| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML or convenience matters most | Allocation plus conversion to interleaved floats |
-| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors | Allocation plus double-to-float interleaving |
+| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
+| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
@@ -440,6 +442,12 @@ buffer immediately and must be called on the curve's thread, normally the UI
 thread. [`postData(std::vector<float>&&, count)`][post-data] is its
 worker-thread-safe counterpart: it queues that same transfer to the curve's
 thread.
+
+Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
+coordinates, or small differences at a large offset. These paths retain the
+input as doubles and rebase the GPU buffer to keep nearby values distinct. The
+APIs whose names end in `F` intentionally store floats and should be used only
+when the coordinate values are representable at the required precision.
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets. Move to [`setDataFNoRange()`][set-data-f-no-range] only after
@@ -463,7 +471,8 @@ invalid caches are rejected and rendering falls back to normal vertex assembly.
 
 ## Build buffers efficiently
 
-- Store points as interleaved floats: `[x0, y0, x1, y1, ...]`.
+- For the `F` ingestion paths, store points as interleaved floats:
+  `[x0, y0, x1, y1, ...]`.
 - Reserve or resize the vector once before filling it.
 - Move the completed vector instead of copying it.
 - Reuse producer-side buffers after ownership returns through your handoff
@@ -508,6 +517,12 @@ may require additional per-vertex work.
 
 [`QAccelPlot.RectangleList.hoveredIndex`][hovered-index] uses a spatial grid, giving an `O(1)`
 lookup per pointer move after the grid is built when its data changes.
+
+`QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
+is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
+answers each move by scanning only the cells within the hover radius. When a
+cloud is replaced every frame while the pointer rests over it, the rebuild
+repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 
 ### Other rendering costs
 
@@ -871,6 +886,7 @@ Each guide explains the approach and links to a complete runnable example.
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
+| [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, value colormaps, and hover picking |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/). For choosing a
@@ -898,7 +914,6 @@ QAccelPlot.Plot {
         viewportMax: 24
         dataMin: 0
         dataMax: 24
-        side: QAccelPlot.Axis.Bottom
         label: "Time of day (h)"
     }
 
@@ -907,7 +922,6 @@ QAccelPlot.Plot {
         viewportMax: 27
         dataMin: 16
         dataMax: 27
-        side: QAccelPlot.Axis.Left
         label: "Temperature (°C)"
     }
 
@@ -1054,6 +1068,11 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
+Supply epoch values through `setData()`, which retains double precision and
+keeps millisecond-scale differences visible at modern dates. APIs ending in
+`F` intentionally store coordinates as floats; around the current Unix epoch,
+that representation cannot distinguish nearby timestamps.
+
 ## Categories
 
 Map integer coordinates to labels with `QAccelPlot.TextTickLabelFormatter`:
@@ -1092,6 +1111,7 @@ xAxis: QAccelPlot.Axis {
 ```
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
+Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
 
 ## Application-specific labels
 
@@ -1139,13 +1159,11 @@ choose the height of a horizontal axis or the width of a vertical axis:
 
 ```qml
 yAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Left
     layoutSize: 90
     label: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Bottom
     layoutSize: 70
     label: "Time"
 }
@@ -1157,7 +1175,9 @@ tick labels and axis title.
 
 ## Secondary axes
 
-Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:
+Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side.
+The plot assigns sides automatically: `xAxis` is bottom, `x2Axis` is top,
+`yAxis` is left, and `y2Axis` is right.
 
 ```qml
 import QtQuick
@@ -1166,10 +1186,9 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    xAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis {}
+    yAxis: QAccelPlot.Axis {}
     y2Axis: QAccelPlot.Axis {
-        side: QAccelPlot.Axis.Right
         viewportMin: 0
         viewportMax: 100
         label: "Load (%)"
@@ -1204,7 +1223,6 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        side: QAccelPlot.Axis.Bottom
         label: "Slow time (s)"
     }
 
@@ -1459,6 +1477,152 @@ Complete sources:
 
 ---
 
+<!-- source: docs/guide/cookbook/point-clouds.md -->
+
+# Point clouds
+
+Use [`QAccelPlot.PointCloud`][point-cloud] for scatter data whose points are
+not connected: sensor returns, clustering results, particle positions, or
+detector events. Every point is drawn as a GPU marker, and the series scales
+to hundreds of thousands of points updated every frame.
+
+A `LineCurve` with `NoLine` and markers can draw small scatter plots, but it
+builds marker geometry on the CPU for every data change. `PointCloud` uploads
+positions as a data texture instead, so a cloud of constant size costs one
+texture upload per update.
+
+## Draw a scatter plot
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    xAxis: QAccelPlot.Axis { viewportMin: -10; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: -8; viewportMax: 8 }
+
+    QAccelPlot.PointCloud {
+        id: samples
+        name: "Samples"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "#8065b5ff"
+        markerShape: QAccelPlot.PointCloud.Circle
+        markerSize: 2
+
+        Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])
+    }
+}
+```
+
+`markerSize` is the marker radius in pixels. The available shapes match
+`LineCurve` markers: `Circle`, `Square`, `Diamond`, `TriangleUp`,
+`TriangleDown`, and `Cross`. Translucent colors make dense regions read as
+density, because overlapping markers blend. Points are drawn in data order, so
+put background points first when they should appear underneath.
+
+The default legend shows the marker shape and `color` for point clouds.
+
+## Color points by value
+
+Give each point a value and map it through a QML `Gradient`:
+
+```qml
+Gradient {
+    id: viridis
+    GradientStop { position: 0.0; color: "#fde725" }
+    GradientStop { position: 0.5; color: "#21918c" }
+    GradientStop { position: 1.0; color: "#440154" }
+}
+
+QAccelPlot.PointCloud {
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    colorMode: QAccelPlot.PointCloud.ValueColor
+    colorGradient: viridis
+    valueMinSource: QAccelPlot.GradientValueSource.Fixed
+    valueMin: 0
+    valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+    valueMax: 1
+}
+```
+
+From QML, call `setValues()` after `setData()` with one value per point. From
+C++, pass values together with the positions:
+
+```cpp
+cloud->setDataF(std::move(xyInterleaved), std::move(values), pointCount);
+```
+
+With the default `DataRange` sources, the colormap spans the finite value
+range of the data. The resolved bounds are exposed as `dataValueMin` and
+`dataValueMax`, so a color bar can bind to them. Points with a non-finite value
+fall back to `color`.
+
+## Stream point data
+
+`postData()` is thread-safe. It moves the buffers into a queued call, so a
+worker thread can produce complete frames without copying them again:
+
+```cpp
+// Worker thread
+cloud->postData(std::move(xy), std::move(values), pointCount);
+```
+
+Post a frame only after the window has presented the previous one, for
+example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
+up when rendering falls behind. Use `setDataFNoRange()` when the application
+manages `dataMin` and `dataMax` on the axes itself.
+
+## Invalid points and logarithmic axes
+
+Non-finite coordinates are kept in storage, so indices stay stable, but they
+are not drawn, not picked, and do not contribute to axis data ranges. On a
+logarithmic axis, non-positive coordinates are skipped the same way. You do not
+need to filter them before handing data to the series.
+
+## Hover and tooltips
+
+`hoveredIndex` is the index of the valid point nearest to the pointer within
+`hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`, and a
+`QAccelPlot.DataAnchor` to show a tooltip:
+
+```qml
+QAccelPlot.DataAnchor {
+    readonly property point hovered: samples.hoveredIndex >= 0 ? samples.pointAt(samples.hoveredIndex) : Qt.point(0, 0)
+    visible: samples.hoveredIndex >= 0
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    plotRect: Qt.rect(0, 0, overlay.width, overlay.height)
+    dataX1: hovered.x
+    dataY1: hovered.y
+    dataX2: hovered.x
+    dataY2: hovered.y
+
+    Text { text: "#" + samples.hoveredIndex }
+}
+```
+
+The lookup uses a spatial index that is rebuilt on the first pointer move after
+a data change. Only positions near a point count as inside the series, so
+stacked series underneath still receive hover events elsewhere.
+
+## Limits
+
+- Coordinates are single precision. Subtract a local origin from very large
+  values, such as epoch timestamps, before handing them to the series.
+- The number of drawable points is bounded by the GPU's maximum texture size:
+  about 5.5 million points with values, or 8.3 million without, on a GPU with
+  an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
+  points are not drawn, and a warning is logged once.
+
+Complete source:
+
+- [`examples/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/point_cloud)
+
+[point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
+
+
+---
+
 <!-- source: docs/guide/cookbook/background-data.md -->
 
 # Background data production
@@ -1522,18 +1686,14 @@ Complete sources:
 
 # API reference
 
-The API reference is extracted from the public headers by Doxygen and rendered
-as part of this MkDocs site. It documents public C++ and QML-facing types,
-properties, methods, signals, and enums.
+The API reference documents public C++ and QML-facing types, properties,
+methods, signals, and enums.
 
 - [Class list](https://michalgrabarczyk.github.io/QAccelPlot/api/annotated/)
 - [Class index](https://michalgrabarczyk.github.io/QAccelPlot/api/classes/)
 - [Class hierarchy](https://michalgrabarczyk.github.io/QAccelPlot/api/hierarchy/)
 - [Namespaces](https://michalgrabarczyk.github.io/QAccelPlot/api/namespaces/)
 - [Files](https://michalgrabarczyk.github.io/QAccelPlot/api/files/)
-
-API pages participate in the same navigation, theme, and search index as the
-rest of the guide.
 
 ## Key types
 
@@ -1545,6 +1705,8 @@ rest of the guide.
   ticks, labels, panning, and zooming.
 - [`LineCurve`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/) provides GPU-rendered
   lines, markers, data ingestion, effects, transitions, and hover handling.
+- [`PointCloud`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PointCloud/) renders large sets of
+  unconnected points as markers, colored uniformly or by per-point values.
 - [`RectangleList`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleList/) renders
   collections of data-space rectangles.
 - [`DataAnchor`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1DataAnchor/) positions QML overlays
@@ -1573,8 +1735,8 @@ backend, such as OpenGL, Direct3D, Vulkan, or Metal. The Qt Quick software
 backend cannot render the custom curve shaders.
 
 Never mutate a `QQuickItem` directly from a worker thread. Use
-[`LineCurve::postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata)
-or queue the operation to the item's thread.
+[`LineCurve::postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata),
+`PointCloud::postData()`, or queue the operation to the item's thread.
 
 To preview the complete site locally, install the documentation dependencies
 and run MkDocs:

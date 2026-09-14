@@ -7,11 +7,13 @@
 //
 #include "DataTextureMaterial.hpp"
 #include "LineMaterial.hpp"
+#include "PointCloudMaterial.hpp"
 #include "PointMaterial.hpp"
 
 #include <QSGTexture>
 #include <QtTest/QtTest>
 
+#include <functional>
 #include <memory>
 
 namespace QAccelPlot {
@@ -66,6 +68,9 @@ private slots:
     void lineMaterialsCompareCompleteDashState();
     void pointMaterialsCompareMappingUniforms();
     void dataTextureIsDestroyedWithMaterial();
+    void identicalPointCloudMaterialsCompareEqual();
+    void pointCloudMaterialsCompareMarkerAndColorUniforms();
+    void pointCloudMaterialsCompareDataTextureIdentity();
 };
 
 void MaterialComparisonTest::identicalLineMaterialsCompareEqual()
@@ -147,6 +152,45 @@ void MaterialComparisonTest::dataTextureIsDestroyedWithMaterial()
     }
 
     QVERIFY(destroyed);
+}
+
+void MaterialComparisonTest::identicalPointCloudMaterialsCompareEqual()
+{
+    auto left = PointCloudMaterial{};
+    auto right = PointCloudMaterial{};
+
+    QCOMPARE(left.compare(&right), 0);
+    QCOMPARE(right.compare(&left), 0);
+}
+
+void MaterialComparisonTest::pointCloudMaterialsCompareMarkerAndColorUniforms()
+{
+    const auto left = PointCloudMaterial{};
+    const auto differsFrom = [&left](const std::function<void(PointCloudMaterial&)>& change) {
+        auto other = PointCloudMaterial{};
+        change(other);
+        return left.compare(&other) != 0 && other.compare(&left) == -left.compare(&other);
+    };
+
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.markerSize = 7.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.antialiasingEnabled = 0.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.antialiasingFeather = 2.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.valueMin = -1.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.valueMax = 5.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.stride = 3.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.shapeType = 4; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.useVertexColor = 1.0f; }));
+    QVERIFY(differsFrom([](PointCloudMaterial& m) { m.domainMax.setX(3.0f); }));
+}
+
+void MaterialComparisonTest::pointCloudMaterialsCompareDataTextureIdentity()
+{
+    auto left = PointCloudMaterial{};
+    auto right = PointCloudMaterial{};
+    left.dataTexture = std::make_unique<TestTexture>(10);
+    right.dataTexture = std::make_unique<TestTexture>(11);
+
+    QVERIFY(left.compare(&right) != 0);
 }
 
 } // namespace QAccelPlot
