@@ -37,6 +37,7 @@ private slots:
     void rightSideExtraAxisStacksRightOfThePlot();
     void duplicateExtraAxisIsIgnored();
     void outOfBoundsExtraAxisIndexReturnsNull();
+    void tinyPlotNeverGivesAxesNegativeSize();
     void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
@@ -257,6 +258,34 @@ void TestPlotAppearance::outOfBoundsExtraAxisIndexReturnsNull()
     QCOMPARE(extraAxes.at(&extraAxes, 0), extraAxis);
     QCOMPARE(extraAxes.at(&extraAxes, 1), nullptr);
     QCOMPARE(extraAxes.at(&extraAxes, -1), nullptr);
+}
+
+void TestPlotAppearance::tinyPlotNeverGivesAxesNegativeSize()
+{
+    // The reserved padding and axis sizes add up to far more than the item itself.
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({20.0, 20.0});
+    plot.setPadding(10.0);
+
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    auto* x2Axis = new QAccelPlot::Axis{&plot};
+    auto* y2Axis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    plot.setX2Axis(x2Axis);
+    plot.setY2Axis(y2Axis);
+
+    auto* extraAxis = new QAccelPlot::Axis{&plot};
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+
+    QVERIFY(plot.plotRect().width() >= 1.0);
+    QVERIFY(plot.plotRect().height() >= 1.0);
+    for (const auto* axis : {xAxis, yAxis, x2Axis, y2Axis, extraAxis}) {
+        QVERIFY2(axis->width() >= 0.0, qPrintable(QStringLiteral("axis width %1").arg(axis->width())));
+        QVERIFY2(axis->height() >= 0.0, qPrintable(QStringLiteral("axis height %1").arg(axis->height())));
+    }
 }
 
 void TestPlotAppearance::axisHoverEnvironmentControlsAcceptance()
