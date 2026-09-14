@@ -1342,6 +1342,9 @@
   from zero. A log-scale axis with only non-positive data now gets a valid,
   all-positive synthesized viewport instead of a mismatched
   positive-min/non-positive-max range.</li>
+<li>Enabling <code>logScale</code> (via the property, <code>toggleLogScale()</code>, or the <code>L</code> key)
+  while the current viewport is non-positive now clamps it to a valid
+  positive range instead of collapsing every curve to a single point.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
