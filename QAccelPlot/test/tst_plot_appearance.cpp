@@ -8,12 +8,14 @@
 #include "QAccelPlot.hpp"
 #include "axis/Axis.hpp"
 
+#include <QHoverEvent>
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <QtTest/QtTest>
 
 class TestablePlot final : public QAccelPlot::QAccelPlot {
 public:
+    using QAccelPlot::QAccelPlot::hoverMoveEvent;
     using QAccelPlot::QAccelPlot::mouseMoveEvent;
     using QAccelPlot::QAccelPlot::mousePressEvent;
     using QAccelPlot::QAccelPlot::mouseReleaseEvent;
@@ -38,6 +40,8 @@ private slots:
     void axisHoverEnvironmentControlsAcceptance();
     void acceptedReleaseEndsDrag();
     void horizontalOnlyWheelScrollDoesNotZoom();
+    void mouseMovedFiresWhileHoveringWithoutButton();
+    void mouseMovedDoesNotFireTwiceWhileDragging();
     void tickOverlapChangeTriggersRelayout();
     void labelOverflowChangeTriggersRelayout();
     void hiddenAxesDoNotReserveLayoutSpace();
@@ -320,6 +324,50 @@ void TestPlotAppearance::horizontalOnlyWheelScrollDoesNotZoom()
 
     QCOMPARE(axis->viewportMin(), minBefore);
     QCOMPARE(axis->viewportMax(), maxBefore);
+}
+
+void TestPlotAppearance::mouseMovedFiresWhileHoveringWithoutButton()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({200.0, 100.0});
+
+    auto movedX = qreal{};
+    auto movedButtons = -1;
+    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent* event) {
+        movedX = event->x();
+        movedButtons = event->button();
+    });
+
+    const auto pos = QPointF{40.0, 25.0};
+    auto hover = QHoverEvent{QEvent::HoverMove, pos, pos, QPointF{10.0, 25.0}};
+    plot.hoverMoveEvent(&hover);
+
+    QCOMPARE(movedX, 40.0);
+    QCOMPARE(movedButtons, static_cast<int>(Qt::NoButton));
+}
+
+void TestPlotAppearance::mouseMovedDoesNotFireTwiceWhileDragging()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({200.0, 100.0});
+    auto* axis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(axis);
+
+    auto moveCount = 0;
+    connect(&plot, &QAccelPlot::QAccelPlot::mouseMoved, [&](QAccelPlot::PlotMouseEvent*) { ++moveCount; });
+
+    const auto pressPosition = QPointF{50.0, 50.0};
+    auto press = QMouseEvent{QEvent::MouseButtonPress, pressPosition, pressPosition, pressPosition, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+    plot.mousePressEvent(&press);
+
+    // A drag delivers a mouse move; any hover move Qt also synthesizes must not emit a second time.
+    const auto movePosition = QPointF{75.0, 50.0};
+    auto move = QMouseEvent{QEvent::MouseMove, movePosition, movePosition, movePosition, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+    plot.mouseMoveEvent(&move);
+    auto hover = QHoverEvent{QEvent::HoverMove, movePosition, movePosition, pressPosition};
+    plot.hoverMoveEvent(&hover);
+
+    QCOMPARE(moveCount, 1);
 }
 
 void TestPlotAppearance::tickOverlapChangeTriggersRelayout()
