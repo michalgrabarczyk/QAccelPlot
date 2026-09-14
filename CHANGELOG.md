@@ -61,6 +61,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   from zero. A log-scale axis with only non-positive data now gets a valid,
   all-positive synthesized viewport instead of a mismatched
   positive-min/non-positive-max range.
+- Enabling `logScale` (via the property, `toggleLogScale()`, or the `L` key)
+  while the current viewport is non-positive now clamps it to a valid
+  positive range instead of collapsing every curve to a single point.
 
 ## [0.1.0] — 2026-09-08
 
