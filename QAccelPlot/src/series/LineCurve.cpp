@@ -212,11 +212,24 @@ void LineCurve::appendData(const qreal x, const qreal y)
 {
     cancelRunningTransition();
     promoteFloatDataToDouble();
+
+    const auto logScaleX = xAxis() && xAxis()->logScale();
+    const auto logScaleY = yAxis() && yAxis()->logScale();
+    const auto canExtendRenderData = renderOriginXSettled_ && renderOriginYSettled_ && renderLogScaleX_ == logScaleX && renderLogScaleY_ == logScaleY
+        && renderData_.size() == static_cast<std::size_t>(pointCount_) * 2;
+
     data_.push_back(static_cast<double>(x));
     data_.push_back(static_cast<double>(y));
     pointCount_++;
-    updateDataRanges(data_, pointCount_);
-    rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
+
+    extendDataRanges(x, y);
+    if (canExtendRenderData) {
+        renderData_.push_back(static_cast<float>(x - renderOriginX_));
+        renderData_.push_back(static_cast<float>(y - renderOriginY_));
+    } else {
+        rebuildDoubleRenderData(logScaleX, logScaleY);
+    }
+
     invalidateData();
     update();
 }
@@ -233,6 +246,8 @@ void LineCurve::clearData()
     renderOriginY_ = 0.0;
     renderLogScaleX_ = false;
     renderLogScaleY_ = false;
+    renderOriginXSettled_ = false;
+    renderOriginYSettled_ = false;
     pointCount_ = 0;
     invalidateVertices();
     chunks_.clear();
@@ -894,6 +909,9 @@ void LineCurve::rebuildDoubleRenderData(const bool logScaleX, const bool logScal
             break;
         }
     }
+
+    renderOriginXSettled_ = foundOriginX;
+    renderOriginYSettled_ = foundOriginY;
 
     renderData_.resize(static_cast<std::size_t>(pointCount_) * 2);
     for (auto i = int{0}; i < pointCount_; ++i) {
