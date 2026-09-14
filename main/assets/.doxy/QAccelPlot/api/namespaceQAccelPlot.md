@@ -114,6 +114,7 @@
 
 | Type | Name |
 | ---: | :--- |
+|  constexpr int | [**kMaxDashPatternSize**](#variable-kmaxdashpatternsize)   = `8`<br>_Largest dash pattern the renderer can carry to the shader._  |
 |  constexpr double | [**kNearlyEqualEpsilon**](#variable-knearlyequalepsilon)   = `2.0 \* std::numeric\_limits&lt;double&gt;::epsilon()`<br> |
 
 
@@ -212,6 +213,21 @@ using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
 <hr>
 ## Public Attributes Documentation
 
+
+
+
+
+### variable kMaxDashPatternSize {#variable-kmaxdashpatternsize}
+
+_Largest dash pattern the renderer can carry to the shader._ 
+```C++
+constexpr int QAccelPlot::kMaxDashPatternSize;
+```
+
+
+
+
+<hr>
 
 
 

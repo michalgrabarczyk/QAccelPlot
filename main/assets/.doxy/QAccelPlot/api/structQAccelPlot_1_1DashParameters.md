@@ -47,7 +47,7 @@ _Plain-data snapshot of dash rendering parameters._ [More...](#detailed-descript
 | ---: | :--- |
 |  bool | [**enabled**](#variable-enabled)   = `{false}`<br>`true` _when dashed rendering is active._ |
 |  float | [**offset**](#variable-offset)   = `{0.0f}`<br>_Phase offset into the dash pattern in pixels._  |
-|  float | [**pattern**](#variable-pattern)   = `{}`<br>_Alternating dash/gap lengths (up to 8 entries)._  |
+|  float | [**pattern**](#variable-pattern)   = `{}`<br>_Alternating dash/gap lengths._  |
 |  int | [**patternSize**](#variable-patternsize)   = `{0}`<br>_Number of valid entries in_ `pattern` _._ |
 |  float | [**period**](#variable-period)   = `{0.0f}`<br>_Total dash+gap cycle length in pixels._  |
 
@@ -139,9 +139,9 @@ float QAccelPlot::DashParameters::offset;
 
 ### variable pattern {#variable-pattern}
 
-_Alternating dash/gap lengths (up to 8 entries)._ 
+_Alternating dash/gap lengths._ 
 ```C++
-float QAccelPlot::DashParameters::pattern[8];
+float QAccelPlot::DashParameters::pattern[kMaxDashPatternSize];
 ```
 
 

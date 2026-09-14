@@ -22,12 +22,14 @@
 
 namespace QAccelPlot {
 
+inline constexpr int kMaxDashPatternSize = 8;
+
 struct DashParameters {
-    bool enabled{false}; 
-    float period{0.0f};  
-    float offset{0.0f};  
-    int patternSize{0};  
-    float pattern[8]{};  
+    bool enabled{false};                  
+    float period{0.0f};                   
+    float offset{0.0f};                   
+    int patternSize{0};                   
+    float pattern[kMaxDashPatternSize]{}; 
 };
 
 class LineStyle : public QObject {

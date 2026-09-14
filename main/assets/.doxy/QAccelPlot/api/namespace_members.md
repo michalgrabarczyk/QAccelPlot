@@ -22,6 +22,7 @@
 
 ## k
 
+* **kMaxDashPatternSize** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **kNearlyEqualEpsilon** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
