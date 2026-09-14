@@ -1443,7 +1443,10 @@
 <li><strong>clearSourceDataRange</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>coordToPixel</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>clampEdgeLabels</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>computeLinearTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
+<li><strong>computeLogScaleTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>computeNiceStep</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
+<li><strong>computeTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>customFormatterDestroyedConnection_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>customTickLabelFormatter_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>count</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
@@ -1614,6 +1617,7 @@
 </ul>
 <h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
 <ul>
+<li><strong>invalidateTicks</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>inwardTickOverlap</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>isDragging_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>imageBuffer_</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>)</li>
@@ -1638,7 +1642,7 @@
 </ul>
 <h2 id="l">l<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>label</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>label</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../structQAccelPlot_1_1AxisTick/"><strong>QAccelPlot::AxisTick</strong></a>)</li>
 <li><strong>labelColor</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>labelColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>labelFont</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
@@ -1648,7 +1652,7 @@
 <li><strong>lastMousePos_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>layoutSize</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>layoutSize_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>logScale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>logScale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>logScale_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>logScaleX</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
 <li><strong>logScaleY</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
@@ -1683,6 +1687,7 @@
 <li><strong>mousePressEvent</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>mouseReleaseEvent</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>MapToPosition</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
+<li><strong>majorTicks</strong> (<a href="../structQAccelPlot_1_1AxisTicks/"><strong>QAccelPlot::AxisTicks</strong></a>)</li>
 <li><strong>maxX</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
 <li><strong>maxY</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
 <li><strong>minX</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a>)</li>
@@ -1733,8 +1738,6 @@
 <li><strong>paintLabel</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>pixelToCoord</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>painter</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a>)</li>
-<li><strong>paintLinearTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
-<li><strong>paintLogScaleTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>paintSubtick</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>paintTick</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
 <li><strong>paintTicks</strong> (<a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a>)</li>
@@ -1854,6 +1857,7 @@
 <li><strong>subtickLengthOut_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>subtickWidth</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>subtickWidth_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
+<li><strong>subtickValues</strong> (<a href="../structQAccelPlot_1_1AxisTicks/"><strong>QAccelPlot::AxisTicks</strong></a>)</li>
 <li><strong>start</strong> (<a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a>, <a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a>)</li>
 <li><strong>setPattern</strong> (<a href="../classQAccelPlot_1_1DashLine/"><strong>QAccelPlot::DashLine</strong></a>)</li>
 <li><strong>setDataX1</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
@@ -1939,8 +1943,8 @@
 <ul>
 <li><strong>ticker</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
 <li><strong>ticker_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>ticks_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>toggleLogScale</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>tickStep</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
 <li><strong>tickColor</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>tickColor_</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
 <li><strong>tickCount</strong> (<a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a>)</li>
@@ -1976,6 +1980,7 @@
 </ul>
 <h2 id="u">u<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
 <ul>
+<li><strong>updatePolish</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>updateGeometry</strong> (<a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a>)</li>
 <li><strong>uploadTexture</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>)</li>
 <li><strong>useVertexColor</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
@@ -1990,10 +1995,11 @@
 <h2 id="v">v<a class="headerlink" href="#v" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>verticalDataRanges_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>viewportMax</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>viewportMax</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>viewportMax_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>viewportMin</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>viewportMin</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
 <li><strong>viewportMin_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>value</strong> (<a href="../structQAccelPlot_1_1AxisTick/"><strong>QAccelPlot::AxisTick</strong></a>)</li>
 <li><strong>viewportSize</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>, <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a>)</li>
 <li><strong>validateRawDataArguments</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
 <li><strong>validateVectorDataArguments</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>

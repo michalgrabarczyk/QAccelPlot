@@ -18,6 +18,7 @@
 #pragma once
 
 #include "axis/AxisTicker.hpp"
+#include "axis/AxisTicks.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -163,6 +164,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
+    void updatePolish() override;
 
 private:
     friend class PlotSeries;
@@ -177,6 +179,7 @@ private:
     void recomputeSourceDataRange();
     void setDataRangeValues(qreal min, qreal max);
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
+    void invalidateTicks();
 
     qreal viewportMin_{0.0};
     qreal viewportMax_{1.0};
@@ -204,6 +207,7 @@ private:
     Orientation orientation_{Horizontal};
     Side side_{Bottom};
     AxisTicker* ticker_;
+    AxisTicks ticks_;
 };
 
 } // namespace QAccelPlot

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AxisTicks_8hpp" kind="file" language="C++">
+    <compoundname>AxisTicks.hpp</compoundname>
+    <includes local="no">QList</includes>
+    <includes local="no">QString</includes>
+    <includedby refid="Axis_8hpp" local="yes">QAccelPlot/src/axis/Axis.hpp</includedby>
+    <includedby refid="AxisTickPainter_8hpp" local="yes">QAccelPlot/src/axis/AxisTickPainter.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/axis/AxisTicks.hpp</label>
+        <link refid="AxisTicks_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QList</label>
+      </node>
+      <node id="3">
+        <label>QString</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1AxisTick" prot="public">QAccelPlot::AxisTick</innerclass>
+    <innerclass refid="structQAccelPlot_1_1AxisTicks" prot="public">QAccelPlot::AxisTicks</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QString&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="structQAccelPlot_1_1AxisTick" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1AxisTick" kindref="compound">AxisTick</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1AxisTick_1a4e47202bf027684fe9f1b32598c7af2d" kindref="member">value</ref>{0.0};<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="structQAccelPlot_1_1AxisTick_1a9bfae2ed141def0ccaf6fa3363606335" kindref="member">label</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structQAccelPlot_1_1AxisTicks" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;qreal&gt;<sp/><ref refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kindref="member">subtickValues</ref>;<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;AxisTick&gt;<sp/><ref refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kindref="member">majorTicks</ref>;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/axis/AxisTicks.hpp"/>
+  </compounddef>
+</doxygen>

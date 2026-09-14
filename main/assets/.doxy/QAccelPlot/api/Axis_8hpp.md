@@ -18,6 +18,7 @@
 
 
 * `#include "axis/AxisTicker.hpp"`
+* `#include "axis/AxisTicks.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QHash>`

@@ -4,14 +4,16 @@
 This inheritance list is sorted roughly, but not completely, alphabetically:
 
 
-* **class** [**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) _Internal helper that paints tick marks and labels onto a QPainter for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._
+* **class** [**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) _Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._
 * **class** [**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md) _Cached one-dimensional texture used by gradient materials._ 
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) _Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._
 * **class** [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._ 
+* **struct** [**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md) _A single major tick: its data-space value and its formatted label._ 
 * **struct** [**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md) _Groups the QPainter context arguments passed into sub-painting helpers._ 
-* **struct** [**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All inputs required for a single paint call, bundled to reduce parameter count._ 
+* **struct** [**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All style inputs required for a single paint call, bundled to reduce parameter count._ 
+* **struct** [**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md) _The visible tick and subtick values, with formatted labels, for one axis viewport._ 
 * **struct** [**QAccelPlot::CurveChunk**](structQAccelPlot_1_1CurveChunk.md) _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._ 
 * **struct** [**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._ 
 * **struct** [**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._

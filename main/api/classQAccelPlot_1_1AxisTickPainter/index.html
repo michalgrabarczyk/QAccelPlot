@@ -1177,6 +1177,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-computeticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function computeTicks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-paintticks" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1211,7 +1222,7 @@
 
 <h1 id="class-qaccelplotaxistickpainter">Class QAccelPlot::AxisTickPainter<a class="headerlink" href="#class-qaccelplotaxistickpainter" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTickPainter</strong></a></p>
-<p><em>Internal helper that paints tick marks and labels onto a QPainter for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em><a href="#detailed-description">More...</a></p>
+<p><em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em><a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;AxisTickPainter.hpp&gt;</code></li>
 </ul>
@@ -1230,7 +1241,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> <br><em>All inputs required for a single paint call, bundled to reduce parameter count.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> <br><em>All style inputs required for a single paint call, bundled to reduce parameter count.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1263,13 +1274,17 @@
 <td style="text-align: left;"><a href="#function-computenicestep"><strong>computeNiceStep</strong></a> (qreal viewportMin, qreal viewportMax, int tickCount) <br><em>Returns a "nice" major tick step for the given</em> <em>viewportMin</em> <em>,__viewportMax</em> <em>range and target__tickCount</em> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a></td>
+<td style="text-align: left;"><a href="#function-computeticks"><strong>computeTicks</strong></a> (qreal viewportMin, qreal viewportMax, bool logScale, const <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> * ticker) <br><em>Returns the visible ticks, subticks and formatted labels for the</em> <em>viewportMin</em> <em>to__viewportMax</em> <em>range.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-paintticks"><strong>paintTicks</strong></a> (QPainter * painter, const QRectF &amp; rect, qreal axisX, qreal axisY, const <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> &amp; params, const <a href="./#typedef-maptoposition"><strong>MapToPosition</strong></a> &amp; mapToPosition) <br><em>Paints all tick marks and labels onto</em> <em>painter</em> <em>using the supplied__params</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-paintticks"><strong>paintTicks</strong></a> (QPainter * painter, const QRectF &amp; rect, qreal axisX, qreal axisY, const <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> &amp; params, const <a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> &amp; ticks, const <a href="./#typedef-maptoposition"><strong>MapToPosition</strong></a> &amp; mapToPosition) <br><em>Paints</em> <em>ticks</em> <em>and their labels onto__painter</em> <em>, placing them according to__params</em> <em>and__mapToPosition</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Used by <code>Axis::paint()</code>. Also provides <code>computeNiceStep()</code>, which is shared with <code>GridNode</code> to keep grid lines aligned with tick positions. </p>
+<p>Tick computation and painting are split: <code>computeTicks()</code> formats labels and must run on the formatter's (GUI) thread, while <code>paintTicks()</code> only draws precomputed ticks and is safe to call from <code>Axis::paint()</code> on the render thread. Also provides <code>computeNiceStep()</code>, which is shared with <code>GridNode</code> to keep grid lines aligned with tick positions. </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="typedef-maptoposition">typedef MapToPosition<a class="headerlink" href="#typedef-maptoposition" title="Permanent link">&para;</a></h3>
 <p><em>Function type that maps a data value to a pixel position along the axis.</em> 
@@ -1288,16 +1303,29 @@
 <p>Shared by both <a href="./"><strong>AxisTickPainter</strong></a> and <a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> so grid lines remain aligned with ticks. </p>
 <hr>
 
+<h3 id="function-computeticks">function computeTicks<a class="headerlink" href="#function-computeticks" title="Permanent link">&para;</a></h3>
+<p><em>Returns the visible ticks, subticks and formatted labels for the</em> <em>viewportMin</em> <em>to__viewportMax</em> <em>range.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">static</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">computeTicks</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMin</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">viewportMax</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ticker</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Uses log-scale placement when <em>logScale</em> is set and both bounds are positive. Labels are produced by <em>ticker's</em> formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread. </p>
+<hr>
+
 <h3 id="function-paintticks">function paintTicks<a class="headerlink" href="#function-paintticks" title="Permanent link">&para;</a></h3>
-<p><em>Paints all tick marks and labels onto</em> <em>painter</em> <em>using the supplied__params</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">paintTicks</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisX</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisY</span><span class="p">,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapToPosition</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Paints</em> <em>ticks</em> <em>and their labels onto__painter</em> <em>, placing them according to__params</em> <em>and__mapToPosition</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">paintTicks</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisX</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">axisY</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Params</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ticks</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapToPosition</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

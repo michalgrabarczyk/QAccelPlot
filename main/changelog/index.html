@@ -1350,6 +1350,11 @@
 <li>A non-finite X or Y data range on a <code>PlotSeries</code> no longer blocks the
   other axis's range update; each axis's range is now validated and
   reported independently.</li>
+<li>Tick labels are now formatted on the GUI thread before rendering, rather
+  than inside <code>Axis::paint()</code>, which runs on the render thread with the
+  threaded render loop. A <code>tickLabel</code> JavaScript callback is therefore never
+  invoked from the render thread, and it now receives <code>tickStep</code> as its
+  second argument (previously always <code>undefined</code>).</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

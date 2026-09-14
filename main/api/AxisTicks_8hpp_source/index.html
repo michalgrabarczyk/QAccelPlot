@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/AxisTickPainter_8hpp/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/AxisTicks_8hpp_source/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>File AxisTickPainter.hpp - QAccelPlot Documentation</title>
+        <title>File AxisTicks.hpp - QAccelPlot Documentation</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-axistickpainterhpp" class="md-skip">
+        <a href="#file-axistickshpp" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              File AxisTickPainter.hpp
+              File AxisTicks.hpp
             
           </span>
         </div>
@@ -1075,36 +1075,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#namespaces" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Namespaces
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#classes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Classes
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1120,57 +1090,35 @@
 
 
 
-<h1 id="file-axistickpainterhpp">File AxisTickPainter.hpp<a class="headerlink" href="#file-axistickpainterhpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_f07047c7c39e03c70b8bf3fe272880c9/"><strong>axis</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTickPainter.hpp</strong></a></p>
-<p><a href="../AxisTickPainter_8hpp_source/">Go to the source code of this file</a></p>
-<ul>
-<li><code>#include "axis/Axis.hpp"</code></li>
-<li><code>#include "axis/AxisTicker.hpp"</code></li>
-<li><code>#include "axis/AxisTicks.hpp"</code></li>
-<li><code>#include &lt;QColor&gt;</code></li>
-<li><code>#include &lt;QRectF&gt;</code></li>
-<li><code>#include &lt;functional&gt;</code></li>
-</ul>
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <br></td>
-</tr>
-</tbody>
-</table>
-<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <br><em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>PaintContext</strong></a> <br><em>Groups the QPainter context arguments passed into sub-painting helpers.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> <br><em>All style inputs required for a single paint call, bundled to reduce parameter count.</em></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/AxisTickPainter.hpp</code></p>
+<h1 id="file-axistickshpp">File AxisTicks.hpp<a class="headerlink" href="#file-axistickshpp" title="Permanent link">&para;</a></h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_f07047c7c39e03c70b8bf3fe272880c9/"><strong>axis</strong></a> <strong>&gt;</strong> <a href="../AxisTicks_8hpp/"><strong>AxisTicks.hpp</strong></a></p>
+<p><a href="../AxisTicks_8hpp/">Go to the documentation of this file</a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">//</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// SPDX-FileCopyrightText: 2026 Michal Grabarczyk</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">//</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// This file is also available under a separate commercial license.</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">// See COMMERCIAL-LICENSING.md for contact information.</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">//</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QList&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QString&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">struct</span><span class="w"> </span><span class="nc">AxisTick</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"> </span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">QString</span><span class="w"> </span><span class="n">label</span><span class="p">;</span><span class="w">    </span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">};</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">struct</span><span class="w"> </span><span class="nc">AxisTicks</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subtickValues</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">AxisTick</span><span class="o">&gt;</span><span class="w"> </span><span class="n">majorTicks</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">};</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
+</code></pre></div>
 
 
 

@@ -209,6 +209,7 @@ flowchart TB
 |  void | [**mouseMoveEvent**](#function-mousemoveevent) (QMouseEvent \* event) override<br> |
 |  void | [**mousePressEvent**](#function-mousepressevent) (QMouseEvent \* event) override<br> |
 |  void | [**mouseReleaseEvent**](#function-mousereleaseevent) (QMouseEvent \* event) override<br> |
+|  void | [**updatePolish**](#function-updatepolish) () override<br>_Recomputes the visible tick values and formats their labels on the GUI thread, ahead of_ `paint()` _._ |
 
 
 
@@ -1181,6 +1182,10 @@ void QAccelPlot::Axis::paint (
 
 
 
+Draws the ticks and labels computed in `updatePolish()`; with the threaded render loop this runs on the render thread. 
+
+
+        
 
 <hr>
 
@@ -1707,6 +1712,21 @@ void QAccelPlot::Axis::mousePressEvent (
 void QAccelPlot::Axis::mouseReleaseEvent (
     QMouseEvent * event
 ) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function updatePolish {#function-updatepolish}
+
+_Recomputes the visible tick values and formats their labels on the GUI thread, ahead of_ `paint()` _._
+```C++
+void QAccelPlot::Axis::updatePolish () override
 ```
 
 

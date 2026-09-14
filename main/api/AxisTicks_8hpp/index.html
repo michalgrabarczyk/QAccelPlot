@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/AxisTickPainter_8hpp/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/AxisTicks_8hpp/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>File AxisTickPainter.hpp - QAccelPlot Documentation</title>
+        <title>File AxisTicks.hpp - QAccelPlot Documentation</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-axistickpainterhpp" class="md-skip">
+        <a href="#file-axistickshpp" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              File AxisTickPainter.hpp
+              File AxisTicks.hpp
             
           </span>
         </div>
@@ -1120,16 +1120,12 @@
 
 
 
-<h1 id="file-axistickpainterhpp">File AxisTickPainter.hpp<a class="headerlink" href="#file-axistickpainterhpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_f07047c7c39e03c70b8bf3fe272880c9/"><strong>axis</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTickPainter.hpp</strong></a></p>
-<p><a href="../AxisTickPainter_8hpp_source/">Go to the source code of this file</a></p>
+<h1 id="file-axistickshpp">File AxisTicks.hpp<a class="headerlink" href="#file-axistickshpp" title="Permanent link">&para;</a></h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_f07047c7c39e03c70b8bf3fe272880c9/"><strong>axis</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTicks.hpp</strong></a></p>
+<p><a href="../AxisTicks_8hpp_source/">Go to the source code of this file</a></p>
 <ul>
-<li><code>#include "axis/Axis.hpp"</code></li>
-<li><code>#include "axis/AxisTicker.hpp"</code></li>
-<li><code>#include "axis/AxisTicks.hpp"</code></li>
-<li><code>#include &lt;QColor&gt;</code></li>
-<li><code>#include &lt;QRectF&gt;</code></li>
-<li><code>#include &lt;functional&gt;</code></li>
+<li><code>#include &lt;QList&gt;</code></li>
+<li><code>#include &lt;QString&gt;</code></li>
 </ul>
 <h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
 <table>
@@ -1156,21 +1152,17 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <br><em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTick/"><strong>AxisTick</strong></a> <br><em>A single major tick: its data-space value and its formatted label.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>PaintContext</strong></a> <br><em>Groups the QPainter context arguments passed into sub-painting helpers.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> <br><em>All style inputs required for a single paint call, bundled to reduce parameter count.</em></td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> <br><em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/AxisTickPainter.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/AxisTicks.hpp</code></p>
 
 
 

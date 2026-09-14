@@ -15,7 +15,7 @@
 
 
 
-_All inputs required for a single paint call, bundled to reduce parameter count._ 
+_All style inputs required for a single paint call, bundled to reduce parameter count._ 
 
 * `#include <AxisTickPainter.hpp>`
 
@@ -50,13 +50,9 @@ _All inputs required for a single paint call, bundled to reduce parameter count.
 |  QColor | [**hoverColor**](#variable-hovercolor)  <br>_Label/tick color when hovered._  |
 |  bool | [**hovered**](#variable-hovered)   = `{false}`<br>_Whether the axis is currently hovered._  |
 |  qreal | [**labelOverflow**](#variable-labeloverflow)   = `{0.0}`<br>_Extra space reserved for edge label overflow._  |
-|  bool | [**logScale**](#variable-logscale)   = `{false}`<br>_Whether log-scale tick placement is used._  |
 |  [**Axis::Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**orientation**](#variable-orientation)   = `{Axis::Horizontal}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation._ |
 |  [**Axis::Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](#variable-side)   = `{Axis::Left}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _side._ |
-|  qreal | [**tickStep**](#variable-tickstep)   = `{0.0}`<br>_Computed major tick step (filled by_ `paintLinearTicks` _)._ |
 |  const [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#variable-ticker)   = `{nullptr}`<br>_Tick style configuration object._  |
-|  qreal | [**viewportMax**](#variable-viewportmax)   = `{1.0}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _maximum value._ |
-|  qreal | [**viewportMin**](#variable-viewportmin)   = `{0.0}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _minimum value._ |
 
 
 
@@ -182,21 +178,6 @@ qreal QAccelPlot::AxisTickPainter::Params::labelOverflow;
 
 
 
-### variable logScale {#variable-logscale}
-
-_Whether log-scale tick placement is used._ 
-```C++
-bool QAccelPlot::AxisTickPainter::Params::logScale;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### variable orientation {#variable-orientation}
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation._
@@ -227,56 +208,11 @@ Axis::Side QAccelPlot::AxisTickPainter::Params::side;
 
 
 
-### variable tickStep {#variable-tickstep}
-
-_Computed major tick step (filled by_ `paintLinearTicks` _)._
-```C++
-qreal QAccelPlot::AxisTickPainter::Params::tickStep;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### variable ticker {#variable-ticker}
 
 _Tick style configuration object._ 
 ```C++
 const AxisTicker* QAccelPlot::AxisTickPainter::Params::ticker;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable viewportMax {#variable-viewportmax}
-
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _maximum value._
-```C++
-qreal QAccelPlot::AxisTickPainter::Params::viewportMax;
-```
-
-
-
-
-<hr>
-
-
-
-
-### variable viewportMin {#variable-viewportmin}
-
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _minimum value._
-```C++
-qreal QAccelPlot::AxisTickPainter::Params::viewportMin;
 ```
 
 

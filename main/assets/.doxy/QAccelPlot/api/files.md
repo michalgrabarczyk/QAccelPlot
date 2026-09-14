@@ -16,6 +16,7 @@ Here is a list of all files with brief descriptions:
             * **file** [**Axis.hpp**](Axis_8hpp.md)     
             * **file** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)     
             * **file** [**AxisTicker.hpp**](AxisTicker_8hpp.md)     
+            * **file** [**AxisTicks.hpp**](AxisTicks_8hpp.md)     
         * **dir** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md)     
             * **file** [**GradientColorTypes.hpp**](GradientColorTypes_8hpp.md)     
             * **file** [**GradientCoordinateUtils.hpp**](GradientCoordinateUtils_8hpp.md)     

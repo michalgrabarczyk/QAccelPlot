@@ -157,8 +157,8 @@
 * **lastMousePos\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **layoutSize\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **logScale\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **label** ([**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md))
 * **labelOverflow** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
-* **logScale** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
 * **logScaleX** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
 * **logScaleY** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
 * **lineWidth\_** ([**QAccelPlot::Grid**](classQAccelPlot_1_1Grid.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
@@ -177,6 +177,7 @@
 
 ## m
 
+* **majorTicks** ([**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md))
 * **maxX** ([**QAccelPlot::CurveChunk**](structQAccelPlot_1_1CurveChunk.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
 * **maxY** ([**QAccelPlot::CurveChunk**](structQAccelPlot_1_1CurveChunk.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
 * **minX** ([**QAccelPlot::CurveChunk**](structQAccelPlot_1_1CurveChunk.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
@@ -253,6 +254,7 @@
 * **subtickLengthIn\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickLengthOut\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickWidth\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
+* **subtickValues** ([**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md))
 * **start** ([**QAccelPlot::CurveChunk**](structQAccelPlot_1_1CurveChunk.md))
 * **stops** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md))
 * **stops\_** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
@@ -272,7 +274,7 @@
 ## t
 
 * **ticker\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **tickStep** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
+* **ticks\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **ticker** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
 * **tickColor\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **tickCount\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
@@ -300,8 +302,7 @@
 * **verticalDataRanges\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **viewportMax\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **viewportMin\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **viewportMax** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
-* **viewportMin** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
+* **value** ([**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md))
 * **viewportSize** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
 * **vertexCache\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **vertexCache** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))

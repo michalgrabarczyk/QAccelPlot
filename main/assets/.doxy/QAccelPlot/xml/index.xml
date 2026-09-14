@@ -55,6 +55,7 @@
     <member refid="classQAccelPlot_1_1Axis_1a88062ca822937eead56df1f999d3f939" kind="variable"><name>orientation_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a4375e365fad1d36eca25876049ada22d" kind="variable"><name>side_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a62984c5e09ddb1de57d6d49e6f5b421a" kind="variable"><name>ticker_</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1ae8d8683ddaacb4d5d390eac0fb9b6ef9" kind="variable"><name>ticks_</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a4ded4e4d6d08ff8338cf62a8d48d749c" kind="function"><name>Axis</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a7e609c5b9eefca817ca60c2d3bce8286" kind="function"><name>viewportMin</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a6a6f58d339c5e3449b9af4a88e9d07ee" kind="function"><name>setViewportMin</name></member>
@@ -127,11 +128,17 @@
     <member refid="classQAccelPlot_1_1Axis_1a9ab1b12201f190a7a02914a9321b6462" kind="function"><name>mouseReleaseEvent</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a73addc8f4c2e5f09f0a9f85c80345767" kind="function"><name>mouseDoubleClickEvent</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a7d6eb39b3c0bfab837de222d5f220ace" kind="function"><name>keyPressEvent</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1a354a8d09a5fc915eddfb161de29564ab" kind="function"><name>updatePolish</name></member>
     <member refid="classQAccelPlot_1_1Axis_1ad4bd3c490b8e474e1c6feaca0492cbd2" kind="function"><name>setSourceDataRange</name></member>
     <member refid="classQAccelPlot_1_1Axis_1adf7f4b3cfa13327f53fae29383bf64f9" kind="function"><name>clearSourceDataRange</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a4afab01e6e4b9966e042f083faa67a0c" kind="function"><name>recomputeSourceDataRange</name></member>
     <member refid="classQAccelPlot_1_1Axis_1afa568c5d7e9bb84b6c29282c278477e0" kind="function"><name>setDataRangeValues</name></member>
     <member refid="classQAccelPlot_1_1Axis_1a35a896b9c6def08c3be566a8bb7774c0" kind="function"><name>paintLabel</name></member>
+    <member refid="classQAccelPlot_1_1Axis_1a47d127dfb87d7401ce91e52300d1db68" kind="function"><name>invalidateTicks</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1AxisTick" kind="struct"><name>QAccelPlot::AxisTick</name>
+    <member refid="structQAccelPlot_1_1AxisTick_1a4e47202bf027684fe9f1b32598c7af2d" kind="variable"><name>value</name></member>
+    <member refid="structQAccelPlot_1_1AxisTick_1a9bfae2ed141def0ccaf6fa3363606335" kind="variable"><name>label</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1AxisTicker" kind="class"><name>QAccelPlot::AxisTicker</name>
     <member refid="classQAccelPlot_1_1AxisTicker_1a690e9a62cf1049ce81b2730239ff85ba" kind="property"><name>tickColor</name></member>
@@ -224,13 +231,18 @@
   </compound>
   <compound refid="classQAccelPlot_1_1AxisTickPainter" kind="class"><name>QAccelPlot::AxisTickPainter</name>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" kind="typedef"><name>MapToPosition</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a60ef033c8fad3068f9afeeb23123337d" kind="function"><name>paintTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kind="function"><name>computeTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kind="function"><name>paintTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" kind="function"><name>computeNiceStep</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" kind="function"><name>drawTickLabel</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a841b4c70e660e4a4864be8fb12311109" kind="function"><name>paintTick</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" kind="function"><name>computeLogScaleTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" kind="function"><name>computeLinearTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" kind="function"><name>paintTick</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" kind="function"><name>paintSubtick</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a95415b1f3d8141cf2ca0b173b2d99dae" kind="function"><name>paintLogScaleTicks</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a1a5563a22339b14ebeb3908220051f66" kind="function"><name>paintLinearTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" kind="function"><name>drawTickLabel</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1AxisTicks" kind="struct"><name>QAccelPlot::AxisTicks</name>
+    <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kind="variable"><name>subtickValues</name></member>
+    <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kind="variable"><name>majorTicks</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1CurveChunk" kind="struct"><name>QAccelPlot::CurveChunk</name>
     <member refid="structQAccelPlot_1_1CurveChunk_1ad7d25fe9c85afbd758299b50790140bf" kind="variable"><name>start</name></member>
@@ -836,16 +848,12 @@
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1abad0fe75b55bbaebd8fc1139b06de82a" kind="variable"><name>axisY</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1AxisTickPainter_1_1Params" kind="struct"><name>QAccelPlot::AxisTickPainter::Params</name>
-    <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3b54cfd880d0e8eb0d2b089eab7019ac" kind="variable"><name>viewportMin</name></member>
-    <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1ac38c8b5701419967eb00a6c9dc180723" kind="variable"><name>viewportMax</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a4df969288041178d1c7ad3cb8bb8a28c" kind="variable"><name>orientation</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49f15832adc78dbc352a2506e34c7787" kind="variable"><name>side</name></member>
-    <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1adb56ac74318650978e492cd908c26cac" kind="variable"><name>logScale</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49e1ad29634894f9c4e3201e5552c64f" kind="variable"><name>hovered</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a170a3d7f8fb11782d5da486a1d7f7094" kind="variable"><name>ticker</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a7c0a3268ca5e6ce97ab4283b9f36ba55" kind="variable"><name>hoverColor</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a8e7a3ac3dfd15851de972a80f959a526" kind="variable"><name>defaultSubtickColor</name></member>
-    <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a3942781e297f6c2267da42e2561e2393" kind="variable"><name>tickStep</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a268c77662a3f1abf15c1344f546276c5" kind="variable"><name>clampEdgeLabels</name></member>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a55da5f11220dbbc111e56bc1f20ec17b" kind="variable"><name>labelOverflow</name></member>
   </compound>
@@ -1180,6 +1188,8 @@
   <compound refid="AxisTicker_8hpp" kind="file"><name>AxisTicker.hpp</name>
   </compound>
   <compound refid="AxisTickPainter_8hpp" kind="file"><name>AxisTickPainter.hpp</name>
+  </compound>
+  <compound refid="AxisTicks_8hpp" kind="file"><name>AxisTicks.hpp</name>
   </compound>
   <compound refid="GradientColorTypes_8hpp" kind="file"><name>GradientColorTypes.hpp</name>
   </compound>

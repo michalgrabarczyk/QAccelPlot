@@ -2289,6 +2289,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-updatepolish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function updatePolish
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2761,6 +2772,10 @@
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-mousereleaseevent"><strong>mouseReleaseEvent</strong></a> (QMouseEvent * event) override<br></td>
 </tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-updatepolish"><strong>updatePolish</strong></a> () override<br><em>Recomputes the visible tick values and formats their labels on the GUI thread, ahead of</em> <code>paint()</code> <em>.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
@@ -3153,6 +3168,7 @@
 <a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span>
 <a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Draws the ticks and labels computed in <code>updatePolish()</code>; with the threaded render loop this runs on the render thread. </p>
 <hr>
 
 <h3 id="function-pixeltocoord">function pixelToCoord<a class="headerlink" href="#function-pixeltocoord" title="Permanent link">&para;</a></h3>
@@ -3390,6 +3406,12 @@
 <a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
+<hr>
+
+<h3 id="function-updatepolish">function updatePolish<a class="headerlink" href="#function-updatepolish" title="Permanent link">&para;</a></h3>
+<p><em>Recomputes the visible tick values and formats their labels on the GUI thread, ahead of</em> <code>paint()</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">updatePolish</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
 <hr>
 
 <hr />

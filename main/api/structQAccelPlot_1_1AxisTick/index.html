@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/AxisTickPainter_8hpp/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1AxisTick/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>File AxisTickPainter.hpp - QAccelPlot Documentation</title>
+        <title>Struct QAccelPlot::AxisTick - QAccelPlot Documentation</title>
       
     
     
@@ -97,7 +97,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-axistickpainterhpp" class="md-skip">
+        <a href="#struct-qaccelplotaxistick" class="md-skip">
           Skip to content
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              File AxisTickPainter.hpp
+              Struct QAccelPlot::AxisTick
             
           </span>
         </div>
@@ -1082,10 +1082,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#namespaces" class="md-nav__link">
+  <a href="#public-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Namespaces
+        Public Attributes
       
     </span>
   </a>
@@ -1093,13 +1093,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#classes" class="md-nav__link">
+  <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Classes
+        Public Attributes Documentation
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Public Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable label
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1120,18 +1148,13 @@
 
 
 
-<h1 id="file-axistickpainterhpp">File AxisTickPainter.hpp<a class="headerlink" href="#file-axistickpainterhpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_f07047c7c39e03c70b8bf3fe272880c9/"><strong>axis</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTickPainter.hpp</strong></a></p>
-<p><a href="../AxisTickPainter_8hpp_source/">Go to the source code of this file</a></p>
+<h1 id="struct-qaccelplotaxistick">Struct QAccelPlot::AxisTick<a class="headerlink" href="#struct-qaccelplotaxistick" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisTick</strong></a></p>
+<p><em>A single major tick: its data-space value and its formatted label.</em> </p>
 <ul>
-<li><code>#include "axis/Axis.hpp"</code></li>
-<li><code>#include "axis/AxisTicker.hpp"</code></li>
-<li><code>#include "axis/AxisTicks.hpp"</code></li>
-<li><code>#include &lt;QColor&gt;</code></li>
-<li><code>#include &lt;QRectF&gt;</code></li>
-<li><code>#include &lt;functional&gt;</code></li>
+<li><code>#include &lt;AxisTicks.hpp&gt;</code></li>
 </ul>
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1141,36 +1164,30 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <br></td>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="#variable-label"><strong>label</strong></a>  <br><em>Formatted tick label.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#variable-value"><strong>value</strong></a>   = <code>{0.0}</code><br><em>Data-space tick value.</em></td>
 </tr>
 </tbody>
 </table>
-<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <br><em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>PaintContext</strong></a> <br><em>Groups the QPainter context arguments passed into sub-painting helpers.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> <br><em>All style inputs required for a single paint call, bundled to reduce parameter count.</em></td>
-</tr>
-</tbody>
-</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-label">variable label<a class="headerlink" href="#variable-label" title="Permanent link">&para;</a></h3>
+<p><em>Formatted tick label.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTick</span><span class="o">::</span><span class="n">label</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-value">variable value<a class="headerlink" href="#variable-value" title="Permanent link">&para;</a></h3>
+<p><em>Data-space tick value.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTick</span><span class="o">::</span><span class="n">value</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/AxisTickPainter.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/axis/AxisTicks.hpp</code></p>
 
 
 

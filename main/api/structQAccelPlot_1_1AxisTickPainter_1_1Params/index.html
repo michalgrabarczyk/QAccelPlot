@@ -1160,17 +1160,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-logscale" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable logScale
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#variable-orientation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1193,43 +1182,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#variable-tickstep" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable tickStep
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#variable-ticker" class="md-nav__link">
     <span class="md-ellipsis">
       
         variable ticker
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-viewportmax" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable viewportMax
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-viewportmin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        variable viewportMin
       
     </span>
   </a>
@@ -1260,7 +1216,7 @@
 
 <h1 id="struct-qaccelplotaxistickpainterparams">Struct QAccelPlot::AxisTickPainter::Params<a class="headerlink" href="#struct-qaccelplotaxistickpainterparams" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <strong>&gt;</strong> <a href="./"><strong>Params</strong></a></p>
-<p><em>All inputs required for a single paint call, bundled to reduce parameter count.</em> </p>
+<p><em>All style inputs required for a single paint call, bundled to reduce parameter count.</em> </p>
 <ul>
 <li><code>#include &lt;AxisTickPainter.hpp&gt;</code></li>
 </ul>
@@ -1294,10 +1250,6 @@
 <td style="text-align: left;"><a href="#variable-labeloverflow"><strong>labelOverflow</strong></a>   = <code>{0.0}</code><br><em>Extra space reserved for edge label overflow.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#variable-logscale"><strong>logScale</strong></a>   = <code>{false}</code><br><em>Whether log-scale tick placement is used.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/#enum-orientation"><strong>Axis::Orientation</strong></a></td>
 <td style="text-align: left;"><a href="#variable-orientation"><strong>orientation</strong></a>   = <code>{Axis::Horizontal}</code><br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>orientation.</em></td>
 </tr>
@@ -1306,20 +1258,8 @@
 <td style="text-align: left;"><a href="#variable-side"><strong>side</strong></a>   = <code>{Axis::Left}</code><br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>side.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-tickstep"><strong>tickStep</strong></a>   = <code>{0.0}</code><br><em>Computed major tick step (filled by</em> <code>paintLinearTicks</code> <em>).</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">const <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> *</td>
 <td style="text-align: left;"><a href="#variable-ticker"><strong>ticker</strong></a>   = <code>{nullptr}</code><br><em>Tick style configuration object.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-viewportmax"><strong>viewportMax</strong></a>   = <code>{1.0}</code><br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>maximum value.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">qreal</td>
-<td style="text-align: left;"><a href="#variable-viewportmin"><strong>viewportMin</strong></a>   = <code>{0.0}</code><br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>minimum value.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1354,45 +1294,21 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="variable-logscale">variable logScale<a class="headerlink" href="#variable-logscale" title="Permanent link">&para;</a></h3>
-<p><em>Whether log-scale tick placement is used.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">logScale</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
 <h3 id="variable-orientation">variable orientation<a class="headerlink" href="#variable-orientation" title="Permanent link">&para;</a></h3>
 <p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>orientation.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Axis</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">orientation</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Axis</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">orientation</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-side">variable side<a class="headerlink" href="#variable-side" title="Permanent link">&para;</a></h3>
 <p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>side.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Axis</span><span class="o">::</span><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">side</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-tickstep">variable tickStep<a class="headerlink" href="#variable-tickstep" title="Permanent link">&para;</a></h3>
-<p><em>Computed major tick step (filled by</em> <code>paintLinearTicks</code> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">tickStep</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Axis</span><span class="o">::</span><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">side</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-ticker">variable ticker<a class="headerlink" href="#variable-ticker" title="Permanent link">&para;</a></h3>
 <p><em>Tick style configuration object.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">ticker</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-viewportmax">variable viewportMax<a class="headerlink" href="#variable-viewportmax" title="Permanent link">&para;</a></h3>
-<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>maximum value.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">viewportMax</span><span class="p">;</span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="variable-viewportmin">variable viewportMin<a class="headerlink" href="#variable-viewportmin" title="Permanent link">&para;</a></h3>
-<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>minimum value.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">viewportMin</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AxisTicker</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">Params</span><span class="o">::</span><span class="n">ticker</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 

@@ -6,9 +6,13 @@
 
 * [**Axis**](classQAccelPlot_1_1Axis.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**AxisTick**](structQAccelPlot_1_1AxisTick.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 

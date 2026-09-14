@@ -40,7 +40,10 @@
 
 * **clearSourceDataRange** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **coordToPixel** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **computeLinearTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+* **computeLogScaleTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **computeNiceStep** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
+* **computeTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **contains** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md), [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
 * **commitTexture** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **compare** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md))
@@ -146,6 +149,7 @@
 
 ## i
 
+* **invalidateTicks** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **inwardTickOverlap** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **interpolate** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md), [**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**QAccelPlot::MorphTransition**](classQAccelPlot_1_1MorphTransition.md))
 * **isValid** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md))
@@ -221,8 +225,6 @@
 * **paint** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md), [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md))
 * **paintLabel** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **pixelToCoord** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **paintLinearTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
-* **paintLogScaleTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **paintSubtick** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **paintTick** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **paintTicks** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
@@ -411,6 +413,7 @@
 
 ## u
 
+* **updatePolish** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **updateGeometry** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md))
 * **uploadTexture** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **upload** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))

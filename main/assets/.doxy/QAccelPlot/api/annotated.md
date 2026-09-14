@@ -6,10 +6,12 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 
 * **namespace** [**QAccelPlot**](namespaceQAccelPlot.md)     
     * **class** [**Axis**](classQAccelPlot_1_1Axis.md) _A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._     
-    * **class** [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) _Internal helper that paints tick marks and labels onto a QPainter for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
+    * **struct** [**AxisTick**](structQAccelPlot_1_1AxisTick.md) _A single major tick: its data-space value and its formatted label._     
+    * **class** [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) _Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._    
         * **struct** [**PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md) _Groups the QPainter context arguments passed into sub-painting helpers._     
-        * **struct** [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All inputs required for a single paint call, bundled to reduce parameter count._     
+        * **struct** [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All style inputs required for a single paint call, bundled to reduce parameter count._     
     * **class** [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) _Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._    
+    * **struct** [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) _The visible tick and subtick values, with formatted labels, for one axis viewport._     
     * **struct** [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._     
     * **struct** [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._     
     * **struct** [**CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._    

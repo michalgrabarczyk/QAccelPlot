@@ -19,6 +19,7 @@
 
 #include "axis/Axis.hpp"
 #include "axis/AxisTicker.hpp"
+#include "axis/AxisTicks.hpp"
 
 #include <QColor>
 #include <QRectF>
@@ -32,16 +33,12 @@ namespace QAccelPlot {
 class AxisTickPainter {
 public:
     struct Params {
-        qreal viewportMin{0.0};                          
-        qreal viewportMax{1.0};                          
         Axis::Orientation orientation{Axis::Horizontal}; 
         Axis::Side side{Axis::Left};                     
-        bool logScale{false};                            
         bool hovered{false};                             
         const AxisTicker* ticker{nullptr};               
         QColor hoverColor;                               
         QColor defaultSubtickColor;                      
-        qreal tickStep{0.0};                             
         bool clampEdgeLabels{false};                     
         qreal labelOverflow{0.0};                        
     };
@@ -55,16 +52,19 @@ public:
         qreal axisY;       
     };
 
-    static void paintTicks(QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const MapToPosition& mapToPosition);
+    static AxisTicks computeTicks(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
+
+    static void paintTicks(
+        QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const AxisTicks& ticks, const MapToPosition& mapToPosition);
 
     static qreal computeNiceStep(qreal viewportMin, qreal viewportMax, int tickCount);
 
 private:
-    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
-    static void paintTick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
+    static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static AxisTicks computeLinearTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
-    static void paintLogScaleTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition);
-    static void paintLinearTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition);
+    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
 };
 
 } // namespace QAccelPlot
