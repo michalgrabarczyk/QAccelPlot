@@ -1327,6 +1327,11 @@
 <li>The plot area is now relaid out when an axis's <code>axisLinePadding</code>,
   <code>orientation</code>, or ticker <code>tickLengthIn</code>/<code>subtickLengthIn</code> changes at
   runtime, instead of only on <code>visible</code> or <code>layoutSize</code> changes.</li>
+<li>Extra axes now respect their <code>side</code>: a horizontal extra axis with
+  <code>side: Top</code> stacks above the plot instead of always below it, and a
+  vertical extra axis now reserves layout space and stacks on its declared
+  <code>side</code> (<code>Left</code> or <code>Right</code>) instead of always overlapping the plot's left
+  edge with no reserved space.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
