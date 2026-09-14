@@ -59,6 +59,7 @@ public:
 
 private:
     QImage imageBuffer_;
+    bool warnedAboutTextureSize_{false};
 };
 
 } // namespace QAccelPlot

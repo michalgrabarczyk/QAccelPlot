@@ -150,6 +150,21 @@
         </inbodydescription>
         <location file="QAccelPlot/src/materials/DataTextureMaterial.hpp" line="73" column="12" bodyfile="QAccelPlot/src/materials/DataTextureMaterial.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a85835131bfcd72f7d04df53aaccad665" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataTextureMaterial::warnedAboutTextureSize_</definition>
+        <argsstring></argsstring>
+        <name>warnedAboutTextureSize_</name>
+        <qualifiedname>QAccelPlot::DataTextureMaterial::warnedAboutTextureSize_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/DataTextureMaterial.hpp" line="74" column="10" bodyfile="QAccelPlot/src/materials/DataTextureMaterial.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -394,7 +409,7 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/materials/DataTextureMaterial.hpp" line="35" column="1" bodyfile="QAccelPlot/src/materials/DataTextureMaterial.hpp" bodystart="35" bodyend="74"/>
+    <location file="QAccelPlot/src/materials/DataTextureMaterial.hpp" line="35" column="1" bodyfile="QAccelPlot/src/materials/DataTextureMaterial.hpp" bodystart="35" bodyend="75"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>attributeSet</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>color</name></member>
@@ -411,6 +426,7 @@
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a345e7672ca0bc009f6a2ffe536069163" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>uploadTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>useVertexColor</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>viewportSize</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a85835131bfcd72f7d04df53aaccad665" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>warnedAboutTextureSize_</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>writeCommonUniforms</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>~DataTextureMaterial</name></member>
     </listofallmembers>

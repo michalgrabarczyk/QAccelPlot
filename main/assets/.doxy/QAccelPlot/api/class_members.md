@@ -652,6 +652,7 @@
 ## w
 
 * **width** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md))
+* **warnedAboutTextureSize\_** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **writeCommonUniforms** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **window** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md))
 * **width\_** ([**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md))
