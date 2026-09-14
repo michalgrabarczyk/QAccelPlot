@@ -83,6 +83,11 @@ signals:
 protected:
     /// \brief Reports this series' data extents to its bound axes.
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
+    /// \brief Widens the reported extents to include the single point (\a x, \a y).
+    ///
+    /// Lets an append-style ingestion path update the range in O(1) instead of rescanning
+    /// the whole buffer. Non-finite coordinates leave the corresponding extent unchanged.
+    void extendDataRanges(qreal x, qreal y);
     /// \brief Clears cached extents after a series has been emptied.
     void clearDataRanges();
 

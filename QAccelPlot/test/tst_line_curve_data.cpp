@@ -14,6 +14,7 @@
 #include <QPointer>
 #include <QtTest/QtTest>
 
+#include <limits>
 #include <vector>
 
 namespace QAccelPlot {
@@ -43,6 +44,9 @@ private slots:
     void destroyedAssignedLineStyleClearsReference();
     void destroyedAssignedLineStyleNotifiesCurve();
     void destroyedReplacedLineStyleDoesNotNotifyCurve();
+    void appendedPointsReportSameRangeAsBulkAssignment();
+    void appendDataAfterClearRebuildsRangeFromScratch();
+    void appendDataIgnoresNonFiniteCoordinates();
 };
 
 namespace {
@@ -417,6 +421,67 @@ void LineCurveDataTest::destroyedReplacedLineStyleDoesNotNotifyCurve()
 
     QCOMPARE(spy.count(), 0);
     QCOMPARE(curve.lineStyle(), &current);
+}
+
+void LineCurveDataTest::appendedPointsReportSameRangeAsBulkAssignment()
+{
+    // Points deliberately arrive out of order so the appends have to widen the range in
+    // both directions, and include an interior point that widens nothing.
+    const auto points = QList<QPointF>{{5.0, -1.0}, {2.0, 7.0}, {9.0, 3.0}, {4.0, 0.5}, {-3.0, 11.0}};
+
+    auto bulkXAxis = Axis{};
+    auto bulkYAxis = Axis{};
+    auto bulkCurve = LineCurve{};
+    bulkCurve.setXAxis(&bulkXAxis);
+    bulkCurve.setYAxis(&bulkYAxis);
+    bulkCurve.setData(points);
+
+    auto appendedXAxis = Axis{};
+    auto appendedYAxis = Axis{};
+    auto appendedCurve = LineCurve{};
+    appendedCurve.setXAxis(&appendedXAxis);
+    appendedCurve.setYAxis(&appendedYAxis);
+    for (const auto& point : points) {
+        appendedCurve.appendData(point.x(), point.y());
+    }
+
+    QCOMPARE(appendedXAxis.dataMin(), bulkXAxis.dataMin());
+    QCOMPARE(appendedXAxis.dataMax(), bulkXAxis.dataMax());
+    QCOMPARE(appendedYAxis.dataMin(), bulkYAxis.dataMin());
+    QCOMPARE(appendedYAxis.dataMax(), bulkYAxis.dataMax());
+}
+
+void LineCurveDataTest::appendDataAfterClearRebuildsRangeFromScratch()
+{
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+
+    curve.appendData(100.0, 1.0);
+    curve.appendData(200.0, 2.0);
+    QCOMPARE(xAxis.dataMin(), 100.0);
+    QCOMPARE(xAxis.dataMax(), 200.0);
+
+    curve.clearData();
+    curve.appendData(5.0, 1.0);
+    curve.appendData(6.0, 2.0);
+
+    QCOMPARE(xAxis.dataMin(), 5.0);
+    QCOMPARE(xAxis.dataMax(), 6.0);
+}
+
+void LineCurveDataTest::appendDataIgnoresNonFiniteCoordinates()
+{
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+
+    curve.appendData(1.0, 1.0);
+    curve.appendData(3.0, 2.0);
+    curve.appendData(std::numeric_limits<qreal>::quiet_NaN(), 4.0);
+
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
 }
 
 } // namespace QAccelPlot
