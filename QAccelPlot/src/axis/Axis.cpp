@@ -441,7 +441,7 @@ void Axis::paint(QPainter* painter)
     painter->drawLine(start, end);
 
     auto tickPen = QPen(hovered_ ? hoverColor_ : ticker_->tickColor());
-    tickPen.setWidth(ticker_->tickWidth());
+    tickPen.setWidthF(ticker_->tickWidth());
     painter->setPen(tickPen);
 
     auto tickPainterParams = AxisTickPainter::Params{};
