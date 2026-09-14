@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "effects/GradientFill.hpp"
+#include "linestyles/SolidLine.hpp"
 #include "series/LineCurve.hpp"
 #include "series/LineCurveVertexCache.hpp"
 #include "transitions/MorphTransition.hpp"
@@ -36,6 +37,12 @@ private slots:
     void separateDoubleDataPreservesModernEpochPrecision();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
+    void defaultLineStyleIsDestroyedWithCurve();
+    void replacedDefaultLineStyleIsDestroyedWithCurve();
+    void assignedLineStyleOutlivesReplacement();
+    void destroyedAssignedLineStyleClearsReference();
+    void destroyedAssignedLineStyleNotifiesCurve();
+    void destroyedReplacedLineStyleDoesNotNotifyCurve();
 };
 
 namespace {
@@ -331,6 +338,85 @@ void LineCurveDataTest::destroyedEffectIsRemovedFromList()
     delete effect;
 
     QCOMPARE(effects.count(&effects), 0);
+}
+
+void LineCurveDataTest::defaultLineStyleIsDestroyedWithCurve()
+{
+    auto* curve = new LineCurve{};
+    auto defaultStyle = QPointer<LineStyle>{curve->lineStyle()};
+    QVERIFY(!defaultStyle.isNull());
+
+    delete curve;
+
+    QVERIFY(defaultStyle.isNull());
+}
+
+void LineCurveDataTest::replacedDefaultLineStyleIsDestroyedWithCurve()
+{
+    auto replacement = SolidLine{};
+    auto* curve = new LineCurve{};
+    auto defaultStyle = QPointer<LineStyle>{curve->lineStyle()};
+
+    curve->setLineStyle(&replacement);
+    QVERIFY(!defaultStyle.isNull());
+    QCOMPARE(defaultStyle->parent(), curve);
+
+    delete curve;
+
+    QVERIFY(defaultStyle.isNull());
+}
+
+void LineCurveDataTest::assignedLineStyleOutlivesReplacement()
+{
+    auto curve = LineCurve{};
+    auto owner = QObject{};
+    auto assigned = QPointer<SolidLine>{new SolidLine{&owner}};
+    curve.setLineStyle(assigned.data());
+
+    auto other = SolidLine{};
+    curve.setLineStyle(&other);
+
+    QVERIFY(!assigned.isNull());
+    QCOMPARE(assigned->parent(), &owner);
+}
+
+void LineCurveDataTest::destroyedAssignedLineStyleClearsReference()
+{
+    auto curve = LineCurve{};
+    auto* style = new SolidLine{};
+    curve.setLineStyle(style);
+    QCOMPARE(curve.lineStyle(), style);
+
+    delete style;
+
+    QCOMPARE(curve.lineStyle(), nullptr);
+}
+
+void LineCurveDataTest::destroyedAssignedLineStyleNotifiesCurve()
+{
+    auto curve = LineCurve{};
+    auto* style = new SolidLine{};
+    curve.setLineStyle(style);
+    auto spy = QSignalSpy{&curve, &LineCurve::lineStyleChanged};
+
+    delete style;
+
+    QCOMPARE(spy.count(), 1);
+}
+
+void LineCurveDataTest::destroyedReplacedLineStyleDoesNotNotifyCurve()
+{
+    auto curve = LineCurve{};
+    auto* style = new SolidLine{};
+    curve.setLineStyle(style);
+    auto current = SolidLine{};
+    curve.setLineStyle(&current);
+    auto spy = QSignalSpy{&curve, &LineCurve::lineStyleChanged};
+
+    delete style;
+
+    QCOMPARE(spy.count(), 0);
+    QCOMPARE(curve.lineStyle(), &current);
 }
 
 } // namespace QAccelPlot
