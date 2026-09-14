@@ -37,6 +37,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Appending the same axis to `extraAxes` twice no longer registers it twice
   and reserves its layout space twice, and reading an out-of-range
   `extraAxes` index returns `null` instead of tripping an assert.
+- A very large series or rectangle count that would produce a data texture
+  taller than a safe cross-GPU limit now logs a clear warning explaining why
+  it may render nothing, instead of failing silently.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
