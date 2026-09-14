@@ -45,6 +45,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   instead of silently dropping the rest.
 - `mouseMoved` now fires for a plain cursor move over the plot, not only while
   a mouse button is held, matching its documented behavior.
+- Axes are no longer given a negative width or height when the plot item is
+  smaller than its padding plus the space its axes reserve.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.

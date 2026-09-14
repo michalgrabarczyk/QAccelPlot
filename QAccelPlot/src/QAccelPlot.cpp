@@ -794,10 +794,10 @@ void QAccelPlot::layoutAxes()
 
     const auto plotX = padding_ + leftW;
     const auto plotY = padding_ + topH;
-    const auto plotW = w - 2.0 * padding_ - leftW - rightW;
-    const auto plotH = h - 2.0 * padding_ - topH - botH;
+    const auto plotW = std::max(1.0, w - 2.0 * padding_ - leftW - rightW);
+    const auto plotH = std::max(1.0, h - 2.0 * padding_ - topH - botH);
 
-    const auto newRect = QRectF(plotX, plotY, std::max(1.0, plotW), std::max(1.0, plotH));
+    const auto newRect = QRectF(plotX, plotY, plotW, plotH);
     if (newRect != plotRect_) {
         plotRect_ = newRect;
         for (auto* series : std::as_const(series_)) {
