@@ -1315,6 +1315,9 @@
   is destroyed. Styles assigned from QML are still left untouched, and the
   curve no longer keeps a dangling reference when an assigned style is
   destroyed before it; it emits <code>lineStyleChanged</code> and repaints instead.</li>
+<li>Appending the same axis to <code>extraAxes</code> twice no longer registers it twice
+  and reserves its layout space twice, and reading an out-of-range
+  <code>extraAxes</code> index returns <code>null</code> instead of tripping an assert.</li>
 <li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.</li>
