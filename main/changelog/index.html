@@ -1332,6 +1332,9 @@
   vertical extra axis now reserves layout space and stacks on its declared
   <code>side</code> (<code>Left</code> or <code>Right</code>) instead of always overlapping the plot's left
   edge with no reserved space.</li>
+<li>Log-scale axis labels no longer collapse to <code>"0.0"</code> or <code>"100.0"</code> for
+  small or large tick values; each major tick's own magnitude is now used
+  to derive its label precision.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
