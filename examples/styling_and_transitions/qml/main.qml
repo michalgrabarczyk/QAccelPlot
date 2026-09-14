@@ -82,6 +82,9 @@ Window {
                 objectName: "transitions"
                 text: "Transitions"
             }
+            TabButton {
+                text: "Gaps"
+            }
         }
 
         StackLayout {
@@ -98,6 +101,10 @@ Window {
                 typography: typography
             }
             TransitionsPage {
+                palette: colorPalette
+                typography: typography
+            }
+            GapsPage {
                 palette: colorPalette
                 typography: typography
             }

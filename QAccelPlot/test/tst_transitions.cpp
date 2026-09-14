@@ -10,6 +10,8 @@
 
 #include <QtTest/QtTest>
 
+#include <cmath>
+#include <limits>
 #include <vector>
 
 // ---------------------------------------------------------------------------
@@ -69,6 +71,11 @@ private slots:
     void morph_singlePointBothSides();
     void draw_minimumToPointCount_alwaysTwo();
     void transition_advance_whenNotRunning_returnsFalse();
+
+    // Invalid samples
+    void morph_invalidTarget_appearsImmediately();
+    void morph_invalidSource_jumpsToTarget();
+    void draw_preservesInvalidSamples();
 };
 
 // ---------------------------------------------------------------------------
@@ -328,6 +335,60 @@ void TestTransitions::transition_advance_whenNotRunning_returnsFalse()
     // advance() without a prior start() must return false immediately.
     const auto stillRunning = t.advance(out, outCount);
     QCOMPARE(stillRunning, false);
+}
+
+// ---------------------------------------------------------------------------
+// Invalid samples
+// ---------------------------------------------------------------------------
+
+void TestTransitions::morph_invalidTarget_appearsImmediately()
+{
+    const auto nan = std::numeric_limits<double>::quiet_NaN();
+    const auto inf = std::numeric_limits<double>::infinity();
+    auto t = TestMorphTransition{};
+    const auto from = std::vector<double>{0.0, 0.0, 1.0, 1.0};
+    const auto to = std::vector<double>{10.0, nan, inf, 11.0};
+    auto out = std::vector<double>{};
+    auto outCount = int{};
+
+    t.callInterpolate(0.1, from, 2, to, 2, out, outCount);
+
+    QCOMPARE(outCount, 2);
+    QCOMPARE(out[0], 1.0);
+    QVERIFY(std::isnan(out[1]));
+    QVERIFY(std::isinf(out[2]));
+    QCOMPARE(out[3], 2.0);
+}
+
+void TestTransitions::morph_invalidSource_jumpsToTarget()
+{
+    const auto nan = std::numeric_limits<double>::quiet_NaN();
+    auto t = TestMorphTransition{};
+    const auto from = std::vector<double>{nan, 0.0, 1.0, -std::numeric_limits<double>::infinity()};
+    const auto to = std::vector<double>{10.0, 20.0, 30.0, 40.0};
+    auto out = std::vector<double>{};
+    auto outCount = int{};
+
+    t.callInterpolate(0.25, from, 2, to, 2, out, outCount);
+
+    QCOMPARE(out[0], 10.0);
+    QCOMPARE(out[1], 5.0);
+    QCOMPARE(out[2], 8.25);
+    QCOMPARE(out[3], 40.0);
+}
+
+void TestTransitions::draw_preservesInvalidSamples()
+{
+    const auto nan = std::numeric_limits<double>::quiet_NaN();
+    auto t = TestDrawTransition{};
+    const auto to = std::vector<double>{0.0, 1.0, 1.0, nan, 2.0, 3.0};
+    auto out = std::vector<double>{};
+    auto outCount = int{};
+
+    t.callInterpolate(1.0, {}, 0, to, 3, out, outCount);
+
+    QCOMPARE(outCount, 3);
+    QVERIFY(std::isnan(out[3]));
 }
 
 QTEST_GUILESS_MAIN(TestTransitions)

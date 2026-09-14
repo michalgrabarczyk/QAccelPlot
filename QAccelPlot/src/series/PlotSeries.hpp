@@ -83,13 +83,28 @@ signals:
 protected:
     /// \brief Reports this series' data extents to its bound axes.
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    /// \brief Widens the reported extents to include the single point (\a x, \a y).
+    /// \brief Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.
+    void setXDataRange(qreal min, qreal max);
+    /// \brief Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.
+    void setYDataRange(qreal min, qreal max);
+    /// \brief Widens the reported X extent to include \a x.
     ///
     /// Lets an append-style ingestion path update the range in O(1) instead of rescanning
-    /// the whole buffer. Non-finite coordinates leave the corresponding extent unchanged.
-    void extendDataRanges(qreal x, qreal y);
+    /// the whole buffer. A non-finite \a x leaves the extent unchanged.
+    void extendXDataRange(qreal x);
+    /// \brief Widens the reported Y extent to include \a y. A non-finite \a y leaves the extent unchanged.
+    void extendYDataRange(qreal y);
     /// \brief Clears cached extents after a series has been emptied.
     void clearDataRanges();
+    /// \brief Clears the cached X extent, e.g. when no sample has a valid X coordinate.
+    void clearXDataRange();
+    /// \brief Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.
+    void clearYDataRange();
+    /// \brief Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.
+    ///
+    /// Log scale changes which samples are valid, so series that apply the invalid-sample contract
+    /// override this to refresh ranges and cached geometry. The default implementation does nothing.
+    virtual void onAxisScaleChanged();
 
 private:
     void onAxisRangeChanged();

@@ -20,6 +20,8 @@ private slots:
     void defaultTolerance();
     void customTolerance_data();
     void customTolerance();
+    void isValidSample_data();
+    void isValidSample();
 };
 
 using QAccelPlot::nearly_equal;
@@ -105,6 +107,43 @@ void TestMathUtils::customTolerance()
     QFETCH(bool, expectedEqual);
 
     QCOMPARE(nearly_equal(left, right, relativeTolerance, absoluteTolerance), expectedEqual);
+}
+
+void TestMathUtils::isValidSample_data()
+{
+    QTest::addColumn<double>("value");
+    QTest::addColumn<bool>("logScale");
+    QTest::addColumn<bool>("expected");
+
+    const auto nan = std::numeric_limits<double>::quiet_NaN();
+    const auto inf = std::numeric_limits<double>::infinity();
+    const auto denormal = std::numeric_limits<double>::denorm_min();
+    const auto maxValue = std::numeric_limits<double>::max();
+
+    QTest::newRow("finite-linear") << 1.5 << false << true;
+    QTest::newRow("zero-linear") << 0.0 << false << true;
+    QTest::newRow("negative-linear") << -3.0 << false << true;
+    QTest::newRow("max-linear") << maxValue << false << true;
+    QTest::newRow("denormal-linear") << denormal << false << true;
+    QTest::newRow("nan-linear") << nan << false << false;
+    QTest::newRow("positive-infinity-linear") << inf << false << false;
+    QTest::newRow("negative-infinity-linear") << -inf << false << false;
+    QTest::newRow("positive-log") << 10.0 << true << true;
+    QTest::newRow("denormal-log") << denormal << true << true;
+    QTest::newRow("zero-log") << 0.0 << true << false;
+    QTest::newRow("negative-zero-log") << -0.0 << true << false;
+    QTest::newRow("negative-log") << -1.0 << true << false;
+    QTest::newRow("nan-log") << nan << true << false;
+    QTest::newRow("positive-infinity-log") << inf << true << false;
+}
+
+void TestMathUtils::isValidSample()
+{
+    QFETCH(double, value);
+    QFETCH(bool, logScale);
+    QFETCH(bool, expected);
+
+    QCOMPARE(QAccelPlot::isValidSample(value, logScale), expected);
 }
 
 QTEST_GUILESS_MAIN(TestMathUtils)

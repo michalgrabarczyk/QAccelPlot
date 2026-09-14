@@ -13,6 +13,7 @@
 #include "materials/GradientLineMaterial.hpp"
 #include "materials/LineMaterial.hpp"
 #include "renderers/CurveRendererParams.hpp"
+#include "series/LineCurveGapFilter.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>
@@ -103,28 +104,65 @@ QSGGeometryNode* createFillNode(const int vertexCount)
     return node;
 }
 
-void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const int pointCount, const int sampledPointCount, Axis* xAxis, Axis* yAxis,
-    const qreal width, const qreal height, const GradientFillPayload& gradientFillPayload)
+// Sampling plan for a gap-aware gradient fill: one triangle strip per run of valid
+// samples, joined by two degenerate vertices so the strip never spans a gap.
+struct FillPlan {
+    const std::vector<SampleRun>* runs{nullptr};
+    std::vector<int> sampledCounts;
+    int vertexCount{0};
+};
+
+FillPlan planFill(const std::vector<SampleRun>& runs)
+{
+    auto plan = FillPlan{};
+    plan.runs = &runs;
+    plan.sampledCounts = LineCurveGapFilter::planRunSampling(runs, kMaxFillVertices / 2);
+    auto drawnRuns = int{0};
+    for (const auto sampled : plan.sampledCounts) {
+        if (sampled > 0) {
+            plan.vertexCount += sampled * 2;
+            ++drawnRuns;
+        }
+    }
+    // Two restart vertices (the previous run's last vertex and the next run's first vertex) per join.
+    plan.vertexCount += std::max(0, drawnRuns - 1) * 2;
+    return plan;
+}
+
+void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const FillPlan& plan, Axis* xAxis, Axis* yAxis, const qreal width,
+    const qreal height, const GradientFillPayload& gradientFillPayload)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
     const auto baselineData = (gradientFillPayload.baseline == GradientFillBaseline::AxisMinimum) ? yAxis->viewportMin() : gradientFillPayload.baselineValue;
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
 
-    for (int index = 0; index < sampledPointCount; ++index) {
-        auto sourceIndex = index;
-        if (sampledPointCount < pointCount && sampledPointCount > 1) {
-            sourceIndex = static_cast<int>((static_cast<long long>(index) * (pointCount - 1)) / (sampledPointCount - 1));
+    auto written = int{0};
+    for (auto runIndex = std::size_t{0}; runIndex < plan.sampledCounts.size(); ++runIndex) {
+        const auto sampledCount = plan.sampledCounts[runIndex];
+        if (sampledCount <= 0) {
+            continue;
         }
+        const auto runStartVertex = written;
+        if (written > 0) {
+            // Restart the strip: repeat the previous vertex now and this run's first vertex below.
+            vertices[written] = vertices[written - 1];
+            written += 2;
+        }
+        for (auto sample = int{0}; sample < sampledCount; ++sample) {
+            const auto sourceIndex = LineCurveGapFilter::sampledSourceIndex((*plan.runs)[runIndex], sample, sampledCount);
+            const auto px = data.x(sourceIndex);
+            const auto py = data.y(sourceIndex);
+            const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
+            const auto yPixel = static_cast<float>(yAxis->coordToPixel(py, height));
 
-        const auto px = data.x(sourceIndex);
-        const auto py = data.y(sourceIndex);
-        const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
-        const auto yPixel = static_cast<float>(yAxis->coordToPixel(py, height));
-
-        const auto normalizedCurve = normalizedGradientFillValue(gradientFillPayload, px, py);
-        const auto normalizedBaseline = normalizedGradientFillValue(gradientFillPayload, px, baselineData);
-        vertices[index * 2] = {xPixel, baselinePixel, normalizedBaseline};
-        vertices[index * 2 + 1] = {xPixel, yPixel, normalizedCurve};
+            const auto normalizedCurve = normalizedGradientFillValue(gradientFillPayload, px, py);
+            const auto normalizedBaseline = normalizedGradientFillValue(gradientFillPayload, px, baselineData);
+            vertices[written++] = {xPixel, baselinePixel, normalizedBaseline};
+            vertices[written++] = {xPixel, yPixel, normalizedCurve};
+        }
+        if (runStartVertex > 0) {
+            vertices[runStartVertex + 1] = vertices[runStartVertex + 2];
+        }
     }
 }
 
@@ -219,6 +257,9 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
     const auto thresholdSquared = params.hitThreshold * params.hitThreshold;
 
     for (const auto& chunk : params.chunks) {
+        if (isEmptyChunk(chunk)) {
+            continue;
+        }
         // Map chunk data-space AABB to screen space and reject the chunk when the
         // mouse is farther than hitThreshold from it. coordToPixel is monotone for
         // linear scale and for log scale, so taking min/max of the two mapped extremes
@@ -241,6 +282,10 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
         const auto segStart = std::max(0, chunk.start - 1);
         const auto segEnd = std::min(chunk.start + chunk.count, params.pointCount - 1);
         for (auto index = segStart; index < segEnd; ++index) {
+            if (!LineCurveGapFilter::isValidPoint(params.data, index, params.nonPositiveXInvalid, params.nonPositiveYInvalid)
+                || !LineCurveGapFilter::isValidPoint(params.data, index + 1, params.nonPositiveXInvalid, params.nonPositiveYInvalid)) {
+                continue;
+            }
             const auto p1
                 = QPointF{params.xAxis->coordToPixel(params.data.x(index), params.width), params.yAxis->coordToPixel(params.data.y(index), params.height)};
             const auto p2 = QPointF{
@@ -309,21 +354,39 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
 void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const
 {
     const auto fillEnabled = params.gradientFillPayload.isValid() && params.xAxis && params.yAxis;
-    const auto maxFillPointCount = std::max(2, kMaxFillVertices / 2);
-    const auto sampledFillPointCount = fillEnabled ? std::clamp(params.pointCount, 2, maxFillPointCount) : 0;
-    const auto fillVertexCount = sampledFillPointCount * 2;
+    const auto plan = fillEnabled ? planFill(validRuns(params)) : FillPlan{};
+    const auto fillVertexCount = plan.vertexCount;
     if (fillNode->geometry()->vertexCount() != fillVertexCount) {
         fillNode->geometry()->allocate(fillVertexCount);
     }
     if (fillEnabled && fillVertexCount > 0) {
-        assembleFillVertices(fillNode->geometry(), params.sourceData, params.pointCount, sampledFillPointCount, params.xAxis, params.yAxis,
-            params.viewportSize.x(), params.viewportSize.y(), params.gradientFillPayload);
+        assembleFillVertices(fillNode->geometry(), params.sourceData, plan, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(),
+            params.gradientFillPayload);
         fillNode->markDirty(QSGNode::DirtyGeometry);
         auto* material = static_cast<GradientFillMaterial*>(fillNode->material());
         material->opacity = params.gradientFillPayload.opacity;
         material->gradientTexture.upload(params.window, params.gradientFillPayload.stops);
         fillNode->markDirty(QSGNode::DirtyMaterial);
     }
+}
+
+const std::vector<SampleRun>& LineCurveLineRenderer::validRuns(const LineCurveRenderParams& params) const
+{
+    // The fill is rebuilt every frame (it is assembled in pixel space), but the runs
+    // only change with the data, so scanning every sample is limited to data updates.
+    auto& cache = fillRunCache_;
+    const auto* dataIdentity
+        = params.sourceData.doubleData ? static_cast<const void*>(params.sourceData.doubleData) : static_cast<const void*>(params.sourceData.floatData);
+    const auto stale = params.dataChanged || cache.data != dataIdentity || cache.pointCount != params.pointCount || cache.logScaleX != params.logScaleX
+        || cache.logScaleY != params.logScaleY;
+    if (stale) {
+        cache.runs = LineCurveGapFilter::findValidRuns(params.sourceData, params.pointCount, params.logScaleX, params.logScaleY);
+        cache.data = dataIdentity;
+        cache.pointCount = params.pointCount;
+        cache.logScaleX = params.logScaleX;
+        cache.logScaleY = params.logScaleY;
+    }
+    return cache.runs;
 }
 
 void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor,
@@ -359,18 +422,26 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
     }
     auto arcLengths = std::vector<float>(params.pointCount);
     auto cumLen = 0.0f;
-    auto prevPx = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(0), params.viewportSize.x()));
-    auto prevPy = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(0), params.viewportSize.y()));
-    arcLengths[0] = 0.0f;
-    for (auto i = 1; i < params.pointCount; ++i) {
-        const auto px = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()));
-        const auto py = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y()));
-        const auto dx = px - prevPx;
-        const auto dy = py - prevPy;
-        cumLen += std::sqrt(dx * dx + dy * dy);
+    auto prevPx = 0.0f;
+    auto prevPy = 0.0f;
+    auto prevValid = false;
+    for (auto i = 0; i < params.pointCount; ++i) {
+        // Segments touching an invalid sample are not drawn and add no length, so the
+        // dash phase continues seamlessly on the far side of a gap.
+        const auto valid = LineCurveGapFilter::isValidPoint(params.sourceData, i, params.logScaleX, params.logScaleY);
+        if (valid) {
+            const auto px = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()));
+            const auto py = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y()));
+            if (prevValid) {
+                const auto dx = px - prevPx;
+                const auto dy = py - prevPy;
+                cumLen += std::sqrt(dx * dx + dy * dy);
+            }
+            prevPx = px;
+            prevPy = py;
+        }
+        prevValid = valid;
         arcLengths[i] = cumLen;
-        prevPx = px;
-        prevPy = py;
     }
     return arcLengths;
 }

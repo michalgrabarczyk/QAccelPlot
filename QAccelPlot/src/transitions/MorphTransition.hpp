@@ -15,6 +15,8 @@ namespace QAccelPlot {
 ///
 /// Each point is linearly blended from its old position to its new position.
 /// When the point counts differ, the shorter dataset is resampled to match.
+/// Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately,
+/// and a valid target coordinate replaces an invalid source coordinate without animation.
 ///
 /// \sa DrawTransition, DataTransition
 class MorphTransition : public DataTransition {
@@ -24,6 +26,9 @@ class MorphTransition : public DataTransition {
 public:
     /// \brief Constructs a MorphTransition with the given \a parent.
     explicit MorphTransition(QObject* parent = nullptr);
+
+    /// \brief Returns the coordinate between \a from and \a to at \a easedProgress, honoring the invalid-sample contract.
+    static double interpolateCoordinate(double from, double to, double easedProgress);
 
 protected:
     /// \brief Interpolates point positions between the two datasets at \a easedProgress (0–1).

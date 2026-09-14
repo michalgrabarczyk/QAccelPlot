@@ -45,6 +45,9 @@ Choose the simplest API appropriate for the data source:
 - Use [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata) to
   transfer a completed buffer safely from a worker thread.
 - Use `setDataFNoRange()` only when axis data ranges are maintained separately.
+- Mark missing or invalid samples with `NaN`; `gaps.nanMode` selects whether
+  the curve breaks or connects across them. See
+  [Invalid samples and gaps](concepts.md#invalid-samples-and-gaps).
 
 See the [performance guide](performance.md) for a detailed comparison of the
 available data paths.

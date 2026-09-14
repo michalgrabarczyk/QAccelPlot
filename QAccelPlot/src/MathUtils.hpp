@@ -45,4 +45,18 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
     return diff <= std::max(eps_abs, scale * eps_rel);
 }
 
+// Returns true if a single sample coordinate can be plotted.
+//
+// A coordinate is invalid when it is non-finite (NaN or +/-Inf) or, on a
+// logarithmic dimension, when it is not strictly positive. Invalid coordinates
+// break line curves, are excluded from auto-ranging, and are never hit-tested.
+//
+// Implemented with plain comparisons (false for NaN and +/-Inf) rather than
+// std::isfinite(), which some standard libraries do not inline. This check runs
+// per coordinate on multi-million-point buffers.
+[[nodiscard]] inline bool isValidSample(double value, bool logScale) noexcept
+{
+    return value >= std::numeric_limits<double>::lowest() && value <= std::numeric_limits<double>::max() && (!logScale || value > 0.0);
+}
+
 } // namespace QAccelPlot

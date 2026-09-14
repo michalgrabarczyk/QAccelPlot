@@ -12,6 +12,7 @@
 #include "linestyles/SolidLine.hpp"
 #include "renderers/LineCurveLineRenderer.hpp"
 #include "renderers/LineCurvePointRenderer.hpp"
+#include "series/LineCurveGaps.hpp"
 #include "series/LineCurveVertexCache.hpp"
 #include "series/PlotSeries.hpp"
 #include "theme/ColorPalette.hpp"
@@ -41,6 +42,13 @@ namespace QAccelPlot {
 /// \par Transitions
 /// Animated data updates are enabled by assigning a \c DrawTransition or \c MorphTransition to \c transition.
 ///
+/// \par Invalid samples and gaps
+/// A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
+/// log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from
+/// auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and
+/// gradient fill treat them is controlled by the \c gaps grouped property: <tt>gaps.nanMode</tt> \c Break (default)
+/// leaves a gap, \c Connect joins the neighboring valid samples. Insert \c NaN to mark missing telemetry explicitly.
+///
 /// \sa Axis, GradientFill, GradientStroke, DrawTransition, MorphTransition
 class LineCurve : public PlotSeries {
     Q_OBJECT
@@ -66,6 +74,8 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     /// \brief List of visual effects (e.g. GradientFill, GradientStroke) applied to this curve.
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
+    /// \brief Grouped gap-rendering settings, e.g. <tt>gaps.nanMode</tt>.
+    Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
 
 public:
     /// \brief Marker shape options for data points.
@@ -121,6 +131,9 @@ public:
     /// \brief Returns the QML list property for attached visual effects.
     QQmlListProperty<LineCurveEffect> effects();
 
+    /// \brief Returns the grouped gap-rendering settings. The object is owned by the curve.
+    LineCurveGaps* gaps() const;
+
     /// \brief Appends a single data point (\a x, \a y) to the curve. Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y);
     /// \brief Removes all data points from the curve.
@@ -153,6 +166,8 @@ protected:
     /// \endcond
     /// \brief Returns \c true if \a point lies within the curve's hit-test region.
     bool contains(const QPointF& point) const override;
+    /// \brief Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.
+    void onAxisScaleChanged() override;
 
 signals:
     /// \brief Emitted when the color property changes.
@@ -177,6 +192,7 @@ signals:
 private:
     void onLineStyleChanged();
     void onLineStyleDestroyed();
+    void onNanGapModeChanged();
 
     static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
     static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
@@ -190,6 +206,10 @@ private:
 
     void updateDataRanges(const std::vector<float>& buf, int count);
     void updateDataRanges(const std::vector<double>& buf, int count);
+    void applyDataExtents(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
+    void recomputeDataRanges();
+    bool logScaleX() const;
+    bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
     bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
@@ -199,6 +219,11 @@ private:
     void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
     const std::vector<float>& renderData() const;
     CurveDataView sourceDataView() const;
+    // Number of samples in renderData() / sourceDataView(); smaller than pointCount_
+    // when NanGapMode::Connect has removed invalid samples.
+    int renderPointCount() const;
+    void rebuildGapConnectData();
+    void releaseGapConnectData();
     void refreshVertexCacheForDataChange();
     void installVertexCache(std::vector<char>&& vertexCache);
     std::size_t expectedVertexCacheSize() const;
@@ -231,6 +256,16 @@ private:
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
+    LineCurveGaps* gaps_{new LineCurveGaps{this}};
+    // True when the most recent data update computed ranges; the NoRange APIs leave
+    // range management to the caller, so log-scale changes must not overwrite it.
+    bool autoDataRanges_{true};
+    // NanGapMode::Connect copies with invalid samples removed. Only populated when
+    // Connect mode is on and the data contains invalid samples.
+    bool gapConnectCompacted_{false};
+    int gapConnectPointCount_{0};
+    std::vector<double> gapConnectData_;      // valid double samples (double data only)
+    std::vector<float> gapConnectRenderData_; // valid GPU samples; also the source view for float data
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
