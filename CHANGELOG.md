@@ -29,6 +29,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   the new data is applied directly.
 - Major tick marks now honor fractional `tickWidth` values (e.g. `1.5`)
   instead of truncating to an integer pixel width.
+- `LineCurve` no longer leaks the default `SolidLine` it creates for its
+  `lineStyle`: the default is owned by the curve and released when the curve
+  is destroyed. Styles assigned from QML are still left untouched, and the
+  curve no longer keeps a dangling reference when an assigned style is
+  destroyed before it; it emits `lineStyleChanged` and repaints instead.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
