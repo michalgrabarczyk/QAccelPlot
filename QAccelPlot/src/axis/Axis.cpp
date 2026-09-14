@@ -55,8 +55,8 @@ Axis::Axis(QQuickItem* parent, Side side)
     setAcceptedMouseButtons(Qt::LeftButton);
     connect(ticker_, &AxisTicker::tickColorChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLabelColorChanged, this, [this]() { update(); });
-    connect(ticker_, &AxisTicker::tickCountChanged, this, [this]() { update(); });
-    connect(ticker_, &AxisTicker::subtickCountChanged, this, [this]() { update(); });
+    connect(ticker_, &AxisTicker::tickCountChanged, this, &Axis::invalidateTicks);
+    connect(ticker_, &AxisTicker::subtickCountChanged, this, &Axis::invalidateTicks);
     connect(ticker_, &AxisTicker::tickLengthChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::subtickLengthChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLengthInChanged, this, [this]() { update(); });
@@ -69,9 +69,10 @@ Axis::Axis(QQuickItem* parent, Side side)
     connect(ticker_, &AxisTicker::tickLabelPaddingChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLabelRotationChanged, this, [this]() { update(); });
     connect(ticker_, &AxisTicker::tickLabelFontChanged, this, [this]() { update(); });
-    connect(ticker_, &AxisTicker::tickLabelFormatterChanged, this, [this]() { update(); });
-    connect(ticker_, &AxisTicker::tickLabelFormatChanged, this, [this]() { update(); });
+    connect(ticker_, &AxisTicker::tickLabelFormatterChanged, this, &Axis::invalidateTicks);
+    connect(ticker_, &AxisTicker::tickLabelFormatChanged, this, &Axis::invalidateTicks);
     setSide(side);
+    invalidateTicks();
 }
 
 qreal Axis::viewportMin() const
@@ -87,7 +88,7 @@ void Axis::setViewportMin(const qreal m)
     viewportMin_ = m;
     emit viewportMinChanged();
     emit rangeChanged();
-    update();
+    invalidateTicks();
 }
 
 qreal Axis::viewportMax() const
@@ -103,7 +104,7 @@ void Axis::setViewportMax(const qreal m)
     viewportMax_ = m;
     emit viewportMaxChanged();
     emit rangeChanged();
-    update();
+    invalidateTicks();
 }
 
 qreal Axis::dataMin() const
@@ -336,7 +337,7 @@ void Axis::setLogScale(const bool on)
     }
     emit logScaleChanged();
     emit rangeChanged(); // force curves to rebuild
-    update();
+    invalidateTicks();
 }
 
 double Axis::zoomScaleFactor() const
@@ -445,11 +446,8 @@ void Axis::paint(QPainter* painter)
     painter->setPen(tickPen);
 
     auto tickPainterParams = AxisTickPainter::Params{};
-    tickPainterParams.viewportMin = viewportMin_;
-    tickPainterParams.viewportMax = viewportMax_;
     tickPainterParams.orientation = orientation_;
     tickPainterParams.side = side_;
-    tickPainterParams.logScale = logScale_;
     tickPainterParams.hovered = hovered_;
     tickPainterParams.ticker = ticker_;
     tickPainterParams.hoverColor = hoverColor_;
@@ -457,8 +455,10 @@ void Axis::paint(QPainter* painter)
     tickPainterParams.clampEdgeLabels = clampEdgeLabels_;
     tickPainterParams.labelOverflow = labelOv;
 
+    // Only draw the ticks computed in updatePolish(): this may run on the render thread, where the
+    // formatter (and any tickLabel JS callback) must not be called.
     AxisTickPainter::paintTicks(
-        painter, dataRect, axisX, axisY, tickPainterParams, [this](const auto value, const auto length) { return coordToPixel(value, length); });
+        painter, dataRect, axisX, axisY, tickPainterParams, ticks_, [this](const auto value, const auto length) { return coordToPixel(value, length); });
 
     paintLabel(painter, dataRect, axisX, axisY);
 }
@@ -715,6 +715,13 @@ void Axis::keyPressEvent(QKeyEvent* event)
     }
 }
 
+void Axis::updatePolish()
+{
+    // Runs on the GUI thread before the scene graph sync. Tick labels are formatted here rather than in
+    // paint(), because a formatter's tickLabel JS callback must run on the QML engine's thread.
+    ticks_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_);
+}
+
 void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, const qreal axisY) const
 {
     if (label_.isEmpty()) {
@@ -753,6 +760,12 @@ void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, con
         }
     }
     painter->restore();
+}
+
+void Axis::invalidateTicks()
+{
+    polish();
+    update();
 }
 
 } // namespace QAccelPlot

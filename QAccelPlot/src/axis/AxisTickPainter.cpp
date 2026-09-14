@@ -70,8 +70,19 @@ QRectF clampTickLabelRect(const QRectF& rect, const qreal rotation, const Qt::Or
 
 }
 
-void AxisTickPainter::paintTicks(
-    QPainter* painter, const QRectF& rect, const qreal axisX, const qreal axisY, const Params& params, const MapToPosition& mapToPosition)
+AxisTicks AxisTickPainter::computeTicks(const qreal viewportMin, const qreal viewportMax, const bool logScale, const AxisTicker* ticker)
+{
+    if (ticker == nullptr) {
+        return {};
+    }
+    if (logScale && viewportMin > 0 && viewportMax > 0) {
+        return computeLogScaleTicks(viewportMin, viewportMax, *ticker);
+    }
+    return computeLinearTicks(viewportMin, viewportMax, *ticker);
+}
+
+void AxisTickPainter::paintTicks(QPainter* painter, const QRectF& rect, const qreal axisX, const qreal axisY, const Params& params, const AxisTicks& ticks,
+    const MapToPosition& mapToPosition)
 {
     if (params.ticker == nullptr) {
         return;
@@ -80,21 +91,143 @@ void AxisTickPainter::paintTicks(
     painter->save();
     painter->setFont(params.ticker->tickLabelFont());
     const auto ctx = PaintContext{painter, rect, axisX, axisY};
-    if (params.logScale && params.viewportMin > 0 && params.viewportMax > 0) {
-        paintLogScaleTicks(ctx, params, mapToPosition);
-    } else {
-        paintLinearTicks(ctx, params, mapToPosition);
+
+    // Pass 1: subticks
+    if (!ticks.subtickValues.isEmpty()) {
+        const auto savedPen = painter->pen();
+        const auto effectiveSubtickColor = params.ticker->subtickColor().isValid() ? params.ticker->subtickColor() : params.defaultSubtickColor;
+        auto subtickPen = QPen(params.hovered ? params.hoverColor : effectiveSubtickColor);
+        subtickPen.setWidthF(params.ticker->subtickWidth());
+        painter->setPen(subtickPen);
+        for (const auto value : ticks.subtickValues) {
+            paintSubtick(ctx, value, params, mapToPosition);
+        }
+        painter->setPen(savedPen);
+    }
+
+    // Pass 2: major ticks (drawn on top of subticks)
+    for (const auto& tick : ticks.majorTicks) {
+        paintTick(ctx, tick, params, mapToPosition);
     }
     painter->restore();
 }
 
-void AxisTickPainter::paintTick(const PaintContext& ctx, const qreal value, const Params& params, const MapToPosition& mapToPosition)
+qreal AxisTickPainter::computeNiceStep(const qreal viewportMin, const qreal viewportMax, const int tickCount)
 {
-    const auto label = params.ticker->tickLabelFormatter()->format(value, params.tickStep);
-    const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, label);
+    const auto range = viewportMax - viewportMin;
+    if (range <= 0.0 || tickCount <= 0) {
+        return 1.0;
+    }
+    const auto roughStep = range / tickCount;
+    const auto magnitude = std::pow(10.0, std::floor(std::log10(roughStep)));
+    const auto residual = roughStep / magnitude;
+    // Fallback "nice" step residual: the top of the 1-2-5-10 sequence, representing the next decimal decade.
+    constexpr static auto kNiceStepNextDecade = qreal{10.0};
+    auto niceResidual = kNiceStepNextDecade;
+    if (residual <= 1.0) {
+        niceResidual = 1.0;
+    } else if (residual <= 2.0) {
+        niceResidual = 2.0;
+    } else if (residual <= 5.0) {
+        niceResidual = 5.0;
+    }
+    return niceResidual * magnitude;
+}
+
+AxisTicks AxisTickPainter::computeLogScaleTicks(const qreal viewportMin, const qreal viewportMax, const AxisTicker& ticker)
+{
+    const auto viewportLow = std::min(viewportMin, viewportMax);
+    const auto viewportHigh = std::max(viewportMin, viewportMax);
+    const auto logMin = static_cast<int>(std::floor(std::log10(viewportLow)));
+    const auto logMax = static_cast<int>(std::ceil(std::log10(viewportHigh)));
+
+    auto ticks = AxisTicks{};
+    for (auto exponent = logMin; exponent < logMax; ++exponent) {
+        const auto value = std::pow(10.0, exponent);
+        for (auto multiplier = 2; multiplier <= 9; ++multiplier) {
+            const auto subValue = multiplier * value;
+            if (subValue >= viewportLow && subValue <= viewportHigh) {
+                ticks.subtickValues.append(subValue);
+            }
+        }
+    }
+
+    // Log-scale ticks have no single step (each decade is 10x the last), so pass each
+    // tick's own value as its "step" — the label formatter derives precision from it,
+    // and a value's own magnitude is a reasonable proxy for the precision it needs.
+    const auto* formatter = ticker.tickLabelFormatter();
+    for (auto exponent = logMin; exponent <= logMax; ++exponent) {
+        const auto value = std::pow(10.0, exponent);
+        if (value >= viewportLow && value <= viewportHigh) {
+            ticks.majorTicks.append(AxisTick{value, formatter->format(value, value)});
+        }
+    }
+    return ticks;
+}
+
+AxisTicks AxisTickPainter::computeLinearTicks(const qreal viewportMin, const qreal viewportMax, const AxisTicker& ticker)
+{
+    if (ticker.tickCount() <= 0) {
+        return {};
+    }
+
+    const auto viewportLow = std::min(viewportMin, viewportMax);
+    const auto viewportHigh = std::max(viewportMin, viewportMax);
+    const auto range = viewportHigh - viewportLow;
+    if (range <= 0.0) {
+        return {};
+    }
+
+    // Compute a "nice" world-aligned tick step from the requested tick count.
+    const auto step = computeNiceStep(viewportLow, viewportHigh, ticker.tickCount());
+
+    // Start at the first world-aligned tick >= viewportMin.
+    const auto firstTick = std::ceil(viewportLow / step) * step;
+
+    // Begin one interval before firstTick so that subticks in [firstTick-step, firstTick]
+    // that fall inside [viewportMin, viewportMax] are still included even though their owning major tick is
+    // outside the visible range.
+    const auto loopStart = firstTick - step;
+
+    // Small fraction of the step used as a boundary tolerance: prevents floating-point rounding
+    // from excluding ticks that lie exactly on a viewport edge.
+    constexpr static auto kRelativeTolerance = 1e-9;
+
+    auto ticks = AxisTicks{};
+    if (ticker.subtickCount() > 0) {
+        const auto subStep = step / (ticker.subtickCount() + 1);
+        auto subTickIndex = 0;
+        for (auto tickBase = loopStart; tickBase <= viewportHigh + step * kRelativeTolerance; tickBase = loopStart + (++subTickIndex) * step) {
+            for (auto subIndex = 1; subIndex <= ticker.subtickCount(); ++subIndex) {
+                const auto subValue = tickBase + subIndex * subStep;
+                if (subValue < viewportLow - subStep * kRelativeTolerance) {
+                    continue;
+                }
+                if (subValue > viewportHigh + subStep * kRelativeTolerance) {
+                    break;
+                }
+                ticks.subtickValues.append(subValue);
+            }
+        }
+    }
+
+    // The step is passed to the formatter so it can choose a matching label precision.
+    const auto* formatter = ticker.tickLabelFormatter();
+    auto tickIndex = 0;
+    for (auto tickBase = loopStart; tickBase <= viewportHigh + step * kRelativeTolerance; tickBase = loopStart + (++tickIndex) * step) {
+        if (tickBase >= viewportLow - step * kRelativeTolerance && tickBase <= viewportHigh + step * kRelativeTolerance) {
+            ticks.majorTicks.append(AxisTick{tickBase, formatter->format(tickBase, step)});
+        }
+    }
+    return ticks;
+}
+
+void AxisTickPainter::paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition)
+{
+    const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, tick.label);
 
     if (params.orientation == Axis::Horizontal) {
-        const auto x = ctx.rect.x() + mapToPosition(value, ctx.rect.width());
+        const auto x = ctx.rect.x() + mapToPosition(tick.value, ctx.rect.width());
         const auto center = QPointF{x, ctx.axisY};
         auto labelRect = QRectF{};
         if (params.side == Axis::Bottom) {
@@ -116,10 +249,10 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const qreal value, cons
         labelPen.setColor(
             params.hovered ? params.hoverColor : (params.ticker->tickLabelColor().isValid() ? params.ticker->tickLabelColor() : params.ticker->tickColor()));
         ctx.painter->setPen(labelPen);
-        drawTickLabel(ctx.painter, labelRect, Qt::AlignCenter, label, params.ticker->tickLabelRotation());
+        drawTickLabel(ctx.painter, labelRect, Qt::AlignCenter, tick.label, params.ticker->tickLabelRotation());
         ctx.painter->setPen(linePen);
     } else {
-        const auto y = ctx.rect.y() + mapToPosition(value, ctx.rect.height());
+        const auto y = ctx.rect.y() + mapToPosition(tick.value, ctx.rect.height());
         const auto center = QPointF{ctx.axisX, y};
         auto labelRect = QRectF{};
         auto alignment = int{};
@@ -144,7 +277,7 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const qreal value, cons
         labelPen.setColor(
             params.hovered ? params.hoverColor : (params.ticker->tickLabelColor().isValid() ? params.ticker->tickLabelColor() : params.ticker->tickColor()));
         ctx.painter->setPen(labelPen);
-        drawTickLabel(ctx.painter, labelRect, alignment, label, params.ticker->tickLabelRotation());
+        drawTickLabel(ctx.painter, labelRect, alignment, tick.label, params.ticker->tickLabelRotation());
         ctx.painter->setPen(linePen);
     }
 }
@@ -168,134 +301,6 @@ void AxisTickPainter::paintSubtick(const PaintContext& ctx, const qreal value, c
             ctx.painter->drawLine(center + QPointF(params.ticker->subtickLengthOut(), 0), center + QPointF(-params.ticker->subtickLengthIn(), 0));
         }
     }
-}
-
-void AxisTickPainter::paintLogScaleTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition)
-{
-    const auto viewportLow = std::min(params.viewportMin, params.viewportMax);
-    const auto viewportHigh = std::max(params.viewportMin, params.viewportMax);
-    const auto logMin = static_cast<int>(std::floor(std::log10(viewportLow)));
-    const auto logMax = static_cast<int>(std::ceil(std::log10(viewportHigh)));
-
-    // Pass 1: subticks
-    const auto savedPen = ctx.painter->pen();
-    const auto effectiveSubtickColor = params.ticker->subtickColor().isValid() ? params.ticker->subtickColor() : params.defaultSubtickColor;
-    auto subtickPen = QPen(params.hovered ? params.hoverColor : effectiveSubtickColor);
-    subtickPen.setWidthF(params.ticker->subtickWidth());
-    ctx.painter->setPen(subtickPen);
-
-    for (auto exponent = logMin; exponent < logMax; ++exponent) {
-        const auto value = std::pow(10.0, exponent);
-        for (auto multiplier = 2; multiplier <= 9; ++multiplier) {
-            const auto subValue = multiplier * value;
-            if (subValue >= viewportLow && subValue <= viewportHigh) {
-                paintSubtick(ctx, subValue, params, mapToPosition);
-            }
-        }
-    }
-    ctx.painter->setPen(savedPen);
-
-    // Pass 2: major ticks
-    // Log-scale ticks have no single step (each decade is 10x the last), so pass each
-    // tick's own value as its "step" — the label formatter derives precision from it,
-    // and a value's own magnitude is a reasonable proxy for the precision it needs.
-    for (auto exponent = logMin; exponent <= logMax; ++exponent) {
-        const auto value = std::pow(10.0, exponent);
-        if (value >= viewportLow && value <= viewportHigh) {
-            auto p = params;
-            p.tickStep = value;
-            paintTick(ctx, value, p, mapToPosition);
-        }
-    }
-}
-
-void AxisTickPainter::paintLinearTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition)
-{
-    if (params.ticker->tickCount() <= 0) {
-        return;
-    }
-
-    const auto viewportLow = std::min(params.viewportMin, params.viewportMax);
-    const auto viewportHigh = std::max(params.viewportMin, params.viewportMax);
-    const auto range = viewportHigh - viewportLow;
-    if (range <= 0.0) {
-        return;
-    }
-
-    // Compute a "nice" world-aligned tick step from the requested tick count.
-    const auto step = computeNiceStep(viewportLow, viewportHigh, params.ticker->tickCount());
-
-    // Start at the first world-aligned tick >= viewportMin.
-    const auto firstTick = std::ceil(viewportLow / step) * step;
-
-    // Build a mutable copy so we can propagate tickStep into paintTick for label precision.
-    auto p = params;
-    p.tickStep = step;
-
-    const auto effectiveSubtickColor = params.ticker->subtickColor().isValid() ? params.ticker->subtickColor() : params.defaultSubtickColor;
-
-    // Begin one interval before firstTick so that subticks in [firstTick-step, firstTick]
-    // that fall inside [viewportMin, viewportMax] are still painted even though their owning major tick is
-    // outside the visible range.
-    const auto loopStart = firstTick - step;
-
-    // Small fraction of the step used as a boundary tolerance: prevents floating-point rounding
-    // from excluding ticks that lie exactly on a viewport edge.
-    constexpr static auto kRelativeTolerance = 1e-9;
-
-    // Pass 1: all subticks
-    if (params.ticker->subtickCount() > 0) {
-        const auto savedPen = ctx.painter->pen();
-        auto subtickPen = QPen(params.hovered ? params.hoverColor : effectiveSubtickColor);
-        subtickPen.setWidthF(params.ticker->subtickWidth());
-        ctx.painter->setPen(subtickPen);
-
-        const auto subStep = step / (params.ticker->subtickCount() + 1);
-        auto subTickIndex = 0;
-        for (auto tickBase = loopStart; tickBase <= viewportHigh + step * kRelativeTolerance; tickBase = loopStart + (++subTickIndex) * step) {
-            for (auto subIndex = 1; subIndex <= params.ticker->subtickCount(); ++subIndex) {
-                const auto subValue = tickBase + subIndex * subStep;
-                if (subValue < viewportLow - subStep * kRelativeTolerance) {
-                    continue;
-                }
-                if (subValue > viewportHigh + subStep * kRelativeTolerance) {
-                    break;
-                }
-                paintSubtick(ctx, subValue, p, mapToPosition);
-            }
-        }
-        ctx.painter->setPen(savedPen);
-    }
-
-    // Pass 2: all major ticks (drawn on top of subticks)
-    auto tickIndex = 0;
-    for (auto tickBase = loopStart; tickBase <= viewportHigh + step * kRelativeTolerance; tickBase = loopStart + (++tickIndex) * step) {
-        if (tickBase >= viewportLow - step * kRelativeTolerance && tickBase <= viewportHigh + step * kRelativeTolerance) {
-            paintTick(ctx, tickBase, p, mapToPosition);
-        }
-    }
-}
-
-qreal AxisTickPainter::computeNiceStep(const qreal viewportMin, const qreal viewportMax, const int tickCount)
-{
-    const auto range = viewportMax - viewportMin;
-    if (range <= 0.0 || tickCount <= 0) {
-        return 1.0;
-    }
-    const auto roughStep = range / tickCount;
-    const auto magnitude = std::pow(10.0, std::floor(std::log10(roughStep)));
-    const auto residual = roughStep / magnitude;
-    // Fallback "nice" step residual: the top of the 1-2-5-10 sequence, representing the next decimal decade.
-    constexpr static auto kNiceStepNextDecade = qreal{10.0};
-    auto niceResidual = kNiceStepNextDecade;
-    if (residual <= 1.0) {
-        niceResidual = 1.0;
-    } else if (residual <= 2.0) {
-        niceResidual = 2.0;
-    } else if (residual <= 5.0) {
-        niceResidual = 5.0;
-    }
-    return niceResidual * magnitude;
 }
 
 void AxisTickPainter::drawTickLabel(QPainter* painter, const QRectF& labelRect, const int alignment, const QString& label, const qreal rotation)
