@@ -17,7 +17,7 @@ TickLabelFormatter::TickLabelFormatter(QObject* parent)
 QString TickLabelFormatter::format(const qreal value, const qreal tickStep) const
 {
     if (tickLabel_.isCallable()) {
-        const auto args = QList<QJSValue>{QJSValue(value)};
+        const auto args = QList<QJSValue>{QJSValue(value), QJSValue(tickStep)};
         const auto result = tickLabel_.call(args);
         if (!result.isError()) {
             return result.toString();

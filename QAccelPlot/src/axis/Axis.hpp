@@ -8,6 +8,7 @@
 #pragma once
 
 #include "axis/AxisTicker.hpp"
+#include "axis/AxisTicks.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -184,6 +185,8 @@ public:
     Q_INVOKABLE void rescaleToData();
 
     /// \brief Paints the axis widget (tick marks, labels, label text, background).
+    ///
+    /// Draws the ticks and labels computed in \c updatePolish(); with the threaded render loop this runs on the render thread.
     void paint(QPainter* painter) override;
 
     /// \brief Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.
@@ -254,6 +257,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
+    /// \brief Recomputes the visible tick values and formats their labels on the GUI thread, ahead of \c paint().
+    void updatePolish() override;
 
 private:
     friend class PlotSeries;
@@ -268,6 +273,7 @@ private:
     void recomputeSourceDataRange();
     void setDataRangeValues(qreal min, qreal max);
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
+    void invalidateTicks();
 
     qreal viewportMin_{0.0};
     qreal viewportMax_{1.0};
@@ -295,6 +301,7 @@ private:
     Orientation orientation_{Horizontal};
     Side side_{Bottom};
     AxisTicker* ticker_;
+    AxisTicks ticks_;
 };
 
 } // namespace QAccelPlot

@@ -9,6 +9,7 @@
 
 #include "axis/Axis.hpp"
 #include "axis/AxisTicker.hpp"
+#include "axis/AxisTicks.hpp"
 
 #include <QColor>
 #include <QRectF>
@@ -19,24 +20,22 @@ QT_FORWARD_DECLARE_CLASS(QPainter)
 
 namespace QAccelPlot {
 
-/// \brief Internal helper that paints tick marks and labels onto a QPainter for a single Axis.
+/// \brief Internal helper that computes and paints tick marks and labels for a single Axis.
 ///
-/// Used by \c Axis::paint(). Also provides \c computeNiceStep(), which is shared with
-/// \c GridNode to keep grid lines aligned with tick positions.
+/// Tick computation and painting are split: \c computeTicks() formats labels and must run on
+/// the formatter's (GUI) thread, while \c paintTicks() only draws precomputed ticks and is safe to
+/// call from \c Axis::paint() on the render thread. Also provides \c computeNiceStep(), which is shared
+/// with \c GridNode to keep grid lines aligned with tick positions.
 class AxisTickPainter {
 public:
-    /// \brief All inputs required for a single paint call, bundled to reduce parameter count.
+    /// \brief All style inputs required for a single paint call, bundled to reduce parameter count.
     struct Params {
-        qreal viewportMin{0.0};                          ///< \brief Axis minimum value.
-        qreal viewportMax{1.0};                          ///< \brief Axis maximum value.
         Axis::Orientation orientation{Axis::Horizontal}; ///< \brief Axis orientation.
         Axis::Side side{Axis::Left};                     ///< \brief Axis side.
-        bool logScale{false};                            ///< \brief Whether log-scale tick placement is used.
         bool hovered{false};                             ///< \brief Whether the axis is currently hovered.
         const AxisTicker* ticker{nullptr};               ///< \brief Tick style configuration object.
         QColor hoverColor;                               ///< \brief Label/tick color when hovered.
         QColor defaultSubtickColor;                      ///< \brief Sub-tick color when not hovered.
-        qreal tickStep{0.0};                             ///< \brief Computed major tick step (filled by \c paintLinearTicks).
         bool clampEdgeLabels{false};                     ///< \brief Whether labels at the extremes are clamped inward.
         qreal labelOverflow{0.0};                        ///< \brief Extra space reserved for edge label overflow.
     };
@@ -52,8 +51,15 @@ public:
         qreal axisY;       ///< \brief Pixel Y coordinate of the axis line.
     };
 
-    /// \brief Paints all tick marks and labels onto \a painter using the supplied \a params.
-    static void paintTicks(QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const MapToPosition& mapToPosition);
+    /// \brief Returns the visible ticks, subticks and formatted labels for the \a viewportMin to \a viewportMax range.
+    ///
+    /// Uses log-scale placement when \a logScale is set and both bounds are positive. Labels are produced by
+    /// \a ticker's formatter, which may invoke a QML/JS callback, so this must be called on the formatter's thread.
+    static AxisTicks computeTicks(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
+
+    /// \brief Paints \a ticks and their labels onto \a painter, placing them according to \a params and \a mapToPosition.
+    static void paintTicks(
+        QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const AxisTicks& ticks, const MapToPosition& mapToPosition);
 
     /// \brief Returns a "nice" major tick step for the given \a viewportMin, \a viewportMax range and target \a tickCount.
     ///
@@ -61,11 +67,11 @@ public:
     static qreal computeNiceStep(qreal viewportMin, qreal viewportMax, int tickCount);
 
 private:
-    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
-    static void paintTick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
+    static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static AxisTicks computeLinearTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
-    static void paintLogScaleTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition);
-    static void paintLinearTicks(const PaintContext& ctx, const Params& params, const MapToPosition& mapToPosition);
+    static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);
 };
 
 } // namespace QAccelPlot
