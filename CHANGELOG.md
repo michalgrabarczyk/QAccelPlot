@@ -43,6 +43,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `DashLine` now rejects a pattern containing a negative segment, and warns
   when a pattern is longer than the eight segments the renderer supports
   instead of silently dropping the rest.
+- `mouseMoved` now fires for a plain cursor move over the plot, not only while
+  a mouse button is held, matching its documented behavior.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
