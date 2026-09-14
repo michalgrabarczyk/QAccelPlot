@@ -15,6 +15,7 @@
 
 #include <QCoreApplication>
 #include <QCursor>
+#include <QHoverEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QQuickWindow>
@@ -352,6 +353,23 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     } else {
         QQuickItem::mousePressEvent(event);
     }
+}
+
+void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
+{
+    if (isDragging_) {
+        QQuickItem::hoverMoveEvent(event);
+        return;
+    }
+
+    mouseMoveEvent_.reset(static_cast<int>(Qt::NoButton), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    emit mouseMoved(&mouseMoveEvent_);
+    if (mouseMoveEvent_.isAccepted()) {
+        event->accept();
+        return;
+    }
+
+    QQuickItem::hoverMoveEvent(event);
 }
 
 void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
