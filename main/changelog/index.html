@@ -1326,6 +1326,8 @@
   instead of silently dropping the rest.</li>
 <li><code>mouseMoved</code> now fires for a plain cursor move over the plot, not only while
   a mouse button is held, matching its documented behavior.</li>
+<li>Axes are no longer given a negative width or height when the plot item is
+  smaller than its padding plus the space its axes reserve.</li>
 <li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.</li>
