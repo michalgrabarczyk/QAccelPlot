@@ -9,7 +9,11 @@
 #include "formatters/TickLabelFormatter.hpp"
 
 #include <QImage>
+#include <QJSEngine>
+#include <QMutex>
 #include <QPainter>
+#include <QQuickWindow>
+#include <QThread>
 #include <QtTest/QtTest>
 
 #include <utility>
@@ -43,10 +47,57 @@ protected:
     }
 };
 
+class ThreadRecordingTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
+public:
+    QList<QThread*> formatThreads() const
+    {
+        const auto locker = QMutexLocker{&mutex_};
+        return formatThreads_;
+    }
+
+protected:
+    QString doFormat(qreal value, qreal) const override
+    {
+        const auto locker = QMutexLocker{&mutex_};
+        formatThreads_.append(QThread::currentThread());
+        return QString::number(value);
+    }
+
+private:
+    mutable QMutex mutex_;
+    mutable QList<QThread*> formatThreads_;
+};
+
+class PaintThreadRecordingAxis final : public QAccelPlot::Axis {
+public:
+    using QAccelPlot::Axis::Axis;
+
+    QThread* paintThread() const
+    {
+        const auto locker = QMutexLocker{&mutex_};
+        return paintThread_;
+    }
+
+    void paint(QPainter* painter) override
+    {
+        {
+            const auto locker = QMutexLocker{&mutex_};
+            paintThread_ = QThread::currentThread();
+        }
+        QAccelPlot::Axis::paint(painter);
+    }
+
+private:
+    mutable QMutex mutex_;
+    QThread* paintThread_{nullptr};
+};
+
 class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
 private slots:
+    void initTestCase();
+
     void computeNiceStep_roundRange();
     void computeNiceStep_subUnitRange();
     void computeNiceStep_negativeToPositive();
@@ -62,8 +113,24 @@ private slots:
     void computeNiceStep_residualAtTwoBoundary();
     void paintTicks_timeLabelsMatchUnclippedReference();
     void paintTicks_verticalLabelsUseAvailableWidth();
-    void paintTicks_logScaleMajorTicksReceiveNonZeroStep();
+
+    void computeTicks_linearTicksAndLabels();
+    void computeTicks_passesTickStepToFormatter();
+    void computeTicks_logScaleTicksAndSubticks();
+    void computeTicks_logScaleMajorTicksReceiveNonZeroStep();
+    void computeTicks_nullTickerIsEmpty();
+    void axis_formatsTickLabelsOnGuiThread();
 };
+
+void TestAxisTickPainter::initTestCase()
+{
+    // Qt falls back to the basic render loop for some drivers, e.g. Mesa llvmpipe under Xvfb in Linux CI,
+    // where Axis::paint() would run on the GUI thread. Force the threaded loop so the cross-thread case is
+    // exercised; it must be set before the first QQuickWindow creates the process-wide render loop.
+    if (!qEnvironmentVariableIsSet("QSG_RENDER_LOOP")) {
+        qputenv("QSG_RENDER_LOOP", "threaded");
+    }
+}
 
 void TestAxisTickPainter::computeNiceStep_roundRange()
 {
@@ -178,12 +245,11 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 auto painter = QPainter{&actual};
                 painter.setPen(Qt::transparent);
                 auto params = QAccelPlot::AxisTickPainter::Params{};
-                params.viewportMin = 0.0;
-                params.viewportMax = 1.0;
                 params.orientation = QAccelPlot::Axis::Horizontal;
                 params.side = QAccelPlot::Axis::Bottom;
                 params.ticker = &ticker;
-                QAccelPlot::AxisTickPainter::paintTicks(&painter, QRectF{kFirstTickX, 0.0, kTickSpacing, kImageHeight}, 0.0, kAxisY, params,
+                const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 1.0, false, &ticker);
+                QAccelPlot::AxisTickPainter::paintTicks(&painter, QRectF{kFirstTickX, 0.0, kTickSpacing, kImageHeight}, 0.0, kAxisY, params, ticks,
                     [](const qreal value, const qreal length) { return value * length; });
             }
 
@@ -237,12 +303,11 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
         auto painter = QPainter{&actual};
         painter.setPen(Qt::transparent);
         auto params = QAccelPlot::AxisTickPainter::Params{};
-        params.viewportMin = 0.25;
-        params.viewportMax = 0.75;
         params.orientation = QAccelPlot::Axis::Vertical;
         params.side = QAccelPlot::Axis::Left;
         params.ticker = &ticker;
-        QAccelPlot::AxisTickPainter::paintTicks(&painter, actual.rect(), kAxisX, 0.0, params, [](qreal, qreal) { return qreal{40.0}; });
+        const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.25, 0.75, false, &ticker);
+        QAccelPlot::AxisTickPainter::paintTicks(&painter, actual.rect(), kAxisX, 0.0, params, ticks, [](qreal, qreal) { return qreal{40.0}; });
     }
 
     auto foundPixelOutsideOldLabelRect = false;
@@ -258,27 +323,102 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
     QVERIFY2(foundPixelOutsideOldLabelRect, "Vertical tick label did not use the available axis width");
 }
 
-void TestAxisTickPainter::paintTicks_logScaleMajorTicksReceiveNonZeroStep()
+void TestAxisTickPainter::computeTicks_linearTicksAndLabels()
+{
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(5);
+    ticker.setSubtickCount(1);
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 1.0, false, &ticker);
+
+    // [0, 1] / 5 -> step=0.2 -> ticks at 0, 0.2, ..., 1.0 with one subtick between each pair.
+    QCOMPARE(ticks.majorTicks.size(), 6);
+    QCOMPARE(ticks.subtickValues.size(), 5);
+    QCOMPARE(ticks.majorTicks.first().value, 0.0);
+    QVERIFY(qFuzzyCompare(ticks.majorTicks.last().value, 1.0));
+    QVERIFY(qFuzzyCompare(ticks.subtickValues.first(), 0.1));
+    for (const auto& tick : ticks.majorTicks) {
+        QCOMPARE(tick.label, ticker.tickLabelFormatter()->format(tick.value, 0.2));
+    }
+}
+
+void TestAxisTickPainter::computeTicks_passesTickStepToFormatter()
+{
+    auto engine = QJSEngine{};
+    auto formatter = FixedTickLabelFormatter{QString{}};
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return 'step=' + tickStep; })")));
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(10);
+    ticker.setTickLabelFormatter(&formatter);
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 100.0, false, &ticker);
+
+    QVERIFY(!ticks.majorTicks.isEmpty());
+    for (const auto& tick : ticks.majorTicks) {
+        QCOMPARE(tick.label, QStringLiteral("step=10"));
+    }
+}
+
+void TestAxisTickPainter::computeTicks_logScaleTicksAndSubticks()
+{
+    auto ticker = QAccelPlot::AxisTicker{};
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(1.0, 100.0, true, &ticker);
+
+    // Decades 1, 10 and 100 are major ticks; multiples 2..9 of 1 and 10 are subticks.
+    QCOMPARE(ticks.majorTicks.size(), 3);
+    QCOMPARE(ticks.majorTicks.at(0).value, 1.0);
+    QCOMPARE(ticks.majorTicks.at(1).value, 10.0);
+    QCOMPARE(ticks.majorTicks.at(2).value, 100.0);
+    QCOMPARE(ticks.subtickValues.size(), 16);
+}
+
+void TestAxisTickPainter::computeTicks_logScaleMajorTicksReceiveNonZeroStep()
 {
     auto formatter = RecordingTickLabelFormatter{};
     auto ticker = QAccelPlot::AxisTicker{};
     ticker.setTickLabelFormatter(&formatter);
 
-    auto image = QImage{200, 80, QImage::Format_ARGB32_Premultiplied};
-    auto painter = QPainter{&image};
-    auto params = QAccelPlot::AxisTickPainter::Params{};
-    params.viewportMin = 0.001;
-    params.viewportMax = 100.0;
-    params.orientation = QAccelPlot::Axis::Horizontal;
-    params.side = QAccelPlot::Axis::Bottom;
-    params.logScale = true;
-    params.ticker = &ticker;
-    QAccelPlot::AxisTickPainter::paintTicks(
-        &painter, QRectF{0.0, 0.0, 200.0, 80.0}, 0.0, 20.0, params, [](const qreal value, const qreal length) { return value * length; });
+    QAccelPlot::AxisTickPainter::computeTicks(0.001, 100.0, true, &ticker);
 
     QVERIFY(!formatter.calls.isEmpty());
     for (const auto& call : formatter.calls) {
         QVERIFY2(call.second > 0.0, qPrintable(QStringLiteral("major tick %1 was formatted with tickStep %2").arg(call.first).arg(call.second)));
+    }
+}
+
+void TestAxisTickPainter::computeTicks_nullTickerIsEmpty()
+{
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 1.0, false, nullptr);
+
+    QVERIFY(ticks.majorTicks.isEmpty());
+    QVERIFY(ticks.subtickValues.isEmpty());
+}
+
+void TestAxisTickPainter::axis_formatsTickLabelsOnGuiThread()
+{
+    // Axis::paint() runs on the render thread with the threaded render loop. Tick labels must still be
+    // formatted on the GUI thread, since a formatter's tickLabel JS callback is bound to the QML engine's thread.
+    auto window = QQuickWindow{};
+    window.resize(300, 60);
+    auto formatter = ThreadRecordingTickLabelFormatter{};
+    auto axis = PaintThreadRecordingAxis{window.contentItem(), QAccelPlot::Axis::Bottom};
+    axis.setSize(QSizeF{300.0, 60.0});
+    axis.ticker()->setTickLabelFormatter(&formatter);
+
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    window.grabWindow();
+
+    QVERIFY(axis.paintThread() != nullptr);
+    if (axis.paintThread() == QThread::currentThread()) {
+        QSKIP("Axis::paint() ran on the GUI thread (no threaded render loop available), so the cross-thread case is not exercised");
+    }
+
+    const auto formatThreads = formatter.formatThreads();
+    QVERIFY(!formatThreads.isEmpty());
+    for (const auto* thread : formatThreads) {
+        QCOMPARE(thread, QThread::currentThread());
     }
 }
 
