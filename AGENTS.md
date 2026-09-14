@@ -130,6 +130,11 @@ QAccelPlot/
   reason to change.
 - Split large classes into smaller, focused ones when responsibilities can be
   cleanly separated.
+- Don't be verbose with code comments. Add a comment only when it clearly
+  brings value, for example when a change is unintuitive or the reason behind
+  it is not obvious from the code.
+- Don't add a comment when the code already communicates the change clearly.
+  (This does not apply to the required `///` API documentation comments.)
 
 ## QML Conventions
 
@@ -225,3 +230,22 @@ Example build tests (link/run checks for each example) require
   `QT_AUTOBRIEF` is enabled so the first sentence of a `///` block is the
   brief description.
 - Every public C++ member should have a `/// \brief` documentation comment.
+
+### Writing style
+
+These rules apply to all documentation: the MkDocs guide, Doxygen comments,
+README, CHANGELOG, and example descriptions.
+
+- Be concise and precise. Say what something does, how to use it, and any
+  constraints or pitfalls, then stop.
+- Avoid filler prose: no introductions that restate the heading, no marketing
+  language, no repeating what the code or API signature already shows.
+- Prefer short sentences, bullet lists, tables, and code snippets over long
+  paragraphs.
+- Keep `\brief` descriptions to one sentence. Add details only when they
+  convey behavior, units, ranges, threading, or ownership that the signature
+  does not.
+- Document only what exists. Don't describe planned features or speculate
+  about future behavior.
+- When updating docs, edit the existing text rather than appending new
+  paragraphs that overlap with it.
