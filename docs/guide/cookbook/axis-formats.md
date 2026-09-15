@@ -20,7 +20,6 @@ Use milliseconds since the Unix epoch as X values and attach a
 xAxis: QAccelPlot.Axis {
     viewportMin: traceStart
     viewportMax: traceEnd
-    side: QAccelPlot.Axis.Bottom
 
     ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
         dateTimeFormat: "hh:mm:ss.zzz"
@@ -41,7 +40,6 @@ Map integer coordinates to labels with `QAccelPlot.TextTickLabelFormatter`:
 xAxis: QAccelPlot.Axis {
     viewportMin: 0
     viewportMax: 6
-    side: QAccelPlot.Axis.Bottom
     ticker.tickCount: 6
     ticker.subtickCount: 0
     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
@@ -65,7 +63,6 @@ xAxis: QAccelPlot.Axis {
     dataMin: 20
     dataMax: 20000
     logScale: true
-    side: QAccelPlot.Axis.Bottom
     ticker.tickLabelFormatter: logLabels
 }
 ```
@@ -87,7 +84,6 @@ data values:
 yAxis: QAccelPlot.Axis {
     viewportMin: 18
     viewportMax: 26
-    side: QAccelPlot.Axis.Left
     label: "Temperature"
 
     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {

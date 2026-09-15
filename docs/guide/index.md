@@ -34,8 +34,8 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
     anchors.fill: parent
-    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10; side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { viewportMin: -1; viewportMax: 1; side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: -1; viewportMax: 1 }
     QAccelPlot.LineCurve { xAxis: plot.xAxis; yAxis: plot.yAxis; color: "steelblue" }
 }
 ```

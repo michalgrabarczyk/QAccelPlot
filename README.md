@@ -78,12 +78,12 @@ QAccelPlot.Plot {
 
     xAxis: QAccelPlot.Axis {
         viewportMin: 0; viewportMax: 10
-        side: QAccelPlot.Axis.Bottom; label: "Time (s)"
+        label: "Time (s)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: -1.2; viewportMax: 1.2
-        side: QAccelPlot.Axis.Left; label: "Amplitude"
+        label: "Amplitude"
     }
 
     QAccelPlot.LineCurve {

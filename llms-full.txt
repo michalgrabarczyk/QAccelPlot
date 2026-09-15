@@ -35,8 +35,8 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
     anchors.fill: parent
-    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10; side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { viewportMin: -1; viewportMax: 1; side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: -1; viewportMax: 1 }
     QAccelPlot.LineCurve { xAxis: plot.xAxis; yAxis: plot.yAxis; color: "steelblue" }
 }
 ```
@@ -198,7 +198,6 @@ Window {
             viewportMax: 10
             dataMin: 0
             dataMax: 10
-            side: QAccelPlot.Axis.Bottom
             label: "Time (s)"
         }
 
@@ -207,7 +206,6 @@ Window {
             viewportMax: 1.2
             dataMin: -1.2
             dataMax: 1.2
-            side: QAccelPlot.Axis.Left
             label: "Amplitude"
             axisTitlePadding: 34
         }
@@ -898,7 +896,6 @@ QAccelPlot.Plot {
         viewportMax: 24
         dataMin: 0
         dataMax: 24
-        side: QAccelPlot.Axis.Bottom
         label: "Time of day (h)"
     }
 
@@ -907,7 +904,6 @@ QAccelPlot.Plot {
         viewportMax: 27
         dataMin: 16
         dataMax: 27
-        side: QAccelPlot.Axis.Left
         label: "Temperature (°C)"
     }
 
@@ -977,7 +973,6 @@ QAccelPlot.Plot {
         viewportMax: 0
         dataMin: -20
         dataMax: 0
-        side: QAccelPlot.Axis.Bottom
         label: "Time before present (s)"
     }
 
@@ -986,7 +981,6 @@ QAccelPlot.Plot {
         viewportMax: 2.5
         dataMin: -2.5
         dataMax: 2.5
-        side: QAccelPlot.Axis.Left
         label: "Acceleration (g)"
     }
 
@@ -1046,7 +1040,6 @@ Use milliseconds since the Unix epoch as X values and attach a
 xAxis: QAccelPlot.Axis {
     viewportMin: traceStart
     viewportMax: traceEnd
-    side: QAccelPlot.Axis.Bottom
 
     ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
         dateTimeFormat: "hh:mm:ss.zzz"
@@ -1062,7 +1055,6 @@ Map integer coordinates to labels with `QAccelPlot.TextTickLabelFormatter`:
 xAxis: QAccelPlot.Axis {
     viewportMin: 0
     viewportMax: 6
-    side: QAccelPlot.Axis.Bottom
     ticker.tickCount: 6
     ticker.subtickCount: 0
     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
@@ -1086,7 +1078,6 @@ xAxis: QAccelPlot.Axis {
     dataMin: 20
     dataMax: 20000
     logScale: true
-    side: QAccelPlot.Axis.Bottom
     ticker.tickLabelFormatter: logLabels
 }
 ```
@@ -1107,7 +1098,6 @@ data values:
 yAxis: QAccelPlot.Axis {
     viewportMin: 18
     viewportMax: 26
-    side: QAccelPlot.Axis.Left
     label: "Temperature"
 
     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
@@ -1139,13 +1129,11 @@ choose the height of a horizontal axis or the width of a vertical axis:
 
 ```qml
 yAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Left
     layoutSize: 90
     label: "Temperature"
 }
 
 xAxis: QAccelPlot.Axis {
-    side: QAccelPlot.Axis.Bottom
     layoutSize: 70
     label: "Time"
 }
@@ -1166,10 +1154,9 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    xAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Bottom }
-    yAxis: QAccelPlot.Axis { side: QAccelPlot.Axis.Left }
+    xAxis: QAccelPlot.Axis {}
+    yAxis: QAccelPlot.Axis {}
     y2Axis: QAccelPlot.Axis {
-        side: QAccelPlot.Axis.Right
         viewportMin: 0
         viewportMax: 100
         label: "Load (%)"
@@ -1204,7 +1191,6 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 10
-        side: QAccelPlot.Axis.Bottom
         label: "Slow time (s)"
     }
 
