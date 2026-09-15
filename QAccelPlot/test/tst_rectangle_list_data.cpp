@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "axis/Axis.hpp"
 #include "shapes/RectangleList.hpp"
 
 #include <QtTest/QtTest>
@@ -19,6 +20,8 @@ class RectangleListDataTest : public QObject {
 private slots:
     void hoverEnvironmentControlsAcceptance();
     void invalidRawArgumentsAreRejected();
+    void rawDoubleDataPreservesModernEpochPrecision();
+    void variantListDataPreservesModernEpochPrecision();
 };
 
 void RectangleListDataTest::hoverEnvironmentControlsAcceptance()
@@ -53,12 +56,53 @@ void RectangleListDataTest::invalidRawArgumentsAreRejected()
     QCOMPARE(countSpy.count(), 1);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer.*"));
-    rectangles.setRawData(nullptr, 1);
+    rectangles.setRawData(static_cast<const float*>(nullptr), 1);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
     rectangles.setRawData(data.data(), -1);
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
+}
+
+void RectangleListDataTest::rawDoubleDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+
+    const auto data = std::array<double, 8>{
+        epochMilliseconds,
+        0.0,
+        epochMilliseconds + 1.0,
+        1.0,
+        epochMilliseconds + 2.0,
+        0.0,
+        epochMilliseconds + 3.0,
+        1.0,
+    };
+    rectangles.setRawData(data.data(), 2);
+
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 3.0);
+}
+
+void RectangleListDataTest::variantListDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+
+    auto rectMap = QVariantMap{};
+    rectMap.insert(QStringLiteral("x1"), epochMilliseconds);
+    rectMap.insert(QStringLiteral("y1"), 0.0);
+    rectMap.insert(QStringLiteral("x2"), epochMilliseconds + 1.0);
+    rectMap.insert(QStringLiteral("y2"), 1.0);
+    rectangles.setData(QVariantList{rectMap});
+
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
 }
 
 } // namespace QAccelPlot
