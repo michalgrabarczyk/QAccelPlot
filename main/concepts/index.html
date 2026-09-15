@@ -447,6 +447,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invalid-samples-and-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid samples and gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composition-and-overlays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1234,6 +1245,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invalid-samples-and-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid samples and gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#composition-and-overlays" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1332,6 +1354,53 @@ QML for convenience or through C++ buffer APIs for high throughput.</p>
 <p><code>RectangleList</code> renders a set of data-space rectangles and reports its hovered
 rectangle index. It is useful for ranges, events, bars, or large collections of
 simple rectangular shapes.</p>
+<h2 id="invalid-samples-and-gaps">Invalid samples and gaps<a class="headerlink" href="#invalid-samples-and-gaps" title="Permanent link">&para;</a></h2>
+<p>Telemetry regularly contains dropouts and corrupt readings. <code>LineCurve</code> applies
+one contract everywhere: rendering, gradient fills, dash patterns, transitions,
+auto-ranging, and hover hit testing.</p>
+<p>A sample is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
+coordinate is zero or negative on a logarithmic axis. Mark missing data by
+inserting a sample with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
+are not gap markers.</p>
+<p>Gap rendering is configured through the curve's <a href="../api/classQAccelPlot_1_1LineCurve/"><code>gaps</code></a> grouped
+property. <code>gaps.nanMode</code> selects how the line and fill treat invalid samples:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">gaps.nanMode:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NanGapMode</span><span class="p">.</span><span class="nx">Connect</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><code>gaps.nanMode</code></th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NanGapMode.Break</code> (default)</td>
+<td>No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line.</td>
+</tr>
+<tr>
+<td><code>NanGapMode.Connect</code></td>
+<td>Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples.</td>
+</tr>
+</tbody>
+</table>
+<p>Although the mode is named after <code>NaN</code>, the most common gap marker, it applies
+to every invalid sample, including <code>±Inf</code> and non-positive log-axis values.</p>
+<p>The rest of the contract applies in both modes:</p>
+<ul>
+<li><strong>Markers</strong> are never drawn for invalid samples.</li>
+<li><strong>Auto-ranging</strong> judges each coordinate on its own. A sample with a valid X
+  and an invalid Y still extends the X range, so a dropout keeps its timestamp.
+  If a dimension has no valid coordinate, the series clears that range.</li>
+<li><strong>Dash patterns</strong> continue across a gap; the gap contributes no dash length.</li>
+<li><strong><code>MorphTransition</code></strong> shows a sample that becomes invalid as a gap
+  immediately, and a sample that becomes valid jumps to its target instead of
+  animating from <code>NaN</code>.</li>
+<li><strong>Hover</strong> never reports a hit on an invalid sample or across a break.</li>
+<li>The <code>NoRange</code> data APIs still render gaps; they only skip range calculation.</li>
+</ul>
 <h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
 <p>The grid and series render within the plot, while ordinary QML items can be
 placed above them. <code>DataAnchor</code> maps one or two data coordinates into a QML

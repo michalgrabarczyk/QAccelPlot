@@ -28,6 +28,8 @@ class MorphTransition : public DataTransition {
 public:
     explicit MorphTransition(QObject* parent = nullptr);
 
+    static double interpolateCoordinate(double from, double to, double easedProgress);
+
 protected:
     void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
         std::vector<double>& outData, int& outPointCount) override;

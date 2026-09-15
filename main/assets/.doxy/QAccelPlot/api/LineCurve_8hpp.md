@@ -22,6 +22,7 @@
 * `#include "linestyles/SolidLine.hpp"`
 * `#include "renderers/LineCurveLineRenderer.hpp"`
 * `#include "renderers/LineCurvePointRenderer.hpp"`
+* `#include "series/LineCurveGaps.hpp"`
 * `#include "series/LineCurveVertexCache.hpp"`
 * `#include "series/PlotSeries.hpp"`
 * `#include "theme/ColorPalette.hpp"`

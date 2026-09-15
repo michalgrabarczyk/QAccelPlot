@@ -1764,11 +1764,35 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extenddataranges"><strong>extendDataRanges</strong></a> (qreal x, qreal y) <br><em>Widens the reported extents to include the single point (</em> <em>x</em> <em>,__y</em> <em>).</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-clearxdatarange"><strong>clearXDataRange</strong></a> () <br><em>Clears the cached X extent, e.g. when no sample has a valid X coordinate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-clearydatarange"><strong>clearYDataRange</strong></a> () <br><em>Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extendxdatarange"><strong>extendXDataRange</strong></a> (qreal x) <br><em>Widens the reported X extent to include</em> <em>x</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extendydatarange"><strong>extendYDataRange</strong></a> (qreal y) <br><em>Widens the reported Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><strong>onAxisScaleChanged</strong></a> () <br><em>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataranges"><strong>setDataRanges</strong></a> (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br><em>Reports this series' data extents to its bound axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setxdatarange"><strong>setXDataRange</strong></a> (qreal min, qreal max) <br><em>Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setydatarange"><strong>setYDataRange</strong></a> (qreal min, qreal max) <br><em>Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.</em></td>
 </tr>
 </tbody>
 </table>

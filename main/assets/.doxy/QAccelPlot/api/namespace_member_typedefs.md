@@ -10,5 +10,10 @@
 * **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## n
+
+* **NanGapMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
 
 

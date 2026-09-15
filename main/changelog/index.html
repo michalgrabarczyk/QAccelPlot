@@ -1315,9 +1315,21 @@
   or vertical-axis width.</li>
 <li>Automatic side assignment for the four named plot axes: <code>xAxis</code> uses the
   bottom, <code>x2Axis</code> the top, <code>yAxis</code> the left, and <code>y2Axis</code> the right.</li>
+<li>Explicit invalid-sample contract for <code>LineCurve</code>: <code>NaN</code>, <code>±Inf</code>, and
+  non-positive values on logarithmic axes break the line, gradient fill, and
+  hover hit testing consistently on every graphics backend, never draw markers,
+  and are excluded from auto-ranging per dimension.</li>
+<li><code>LineCurve.gaps</code> grouped property. <code>gaps.nanMode</code> selects
+  <code>NanGapMode.Break</code> (default) or <code>NanGapMode.Connect</code>, which joins the valid
+  samples on either side of a gap.</li>
+<li>A "Gaps" page in the styling and transitions example.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Values at or below zero on a logarithmic axis now render as gaps instead of
+  being clamped to a steep drop toward the bottom of the plot.</li>
+<li><code>MorphTransition</code> no longer interpolates from or to non-finite coordinates:
+  new gaps appear immediately and samples leaving a gap jump to their target.</li>
 <li>Renamed <code>RectangleList::setRawData()</code> to <code>setData()</code>, matching the naming
   of the <code>LineCurve</code> data-setting APIs.</li>
 <li>Default plot, axis, grid, series, and legend colors now come from the
@@ -1417,6 +1429,10 @@
   float buffer instead of storing raw coordinates as float. A new
   <code>setData(const double*, int)</code> overload accepts double-precision data
   directly.</li>
+<li>A single <code>±Inf</code> coordinate is now skipped when computing a curve's axis
+  data ranges instead of making that range non-finite, and all-<code>NaN</code> data no longer reports an inverted range.</li>
+<li><code>NaN</code> samples no longer make adjacent valid line segments disappear or
+  produce backend-dependent artifacts.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

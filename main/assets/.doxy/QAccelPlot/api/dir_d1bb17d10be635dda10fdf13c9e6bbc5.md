@@ -31,6 +31,8 @@
 | Type | Name |
 | ---: | :--- |
 | file | [**LineCurve.hpp**](LineCurve_8hpp.md) <br> |
+| file | [**LineCurveGapFilter.hpp**](LineCurveGapFilter_8hpp.md) <br> |
+| file | [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md) <br> |
 | file | [**LineCurveVertexCache.hpp**](LineCurveVertexCache_8hpp.md) <br> |
 | file | [**PlotSeries.hpp**](PlotSeries_8hpp.md) <br> |
 | file | [**SpatialGrid.hpp**](SpatialGrid_8hpp.md) <br> |

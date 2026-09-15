@@ -79,7 +79,21 @@
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>diff<sp/>&lt;=<sp/>std::max(eps_abs,<sp/>scale<sp/>*<sp/>eps_rel);</highlight></codeline>
 <codeline lineno="46"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Returns<sp/>true<sp/>if<sp/>a<sp/>single<sp/>sample<sp/>coordinate<sp/>can<sp/>be<sp/>plotted.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>coordinate<sp/>is<sp/>invalid<sp/>when<sp/>it<sp/>is<sp/>non-finite<sp/>(NaN<sp/>or<sp/>+/-Inf)<sp/>or,<sp/>on<sp/>a</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>logarithmic<sp/>dimension,<sp/>when<sp/>it<sp/>is<sp/>not<sp/>strictly<sp/>positive.<sp/>Invalid<sp/>coordinates</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>break<sp/>line<sp/>curves,<sp/>are<sp/>excluded<sp/>from<sp/>auto-ranging,<sp/>and<sp/>are<sp/>never<sp/>hit-tested.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Implemented<sp/>with<sp/>plain<sp/>comparisons<sp/>(false<sp/>for<sp/>NaN<sp/>and<sp/>+/-Inf)<sp/>rather<sp/>than</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>std::isfinite(),<sp/>which<sp/>some<sp/>standard<sp/>libraries<sp/>do<sp/>not<sp/>inline.<sp/>This<sp/>check<sp/>runs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>per<sp/>coordinate<sp/>on<sp/>multi-million-point<sp/>buffers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isValidSample(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScale)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>value<sp/>&gt;=<sp/>std::numeric_limits&lt;double&gt;::lowest()<sp/>&amp;&amp;<sp/>value<sp/>&lt;=<sp/>std::numeric_limits&lt;double&gt;::max()<sp/>&amp;&amp;<sp/>(!logScale<sp/>||<sp/>value<sp/>&gt;<sp/>0.0);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/MathUtils.hpp"/>
   </compounddef>

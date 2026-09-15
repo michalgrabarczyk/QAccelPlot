@@ -54,6 +54,8 @@ Here is a list of all files with brief descriptions:
             * **file** [**LineCurvePointRenderer.hpp**](LineCurvePointRenderer_8hpp.md)     
         * **dir** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md)     
             * **file** [**LineCurve.hpp**](LineCurve_8hpp.md)     
+            * **file** [**LineCurveGapFilter.hpp**](LineCurveGapFilter_8hpp.md)     
+            * **file** [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md)     
             * **file** [**LineCurveVertexCache.hpp**](LineCurveVertexCache_8hpp.md)     
             * **file** [**PlotSeries.hpp**](PlotSeries_8hpp.md)     
             * **file** [**SpatialGrid.hpp**](SpatialGrid_8hpp.md)     

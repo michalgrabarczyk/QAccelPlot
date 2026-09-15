@@ -40,6 +40,8 @@
 | namespace | [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) <br>_Namespace exposing the_ `GradientFillBaseline` _enum to QML._ |
 | namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
 | namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
+| namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-sample contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
+| namespace | [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) <br>_Namespace exposing the_ `NanGapMode` _enum to QML._ |
 
 
 ## Classes
@@ -75,6 +77,7 @@
 | class | [**GridNode**](classQAccelPlot_1_1GridNode.md) <br>_Internal QSGNode responsible for rendering the plot grid into the scene graph._  |
 | class | [**LineCurve**](classQAccelPlot_1_1LineCurve.md) <br>_A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._  |
 | class | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) <br>_Abstract base class for visual effects applied to a_ `LineCurve` _._ |
+| class | [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) <br>_Controls how a_ `LineCurve` _renders gaps in its data._ |
 | class | [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
 | class | [**LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
 | struct | [**LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._ |
@@ -95,6 +98,7 @@
 | class | [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
 | class | [**RectangleList**](classQAccelPlot_1_1RectangleList.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
+| struct | [**SampleRun**](structQAccelPlot_1_1SampleRun.md) <br>_Contiguous range of valid curve samples, used to break fills and hit tests at gaps._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |
 | class | [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) <br>_Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._  |
 | class | [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) <br>_A tick label formatter that maps integer tick indices to a user-supplied list of strings._  |
@@ -108,6 +112,7 @@
 | typedef [**GradientDirectionNS::Direction**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**GradientDirection**](#typedef-gradientdirection)  <br> |
 | typedef [**GradientFillBaselineNS::Mode**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**GradientFillBaseline**](#typedef-gradientfillbaseline)  <br> |
 | typedef [**GradientValueSourceNS::Source**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**GradientValueSource**](#typedef-gradientvaluesource)  <br> |
+| typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
 
 
 
@@ -139,6 +144,8 @@
 | Type | Name |
 | ---: | :--- |
 |  void | [**appendStopFromObject**](#function-appendstopfromobject) (std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & outStops, QObject \* stopObject) <br>_Reads a QML gradient stop object and appends it to_ _outStops_ _._ |
+|  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
+|  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
@@ -213,6 +220,20 @@ using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
 
 
 <hr>
+
+
+
+
+### typedef NanGapMode {#typedef-nangapmode}
+
+```C++
+using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode;
+```
+
+
+
+
+<hr>
 ## Public Attributes Documentation
 
 
@@ -266,6 +287,40 @@ The stop object is expected to expose `position` (real) and `color` (color) prop
 
 
         
+
+<hr>
+
+
+
+
+### function isEmptyChunk {#function-isemptychunk}
+
+_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._
+```C++
+inline bool QAccelPlot::isEmptyChunk (
+    const CurveChunk & chunk
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function isValidSample {#function-isvalidsample}
+
+```C++
+inline bool QAccelPlot::isValidSample (
+    double value,
+    bool logScale
+) noexcept
+```
+
+
+
 
 <hr>
 

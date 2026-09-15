@@ -1143,9 +1143,16 @@
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span><span class="p">;</span><span class="w">                           </span>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w">                          </span>
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">hitThreshold</span><span class="p">;</span><span class="w">                    </span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p">};</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">nonPositiveXInvalid</span><span class="p">;</span><span class="w">              </span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">nonPositiveYInvalid</span><span class="p">;</span><span class="w">              </span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p">};</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">isEmptyChunk</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span><span class="p">)</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">{</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">chunk</span><span class="p">.</span><span class="n">minX</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">chunk</span><span class="p">.</span><span class="n">maxX</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">chunk</span><span class="p">.</span><span class="n">minY</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">chunk</span><span class="p">.</span><span class="n">maxY</span><span class="p">;</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">}</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
 </code></pre></div>
 
 

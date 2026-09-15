@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="LineCurveGapFilter_8hpp" kind="file" language="C++">
+    <compoundname>LineCurveGapFilter.hpp</compoundname>
+    <includes refid="CurveRendererParams_8hpp" local="yes">renderers/CurveRendererParams.hpp</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurveLineRenderer.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/series/LineCurveGapFilter.hpp</label>
+        <link refid="LineCurveGapFilter_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structQAccelPlot_1_1SampleRun" prot="public">QAccelPlot::SampleRun</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;renderers/CurveRendererParams.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="structQAccelPlot_1_1SampleRun" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1SampleRun" kindref="compound">SampleRun</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1SampleRun_1af3381113a7084f7375977693e9a822b9" kindref="member">start</ref>;<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1SampleRun_1aec13989369dbd3fb157d9281af1488e1" kindref="member">count</ref>;<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="namespaceQAccelPlot_1_1LineCurveGapFilter" refkind="compound"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">LineCurveGapFilter<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a86cea55256cf82fcf5f4be05f163607f" kindref="member">isValidPoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref>&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a79e3bfa6790f5a90e50dcd648eeaf2f2" kindref="member">countInvalidPoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref>&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">[[nodiscard]]<sp/>std::vector&lt;SampleRun&gt;<sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1aae49210b3e2a7af847489868cdc4f7a1" kindref="member">findValidRuns</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref>&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">[[nodiscard]]<sp/>std::vector&lt;int&gt;<sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1acf94db7708216e04f19c86d8b2fedeb3" kindref="member">planRunSampling</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;SampleRun&gt;&amp;<sp/>runs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxSampledPoints);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">[[nodiscard]]<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a2dc9ce0bd784c50fc775e5a92d606839" kindref="member">sampledSourceIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1SampleRun" kindref="compound">SampleRun</ref>&amp;<sp/>run,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampleIndex,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sampledCount);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a38e5da38fd1d66c688725c7b9c9f1d13" kindref="member">compactValidPoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY,<sp/>std::vector&lt;float&gt;&amp;<sp/>output);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespaceQAccelPlot_1_1LineCurveGapFilter_1a38e5da38fd1d66c688725c7b9c9f1d13" kindref="member">compactValidPoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>data,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;&amp;<sp/>renderData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleX,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScaleY,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;&amp;<sp/>output,<sp/>std::vector&lt;float&gt;&amp;<sp/>renderOutput);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>LineCurveGapFilter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/series/LineCurveGapFilter.hpp"/>
+  </compounddef>
+</doxygen>

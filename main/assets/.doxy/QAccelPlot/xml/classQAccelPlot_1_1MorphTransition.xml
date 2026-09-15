@@ -23,7 +23,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="26" column="14"/>
+        <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="28" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1MorphTransition_1a873dfef752394bb3ece9112ca88a3db5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>static double QAccelPlot::MorphTransition::interpolateCoordinate</definition>
+        <argsstring>(double from, double to, double easedProgress)</argsstring>
+        <name>interpolateCoordinate</name>
+        <qualifiedname>QAccelPlot::MorphTransition::interpolateCoordinate</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>easedProgress</declname>
+        </param>
+        <briefdescription>
+<para>Returns the coordinate between <emphasis>from</emphasis> and <emphasis>to</emphasis> at <emphasis>easedProgress</emphasis>, honoring the invalid-sample contract. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="31" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -69,14 +98,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="30" column="10"/>
+        <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="35" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>An animation transition that smoothly interpolates point positions between two datasets. </para>
     </briefdescription>
     <detaileddescription>
-<para>Each point is linearly blended from its old position to its new position. When the point counts differ, the shorter dataset is resampled to match.</para>
+<para>Each point is linearly blended from its old position to its new position. When the point counts differ, the shorter dataset is resampled to match. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.</para>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> </para>
 </simplesect>
 </para>
@@ -115,7 +144,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="20" column="1" bodyfile="QAccelPlot/src/transitions/MorphTransition.hpp" bodystart="20" bodyend="32"/>
+    <location file="QAccelPlot/src/transitions/MorphTransition.hpp" line="22" column="1" bodyfile="QAccelPlot/src/transitions/MorphTransition.hpp" bodystart="22" bodyend="37"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTransition_1a2dedefb71ff7b3812a9e0b36d835cfb1" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>advance</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>cancel</name></member>
@@ -130,6 +159,7 @@
       <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>enabled</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>enabledChanged</name></member>
       <member refid="classQAccelPlot_1_1MorphTransition_1a2ccb2bd8095dff36432b75705496c56e" prot="protected" virt="virtual"><scope>QAccelPlot::MorphTransition</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1MorphTransition_1a873dfef752394bb3ece9112ca88a3db5" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>interpolateCoordinate</name></member>
       <member refid="classQAccelPlot_1_1MorphTransition_1add70f1c5550cd9d654dad57b686e8e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>MorphTransition</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a6299a4b7aedb22a639b1a21e77c8c0c0" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>running</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>running</name></member>

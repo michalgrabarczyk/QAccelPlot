@@ -31,6 +31,7 @@
     <innerclass refid="classQAccelPlot_1_1GridNode" prot="public">QAccelPlot::GridNode</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurve" prot="public">QAccelPlot::LineCurve</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurveEffect" prot="public">QAccelPlot::LineCurveEffect</innerclass>
+    <innerclass refid="classQAccelPlot_1_1LineCurveGaps" prot="public">QAccelPlot::LineCurveGaps</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurveLineRenderer" prot="public">QAccelPlot::LineCurveLineRenderer</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurvePointRenderer" prot="public">QAccelPlot::LineCurvePointRenderer</innerclass>
     <innerclass refid="structQAccelPlot_1_1LineCurveRenderParams" prot="public">QAccelPlot::LineCurveRenderParams</innerclass>
@@ -51,6 +52,7 @@
     <innerclass refid="classQAccelPlot_1_1QAccelPlot" prot="public">QAccelPlot::QAccelPlot</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectangleList" prot="public">QAccelPlot::RectangleList</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectMaterial" prot="public">QAccelPlot::RectMaterial</innerclass>
+    <innerclass refid="structQAccelPlot_1_1SampleRun" prot="public">QAccelPlot::SampleRun</innerclass>
     <innerclass refid="classQAccelPlot_1_1SolidLine" prot="public">QAccelPlot::SolidLine</innerclass>
     <innerclass refid="classQAccelPlot_1_1SpatialGrid" prot="public">QAccelPlot::SpatialGrid</innerclass>
     <innerclass refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public">QAccelPlot::TextTickLabelFormatter</innerclass>
@@ -59,6 +61,8 @@
     <innernamespace refid="namespaceQAccelPlot_1_1GradientFillBaselineNS">QAccelPlot::GradientFillBaselineNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientValueSourceNS">QAccelPlot::GradientValueSourceNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1NanGapModeNS">QAccelPlot::NanGapModeNS</innernamespace>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1abdfd4e46ff9d7137968ad094b723654a" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirectionNS::Direction</ref></type>
@@ -101,6 +105,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="61" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LineCurveGaps_8hpp_1a11817d21a4214c355f999476b958e020" prot="public" static="no">
+        <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapModeNS::Mode</ref></type>
+        <definition>using QAccelPlot::NanGapMode = typedef NanGapModeNS::Mode</definition>
+        <argsstring></argsstring>
+        <name>NanGapMode</name>
+        <qualifiedname>QAccelPlot::NanGapMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="28" column="1" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
@@ -224,6 +242,47 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="33" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::isValidSample</definition>
+        <argsstring>(double value, bool logScale) noexcept</argsstring>
+        <name>isValidSample</name>
+        <qualifiedname>QAccelPlot::isValidSample</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScale</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/MathUtils.hpp" line="57" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::isEmptyChunk</definition>
+        <argsstring>(const CurveChunk &amp;chunk)</argsstring>
+        <name>isEmptyChunk</name>
+        <qualifiedname>QAccelPlot::isEmptyChunk</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref> &amp;</type>
+          <declname>chunk</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when <emphasis>chunk</emphasis> contains no valid sample and can be skipped by hit tests. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="65" column="13" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="65" bodyend="68"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

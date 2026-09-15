@@ -6,6 +6,7 @@
     <includes local="no">vector</includes>
     <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurveLineRenderer.hpp</includedby>
     <includedby refid="LineCurvePointRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurvePointRenderer.hpp</includedby>
+    <includedby refid="LineCurveGapFilter_8hpp" local="yes">QAccelPlot/src/series/LineCurveGapFilter.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>QAccelPlot/src/renderers/CurveRendererParams.hpp</label>
@@ -76,9 +77,16 @@
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams_1a4188a4ce63ef504701ab02e96c72b89c" kindref="member">width</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams_1a82665620ee82fc7e8b33c073a5f1925d" kindref="member">height</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" kindref="member">hitThreshold</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="60"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams_1afe7ab29b082c6728978495cd9dd5c281" kindref="member">nonPositiveXInvalid</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams_1a7ed6bb861a49049a11ed3b4593013b75" kindref="member">nonPositiveYInvalid</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isEmptyChunk(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref>&amp;<sp/>chunk)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>chunk.<ref refid="structQAccelPlot_1_1CurveChunk_1ab508debe5433e74515178ae0c2b31978" kindref="member">minX</ref><sp/>&gt;<sp/>chunk.<ref refid="structQAccelPlot_1_1CurveChunk_1ae981d9c41e9807d0d78086be0863d32b" kindref="member">maxX</ref><sp/>||<sp/>chunk.<ref refid="structQAccelPlot_1_1CurveChunk_1acdb4bba534d4764689c55e1d193189b8" kindref="member">minY</ref><sp/>&gt;<sp/>chunk.<ref refid="structQAccelPlot_1_1CurveChunk_1a9a3bfc7581ac5bace5dea3158f8cda0a" kindref="member">maxY</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp"/>
   </compounddef>

@@ -49,6 +49,8 @@ _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter 
 |  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**data**](#variable-data)  <br>_Interleaved XY source data without precision loss._  |
 |  qreal | [**height**](#variable-height)  <br>_Height of the curve item in pixels._  |
 |  qreal | [**hitThreshold**](#variable-hitthreshold)  <br>_Hit distance threshold in pixels._  |
+|  bool | [**nonPositiveXInvalid**](#variable-nonpositivexinvalid)  <br>_Whether non-positive X values are invalid samples (X axis uses log scale)._  |
+|  bool | [**nonPositiveYInvalid**](#variable-nonpositiveyinvalid)  <br>_Whether non-positive Y values are invalid samples (Y axis uses log scale)._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
 |  qreal | [**width**](#variable-width)  <br>_Width of the curve item in pixels._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#variable-xaxis)  <br>_Horizontal axis for coordinate mapping._  |
@@ -153,6 +155,36 @@ qreal QAccelPlot::CurveHitTestParams::height;
 _Hit distance threshold in pixels._ 
 ```C++
 qreal QAccelPlot::CurveHitTestParams::hitThreshold;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable nonPositiveXInvalid {#variable-nonpositivexinvalid}
+
+_Whether non-positive X values are invalid samples (X axis uses log scale)._ 
+```C++
+bool QAccelPlot::CurveHitTestParams::nonPositiveXInvalid;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable nonPositiveYInvalid {#variable-nonpositiveyinvalid}
+
+_Whether non-positive Y values are invalid samples (Y axis uses log scale)._ 
+```C++
+bool QAccelPlot::CurveHitTestParams::nonPositiveYInvalid;
 ```
 
 

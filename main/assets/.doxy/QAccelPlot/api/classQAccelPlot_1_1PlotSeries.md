@@ -146,8 +146,14 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |  void | [**clearDataRanges**](#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
-|  void | [**extendDataRanges**](#function-extenddataranges) (qreal x, qreal y) <br>_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._ |
+|  void | [**clearXDataRange**](#function-clearxdatarange) () <br>_Clears the cached X extent, e.g. when no sample has a valid X coordinate._  |
+|  void | [**clearYDataRange**](#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
+|  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
+|  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 |  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
+|  void | [**setXDataRange**](#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
+|  void | [**setYDataRange**](#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
 
 
 
@@ -554,19 +560,84 @@ void QAccelPlot::PlotSeries::clearDataRanges ()
 
 
 
-### function extendDataRanges {#function-extenddataranges}
+### function clearXDataRange {#function-clearxdatarange}
 
-_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._
+_Clears the cached X extent, e.g. when no sample has a valid X coordinate._ 
 ```C++
-void QAccelPlot::PlotSeries::extendDataRanges (
-    qreal x,
+void QAccelPlot::PlotSeries::clearXDataRange () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function clearYDataRange {#function-clearydatarange}
+
+_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._ 
+```C++
+void QAccelPlot::PlotSeries::clearYDataRange () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function extendXDataRange {#function-extendxdatarange}
+
+_Widens the reported X extent to include_ _x_ _._
+```C++
+void QAccelPlot::PlotSeries::extendXDataRange (
+    qreal x
+) 
+```
+
+
+
+Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. A non-finite _x_ leaves the extent unchanged. 
+
+
+        
+
+<hr>
+
+
+
+
+### function extendYDataRange {#function-extendydatarange}
+
+_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._
+```C++
+void QAccelPlot::PlotSeries::extendYDataRange (
     qreal y
 ) 
 ```
 
 
 
-Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. Non-finite coordinates leave the corresponding extent unchanged. 
+
+<hr>
+
+
+
+
+### function onAxisScaleChanged {#function-onaxisscalechanged}
+
+_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._ 
+```C++
+virtual void QAccelPlot::PlotSeries::onAxisScaleChanged () 
+```
+
+
+
+Log scale changes which samples are valid, so series that apply the invalid-sample contract override this to refresh ranges and cached geometry. The default implementation does nothing. 
 
 
         
@@ -585,6 +656,42 @@ void QAccelPlot::PlotSeries::setDataRanges (
     qreal xMax,
     qreal yMin,
     qreal yMax
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setXDataRange {#function-setxdatarange}
+
+_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._ 
+```C++
+void QAccelPlot::PlotSeries::setXDataRange (
+    qreal min,
+    qreal max
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setYDataRange {#function-setydatarange}
+
+_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._ 
+```C++
+void QAccelPlot::PlotSeries::setYDataRange (
+    qreal min,
+    qreal max
 ) 
 ```
 

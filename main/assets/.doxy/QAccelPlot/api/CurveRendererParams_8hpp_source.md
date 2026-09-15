@@ -58,7 +58,14 @@ struct CurveHitTestParams {
     qreal width;                           
     qreal height;                          
     qreal hitThreshold;                    
+    bool nonPositiveXInvalid;              
+    bool nonPositiveYInvalid;              
 };
+
+inline bool isEmptyChunk(const CurveChunk& chunk)
+{
+    return chunk.minX > chunk.maxX || chunk.minY > chunk.maxY;
+}
 
 } // namespace QAccelPlot
 ```

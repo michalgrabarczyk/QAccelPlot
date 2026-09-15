@@ -138,6 +138,11 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 |  void | [**start**](classQAccelPlot_1_1DataTransition.md#function-start) (const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
 
 
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  double | [**interpolateCoordinate**](#function-interpolatecoordinate) (double from, double to, double easedProgress) <br>_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._ |
 
 
 
@@ -205,7 +210,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 ## Detailed Description
 
 
-Each point is linearly blended from its old position to its new position. When the point counts differ, the shorter dataset is resampled to match.
+Each point is linearly blended from its old position to its new position. When the point counts differ, the shorter dataset is resampled to match. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.
 
 
 
@@ -227,6 +232,27 @@ _Constructs a_ [_**MorphTransition**_](classQAccelPlot_1_1MorphTransition.md) _w
 ```C++
 explicit QAccelPlot::MorphTransition::MorphTransition (
     QObject * parent=nullptr
+) 
+```
+
+
+
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+
+### function interpolateCoordinate {#function-interpolatecoordinate}
+
+_Returns the coordinate between_ _from_ _and__to_ _at__easedProgress_ _, honoring the invalid-sample contract._
+```C++
+static double QAccelPlot::MorphTransition::interpolateCoordinate (
+    double from,
+    double to,
+    double easedProgress
 ) 
 ```
 

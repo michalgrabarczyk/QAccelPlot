@@ -1260,6 +1260,9 @@ methods, signals, and enums.</p>
 <li>Use <a href="classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> to
   transfer a completed buffer safely from a worker thread.</li>
 <li>Use <code>setDataFNoRange()</code> only when axis data ranges are maintained separately.</li>
+<li>Mark missing or invalid samples with <code>NaN</code>; <code>gaps.nanMode</code> selects whether
+  the curve breaks or connects across them. See
+  <a href="../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a>.</li>
 </ul>
 <p>See the <a href="../performance/">performance guide</a> for a detailed comparison of the
 available data paths.</p>

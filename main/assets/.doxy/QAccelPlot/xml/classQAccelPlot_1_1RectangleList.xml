@@ -611,6 +611,8 @@
       <member refid="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>buildSpatialGrid</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>buildVertexCache</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>clearDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>clearXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>clearYDataRange</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1ab7dcda8abdfe6d2e5cacb7a9d9cfd11c" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a4ff9d70f8365e709a431807c4c3b52ab" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a364ecdc65dc3d5d7cb2b41c917d54901" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>color_</name></member>
@@ -620,7 +622,8 @@
       <member refid="classQAccelPlot_1_1RectangleList_1a60895961bbd88e59a4f72e3f2acb2e14" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>countChanged</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1aae88b5092f7351fb3943d13f32fc02b5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>data_</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a19e595f752dbdb7b3ec59932589b6cee" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>dataChanged_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a6f30214fe70c0bec55e7d3b3df508405" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>extendDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>extendXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>extendYDataRange</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1afb85815f91d34b3a35bbf957e9aa5e09" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a1255a86b7e7c901f85d586cb37addd7e" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>hoveredIndex_</name></member>
@@ -634,6 +637,7 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>name</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" prot="protected" virt="virtual"><scope>QAccelPlot::RectangleList</scope><name>onAxisScaleChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>plotRectChanged</name></member>
@@ -653,7 +657,9 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setName</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setPlotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setXDataRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>setYDataRange</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1a4b9d53661e4a1b6b116b05a501ec8c8d" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>spatialGrid_</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>updateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1RectangleList_1ab516c589f39fb4944e945a48aacbc2c8" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleList</scope><name>updatePaintNode</name></member>

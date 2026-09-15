@@ -77,8 +77,14 @@ signals:
 
 protected:
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    void extendDataRanges(qreal x, qreal y);
+    void setXDataRange(qreal min, qreal max);
+    void setYDataRange(qreal min, qreal max);
+    void extendXDataRange(qreal x);
+    void extendYDataRange(qreal y);
     void clearDataRanges();
+    void clearXDataRange();
+    void clearYDataRange();
+    virtual void onAxisScaleChanged();
 
 private:
     void onAxisRangeChanged();

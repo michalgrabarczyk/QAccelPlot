@@ -49,6 +49,11 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## f
+
+* [**FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md)
+
+
 ## g
 
 * [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md)
@@ -84,6 +89,8 @@
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -154,6 +161,8 @@
 
 ## s
 
+* [**SampleRun**](structQAccelPlot_1_1SampleRun.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SolidLine**](classQAccelPlot_1_1SolidLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md)

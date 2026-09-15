@@ -1514,10 +1514,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-extenddataranges" class="md-nav__link">
+  <a href="#function-clearxdatarange" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function extendDataRanges
+        function clearXDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-clearydatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function clearYDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-extendxdatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function extendXDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-extendydatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function extendYDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-onaxisscalechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function onAxisScaleChanged
       
     </span>
   </a>
@@ -1529,6 +1573,28 @@
     <span class="md-ellipsis">
       
         function setDataRanges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setxdatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setXDataRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setydatarange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setYDataRange
       
     </span>
   </a>
@@ -1735,11 +1801,35 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-extenddataranges"><strong>extendDataRanges</strong></a> (qreal x, qreal y) <br><em>Widens the reported extents to include the single point (</em> <em>x</em> <em>,__y</em> <em>).</em></td>
+<td style="text-align: left;"><a href="#function-clearxdatarange"><strong>clearXDataRange</strong></a> () <br><em>Clears the cached X extent, e.g. when no sample has a valid X coordinate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-clearydatarange"><strong>clearYDataRange</strong></a> () <br><em>Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-extendxdatarange"><strong>extendXDataRange</strong></a> (qreal x) <br><em>Widens the reported X extent to include</em> <em>x</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-extendydatarange"><strong>extendYDataRange</strong></a> (qreal y) <br><em>Widens the reported Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-onaxisscalechanged"><strong>onAxisScaleChanged</strong></a> () <br><em>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setdataranges"><strong>setDataRanges</strong></a> (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br><em>Reports this series' data extents to its bound axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setxdatarange"><strong>setXDataRange</strong></a> (qreal min, qreal max) <br><em>Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setydatarange"><strong>setYDataRange</strong></a> (qreal min, qreal max) <br><em>Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1897,24 +1987,68 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-extenddataranges">function extendDataRanges<a class="headerlink" href="#function-extenddataranges" title="Permanent link">&para;</a></h3>
-<p><em>Widens the reported extents to include the single point (</em> <em>x</em> <em>,__y</em> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendDataRanges</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">y</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-clearxdatarange">function clearXDataRange<a class="headerlink" href="#function-clearxdatarange" title="Permanent link">&para;</a></h3>
+<p><em>Clears the cached X extent, e.g. when no sample has a valid X coordinate.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearXDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
-<p>Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. Non-finite coordinates leave the corresponding extent unchanged. </p>
+<hr>
+
+<h3 id="function-clearydatarange">function clearYDataRange<a class="headerlink" href="#function-clearydatarange" title="Permanent link">&para;</a></h3>
+<p><em>Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearYDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-extendxdatarange">function extendXDataRange<a class="headerlink" href="#function-extendxdatarange" title="Permanent link">&para;</a></h3>
+<p><em>Widens the reported X extent to include</em> <em>x</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendXDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. A non-finite <em>x</em> leaves the extent unchanged. </p>
+<hr>
+
+<h3 id="function-extendydatarange">function extendYDataRange<a class="headerlink" href="#function-extendydatarange" title="Permanent link">&para;</a></h3>
+<p><em>Widens the reported Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendYDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">y</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
+<p><em>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Log scale changes which samples are valid, so series that apply the invalid-sample contract override this to refresh ranges and cached geometry. The default implementation does nothing. </p>
 <hr>
 
 <h3 id="function-setdataranges">function setDataRanges<a class="headerlink" href="#function-setdataranges" title="Permanent link">&para;</a></h3>
 <p><em>Reports this series' data extents to its bound axes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataRanges</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataRanges</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setxdatarange">function setXDataRange<a class="headerlink" href="#function-setxdatarange" title="Permanent link">&para;</a></h3>
+<p><em>Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setXDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setydatarange">function setYDataRange<a class="headerlink" href="#function-setydatarange" title="Permanent link">&para;</a></h3>
+<p><em>Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setYDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

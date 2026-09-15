@@ -21,6 +21,7 @@
 * `#include "effects/GradientColorTypes.hpp"`
 * `#include "linestyles/LineStyle.hpp"`
 * `#include "renderers/CurveRendererParams.hpp"`
+* `#include "series/LineCurveGapFilter.hpp"`
 * `#include <QColor>`
 * `#include <QPointF>`
 * `#include <QSGGeometry>`

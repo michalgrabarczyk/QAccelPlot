@@ -96,6 +96,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._ |
 | property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](classQAccelPlot_1_1LineCurve.md#property-effects-12)  <br>_List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._ |
+| property [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](classQAccelPlot_1_1LineCurve.md#property-gaps-12)  <br>_Grouped gap-rendering settings, e.g._ `gaps.nanMode` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1LineCurve.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the curve._ |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property qreal | [**lineWidth**](classQAccelPlot_1_1LineCurve.md#property-linewidth-12)  <br>_Line stroke width in pixels. Default: 1._  |
@@ -166,6 +167,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  Q\_INVOKABLE void | [**clearData**](#function-cleardata) () <br>_Removes all data points from the curve._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the base line color._  |
 |  QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](#function-effects-22) () <br>_Returns the QML list property for attached visual effects._  |
+|  [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](#function-gaps-22) () const<br>_Returns the grouped gap-rendering settings. The object is owned by the curve._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the cursor is currently over the curve._ |
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#function-linestyle-22) () const<br>_Returns the active line style._  |
 |  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the line stroke width._  |
@@ -259,6 +261,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _if__point_ _lies within the curve's hit-test region._ |
+| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Refreshes ranges and cached geometry when a bound axis changes between linear and log scale._  |
 
 
 ## Protected Functions inherited from QAccelPlot::PlotSeries
@@ -268,8 +271,14 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |  void | [**clearDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
-|  void | [**extendDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-extenddataranges) (qreal x, qreal y) <br>_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._ |
+|  void | [**clearXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-clearxdatarange) () <br>_Clears the cached X extent, e.g. when no sample has a valid X coordinate._  |
+|  void | [**clearYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
+|  void | [**extendXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
+|  void | [**extendYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+| virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 |  void | [**setDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
+|  void | [**setXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
+|  void | [**setYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
 
 
 
@@ -296,6 +305,14 @@ Visual effects (gradient stroke, gradient fill) are attached via the `effects` l
 **
 
 Animated data updates are enabled by assigning a `DrawTransition` or `MorphTransition` to `transition`.
+
+
+
+
+**
+**
+
+A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the `gaps` grouped property: `gaps.nanMode` `Break` (default) leaves a gap, `Connect` joins the neighboring valid samples. Insert `NaN` to mark missing telemetry explicitly.
 
 
 
@@ -386,6 +403,21 @@ QColor QAccelPlot::LineCurve::color;
 _List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._
 ```C++
 QQmlListProperty<LineCurveEffect> QAccelPlot::LineCurve::effects;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property gaps {#property-gaps-12}
+
+_Grouped gap-rendering settings, e.g._ `gaps.nanMode` _._
+```C++
+LineCurveGaps* QAccelPlot::LineCurve::gaps;
 ```
 
 
@@ -725,6 +757,21 @@ QColor QAccelPlot::LineCurve::color () const
 _Returns the QML list property for attached visual effects._ 
 ```C++
 QQmlListProperty< LineCurveEffect > QAccelPlot::LineCurve::effects () 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function gaps {#function-gaps-22}
+
+_Returns the grouped gap-rendering settings. The object is owned by the curve._ 
+```C++
+LineCurveGaps * QAccelPlot::LineCurve::gaps () const
 ```
 
 
@@ -1136,6 +1183,23 @@ bool QAccelPlot::LineCurve::contains (
 ```
 
 
+
+
+<hr>
+
+
+
+
+### function onAxisScaleChanged {#function-onaxisscalechanged}
+
+_Refreshes ranges and cached geometry when a bound axis changes between linear and log scale._ 
+```C++
+virtual void QAccelPlot::LineCurve::onAxisScaleChanged () override
+```
+
+
+
+Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged)
 
 
 <hr>

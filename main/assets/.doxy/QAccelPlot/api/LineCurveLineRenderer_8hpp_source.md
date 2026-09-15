@@ -21,6 +21,7 @@
 #include "effects/GradientColorTypes.hpp"
 #include "linestyles/LineStyle.hpp"
 #include "renderers/CurveRendererParams.hpp"
+#include "series/LineCurveGapFilter.hpp"
 
 #include <QColor>
 #include <QPointF>
@@ -80,12 +81,25 @@ public:
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
 
 private:
+    // Valid-sample runs used to break the gradient fill at gaps, cached across frames.
+    struct FillRunCache {
+        const void* data{nullptr};
+        int pointCount{-1};
+        bool logScaleX{false};
+        bool logScaleY{false};
+        std::vector<SampleRun> runs;
+    };
+
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
+    const std::vector<SampleRun>& validRuns(const LineCurveRenderParams& params) const;
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
     void updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, bool useVertexColor, const QColor& effectiveColor,
         const std::vector<float>& arcLengths) const;
+
+    // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
+    mutable FillRunCache fillRunCache_;
 };
 
 } // namespace QAccelPlot

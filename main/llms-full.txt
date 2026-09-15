@@ -354,6 +354,47 @@ QML for convenience or through C++ buffer APIs for high throughput.
 rectangle index. It is useful for ranges, events, bars, or large collections of
 simple rectangular shapes.
 
+## Invalid samples and gaps
+
+Telemetry regularly contains dropouts and corrupt readings. `LineCurve` applies
+one contract everywhere: rendering, gradient fills, dash patterns, transitions,
+auto-ranging, and hover hit testing.
+
+A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
+coordinate is zero or negative on a logarithmic axis. Mark missing data by
+inserting a sample with a `NaN` coordinate. JavaScript `null` and `undefined`
+are not gap markers.
+
+Gap rendering is configured through the curve's [`gaps`][line-curve] grouped
+property. `gaps.nanMode` selects how the line and fill treat invalid samples:
+
+```qml
+QAccelPlot.LineCurve {
+    gaps.nanMode: QAccelPlot.NanGapMode.Connect
+}
+```
+
+| `gaps.nanMode` | Behavior |
+| --- | --- |
+| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line. |
+| `NanGapMode.Connect` | Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples. |
+
+Although the mode is named after `NaN`, the most common gap marker, it applies
+to every invalid sample, including `±Inf` and non-positive log-axis values.
+
+The rest of the contract applies in both modes:
+
+- **Markers** are never drawn for invalid samples.
+- **Auto-ranging** judges each coordinate on its own. A sample with a valid X
+  and an invalid Y still extends the X range, so a dropout keeps its timestamp.
+  If a dimension has no valid coordinate, the series clears that range.
+- **Dash patterns** continue across a gap; the gap contributes no dash length.
+- **`MorphTransition`** shows a sample that becomes invalid as a gap
+  immediately, and a sample that becomes valid jumps to its target instead of
+  animating from `NaN`.
+- **Hover** never reports a hit on an invalid sample or across a break.
+- The `NoRange` data APIs still render gaps; they only skip range calculation.
+
 ## Composition and overlays
 
 The grid and series render within the plot, while ordinary QML items can be
@@ -407,6 +448,7 @@ handoff to the UI thread. See [Background data production](https://michalgrabarc
 [pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[line-curve]: api/classQAccelPlot_1_1LineCurve.md
 
 
 ---
@@ -1026,6 +1068,24 @@ When buffer generation could compete with rendering, move it to a worker
 thread. See [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) for safe handoff
 patterns.
 
+## Show dropouts as gaps
+
+When packets are lost or a sensor reports an invalid value, write `NaN` for
+that sample instead of repeating the last value or dropping the sample. The
+curve breaks there, the gap is excluded from auto-ranging, and hover never
+bridges it:
+
+```cpp
+const auto value = packet.valid ? packet.value : std::numeric_limits<float>::quiet_NaN();
+points[index * 2] = timestamp;
+points[index * 2 + 1] = value;
+```
+
+To draw a continuous trace across short dropouts instead, set
+`gaps.nanMode: QAccelPlot.NanGapMode.Connect` on the curve. See
+[Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps) for the
+complete contract, including `±Inf` and non-positive values on logarithmic axes.
+
 Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
 
 [after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating
@@ -1562,6 +1622,9 @@ Choose the simplest API appropriate for the data source:
 - Use [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata) to
   transfer a completed buffer safely from a worker thread.
 - Use `setDataFNoRange()` only when axis data ranges are maintained separately.
+- Mark missing or invalid samples with `NaN`; `gaps.nanMode` selects whether
+  the curve breaks or connects across them. See
+  [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
 
 See the [performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/) for a detailed comparison of the
 available data paths.

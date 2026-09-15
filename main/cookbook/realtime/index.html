@@ -627,6 +627,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#show-dropouts-as-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show dropouts as gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1180,6 +1191,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#show-dropouts-as-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show dropouts as gaps
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1253,6 +1275,19 @@ rather than horizontal motion.</p>
 <p>When buffer generation could compete with rendering, move it to a worker
 thread. See <a href="../background-data/">Background data production</a> for safe handoff
 patterns.</p>
+<h2 id="show-dropouts-as-gaps">Show dropouts as gaps<a class="headerlink" href="#show-dropouts-as-gaps" title="Permanent link">&para;</a></h2>
+<p>When packets are lost or a sensor reports an invalid value, write <code>NaN</code> for
+that sample instead of repeating the last value or dropping the sample. The
+curve breaks there, the gap is excluded from auto-ranging, and hover never
+bridges it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">valid</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</code></pre></div>
+<p>To draw a continuous trace across short dropouts instead, set
+<code>gaps.nanMode: QAccelPlot.NanGapMode.Connect</code> on the curve. See
+<a href="../../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a> for the
+complete contract, including <code>±Inf</code> and non-positive values on logarithmic axes.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>examples/realtime</code></a></p>
 
 

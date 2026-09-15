@@ -1149,6 +1149,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-nonpositivexinvalid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable nonPositiveXInvalid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-nonpositiveyinvalid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable nonPositiveYInvalid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-pointcount" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1246,6 +1268,14 @@
 <td style="text-align: left;"><a href="#variable-hitthreshold"><strong>hitThreshold</strong></a>  <br><em>Hit distance threshold in pixels.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-nonpositivexinvalid"><strong>nonPositiveXInvalid</strong></a>  <br><em>Whether non-positive X values are invalid samples (X axis uses log scale).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-nonpositiveyinvalid"><strong>nonPositiveYInvalid</strong></a>  <br><em>Whether non-positive Y values are invalid samples (Y axis uses log scale).</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#variable-pointcount"><strong>pointCount</strong></a>  <br><em>Number of points in</em> <code>data</code> <em>.</em></td>
 </tr>
@@ -1288,27 +1318,39 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-nonpositivexinvalid">variable nonPositiveXInvalid<a class="headerlink" href="#variable-nonpositivexinvalid" title="Permanent link">&para;</a></h3>
+<p><em>Whether non-positive X values are invalid samples (X axis uses log scale).</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">nonPositiveXInvalid</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-nonpositiveyinvalid">variable nonPositiveYInvalid<a class="headerlink" href="#variable-nonpositiveyinvalid" title="Permanent link">&para;</a></h3>
+<p><em>Whether non-positive Y values are invalid samples (Y axis uses log scale).</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">nonPositiveYInvalid</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-pointcount">variable pointCount<a class="headerlink" href="#variable-pointcount" title="Permanent link">&para;</a></h3>
 <p><em>Number of points in</em> <code>data</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-width">variable width<a class="headerlink" href="#variable-width" title="Permanent link">&para;</a></h3>
 <p><em>Width of the curve item in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">width</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">width</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-xaxis">variable xAxis<a class="headerlink" href="#variable-xaxis" title="Permanent link">&para;</a></h3>
 <p><em>Horizontal axis for coordinate mapping.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-yaxis">variable yAxis<a class="headerlink" href="#variable-yaxis" title="Permanent link">&para;</a></h3>
 <p><em>Vertical axis for coordinate mapping.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">CurveHitTestParams</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
