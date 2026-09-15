@@ -61,9 +61,6 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: root.palette.plotArea
-            axesAreaColor: root.palette.axesArea
-            grid.gridColor: root.palette.grid
             grid.subGridVisible: false
 
             xAxis: QAccelPlot.Axis {
@@ -72,15 +69,11 @@ Item {
                 dataMin: root.traceStart
                 dataMax: root.traceEnd
                 label: "Trace time"
-                baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
                 ticker.tickCount: 6
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
                 ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
                     dateTimeFormat: root.formats[root.formatIndex]
                 }
@@ -94,14 +87,10 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Response time (ms)"
-                baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             QAccelPlot.LineCurve {

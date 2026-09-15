@@ -137,7 +137,7 @@ Window {
             objectName: "curve"
             xAxis: plot.xAxis
             yAxis: plot.yAxis
-            color: "darkorange"
+            color: QAccelPlot.Colors.dark.seriesPrimary
             lineWidth: 2
         }
     }

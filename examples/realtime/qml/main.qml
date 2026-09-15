@@ -78,9 +78,6 @@ Window {
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: colorPalette.plotArea
-            axesAreaColor: colorPalette.axesArea
-            grid.gridColor: colorPalette.grid
             grid.subGridVisible: false
 
             xAxis: QAccelPlot.Axis {
@@ -89,14 +86,10 @@ Window {
                 dataMin: -20
                 dataMax: 0
                 label: "Time before present (s)"
-                baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
                 ticker.tickCount: 6
             }
 
@@ -108,14 +101,10 @@ Window {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"
-                baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             QAccelPlot.LineCurve {

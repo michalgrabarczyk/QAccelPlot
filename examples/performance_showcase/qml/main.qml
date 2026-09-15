@@ -145,10 +145,6 @@ Window {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 legendVisible: false
-                plotAreaColor: colorPalette.plotArea
-                axesAreaColor: colorPalette.axesArea
-                grid.gridColor: colorPalette.grid
-                grid.subGridColor: colorPalette.subGrid
 
                 xAxis: QAccelPlot.Axis {
                     viewportMin: 0
@@ -156,14 +152,10 @@ Window {
                     dataMin: 0
                     dataMax: 1000
                     label: "Sample domain"
-                    baselineColor: colorPalette.axisLine
                     labelColor: colorPalette.axisLabel
                     labelFont: typography.axisLabel
-                    hoverColor: colorPalette.hover
-                    ticker.tickColor: colorPalette.tick
                     ticker.tickLabelColor: colorPalette.axisTickLabel
                     ticker.tickLabelFont: typography.axisTickLabel
-                    ticker.subtickColor: colorPalette.subtick
                 }
 
                 yAxis: QAccelPlot.Axis {
@@ -174,14 +166,10 @@ Window {
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Amplitude"
-                    baselineColor: colorPalette.axisLine
                     labelColor: colorPalette.axisLabel
                     labelFont: typography.axisLabel
-                    hoverColor: colorPalette.hover
-                    ticker.tickColor: colorPalette.tick
                     ticker.tickLabelColor: colorPalette.axisTickLabel
                     ticker.tickLabelFont: typography.axisTickLabel
-                    ticker.subtickColor: colorPalette.subtick
                 }
 
                 QAccelPlot.RectangleList {

@@ -36,9 +36,6 @@ Item {
             id: plot
             Layout.fillWidth: true
             Layout.fillHeight: true
-            plotAreaColor: root.palette.plotArea
-            axesAreaColor: root.palette.axesArea
-            grid.gridColor: root.palette.grid
             grid.gridVisible: false
             grid.subGridVisible: false
 
@@ -52,11 +49,9 @@ Item {
                 baselineWidth: 2
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
                 ticker.tickColor: root.palette.seriesPrimary
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             yAxis: QAccelPlot.Axis {
@@ -67,15 +62,11 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Amplitude"
-                baselineColor: root.palette.axisLine
                 baselineWidth: 2
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             extraAxes: [
@@ -92,11 +83,9 @@ Item {
                     baselineWidth: 2
                     labelColor: root.palette.axisLabel
                     labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
                     ticker.tickColor: root.palette.seriesSecondary
                     ticker.tickLabelColor: root.palette.axisTickLabel
                     ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                     ticker.tickCount: 6
                 }
             ]

@@ -104,7 +104,6 @@ Window {
             axesAreaColor: colorPalette.window
             border.color: colorPalette.plotBorder
             border.width: 1
-            grid.gridColor: colorPalette.grid
             grid.lineWidth: 1
             grid.subGridVisible: false
 
@@ -113,15 +112,12 @@ Window {
                 viewportMax: 800
                 dataMin: 0
                 dataMax: 1000
-                baselineColor: colorPalette.axisLine
                 baselineWidth: 1
                 labelColor: colorPalette.axisLabel
                 hoverColor: colorPalette.axisLine
                 ticker.tickCount: 6
                 ticker.subtickCount: 1
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             yAxis: QAccelPlot.Axis {
