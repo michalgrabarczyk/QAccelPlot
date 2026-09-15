@@ -52,6 +52,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   render loop and is not a safe place to mutate `QQuickItem` geometry. It
   now reads the plot rect that `QAccelPlot` already assigns on the GUI
   thread instead.
+- `LineCurve::appendData()` updates the reported data range and the GPU render
+  buffer incrementally instead of rescanning and rebuilding the whole curve on
+  every call, so streaming N points costs O(N) work instead of O(N²).
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.

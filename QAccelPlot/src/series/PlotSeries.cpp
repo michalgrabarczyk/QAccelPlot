@@ -9,6 +9,7 @@
 
 #include "MathUtils.hpp"
 
+#include <algorithm>
 #include <cmath>
 
 namespace QAccelPlot {
@@ -127,6 +128,11 @@ void PlotSeries::setDataRanges(const qreal xMin, const qreal xMax, const qreal y
         reportYDataRangeToAxis();
         emit yDataRangeChanged(yMin, yMax);
     }
+}
+
+void PlotSeries::extendDataRanges(const qreal x, const qreal y)
+{
+    setDataRanges(std::min(lastXMin_, x), std::max(lastXMax_, x), std::min(lastYMin_, y), std::max(lastYMax_, y));
 }
 
 void PlotSeries::clearDataRanges()
