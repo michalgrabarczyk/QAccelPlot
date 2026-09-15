@@ -572,7 +572,6 @@
 * **setPlotAreaColor** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **setX2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **setY2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
-* **setRawData** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **spatialGrid\_** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **SolidLine** ([**QAccelPlot::SolidLine**](classQAccelPlot_1_1SolidLine.md))
 * **setLabels** ([**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md))

@@ -50,9 +50,9 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& rects);
 
-    void setRawData(const float* data, int rectCount);
+    void setData(const float* data, int rectCount);
 
-    void setRawData(const double* data, int rectCount);
+    void setData(const double* data, int rectCount);
 
 signals:
     void colorChanged();

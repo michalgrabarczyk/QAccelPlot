@@ -800,6 +800,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1223,6 +1234,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1293,6 +1315,11 @@
   or vertical-axis width.</li>
 <li>Automatic side assignment for the four named plot axes: <code>xAxis</code> uses the
   bottom, <code>x2Axis</code> the top, <code>yAxis</code> the left, and <code>y2Axis</code> the right.</li>
+</ul>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Renamed <code>RectangleList::setRawData()</code> to <code>setData()</code>, matching the naming
+  of the <code>LineCurve</code> data-setting APIs.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1385,7 +1412,7 @@
   timestamps and large coordinates: rectangles are stored and their data
   range computed in double precision, and rendering uses an origin-relative
   float buffer instead of storing raw coordinates as float. A new
-  <code>setRawData(const double*, int)</code> overload accepts double-precision data
+  <code>setData(const double*, int)</code> overload accepts double-precision data
   directly.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>

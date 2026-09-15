@@ -1370,7 +1370,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setdata" class="md-nav__link">
+  <a href="#function-setdata-13" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setData
@@ -1381,10 +1381,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setrawdata-12" class="md-nav__link">
+  <a href="#function-setdata-23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setRawData
+        function setData
       
     </span>
   </a>
@@ -1392,10 +1392,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setrawdata-22" class="md-nav__link">
+  <a href="#function-setdata-33" class="md-nav__link">
     <span class="md-ellipsis">
       
-        function setRawData
+        function setData
       
     </span>
   </a>
@@ -1657,15 +1657,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-setdata"><strong>setData</strong></a> (const QVariantList &amp; rects) <br><em>Loads rectangles from</em> <em>rects</em> <em>, a QML list of objects with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-13"><strong>setData</strong></a> (const QVariantList &amp; rects) <br><em>Loads rectangles from</em> <em>rects</em> <em>, a QML list of objects with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setrawdata-12"><strong>setRawData</strong></a> (const float * data, int rectCount) <br><em>Loads rectangles from a C++ raw float array (</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 floats: x1, y1, x2, y2).</em></td>
+<td style="text-align: left;"><a href="#function-setdata-23"><strong>setData</strong></a> (const float * data, int rectCount) <br><em>Loads rectangles from a C++ raw float array (</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 floats: x1, y1, x2, y2).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setrawdata-22"><strong>setRawData</strong></a> (const double * data, int rectCount) <br><em>Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps).</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 doubles.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-33"><strong>setData</strong></a> (const double * data, int rectCount) <br><em>Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps).</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 doubles.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1846,7 +1846,7 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setdata">function setData<a class="headerlink" href="#function-setdata" title="Permanent link">&para;</a></h3>
+<h3 id="function-setdata-13">function setData<a class="headerlink" href="#function-setdata-13" title="Permanent link">&para;</a></h3>
 <p><em>Loads rectangles from</em> <em>rects</em> <em>, a QML list of objects with</em><code>x1</code> <em>,</em><code>y1</code> <em>,</em><code>x2</code> <em>,</em><code>y2</code> <em>properties.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleList</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rects</span>
@@ -1854,18 +1854,18 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setrawdata-12">function setRawData<a class="headerlink" href="#function-setrawdata-12" title="Permanent link">&para;</a></h3>
+<h3 id="function-setdata-23">function setData<a class="headerlink" href="#function-setdata-23" title="Permanent link">&para;</a></h3>
 <p><em>Loads rectangles from a C++ raw float array (</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 floats: x1, y1, x2, y2).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleList</span><span class="o">::</span><span class="n">setRawData</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleList</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setrawdata-22">function setRawData<a class="headerlink" href="#function-setrawdata-22" title="Permanent link">&para;</a></h3>
+<h3 id="function-setdata-33">function setData<a class="headerlink" href="#function-setdata-33" title="Permanent link">&para;</a></h3>
 <p><em>Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps).</em> <em>data</em> <em>must have__rectCount</em> <em>× 4 doubles.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleList</span><span class="o">::</span><span class="n">setRawData</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleList</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span><span class="w"> </span>
