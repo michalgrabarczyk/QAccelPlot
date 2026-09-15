@@ -20,6 +20,7 @@ sys.path.insert(0, str(VISUAL_DIR))
 from ai_visual_acceptance import VisualAcceptanceError  # noqa: E402
 from ai_visual_matrix import (  # noqa: E402
     Capture,
+    capture_label,
     discover_captures,
     markdown_summary,
     parse_scenarios,
@@ -168,6 +169,25 @@ class MatrixSelectionTests(unittest.TestCase):
         self.assertEqual(len(captures), 1)
         self.assertEqual(captures[0].scenario, "quickstart/default")
         self.assertEqual(captures[0].backend, "opengl")
+
+    def test_opengl_es_arm_captures_are_compared_against_the_canonical_render(self):
+        captures = [
+            self.capture("6.8.3", "opengles3", "ubuntu-24.04-arm", "arm"),
+            self.capture("6.8.3", "opengl", "ubuntu-24.04", "canonical"),
+        ]
+        selected, manifest = select_captures(captures, "representative", None, 0.08, compare=lambda _a, _b: 0.01)
+
+        self.assertEqual([capture.os_name for capture in selected], ["ubuntu-24.04"])
+        self.assertEqual(manifest[1]["capture"], "quickstart/default:6.8.3:opengles3:ubuntu-24.04-arm")
+        self.assertEqual(manifest[1]["reason"], "covered by canonical")
+
+    def test_summary_labels_opengl_es_captures(self):
+        report = {
+            "contract": "quickstart",
+            "rendering": {"qt_version": "6.8.3", "actual_graphics_api": "opengl", "opengl_es": True, "opengl_major_version": 3},
+            "matrix": {"os_name": "ubuntu-24.04-arm"},
+        }
+        self.assertEqual(capture_label(report), "quickstart / Qt 6.8.3 / opengles3 / ubuntu-24.04-arm")
 
     def test_summary_explains_failed_checks(self):
         report = {

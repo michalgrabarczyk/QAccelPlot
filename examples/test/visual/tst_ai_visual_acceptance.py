@@ -178,7 +178,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertEqual(workflow.count("-DQACCELPLOT_DEPLOY_EXAMPLES=OFF"), 3)
         self.assertEqual(workflow.count("-DQACCELPLOT_BUILD_VISUAL_TESTS=ON"), 3)
         self.assertIn("libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools", workflow)
-        self.assertIn("QT_SCALE_FACTOR: ${{ matrix.platform.os == 'ubuntu-24.04' && '1' || '0.5' }}", workflow)
+        self.assertIn("QT_SCALE_FACTOR: ${{ startsWith(matrix.platform.os, 'ubuntu-') && '1' || '0.5' }}", workflow)
         self.assertIn("'.github/scripts/aqt_windows_qt611.py',", workflow)
         self.assertIn("'install-qt', 'windows', 'desktop', '6.11.2'", workflow)
         self.assertIn("uses: actions/cache@v5", workflow)
@@ -186,6 +186,28 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("overwrite: true", workflow)
         self.assertIn("steps.upload-visual-artifacts.outputs.artifact-url", workflow)
         self.assertNotIn("qt_arch:", workflow)
+
+    def test_workflow_captures_opengl_es_on_x86_64_and_arm64(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        include = re.search(r"(?ms)^        include:\n(?P<entries>.*?)^    env:", workflow)
+        self.assertIsNotNone(include)
+        entries = include.group("entries")
+        for os_name in ("ubuntu-24.04", "ubuntu-24.04-arm"):
+            with self.subTest(os=os_name):
+                self.assertRegex(
+                    entries,
+                    rf"qt_version: '6\.8\.3'\n\s+platform:\n\s+os: {re.escape(os_name)}\n"
+                    r"\s+backend: opengl\n\s+label: opengles3\n\s+opengl_es: '3\.0'\n",
+                )
+        self.assertIn("if: matrix.platform.opengl_es", workflow)
+        self.assertIn('echo "QACCELPLOT_OPENGL_ES_VERSION=${{ matrix.platform.opengl_es }}"', workflow)
+        self.assertIn('echo "QT_XCB_GL_INTEGRATION=xcb_egl"', workflow)
+        self.assertIn('echo "MESA_GLES_VERSION_OVERRIDE=${{ matrix.platform.opengl_es }}"', workflow)
+        # Artifact and job names must keep ES captures apart from desktop OpenGL on the same runner.
+        self.assertIn(
+            "name: visual-${{ matrix.qt_version }}-${{ matrix.platform.label || matrix.platform.backend }}-${{ matrix.platform.os }}",
+            workflow,
+        )
 
     def test_screenshot_tests_disable_hover(self):
         test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
