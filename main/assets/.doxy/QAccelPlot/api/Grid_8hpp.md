@@ -17,6 +17,7 @@
 
 
 
+* `#include "theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QObject>`
 * `#include <QtQml/qqmlregistration.h>`

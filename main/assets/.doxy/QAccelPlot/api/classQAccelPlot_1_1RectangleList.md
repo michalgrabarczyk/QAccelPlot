@@ -87,7 +87,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1RectangleList.md#property-color-12)  <br>_Fill color applied to all rectangles. Default: semi-transparent blue._  |
+| property QColor | [**color**](classQAccelPlot_1_1RectangleList.md#property-color-12)  <br>_Fill color applied to all rectangles. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._ |
 | property int | [**count**](classQAccelPlot_1_1RectangleList.md#property-count-12)  <br>_Read-only: number of rectangles currently loaded._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12)  <br>_Read-only: index of the rectangle under the cursor, or -1 when none._  |
 
@@ -259,7 +259,7 @@ All rectangles are stored as interleaved floats (x1, y1, x2, y2) and uploaded to
 
 ### property color {#property-color-12}
 
-_Fill color applied to all rectangles. Default: semi-transparent blue._ 
+_Fill color applied to all rectangles. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._
 ```C++
 QColor QAccelPlot::RectangleList::color;
 ```

@@ -18,6 +18,10 @@
 
 ## c
 
+* [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**Colors**](classQAccelPlot_1_1Colors.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md)

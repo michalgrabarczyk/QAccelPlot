@@ -64,12 +64,12 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**axesAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-axesareacolor-12)  <br>_Background color of the axes surround area. Default: c8c8c8._  |
+| property QColor | [**axesAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-axesareacolor-12)  <br>_Background color of the axes surround area. Default:_ `Colors.dark.axesArea` _._ |
 | property [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) \* | [**border**](classQAccelPlot_1_1QAccelPlot.md#property-border-12)  <br>_Decorative frame configuration for the plot area._  |
 | property QQmlListProperty&lt; [**Axis**](classQAccelPlot_1_1Axis.md) &gt; | [**extraAxes**](classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12)  <br>_Additional axes beyond the primary four; each extra axis must supply its own side._  |
 | property [**Grid**](classQAccelPlot_1_1Grid.md) \* | [**grid**](classQAccelPlot_1_1QAccelPlot.md#property-grid-12)  <br>_Read-only constant: grid configuration object._  |
 | property qreal | [**padding**](classQAccelPlot_1_1QAccelPlot.md#property-padding-12)  <br>_Uniform padding in pixels between the plot area and the canvas edge. Default: 24._  |
-| property QColor | [**plotAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-plotareacolor-12)  <br>_Background color of the plot data area. Default: d3d3d3._  |
+| property QColor | [**plotAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-plotareacolor-12)  <br>_Background color of the plot data area. Default:_ `Colors.dark.plotArea` _._ |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12)  <br>_Read-only: plot area rectangle in item-local pixel coordinates._  |
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1QAccelPlot.md#property-series-12)  <br>_Read-only: all registered plot series._  |
 | property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**x2Axis**](classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12)  <br>_Optional secondary horizontal axis; assigning it sets its side to_ `Axis.Top` _._ |
@@ -203,7 +203,7 @@ PlotView {
 
 ### property axesAreaColor {#property-axesareacolor-12}
 
-_Background color of the axes surround area. Default: c8c8c8._ 
+_Background color of the axes surround area. Default:_ `Colors.dark.axesArea` _._
 ```C++
 QColor QAccelPlot::QAccelPlot::axesAreaColor;
 ```
@@ -278,7 +278,7 @@ qreal QAccelPlot::QAccelPlot::padding;
 
 ### property plotAreaColor {#property-plotareacolor-12}
 
-_Background color of the plot data area. Default: d3d3d3._ 
+_Background color of the plot data area. Default:_ `Colors.dark.plotArea` _._
 ```C++
 QColor QAccelPlot::QAccelPlot::plotAreaColor;
 ```

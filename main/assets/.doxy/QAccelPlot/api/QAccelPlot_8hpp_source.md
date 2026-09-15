@@ -22,6 +22,7 @@
 #include "axis/Axis.hpp"
 #include "grid/Grid.hpp"
 #include "series/PlotSeries.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QKeyEvent>
@@ -154,8 +155,8 @@ private:
     PlotMouseEvent mouseMoveEvent_{this};
     qreal padding_{24.0};
     QRectF plotRect_;
-    QColor plotAreaColor_{QColor("#d3d3d3")}; // lightgrey
-    QColor axesAreaColor_{QColor("#c8c8c8")}; // slightly darker
+    QColor plotAreaColor_{ColorPalette::dark().plotArea};
+    QColor axesAreaColor_{ColorPalette::dark().axesArea};
     PlotBorder* border_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};

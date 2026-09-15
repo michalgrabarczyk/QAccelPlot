@@ -18,6 +18,7 @@
 
 
 * `#include "formatters/TickLabelFormatter.hpp"`
+* `#include "theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QObject>`

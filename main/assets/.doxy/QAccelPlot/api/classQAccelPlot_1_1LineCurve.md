@@ -94,7 +94,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | property bool | [**antialiasingEnabled**](classQAccelPlot_1_1LineCurve.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to lines and markers. Default:_ `true` _._ |
 | property qreal | [**antialiasingFeather**](classQAccelPlot_1_1LineCurve.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels. Has effect only when_ `antialiasingEnabled` _is_`true` _. Default: 1._ |
-| property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Qt::blue` _._ |
+| property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](classQAccelPlot_1_1LineCurve.md#property-effects-12)  <br>_List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._ |
 | property bool | [**hovered**](classQAccelPlot_1_1LineCurve.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the curve._ |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
@@ -368,7 +368,7 @@ qreal QAccelPlot::LineCurve::antialiasingFeather;
 
 ### property color {#property-color-12}
 
-_Base line color. Default:_ `Qt::blue` _._
+_Base line color. Default:_ `Colors.dark.seriesPrimary` _._
 ```C++
 QColor QAccelPlot::LineCurve::color;
 ```

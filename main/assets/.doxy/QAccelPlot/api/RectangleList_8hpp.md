@@ -19,6 +19,7 @@
 
 * `#include "series/PlotSeries.hpp"`
 * `#include "series/SpatialGrid.hpp"`
+* `#include "theme/ColorPalette.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <vector>`
 

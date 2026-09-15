@@ -17,6 +17,8 @@
 //
 #pragma once
 
+#include "theme/ColorPalette.hpp"
+
 #include <QColor>
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
@@ -86,8 +88,8 @@ signals:
 private:
     qreal lineWidth_{2.0};
     qreal subGridLineWidth_{1.0};
-    QColor gridColor_{"#8c8c8c"};
-    QColor subGridColor_{"#b4b4b4"};
+    QColor gridColor_{ColorPalette::dark().grid};
+    QColor subGridColor_{ColorPalette::dark().subGrid};
     bool gridVisible_{true};
     bool subGridVisible_{true};
     bool gridHorizontalLinesVisible_{true};

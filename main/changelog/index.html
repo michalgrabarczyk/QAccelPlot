@@ -1320,6 +1320,9 @@
 <ul>
 <li>Renamed <code>RectangleList::setRawData()</code> to <code>setData()</code>, matching the naming
   of the <code>LineCurve</code> data-setting APIs.</li>
+<li>Default plot, axis, grid, series, and legend colors now come from the
+  built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
+  defined once in C++ and shared with QML, where its usage is unchanged.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>

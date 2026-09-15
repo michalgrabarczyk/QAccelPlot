@@ -18,6 +18,7 @@
 #pragma once
 
 #include "formatters/TickLabelFormatter.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -123,7 +124,7 @@ signals:
     void tickLabelFormatChanged();
 
 private:
-    QColor tickColor_{QColor(Qt::black)};
+    QColor tickColor_{ColorPalette::dark().tick};
     QColor tickLabelColor_;
     int tickCount_{5};
     int subtickCount_{10};
@@ -131,7 +132,7 @@ private:
     qreal tickLengthOut_{8.0};
     qreal subtickLengthIn_{4.0};
     qreal subtickLengthOut_{4.0};
-    QColor subtickColor_{QColor(Qt::darkGray)};
+    QColor subtickColor_{ColorPalette::dark().subtick};
     qreal tickWidth_{2.0};
     qreal subtickWidth_{1.0};
     qreal tickLabelPadding_{5.0};

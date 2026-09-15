@@ -22,6 +22,7 @@
 * `#include "axis/Axis.hpp"`
 * `#include "grid/Grid.hpp"`
 * `#include "series/PlotSeries.hpp"`
+* `#include "theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QKeyEvent>`
 * `#include <QPointF>`

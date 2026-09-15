@@ -64,12 +64,12 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**gridColor**](classQAccelPlot_1_1Grid.md#property-gridcolor-12)  <br>_Color of the major grid lines. Default:_ `#8c8c8c` _._ |
+| property QColor | [**gridColor**](classQAccelPlot_1_1Grid.md#property-gridcolor-12)  <br>_Color of the major grid lines. Default:_ `Colors.dark.grid` _._ |
 | property bool | [**gridHorizontalLinesVisible**](classQAccelPlot_1_1Grid.md#property-gridhorizontallinesvisible-12)  <br>_Whether horizontal major grid lines are visible. Default:_ `true` _._ |
 | property bool | [**gridVerticalLinesVisible**](classQAccelPlot_1_1Grid.md#property-gridverticallinesvisible-12)  <br>_Whether vertical major grid lines are visible. Default:_ `true` _._ |
 | property bool | [**gridVisible**](classQAccelPlot_1_1Grid.md#property-gridvisible-12)  <br>_Whether major grid lines are visible. Default:_ `true` _._ |
 | property QML\_ANONYMOUSqreal | [**lineWidth**](classQAccelPlot_1_1Grid.md#property-linewidth-12)  <br>_Width in pixels of the major grid lines. Default: 2._  |
-| property QColor | [**subGridColor**](classQAccelPlot_1_1Grid.md#property-subgridcolor-12)  <br>_Color of the sub-grid lines. Default:_ `#b4b4b4` _._ |
+| property QColor | [**subGridColor**](classQAccelPlot_1_1Grid.md#property-subgridcolor-12)  <br>_Color of the sub-grid lines. Default:_ `Colors.dark.subGrid` _._ |
 | property bool | [**subGridHorizontalLinesVisible**](classQAccelPlot_1_1Grid.md#property-subgridhorizontallinesvisible-12)  <br>_Whether horizontal sub-grid lines are visible. Default:_ `true` _._ |
 | property qreal | [**subGridLineWidth**](classQAccelPlot_1_1Grid.md#property-subgridlinewidth-12)  <br>_Width in pixels of the sub-grid lines. Default: 1._  |
 | property bool | [**subGridVerticalLinesVisible**](classQAccelPlot_1_1Grid.md#property-subgridverticallinesvisible-12)  <br>_Whether vertical sub-grid lines are visible. Default:_ `true` _._ |
@@ -170,7 +170,7 @@ Exposed as a CONSTANT property on `PlotView`. Major grid lines are drawn at the 
 
 ### property gridColor {#property-gridcolor-12}
 
-_Color of the major grid lines. Default:_ `#8c8c8c` _._
+_Color of the major grid lines. Default:_ `Colors.dark.grid` _._
 ```C++
 QColor QAccelPlot::Grid::gridColor;
 ```
@@ -245,7 +245,7 @@ QML_ANONYMOUSqreal QAccelPlot::Grid::lineWidth;
 
 ### property subGridColor {#property-subgridcolor-12}
 
-_Color of the sub-grid lines. Default:_ `#b4b4b4` _._
+_Color of the sub-grid lines. Default:_ `Colors.dark.subGrid` _._
 ```C++
 QColor QAccelPlot::Grid::subGridColor;
 ```

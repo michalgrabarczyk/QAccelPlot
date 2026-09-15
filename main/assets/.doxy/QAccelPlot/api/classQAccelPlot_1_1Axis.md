@@ -77,11 +77,11 @@ flowchart TB
 | ---: | :--- |
 | property int | [**axisLinePadding**](classQAccelPlot_1_1Axis.md#property-axislinepadding-12)  <br>_Pixels of padding between the plot area edge and the axis baseline. Default: 0._  |
 | property int | [**axisTitlePadding**](classQAccelPlot_1_1Axis.md#property-axistitlepadding-12)  <br>_Pixels of padding between the axis line and the title text. Default: 30._  |
-| property QColor | [**baselineColor**](classQAccelPlot_1_1Axis.md#property-baselinecolor-12)  <br>_Color of the axis baseline. Default:_ `Qt::black` _._ |
+| property QColor | [**baselineColor**](classQAccelPlot_1_1Axis.md#property-baselinecolor-12)  <br>_Color of the axis baseline. Default:_ `Colors.dark.axisLine` _._ |
 | property qreal | [**baselineWidth**](classQAccelPlot_1_1Axis.md#property-baselinewidth-12)  <br>_Width in pixels of the axis baseline. Default: 2._  |
 | property qreal | [**dataMax**](classQAccelPlot_1_1Axis.md#property-datamax-12)  <br>_Maximum data value seen by the curves bound to this axis. Default: 1._  |
 | property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value seen by the curves bound to this axis. Default: 0._  |
-| property QColor | [**hoverColor**](classQAccelPlot_1_1Axis.md#property-hovercolor-12)  <br>_Tick and label color applied when the axis is hovered. Default:_ `Qt::blue` _._ |
+| property QColor | [**hoverColor**](classQAccelPlot_1_1Axis.md#property-hovercolor-12)  <br>_Tick and label color applied when the axis is hovered. Default:_ `Colors.dark.hover` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1Axis.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the axis widget._ |
 | property QString | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Optional axis label displayed alongside the axis line._  |
 | property QColor | [**labelColor**](classQAccelPlot_1_1Axis.md#property-labelcolor-12)  <br>_Optional axis-label color. When invalid, the baselineColor is used._  |
@@ -305,7 +305,7 @@ int QAccelPlot::Axis::axisTitlePadding;
 
 ### property baselineColor {#property-baselinecolor-12}
 
-_Color of the axis baseline. Default:_ `Qt::black` _._
+_Color of the axis baseline. Default:_ `Colors.dark.axisLine` _._
 ```C++
 QColor QAccelPlot::Axis::baselineColor;
 ```
@@ -365,7 +365,7 @@ qreal QAccelPlot::Axis::dataMin;
 
 ### property hoverColor {#property-hovercolor-12}
 
-_Tick and label color applied when the axis is hovered. Default:_ `Qt::blue` _._
+_Tick and label color applied when the axis is hovered. Default:_ `Colors.dark.hover` _._
 ```C++
 QColor QAccelPlot::Axis::hoverColor;
 ```

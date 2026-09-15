@@ -24,6 +24,7 @@
 * `#include "renderers/LineCurvePointRenderer.hpp"`
 * `#include "series/LineCurveVertexCache.hpp"`
 * `#include "series/PlotSeries.hpp"`
+* `#include "theme/ColorPalette.hpp"`
 * `#include "transitions/DataTransition.hpp"`
 * `#include <QPointF>`
 * `#include <QPointer>`

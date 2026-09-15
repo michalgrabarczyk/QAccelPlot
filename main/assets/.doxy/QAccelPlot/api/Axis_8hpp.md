@@ -19,6 +19,7 @@
 
 * `#include "axis/AxisTicker.hpp"`
 * `#include "axis/AxisTicks.hpp"`
+* `#include "theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QHash>`

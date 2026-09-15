@@ -19,6 +19,7 @@
 
 #include "axis/AxisTicker.hpp"
 #include "axis/AxisTicks.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -193,10 +194,10 @@ private:
     bool hovered_{false};
     bool isDragging_{false};
     QPointF lastMousePos_;
-    QColor baselineColor_{QColor(Qt::black)};
+    QColor baselineColor_{ColorPalette::dark().axisLine};
     QColor labelColor_;
     qreal baselineWidth_{2.0};
-    QColor hoverColor_{QColor(Qt::blue)};
+    QColor hoverColor_{ColorPalette::dark().hover};
     int axisTitlePadding_{30};
     int axisLinePadding_{0};
     qreal layoutSize_{50.0};

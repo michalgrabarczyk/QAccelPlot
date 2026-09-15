@@ -19,6 +19,7 @@
 
 #include "series/PlotSeries.hpp"
 #include "series/SpatialGrid.hpp"
+#include "theme/ColorPalette.hpp"
 
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -82,7 +83,7 @@ private:
         unsigned char r, g, b, a;
     };
 
-    QColor color_{QColor(0, 0, 255, 50)};
+    QColor color_;
     int hoveredIndex_{-1};
     // Data: 4 doubles per rect (x1, y1, x2, y2), full precision.
     std::vector<double> data_;

@@ -24,6 +24,7 @@
 #include "renderers/LineCurvePointRenderer.hpp"
 #include "series/LineCurveVertexCache.hpp"
 #include "series/PlotSeries.hpp"
+#include "theme/ColorPalette.hpp"
 #include "transitions/DataTransition.hpp"
 
 #include <QPointF>
@@ -151,7 +152,7 @@ private:
     void invalidateData();
     void cancelRunningTransition();
 
-    QColor color_{Qt::blue};
+    QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
     DataType dataType_{DataType::Double};
