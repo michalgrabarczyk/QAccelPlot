@@ -7,7 +7,6 @@
 //
 #include "series/LineCurve.hpp"
 #include "MathUtils.hpp"
-#include "QAccelPlot.hpp"
 #include "QAccelPlotLogging.hpp"
 #include "axis/Axis.hpp"
 #include "effects/GradientFill.hpp"
@@ -376,14 +375,10 @@ void LineCurve::postData(std::vector<float>&& xyInterleaved, const int pointCoun
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setDataF(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
-static QRectF resolvePlotRect(LineCurve* curve)
+static QRectF resolvePlotRect(const LineCurve* curve)
 {
-    if (const auto fp = qobject_cast<QAccelPlot*>(curve->parentItem())) {
-        const auto pr = fp->plotRect();
-        if (curve->position() != pr.topLeft() || QSizeF(curve->width(), curve->height()) != pr.size()) {
-            curve->setPosition(pr.topLeft());
-            curve->setSize(pr.size());
-        }
+    const auto pr = curve->plotRect();
+    if (!pr.isEmpty()) {
         return pr;
     }
     return QRectF(0, 0, curve->width(), curve->height());
