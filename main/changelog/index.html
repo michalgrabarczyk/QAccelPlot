@@ -1378,6 +1378,12 @@
   threaded render loop. A <code>tickLabel</code> JavaScript callback is therefore never
   invoked from the render thread, and it now receives <code>tickStep</code> as its
   second argument (previously always <code>undefined</code>).</li>
+<li>Preserved double precision in <code>RectangleList</code> for modern Unix-epoch
+  timestamps and large coordinates: rectangles are stored and their data
+  range computed in double precision, and rendering uses an origin-relative
+  float buffer instead of storing raw coordinates as float. A new
+  <code>setRawData(const double*, int)</code> overload accepts double-precision data
+  directly.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
 <h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>

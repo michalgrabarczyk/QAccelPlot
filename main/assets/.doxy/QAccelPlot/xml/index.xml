@@ -1077,7 +1077,10 @@
     <member refid="classQAccelPlot_1_1RectangleList_1afb85815f91d34b3a35bbf957e9aa5e09" kind="property"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a364ecdc65dc3d5d7cb2b41c917d54901" kind="variable"><name>color_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a1255a86b7e7c901f85d586cb37addd7e" kind="variable"><name>hoveredIndex_</name></member>
-    <member refid="classQAccelPlot_1_1RectangleList_1a4cbb1121b94566b48753ba0f8e4c0a61" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aae88b5092f7351fb3943d13f32fc02b5" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a80a20367abfb3e359784128774c2778d" kind="variable"><name>renderData_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0918aa462742b16fcf8b70bc9920ec72" kind="variable"><name>renderOriginX_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ad45ff0b56702b495d7b0fe866abf3aa6" kind="variable"><name>renderOriginY_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a01a031f9192c4d0dc27fd8be2f80c799" kind="variable"><name>rectCount_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a19e595f752dbdb7b3ec59932589b6cee" kind="variable"><name>dataChanged_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ae061ab58107693c8798fa6aace2d9ca7" kind="variable"><name>vertexCache_</name></member>
@@ -1090,16 +1093,18 @@
     <member refid="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" kind="function"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aaead3aa540e3521e1e6a365bdc313d6c" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa2a39792ecec84bbf1190cdf0f37e586" kind="function"><name>setRawData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a49e1ae68f58f105fd672b7876339f366" kind="function"><name>setRawData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a10c3250bf698158afe0b8337ef617461" kind="signal"><name>colorChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a60895961bbd88e59a4f72e3f2acb2e14" kind="signal"><name>countChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a417dd70d38b73655c7d28afea5b72c5a" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ab516c589f39fb4944e945a48aacbc2c8" kind="function"><name>updatePaintNode</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1addaa4d1d572c8f13bbd11598b6a2b9de" kind="function"><name>hoverMoveEvent</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad82d14e9396949683e2b904f5ccf6ef2" kind="function"><name>hoverLeaveEvent</name></member>
-    <member refid="classQAccelPlot_1_1RectangleList_1ad9a581d225447d7ce44006d4e01624ee" kind="function"><name>validateRawDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a267d4171f8f4a8e7b2cffba5e0403f5d" kind="function"><name>validateRawDataArguments</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" kind="function"><name>buildSpatialGrid</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" kind="function"><name>updateDataRanges</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a66249ff9462d5b34fd0a4a29b8e9c7ae" kind="function"><name>rebuildRenderData</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1RectMaterial" kind="class"><name>QAccelPlot::RectMaterial</name>
     <member refid="classQAccelPlot_1_1RectMaterial_1acbd0c649fb0243d0e145249f895bbbce" kind="variable"><name>rectCount</name></member>

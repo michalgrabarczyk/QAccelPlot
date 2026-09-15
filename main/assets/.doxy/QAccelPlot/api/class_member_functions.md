@@ -272,6 +272,7 @@
 * **rescaleAllAxes** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **RectMaterial** ([**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 * **RectangleList** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **rebuildRenderData** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 
 
 ## s

@@ -147,7 +147,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered rectangle, or -1 if none._  |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the fill color to_ _color_ _._ |
 |  Q\_INVOKABLE void | [**setData**](#function-setdata) (const QVariantList & rects) <br>_Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
-|  void | [**setRawData**](#function-setrawdata) (const float \* data, int rectCount) <br>_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._ |
+|  void | [**setRawData**](#function-setrawdata-12) (const float \* data, int rectCount) <br>_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._ |
+|  void | [**setRawData**](#function-setrawdata-22) (const double \* data, int rectCount) <br>_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._ |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -445,12 +446,30 @@ Q_INVOKABLE void QAccelPlot::RectangleList::setData (
 
 
 
-### function setRawData {#function-setrawdata}
+### function setRawData {#function-setrawdata-12}
 
 _Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._
 ```C++
 void QAccelPlot::RectangleList::setRawData (
     const float * data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setRawData {#function-setrawdata-22}
+
+_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._
+```C++
+void QAccelPlot::RectangleList::setRawData (
+    const double * data,
     int rectCount
 ) 
 ```
