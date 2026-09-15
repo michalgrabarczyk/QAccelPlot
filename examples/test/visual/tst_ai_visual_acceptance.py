@@ -293,6 +293,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         prompt = build_prompt(self.contract)
         self.assertIn("Use `uncertain` when a\ndetail cannot be verified", prompt)
         self.assertIn("a `fail` requires a concrete visible contradiction", prompt)
+        self.assertIn("clipped to the plot area by design", prompt)
         self.assertIn("square pixel blocks", prompt)
         self.assertIn("genuinely comparable size, weight, orientation, and contrast", prompt)
         self.assertIn("Set evidence to an empty string for `pass`", prompt)

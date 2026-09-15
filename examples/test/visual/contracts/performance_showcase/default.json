@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "One coherent high-density plot is visible. Its axes, grid, and curve stay within the plot area without unintended overlap or clipping. Do not evaluate metric cards, telemetry, controls, side panels, or other content outside the plot."
+      "expectation": "One coherent high-density plot is visible with its axes and grid. The curve is expected to fill the plot horizontally and is clipped at the left and right plot borders by design, so lines ending abruptly at the plot edge are correct. Fail only if the axes, tick labels, or the plot area itself are cut off, or the curve is drawn outside the plot area. Do not evaluate metric cards, telemetry, controls, side panels, or other content outside the plot."
     },
     {
       "id": "dense_curve",
@@ -30,7 +30,7 @@
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "The dense curve remains distinguishable from the grid, and the axes and plot text are not corrupted or materially clipped."
+      "expectation": "The dense curve remains distinguishable from the grid, and the axes and plot text are not corrupted. Axis titles and tick labels are not cut off; curves clipped at the plot border are expected."
     }
   ]
 }

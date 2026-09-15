@@ -288,6 +288,9 @@ no baseline. Assess visible evidence only, never infer exact data correctness. M
 antialiasing and platform spacing differences are acceptable. Use `uncertain` when a
 detail cannot be verified; a `fail` requires a concrete visible contradiction.
 
+Series, grids, and annotation overlays are clipped to the plot area by design; content
+ending at or cut by the plot border is not a defect unless the contract says otherwise.
+
 For text_raster_quality, fail only for concrete artifacts such as square pixel blocks,
 doubled or jagged stair-step glyph edges, uniformly upscaled glyphs, or materially softer
 text than nearby text with genuinely comparable size, weight, orientation, and contrast.
