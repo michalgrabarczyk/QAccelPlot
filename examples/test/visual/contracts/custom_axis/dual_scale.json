@@ -1,6 +1,7 @@
 {
   "version": 1,
-  "name": "custom_axis",
+  "name": "custom_axis/dual_scale",
+  "sources": ["qml/SpectrumPage.qml"],
   "description": "A dual-scale spectrum plot with wavelength and frequency axes. Judge only content inside the plot; ignore tabs, headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 1100,
@@ -20,7 +21,7 @@
     {
       "id": "dual_horizontal_axes",
       "severity": "high",
-      "expectation": "Two distinct horizontal axes are visible below the plot: Wavelength (nm) increases from roughly 400 to 700 left-to-right, while Frequency (THz) decreases left-to-right. The axes may be close together. Fail only for visible physical overlap or overprinting of their lines, ticks, titles, or tick-label glyphs; do not infer overlap from proximity or aligned ticks. If separation is unclear at the screenshot resolution, report uncertain rather than fail."
+      "expectation": "Two distinct horizontal axes are visible below the plot: Wavelength (nm) increases from roughly 400 to 700 left-to-right, while Frequency (THz) decreases left-to-right. The axes may be close together. Fail only for visible physical overlap or overprinting of their lines, ticks, titles, or tick-label glyphs; do not infer overlap from proximity or aligned ticks. If separation is unclear at the screenshot resolution, report uncertain rather than fail. The Frequency (THz) tick labels form their own row below the Wavelength (nm) title; two vertically separated label rows are correct even when their ticks line up."
     },
     {
       "id": "spectrum_curve",

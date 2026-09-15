@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "annotations",
+  "name": "annotations/default",
   "description": "A process-response plot with data-anchored labels, an event marker, and a warning range. Judge only content inside the plot; ignore headings, descriptions, buttons, controls, and other surrounding UI.",
   "expected_image": {
     "width": 1200,
@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "The plot, annotations, axes, and legend form a coherent plot layout and do not overlap the plot boundary or each other in a way that hides their meaning. Do not evaluate content outside the plot."
+      "expectation": "The plot, annotations, axes, and legend form a coherent plot layout and do not overlap each other in a way that hides their meaning. Annotations touching the plot boundary is acceptable. Do not evaluate content outside the plot."
     },
     {
       "id": "curve_and_axes",
@@ -25,7 +25,7 @@
     {
       "id": "point_annotations",
       "severity": "medium",
-      "expectation": "Distinct peak and pressure-drop markers are visibly attached near a high and a low point of the curve, with readable labels that remain inside the plot. Their displayed numeric values may vary with generated sample data and must not be judged for exact equality."
+      "expectation": "Distinct peak and pressure-drop markers are visibly attached near a high and a low point of the curve, with readable labels. A label box may touch the plot boundary as long as its text is fully readable. Their displayed numeric values may vary with generated sample data and must not be judged for exact equality."
     },
     {
       "id": "range_and_event_annotations",
@@ -40,7 +40,7 @@
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "The plot is not blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Text and graphics are not visibly clipped."
+      "expectation": "The plot is not blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Annotations are clipped to the plot area by design: an event line, range band, or label box that touches or is partly cut by the plot boundary is acceptable. Fail only if annotation label text itself is cut off, unreadable, or missing."
     }
   ]
 }

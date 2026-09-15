@@ -41,14 +41,18 @@ Window {
 
         TabBar {
             id: tabs
+            objectName: "examplePages"
             Layout.fillWidth: true
             TabButton {
+                objectName: "dualScale"
                 text: "Dual scale"
             }
             TabButton {
+                objectName: "multiRate"
                 text: "Multi-rate"
             }
             TabButton {
+                objectName: "sharedTime"
                 text: "Shared time"
             }
         }

@@ -58,7 +58,7 @@ MODEL_RESPONSE_SCHEMA: dict[str, Any] = {
 DEFAULT_PRICING_USD_PER_MILLION = {
     "input": 0.20,
     "cached_input": 0.02,
-    "output": 1.25,
+    "output": 1.20,
 }
 
 
@@ -88,6 +88,11 @@ def load_contract(path: Path) -> dict[str, Any]:
         raise VisualAcceptanceError(f"Unsupported visual contract version: {contract['version']}")
     if not isinstance(contract["checks"], list) or not contract["checks"]:
         raise VisualAcceptanceError("Visual contract must contain at least one check.")
+    if not isinstance(contract.get("ai_inspection", True), bool):
+        raise VisualAcceptanceError("Visual contract ai_inspection must be a boolean.")
+    sources = contract.get("sources", [])
+    if not isinstance(sources, list) or not all(isinstance(source, str) and source for source in sources):
+        raise VisualAcceptanceError("Visual contract sources must be a list of example-relative paths.")
 
     check_ids: list[str] = []
     for check in contract["checks"]:
@@ -160,11 +165,12 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
         "effective_device_pixel_ratio",
         "captured_pixel_width",
         "captured_pixel_height",
+        "page",
     }
     missing_fields = required_fields.difference(metadata) if isinstance(metadata, dict) else required_fields
     if missing_fields:
         raise VisualAcceptanceError(f"Graphics metadata is missing fields: {sorted(missing_fields)}")
-    if metadata["version"] != 3:
+    if metadata["version"] != 4:
         raise VisualAcceptanceError(f"Unsupported graphics metadata version: {metadata['version']}")
     if metadata["capture_method"] != "item_grab_to_image":
         raise VisualAcceptanceError(f"Unsupported screenshot capture method: {metadata['capture_method']}")
@@ -179,6 +185,8 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
     expected_api = os.environ.get("QACCELPLOT_EXPECTED_GRAPHICS_API", "").strip().lower()
     if expected_api and actual_api != expected_api:
         raise VisualAcceptanceError(f"CI expected graphics API {expected_api}, but the screenshot used {actual_api}.")
+    if not isinstance(metadata["page"], str):
+        raise VisualAcceptanceError(f"Graphics metadata contains an invalid page: {metadata['page']}")
     if not isinstance(metadata["qt_version"], str) or not metadata["qt_version"].strip():
         raise VisualAcceptanceError("Graphics metadata contains no Qt version.")
     expected_qt_version = os.environ.get("QACCELPLOT_EXPECTED_QT_VERSION", "").strip()
@@ -239,6 +247,13 @@ def validate_capture_resolution(metadata: dict[str, Any], image_dimensions: tupl
         raise VisualAcceptanceError(f"PNG dimensions {image_dimensions} do not match captured pixels {captured_size}.")
 
 
+def validate_capture_page(metadata: dict[str, Any], expected_page: str) -> None:
+    """Rejects a screenshot of a different page, e.g. after a tab was renamed or reordered."""
+    if metadata["page"] != expected_page:
+        expected = f"page '{expected_page}'" if expected_page else "an example without pages"
+        raise VisualAcceptanceError(f"Screenshot shows page '{metadata['page']}'; expected {expected}.")
+
+
 def build_model_contract(contract: dict[str, Any]) -> dict[str, Any]:
     return {
         "name": contract["name"],
@@ -272,6 +287,9 @@ You are a strict visual QA judge. Judge only the supplied plotting screenshot; t
 no baseline. Assess visible evidence only, never infer exact data correctness. Minor
 antialiasing and platform spacing differences are acceptable. Use `uncertain` when a
 detail cannot be verified; a `fail` requires a concrete visible contradiction.
+
+Series, grids, and annotation overlays are clipped to the plot area by design; content
+ending at or cut by the plot border is not a defect unless the contract says otherwise.
 
 For text_raster_quality, fail only for concrete artifacts such as square pixel blocks,
 doubled or jagged stair-step glyph edges, uniformly upscaled glyphs, or materially softer
@@ -496,8 +514,9 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--image", required=True, type=Path, help="PNG screenshot to inspect")
     parser.add_argument("--contract", required=True, type=Path, help="Visual contract JSON")
     parser.add_argument("--metadata", type=Path, help="Graphics metadata JSON; defaults to <image>.rhi.json")
+    parser.add_argument("--page", default="", help="Page the screenshot must show; empty for examples without pages")
     parser.add_argument("--report", type=Path, help="Where to write the JSON report")
-    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.4-nano"))
+    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.6-luna"))
     parser.add_argument("--validate-only", action="store_true", help="Validate local inputs without calling OpenAI")
     return parser.parse_args()
 
@@ -511,6 +530,7 @@ def main() -> int:
         metadata_path = args.metadata or Path(f"{args.image}.rhi.json")
         render_metadata = load_render_metadata(metadata_path)
         validate_capture_resolution(render_metadata, dimensions)
+        validate_capture_page(render_metadata, args.page)
         if args.validate_only:
             print(
                 f"PASS: {render_metadata['actual_graphics_api']} / Qt {render_metadata['qt_version']} "

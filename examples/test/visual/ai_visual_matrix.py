@@ -19,25 +19,15 @@ import re
 from typing import Callable
 
 from ai_visual_acceptance import VisualAcceptanceError, judge_image, load_pricing, write_report
+from visual_scenarios import Scenario, ScenarioError, discover_scenarios, scenario_identity_from_screenshot
 
-
-TARGET_TO_CONTRACT = {
-    "QAccelPlotExampleAnnotations": "annotations",
-    "QAccelPlotExampleAxisFormats": "axis_formats",
-    "QAccelPlotExampleCustomAxis": "custom_axis",
-    "QAccelPlotExampleInteractiveTools": "interactive_tools",
-    "QAccelPlotExamplePerformanceShowcase": "performance_showcase",
-    "QAccelPlotExampleQuickstart": "quickstart",
-    "QAccelPlotExampleRealtime": "realtime",
-    "QAccelPlotExampleStylingAndTransitions": "styling_and_transitions",
-}
 
 ARTIFACT_PATTERN = re.compile(r"^visual-(?P<qt>[^-]+)-(?P<backend>[^-]+)-(?P<os>.+)$")
 
 
 @dataclass(frozen=True)
 class Capture:
-    contract: str
+    scenario: str
     image: Path
     metadata: Path
     qt_version: str
@@ -46,10 +36,22 @@ class Capture:
 
     @property
     def identity(self) -> str:
-        return f"{self.contract}:{self.qt_version}:{self.backend}:{self.os_name}"
+        return f"{self.scenario}:{self.qt_version}:{self.backend}:{self.os_name}"
 
 
-def discover_captures(artifacts_dir: Path) -> list[Capture]:
+def load_scenarios(contracts_dir: Path) -> dict[str, Scenario]:
+    try:
+        return discover_scenarios(contracts_dir)
+    except ScenarioError as error:
+        raise VisualAcceptanceError(str(error)) from error
+
+
+def discover_captures(artifacts_dir: Path, scenarios: dict[str, Scenario]) -> list[Capture]:
+    """Finds screenshots of scenarios that are eligible for AI inspection.
+
+    Screenshots without a contract, such as smoke-only scenarios, and scenarios that opt out
+    with ``"ai_inspection": false`` are skipped.
+    """
     captures: list[Capture] = []
     for artifact_dir in sorted(artifacts_dir.glob("visual-*")):
         match = ARTIFACT_PATTERN.fullmatch(artifact_dir.name)
@@ -58,15 +60,15 @@ def discover_captures(artifacts_dir: Path) -> list[Capture]:
         for image_path in sorted(artifact_dir.rglob("*.png")):
             if image_path.parent.name != "screenshots":
                 continue
-            contract = TARGET_TO_CONTRACT.get(image_path.stem)
-            if not contract:
+            scenario = scenarios.get(scenario_identity_from_screenshot(image_path) or "")
+            if scenario is None or not scenario.ai_inspection:
                 continue
             metadata_path = Path(f"{image_path}.rhi.json")
             if not metadata_path.is_file():
                 raise VisualAcceptanceError(f"Missing render metadata for {image_path}")
             captures.append(
                 Capture(
-                    contract=contract,
+                    scenario=scenario.identity,
                     image=image_path,
                     metadata=metadata_path,
                     qt_version=match.group("qt"),
@@ -108,24 +110,35 @@ def image_difference(reference_path: Path, candidate_path: Path) -> float:
     return max(pixel_rms, sharpness_delta)
 
 
-def parse_examples(value: str) -> set[str] | None:
+def parse_scenarios(value: str, scenarios: dict[str, Scenario]) -> set[str] | None:
+    """Parses ``all`` or comma-separated ``<example>`` and ``<example>/<scenario>`` entries.
+
+    An example entry selects every scenario of that example.
+    """
     if value.strip().lower() == "all":
         return None
-    examples = {item.strip() for item in value.split(",") if item.strip()}
-    unknown = examples.difference(TARGET_TO_CONTRACT.values())
+    selected: set[str] = set()
+    unknown: list[str] = []
+    for item in (entry.strip() for entry in value.split(",")):
+        if not item:
+            continue
+        matches = {identity for identity, scenario in scenarios.items() if item in (identity, scenario.example)}
+        if not matches:
+            unknown.append(item)
+        selected.update(matches)
     if unknown:
-        raise VisualAcceptanceError(f"Unknown AI visual examples: {sorted(unknown)}")
-    return examples
+        raise VisualAcceptanceError(f"Unknown AI visual scenarios: {sorted(unknown)}")
+    return selected
 
 
 def select_captures(
     captures: list[Capture],
     mode: str,
-    eligible_examples: set[str] | None,
+    eligible_scenarios: set[str] | None,
     threshold: float,
     compare: Callable[[Path, Path], float] = image_difference,
 ) -> tuple[list[Capture], list[dict[str, object]]]:
-    eligible = [capture for capture in captures if eligible_examples is None or capture.contract in eligible_examples]
+    eligible = [capture for capture in captures if eligible_scenarios is None or capture.scenario in eligible_scenarios]
     if mode == "full":
         return eligible, [
             {"capture": capture.identity, "selected": True, "reason": "full mode"}
@@ -134,17 +147,17 @@ def select_captures(
 
     selected: list[Capture] = []
     manifest: list[dict[str, object]] = []
-    contracts = sorted({capture.contract for capture in eligible})
-    for contract in contracts:
-        contract_captures = sorted(
-            (capture for capture in eligible if capture.contract == contract), key=canonical_order
+    scenario_identities = sorted({capture.scenario for capture in eligible})
+    for scenario_identity in scenario_identities:
+        scenario_captures = sorted(
+            (capture for capture in eligible if capture.scenario == scenario_identity), key=canonical_order
         )
-        canonical = contract_captures[0]
+        canonical = scenario_captures[0]
         selected.append(canonical)
         manifest.append(
             {"capture": canonical.identity, "selected": True, "reason": "canonical"}
         )
-        for candidate in contract_captures[1:]:
+        for candidate in scenario_captures[1:]:
             score = compare(canonical.image, candidate.image)
             is_outlier = score > threshold
             if is_outlier:
@@ -247,10 +260,12 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--reports", required=True, type=Path)
     parser.add_argument("--summary", required=True, type=Path)
     parser.add_argument("--mode", choices=("representative", "full"), default="representative")
-    parser.add_argument("--examples", default="all", help="Comma-separated contract names or all")
-    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.4-nano"))
+    parser.add_argument(
+        "--scenarios", default="all", help="Comma-separated <example> or <example>/<scenario> entries, or all"
+    )
+    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.6-luna"))
     parser.add_argument("--outlier-threshold", type=float, default=0.08)
-    parser.add_argument("--max-requests", type=int, default=24)
+    parser.add_argument("--max-requests", type=int, default=40)
     return parser.parse_args()
 
 
@@ -258,16 +273,17 @@ def main() -> int:
     args = parse_arguments()
     args.reports.mkdir(parents=True, exist_ok=True)
     try:
-        captures = discover_captures(args.artifacts)
+        scenarios = load_scenarios(args.contracts)
+        captures = discover_captures(args.artifacts, scenarios)
         selected, manifest = select_captures(
             captures,
             args.mode,
-            parse_examples(args.examples),
+            parse_scenarios(args.scenarios, scenarios),
             args.outlier_threshold,
         )
         write_report(args.reports / "selection.json", {"mode": args.mode, "captures": manifest})
         if not selected:
-            args.summary.write_text("## AI visual acceptance\n\nNo changed examples require paid judgment.\n", encoding="utf-8")
+            args.summary.write_text("## AI visual acceptance\n\nNo changed scenarios require paid judgment.\n", encoding="utf-8")
             return 0
         if args.mode != "full" and args.max_requests > 0 and len(selected) > args.max_requests:
             raise VisualAcceptanceError(
@@ -283,7 +299,7 @@ def main() -> int:
         reports: list[dict[str, object]] = []
         had_failure = False
         for capture in selected:
-            contract_path = args.contracts / f"{capture.contract}.json"
+            contract_path = scenarios[capture.scenario].contract_path
             report = judge_image(
                 capture.image,
                 contract_path,
@@ -293,7 +309,8 @@ def main() -> int:
                 pricing,
             )
             report["matrix"] = asdict(capture) | {"image": str(capture.image), "metadata": str(capture.metadata)}
-            report_path = args.reports / f"{capture.contract}-{capture.qt_version}-{capture.backend}-{capture.os_name}.json"
+            report_name = capture.scenario.replace("/", "__")
+            report_path = args.reports / f"{report_name}-{capture.qt_version}-{capture.backend}-{capture.os_name}.json"
             write_report(report_path, report)
             reports.append(report)
             had_failure = had_failure or report["verdict"] == "fail"
