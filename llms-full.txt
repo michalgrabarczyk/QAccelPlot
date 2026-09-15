@@ -332,7 +332,9 @@ axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] prope
 The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
 [`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
 sides, while [`extraAxes`][extra-axes] supports additional independently scaled
-axes. Each series explicitly selects the axes it uses.
+axes. Assigning a named axis automatically selects its side: `xAxis` is bottom,
+`x2Axis` is top, `yAxis` is left, and `y2Axis` is right. Extra axes specify
+their own `side`. Each series explicitly selects the axes it uses.
 
 `AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
@@ -351,6 +353,47 @@ QML for convenience or through C++ buffer APIs for high throughput.
 `RectangleList` renders a set of data-space rectangles and reports its hovered
 rectangle index. It is useful for ranges, events, bars, or large collections of
 simple rectangular shapes.
+
+## Invalid samples and gaps
+
+Telemetry regularly contains dropouts and corrupt readings. `LineCurve` applies
+one contract everywhere: rendering, gradient fills, dash patterns, transitions,
+auto-ranging, and hover hit testing.
+
+A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
+coordinate is zero or negative on a logarithmic axis. Mark missing data by
+inserting a sample with a `NaN` coordinate. JavaScript `null` and `undefined`
+are not gap markers.
+
+Gap rendering is configured through the curve's [`gaps`][line-curve] grouped
+property. `gaps.nanMode` selects how the line and fill treat invalid samples:
+
+```qml
+QAccelPlot.LineCurve {
+    gaps.nanMode: QAccelPlot.NanGapMode.Connect
+}
+```
+
+| `gaps.nanMode` | Behavior |
+| --- | --- |
+| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line. |
+| `NanGapMode.Connect` | Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples. |
+
+Although the mode is named after `NaN`, the most common gap marker, it applies
+to every invalid sample, including `±Inf` and non-positive log-axis values.
+
+The rest of the contract applies in both modes:
+
+- **Markers** are never drawn for invalid samples.
+- **Auto-ranging** judges each coordinate on its own. A sample with a valid X
+  and an invalid Y still extends the X range, so a dropout keeps its timestamp.
+  If a dimension has no valid coordinate, the series clears that range.
+- **Dash patterns** continue across a gap; the gap contributes no dash length.
+- **`MorphTransition`** shows a sample that becomes invalid as a gap
+  immediately, and a sample that becomes valid jumps to its target instead of
+  animating from `NaN`.
+- **Hover** never reports a hit on an invalid sample or across a break.
+- The `NoRange` data APIs still render gaps; they only skip range calculation.
 
 ## Composition and overlays
 
@@ -405,6 +448,7 @@ handoff to the UI thread. See [Background data production](https://michalgrabarc
 [pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[line-curve]: api/classQAccelPlot_1_1LineCurve.md
 
 
 ---
@@ -425,8 +469,8 @@ that resembles your application.
 
 | API | Use it when | Main cost |
 | --- | --- | --- |
-| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML or convenience matters most | Allocation plus conversion to interleaved floats |
-| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors | Allocation plus double-to-float interleaving |
+| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
+| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
@@ -438,6 +482,12 @@ buffer immediately and must be called on the curve's thread, normally the UI
 thread. [`postData(std::vector<float>&&, count)`][post-data] is its
 worker-thread-safe counterpart: it queues that same transfer to the curve's
 thread.
+
+Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
+coordinates, or small differences at a large offset. These paths retain the
+input as doubles and rebase the GPU buffer to keep nearby values distinct. The
+APIs whose names end in `F` intentionally store floats and should be used only
+when the coordinate values are representable at the required precision.
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets. Move to [`setDataFNoRange()`][set-data-f-no-range] only after
@@ -461,7 +511,8 @@ invalid caches are rejected and rendering falls back to normal vertex assembly.
 
 ## Build buffers efficiently
 
-- Store points as interleaved floats: `[x0, y0, x1, y1, ...]`.
+- For the `F` ingestion paths, store points as interleaved floats:
+  `[x0, y0, x1, y1, ...]`.
 - Reserve or resize the vector once before filling it.
 - Move the completed vector instead of copying it.
 - Reuse producer-side buffers after ownership returns through your handoff
@@ -1017,6 +1068,24 @@ When buffer generation could compete with rendering, move it to a worker
 thread. See [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) for safe handoff
 patterns.
 
+## Show dropouts as gaps
+
+When packets are lost or a sensor reports an invalid value, write `NaN` for
+that sample instead of repeating the last value or dropping the sample. The
+curve breaks there, the gap is excluded from auto-ranging, and hover never
+bridges it:
+
+```cpp
+const auto value = packet.valid ? packet.value : std::numeric_limits<float>::quiet_NaN();
+points[index * 2] = timestamp;
+points[index * 2 + 1] = value;
+```
+
+To draw a continuous trace across short dropouts instead, set
+`gaps.nanMode: QAccelPlot.NanGapMode.Connect` on the curve. See
+[Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps) for the
+complete contract, including `±Inf` and non-positive values on logarithmic axes.
+
 Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
 
 [after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating
@@ -1046,6 +1115,11 @@ xAxis: QAccelPlot.Axis {
     }
 }
 ```
+
+Supply epoch values through `setData()`, which retains double precision and
+keeps millisecond-scale differences visible at modern dates. APIs ending in
+`F` intentionally store coordinates as floats; around the current Unix epoch,
+that representation cannot distinguish nearby timestamps.
 
 ## Categories
 
@@ -1083,6 +1157,7 @@ xAxis: QAccelPlot.Axis {
 ```
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
+Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
 
 ## Application-specific labels
 
@@ -1145,7 +1220,9 @@ tick labels and axis title.
 
 ## Secondary axes
 
-Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side:
+Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side.
+The plot assigns sides automatically: `xAxis` is bottom, `x2Axis` is top,
+`yAxis` is left, and `y2Axis` is right.
 
 ```qml
 import QtQuick
@@ -1509,18 +1586,14 @@ Complete sources:
 
 # API reference
 
-The API reference is extracted from the public headers by Doxygen and rendered
-as part of this MkDocs site. It documents public C++ and QML-facing types,
-properties, methods, signals, and enums.
+The API reference documents public C++ and QML-facing types, properties,
+methods, signals, and enums.
 
 - [Class list](https://michalgrabarczyk.github.io/QAccelPlot/api/annotated/)
 - [Class index](https://michalgrabarczyk.github.io/QAccelPlot/api/classes/)
 - [Class hierarchy](https://michalgrabarczyk.github.io/QAccelPlot/api/hierarchy/)
 - [Namespaces](https://michalgrabarczyk.github.io/QAccelPlot/api/namespaces/)
 - [Files](https://michalgrabarczyk.github.io/QAccelPlot/api/files/)
-
-API pages participate in the same navigation, theme, and search index as the
-rest of the guide.
 
 ## Key types
 
@@ -1549,6 +1622,9 @@ Choose the simplest API appropriate for the data source:
 - Use [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata) to
   transfer a completed buffer safely from a worker thread.
 - Use `setDataFNoRange()` only when axis data ranges are maintained separately.
+- Mark missing or invalid samples with `NaN`; `gaps.nanMode` selects whether
+  the curve breaks or connects across them. See
+  [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
 
 See the [performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/) for a detailed comparison of the
 available data paths.

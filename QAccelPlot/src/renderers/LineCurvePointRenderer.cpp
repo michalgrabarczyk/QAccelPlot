@@ -10,11 +10,13 @@
 #include "effects/GradientCoordinateUtils.hpp"
 #include "materials/PointMaterial.hpp"
 #include "renderers/CurveRendererParams.hpp"
+#include "series/LineCurveGapFilter.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>
 
 #include <algorithm>
+#include <cmath>
 #include <cstring>
 
 namespace QAccelPlot {
@@ -61,7 +63,12 @@ float normalizedGradientValue(const GradientColorPayload& gradientPayload, const
     const auto valueMin = *gradientPayload.gradientValueMin;
     const auto valueMax = *gradientPayload.gradientValueMax;
     const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
-    return std::clamp(unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax), 0.0f, 1.0f);
+    const auto normalized = unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
+    if (std::isnan(normalized)) {
+        // Invalid samples are culled by the vertex shader; any color is acceptable.
+        return 0.0f;
+    }
+    return std::clamp(normalized, 0.0f, 1.0f);
 }
 
 QSGGeometryNode* createPointNode(const int vertexCount)
@@ -159,6 +166,9 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
     const auto radiusSquared = params.hitThreshold * params.hitThreshold;
 
     for (const auto& chunk : params.chunks) {
+        if (isEmptyChunk(chunk)) {
+            continue;
+        }
         const auto screenLeft = params.xAxis->coordToPixel(chunk.minX, params.width);
         const auto screenRight = params.xAxis->coordToPixel(chunk.maxX, params.width);
         const auto screenTop = params.yAxis->coordToPixel(chunk.minY, params.height);
@@ -174,6 +184,9 @@ bool LineCurvePointRenderer::contains(const QPointF& point, const CurveHitTestPa
 
         const auto pointEnd = chunk.start + chunk.count;
         for (auto index = chunk.start; index < pointEnd; ++index) {
+            if (!LineCurveGapFilter::isValidPoint(params.data, index, params.nonPositiveXInvalid, params.nonPositiveYInvalid)) {
+                continue;
+            }
             const auto delta
                 = QPointF{params.xAxis->coordToPixel(params.data.x(index), params.width), params.yAxis->coordToPixel(params.data.y(index), params.height)}
                 - point;

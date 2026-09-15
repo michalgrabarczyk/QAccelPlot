@@ -57,6 +57,14 @@ struct CurveHitTestParams {
     qreal width;                           ///< \brief Width of the curve item in pixels.
     qreal height;                          ///< \brief Height of the curve item in pixels.
     qreal hitThreshold;                    ///< \brief Hit distance threshold in pixels.
+    bool nonPositiveXInvalid;              ///< \brief Whether non-positive X values are invalid samples (X axis uses log scale).
+    bool nonPositiveYInvalid;              ///< \brief Whether non-positive Y values are invalid samples (Y axis uses log scale).
 };
+
+/// \brief Returns \c true when \a chunk contains no valid sample and can be skipped by hit tests.
+inline bool isEmptyChunk(const CurveChunk& chunk)
+{
+    return chunk.minX > chunk.maxX || chunk.minY > chunk.maxY;
+}
 
 } // namespace QAccelPlot

@@ -70,6 +70,24 @@ When buffer generation could compete with rendering, move it to a worker
 thread. See [Background data production](background-data.md) for safe handoff
 patterns.
 
+## Show dropouts as gaps
+
+When packets are lost or a sensor reports an invalid value, write `NaN` for
+that sample instead of repeating the last value or dropping the sample. The
+curve breaks there, the gap is excluded from auto-ranging, and hover never
+bridges it:
+
+```cpp
+const auto value = packet.valid ? packet.value : std::numeric_limits<float>::quiet_NaN();
+points[index * 2] = timestamp;
+points[index * 2 + 1] = value;
+```
+
+To draw a continuous trace across short dropouts instead, set
+`gaps.nanMode: QAccelPlot.NanGapMode.Connect` on the curve. See
+[Invalid samples and gaps](../concepts.md#invalid-samples-and-gaps) for the
+complete contract, including `±Inf` and non-positive values on logarithmic axes.
+
 Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
 
 [after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating

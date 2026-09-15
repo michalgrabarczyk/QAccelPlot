@@ -13,6 +13,7 @@ layout(location = 2) in float v_fadeStart;
 layout(location = 3) in float v_softness;
 layout(location = 4) in float v_arcLength;
 layout(location = 5) in float v_gradientCoordinate;
+layout(location = 6) in float v_validWeight;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -39,6 +40,11 @@ layout(std140, binding = 0) uniform buf {
 layout(binding = 2) uniform sampler2D gradientSampler;
 
 void main() {
+    // Gap discard: the fragment belongs to a triangle bridging an invalid sample.
+    if (v_validWeight < 0.0) {
+        discard;
+    }
+
     if (ubuf.dashPatternSize > 0 && ubuf.dashPeriod > 0.0) {
         float t = mod(v_arcLength + ubuf.dashOffset, ubuf.dashPeriod);
         float cursor = 0.0;

@@ -79,6 +79,8 @@ QAccelPlot/
 │   ├── materials/            — QSGMaterial subclasses for GPU rendering
 │   ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
 │   ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
+│   │                           LineCurveGaps (gaps grouped property),
+│   │                           LineCurveGapFilter (invalid-sample contract),
 │   │                           SpatialGrid (hover hit testing)
 │   ├── shaders/              — GLSL shaders compiled to .qsb
 │   ├── shapes/               — RectangleList

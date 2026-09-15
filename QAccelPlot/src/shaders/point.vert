@@ -49,6 +49,17 @@ void main() {
         v_softness = 1.0;
     }
 
+    // Invalid samples (non-finite, or not strictly positive on a log-scale
+    // dimension) are not drawn. All six corners share the culled position, so
+    // the quad has zero area. Log-scale dimensions are never origin-shifted.
+    bool valid = floatIsFinite(pos.x) && floatIsFinite(pos.y)
+        && (ubuf.logScaleX < 0.5 || pos.x > 0.0)
+        && (ubuf.logScaleY < 0.5 || pos.y > 0.0);
+    if (!valid) {
+        gl_Position = kCulledClipPosition;
+        return;
+    }
+
     vec2 dMin = ubuf.domainMin;
     vec2 dMax = ubuf.domainMax;
     vec2 p    = pos;

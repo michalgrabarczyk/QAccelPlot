@@ -12,9 +12,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or vertical-axis width.
 - Automatic side assignment for the four named plot axes: `xAxis` uses the
   bottom, `x2Axis` the top, `yAxis` the left, and `y2Axis` the right.
+- Explicit invalid-sample contract for `LineCurve`: `NaN`, `±Inf`, and
+  non-positive values on logarithmic axes break the line, gradient fill, and
+  hover hit testing consistently on every graphics backend, never draw markers,
+  and are excluded from auto-ranging per dimension.
+- `LineCurve.gaps` grouped property. `gaps.nanMode` selects
+  `NanGapMode.Break` (default) or `NanGapMode.Connect`, which joins the valid
+  samples on either side of a gap.
+- A "Gaps" page in the styling and transitions example.
 
 ### Changed
 
+- Values at or below zero on a logarithmic axis now render as gaps instead of
+  being clamped to a steep drop toward the bottom of the plot.
+- `MorphTransition` no longer interpolates from or to non-finite coordinates:
+  new gaps appear immediately and samples leaving a gap jump to their target.
 - Renamed `RectangleList::setRawData()` to `setData()`, matching the naming
   of the `LineCurve` data-setting APIs.
 - Default plot, axis, grid, series, and legend colors now come from the
@@ -114,6 +126,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   float buffer instead of storing raw coordinates as float. A new
   `setData(const double*, int)` overload accepts double-precision data
   directly.
+- A single `±Inf` coordinate is now skipped when computing a curve's axis
+  data ranges instead of making that range non-finite, and all-`NaN` data no longer reports an inverted range.
+- `NaN` samples no longer make adjacent valid line segments disappear or
+  produce backend-dependent artifacts.
 
 ## [0.1.0] — 2026-09-08
 

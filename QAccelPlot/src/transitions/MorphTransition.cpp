@@ -8,12 +8,23 @@
 #include "transitions/MorphTransition.hpp"
 
 #include <algorithm>
+#include <cmath>
 
 namespace QAccelPlot {
 
 MorphTransition::MorphTransition(QObject* parent)
     : DataTransition(parent)
 {
+}
+
+double MorphTransition::interpolateCoordinate(const double from, const double to, const double easedProgress)
+{
+    // An invalid target appears immediately as a gap, and a valid target never
+    // interpolates from an invalid source (which would stay NaN until the end).
+    if (!std::isfinite(to) || !std::isfinite(from)) {
+        return to;
+    }
+    return from + easedProgress * (to - from);
 }
 
 void MorphTransition::interpolate(const double easedProgress, const std::vector<double>& fromData, const int fromPointCount, const std::vector<double>& toData,
@@ -44,8 +55,8 @@ void MorphTransition::interpolate(const double easedProgress, const std::vector<
         const auto tx = toData[toIdx * 2];
         const auto ty = toData[toIdx * 2 + 1];
 
-        outData[i * 2] = fx + easedProgress * (tx - fx);
-        outData[i * 2 + 1] = fy + easedProgress * (ty - fy);
+        outData[i * 2] = interpolateCoordinate(fx, tx, easedProgress);
+        outData[i * 2 + 1] = interpolateCoordinate(fy, ty, easedProgress);
     }
 }
 
