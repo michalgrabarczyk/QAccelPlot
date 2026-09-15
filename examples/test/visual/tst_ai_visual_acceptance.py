@@ -101,13 +101,17 @@ class VisualAcceptanceTests(unittest.TestCase):
             )
         return {"summary": "Test assessment.", "checks": checks}
 
-    def render_metadata(self, *, requested="opengl", actual="opengl"):
+    def render_metadata(self, *, requested="opengl", actual="opengl", opengl_es=False, opengl_version=(4, 5)):
         return {
-            "version": 4,
+            "version": 5,
             "capture_method": "item_grab_to_image",
             "grab_target_scaled_by_device_pixel_ratio": True,
             "requested_graphics_api": requested,
             "actual_graphics_api": actual,
+            "opengl_context_observed": actual == "opengl",
+            "opengl_es": opengl_es,
+            "opengl_major_version": opengl_version[0] if actual == "opengl" else 0,
+            "opengl_minor_version": opengl_version[1] if actual == "opengl" else 0,
             "qt_version": "6.7.3",
             "logical_window_width": 880,
             "logical_window_height": 1120,
@@ -362,6 +366,40 @@ class VisualAcceptanceTests(unittest.TestCase):
                 encoding="utf-8",
             )
             with self.assertRaises(VisualAcceptanceError):
+                load_render_metadata(metadata_path)
+
+    def test_render_metadata_requires_the_requested_opengl_es_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            metadata_path = Path(directory) / "screenshot.png.rhi.json"
+
+            def write(**kwargs):
+                metadata_path.write_text(json.dumps(self.render_metadata(**kwargs)), encoding="utf-8")
+
+            with mock.patch.dict(os.environ, {"QACCELPLOT_OPENGL_ES_VERSION": "3.0"}):
+                write(opengl_es=True, opengl_version=(3, 2))
+                self.assertTrue(load_render_metadata(metadata_path)["opengl_es"])
+
+                write(opengl_es=False, opengl_version=(4, 5))
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+                write(opengl_es=True, opengl_version=(2, 0))
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+                write(requested="vulkan", actual="vulkan")
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+            with mock.patch.dict(os.environ, {"QACCELPLOT_OPENGL_ES_VERSION": "three"}):
+                write(opengl_es=True, opengl_version=(3, 0))
+                with self.assertRaisesRegex(VisualAcceptanceError, "must look like"):
+                    load_render_metadata(metadata_path)
+
+            metadata = self.render_metadata()
+            metadata["opengl_context_observed"] = False
+            metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+            with self.assertRaisesRegex(VisualAcceptanceError, "did not record a valid current context"):
                 load_render_metadata(metadata_path)
 
     def test_capture_page_must_match_the_scenario(self):

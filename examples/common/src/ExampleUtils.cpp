@@ -12,6 +12,7 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QOpenGLContext>
 #include <QPainter>
 #include <QPointer>
 #include <QQuickItem>
@@ -20,6 +21,7 @@
 #include <QQuickWindow>
 #include <QSGRendererInterface>
 #include <QSaveFile>
+#include <QSurfaceFormat>
 #include <QTimer>
 #include <QtMath>
 
@@ -68,6 +70,79 @@ QString requestedGraphicsApiName()
     return requested.isEmpty() ? QStringLiteral("opengl") : requested;
 }
 
+struct OpenGlesVersion {
+    int major = 0;
+    int minor = 0;
+};
+
+// QACCELPLOT_OPENGL_ES_VERSION="3.0" asks Qt Quick for an OpenGL ES context of at least that
+// version, so a desktop Qt build can exercise the GLSL ES shader path used on embedded devices.
+std::optional<OpenGlesVersion> requestedOpenGlesVersion()
+{
+    const auto text = qEnvironmentVariable("QACCELPLOT_OPENGL_ES_VERSION").trimmed();
+    if (text.isEmpty()) {
+        return std::nullopt;
+    }
+    const auto parts = text.split(QLatin1Char('.'));
+    auto majorOk = false;
+    auto minorOk = parts.size() == 1;
+    const auto major = parts.value(0).toInt(&majorOk);
+    const auto minor = parts.size() > 1 ? parts.at(1).toInt(&minorOk) : 0;
+    if (parts.size() > 2 || !majorOk || !minorOk || major <= 0 || minor < 0) {
+        qFatal("QACCELPLOT_OPENGL_ES_VERSION must look like \"3.0\", got \"%s\".", qPrintable(text));
+    }
+    return OpenGlesVersion{major, minor};
+}
+
+struct OpenGlContextInfo {
+    bool observed = false;
+    bool isOpenGles = false;
+    int majorVersion = 0;
+    int minorVersion = 0;
+};
+
+OpenGlContextInfo openGlContextInfo(QQuickWindow* window)
+{
+    auto info = OpenGlContextInfo{};
+    const auto* context = static_cast<QOpenGLContext*>(window->rendererInterface()->getResource(window, QSGRendererInterface::OpenGLContextResource));
+    if (context) {
+        const auto format = context->format();
+        info.observed = true;
+        info.isOpenGles = context->isOpenGLES();
+        info.majorVersion = format.majorVersion();
+        info.minorVersion = format.minorVersion();
+    }
+    return info;
+}
+
+// A desktop Qt build may hand back a desktop OpenGL context despite the ES request, so a
+// requested ES run must prove that the context it rendered with really is OpenGL ES.
+QString validateOpenGlesContext(const OpenGlContextInfo& info)
+{
+    const auto requested = requestedOpenGlesVersion();
+    if (!requested) {
+        return {};
+    }
+    if (!info.observed) {
+        return QStringLiteral("OpenGL ES %1.%2 was requested, but Qt Quick has no OpenGL context.").arg(requested->major).arg(requested->minor);
+    }
+    if (!info.isOpenGles) {
+        return QStringLiteral("OpenGL ES %1.%2 was requested, but Qt Quick created a desktop OpenGL %3.%4 context.")
+            .arg(requested->major)
+            .arg(requested->minor)
+            .arg(info.majorVersion)
+            .arg(info.minorVersion);
+    }
+    if (info.majorVersion < requested->major || (info.majorVersion == requested->major && info.minorVersion < requested->minor)) {
+        return QStringLiteral("OpenGL ES %1.%2 was requested, but Qt Quick created OpenGL ES %3.%4.")
+            .arg(requested->major)
+            .arg(requested->minor)
+            .arg(info.majorVersion)
+            .arg(info.minorVersion);
+    }
+    return {};
+}
+
 struct PaintedItemTextureState {
     QPointer<QQuickPaintedItem> item;
     QSize textureSize;
@@ -100,8 +175,7 @@ QList<PaintedItemTextureState> preparePaintedItemsForCapture(QQuickItem* root, c
         // QQuickPaintedItem multiplies an explicit textureSize by the window's
         // effective DPR. Compensate for a scaled-down CI window so its backing
         // texture still contains one physical pixel per final screenshot pixel.
-        const QSize captureTextureSize(
-            qCeil(item->width() / effectiveDevicePixelRatio), qCeil(item->height() / effectiveDevicePixelRatio));
+        const QSize captureTextureSize(qCeil(item->width() / effectiveDevicePixelRatio), qCeil(item->height() / effectiveDevicePixelRatio));
         item->setTextureSize(captureTextureSize);
         item->update();
     }
@@ -190,6 +264,14 @@ void configureGraphicsApi()
     if (qEnvironmentVariableIsEmpty("QSG_RHI_BACKEND") && qEnvironmentVariableIsEmpty("QT_QUICK_BACKEND")) {
         QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
     }
+
+    // Must run before QGuiApplication: Qt Quick derives its OpenGL context from the default format.
+    if (const auto version = requestedOpenGlesVersion()) {
+        auto format = QSurfaceFormat::defaultFormat();
+        format.setRenderableType(QSurfaceFormat::OpenGLES);
+        format.setVersion(version->major, version->minor);
+        QSurfaceFormat::setDefaultFormat(format);
+    }
 }
 
 void setupEngineFailureHandler(QGuiApplication& app, QQmlApplicationEngine& engine)
@@ -261,6 +343,17 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
             fail(QStringLiteral("Requested graphics API '%1', but Qt Quick initialized '%2'.").arg(requestedApi, actualApi));
             return;
         }
+        const auto contextInfo = openGlContextInfo(window);
+        if (contextInfo.observed) {
+            qInfo().noquote() << QStringLiteral("Qt Quick OpenGL context: ES=%1 version=%2.%3")
+                                     .arg(contextInfo.isOpenGles ? QStringLiteral("true") : QStringLiteral("false"))
+                                     .arg(contextInfo.majorVersion)
+                                     .arg(contextInfo.minorVersion);
+        }
+        if (const auto error = validateOpenGlesContext(contextInfo); !error.isEmpty()) {
+            fail(error);
+            return;
+        }
         const auto expectedQtVersion = qEnvironmentVariable("QACCELPLOT_EXPECTED_QT_VERSION").trimmed();
         const auto actualQtVersion = QString::fromLatin1(qVersion());
         if (!expectedQtVersion.isEmpty() && actualQtVersion != expectedQtVersion) {
@@ -320,7 +413,7 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         QObject::connect(
             grabResult.data(), &QQuickItemGrabResult::ready, &app,
             [&app, grabResult, path, requestedApi, actualApi, actualQtVersion, logicalWindowSize, offscreenTargetSize, effectiveDevicePixelRatio,
-                grabTargetScaledByDevicePixelRatio, windowColor, page, paintedItemTextureStates]() {
+                grabTargetScaledByDevicePixelRatio, windowColor, page, paintedItemTextureStates, contextInfo]() {
                 auto failCapture = [&app](const QString& message) {
                     qCritical().noquote() << message;
                     app.exit(EXIT_FAILURE);
@@ -362,11 +455,15 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
                 const auto metadataPath = path + QStringLiteral(".rhi.json");
 
                 const auto metadata = QJsonDocument(QJsonObject{
-                                                        {QStringLiteral("version"), 4},
+                                                        {QStringLiteral("version"), 5},
                                                         {QStringLiteral("capture_method"), QStringLiteral("item_grab_to_image")},
                                                         {QStringLiteral("grab_target_scaled_by_device_pixel_ratio"), grabTargetScaledByDevicePixelRatio},
                                                         {QStringLiteral("requested_graphics_api"), requestedApi},
                                                         {QStringLiteral("actual_graphics_api"), actualApi},
+                                                        {QStringLiteral("opengl_context_observed"), contextInfo.observed},
+                                                        {QStringLiteral("opengl_es"), contextInfo.isOpenGles},
+                                                        {QStringLiteral("opengl_major_version"), contextInfo.majorVersion},
+                                                        {QStringLiteral("opengl_minor_version"), contextInfo.minorVersion},
                                                         {QStringLiteral("qt_version"), actualQtVersion},
                                                         {QStringLiteral("logical_window_width"), logicalWindowSize.width()},
                                                         {QStringLiteral("logical_window_height"), logicalWindowSize.height()},
