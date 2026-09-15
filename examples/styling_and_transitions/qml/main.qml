@@ -83,6 +83,7 @@ Window {
                 text: "Transitions"
             }
             TabButton {
+                objectName: "gaps"
                 text: "Gaps"
             }
         }

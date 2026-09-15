@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "styling_and_transitions/gaps",
+  "sources": ["qml/GapsPage.qml"],
+  "description": "Three vertically stacked plots of telemetry with missing and invalid samples, shown in the default Break gap mode where invalid samples leave gaps. Judge only the plot panels; ignore the NaN gap mode selector, line width slider, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 880,
+    "height": 1120,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "Three plot panels are stacked vertically: Pressure (bar) against Time (s) with a shaded fill on top, Pressure (bar) against Time (s) with markers in the middle, and Amplitude (log) against Frequency (Hz) at the bottom. Panels do not overlap. Do not evaluate the controls or other content outside the plots."
+    },
+    {
+      "id": "filled_line_gaps",
+      "severity": "high",
+      "expectation": "In the top plot, the blue line and its shaded fill are split into several separate segments by empty gaps, including one wide gap roughly between 38 and 50 s and narrower gaps elsewhere. Nothing is drawn inside a gap: no line, no fill, and no straight line joining the segments on either side. Fail if the line is one unbroken curve, if a line or fill visibly bridges a gap, or if a vertical spike shoots to the top or bottom edge of the plot at a gap."
+    },
+    {
+      "id": "marker_line_gaps",
+      "severity": "medium",
+      "expectation": "In the middle plot, an orange dashed line with round markers is split into several separate segments by empty gaps, including a wide gap roughly between 38 and 50 s. Markers appear only on the drawn segments. Fail if the dashed line visibly continues across a gap, or if markers appear inside a gap or along the top or bottom edge of the plot."
+    },
+    {
+      "id": "log_axis_gaps",
+      "severity": "medium",
+      "expectation": "In the bottom plot, the vertical axis is logarithmic with tick labels such as 0.010, 0.10, 1.0, 10, and 100. A green curve with one tall peak near 120 Hz is split into several separate segments by empty gaps where no curve is drawn. Segment ends that bend steeply downward just before a gap are correct. Fail if the curve is one unbroken line, or if vertical lines drop to the bottom edge of the plot and connect neighboring segments."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plots, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Curves, fills, markers, grids, and axes remain visually distinguishable. Curves and markers clipped at the left and right plot borders are expected; fail only if axis titles or tick labels are visibly missing characters."
+    }
+  ]
+}
