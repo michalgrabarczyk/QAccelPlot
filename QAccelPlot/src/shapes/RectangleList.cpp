@@ -90,7 +90,7 @@ void RectangleList::setData(const QVariantList& rects)
     update();
 }
 
-void RectangleList::setRawData(const float* data, const int rectCount)
+void RectangleList::setData(const float* data, const int rectCount)
 {
     if (!validateRawDataArguments(data, rectCount)) {
         return;
@@ -112,7 +112,7 @@ void RectangleList::setRawData(const float* data, const int rectCount)
     update();
 }
 
-void RectangleList::setRawData(const double* data, const int rectCount)
+void RectangleList::setData(const double* data, const int rectCount)
 {
     if (!validateRawDataArguments(data, rectCount)) {
         return;

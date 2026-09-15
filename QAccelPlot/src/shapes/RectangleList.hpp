@@ -56,11 +56,11 @@ public:
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     /// \brief Loads rectangles from a C++ raw float array (\a data must have \a rectCount × 4 floats: x1, y1, x2, y2).
-    void setRawData(const float* data, int rectCount);
+    void setData(const float* data, int rectCount);
 
     /// \brief Loads rectangles from a C++ raw double array, preserving full precision for large
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
-    void setRawData(const double* data, int rectCount);
+    void setData(const double* data, int rectCount);
 
 signals:
     /// \brief Emitted when the color property changes.
