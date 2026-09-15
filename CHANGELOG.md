@@ -47,6 +47,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   a mouse button is held, matching its documented behavior.
 - Axes are no longer given a negative width or height when the plot item is
   smaller than its padding plus the space its axes reserve.
+- `LineCurve` no longer changes its own position or size from
+  `updatePaintNode()`, which runs on the render thread with the threaded
+  render loop and is not a safe place to mutate `QQuickItem` geometry. It
+  now reads the plot rect that `QAccelPlot` already assigns on the GUI
+  thread instead.
 - `RectangleList` re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.
