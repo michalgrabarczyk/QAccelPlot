@@ -1328,6 +1328,11 @@
   a mouse button is held, matching its documented behavior.</li>
 <li>Axes are no longer given a negative width or height when the plot item is
   smaller than its padding plus the space its axes reserve.</li>
+<li><code>LineCurve</code> no longer changes its own position or size from
+  <code>updatePaintNode()</code>, which runs on the render thread with the threaded
+  render loop and is not a safe place to mutate <code>QQuickItem</code> geometry. It
+  now reads the plot rect that <code>QAccelPlot</code> already assigns on the GUI
+  thread instead.</li>
 <li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
   recreated (e.g. after axes are temporarily unset), instead of leaving a
   freshly created node with an empty texture until new data arrives.</li>
