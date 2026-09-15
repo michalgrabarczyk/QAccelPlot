@@ -313,10 +313,10 @@ jobs:
     permissions:
       contents: read
     env:
-      AI_VISUAL_MODEL: gpt-5.4-nano
+      AI_VISUAL_MODEL: gpt-5.6-luna
       AI_VISUAL_INPUT_PRICE_USD_PER_MILLION: '0.20'
       AI_VISUAL_CACHED_INPUT_PRICE_USD_PER_MILLION: '0.02'
-      AI_VISUAL_OUTPUT_PRICE_USD_PER_MILLION: '1.25'
+      AI_VISUAL_OUTPUT_PRICE_USD_PER_MILLION: '1.20'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - name: Checkout Code

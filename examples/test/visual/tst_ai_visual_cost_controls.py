@@ -195,7 +195,7 @@ class MatrixSelectionTests(unittest.TestCase):
             ],
         }
 
-        summary = markdown_summary([report], [{"capture": "candidate"}], "gpt-5.4-nano")
+        summary = markdown_summary([report], [{"capture": "candidate"}], "gpt-5.6-luna")
 
         self.assertIn("- Failed renders: 1", summary)
         self.assertIn("## Failed AI checks", summary)

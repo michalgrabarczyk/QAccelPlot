@@ -58,7 +58,7 @@ MODEL_RESPONSE_SCHEMA: dict[str, Any] = {
 DEFAULT_PRICING_USD_PER_MILLION = {
     "input": 0.20,
     "cached_input": 0.02,
-    "output": 1.25,
+    "output": 1.20,
 }
 
 
@@ -516,7 +516,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--metadata", type=Path, help="Graphics metadata JSON; defaults to <image>.rhi.json")
     parser.add_argument("--page", default="", help="Page the screenshot must show; empty for examples without pages")
     parser.add_argument("--report", type=Path, help="Where to write the JSON report")
-    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.4-nano"))
+    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.6-luna"))
     parser.add_argument("--validate-only", action="store_true", help="Validate local inputs without calling OpenAI")
     return parser.parse_args()
 

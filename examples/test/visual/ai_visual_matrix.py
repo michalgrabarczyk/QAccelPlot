@@ -263,7 +263,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument(
         "--scenarios", default="all", help="Comma-separated <example> or <example>/<scenario> entries, or all"
     )
-    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.4-nano"))
+    parser.add_argument("--model", default=os.environ.get("AI_VISUAL_MODEL", "gpt-5.6-luna"))
     parser.add_argument("--outlier-threshold", type=float, default=0.08)
     parser.add_argument("--max-requests", type=int, default=40)
     return parser.parse_args()

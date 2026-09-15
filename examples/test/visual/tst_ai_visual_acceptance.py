@@ -440,7 +440,7 @@ class VisualAcceptanceTests(unittest.TestCase):
             result, usage = call_openai(
                 image_path,
                 self.contract,
-                "gpt-5.4-nano",
+                "gpt-5.6-luna",
                 "test-key",
                 self.render_metadata(),
             )
@@ -457,7 +457,7 @@ class VisualAcceptanceTests(unittest.TestCase):
             },
         )
         self.assertEqual(request["api_key"], "test-key")
-        self.assertEqual(request["model"], "gpt-5.4-nano")
+        self.assertEqual(request["model"], "gpt-5.6-luna")
         self.assertEqual(request["reasoning"], {"effort": "none"})
         self.assertFalse(request["store"])
 
@@ -482,8 +482,8 @@ class VisualAcceptanceTests(unittest.TestCase):
             "cached_input_tokens": 250,
             "output_tokens": 100,
         }
-        pricing = {"input": 0.20, "cached_input": 0.02, "output": 1.25}
-        self.assertEqual(estimate_cost_usd(usage, pricing), 0.00028)
+        pricing = {"input": 0.20, "cached_input": 0.02, "output": 1.20}
+        self.assertEqual(estimate_cost_usd(usage, pricing), 0.000275)
 
 
 if __name__ == "__main__":
