@@ -7,6 +7,8 @@
 //
 #pragma once
 
+#include "theme/ColorPalette.hpp"
+
 #include <QColor>
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
@@ -26,9 +28,9 @@ class Grid : public QObject {
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     /// \brief Width in pixels of the sub-grid lines. Default: 1.
     Q_PROPERTY(qreal subGridLineWidth READ subGridLineWidth WRITE setSubGridLineWidth NOTIFY subGridLineWidthChanged)
-    /// \brief Color of the major grid lines. Default: \c #8c8c8c.
+    /// \brief Color of the major grid lines. Default: \c Colors.dark.grid.
     Q_PROPERTY(QColor gridColor READ gridColor WRITE setGridColor NOTIFY gridColorChanged)
-    /// \brief Color of the sub-grid lines. Default: \c #b4b4b4.
+    /// \brief Color of the sub-grid lines. Default: \c Colors.dark.subGrid.
     Q_PROPERTY(QColor subGridColor READ subGridColor WRITE setSubGridColor NOTIFY subGridColorChanged)
     /// \brief Whether major grid lines are visible. Default: \c true.
     Q_PROPERTY(bool gridVisible READ gridVisible WRITE setGridVisible NOTIFY gridVisibleChanged)
@@ -123,8 +125,8 @@ signals:
 private:
     qreal lineWidth_{2.0};
     qreal subGridLineWidth_{1.0};
-    QColor gridColor_{"#8c8c8c"};
-    QColor subGridColor_{"#b4b4b4"};
+    QColor gridColor_{ColorPalette::dark().grid};
+    QColor subGridColor_{ColorPalette::dark().subGrid};
     bool gridVisible_{true};
     bool subGridVisible_{true};
     bool gridHorizontalLinesVisible_{true};

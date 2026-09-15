@@ -9,6 +9,7 @@
 
 #include "axis/AxisTicker.hpp"
 #include "axis/AxisTicks.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -47,13 +48,13 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
     /// \brief Read-only: \c true while the mouse cursor is over the axis widget.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
-    /// \brief Color of the axis baseline. Default: \c Qt::black.
+    /// \brief Color of the axis baseline. Default: \c Colors.dark.axisLine.
     Q_PROPERTY(QColor baselineColor READ baselineColor WRITE setBaselineColor NOTIFY baselineColorChanged)
     /// \brief Optional axis-label color. When invalid, the baselineColor is used.
     Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
     /// \brief Width in pixels of the axis baseline. Default: 2.
     Q_PROPERTY(qreal baselineWidth READ baselineWidth WRITE setBaselineWidth NOTIFY baselineWidthChanged)
-    /// \brief Tick and label color applied when the axis is hovered. Default: \c Qt::blue.
+    /// \brief Tick and label color applied when the axis is hovered. Default: \c Colors.dark.hover.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis,
     /// and y2Axis; set explicitly for an axis placed in extraAxes.
@@ -287,10 +288,10 @@ private:
     bool hovered_{false};
     bool isDragging_{false};
     QPointF lastMousePos_;
-    QColor baselineColor_{QColor(Qt::black)};
+    QColor baselineColor_{ColorPalette::dark().axisLine};
     QColor labelColor_;
     qreal baselineWidth_{2.0};
-    QColor hoverColor_{QColor(Qt::blue)};
+    QColor hoverColor_{ColorPalette::dark().hover};
     int axisTitlePadding_{30};
     int axisLinePadding_{0};
     qreal layoutSize_{50.0};

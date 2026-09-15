@@ -48,16 +48,7 @@ Window {
             id: plot
             Layout.fillWidth: true
             Layout.fillHeight: true
-            plotAreaColor: colorPalette.plotArea
-            axesAreaColor: colorPalette.axesArea
-            grid.gridColor: colorPalette.grid
             grid.subGridVisible: false
-            legend: QAccelPlot.Legend {
-                series: plot.series
-                color: colorPalette.legendBackground
-                textColor: colorPalette.text
-                border.color: colorPalette.legendBorder
-            }
 
             xAxis: QAccelPlot.Axis {
                 viewportMin: 0
@@ -65,14 +56,10 @@ Window {
                 dataMin: 0
                 dataMax: 24
                 label: "Time of day (h)"
-                baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
                 ticker.tickCount: 7
             }
 
@@ -84,14 +71,10 @@ Window {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"
-                baselineColor: colorPalette.axisLine
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             QAccelPlot.LineCurve {

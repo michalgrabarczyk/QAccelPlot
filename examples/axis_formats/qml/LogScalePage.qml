@@ -60,9 +60,6 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: root.palette.plotArea
-            axesAreaColor: root.palette.axesArea
-            grid.gridColor: root.palette.grid
             grid.subGridVisible: false
 
             xAxis: QAccelPlot.Axis {
@@ -72,14 +69,10 @@ Item {
                 dataMax: 20000
                 logScale: root.logarithmic
                 label: "Frequency (Hz)"
-                baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
                 ticker.tickLabelFormatter: root.logarithmic ? logarithmicFormatter : numericFormatter
             }
 
@@ -91,14 +84,10 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative level (dB)"
-                baselineColor: root.palette.axisLine
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             QAccelPlot.LineCurve {

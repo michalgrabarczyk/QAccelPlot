@@ -30,10 +30,18 @@ bool hoverEnabled()
     return !isInteger || value != 0;
 }
 
+QColor defaultRectangleColor()
+{
+    auto color = ColorPalette::dark().seriesPrimary;
+    color.setAlpha(50);
+    return color;
+}
+
 }
 
 RectangleList::RectangleList(QQuickItem* parent)
     : PlotSeries(parent)
+    , color_(defaultRectangleColor())
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(hoverEnabled());

@@ -57,18 +57,8 @@ Window {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            plotAreaColor: colorPalette.plotArea
-            axesAreaColor: colorPalette.axesArea
             border.color: colorPalette.plotBorder
             border.width: 3
-            grid.gridColor: colorPalette.grid
-            grid.subGridColor: colorPalette.subGrid
-            legend: QAccelPlot.Legend {
-                series: plot1.series
-                color: colorPalette.legendBackground
-                textColor: colorPalette.text
-                border.color: colorPalette.legendBorder
-            }
 
             xAxis: QAccelPlot.Axis {
                 viewportMin: 0
@@ -76,15 +66,11 @@ Window {
                 dataMin: 0
                 dataMax: 100
                 label: "Process time (s)"
-                baselineColor: colorPalette.axisLine
                 baselineWidth: 3
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             yAxis: QAccelPlot.Axis {
@@ -95,15 +81,11 @@ Window {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Pressure response (units)"
-                baselineColor: colorPalette.axisLine
                 baselineWidth: 3
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             Item {

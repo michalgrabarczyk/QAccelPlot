@@ -26,7 +26,6 @@ QAccelPlot.Plot {
         viewportMax: 0
         dataMin: -20
         dataMax: 0
-        side: QAccelPlot.Axis.Bottom
         label: "Time before present (s)"
     }
 
@@ -35,7 +34,6 @@ QAccelPlot.Plot {
         viewportMax: 2.5
         dataMin: -2.5
         dataMax: 2.5
-        side: QAccelPlot.Axis.Left
         label: "Acceleration (g)"
     }
 

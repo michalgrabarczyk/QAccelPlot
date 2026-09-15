@@ -14,6 +14,7 @@
 #include "renderers/LineCurvePointRenderer.hpp"
 #include "series/LineCurveVertexCache.hpp"
 #include "series/PlotSeries.hpp"
+#include "theme/ColorPalette.hpp"
 #include "transitions/DataTransition.hpp"
 
 #include <QPointF>
@@ -45,7 +46,7 @@ class LineCurve : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(LineCurve)
 
-    /// \brief Base line color. Default: \c Qt::blue.
+    /// \brief Base line color. Default: \c Colors.dark.seriesPrimary.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Line stroke width in pixels. Default: 1.
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
@@ -209,7 +210,7 @@ private:
     void invalidateData();
     void cancelRunningTransition();
 
-    QColor color_{Qt::blue};
+    QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
     DataType dataType_{DataType::Double};

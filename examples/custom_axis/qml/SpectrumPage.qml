@@ -58,9 +58,6 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: root.palette.plotArea
-            axesAreaColor: root.palette.axesArea
-            grid.gridColor: root.palette.grid
             grid.subGridVisible: false
 
             xAxis: QAccelPlot.Axis {
@@ -74,11 +71,9 @@ Item {
                 baselineWidth: 2
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
                 ticker.tickColor: root.palette.seriesPrimary
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             yAxis: QAccelPlot.Axis {
@@ -89,15 +84,11 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative intensity"
-                baselineColor: root.palette.axisLine
                 baselineWidth: 2
                 labelColor: root.palette.axisLabel
                 labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             extraAxes: [
@@ -116,11 +107,9 @@ Item {
                     baselineWidth: 2
                     labelColor: root.palette.axisLabel
                     labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
                     ticker.tickColor: root.palette.seriesCyan
                     ticker.tickLabelColor: root.palette.axisTickLabel
                     ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                     ticker.tickCount: 6
                     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
                         tickLabel: function (wavelength) {

@@ -181,8 +181,6 @@ Window {
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: colorPalette.plotArea
-            axesAreaColor: colorPalette.axesArea
             border.color: colorPalette.plotBorder
             border.width: 2
             grid.gridVisible: false
@@ -236,15 +234,11 @@ Window {
                 dataMin: 0
                 dataMax: 1000
                 label: "Distance (m)"
-                baselineColor: colorPalette.axisLine
                 baselineWidth: 2
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             yAxis: QAccelPlot.Axis {
@@ -255,15 +249,11 @@ Window {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Elevation (m)"
-                baselineColor: colorPalette.axisLine
                 baselineWidth: 2
                 labelColor: colorPalette.axisLabel
                 labelFont: typography.axisLabel
-                hoverColor: colorPalette.hover
-                ticker.tickColor: colorPalette.tick
                 ticker.tickLabelColor: colorPalette.axisTickLabel
                 ticker.tickLabelFont: typography.axisTickLabel
-                ticker.subtickColor: colorPalette.subtick
             }
 
             onMousePressed: event => {

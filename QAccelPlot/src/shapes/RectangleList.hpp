@@ -9,6 +9,7 @@
 
 #include "series/PlotSeries.hpp"
 #include "series/SpatialGrid.hpp"
+#include "theme/ColorPalette.hpp"
 
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -31,7 +32,7 @@ class RectangleList : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(RectangleList)
 
-    /// \brief Fill color applied to all rectangles. Default: semi-transparent blue.
+    /// \brief Fill color applied to all rectangles. Default: \c Colors.dark.seriesPrimary with alpha 50.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Read-only: number of rectangles currently loaded.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
@@ -93,7 +94,7 @@ private:
         unsigned char r, g, b, a;
     };
 
-    QColor color_{QColor(0, 0, 255, 50)};
+    QColor color_;
     int hoveredIndex_{-1};
     // Data: 4 doubles per rect (x1, y1, x2, y2), full precision.
     std::vector<double> data_;

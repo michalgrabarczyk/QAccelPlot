@@ -119,7 +119,6 @@ Window {
             viewportMax: 10
             dataMin: 0
             dataMax: 10
-            side: QAccelPlot.Axis.Bottom
             label: "Time (s)"
         }
 
@@ -128,7 +127,6 @@ Window {
             viewportMax: 1.2
             dataMin: -1.2
             dataMax: 1.2
-            side: QAccelPlot.Axis.Left
             label: "Amplitude"
             axisTitlePadding: 34
         }
@@ -137,7 +135,7 @@ Window {
             objectName: "curve"
             xAxis: plot.xAxis
             yAxis: plot.yAxis
-            color: "darkorange"
+            color: QAccelPlot.Colors.dark.seriesPrimary
             lineWidth: 2
         }
     }
