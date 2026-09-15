@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "styling_and_transitions/fills_gradients",
+  "sources": ["qml/FillsGradientsPage.qml"],
+  "description": "Two stacked plots demonstrating a gradient area fill and a gradient line stroke. Judge only the plot panels; ignore preset, direction, baseline, and opacity controls, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 880,
+    "height": 1120,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "Two plot panels are stacked vertically: Net grid power (kW) against Hours from solar noon on top, and Battery temperature (°C) against State of charge (%) below. Panels do not overlap. Do not evaluate the controls or other content outside the plots."
+    },
+    {
+      "id": "gradient_fill",
+      "severity": "medium",
+      "expectation": "The upper plot shows a smooth curve rising to a broad peak near hour 0 with a smaller shoulder after it, and the area between the curve and the bottom of the plot is filled with a vertical multi-color gradient: yellow and green near the bottom, turning teal and then purple toward the top of the plot. Fail if the fill is missing, a single flat color, or its gradient runs the opposite way."
+    },
+    {
+      "id": "gradient_stroke",
+      "severity": "medium",
+      "expectation": "The lower plot shows a line without fill that stays mostly flat, rises to a spike near 80% state of charge, and falls toward the right. The line color changes along the curve instead of staying uniform: green along the low flat section and a bluer or darker color near the spike. Exact hues are hard to see on a thin line; fail only if the whole line is one uniform color."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plots, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Grid lines, curves, fills, and axes remain visually distinguishable, and axis titles and tick labels are not cut off."
+    }
+  ]
+}

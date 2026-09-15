@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "axis_formats/logarithmic",
+  "sources": ["qml/LogScalePage.qml"],
+  "description": "An audio frequency-response plot with a logarithmic frequency axis. Judge only content inside the plot; ignore tabs, the logarithmic-axis switch, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 1000,
+    "height": 720,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "One coherent frequency-response plot is visible with its axes, grid, and curve. Do not evaluate tabs, the logarithmic-axis switch, or other content outside the plot."
+    },
+    {
+      "id": "logarithmic_axis",
+      "severity": "high",
+      "expectation": "The horizontal Frequency (Hz) axis is logarithmic: its major tick labels are powers of ten written with superscript exponents, such as 10², 10³, and 10⁴, and each decade takes equal horizontal space with unevenly spaced minor ticks between major ticks. The Relative level (dB) vertical axis is also present. If the screenshot resolution is insufficient to read the exponents, report uncertain; do not fail solely because the labels are small."
+    },
+    {
+      "id": "response_curve",
+      "severity": "medium",
+      "expectation": "A continuous smooth response curve spans the plot: a gentle bump near 100 Hz, a flat middle section, a pronounced dip between 10³ and 10⁴ Hz, and a roll-off toward the right edge. Exact raster shape and minor sampling differences are acceptable."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The plot, grid, ticks, curve, and plot text are visually distinguishable; no plot element is blank or corrupted, and axis titles and tick labels are not cut off."
+    }
+  ]
+}

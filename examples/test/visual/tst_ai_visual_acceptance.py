@@ -211,7 +211,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("github.event_name == 'workflow_dispatch'", ai_job)
         self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", ai_job)
         self.assertIn("python examples/test/visual/ai_visual_matrix.py", ai_job)
-        self.assertIn("--max-requests 24", ai_job)
+        self.assertIn("--max-requests 40", ai_job)
         self.assertIn("name: all-visual-screenshots", ai_job)
 
     def test_workflow_provides_one_combined_screenshot_download(self):

@@ -41,14 +41,14 @@ target_include_directories(tst_sample_data_generators PRIVATE
 if(QACCELPLOT_BUILD_VISUAL_TESTS)
     # Scenario names and contracts are described in cmake/QAccelPlotTestHelpers.cmake.
     add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisFormats            axis_formats PAGES dateTime)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleCustomAxis             custom_axis PAGES dualScale)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisFormats            axis_formats PAGES dateTime logarithmic categories)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleCustomAxis             custom_axis PAGES dualScale multiRate sharedTime)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleInteractiveTools       interactive_tools)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformanceShowcase    performance_showcase)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsarShowcase         pulsar_showcase NO_AI_INSPECTION)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions PAGES styling)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions PAGES styling fillsGradients transitions)
 
     add_qaccelplot_example_visual_scenario(QAccelPlotExampleStylingAndTransitions styling_and_transitions styling_light
         PAGE styling

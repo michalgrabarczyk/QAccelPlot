@@ -348,7 +348,7 @@ jobs:
           --summary visual-reports/summary.md
           --mode "$AI_MODE"
           --scenarios "$AI_SCENARIOS"
-          --max-requests 24
+          --max-requests 40
 
       - name: Add AI cost summary
         if: always()
