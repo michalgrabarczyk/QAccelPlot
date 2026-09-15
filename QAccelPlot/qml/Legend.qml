@@ -6,6 +6,9 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 import QtQuick
+// Qt 6.2's implicit import of this module's directory only exposes its QML files. The explicit
+// module import is needed for the C++ Colors singleton; without it, the color bindings fail.
+import QAccelPlot 1.0
 
 Rectangle {
     id: root

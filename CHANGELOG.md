@@ -130,6 +130,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   data ranges instead of making that range non-finite, and all-`NaN` data no longer reports an inverted range.
 - `NaN` samples no longer make adjacent valid line segments disappear or
   produce backend-dependent artifacts.
+- On Qt 6.2, the legend now uses the dark palette's background, border, and
+  text colors instead of falling back to a white box with dark text.
 
 ## [0.1.0] — 2026-09-08
 
