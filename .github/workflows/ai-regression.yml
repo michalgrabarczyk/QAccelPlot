@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       scope: ${{ steps.impact.outputs.scope }}
-      examples: ${{ steps.impact.outputs.examples }}
+      scenarios: ${{ steps.impact.outputs.scenarios }}
       changed_count: ${{ steps.impact.outputs.changed_count }}
     steps:
       - name: Checkout Code
@@ -54,13 +54,13 @@ jobs:
       - name: Summarize visual review scope
         env:
           SCOPE: ${{ steps.impact.outputs.scope }}
-          EXAMPLES: ${{ steps.impact.outputs.examples }}
+          SCENARIOS: ${{ steps.impact.outputs.scenarios }}
           CHANGED_COUNT: ${{ steps.impact.outputs.changed_count }}
         run: |
           echo "### Visual review scope" >> "$GITHUB_STEP_SUMMARY"
           echo "Changed files: $CHANGED_COUNT" >> "$GITHUB_STEP_SUMMARY"
           echo "Scope: $SCOPE" >> "$GITHUB_STEP_SUMMARY"
-          echo "Examples: ${EXAMPLES:-none}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Scenarios: ${SCENARIOS:-none}" >> "$GITHUB_STEP_SUMMARY"
 
   all-examples-rhi:
     name: Capture & validate / Qt ${{ matrix.qt_version }} / ${{ matrix.platform.backend }} / ${{ matrix.platform.os }}
@@ -339,7 +339,7 @@ jobs:
       - name: Review selected renders with AI
         env:
           AI_MODE: ${{ inputs.ai_mode }}
-          AI_EXAMPLES: ${{ inputs.ai_mode == 'full' && 'all' || needs.detect-impact.outputs.examples }}
+          AI_SCENARIOS: ${{ inputs.ai_mode == 'full' && 'all' || needs.detect-impact.outputs.scenarios }}
         run: >-
           python examples/test/visual/ai_visual_matrix.py
           --artifacts visual-artifacts
@@ -347,7 +347,7 @@ jobs:
           --reports visual-reports
           --summary visual-reports/summary.md
           --mode "$AI_MODE"
-          --examples "$AI_EXAMPLES"
+          --scenarios "$AI_SCENARIOS"
           --max-requests 24
 
       - name: Add AI cost summary

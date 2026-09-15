@@ -67,15 +67,19 @@ Window {
 
         TabBar {
             id: tabBar
+            objectName: "examplePages"
             Layout.fillWidth: true
 
             TabButton {
+                objectName: "styling"
                 text: "Styling"
             }
             TabButton {
+                objectName: "fillsGradients"
                 text: "Fills and Gradients"
             }
             TabButton {
+                objectName: "transitions"
                 text: "Transitions"
             }
         }

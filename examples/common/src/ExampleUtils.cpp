@@ -24,6 +24,7 @@
 #include <QtMath>
 
 #include <cstdlib>
+#include <optional>
 
 namespace QAccelPlotExample {
 
@@ -117,6 +118,71 @@ void restorePaintedItemTextures(const QList<PaintedItemTextureState>& states)
     }
 }
 
+// A TabBar (or another Container) with this objectName lists the example's pages. Each page
+// button's objectName is the page name accepted by --page.
+constexpr auto kPagesObjectName = "examplePages";
+
+// Returns the value of "--name value" or "--name=value", or nothing when the option is absent.
+std::optional<QString> optionValue(const QStringList& arguments, const QString& name)
+{
+    const auto prefix = name + QLatin1Char('=');
+    for (auto i = 1; i < arguments.size(); ++i) {
+        const auto& argument = arguments.at(i);
+        if (argument.startsWith(prefix)) {
+            return argument.mid(prefix.size());
+        }
+        if (argument == name) {
+            return i + 1 < arguments.size() ? arguments.at(i + 1) : QString();
+        }
+    }
+    return std::nullopt;
+}
+
+QObject* findPages(QQuickWindow* window)
+{
+    auto* pages = window->findChild<QObject*>(QLatin1String(kPagesObjectName));
+    if (!pages && window->contentItem()) {
+        pages = window->contentItem()->findChild<QObject*>(QLatin1String(kPagesObjectName));
+    }
+    return pages;
+}
+
+QString pageName(QObject* pages, const int index)
+{
+    QQuickItem* page = nullptr;
+    QMetaObject::invokeMethod(pages, "itemAt", Q_RETURN_ARG(QQuickItem*, page), Q_ARG(int, index));
+    return page ? page->objectName() : QString();
+}
+
+// Name of the page shown by the window, or an empty string for examples without pages.
+QString currentPageName(QQuickWindow* window)
+{
+    auto* pages = findPages(window);
+    return pages ? pageName(pages, pages->property("currentIndex").toInt()) : QString();
+}
+
+bool selectPage(QQuickWindow* window, const QString& name, QString& error)
+{
+    auto* pages = findPages(window);
+    if (!pages) {
+        error = QStringLiteral("Unable to select page '%1': the example has no '%2' object.").arg(name, QLatin1String(kPagesObjectName));
+        return false;
+    }
+
+    auto available = QStringList{};
+    const auto count = pages->property("count").toInt();
+    for (auto index = 0; index < count; ++index) {
+        const auto candidate = pageName(pages, index);
+        if (candidate == name) {
+            pages->setProperty("currentIndex", index);
+            return true;
+        }
+        available.append(candidate);
+    }
+    error = QStringLiteral("Unable to select page '%1'. Available pages: %2").arg(name, available.join(QStringLiteral(", ")));
+    return false;
+}
+
 } // namespace
 
 void configureGraphicsApi()
@@ -145,13 +211,32 @@ void setupEngineFailureHandler(QGuiApplication& app, QQmlApplicationEngine& engi
 void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine, int delayMs)
 {
     const auto arguments = app.arguments();
+    auto* window = qobject_cast<QQuickWindow*>(engine.rootObjects().value(0));
+
+    // Select the page before the first frame so the capture delay covers its layout and rendering.
+    if (const auto page = optionValue(arguments, QStringLiteral("--page"))) {
+        auto error = QString{};
+        if (!window) {
+            error = QStringLiteral("Unable to select page '%1': the QML root object is not a window.").arg(*page);
+        } else if (page->isEmpty()) {
+            error = QStringLiteral("--page requires a page name.");
+        } else {
+            selectPage(window, *page, error);
+        }
+        if (!error.isEmpty()) {
+            qCritical().noquote() << error;
+            // The event loop is not running yet, so a direct exit() would be ignored.
+            QMetaObject::invokeMethod(&app, [&app]() { app.exit(EXIT_FAILURE); }, Qt::QueuedConnection);
+            return;
+        }
+    }
+
     const auto screenshotIndex = arguments.indexOf("--screenshot");
     if (screenshotIndex == -1) {
         return;
     }
 
     const auto path = screenshotIndex + 1 < arguments.size() ? arguments.at(screenshotIndex + 1) : QStringLiteral("screenshot.png");
-    auto* window = qobject_cast<QQuickWindow*>(engine.rootObjects().value(0));
     if (!window) {
         qCritical().noquote() << "Unable to capture screenshot: the QML root object is not a window.";
         app.exit(EXIT_FAILURE);
@@ -231,10 +316,11 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         }
 
         const auto windowColor = window->color();
+        const auto page = currentPageName(window);
         QObject::connect(
             grabResult.data(), &QQuickItemGrabResult::ready, &app,
             [&app, grabResult, path, requestedApi, actualApi, actualQtVersion, logicalWindowSize, offscreenTargetSize, effectiveDevicePixelRatio,
-                grabTargetScaledByDevicePixelRatio, windowColor, paintedItemTextureStates]() {
+                grabTargetScaledByDevicePixelRatio, windowColor, page, paintedItemTextureStates]() {
                 auto failCapture = [&app](const QString& message) {
                     qCritical().noquote() << message;
                     app.exit(EXIT_FAILURE);
@@ -274,8 +360,9 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
                 }
 
                 const auto metadataPath = path + QStringLiteral(".rhi.json");
+
                 const auto metadata = QJsonDocument(QJsonObject{
-                                                        {QStringLiteral("version"), 3},
+                                                        {QStringLiteral("version"), 4},
                                                         {QStringLiteral("capture_method"), QStringLiteral("item_grab_to_image")},
                                                         {QStringLiteral("grab_target_scaled_by_device_pixel_ratio"), grabTargetScaledByDevicePixelRatio},
                                                         {QStringLiteral("requested_graphics_api"), requestedApi},
@@ -288,6 +375,7 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
                                                         {QStringLiteral("effective_device_pixel_ratio"), effectiveDevicePixelRatio},
                                                         {QStringLiteral("captured_pixel_width"), capturedPixelSize.width()},
                                                         {QStringLiteral("captured_pixel_height"), capturedPixelSize.height()},
+                                                        {QStringLiteral("page"), page},
                                                     })
                                           .toJson(QJsonDocument::Indented);
                 QSaveFile metadataFile(metadataPath);

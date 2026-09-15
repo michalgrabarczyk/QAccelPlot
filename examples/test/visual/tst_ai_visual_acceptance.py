@@ -31,6 +31,7 @@ from ai_visual_acceptance import (  # noqa: E402
     evaluate_result,
     load_contract,
     load_render_metadata,
+    validate_capture_page,
     validate_capture_resolution,
     validate_model_response,
 )
@@ -39,7 +40,7 @@ from ai_visual_acceptance import (  # noqa: E402
 CONTRACTS_DIR = VISUAL_DIR / "contracts"
 EXAMPLES_DIR = PROJECT_ROOT / "examples"
 EXAMPLE_TESTS_DIR = VISUAL_DIR.parent
-CONTRACT_PATH = CONTRACTS_DIR / "styling_and_transitions.json"
+CONTRACT_PATH = CONTRACTS_DIR / "styling_and_transitions" / "styling.json"
 AI_WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "ai-regression.yml"
 TEST_HELPERS_PATH = PROJECT_ROOT / "cmake" / "QAccelPlotTestHelpers.cmake"
 
@@ -48,13 +49,38 @@ def camel_to_snake(value):
     return re.sub(r"(?<!^)(?=[A-Z])", "_", value).lower()
 
 
-def example_contract_names():
-    example_names = set()
+def example_names():
+    names = set()
     for cmake_path in EXAMPLES_DIR.glob("*/CMakeLists.txt"):
         match = re.search(r"qaccelplot_add_example\(\s*([A-Za-z0-9_]+)", cmake_path.read_text(encoding="utf-8"))
         if match:
-            example_names.add(camel_to_snake(match.group(1)))
-    return example_names
+            names.add(camel_to_snake(match.group(1)))
+    return names
+
+
+def registered_visual_scenarios():
+    """Parses the scenario registrations in examples/test/CMakeLists.txt.
+
+    Returns ``{"<example>/<scenario>": {"smoke_only": bool, "ai_inspection": bool}}``.
+    """
+    cmake_source = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
+    scenarios = {}
+    for command, arguments in re.findall(
+        r"^\s*(add_qaccelplot_example_visual_tests|add_qaccelplot_example_visual_scenario)\(([^)]*)\)",
+        cmake_source,
+        re.MULTILINE,
+    ):
+        tokens = arguments.split()
+        flags = {"ai_inspection": "NO_AI_INSPECTION" not in tokens, "smoke_only": "SMOKE_ONLY" in tokens}
+        if command == "add_qaccelplot_example_visual_scenario":
+            scenarios[f"{tokens[1]}/{tokens[2]}"] = flags
+            continue
+        pages = []
+        if "PAGES" in tokens:
+            pages = [token for token in tokens[tokens.index("PAGES") + 1 :] if not token.isupper()]
+        for page in pages or ["default"]:
+            scenarios[f"{tokens[1]}/{camel_to_snake(page)}"] = flags
+    return scenarios
 
 
 class VisualAcceptanceTests(unittest.TestCase):
@@ -77,7 +103,7 @@ class VisualAcceptanceTests(unittest.TestCase):
 
     def render_metadata(self, *, requested="opengl", actual="opengl"):
         return {
-            "version": 3,
+            "version": 4,
             "capture_method": "item_grab_to_image",
             "grab_target_scaled_by_device_pixel_ratio": True,
             "requested_graphics_api": requested,
@@ -90,27 +116,30 @@ class VisualAcceptanceTests(unittest.TestCase):
             "effective_device_pixel_ratio": 0.5,
             "captured_pixel_width": 880,
             "captured_pixel_height": 1120,
+            "page": "styling",
         }
 
     def test_every_example_has_a_valid_contract(self):
-        contract_paths = list(CONTRACTS_DIR.glob("*.json"))
-        contract_names = {path.stem for path in contract_paths}
-        self.assertEqual(contract_names, example_contract_names())
+        contract_paths = list(CONTRACTS_DIR.glob("*/*.json"))
+        self.assertEqual(list(CONTRACTS_DIR.glob("*.json")), [], "Contracts belong in contracts/<example>/<scenario>.json")
+        self.assertEqual({path.parent.name for path in contract_paths}, example_names())
 
-        cmake_source = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
-        registered_names = set(
-            re.findall(r"^\s*add_qaccelplot_example_visual_tests\([^\s]+\s+([^\s\)]+)", cmake_source, re.MULTILINE)
+        registered = registered_visual_scenarios()
+        contract_scenarios = {f"{path.parent.name}/{path.stem}" for path in contract_paths}
+        self.assertEqual(
+            {identity for identity, flags in registered.items() if not flags["smoke_only"]},
+            contract_scenarios,
         )
-        self.assertEqual(registered_names, contract_names)
-        self.assertRegex(
-            cmake_source,
-            r"(?m)^\s*add_qaccelplot_example_visual_tests\(QAccelPlotExamplePulsarShowcase\s+pulsar_showcase NO_AI_INSPECTION\)$",
-        )
+        self.assertEqual(registered["pulsar_showcase/default"]["ai_inspection"], False)
 
         for path in contract_paths:
-            with self.subTest(contract=path.name):
+            identity = f"{path.parent.name}/{path.stem}"
+            with self.subTest(contract=identity):
                 contract = load_contract(path)
-                self.assertEqual(contract["name"], path.stem)
+                self.assertEqual(contract["name"], identity)
+                self.assertEqual(contract.get("ai_inspection", True), registered[identity]["ai_inspection"])
+                for source in contract.get("sources", []):
+                    self.assertTrue((EXAMPLES_DIR / path.parent.name / source).is_file(), source)
                 raster_quality_checks = [check for check in contract["checks"] if check["id"] == "text_raster_quality"]
                 self.assertEqual(len(raster_quality_checks), 1)
                 self.assertEqual(raster_quality_checks[0]["severity"], "high")
@@ -158,7 +187,8 @@ class VisualAcceptanceTests(unittest.TestCase):
         test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
         example_tests = (EXAMPLE_TESTS_DIR / "CMakeLists.txt").read_text(encoding="utf-8")
         self.assertIn("QACCELPLOT_HOVER_ENABLED=0", test_helpers)
-        self.assertIn("QACCELPLOT_HOVER_ENABLED=0", example_tests)
+        # Screenshot tests are registered through the scenario helpers, which set the environment.
+        self.assertNotRegex(example_tests, r"NAME smoke_")
 
     def test_workflow_names_distinguish_basic_and_ai_runs(self):
         workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
@@ -269,7 +299,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertNotIn("blocking_severities", prompt)
 
     def test_contracts_limit_text_quality_review_to_plot_text(self):
-        for contract_path in CONTRACTS_DIR.glob("*.json"):
+        for contract_path in CONTRACTS_DIR.glob("*/*.json"):
             with self.subTest(contract=contract_path.name):
                 contract = load_contract(contract_path)
                 raster_check = next(check for check in contract["checks"] if check["id"] == "text_raster_quality")
@@ -279,7 +309,7 @@ class VisualAcceptanceTests(unittest.TestCase):
                 self.assertIn("text outside the plot", expectation.replace("plots", "plot"))
 
     def test_interactive_tools_contract_ignores_controls_and_ruler_position(self):
-        contract = load_contract(CONTRACTS_DIR / "interactive_tools.json")
+        contract = load_contract(CONTRACTS_DIR / "interactive_tools" / "default.json")
         check_ids = {check["id"] for check in contract["checks"]}
         self.assertNotIn("tool_controls", check_ids)
         ruler_check = next(check for check in contract["checks"] if check["id"] == "initial_ruler")
@@ -332,6 +362,23 @@ class VisualAcceptanceTests(unittest.TestCase):
             )
             with self.assertRaises(VisualAcceptanceError):
                 load_render_metadata(metadata_path)
+
+    def test_capture_page_must_match_the_scenario(self):
+        metadata = self.render_metadata()
+        validate_capture_page(metadata, "styling")
+        with self.assertRaisesRegex(VisualAcceptanceError, "shows page 'styling'; expected page 'transitions'"):
+            validate_capture_page(metadata, "transitions")
+        with self.assertRaisesRegex(VisualAcceptanceError, "expected an example without pages"):
+            validate_capture_page(metadata, "")
+
+    def test_contract_sources_must_be_paths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            contract_path = Path(directory) / "page.json"
+            contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
+            contract["sources"] = "qml/StylingPage.qml"
+            contract_path.write_text(json.dumps(contract), encoding="utf-8")
+            with self.assertRaisesRegex(VisualAcceptanceError, "sources must be a list"):
+                load_contract(contract_path)
 
     def test_offscreen_capture_can_outresolve_the_scaled_window(self):
         metadata = self.render_metadata()

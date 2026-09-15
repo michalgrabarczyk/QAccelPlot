@@ -14,6 +14,9 @@ namespace QAccelPlotExample {
 
 void configureGraphicsApi();
 void setupEngineFailureHandler(QGuiApplication& app, QQmlApplicationEngine& engine);
+// Handles the visual test options after the QML engine has loaded the example:
+//   --page <name>        Shows the page whose button in the "examplePages" TabBar has this objectName.
+//   --screenshot <path>  Saves a screenshot and <path>.rhi.json render metadata, then quits.
 void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine, int delayMs = 2000);
 
 } // namespace QAccelPlotExample

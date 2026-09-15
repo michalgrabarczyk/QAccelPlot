@@ -49,15 +49,19 @@ Window {
 
         TabBar {
             id: tabs
+            objectName: "examplePages"
             Layout.fillWidth: true
 
             TabButton {
+                objectName: "dateTime"
                 text: "Date and time"
             }
             TabButton {
+                objectName: "logarithmic"
                 text: "Logarithmic"
             }
             TabButton {
+                objectName: "categories"
                 text: "Categories"
             }
         }
