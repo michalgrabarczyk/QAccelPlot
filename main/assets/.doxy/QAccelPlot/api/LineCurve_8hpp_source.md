@@ -162,6 +162,8 @@ private:
     qreal renderOriginY_{0.0};
     bool renderLogScaleX_{false};
     bool renderLogScaleY_{false};
+    bool renderOriginXSettled_{false};
+    bool renderOriginYSettled_{false};
     int pointCount_{0};
     DataTransition* transition_{nullptr};
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};

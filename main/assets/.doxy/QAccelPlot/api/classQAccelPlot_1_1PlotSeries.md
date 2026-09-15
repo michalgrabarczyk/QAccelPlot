@@ -146,6 +146,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |  void | [**clearDataRanges**](#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
+|  void | [**extendDataRanges**](#function-extenddataranges) (qreal x, qreal y) <br>_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._ |
 |  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
 
 
@@ -547,6 +548,28 @@ void QAccelPlot::PlotSeries::clearDataRanges ()
 
 
 
+
+<hr>
+
+
+
+
+### function extendDataRanges {#function-extenddataranges}
+
+_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._
+```C++
+void QAccelPlot::PlotSeries::extendDataRanges (
+    qreal x,
+    qreal y
+) 
+```
+
+
+
+Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. Non-finite coordinates leave the corresponding extent unchanged. 
+
+
+        
 
 <hr>
 

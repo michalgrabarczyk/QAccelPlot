@@ -77,6 +77,7 @@ signals:
 
 protected:
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
+    void extendDataRanges(qreal x, qreal y);
     void clearDataRanges();
 
 private:

@@ -230,6 +230,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |  void | [**clearDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
+|  void | [**extendDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-extenddataranges) (qreal x, qreal y) <br>_Widens the reported extents to include the single point (_ _x_ _,__y_ _)._ |
 |  void | [**setDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
 
 

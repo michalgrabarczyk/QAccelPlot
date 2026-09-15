@@ -105,6 +105,7 @@
 * **effectCount** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **effects** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **expectedVertexCacheSize** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **extendDataRanges** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **extraAxes** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **extraAxis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **extraAxisCount** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
