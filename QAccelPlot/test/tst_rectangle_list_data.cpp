@@ -51,14 +51,14 @@ void RectangleListDataTest::invalidRawArgumentsAreRejected()
     const auto data = std::array<float, 4>{0.0f, 1.0f, 2.0f, 3.0f};
     auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
 
-    rectangles.setRawData(data.data(), 1);
+    rectangles.setData(data.data(), 1);
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer.*"));
-    rectangles.setRawData(static_cast<const float*>(nullptr), 1);
+    rectangles.setData(static_cast<const float*>(nullptr), 1);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
-    rectangles.setRawData(data.data(), -1);
+    rectangles.setData(data.data(), -1);
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
@@ -81,7 +81,7 @@ void RectangleListDataTest::rawDoubleDataPreservesModernEpochPrecision()
         epochMilliseconds + 3.0,
         1.0,
     };
-    rectangles.setRawData(data.data(), 2);
+    rectangles.setData(data.data(), 2);
 
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 3.0);

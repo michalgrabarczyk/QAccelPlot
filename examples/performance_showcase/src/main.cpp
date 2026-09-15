@@ -119,7 +119,7 @@ void setupCurveUpdates(
             deliveryMetrics->dataApplied(steadyNanoseconds());
         }
         if (rectangleList) {
-            rectangleList->setRawData(batch.rects.empty() ? nullptr : batch.rects.data(), batch.rectangleCount);
+            rectangleList->setData(batch.rects.empty() ? nullptr : batch.rects.data(), batch.rectangleCount);
         }
     });
 }

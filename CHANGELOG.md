@@ -13,6 +13,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Automatic side assignment for the four named plot axes: `xAxis` uses the
   bottom, `x2Axis` the top, `yAxis` the left, and `y2Axis` the right.
 
+### Changed
+
+- Renamed `RectangleList::setRawData()` to `setData()`, matching the naming
+  of the `LineCurve` data-setting APIs.
+
 ### Fixed
 
 - Legend line and marker samples now use the curve renderers, keeping marker
@@ -104,7 +109,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   timestamps and large coordinates: rectangles are stored and their data
   range computed in double precision, and rendering uses an origin-relative
   float buffer instead of storing raw coordinates as float. A new
-  `setRawData(const double*, int)` overload accepts double-precision data
+  `setData(const double*, int)` overload accepts double-precision data
   directly.
 
 ## [0.1.0] — 2026-09-08
