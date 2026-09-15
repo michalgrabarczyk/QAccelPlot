@@ -17,6 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Renamed `RectangleList::setRawData()` to `setData()`, matching the naming
   of the `LineCurve` data-setting APIs.
+- Default plot, axis, grid, series, and legend colors now come from the
+  built-in dark palette instead of generic Qt colors. The `Colors` palette is
+  defined once in C++ and shared with QML, where its usage is unchanged.
 
 ### Fixed
 

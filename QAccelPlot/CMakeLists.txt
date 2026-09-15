@@ -35,9 +35,6 @@ file(GLOB QACCELPLOT_QML_FILES
     "qml/*.qml"
 )
 
-set_source_files_properties(qml/Colors.qml
-    PROPERTIES QT_QML_SINGLETON_TYPE TRUE
-)
 set_source_files_properties(qml/LegendSymbol.qml
     PROPERTIES QT_QML_INTERNAL_TYPE TRUE
 )
@@ -124,6 +121,7 @@ target_include_directories(QAccelPlot
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/renderers>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/series>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/shapes>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/theme>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/transitions>
 )
 

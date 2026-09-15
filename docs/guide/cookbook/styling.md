@@ -29,8 +29,9 @@ QAccelPlot.Plot {
 }
 ```
 
-The palette is opt-in; importing QAccelPlot does not automatically change plot
-or application colors.
+Built-in plot defaults (plot and axes areas, grid, axis baseline, ticks, hover
+color, series, and legend) come from `Colors.dark`. Assign `Colors.light`
+tokens, or any other colors, to restyle a plot.
 
 ## Lines and markers
 

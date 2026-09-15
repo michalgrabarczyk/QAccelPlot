@@ -8,6 +8,7 @@
 #pragma once
 
 #include "formatters/TickLabelFormatter.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QFont>
@@ -26,7 +27,7 @@ namespace QAccelPlot {
 class AxisTicker : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    /// \brief Color of major tick marks. Default: \c Qt::black.
+    /// \brief Color of major tick marks. Default: \c Colors.dark.tick.
     Q_PROPERTY(QColor tickColor READ tickColor WRITE setTickColor NOTIFY tickColorChanged)
     /// \brief Optional color of tick labels. When invalid, the tickColor is used.
     Q_PROPERTY(QColor tickLabelColor READ tickLabelColor WRITE setTickLabelColor NOTIFY tickLabelColorChanged)
@@ -46,7 +47,7 @@ class AxisTicker : public QObject {
     Q_PROPERTY(qreal subtickLengthIn READ subtickLengthIn WRITE setSubtickLengthIn NOTIFY subtickLengthInChanged)
     /// \brief Outward length in pixels of sub-tick marks. Default: 4.
     Q_PROPERTY(qreal subtickLengthOut READ subtickLengthOut WRITE setSubtickLengthOut NOTIFY subtickLengthOutChanged)
-    /// \brief Color of sub-tick marks. Default: \c Qt::darkGray.
+    /// \brief Color of sub-tick marks. Default: \c Colors.dark.subtick.
     Q_PROPERTY(QColor subtickColor READ subtickColor WRITE setSubtickColor NOTIFY subtickColorChanged)
     /// \brief Width in pixels of major tick mark lines. Default: 2.
     Q_PROPERTY(qreal tickWidth READ tickWidth WRITE setTickWidth NOTIFY tickWidthChanged)
@@ -189,7 +190,7 @@ signals:
     void tickLabelFormatChanged();
 
 private:
-    QColor tickColor_{QColor(Qt::black)};
+    QColor tickColor_{ColorPalette::dark().tick};
     QColor tickLabelColor_;
     int tickCount_{5};
     int subtickCount_{10};
@@ -197,7 +198,7 @@ private:
     qreal tickLengthOut_{8.0};
     qreal subtickLengthIn_{4.0};
     qreal subtickLengthOut_{4.0};
-    QColor subtickColor_{QColor(Qt::darkGray)};
+    QColor subtickColor_{ColorPalette::dark().subtick};
     qreal tickWidth_{2.0};
     qreal subtickWidth_{1.0};
     qreal tickLabelPadding_{5.0};

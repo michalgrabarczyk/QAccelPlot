@@ -82,8 +82,9 @@ QAccelPlot/
 │   │                           SpatialGrid (hover hit testing)
 │   ├── shaders/              — GLSL shaders compiled to .qsb
 │   ├── shapes/               — RectangleList
+│   ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │   └── transitions/          — DataTransition, DrawTransition, MorphTransition
-├── qml/                      — QML helper types (Plot, Legend, Colors)
+├── qml/                      — QML helper types (Plot, Legend)
 ├── test/                     — Unit tests
 └── CMakeLists.txt            — Library build configuration
 ```
@@ -95,7 +96,7 @@ QAccelPlot/
   performance_showcase, styling_and_transitions)
 - `benchmarks/` — Performance measurement scenarios and harness
 - `docs/` — MkDocs guide source + Doxygen configuration
-- `qml/` — Top-level QML types (Plot wrapper, Legend, Colors palette)
+- `qml/` — Top-level QML types (Plot wrapper, Legend)
 - `scripts/` — Build and CI helper scripts
 - `cmake/` — CMake modules
 

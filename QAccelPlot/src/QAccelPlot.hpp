@@ -12,6 +12,7 @@
 #include "axis/Axis.hpp"
 #include "grid/Grid.hpp"
 #include "series/PlotSeries.hpp"
+#include "theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QKeyEvent>
@@ -61,9 +62,9 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(qreal padding READ padding WRITE setPadding NOTIFY paddingChanged)
     /// \brief Read-only: plot area rectangle in item-local pixel coordinates.
     Q_PROPERTY(QRectF plotRect READ plotRect NOTIFY plotRectChanged)
-    /// \brief Background color of the plot data area. Default: d3d3d3.
+    /// \brief Background color of the plot data area. Default: \c Colors.dark.plotArea.
     Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
-    /// \brief Background color of the axes surround area. Default: c8c8c8.
+    /// \brief Background color of the axes surround area. Default: \c Colors.dark.axesArea.
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
     /// \brief Decorative frame configuration for the plot area.
     Q_PROPERTY(PlotBorder* border READ border CONSTANT)
@@ -220,8 +221,8 @@ private:
     PlotMouseEvent mouseMoveEvent_{this};
     qreal padding_{24.0};
     QRectF plotRect_;
-    QColor plotAreaColor_{QColor("#d3d3d3")}; // lightgrey
-    QColor axesAreaColor_{QColor("#c8c8c8")}; // slightly darker
+    QColor plotAreaColor_{ColorPalette::dark().plotArea};
+    QColor axesAreaColor_{ColorPalette::dark().axesArea};
     PlotBorder* border_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};

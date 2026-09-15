@@ -11,7 +11,7 @@ Rectangle {
     id: root
 
     required property var series
-    property color textColor: "#333333"
+    property color textColor: Colors.dark.text
     property font font: Qt.font({
         family: "Arial",
         pixelSize: 12
@@ -23,9 +23,9 @@ Rectangle {
     width: column.width + 16
     height: column.height + 12
 
-    color: Qt.rgba(1, 1, 1, 0.7)
+    color: Colors.dark.legendBackground
     radius: 4
-    border.color: Qt.rgba(0, 0, 0, 0.15)
+    border.color: Colors.dark.legendBorder
     border.width: 1
 
     Column {
