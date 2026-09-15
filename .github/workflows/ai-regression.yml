@@ -63,7 +63,7 @@ jobs:
           echo "Scenarios: ${SCENARIOS:-none}" >> "$GITHUB_STEP_SUMMARY"
 
   all-examples-rhi:
-    name: Capture & validate / Qt ${{ matrix.qt_version }} / ${{ matrix.platform.backend }} / ${{ matrix.platform.os }}
+    name: Capture & validate / Qt ${{ matrix.qt_version }} / ${{ matrix.platform.label || matrix.platform.backend }} / ${{ matrix.platform.os }}
     needs: detect-impact
     runs-on: ${{ matrix.platform.os }}
     strategy:
@@ -105,6 +105,25 @@ jobs:
               backend: d3d12
               prefer_software_device: '1'
               force_mesa_software: '0'
+        # Embedded Linux devices render through OpenGL ES. These runs force an ES 3.0 context,
+        # QAccelPlot's minimum, from Mesa llvmpipe on x86_64 and on ARM64.
+        include:
+          - qt_version: '6.8.3'
+            platform:
+              os: ubuntu-24.04
+              backend: opengl
+              label: opengles3
+              opengl_es: '3.0'
+              prefer_software_device: '0'
+              force_mesa_software: '1'
+          - qt_version: '6.8.3'
+            platform:
+              os: ubuntu-24.04-arm
+              backend: opengl
+              label: opengles3
+              opengl_es: '3.0'
+              prefer_software_device: '0'
+              force_mesa_software: '1'
     env:
       QSG_RHI_BACKEND: ${{ matrix.platform.backend }}
       QACCELPLOT_EXPECTED_GRAPHICS_API: ${{ matrix.platform.backend }}
@@ -115,7 +134,7 @@ jobs:
       # Hosted Windows and macOS desktops expose only about 1024px of logical
       # width. This keeps windows visible; screenshots are rendered separately
       # into full-resolution offscreen targets by the example capture helper.
-      QT_SCALE_FACTOR: ${{ matrix.platform.os == 'ubuntu-24.04' && '1' || '0.5' }}
+      QT_SCALE_FACTOR: ${{ startsWith(matrix.platform.os, 'ubuntu-') && '1' || '0.5' }}
 
     steps:
       - name: Checkout Code
@@ -184,7 +203,17 @@ jobs:
 
       - name: Install Linux runtime dependencies
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install --yes xvfb libgl1-mesa-dri libxcb-cursor0 libxkbcommon-x11-0
+        run: sudo apt-get update && sudo apt-get install --yes cmake ninja-build xvfb libgl1-mesa-dri libegl1 libegl-mesa0 libgles2 libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Request OpenGL ES
+        if: matrix.platform.opengl_es
+        run: |
+          # QAccelPlot's example helper requests the ES context and fails a capture that did not get one.
+          echo "QACCELPLOT_OPENGL_ES_VERSION=${{ matrix.platform.opengl_es }}" >> "$GITHUB_ENV"
+          # GLX cannot create OpenGL ES contexts; EGL can, even with a desktop OpenGL Qt build.
+          echo "QT_XCB_GL_INTEGRATION=xcb_egl" >> "$GITHUB_ENV"
+          # Mesa llvmpipe offers a newer ES version; cap it at the requested minimum.
+          echo "MESA_GLES_VERSION_OVERRIDE=${{ matrix.platform.opengl_es }}" >> "$GITHUB_ENV"
 
       - name: Install Vulkan runtime
         if: runner.os == 'Linux' && matrix.platform.backend == 'vulkan'
@@ -244,7 +273,7 @@ jobs:
         id: upload-visual-artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: visual-${{ matrix.qt_version }}-${{ matrix.platform.backend }}-${{ matrix.platform.os }}
+          name: visual-${{ matrix.qt_version }}-${{ matrix.platform.label || matrix.platform.backend }}-${{ matrix.platform.os }}
           if-no-files-found: error
           overwrite: true
           path: |

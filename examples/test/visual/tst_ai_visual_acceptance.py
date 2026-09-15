@@ -101,13 +101,17 @@ class VisualAcceptanceTests(unittest.TestCase):
             )
         return {"summary": "Test assessment.", "checks": checks}
 
-    def render_metadata(self, *, requested="opengl", actual="opengl"):
+    def render_metadata(self, *, requested="opengl", actual="opengl", opengl_es=False, opengl_version=(4, 5)):
         return {
-            "version": 4,
+            "version": 5,
             "capture_method": "item_grab_to_image",
             "grab_target_scaled_by_device_pixel_ratio": True,
             "requested_graphics_api": requested,
             "actual_graphics_api": actual,
+            "opengl_context_observed": actual == "opengl",
+            "opengl_es": opengl_es,
+            "opengl_major_version": opengl_version[0] if actual == "opengl" else 0,
+            "opengl_minor_version": opengl_version[1] if actual == "opengl" else 0,
             "qt_version": "6.7.3",
             "logical_window_width": 880,
             "logical_window_height": 1120,
@@ -174,7 +178,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertEqual(workflow.count("-DQACCELPLOT_DEPLOY_EXAMPLES=OFF"), 3)
         self.assertEqual(workflow.count("-DQACCELPLOT_BUILD_VISUAL_TESTS=ON"), 3)
         self.assertIn("libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools", workflow)
-        self.assertIn("QT_SCALE_FACTOR: ${{ matrix.platform.os == 'ubuntu-24.04' && '1' || '0.5' }}", workflow)
+        self.assertIn("QT_SCALE_FACTOR: ${{ startsWith(matrix.platform.os, 'ubuntu-') && '1' || '0.5' }}", workflow)
         self.assertIn("'.github/scripts/aqt_windows_qt611.py',", workflow)
         self.assertIn("'install-qt', 'windows', 'desktop', '6.11.2'", workflow)
         self.assertIn("uses: actions/cache@v5", workflow)
@@ -182,6 +186,28 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertIn("overwrite: true", workflow)
         self.assertIn("steps.upload-visual-artifacts.outputs.artifact-url", workflow)
         self.assertNotIn("qt_arch:", workflow)
+
+    def test_workflow_captures_opengl_es_on_x86_64_and_arm64(self):
+        workflow = AI_WORKFLOW_PATH.read_text(encoding="utf-8")
+        include = re.search(r"(?ms)^        include:\n(?P<entries>.*?)^    env:", workflow)
+        self.assertIsNotNone(include)
+        entries = include.group("entries")
+        for os_name in ("ubuntu-24.04", "ubuntu-24.04-arm"):
+            with self.subTest(os=os_name):
+                self.assertRegex(
+                    entries,
+                    rf"qt_version: '6\.8\.3'\n\s+platform:\n\s+os: {re.escape(os_name)}\n"
+                    r"\s+backend: opengl\n\s+label: opengles3\n\s+opengl_es: '3\.0'\n",
+                )
+        self.assertIn("if: matrix.platform.opengl_es", workflow)
+        self.assertIn('echo "QACCELPLOT_OPENGL_ES_VERSION=${{ matrix.platform.opengl_es }}"', workflow)
+        self.assertIn('echo "QT_XCB_GL_INTEGRATION=xcb_egl"', workflow)
+        self.assertIn('echo "MESA_GLES_VERSION_OVERRIDE=${{ matrix.platform.opengl_es }}"', workflow)
+        # Artifact and job names must keep ES captures apart from desktop OpenGL on the same runner.
+        self.assertIn(
+            "name: visual-${{ matrix.qt_version }}-${{ matrix.platform.label || matrix.platform.backend }}-${{ matrix.platform.os }}",
+            workflow,
+        )
 
     def test_screenshot_tests_disable_hover(self):
         test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
@@ -362,6 +388,40 @@ class VisualAcceptanceTests(unittest.TestCase):
                 encoding="utf-8",
             )
             with self.assertRaises(VisualAcceptanceError):
+                load_render_metadata(metadata_path)
+
+    def test_render_metadata_requires_the_requested_opengl_es_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            metadata_path = Path(directory) / "screenshot.png.rhi.json"
+
+            def write(**kwargs):
+                metadata_path.write_text(json.dumps(self.render_metadata(**kwargs)), encoding="utf-8")
+
+            with mock.patch.dict(os.environ, {"QACCELPLOT_OPENGL_ES_VERSION": "3.0"}):
+                write(opengl_es=True, opengl_version=(3, 2))
+                self.assertTrue(load_render_metadata(metadata_path)["opengl_es"])
+
+                write(opengl_es=False, opengl_version=(4, 5))
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+                write(opengl_es=True, opengl_version=(2, 0))
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+                write(requested="vulkan", actual="vulkan")
+                with self.assertRaisesRegex(VisualAcceptanceError, "expected OpenGL ES 3.0 or newer"):
+                    load_render_metadata(metadata_path)
+
+            with mock.patch.dict(os.environ, {"QACCELPLOT_OPENGL_ES_VERSION": "three"}):
+                write(opengl_es=True, opengl_version=(3, 0))
+                with self.assertRaisesRegex(VisualAcceptanceError, "must look like"):
+                    load_render_metadata(metadata_path)
+
+            metadata = self.render_metadata()
+            metadata["opengl_context_observed"] = False
+            metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+            with self.assertRaisesRegex(VisualAcceptanceError, "did not record a valid current context"):
                 load_render_metadata(metadata_path)
 
     def test_capture_page_must_match_the_scenario(self):

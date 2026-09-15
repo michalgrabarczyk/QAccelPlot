@@ -15,6 +15,7 @@ import copy
 import json
 import os
 from pathlib import Path
+import re
 import struct
 import sys
 from typing import Any
@@ -157,6 +158,10 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
         "grab_target_scaled_by_device_pixel_ratio",
         "requested_graphics_api",
         "actual_graphics_api",
+        "opengl_context_observed",
+        "opengl_es",
+        "opengl_major_version",
+        "opengl_minor_version",
         "qt_version",
         "logical_window_width",
         "logical_window_height",
@@ -170,7 +175,7 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
     missing_fields = required_fields.difference(metadata) if isinstance(metadata, dict) else required_fields
     if missing_fields:
         raise VisualAcceptanceError(f"Graphics metadata is missing fields: {sorted(missing_fields)}")
-    if metadata["version"] != 4:
+    if metadata["version"] != 5:
         raise VisualAcceptanceError(f"Unsupported graphics metadata version: {metadata['version']}")
     if metadata["capture_method"] != "item_grab_to_image":
         raise VisualAcceptanceError(f"Unsupported screenshot capture method: {metadata['capture_method']}")
@@ -185,6 +190,7 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
     expected_api = os.environ.get("QACCELPLOT_EXPECTED_GRAPHICS_API", "").strip().lower()
     if expected_api and actual_api != expected_api:
         raise VisualAcceptanceError(f"CI expected graphics API {expected_api}, but the screenshot used {actual_api}.")
+    validate_opengl_context(metadata)
     if not isinstance(metadata["page"], str):
         raise VisualAcceptanceError(f"Graphics metadata contains an invalid page: {metadata['page']}")
     if not isinstance(metadata["qt_version"], str) or not metadata["qt_version"].strip():
@@ -195,6 +201,37 @@ def load_render_metadata(path: Path) -> dict[str, Any]:
             f"CI expected Qt {expected_qt_version}, but the screenshot used Qt {metadata['qt_version']}."
         )
     return metadata
+
+
+def parse_opengl_es_version(text: str) -> tuple[int, int]:
+    match = re.fullmatch(r"(\d+)(?:\.(\d+))?", text)
+    if not match or int(match.group(1)) <= 0:
+        raise VisualAcceptanceError(f'QACCELPLOT_OPENGL_ES_VERSION must look like "3.0", got "{text}".')
+    return int(match.group(1)), int(match.group(2) or 0)
+
+
+def validate_opengl_context(metadata: dict[str, Any]) -> None:
+    observed = metadata["opengl_context_observed"]
+    is_opengl_es = metadata["opengl_es"]
+    if not isinstance(observed, bool) or not isinstance(is_opengl_es, bool):
+        raise VisualAcceptanceError("Graphics metadata contains invalid OpenGL context flags.")
+    version = (metadata["opengl_major_version"], metadata["opengl_minor_version"])
+    for value in version:
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise VisualAcceptanceError(f"Graphics metadata contains an invalid OpenGL version: {value}")
+    if metadata["actual_graphics_api"] == "opengl" and (not observed or version[0] <= 0):
+        raise VisualAcceptanceError("The OpenGL capture did not record a valid current context.")
+
+    # A desktop Qt build falls back to desktop OpenGL without an error, so an ES run must prove its context.
+    requested_text = os.environ.get("QACCELPLOT_OPENGL_ES_VERSION", "").strip()
+    if not requested_text:
+        return
+    requested = parse_opengl_es_version(requested_text)
+    if metadata["actual_graphics_api"] != "opengl" or not is_opengl_es or version < requested:
+        raise VisualAcceptanceError(
+            f"CI expected OpenGL ES {requested[0]}.{requested[1]} or newer, but the screenshot used "
+            f"API={metadata['actual_graphics_api']}, ES={is_opengl_es}, version={version[0]}.{version[1]}."
+        )
 
 
 def validate_capture_resolution(metadata: dict[str, Any], image_dimensions: tuple[int, int]) -> None:

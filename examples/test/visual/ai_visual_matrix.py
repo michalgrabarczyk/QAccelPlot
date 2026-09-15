@@ -213,10 +213,10 @@ def capture_label(report: dict[str, object]) -> str:
     rendering = report["rendering"]
     matrix = report.get("matrix", {})
     os_name = matrix.get("os_name", "unknown OS")
-    return (
-        f"{report['contract']} / Qt {rendering['qt_version']} / "
-        f"{rendering['actual_graphics_api']} / {os_name}"
-    )
+    graphics_api = rendering["actual_graphics_api"]
+    if rendering.get("opengl_es"):
+        graphics_api = f"opengles{rendering['opengl_major_version']}"
+    return f"{report['contract']} / Qt {rendering['qt_version']} / {graphics_api} / {os_name}"
 
 
 def markdown_cell(value: object) -> str:
