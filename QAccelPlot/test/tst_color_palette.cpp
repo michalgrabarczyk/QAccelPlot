@@ -13,6 +13,9 @@
 #include "theme/Colors.hpp"
 
 #include <QMetaProperty>
+#include <QQmlComponent>
+#include <QQmlEngine>
+#include <QQmlError>
 #include <QtTest/QtTest>
 
 class TestColorPalette : public QObject {
@@ -24,6 +27,7 @@ private slots:
     void paletteColorsAreReadOnly();
     void colorsSingletonExposesSharedPalettes();
     void cppDefaultsUseDarkPalette();
+    void qmlLegendDefaultsUseDarkPalette();
 };
 
 void TestColorPalette::palettesDefineEveryColor_data()
@@ -87,6 +91,35 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     const QAccelPlot::RectangleList rectangles;
     QCOMPARE(rectangles.color().rgb(), palette.seriesPrimary.rgb());
     QCOMPARE(rectangles.color().alpha(), 50);
+}
+
+void TestColorPalette::qmlLegendDefaultsUseDarkPalette()
+{
+    QQmlEngine engine;
+    QList<QQmlError> warnings;
+    connect(&engine, &QQmlEngine::warnings, this, [&warnings](const QList<QQmlError>& errors) {
+        warnings.append(errors);
+    });
+
+    QQmlComponent component(&engine);
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot 1.0\n"
+                      "Legend { series: [] }\n",
+        QUrl(QStringLiteral("qrc:/tst_color_palette/LegendDefaults.qml")));
+    QScopedPointer<QObject> legend(component.create());
+    QVERIFY2(legend, qPrintable(component.errorString()));
+
+    // A binding that cannot resolve the Colors singleton only warns and leaves QtQuick defaults.
+    for (const auto& warning : std::as_const(warnings)) {
+        QFAIL(qPrintable(warning.toString()));
+    }
+
+    const auto& palette = QAccelPlot::ColorPalette::dark();
+    QCOMPARE(legend->property("color").value<QColor>(), palette.legendBackground);
+    QCOMPARE(legend->property("textColor").value<QColor>(), palette.text);
+    const auto* border = legend->property("border").value<QObject*>();
+    QVERIFY(border);
+    QCOMPARE(border->property("color").value<QColor>(), palette.legendBorder);
 }
 
 QTEST_MAIN(TestColorPalette)
