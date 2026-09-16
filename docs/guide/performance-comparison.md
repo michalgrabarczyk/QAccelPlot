@@ -11,18 +11,14 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ![Performance comparison](assets/performance_comparison.svg)
 
-![Performance comparison](assets/performance_comparison.svg)
-
 ## Goal
 
-The benchmark finds the maximum number of points each library can sustain at a
-median of at least 60 frames per second while replacing all data on a single
-line curve every frame. It also records a fixed 10K-to-10M-point sweep so the
-shape of each library's scaling curve is visible, rather than reporting only a
-single threshold.
+Find the maximum number of points each library sustains at a median of at least
+60 FPS while replacing all data on a single line curve every frame. A fixed
+10K–10M sweep shows how each library scales.
 
-The comparison includes QAccelPlot, QCustomPlot, and Qt Graphs. All three are
-built against Qt 6.11.2 and run in sequence on the same machine.
+QAccelPlot, QCustomPlot, and Qt Graphs are built against Qt 6.11.2 and run in
+sequence on the same machine.
 
 ## Hardware & OS
 
@@ -49,8 +45,6 @@ graphics API family.
 | Qt Graphs | Qt 6.11.2 |
 | Qt baseline | 6.11.2 |
 
-
-
 ## Test Setup
 
 - One plot containing one line curve is rendered at 800 × 600.
@@ -62,17 +56,15 @@ graphics API family.
 - `std::sin`, allocation, and buffer preparation are excluded from timing. The
   library-facing bulk copy and rendering work are included.
 - Each run has a 2-second warmup followed by a 10-second measurement window.
-- A process-level 45-second timeout prevents an unrenderable candidate from
-  paging indefinitely. 
-- FPS is calculated in one-second buckets. The median bucket FPS is the result
-  for one run; the final value for a point count is the median of three runs.
+- A 45-second process timeout stops a run that cannot render.
+- FPS is calculated in one-second buckets. A run's result is the median bucket
+  FPS; a point count's result is the median of three runs.
 - A point count passes when that three-run median is at least 60 FPS.
-- The scaling sweep measures 10K, 25K, 50K, 100K, 250K, 500K, 1M, 2M, 5M, and
-  10M points. A binary search then locates the largest passing count to 1,000-point
-  resolution within 10K–12M. The wider search range prevents the hero maximum
-  from being capped when QAccelPlot still exceeds 60 FPS at 5M points.
+- The sweep measures 10K, 25K, 50K, 100K, 250K, 500K, 1M, 2M, 5M, and 10M
+  points. A binary search then finds the largest passing count to 1,000-point
+  resolution within 10K–12M.
 
-## QCustomPLot Configuration
+## QCustomPlot Configuration
 
 - OpenGL acceleration is enabled with `setOpenGl(true, 0)`.
 - The curve uses a cosmetic pen with an effective width of 1 pixel.
@@ -103,7 +95,6 @@ graphics API family.
   `LineCurve` with `setDataFNoRange(const float *, int)`. This avoids the
   `QList<QPointF>` conversion, allocation, and automatic range scan while still
   timing the complete copy into QAccelPlot on every frame.
-- A solid-line vertex cache is built and installed once before warmup with
-  `setDataFNoRangeWithCache`. Because the point count and vertex layout do not
-  change, the cache is reused across frames. It is not rebuilt by a worker every
-  frame. Cache preparation is outside timing.
+- A solid-line vertex cache is installed once before warmup with
+  `setDataFNoRangeWithCache` and reused every frame, because the point count
+  and vertex layout do not change. Cache preparation is outside timing.

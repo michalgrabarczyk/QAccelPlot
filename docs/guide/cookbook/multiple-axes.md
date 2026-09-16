@@ -9,13 +9,13 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Multiple axes
 
-Each series independently chooses its X and Y axes. This permits several units
-or sampling domains to share a plot area.
+Each series chooses its own X and Y axes, so several units or sampling domains
+can share one plot area.
 
 ## Axis layout size
 
-Each axis reserves 50 pixels of layout space by default. Set `layoutSize` to
-choose the height of a horizontal axis or the width of a vertical axis:
+Each axis reserves 50 pixels by default. `layoutSize` sets the height of a
+horizontal axis or the width of a vertical axis:
 
 ```qml
 yAxis: QAccelPlot.Axis {
@@ -29,15 +29,12 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
-Axis layout is intentionally explicit: label text, fonts, and formatters do not
-change `layoutSize` automatically. Choose a value large enough for the configured
-tick labels and axis title.
+`layoutSize` does not grow with label text, fonts, or formatters. Choose a value
+that fits the tick labels and axis title.
 
 ## Secondary axes
 
-Use [`x2Axis`][x2-axis] or [`y2Axis`][y2-axis] for an axis on the opposite side.
-The plot assigns sides automatically: `xAxis` is bottom, `x2Axis` is top,
-`yAxis` is left, and `y2Axis` is right.
+[`x2Axis`][x2-axis] is placed at the top and [`y2Axis`][y2-axis] on the right.
 
 ```qml
 import QtQuick
@@ -69,9 +66,9 @@ QAccelPlot.Plot {
 ## Extra axes
 
 Use [`extraAxes`](../api/classQAccelPlot_1_1QAccelPlot.md#property-extraaxes-12)
-when more than two axes are needed in one orientation. They are laid out in
-declaration order: extra horizontal axes stack below the primary X axis, while
-extra vertical axes stack from the plot's left edge inward.
+for more than two axes in one orientation. They are laid out in declaration
+order: horizontal axes stack below the primary X axis, vertical axes stack from
+the plot's left edge inward.
 
 ```qml
 import QtQuick
@@ -103,9 +100,6 @@ QAccelPlot.Plot {
     }
 }
 ```
-
-Coloring each axis to match its series reduces ambiguity. Disable or customize
-the grid if ticks from different domains would imply a false correspondence.
 
 Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
 

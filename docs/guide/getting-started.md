@@ -9,8 +9,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Getting started
 
-This walkthrough embeds QAccelPlot with CMake, creates a minimal QML plot, and
-loads its data from C++. It uses this project layout:
+Project layout:
 
 ```text
 my-plot-app/
@@ -82,18 +81,20 @@ if(WIN32)
 endif()
 ```
 
-`QAccelPlot::QAccelPlot` is the application-facing target. It brings in both
-the backing library and the static QML plugin. When QAccelPlot is included as a
-subproject, its examples, tests, benchmarks, and install rules default to off.
-The `ShaderTools` component is required when building QAccelPlot from source so
-that its GLSL shaders can be compiled and embedded in the library.
+- `QAccelPlot::QAccelPlot` links the library and its static QML plugin.
+  `qt_import_qml_plugins()` must run before `qt_finalize_executable()`.
+- `ShaderTools` compiles the curve shaders at build time.
+- As a subproject, QAccelPlot's examples, tests, benchmarks, and install rules
+  default to off.
 
-To use an existing source checkout instead, replace the `FetchContent` block
-with:
+To use a local checkout, replace the `FetchContent` block with:
 
 ```cmake
-add_subdirectory(path/to/QAccelPlot)
+add_subdirectory(path/to/QAccelPlot ${CMAKE_BINARY_DIR}/QAccelPlot)
 ```
+
+The second argument is required when the checkout is outside the application's
+source tree.
 
 ## 2. Create the plot
 
@@ -142,9 +143,9 @@ Window {
 }
 ```
 
-Every series must be connected to an X and Y axis. [`viewportMin`][viewport-min]
-and [`viewportMax`][viewport-max] define what is visible; [`dataMin`][data-min]
-and [`dataMax`][data-max] describe the known data extent used when rescaling.
+Every series needs an X and a Y axis. [`viewportMin`][viewport-min] and
+[`viewportMax`][viewport-max] set the visible range; [`dataMin`][data-min] and
+[`dataMax`][data-max] set the extent used when rescaling.
 
 ## 3. Supply data from C++
 
@@ -179,21 +180,21 @@ int main(int argc, char* argv[])
 }
 ```
 
-[`setData()`][set-data-vectors] accepts separate X and Y vectors, which is a convenient fit for
-small, static data sets. For larger or frequently updated data, see the
-[Performance guide](performance.md) for more efficient data-ingestion paths.
+[`setData()`][set-data-vectors] takes separate X and Y vectors and suits small,
+static data. For large or streaming data, see the
+[Performance guide](performance.md#select-the-data-path).
 
 ## 4. Configure and build
 
 ```sh
-cmake -S . -B build \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 ```
 
-The `QACCELPLOT_USE_QT_PRIVATE_API` flag affects performance; see
-the [Performance guide](performance.md#select-the-texture-upload-mode).
+If `QuickPrivate` is found, QAccelPlot uses it for faster live updates. Add
+`-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` to build against public Qt API only, for
+example when private Qt headers are not installed. See
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## Default interaction
 

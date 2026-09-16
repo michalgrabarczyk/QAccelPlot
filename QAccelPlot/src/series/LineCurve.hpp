@@ -34,7 +34,7 @@ namespace QAccelPlot {
 /// For maximum throughput prefer \c setDataF(std::vector<float>&&, int) or \c postData(), which move an
 /// already-interleaved float buffer with zero allocation and no type conversion.
 /// The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable
-/// for real-time plots with hundreds of thousands of points.
+/// for real-time plots with millions of points.
 ///
 /// \par Effects
 /// Visual effects (gradient stroke, gradient fill) are attached via the \c effects list property.

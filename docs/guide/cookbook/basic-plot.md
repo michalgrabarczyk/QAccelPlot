@@ -64,14 +64,12 @@ QAccelPlot.Plot {
 }
 ```
 
-[`QAccelPlot.Plot.series`][plot-series] is maintained automatically as series items are added
-or removed. Binding it to `QAccelPlot.Legend.series` keeps legend entries
-synchronized.
+[`Plot.series`][plot-series] updates as series are added or removed; binding
+it to `Legend.series` keeps legend entries in sync.
 
 QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-12)
-is convenient for small or infrequently changed data. For larger data sets or
-frequent updates, choose a data-ingestion path in the
-[Performance guide](../performance.md#select-the-data-path).
+suits small or rarely changing data. For large or frequent updates, see
+[Select the data path](../performance.md#select-the-data-path).
 
 Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)
 

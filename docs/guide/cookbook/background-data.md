@@ -9,14 +9,14 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Background data production
 
-Large or computationally expensive buffers should be produced away from the UI
-thread. The producer owns its working memory; the UI receives only completed
-frames.
+Produce large or expensive buffers off the UI thread and hand over only
+completed buffers.
 
 ## Simplest handoff
 
-[`LineCurve::postData()`][post-data] is thread-safe. It moves the buffer into a
-queued call that runs [`setDataF()`][set-data-f] on the curve's thread:
+[`LineCurve::postData()`][post-data] can be called from any thread. It moves
+the buffer into a queued call that runs [`setDataF()`][set-data-f] on the
+curve's thread:
 
 ```cpp
 void Producer::publish(QAccelPlot::LineCurve* curve)
@@ -29,13 +29,10 @@ void Producer::publish(QAccelPlot::LineCurve* curve)
 
 ## One-batch handoff
 
-For high-rate updates, retain one completed batch. The worker prepares the next
-batch off the UI thread, then waits to publish it until the previous batch has
-been consumed. Once per display frame, the UI thread takes the completed batch
-and moves it into the curve.
-
-This applies backpressure and avoids an unbounded queue of frames that can no
-longer be displayed on time.
+For high-rate updates, keep one pending batch. The worker prepares the next
+batch and waits until the UI thread has consumed the previous one. Once per
+frame, the UI thread moves the pending batch into the curve. This bounds memory
+and skips frames that could never be displayed.
 
 ```cpp
 DataBatch batch;
@@ -44,14 +41,12 @@ if (worker.tryConsume(batch)) {
 }
 ```
 
-Use the no-range form only when axes already contain valid data bounds. If the
-range changes, publish the new bounds on the UI thread or use
-[`postData()`][post-data] / [`setDataF()`][set-data-f] so QAccelPlot calculates
-them.
+Use the no-range form only when the axes already hold valid data bounds. If the
+range changes, set the new bounds on the UI thread or use
+[`postData()`][post-data] / [`setDataF()`][set-data-f] to calculate them.
 
-The advanced performance showcase also prebuilds deterministic vertex data on
-the worker. Treat that as an optimization to adopt only after profiling the
-simpler handoff.
+The performance showcase also builds the vertex cache on the worker. Adopt that
+only after profiling the simpler handoff.
 
 Complete sources:
 

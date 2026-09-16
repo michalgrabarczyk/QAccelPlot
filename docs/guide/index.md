@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot documentation — a high-performance hardware-accelerated plotting library for Qt Quick with GPU-rendered 2D line plots, real-time data visualization, and QML-friendly components."
+description: "QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick that replaces and draws millions of points per frame with built-in interaction."
 ---
 
 <!--
@@ -9,21 +9,24 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # QAccelPlot
 
-QAccelPlot is a hardware-accelerated plotting library for Qt Quick. It combines
-QML-friendly plot composition with C++ data paths designed for large and
-frequently changing data sets, rendering through the Qt Scene Graph using GPU
-shaders for real-time 2D data visualization.
+QAccelPlot is a 2D plotting library for Qt Quick. Curves render through the Qt
+Scene Graph with GPU shaders, and C++ data paths replace large data sets every
+frame.
 
 ### Key capabilities
 
-- **GPU-rendered line curves** with solid, dashed, and marker-only styles
-- **Gradient fills and strokes** for visual effects on curves
-- **Multiple data-ingestion APIs** from convenience QML to efficient C++ buffers
-- **Real-time performance** — hundreds of thousands of points at display refresh rate
-- **Interactive** — built-in pan, zoom, hover detection, and custom tool support
-- **Multiple axes** — primary, secondary, and extra axes for different scales
-- **Annotations** — data-attached labels, regions, and measurement overlays
-- **Animated transitions** — morph and draw transitions for data updates
+- **Throughput** — about 8M points replaced and drawn per frame at 60 FPS on the
+  [reference system](performance-comparison.md), without downsampling
+- **Data paths** — QML points, double vectors, moved `float` buffers, no-range
+  updates, and worker-thread `postData()`
+- **Interaction** — pan, cursor-centered and per-axis zoom, rescale, hover hit
+  testing, and plot mouse events for custom tools
+- **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
+  connect the curve consistently
+- **Curves** — solid, dashed, and marker-only styles; gradient fills and
+  strokes; morph and draw transitions
+- **Layout** — secondary and extra axes, data-anchored QML overlays, and
+  `RectangleList` for many regions
 
 ### Quick start
 
@@ -44,38 +47,29 @@ See [Getting started](getting-started.md) for the full build and data setup.
 
 ## Explore the documentation
 
-- **[Getting started](getting-started.md)** — Build your first QAccelPlot application.
-- **[Architecture](concepts.md)** — See how plots, axes, series, and the Qt
-  Scene Graph fit together.
-- **[Performance](performance.md)** — Choose the right data-ingestion path and
-  measure rendering throughput.
-- **[Cookbook](cookbook/index.md)** — Solve common plotting tasks with focused
-  recipes.
-- **[FAQ](faq.md)** — Answers to common questions about licensing, performance,
-  threading, and compatibility.
-- **[API reference](api.md)** — Look up types, properties, methods, signals,
-  and enums.
+- **[Getting started](getting-started.md)** — CMake integration and a first plot.
+- **[Concepts](concepts.md)** — Axes, series, gaps, overlays, and threading.
+- **[Performance](performance.md)** — Data paths, worker handoff, and benchmarking.
+- **[Cookbook](cookbook/index.md)** — Recipes for common tasks.
+- **[FAQ](faq.md)** — Licensing, threading, and compatibility.
+- **[API reference](api.md)** — Types, properties, methods, signals, and enums.
 
-The runnable [`examples`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples)
-are the authoritative demonstrations. The guide explains the decisions behind
-them and links back to complete source files.
+Each recipe links to a complete, runnable
+[example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples).
 
 ## Requirements
 
 - CMake 3.16 or newer
 - A C++17 compiler
 - Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools
-- A hardware Qt Quick Scene Graph backend for curve rendering
+- A hardware Qt Quick Scene Graph backend
 
-The default optimized mode also uses the matching `QuickPrivate` component for
-in-place live-data texture updates. A completely public-Qt-only build is
-available with `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF`. QAccelPlot is currently
-built and distributed as a static library.
+When the matching `QuickPrivate` component is available, it is used for
+in-place data texture updates. `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` forces a
+public-Qt-only build. QAccelPlot builds as a static library.
 
 ## Licensing
 
-QAccelPlot is offered under GPLv3 with the Universal FOSS Exception or under a
-separate commercial license. Read the
-[`LICENSING.md`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md)
-overview before distributing an application. Your use of Qt is governed
-separately by the license for your Qt installation.
+GPLv3 with the Universal FOSS Exception, or a commercial license. See
+[`LICENSING.md`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md).
+Qt is licensed separately.

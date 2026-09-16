@@ -9,68 +9,61 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Concepts and architecture
 
-QAccelPlot separates plot composition, coordinate mapping, data ownership, and
-rendering. Understanding those boundaries makes both QML composition and
-high-rate C++ updates straightforward.
-
 ![QAccelPlot architecture](assets/architecture.svg)
 
 ## Plot and PlotView
 
-`PlotView` is the C++ plot container. It owns the plot area, lays out primary,
-secondary, and extra axes, exposes coordinate conversion helpers, handles the
-default pan and zoom behavior, and discovers series added as child items.
+`PlotView` is the C++ plot item. It lays out axes, converts between data and
+pixel coordinates, handles pan and zoom, and collects child series.
 
-`Plot` is the convenient QML wrapper used by most applications. It adds a
-`Legend` and the `legendVisible` property while retaining the complete
-`PlotView` interface.
+`Plot` is the QML wrapper most applications use. It adds a `Legend` and
+`legendVisible` to the full `PlotView` interface.
 
-The plot rectangle is available as [`plotRect`][plot-rect]. It excludes the space reserved
-for axes and padding, and is useful when placing clipped overlays or custom
-tools above the data.
+[`plotRect`][plot-rect] is the data area, excluding axes and padding. Use it to
+place clipped overlays and custom tools.
 
 ## Axes and ranges
 
 An `Axis` has two related ranges:
 
-- The **viewport range** ([`viewportMin`][viewport-min], [`viewportMax`][viewport-max]) is currently visible.
-- The **data range** ([`dataMin`][data-min], [`dataMax`][data-max]) describes the extent reported by
+- The **viewport range** ([`viewportMin`][viewport-min], [`viewportMax`][viewport-max]) is visible.
+- The **data range** ([`dataMin`][data-min], [`dataMax`][data-max]) is the extent reported by
   attached series.
 
-Panning and zooming change the viewport. Calling [`rescaleToData()`][rescale-to-data] copies the
-current data range into the viewport. A series reports its extent through the
-axes assigned to its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
+Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
+sets the viewport to fit the data range. A series reports its extent to the
+axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
 
-The primary axes are [`xAxis`][plot-x-axis] and [`yAxis`][plot-y-axis].
-[`x2Axis`][plot-x2-axis] and [`y2Axis`][plot-y2-axis] provide the opposite
-sides, while [`extraAxes`][extra-axes] supports additional independently scaled
-axes. Assigning a named axis automatically selects its side: `xAxis` is bottom,
-`x2Axis` is top, `yAxis` is left, and `y2Axis` is right. Extra axes specify
-their own `side`. Each series explicitly selects the axes it uses.
+| Plot property | Side |
+| --- | --- |
+| [`xAxis`][plot-x-axis] | Bottom |
+| [`x2Axis`][plot-x2-axis] | Top |
+| [`yAxis`][plot-y-axis] | Left |
+| [`y2Axis`][plot-y2-axis] | Right |
+| [`extraAxes`][extra-axes] | Set by each axis's `side` |
+
+Each series selects its own axes.
 
 `AxisTicker` controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
-logarithmic, and categorical labels. A `TickLabelFormatter` can also invoke a
-JavaScript callback for application-specific labels.
+logarithmic, and categorical labels; `TickLabelFormatter` also accepts a
+JavaScript callback.
 
 ## Series
 
-`PlotSeries` contains the properties shared by data-bearing items: its name,
-axes, plot rectangle, and legend symbol.
+`PlotSeries` holds properties shared by all series: name, axes, plot rectangle,
+and legend symbol.
 
-`LineCurve` renders a line, optional point markers, line styles, gradients, and
-fills. It stores points internally as interleaved floats. Data can arrive from
-QML for convenience or through C++ buffer APIs for high throughput.
+`LineCurve` renders lines, markers, line styles, gradients, and fills. It
+stores points as interleaved floats and accepts data from QML or C++ buffers.
 
-`RectangleList` renders a set of data-space rectangles and reports its hovered
-rectangle index. It is useful for ranges, events, bars, or large collections of
-simple rectangular shapes.
+`RectangleList` renders many data-space rectangles in one item and reports the
+hovered rectangle index.
 
 ## Invalid samples and gaps
 
-Telemetry regularly contains dropouts and corrupt readings. `LineCurve` applies
-one contract everywhere: rendering, gradient fills, dash patterns, transitions,
-auto-ranging, and hover hit testing.
+`LineCurve` applies one invalid-sample contract to rendering, gradient fills,
+dash patterns, transitions, auto-ranging, and hover hit testing.
 
 A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
@@ -91,10 +84,10 @@ QAccelPlot.LineCurve {
 | `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line. |
 | `NanGapMode.Connect` | Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples. |
 
-Although the mode is named after `NaN`, the most common gap marker, it applies
-to every invalid sample, including `±Inf` and non-positive log-axis values.
+Despite its name, `nanMode` applies to every invalid sample, including `±Inf`
+and non-positive log-axis values.
 
-The rest of the contract applies in both modes:
+In both modes:
 
 - **Markers** are never drawn for invalid samples.
 - **Auto-ranging** judges each coordinate on its own. A sample with a valid X
@@ -109,37 +102,25 @@ The rest of the contract applies in both modes:
 
 ## Composition and overlays
 
-The grid and series render within the plot, while ordinary QML items can be
-placed above them. `DataAnchor` maps one or two data coordinates into a QML
-item's geometry, allowing labels, event lines, regions, and drag handles to
-remain attached to the data while the user pans or zooms.
+Ordinary QML items can be placed above the grid and series. `DataAnchor` maps
+one or two data coordinates to a QML item's geometry, so labels, event lines,
+regions, and drag handles follow the data while panning and zooming.
 
-For more specialized interaction, `PlotView` provides [`dataToPixelX()`][data-to-pixel-x],
+For custom tools, `PlotView` provides [`dataToPixelX()`][data-to-pixel-x],
 [`dataToPixelY()`][data-to-pixel-y], [`pixelToDataX()`][pixel-to-data-x],
 [`pixelToDataY()`][pixel-to-data-y], and [`isInsidePlotArea()`][is-inside-plot-area].
-Plot mouse events can be accepted by a custom tool to
-prevent the default pan behavior.
+Accepting a plot mouse event suppresses the default pan.
 
 ## Rendering and threads
 
-Qt Quick owns the scene. QML objects and public setters normally run on the UI
-thread, while Qt synchronizes scene state to the Scene Graph render thread.
-QAccelPlot curve renderers create persistent Scene Graph nodes and use
-precompiled shaders for the active graphics API.
+QML objects and setters run on the UI thread; Qt synchronizes their state to
+the Scene Graph render thread. Curve renderers keep persistent Scene Graph
+nodes and use precompiled shaders for the active graphics API. The software
+backend cannot run these shaders.
 
-The software Qt Quick backend cannot execute QAccelPlot's custom curve shaders.
-Data production may happen on a worker thread, but UI objects must not be
-mutated directly from that worker. Use [`LineCurve::postData()`][post-data] or queue the
-handoff to the UI thread. See [Background data production](cookbook/background-data.md).
-
-## Where to find detail
-
-- Use this guide for workflows and design decisions.
-- Use the [Cookbook](cookbook/index.md) for complete patterns.
-- Use the [API reference](api.md) for individual properties, methods, and enums.
-- Use the repository's
-  [`examples`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples)
-  for runnable applications.
+Produce data on a worker thread if needed, but never mutate UI objects from it.
+Use [`LineCurve::postData()`][post-data] or a queued call. See
+[Background data production](cookbook/background-data.md).
 
 [plot-rect]: api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
 [viewport-min]: api/classQAccelPlot_1_1Axis.md#property-viewportmin-12

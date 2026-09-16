@@ -11,9 +11,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## Shared palette
 
-QAccelPlot exposes its light and dark palettes as a read-only
-singleton. Importing the module with an alias keeps the generic `Colors` name
-out of the application's unqualified type namespace:
+The read-only `Colors` singleton exposes light and dark palettes. Import the
+module with an alias to keep `Colors` out of the unqualified namespace:
 
 ```qml
 import QtQuick
@@ -29,9 +28,8 @@ QAccelPlot.Plot {
 }
 ```
 
-Built-in plot defaults (plot and axes areas, grid, axis baseline, ticks, hover
-color, series, and legend) come from `Colors.dark`. Assign `Colors.light`
-tokens, or any other colors, to restyle a plot.
+Default plot, axis, grid, tick, hover, series, and legend colors come from
+`Colors.dark`. Assign `Colors.light` tokens or any colors to restyle a plot.
 
 ## Lines and markers
 
@@ -49,9 +47,9 @@ QAccelPlot.LineCurve {
 }
 ```
 
-Use `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, or `QAccelPlot.NoLine`.
-`QAccelPlot.NoLine` combined with a marker shape creates a marker-only series.
-A dash pattern alternates on/off lengths in pixels.
+Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
+`QAccelPlot.NoLine`. `NoLine` with a marker shape gives a marker-only series.
+A dash pattern lists alternating on/off lengths in pixels.
 
 ## Gradient stroke and fill
 
@@ -78,14 +76,14 @@ QAccelPlot.LineCurve {
 }
 ```
 
-Explicit gradient bounds make the visual mapping stable while the viewport
-changes. Axis- or data-derived bounds are useful when the colors should track
-the current domain.
+Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
+data-derived bounds make colors follow the current range.
 
 ## Animated data changes
 
-Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] when old and new samples should
-interpolate, or a `QAccelPlot.DrawTransition` to reveal the new curve:
+Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] to
+interpolate from old to new samples, or a `QAccelPlot.DrawTransition` to reveal
+the new curve:
 
 ```qml
 QAccelPlot.MorphTransition {
@@ -99,8 +97,8 @@ QAccelPlot.LineCurve {
 }
 ```
 
-Transitions create work on intermediate frames. Disable them for sustained
-high-frequency updates unless animation is part of the intended result.
+Transitions add work on every animated frame. Disable them for continuous
+high-rate updates.
 
 Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
 

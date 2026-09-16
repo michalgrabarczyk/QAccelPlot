@@ -9,8 +9,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Real-time scrolling data
 
-A scrolling plot normally keeps a fixed axis range and replaces the visible
-buffer at the display cadence.
+Keep the axis range fixed and replace the visible buffer once per frame.
 
 ## Declare stable ranges
 
@@ -46,36 +45,26 @@ QAccelPlot.Plot {
 }
 ```
 
-## Update after animation processing
+## Update every frame
 
-The included example listens to [`QQuickWindow::afterAnimating`][after-animating],
-produces the current interleaved buffer, and skips repeated range scans:
+Pass each new buffer to [`setDataFNoRange()`][set-data-f-no-range], which skips
+the range scan:
 
 ```cpp
-QObject::connect(window, &QQuickWindow::afterAnimating, &app, [curve]() {
-    auto points = buildCurrentWindow();
-    curve->setDataFNoRange(std::move(points), pointCount);
-});
+curve->setDataFNoRange(std::move(points), pointCount);
 ```
 
-Initialize once with [`setDataF()`][set-data-f] or declare accurate axis data ranges before
-using the no-range path. If the signal can exceed those bounds, update the
-ranges explicitly.
+Before using the no-range path, declare the axis data ranges or call
+[`setDataF()`][set-data-f] once. If the signal can leave those bounds, update
+the ranges yourself.
 
-For sampled signals, anchor samples to a stable time grid. Re-evaluating every
-sample at a slightly different phase each frame can look like waveform jitter
-rather than horizontal motion.
-
-When buffer generation could compete with rendering, move it to a worker
-thread. See [Background data production](background-data.md) for safe handoff
-patterns.
+If buffer generation is expensive, move it to a worker thread; see
+[Background data production](background-data.md).
 
 ## Show dropouts as gaps
 
-When packets are lost or a sensor reports an invalid value, write `NaN` for
-that sample instead of repeating the last value or dropping the sample. The
-curve breaks there, the gap is excluded from auto-ranging, and hover never
-bridges it:
+Write `NaN` for lost or invalid samples instead of repeating or dropping them.
+The curve breaks there, and the gap is excluded from auto-ranging and hover:
 
 ```cpp
 const auto value = packet.valid ? packet.value : std::numeric_limits<float>::quiet_NaN();
@@ -83,12 +72,11 @@ points[index * 2] = timestamp;
 points[index * 2 + 1] = value;
 ```
 
-To draw a continuous trace across short dropouts instead, set
-`gaps.nanMode: QAccelPlot.NanGapMode.Connect` on the curve. See
-[Invalid samples and gaps](../concepts.md#invalid-samples-and-gaps) for the
-complete contract, including `±Inf` and non-positive values on logarithmic axes.
+To draw across dropouts instead, set
+`gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
+[Invalid samples and gaps](../concepts.md#invalid-samples-and-gaps).
 
 Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
 
-[after-animating]: https://doc.qt.io/qt-6/qquickwindow.html#afterAnimating
+[set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
