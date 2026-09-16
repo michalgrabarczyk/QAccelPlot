@@ -1260,10 +1260,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">}</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
 </code></pre></div>
-<p>Supply epoch values through <code>setData()</code>, which retains double precision and
-keeps millisecond-scale differences visible at modern dates. APIs ending in
-<code>F</code> intentionally store coordinates as floats; around the current Unix epoch,
-that representation cannot distinguish nearby timestamps.</p>
+<p>Supply epoch values through <code>setData()</code>, which keeps double precision. The <code>F</code>
+APIs are faster but store floats, which are less precise.</p>
 <h2 id="categories">Categories<a class="headerlink" href="#categories" title="Permanent link">&para;</a></h2>
 <p>Map integer coordinates to labels with <code>QAccelPlot.TextTickLabelFormatter</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
@@ -1293,12 +1291,10 @@ that representation cannot distinguish nearby timestamps.</p>
 <p>Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
 Power-of-ten ticks use superscript exponents, such as <code>10²</code>, <code>10³</code>, and <code>10⁻³</code>.</p>
 <h2 id="application-specific-labels">Application-specific labels<a class="headerlink" href="#application-specific-labels" title="Permanent link">&para;</a></h2>
-<p><code>QAccelPlot.NumericTickLabelFormatter</code> provides the normal numeric presentation. For
-specialized formatting, assign a JavaScript callback to a
-<code>QAccelPlot.TickLabelFormatter</code>'s <a href="../../api/classQAccelPlot_1_1TickLabelFormatter/#property-ticklabel-12"><code>tickLabel</code></a> property; keep the function inexpensive
-because it runs for every generated tick label.</p>
-<p>For example, a temperature-monitoring plot can append units while retaining numeric
-data values:</p>
+<p><code>QAccelPlot.NumericTickLabelFormatter</code> is the default numeric format. For custom
+text, assign a JavaScript function to the formatter's
+<a href="../../api/classQAccelPlot_1_1TickLabelFormatter/#property-ticklabel-12"><code>tickLabel</code></a> property. It runs for every tick label, so keep it
+cheap:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">viewportMin:</span> <span class="mi">18</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">viewportMax:</span> <span class="mi">26</span>

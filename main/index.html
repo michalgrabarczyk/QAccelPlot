@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot documentation — a high-performance hardware-accelerated plotting library for Qt Quick with GPU-rendered 2D line plots, real-time data visualization, and QML-friendly components.">
+        <meta name="description" content="QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick that replaces and draws millions of points per frame with built-in interaction.">
       
       
       
@@ -58,7 +58,7 @@
     
     
 
-<meta property="og:description" content="QAccelPlot documentation — a high-performance hardware-accelerated plotting library for Qt Quick with GPU-rendered 2D line plots, real-time data visualization, and QML-friendly components.">
+<meta property="og:description" content="QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick that replaces and draws millions of points per frame with built-in interaction.">
 
 <script type="application/ld+json">
 {
@@ -1265,20 +1265,23 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="qaccelplot">QAccelPlot<a class="headerlink" href="#qaccelplot" title="Permanent link">&para;</a></h1>
-<p>QAccelPlot is a hardware-accelerated plotting library for Qt Quick. It combines
-QML-friendly plot composition with C++ data paths designed for large and
-frequently changing data sets, rendering through the Qt Scene Graph using GPU
-shaders for real-time 2D data visualization.</p>
+<p>QAccelPlot is a 2D plotting library for Qt Quick. Curves render through the Qt
+Scene Graph with GPU shaders, and C++ data paths replace large data sets every
+frame.</p>
 <h3 id="key-capabilities">Key capabilities<a class="headerlink" href="#key-capabilities" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GPU-rendered line curves</strong> with solid, dashed, and marker-only styles</li>
-<li><strong>Gradient fills and strokes</strong> for visual effects on curves</li>
-<li><strong>Multiple data-ingestion APIs</strong> from convenience QML to efficient C++ buffers</li>
-<li><strong>Real-time performance</strong> — hundreds of thousands of points at display refresh rate</li>
-<li><strong>Interactive</strong> — built-in pan, zoom, hover detection, and custom tool support</li>
-<li><strong>Multiple axes</strong> — primary, secondary, and extra axes for different scales</li>
-<li><strong>Annotations</strong> — data-attached labels, regions, and measurement overlays</li>
-<li><strong>Animated transitions</strong> — morph and draw transitions for data updates</li>
+<li><strong>Throughput</strong> — about 8M points replaced and drawn per frame at 60 FPS on the
+  <a href="performance-comparison/">reference system</a>, without downsampling</li>
+<li><strong>Data paths</strong> — QML points, double vectors, moved <code>float</code> buffers, no-range
+  updates, and worker-thread <code>postData()</code></li>
+<li><strong>Interaction</strong> — pan, cursor-centered and per-axis zoom, rescale, hover hit
+  testing, and plot mouse events for custom tools</li>
+<li><strong>Invalid samples</strong> — <code>NaN</code>, <code>±Inf</code>, and non-positive log values break or
+  connect the curve consistently</li>
+<li><strong>Curves</strong> — solid, dashed, and marker-only styles; gradient fills and
+  strokes; morph and draw transitions</li>
+<li><strong>Layout</strong> — secondary and extra axes, data-anchored QML overlays, and
+  <code>RectangleList</code> for many regions</li>
 </ul>
 <h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
@@ -1295,38 +1298,29 @@ shaders for real-time 2D data visualization.</p>
 <p>See <a href="getting-started/">Getting started</a> for the full build and data setup.</p>
 <h2 id="explore-the-documentation">Explore the documentation<a class="headerlink" href="#explore-the-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="getting-started/">Getting started</a></strong> — Build your first QAccelPlot application.</li>
-<li><strong><a href="concepts/">Architecture</a></strong> — See how plots, axes, series, and the Qt
-  Scene Graph fit together.</li>
-<li><strong><a href="performance/">Performance</a></strong> — Choose the right data-ingestion path and
-  measure rendering throughput.</li>
-<li><strong><a href="cookbook/">Cookbook</a></strong> — Solve common plotting tasks with focused
-  recipes.</li>
-<li><strong><a href="faq/">FAQ</a></strong> — Answers to common questions about licensing, performance,
-  threading, and compatibility.</li>
-<li><strong><a href="api/">API reference</a></strong> — Look up types, properties, methods, signals,
-  and enums.</li>
+<li><strong><a href="getting-started/">Getting started</a></strong> — CMake integration and a first plot.</li>
+<li><strong><a href="concepts/">Concepts</a></strong> — Axes, series, gaps, overlays, and threading.</li>
+<li><strong><a href="performance/">Performance</a></strong> — Data paths, worker handoff, and benchmarking.</li>
+<li><strong><a href="cookbook/">Cookbook</a></strong> — Recipes for common tasks.</li>
+<li><strong><a href="faq/">FAQ</a></strong> — Licensing, threading, and compatibility.</li>
+<li><strong><a href="api/">API reference</a></strong> — Types, properties, methods, signals, and enums.</li>
 </ul>
-<p>The runnable <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples"><code>examples</code></a>
-are the authoritative demonstrations. The guide explains the decisions behind
-them and links back to complete source files.</p>
+<p>Each recipe links to a complete, runnable
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples">example</a>.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>CMake 3.16 or newer</li>
 <li>A C++17 compiler</li>
 <li>Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools</li>
-<li>A hardware Qt Quick Scene Graph backend for curve rendering</li>
+<li>A hardware Qt Quick Scene Graph backend</li>
 </ul>
-<p>The default optimized mode also uses the matching <code>QuickPrivate</code> component for
-in-place live-data texture updates. A completely public-Qt-only build is
-available with <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code>. QAccelPlot is currently
-built and distributed as a static library.</p>
+<p>When the matching <code>QuickPrivate</code> component is available, it is used for
+in-place data texture updates. <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> forces a
+public-Qt-only build. QAccelPlot builds as a static library.</p>
 <h2 id="licensing">Licensing<a class="headerlink" href="#licensing" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot is offered under GPLv3 with the Universal FOSS Exception or under a
-separate commercial license. Read the
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md"><code>LICENSING.md</code></a>
-overview before distributing an application. Your use of Qt is governed
-separately by the license for your Qt installation.</p>
+<p>GPLv3 with the Universal FOSS Exception, or a commercial license. See
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md"><code>LICENSING.md</code></a>.
+Qt is licensed separately.</p>
 
 
 

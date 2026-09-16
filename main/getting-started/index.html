@@ -1267,8 +1267,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<p>This walkthrough embeds QAccelPlot with CMake, creates a minimal QML plot, and
-loads its data from C++. It uses this project layout:</p>
+<p>Project layout:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-plot-app/
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── CMakeLists.txt
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── main.cpp
@@ -1333,15 +1332,18 @@ loads its data from C++. It uses this project layout:</p>
 <a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">    </span><span class="p">)</span>
 <a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="nb">endif</span><span class="p">()</span>
 </code></pre></div>
-<p><code>QAccelPlot::QAccelPlot</code> is the application-facing target. It brings in both
-the backing library and the static QML plugin. When QAccelPlot is included as a
-subproject, its examples, tests, benchmarks, and install rules default to off.
-The <code>ShaderTools</code> component is required when building QAccelPlot from source so
-that its GLSL shaders can be compiled and embedded in the library.</p>
-<p>To use an existing source checkout instead, replace the <code>FetchContent</code> block
-with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">path/to/QAccelPlot</span><span class="p">)</span>
+<ul>
+<li><code>QAccelPlot::QAccelPlot</code> links the library and its static QML plugin.
+  <code>qt_import_qml_plugins()</code> must run before <code>qt_finalize_executable()</code>.</li>
+<li><code>ShaderTools</code> compiles the curve shaders at build time.</li>
+<li>As a subproject, QAccelPlot's examples, tests, benchmarks, and install rules
+  default to off.</li>
+</ul>
+<p>To use a local checkout, replace the <code>FetchContent</code> block with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">path/to/QAccelPlot</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/QAccelPlot</span><span class="p">)</span>
 </code></pre></div>
+<p>The second argument is required when the checkout is outside the application's
+source tree.</p>
 <h2 id="2-create-the-plot">2. Create the plot<a class="headerlink" href="#2-create-the-plot" title="Permanent link">&para;</a></h2>
 <p>Create <code>qml/Main.qml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
@@ -1385,9 +1387,9 @@ with:</p>
 <a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>    <span class="p">}</span>
 <a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="p">}</span>
 </code></pre></div>
-<p>Every series must be connected to an X and Y axis. <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmin-12"><code>viewportMin</code></a>
-and <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmax-12"><code>viewportMax</code></a> define what is visible; <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>
-and <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> describe the known data extent used when rescaling.</p>
+<p>Every series needs an X and a Y axis. <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmin-12"><code>viewportMin</code></a> and
+<a href="../api/classQAccelPlot_1_1Axis/#property-viewportmax-12"><code>viewportMax</code></a> set the visible range; <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a> and
+<a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> set the extent used when rescaling.</p>
 <h2 id="3-supply-data-from-c">3. Supply data from C++<a class="headerlink" href="#3-supply-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Create <code>main.cpp</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"series/LineCurve.hpp"</span>
@@ -1417,17 +1419,17 @@ and <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax<
 <a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
 <a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="p">}</span>
 </code></pre></div>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData()</code></a> accepts separate X and Y vectors, which is a convenient fit for
-small, static data sets. For larger or frequently updated data, see the
-<a href="../performance/">Performance guide</a> for more efficient data-ingestion paths.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData()</code></a> takes separate X and Y vectors and suits small,
+static data. For large or streaming data, see the
+<a href="../performance/#select-the-data-path">Performance guide</a>.</p>
 <h2 id="4-configure-and-build">4. Configure and build<a class="headerlink" href="#4-configure-and-build" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
 </code></pre></div>
-<p>The <code>QACCELPLOT_USE_QT_PRIVATE_API</code> flag affects performance; see
-the <a href="../performance/#select-the-texture-upload-mode">Performance guide</a>.</p>
+<p>If <code>QuickPrivate</code> is found, QAccelPlot uses it for faster live updates. Add
+<code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> to build against public Qt API only, for
+example when private Qt headers are not installed. See
+<a href="../performance/#select-the-texture-upload-mode">texture upload modes</a>.</p>
 <h2 id="default-interaction">Default interaction<a class="headerlink" href="#default-interaction" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Drag inside the plot area to pan all attached axes.</li>

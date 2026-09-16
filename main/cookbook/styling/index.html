@@ -1248,9 +1248,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="styling-and-transitions">Styling and transitions<a class="headerlink" href="#styling-and-transitions" title="Permanent link">&para;</a></h1>
 <h2 id="shared-palette">Shared palette<a class="headerlink" href="#shared-palette" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot exposes its light and dark palettes as a read-only
-singleton. Importing the module with an alias keeps the generic <code>Colors</code> name
-out of the application's unqualified type namespace:</p>
+<p>The read-only <code>Colors</code> singleton exposes light and dark palettes. Import the
+module with an alias to keep <code>Colors</code> out of the unqualified namespace:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">import</span> <span class="nx">QAccelPlot</span> <span class="nx">as</span> <span class="nx">QAccelPlot</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -1263,9 +1262,8 @@ out of the application's unqualified type namespace:</p>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">}</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>Built-in plot defaults (plot and axes areas, grid, axis baseline, ticks, hover
-color, series, and legend) come from <code>Colors.dark</code>. Assign <code>Colors.light</code>
-tokens, or any other colors, to restyle a plot.</p>
+<p>Default plot, axis, grid, tick, hover, series, and legend colors come from
+<code>Colors.dark</code>. Assign <code>Colors.light</code> tokens or any colors to restyle a plot.</p>
 <h2 id="lines-and-markers">Lines and markers<a class="headerlink" href="#lines-and-markers" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">color:</span> <span class="s2">"dodgerblue"</span>
@@ -1279,9 +1277,9 @@ tokens, or any other colors, to restyle a plot.</p>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">antialiasingFeather:</span> <span class="mi">1</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>Use <code>QAccelPlot.SolidLine</code>, <code>QAccelPlot.DashLine</code>, or <code>QAccelPlot.NoLine</code>.
-<code>QAccelPlot.NoLine</code> combined with a marker shape creates a marker-only series.
-A dash pattern alternates on/off lengths in pixels.</p>
+<p>Line styles are <code>QAccelPlot.SolidLine</code>, <code>QAccelPlot.DashLine</code>, and
+<code>QAccelPlot.NoLine</code>. <code>NoLine</code> with a marker shape gives a marker-only series.
+A dash pattern lists alternating on/off lengths in pixels.</p>
 <h2 id="gradient-stroke-and-fill">Gradient stroke and fill<a class="headerlink" href="#gradient-stroke-and-fill" title="Permanent link">&para;</a></h2>
 <p>Effects are attached through the curve's <a href="../../api/classQAccelPlot_1_1LineCurve/#property-effects-12"><code>effects</code></a> property:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
@@ -1303,12 +1301,12 @@ A dash pattern alternates on/off lengths in pixels.</p>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="p">]</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">}</span>
 </code></pre></div>
-<p>Explicit gradient bounds make the visual mapping stable while the viewport
-changes. Axis- or data-derived bounds are useful when the colors should track
-the current domain.</p>
+<p>Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
+data-derived bounds make colors follow the current range.</p>
 <h2 id="animated-data-changes">Animated data changes<a class="headerlink" href="#animated-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve/#property-transition-12"><code>transition</code></a> when old and new samples should
-interpolate, or a <code>QAccelPlot.DrawTransition</code> to reveal the new curve:</p>
+<p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve/#property-transition-12"><code>transition</code></a> to
+interpolate from old to new samples, or a <code>QAccelPlot.DrawTransition</code> to reveal
+the new curve:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="kd">id: morph</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
@@ -1319,8 +1317,8 @@ interpolate, or a <code>QAccelPlot.DrawTransition</code> to reveal the new curve
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
 </code></pre></div>
-<p>Transitions create work on intermediate frames. Disable them for sustained
-high-frequency updates unless animation is part of the intended result.</p>
+<p>Transitions add work on every animated frame. Disable them for continuous
+high-rate updates.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions"><code>examples/styling_and_transitions</code></a></p>
 
 

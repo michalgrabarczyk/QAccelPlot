@@ -976,17 +976,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#runtime-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1191,17 +1180,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#runtime-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1225,8 +1203,6 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
-<p>The API reference documents public C++ and QML-facing types, properties,
-methods, signals, and enums.</p>
 <ul>
 <li><a href="annotated/">Class list</a></li>
 <li><a href="classes/">Class index</a></li>
@@ -1236,48 +1212,32 @@ methods, signals, and enums.</p>
 </ul>
 <h2 id="key-types">Key types<a class="headerlink" href="#key-types" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="classQAccelPlot_1_1QAccelPlot/"><code>PlotView</code></a> is the native plot canvas
-  responsible for layout, navigation, coordinate conversion, the grid, and the
-  series collection. The QML <code>Plot</code> component wraps it and is the recommended
-  application-level entry point.</li>
-<li><a href="classQAccelPlot_1_1Axis/"><code>Axis</code></a> controls visible ranges, scaling,
-  ticks, labels, panning, and zooming.</li>
-<li><a href="classQAccelPlot_1_1LineCurve/"><code>LineCurve</code></a> provides GPU-rendered
-  lines, markers, data ingestion, effects, transitions, and hover handling.</li>
-<li><a href="classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a> renders
-  collections of data-space rectangles.</li>
-<li><a href="classQAccelPlot_1_1DataAnchor/"><code>DataAnchor</code></a> positions QML overlays
-  at data coordinates.</li>
-<li><a href="classQAccelPlot_1_1PlotMouseEvent/"><code>PlotMouseEvent</code></a> exposes mouse
+<li><a href="classQAccelPlot_1_1QAccelPlot/"><code>PlotView</code></a> — plot item: layout,
+  pan and zoom, coordinate conversion, grid, and series collection. QML
+  applications use its <code>Plot</code> wrapper.</li>
+<li><a href="classQAccelPlot_1_1Axis/"><code>Axis</code></a> — ranges, log scale, ticks, labels,
+  and per-axis pan and zoom.</li>
+<li><a href="classQAccelPlot_1_1LineCurve/"><code>LineCurve</code></a> — GPU-rendered lines and
+  markers, data ingestion, effects, transitions, gaps, and hover.</li>
+<li><a href="classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a> — many data-space
+  rectangles in one item.</li>
+<li><a href="classQAccelPlot_1_1DataAnchor/"><code>DataAnchor</code></a> — QML overlays at data
+  coordinates.</li>
+<li><a href="classQAccelPlot_1_1PlotMouseEvent/"><code>PlotMouseEvent</code></a> — mouse
   positions in plot and data coordinates.</li>
 </ul>
 <h2 id="feeding-curve-data">Feeding curve data<a class="headerlink" href="#feeding-curve-data" title="Permanent link">&para;</a></h2>
-<p>Choose the simplest API appropriate for the data source:</p>
 <ul>
-<li>Use <code>setData()</code> for QML data or conventional C++ point containers.</li>
-<li>Use the moved-buffer <code>setDataF()</code> overload for large interleaved
-  <code>std::vector&lt;float&gt;</code> buffers produced on the curve's thread.</li>
-<li>Use <a href="classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> to
-  transfer a completed buffer safely from a worker thread.</li>
-<li>Use <code>setDataFNoRange()</code> only when axis data ranges are maintained separately.</li>
-<li>Mark missing or invalid samples with <code>NaN</code>; <code>gaps.nanMode</code> selects whether
-  the curve breaks or connects across them. See
-  <a href="../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a>.</li>
+<li><code>setData()</code> — QML data or double-precision C++ containers.</li>
+<li><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code> — large interleaved buffers on the
+  curve's thread.</li>
+<li><a href="classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> —
+  completed buffers from a worker thread.</li>
+<li><code>setDataFNoRange()</code> — only when you maintain axis data ranges yourself.</li>
+<li><code>NaN</code> marks a missing sample; <code>gaps.nanMode</code> breaks or connects the curve.
+  See <a href="../concepts/#invalid-samples-and-gaps">Invalid samples and gaps</a>.</li>
 </ul>
-<p>See the <a href="../performance/">performance guide</a> for a detailed comparison of the
-available data paths.</p>
-<h2 id="runtime-requirements">Runtime requirements<a class="headerlink" href="#runtime-requirements" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot requires Qt 6.2 or newer and a hardware Qt Quick Scene Graph
-backend, such as OpenGL, Direct3D, Vulkan, or Metal. The Qt Quick software
-backend cannot render the custom curve shaders.</p>
-<p>Never mutate a <code>QQuickItem</code> directly from a worker thread. Use
-<a href="classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineCurve::postData()</code></a>
-or queue the operation to the item's thread.</p>
-<p>To preview the complete site locally, install the documentation dependencies
-and run MkDocs:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>scripts/build-docs.py<span class="w"> </span>serve
-</code></pre></div>
+<p>See <a href="../performance/#select-the-data-path">Select the data path</a>.</p>
 
 
 

@@ -288,7 +288,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 ## Detailed Description
 
 
-The `setData()` overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in `F` store interleaved float XY pairs `[x0, y0, x1, y1, …]`. For maximum throughput prefer `setDataF(std::vector<float>&&, int)` or `postData()`, which move an already-interleaved float buffer with zero allocation and no type conversion. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with hundreds of thousands of points.
+The `setData()` overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in `F` store interleaved float XY pairs `[x0, y0, x1, y1, …]`. For maximum throughput prefer `setDataF(std::vector<float>&&, int)` or `postData()`, which move an already-interleaved float buffer with zero allocation and no type conversion. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with millions of points.
 
 
 

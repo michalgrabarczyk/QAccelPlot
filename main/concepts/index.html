@@ -479,17 +479,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#where-to-find-detail" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where to find detail
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1277,17 +1266,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#where-to-find-detail" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Where to find detail
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1311,53 +1289,69 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="concepts-and-architecture">Concepts and architecture<a class="headerlink" href="#concepts-and-architecture" title="Permanent link">&para;</a></h1>
-<p>QAccelPlot separates plot composition, coordinate mapping, data ownership, and
-rendering. Understanding those boundaries makes both QML composition and
-high-rate C++ updates straightforward.</p>
 <p><img alt="QAccelPlot architecture" src="../assets/architecture.svg" /></p>
 <h2 id="plot-and-plotview">Plot and PlotView<a class="headerlink" href="#plot-and-plotview" title="Permanent link">&para;</a></h2>
-<p><code>PlotView</code> is the C++ plot container. It owns the plot area, lays out primary,
-secondary, and extra axes, exposes coordinate conversion helpers, handles the
-default pan and zoom behavior, and discovers series added as child items.</p>
-<p><code>Plot</code> is the convenient QML wrapper used by most applications. It adds a
-<code>Legend</code> and the <code>legendVisible</code> property while retaining the complete
-<code>PlotView</code> interface.</p>
-<p>The plot rectangle is available as <a href="../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a>. It excludes the space reserved
-for axes and padding, and is useful when placing clipped overlays or custom
-tools above the data.</p>
+<p><code>PlotView</code> is the C++ plot item. It lays out axes, converts between data and
+pixel coordinates, handles pan and zoom, and collects child series.</p>
+<p><code>Plot</code> is the QML wrapper most applications use. It adds a <code>Legend</code> and
+<code>legendVisible</code> to the full <code>PlotView</code> interface.</p>
+<p><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a> is the data area, excluding axes and padding. Use it to
+place clipped overlays and custom tools.</p>
 <h2 id="axes-and-ranges">Axes and ranges<a class="headerlink" href="#axes-and-ranges" title="Permanent link">&para;</a></h2>
 <p>An <code>Axis</code> has two related ranges:</p>
 <ul>
-<li>The <strong>viewport range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-viewportmin-12"><code>viewportMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmax-12"><code>viewportMax</code></a>) is currently visible.</li>
-<li>The <strong>data range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a>) describes the extent reported by
+<li>The <strong>viewport range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-viewportmin-12"><code>viewportMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmax-12"><code>viewportMax</code></a>) is visible.</li>
+<li>The <strong>data range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a>) is the extent reported by
   attached series.</li>
 </ul>
-<p>Panning and zooming change the viewport. Calling <a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a> copies the
-current data range into the viewport. A series reports its extent through the
-axes assigned to its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.</p>
-<p>The primary axes are <a href="../api/classQAccelPlot_1_1QAccelPlot/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1QAccelPlot/#property-yaxis-12"><code>yAxis</code></a>.
-<a href="../api/classQAccelPlot_1_1QAccelPlot/#property-x2axis-12"><code>x2Axis</code></a> and <a href="../api/classQAccelPlot_1_1QAccelPlot/#property-y2axis-12"><code>y2Axis</code></a> provide the opposite
-sides, while <a href="../api/classQAccelPlot_1_1QAccelPlot/#property-extraaxes-12"><code>extraAxes</code></a> supports additional independently scaled
-axes. Assigning a named axis automatically selects its side: <code>xAxis</code> is bottom,
-<code>x2Axis</code> is top, <code>yAxis</code> is left, and <code>y2Axis</code> is right. Extra axes specify
-their own <code>side</code>. Each series explicitly selects the axes it uses.</p>
+<p>Panning and zooming change the viewport. <a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a>
+sets the viewport to fit the data range. A series reports its extent to the
+axes set in its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.</p>
+<table>
+<thead>
+<tr>
+<th>Plot property</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-xaxis-12"><code>xAxis</code></a></td>
+<td>Bottom</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-x2axis-12"><code>x2Axis</code></a></td>
+<td>Top</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-yaxis-12"><code>yAxis</code></a></td>
+<td>Left</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-y2axis-12"><code>y2Axis</code></a></td>
+<td>Right</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-extraaxes-12"><code>extraAxes</code></a></td>
+<td>Set by each axis's <code>side</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each series selects its own axes.</p>
 <p><code>AxisTicker</code> controls tick count, subticks, lengths, colors, fonts, rotation,
 and label formatting. Built-in formatters cover numeric, date/time,
-logarithmic, and categorical labels. A <code>TickLabelFormatter</code> can also invoke a
-JavaScript callback for application-specific labels.</p>
+logarithmic, and categorical labels; <code>TickLabelFormatter</code> also accepts a
+JavaScript callback.</p>
 <h2 id="series">Series<a class="headerlink" href="#series" title="Permanent link">&para;</a></h2>
-<p><code>PlotSeries</code> contains the properties shared by data-bearing items: its name,
-axes, plot rectangle, and legend symbol.</p>
-<p><code>LineCurve</code> renders a line, optional point markers, line styles, gradients, and
-fills. It stores points internally as interleaved floats. Data can arrive from
-QML for convenience or through C++ buffer APIs for high throughput.</p>
-<p><code>RectangleList</code> renders a set of data-space rectangles and reports its hovered
-rectangle index. It is useful for ranges, events, bars, or large collections of
-simple rectangular shapes.</p>
+<p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
+and legend symbol.</p>
+<p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
+stores points as interleaved floats and accepts data from QML or C++ buffers.</p>
+<p><code>RectangleList</code> renders many data-space rectangles in one item and reports the
+hovered rectangle index.</p>
 <h2 id="invalid-samples-and-gaps">Invalid samples and gaps<a class="headerlink" href="#invalid-samples-and-gaps" title="Permanent link">&para;</a></h2>
-<p>Telemetry regularly contains dropouts and corrupt readings. <code>LineCurve</code> applies
-one contract everywhere: rendering, gradient fills, dash patterns, transitions,
-auto-ranging, and hover hit testing.</p>
+<p><code>LineCurve</code> applies one invalid-sample contract to rendering, gradient fills,
+dash patterns, transitions, auto-ranging, and hover hit testing.</p>
 <p>A sample is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
 inserting a sample with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
@@ -1386,9 +1380,9 @@ property. <code>gaps.nanMode</code> selects how the line and fill treat invalid 
 </tr>
 </tbody>
 </table>
-<p>Although the mode is named after <code>NaN</code>, the most common gap marker, it applies
-to every invalid sample, including <code>±Inf</code> and non-positive log-axis values.</p>
-<p>The rest of the contract applies in both modes:</p>
+<p>Despite its name, <code>nanMode</code> applies to every invalid sample, including <code>±Inf</code>
+and non-positive log-axis values.</p>
+<p>In both modes:</p>
 <ul>
 <li><strong>Markers</strong> are never drawn for invalid samples.</li>
 <li><strong>Auto-ranging</strong> judges each coordinate on its own. A sample with a valid X
@@ -1402,33 +1396,21 @@ to every invalid sample, including <code>±Inf</code> and non-positive log-axis 
 <li>The <code>NoRange</code> data APIs still render gaps; they only skip range calculation.</li>
 </ul>
 <h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
-<p>The grid and series render within the plot, while ordinary QML items can be
-placed above them. <code>DataAnchor</code> maps one or two data coordinates into a QML
-item's geometry, allowing labels, event lines, regions, and drag handles to
-remain attached to the data while the user pans or zooms.</p>
-<p>For more specialized interaction, <code>PlotView</code> provides <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a>,
+<p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps
+one or two data coordinates to a QML item's geometry, so labels, event lines,
+regions, and drag handles follow the data while panning and zooming.</p>
+<p>For custom tools, <code>PlotView</code> provides <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a>,
 <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>, <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatax"><code>pixelToDataX()</code></a>,
 <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatay"><code>pixelToDataY()</code></a>, and <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-isinsideplotarea"><code>isInsidePlotArea()</code></a>.
-Plot mouse events can be accepted by a custom tool to
-prevent the default pan behavior.</p>
+Accepting a plot mouse event suppresses the default pan.</p>
 <h2 id="rendering-and-threads">Rendering and threads<a class="headerlink" href="#rendering-and-threads" title="Permanent link">&para;</a></h2>
-<p>Qt Quick owns the scene. QML objects and public setters normally run on the UI
-thread, while Qt synchronizes scene state to the Scene Graph render thread.
-QAccelPlot curve renderers create persistent Scene Graph nodes and use
-precompiled shaders for the active graphics API.</p>
-<p>The software Qt Quick backend cannot execute QAccelPlot's custom curve shaders.
-Data production may happen on a worker thread, but UI objects must not be
-mutated directly from that worker. Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineCurve::postData()</code></a> or queue the
-handoff to the UI thread. See <a href="../cookbook/background-data/">Background data production</a>.</p>
-<h2 id="where-to-find-detail">Where to find detail<a class="headerlink" href="#where-to-find-detail" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Use this guide for workflows and design decisions.</li>
-<li>Use the <a href="../cookbook/">Cookbook</a> for complete patterns.</li>
-<li>Use the <a href="../api/">API reference</a> for individual properties, methods, and enums.</li>
-<li>Use the repository's
-  <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples"><code>examples</code></a>
-  for runnable applications.</li>
-</ul>
+<p>QML objects and setters run on the UI thread; Qt synchronizes their state to
+the Scene Graph render thread. Curve renderers keep persistent Scene Graph
+nodes and use precompiled shaders for the active graphics API. The software
+backend cannot run these shaders.</p>
+<p>Produce data on a worker thread if needed, but never mutate UI objects from it.
+Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineCurve::postData()</code></a> or a queued call. See
+<a href="../cookbook/background-data/">Background data production</a>.</p>
 
 
 

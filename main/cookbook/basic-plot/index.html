@@ -1166,13 +1166,11 @@ its data and optionally supplies a <code>name</code> for the legend.</p>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">}</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="p">}</span>
 </code></pre></div>
-<p><a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-series-12"><code>QAccelPlot.Plot.series</code></a> is maintained automatically as series items are added
-or removed. Binding it to <code>QAccelPlot.Legend.series</code> keeps legend entries
-synchronized.</p>
+<p><a href="../../api/classQAccelPlot_1_1QAccelPlot/#property-series-12"><code>Plot.series</code></a> updates as series are added or removed; binding
+it to <code>Legend.series</code> keeps legend entries in sync.</p>
 <p>QML <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData()</code></a>
-is convenient for small or infrequently changed data. For larger data sets or
-frequent updates, choose a data-ingestion path in the
-<a href="../../performance/#select-the-data-path">Performance guide</a>.</p>
+suits small or rarely changing data. For large or frequent updates, see
+<a href="../../performance/#select-the-data-path">Select the data path</a>.</p>
 <p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart"><code>examples/quickstart</code></a></p>
 
 

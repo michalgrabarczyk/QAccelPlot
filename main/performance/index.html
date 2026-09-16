@@ -463,10 +463,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#keep-work-off-critical-paths" class="md-nav__link">
+  <a href="#keep-work-off-the-ui-thread" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Keep work off critical paths
+        Keep work off the UI thread
       
     </span>
   </a>
@@ -1279,10 +1279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#keep-work-off-critical-paths" class="md-nav__link">
+  <a href="#keep-work-off-the-ui-thread" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Keep work off critical paths
+        Keep work off the UI thread
       
     </span>
   </a>
@@ -1401,12 +1401,10 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
-<p>Performance is a core design goal of QAccelPlot. Its GPU-rendered series are
-designed for large data sets, including plots that use visual effects.</p>
-<p>Actual throughput depends on more than point count. Update frequency, data
-conversion, range scans, series count, line style, effects, window size,
-graphics backend, and display refresh rate all contribute. Measure the workload
-that resembles your application.</p>
+<p>Throughput depends on point count, update rate, data conversion, range scans,
+series count, line style, effects, window size, graphics backend, and refresh
+rate. Measure a workload that matches your application. For cross-library
+numbers, see the <a href="../performance-comparison/">performance comparison</a>.</p>
 <h2 id="select-the-data-path">Select the data path<a class="headerlink" href="#select-the-data-path" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1454,20 +1452,14 @@ that resembles your application.</p>
 </tr>
 </tbody>
 </table>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> transfers the
-buffer immediately and must be called on the curve's thread, normally the UI
-thread. <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> is its
-worker-thread-safe counterpart: it queues that same transfer to the curve's
-thread.</p>
-<p>Use a <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData()</code></a> overload for Unix-epoch timestamps, large
-coordinates, or small differences at a large offset. These paths retain the
-input as doubles and rebase the GPU buffer to keep nearby values distinct. The
-APIs whose names end in <code>F</code> intentionally store floats and should be used only
-when the coordinate values are representable at the required precision.</p>
 <p>Start with <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
-C++ data sets. Move to <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> only after
-confirming that range calculation matters and after arranging accurate
+C++ data sets. Switch to <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> only when
+the range scan is measurable and you maintain accurate
 <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>/<a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> values yourself.</p>
+<p>Use a <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData()</code></a> overload for Unix-epoch timestamps, large
+coordinates, or small differences at a large offset. These paths keep doubles
+and rebase the GPU buffer so nearby values stay distinct. The <code>F</code> APIs store
+floats; use them only when float precision is sufficient.</p>
 <div class="admonition caution">
 <p class="admonition-title">No-range updates change the contract</p>
 <p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> does not report new extents to
@@ -1475,87 +1467,84 @@ attached axes. If the data can leave the declared range, update the axes
 yourself or periodically use a range-calculating path. Otherwise rescaling
 and clipping behavior will be incorrect.</p>
 </div>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorangewithcache-12"><code>setDataFNoRangeWithCache()</code></a> is an advanced
-path used by the performance showcase and benchmark harness. It is valuable
-when an application can prepare the renderer's vertex cache off the UI/render
-path, but it couples application code more closely to renderer details. Prefer
-the simpler moved-buffer APIs until measurements justify that complexity. A
-supplied cache must exactly match the current point count and renderer layout;
-invalid caches are rejected and rendering falls back to normal vertex assembly.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorangewithcache-12"><code>setDataFNoRangeWithCache()</code></a> also accepts a
+prebuilt vertex cache, so vertex assembly can move off the UI and render
+threads. It ties application code to renderer details; use it only when
+measurements justify it. The cache must match the current point count and
+renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 <h2 id="build-buffers-efficiently">Build buffers efficiently<a class="headerlink" href="#build-buffers-efficiently" title="Permanent link">&para;</a></h2>
 <ul>
-<li>For the <code>F</code> ingestion paths, store points as interleaved floats:
-  <code>[x0, y0, x1, y1, ...]</code>.</li>
+<li>For the <code>F</code> paths, store points as interleaved floats: <code>[x0, y0, x1, y1, ...]</code>.</li>
 <li>Reserve or resize the vector once before filling it.</li>
 <li>Move the completed vector instead of copying it.</li>
-<li>Reuse producer-side buffers after ownership returns through your handoff
-  scheme.</li>
-<li>Publish at the rate the renderer can consume. Generating many intermediate
-  frames that will never be displayed wastes CPU time.</li>
+<li>Publish no faster than the display presents frames.</li>
 </ul>
-<p>For worker-thread production and one-batch handoff, see
-<a href="../cookbook/background-data/">Background data production</a>.</p>
-<p>For a stable streaming window, set the axis data range explicitly and use
-<a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for subsequent frames. The
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>
-demonstrates this pattern.</p>
-<h2 id="keep-work-off-critical-paths">Keep work off critical paths<a class="headerlink" href="#keep-work-off-critical-paths" title="Permanent link">&para;</a></h2>
-<p>Generate or transform expensive data on a worker thread. Transfer only a
-completed buffer to the UI thread; never write directly to a <code>QQuickItem</code> from
-the worker. <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> is the simplest safe handoff when
-automatic range calculation is acceptable.</p>
-<p>If producers are faster than display, keep at most one completed batch, or use
-a queue with a fixed limit. This applies backpressure, preventing memory growth
-and avoiding work on frames that will never be displayed. The
+<p>For a fixed streaming window, set the axis data range once and use
+<a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>.</p>
+<h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
+<p>Generate data on a worker thread and hand off only completed buffers, using
+<a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
+the worker.</p>
+<p>If producers are faster than the display, keep at most one pending batch or a
+bounded queue. The
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp"><code>performance_showcase</code> worker</a>
-uses the one-batch approach and waits until the UI thread consumes the previous
-batch.</p>
+waits until the UI thread consumes the previous batch. See
+<a href="../cookbook/background-data/">Background data production</a>.</p>
 <h2 id="optional-rendering-costs">Optional rendering costs<a class="headerlink" href="#optional-rendering-costs" title="Permanent link">&para;</a></h2>
 <h3 id="hover-interactions">Hover interactions<a class="headerlink" href="#hover-interactions" title="Permanent link">&para;</a></h3>
-<p><code>LineCurve</code> hover tests use cached bounding boxes for blocks of 512 points.
-Each pointer move checks those boxes, then tests only the surviving segments or
-markers: <code>O(N / 512 + K)</code>, where <code>K</code> is the number of candidates. The worst
-case remains <code>O(N)</code> when many blocks overlap the pointer. For normal data
-updates, the bounds are built during data handoff rather than on the first
-hover. Built-in hover feedback and changes to solid-curve color or line width
-update material uniforms without rebuilding vertex geometry; gradient effects
-may require additional per-vertex work.</p>
-<p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>QAccelPlot.RectangleList.hoveredIndex</code></a> uses a spatial grid, giving an <code>O(1)</code>
-lookup per pointer move after the grid is built when its data changes.</p>
+<p><code>LineCurve</code> caches a bounding box for every 512 points. A pointer move checks
+the boxes, then tests only segments or markers inside matching boxes:
+<code>O(N / 512 + K)</code> for <code>K</code> candidates, <code>O(N)</code> in the worst case. The boxes are
+built during data handoff, not on the first hover. Hover highlighting and
+changes to solid-curve color or line width update shader uniforms without
+rebuilding geometry; gradient effects may need per-vertex work.</p>
+<p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> uses a spatial grid rebuilt on
+data change, giving <code>O(1)</code> lookup per pointer move.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Point markers add geometry and fragment work for every visible point.</li>
-<li>Gradient effects require additional material and domain work.</li>
-<li>Transitions update intermediate data while animation is active.</li>
-<li>Many separate series add per-node and per-material overhead even when their
-  total point count is unchanged.</li>
-<li>Larger windows and high-DPI displays increase fragment workload.</li>
+<li>Markers add geometry and fragment work per visible point.</li>
+<li>Gradient effects add material and domain work.</li>
+<li>Transitions update intermediate data while animating.</li>
+<li>Many series add per-node and per-material overhead at the same total point
+  count.</li>
+<li>Larger windows and high-DPI displays add fragment work.</li>
 </ul>
-<p>Changing uniform-like properties such as line width, marker size, or color is
-usually cheaper than changing the data or line topology, but it still schedules
-a redraw.</p>
+<p>Changing line width, marker size, or color is cheaper than changing data, but
+still schedules a redraw.</p>
 <h2 id="use-a-hardware-backend">Use a hardware backend<a class="headerlink" href="#use-a-hardware-backend" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot's custom curve rendering requires a hardware Qt Quick Scene Graph
-backend. OpenGL, Direct3D, Vulkan, and Metal are supported through Qt's RHI
-shaders; the software backend skips custom curve rendering and emits a warning.</p>
-<p>Check <code>QSG_RHI_BACKEND</code>, <code>QT_QUICK_BACKEND</code>, remote-desktop behavior, and driver
-availability when a curve is blank or unexpectedly slow.</p>
+<p>Curves require a hardware Qt Quick Scene Graph backend: OpenGL, OpenGL ES,
+Direct3D, Vulkan, or Metal. The software backend skips curve rendering and
+emits a warning. When a curve is blank or slow, check <code>QSG_RHI_BACKEND</code>,
+<code>QT_QUICK_BACKEND</code>, remote-desktop sessions, and GPU drivers.</p>
 <h2 id="select-the-texture-upload-mode">Select the texture upload mode<a class="headerlink" href="#select-the-texture-upload-mode" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot keeps curve coordinates in a compact GPU data texture. By default,
-when <code>Qt6::QuickPrivate</code> is available, live updates use
-<code>QSGPlainTexture::setImage()</code> to replace the image contents in place. This
-narrowly scoped private call avoids recreating the scene-graph texture every
-frame and provides a material performance advantage for very large,
-continuously updated data sets. Private Qt types stay confined to one internal
-implementation file and are not exposed through public headers or ABI.</p>
-<p>Configure with <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> when private dependencies
-are unacceptable for packaging or deployment. The public-only path retains the
-same compact data-texture shaders and uses
-<code>QQuickWindow::createTextureFromImage()</code> to recreate the live data texture.
-Gradient textures always use this public recreation path because gradient stop
-changes are infrequent.</p>
-<p>Benchmark both modes against the application's real workload. The included
-live scenarios cover 1M, 2M, 5M, and 10M points and can be built separately:</p>
+<p>Curve coordinates live in a GPU data texture. How live updates reach it depends
+on <code>QACCELPLOT_USE_QT_PRIVATE_API</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Upload</th>
+<th>Use when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ON</code> (default when <code>Qt6::QuickPrivate</code> is found)</td>
+<td><code>QSGPlainTexture::setImage()</code> replaces the texture contents in place</td>
+<td>Large data sets updated every frame</td>
+</tr>
+<tr>
+<td><code>OFF</code></td>
+<td><code>QQuickWindow::createTextureFromImage()</code> recreates the texture</td>
+<td>Private Qt dependencies are unacceptable for packaging</td>
+</tr>
+</tbody>
+</table>
+<p>The private call is confined to one internal source file; no private Qt types
+appear in public headers or ABI. Gradient textures always use the public path.</p>
+<p>Benchmark both modes with your workload. The included live scenarios cover 1M,
+2M, 5M, and 10M points:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-private<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>ON
@@ -1577,32 +1566,29 @@ live scenarios cover 1M, 2M, 5M, and 10M points and can be built separately:</p>
 <li>Separate static rendering, live updates, and data-ingestion measurements.</li>
 <li>Repeat the test and publish the scenario with the result.</li>
 </ol>
-<p>The Performance Showcase displays both <strong>Display FPS</strong> and <strong>Data
-Update Rate</strong>. Display FPS counts frames presented to the screen. Data Update
-Rate is expressed in hertz and counts newly generated curve datasets applied to
-the plot each second; this is the cadence that determines how fluid the changing
-curve appears. The showcase generates its sine data on a background worker using
-a lookup table, so this rate includes data preparation and application. The
-worker keeps at most one completed batch pending and waits for its consumption
-before generating the next batch.</p>
-<p>The Data Update Rate card also reports the <strong>peak update gap</strong>: the longest
-wall-clock interval between consecutive dataset applications during the last
-reporting period.</p>
+<p>The Performance Showcase reports:</p>
+<ul>
+<li><strong>Display FPS</strong> — frames presented to the screen.</li>
+<li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
+  including worker-side generation. This determines how smooth the changing
+  curve looks.</li>
+<li><strong>Peak update gap</strong> — the longest interval between two dataset applications
+  in the last reporting period.</li>
+</ul>
 <h3 id="what-the-included-benchmarks-measure">What the included benchmarks measure<a class="headerlink" href="#what-the-included-benchmarks-measure" title="Permanent link">&para;</a></h3>
-<p>Data generation is excluded from the benchmarks.</p>
-<p>Graphical and headless frame timing starts immediately before the curve data or
-viewport is updated and ends after <code>QQuickRenderControl::endFrame()</code> returns.
-Because the runner uses offscreen frames, this includes data copying,
-scene-graph synchronization, texture staging, rendering, command submission,
-and GPU completion. Frame intervals are recorded separately for sustained-FPS
-calculations.</p>
-<p>Warmup is wall-clock based rather than assuming a 60 Hz presentation rate. This
-matters because the offscreen runners are uncapped and can process many more than
-60 frames per second.</p>
-<p>Static scenarios keep one source buffer and perform the same bounded viewport pan
-in the graphical and headless runners. Multi-curve throughput counts all points
-across all curves. The separate CPU ingestion and vertex-cache executables isolate
-those operations without rendering.</p>
+<ul>
+<li>Data generation is excluded.</li>
+<li>Frame time runs from just before the data or viewport update until
+  <code>QQuickRenderControl::endFrame()</code> returns. With offscreen frames this covers
+  data copy, scene-graph sync, texture staging, rendering, command submission,
+  and GPU completion.</li>
+<li>Frame intervals are recorded separately for sustained-FPS results.</li>
+<li>Warmup is time-based because offscreen runners are not capped at 60 Hz.</li>
+<li>Static scenarios pan the viewport over one fixed buffer.</li>
+<li>Multi-curve throughput counts points across all curves.</li>
+<li>Separate executables measure CPU ingestion and vertex-cache building without
+  rendering.</li>
+</ul>
 <p>Build the included benchmarks with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
@@ -1610,10 +1596,8 @@ those operations without rendering.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-DQACCELPLOT_BUILD_TESTS<span class="o">=</span>OFF
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
 </code></pre></div>
-<p>The benchmark scenarios live in
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp"><code>benchmarks/common/BenchmarkScenario.cpp</code></a>.
-Treat their results as measurements of the recorded machine and scenario, not
-as a guarantee for every application.</p>
+<p>Scenarios are defined in
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp"><code>benchmarks/common/BenchmarkScenario.cpp</code></a>.</p>
 
 
 
