@@ -1,7 +1,7 @@
 # Contributing to QAccelPlot
 
 Thank you for your interest in QAccelPlot. Feedback from real-world use helps
-shape the library, particularly while the 0.1 release is still evolving.
+shape the library, particularly while the 0.x releases are still evolving.
 
 ## Feedback is welcome
 

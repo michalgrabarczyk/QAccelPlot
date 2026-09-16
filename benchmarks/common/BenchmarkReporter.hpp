@@ -30,7 +30,7 @@ namespace QAccelPlot {
 /// \code
 /// {
 ///   "library": "QAccelPlot",
-///   "version": "0.1.0",
+///   "version": "0.2.0",
 ///   "timestamp": "...",
 ///   "system": { "os": "...", "cpu_arch": "...", "cpu_cores": N, "qt_version": "...", "graphics_api": "..." },
 ///   "scenarios": [ { "name": "...", "results": { ... } }, ... ]
@@ -47,7 +47,7 @@ public:
     };
 
     /// \brief Constructs a reporter with the given library version string.
-    explicit BenchmarkReporter(const QString& libraryVersion = QStringLiteral("0.1.0"));
+    explicit BenchmarkReporter(const QString& libraryVersion = QStringLiteral("0.2.0"));
 
     /// \brief Overrides the graphics API name reported in the system-info block.
     ///

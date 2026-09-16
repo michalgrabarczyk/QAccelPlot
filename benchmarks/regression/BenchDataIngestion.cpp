@@ -200,7 +200,7 @@ int main(int argc, char* argv[])
 {
     auto app = QCoreApplication{argc, argv};
     QCoreApplication::setApplicationName("QAccelPlotBenchDataIngestion");
-    QCoreApplication::setApplicationVersion("0.1.0");
+    QCoreApplication::setApplicationVersion("0.2.0");
 
     auto parser = QCommandLineParser{};
     parser.setApplicationDescription("QAccelPlot CPU-only micro-benchmarks");
@@ -212,7 +212,7 @@ int main(int argc, char* argv[])
 
     parser.process(app);
 
-    auto reporter = BenchmarkReporter{"0.1.0"};
+    auto reporter = BenchmarkReporter{"0.2.0"};
     reporter.setGraphicsApi("CPU-Only");
 
     const auto scenarios = BenchmarkScenario::defaultScenarios();
