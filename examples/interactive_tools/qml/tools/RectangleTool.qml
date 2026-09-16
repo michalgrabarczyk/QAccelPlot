@@ -175,6 +175,10 @@ Item {
         property real pixelX: 0
         property real pixelY: 0
 
+        readonly property bool isLeft: pixelX < (root.px1 + root.px2) / 2
+        readonly property bool isTop: pixelY < (root.py1 + root.py2) / 2
+        readonly property bool isMainDiagonal: isLeft === isTop
+
         signal dragged(real newDataX, real newDataY)
 
         x: pixelX - root.handleRadius
@@ -192,7 +196,7 @@ Item {
             anchors.fill: parent
             anchors.margins: -4
             hoverEnabled: true
-            cursorShape: Qt.SizeFDiagCursor
+            cursorShape: ch.isMainDiagonal ? Qt.SizeFDiagCursor : Qt.SizeBDiagCursor
 
             onPressed: root.active = true
             onPositionChanged: mouse => {
