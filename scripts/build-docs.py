@@ -32,6 +32,16 @@ def main() -> int:
     arguments = parser.parse_args()
 
     repository_root = Path(__file__).resolve().parent.parent
+
+    # A strict build fails on a stale palette stylesheet; serve regenerates it.
+    palette_command = [
+        sys.executable,
+        str(repository_root / "scripts" / "generate-docs-palette.py"),
+    ]
+    if arguments.command == "build":
+        palette_command.append("--check")
+    subprocess.run(palette_command, check=True, cwd=repository_root)
+
     source_changelog = repository_root / "CHANGELOG.md"
     generated_changelog = repository_root / "docs" / "guide" / "changelog.md"
     if generated_changelog.exists():
