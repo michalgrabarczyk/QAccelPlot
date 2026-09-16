@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1AxisTickPainter" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTickPainter</compoundname>
+    <includes local="no">AxisTickPainter.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext" prot="public">QAccelPlot::AxisTickPainter::PaintContext</innerclass>
+    <innerclass refid="structQAccelPlot_1_1AxisTickPainter_1_1Params" prot="public">QAccelPlot::AxisTickPainter::Params</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" prot="public" static="no">
+        <type>std::function&lt; qreal(qreal value, qreal length)&gt;</type>
+        <definition>using QAccelPlot::AxisTickPainter::MapToPosition =  std::function&lt;qreal(qreal value, qreal length)&gt;</definition>
+        <argsstring></argsstring>
+        <name>MapToPosition</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::MapToPosition</qualifiedname>
+        <briefdescription>
+<para>Function type that maps a data value to a pixel position along the axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="44" column="5" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
+        <definition>static AxisTicks QAccelPlot::AxisTickPainter::computeTicks</definition>
+        <argsstring>(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker *ticker)</argsstring>
+        <name>computeTicks</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::computeTicks</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMax</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScale</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+          <declname>ticker</declname>
+        </param>
+        <briefdescription>
+<para>Returns the visible ticks, subticks and formatted labels for the <emphasis>viewportMin</emphasis> to <emphasis>viewportMax</emphasis> range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Uses log-scale placement when <emphasis>logScale</emphasis> is set and both bounds are positive. Labels are produced by <emphasis>ticker&apos;s</emphasis> formatter, which may invoke a QML/JS callback, so this must be called on the formatter&apos;s thread. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="58" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::AxisTickPainter::paintTicks</definition>
+        <argsstring>(QPainter *painter, const QRectF &amp;rect, qreal axisX, qreal axisY, const Params &amp;params, const AxisTicks &amp;ticks, const MapToPosition &amp;mapToPosition)</argsstring>
+        <name>paintTicks</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::paintTicks</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>axisX</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>axisY</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTickPainter_1_1Params" kindref="compound">Params</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref> &amp;</type>
+          <declname>ticks</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" kindref="member">MapToPosition</ref> &amp;</type>
+          <declname>mapToPosition</declname>
+        </param>
+        <briefdescription>
+<para>Paints <emphasis>ticks</emphasis> and their labels onto <emphasis>painter</emphasis>, placing them according to <emphasis>params</emphasis> and <emphasis>mapToPosition</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="61" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>static qreal QAccelPlot::AxisTickPainter::computeNiceStep</definition>
+        <argsstring>(qreal viewportMin, qreal viewportMax, int tickCount)</argsstring>
+        <name>computeNiceStep</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::computeNiceStep</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMax</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tickCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns a &quot;nice&quot; major tick step for the given <emphasis>viewportMin</emphasis>, <emphasis>viewportMax</emphasis> range and target <emphasis>tickCount</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Shared by both <ref refid="classQAccelPlot_1_1AxisTickPainter" kindref="compound">AxisTickPainter</ref> and <ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref> so grid lines remain aligned with ticks. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="67" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
+        <definition>static AxisTicks QAccelPlot::AxisTickPainter::computeLogScaleTicks</definition>
+        <argsstring>(qreal viewportMin, qreal viewportMax, const AxisTicker &amp;ticker)</argsstring>
+        <name>computeLogScaleTicks</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::computeLogScaleTicks</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMax</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> &amp;</type>
+          <declname>ticker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="70" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
+        <definition>static AxisTicks QAccelPlot::AxisTickPainter::computeLinearTicks</definition>
+        <argsstring>(qreal viewportMin, qreal viewportMax, const AxisTicker &amp;ticker)</argsstring>
+        <name>computeLinearTicks</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::computeLinearTicks</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>viewportMax</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> &amp;</type>
+          <declname>ticker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="71" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::AxisTickPainter::paintTick</definition>
+        <argsstring>(const PaintContext &amp;ctx, const AxisTick &amp;tick, const Params &amp;params, const MapToPosition &amp;mapToPosition)</argsstring>
+        <name>paintTick</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::paintTick</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext" kindref="compound">PaintContext</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTick" kindref="compound">AxisTick</ref> &amp;</type>
+          <declname>tick</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTickPainter_1_1Params" kindref="compound">Params</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" kindref="member">MapToPosition</ref> &amp;</type>
+          <declname>mapToPosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="72" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::AxisTickPainter::paintSubtick</definition>
+        <argsstring>(const PaintContext &amp;ctx, qreal value, const Params &amp;params, const MapToPosition &amp;mapToPosition)</argsstring>
+        <name>paintSubtick</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::paintSubtick</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext" kindref="compound">PaintContext</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1AxisTickPainter_1_1Params" kindref="compound">Params</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" kindref="member">MapToPosition</ref> &amp;</type>
+          <declname>mapToPosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="73" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void QAccelPlot::AxisTickPainter::drawTickLabel</definition>
+        <argsstring>(QPainter *painter, const QRectF &amp;labelRect, int alignment, const QString &amp;label, qreal rotation)</argsstring>
+        <name>drawTickLabel</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::drawTickLabel</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>labelRect</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>alignment</declname>
+        </param>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="74" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Internal helper that computes and paints tick marks and labels for a single <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Tick computation and painting are split: <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kindref="member">computeTicks()</ref></computeroutput> formats labels and must run on the formatter&apos;s (GUI) thread, while <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kindref="member">paintTicks()</ref></computeroutput> only draws precomputed ticks and is safe to call from <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput> on the render thread. Also provides <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" kindref="member">computeNiceStep()</ref></computeroutput>, which is shared with <computeroutput><ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref></computeroutput> to keep grid lines aligned with tick positions. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/axis/AxisTickPainter.hpp" line="29" column="1" bodyfile="QAccelPlot/src/axis/AxisTickPainter.hpp" bodystart="29" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLinearTicks</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLogScaleTicks</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeNiceStep</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeTicks</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>drawTickLabel</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>MapToPosition</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintSubtick</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintTick</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintTicks</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

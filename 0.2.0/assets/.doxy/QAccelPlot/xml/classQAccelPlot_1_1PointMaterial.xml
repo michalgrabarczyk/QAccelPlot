@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PointMaterial" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PointMaterial</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QSGMaterial</basecompoundref>
+    <includes local="no">PointMaterial.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1ad926ebbb38c3b52c3cec9f6bdba4c5be" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PointMaterial::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::PointMaterial::color</qualifiedname>
+        <initializer>{Qt::blue}</initializer>
+        <briefdescription>
+<para>Base marker color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="35" column="12" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1a1fe19d66bc1f17f1ad126579decc661d" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::PointMaterial::domainMin</definition>
+        <argsstring></argsstring>
+        <name>domainMin</name>
+        <qualifiedname>QAccelPlot::PointMaterial::domainMin</qualifiedname>
+        <initializer>{0.0f, 0.0f}</initializer>
+        <briefdescription>
+<para>Minimum data-space coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="36" column="15" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1a6cf58ce9fc83ddafad362fadd1b73678" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::PointMaterial::domainMax</definition>
+        <argsstring></argsstring>
+        <name>domainMax</name>
+        <qualifiedname>QAccelPlot::PointMaterial::domainMax</qualifiedname>
+        <initializer>{1.0f, 1.0f}</initializer>
+        <briefdescription>
+<para>Maximum data-space coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="37" column="15" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1a3ff9a8bc102feba5af72ffe2380d7b22" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::PointMaterial::viewportSize</definition>
+        <argsstring></argsstring>
+        <name>viewportSize</name>
+        <qualifiedname>QAccelPlot::PointMaterial::viewportSize</qualifiedname>
+        <initializer>{800.0f, 600.0f}</initializer>
+        <briefdescription>
+<para>Viewport size in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="38" column="15" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1a04dc2fdee93d946fb012a039e6c3e70a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::markerSize</definition>
+        <argsstring></argsstring>
+        <name>markerSize</name>
+        <qualifiedname>QAccelPlot::PointMaterial::markerSize</qualifiedname>
+        <initializer>{4.0f}</initializer>
+        <briefdescription>
+<para>Marker radius in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="39" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1ae64250e1655e119c9439bc57b29c86b8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::logScaleX</definition>
+        <argsstring></argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::PointMaterial::logScaleX</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 when the X axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="40" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1ac1d21a7d4d48f1e5f1774a554fb34912" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::logScaleY</definition>
+        <argsstring></argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::PointMaterial::logScaleY</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 when the Y axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="41" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1a961bcb0f626902f72d9f18128262ebc1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::useVertexColor</definition>
+        <argsstring></argsstring>
+        <name>useVertexColor</name>
+        <qualifiedname>QAccelPlot::PointMaterial::useVertexColor</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>1.0 when per-vertex color overrides <computeroutput>color</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="42" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::antialiasingEnabled</definition>
+        <argsstring></argsstring>
+        <name>antialiasingEnabled</name>
+        <qualifiedname>QAccelPlot::PointMaterial::antialiasingEnabled</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>1.0 when GPU anti-aliasing is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="43" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1af116e339e27cd8218b8afa8e39806aec" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::antialiasingFeather</definition>
+        <argsstring></argsstring>
+        <name>antialiasingFeather</name>
+        <qualifiedname>QAccelPlot::PointMaterial::antialiasingFeather</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Anti-aliasing feather width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="44" column="11" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1aa5ee5d786e4ecf249c4b716a9d701db6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PointMaterial::shapeType</definition>
+        <argsstring></argsstring>
+        <name>shapeType</name>
+        <qualifiedname>QAccelPlot::PointMaterial::shapeType</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="45" column="9" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointMaterial_1ad6745428838a330ff10c978c2c7d442f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PointMaterial::PointMaterial</definition>
+        <argsstring>()</argsstring>
+        <name>PointMaterial</name>
+        <qualifiedname>QAccelPlot::PointMaterial::PointMaterial</qualifiedname>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1PointMaterial" kindref="compound">PointMaterial</ref> with default uniform values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="25" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointMaterial_1aaa84f84d6e6a78e7554f0b7cf9f69615" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PointMaterial::~PointMaterial</definition>
+        <argsstring>() override=default</argsstring>
+        <name>~PointMaterial</name>
+        <qualifiedname>QAccelPlot::PointMaterial::~PointMaterial</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="26" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialType *</type>
+        <definition>QSGMaterialType * QAccelPlot::PointMaterial::type</definition>
+        <argsstring>() const override</argsstring>
+        <name>type</name>
+        <qualifiedname>QAccelPlot::PointMaterial::type</qualifiedname>
+        <briefdescription>
+<para>Returns the unique material type identifier for this class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="29" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointMaterial_1a8d943d45e2a1b82a023bdb2bc8602977" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialShader *</type>
+        <definition>QSGMaterialShader * QAccelPlot::PointMaterial::createShader</definition>
+        <argsstring>(QSGRendererInterface::RenderMode) const override</argsstring>
+        <name>createShader</name>
+        <qualifiedname>QAccelPlot::PointMaterial::createShader</qualifiedname>
+        <param>
+          <type>QSGRendererInterface::RenderMode</type>
+        </param>
+        <briefdescription>
+<para>Creates and returns the point shader program. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="31" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointMaterial_1aa3274999becc64e72aec901ff6ba903f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PointMaterial::compare</definition>
+        <argsstring>(const QSGMaterial *other) const override</argsstring>
+        <name>compare</name>
+        <qualifiedname>QAccelPlot::PointMaterial::compare</qualifiedname>
+        <param>
+          <type>const QSGMaterial *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Compares all uniform fields for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="33" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>QSGMaterial for marker (point) rendering. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Passes per-point color, domain bounds, marker size, and shape type to the point fragment shader. Unlike <computeroutput><ref refid="classQAccelPlot_1_1LineMaterial" kindref="compound">LineMaterial</ref></computeroutput> this class does not inherit from <computeroutput><ref refid="classQAccelPlot_1_1DataTextureMaterial" kindref="compound">DataTextureMaterial</ref></computeroutput> because markers do not require a data texture. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::PointMaterial</label>
+        <link refid="classQAccelPlot_1_1PointMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGMaterial</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::PointMaterial</label>
+        <link refid="classQAccelPlot_1_1PointMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QSGMaterial</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/materials/PointMaterial.hpp" line="22" column="1" bodyfile="QAccelPlot/src/materials/PointMaterial.hpp" bodystart="22" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>antialiasingEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1af116e339e27cd8218b8afa8e39806aec" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>antialiasingFeather</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1ad926ebbb38c3b52c3cec9f6bdba4c5be" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1aa3274999becc64e72aec901ff6ba903f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>compare</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a8d943d45e2a1b82a023bdb2bc8602977" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>createShader</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a6cf58ce9fc83ddafad362fadd1b73678" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>domainMax</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a1fe19d66bc1f17f1ad126579decc661d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>domainMin</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1ae64250e1655e119c9439bc57b29c86b8" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1ac1d21a7d4d48f1e5f1774a554fb34912" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a04dc2fdee93d946fb012a039e6c3e70a" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>markerSize</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1ad6745428838a330ff10c978c2c7d442f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>PointMaterial</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1aa5ee5d786e4ecf249c4b716a9d701db6" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>shapeType</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>type</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a961bcb0f626902f72d9f18128262ebc1" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>useVertexColor</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1a3ff9a8bc102feba5af72ffe2380d7b22" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>viewportSize</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1aaa84f84d6e6a78e7554f0b7cf9f69615" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>~PointMaterial</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

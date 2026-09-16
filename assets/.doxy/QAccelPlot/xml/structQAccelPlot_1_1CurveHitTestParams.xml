@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1CurveHitTestParams" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::CurveHitTestParams</compoundname>
+    <includes local="no">CurveRendererParams.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a4483d89047b0d53c3910193cf20b8859" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref></type>
+        <definition>CurveDataView QAccelPlot::CurveHitTestParams::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::data</qualifiedname>
+        <briefdescription>
+<para>Interleaved XY source data without precision loss. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="52" column="19" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a00b6046415da14fe125ff424bd4bbd98" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::CurveHitTestParams::pointCount</definition>
+        <argsstring></argsstring>
+        <name>pointCount</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::pointCount</qualifiedname>
+        <briefdescription>
+<para>Number of points in <computeroutput>data</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="53" column="9" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a93a8c66d29a4b56bbd97821b07beb622" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1CurveChunk" kindref="compound">CurveChunk</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt;CurveChunk&gt;&amp; QAccelPlot::CurveHitTestParams::chunks</definition>
+        <argsstring></argsstring>
+        <name>chunks</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::chunks</qualifiedname>
+        <briefdescription>
+<para>Precomputed chunk bounding boxes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="54" column="23" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a8255d73d3fd4c5eaa06ff91d80ead059" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::CurveHitTestParams::xAxis</definition>
+        <argsstring></argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::xAxis</qualifiedname>
+        <briefdescription>
+<para>Horizontal axis for coordinate mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="55" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a769a8e823ae5ce8b1e2cff4ddb8c2726" prot="public" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis* QAccelPlot::CurveHitTestParams::yAxis</definition>
+        <argsstring></argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::yAxis</qualifiedname>
+        <briefdescription>
+<para>Vertical axis for coordinate mapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="56" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a4188a4ce63ef504701ab02e96c72b89c" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::CurveHitTestParams::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::width</qualifiedname>
+        <briefdescription>
+<para>Width of the curve item in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="57" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a82665620ee82fc7e8b33c073a5f1925d" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::CurveHitTestParams::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::height</qualifiedname>
+        <briefdescription>
+<para>Height of the curve item in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="58" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::CurveHitTestParams::hitThreshold</definition>
+        <argsstring></argsstring>
+        <name>hitThreshold</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::hitThreshold</qualifiedname>
+        <briefdescription>
+<para>Hit distance threshold in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="59" column="11" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1afe7ab29b082c6728978495cd9dd5c281" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::CurveHitTestParams::nonPositiveXInvalid</definition>
+        <argsstring></argsstring>
+        <name>nonPositiveXInvalid</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::nonPositiveXInvalid</qualifiedname>
+        <briefdescription>
+<para>Whether non-positive X values are invalid samples (X axis uses log scale). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="60" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1CurveHitTestParams_1a7ed6bb861a49049a11ed3b4593013b75" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::CurveHitTestParams::nonPositiveYInvalid</definition>
+        <argsstring></argsstring>
+        <name>nonPositiveYInvalid</name>
+        <qualifiedname>QAccelPlot::CurveHitTestParams::nonPositiveYInvalid</qualifiedname>
+        <briefdescription>
+<para>Whether non-positive Y values are invalid samples (Y axis uses log scale). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="61" column="10" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>All inputs required for a <computeroutput>contains()</computeroutput> hit-test, bundled to reduce parameter count. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>QAccelPlot::Axis</label>
+        <link refid="classQAccelPlot_1_1Axis"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::CurveDataView</label>
+        <link refid="structQAccelPlot_1_1CurveDataView"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::CurveHitTestParams</label>
+        <link refid="structQAccelPlot_1_1CurveHitTestParams"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>xAxis</edgelabel>
+          <edgelabel>yAxis</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="51" column="1" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="51" bodyend="62"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a93a8c66d29a4b56bbd97821b07beb622" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>chunks</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a4483d89047b0d53c3910193cf20b8859" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>data</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a82665620ee82fc7e8b33c073a5f1925d" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>height</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a3a0eb19eeecd2c998d876fc025a5eae6" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>hitThreshold</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1afe7ab29b082c6728978495cd9dd5c281" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>nonPositiveXInvalid</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a7ed6bb861a49049a11ed3b4593013b75" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>nonPositiveYInvalid</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a00b6046415da14fe125ff424bd4bbd98" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>pointCount</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a4188a4ce63ef504701ab02e96c72b89c" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>width</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a8255d73d3fd4c5eaa06ff91d80ead059" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>xAxis</name></member>
+      <member refid="structQAccelPlot_1_1CurveHitTestParams_1a769a8e823ae5ce8b1e2cff4ddb8c2726" prot="public" virt="non-virtual"><scope>QAccelPlot::CurveHitTestParams</scope><name>yAxis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

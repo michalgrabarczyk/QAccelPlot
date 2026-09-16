@@ -1,0 +1,683 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1GradientStroke" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::GradientStroke</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1LineCurveEffect" prot="public" virt="non-virtual">QAccelPlot::LineCurveEffect</basecompoundref>
+    <includes local="no">GradientStroke.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1aacceb38520e8b5c9f819297f8f40a615" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+        <definition>GradientDirection QAccelPlot::GradientStroke::direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <qualifiedname>QAccelPlot::GradientStroke::direction</qualifiedname>
+        <read>direction</read>
+        <write>setDirection</write>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> along which the gradient color varies (Horizontal or Vertical). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="32" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1ad31ffbe5cec85650d57c924606350ab0" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QObject *</type>
+        <definition>QObject* QAccelPlot::GradientStroke::gradient</definition>
+        <argsstring></argsstring>
+        <name>gradient</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradient</qualifiedname>
+        <read>gradient</read>
+        <write>setGradient</write>
+        <briefdescription>
+<para>A Qt <computeroutput>Gradient</computeroutput> (or compatible) object supplying the color stops. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="34" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1a2e4d14dbccc010a1cdc480d1d1535bfa" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMinSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMinSource</qualifiedname>
+        <read>gradientValueMinSource</read>
+        <write>setGradientValueMinSource</write>
+        <briefdescription>
+<para>How the gradient normalization minimum is determined; see <computeroutput>GradientValueSource</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="36" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1af5d924f7b3fa106183ace7a6f08bcb00" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMin</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMin</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMin</qualifiedname>
+        <read>gradientValueMin</read>
+        <write>setGradientValueMin</write>
+        <briefdescription>
+<para>Data-space value that maps to gradient position 0.0. Only used when gradientValueMinSource is Fixed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="38" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1ab7a7a8c79a8d1b539489bbfe4030cc2c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMaxSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMaxSource</qualifiedname>
+        <read>gradientValueMaxSource</read>
+        <write>setGradientValueMaxSource</write>
+        <briefdescription>
+<para>How the gradient normalization maximum is determined; see <computeroutput>GradientValueSource</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="40" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1GradientStroke_1af57e9f661819d3b827090d051712f858" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMax</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMax</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMax</qualifiedname>
+        <read>gradientValueMax</read>
+        <write>setGradientValueMax</write>
+        <briefdescription>
+<para>Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="42" column="5" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1adb6aa2e94e6b529df982fa3c5b3ee74e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+        <definition>GradientDirection QAccelPlot::GradientStroke::direction_</definition>
+        <argsstring></argsstring>
+        <name>direction_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::direction_</qualifiedname>
+        <initializer>{GradientDirection::Horizontal}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="100" column="23" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a1c51db53bb5db2df3eac2e03dd2b7ef3" prot="private" static="no" mutable="no">
+        <type>QObject *</type>
+        <definition>QObject* QAccelPlot::GradientStroke::gradient_</definition>
+        <argsstring></argsstring>
+        <name>gradient_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradient_</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="101" column="13" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1ad59c1b2e9e5d97079eef65e5e2cf24f2" prot="private" static="no" mutable="no">
+        <type>QVector&lt; QMetaObject::Connection &gt;</type>
+        <definition>QVector&lt;QMetaObject::Connection&gt; QAccelPlot::GradientStroke::gradientConnections_</definition>
+        <argsstring></argsstring>
+        <name>gradientConnections_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientConnections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="102" column="13" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1a330d5209fd87f878f9b530207c59c23d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource_</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMinSource_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMinSource_</qualifiedname>
+        <initializer>{GradientValueSource::DataRange}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="103" column="25" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1ac6f4b52093ccf45f1c6f9eff1b67af99" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMin_</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMin_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMin_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="104" column="11" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="104" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1adc2d66ce58f128f57b3127d065098142" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource_</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMaxSource_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMaxSource_</qualifiedname>
+        <initializer>{GradientValueSource::DataRange}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="105" column="25" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientStroke_1aee9e7cae64ab292e7b64d7bf4cac3675" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMax_</definition>
+        <argsstring></argsstring>
+        <name>gradientValueMax_</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMax_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="106" column="11" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="106" bodyend="106"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aa29355fe8b5b136c5db2d0fc744c710f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GradientStroke::GradientStroke</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>GradientStroke</name>
+        <qualifiedname>QAccelPlot::GradientStroke::GradientStroke</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="46" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a989b18dfc369f68e6ea9e0b3532da501" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+        <definition>GradientDirection QAccelPlot::GradientStroke::direction</definition>
+        <argsstring>() const</argsstring>
+        <name>direction</name>
+        <qualifiedname>QAccelPlot::GradientStroke::direction</qualifiedname>
+        <briefdescription>
+<para>Returns the gradient direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="49" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a3e5d28caacdedb78c4f4fcd07a4626fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setDirection</definition>
+        <argsstring>(GradientDirection direction)</argsstring>
+        <name>setDirection</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setDirection</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gradient direction to <emphasis>direction</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a280a7223d642d5982c0edee19b19891f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QObject *</type>
+        <definition>QObject * QAccelPlot::GradientStroke::gradient</definition>
+        <argsstring>() const</argsstring>
+        <name>gradient</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradient</qualifiedname>
+        <briefdescription>
+<para>Returns the Qt Gradient object supplying color stops. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="54" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a9bc5a7aa3ed32b2f0a52e20b7ca5c5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setGradient</definition>
+        <argsstring>(QObject *gradient)</argsstring>
+        <name>setGradient</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setGradient</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Sets the Qt Gradient object to <emphasis>gradient</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="56" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a9c383456ed928a6ec74a9d535ec64e2e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource</definition>
+        <argsstring>() const</argsstring>
+        <name>gradientValueMinSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMinSource</qualifiedname>
+        <briefdescription>
+<para>Returns how the gradient normalization minimum is determined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="59" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a2156b7b8eb231b5a01ec48c67e2d956a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setGradientValueMinSource</definition>
+        <argsstring>(GradientValueSource source)</argsstring>
+        <name>setGradientValueMinSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setGradientValueMinSource</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gradient normalization minimum source to <emphasis>source</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="61" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a92d45ca7656a5f8e0f1feb8ccc7bc2cd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMin</definition>
+        <argsstring>() const</argsstring>
+        <name>gradientValueMin</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMin</qualifiedname>
+        <briefdescription>
+<para>Returns the minimum data value for gradient normalization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="64" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a36bb5e9797efaa62372b151992602965" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setGradientValueMin</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setGradientValueMin</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setGradientValueMin</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the minimum data value for gradient normalization to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="66" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aea8244a28cd48e4688e4428ae4151e31" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+        <definition>GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource</definition>
+        <argsstring>() const</argsstring>
+        <name>gradientValueMaxSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMaxSource</qualifiedname>
+        <briefdescription>
+<para>Returns how the gradient normalization maximum is determined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="69" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a385c8a403eb17ee94647d0c61297599f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setGradientValueMaxSource</definition>
+        <argsstring>(GradientValueSource source)</argsstring>
+        <name>setGradientValueMaxSource</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setGradientValueMaxSource</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSource</ref></type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gradient normalization maximum source to <emphasis>source</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="71" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1acb5b5dd910ee6945cb9bfb887d5ac50e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::GradientStroke::gradientValueMax</definition>
+        <argsstring>() const</argsstring>
+        <name>gradientValueMax</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMax</qualifiedname>
+        <briefdescription>
+<para>Returns the maximum data value for gradient normalization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="74" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a3457261d23c9ddb8fe0dc70fd94a39ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::setGradientValueMax</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setGradientValueMax</name>
+        <qualifiedname>QAccelPlot::GradientStroke::setGradientValueMax</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the maximum data value for gradient normalization to <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a2bf3a8fae25ca86bf45119a45de49463" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref></type>
+        <definition>GradientColorPayload QAccelPlot::GradientStroke::payload</definition>
+        <argsstring>() const</argsstring>
+        <name>payload</name>
+        <qualifiedname>QAccelPlot::GradientStroke::payload</qualifiedname>
+        <briefdescription>
+<para>Returns a render-thread-safe snapshot of all stroke parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="79" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a1ad6ee3ef33d81185aeed6a1c1a425fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::directionChanged</definition>
+        <argsstring>()</argsstring>
+        <name>directionChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::directionChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the direction property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="83" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::gradientChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gradientChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gradient property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="85" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a1e8ed604c882f3fa8b5591f972881d18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::gradientValueMinSourceChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gradientValueMinSourceChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMinSourceChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gradientValueMinSource property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="87" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a04568535dcda6405c1c8a7ee3cd3e6cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::gradientValueMinChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gradientValueMinChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMinChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gradientValueMin property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="89" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a01ba4689775a620eb6c8ebada7a23963" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::gradientValueMaxSourceChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gradientValueMaxSourceChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMaxSourceChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gradientValueMaxSource property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="91" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1GradientStroke_1a0bdb609f57e4ac40f7ea7da9f2b5b7ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::gradientValueMaxChanged</definition>
+        <argsstring>()</argsstring>
+        <name>gradientValueMaxChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::gradientValueMaxChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the gradientValueMax property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="93" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::reconnectGradientSignals</definition>
+        <argsstring>()</argsstring>
+        <name>reconnectGradientSignals</name>
+        <qualifiedname>QAccelPlot::GradientStroke::reconnectGradientSignals</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1ad001a3c737b7d7d43c11eb8d1452729b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::disconnectGradientSignals</definition>
+        <argsstring>()</argsstring>
+        <name>disconnectGradientSignals</name>
+        <qualifiedname>QAccelPlot::GradientStroke::disconnectGradientSignals</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="97" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1afab71b0f18c6dd5962765844cdc1b106" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientStroke::onGradientObjectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onGradientObjectChanged</name>
+        <qualifiedname>QAccelPlot::GradientStroke::onGradientObjectChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="98" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> effect that replaces the solid line color with a color gradient. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Attach to <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kindref="member">LineCurve::effects</ref></computeroutput> to color the line with a gradient derived from a Qt <computeroutput>Gradient</computeroutput> object. The gradient can run horizontally (along X data values) or vertically (along Y data values).</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::GradientStroke</label>
+        <link refid="classQAccelPlot_1_1GradientStroke"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineCurveEffect</label>
+        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::GradientStroke</label>
+        <link refid="classQAccelPlot_1_1GradientStroke"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineCurveEffect</label>
+        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/effects/GradientStroke.hpp" line="27" column="1" bodyfile="QAccelPlot/src/effects/GradientStroke.hpp" bodystart="27" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1GradientStroke_1aacceb38520e8b5c9f819297f8f40a615" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>direction</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a989b18dfc369f68e6ea9e0b3532da501" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>direction</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1adb6aa2e94e6b529df982fa3c5b3ee74e" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>direction_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a1ad6ee3ef33d81185aeed6a1c1a425fe" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>directionChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1ad001a3c737b7d7d43c11eb8d1452729b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>disconnectGradientSignals</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1ad31ffbe5cec85650d57c924606350ab0" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a280a7223d642d5982c0edee19b19891f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a1c51db53bb5db2df3eac2e03dd2b7ef3" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradient_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1ad59c1b2e9e5d97079eef65e5e2cf24f2" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientConnections_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1aa29355fe8b5b136c5db2d0fc744c710f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>GradientStroke</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1af57e9f661819d3b827090d051712f858" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMax</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1acb5b5dd910ee6945cb9bfb887d5ac50e" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMax</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1aee9e7cae64ab292e7b64d7bf4cac3675" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMax_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a0bdb609f57e4ac40f7ea7da9f2b5b7ea" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMaxChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1ab7a7a8c79a8d1b539489bbfe4030cc2c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMaxSource</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1aea8244a28cd48e4688e4428ae4151e31" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMaxSource</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1adc2d66ce58f128f57b3127d065098142" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMaxSource_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a01ba4689775a620eb6c8ebada7a23963" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMaxSourceChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1af5d924f7b3fa106183ace7a6f08bcb00" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMin</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a92d45ca7656a5f8e0f1feb8ccc7bc2cd" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMin</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1ac6f4b52093ccf45f1c6f9eff1b67af99" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMin_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a04568535dcda6405c1c8a7ee3cd3e6cc" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a2e4d14dbccc010a1cdc480d1d1535bfa" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSource</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a9c383456ed928a6ec74a9d535ec64e2e" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSource</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a330d5209fd87f878f9b530207c59c23d" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSource_</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a1e8ed604c882f3fa8b5591f972881d18" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSourceChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>LineCurveEffect</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1afab71b0f18c6dd5962765844cdc1b106" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>onGradientObjectChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a2bf3a8fae25ca86bf45119a45de49463" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>payload</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>reconnectGradientSignals</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a3e5d28caacdedb78c4f4fcd07a4626fb" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setDirection</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a9bc5a7aa3ed32b2f0a52e20b7ca5c5ae" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradient</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a3457261d23c9ddb8fe0dc70fd94a39ea" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradientValueMax</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a385c8a403eb17ee94647d0c61297599f" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradientValueMaxSource</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a36bb5e9797efaa62372b151992602965" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradientValueMin</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1a2156b7b8eb231b5a01ec48c67e2d956a" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setGradientValueMinSource</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -27,7 +27,7 @@
     
     
       
-        <title>Versioning and releases - QAccelPlot v0.1.0 Documentation</title>
+        <title>Versioning and releases - QAccelPlot v0.2.0 Documentation</title>
       
     
     
@@ -53,6 +53,10 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../stylesheets/theme.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -77,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.1.0",
+  "softwareVersion": "0.2.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -94,7 +98,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -129,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -143,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.1.0 Documentation
+            QAccelPlot v0.2.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -162,7 +166,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -172,7 +176,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -267,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.1.0 Documentation
+    QAccelPlot v0.2.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -858,21 +862,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-downloads" class="md-nav__link">
+  <a href="#release-downloads-and-qt-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release downloads
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qt-compatibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Qt compatibility
+        Release downloads and Qt compatibility
       
     </span>
   </a>
@@ -947,9 +940,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -963,7 +986,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1050,21 +1257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-downloads" class="md-nav__link">
+  <a href="#release-downloads-and-qt-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release downloads
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qt-compatibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Qt compatibility
+        Release downloads and Qt compatibility
       
     </span>
   </a>
@@ -1100,10 +1296,9 @@ releases under matching Git tags such as <code>v0.1.0</code>.</p>
 <p>Before version 1.0, every regular release increments the minor version:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>0.1.0 → 0.2.0 → 0.3.0
 </code></pre></div>
-<p>A pre-1.0 release may contain new features, fixes, and breaking changes. The
-patch component remains zero, and QAccelPlot does not normally maintain older
-pre-1.0 release branches. Applications should upgrade to the latest release
-and review the changelog for breaking changes and migration instructions.</p>
+<p>A pre-1.0 release may contain breaking changes. The patch component stays zero,
+and older pre-1.0 releases are not maintained. Check the changelog for breaking
+changes and migration notes when upgrading.</p>
 <h2 id="starting-with-10">Starting with 1.0<a class="headerlink" href="#starting-with-10" title="Permanent link">&para;</a></h2>
 <p>Starting with version 1.0, QAccelPlot follows Semantic Versioning:</p>
 <ul>
@@ -1112,49 +1307,50 @@ and review the changelog for breaking changes and migration instructions.</p>
 <li>A major release may make breaking changes.</li>
 </ul>
 <h2 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h2>
-<p><code>CHANGELOG.md</code> in the repository root is the source of truth for curated
-release notes. User-visible changes are collected under <code>[Unreleased]</code> during
-development and moved to a dated version section when released. GitHub Release
-notes are taken from the matching version section.</p>
+<p><code>CHANGELOG.md</code> is the source of release notes. Changes collect under
+<code>[Unreleased]</code> and move to a dated version section on release; GitHub Release
+notes are taken from that section.</p>
 <h2 id="pinning-a-dependency">Pinning a dependency<a class="headerlink" href="#pinning-a-dependency" title="Permanent link">&para;</a></h2>
-<p>Production applications should depend on a release tag rather than <code>main</code>:</p>
+<p>Pin a release tag rather than <code>main</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">FetchContent_Declare</span><span class="p">(</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="s">QAccelPlot</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s">GIT_REPOSITORY</span><span class="w"> </span><span class="s">https://github.com/michalgrabarczyk/QAccelPlot.git</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="s">GIT_TAG</span><span class="w"> </span><span class="s">v0.1.0</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="s">GIT_TAG</span><span class="w"> </span><span class="s">v0.2.0</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span>
 </code></pre></div>
-<p>The <code>main</code> branch contains development work for the next release and may change
-without notice.</p>
+<p><code>main</code> holds unreleased work and may change without notice.</p>
 <h2 id="documentation-versions">Documentation versions<a class="headerlink" href="#documentation-versions" title="Permanent link">&para;</a></h2>
-<p>The default documentation site describes the latest stable release. Each
-release also has immutable documentation under its exact version path, for
-example <code>/0.2.0/</code>, and <code>/latest/</code> points to the same current stable content.</p>
-<p>Documentation generated from <code>main</code> is published separately under <code>/main/</code>
-and is visibly marked as unreleased. It may describe features that are not
-present in a tagged release. Use the documentation matching the QAccelPlot
-version selected by your application.</p>
-<p>The documentation site also includes the repository changelog so release and
-development documentation show the release history that belongs to that source
-revision.</p>
-<h2 id="release-downloads">Release downloads<a class="headerlink" href="#release-downloads" title="Permanent link">&para;</a></h2>
-<p>GitHub Releases provide the standard source <code>.zip</code> and <code>.tar.gz</code> archives for
-each release tag. QAccelPlot does not normally publish prebuilt library
-packages. The default build enables an optional optimization that uses Qt Quick
-private APIs; binaries built with this optimization must match the
-application's Qt version and toolchain. Configure with
-<code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> to use only public Qt APIs. Building
-QAccelPlot from source avoids maintaining a matrix of compatible prebuilt
-binaries.</p>
-<h2 id="qt-compatibility">Qt compatibility<a class="headerlink" href="#qt-compatibility" title="Permanent link">&para;</a></h2>
-<p>The default optimized build uses one isolated Qt Quick private API, so a
-prebuilt library made in that mode must use the same Qt version and toolchain
-as the application. No private type is exposed in QAccelPlot's public ABI, but
-the implementation dependency must still match. This is handled automatically
-when QAccelPlot is built from source with the application.</p>
-<p>A build configured with <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> depends only on
-public Qt API and does not link QuickPrivate. Rebuild QAccelPlot whenever the Qt
-version or compiler changes regardless of mode.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code> and <code>/latest/</code></td>
+<td>Latest stable release</td>
+</tr>
+<tr>
+<td><code>/&lt;version&gt;/</code>, e.g. <code>/0.2.0/</code></td>
+<td>That release, unchanged after publishing</td>
+</tr>
+<tr>
+<td><code>/main/</code></td>
+<td>Unreleased <code>main</code>, marked as such</td>
+</tr>
+</tbody>
+</table>
+<p>Use the documentation matching the version your application pins. Each version
+includes the changelog from the same source revision.</p>
+<h2 id="release-downloads-and-qt-compatibility">Release downloads and Qt compatibility<a class="headerlink" href="#release-downloads-and-qt-compatibility" title="Permanent link">&para;</a></h2>
+<p>GitHub Releases provide source <code>.zip</code> and <code>.tar.gz</code> archives only; build
+QAccelPlot from source with your application.</p>
+<p>A build with <code>QACCELPLOT_USE_QT_PRIVATE_API=ON</code> depends on a Qt private API and
+must use the same Qt version and toolchain as the application. No private type
+appears in QAccelPlot's public ABI. Rebuild QAccelPlot whenever the Qt version
+or compiler changes, in either mode.</p>
 
 
 

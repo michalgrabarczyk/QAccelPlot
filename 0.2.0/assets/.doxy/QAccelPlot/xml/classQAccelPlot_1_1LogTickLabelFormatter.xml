@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LogTickLabelFormatter" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LogTickLabelFormatter</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1TickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::TickLabelFormatter</basecompoundref>
+    <includes local="no">LogTickLabelFormatter.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LogTickLabelFormatter_1a2632ac326eeaef5e0215e200a3831385" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::LogTickLabelFormatter::LogTickLabelFormatter</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>LogTickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::LogTickLabelFormatter::LogTickLabelFormatter</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1LogTickLabelFormatter" kindref="compound">LogTickLabelFormatter</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/LogTickLabelFormatter.hpp" line="27" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LogTickLabelFormatter_1a9cf7767769458b35befc9f2c2455d31e" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::LogTickLabelFormatter::doFormat</definition>
+        <argsstring>(qreal value, qreal tickStep) const override</argsstring>
+        <name>doFormat</name>
+        <qualifiedname>QAccelPlot::LogTickLabelFormatter::doFormat</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8">doFormat</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Returns a log-scale label string for <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/LogTickLabelFormatter.hpp" line="31" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A tick label formatter that produces power-of-ten labels for logarithmic axes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Formats each power-of-ten tick value using a superscript exponent, such as &quot;10²&quot;.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::LogTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1LogTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::LogTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1LogTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/formatters/LogTickLabelFormatter.hpp" line="21" column="1" bodyfile="QAccelPlot/src/formatters/LogTickLabelFormatter.hpp" bodystart="21" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LogTickLabelFormatter_1a9cf7767769458b35befc9f2c2455d31e" prot="protected" virt="virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>format</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1LogTickLabelFormatter_1a2632ac326eeaef5e0215e200a3831385" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>LogTickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>setTickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>tickLabelChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" prot="public" virt="non-virtual"><scope>QAccelPlot::LogTickLabelFormatter</scope><name>TickLabelFormatter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

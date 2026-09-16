@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1GradientTexture" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::GradientTexture</compoundname>
+    <includes local="no">GradientTexture.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientTexture_1a7ed95f096166315bd2f0e80617f2dbe5" prot="private" static="no" mutable="no">
+        <type>QImage</type>
+        <definition>QImage QAccelPlot::GradientTexture::image_</definition>
+        <argsstring></argsstring>
+        <name>image_</name>
+        <qualifiedname>QAccelPlot::GradientTexture::image_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="41" column="12" bodyfile="QAccelPlot/src/materials/GradientTexture.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientTexture_1a64ae8ee5a40a38c2f79edcb327c3af3b" prot="private" static="no" mutable="no">
+        <type>QSGTexture *</type>
+        <definition>QSGTexture* QAccelPlot::GradientTexture::texture_</definition>
+        <argsstring></argsstring>
+        <name>texture_</name>
+        <qualifiedname>QAccelPlot::GradientTexture::texture_</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="42" column="16" bodyfile="QAccelPlot/src/materials/GradientTexture.hpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1GradientTexture_1a2e292a73a961284f83a8c010272f4be8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt;GradientStopData&gt; QAccelPlot::GradientTexture::stops_</definition>
+        <argsstring></argsstring>
+        <name>stops_</name>
+        <qualifiedname>QAccelPlot::GradientTexture::stops_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="43" column="17" bodyfile="QAccelPlot/src/materials/GradientTexture.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1aba3a0072f70ceea50abafa77deb92425" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GradientTexture::GradientTexture</definition>
+        <argsstring>()=default</argsstring>
+        <name>GradientTexture</name>
+        <qualifiedname>QAccelPlot::GradientTexture::GradientTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="25" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a7a4fb17745956d2b7c2ffaa4adf288a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GradientTexture::~GradientTexture</definition>
+        <argsstring>()</argsstring>
+        <name>~GradientTexture</name>
+        <qualifiedname>QAccelPlot::GradientTexture::~GradientTexture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="26" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a51d71f30e0c46dc80470204804d81625" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::GradientTexture::GradientTexture</definition>
+        <argsstring>(const GradientTexture &amp;)=delete</argsstring>
+        <name>GradientTexture</name>
+        <qualifiedname>QAccelPlot::GradientTexture::GradientTexture</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="28" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a674a9f25c861950947b271e7e5f4c0c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref> &amp;</type>
+        <definition>GradientTexture &amp; QAccelPlot::GradientTexture::operator=</definition>
+        <argsstring>(const GradientTexture &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>QAccelPlot::GradientTexture::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1GradientTexture" kindref="compound">GradientTexture</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="29" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1aa73f6b5c719053d97b0a638614a6e6b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientTexture::upload</definition>
+        <argsstring>(QQuickWindow *window, const std::vector&lt; GradientStopData &gt; &amp;stops)</argsstring>
+        <name>upload</name>
+        <qualifiedname>QAccelPlot::GradientTexture::upload</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
+          <declname>stops</declname>
+        </param>
+        <briefdescription>
+<para>Updates the 256-sample texture when <emphasis>stops</emphasis> changed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="32" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::GradientTexture::commit</definition>
+        <argsstring>(QSGMaterialShader::RenderState &amp;state, int binding, QSGTexture **texture)</argsstring>
+        <name>commit</name>
+        <qualifiedname>QAccelPlot::GradientTexture::commit</qualifiedname>
+        <param>
+          <type>QSGMaterialShader::RenderState &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>binding</declname>
+        </param>
+        <param>
+          <type>QSGTexture **</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+<para>Commits the texture to the requested shader sampler binding. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1ad26c8fc3b6962552a63719161388722c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qint64</type>
+        <definition>qint64 QAccelPlot::GradientTexture::comparisonKey</definition>
+        <argsstring>() const</argsstring>
+        <name>comparisonKey</name>
+        <qualifiedname>QAccelPlot::GradientTexture::comparisonKey</qualifiedname>
+        <briefdescription>
+<para>Returns the scene-graph comparison key for the uploaded texture, or zero when no texture exists. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="36" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientTexture_1a64f3cd7194c74410335e73fe7825a9da" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::GradientTexture::matches</definition>
+        <argsstring>(const std::vector&lt; GradientStopData &gt; &amp;stops) const</argsstring>
+        <name>matches</name>
+        <qualifiedname>QAccelPlot::GradientTexture::matches</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
+          <declname>stops</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="39" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Cached one-dimensional texture used by gradient materials. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/materials/GradientTexture.hpp" line="23" column="1" bodyfile="QAccelPlot/src/materials/GradientTexture.hpp" bodystart="23" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a7bcb2e27e711d318d86fde9378742809" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>commit</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1ad26c8fc3b6962552a63719161388722c" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>comparisonKey</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1aba3a0072f70ceea50abafa77deb92425" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>GradientTexture</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a51d71f30e0c46dc80470204804d81625" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>GradientTexture</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a7ed95f096166315bd2f0e80617f2dbe5" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>image_</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a64f3cd7194c74410335e73fe7825a9da" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>matches</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a674a9f25c861950947b271e7e5f4c0c3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>operator=</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a2e292a73a961284f83a8c010272f4be8" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>stops_</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a64ae8ee5a40a38c2f79edcb327c3af3b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>texture_</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1aa73f6b5c719053d97b0a638614a6e6b2" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>upload</name></member>
+      <member refid="classQAccelPlot_1_1GradientTexture_1a7a4fb17745956d2b7c2ffaa4adf288a4" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientTexture</scope><name>~GradientTexture</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot documentation — a high-performance hardware-accelerated plotting library for Qt Quick with GPU-rendered 2D line plots, real-time data visualization, and QML-friendly components.">
+        <meta name="description" content="QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick that replaces and draws millions of points per frame with built-in interaction.">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>QAccelPlot v0.1.0 Documentation</title>
+        <title>QAccelPlot v0.2.0 Documentation</title>
       
     
     
@@ -51,6 +51,10 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="stylesheets/theme.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -58,7 +62,7 @@
     
     
 
-<meta property="og:description" content="QAccelPlot documentation — a high-performance hardware-accelerated plotting library for Qt Quick with GPU-rendered 2D line plots, real-time data visualization, and QML-friendly components.">
+<meta property="og:description" content="QAccelPlot documentation — GPU-rendered 2D plotting for Qt Quick that replaces and draws millions of points per frame with built-in interaction.">
 
 <script type="application/ld+json">
 {
@@ -75,7 +79,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.1.0",
+  "softwareVersion": "0.2.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -92,7 +96,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -127,7 +131,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="QAccelPlot v0.1.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href="." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +145,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.1.0 Documentation
+            QAccelPlot v0.2.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -160,7 +164,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -170,7 +174,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -265,13 +269,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="QAccelPlot v0.1.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href="." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.1.0 Documentation
+    QAccelPlot v0.2.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -923,9 +927,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -939,7 +973,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1048,20 +1266,23 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="qaccelplot">QAccelPlot<a class="headerlink" href="#qaccelplot" title="Permanent link">&para;</a></h1>
-<p>QAccelPlot is a hardware-accelerated plotting library for Qt Quick. It combines
-QML-friendly plot composition with C++ data paths designed for large and
-frequently changing data sets, rendering through the Qt Scene Graph using GPU
-shaders for real-time 2D data visualization.</p>
+<p>QAccelPlot is a 2D plotting library for Qt Quick. Curves render through the Qt
+Scene Graph with GPU shaders, and C++ data paths replace large data sets every
+frame.</p>
 <h3 id="key-capabilities">Key capabilities<a class="headerlink" href="#key-capabilities" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GPU-rendered line curves</strong> with solid, dashed, and marker-only styles</li>
-<li><strong>Gradient fills and strokes</strong> for visual effects on curves</li>
-<li><strong>Multiple data-ingestion APIs</strong> from convenience QML to efficient C++ buffers</li>
-<li><strong>Real-time performance</strong> — hundreds of thousands of points at display refresh rate</li>
-<li><strong>Interactive</strong> — built-in pan, zoom, hover detection, and custom tool support</li>
-<li><strong>Multiple axes</strong> — primary, secondary, and extra axes for different scales</li>
-<li><strong>Annotations</strong> — data-attached labels, regions, and measurement overlays</li>
-<li><strong>Animated transitions</strong> — morph and draw transitions for data updates</li>
+<li><strong>Throughput</strong> — about 8M points replaced and drawn per frame at 60 FPS on the
+  <a href="performance-comparison/">reference system</a>, without downsampling</li>
+<li><strong>Data paths</strong> — QML points, double vectors, moved <code>float</code> buffers, no-range
+  updates, and worker-thread <code>postData()</code></li>
+<li><strong>Interaction</strong> — pan, cursor-centered and per-axis zoom, rescale, hover hit
+  testing, and plot mouse events for custom tools</li>
+<li><strong>Invalid samples</strong> — <code>NaN</code>, <code>±Inf</code>, and non-positive log values break or
+  connect the curve consistently</li>
+<li><strong>Curves</strong> — solid, dashed, and marker-only styles; gradient fills and
+  strokes; morph and draw transitions</li>
+<li><strong>Layout</strong> — secondary and extra axes, data-anchored QML overlays, and
+  <code>RectangleList</code> for many regions</li>
 </ul>
 <h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
@@ -1070,46 +1291,37 @@ shaders for real-time 2D data visualization.</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="kd">id: plot</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">anchors.fill:</span> <span class="nx">parent</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">viewportMin:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">viewportMax:</span> <span class="mi">10</span><span class="p">;</span> <span class="k">side:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span><span class="p">.</span><span class="nx">Bottom</span> <span class="p">}</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">viewportMin:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="k">viewportMax:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">side:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span><span class="p">.</span><span class="nx">Left</span> <span class="p">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">viewportMin:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">viewportMax:</span> <span class="mi">10</span> <span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span> <span class="k">viewportMin:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="k">viewportMax:</span> <span class="mi">1</span> <span class="p">}</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span> <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span><span class="p">;</span> <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"steelblue"</span> <span class="p">}</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
 </code></pre></div>
 <p>See <a href="getting-started/">Getting started</a> for the full build and data setup.</p>
 <h2 id="explore-the-documentation">Explore the documentation<a class="headerlink" href="#explore-the-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><a href="getting-started/">Getting started</a></strong> — Build your first QAccelPlot application.</li>
-<li><strong><a href="concepts/">Architecture</a></strong> — See how plots, axes, series, and the Qt
-  Scene Graph fit together.</li>
-<li><strong><a href="performance/">Performance</a></strong> — Choose the right data-ingestion path and
-  measure rendering throughput.</li>
-<li><strong><a href="cookbook/">Cookbook</a></strong> — Solve common plotting tasks with focused
-  recipes.</li>
-<li><strong><a href="faq/">FAQ</a></strong> — Answers to common questions about licensing, performance,
-  threading, and compatibility.</li>
-<li><strong><a href="api/">API reference</a></strong> — Look up types, properties, methods, signals,
-  and enums.</li>
+<li><strong><a href="getting-started/">Getting started</a></strong> — CMake integration and a first plot.</li>
+<li><strong><a href="concepts/">Concepts</a></strong> — Axes, series, gaps, overlays, and threading.</li>
+<li><strong><a href="performance/">Performance</a></strong> — Data paths, worker handoff, and benchmarking.</li>
+<li><strong><a href="cookbook/">Cookbook</a></strong> — Recipes for common tasks.</li>
+<li><strong><a href="faq/">FAQ</a></strong> — Licensing, threading, and compatibility.</li>
+<li><strong><a href="api/">API reference</a></strong> — Types, properties, methods, signals, and enums.</li>
 </ul>
-<p>The runnable <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples"><code>examples</code></a>
-are the authoritative demonstrations. The guide explains the decisions behind
-them and links back to complete source files.</p>
+<p>Each recipe links to a complete, runnable
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples">example</a>.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ul>
 <li>CMake 3.16 or newer</li>
 <li>A C++17 compiler</li>
 <li>Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools</li>
-<li>A hardware Qt Quick Scene Graph backend for curve rendering</li>
+<li>A hardware Qt Quick Scene Graph backend</li>
 </ul>
-<p>The default optimized mode also uses the matching <code>QuickPrivate</code> component for
-in-place live-data texture updates. A completely public-Qt-only build is
-available with <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code>. QAccelPlot is currently
-built and distributed as a static library.</p>
+<p>When the matching <code>QuickPrivate</code> component is available, it is used for
+in-place data texture updates. <code>-DQACCELPLOT_USE_QT_PRIVATE_API=OFF</code> forces a
+public-Qt-only build. QAccelPlot builds as a static library.</p>
 <h2 id="licensing">Licensing<a class="headerlink" href="#licensing" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot is offered under GPLv3 with the Universal FOSS Exception or under a
-separate commercial license. Read the
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md"><code>LICENSING.md</code></a>
-overview before distributing an application. Your use of Qt is governed
-separately by the license for your Qt installation.</p>
+<p>GPLv3 with the Universal FOSS Exception, or a commercial license. See
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md"><code>LICENSING.md</code></a>.
+Qt is licensed separately.</p>
 
 
 

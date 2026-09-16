@@ -1,0 +1,84 @@
+<!--
+SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="430" viewBox="0 0 1040 430" role="img" aria-labelledby="title desc">
+  <title id="title">QAccelPlot architecture</title>
+  <desc id="desc">Application data enters QAccelPlot on the UI thread. QAccelPlot coordinates plots, axes, series, and overlays. Qt Quick synchronizes the scene to the Scene Graph render thread and graphics API.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#5c6bc0"/>
+    </marker>
+    <style>
+      .section { stroke-width: 2; rx: 12; }
+      .application-section { fill: #fff8f1; stroke: #ef6c00; }
+      .qaccelplot-section { fill: #f3f8ff; stroke: #1e88e5; }
+      .qt-section { fill: #faf4fc; stroke: #8e24aa; }
+      .card { stroke-width: 2; rx: 10; }
+      .application-card { fill: #fff3e0; stroke: #ef6c00; }
+      .qaccelplot-card { fill: #e3f2fd; stroke: #1e88e5; }
+      .qt-card { fill: #f3e5f5; stroke: #8e24aa; }
+      .section-label { font: 700 16px system-ui, sans-serif; text-anchor: middle; }
+      .application-label { fill: #b95100; }
+      .qaccelplot-label { fill: #1565c0; }
+      .qt-label { fill: #6a1b9a; }
+      .label { font: 600 17px system-ui, sans-serif; fill: #202124; text-anchor: middle; }
+      .small { font: 14px system-ui, sans-serif; fill: #3c4043; text-anchor: middle; }
+      .arrow { fill: none; stroke: #5c6bc0; stroke-width: 2.5; marker-end: url(#arrow); }
+      @media (prefers-color-scheme: dark) {
+        .application-section { fill: #30261e; }
+        .qaccelplot-section { fill: #1e2d3d; }
+        .qt-section { fill: #30233a; }
+        .application-card { fill: #3a2c20; }
+        .qaccelplot-card { fill: #21384e; }
+        .qt-card { fill: #3a2b45; }
+        .application-label { fill: #ffb74d; }
+        .qaccelplot-label { fill: #90caf9; }
+        .qt-label { fill: #ce93d8; }
+        .label { fill: #f1f3f4; }
+        .small { fill: #d2d5da; }
+      }
+    </style>
+  </defs>
+
+  <rect class="section application-section" x="20" y="25" width="220" height="285"/>
+  <text class="section-label application-label" x="130" y="58">Application</text>
+  <rect class="card application-card" x="40" y="95" width="180" height="95"/>
+  <text class="label" x="130" y="130">Application data</text>
+  <text class="small" x="130" y="156">QML points or C++</text>
+  <text class="small" x="130" y="176">data buffers</text>
+
+  <rect class="section qaccelplot-section" x="270" y="25" width="440" height="285"/>
+  <text class="section-label qaccelplot-label" x="490" y="58">QAccelPlot · UI thread</text>
+  <rect class="card qaccelplot-card" x="300" y="82" width="170" height="78"/>
+  <text class="label" x="385" y="113">Axes + grid</text>
+  <text class="small" x="385" y="137">ranges and mapping</text>
+  <rect class="card qaccelplot-card" x="510" y="82" width="170" height="78"/>
+  <text class="label" x="595" y="113">Series</text>
+  <text class="small" x="595" y="137">curves + rectangles</text>
+  <rect class="card qaccelplot-card" x="300" y="195" width="170" height="78"/>
+  <text class="label" x="385" y="226">Legend</text>
+  <text class="small" x="385" y="250">series metadata</text>
+  <rect class="card qaccelplot-card" x="510" y="195" width="170" height="78"/>
+  <text class="label" x="595" y="226">QML overlays</text>
+  <text class="small" x="595" y="250">DataAnchor + tools</text>
+
+  <rect class="section qt-section" x="740" y="25" width="270" height="285"/>
+  <text class="section-label qt-label" x="875" y="58">Qt Quick</text>
+  <rect class="card qt-card" x="765" y="80" width="220" height="85"/>
+  <text class="label" x="875" y="113">Scene Graph</text>
+  <text class="small" x="875" y="137">render thread</text>
+  <text class="small" x="875" y="157">persistent nodes</text>
+  <rect class="card qt-card" x="765" y="205" width="220" height="100"/>
+  <text class="label" x="875" y="248">Graphics API (RHI)</text>
+  <text class="small" x="875" y="278">OpenGL · Direct3D</text>
+  <text class="small" x="875" y="296">Vulkan · Metal</text>
+
+  <path class="arrow" d="M220 142 L265 142"/>
+  <path class="arrow" d="M710 142 L735 142"/>
+  <path class="arrow" d="M875 170 L875 200"/>
+  <path class="arrow" d="M595 165 L595 189"/>
+  <path class="arrow" d="M470 121 L504 121"/>
+
+  <text class="small" x="520" y="358">Qt Quick synchronizes scene state; application workers hand completed buffers to the UI thread.</text>
+</svg>

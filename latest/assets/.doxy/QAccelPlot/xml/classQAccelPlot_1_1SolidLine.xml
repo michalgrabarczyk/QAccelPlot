@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SolidLine" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SolidLine</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1LineStyle" prot="public" virt="non-virtual">QAccelPlot::LineStyle</basecompoundref>
+    <includes local="no">SolidLine.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SolidLine_1a5306af86ef8b98866248d6fee6c7cac7" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SolidLine::SolidLine</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>SolidLine</name>
+        <qualifiedname>QAccelPlot::SolidLine::SolidLine</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1SolidLine" kindref="compound">SolidLine</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/SolidLine.hpp" line="21" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The default line style — renders a continuous solid line with no gaps. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::SolidLine</label>
+        <link refid="classQAccelPlot_1_1SolidLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::SolidLine</label>
+        <link refid="classQAccelPlot_1_1SolidLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/linestyles/SolidLine.hpp" line="15" column="1" bodyfile="QAccelPlot/src/linestyles/SolidLine.hpp" bodystart="15" bodyend="22"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab" prot="public" virt="virtual"><scope>QAccelPlot::SolidLine</scope><name>dashParameters</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" prot="public" virt="non-virtual"><scope>QAccelPlot::SolidLine</scope><name>LineStyle</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" prot="public" virt="non-virtual"><scope>QAccelPlot::SolidLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a93fcf892e51f33f4f41a040f3a91d7d6" prot="public" virt="virtual"><scope>QAccelPlot::SolidLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1SolidLine_1a5306af86ef8b98866248d6fee6c7cac7" prot="public" virt="non-virtual"><scope>QAccelPlot::SolidLine</scope><name>SolidLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1aac0ae1f4156eb7ce665fb08934e86249" prot="public" virt="non-virtual"><scope>QAccelPlot::SolidLine</scope><name>styleChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

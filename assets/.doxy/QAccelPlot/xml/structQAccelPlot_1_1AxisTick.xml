@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1AxisTick" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisTick</compoundname>
+    <includes local="no">AxisTicks.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTick_1a4e47202bf027684fe9f1b32598c7af2d" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::AxisTick::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::AxisTick::value</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Data-space tick value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="17" column="11" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTick_1a9bfae2ed141def0ccaf6fa3363606335" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::AxisTick::label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>QAccelPlot::AxisTick::label</qualifiedname>
+        <briefdescription>
+<para>Formatted tick label. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="18" column="13" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A single major tick: its data-space value and its formatted label. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="16" column="1" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="16" bodyend="19"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisTick_1a9bfae2ed141def0ccaf6fa3363606335" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTick</scope><name>label</name></member>
+      <member refid="structQAccelPlot_1_1AxisTick_1a4e47202bf027684fe9f1b32598c7af2d" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTick</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

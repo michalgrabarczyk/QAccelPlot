@@ -27,7 +27,7 @@
     
     
       
-        <title>Troubleshooting - QAccelPlot v0.1.0 Documentation</title>
+        <title>Troubleshooting - QAccelPlot v0.2.0 Documentation</title>
       
     
     
@@ -53,6 +53,10 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../stylesheets/theme.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -77,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.1.0",
+  "softwareVersion": "0.2.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -94,7 +98,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -129,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -143,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.1.0 Documentation
+            QAccelPlot v0.2.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -162,7 +166,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -172,7 +176,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -267,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.1.0 Documentation
+    QAccelPlot v0.2.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -936,9 +940,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -952,7 +986,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1073,60 +1291,56 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
 <h2 id="module-qaccelplot-is-not-installed"><code>module "QAccelPlot" is not installed</code><a class="headerlink" href="#module-qaccelplot-is-not-installed" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot is a static QML module. Verify that the application links
-<code>QAccelPlot::QAccelPlot</code>, calls <code>qt_import_qml_plugins()</code> before finalization,
-and imports <code>QAccelPlot</code> in QML. The canonical target carries both the backing
-library and static QML plugin.
-See the complete CMake fragment in <a href="../getting-started/">Getting started</a>.</p>
-<p>Delete the application build directory after changing static QML plugin
-linkage; stale generated import files can otherwise obscure the fix.</p>
+<p>QAccelPlot is a static QML module. Check that the application:</p>
+<ul>
+<li>links <code>QAccelPlot::QAccelPlot</code>,</li>
+<li>calls <code>qt_import_qml_plugins()</code> before <code>qt_finalize_executable()</code>,</li>
+<li>imports <code>QAccelPlot</code> in QML.</li>
+</ul>
+<p>See the CMake file in <a href="../getting-started/">Getting started</a>. Delete the
+application build directory after changing plugin linkage; stale generated
+import files can hide the fix.</p>
 <h2 id="cmake-cannot-find-quickprivate">CMake cannot find <code>QuickPrivate</code><a class="headerlink" href="#cmake-cannot-find-quickprivate" title="Permanent link">&para;</a></h2>
-<p>QAccelPlot's default optimized mode uses one narrowly scoped Qt Quick private
-API for in-place live-data texture updates. Qt 6.11 and newer package
-<code>QuickPrivate</code> as a separately discoverable component. Install the
-private/development package matching the exact Qt build, and ensure CMake is
-not mixing Qt installations.</p>
-<p>Inspect <code>Qt6_DIR</code>, <code>CMAKE_PREFIX_PATH</code>, the compiler architecture, and the Qt
-version reported during configuration. A package from a different Qt patch,
-compiler, or architecture is not interchangeable.</p>
-<p>If private Qt dependencies are unsuitable for the target environment, use:</p>
+<p><code>QACCELPLOT_USE_QT_PRIVATE_API=ON</code> requires <code>Qt6::QuickPrivate</code>. Qt 6.11 and
+newer package it as a separate component. Install the private development
+package for the exact Qt build, and check <code>Qt6_DIR</code>, <code>CMAKE_PREFIX_PATH</code>, the
+compiler architecture, and the Qt version reported during configuration. A
+package from a different Qt patch release, compiler, or architecture does not
+work.</p>
+<p>To build without it:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
 </code></pre></div>
-<p>This mode does not find or link QuickPrivate. It uses only public Qt API and
-recreates the live data texture rather than updating it in place, which can be
-slower for huge data sets updated every frame.</p>
+<p>This mode recreates the data texture on each update instead of updating it in
+place, which is slower for large data sets updated every frame.</p>
 <h2 id="the-axes-appear-but-the-curve-is-blank">The axes appear but the curve is blank<a class="headerlink" href="#the-axes-appear-but-the-curve-is-blank" title="Permanent link">&para;</a></h2>
 <p>Check these conditions:</p>
 <ol>
-<li>The <code>LineCurve</code> has both <a href="../api/classQAccelPlot_1_1PlotSeries.html#a250150d8eaea44c2608375839747b2b2"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries.html#ae021f84424e1ea4ad44576961ac7d402"><code>yAxis</code></a> assigned.</li>
+<li>The <code>LineCurve</code> has both <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> assigned.</li>
 <li>At least two points exist when a line is enabled, or one point when only a
    marker is enabled.</li>
 <li>The viewport includes the point coordinates.</li>
 <li>The Qt Quick renderer is not using the software backend.</li>
 <li>The data buffer contains exactly two floats per declared point.</li>
 </ol>
-<p>Run with Qt logging enabled and look for the QAccelPlot warning that custom
-rendering is unavailable on the software backend.</p>
+<p>On the software backend, QAccelPlot logs a warning that curve rendering is
+unavailable.</p>
 <h2 id="rescale-does-not-show-all-new-data">Rescale does not show all new data<a class="headerlink" href="#rescale-does-not-show-all-new-data" title="Permanent link">&para;</a></h2>
-<p><a href="../api/classQAccelPlot_1_1LineCurve.html#a80e4d6c6ba351c76333ef4177f3c6e30"><code>setDataFNoRange()</code></a> intentionally skips data-range
-calculation. Set accurate <a href="../api/classQAccelPlot_1_1Axis.html#a7ff8bbf8f594cce69d3a56c9b7f7dc25"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis.html#ab9a1549ca7fa37509039903052111c85"><code>dataMax</code></a>
-values on the axes, or occasionally update through <a href="../api/classQAccelPlot_1_1LineCurve.html#ac99cd1571b8153cae96791c8206d9de6"><code>setDataF()</code></a>
-before calling <a href="../api/classQAccelPlot_1_1Axis.html#a1a4057e12caae2776590a0ce4bc38a84"><code>rescaleToData()</code></a> or
-<a href="../api/classQAccelPlot_1_1QAccelPlot.html#a6ab962feb97d0bfccb268ac54bce8c77"><code>rescaleAllAxes()</code></a>.</p>
-<p>If several series share an axis, remember that each series contributes to the
-axis data range.</p>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> skips data-range calculation. Set
+accurate <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> on the axes, or update
+through <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> before calling
+<a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a> or <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-rescaleallaxes"><code>rescaleAllAxes()</code></a>.
+Every series attached to an axis contributes to its data range.</p>
 <h2 id="a-real-time-plot-stutters">A real-time plot stutters<a class="headerlink" href="#a-real-time-plot-stutters" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Confirm that the data producer is not running on the UI thread.</li>
+<li>Run the data producer off the UI thread.</li>
 <li>Use a Release build.</li>
-<li>Move interleaved float buffers rather than rebuilding <code>QList&lt;QPointF&gt;</code> values.</li>
-<li>Avoid publishing more frames than the display can present.</li>
-<li>Temporarily disable markers, gradients, transitions, and sharp-corner
-  preservation to isolate rendering cost.</li>
+<li>Move interleaved float buffers instead of building <code>QList&lt;QPointF&gt;</code>.</li>
+<li>Do not publish more frames than the display presents.</li>
+<li>Disable markers, gradients, and transitions to isolate rendering cost.</li>
 <li>Measure <a href="https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped"><code>frameSwapped</code></a> intervals and producer throughput separately.</li>
 </ul>
-<p>Continue with the <a href="../performance/">Performance guide</a> and the
-<a href="../cookbook/background-data/">Background data production recipe</a>.</p>
+<p>See the <a href="../performance/">Performance guide</a> and
+<a href="../cookbook/background-data/">Background data production</a>.</p>
 <h2 id="reporting-a-problem">Reporting a problem<a class="headerlink" href="#reporting-a-problem" title="Permanent link">&para;</a></h2>
 <p>Include:</p>
 <ul>
@@ -1138,8 +1352,7 @@ axis data range.</p>
 <li>Release or Debug configuration.</li>
 <li>Logs, screenshots, or benchmark JSON where relevant.</li>
 </ul>
-<p>Report bugs and compatibility findings through
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/issues">GitHub Issues</a>.</p>
+<p>Report through <a href="https://github.com/michalgrabarczyk/QAccelPlot/issues">GitHub Issues</a>.</p>
 
 
 
@@ -1195,13 +1408,13 @@ axis data range.</p>
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API reference">
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                API reference
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">

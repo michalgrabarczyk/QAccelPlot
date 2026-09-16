@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineCurveEffect" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineCurveEffect</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1GradientFill" prot="public" virt="non-virtual">QAccelPlot::GradientFill</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1GradientStroke" prot="public" virt="non-virtual">QAccelPlot::GradientStroke</derivedcompoundref>
+    <includes local="no">LineCurveEffect.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSbool</type>
+        <definition>QML_ANONYMOUSbool QAccelPlot::LineCurveEffect::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::enabled</qualifiedname>
+        <read>enabled</read>
+        <write>setEnabled</write>
+        <briefdescription>
+<para>Whether this effect is active. Disabled effects are ignored during rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="26" column="5" bodyfile="QAccelPlot/src/effects/LineCurveEffect.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveEffect_1a5bc88c916e34fcf2113f62e227e2c97e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveEffect::enabled_</definition>
+        <argsstring></argsstring>
+        <name>enabled_</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::enabled_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="44" column="10" bodyfile="QAccelPlot/src/effects/LineCurveEffect.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::LineCurveEffect::LineCurveEffect</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>LineCurveEffect</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::LineCurveEffect</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classQAccelPlot_1_1LineCurveEffect" kindref="compound">LineCurveEffect</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="30" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveEffect::enabled</definition>
+        <argsstring>() const</argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::enabled</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if the effect is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveEffect::setEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Sets the effect&apos;s enabled state to <emphasis>enabled</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="35" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveEffect::enabledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>enabledChanged</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::enabledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the enabled property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveEffect::effectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>effectChanged</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::effectChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when any effect property changes, requesting a curve redraw. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="41" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for visual effects applied to a <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Effects are attached via the <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kindref="member">LineCurve::effects</ref></computeroutput> list property and evaluated during <computeroutput>updatePaintNode</computeroutput> to modify line or fill rendering.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>QAccelPlot::GradientFill</label>
+        <link refid="classQAccelPlot_1_1GradientFill"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QAccelPlot::GradientStroke</label>
+        <link refid="classQAccelPlot_1_1GradientStroke"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LineCurveEffect</label>
+        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::LineCurveEffect</label>
+        <link refid="classQAccelPlot_1_1LineCurveEffect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/effects/LineCurveEffect.hpp" line="21" column="1" bodyfile="QAccelPlot/src/effects/LineCurveEffect.hpp" bodystart="21" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>effectChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a5bc88c916e34fcf2113f62e227e2c97e" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabled_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>LineCurveEffect</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>setEnabled</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

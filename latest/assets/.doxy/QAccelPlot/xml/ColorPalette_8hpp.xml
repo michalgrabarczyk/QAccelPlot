@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ColorPalette_8hpp" kind="file" language="C++">
+    <compoundname>ColorPalette.hpp</compoundname>
+    <includes local="no">QColor</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot.hpp</includedby>
+    <includedby refid="Axis_8hpp" local="yes">QAccelPlot/src/axis/Axis.hpp</includedby>
+    <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/axis/AxisTicker.hpp</includedby>
+    <includedby refid="Grid_8hpp" local="yes">QAccelPlot/src/grid/Grid.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/series/LineCurve.hpp</includedby>
+    <includedby refid="RectangleList_8hpp" local="yes">QAccelPlot/src/shapes/RectangleList.hpp</includedby>
+    <includedby refid="Colors_8hpp" local="yes">QAccelPlot/src/theme/Colors.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/theme/ColorPalette.hpp</label>
+        <link refid="ColorPalette_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1ColorPalette" prot="public">QAccelPlot::ColorPalette</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__has_include(&lt;QtQmlIntegration/qqmlintegration.h&gt;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQmlIntegration/qqmlintegration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classQAccelPlot_1_1ColorPalette" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_UNCREATABLE(</highlight><highlight class="stringliteral">&quot;ColorPalette<sp/>instances<sp/>are<sp/>provided<sp/>by<sp/>the<sp/>Colors<sp/>singleton.&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Surfaces</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>window<sp/>MEMBER<sp/>window<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>plotArea<sp/>MEMBER<sp/>plotArea<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>axesArea<sp/>MEMBER<sp/>axesArea<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>control<sp/>MEMBER<sp/>control<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>controlHover<sp/>MEMBER<sp/>controlHover<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>outline<sp/>MEMBER<sp/>outline<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>plotBorder<sp/>MEMBER<sp/>plotBorder<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Axes<sp/>and<sp/>grid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>axisLine<sp/>MEMBER<sp/>axisLine<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>tick<sp/>MEMBER<sp/>tick<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>subtick<sp/>MEMBER<sp/>subtick<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>grid<sp/>MEMBER<sp/>grid<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>subGrid<sp/>MEMBER<sp/>subGrid<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>axisLabel<sp/>MEMBER<sp/>axisLabel<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>axisTickLabel<sp/>MEMBER<sp/>axisTickLabel<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Text<sp/>and<sp/>interaction<sp/>states</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>text<sp/>MEMBER<sp/>text<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>textSecondary<sp/>MEMBER<sp/>textSecondary<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>textMuted<sp/>MEMBER<sp/>textMuted<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>textOnAccent<sp/>MEMBER<sp/>textOnAccent<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>materialAccent<sp/>MEMBER<sp/>materialAccent<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>hover<sp/>MEMBER<sp/>hover<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>focus<sp/>MEMBER<sp/>focus<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>statusGood<sp/>MEMBER<sp/>statusGood<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>statusWarning<sp/>MEMBER<sp/>statusWarning<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>statusError<sp/>MEMBER<sp/>statusError<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Overlays</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>legendBackground<sp/>MEMBER<sp/>legendBackground<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>legendBorder<sp/>MEMBER<sp/>legendBorder<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>tooltipBackground<sp/>MEMBER<sp/>tooltipBackground<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>tooltipText<sp/>MEMBER<sp/>tooltipText<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>handleBorder<sp/>MEMBER<sp/>handleBorder<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>transparent<sp/>MEMBER<sp/>transparent<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Series</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesPrimary<sp/>MEMBER<sp/>seriesPrimary<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesSecondary<sp/>MEMBER<sp/>seriesSecondary<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesTertiary<sp/>MEMBER<sp/>seriesTertiary<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesQuaternary<sp/>MEMBER<sp/>seriesQuaternary<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesCyan<sp/>MEMBER<sp/>seriesCyan<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesRose<sp/>MEMBER<sp/>seriesRose<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesYellow<sp/>MEMBER<sp/>seriesYellow<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>seriesMuted<sp/>MEMBER<sp/>seriesMuted<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Annotations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationEvent<sp/>MEMBER<sp/>annotationEvent<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationPeak<sp/>MEMBER<sp/>annotationPeak<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationValley<sp/>MEMBER<sp/>annotationValley<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationRange<sp/>MEMBER<sp/>annotationRange<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationRangeFill<sp/>MEMBER<sp/>annotationRangeFill<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>annotationMarkerOutline<sp/>MEMBER<sp/>annotationMarkerOutline<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Interactive<sp/>tools</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>toolRuler<sp/>MEMBER<sp/>toolRuler<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>toolAngle<sp/>MEMBER<sp/>toolAngle<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>toolPoint<sp/>MEMBER<sp/>toolPoint<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>toolRegion<sp/>MEMBER<sp/>toolRegion<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>toolOverlay<sp/>MEMBER<sp/>toolOverlay<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Performance<sp/>showcase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>performanceCurve<sp/>MEMBER<sp/>performanceCurve<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/>performanceRectangles<sp/>MEMBER<sp/>performanceRectangles<sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">dark</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>&amp;<sp/><ref refid="classQAccelPlot_1_1ColorPalette_1a62f051e10663e15bc363425b4cc410d8" kindref="member">light</ref>();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>window;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>plotArea;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>axesArea;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>control;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>controlHover;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>outline;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>plotBorder;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>axisLine;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>tick;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>subtick;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>grid;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>subGrid;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>axisLabel;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>axisTickLabel;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>text;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>textSecondary;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>textMuted;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>textOnAccent;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>materialAccent;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>hover;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>focus;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>statusGood;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>statusWarning;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>statusError;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>legendBackground;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>legendBorder;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>tooltipBackground;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>tooltipText;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>handleBorder;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>transparent;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesPrimary;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesSecondary;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesTertiary;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesQuaternary;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesCyan;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesRose;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesYellow;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>seriesMuted;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationEvent;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationPeak;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationValley;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationRange;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationRangeFill;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>annotationMarkerOutline;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>toolRuler;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>toolAngle;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>toolPoint;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>toolRegion;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>toolOverlay;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>performanceCurve;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>performanceRectangles;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>*<sp/>createDark();</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref>*<sp/>createLight();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/theme/ColorPalette.hpp"/>
+  </compounddef>
+</doxygen>

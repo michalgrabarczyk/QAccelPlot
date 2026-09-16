@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1Internal" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::Internal</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::uploadDataTexture</definition>
+        <argsstring>(std::unique_ptr&lt; QSGTexture &gt; &amp;texture, QQuickWindow *window, const QImage &amp;image)</argsstring>
+        <name>uploadDataTexture</name>
+        <qualifiedname>QAccelPlot::Internal::uploadDataTexture</qualifiedname>
+        <param>
+          <type>std::unique_ptr&lt; QSGTexture &gt; &amp;</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>const QImage &amp;</type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+<para>Uploads an image to the live-data texture using the configured Qt API path. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/materials/internal/DataTextureUpload.hpp" line="21" column="6" declfile="QAccelPlot/src/materials/internal/DataTextureUpload.hpp" declline="21" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/materials/internal/DataTextureUpload.hpp" line="18" column="1"/>
+  </compounddef>
+</doxygen>

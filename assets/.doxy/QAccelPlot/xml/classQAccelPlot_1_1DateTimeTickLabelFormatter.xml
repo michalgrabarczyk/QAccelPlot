@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DateTimeTickLabelFormatter" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DateTimeTickLabelFormatter</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1TickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::TickLabelFormatter</basecompoundref>
+    <includes local="no">DateTimeTickLabelFormatter.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a94aaaaac40f4f61047c651d0e1ac4ce6" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat</definition>
+        <argsstring></argsstring>
+        <name>dateTimeFormat</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat</qualifiedname>
+        <read>dateTimeFormat</read>
+        <write>setDateTimeFormat</write>
+        <briefdescription>
+<para>The QDateTime format string used to render each tick label. Default: <computeroutput>&quot;yyyy-MM-dd HH:mm:ss&quot;</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="26" column="5" bodyfile="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1adecb472e0190361acae5d2aeb0282fb3" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat_</definition>
+        <argsstring></argsstring>
+        <name>dateTimeFormat_</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat_</qualifiedname>
+        <initializer>{&quot;yyyy-MM-dd HH:mm:ss&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="46" column="13" bodyfile="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1aa2ceec58053498d02cec9ea1f70080b7" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DateTimeTickLabelFormatter::DateTimeTickLabelFormatter</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>DateTimeTickLabelFormatter</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::DateTimeTickLabelFormatter</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="30" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1aba2c9ce649b56ccf2cf4d8bdc3fc7682" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat</definition>
+        <argsstring>() const</argsstring>
+        <name>dateTimeFormat</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat</qualifiedname>
+        <briefdescription>
+<para>Returns the current date/time format string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="33" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a05e346c3261a93ffde74d53204f17da6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DateTimeTickLabelFormatter::setDateTimeFormat</definition>
+        <argsstring>(const QString &amp;format)</argsstring>
+        <name>setDateTimeFormat</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::setDateTimeFormat</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Sets the date/time format string to <emphasis>format</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="35" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a5010dcd7a5601c88f39e96c799432232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormatChanged</definition>
+        <argsstring>()</argsstring>
+        <name>dateTimeFormatChanged</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormatChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the dateTimeFormat property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="39" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a645a7a42c679a92684baec50280f41bc" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::DateTimeTickLabelFormatter::doFormat</definition>
+        <argsstring>(qreal value, qreal tickStep) const override</argsstring>
+        <name>doFormat</name>
+        <qualifiedname>QAccelPlot::DateTimeTickLabelFormatter::doFormat</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8">doFormat</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <briefdescription>
+<para>Returns a date/time string for <emphasis>value</emphasis> (milliseconds since epoch). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="43" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A tick label formatter that displays tick values as formatted date/time strings. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Tick values are interpreted as milliseconds since the Unix epoch (1970-01-01T00:00:00 UTC).</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::DateTimeTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1DateTimeTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::DateTimeTickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1DateTimeTickLabelFormatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::TickLabelFormatter</label>
+        <link refid="classQAccelPlot_1_1TickLabelFormatter"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" line="21" column="1" bodyfile="QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp" bodystart="21" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a94aaaaac40f4f61047c651d0e1ac4ce6" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>dateTimeFormat</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1aba2c9ce649b56ccf2cf4d8bdc3fc7682" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>dateTimeFormat</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1adecb472e0190361acae5d2aeb0282fb3" prot="private" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>dateTimeFormat_</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a5010dcd7a5601c88f39e96c799432232" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>dateTimeFormatChanged</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1aa2ceec58053498d02cec9ea1f70080b7" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>DateTimeTickLabelFormatter</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a645a7a42c679a92684baec50280f41bc" prot="protected" virt="virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>format</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a05e346c3261a93ffde74d53204f17da6" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>setDateTimeFormat</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>setTickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>tickLabel</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>tickLabelChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" prot="public" virt="non-virtual"><scope>QAccelPlot::DateTimeTickLabelFormatter</scope><name>TickLabelFormatter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

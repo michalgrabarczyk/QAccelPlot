@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Colors" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Colors</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">Colors.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1Colors_1aee85985bb9c4af738c67d47aea3be3b4" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_SINGLETONColorPalette *</type>
+        <definition>QML_SINGLETONColorPalette* QAccelPlot::Colors::dark</definition>
+        <argsstring></argsstring>
+        <name>dark</name>
+        <qualifiedname>QAccelPlot::Colors::dark</qualifiedname>
+        <read>dark</read>
+        <briefdescription>
+<para>Read-only constant: dark theme palette. C++ property defaults use these colors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/theme/Colors.hpp" line="42" column="5" bodyfile="QAccelPlot/src/theme/Colors.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1Colors_1a8bb3fd50d8773d388fdcf46e99d4a2d1" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> *</type>
+        <definition>ColorPalette* QAccelPlot::Colors::light</definition>
+        <argsstring></argsstring>
+        <name>light</name>
+        <qualifiedname>QAccelPlot::Colors::light</qualifiedname>
+        <read>light</read>
+        <briefdescription>
+<para>Read-only constant: light theme palette. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/theme/Colors.hpp" line="44" column="5" bodyfile="QAccelPlot/src/theme/Colors.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Colors_1a25cce867ba698c74e9999e474c4a7caf" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Colors::Colors</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>Colors</name>
+        <qualifiedname>QAccelPlot::Colors::Colors</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/theme/Colors.hpp" line="47" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colors_1a959bfb29a6393e5253b6ffb025683cb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> *</type>
+        <definition>ColorPalette * QAccelPlot::Colors::dark</definition>
+        <argsstring>() const</argsstring>
+        <name>dark</name>
+        <qualifiedname>QAccelPlot::Colors::dark</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/theme/Colors.hpp" line="49" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Colors_1a1a13fcfe973997e4f76c28990cca20e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> *</type>
+        <definition>ColorPalette * QAccelPlot::Colors::light</definition>
+        <argsstring>() const</argsstring>
+        <name>light</name>
+        <qualifiedname>QAccelPlot::Colors::light</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/theme/Colors.hpp" line="50" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>QML singleton exposing <ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref>&apos;s built-in color palettes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="par"><title>Usage</title><para><programlisting><codeline><highlight class="keyword">import</highlight><highlight class="normal"><sp/>QAccelPlot<sp/>as<sp/>QAccelPlot</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">QAccelPlot.Plot<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>plotAreaColor:<sp/>QAccelPlot.Colors.dark.plotArea</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1ColorPalette" kindref="compound">ColorPalette</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::Colors</label>
+        <link refid="classQAccelPlot_1_1Colors"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::Colors</label>
+        <link refid="classQAccelPlot_1_1Colors"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/theme/Colors.hpp" line="37" column="1" bodyfile="QAccelPlot/src/theme/Colors.hpp" bodystart="37" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Colors_1a25cce867ba698c74e9999e474c4a7caf" prot="public" virt="non-virtual"><scope>QAccelPlot::Colors</scope><name>Colors</name></member>
+      <member refid="classQAccelPlot_1_1Colors_1aee85985bb9c4af738c67d47aea3be3b4" prot="public" virt="non-virtual"><scope>QAccelPlot::Colors</scope><name>dark</name></member>
+      <member refid="classQAccelPlot_1_1Colors_1a959bfb29a6393e5253b6ffb025683cb9" prot="public" virt="non-virtual"><scope>QAccelPlot::Colors</scope><name>dark</name></member>
+      <member refid="classQAccelPlot_1_1Colors_1a8bb3fd50d8773d388fdcf46e99d4a2d1" prot="public" virt="non-virtual"><scope>QAccelPlot::Colors</scope><name>light</name></member>
+      <member refid="classQAccelPlot_1_1Colors_1a1a13fcfe973997e4f76c28990cca20e0" prot="public" virt="non-virtual"><scope>QAccelPlot::Colors</scope><name>light</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

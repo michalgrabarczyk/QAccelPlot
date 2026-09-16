@@ -27,7 +27,7 @@
     
     
       
-        <title>Changelog - QAccelPlot v0.1.0 Documentation</title>
+        <title>Changelog - QAccelPlot v0.2.0 Documentation</title>
       
     
     
@@ -53,6 +53,10 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../stylesheets/theme.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -75,7 +79,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.1.0",
+  "softwareVersion": "0.2.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -92,7 +96,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -127,7 +131,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +145,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.1.0 Documentation
+            QAccelPlot v0.2.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -160,7 +164,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -170,7 +174,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -265,13 +269,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.1.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.1.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.1.0 Documentation
+    QAccelPlot v0.2.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -785,6 +789,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#020-2026-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0] — 2026-09-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-09-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#010-2026-09-08" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -797,7 +851,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
+  <a href="#added_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -907,9 +961,39 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -923,7 +1007,191 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -966,6 +1234,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#020-2026-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [0.2.0] — 2026-09-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[0.2.0] — 2026-09-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#010-2026-09-08" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -978,7 +1296,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
+  <a href="#added_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -1014,8 +1332,136 @@
 <p>All notable changes to QAccelPlot are documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
-<h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
+<h2 id="020-2026-09-16">[0.2.0] — 2026-09-16<a class="headerlink" href="#020-2026-09-16" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Per-axis <code>layoutSize</code> control for explicitly reserving horizontal-axis height
+  or vertical-axis width.</li>
+<li>Automatic side assignment for the four named plot axes: <code>xAxis</code> uses the
+  bottom, <code>x2Axis</code> the top, <code>yAxis</code> the left, and <code>y2Axis</code> the right.</li>
+<li>Explicit invalid-sample contract for <code>LineCurve</code>: <code>NaN</code>, <code>±Inf</code>, and
+  non-positive values on logarithmic axes break the line, gradient fill, and
+  hover hit testing consistently on every graphics backend, never draw markers,
+  and are excluded from auto-ranging per dimension.</li>
+<li><code>LineCurve.gaps</code> grouped property. <code>gaps.nanMode</code> selects
+  <code>NanGapMode.Break</code> (default) or <code>NanGapMode.Connect</code>, which joins the valid
+  samples on either side of a gap.</li>
+<li>A "Gaps" page in the styling and transitions example.</li>
+</ul>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Values at or below zero on a logarithmic axis now render as gaps instead of
+  being clamped to a steep drop toward the bottom of the plot.</li>
+<li><code>MorphTransition</code> no longer interpolates from or to non-finite coordinates:
+  new gaps appear immediately and samples leaving a gap jump to their target.</li>
+<li>Renamed <code>RectangleList::setRawData()</code> to <code>setData()</code>, matching the naming
+  of the <code>LineCurve</code> data-setting APIs.</li>
+<li>Default plot, axis, grid, series, and legend colors now come from the
+  built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
+  defined once in C++ and shared with QML, where its usage is unchanged.</li>
+</ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Legend line and marker samples now use the curve renderers, keeping marker
+  shapes and dash patterns consistent across graphics backends and display scales.</li>
+<li>Preserved double precision in <code>LineCurve::setData()</code> for modern Unix-epoch
+  timestamps and large coordinates while keeping the <code>F</code> ingestion APIs
+  float-based.</li>
+<li>Reassigning a <code>LineCurve</code>'s <code>effects</code> list no longer deletes the effect
+  objects, and effects destroyed elsewhere are removed from the list instead
+  of leaving dangling entries.</li>
+<li>A running <code>LineCurve</code> transition no longer overwrites data pushed through
+  <code>appendData()</code> or through a data-setting API called after disabling the
+  transition mid-animation: any in-flight transition is now cancelled before
+  the new data is applied directly.</li>
+<li>Major tick marks now honor fractional <code>tickWidth</code> values (e.g. <code>1.5</code>)
+  instead of truncating to an integer pixel width.</li>
+<li><code>LineCurve</code> no longer leaks the default <code>SolidLine</code> it creates for its
+  <code>lineStyle</code>: the default is owned by the curve and released when the curve
+  is destroyed. Styles assigned from QML are still left untouched, and the
+  curve no longer keeps a dangling reference when an assigned style is
+  destroyed before it; it emits <code>lineStyleChanged</code> and repaints instead.</li>
+<li>Appending the same axis to <code>extraAxes</code> twice no longer registers it twice
+  and reserves its layout space twice, and reading an out-of-range
+  <code>extraAxes</code> index returns <code>null</code> instead of tripping an assert.</li>
+<li>A very large series or rectangle count that would produce a data texture
+  taller than a safe cross-GPU limit now logs a clear warning explaining why
+  it may render nothing, instead of failing silently.</li>
+<li><code>DashLine</code> now rejects a pattern containing a negative segment, and warns
+  when a pattern is longer than the eight segments the renderer supports
+  instead of silently dropping the rest.</li>
+<li><code>mouseMoved</code> now fires for a plain cursor move over the plot, not only while
+  a mouse button is held, matching its documented behavior.</li>
+<li>Axes are no longer given a negative width or height when the plot item is
+  smaller than its padding plus the space its axes reserve.</li>
+<li><code>LineCurve</code> no longer changes its own position or size from
+  <code>updatePaintNode()</code>, which runs on the render thread with the threaded
+  render loop and is not a safe place to mutate <code>QQuickItem</code> geometry. It
+  now reads the plot rect that <code>QAccelPlot</code> already assigns on the GUI
+  thread instead.</li>
+<li><code>LineCurve::appendData()</code> updates the reported data range and the GPU render
+  buffer incrementally instead of rescanning and rebuilding the whole curve on
+  every call, so streaming N points costs O(N) work instead of O(N²).</li>
+<li><code>RectangleList</code> re-uploads its data texture when the scene-graph node is
+  recreated (e.g. after axes are temporarily unset), instead of leaving a
+  freshly created node with an empty texture until new data arrives.</li>
+<li><code>DataAnchor</code> no longer dereferences a dangling pointer after its <code>xAxis</code> or
+  <code>yAxis</code> is destroyed elsewhere; the axis reference is cleared automatically
+  instead.</li>
+<li>A horizontal-only wheel or touchpad scroll no longer zooms the plot out;
+  it is now ignored by the zoom handler and passed through instead.</li>
+<li>Tick labels near zero no longer render as a misleading <code>"-0.00"</code> when a
+  tiny negative value from accumulated tick-position arithmetic rounds to
+  zero at the display precision.</li>
+<li>Vertical gradients on markers now match the orientation of line strokes and
+  fills instead of rendering upside down.</li>
+<li>Changing an axis ticker's <code>tickCount</code> or <code>subtickCount</code> now refreshes the
+  plot grid immediately instead of leaving it stale until the next pan or
+  zoom.</li>
+<li>The plot area is now relaid out when an axis's <code>axisLinePadding</code>,
+  <code>orientation</code>, or ticker <code>tickLengthIn</code>/<code>subtickLengthIn</code> changes at
+  runtime, instead of only on <code>visible</code> or <code>layoutSize</code> changes.</li>
+<li>Extra axes now respect their <code>side</code>: a horizontal extra axis with
+  <code>side: Top</code> stacks above the plot instead of always below it, and a
+  vertical extra axis now reserves layout space and stacks on its declared
+  <code>side</code> (<code>Left</code> or <code>Right</code>) instead of always overlapping the plot's left
+  edge with no reserved space.</li>
+<li>Log-scale axis labels no longer collapse to <code>"0.0"</code> or <code>"100.0"</code> for
+  small or large tick values; each major tick's own magnitude is now used
+  to derive its label precision.</li>
+<li><code>Axis::rescaleToData()</code> (double-click rescale) no longer does nothing for
+  flat data — a constant series or a single point — and synthesizes a small
+  viewport around the value instead, proportional to the value's own
+  magnitude so a very small nonzero value isn't rendered indistinguishable
+  from zero. A log-scale axis with only non-positive data now gets a valid,
+  all-positive synthesized viewport instead of a mismatched
+  positive-min/non-positive-max range.</li>
+<li>Enabling <code>logScale</code> (via the property, <code>toggleLogScale()</code>, or the <code>L</code> key)
+  while the current viewport is non-positive now clamps it to a valid
+  positive range instead of collapsing every curve to a single point.</li>
+<li>A non-finite X or Y data range on a <code>PlotSeries</code> no longer blocks the
+  other axis's range update; each axis's range is now validated and
+  reported independently.</li>
+<li>Tick labels are now formatted on the GUI thread before rendering, rather
+  than inside <code>Axis::paint()</code>, which runs on the render thread with the
+  threaded render loop. A <code>tickLabel</code> JavaScript callback is therefore never
+  invoked from the render thread, and it now receives <code>tickStep</code> as its
+  second argument (previously always <code>undefined</code>).</li>
+<li>Preserved double precision in <code>RectangleList</code> for modern Unix-epoch
+  timestamps and large coordinates: rectangles are stored and their data
+  range computed in double precision, and rendering uses an origin-relative
+  float buffer instead of storing raw coordinates as float. A new
+  <code>setData(const double*, int)</code> overload accepts double-precision data
+  directly.</li>
+<li>A single <code>±Inf</code> coordinate is now skipped when computing a curve's axis
+  data ranges instead of making that range non-finite, and all-<code>NaN</code> data no longer reports an inverted range.</li>
+<li><code>NaN</code> samples no longer make adjacent valid line segments disappear or
+  produce backend-dependent artifacts.</li>
+<li>On Qt 6.2, the legend now uses the dark palette's background, border, and
+  text colors instead of falling back to a white box with dark text.</li>
+</ul>
+<h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
+<h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>GPU-accelerated <code>LineCurve</code> rendering integrated with a QML-first <code>Plot</code>
   component and C++ <code>PlotView</code> API.</li>

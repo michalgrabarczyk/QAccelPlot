@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1LineCurveGaps" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineCurveGaps</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">LineCurveGaps.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSNanGapMode</type>
+        <definition>QML_ANONYMOUSNanGapMode QAccelPlot::LineCurveGaps::nanMode</definition>
+        <argsstring></argsstring>
+        <name>nanMode</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::nanMode</qualifiedname>
+        <read>nanMode</read>
+        <write>setNanMode</write>
+        <briefdescription>
+<para>How the line and gradient fill treat invalid samples. Default: <computeroutput>NanGapMode.Break</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="45" column="5" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveGaps_1a2bfd0d248c85b20a0c0cdfe3ae3946cf" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapMode</ref></type>
+        <definition>NanGapMode QAccelPlot::LineCurveGaps::nanMode_</definition>
+        <argsstring></argsstring>
+        <name>nanMode_</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::nanMode_</qualifiedname>
+        <initializer>{NanGapMode::Break}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="61" column="16" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="61" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::LineCurveGaps::LineCurveGaps</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>LineCurveGaps</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::LineCurveGaps</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1LineCurveGaps" kindref="compound">LineCurveGaps</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="49" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveGaps_1a0b2f96307f5ea7a8ca60aa129c98ba16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapMode</ref></type>
+        <definition>NanGapMode QAccelPlot::LineCurveGaps::nanMode</definition>
+        <argsstring>() const</argsstring>
+        <name>nanMode</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::nanMode</qualifiedname>
+        <briefdescription>
+<para>Returns how invalid samples are rendered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="52" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveGaps::setNanMode</definition>
+        <argsstring>(NanGapMode mode)</argsstring>
+        <name>setNanMode</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::setNanMode</qualifiedname>
+        <param>
+          <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapMode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Sets how invalid samples are rendered to <emphasis>mode</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="54" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveGaps::nanModeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>nanModeChanged</name>
+        <qualifiedname>QAccelPlot::LineCurveGaps::nanModeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the nanMode property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="58" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controls how a <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> renders gaps in its data. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Accessible via the <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a304e3f9be82a9fea7cb84b0c55068d9c" kindref="member">LineCurve::gaps</ref></computeroutput> CONSTANT grouped property, for example <computeroutput>gaps.nanMode: QAccelPlot.NanGapMode.Connect</computeroutput>.</para>
+<para>A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate, regardless of <computeroutput>nanMode</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::LineCurveGaps</label>
+        <link refid="classQAccelPlot_1_1LineCurveGaps"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::LineCurveGaps</label>
+        <link refid="classQAccelPlot_1_1LineCurveGaps"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="40" column="1" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="40" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1a999e08ba3f8f6ab18e9658961cf1dc14" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>LineCurveGaps</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1a9bb1bbe17c37163817cbe2c9a6bd4005" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>nanMode</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1a0b2f96307f5ea7a8ca60aa129c98ba16" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>nanMode</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1a2bfd0d248c85b20a0c0cdfe3ae3946cf" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>nanMode_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1afbb22844937c1627bbd39d0be3f5ff92" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>nanModeChanged</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveGaps_1a9f1feb766cd693a6618ef0c2812cd416" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveGaps</scope><name>setNanMode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

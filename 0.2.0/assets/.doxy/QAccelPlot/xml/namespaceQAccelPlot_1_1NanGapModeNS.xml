@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1NanGapModeNS" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::NanGapModeNS</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Mode</name>
+        <qualifiedname>QAccelPlot::NanGapModeNS::Mode</qualifiedname>
+        <enumvalue id="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732ae4c38d6d45baf080943d323dd51a2ce8" prot="public">
+          <name>Break</name>
+          <briefdescription>
+<para>No line segment or fill is drawn to or from an invalid sample. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732a49ab28040dfa07f53544970c6d147e1e" prot="public">
+          <name>Connect</name>
+          <briefdescription>
+<para>Invalid samples are skipped; the line and fill join the neighboring valid samples. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Rendering strategies for invalid samples: NaN, ±Inf, or a non-positive value on a log-scale axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="21" column="1" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Namespace exposing the <computeroutput>NanGapMode</computeroutput> enum to QML. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="16" column="1"/>
+  </compounddef>
+</doxygen>

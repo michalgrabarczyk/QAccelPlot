@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1NoLine" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::NoLine</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1LineStyle" prot="public" virt="non-virtual">QAccelPlot::LineStyle</basecompoundref>
+    <includes local="no">NoLine.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1NoLine_1ab466bd3547e18a64abd55a8c62ef68c3" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::NoLine::NoLine</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>NoLine</name>
+        <qualifiedname>QAccelPlot::NoLine::NoLine</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1NoLine" kindref="compound">NoLine</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/NoLine.hpp" line="21" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1NoLine_1a24d0be58709fc5175082802242ffef5c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::NoLine::showLine</definition>
+        <argsstring>() const override</argsstring>
+        <name>showLine</name>
+        <qualifiedname>QAccelPlot::NoLine::showLine</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1LineStyle_1a93fcf892e51f33f4f41a040f3a91d7d6">showLine</reimplements>
+        <briefdescription>
+<para>Returns <computeroutput>false</computeroutput>, suppressing line rendering for this curve. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/linestyles/NoLine.hpp" line="24" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A line style that suppresses line rendering entirely, leaving only markers visible. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::NoLine</label>
+        <link refid="classQAccelPlot_1_1NoLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::LineStyle</label>
+        <link refid="classQAccelPlot_1_1LineStyle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::NoLine</label>
+        <link refid="classQAccelPlot_1_1NoLine"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/linestyles/NoLine.hpp" line="15" column="1" bodyfile="QAccelPlot/src/linestyles/NoLine.hpp" bodystart="15" bodyend="25"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineStyle_1a1df16150df3d29aac2896828084334ab" prot="public" virt="virtual"><scope>QAccelPlot::NoLine</scope><name>dashParameters</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a357f724b6e64b57101b966163fe8c231" prot="public" virt="non-virtual"><scope>QAccelPlot::NoLine</scope><name>LineStyle</name></member>
+      <member refid="classQAccelPlot_1_1NoLine_1ab466bd3547e18a64abd55a8c62ef68c3" prot="public" virt="non-virtual"><scope>QAccelPlot::NoLine</scope><name>NoLine</name></member>
+      <member refid="classQAccelPlot_1_1NoLine_1a24d0be58709fc5175082802242ffef5c" prot="public" virt="virtual"><scope>QAccelPlot::NoLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1a3106ef5605632587110a4f226edd6c78" prot="public" virt="non-virtual" ambiguityscope="QAccelPlot::LineStyle::"><scope>QAccelPlot::NoLine</scope><name>showLine</name></member>
+      <member refid="classQAccelPlot_1_1LineStyle_1aac0ae1f4156eb7ce665fb08934e86249" prot="public" virt="non-virtual"><scope>QAccelPlot::NoLine</scope><name>styleChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
