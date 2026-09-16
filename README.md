@@ -9,9 +9,9 @@
 </p>
 
 **QAccelPlot** is a high-performance, interactive 2D plotting library for
-**Qt Quick (QML & C++)**. Powered directly by the Qt Scene Graph (QSG) and
-GPU shaders, it can render **millions of points at 60+ FPS**
-without downsampling or level-of-detail (LOD) reduction.
+**Qt Quick (QML & C++)**. It renders through the Qt Scene Graph with GPU shaders and replaces
+and draws **millions of points per frame at 60 FPS** without downsampling or
+level-of-detail (LOD) reduction.
 
 ---
 
@@ -21,30 +21,20 @@ without downsampling or level-of-detail (LOD) reduction.
   <sub><a href="examples/pulsar_showcase/">Explore the Cosmic Pulsar example</a></sub>
 </div>
 
-## 💡 Why It Exists
-
-QAccelPlot began with a practical need: a plot that worked cleanly with QML
-layouts and property bindings while remaining responsive with large,
-continuously updated datasets. None of the options I tried offered that
-combination.
-
 ## ⚡ Highlights
 
-- **GPU-Accelerated**: Capable of rendering millions of points at display refresh rate using shaders (OpenGL, Direct3D 11/12, Vulkan, Metal).
-- **Interactive by Default**: Built-in panning, cursor-centered and axis-specific zoom, hover detection, and data-anchored annotations.
-- **QML Integration**: Compose clean, declarative plot layouts with simple Qt Quick property bindings.
-- **Efficient C++ Data Ingestion**: Stream data buffers from worker threads without blocking the UI.
-- **Modern Visual Styling**: Hardware gradient fills, gradient strokes, dashes, markers, and smooth animated morph/draw transitions.
+- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, Direct3D 11/12, Vulkan, and Metal.
+- **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
+- **Fast data paths**: Move interleaved `float` buffers into a curve, skip range scans, or hand buffers off from worker threads with `postData()`.
+- **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
+- **Invalid samples**: `NaN`, `±Inf`, and non-positive log-axis values render as gaps or are connected across.
 
 ---
 
 ## 📊 Performance at a Glance
 
-QAccelPlot is designed for large datasets that change continuously. The
-benchmark below compares how many points QAccelPlot, Qt Graphs, and QCustomPlot
-can replace and render each frame while sustaining 60 FPS on the same system.
-QAccelPlot achieves this throughput by combining GPU vertex caching, native
-data paths, and shaders to minimize per-frame overhead.
+Maximum points each library can replace and render every frame while
+sustaining 60 FPS on the same system:
 
 ![Performance comparison](docs/guide/assets/performance_comparison.svg)
 
@@ -56,9 +46,8 @@ data paths, and shaders to minimize per-frame overhead.
 | :--- | :--- | :--- | :--- |
 | **Rendering Backend** | **Qt Scene Graph** | Qt Scene Graph | QWidget paint buffers (optional OpenGL) |
 | **Qt Quick / QML Native** | **Yes** — Native `QQuickItem` | Yes | No (QWidget-based) |
-| **60 FPS Dataset Capacity**\* | **Up to ~8M–10M points** | ~13K points | ~2.75M (OpenGL) / ~100K (CPU) |
-| **Data Ingestion Options** | **QML, bulk vector, move-optimized, cached** | Property bindings / list replace | Bulk vector / key-value copies |
-| **Shaders & Transitions** | **GPU shaders, morphing & fills** | Built-in series styling | Library styling; no QML-native transitions |
+| **60 FPS Dataset Capacity**\* | **~8M points** | ~13K points | ~2.75M (OpenGL) |
+| **Bulk Data Input** | **QML points, double vectors, moved or copied `float` buffers, prebuilt vertex cache** | `QList<QPointF>` replace | Key/value vector copies |
 
 <sub>* Point capacity varies with hardware. Figures shown reflect measurements on the [benchmark reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/).</sub>
 
@@ -96,7 +85,7 @@ QAccelPlot.Plot {
 }
 ```
 
-The plot supports panning and cursor-centered zoom out of the box.
+Panning, zooming, and rescaling need no extra code.
 
 ### 2. Set Data from C++
 
@@ -107,13 +96,13 @@ const std::vector<double> amplitudes { 0, 0.8, -0.6, 0.4, 0 };
 curve->setData(times, amplitudes);
 ```
 
-See the [Getting Started guide](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)
-for complete instructions on integrating QAccelPlot into your project.
-For maximum performance, see the
+`setData()` suits small data sets. For large or streaming data, see the
 [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/).
+For CMake integration, see
+[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/).
 
 > [!NOTE]
-> **Active Development (v0.1):** QAccelPlot is designed for production use, but its core API may still evolve before 1.0. Bug reports, compatibility notes, and feedback from real-world projects are very welcome.
+> **Pre-1.0 (v0.1):** The API may change between minor releases until 1.0.
 
 ---
 
@@ -123,33 +112,28 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 
 | Example | Description |
 | :--- | :--- |
-| **[Cosmic Pulsar](examples/pulsar_showcase/)** | Animated 80-ridge CP 1919 waterfall demonstrating dense line rendering, antialiasing, and background data generation. |
-| **[Realtime](examples/realtime/)** | High-frequency scrolling vibration sensor with a synchronized 20-second sliding window. |
-| **[Performance Showcase](examples/performance_showcase/)** | Interactive stress test rendering up to 10M+ points with live FPS counters. |
-| **[Styling & Transitions](examples/styling_and_transitions/)** | Gradient fills, stroke styles, markers, and animated data morphing transitions. |
-| **[Interactive Tools](examples/interactive_tools/)** | Distance rulers, angle tools, rectangular selection, and point markers. |
-| **[Custom Axis](examples/custom_axis/)** | Multi-lead ECG layouts, multi-rate waveforms, and logarithmic frequency spectra. |
-| **[Axis Formats](examples/axis_formats/)** | Category, logarithmic, and date-time tick label formatters. |
-| **[Annotations](examples/annotations/)** | Dynamic callouts and overlays anchored directly to data coordinates. |
-| **[Quickstart](examples/quickstart/)** | Minimal standalone setup demonstrating basic plot configuration. |
+| **[Cosmic Pulsar](examples/pulsar_showcase/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
+| **[Realtime](examples/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
+| **[Performance Showcase](examples/performance_showcase/)** | Stress test up to 10M points with display FPS and data update rate. |
+| **[Styling & Transitions](examples/styling_and_transitions/)** | Gradient fills and strokes, dashes, markers, gaps, and morph/draw transitions. |
+| **[Interactive Tools](examples/interactive_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
+| **[Custom Axis](examples/custom_axis/)** | Multi-lead ECG layout, multi-rate waveforms, and logarithmic spectra. |
+| **[Axis Formats](examples/axis_formats/)** | Category, logarithmic, and date/time tick labels. |
+| **[Annotations](examples/annotations/)** | QML overlays anchored to data coordinates. |
+| **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 
 ---
 
 ## 🧪 Testing
 
-QAccelPlot uses complementary test layers to catch different kinds of
-regressions:
-
-- **[Unit tests](.github/workflows/ci.yml)** cover core plotting behavior, data
-  handling, axes, formatting, styling, interactions, and transitions.
-- **[Performance regression benchmarks](.github/workflows/benchmark.yml)**
-  help catch regressions in data-ingestion and rendering performance.
-- **[Visual acceptance tests](.github/workflows/ai-regression.yml)** render
-  every example across multiple Qt versions and graphics backends, using
-  contract-driven AI inspection to detect visible regressions.
-
-The visual test matrix spans Qt 6.2, 6.8, and 6.11 on OpenGL, Vulkan,
-Direct3D 11/12, and Metal.
+- **[Unit tests](.github/workflows/ci.yml)**: plotting behavior, data
+  handling, axes, formatting, styling, interaction, and transitions.
+- **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
+  and rendering regressions.
+- **[Visual acceptance tests](.github/workflows/ai-regression.yml)**: every
+  example rendered on Qt 6.2, 6.8, and 6.11 with OpenGL, OpenGL ES, Vulkan,
+  Direct3D 11/12, and Metal, then checked against per-page visual contracts by
+  AI inspection.
 
 ---
 
@@ -160,12 +144,11 @@ Direct3D 11/12, and Metal.
 - **CMake** 3.16 or newer
 - **C++17** compatible compiler
 - **Qt 6.2 or newer** with `Core`, `Gui`, `Quick`, and `ShaderTools`
-- The matching `QuickPrivate` component for the default optimized build; it is
-  optional when `QACCELPLOT_USE_QT_PRIVATE_API=OFF`
-- A hardware-accelerated Qt Quick Scene Graph backend (OpenGL, Direct3D 11/12, Vulkan, or Metal)
+- Optional: the matching `QuickPrivate` component for faster live-data texture
+  updates
+- A hardware Qt Quick Scene Graph backend (OpenGL, Direct3D 11/12, Vulkan, or Metal)
 
-QAccelPlot currently builds as a static library. To build the library and
-examples:
+QAccelPlot builds as a static library.
 
 ```sh
 # Configure with examples enabled
@@ -181,54 +164,43 @@ cmake --build build --config Release --target QAccelPlotTests
 ctest --test-dir build --output-on-failure
 ```
 
-Screenshot smoke tests and deterministic visual validation are opt-in with
-`QACCELPLOT_BUILD_VISUAL_TESTS=ON`. Register the paid AI inspection tests as
-well with `QACCELPLOT_BUILD_AI_VISUAL_TESTS=ON`; both options require examples
-and unit tests to be enabled.
-
-The optimized Qt Quick private-API path is enabled when available. Configure
-with `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` for a public-only build; see
-[Texture upload modes](docs/guide/performance.md#select-the-texture-upload-mode).
+| Option | Default | Effect |
+| :--- | :--- | :--- |
+| `QACCELPLOT_USE_QT_PRIVATE_API` | `ON` if `QuickPrivate` is found | In-place data texture updates; `OFF` uses public Qt API only. See [texture upload modes](docs/guide/performance.md#select-the-texture-upload-mode). |
+| `QACCELPLOT_BUILD_VISUAL_TESTS` | `OFF` | Screenshot and visual validation tests. Requires examples and tests. |
+| `QACCELPLOT_BUILD_AI_VISUAL_TESTS` | `OFF` | Paid AI inspection tests. Requires visual tests. |
 
 ---
 
 ## 📖 Documentation
 
-Complete guides, architectural deep-dives, and API references are hosted online:
-
-- 🚀 **[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — Step-by-step installation and first plot.
-- 🏗️ **[Concepts & Architecture](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Understanding Qt Scene Graph integration and data flow.
-- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Buffer management, efficient handoffs, and benchmarking.
-- 🍳 **[Cookbook & Recipes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Focused solutions for multi-axis plots, real-time feeds, and custom styles.
-- ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Common questions on threading, licensing, and backends.
-- 📚 **[API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Comprehensive class, property, and method documentation.
+- 🚀 **[Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
+- 🏗️ **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
+- ⚡ **[Performance Guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
+- 🍳 **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Real-time data, multiple axes, styling, and tools.
+- ❓ **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Threading, licensing, and backends.
+- 📚 **[API Reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Classes, properties, and methods.
 
 ---
 
 ## 🗺️ Road to 1.0
 
-Before the 1.0 release, the main priorities are:
+Planned before 1.0:
 
-- Point-cloud series for large collections of unconnected points.
-- Bar charts for categorical data.
-- Heatmaps for visualizing scalar values on a 2D grid.
+- Point-cloud series for large sets of unconnected points.
+- Bar charts.
+- Heatmaps.
 - SVG and PNG export.
-- Support for gaps and invalid samples in plotted data.
-- Box zoom and configurable pan and zoom limits for each axis.
-- Touch interaction, including panning and pinch zoom.
-
-The roadmap may evolve based on feedback. Suggestions are welcome through
-[GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
+- Box zoom and per-axis pan and zoom limits.
+- Touch panning and pinch zoom.
 
 ---
 
 ## 🤝 Contributing & Feedback
 
-Bug reports, feature requests, compatibility notes, and user experiences are
-very welcome. Please share them through
+Report bugs, feature requests, and compatibility notes through
 [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues). Pull
-requests are not currently accepted; see [CONTRIBUTING.md](CONTRIBUTING.md) for
-more information.
+requests are not accepted; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 

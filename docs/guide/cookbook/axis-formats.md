@@ -27,10 +27,8 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
-Supply epoch values through `setData()`, which retains double precision and
-keeps millisecond-scale differences visible at modern dates. APIs ending in
-`F` intentionally store coordinates as floats; around the current Unix epoch,
-that representation cannot distinguish nearby timestamps.
+Supply epoch values through `setData()`, which keeps double precision. The `F`
+APIs are faster but store floats, which are less precise.
 
 ## Categories
 
@@ -72,13 +70,10 @@ Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻
 
 ## Application-specific labels
 
-`QAccelPlot.NumericTickLabelFormatter` provides the normal numeric presentation. For
-specialized formatting, assign a JavaScript callback to a
-`QAccelPlot.TickLabelFormatter`'s [`tickLabel`][tick-label] property; keep the function inexpensive
-because it runs for every generated tick label.
-
-For example, a temperature-monitoring plot can append units while retaining numeric
-data values:
+`QAccelPlot.NumericTickLabelFormatter` is the default numeric format. For custom
+text, assign a JavaScript function to the formatter's
+[`tickLabel`][tick-label] property. It runs for every tick label, so keep it
+cheap:
 
 ```qml
 yAxis: QAccelPlot.Axis {

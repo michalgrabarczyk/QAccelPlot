@@ -94,7 +94,7 @@ QAccelPlot/
 ### Other directories
 
 - `examples/` — Complete runnable applications (quickstart, realtime,
-  annotations, axis_formats, custom_axis, interactive_tools,
+  pulsar_showcase, annotations, axis_formats, custom_axis, interactive_tools,
   performance_showcase, styling_and_transitions)
 - `benchmarks/` — Performance measurement scenarios and harness
 - `docs/` — MkDocs guide source + Doxygen configuration

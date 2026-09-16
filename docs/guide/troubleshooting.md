@@ -11,36 +11,33 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## `module "QAccelPlot" is not installed`
 
-QAccelPlot is a static QML module. Verify that the application links
-`QAccelPlot::QAccelPlot`, calls `qt_import_qml_plugins()` before finalization,
-and imports `QAccelPlot` in QML. The canonical target carries both the backing
-library and static QML plugin.
-See the complete CMake fragment in [Getting started](getting-started.md).
+QAccelPlot is a static QML module. Check that the application:
 
-Delete the application build directory after changing static QML plugin
-linkage; stale generated import files can otherwise obscure the fix.
+- links `QAccelPlot::QAccelPlot`,
+- calls `qt_import_qml_plugins()` before `qt_finalize_executable()`,
+- imports `QAccelPlot` in QML.
+
+See the CMake file in [Getting started](getting-started.md). Delete the
+application build directory after changing plugin linkage; stale generated
+import files can hide the fix.
 
 ## CMake cannot find `QuickPrivate`
 
-QAccelPlot's default optimized mode uses one narrowly scoped Qt Quick private
-API for in-place live-data texture updates. Qt 6.11 and newer package
-`QuickPrivate` as a separately discoverable component. Install the
-private/development package matching the exact Qt build, and ensure CMake is
-not mixing Qt installations.
+`QACCELPLOT_USE_QT_PRIVATE_API=ON` requires `Qt6::QuickPrivate`. Qt 6.11 and
+newer package it as a separate component. Install the private development
+package for the exact Qt build, and check `Qt6_DIR`, `CMAKE_PREFIX_PATH`, the
+compiler architecture, and the Qt version reported during configuration. A
+package from a different Qt patch release, compiler, or architecture does not
+work.
 
-Inspect `Qt6_DIR`, `CMAKE_PREFIX_PATH`, the compiler architecture, and the Qt
-version reported during configuration. A package from a different Qt patch,
-compiler, or architecture is not interchangeable.
-
-If private Qt dependencies are unsuitable for the target environment, use:
+To build without it:
 
 ```sh
 cmake -S . -B build -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
 ```
 
-This mode does not find or link QuickPrivate. It uses only public Qt API and
-recreates the live data texture rather than updating it in place, which can be
-slower for huge data sets updated every frame.
+This mode recreates the data texture on each update instead of updating it in
+place, which is slower for large data sets updated every frame.
 
 ## The axes appear but the curve is blank
 
@@ -53,32 +50,28 @@ Check these conditions:
 4. The Qt Quick renderer is not using the software backend.
 5. The data buffer contains exactly two floats per declared point.
 
-Run with Qt logging enabled and look for the QAccelPlot warning that custom
-rendering is unavailable on the software backend.
+On the software backend, QAccelPlot logs a warning that curve rendering is
+unavailable.
 
 ## Rescale does not show all new data
 
-[`setDataFNoRange()`][set-data-f-no-range] intentionally skips data-range
-calculation. Set accurate [`dataMin`][data-min] and [`dataMax`][data-max]
-values on the axes, or occasionally update through [`setDataF()`][set-data-f]
-before calling [`rescaleToData()`][rescale-to-data] or
-[`rescaleAllAxes()`][rescale-all-axes].
-
-If several series share an axis, remember that each series contributes to the
-axis data range.
+[`setDataFNoRange()`][set-data-f-no-range] skips data-range calculation. Set
+accurate [`dataMin`][data-min] and [`dataMax`][data-max] on the axes, or update
+through [`setDataF()`][set-data-f] before calling
+[`rescaleToData()`][rescale-to-data] or [`rescaleAllAxes()`][rescale-all-axes].
+Every series attached to an axis contributes to its data range.
 
 ## A real-time plot stutters
 
-- Confirm that the data producer is not running on the UI thread.
+- Run the data producer off the UI thread.
 - Use a Release build.
-- Move interleaved float buffers rather than rebuilding `QList<QPointF>` values.
-- Avoid publishing more frames than the display can present.
-- Temporarily disable markers, gradients, transitions, and sharp-corner
-  preservation to isolate rendering cost.
+- Move interleaved float buffers instead of building `QList<QPointF>`.
+- Do not publish more frames than the display presents.
+- Disable markers, gradients, and transitions to isolate rendering cost.
 - Measure [`frameSwapped`][frame-swapped] intervals and producer throughput separately.
 
-Continue with the [Performance guide](performance.md) and the
-[Background data production recipe](cookbook/background-data.md).
+See the [Performance guide](performance.md) and
+[Background data production](cookbook/background-data.md).
 
 ## Reporting a problem
 
@@ -92,8 +85,7 @@ Include:
 - Release or Debug configuration.
 - Logs, screenshots, or benchmark JSON where relevant.
 
-Report bugs and compatibility findings through
-[GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
+Report through [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/issues).
 
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12

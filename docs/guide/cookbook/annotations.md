@@ -11,9 +11,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 ## Attach QML items to data
 
-Create a clipped layer matching [`plotRect`][plot-rect], then place `QAccelPlot.DataAnchor`
-items inside it. Because the layer's origin is the plot area's top-left, pass a
-local plot rectangle to each anchor:
+Place `QAccelPlot.DataAnchor` items in a clipped layer that matches
+[`plotRect`][plot-rect]. The layer's origin is the plot area's top-left, so pass
+each anchor a local rectangle:
 
 ```qml
 Item {
@@ -45,23 +45,20 @@ Item {
 }
 ```
 
-[`QAccelPlot.DataAnchor`][data-anchor] maps a data-space point, line, or rectangular extent
-to its item geometry. It can contain any QML content—such as a `Rectangle`,
-`Canvas`, `Text`, or interaction handlers—which then follows panning and
-zooming. Set matching X and/or Y coordinates for point or line anchors; use
-all four bounds for a rectangle or range. This approach suits a modest number
-of rich, individually interactive annotations: each `QAccelPlot.DataAnchor`
-and its QML content adds `QQuickItem`s to the scene. For thousands of simple
-regions, prefer [`QAccelPlot.RectangleList`][rectangle-list], which represents the collection
-with one `QQuickItem`.
+[`DataAnchor`][data-anchor] maps a data-space point, line, or rectangle to its
+item geometry. Its children (`Rectangle`, `Text`, `Canvas`, input handlers)
+follow panning and zooming. Set matching X and/or Y coordinates for a point or
+line; set all four bounds for a rectangle.
+
+Each `DataAnchor` and its children add `QQuickItem`s, so use it for a moderate
+number of rich annotations. For thousands of simple regions, use
+[`RectangleList`][rectangle-list], which is a single item.
 
 ## Highlight many data regions
 
-Use [`QAccelPlot.RectangleList`][rectangle-list] for many data-space rectangles, such as event
-windows or maintenance intervals, instead of creating one QML item per region.
-Its [`setData()`][rectangle-list-set-data] method accepts rectangle bounds, and
-[`hoveredIndex`][hovered-index] identifies the region under the pointer for a
-tooltip or selection:
+[`RectangleList`][rectangle-list] draws many data-space rectangles, such as
+event windows. [`setData()`][rectangle-list-set-data] takes rectangle bounds,
+and [`hoveredIndex`][hovered-index] reports the rectangle under the pointer:
 
 ```qml
 QAccelPlot.RectangleList {
@@ -76,13 +73,12 @@ QAccelPlot.RectangleList {
 }
 ```
 
-The hover lookup uses a spatial grid after data changes, so it remains suitable
-for large collections. See [Hover interactions](../performance.md#hover-interactions)
-for the performance characteristics.
+Hover lookup uses a spatial grid and stays constant-time for large collections;
+see [Hover interactions](../performance.md#hover-interactions).
 
 ## Build interactive tools
 
-The plot exposes both conversion directions:
+Plot mouse events carry pixel positions; convert them to data coordinates:
 
 ```qml
 onMousePressed: event => {
@@ -95,15 +91,14 @@ onMousePressed: event => {
 }
 ```
 
-Use [`dataToPixelX()`][data-to-pixel-x] and [`dataToPixelY()`][data-to-pixel-y]
-to position handles. Use [`pixelToDataX()`][pixel-to-data-x] and
-[`pixelToDataY()`][pixel-to-data-y] while dragging them. Accept a plot event
-when the tool has consumed it so the same gesture does not start default
-panning.
+Position handles with [`dataToPixelX()`][data-to-pixel-x] and
+[`dataToPixelY()`][data-to-pixel-y]; convert drag positions back with
+[`pixelToDataX()`][pixel-to-data-x] and [`pixelToDataY()`][pixel-to-data-y].
+Call `event.accept()` when a tool handles an event so the gesture does not also
+pan the plot.
 
-When a tool lives in a layer translated to [`plotRect`][plot-rect], convert between plot and
-layer coordinates by adding or subtracting the plot rectangle origin. The
-complete interactive example wraps those conversions in a small layer API.
+In a layer positioned at [`plotRect`][plot-rect], add or subtract the plot
+rectangle origin to convert between plot and layer coordinates.
 
 Complete sources:
 
