@@ -44,8 +44,8 @@ class LineShader : public QSGMaterialShader {
 public:
     LineShader()
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/src/shaders/line.vert.qsb"));
-        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/src/shaders/line.frag.qsb"));
+        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/line.vert.qsb"));
+        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/line.frag.qsb"));
     }
 
     bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override

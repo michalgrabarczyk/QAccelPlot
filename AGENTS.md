@@ -63,33 +63,33 @@ background thread; the main thread swaps in pre-computed buffers.
 ```
 QAccelPlot/
 ├── src/                          — Include root (#include <QAccelPlot/...>)
-│   ├── QAccelPlot/
-│   │   ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
-│   │   ├── PlotMouseEvent.*      — Custom mouse event type
-│   │   ├── PlotBorder.*          — Plot frame decoration
-│   │   ├── MathUtils.hpp         — Math utilities
-│   │   ├── QAccelPlotLogging.*   — Qt logging category
-│   │   ├── annotations/          — DataAnchor (attach QML items to data coords)
-│   │   ├── axis/                 — Axis, AxisTicker, AxisTickPainter
-│   │   ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
-│   │   ├── formatters/           — DateTimeTickLabelFormatter, LogTickLabelFormatter,
-│   │   │                           NumericTickLabelFormatter, TextTickLabelFormatter,
-│   │   │                           TickLabelFormatter (base/JS callback)
-│   │   ├── grid/                 — Grid, GridNode
-│   │   ├── linestyles/           — SolidLine, DashLine, NoLine
-│   │   ├── materials/            — QSGMaterial subclasses for GPU rendering
-│   │   ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│   │   ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
-│   │   │                           LineCurveGaps (gaps grouped property),
-│   │   │                           LineCurveGapFilter (invalid-sample contract),
-│   │   │                           SpatialGrid (hover hit testing)
-│   │   ├── shapes/               — RectangleList
-│   │   ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
-│   │   └── transitions/          — DataTransition, DrawTransition, MorphTransition
-│   └── shaders/                  — GLSL shaders compiled to .qsb
-├── qml/                      — QML helper types (Plot, Legend)
-├── test/                     — Unit tests
-└── CMakeLists.txt            — Library build configuration
+│   └── QAccelPlot/
+│       ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
+│       ├── PlotMouseEvent.*      — Custom mouse event type
+│       ├── PlotBorder.*          — Plot frame decoration
+│       ├── MathUtils.hpp         — Math utilities
+│       ├── QAccelPlotLogging.*   — Qt logging category
+│       ├── annotations/          — DataAnchor (attach QML items to data coords)
+│       ├── axis/                 — Axis, AxisTicker, AxisTickPainter
+│       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
+│       ├── formatters/           — DateTimeTickLabelFormatter, LogTickLabelFormatter,
+│       │                           NumericTickLabelFormatter, TextTickLabelFormatter,
+│       │                           TickLabelFormatter (base/JS callback)
+│       ├── grid/                 — Grid, GridNode
+│       ├── linestyles/           — SolidLine, DashLine, NoLine
+│       ├── materials/            — QSGMaterial subclasses for GPU rendering
+│       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
+│       ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
+│       │                           LineCurveGaps (gaps grouped property),
+│       │                           LineCurveGapFilter (invalid-sample contract),
+│       │                           SpatialGrid (hover hit testing)
+│       ├── shapes/               — RectangleList
+│       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
+│       └── transitions/          — DataTransition, DrawTransition, MorphTransition
+├── qml/                          — QML helper types (Plot, Legend)
+├── shaders/                      — GLSL shaders compiled to .qsb
+├── test/                         — Unit tests
+└── CMakeLists.txt                — Library build configuration
 ```
 
 ### Other directories

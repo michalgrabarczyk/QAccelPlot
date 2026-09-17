@@ -25,8 +25,8 @@ class GradientFillShader : public QSGMaterialShader {
 public:
     GradientFillShader()
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/src/shaders/gradient_fill.vert.qsb"));
-        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/src/shaders/gradient_fill.frag.qsb"));
+        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_fill.vert.qsb"));
+        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_fill.frag.qsb"));
     }
 
     bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override

@@ -24,8 +24,8 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot" PREFIX "Source Fi
 file(GLOB QACCELPLOT_SHADER_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     CONFIGURE_DEPENDS
-    "src/shaders/*.vert"
-    "src/shaders/*.frag"
+    "shaders/*.vert"
+    "shaders/*.frag"
 )
 
 file(GLOB QACCELPLOT_QML_FILES

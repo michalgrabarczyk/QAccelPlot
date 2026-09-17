@@ -40,8 +40,8 @@ class GradientLineShader : public QSGMaterialShader {
 public:
     GradientLineShader()
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/src/shaders/gradient_line.vert.qsb"));
-        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/src/shaders/gradient_line.frag.qsb"));
+        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_line.vert.qsb"));
+        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/gradient_line.frag.qsb"));
     }
 
     bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override

@@ -34,8 +34,8 @@ class PointShader : public QSGMaterialShader {
 public:
     PointShader()
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/src/shaders/point.vert.qsb"));
-        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/src/shaders/point.frag.qsb"));
+        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/point.vert.qsb"));
+        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/point.frag.qsb"));
     }
 
     bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override

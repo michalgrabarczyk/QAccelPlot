@@ -32,8 +32,8 @@ class RectShader : public QSGMaterialShader {
 public:
     RectShader()
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/src/shaders/rect.vert.qsb"));
-        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/src/shaders/rect.frag.qsb"));
+        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/rect.vert.qsb"));
+        setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/rect.frag.qsb"));
     }
 
     bool updateUniformData(RenderState& state, QSGMaterial* newMaterial, QSGMaterial* oldMaterial) override
