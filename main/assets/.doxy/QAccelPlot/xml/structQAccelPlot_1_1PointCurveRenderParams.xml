@@ -251,13 +251,43 @@
         <name>shapeType</name>
         <qualifiedname>QAccelPlot::PointCurveRenderParams::shapeType</qualifiedname>
         <briefdescription>
-<para>Marker shape index (matches <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997ac" kindref="member">LineCurve::PointShape</ref></computeroutput>). </para>
+<para>Marker shape index (<computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997ac" kindref="member">LineCurve::PointShape</ref></computeroutput> value minus one). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="40" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PointCurveRenderParams::markerStrokeWidth</definition>
+        <argsstring></argsstring>
+        <name>markerStrokeWidth</name>
+        <qualifiedname>QAccelPlot::PointCurveRenderParams::markerStrokeWidth</qualifiedname>
+        <briefdescription>
+<para>Outline width in pixels for hollow markers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="41" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointCurveRenderParams::markerFilled</definition>
+        <argsstring></argsstring>
+        <name>markerFilled</name>
+        <qualifiedname>QAccelPlot::PointCurveRenderParams::markerFilled</qualifiedname>
+        <briefdescription>
+<para>Whether closed marker shapes are filled rather than outlined. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="42" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -285,7 +315,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="23" bodyend="41"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp" bodystart="23" bodyend="43"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ac6a23fd2774b37be8bbaeb5f0e416913" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>antialiasingEnabled</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a7aa9f493fe0b8619b60d4be465874d25" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>antialiasingFeather</name></member>
@@ -298,7 +328,9 @@
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1aa70a1fb9c2fa35c9437a7f5743d46" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>hovered</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ae74b243cdf12ac2a0306c5865170e4f1" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>logScaleX</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ac1fbed77ffb19a6741f331ca5f1a372f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>logScaleY</name></member>
+      <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>markerFilled</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a6cc41826adefcbe7f0ffdafb338bd2f2" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>markerSize</name></member>
+      <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>markerStrokeWidth</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1aef6cff460337216ce9fe6622d5d98ad3" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>pointCount</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a8306dba154f844fd86a3cf8d1aef7b80" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>shapeType</name></member>
       <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ab1ba23bc662b1a429a78faebe12c2019" prot="public" virt="non-virtual"><scope>QAccelPlot::PointCurveRenderParams</scope><name>sourceData</name></member>

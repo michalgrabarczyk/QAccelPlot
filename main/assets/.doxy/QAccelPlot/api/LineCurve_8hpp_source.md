@@ -49,13 +49,33 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
     Q_PROPERTY(PointShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
     Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
+    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
+    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
 
 public:
-    enum class PointShape { None, Circle, Square, Diamond, TriangleUp, TriangleDown, Cross };
+    enum class PointShape {
+        None,          
+        Circle,        
+        Square,        
+        Diamond,       
+        TriangleUp,    
+        TriangleDown,  
+        TriangleLeft,  
+        TriangleRight, 
+        Cross,         
+        XCross,        
+        HLine,         
+        VLine,         
+        Star,          
+        Asterisk,      
+        Pixel,         
+        Hexagon,       
+        Pentagon       
+    };
     Q_ENUM(PointShape)
 
     
@@ -80,6 +100,12 @@ public:
 
     qreal markerSize() const;
     void setMarkerSize(qreal r);
+
+    bool markerFilled() const;
+    void setMarkerFilled(bool filled);
+
+    qreal markerStrokeWidth() const;
+    void setMarkerStrokeWidth(qreal width);
 
     bool antialiasingEnabled() const;
     void setAntialiasingEnabled(bool enabled);
@@ -118,6 +144,8 @@ signals:
     void lineStyleChanged();
     void markerShapeChanged();
     void markerSizeChanged();
+    void markerFilledChanged();
+    void markerStrokeWidthChanged();
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
 
@@ -185,6 +213,8 @@ private:
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     PointShape markerShape_{PointShape::None};
     qreal markerSize_{4.0};
+    bool markerFilled_{true};
+    qreal markerStrokeWidth_{1.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};

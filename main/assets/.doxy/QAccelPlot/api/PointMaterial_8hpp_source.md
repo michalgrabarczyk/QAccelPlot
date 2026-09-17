@@ -44,6 +44,8 @@ public:
     float antialiasingEnabled{1.0f};        
     float antialiasingFeather{1.0f};        
     int shapeType{0};                       
+    float markerStrokeWidth{1.0f};          
+    float markerFilled{1.0f};               
 };
 
 } // namespace QAccelPlot

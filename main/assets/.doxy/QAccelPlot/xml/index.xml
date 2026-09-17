@@ -696,7 +696,17 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca8f7671185d590914ac21c7511767b699" kind="enumvalue"><name>Diamond</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997acacc8b4d708cd6657a142e0ed0861e22e5" kind="enumvalue"><name>TriangleUp</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca84d5dab02246a5db0018fac6251bfeb8" kind="enumvalue"><name>TriangleDown</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997acae5df3626957bbdaa6de4e3e7190b36c1" kind="enumvalue"><name>TriangleLeft</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca9bb547f4cfe205fae637ac29a274f591" kind="enumvalue"><name>TriangleRight</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997acae76b449b9fc8536af7557ffa6321d269" kind="enumvalue"><name>Cross</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca727d820d1768aaa0b26040a70fc1028f" kind="enumvalue"><name>XCross</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca88e50bb9a298238d324d31ffb592bcc1" kind="enumvalue"><name>HLine</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca942204a00bd4ab062d02663e70ff3762" kind="enumvalue"><name>VLine</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca26f93e6e68e28a698377e941cb59f29a" kind="enumvalue"><name>Star</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca9c8ae0945940e5baec5a93c4c8ec869e" kind="enumvalue"><name>Asterisk</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca08822b3ae4e2aede0afe08abe600e9c0" kind="enumvalue"><name>Pixel</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca125e13c182697c5a282e4de6d7999eb0" kind="enumvalue"><name>Hexagon</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997aca09fcf42bcab804addc759acce8ec9051" kind="enumvalue"><name>Pentagon</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468b" kind="enum"><name>DataType</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468ba22ae0e2b89e5e3d477f988cc36d3272b" kind="enumvalue"><name>Float</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468bad909d38d705ce75386dd86e611a82f5b" kind="enumvalue"><name>Double</name></member>
@@ -707,6 +717,8 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a863125bdb2d67fc4d4094a74f9f577cf" kind="property"><name>lineStyle</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1af54cab92a313fbd4080290d16d179292" kind="property"><name>markerShape</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ab01778cf41658836d2f2e5e6633666d8" kind="property"><name>markerSize</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a84e4d50d2bd7be9df4f25bda94191f7e" kind="property"><name>markerFilled</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1ac0c29ab27d51cb20e66e2e2f6273eddd" kind="property"><name>markerStrokeWidth</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a1da9117bed1da3c96d4a157efc8b3167" kind="property"><name>antialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a594b68738aed9de45ac09bab369342b2" kind="property"><name>antialiasingFeather</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1afd2dc2f55a0ebc51ce212ea522342c0e" kind="property"><name>effects</name></member>
@@ -729,6 +741,8 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a9cf2522f5761103fac1ad7c89a084c8f" kind="variable"><name>lineStyle_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1afa0b1354c6c4de0eb2a9a4e8eecc6af8" kind="variable"><name>markerShape_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a060a7231d2f54f8c01d342392a81f4f9" kind="variable"><name>markerSize_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a18c122de529d65dd2f93fb798a8dc955" kind="variable"><name>markerFilled_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a98984d648b47f5f67dbfeebb7ef43406" kind="variable"><name>markerStrokeWidth_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a16fa4890c3b65b5f73b5d0832f8c7480" kind="variable"><name>antialiasingEnabled_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8e759cb4b7ee1ce29a1513155c86338a" kind="variable"><name>antialiasingFeather_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ac552a150914bc2baa2315c2f1fbb9b1e" kind="variable"><name>styleChanged_</name></member>
@@ -759,6 +773,10 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a2ebafc78d827f1a158b12bf388c04178" kind="function"><name>setMarkerShape</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a6c48a8ba0bfdc3ad73878b7130c3df18" kind="function"><name>markerSize</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae8edf69e8a0d6ad4634af55b38b2c7e3" kind="function"><name>setMarkerSize</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a7dab642b0949ad00b39860353d14805c" kind="function"><name>markerFilled</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a0f8d18b1afb8c796519448e13fb5f551" kind="function"><name>setMarkerFilled</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a730ccd326fe4e3d0bfd9c9cc48110358" kind="function"><name>markerStrokeWidth</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a97051f455c24b98370035f854be0d312" kind="function"><name>setMarkerStrokeWidth</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a6a9270ca8de40dc035b5fdd84968a92a" kind="function"><name>antialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aad51817c07fd5800afe9d748b0c7f442" kind="function"><name>setAntialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a431483d45b1336bfd642f76eb8ffe157" kind="function"><name>antialiasingFeather</name></member>
@@ -785,6 +803,8 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a888793f4978ae28e97af934c09ee4ccf" kind="signal"><name>lineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ae1f6ee0231c4ac2e5979e7e90815698f" kind="signal"><name>markerShapeChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aeafb2c98241fb42d735a16a0c429b55a" kind="signal"><name>markerSizeChanged</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1aa2a8a565922fb5c10709bfa030b7a180" kind="signal"><name>markerFilledChanged</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1afcd1fdd20f51177d9f3abbd011511c97" kind="signal"><name>markerStrokeWidthChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1adeb1c85fe5606e9ddd1513af329a4c40" kind="signal"><name>antialiasingEnabledChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1abd7343d8d2679fae990517629a395134" kind="signal"><name>antialiasingFeatherChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa37cd6e308baa0caf70d89328d3632dd" kind="function"><name>onLineStyleChanged</name></member>
@@ -1065,6 +1085,8 @@
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a45527a10f2db2a5ba39226fdeb53cacc" kind="variable"><name>gradientPayload</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1ad5f4d27e5b86b555dea526542be25ab9" kind="variable"><name>vertexCache</name></member>
     <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a8306dba154f844fd86a3cf8d1aef7b80" kind="variable"><name>shapeType</name></member>
+    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" kind="variable"><name>markerStrokeWidth</name></member>
+    <member refid="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" kind="variable"><name>markerFilled</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1PointMaterial" kind="class"><name>QAccelPlot::PointMaterial</name>
     <member refid="classQAccelPlot_1_1PointMaterial_1ad926ebbb38c3b52c3cec9f6bdba4c5be" kind="variable"><name>color</name></member>
@@ -1078,6 +1100,8 @@
     <member refid="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" kind="variable"><name>antialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1af116e339e27cd8218b8afa8e39806aec" kind="variable"><name>antialiasingFeather</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1aa5ee5d786e4ecf249c4b716a9d701db6" kind="variable"><name>shapeType</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1aeeb956418a5ff9346f4e1385dad28ab3" kind="variable"><name>markerStrokeWidth</name></member>
+    <member refid="classQAccelPlot_1_1PointMaterial_1adb685253c8ee2cb8e1f1dafa632c4712" kind="variable"><name>markerFilled</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1ad6745428838a330ff10c978c2c7d442f" kind="function"><name>PointMaterial</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1aaa84f84d6e6a78e7554f0b7cf9f69615" kind="function"><name>~PointMaterial</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" kind="function"><name>type</name></member>

@@ -47,6 +47,8 @@ struct PointCurveRenderParams {
     const GradientColorPayload& gradientPayload; 
     const std::vector<char>* vertexCache;        
     int shapeType;                               
+    qreal markerStrokeWidth;                     
+    bool markerFilled;                           
 };
 
 struct PointVertex {

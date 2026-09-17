@@ -1219,10 +1219,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-markerfilled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable markerFilled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-markersize" class="md-nav__link">
     <span class="md-ellipsis">
       
         variable markerSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-markerstrokewidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable markerStrokeWidth
       
     </span>
   </a>
@@ -1409,11 +1431,19 @@
 </tr>
 <tr>
 <td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-markerfilled"><strong>markerFilled</strong></a>   = <code>{1.0f}</code><br><em>1.0 for filled markers, 0.0 for hollow outlines.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">float</td>
 <td style="text-align: left;"><a href="#variable-markersize"><strong>markerSize</strong></a>   = <code>{4.0f}</code><br><em>Marker radius in pixels.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-markerstrokewidth"><strong>markerStrokeWidth</strong></a>   = <code>{1.0f}</code><br><em>Outline width in pixels for hollow markers.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>   = <code>{0}</code><br><em>Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross.</em></td>
+<td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>   = <code>{0}</code><br><em>Marker shape:</em> <code>LineCurve::PointShape</code> <em>value minus one (0 = Circle).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">float</td>
@@ -1501,60 +1531,72 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-markerfilled">variable markerFilled<a class="headerlink" href="#variable-markerfilled" title="Permanent link">&para;</a></h3>
+<p><em>1.0 for filled markers, 0.0 for hollow outlines.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-markersize">variable markerSize<a class="headerlink" href="#variable-markersize" title="Permanent link">&para;</a></h3>
 <p><em>Marker radius in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-markerstrokewidth">variable markerStrokeWidth<a class="headerlink" href="#variable-markerstrokewidth" title="Permanent link">&para;</a></h3>
+<p><em>Outline width in pixels for hollow markers.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-shapetype">variable shapeType<a class="headerlink" href="#variable-shapetype" title="Permanent link">&para;</a></h3>
-<p><em>Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
+<p><em>Marker shape:</em> <code>LineCurve::PointShape</code> <em>value minus one (0 = Circle).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-usevertexcolor">variable useVertexColor<a class="headerlink" href="#variable-usevertexcolor" title="Permanent link">&para;</a></h3>
 <p><em>1.0 when per-vertex color overrides</em> <code>color</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">useVertexColor</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">useVertexColor</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-viewportsize">variable viewportSize<a class="headerlink" href="#variable-viewportsize" title="Permanent link">&para;</a></h3>
 <p><em>Viewport size in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-pointmaterial">function PointMaterial<a class="headerlink" href="#function-pointmaterial" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>PointMaterial</strong></em></a> <em>with default uniform values.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">PointMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">PointMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-compare">function compare<a class="headerlink" href="#function-compare" title="Permanent link">&para;</a></h3>
 <p><em>Compares all uniform fields for equality.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">compare</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">compare</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-createshader">function createShader<a class="headerlink" href="#function-createshader" title="Permanent link">&para;</a></h3>
 <p><em>Creates and returns the point shader program.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-type">function type<a class="headerlink" href="#function-type" title="Permanent link">&para;</a></h3>
 <p><em>Returns the unique material type identifier for this class.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-pointmaterial">function ~PointMaterial<a class="headerlink" href="#function-pointmaterial" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::~</span><span class="n">PointMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointMaterial</span><span class="o">::~</span><span class="n">PointMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 

@@ -173,13 +173,45 @@
         <qualifiedname>QAccelPlot::PointMaterial::shapeType</qualifiedname>
         <initializer>{0}</initializer>
         <briefdescription>
-<para>Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross. </para>
+<para>Marker shape: <computeroutput><ref refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997ac" kindref="member">LineCurve::PointShape</ref></computeroutput> value minus one (0 = Circle). </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" line="45" column="9" bodyfile="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1aeeb956418a5ff9346f4e1385dad28ab3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::markerStrokeWidth</definition>
+        <argsstring></argsstring>
+        <name>markerStrokeWidth</name>
+        <qualifiedname>QAccelPlot::PointMaterial::markerStrokeWidth</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>Outline width in pixels for hollow markers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" line="46" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointMaterial_1adb685253c8ee2cb8e1f1dafa632c4712" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::PointMaterial::markerFilled</definition>
+        <argsstring></argsstring>
+        <name>markerFilled</name>
+        <qualifiedname>QAccelPlot::PointMaterial::markerFilled</qualifiedname>
+        <initializer>{1.0f}</initializer>
+        <briefdescription>
+<para>1.0 for filled markers, 0.0 for hollow outlines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" line="47" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" bodystart="47" bodyend="47"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -293,7 +325,7 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" bodystart="22" bodyend="46"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp" bodystart="22" bodyend="48"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PointMaterial_1abe060e2bc02514aa736ba97698f090d7" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>antialiasingEnabled</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1af116e339e27cd8218b8afa8e39806aec" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>antialiasingFeather</name></member>
@@ -304,7 +336,9 @@
       <member refid="classQAccelPlot_1_1PointMaterial_1a1fe19d66bc1f17f1ad126579decc661d" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>domainMin</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1ae64250e1655e119c9439bc57b29c86b8" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1ac1d21a7d4d48f1e5f1774a554fb34912" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1adb685253c8ee2cb8e1f1dafa632c4712" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>markerFilled</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1a04dc2fdee93d946fb012a039e6c3e70a" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>markerSize</name></member>
+      <member refid="classQAccelPlot_1_1PointMaterial_1aeeb956418a5ff9346f4e1385dad28ab3" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>markerStrokeWidth</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1ad6745428838a330ff10c978c2c7d442f" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>PointMaterial</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1aa5ee5d786e4ecf249c4b716a9d701db6" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>shapeType</name></member>
       <member refid="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" prot="public" virt="non-virtual"><scope>QAccelPlot::PointMaterial</scope><name>type</name></member>

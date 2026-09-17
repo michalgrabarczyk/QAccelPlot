@@ -1507,7 +1507,9 @@ rebuilding geometry; gradient effects may need per-vertex work.</p>
 data change, giving <code>O(1)</code> lookup per pointer move.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Markers add geometry and fragment work per visible point.</li>
+<li>Markers add geometry and fragment work per visible point. Fragment work grows
+  with <code>markerSize</code>; <code>LineCurve.Pixel</code> markers shade one pixel per point and
+  suit very dense scatter plots.</li>
 <li>Gradient effects add material and domain work.</li>
 <li>Transitions update intermediate data while animating.</li>
 <li>Many series add per-node and per-material overhead at the same total point
