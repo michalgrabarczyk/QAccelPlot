@@ -33,6 +33,8 @@ private slots:
     void rawUpdateHonorsTransition();
     void destroyedTransitionClearsReference();
     void replacedTransitionDestructionDoesNotNotify();
+    void stoppedTransitionBeforeFirstFrame_data();
+    void stoppedTransitionBeforeFirstFrame();
     void disablingTransitionMidRunCancelsIt();
     void appendDataCancelsRunningTransition();
     void axisAggregatesCurrentSeriesRanges();
@@ -235,6 +237,38 @@ void LineCurveDataTest::replacedTransitionDestructionDoesNotNotify()
 
     QCOMPARE(curve.transition(), &second);
     QCOMPARE(changed.count(), 0);
+}
+
+void LineCurveDataTest::stoppedTransitionBeforeFirstFrame_data()
+{
+    QTest::addColumn<int>("stopMode");
+    QTest::newRow("detach") << 0;
+    QTest::newRow("cancel") << 1;
+    QTest::newRow("destroy") << 2;
+}
+
+void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
+{
+    QFETCH(int, stopMode);
+    auto curve = LineCurve{};
+    curve.setLineStyle(nullptr);
+    curve.setMarkerShape(LineCurve::PointShape::Circle);
+    auto transition = std::make_unique<MorphTransition>();
+    curve.setTransition(transition.get());
+    curve.setDataF(makeData(2), 2);
+
+    if (stopMode == 0) {
+        curve.setTransition(nullptr);
+    } else if (stopMode == 1) {
+        transition->cancel();
+    } else {
+        transition.reset();
+    }
+
+    // Rebuilding marker geometry must never read a pending animation's absent buffer.
+    curve.gaps()->setNanMode(NanGapMode::Connect);
+    curve.appendData(5.0, 6.0);
+    curve.clearData();
 }
 
 void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
