@@ -701,5 +701,5 @@ void QAccelPlot::PlotSeries::setYDataRange (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/PlotSeries.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp`
 

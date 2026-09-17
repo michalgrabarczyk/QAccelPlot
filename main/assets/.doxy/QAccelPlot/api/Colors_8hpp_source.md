@@ -2,7 +2,7 @@
 
 # File Colors.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**theme**](dir_5e767e95370086c11dfb89b66970881a.md) **>** [**Colors.hpp**](Colors_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**theme**](dir_dc76dfbefc4bd2a9d0a8a59875947d7b.md) **>** [**Colors.hpp**](Colors_8hpp.md)
 
 [Go to the documentation of this file](Colors_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "theme/ColorPalette.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QObject>
 

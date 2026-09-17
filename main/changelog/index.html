@@ -789,6 +789,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="[Unreleased]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -815,7 +832,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1234,6 +1251,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="[Unreleased]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1260,7 +1294,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1335,6 +1369,14 @@
 <p>All notable changes to QAccelPlot are documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Public headers are now included with a <code>QAccelPlot/</code> prefix, for example
+  <code>#include &lt;QAccelPlot/series/LineCurve.hpp&gt;</code>, both when QAccelPlot is
+  embedded with <code>add_subdirectory</code> or <code>FetchContent</code> and when it is installed.
+  The library sources moved to <code>QAccelPlot/src/QAccelPlot/</code>. Replace unprefixed
+  includes such as <code>"series/LineCurve.hpp"</code>.</li>
+</ul>
 <h2 id="020-2026-09-16">[0.2.0] — 2026-09-16<a class="headerlink" href="#020-2026-09-16" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1351,7 +1393,7 @@
   samples on either side of a gap.</li>
 <li>A "Gaps" page in the styling and transitions example.</li>
 </ul>
-<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Values at or below zero on a logarithmic axis now render as gaps instead of
   being clamped to a steep drop toward the bottom of the plot.</li>

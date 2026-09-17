@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md) **>** [**GradientColorTypes.hpp**](GradientColorTypes_8hpp.md)
+[**FileList**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientColorTypes.hpp**](GradientColorTypes_8hpp.md)
 
 [Go to the source code of this file](GradientColorTypes_8hpp_source.md)
 
@@ -105,5 +105,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientColorTypes.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp`
 

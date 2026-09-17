@@ -2,7 +2,7 @@
 
 # File PlotMouseEvent.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**PlotMouseEvent.hpp**](PlotMouseEvent_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**PlotMouseEvent.hpp**](PlotMouseEvent_8hpp.md)
 
 [Go to the documentation of this file](PlotMouseEvent_8hpp.md)
 

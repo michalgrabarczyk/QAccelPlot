@@ -2,12 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="LineCurveGapFilter_8hpp" kind="file" language="C++">
     <compoundname>LineCurveGapFilter.hpp</compoundname>
-    <includes refid="CurveRendererParams_8hpp" local="yes">renderers/CurveRendererParams.hpp</includes>
+    <includes refid="CurveRendererParams_8hpp" local="yes">QAccelPlot/renderers/CurveRendererParams.hpp</includes>
     <includes local="no">vector</includes>
-    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurveLineRenderer.hpp</includedby>
+    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/series/LineCurveGapFilter.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp</label>
         <link refid="LineCurveGapFilter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -33,7 +33,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;renderers/CurveRendererParams.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/renderers/CurveRendererParams.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
@@ -65,6 +65,6 @@
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/series/LineCurveGapFilter.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp"/>
   </compounddef>
 </doxygen>

@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**linestyles**](dir_2a035f8043b68ba8becf10bf9401d5c5.md) **>** [**DashLine.hpp**](DashLine_8hpp.md)
+[**FileList**](files.md) **>** [**linestyles**](dir_45c5c52b7ff7182bdf01ac21f48c7474.md) **>** [**DashLine.hpp**](DashLine_8hpp.md)
 
 [Go to the source code of this file](DashLine_8hpp_source.md)
 
 
 
-* `#include "linestyles/LineStyle.hpp"`
+* `#include "QAccelPlot/linestyles/LineStyle.hpp"`
 * `#include <QList>`
 
 
@@ -98,5 +98,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/linestyles/DashLine.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/linestyles/DashLine.hpp`
 

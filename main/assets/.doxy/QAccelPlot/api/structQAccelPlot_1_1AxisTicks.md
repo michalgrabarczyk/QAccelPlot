@@ -135,5 +135,5 @@ QList<qreal> QAccelPlot::AxisTicks::subtickValues;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/AxisTicks.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp`
 

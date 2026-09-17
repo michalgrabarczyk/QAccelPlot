@@ -2,7 +2,7 @@
 
 # File GradientCoordinateUtils.hpp
 
-[**File List**](files.md) **>** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md) **>** [**GradientCoordinateUtils.hpp**](GradientCoordinateUtils_8hpp.md)
+[**File List**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientCoordinateUtils.hpp**](GradientCoordinateUtils_8hpp.md)
 
 [Go to the documentation of this file](GradientCoordinateUtils_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
 
 #include <algorithm>
 

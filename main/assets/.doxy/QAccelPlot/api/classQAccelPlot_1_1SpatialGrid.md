@@ -152,5 +152,5 @@ int QAccelPlot::SpatialGrid::query (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/SpatialGrid.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/SpatialGrid.hpp`
 

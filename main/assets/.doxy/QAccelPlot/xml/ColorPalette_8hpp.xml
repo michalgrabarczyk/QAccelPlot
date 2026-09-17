@@ -5,16 +5,16 @@
     <includes local="no">QColor</includes>
     <includes local="no">QObject</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
-    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot.hpp</includedby>
-    <includedby refid="Axis_8hpp" local="yes">QAccelPlot/src/axis/Axis.hpp</includedby>
-    <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/axis/AxisTicker.hpp</includedby>
-    <includedby refid="Grid_8hpp" local="yes">QAccelPlot/src/grid/Grid.hpp</includedby>
-    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/series/LineCurve.hpp</includedby>
-    <includedby refid="RectangleList_8hpp" local="yes">QAccelPlot/src/shapes/RectangleList.hpp</includedby>
-    <includedby refid="Colors_8hpp" local="yes">QAccelPlot/src/theme/Colors.hpp</includedby>
+    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot/QAccelPlot.hpp</includedby>
+    <includedby refid="Axis_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/Axis.hpp</includedby>
+    <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp</includedby>
+    <includedby refid="Grid_8hpp" local="yes">QAccelPlot/src/QAccelPlot/grid/Grid.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
+    <includedby refid="RectangleList_8hpp" local="yes">QAccelPlot/src/QAccelPlot/shapes/RectangleList.hpp</includedby>
+    <includedby refid="Colors_8hpp" local="yes">QAccelPlot/src/QAccelPlot/theme/Colors.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/theme/ColorPalette.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/theme/ColorPalette.hpp</label>
         <link refid="ColorPalette_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -204,6 +204,6 @@
 <codeline lineno="171"><highlight class="normal"></highlight></codeline>
 <codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/theme/ColorPalette.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/theme/ColorPalette.hpp"/>
   </compounddef>
 </doxygen>

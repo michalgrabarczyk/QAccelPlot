@@ -215,5 +215,5 @@ Implements [*QAccelPlot::LineStyle::showLine*](classQAccelPlot_1_1LineStyle.md#f
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/linestyles/NoLine.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/linestyles/NoLine.hpp`
 

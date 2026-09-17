@@ -2,7 +2,7 @@
 
 # File QAccelPlot.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot.hpp**](QAccelPlot_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**QAccelPlot.hpp**](QAccelPlot_8hpp.md)
 
 [Go to the documentation of this file](QAccelPlot_8hpp.md)
 
@@ -17,12 +17,12 @@
 //
 #pragma once
 
-#include "PlotBorder.hpp"
-#include "PlotMouseEvent.hpp"
-#include "axis/Axis.hpp"
-#include "grid/Grid.hpp"
-#include "series/PlotSeries.hpp"
-#include "theme/ColorPalette.hpp"
+#include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/grid/Grid.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QKeyEvent>

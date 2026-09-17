@@ -197,5 +197,5 @@ explicit QAccelPlot::SolidLine::SolidLine (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/linestyles/SolidLine.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/linestyles/SolidLine.hpp`
 

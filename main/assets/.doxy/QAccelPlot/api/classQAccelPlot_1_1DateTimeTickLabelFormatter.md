@@ -324,5 +324,5 @@ Implements [*QAccelPlot::TickLabelFormatter::doFormat*](classQAccelPlot_1_1TickL
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp`
 

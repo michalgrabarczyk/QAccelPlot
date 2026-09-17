@@ -2,7 +2,7 @@
 
 # File DrawTransition.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**transitions**](dir_2c4a66235e9a5453b987bd770b54fb17.md) **>** [**DrawTransition.hpp**](DrawTransition_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**transitions**](dir_33e4f9f956353311d613e58793c6ec62.md) **>** [**DrawTransition.hpp**](DrawTransition_8hpp.md)
 
 [Go to the documentation of this file](DrawTransition_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 namespace QAccelPlot {
 

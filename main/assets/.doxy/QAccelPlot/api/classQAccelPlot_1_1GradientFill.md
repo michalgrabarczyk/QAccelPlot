@@ -833,5 +833,5 @@ void QAccelPlot::GradientFill::setOpacity (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientFill.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp`
 

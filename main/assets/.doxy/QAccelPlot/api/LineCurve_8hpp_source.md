@@ -2,7 +2,7 @@
 
 # File LineCurve.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md) **>** [**LineCurve.hpp**](LineCurve_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**LineCurve.hpp**](LineCurve_8hpp.md)
 
 [Go to the documentation of this file](LineCurve_8hpp.md)
 
@@ -17,16 +17,16 @@
 //
 #pragma once
 
-#include "effects/GradientColorTypes.hpp"
-#include "effects/LineCurveEffect.hpp"
-#include "linestyles/SolidLine.hpp"
-#include "renderers/LineCurveLineRenderer.hpp"
-#include "renderers/LineCurvePointRenderer.hpp"
-#include "series/LineCurveGaps.hpp"
-#include "series/LineCurveVertexCache.hpp"
-#include "series/PlotSeries.hpp"
-#include "theme/ColorPalette.hpp"
-#include "transitions/DataTransition.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/linestyles/SolidLine.hpp"
+#include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
+#include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
+#include "QAccelPlot/series/LineCurveGaps.hpp"
+#include "QAccelPlot/series/LineCurveVertexCache.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QPointF>
 #include <QPointer>

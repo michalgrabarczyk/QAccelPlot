@@ -246,5 +246,5 @@ Implements [*QAccelPlot::TickLabelFormatter::doFormat*](classQAccelPlot_1_1TickL
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/formatters/LogTickLabelFormatter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/formatters/LogTickLabelFormatter.hpp`
 

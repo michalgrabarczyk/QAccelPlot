@@ -1396,7 +1396,7 @@ source tree.</p>
 <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> set the extent used when rescaling.</p>
 <h2 id="3-supply-data-from-c">3. Supply data from C++<a class="headerlink" href="#3-supply-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Create <code>main.cpp</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"series/LineCurve.hpp"</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QAccelPlot/series/LineCurve.hpp&gt;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QGuiApplication&gt;</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QQmlApplicationEngine&gt;</span>
@@ -1423,6 +1423,8 @@ source tree.</p>
 <a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
 <a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="p">}</span>
 </code></pre></div>
+<p>Public headers are included with the <code>QAccelPlot/</code> prefix, for example
+<code>&lt;QAccelPlot/series/LineCurve.hpp&gt;</code>.</p>
 <p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData()</code></a> takes separate X and Y vectors and suits small,
 static data. For large or streaming data, see the
 <a href="../performance/#select-the-data-path">Performance guide</a>.</p>

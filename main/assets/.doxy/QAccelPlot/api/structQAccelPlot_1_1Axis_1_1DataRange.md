@@ -122,5 +122,5 @@ qreal QAccelPlot::Axis::DataRange::min;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/Axis.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/Axis.hpp`
 

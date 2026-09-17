@@ -2,7 +2,7 @@
 
 # File LogTickLabelFormatter.hpp
 
-[**File List**](files.md) **>** [**formatters**](dir_d8921b289ee138c4c21e0a56c5dc2c98.md) **>** [**LogTickLabelFormatter.hpp**](LogTickLabelFormatter_8hpp.md)
+[**File List**](files.md) **>** [**formatters**](dir_4eeeb48ede2263d8d479500d459323d3.md) **>** [**LogTickLabelFormatter.hpp**](LogTickLabelFormatter_8hpp.md)
 
 [Go to the documentation of this file](LogTickLabelFormatter_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "formatters/TickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
 #include <QtQml/qqmlregistration.h>
 

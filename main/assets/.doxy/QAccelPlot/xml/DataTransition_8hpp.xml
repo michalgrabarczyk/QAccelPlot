@@ -7,12 +7,12 @@
     <includes local="no">QObject</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
     <includes local="no">vector</includes>
-    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/series/LineCurve.hpp</includedby>
-    <includedby refid="DrawTransition_8hpp" local="yes">QAccelPlot/src/transitions/DrawTransition.hpp</includedby>
-    <includedby refid="MorphTransition_8hpp" local="yes">QAccelPlot/src/transitions/MorphTransition.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
+    <includedby refid="DrawTransition_8hpp" local="yes">QAccelPlot/src/QAccelPlot/transitions/DrawTransition.hpp</includedby>
+    <includedby refid="MorphTransition_8hpp" local="yes">QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/transitions/DataTransition.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp</label>
         <link refid="DataTransition_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -123,6 +123,6 @@
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/transitions/DataTransition.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/DataTransition.hpp"/>
   </compounddef>
 </doxygen>

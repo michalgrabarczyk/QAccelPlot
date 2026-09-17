@@ -2,12 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="TextTickLabelFormatter_8hpp" kind="file" language="C++">
     <compoundname>TextTickLabelFormatter.hpp</compoundname>
-    <includes refid="TickLabelFormatter_8hpp" local="yes">formatters/TickLabelFormatter.hpp</includes>
+    <includes refid="TickLabelFormatter_8hpp" local="yes">QAccelPlot/formatters/TickLabelFormatter.hpp</includes>
     <includes local="no">QStringList</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/formatters/TextTickLabelFormatter.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp</label>
         <link refid="TextTickLabelFormatter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -37,7 +37,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;formatters/TickLabelFormatter.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/formatters/TickLabelFormatter.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QStringList&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -69,6 +69,6 @@
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/formatters/TextTickLabelFormatter.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp"/>
   </compounddef>
 </doxygen>

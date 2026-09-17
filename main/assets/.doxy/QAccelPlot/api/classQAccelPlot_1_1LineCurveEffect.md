@@ -238,5 +238,5 @@ void QAccelPlot::LineCurveEffect::setEnabled (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/LineCurveEffect.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp`
 

@@ -1012,5 +1012,5 @@ Q_INVOKABLE void QAccelPlot::QAccelPlot::rescaleAllAxes ()
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/QAccelPlot.hpp`
 

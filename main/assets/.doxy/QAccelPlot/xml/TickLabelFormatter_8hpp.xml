@@ -5,14 +5,14 @@
     <includes local="no">QJSValue</includes>
     <includes local="no">QObject</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
-    <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/axis/AxisTicker.hpp</includedby>
-    <includedby refid="DateTimeTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp</includedby>
-    <includedby refid="LogTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/formatters/LogTickLabelFormatter.hpp</includedby>
-    <includedby refid="NumericTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp</includedby>
-    <includedby refid="TextTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/formatters/TextTickLabelFormatter.hpp</includedby>
+    <includedby refid="AxisTicker_8hpp" local="yes">QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp</includedby>
+    <includedby refid="DateTimeTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp</includedby>
+    <includedby refid="LogTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/LogTickLabelFormatter.hpp</includedby>
+    <includedby refid="NumericTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp</includedby>
+    <includedby refid="TextTickLabelFormatter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/formatters/TickLabelFormatter.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp</label>
         <link refid="TickLabelFormatter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -80,6 +80,6 @@
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/formatters/TickLabelFormatter.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp"/>
   </compounddef>
 </doxygen>

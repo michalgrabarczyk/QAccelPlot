@@ -418,5 +418,5 @@ Implements [*QAccelPlot::DataTextureMaterial::compareExtra*](classQAccelPlot_1_1
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/LineMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp`
 

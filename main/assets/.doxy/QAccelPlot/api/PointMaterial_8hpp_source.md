@@ -2,7 +2,7 @@
 
 # File PointMaterial.hpp
 
-[**File List**](files.md) **>** [**materials**](dir_d8d9f4c155782c7a914c1dbe847fe73b.md) **>** [**PointMaterial.hpp**](PointMaterial_8hpp.md)
+[**File List**](files.md) **>** [**materials**](dir_c94e933d4aa9b037e187c1fb93a79d8a.md) **>** [**PointMaterial.hpp**](PointMaterial_8hpp.md)
 
 [Go to the documentation of this file](PointMaterial_8hpp.md)
 

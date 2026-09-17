@@ -152,5 +152,5 @@ bool QAccelPlot::GridNode::GridLineCollectionParams::subGridLinesVisible;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/grid/GridNode.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/grid/GridNode.hpp`
 

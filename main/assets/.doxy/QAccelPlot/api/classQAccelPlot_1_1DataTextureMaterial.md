@@ -438,5 +438,5 @@ virtual int QAccelPlot::DataTextureMaterial::compareExtra (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/DataTextureMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp`
 

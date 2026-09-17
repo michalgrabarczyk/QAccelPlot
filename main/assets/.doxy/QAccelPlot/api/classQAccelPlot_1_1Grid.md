@@ -807,5 +807,5 @@ bool QAccelPlot::Grid::subGridVisible () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/grid/Grid.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/grid/Grid.hpp`
 

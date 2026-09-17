@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**linestyles**](dir_2a035f8043b68ba8becf10bf9401d5c5.md) **>** [**SolidLine.hpp**](SolidLine_8hpp.md)
+[**FileList**](files.md) **>** [**linestyles**](dir_45c5c52b7ff7182bdf01ac21f48c7474.md) **>** [**SolidLine.hpp**](SolidLine_8hpp.md)
 
 [Go to the source code of this file](SolidLine_8hpp_source.md)
 
 
 
-* `#include "linestyles/LineStyle.hpp"`
+* `#include "QAccelPlot/linestyles/LineStyle.hpp"`
 
 
 
@@ -97,5 +97,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/linestyles/SolidLine.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/linestyles/SolidLine.hpp`
 

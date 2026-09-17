@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**grid**](dir_786c72ef44ba61f7b8903e40bd644b8e.md) **>** [**GridNode.hpp**](GridNode_8hpp.md)
+[**FileList**](files.md) **>** [**grid**](dir_112dd686688a4740e45fb78d5fc35b31.md) **>** [**GridNode.hpp**](GridNode_8hpp.md)
 
 [Go to the source code of this file](GridNode_8hpp_source.md)
 
@@ -101,5 +101,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/grid/GridNode.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/grid/GridNode.hpp`
 

@@ -204,5 +204,5 @@ QSGMaterialType * QAccelPlot::GradientFillMaterial::type () override const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/GradientFillMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/GradientFillMaterial.hpp`
 

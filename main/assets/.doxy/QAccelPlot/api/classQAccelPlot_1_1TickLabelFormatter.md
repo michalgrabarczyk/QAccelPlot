@@ -294,5 +294,5 @@ virtual QString QAccelPlot::TickLabelFormatter::doFormat (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/formatters/TickLabelFormatter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp`
 

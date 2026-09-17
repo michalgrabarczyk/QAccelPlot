@@ -1205,5 +1205,5 @@ Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1Plo
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/LineCurve.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/LineCurve.hpp`
 

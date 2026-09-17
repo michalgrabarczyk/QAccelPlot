@@ -2,7 +2,7 @@
 
 # File AxisTickPainter.hpp
 
-[**File List**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)
+[**File List**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)
 
 [Go to the documentation of this file](AxisTickPainter_8hpp.md)
 
@@ -17,9 +17,9 @@
 //
 #pragma once
 
-#include "axis/Axis.hpp"
-#include "axis/AxisTicker.hpp"
-#include "axis/AxisTicks.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/axis/AxisTicks.hpp"
 
 #include <QColor>
 #include <QRectF>

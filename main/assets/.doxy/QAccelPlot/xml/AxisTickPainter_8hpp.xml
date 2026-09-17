@@ -2,15 +2,15 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="AxisTickPainter_8hpp" kind="file" language="C++">
     <compoundname>AxisTickPainter.hpp</compoundname>
-    <includes refid="Axis_8hpp" local="yes">axis/Axis.hpp</includes>
-    <includes refid="AxisTicker_8hpp" local="yes">axis/AxisTicker.hpp</includes>
-    <includes refid="AxisTicks_8hpp" local="yes">axis/AxisTicks.hpp</includes>
+    <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
+    <includes refid="AxisTicker_8hpp" local="yes">QAccelPlot/axis/AxisTicker.hpp</includes>
+    <includes refid="AxisTicks_8hpp" local="yes">QAccelPlot/axis/AxisTicks.hpp</includes>
     <includes local="no">QColor</includes>
     <includes local="no">QRectF</includes>
     <includes local="no">functional</includes>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/axis/AxisTickPainter.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp</label>
         <link refid="AxisTickPainter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -47,9 +47,9 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;axis/AxisTicker.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;axis/AxisTicks.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/AxisTicker.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/AxisTicks.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QRectF&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -99,6 +99,6 @@
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/axis/AxisTickPainter.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp"/>
   </compounddef>
 </doxygen>

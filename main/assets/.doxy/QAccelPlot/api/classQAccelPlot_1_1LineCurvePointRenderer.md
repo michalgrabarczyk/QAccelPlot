@@ -162,5 +162,5 @@ When _params.vertexCache_ is non-null the vertex data is transferred via a fast 
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/renderers/LineCurvePointRenderer.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp`
 

@@ -2,7 +2,7 @@
 
 # File GradientLineMaterial.hpp
 
-[**File List**](files.md) **>** [**materials**](dir_d8d9f4c155782c7a914c1dbe847fe73b.md) **>** [**GradientLineMaterial.hpp**](GradientLineMaterial_8hpp.md)
+[**File List**](files.md) **>** [**materials**](dir_c94e933d4aa9b037e187c1fb93a79d8a.md) **>** [**GradientLineMaterial.hpp**](GradientLineMaterial_8hpp.md)
 
 [Go to the documentation of this file](GradientLineMaterial_8hpp.md)
 
@@ -17,8 +17,8 @@
 //
 #pragma once
 
-#include "materials/GradientTexture.hpp"
-#include "materials/LineMaterial.hpp"
+#include "QAccelPlot/materials/GradientTexture.hpp"
+#include "QAccelPlot/materials/LineMaterial.hpp"
 
 namespace QAccelPlot {
 

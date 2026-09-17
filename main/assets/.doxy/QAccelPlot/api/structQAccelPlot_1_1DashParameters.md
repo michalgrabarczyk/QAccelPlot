@@ -180,5 +180,5 @@ float QAccelPlot::DashParameters::period;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/linestyles/LineStyle.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/linestyles/LineStyle.hpp`
 
