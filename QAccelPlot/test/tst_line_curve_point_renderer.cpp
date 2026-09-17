@@ -33,7 +33,7 @@ void LineCurvePointRendererTest::verticalGradientMatchesLineAndFillOrientation()
     const auto sourceData = CurveDataView{data.data(), nullptr};
 
     const auto params = PointCurveRenderParams{data, sourceData, 2, true, QColor(Qt::white), false, 4.0, QVector2D(0, 0), QVector2D(1, 1), QVector2D(100, 100),
-        false, false, false, 0.0, gradientPayload, nullptr, 0};
+        false, false, false, 0.0, gradientPayload, nullptr, 0, 1.0, true};
 
     auto renderer = LineCurvePointRenderer{};
     auto* node = static_cast<QSGGeometryNode*>(renderer.paint(nullptr, params));

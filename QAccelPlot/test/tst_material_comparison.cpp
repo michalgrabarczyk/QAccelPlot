@@ -65,6 +65,7 @@ private slots:
     void lineMaterialsCompareTextureIdentity();
     void lineMaterialsCompareCompleteDashState();
     void pointMaterialsCompareMappingUniforms();
+    void pointMaterialsCompareMarkerStyleUniforms();
     void dataTextureIsDestroyedWithMaterial();
 };
 
@@ -136,6 +137,24 @@ void MaterialComparisonTest::pointMaterialsCompareMappingUniforms()
     auto differentColorMode = PointMaterial{};
     differentColorMode.useVertexColor = 1.0f;
     QVERIFY(left.compare(&differentColorMode) != 0);
+}
+
+void MaterialComparisonTest::pointMaterialsCompareMarkerStyleUniforms()
+{
+    const auto left = PointMaterial{};
+
+    auto differentShape = PointMaterial{};
+    differentShape.shapeType = 9;
+    QVERIFY(left.compare(&differentShape) != 0);
+
+    auto differentStrokeWidth = PointMaterial{};
+    differentStrokeWidth.markerStrokeWidth = 2.0f;
+    QVERIFY(left.compare(&differentStrokeWidth) != 0);
+
+    auto hollow = PointMaterial{};
+    hollow.markerFilled = 0.0f;
+    QVERIFY(left.compare(&hollow) != 0);
+    QVERIFY(hollow.compare(&left) == -left.compare(&hollow));
 }
 
 void MaterialComparisonTest::dataTextureIsDestroyedWithMaterial()

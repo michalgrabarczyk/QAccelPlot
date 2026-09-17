@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "styling_and_transitions/markers",
+  "sources": ["qml/MarkersPage.qml"],
+  "description": "A larger dense scatter plot above a short marker-shape gallery. Judge only the two plot panels; ignore the size and outline sliders, the antialiasing switch, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 880,
+    "height": 1120,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "A larger scatter plot at the top and a short gallery plot below it are stacked vertically without overlapping. Do not evaluate the controls or other content outside the plots."
+    },
+    {
+      "id": "gallery_shapes",
+      "severity": "medium",
+      "expectation": "The gallery has fifteen columns with rotated labels Circle, Square, Diamond, TriangleUp, TriangleDown, TriangleLeft, TriangleRight, Pentagon, Hexagon, Star, Cross, XCross, Asterisk, HLine, and VLine, and one blue marker in each of the Filled and Hollow rows. Each marker has the shape its column names; triangles point in the named direction. Fail if a column is missing, a marker is missing, or a marker clearly has the wrong shape or orientation."
+    },
+    {
+      "id": "gallery_fill",
+      "severity": "medium",
+      "expectation": "In the Filled row every marker is solid. In the Hollow row Circle through Star are drawn as thin outlines with an empty interior, while Cross, XCross, Asterisk, HLine, and VLine look the same as in the Filled row. Markers are not cut off at their tips or corners."
+    },
+    {
+      "id": "dense_scatter",
+      "severity": "medium",
+      "expectation": "The scatter plot shows a large, fine-grained blue point cloud in the upper left made of single-pixel dots, and a smaller orange cloud of hollow circles in the lower right. A legend names both series. Fail if either cloud is missing or the blue cloud is drawn as large markers instead of fine dots."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the two plots, axis titles, tick labels, and the legend are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Grid lines, markers, and axes remain visually distinguishable."
+    }
+  ]
+}

@@ -15,11 +15,12 @@ Item {
     required property var palette
     required property var typography
     property int markerShapeIndex: 0
+    property bool markerFilled: true
     property bool antialiasingEnabled: true
     property real antialiasingFeather: 1.0
 
-    readonly property var markerNames: ["Circle", "Square", "Diamond", "Triangle", "Cross"]
-    readonly property var markerShapes: [QAccelPlot.LineCurve.Circle, QAccelPlot.LineCurve.Square, QAccelPlot.LineCurve.Diamond, QAccelPlot.LineCurve.TriangleUp, QAccelPlot.LineCurve.Cross]
+    readonly property var markerNames: ["Circle", "Square", "Diamond", "Triangle", "Pentagon", "Hexagon", "Star", "Cross", "XCross", "Asterisk", "Pixel"]
+    readonly property var markerShapes: [QAccelPlot.LineCurve.Circle, QAccelPlot.LineCurve.Square, QAccelPlot.LineCurve.Diamond, QAccelPlot.LineCurve.TriangleUp, QAccelPlot.LineCurve.Pentagon, QAccelPlot.LineCurve.Hexagon, QAccelPlot.LineCurve.Star, QAccelPlot.LineCurve.Cross, QAccelPlot.LineCurve.XCross, QAccelPlot.LineCurve.Asterisk, QAccelPlot.LineCurve.Pixel]
 
     function curvePoints(offset) {
         const values = [0.12, 0.32, 0.20, 0.58, 0.42, 0.76, 0.62, 0.88, 0.71, 0.93, 0.80, 1.00];
@@ -61,6 +62,13 @@ Item {
                 Material.foreground: root.palette.text
                 Material.accent: root.palette.materialAccent
                 onActivated: root.markerShapeIndex = currentIndex
+            }
+            Switch {
+                text: "Filled"
+                checked: root.markerFilled
+                Material.foreground: root.palette.text
+                Material.accent: root.palette.materialAccent
+                onToggled: root.markerFilled = checked
             }
             Switch {
                 text: "Antialiasing"
@@ -146,6 +154,8 @@ Item {
                     lineWidth: 2
                     markerSize: 7
                     markerShape: root.markerShapes[root.markerShapeIndex]
+                    markerFilled: root.markerFilled
+                    markerStrokeWidth: 2
                     antialiasingEnabled: root.antialiasingEnabled
                     antialiasingFeather: root.antialiasingFeather
                     Component.onCompleted: setData(root.curvePoints(0))

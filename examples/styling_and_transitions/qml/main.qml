@@ -86,6 +86,10 @@ Window {
                 objectName: "gaps"
                 text: "Gaps"
             }
+            TabButton {
+                objectName: "markers"
+                text: "Markers"
+            }
         }
 
         StackLayout {
@@ -106,6 +110,10 @@ Window {
                 typography: typography
             }
             GapsPage {
+                palette: colorPalette
+                typography: typography
+            }
+            MarkersPage {
                 palette: colorPalette
                 typography: typography
             }

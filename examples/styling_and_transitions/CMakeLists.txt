@@ -14,4 +14,5 @@ qaccelplot_add_example(StylingAndTransitions
         qml/TransitionsPage.qml
         qml/FillsGradientsPage.qml
         qml/GapsPage.qml
+        qml/MarkersPage.qml
 )
