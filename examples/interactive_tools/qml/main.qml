@@ -190,6 +190,7 @@ Window {
             // rectangular clip exactly matching the drawable plot area.
             Item {
                 id: toolLayer
+                z: 1
                 x: plot.plotRect.x
                 y: plot.plotRect.y
                 width: plot.plotRect.width
