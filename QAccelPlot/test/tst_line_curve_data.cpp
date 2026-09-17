@@ -22,6 +22,10 @@ namespace QAccelPlot {
 class LineCurveDataTest : public QObject {
     Q_OBJECT
 
+public:
+    enum class TransitionStopMode { Detach, Cancel, Destroy };
+    Q_ENUM(TransitionStopMode)
+
 private slots:
     void hoverEnvironmentControlsAcceptance();
     void compatibleLineCacheCanBeReused();
@@ -33,6 +37,8 @@ private slots:
     void rawUpdateHonorsTransition();
     void destroyedTransitionClearsReference();
     void replacedTransitionDestructionDoesNotNotify();
+    void stoppedTransitionBeforeFirstFrame_data();
+    void stoppedTransitionBeforeFirstFrame();
     void disablingTransitionMidRunCancelsIt();
     void appendDataCancelsRunningTransition();
     void axisAggregatesCurrentSeriesRanges();
@@ -235,6 +241,42 @@ void LineCurveDataTest::replacedTransitionDestructionDoesNotNotify()
 
     QCOMPARE(curve.transition(), &second);
     QCOMPARE(changed.count(), 0);
+}
+
+void LineCurveDataTest::stoppedTransitionBeforeFirstFrame_data()
+{
+    QTest::addColumn<TransitionStopMode>("stopMode");
+    QTest::newRow("detach") << TransitionStopMode::Detach;
+    QTest::newRow("cancel") << TransitionStopMode::Cancel;
+    QTest::newRow("destroy") << TransitionStopMode::Destroy;
+}
+
+void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
+{
+    QFETCH(TransitionStopMode, stopMode);
+    auto curve = LineCurve{};
+    curve.setLineStyle(nullptr);
+    curve.setMarkerShape(LineCurve::PointShape::Circle);
+    auto transition = std::make_unique<MorphTransition>();
+    curve.setTransition(transition.get());
+    curve.setDataF(makeData(2), 2);
+
+    switch (stopMode) {
+    case TransitionStopMode::Detach:
+        curve.setTransition(nullptr);
+        break;
+    case TransitionStopMode::Cancel:
+        transition->cancel();
+        break;
+    case TransitionStopMode::Destroy:
+        transition.reset();
+        break;
+    }
+
+    // Rebuilding marker geometry must never read a pending animation's absent buffer.
+    curve.gaps()->setNanMode(NanGapMode::Connect);
+    curve.appendData(5.0, 6.0);
+    curve.clearData();
 }
 
 void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
