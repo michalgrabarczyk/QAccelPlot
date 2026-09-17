@@ -15,6 +15,7 @@ namespace QAccelPlot {
 void SpatialGrid::build(const float* data, const int itemCount, const int floatsPerItem)
 {
     cells_.clear();
+    largeItems_.clear();
     itemBounds_.clear();
     cols_ = 0;
     rows_ = 0;
@@ -41,15 +42,20 @@ int SpatialGrid::query(const float x, const float y) const
     const auto r = std::max(0, std::min(rows_ - 1, static_cast<int>((y - minY_) / cellH_)));
     const auto& cell = cells_[static_cast<size_t>(r) * static_cast<size_t>(cols_) + static_cast<size_t>(c)];
 
-    // Return the last (topmost) item that actually contains the point.
+    auto candidate = -1;
     for (auto it = cell.rbegin(); it != cell.rend(); ++it) {
         const auto& bounds = itemBounds_[static_cast<size_t>(*it)];
         if (bounds.contains(x, y)) {
+            candidate = *it;
+            break;
+        }
+    }
+    for (auto it = largeItems_.rbegin(); it != largeItems_.rend() && *it > candidate; ++it) {
+        if (itemBounds_[static_cast<size_t>(*it)].contains(x, y)) {
             return *it;
         }
     }
-
-    return -1;
+    return candidate;
 }
 
 bool SpatialGrid::ItemBounds::contains(const float x, const float y) const
@@ -115,6 +121,12 @@ void SpatialGrid::fillSpatialGrid(const int itemCount)
         const auto r0 = std::max(0, std::min(rows_ - 1, static_cast<int>((bounds.minY - minY_) / cellH_)));
         const auto c1 = std::max(0, std::min(cols_ - 1, static_cast<int>((bounds.maxX - minX_) / cellW_)));
         const auto r1 = std::max(0, std::min(rows_ - 1, static_cast<int>((bounds.maxY - minY_) / cellH_)));
+
+        constexpr auto kMaxCellsPerItem = 64;
+        if ((c1 - c0 + 1) * (r1 - r0 + 1) > kMaxCellsPerItem) {
+            largeItems_.push_back(i);
+            continue;
+        }
 
         for (auto r = r0; r <= r1; ++r) {
             for (auto c = c0; c <= c1; ++c) {

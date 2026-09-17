@@ -11,11 +11,12 @@
 
 namespace QAccelPlot {
 
-/// \brief Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries.
+/// \brief Uniform-grid spatial index with bounded per-rectangle storage.
 ///
 /// Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array
 /// with a configurable \a floatsPerItem stride. Intended for use by RectangleList
 /// and similar shape types.
+/// Rectangles spanning more than 64 cells are stored once and checked separately during queries.
 class SpatialGrid {
 public:
     /// \brief Rebuilds the spatial index from \a data containing \a itemCount axis-aligned rectangles.
@@ -50,6 +51,7 @@ private:
     float cellH_{1.0f};
     std::vector<ItemBounds> itemBounds_;
     std::vector<std::vector<int>> cells_;
+    std::vector<int> largeItems_;
 };
 
 } // namespace QAccelPlot
