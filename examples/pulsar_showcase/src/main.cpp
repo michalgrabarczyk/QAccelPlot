@@ -7,7 +7,8 @@
 //
 #include "ExampleUtils.hpp"
 #include "PulsarWorker.hpp"
-#include "series/LineCurve.hpp"
+
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QCoreApplication>
 #include <QDebug>

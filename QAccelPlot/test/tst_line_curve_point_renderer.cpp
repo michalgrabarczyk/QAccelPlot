@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "renderers/LineCurvePointRenderer.hpp"
+#include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>

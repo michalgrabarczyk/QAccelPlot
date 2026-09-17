@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "linestyles/DashLine.hpp"
+#include "QAccelPlot/linestyles/DashLine.hpp"
 
 #include <QSignalSpy>
 #include <QtTest/QtTest>

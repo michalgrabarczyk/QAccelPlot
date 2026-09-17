@@ -5,11 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "axis/AxisTicker.hpp"
-#include "formatters/DateTimeTickLabelFormatter.hpp"
-#include "formatters/LogTickLabelFormatter.hpp"
-#include "formatters/NumericTickLabelFormatter.hpp"
-#include "formatters/TextTickLabelFormatter.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/LogTickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/NumericTickLabelFormatter.hpp"
+#include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 
 #include <QDateTime>
 #include <QJSEngine>

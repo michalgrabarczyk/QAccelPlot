@@ -6,7 +6,8 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "ExampleUtils.hpp"
-#include "series/LineCurve.hpp"
+
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QCoreApplication>
 #include <QGuiApplication>

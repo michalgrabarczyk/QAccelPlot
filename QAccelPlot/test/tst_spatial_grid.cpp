@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "series/SpatialGrid.hpp"
+#include "QAccelPlot/series/SpatialGrid.hpp"
 
 #include <QtTest/QtTest>
 

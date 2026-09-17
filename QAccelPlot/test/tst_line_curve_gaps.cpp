@@ -5,9 +5,9 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "axis/Axis.hpp"
-#include "series/LineCurve.hpp"
-#include "series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QtTest/QtTest>
 

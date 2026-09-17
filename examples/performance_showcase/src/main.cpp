@@ -8,8 +8,9 @@
 #include "DataDeliveryMetrics.hpp"
 #include "DataGenerationWorker.hpp"
 #include "ExampleUtils.hpp"
-#include "series/LineCurve.hpp"
-#include "shapes/RectangleList.hpp"
+
+#include <QAccelPlot/series/LineCurve.hpp>
+#include <QAccelPlot/shapes/RectangleList.hpp>
 
 using namespace QAccelPlot;
 

@@ -9,8 +9,8 @@
 #include "BenchmarkReporter.hpp"
 #include "BenchmarkScenario.hpp"
 
-#include "renderers/LineCurveLineRenderer.hpp"
-#include "series/LineCurve.hpp"
+#include <QAccelPlot/renderers/LineCurveLineRenderer.hpp>
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QCommandLineParser>
 #include <QCoreApplication>

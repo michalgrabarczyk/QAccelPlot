@@ -152,7 +152,7 @@ Every series needs an X and a Y axis. [`viewportMin`][viewport-min] and
 Create `main.cpp`:
 
 ```cpp
-#include "series/LineCurve.hpp"
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -179,6 +179,9 @@ int main(int argc, char* argv[])
     return app.exec();
 }
 ```
+
+Public headers are included with the `QAccelPlot/` prefix, for example
+`<QAccelPlot/series/LineCurve.hpp>`.
 
 [`setData()`][set-data-vectors] takes separate X and Y vectors and suits small,
 static data. For large or streaming data, see the
