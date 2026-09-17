@@ -188,7 +188,14 @@ void LineCurve::setTransition(DataTransition* transition)
     if (transition_ == transition) {
         return;
     }
+    disconnect(transitionDestroyedConnection_);
     transition_ = transition;
+    if (transition_) {
+        transitionDestroyedConnection_ = connect(transition_, &QObject::destroyed, this, [this]() {
+            emit transitionChanged();
+            update();
+        });
+    }
     emit transitionChanged();
 }
 
@@ -734,8 +741,7 @@ bool LineCurve::contains(const QPointF& point) const
         // Pixel markers ignore markerSize, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
         const auto hitRadius = markerShape_ == PointShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
-        return pointRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
+        return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {

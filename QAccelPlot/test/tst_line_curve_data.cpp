@@ -31,6 +31,8 @@ private slots:
     void invalidRawArgumentsAreRejected();
     void invalidVectorArgumentsAreRejected();
     void rawUpdateHonorsTransition();
+    void destroyedTransitionClearsReference();
+    void replacedTransitionDestructionDoesNotNotify();
     void disablingTransitionMidRunCancelsIt();
     void appendDataCancelsRunningTransition();
     void axisAggregatesCurrentSeriesRanges();
@@ -203,6 +205,36 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     curve.setDataFNoRange(second.data(), 3);
 
     QVERIFY(transition.running());
+}
+
+void LineCurveDataTest::destroyedTransitionClearsReference()
+{
+    auto curve = LineCurve{};
+    auto* transition = new MorphTransition;
+    curve.setTransition(transition);
+    auto changed = QSignalSpy{&curve, &LineCurve::transitionChanged};
+
+    delete transition;
+
+    QCOMPARE(curve.transition(), nullptr);
+    QCOMPARE(changed.count(), 1);
+    curve.setDataF(makeData(2), 2);
+    curve.clearData();
+}
+
+void LineCurveDataTest::replacedTransitionDestructionDoesNotNotify()
+{
+    auto curve = LineCurve{};
+    auto* first = new MorphTransition;
+    auto second = MorphTransition{};
+    curve.setTransition(first);
+    curve.setTransition(&second);
+    auto changed = QSignalSpy{&curve, &LineCurve::transitionChanged};
+
+    delete first;
+
+    QCOMPARE(curve.transition(), &second);
+    QCOMPARE(changed.count(), 0);
 }
 
 void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
