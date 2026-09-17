@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "axis/Axis.hpp"
-#include "shapes/RectangleList.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/shapes/RectangleList.hpp"
 
 #include <QtTest/QtTest>
 

@@ -5,12 +5,12 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot.hpp"
-#include "axis/Axis.hpp"
-#include "series/LineCurve.hpp"
-#include "shapes/RectangleList.hpp"
-#include "theme/ColorPalette.hpp"
-#include "theme/Colors.hpp"
+#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/shapes/RectangleList.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/theme/Colors.hpp"
 
 #include <QMetaProperty>
 #include <QQmlComponent>

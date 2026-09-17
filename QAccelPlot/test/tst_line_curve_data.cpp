@@ -5,11 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "effects/GradientFill.hpp"
-#include "linestyles/SolidLine.hpp"
-#include "series/LineCurve.hpp"
-#include "series/LineCurveVertexCache.hpp"
-#include "transitions/MorphTransition.hpp"
+#include "QAccelPlot/effects/GradientFill.hpp"
+#include "QAccelPlot/linestyles/SolidLine.hpp"
+#include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/LineCurveVertexCache.hpp"
+#include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QPointer>
 #include <QtTest/QtTest>

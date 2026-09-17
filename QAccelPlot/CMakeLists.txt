@@ -14,13 +14,12 @@ include(CMakePackageConfigHelpers)
 file(GLOB_RECURSE QACCELPLOT_SOURCES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     CONFIGURE_DEPENDS
-    "src/*.hpp"
-    "src/*.cpp"
+    "src/QAccelPlot/*.hpp"
+    "src/QAccelPlot/*.cpp"
 )
-list(FILTER QACCELPLOT_SOURCES EXCLUDE REGEX "^src/shaders/.*")
 
 # Preserve directory structure in IDE project views
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" PREFIX "Source Files" FILES ${QACCELPLOT_SOURCES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot" PREFIX "Source Files" FILES ${QACCELPLOT_SOURCES})
 
 file(GLOB QACCELPLOT_SHADER_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
@@ -103,26 +102,28 @@ else()
     target_compile_definitions(QAccelPlot PRIVATE QACCELPLOT_USE_QT_PRIVATE_API=0)
 endif()
 
-# Public interface: only the src/ root, so consumers use src/-relative paths.
+# Public interface: the include root containing QAccelPlot/, so consumers write
+# #include <QAccelPlot/series/LineCurve.hpp> in both build and install trees.
 # Private subdirectory entries are required by the auto-generated
 # qaccelplot_qmltyperegistrations.cpp, which Qt emits with bare #include <Foo.hpp>.
 target_include_directories(QAccelPlot
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/QAccelPlot>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/annotations>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/axis>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/effects>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/formatters>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/grid>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/linestyles>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/materials>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/renderers>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/series>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/shapes>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/theme>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/transitions>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/annotations>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/axis>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/effects>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/formatters>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/grid>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/linestyles>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/materials>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/renderers>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/series>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/shapes>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/theme>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/transitions>
 )
 
 # ---------------------------------------------------------------------------
@@ -155,11 +156,10 @@ if(QACCELPLOT_INSTALL)
 
     # --- Headers (preserves subdirectory structure) ---
     install(
-        DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/"
+        DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/QAccelPlot"
         FILES_MATCHING PATTERN "*.hpp"
         PATTERN "internal" EXCLUDE
-        PATTERN "shaders" EXCLUDE
     )
 
     # --- QML module directory (qmldir, typeinfo, QML files) ---

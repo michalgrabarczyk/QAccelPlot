@@ -7,7 +7,8 @@
 //
 #include "ExampleUtils.hpp"
 #include "SampleDataGenerators.hpp"
-#include "series/LineCurve.hpp"
+
+#include <QAccelPlot/series/LineCurve.hpp>
 
 using namespace QAccelPlot;
 

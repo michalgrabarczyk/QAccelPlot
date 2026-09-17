@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "annotations/DataAnchor.hpp"
-#include "axis/Axis.hpp"
+#include "QAccelPlot/annotations/DataAnchor.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
 
 #include <QtTest/QtTest>
 

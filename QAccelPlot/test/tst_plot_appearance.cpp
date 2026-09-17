@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot.hpp"
-#include "axis/Axis.hpp"
+#include "QAccelPlot/QAccelPlot.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
 
 #include <QHoverEvent>
 #include <QMouseEvent>

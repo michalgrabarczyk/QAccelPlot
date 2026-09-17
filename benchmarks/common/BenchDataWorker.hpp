@@ -11,7 +11,7 @@
 /// \brief Background thread that pre-generates data and builds the vertex cache
 ///        so that the render thread only calls setDataFNoRangeWithCache().
 
-#include "renderers/LineCurveLineRenderer.hpp"
+#include <QAccelPlot/renderers/LineCurveLineRenderer.hpp>
 
 #include <atomic>
 #include <condition_variable>

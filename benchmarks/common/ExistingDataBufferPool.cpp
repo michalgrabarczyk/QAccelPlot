@@ -7,7 +7,7 @@
 //
 #include "ExistingDataBufferPool.hpp"
 
-#include "renderers/LineCurveLineRenderer.hpp"
+#include <QAccelPlot/renderers/LineCurveLineRenderer.hpp>
 
 #include <algorithm>
 #include <cmath>

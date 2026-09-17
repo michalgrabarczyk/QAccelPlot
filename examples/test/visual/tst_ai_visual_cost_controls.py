@@ -85,7 +85,7 @@ class ImpactRoutingTests(unittest.TestCase):
         self.assertEqual(result["scenarios"], ["styling/gaps", "styling/lines"])
 
     def test_shared_rendering_change_selects_every_ai_scenario(self):
-        result = self.classify(["QAccelPlot/src/QAccelPlot.cpp"])
+        result = self.classify(["QAccelPlot/src/QAccelPlot/QAccelPlot.cpp"])
         self.assertEqual(result["scope"], "all")
         self.assertEqual(result["scenarios"], ["quickstart/default", "styling/gaps", "styling/lines"])
 

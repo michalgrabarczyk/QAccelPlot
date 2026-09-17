@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Public headers are now included with a `QAccelPlot/` prefix, for example
+  `#include <QAccelPlot/series/LineCurve.hpp>`, both when QAccelPlot is
+  embedded with `add_subdirectory` or `FetchContent` and when it is installed.
+  The library sources moved to `QAccelPlot/src/QAccelPlot/`. Replace unprefixed
+  includes such as `"series/LineCurve.hpp"`.
+
 ## [0.2.0] — 2026-09-16
 
 ### Added

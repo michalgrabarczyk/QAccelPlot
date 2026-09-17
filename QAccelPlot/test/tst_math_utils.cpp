@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "MathUtils.hpp"
+#include "QAccelPlot/MathUtils.hpp"
 
 #include <QtTest/QtTest>
 

@@ -14,8 +14,9 @@
 #include "BenchmarkReporter.hpp"
 #include "BenchmarkScenario.hpp"
 #include "ExistingDataBufferPool.hpp"
-#include "QAccelPlot.hpp"
-#include "series/LineCurve.hpp"
+
+#include <QAccelPlot/QAccelPlot.hpp>
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QElapsedTimer>
 #include <QObject>

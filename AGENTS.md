@@ -62,30 +62,31 @@ background thread; the main thread swaps in pre-computed buffers.
 
 ```
 QAccelPlot/
-├── src/
-│   ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
-│   ├── PlotMouseEvent.*      — Custom mouse event type
-│   ├── PlotBorder.*          — Plot frame decoration
-│   ├── MathUtils.hpp         — Math utilities
-│   ├── QAccelPlotLogging.*   — Qt logging category
-│   ├── annotations/          — DataAnchor (attach QML items to data coords)
-│   ├── axis/                 — Axis, AxisTicker, AxisTickPainter
-│   ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
-│   ├── formatters/           — DateTimeTickLabelFormatter, LogTickLabelFormatter,
-│   │                           NumericTickLabelFormatter, TextTickLabelFormatter,
-│   │                           TickLabelFormatter (base/JS callback)
-│   ├── grid/                 — Grid, GridNode
-│   ├── linestyles/           — SolidLine, DashLine, NoLine
-│   ├── materials/            — QSGMaterial subclasses for GPU rendering
-│   ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│   ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
-│   │                           LineCurveGaps (gaps grouped property),
-│   │                           LineCurveGapFilter (invalid-sample contract),
-│   │                           SpatialGrid (hover hit testing)
-│   ├── shaders/              — GLSL shaders compiled to .qsb
-│   ├── shapes/               — RectangleList
-│   ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
-│   └── transitions/          — DataTransition, DrawTransition, MorphTransition
+├── src/                          — Include root (#include <QAccelPlot/...>)
+│   ├── QAccelPlot/
+│   │   ├── QAccelPlot.hpp/.cpp   — PlotView: main plot canvas item
+│   │   ├── PlotMouseEvent.*      — Custom mouse event type
+│   │   ├── PlotBorder.*          — Plot frame decoration
+│   │   ├── MathUtils.hpp         — Math utilities
+│   │   ├── QAccelPlotLogging.*   — Qt logging category
+│   │   ├── annotations/          — DataAnchor (attach QML items to data coords)
+│   │   ├── axis/                 — Axis, AxisTicker, AxisTickPainter
+│   │   ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
+│   │   ├── formatters/           — DateTimeTickLabelFormatter, LogTickLabelFormatter,
+│   │   │                           NumericTickLabelFormatter, TextTickLabelFormatter,
+│   │   │                           TickLabelFormatter (base/JS callback)
+│   │   ├── grid/                 — Grid, GridNode
+│   │   ├── linestyles/           — SolidLine, DashLine, NoLine
+│   │   ├── materials/            — QSGMaterial subclasses for GPU rendering
+│   │   ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
+│   │   ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
+│   │   │                           LineCurveGaps (gaps grouped property),
+│   │   │                           LineCurveGapFilter (invalid-sample contract),
+│   │   │                           SpatialGrid (hover hit testing)
+│   │   ├── shapes/               — RectangleList
+│   │   ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
+│   │   └── transitions/          — DataTransition, DrawTransition, MorphTransition
+│   └── shaders/                  — GLSL shaders compiled to .qsb
 ├── qml/                      — QML helper types (Plot, Legend)
 ├── test/                     — Unit tests
 └── CMakeLists.txt            — Library build configuration
@@ -110,7 +111,9 @@ QAccelPlot/
   `Q_PROPERTY(Type name READ getter WRITE setter NOTIFY signal)` pattern.
 - Register QML elements with `QML_NAMED_ELEMENT(ClassName)` in the class body.
 - Keep `.hpp` / `.cpp` pairs for every class; headers organized in
-  subdirectories under `src/`.
+  subdirectories under `src/QAccelPlot/`. Include library headers with the
+  `QAccelPlot/` prefix: `"QAccelPlot/series/LineCurve.hpp"` inside `QAccelPlot/`,
+  `<QAccelPlot/series/LineCurve.hpp>` in examples and benchmarks.
 - Follow Qt's signal/slot naming: `fooChanged()` signal paired with
   `setFoo()` setter.
 - Prefer `qreal` for geometric values exposed to QML; use `float` for
@@ -190,7 +193,7 @@ GitHub Release has been created.
 
 ## Adding New Plot Elements
 
-1. Create `src/MyElement.hpp` and `src/MyElement.cpp`.
+1. Create `src/QAccelPlot/MyElement.hpp` and `src/QAccelPlot/MyElement.cpp`.
 2. Inherit from `QQuickItem` (visual) or `QObject` (non-visual).
 3. Add `QML_NAMED_ELEMENT(MyElement)` and all `Q_PROPERTY` declarations.
 4. Override `updatePaintNode` if the element needs custom rendering.

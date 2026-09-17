@@ -5,8 +5,8 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "transitions/DrawTransition.hpp"
-#include "transitions/MorphTransition.hpp"
+#include "QAccelPlot/transitions/DrawTransition.hpp"
+#include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QtTest/QtTest>
 
