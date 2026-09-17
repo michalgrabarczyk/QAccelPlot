@@ -8,8 +8,9 @@
 import QtQuick
 import QAccelPlot as QAccelPlot
 // RulerTool: measures the straight-line distance between two draggable handles.
-// The ruler line itself can also be dragged to translate the entire tool.
-// Drag handles are only visible when the tool is active.
+// The ruler is drawn as a translucent band with tick marks spaced in data units.
+// Dragging the band translates the entire tool. Drag handles are only visible
+// when the tool is active.
 //
 // Usage — add as a child of Plot:
 //
@@ -35,9 +36,10 @@ Item {
     property real y2Data: 0.0
 
     // Style
-    property color lineColor: palette.toolRuler
+    property color bandColor: palette.toolRuler
     property color handleColor: palette.toolRuler
-    property real lineWidth: 2.0
+    property real bandWidth: 24.0
+    property real minTickSpacing: 6.0
     property real handleRadius: 6.0
 
     // Read-only: computed Euclidean distance in data units
@@ -53,7 +55,26 @@ Item {
     property real px2: 0
     property real py2: 0
 
-    // Midpoint distance label
+    readonly property real pixelLength: Math.hypot(px2 - px1, py2 - py1)
+    readonly property real angleDegrees: Math.atan2(py2 - py1, px2 - px1) * 180 / Math.PI
+
+    // Smallest 1-2-5 data step whose ticks are at least minTickSpacing apart.
+    readonly property var tickScale: {
+        if (dataDistance <= 0 || pixelLength <= 0) {
+            return null;
+        }
+        const raw = minTickSpacing * dataDistance / pixelLength;
+        const base = Math.pow(10, Math.floor(Math.log10(raw)));
+        const ratio = raw / base;
+        const mantissa = ratio <= 1 ? 1 : ratio <= 2 ? 2 : ratio <= 5 ? 5 : 10;
+        const majorEvery = mantissa === 2 ? 5 : mantissa === 5 ? 2 : 10;
+        return {
+            spacing: mantissa * base * pixelLength / dataDistance,
+            majorEvery: majorEvery,
+            midEvery: majorEvery === 10 ? 5 : 0
+        };
+    }
+
     onX1DataChanged: updatePixelPositions()
     onY1DataChanged: updatePixelPositions()
     onX2DataChanged: updatePixelPositions()
@@ -91,74 +112,84 @@ Item {
         px1 = parent.dataToPixelX(x1Data);
         py1 = parent.dataToPixelY(y1Data);
         px2 = parent.dataToPixelX(x2Data);
-        py2 = parent.dataToPixelY(y2Data);
-    }
+        py2 = parent.dataToPixelY(y2Data);    }
 
-    // Ruler line rendered as a rotated rectangle
-    Rectangle {
-        readonly property real dx: root.px2 - root.px1
-        readonly property real dy: root.py2 - root.py1
-        readonly property real len: Math.sqrt(dx * dx + dy * dy)
-
-        x: root.px1
-        y: root.py1 - root.lineWidth / 2
-        width: len
-        height: root.lineWidth
-        color: root.lineColor
-        transformOrigin: Item.TopLeft
-        rotation: Math.atan2(dy, dx) * 180 / Math.PI
-    }
-
-    // Returns the pixel-space distance from (px, py) to the ruler line segment.
-    function distToLine(px, py) {
-        const dx = root.px2 - root.px1;
-        const dy = root.py2 - root.py1;
-        const lenSq = dx * dx + dy * dy;
-        if (lenSq < 0.0001) {
-            const ex = px - root.px1;
-            const ey = py - root.py1;
-            return Math.sqrt(ex * ex + ey * ey);
-        }
-        const t = Math.max(0, Math.min(1, ((px - root.px1) * dx + (py - root.py1) * dy) / lenSq));
-        const nx = root.px1 + t * dx - px;
-        const ny = root.py1 + t * dy - py;
-        return Math.sqrt(nx * nx + ny * ny);
-    }
-
-    // Midpoint distance label
-    Rectangle {
-        readonly property real mx: (root.px1 + root.px2) / 2
-        readonly property real my: (root.py1 + root.py2) / 2
-
-        x: mx - width / 2
-        y: my - height - 8
-        width: distLabel.implicitWidth + 10
-        height: distLabel.implicitHeight + 6
-        radius: 3
-        color: root.palette.tooltipBackground
-        visible: root.parent && root.parent.isInsidePlotArea(mx, my)
-
-        Text {
-            id: distLabel
-            anchors.centerIn: parent
-            color: root.palette.tooltipText
-            font.pixelSize: 11
-            font.bold: true
-            text: "d = " + root.dataDistance.toFixed(2)
-        }
-    }
-
+    // Band in ruler-local coordinates: x runs from handle 1 to handle 2 and the
+    // measured segment is the horizontal center line.
     Item {
-        readonly property real dx: root.px2 - root.px1
-        readonly property real dy: root.py2 - root.py1
-        readonly property real len: Math.sqrt(dx * dx + dy * dy)
+        id: band
 
         x: root.px1
-        y: root.py1 - 8
-        width: len
-        height: 16
-        transformOrigin: Item.TopLeft
-        rotation: Math.atan2(dy, dx) * 180 / Math.PI
+        y: root.py1 - height / 2
+        width: root.pixelLength
+        height: root.bandWidth
+        transformOrigin: Item.Left
+        rotation: root.angleDegrees
+
+        Rectangle {
+            anchors.fill: parent
+            radius: 2
+            antialiasing: true
+            color: Qt.rgba(root.bandColor.r, root.bandColor.g, root.bandColor.b, 0.16)
+            border.color: Qt.rgba(root.bandColor.r, root.bandColor.g, root.bandColor.b, 0.55)
+            border.width: 1
+        }
+
+        Rectangle {
+            y: (parent.height - height) / 2
+            width: parent.width
+            height: 1
+            antialiasing: true
+            color: Qt.rgba(root.bandColor.r, root.bandColor.g, root.bandColor.b, 0.45)
+        }
+
+        Repeater {
+            model: root.tickScale ? Math.min(1000, Math.floor(band.width / root.tickScale.spacing) + 1) : 0
+
+            Item {
+                id: tick
+
+                required property int index
+                readonly property bool major: index % root.tickScale.majorEvery === 0
+                readonly property bool mid: root.tickScale.midEvery > 0 && index % root.tickScale.midEvery === 0
+                readonly property real tickLength: major ? 10 : mid ? 7 : 4
+
+                x: index * root.tickScale.spacing - width / 2
+                width: 1
+                height: band.height
+                opacity: major ? 1.0 : 0.7
+
+                Rectangle {
+                    width: parent.width
+                    height: tick.tickLength
+                    antialiasing: true
+                    color: root.bandColor
+                }
+                Rectangle {
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    height: tick.tickLength
+                    antialiasing: true
+                    color: root.bandColor
+                }
+            }
+        }
+
+        component EndCap: Rectangle {
+            y: -2
+            width: 2
+            height: band.height + 4
+            radius: 1
+            antialiasing: true
+            color: root.bandColor
+        }
+
+        EndCap {
+            x: -width / 2
+        }
+        EndCap {
+            x: band.width - width / 2
+        }
 
         MouseArea {
             anchors.fill: parent
@@ -188,6 +219,41 @@ Item {
                 root.y2Data += dyData;
                 lastX = point.x;
                 lastY = point.y;
+            }
+        }
+    }
+
+    // Distance label, aligned with the band but kept upright. It sits inside
+    // the band when there is room and above it otherwise.
+    Item {
+        readonly property real mx: (root.px1 + root.px2) / 2
+        readonly property real my: (root.py1 + root.py2) / 2
+
+        x: mx
+        y: my
+        rotation: root.angleDegrees > 90 ? root.angleDegrees - 180 : root.angleDegrees < -90 ? root.angleDegrees + 180 : root.angleDegrees
+        visible: root.parent && root.parent.isInsidePlotArea(mx, my)
+
+        Rectangle {
+            readonly property bool fitsInBand: root.pixelLength >= width + 2 * (root.handleRadius + 8)
+
+            x: -width / 2
+            y: fitsInBand ? -height / 2 : -root.bandWidth / 2 - height - 4
+            width: distLabel.implicitWidth + 12
+            height: distLabel.implicitHeight + 4
+            radius: height / 2
+            antialiasing: true
+            color: root.palette.tooltipBackground
+            border.color: root.bandColor
+            border.width: 1
+
+            Text {
+                id: distLabel
+                anchors.centerIn: parent
+                color: root.palette.tooltipText
+                font.pixelSize: 11
+                font.bold: true
+                text: "d = " + root.dataDistance.toFixed(2)
             }
         }
     }
