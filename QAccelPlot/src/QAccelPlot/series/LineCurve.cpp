@@ -675,10 +675,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         }
         node = rootNode;
     } else {
-        // Single-mode: discard container if it was previously dual
-        if (oldNode && oldNode != lineNode && oldNode != pointNode) {
-            delete oldNode;
-        }
+        // Each renderer owns replacement of the node passed to paint().
         node = hasLine ? lineNode : pointNode;
     }
 
@@ -734,8 +731,7 @@ bool LineCurve::contains(const QPointF& point) const
         // Pixel markers ignore markerSize, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
         const auto hitRadius = markerShape_ == PointShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
-        return pointRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
+        return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {
