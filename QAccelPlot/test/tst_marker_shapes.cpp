@@ -103,10 +103,11 @@ private slots:
 
 void MarkerShapesTest::shapeIndicesMatchShaders()
 {
-    // point.frag and point.vert select shapes by PointShape value - 1, so values must never be reordered.
+    // PointShape values are public API, and point.frag and point.vert select shapes by value - 1.
+    // Append new shapes at the end; never reorder or insert.
     const auto expected = std::vector<std::pair<Shape, int>>{{Shape::None, 0}, {Shape::Circle, 1}, {Shape::Square, 2}, {Shape::Diamond, 3},
-        {Shape::TriangleUp, 4}, {Shape::TriangleDown, 5}, {Shape::Cross, 6}, {Shape::TriangleLeft, 7}, {Shape::TriangleRight, 8}, {Shape::XCross, 9},
-        {Shape::Star, 10}, {Shape::Asterisk, 11}, {Shape::Pentagon, 12}, {Shape::Hexagon, 13}, {Shape::HLine, 14}, {Shape::VLine, 15}, {Shape::Pixel, 16}};
+        {Shape::TriangleUp, 4}, {Shape::TriangleDown, 5}, {Shape::TriangleLeft, 6}, {Shape::TriangleRight, 7}, {Shape::Cross, 8}, {Shape::XCross, 9},
+        {Shape::HLine, 10}, {Shape::VLine, 11}, {Shape::Star, 12}, {Shape::Asterisk, 13}, {Shape::Pixel, 14}, {Shape::Hexagon, 15}, {Shape::Pentagon, 16}};
     QCOMPARE(QMetaEnum::fromType<Shape>().keyCount(), static_cast<int>(expected.size()));
     for (const auto& [shape, value] : expected) {
         QCOMPARE(static_cast<int>(shape), value);

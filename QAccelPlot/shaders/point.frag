@@ -35,17 +35,17 @@ const int kSquare        = 1;
 const int kDiamond       = 2;
 const int kTriangleUp    = 3;
 const int kTriangleDown  = 4;
-const int kCross         = 5;
-const int kTriangleLeft  = 6;
-const int kTriangleRight = 7;
+const int kTriangleLeft  = 5;
+const int kTriangleRight = 6;
+const int kCross         = 7;
 const int kXCross        = 8;
-const int kStar          = 9;
-const int kAsterisk      = 10;
-const int kPentagon      = 11;
-const int kHexagon       = 12;
-const int kHLine         = 13;
-const int kVLine         = 14;
-const int kPixel         = 15;
+const int kHLine         = 9;
+const int kVLine         = 10;
+const int kStar          = 11;
+const int kAsterisk      = 12;
+const int kPixel         = 13;
+const int kHexagon       = 14;
+const int kPentagon      = 15;
 
 // Half-width of the bars of Cross and XCross, and of the thinner Asterisk and line bars, in marker radii.
 const float kBarHalfWidth = 0.35;

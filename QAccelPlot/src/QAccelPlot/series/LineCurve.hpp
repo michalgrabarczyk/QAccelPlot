@@ -94,17 +94,17 @@ public:
         Diamond,       ///< \brief Diamond, narrower than it is tall.
         TriangleUp,    ///< \brief Equilateral triangle pointing up.
         TriangleDown,  ///< \brief Equilateral triangle pointing down.
-        Cross,         ///< \brief Plus sign (+).
         TriangleLeft,  ///< \brief Equilateral triangle pointing left.
         TriangleRight, ///< \brief Equilateral triangle pointing right.
+        Cross,         ///< \brief Plus sign (+).
         XCross,        ///< \brief Diagonal cross (×).
-        Star,          ///< \brief Five-pointed star.
-        Asterisk,      ///< \brief Eight-armed asterisk: a thin plus and a thin diagonal cross.
-        Pentagon,      ///< \brief Regular pentagon with a vertex up.
-        Hexagon,       ///< \brief Regular hexagon with a vertex up.
         HLine,         ///< \brief Short horizontal line.
         VLine,         ///< \brief Short vertical line, e.g. for rug and event plots.
-        Pixel          ///< \brief A single pixel; ignores \c markerSize, \c markerFilled, and anti-aliasing. Suited to very dense scatter plots.
+        Star,          ///< \brief Five-pointed star.
+        Asterisk,      ///< \brief Eight-armed asterisk: a thin plus and a thin diagonal cross.
+        Pixel,         ///< \brief A single pixel; ignores \c markerSize, \c markerFilled, and anti-aliasing. Suited to very dense scatter plots.
+        Hexagon,       ///< \brief Regular hexagon with a vertex up.
+        Pentagon       ///< \brief Regular pentagon with a vertex up.
     };
     Q_ENUM(PointShape)
 

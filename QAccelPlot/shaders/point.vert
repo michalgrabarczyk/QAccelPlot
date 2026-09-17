@@ -32,7 +32,7 @@ layout(std140, binding = 0) uniform buf {
     float markerFilled;
 } ubuf;
 
-const int kPixelShape = 15; // LineCurve::PointShape::Pixel - 1
+const int kPixelShape = 13; // LineCurve::PointShape::Pixel - 1
 
 #include "math_utils.glsl"
 

@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Marker shapes `TriangleLeft`, `TriangleRight`, `XCross`, `Star`, `Asterisk`,
-  `Pentagon`, `Hexagon`, `HLine`, and `VLine`, and a `Pixel` marker that draws
+- Marker shapes `TriangleLeft`, `TriangleRight`, `XCross`, `HLine`, `VLine`,
+  `Star`, `Asterisk`, `Hexagon`, and `Pentagon`, and a `Pixel` marker that draws
   each sample as a single pixel for very dense scatter plots.
 - Hollow markers: set `LineCurve.markerFilled` to `false` to outline filled
   shapes with `markerStrokeWidth` pixels. Legend symbols follow the curve.
