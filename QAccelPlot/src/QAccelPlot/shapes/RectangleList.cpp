@@ -247,7 +247,7 @@ void RectangleList::hoverMoveEvent(QHoverEvent* event)
     const auto dataY = yAxis()->pixelToCoord(pos.y(), height());
 
     // Query spatial grid
-    const auto candidate = spatialGrid_.query(static_cast<float>(dataX), static_cast<float>(dataY));
+    const auto candidate = spatialGrid_.query(dataX, dataY);
 
     auto newHovered = -1;
     if (candidate >= 0 && candidate < rectCount_) {
@@ -279,12 +279,7 @@ void RectangleList::hoverLeaveEvent(QHoverEvent* /*event*/)
 
 void RectangleList::buildSpatialGrid()
 {
-    // SpatialGrid only needs to narrow hover queries to a candidate rect — the final
-    // containment test in hoverMoveEvent() re-checks against the full double-precision
-    // data_, so a plain float cast here (no origin shift) is sufficient.
-    auto floatData = std::vector<float>(data_.size());
-    std::transform(data_.begin(), data_.end(), floatData.begin(), [](const double v) { return static_cast<float>(v); });
-    spatialGrid_.build(floatData.data(), rectCount_);
+    spatialGrid_.buildDouble(data_.data(), rectCount_);
 }
 
 void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY)

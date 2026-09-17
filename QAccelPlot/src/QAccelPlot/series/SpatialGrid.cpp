@@ -14,22 +14,15 @@ namespace QAccelPlot {
 
 void SpatialGrid::build(const float* data, const int itemCount, const int floatsPerItem)
 {
-    cells_.clear();
-    largeItems_.clear();
-    itemBounds_.clear();
-    cols_ = 0;
-    rows_ = 0;
-
-    if (itemCount <= 0 || !data) {
-        return;
-    }
-
-    computeDataBounds(data, itemCount, floatsPerItem);
-    computeGridDimensions(itemCount);
-    fillSpatialGrid(itemCount);
+    buildData(data, itemCount, floatsPerItem);
 }
 
-int SpatialGrid::query(const float x, const float y) const
+void SpatialGrid::buildDouble(const double* data, const int itemCount, const int valuesPerItem)
+{
+    buildData(data, itemCount, valuesPerItem);
+}
+
+int SpatialGrid::query(const double x, const double y) const
 {
     if (cols_ <= 0 || rows_ <= 0) {
         return -1;
@@ -58,16 +51,31 @@ int SpatialGrid::query(const float x, const float y) const
     return candidate;
 }
 
-bool SpatialGrid::ItemBounds::contains(const float x, const float y) const
+bool SpatialGrid::ItemBounds::contains(const double x, const double y) const
 {
     return x >= minX && x <= maxX && y >= minY && y <= maxY;
 }
 
-void SpatialGrid::computeDataBounds(const float* data, const int itemCount, const int floatsPerItem)
+template <typename T> void SpatialGrid::buildData(const T* data, const int itemCount, const int valuesPerItem)
+{
+    cells_.clear();
+    largeItems_.clear();
+    itemBounds_.clear();
+    cols_ = 0;
+    rows_ = 0;
+    if (itemCount <= 0 || !data) {
+        return;
+    }
+    computeDataBounds(data, itemCount, valuesPerItem);
+    computeGridDimensions(itemCount);
+    fillSpatialGrid(itemCount);
+}
+
+template <typename T> void SpatialGrid::computeDataBounds(const T* data, const int itemCount, const int valuesPerItem)
 {
     itemBounds_.reserve(static_cast<size_t>(itemCount));
     for (auto i = 0; i < itemCount; ++i) {
-        const auto base = i * floatsPerItem;
+        const auto base = i * valuesPerItem;
         const auto bounds = ItemBounds{
             std::min(data[base], data[base + 2]),
             std::min(data[base + 1], data[base + 3]),
@@ -105,8 +113,8 @@ void SpatialGrid::computeGridDimensions(const int itemCount)
     const auto dim = std::max(1, std::min(kMaxGridDimension, static_cast<int>(std::sqrt(static_cast<float>(itemCount)))));
     cols_ = dim;
     rows_ = dim;
-    cellW_ = (maxX_ - minX_) / static_cast<float>(cols_);
-    cellH_ = (maxY_ - minY_) / static_cast<float>(rows_);
+    cellW_ = (maxX_ - minX_) / static_cast<double>(cols_);
+    cellH_ = (maxY_ - minY_) / static_cast<double>(rows_);
 
     cells_.resize(static_cast<size_t>(cols_) * static_cast<size_t>(rows_));
 }
