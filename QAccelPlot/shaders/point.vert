@@ -27,21 +27,17 @@ layout(std140, binding = 0) uniform buf {
     float useVertexColor;
     float antialiasingEnabled;
     float antialiasingFeather;
-    int shapeType;
+    int   shapeType;
+    float markerStrokeWidth;
+    float markerFilled;
 } ubuf;
+
+const int kPixelShape = 13; // LineCurve::PointShape::Pixel - 1
 
 #include "math_utils.glsl"
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-
-    // With antialiasing, the quad grows by half the feather so the coverage ramp
-    // centred on the shape edge is not clipped by the geometry.
-    float halfExtent = ubuf.markerSize;
-    if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        halfExtent += ubuf.antialiasingFeather * 0.5;
-    }
-    v_uv = corner * (halfExtent / max(ubuf.markerSize, 1e-4));
 
     // Invalid samples (non-finite, or not strictly positive on a log-scale
     // dimension) are not drawn. All six corners share the culled position, so
@@ -50,6 +46,7 @@ void main() {
         && (ubuf.logScaleX < 0.5 || pos.x > 0.0)
         && (ubuf.logScaleY < 0.5 || pos.y > 0.0);
     if (!valid) {
+        v_uv = corner;
         gl_Position = kCulledClipPosition;
         return;
     }
@@ -75,6 +72,19 @@ void main() {
         (p.x - dMin.x) / range.x * ubuf.viewportSize.x,
         (1.0 - (p.y - dMin.y) / range.y) * ubuf.viewportSize.y
     );
+
+    float halfExtent = ubuf.markerSize;
+    if (ubuf.shapeType == kPixelShape) {
+        // A Pixel marker covers exactly one pixel: snap the centre to the pixel grid
+        // and ignore markerSize and antialiasing.
+        p_local = floor(p_local) + 0.5;
+        halfExtent = 0.5;
+    } else if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
+        // With antialiasing, the quad grows by half the feather so the coverage ramp
+        // centred on the shape edge is not clipped by the geometry.
+        halfExtent += ubuf.antialiasingFeather * 0.5;
+    }
+    v_uv = corner * (halfExtent / max(ubuf.markerSize, 1e-4));
 
     // Expand the point centre into a billboard quad in item-local pixel space
     vec2 final_pos = p_local + corner * halfExtent;

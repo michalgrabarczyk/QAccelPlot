@@ -59,7 +59,7 @@ QAccelPlot.Plot {
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
         markerShape: QAccelPlot.LineCurve.Diamond
-        markerSize: 5
+        markerSize: 7
     }
 }
 ```

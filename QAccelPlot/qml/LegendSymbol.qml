@@ -20,13 +20,19 @@ Item {
     readonly property bool showLine: curveLineStyle ? curveLineStyle.showLine : true
     readonly property int curveMarker: sourceSeries.markerShape !== undefined ? sourceSeries.markerShape : LineCurve.None
     readonly property real curveMarkerSize: sourceSeries.markerSize !== undefined ? Math.max(0, sourceSeries.markerSize) : 0
+    readonly property bool curveMarkerFilled: sourceSeries.markerFilled !== undefined ? sourceSeries.markerFilled : true
+    readonly property real curveMarkerStrokeWidth: sourceSeries.markerStrokeWidth !== undefined ? Math.max(0, sourceSeries.markerStrokeWidth) : 1
     readonly property real curveLineWidth: sourceSeries.lineWidth !== undefined ? Math.max(0, sourceSeries.lineWidth) : 1
     readonly property bool curveAntialiasingEnabled: sourceSeries.antialiasingEnabled !== undefined ? sourceSeries.antialiasingEnabled : true
     readonly property real curveAntialiasingFeather: sourceSeries.antialiasingFeather !== undefined ? sourceSeries.antialiasingFeather : 1
     readonly property bool hasMarker: curveMarker !== LineCurve.None
+    // A single pixel is hard to see in a legend, so Pixel markers are shown as a small dot.
+    readonly property bool pixelMarker: curveMarker === LineCurve.Pixel
+    readonly property int sampleMarker: pixelMarker ? LineCurve.Circle : curveMarker
+    readonly property real sampleMarkerSize: pixelMarker ? 1.5 : curveMarkerSize
 
-    width: Math.max(requestedWidth, hasMarker ? curveMarkerSize * 2 + 2 : 0)
-    height: Math.max(14, hasMarker ? curveMarkerSize * 2 + 2 : 0, showLine ? curveLineWidth + 2 : 0)
+    width: Math.max(requestedWidth, hasMarker ? sampleMarkerSize * 2 + 2 : 0)
+    height: Math.max(14, hasMarker ? sampleMarkerSize * 2 + 2 : 0, showLine ? curveLineWidth + 2 : 0)
 
     Axis {
         id: sampleXAxis
@@ -94,8 +100,10 @@ Item {
         yAxis: sampleYAxis
         color: root.curveColor
         lineStyle: markerOnlyStyle
-        markerShape: root.curveMarker
-        markerSize: root.curveMarkerSize
+        markerShape: root.sampleMarker
+        markerSize: root.sampleMarkerSize
+        markerFilled: root.curveMarkerFilled
+        markerStrokeWidth: root.curveMarkerStrokeWidth
         antialiasingEnabled: root.curveAntialiasingEnabled
         antialiasingFeather: root.curveAntialiasingFeather
 

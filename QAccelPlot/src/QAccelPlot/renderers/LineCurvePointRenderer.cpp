@@ -227,6 +227,8 @@ QSGNode* LineCurvePointRenderer::paint(QSGNode* oldNode, const PointCurveRenderP
     material->antialiasingEnabled = params.antialiasingEnabled ? 1.0f : 0.0f;
     material->antialiasingFeather = static_cast<float>(params.antialiasingFeather);
     material->shapeType = params.shapeType;
+    material->markerStrokeWidth = static_cast<float>(params.markerStrokeWidth);
+    material->markerFilled = params.markerFilled ? 1.0f : 0.0f;
 
     if (params.dataChanged || !oldNode || useVertexColor) {
         const auto expectedCacheBytes = static_cast<std::size_t>(node->geometry()->vertexCount()) * sizeof(PointVertex);

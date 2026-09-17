@@ -26,9 +26,11 @@ struct PointUbo {
     float antialiasingEnabled; // 120–123
     float antialiasingFeather; // 124–127
     int shapeType;             // 128–131
+    float markerStrokeWidth;   // 132–135
+    float markerFilled;        // 136–139
 };
 
-static_assert(sizeof(PointUbo) == 132);
+static_assert(sizeof(PointUbo) == 140);
 
 class PointShader : public QSGMaterialShader {
 public:
@@ -69,6 +71,8 @@ public:
         ubo.antialiasingEnabled = mat->antialiasingEnabled;
         ubo.antialiasingFeather = mat->antialiasingFeather;
         ubo.shapeType = mat->shapeType;
+        ubo.markerStrokeWidth = mat->markerStrokeWidth;
+        ubo.markerFilled = mat->markerFilled;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -125,6 +129,12 @@ int PointMaterial::compare(const QSGMaterial* other) const
     }
     if (shapeType != m->shapeType) {
         return shapeType < m->shapeType ? -1 : 1;
+    }
+    if (markerStrokeWidth != m->markerStrokeWidth) {
+        return markerStrokeWidth < m->markerStrokeWidth ? -1 : 1;
+    }
+    if (markerFilled != m->markerFilled) {
+        return markerFilled < m->markerFilled ? -1 : 1;
     }
     return 0;
 }

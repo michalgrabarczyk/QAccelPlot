@@ -250,6 +250,36 @@ void LineCurve::setMarkerSize(qreal r)
     update();
 }
 
+bool LineCurve::markerFilled() const
+{
+    return markerFilled_;
+}
+
+void LineCurve::setMarkerFilled(const bool filled)
+{
+    if (markerFilled_ == filled) {
+        return;
+    }
+    markerFilled_ = filled;
+    emit markerFilledChanged();
+    update();
+}
+
+qreal LineCurve::markerStrokeWidth() const
+{
+    return markerStrokeWidth_;
+}
+
+void LineCurve::setMarkerStrokeWidth(const qreal width)
+{
+    if (nearly_equal(markerStrokeWidth_, width)) {
+        return;
+    }
+    markerStrokeWidth_ = width;
+    emit markerStrokeWidthChanged();
+    update();
+}
+
 bool LineCurve::antialiasingEnabled() const
 {
     return antialiasingEnabled_;
@@ -620,7 +650,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         const auto shapeType = static_cast<int>(markerShape_) - 1;
         const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged_, color_, hovered_, markerSize_, domainMin,
             domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
-            hasLine ? nullptr : cache, shapeType};
+            hasLine ? nullptr : cache, shapeType, markerStrokeWidth_, markerFilled_};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -701,8 +731,11 @@ bool LineCurve::contains(const QPointF& point) const
     const auto logY = logScaleY();
 
     if (markerShape_ != PointShape::None) {
+        // Pixel markers ignore markerSize, so hover them within a small fixed radius.
+        constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
+        const auto hitRadius = markerShape_ == PointShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
         return pointRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, markerSize_, logX, logY});
+            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {

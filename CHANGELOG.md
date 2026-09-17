@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Marker shapes `TriangleLeft`, `TriangleRight`, `XCross`, `HLine`, `VLine`,
+  `Star`, `Asterisk`, `Hexagon`, and `Pentagon`, and a `Pixel` marker that draws
+  each sample as a single pixel for very dense scatter plots.
+- Hollow markers: set `LineCurve.markerFilled` to `false` to outline filled
+  shapes with `markerStrokeWidth` pixels. Legend symbols follow the curve.
+- A Markers page in the styling and transitions example shows every shape.
+
 ### Changed
 
 - Public headers are now included with a `QAccelPlot/` prefix, for example
@@ -21,6 +30,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
   visible, and thicker lines render at their full width. Lines thinner than
   1 px draw 1 px wide with proportionally reduced alpha.
+- `Diamond`, `TriangleUp`, and `TriangleDown` markers are no longer clipped flat
+  at their tips, and their antialiased edges are equally soft on every side.
+  They keep their previous width and height.
 
 ## [0.2.0] — 2026-09-16
 

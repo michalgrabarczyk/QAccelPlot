@@ -68,6 +68,12 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(PointShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
     /// \brief Radius of each marker in pixels. Default: 4.
     Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
+    /// \brief Whether closed marker shapes are filled. When \c false they are drawn as outlines of \c markerStrokeWidth
+    /// inside the shape's edge. Line-like shapes (\c Cross, \c XCross, \c Asterisk, \c HLine, \c VLine) and \c Pixel
+    /// are unaffected. Default: \c true.
+    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
+    /// \brief Outline width in pixels of hollow markers. Has effect only when \c markerFilled is \c false. Default: 1.
+    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
     /// \brief Whether GPU-side anti-aliasing is applied to lines and markers. Default: \c true.
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     /// \brief Anti-aliasing feather width in pixels. Has effect only when \c antialiasingEnabled is \c true. Default: 1.
@@ -79,7 +85,27 @@ class LineCurve : public PlotSeries {
 
 public:
     /// \brief Marker shape options for data points.
-    enum class PointShape { None, Circle, Square, Diamond, TriangleUp, TriangleDown, Cross };
+    ///
+    /// Every shape except \c Pixel fits within a square of half-width \c markerSize.
+    enum class PointShape {
+        None,          ///< \brief No markers.
+        Circle,        ///< \brief Circle.
+        Square,        ///< \brief Square.
+        Diamond,       ///< \brief Diamond, narrower than it is tall.
+        TriangleUp,    ///< \brief Equilateral triangle pointing up.
+        TriangleDown,  ///< \brief Equilateral triangle pointing down.
+        TriangleLeft,  ///< \brief Equilateral triangle pointing left.
+        TriangleRight, ///< \brief Equilateral triangle pointing right.
+        Cross,         ///< \brief Plus sign (+).
+        XCross,        ///< \brief Diagonal cross (×).
+        HLine,         ///< \brief Short horizontal line.
+        VLine,         ///< \brief Short vertical line, e.g. for rug and event plots.
+        Star,          ///< \brief Five-pointed star.
+        Asterisk,      ///< \brief Eight-armed asterisk: a thin plus and a thin diagonal cross.
+        Pixel,         ///< \brief A single pixel; ignores \c markerSize, \c markerFilled, and anti-aliasing. Suited to very dense scatter plots.
+        Hexagon,       ///< \brief Regular hexagon with a vertex up.
+        Pentagon       ///< \brief Regular pentagon with a vertex up.
+    };
     Q_ENUM(PointShape)
 
     /// \brief Constructs a LineCurve with the given \a parent.
@@ -117,6 +143,16 @@ public:
     qreal markerSize() const;
     /// \brief Sets the marker size to \a r pixels.
     void setMarkerSize(qreal r);
+
+    /// \brief Returns \c true if closed marker shapes are filled.
+    bool markerFilled() const;
+    /// \brief Sets whether closed marker shapes are filled (\a filled) or drawn as outlines.
+    void setMarkerFilled(bool filled);
+
+    /// \brief Returns the outline width of hollow markers in pixels.
+    qreal markerStrokeWidth() const;
+    /// \brief Sets the outline width of hollow markers to \a width pixels.
+    void setMarkerStrokeWidth(qreal width);
 
     /// \brief Returns \c true when GPU anti-aliasing is enabled.
     bool antialiasingEnabled() const;
@@ -184,6 +220,10 @@ signals:
     void markerShapeChanged();
     /// \brief Emitted when the markerSize property changes.
     void markerSizeChanged();
+    /// \brief Emitted when the markerFilled property changes.
+    void markerFilledChanged();
+    /// \brief Emitted when the markerStrokeWidth property changes.
+    void markerStrokeWidthChanged();
     /// \brief Emitted when the antialiasingEnabled property changes.
     void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -253,6 +293,8 @@ private:
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     PointShape markerShape_{PointShape::None};
     qreal markerSize_{4.0};
+    bool markerFilled_{true};
+    qreal markerStrokeWidth_{1.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};

@@ -88,7 +88,9 @@ data change, giving `O(1)` lookup per pointer move.
 
 ### Other rendering costs
 
-- Markers add geometry and fragment work per visible point.
+- Markers add geometry and fragment work per visible point. Fragment work grows
+  with `markerSize`; `LineCurve.Pixel` markers shade one pixel per point and
+  suit very dense scatter plots.
 - Gradient effects add material and domain work.
 - Transitions update intermediate data while animating.
 - Many series add per-node and per-material overhead at the same total point
