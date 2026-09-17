@@ -14,6 +14,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   The library sources moved to `QAccelPlot/src/QAccelPlot/`. Replace unprefixed
   includes such as `"series/LineCurve.hpp"`.
 
+### Fixed
+
+- Antialiased lines and markers no longer lose coverage inside their nominal
+  size. The `antialiasingFeather` ramp is now centred on the edge, so 1 px lines
+  stay continuous regardless of pixel alignment, the 1 px legend symbol is
+  visible, and thicker lines render at their full width. Lines thinner than
+  1 px draw 1 px wide with proportionally reduced alpha.
+
 ## [0.2.0] — 2026-09-16
 
 ### Added

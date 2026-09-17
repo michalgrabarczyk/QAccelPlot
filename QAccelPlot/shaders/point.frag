@@ -8,9 +8,7 @@
 #version 440
 
 layout(location = 0) in vec4 v_color;
-layout(location = 1) in vec2 v_uv;     // -1..+1 across the billboard quad
-layout(location = 2) in float v_fadeStart;
-layout(location = 3) in float v_softness;
+layout(location = 1) in vec2 v_uv;     // +-1 is markerSize; the quad extends further with antialiasing
 
 layout(location = 0) out vec4 fragColor;
 
@@ -91,9 +89,10 @@ float shapeSDF(vec2 uv) {
 void main() {
     float dist  = shapeSDF(v_uv);
     float alpha;
-    if (v_fadeStart < 1.0) {
-        float baseAlpha = 1.0 - smoothstep(max(v_fadeStart, 0.0), 1.0, dist);
-        alpha = pow(baseAlpha, max(v_softness, 1.0));
+    if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
+        // Coverage ramps linearly across `antialiasingFeather` pixels centred on the shape edge.
+        float edgeDistance = (1.0 - dist) * ubuf.markerSize;
+        alpha = clamp(edgeDistance / ubuf.antialiasingFeather + 0.5, 0.0, 1.0);
     } else {
         alpha = dist <= 1.0 ? 1.0 : 0.0;
     }

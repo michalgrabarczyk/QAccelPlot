@@ -7,7 +7,8 @@
 //
 // Shared ribbon geometry for line vertex shaders.
 // Requires: a `ubuf` uniform block with matrix, domainMin, domainMax,
-// viewportSize, lineWidth, logScaleX, logScaleY and pointCount members,
+// viewportSize, lineWidth, logScaleX, logScaleY, pointCount,
+// antialiasingEnabled and antialiasingFeather members,
 // followed by includes of data_texture.glsl and math_utils.glsl.
 
 // Validity weight written to both vertices of an invalid sample. Valid vertices
@@ -21,6 +22,21 @@ struct LineVertexResult {
     vec2 dataPosition; // untransformed data-space position of the sample
     float validWeight; // 1.0 for valid samples, kInvalidVertexWeight otherwise
 };
+
+// Returns true when fragment antialiasing applies to the ribbon.
+bool lineAntialiased() {
+    return ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0;
+}
+
+// Half-width of the rasterized ribbon in pixels. With antialiasing, the ribbon
+// is at least 1 px wide and grows by half the feather on each side, so the
+// coverage ramp centred on the line edge is never clipped by the geometry.
+float lineRibbonHalfExtent() {
+    if (!lineAntialiased()) {
+        return ubuf.lineWidth * 0.5;
+    }
+    return max(ubuf.lineWidth, 1.0) * 0.5 + ubuf.antialiasingFeather * 0.5;
+}
 
 // Fetches sample `index` (clamped to the data range) and returns whether it is
 // valid: both coordinates finite and strictly positive on log-scale dimensions.
@@ -129,7 +145,7 @@ LineVertexResult computeLineVertex(int index, float side) {
     }
 
     // Offset in item-local pixel space, then use Qt's matrix to project
-    vec2 offset = normal * (ubuf.lineWidth * 0.5) * miterLength * side;
+    vec2 offset = normal * lineRibbonHalfExtent() * miterLength * side;
 
     LineVertexResult result;
     result.position = ubuf.matrix * vec4(p_local + offset, 0.0, 1.0);

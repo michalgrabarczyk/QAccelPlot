@@ -8,12 +8,10 @@
 #version 440
 
 layout(location = 0) in vec4 v_color;
-layout(location = 1) in float v_edgeDistance;
-layout(location = 2) in float v_fadeStart;
-layout(location = 3) in float v_softness;
-layout(location = 4) in float v_arcLength;
-layout(location = 5) in float v_gradientCoordinate;
-layout(location = 6) in float v_validWeight;
+layout(location = 1) in float v_edgeDistance; // signed distance from the line centre, in pixels
+layout(location = 2) in float v_arcLength;
+layout(location = 3) in float v_gradientCoordinate;
+layout(location = 4) in float v_validWeight;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -58,11 +56,15 @@ void main() {
         }
     }
 
+    // Coverage ramps linearly across `antialiasingFeather` pixels centred on the
+    // line edge. Lines thinner than 1 px are drawn 1 px wide with proportionally
+    // reduced alpha, so they stay visible regardless of pixel alignment.
     float alpha = 1.0;
-    if (v_fadeStart < 1.0) {
-        float edge = abs(v_edgeDistance);
-        float baseAlpha = 1.0 - smoothstep(max(v_fadeStart, 0.0), 1.0, edge);
-        alpha = pow(baseAlpha, max(v_softness, 1.0));
+    if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
+        float coverageWidth = max(ubuf.lineWidth, 1.0);
+        float edgeDistance = coverageWidth * 0.5 - abs(v_edgeDistance);
+        alpha = clamp(edgeDistance / ubuf.antialiasingFeather + 0.5, 0.0, 1.0);
+        alpha *= clamp(ubuf.lineWidth, 0.0, 1.0);
     }
 
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
