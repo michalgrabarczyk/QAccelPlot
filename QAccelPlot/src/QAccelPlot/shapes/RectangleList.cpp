@@ -277,6 +277,12 @@ void RectangleList::hoverLeaveEvent(QHoverEvent* /*event*/)
     }
 }
 
+void RectangleList::onAxisScaleChanged()
+{
+    dataChanged_ = true;
+    update();
+}
+
 void RectangleList::buildSpatialGrid()
 {
     // SpatialGrid only needs to narrow hover queries to a candidate rect — the final
