@@ -593,7 +593,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
 
     // Checked after the transition step because Connect mode can change the drawable count.
     const auto drawnPointCount = renderPointCount();
-    const auto minPoints = hasLine ? 2 : 1;
+    const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {
         if (stillAnimating) {
             update();
