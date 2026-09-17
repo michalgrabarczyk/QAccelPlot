@@ -981,10 +981,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         dataType_ = DataType::Double;
         transition_->start(data_, pointCount_, std::move(newData), newPointCount);
 
-        const auto maxCount = std::max(pointCount_, newPointCount);
-        pointCount_ = maxCount;
-        data_.resize(static_cast<std::size_t>(maxCount) * 2);
-
+        // Keep the current buffers and count consistent until advance() publishes a frame.
         invalidateData();
         update();
         return;
