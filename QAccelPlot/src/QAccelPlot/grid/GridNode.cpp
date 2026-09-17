@@ -66,6 +66,9 @@ void GridNode::update(const Grid* grid, const Axis* xAxis, const Axis* yAxis, co
     if (plotRect_.isEmpty() || (!xAxis && !yAxis)) {
         return;
     }
+    if (!grid->gridVisible() && !grid->subGridVisible()) {
+        return;
+    }
     if (!grid->gridHorizontalLinesVisible() && !grid->gridVerticalLinesVisible() && !grid->subGridHorizontalLinesVisible()
         && !grid->subGridVerticalLinesVisible()) {
         return;
@@ -127,6 +130,9 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
         }
     } else {
         const auto ticks = t ? t->tickCount() : 5;
+        if (ticks <= 0) {
+            return;
+        }
         const auto subticks = t ? t->subtickCount() : 0;
         static constexpr auto kRelativeTolerance = 1e-9; // avoids dropping ticks that land exactly on viewport boundary
         const auto step = AxisTickPainter::computeNiceStep(viewportLow, viewportHigh, ticks);
