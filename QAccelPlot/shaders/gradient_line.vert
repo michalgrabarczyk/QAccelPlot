@@ -14,12 +14,10 @@ layout(location = 2) in vec4 vertexColor;
 layout(location = 3) in float arcLength;
 
 layout(location = 0) out vec4 v_color;
-layout(location = 1) out float v_edgeDistance;
-layout(location = 2) out float v_fadeStart;
-layout(location = 3) out float v_softness;
-layout(location = 4) out float v_arcLength;
-layout(location = 5) out float v_gradientCoordinate;
-layout(location = 6) out float v_validWeight;
+layout(location = 1) out float v_edgeDistance; // signed distance from the line centre, in pixels
+layout(location = 2) out float v_arcLength;
+layout(location = 3) out float v_gradientCoordinate;
+layout(location = 4) out float v_validWeight;
 
 layout(std140, binding = 0) uniform buf {
     mat4 matrix;
@@ -49,18 +47,8 @@ layout(binding = 1) uniform sampler2D dataSampler;
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_edgeDistance = side;
+    v_edgeDistance = side * lineRibbonHalfExtent();
     v_arcLength = arcLength;
-
-    if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        float halfWidth = max(ubuf.lineWidth * 0.5, 1e-4);
-        float featherNorm = max(ubuf.antialiasingFeather / halfWidth, 0.01);
-        v_fadeStart = 1.0 - featherNorm;
-        v_softness = featherNorm;
-    } else {
-        v_fadeStart = 2.0;
-        v_softness = 1.0;
-    }
 
     LineVertexResult vertex = computeLineVertex(int(id), side);
     v_validWeight = vertex.validWeight;

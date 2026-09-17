@@ -13,9 +13,7 @@ layout(location = 1) in vec2 corner;   // quad corner: each component is -1 or +
 layout(location = 2) in vec4 vertexColor;
 
 layout(location = 0) out vec4 v_color;
-layout(location = 1) out vec2 v_uv;    // forwarded to fragment shader for SDF shaping
-layout(location = 2) out float v_fadeStart;
-layout(location = 3) out float v_softness;
+layout(location = 1) out vec2 v_uv;    // forwarded to fragment shader for SDF shaping; +-1 is markerSize
 
 layout(std140, binding = 0) uniform buf {
     mat4  matrix;
@@ -36,18 +34,14 @@ layout(std140, binding = 0) uniform buf {
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_uv    = corner;
 
-    // Precompute AA fade threshold for the fragment shader.
+    // With antialiasing, the quad grows by half the feather so the coverage ramp
+    // centred on the shape edge is not clipped by the geometry.
+    float halfExtent = ubuf.markerSize;
     if (ubuf.antialiasingEnabled > 0.5 && ubuf.antialiasingFeather > 0.0) {
-        float radius = max(ubuf.markerSize, 1e-4);
-        float featherNorm = max(ubuf.antialiasingFeather / radius, 0.01);
-        v_fadeStart = 1.0 - featherNorm;
-        v_softness = featherNorm;
-    } else {
-        v_fadeStart = 2.0; // sentinel: AA disabled
-        v_softness = 1.0;
+        halfExtent += ubuf.antialiasingFeather * 0.5;
     }
+    v_uv = corner * (halfExtent / max(ubuf.markerSize, 1e-4));
 
     // Invalid samples (non-finite, or not strictly positive on a log-scale
     // dimension) are not drawn. All six corners share the culled position, so
@@ -83,6 +77,6 @@ void main() {
     );
 
     // Expand the point centre into a billboard quad in item-local pixel space
-    vec2 final_pos = p_local + corner * ubuf.markerSize;
+    vec2 final_pos = p_local + corner * halfExtent;
     gl_Position = ubuf.matrix * vec4(final_pos, 0.0, 1.0);
 }
