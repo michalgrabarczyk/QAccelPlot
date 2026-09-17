@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/LineCurve.hpp"
 
 #include <QHoverEvent>
 #include <QMouseEvent>
@@ -49,6 +50,8 @@ private slots:
     void hiddenAxisRetainsCoordinateMapping();
     void hiddenExtraAxisDoesNotReserveLayoutSpace();
     void destroyedAxesAreUnregistered();
+    void destroyedSeriesAreUnregistered();
+    void reparentedSeriesAreUnregistered();
 };
 
 void TestPlotAppearance::border_defaultsToDisabled()
@@ -527,6 +530,38 @@ void TestPlotAppearance::destroyedAxesAreUnregistered()
     delete extraAxis;
     QCOMPARE(extraAxes.count(&extraAxes), 0);
     QCOMPARE(plot.plotRect(), QRectF(10.0, 10.0, 280.0, 230.0));
+}
+
+void TestPlotAppearance::destroyedSeriesAreUnregistered()
+{
+    auto plot = QAccelPlot::QAccelPlot{};
+    auto* curve = new QAccelPlot::LineCurve;
+    curve->setParentItem(&plot);
+    QCOMPARE(plot.series().size(), 1);
+    auto changed = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::seriesChanged};
+
+    delete curve;
+
+    QVERIFY(plot.series().isEmpty());
+    QCOMPARE(changed.count(), 1);
+    plot.setPadding(25.0);
+}
+
+void TestPlotAppearance::reparentedSeriesAreUnregistered()
+{
+    auto first = QAccelPlot::QAccelPlot{};
+    auto second = QAccelPlot::QAccelPlot{};
+    auto* curve = new QAccelPlot::LineCurve;
+    curve->setParentItem(&first);
+    curve->setParentItem(&second);
+    QVERIFY(first.series().isEmpty());
+    QCOMPARE(second.series().size(), 1);
+    auto firstChanged = QSignalSpy{&first, &QAccelPlot::QAccelPlot::seriesChanged};
+
+    delete curve;
+
+    QVERIFY(second.series().isEmpty());
+    QCOMPARE(firstChanged.count(), 0);
 }
 
 QTEST_MAIN(TestPlotAppearance)

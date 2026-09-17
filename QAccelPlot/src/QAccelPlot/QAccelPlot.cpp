@@ -476,10 +476,10 @@ void QAccelPlot::itemChange(ItemChange change, const ItemChangeData& value)
             }
         }
     } else if (change == ItemChildRemovedChange) {
-        if (auto* series = qobject_cast<PlotSeries*>(value.item)) {
-            if (series_.removeOne(series)) {
-                emit seriesChanged();
-            }
+        // During QQuickItem destruction the child no longer casts to PlotSeries.
+        const auto removed = series_.removeIf([item = value.item](const PlotSeries* series) { return series == item; });
+        if (removed > 0) {
+            emit seriesChanged();
         }
     }
 }
