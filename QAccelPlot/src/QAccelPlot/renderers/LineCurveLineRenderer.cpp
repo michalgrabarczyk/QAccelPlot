@@ -194,12 +194,17 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
         const auto* fillGeometryNode = static_cast<QSGGeometryNode*>(fillNode);
         const auto* lineGeometryNode = static_cast<QSGGeometryNode*>(lineNode);
         const auto hasGradientFillMaterial = dynamic_cast<const GradientFillMaterial*>(fillGeometryNode->material()) != nullptr;
-        const auto hasGradientLineMaterial = dynamic_cast<const GradientLineMaterial*>(lineGeometryNode->material()) != nullptr;
-        return hasGradientFillMaterial && hasGradientLineMaterial == gradientStroke;
+        const auto hasLineMaterial = dynamic_cast<const LineMaterial*>(lineGeometryNode->material()) != nullptr;
+        return hasGradientFillMaterial && hasLineMaterial;
     }();
 
     if (isExpectedRoot) {
-        recreated = false;
+        auto* lineNode = static_cast<QSGGeometryNode*>(oldNode->lastChild());
+        const auto hasGradient = dynamic_cast<const GradientLineMaterial*>(lineNode->material()) != nullptr;
+        recreated = hasGradient != gradientStroke;
+        if (recreated) {
+            lineNode->setMaterial(gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : static_cast<QSGMaterial*>(new LineMaterial));
+        }
         return oldNode;
     }
 

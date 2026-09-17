@@ -34,6 +34,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Canceling, replacing, or destroying a `LineCurve` transition before its
   first rendered frame no longer leaves the point count inconsistent with the
   available data buffers, preventing out-of-bounds rendering access.
+- Toggling a `LineCurve` gradient stroke no longer double-deletes its scene
+  graph node and crashes; the renderer now preserves the node while replacing
+  its material.
 - Antialiased lines and markers no longer lose coverage inside their nominal
   size. The `antialiasingFeather` ramp is now centred on the edge, so 1 px lines
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
