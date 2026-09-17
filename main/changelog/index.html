@@ -803,6 +803,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -843,7 +854,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1265,6 +1276,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1305,7 +1327,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Fixed
@@ -1377,6 +1399,14 @@
   The library sources moved to <code>QAccelPlot/src/QAccelPlot/</code>. Replace unprefixed
   includes such as <code>"series/LineCurve.hpp"</code>.</li>
 </ul>
+<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Antialiased lines and markers no longer lose coverage inside their nominal
+  size. The <code>antialiasingFeather</code> ramp is now centred on the edge, so 1 px lines
+  stay continuous regardless of pixel alignment, the 1 px legend symbol is
+  visible, and thicker lines render at their full width. Lines thinner than
+  1 px draw 1 px wide with proportionally reduced alpha.</li>
+</ul>
 <h2 id="020-2026-09-16">[0.2.0] — 2026-09-16<a class="headerlink" href="#020-2026-09-16" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1405,7 +1435,7 @@
   built-in dark palette instead of generic Qt colors. The <code>Colors</code> palette is
   defined once in C++ and shared with QML, where its usage is unchanged.</li>
 </ul>
-<h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<h3 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Legend line and marker samples now use the curve renderers, keeping marker
   shapes and dash patterns consistent across graphics backends and display scales.</li>
