@@ -587,7 +587,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
 
     // Checked after the transition step because Connect mode can change the drawable count.
     const auto drawnPointCount = renderPointCount();
-    const auto minPoints = hasLine ? 2 : 1;
+    const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {
         if (stillAnimating) {
             update();
@@ -734,8 +734,7 @@ bool LineCurve::contains(const QPointF& point) const
         // Pixel markers ignore markerSize, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
         const auto hitRadius = markerShape_ == PointShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
-        return pointRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
+        return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {
