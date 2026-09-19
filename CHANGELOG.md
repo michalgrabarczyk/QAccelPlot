@@ -25,6 +25,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- Removing, reparenting, or destroying a plot series no longer leaves it
+  registered with its former plot, preventing later updates from accessing a
+  dangling series pointer.
+- `LineCurve` no longer keeps a dangling `transition` pointer when an
+  externally owned data transition is destroyed; the property is cleared and
+  its change is reported.
+- Canceling, replacing, or destroying a `LineCurve` transition before its
+  first rendered frame no longer leaves the point count inconsistent with the
+  available data buffers, preventing out-of-bounds rendering access.
 - Antialiased lines and markers no longer lose coverage inside their nominal
   size. The `antialiasingFeather` ramp is now centred on the edge, so 1 px lines
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
