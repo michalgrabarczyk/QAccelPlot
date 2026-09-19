@@ -239,6 +239,7 @@
 * **onLineStyleChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onLineStyleDestroyed** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onNanGapModeChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **onTransitionDestroyed** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onAxisRangeChanged** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 
 

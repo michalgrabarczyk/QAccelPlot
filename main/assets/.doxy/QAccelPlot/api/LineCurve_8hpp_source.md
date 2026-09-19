@@ -150,6 +150,7 @@ signals:
     void antialiasingFeatherChanged();
 
 private:
+    void onTransitionDestroyed();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
@@ -209,7 +210,7 @@ private:
     bool renderOriginXSettled_{false};
     bool renderOriginYSettled_{false};
     int pointCount_{0};
-    DataTransition* transition_{nullptr};
+    QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     PointShape markerShape_{PointShape::None};
     qreal markerSize_{4.0};
