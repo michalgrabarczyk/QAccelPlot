@@ -1432,6 +1432,15 @@
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Removing, reparenting, or destroying a plot series no longer leaves it
+  registered with its former plot, preventing later updates from accessing a
+  dangling series pointer.</li>
+<li><code>LineCurve</code> no longer keeps a dangling <code>transition</code> pointer when an
+  externally owned data transition is destroyed; the property is cleared and
+  its change is reported.</li>
+<li>Canceling, replacing, or destroying a <code>LineCurve</code> transition before its
+  first rendered frame no longer leaves the point count inconsistent with the
+  available data buffers, preventing out-of-bounds rendering access.</li>
 <li>Antialiased lines and markers no longer lose coverage inside their nominal
   size. The <code>antialiasingFeather</code> ramp is now centred on the edge, so 1 px lines
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
