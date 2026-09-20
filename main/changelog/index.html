@@ -1441,6 +1441,9 @@
 <li>Canceling, replacing, or destroying a <code>LineCurve</code> transition before its
   first rendered frame no longer leaves the point count inconsistent with the
   available data buffers, preventing out-of-bounds rendering access.</li>
+<li>Toggling a <code>LineCurve</code> gradient stroke no longer double-deletes its scene
+  graph node and crashes; the renderer now preserves the node while replacing
+  its material.</li>
 <li>Antialiased lines and markers no longer lose coverage inside their nominal
   size. The <code>antialiasingFeather</code> ramp is now centred on the edge, so 1 px lines
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
