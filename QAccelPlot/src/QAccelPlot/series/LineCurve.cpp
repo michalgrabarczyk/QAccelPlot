@@ -681,10 +681,6 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         }
         node = rootNode;
     } else {
-        // Single-mode: discard container if it was previously dual
-        if (oldNode && oldNode != lineNode && oldNode != pointNode) {
-            delete oldNode;
-        }
         node = hasLine ? lineNode : pointNode;
     }
 
