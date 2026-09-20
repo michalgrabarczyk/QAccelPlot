@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- Overlapping rectangles no longer cause quadratic memory growth in the hover
+  lookup index, preventing excessive memory use and crashes with large datasets.
 - Removing, reparenting, or destroying a plot series no longer leaves it
   registered with its former plot, preventing later updates from accessing a
   dangling series pointer.
