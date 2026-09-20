@@ -47,6 +47,7 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformanceShowcase    performance_showcase)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePointCloud             point_cloud)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsarShowcase         pulsar_showcase NO_AI_INSPECTION)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions PAGES styling fillsGradients transitions gaps markers)
 

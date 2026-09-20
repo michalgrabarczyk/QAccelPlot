@@ -10,7 +10,7 @@
 namespace QAccelPlot {
 
 BenchmarkScenario::BenchmarkScenario(const QString& name, const QString& label, const QString& description, const int pointCount, const int curveCount,
-    const UpdateMode updateMode, const int durationSeconds, const int warmupSeconds)
+    const UpdateMode updateMode, const int durationSeconds, const int warmupSeconds, const SeriesType seriesType)
     : name_(name)
     , label_(label)
     , description_(description)
@@ -19,6 +19,7 @@ BenchmarkScenario::BenchmarkScenario(const QString& name, const QString& label, 
     , updateMode_(updateMode)
     , durationSeconds_(durationSeconds)
     , warmupSeconds_(warmupSeconds)
+    , seriesType_(seriesType)
 {
 }
 
@@ -62,6 +63,21 @@ int BenchmarkScenario::warmupSeconds() const
     return warmupSeconds_;
 }
 
+BenchmarkScenario::SeriesType BenchmarkScenario::seriesType() const
+{
+    return seriesType_;
+}
+
+bool BenchmarkScenario::isCpuOnly() const
+{
+    for (const auto* prefix : {"data_ingestion", "vertex_cache", "point_cloud_ingestion", "point_cloud_hover_index"}) {
+        if (name_.startsWith(QLatin1String(prefix))) {
+            return true;
+        }
+    }
+    return false;
+}
+
 std::vector<BenchmarkScenario> BenchmarkScenario::defaultScenarios()
 {
     return {
@@ -100,6 +116,18 @@ std::vector<BenchmarkScenario> BenchmarkScenario::defaultScenarios()
             2'000'000, 1, UpdateMode::MaxRate, 5, 1},
         {QStringLiteral("vertex_cache_2m"), QStringLiteral("Vertex Cache 2M"), QStringLiteral("Vertex cache build cost at 2M points — CPU-only, max rate"),
             2'000'000, 1, UpdateMode::MaxRate, 5, 1},
+        {QStringLiteral("point_cloud_static_1m"), QStringLiteral("Point Cloud 1M + Pan"),
+            QStringLiteral("One existing 1M-point cloud, with the viewport panning back and forth every frame"), 1'000'000, 1, UpdateMode::Static, 5, 1,
+            SeriesType::PointCloud},
+        {QStringLiteral("point_cloud_live_250k"), QStringLiteral("Point Cloud Live 250K"),
+            QStringLiteral("Existing 250K-point positions and per-point values copied into a point cloud every frame"), 250'000, 1, UpdateMode::Live, 10, 2,
+            SeriesType::PointCloud},
+        {QStringLiteral("point_cloud_ingestion_1m"), QStringLiteral("Point Cloud Ingestion 1M"),
+            QStringLiteral("PointCloud setDataFNoRange throughput with per-point values at 1M points — CPU-only, max rate"), 1'000'000, 1, UpdateMode::MaxRate,
+            5, 1, SeriesType::PointCloud},
+        {QStringLiteral("point_cloud_hover_index_1m"), QStringLiteral("Point Cloud Hover Index 1M"),
+            QStringLiteral("PointSpatialIndex rebuild cost at 1M points — CPU-only, max rate"), 1'000'000, 1, UpdateMode::MaxRate, 5, 1,
+            SeriesType::PointCloud},
     };
 }
 

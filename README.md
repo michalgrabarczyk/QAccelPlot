@@ -119,6 +119,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | **[Interactive Tools](examples/interactive_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
 | **[Custom Axis](examples/custom_axis/)** | Multi-lead ECG layout, multi-rate waveforms, and logarithmic spectra. |
 | **[Axis Formats](examples/axis_formats/)** | Category, logarithmic, and date/time tick labels. |
+| **[Point Cloud](examples/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
 | **[Annotations](examples/annotations/)** | QML overlays anchored to data coordinates. |
 | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 

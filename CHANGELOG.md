@@ -19,6 +19,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Unix-epoch timestamps without re-interleaving.
 - `LineCurve::postData(std::vector<double>&&, int)` hands off an interleaved
   double buffer from a worker thread, like the existing float `postData()`.
+- `PointCloud` series for large unconnected scatter data: GPU markers in every
+  `LineCurve` marker shape, uniform or per-point value colormaps through a QML
+  `Gradient`, logarithmic axes, hover picking with `hoveredIndex`, and
+  thread-safe `postData()`. Non-finite and non-positive (on log axes) points are
+  skipped automatically.
+- `PointCloud.markerFilled` and `PointCloud.markerStrokeWidth`, matching the
+  `LineCurve` properties: closed shapes draw as outlines inside the shape's
+  edge, and legend symbols follow.
+- `PlotSeries.LegendSymbol.Marker`, which draws only the marker shape in the
+  default legend.
+- `point_cloud` example and point-cloud benchmark scenarios.
 
 ### Changed
 

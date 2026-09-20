@@ -78,10 +78,11 @@ QAccelPlot/
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│       ├── series/               — LineCurve, PlotSeries, LineCurveVertexCache,
+│       ├── series/               — LineCurve, PointCloud, PlotSeries,
+│       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
-│       │                           SpatialGrid (hover hit testing)
+│       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
 │       ├── shapes/               — RectangleList
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition
@@ -95,7 +96,7 @@ QAccelPlot/
 
 - `examples/` — Complete runnable applications (quickstart, realtime,
   pulsar_showcase, annotations, axis_formats, custom_axis, interactive_tools,
-  performance_showcase, styling_and_transitions)
+  performance_showcase, point_cloud, styling_and_transitions)
 - `benchmarks/` — Performance measurement scenarios and harness
 - `docs/` — MkDocs guide source + Doxygen configuration
 - `qml/` — Top-level QML types (Plot wrapper, Legend)

@@ -596,15 +596,6 @@ void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCou
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
-static QRectF resolvePlotRect(const LineCurve* curve)
-{
-    const auto pr = curve->plotRect();
-    if (!pr.isEmpty()) {
-        return pr;
-    }
-    return QRectF(0, 0, curve->width(), curve->height());
-}
-
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
 {
     Q_UNUSED(updatePaintNodeData)
@@ -667,7 +658,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
-    const auto pr = resolvePlotRect(this);
+    const auto pr = resolvePlotRect();
     const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
     const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     const auto viewportSize = QVector2D(static_cast<float>(pr.width()), static_cast<float>(pr.height()));

@@ -24,6 +24,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   and per-axis pan and zoom.
 - [`LineCurve`](api/classQAccelPlot_1_1LineCurve.md) — GPU-rendered lines and
   markers, data ingestion, effects, transitions, gaps, and hover.
+- [`PointCloud`](api/classQAccelPlot_1_1PointCloud.md) — large sets of
+  unconnected points as markers, colored uniformly or by per-point values.
 - [`RectangleList`](api/classQAccelPlot_1_1RectangleList.md) — many data-space
   rectangles in one item.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data
