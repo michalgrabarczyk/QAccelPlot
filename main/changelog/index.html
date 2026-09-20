@@ -1432,6 +1432,8 @@
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Overlapping rectangles no longer cause quadratic memory growth in the hover
+  lookup index, preventing excessive memory use and crashes with large datasets.</li>
 <li>Removing, reparenting, or destroying a plot series no longer leaves it
   registered with its former plot, preventing later updates from accessing a
   dangling series pointer.</li>

@@ -15,7 +15,7 @@
 
 
 
-_Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._ [More...](#detailed-description)
+_Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#detailed-description)
 
 * `#include <SpatialGrid.hpp>`
 
@@ -94,7 +94,7 @@ _Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._ [More
 ## Detailed Description
 
 
-Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable _floatsPerItem_ stride. Intended for use by [**RectangleList**](classQAccelPlot_1_1RectangleList.md) and similar shape types. 
+Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable _floatsPerItem_ stride. Intended for use by [**RectangleList**](classQAccelPlot_1_1RectangleList.md) and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. 
 
 
     

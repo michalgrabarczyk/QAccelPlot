@@ -50,6 +50,7 @@ private:
     float cellH_{1.0f};
     std::vector<ItemBounds> itemBounds_;
     std::vector<std::vector<int>> cells_;
+    std::vector<int> largeItems_;
 };
 
 } // namespace QAccelPlot

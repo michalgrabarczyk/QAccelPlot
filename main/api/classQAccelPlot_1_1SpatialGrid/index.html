@@ -1165,7 +1165,7 @@
 
 <h1 id="class-qaccelplotspatialgrid">Class QAccelPlot::SpatialGrid<a class="headerlink" href="#class-qaccelplotspatialgrid" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>SpatialGrid</strong></a></p>
-<p><em>Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Uniform-grid spatial index with bounded per-rectangle storage.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;SpatialGrid.hpp&gt;</code></li>
 </ul>
@@ -1189,7 +1189,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable <em>floatsPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. </p>
+<p>Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable <em>floatsPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-build">function build<a class="headerlink" href="#function-build" title="Permanent link">&para;</a></h3>
 <p><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em>
