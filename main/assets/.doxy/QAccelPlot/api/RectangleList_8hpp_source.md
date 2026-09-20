@@ -64,6 +64,7 @@ protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
+    void onAxisScaleChanged() override;
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;

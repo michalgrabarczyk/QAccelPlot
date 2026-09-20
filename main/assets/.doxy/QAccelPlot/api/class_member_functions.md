@@ -235,7 +235,7 @@
 * **onGradientObjectChanged** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **opacity** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md))
 * **operator=** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))
-* **onAxisScaleChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
+* **onAxisScaleChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **onLineStyleChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onLineStyleDestroyed** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **onNanGapModeChanged** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))

@@ -220,6 +220,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 |  void | [**hoverLeaveEvent**](#function-hoverleaveevent) (QHoverEvent \* event) override<br> |
 |  void | [**hoverMoveEvent**](#function-hovermoveevent) (QHoverEvent \* event) override<br> |
+| virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Invalidates uploaded coordinates when an axis changes scale._  |
 |  QSGNode \* | [**updatePaintNode**](#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
 
 
@@ -516,6 +517,23 @@ void QAccelPlot::RectangleList::hoverMoveEvent (
 ```
 
 
+
+
+<hr>
+
+
+
+
+### function onAxisScaleChanged {#function-onaxisscalechanged}
+
+_Invalidates uploaded coordinates when an axis changes scale._ 
+```C++
+virtual void QAccelPlot::RectangleList::onAxisScaleChanged () override
+```
+
+
+
+Implements [*QAccelPlot::PlotSeries::onAxisScaleChanged*](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged)
 
 
 <hr>
