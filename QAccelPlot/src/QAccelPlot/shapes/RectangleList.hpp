@@ -75,6 +75,8 @@ protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
+    /// \brief Invalidates uploaded coordinates when an axis changes scale.
+    void onAxisScaleChanged() override;
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
