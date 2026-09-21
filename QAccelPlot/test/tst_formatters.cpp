@@ -54,17 +54,42 @@ void TestFormatters::numericFormat_data()
     QTest::addColumn<qreal>("tickStep");
     QTest::addColumn<QString>("expected");
 
-    QTest::newRow("fractional-step") << 1.23456 << 0.1 << QStringLiteral("1.23");
+    QTest::newRow("fractional-step") << 1.23456 << 0.1 << QStringLiteral("1.2");
     QTest::newRow("zero-step") << 1.5 << 0.0 << QStringLiteral("1.5");
+    QTest::newRow("infinite-step") << 1.5 << qInf() << QStringLiteral("1.5");
     QTest::newRow("large-step") << 1000.0 << 10.0 << QStringLiteral("1000");
-    QTest::newRow("negative-value") << -0.5 << 0.1 << QStringLiteral("-0.50");
+    QTest::newRow("negative-value") << -0.5 << 0.1 << QStringLiteral("-0.5");
     QTest::newRow("zero-value") << 0.0 << 10.0 << QStringLiteral("0");
-    QTest::newRow("very-small-step") << 0.123456789 << 1e-4 << QStringLiteral("0.12346");
-    QTest::newRow("tiny-negative-rounds-to-positive-zero") << -1e-10 << 0.1 << QStringLiteral("0.00");
+    QTest::newRow("very-small-step") << 0.123456789 << 1e-4 << QStringLiteral("0.1235");
+    QTest::newRow("tiny-negative-rounds-to-positive-zero") << -1e-10 << 0.1 << QStringLiteral("0.0");
     QTest::newRow("five-step") << 15.0 << 5.0 << QStringLiteral("15");
     QTest::newRow("quarter-step") << 0.75 << 0.25 << QStringLiteral("0.75");
     QTest::newRow("negative-step") << 2.0 << -1.0 << QStringLiteral("2.0");
     QTest::newRow("nan-step") << 3.0 << qQNaN() << QStringLiteral("3.0");
+
+    // Nice steps produced by AxisTickPainter::computeNiceStep (1, 2, 5 x 10^n) and
+    // other terminating steps get exactly the decimals needed to write the step.
+    QTest::newRow("step-100") << 300.0 << 100.0 << QStringLiteral("300");
+    QTest::newRow("step-10") << 20.0 << 10.0 << QStringLiteral("20");
+    QTest::newRow("step-5") << 10.0 << 5.0 << QStringLiteral("10");
+    QTest::newRow("step-2") << 4.0 << 2.0 << QStringLiteral("4");
+    QTest::newRow("step-1") << 2.0 << 1.0 << QStringLiteral("2");
+    QTest::newRow("step-0.5") << 1.0 << 0.5 << QStringLiteral("1.0");
+    QTest::newRow("step-0.2") << 0.4 << 0.2 << QStringLiteral("0.4");
+    QTest::newRow("step-0.1") << 0.2 << 0.1 << QStringLiteral("0.2");
+    QTest::newRow("step-0.25") << 0.75 << 0.25 << QStringLiteral("0.75");
+    QTest::newRow("step-0.05") << 0.15 << 0.05 << QStringLiteral("0.15");
+    QTest::newRow("step-0.01") << 0.03 << 0.01 << QStringLiteral("0.03");
+    QTest::newRow("step-2.5") << 7.5 << 2.5 << QStringLiteral("7.5");
+
+    // Steps carrying floating-point noise must not gain an extra decimal place.
+    QTest::newRow("noisy-step-0.1-add") << 0.3 << (0.1 + 0.2 - 0.2) << QStringLiteral("0.3");
+    QTest::newRow("noisy-step-0.1-mul") << 0.3 << (3.0 * 0.1 / 3.0) << QStringLiteral("0.3");
+    QTest::newRow("noisy-step-0.3") << 0.6 << (0.1 + 0.2) << QStringLiteral("0.6");
+    QTest::newRow("noisy-step-0.001") << 0.002 << (0.1 * 0.01) << QStringLiteral("0.002");
+
+    // A non-terminating step is cut off two places past its leading digit.
+    QTest::newRow("non-terminating-step") << (2.0 / 3.0) << (1.0 / 3.0) << QStringLiteral("0.667");
 }
 
 void TestFormatters::numericFormat()
@@ -208,7 +233,7 @@ void TestFormatters::ticker_nullFormatter_usesDefault()
     ticker.setTickLabelFormatter(nullptr);
 
     QVERIFY(ticker.tickLabelFormatter() != nullptr);
-    QCOMPARE(ticker.tickLabelFormatter()->format(1.25, 0.1), QStringLiteral("1.25"));
+    QCOMPARE(ticker.tickLabelFormatter()->format(1.25, 0.25), QStringLiteral("1.25"));
 }
 
 void TestFormatters::ticker_destroyedFormatter_usesDefault()
@@ -244,7 +269,7 @@ void TestFormatters::tickLabelCallback_errorFallsBackToFormatter()
     auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     formatter.setTickLabel(engine.evaluate(QStringLiteral("(function() { throw new Error('bad label'); })")));
 
-    QCOMPARE(formatter.format(1.25, 0.1), QStringLiteral("1.25"));
+    QCOMPARE(formatter.format(1.25, 0.25), QStringLiteral("1.25"));
 }
 
 void TestFormatters::tickLabel_nonCallableIsIgnored()
@@ -252,7 +277,7 @@ void TestFormatters::tickLabel_nonCallableIsIgnored()
     auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     formatter.setTickLabel(QJSValue{QStringLiteral("not a function")});
 
-    QCOMPARE(formatter.format(1.25, 0.1), QStringLiteral("1.25"));
+    QCOMPARE(formatter.format(1.25, 0.25), QStringLiteral("1.25"));
 }
 
 void TestFormatters::tickLabel_changeEmitsFormatChanged()

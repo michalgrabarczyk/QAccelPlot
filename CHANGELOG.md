@@ -30,6 +30,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- Numeric tick labels no longer show a spurious trailing zero. Labels now use
+  exactly the decimal places needed to write the tick step, so steps of 1 and 2
+  read `0, 1, 2` instead of `0.0, 1.0, 2.0`, and steps of 0.1 and 0.2 read
+  `0.1, 0.2` instead of `0.10, 0.20`. Logarithmic axes show `0.01, 0.1, 1`
+  instead of `0.010, 0.10, 1.0`.
 - `LineCurve` now renders its marker for a single-point dataset when both lines
   and markers are enabled.
 - Rectangle hover detection now preserves double precision for large coordinates,

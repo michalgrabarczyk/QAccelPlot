@@ -12,6 +12,41 @@
 
 namespace QAccelPlot {
 
+namespace {
+
+// Returns the number of decimal places needed to write tickStep exactly, so labels
+// spaced by that step are distinguishable without trailing zeros: 1, 2, 5 and 10
+// get none, 0.5 and 0.1 get one, 0.25 and 0.05 get two. Non-finite or
+// non-positive steps fall back to one decimal place.
+int decimalsForStep(const qreal tickStep)
+{
+    if (!(tickStep > 0.0) || !std::isfinite(tickStep)) {
+        return 1;
+    }
+    // Relative tolerance for deciding that step * 10^d is a whole number. It absorbs
+    // floating-point noise such as 0.1 + 0.2 - 0.2 == 0.10000000000000003 without
+    // accepting a genuinely finer step.
+    constexpr static auto kRelativeTolerance = qreal{1e-9};
+    // Decimal places needed to reach the step's leading significant digit. The
+    // tolerance keeps a decade step whose log10 lands just below an integer
+    // (e.g. -1.0000000000000002 for 0.1) from gaining an extra place.
+    const auto leadingDigitDecimals = std::max(0, static_cast<int>(-std::floor(std::log10(tickStep) + kRelativeTolerance)));
+    // Extra digits allowed beyond the leading one, enough for steps such as 0.25 or
+    // 0.125. Steps that never terminate (e.g. 1/3) are cut off at this limit.
+    constexpr static auto kMaxExtraDecimals = 2;
+    const auto maxDecimals = leadingDigitDecimals + kMaxExtraDecimals;
+    auto scale = qreal{1.0};
+    for (auto decimals = 0; decimals < maxDecimals; ++decimals, scale *= 10.0) {
+        const auto scaled = tickStep * scale;
+        if (std::abs(scaled - std::round(scaled)) <= scaled * kRelativeTolerance) {
+            return decimals;
+        }
+    }
+    return maxDecimals;
+}
+
+} // namespace
+
 NumericTickLabelFormatter::NumericTickLabelFormatter(QObject* parent)
     : TickLabelFormatter(parent)
 {
@@ -19,10 +54,7 @@ NumericTickLabelFormatter::NumericTickLabelFormatter(QObject* parent)
 
 QString NumericTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
 {
-    // Bias added before ceil() so a tick step sitting exactly on a decade boundary
-    // (e.g. 0.1 → log10 = -1.0) still yields one decimal place rather than zero.
-    constexpr static auto kPrecisionRoundingBias = double{0.5};
-    const auto precision = (tickStep > 0.0) ? std::max(0, static_cast<int>(std::ceil(-std::log10(tickStep) + kPrecisionRoundingBias))) : 1;
+    const auto precision = decimalsForStep(tickStep);
     auto text = QString::number(value, 'f', precision);
     // A tiny negative value accumulated from floating-point tick-position arithmetic
     // (e.g. loopStart + i*step) can round to zero at the display precision while
