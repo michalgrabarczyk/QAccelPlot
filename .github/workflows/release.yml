@@ -87,7 +87,7 @@ jobs:
       - name: Run unit tests
         run: >-
           xvfb-run -a ctest --test-dir build/verify -C Release --output-on-failure
-          -R '^tst_(axis_tick_painter|spatial_grid|formatters|transitions|axis_mapping|plot_appearance|math_utils|gradient_coordinates|line_curve_data|material_comparison|rectangle_list_data)$'
+          -L '^unit-test$'
 
       - name: Build release documentation
         env:
