@@ -127,7 +127,8 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 ## 🧪 Testing
 
 - **[Unit tests](.github/workflows/ci.yml)**: plotting behavior, data
-  handling, axes, formatting, styling, interaction, and transitions.
+  handling, axes, formatting, styling, interaction, and transitions, built
+  with GCC and Clang.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
 - **[Visual acceptance tests](.github/workflows/ai-regression.yml)**: every
