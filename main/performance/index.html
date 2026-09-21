@@ -1430,6 +1430,11 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <td>Allocation plus interleaving; coordinates remain doubles</td>
 </tr>
 <tr>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
+<td>Existing C++ data is already interleaved as doubles, e.g. epoch timestamps</td>
+<td>Range scan; buffer ownership is moved immediately and coordinates remain doubles</td>
+</tr>
+<tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
 <td>Existing interleaved memory cannot be transferred</td>
 <td>One copy plus a range scan</td>
@@ -1453,6 +1458,11 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>A worker thread owns the completed buffer</td>
 <td>Queues the same moved-buffer handoff, followed by the normal range scan</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
+<td>A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps</td>
+<td>Queues the same moved-buffer handoff as <code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code>, followed by the normal range scan</td>
 </tr>
 </tbody>
 </table>

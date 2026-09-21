@@ -1421,6 +1421,11 @@
 <li>Hollow markers: set <code>LineCurve.markerFilled</code> to <code>false</code> to outline filled
   shapes with <code>markerStrokeWidth</code> pixels. Legend symbols follow the curve.</li>
 <li>A Markers page in the styling and transitions example shows every shape.</li>
+<li><code>LineCurve::setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> moves an interleaved double
+  buffer into the curve, keeping double precision for large coordinates such as
+  Unix-epoch timestamps without re-interleaving.</li>
+<li><code>LineCurve::postData(std::vector&lt;double&gt;&amp;&amp;, int)</code> hands off an interleaved
+  double buffer from a worker thread, like the existing float <code>postData()</code>.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>

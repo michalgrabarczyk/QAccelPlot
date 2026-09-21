@@ -179,12 +179,14 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**PointShape**](classQAccelPlot_1_1LineCurve.md#enum-pointshape) | [**markerShape**](#function-markershape-22) () const<br>_Returns the marker shape._  |
 |  qreal | [**markerSize**](#function-markersize-22) () const<br>_Returns the marker size in pixels._  |
 |  qreal | [**markerStrokeWidth**](#function-markerstrokewidth-22) () const<br>_Returns the outline width of hollow markers in pixels._  |
-|  void | [**postData**](#function-postdata) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) <br>_Posts data to the curve from any thread. Equivalent to calling_ `setDataF()` _on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe._ |
+|  void | [**postData**](#function-postdata-12) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) <br>_Posts data to the curve from any thread. Equivalent to calling_ `setDataF()` _on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe._ |
+|  void | [**postData**](#function-postdata-22) (std::vector&lt; double &gt; && xyInterleaved, int pointCount) <br> |
 |  void | [**setAntialiasingEnabled**](#function-setantialiasingenabled) (bool enabled) <br>_Sets anti-aliasing to_ _enabled_ _._ |
 |  void | [**setAntialiasingFeather**](#function-setantialiasingfeather) (qreal feather) <br>_Sets the anti-aliasing feather width to_ _feather_ _pixels. Has effect only when_`antialiasingEnabled` _is_`true` _._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & c) <br>_Sets the line color to_ _c_ _._ |
-|  Q\_INVOKABLE void | [**setData**](#function-setdata-12) (const QList&lt; QPointF &gt; & data) <br>_Replaces the curve data with_ _data_ _(a list of QPointF values)._ |
-|  void | [**setData**](#function-setdata-22) (const std::vector&lt; double &gt; & xs, const std::vector&lt; double &gt; & ys) <br>_Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used._  |
+|  Q\_INVOKABLE void | [**setData**](#function-setdata-13) (const QList&lt; QPointF &gt; & data) <br>_Replaces the curve data with_ _data_ _(a list of QPointF values)._ |
+|  void | [**setData**](#function-setdata-23) (const std::vector&lt; double &gt; & xs, const std::vector&lt; double &gt; & ys) <br>_Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used._  |
+|  void | [**setData**](#function-setdata-33) (std::vector&lt; double &gt; && xyInterleaved, int pointCount) <br> |
 |  void | [**setDataF**](#function-setdataf-12) (const float \* xyInterleaved, int pointCount) <br>_High-performance C++ overload: sets data from a raw interleaved float array of_ _pointCount_ _XY pairs._ |
 |  void | [**setDataF**](#function-setdataf-22) (std::vector&lt; float &gt; && data, int pointCount) <br>_High-performance C++ overload: sets data by moving a pre-filled float vector of_ _pointCount_ _XY pairs._ |
 |  void | [**setDataFNoRange**](#function-setdatafnorange-12) (std::vector&lt; float &gt; && data, int pointCount) <br>_Like_ `setDataF(vector)` _but skips emitting_`xDataRangeChanged` _/_`yDataRangeChanged` _._ |
@@ -296,7 +298,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 ## Detailed Description
 
 
-The `setData()` overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in `F` store interleaved float XY pairs `[x0, y0, x1, y1, …]`. For maximum throughput prefer `setDataF(std::vector<float>&&, int)` or `postData()`, which move an already-interleaved float buffer with zero allocation and no type conversion. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with millions of points.
+The `setData()` overloads retain double-precision coordinates, including large timestamp values. Methods whose names end in `F` store interleaved float XY pairs `[x0, y0, x1, y1, …]`. For maximum throughput prefer `setDataF(std::vector<float>&&, int)` or `postData(std::vector<float>&&, int)`, which move an already-interleaved float buffer with zero allocation and no type conversion. `postData(std::vector<double>&&, int)` hands off a double-precision buffer from a worker thread instead. The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable for real-time plots with millions of points.
 
 
 
@@ -969,7 +971,7 @@ qreal QAccelPlot::LineCurve::markerStrokeWidth () const
 
 
 
-### function postData {#function-postdata}
+### function postData {#function-postdata-12}
 
 _Posts data to the curve from any thread. Equivalent to calling_ `setDataF()` _on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe._
 ```C++
@@ -981,6 +983,27 @@ void QAccelPlot::LineCurve::postData (
 
 
 
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-22}
+
+```C++
+void QAccelPlot::LineCurve::postData (
+    std::vector< double > && xyInterleaved,
+    int pointCount
+) 
+```
+
+
+
+rief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling `setData(std::vector<double>&&, int)` on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe. 
+
+
+        
 
 <hr>
 
@@ -1038,7 +1061,7 @@ void QAccelPlot::LineCurve::setColor (
 
 
 
-### function setData {#function-setdata-12}
+### function setData {#function-setdata-13}
 
 _Replaces the curve data with_ _data_ _(a list of QPointF values)._
 ```C++
@@ -1055,7 +1078,7 @@ Q_INVOKABLE void QAccelPlot::LineCurve::setData (
 
 
 
-### function setData {#function-setdata-22}
+### function setData {#function-setdata-23}
 
 _Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used._ 
 ```C++
@@ -1067,6 +1090,27 @@ void QAccelPlot::LineCurve::setData (
 
 
 
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-33}
+
+```C++
+void QAccelPlot::LineCurve::setData (
+    std::vector< double > && xyInterleaved,
+    int pointCount
+) 
+```
+
+
+
+rief Sets data by moving a pre-filled interleaved double vector of  pointCount XY pairs `[x0, y0, x1, y1, …]`. Retains double precision, e.g. for large timestamp values, without re-interleaving. 
+
+
+        
 
 <hr>
 

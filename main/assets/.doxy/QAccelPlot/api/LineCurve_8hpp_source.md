@@ -121,6 +121,7 @@ public:
     Q_INVOKABLE void clearData();
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
+    void setData(std::vector<double>&& xyInterleaved, int pointCount);
     void setDataF(const float* xyInterleaved, int pointCount);
     void setDataF(std::vector<float>&& data, int pointCount);
     void setDataFNoRange(std::vector<float>&& data, int pointCount);
@@ -128,6 +129,7 @@ public:
     void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
+    void postData(std::vector<double>&& xyInterleaved, int pointCount);
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
@@ -175,6 +177,7 @@ private:
     void applyNewData(std::vector<double>&& newData, int newPointCount);
     bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
+    bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);
     void promoteFloatDataToDouble();
     void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
