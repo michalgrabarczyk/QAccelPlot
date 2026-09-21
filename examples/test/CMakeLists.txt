@@ -67,4 +67,8 @@ if(Python3_Interpreter_FOUND)
         NAME tst_ai_visual_cost_controls
         COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_cost_controls.py"
     )
+    # Offline checks of the visual tooling: no screenshots, no API calls.
+    set_tests_properties(tst_ai_visual_acceptance tst_ai_visual_cost_controls PROPERTIES
+        LABELS "unit-test;unit-test-examples"
+    )
 endif()
