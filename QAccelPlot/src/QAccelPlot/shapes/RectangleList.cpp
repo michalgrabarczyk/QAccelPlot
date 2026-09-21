@@ -79,7 +79,7 @@ void RectangleList::setData(const QVariantList& rects)
     if (rects.size() != rectCount_) {
         vertexCacheValid_ = false;
     }
-    rectCount_ = rects.size();
+    rectCount_ = static_cast<int>(rects.size());
     data_.resize(static_cast<size_t>(rectCount_) * 4);
 
     for (auto i = 0; i < rectCount_; ++i) {

@@ -41,8 +41,8 @@ struct GradientFillVertex {
 
 float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, const qreal dataX, const qreal dataY)
 {
-    const auto valueMin = *gradientPayload.gradientValueMin;
-    const auto valueMax = *gradientPayload.gradientValueMax;
+    const auto valueMin = gradientPayload.gradientValueMin.value_or(0.0);
+    const auto valueMax = gradientPayload.gradientValueMax.value_or(1.0);
     const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
     // Keep the coordinate unbounded while the GPU interpolates it across the fill.
     // Clamping here would stretch the complete palette between the baseline and
@@ -213,8 +213,7 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
     return createLineRootNode(strokeVertexCount, gradientStroke);
 }
 
-void assembleVertices(QSGGeometry* geometry, [[maybe_unused]] const std::vector<float>& data, const int pointCount, const QColor& effectiveColor,
-    const std::vector<float>& arcLengths)
+void assembleVertices(QSGGeometry* geometry, const int pointCount, const QColor& effectiveColor, const std::vector<float>& arcLengths)
 {
     auto* vertices = static_cast<LineVertex*>(geometry->vertexData());
 
@@ -405,8 +404,8 @@ void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const Lin
     std::copy(std::begin(dashParams.pattern), std::end(dashParams.pattern), material->dashPattern);
     if (auto* gradientMaterial = dynamic_cast<GradientLineMaterial*>(material)) {
         gradientMaterial->gradientDirection = params.gradientPayload.direction == GradientDirection::Vertical ? 1.0f : 0.0f;
-        gradientMaterial->gradientValueMin = *params.gradientPayload.gradientValueMin;
-        gradientMaterial->gradientValueMax = *params.gradientPayload.gradientValueMax;
+        gradientMaterial->gradientValueMin = static_cast<float>(params.gradientPayload.gradientValueMin.value_or(0.0));
+        gradientMaterial->gradientValueMax = static_cast<float>(params.gradientPayload.gradientValueMax.value_or(1.0));
         gradientMaterial->gradientTexture.upload(params.window, params.gradientPayload.stops);
     }
 }
@@ -453,7 +452,7 @@ void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const Line
         std::memcpy(geometry->vertexData(), params.vertexCache->data(), expectedCacheBytes);
     } else {
         // Fallback: assemble on the render thread (dash lines or no cache).
-        assembleVertices(geometry, params.data, params.pointCount, effectiveColor, arcLengths);
+        assembleVertices(geometry, params.pointCount, effectiveColor, arcLengths);
     }
 }
 

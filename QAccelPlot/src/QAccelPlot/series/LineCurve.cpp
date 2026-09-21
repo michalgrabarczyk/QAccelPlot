@@ -428,8 +428,8 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
     const auto newCount = static_cast<int>(std::min(xs.size(), ys.size()));
     auto newData = std::vector<double>(static_cast<std::size_t>(newCount) * 2);
     for (auto i = int{0}; i < newCount; ++i) {
-        newData[static_cast<std::size_t>(i * 2)] = xs[static_cast<std::size_t>(i)];
-        newData[static_cast<std::size_t>(i * 2 + 1)] = ys[static_cast<std::size_t>(i)];
+        newData[static_cast<std::size_t>(i) * 2] = xs[static_cast<std::size_t>(i)];
+        newData[static_cast<std::size_t>(i) * 2 + 1] = ys[static_cast<std::size_t>(i)];
     }
     updateDataRanges(newData, newCount);
     applyNewData(std::move(newData), newCount);
@@ -641,7 +641,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     const auto pr = resolvePlotRect(this);
     const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
     const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
-    const auto viewportSize = QVector2D(pr.width(), pr.height());
+    const auto viewportSize = QVector2D(static_cast<float>(pr.width()), static_cast<float>(pr.height()));
     const auto gradientPayload = resolveGradientColorPayload();
     const auto gradientFillPayload = resolveGradientFillPayload();
     auto renderGradientPayload = gradientPayload;

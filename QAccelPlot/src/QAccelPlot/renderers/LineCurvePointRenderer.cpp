@@ -60,8 +60,8 @@ QColor evaluateGradientColor(const GradientColorPayload& gradientPayload, const 
 
 float normalizedGradientValue(const GradientColorPayload& gradientPayload, const qreal dataX, const qreal dataY)
 {
-    const auto valueMin = *gradientPayload.gradientValueMin;
-    const auto valueMax = *gradientPayload.gradientValueMax;
+    const auto valueMin = gradientPayload.gradientValueMin.value_or(0.0);
+    const auto valueMax = gradientPayload.gradientValueMax.value_or(1.0);
     const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
     const auto normalized = unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
     if (std::isnan(normalized)) {

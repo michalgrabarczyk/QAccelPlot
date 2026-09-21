@@ -26,7 +26,7 @@ static QSGNode* buildRectangleNode(const QVector<QRectF>& rects, const QColor& c
         return nullptr;
     }
     static constexpr auto kVerticesPerRect = 6; // 2 triangles × 3 vertices
-    const auto rectCount = rects.size();
+    const auto rectCount = static_cast<int>(rects.size());
     auto* g = new QSGGeometry(QSGGeometry::defaultAttributes_Point2D(), rectCount * kVerticesPerRect);
     g->setDrawingMode(QSGGeometry::DrawTriangles);
     auto* v = g->vertexDataAsPoint2D();
