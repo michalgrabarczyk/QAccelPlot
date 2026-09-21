@@ -18,7 +18,7 @@ namespace QAccelPlot {
 /// Subclasses implement \c doFormat() to produce a display string for each tick value.
 /// An optional \c tickLabel JavaScript callback can override the default formatting at the QML level.
 ///
-/// \sa NumericTickLabelFormatter, DateTimeTickLabelFormatter, LogTickLabelFormatter, TextTickLabelFormatter
+/// \sa NumericTickLabelFormatter, DateTimeTickLabelFormatter, TextTickLabelFormatter
 class TickLabelFormatter : public QObject {
     Q_OBJECT
     QML_ANONYMOUS

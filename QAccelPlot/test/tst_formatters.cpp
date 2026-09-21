@@ -7,7 +7,6 @@
 //
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp"
-#include "QAccelPlot/formatters/LogTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/NumericTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 
@@ -27,15 +26,11 @@ private slots:
     void numericFormat();
     void numericLogTick_data();
     void numericLogTick();
-    void logFormatter_logTickKeepsSuperscript();
     void tickLabelCallback_logTickReceivesValueAsStep();
 
     void datetime_defaultFormat();
     void datetime_customFormat();
     void datetime_formatChanged_emitsSignal();
-
-    void logFormat_data();
-    void logFormat();
 
     void textFormat_data();
     void textFormat();
@@ -118,6 +113,7 @@ void TestFormatters::numericLogTick_data()
     QTest::newRow("1e1") << 10.0 << QStringLiteral("10\u00B9");
     QTest::newRow("1e2") << 100.0 << QStringLiteral("10\u00B2");
     QTest::newRow("1e12") << 1e12 << QStringLiteral("10\u00B9\u00B2");
+    QTest::newRow("1e-12") << 1e-12 << QStringLiteral("10\u207B\u00B9\u00B2");
     QTest::newRow("pow-negative-exponent") << std::pow(10.0, -5) << QStringLiteral("10\u207B\u2075");
     QTest::newRow("non-decade") << 50.0 << QStringLiteral("50");
 }
@@ -129,13 +125,6 @@ void TestFormatters::numericLogTick()
 
     const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     QCOMPARE(formatter.formatLogTick(value), expected);
-}
-
-void TestFormatters::logFormatter_logTickKeepsSuperscript()
-{
-    const auto formatter = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(formatter.formatLogTick(100.0), QStringLiteral("10\u00B2"));
-    QCOMPARE(formatter.formatLogTick(50.0), QStringLiteral("50"));
 }
 
 void TestFormatters::tickLabelCallback_logTickReceivesValueAsStep()
@@ -172,36 +161,6 @@ void TestFormatters::datetime_formatChanged_emitsSignal()
 
     formatter.setDateTimeFormat(QStringLiteral("dd/MM/yyyy"));
     QCOMPARE(spy.count(), 1);
-}
-
-void TestFormatters::logFormat_data()
-{
-    QTest::addColumn<qreal>("value");
-    QTest::addColumn<QString>("expected");
-
-    QTest::newRow("power-zero") << 1.0 << QStringLiteral("10\u2070");
-    QTest::newRow("power-two") << 100.0 << QStringLiteral("10\u00B2");
-    QTest::newRow("power-three") << 1000.0 << QStringLiteral("10\u00B3");
-    QTest::newRow("non-power") << 50.0 << QStringLiteral("50");
-    QTest::newRow("negative-power") << 0.001 << QStringLiteral("10\u207B\u00B3");
-    QTest::newRow("multi-digit-power") << 1e12 << QStringLiteral("10\u00B9\u00B2");
-    QTest::newRow("negative-multi-digit-power") << 1e-12 << QStringLiteral("10\u207B\u00B9\u00B2");
-
-    const auto belowThreshold = std::pow(10.0, 1.005);
-    const auto aboveThreshold = std::pow(10.0, 1.02);
-    QTest::newRow("near-power-below-threshold") << belowThreshold << QStringLiteral("10\u00B9");
-    QTest::newRow("near-power-above-threshold") << aboveThreshold << QString::number(aboveThreshold, 'g', 3);
-    QTest::newRow("zero") << 0.0 << QStringLiteral("0");
-    QTest::newRow("negative") << -5.0 << QStringLiteral("-5");
-}
-
-void TestFormatters::logFormat()
-{
-    QFETCH(qreal, value);
-    QFETCH(QString, expected);
-
-    const auto formatter = QAccelPlot::LogTickLabelFormatter{};
-    QCOMPARE(formatter.format(value, 1.0), expected);
 }
 
 void TestFormatters::textFormat_data()
@@ -328,7 +287,7 @@ void TestFormatters::tickLabel_nonCallableIsIgnored()
 void TestFormatters::tickLabel_changeEmitsFormatChanged()
 {
     auto engine = QJSEngine{};
-    auto formatter = QAccelPlot::LogTickLabelFormatter{};
+    auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     auto spy = QSignalSpy{&formatter, &QAccelPlot::TickLabelFormatter::formatChanged};
 
     formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value) { return 'v' + value; })")));
@@ -337,7 +296,7 @@ void TestFormatters::tickLabel_changeEmitsFormatChanged()
 
     formatter.setTickLabel(QJSValue{});
     QCOMPARE(spy.count(), 2);
-    QCOMPARE(formatter.format(100.0, 1.0), QStringLiteral("10²"));
+    QCOMPARE(formatter.format(100.0, 1.0), QStringLiteral("100"));
 }
 
 QTEST_GUILESS_MAIN(TestFormatters)

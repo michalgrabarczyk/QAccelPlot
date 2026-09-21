@@ -72,9 +72,8 @@ QAccelPlot/
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
 │       ├── axis/                 — Axis, AxisTicker, AxisTickPainter
 │       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
-│       ├── formatters/           — DateTimeTickLabelFormatter, LogTickLabelFormatter,
-│       │                           NumericTickLabelFormatter, TextTickLabelFormatter,
-│       │                           TickLabelFormatter (base/JS callback)
+│       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,
+│       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback)
 │       ├── grid/                 — Grid, GridNode
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
