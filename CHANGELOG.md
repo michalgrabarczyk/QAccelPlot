@@ -62,6 +62,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `Diamond`, `TriangleUp`, and `TriangleDown` markers are no longer clipped flat
   at their tips, and their antialiased edges are equally soft on every side.
   They keep their previous width and height.
+- `GradientStroke` and `GradientFill` now keep a `Fixed` gradient value bound
+  when the other bound uses `DataRange`. Previously both bounds were taken from
+  the data range.
 
 ## [0.2.0] — 2026-09-16
 
