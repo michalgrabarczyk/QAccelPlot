@@ -61,8 +61,8 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**build**](#function-build) (const float \* data, int itemCount, int floatsPerItem=4) <br>_Rebuilds the spatial index from_ _data_ _containing__itemCount_ _axis-aligned rectangles._ |
-|  int | [**query**](#function-query) (float x, float y) const<br>_Returns the index of the topmost rectangle that contains point (_ _x_ _,__y_ _), or -1 if none._ |
+|  void | [**build**](#function-build) (const double \* data, int itemCount, int valuesPerItem=4) <br>_Rebuilds the spatial index from_ _data_ _containing__itemCount_ _axis-aligned rectangles._ |
+|  int | [**query**](#function-query) (double x, double y) const<br>_Returns the index of the topmost rectangle that contains point (_ _x_ _,__y_ _), or -1 if none._ |
 
 
 
@@ -94,7 +94,7 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 ## Detailed Description
 
 
-Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable _floatsPerItem_ stride. Intended for use by [**RectangleList**](classQAccelPlot_1_1RectangleList.md) and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. 
+Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable _valuesPerItem_ stride. Intended for use by [**RectangleList**](classQAccelPlot_1_1RectangleList.md) and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. 
 
 
     
@@ -109,9 +109,9 @@ Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array 
 _Rebuilds the spatial index from_ _data_ _containing__itemCount_ _axis-aligned rectangles._
 ```C++
 void QAccelPlot::SpatialGrid::build (
-    const float * data,
+    const double * data,
     int itemCount,
-    int floatsPerItem=4
+    int valuesPerItem=4
 ) 
 ```
 
@@ -122,9 +122,9 @@ void QAccelPlot::SpatialGrid::build (
 **Parameters:**
 
 
-* `data` Pointer to the flat float array (x1, y1, x2, y2 per item, with _floatsPerItem_ stride). 
+* `data` Pointer to the flat double array (x1, y1, x2, y2 per item, with _valuesPerItem_ stride). 
 * `itemCount` Number of rectangles in _data_. 
-* `floatsPerItem` Number of floats per rectangle entry (default 4). 
+* `valuesPerItem` Number of doubles per rectangle entry (default 4). 
 
 
 
@@ -141,8 +141,8 @@ void QAccelPlot::SpatialGrid::build (
 _Returns the index of the topmost rectangle that contains point (_ _x_ _,__y_ _), or -1 if none._
 ```C++
 int QAccelPlot::SpatialGrid::query (
-    float x,
-    float y
+    double x,
+    double y
 ) const
 ```
 

@@ -1432,6 +1432,8 @@
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Rectangle hover detection now preserves double precision for large coordinates,
+  including Unix-epoch timestamps, so nearby rectangles remain distinguishable.</li>
 <li><code>RectangleList</code> now refreshes its render coordinates when either axis switches
   between linear and logarithmic scales, keeping rectangles positioned correctly
   without requiring new data.</li>

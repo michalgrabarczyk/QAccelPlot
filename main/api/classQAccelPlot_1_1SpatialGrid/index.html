@@ -1180,38 +1180,38 @@
 <tbody>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-build"><strong>build</strong></a> (const float * data, int itemCount, int floatsPerItem=4) <br><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em></td>
+<td style="text-align: left;"><a href="#function-build"><strong>build</strong></a> (const double * data, int itemCount, int valuesPerItem=4) <br><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-query"><strong>query</strong></a> (float x, float y) const<br><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em></td>
+<td style="text-align: left;"><a href="#function-query"><strong>query</strong></a> (double x, double y) const<br><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable <em>floatsPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. </p>
+<p>Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable <em>valuesPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-build">function build<a class="headerlink" href="#function-build" title="Permanent link">&para;</a></h3>
 <p><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">build</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">itemCount</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">floatsPerItem</span><span class="o">=</span><span class="mi">4</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valuesPerItem</span><span class="o">=</span><span class="mi">4</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>data</code> Pointer to the flat float array (x1, y1, x2, y2 per item, with <em>floatsPerItem</em> stride). </li>
+<li><code>data</code> Pointer to the flat double array (x1, y1, x2, y2 per item, with <em>valuesPerItem</em> stride). </li>
 <li><code>itemCount</code> Number of rectangles in <em>data</em>. </li>
-<li><code>floatsPerItem</code> Number of floats per rectangle entry (default 4). </li>
+<li><code>valuesPerItem</code> Number of doubles per rectangle entry (default 4). </li>
 </ul>
 <hr>
 
 <h3 id="function-query">function query<a class="headerlink" href="#function-query" title="Permanent link">&para;</a></h3>
 <p><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">query</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>

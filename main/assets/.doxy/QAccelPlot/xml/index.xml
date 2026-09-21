@@ -682,11 +682,11 @@
     <member refid="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" kind="function"><name>collectAxisGridLines</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds" kind="struct"><name>QAccelPlot::SpatialGrid::ItemBounds</name>
-    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1af58ceb02f597c706f6081e1d771c38d1" kind="variable"><name>minX</name></member>
-    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a0abb20d82f6d809729d55b5476b296c9" kind="variable"><name>minY</name></member>
-    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1aac1c35b5c8682fd59ccefeff7bd5a5f2" kind="variable"><name>maxX</name></member>
-    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a425a17840a5af90c53d8674dca6db3e3" kind="variable"><name>maxY</name></member>
-    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1afa129612a9d955a65f7aea7c62673eef" kind="function"><name>contains</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1ae85c00762c9dc13553ec4a832a797c8e" kind="variable"><name>minX</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1acd965d596e4e94ab423a799729e264bb" kind="variable"><name>minY</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a1d29eb27b4fa62bfde1c41a901935742" kind="variable"><name>maxX</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a79447aa3658b2ff390d36e38a10ca754" kind="variable"><name>maxY</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1ad9d6510149c311ed3819145361c94698" kind="function"><name>contains</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurve" kind="class"><name>QAccelPlot::LineCurve</name>
     <member refid="classQAccelPlot_1_1LineCurve_1a57cf15a63a29c7a1b1515113eea997ac" kind="enum"><name>PointShape</name></member>
@@ -1266,20 +1266,20 @@
     <member refid="classQAccelPlot_1_1SolidLine_1a5306af86ef8b98866248d6fee6c7cac7" kind="function"><name>SolidLine</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1SpatialGrid" kind="class"><name>QAccelPlot::SpatialGrid</name>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a2030db9403534f794cb347ea19e5ceab" kind="variable"><name>minX_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a94002411249b0efadddd66dcfa5efe7a" kind="variable"><name>minY_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1abf8c9856a33c33dc97fbd91e801ff66d" kind="variable"><name>maxX_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1ad8326373c9797f915bf00d14b99346c1" kind="variable"><name>maxY_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a1531fe8b4eba528ebbef9dc1ef0e6c2d" kind="variable"><name>minX_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a391683e276365a591626b5ba5657b442" kind="variable"><name>minY_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a1b99eb6be563fbc10748db10ef0f0c22" kind="variable"><name>maxX_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a15104f0d3e1850a20e7b28835d104cd5" kind="variable"><name>maxY_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1adfac97e641581b9f117351814972ac6d" kind="variable"><name>cols_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1ae256c0c263f38ddd883534adbdf39da7" kind="variable"><name>rows_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a8b877b447ca861fe230a25cd93d73a05" kind="variable"><name>cellW_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a6e252b14cbf9de2a50d5132780df3bcc" kind="variable"><name>cellH_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a1d6241bcfe6271e5a8d5593ecde151bb" kind="variable"><name>cellW_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a7d4015759d001ab08418c942877e2bcf" kind="variable"><name>cellH_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1aa08265c5d78792becf70f7c0f57febda" kind="variable"><name>itemBounds_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1ada905e5ad9eb3b05bdadb72684722883" kind="variable"><name>cells_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a29f4a6e3d418fff5246c51c8c423906f" kind="variable"><name>largeItems_</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a27af9a12c4deadbc10bcf4cd488817e0" kind="function"><name>build</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a1925e28b7342255e2a8a87b8420d42df" kind="function"><name>query</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1aec050dbe4ca294aa8e4b6561b670b71b" kind="function"><name>computeDataBounds</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a90ce851f81c48debe103fca226a208de" kind="function"><name>build</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a1cdf1a17c095ec0bee15fc40c6c6c6a3" kind="function"><name>query</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a713a5aeb2fc0ba5148e37c53a6236e4a" kind="function"><name>computeDataBounds</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" kind="function"><name>computeGridDimensions</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a8eac80f44444015e46af281c378e7139" kind="function"><name>fillSpatialGrid</name></member>
   </compound>
