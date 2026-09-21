@@ -12,6 +12,7 @@
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QPointer>
+#include <QThread>
 #include <QtTest/QtTest>
 
 #include <limits>
@@ -44,6 +45,11 @@ private slots:
     void axisAggregatesCurrentSeriesRanges();
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
+    void interleavedDoubleDataPreservesModernEpochPrecision();
+    void invalidInterleavedDoubleDataIsRejected();
+    void postedDoubleDataPreservesModernEpochPrecision();
+    void postedDoubleDataFromWorkerThreadIsApplied();
+    void invalidPostedDoubleDataIsRejected();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
     void defaultLineStyleIsDestroyedWithCurve();
@@ -384,6 +390,79 @@ void LineCurveDataTest::separateDoubleDataPreservesModernEpochPrecision()
 
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void LineCurveDataTest::interleavedDoubleDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+
+    curve.setData(std::vector<double>{epochMilliseconds, 10.0, epochMilliseconds + 0.5, 20.0, epochMilliseconds + 1.0, 30.0}, 3);
+
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void LineCurveDataTest::invalidInterleavedDoubleDataIsRejected()
+{
+    auto curve = LineCurve{};
+    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received 4 doubles for 3 points.*"));
+    curve.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 3);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve data point count cannot be negative.*"));
+    curve.setData(std::vector<double>{}, -1);
+
+    QCOMPARE(xRangeSpy.count(), 0);
+}
+
+void LineCurveDataTest::postedDoubleDataPreservesModernEpochPrecision()
+{
+    constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+
+    curve.postData(std::vector<double>{epochMilliseconds, 10.0, epochMilliseconds + 0.5, 20.0, epochMilliseconds + 1.0, 30.0}, 3);
+    QCOMPARE(xRangeSpy.count(), 0);
+
+    QTRY_COMPARE(xRangeSpy.count(), 1);
+    QCOMPARE(xAxis.dataMin(), epochMilliseconds);
+    QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void LineCurveDataTest::postedDoubleDataFromWorkerThreadIsApplied()
+{
+    auto yAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setYAxis(&yAxis);
+    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+
+    auto* worker = QThread::create([&curve]() { curve.postData(std::vector<double>{0.0, -2.5, 1.0, 7.25}, 2); });
+    worker->start();
+    QVERIFY(worker->wait());
+    delete worker;
+
+    QTRY_COMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(yAxis.dataMin(), -2.5);
+    QCOMPARE(yAxis.dataMax(), 7.25);
+}
+
+void LineCurveDataTest::invalidPostedDoubleDataIsRejected()
+{
+    auto curve = LineCurve{};
+    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received 4 doubles for 3 points.*"));
+    curve.postData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 3);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve data point count cannot be negative.*"));
+    curve.postData(std::vector<double>{}, -1);
+    QCoreApplication::processEvents();
+
+    QCOMPARE(xRangeSpy.count(), 0);
 }
 
 void LineCurveDataTest::reassignedEffectsSurviveListClear()

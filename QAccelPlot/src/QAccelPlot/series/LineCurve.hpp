@@ -31,8 +31,9 @@ namespace QAccelPlot {
 ///
 /// The \c setData() overloads retain double-precision coordinates, including large timestamp values.
 /// Methods whose names end in \c F store interleaved float XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
-/// For maximum throughput prefer \c setDataF(std::vector<float>&&, int) or \c postData(), which move an
-/// already-interleaved float buffer with zero allocation and no type conversion.
+/// For maximum throughput prefer \c setDataF(std::vector<float>&&, int) or \c postData(std::vector<float>&&, int), which move
+/// an already-interleaved float buffer with zero allocation and no type conversion. \c postData(std::vector<double>&&, int)
+/// hands off a double-precision buffer from a worker thread instead.
 /// The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable
 /// for real-time plots with millions of points.
 ///
@@ -178,6 +179,9 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
+    /// rief Sets data by moving a pre-filled interleaved double vector of  pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
+    /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
+    void setData(std::vector<double>&& xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
     void setDataF(const float* xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
@@ -193,6 +197,10 @@ public:
     /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
     /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
+    /// rief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
+    /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
+    /// is made. This call is thread-safe.
+    void postData(std::vector<double>&& xyInterleaved, int pointCount);
 
 protected:
     /// \cond INTERNAL
@@ -255,6 +263,7 @@ private:
     void applyNewData(std::vector<double>&& newData, int newPointCount);
     bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
+    bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);
     void promoteFloatDataToDouble();
     void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
