@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- Rectangle hover detection now preserves double precision for large coordinates,
+  including Unix-epoch timestamps, so nearby rectangles remain distinguishable.
 - `RectangleList` now refreshes its render coordinates when either axis switches
   between linear and logarithmic scales, keeping rectangles positioned correctly
   without requiring new data.

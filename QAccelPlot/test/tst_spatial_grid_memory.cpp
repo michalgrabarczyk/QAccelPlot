@@ -62,13 +62,13 @@ private slots:
 void SpatialGridMemoryTest::overlappingRectanglesHaveBoundedMemory()
 {
     constexpr auto count = 1024;
-    auto data = std::vector<float>(count * 4);
+    auto data = std::vector<double>(count * 4);
     for (auto i = 0; i < count; ++i) {
         data[i * 4 + 2] = 1;
         data[i * 4 + 3] = 1;
     }
-    data[(count - 1) * 4 + 2] = 0.01f;
-    data[(count - 1) * 4 + 3] = 0.01f;
+    data[(count - 1) * 4 + 2] = 0.01;
+    data[(count - 1) * 4 + 3] = 0.01;
     auto grid = QAccelPlot::SpatialGrid{};
     {
         const auto measurement = AllocationMeasurement{};
@@ -76,11 +76,11 @@ void SpatialGridMemoryTest::overlappingRectanglesHaveBoundedMemory()
     }
     const auto bytes = allocatedBytes;
 
-    QCOMPARE(grid.query(0.005f, 0.005f), count - 1);
-    QCOMPARE(grid.query(0.75f, 0.75f), count - 2);
+    QCOMPARE(grid.query(0.005, 0.005), count - 1);
+    QCOMPARE(grid.query(0.75, 0.75), count - 2);
     QVERIFY2(bytes < 512 * 1024, qPrintable(QStringLiteral("Index build allocated %1 bytes for 1024 rectangles").arg(bytes)));
     grid.build(nullptr, 0);
-    QCOMPARE(grid.query(0.25f, 0.25f), -1);
+    QCOMPARE(grid.query(0.25, 0.25), -1);
 }
 
 QTEST_APPLESS_MAIN(SpatialGridMemoryTest)
