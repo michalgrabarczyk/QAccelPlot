@@ -447,11 +447,13 @@ numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAc
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
+| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Range scan; buffer ownership is moved immediately and coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
 | [`setDataFNoRange(const float*, count)`][set-data-f-no-range-copy] | Existing interleaved memory remains caller-owned and axis ranges are maintained separately | One reusable-buffer copy; skips the range scan and signals |
 | [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff, followed by the normal range scan |
+| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)`, followed by the normal range scan |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets. Switch to [`setDataFNoRange()`][set-data-f-no-range] only when

@@ -24,6 +24,7 @@
 #include <cmath>
 #include <cstring>
 #include <limits>
+#include <type_traits>
 
 namespace QAccelPlot {
 
@@ -116,6 +117,26 @@ template <typename T> DataExtents computeValidExtents(const T* data, const std::
         }
     }
     return extents;
+}
+
+template <typename T> bool validateInterleavedVector(const std::vector<T>& data, const int pointCount)
+{
+    static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>, "LineCurve data must be float or double");
+    if (pointCount < 0) {
+        qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;
+        return false;
+    }
+
+    const auto expectedValueCount = static_cast<std::size_t>(pointCount) * 2;
+    if (data.size() != expectedValueCount) {
+        if constexpr (std::is_same_v<T, float>) {
+            qCWarning(lcQAccelPlot) << "LineCurve received" << data.size() << "floats for" << pointCount << "points; expected" << expectedValueCount;
+        } else {
+            qCWarning(lcQAccelPlot) << "LineCurve received" << data.size() << "doubles for" << pointCount << "points; expected" << expectedValueCount;
+        }
+        return false;
+    }
+    return true;
 }
 
 template <typename T> DataExtents computeDataExtents(const std::vector<T>& buf, const int count, const bool logScaleX, const bool logScaleY)
@@ -414,6 +435,15 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
     applyNewData(std::move(newData), newCount);
 }
 
+void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    updateDataRanges(xyInterleaved, pointCount);
+    applyNewData(std::move(xyInterleaved), pointCount);
+}
+
 void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
 {
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
@@ -529,6 +559,12 @@ void LineCurve::postData(std::vector<float>&& xyInterleaved, const int pointCoun
 {
     QMetaObject::invokeMethod(
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setDataF(std::move(data), pointCount); }, Qt::QueuedConnection);
+}
+
+void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    QMetaObject::invokeMethod(
+        this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
 static QRectF resolvePlotRect(const LineCurve* curve)
@@ -1018,17 +1054,12 @@ bool LineCurve::validateRawDataArguments(const float* xyInterleaved, const int p
 
 bool LineCurve::validateVectorDataArguments(const std::vector<float>& data, const int pointCount) const
 {
-    if (pointCount < 0) {
-        qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;
-        return false;
-    }
+    return validateInterleavedVector(data, pointCount);
+}
 
-    const auto expectedFloatCount = static_cast<std::size_t>(pointCount) * 2;
-    if (data.size() != expectedFloatCount) {
-        qCWarning(lcQAccelPlot) << "LineCurve received" << data.size() << "floats for" << pointCount << "points; expected" << expectedFloatCount;
-        return false;
-    }
-    return true;
+bool LineCurve::validateVectorDataArguments(const std::vector<double>& data, const int pointCount) const
+{
+    return validateInterleavedVector(data, pointCount);
 }
 
 void LineCurve::copyRawData(const float* xyInterleaved, const int pointCount)
