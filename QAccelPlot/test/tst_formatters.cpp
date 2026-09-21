@@ -25,6 +25,10 @@ class TestFormatters : public QObject {
 private slots:
     void numericFormat_data();
     void numericFormat();
+    void numericLogTick_data();
+    void numericLogTick();
+    void logFormatter_logTickKeepsSuperscript();
+    void tickLabelCallback_logTickReceivesValueAsStep();
 
     void datetime_defaultFormat();
     void datetime_customFormat();
@@ -100,6 +104,47 @@ void TestFormatters::numericFormat()
 
     const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
     QCOMPARE(formatter.format(value, tickStep), expected);
+}
+
+void TestFormatters::numericLogTick_data()
+{
+    QTest::addColumn<qreal>("value");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("1e-3") << 0.001 << QStringLiteral("10\u207B\u00B3");
+    QTest::newRow("1e-2") << 0.01 << QStringLiteral("10\u207B\u00B2");
+    QTest::newRow("1e-1") << 0.1 << QStringLiteral("10\u207B\u00B9");
+    QTest::newRow("1e0") << 1.0 << QStringLiteral("10\u2070");
+    QTest::newRow("1e1") << 10.0 << QStringLiteral("10\u00B9");
+    QTest::newRow("1e2") << 100.0 << QStringLiteral("10\u00B2");
+    QTest::newRow("1e12") << 1e12 << QStringLiteral("10\u00B9\u00B2");
+    QTest::newRow("pow-negative-exponent") << std::pow(10.0, -5) << QStringLiteral("10\u207B\u2075");
+    QTest::newRow("non-decade") << 50.0 << QStringLiteral("50");
+}
+
+void TestFormatters::numericLogTick()
+{
+    QFETCH(qreal, value);
+    QFETCH(QString, expected);
+
+    const auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    QCOMPARE(formatter.formatLogTick(value), expected);
+}
+
+void TestFormatters::logFormatter_logTickKeepsSuperscript()
+{
+    const auto formatter = QAccelPlot::LogTickLabelFormatter{};
+    QCOMPARE(formatter.formatLogTick(100.0), QStringLiteral("10\u00B2"));
+    QCOMPARE(formatter.formatLogTick(50.0), QStringLiteral("50"));
+}
+
+void TestFormatters::tickLabelCallback_logTickReceivesValueAsStep()
+{
+    auto engine = QJSEngine{};
+    auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '/' + tickStep; })")));
+
+    QCOMPARE(formatter.formatLogTick(100.0), QStringLiteral("100/100"));
 }
 
 void TestFormatters::datetime_defaultFormat()

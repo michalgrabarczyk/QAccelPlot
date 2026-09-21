@@ -26,6 +26,9 @@ public:
     /// \brief Constructs a LogTickLabelFormatter with the given \a parent.
     explicit LogTickLabelFormatter(QObject* parent = nullptr);
 
+    /// \brief Returns "10" followed by \a exponent in superscript digits, such as "10²" or "10⁻³".
+    static QString powerOfTen(int exponent);
+
 protected:
     /// \brief Returns a log-scale label string for \a value.
     QString doFormat(qreal value, qreal tickStep) const override;

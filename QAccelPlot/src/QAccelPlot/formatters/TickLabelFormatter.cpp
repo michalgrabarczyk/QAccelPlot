@@ -16,14 +16,39 @@ TickLabelFormatter::TickLabelFormatter(QObject* parent)
 
 QString TickLabelFormatter::format(const qreal value, const qreal tickStep) const
 {
-    if (tickLabel_.isCallable()) {
-        const auto args = QList<QJSValue>{QJSValue(value), QJSValue(tickStep)};
-        const auto result = tickLabel_.call(args);
-        if (!result.isError()) {
-            return result.toString();
-        }
+    auto label = QString{};
+    if (callTickLabel(value, tickStep, label)) {
+        return label;
     }
     return doFormat(value, tickStep);
+}
+
+QString TickLabelFormatter::formatLogTick(const qreal value) const
+{
+    auto label = QString{};
+    if (callTickLabel(value, value, label)) {
+        return label;
+    }
+    return doFormatLogTick(value);
+}
+
+QString TickLabelFormatter::doFormatLogTick(const qreal value) const
+{
+    return doFormat(value, value);
+}
+
+bool TickLabelFormatter::callTickLabel(const qreal value, const qreal tickStep, QString& label) const
+{
+    if (!tickLabel_.isCallable()) {
+        return false;
+    }
+    const auto args = QList<QJSValue>{QJSValue(value), QJSValue(tickStep)};
+    const auto result = tickLabel_.call(args);
+    if (result.isError()) {
+        return false;
+    }
+    label = result.toString();
+    return true;
 }
 
 QJSValue TickLabelFormatter::tickLabel() const

@@ -31,7 +31,7 @@
     {
       "id": "log_axis_gaps",
       "severity": "medium",
-      "expectation": "In the bottom plot, the vertical axis is logarithmic with tick labels such as 0.01, 0.1, 1, 10, and 100. A green curve with one tall peak near 120 Hz is split into several separate segments by empty gaps where no curve is drawn. Segment ends that bend steeply downward just before a gap are correct. Fail if the curve is one unbroken line, or if vertical lines drop to the bottom edge of the plot and connect neighboring segments."
+      "expectation": "In the bottom plot, the vertical axis is logarithmic with tick labels written as powers of ten: 10⁻², 10⁻¹, 10⁰, 10¹, and 10². A green curve with one tall peak near 120 Hz is split into several separate segments by empty gaps where no curve is drawn. Segment ends that bend steeply downward just before a gap are correct. Fail if the curve is one unbroken line, or if vertical lines drop to the bottom edge of the plot and connect neighboring segments."
     },
     {
       "id": "text_raster_quality",

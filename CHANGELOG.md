@@ -33,8 +33,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Numeric tick labels no longer show a spurious trailing zero. Labels now use
   exactly the decimal places needed to write the tick step, so steps of 1 and 2
   read `0, 1, 2` instead of `0.0, 1.0, 2.0`, and steps of 0.1 and 0.2 read
-  `0.1, 0.2` instead of `0.10, 0.20`. Logarithmic axes show `0.01, 0.1, 1`
-  instead of `0.010, 0.10, 1.0`.
+  `0.1, 0.2` instead of `0.10, 0.20`. All labels on a linear axis keep the
+  same number of decimals, for example `0.0, 0.5, 1.0, 1.5, 2.0`.
+- Logarithmic axes using the default numeric formatter now label decades as
+  superscript powers of ten (`10⁻², 10⁻¹, 10⁰, 10¹, 10²`) instead of
+  `0.010, 0.10, 1.0, 10, 100`. Custom formatters can override the new
+  `TickLabelFormatter::doFormatLogTick()`; `tickLabel` callbacks are unchanged.
 - `LineCurve` now renders its marker for a single-point dataset when both lines
   and markers are enabled.
 - Rectangle hover detection now preserves double precision for large coordinates,

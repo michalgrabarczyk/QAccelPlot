@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/formatters/NumericTickLabelFormatter.hpp"
 
+#include "QAccelPlot/formatters/LogTickLabelFormatter.hpp"
+
 #include <algorithm>
 #include <cmath>
 
@@ -63,6 +65,21 @@ QString NumericTickLabelFormatter::doFormat(const qreal value, const qreal tickS
         text.remove(0, 1);
     }
     return text;
+}
+
+QString NumericTickLabelFormatter::doFormatLogTick(const qreal value) const
+{
+    // Maximum deviation of log10(value) from an integer for the value to count as a decade.
+    constexpr static auto kDecadeTolerance = qreal{1e-9};
+    if (!(value > 0.0) || !std::isfinite(value)) {
+        return doFormat(value, value);
+    }
+    const auto logValue = std::log10(value);
+    const auto exponent = std::round(logValue);
+    if (std::abs(logValue - exponent) > kDecadeTolerance) {
+        return doFormat(value, value);
+    }
+    return LogTickLabelFormatter::powerOfTen(static_cast<int>(exponent));
 }
 
 } // namespace QAccelPlot

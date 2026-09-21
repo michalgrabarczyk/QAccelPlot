@@ -39,6 +39,11 @@ LogTickLabelFormatter::LogTickLabelFormatter(QObject* parent)
 {
 }
 
+QString LogTickLabelFormatter::powerOfTen(const int exponent)
+{
+    return QStringLiteral("10") + superscriptExponent(exponent);
+}
+
 QString LogTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
     // Maximum fractional deviation from an integer exponent before switching to 'g' notation.
@@ -49,7 +54,7 @@ QString LogTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] cons
     const auto logValue = std::log10(value);
     if (std::abs(logValue - std::round(logValue)) < kLogExponentTolerance) {
         const auto exp = static_cast<int>(std::round(logValue));
-        return QStringLiteral("10") + superscriptExponent(exp);
+        return powerOfTen(exp);
     }
     return QString::number(value, 'g', kLogNonPowerSignificantDigits);
 }

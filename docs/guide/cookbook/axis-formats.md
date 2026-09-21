@@ -67,6 +67,8 @@ xAxis: QAccelPlot.Axis {
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
 Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
+The default numeric formatter labels logarithmic decade ticks the same way, so
+a log axis shows `10⁻¹`, `10⁰`, `10¹` even without `LogTickLabelFormatter`.
 
 ## Application-specific labels
 
