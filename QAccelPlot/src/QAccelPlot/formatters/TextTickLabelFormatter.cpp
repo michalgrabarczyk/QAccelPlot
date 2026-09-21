@@ -31,7 +31,7 @@ void TextTickLabelFormatter::setLabels(const QStringList& labels)
     emit formatChanged();
 }
 
-QString TextTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
+QString TextTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
     const auto index = qRound(value);
     if (index < 0 || index >= labels_.size()) {

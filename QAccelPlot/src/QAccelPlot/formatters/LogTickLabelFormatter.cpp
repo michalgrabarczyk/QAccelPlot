@@ -39,7 +39,7 @@ LogTickLabelFormatter::LogTickLabelFormatter(QObject* parent)
 {
 }
 
-QString LogTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
+QString LogTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
     // Maximum fractional deviation from an integer exponent before switching to 'g' notation.
     constexpr static auto kLogExponentTolerance = double{0.01};

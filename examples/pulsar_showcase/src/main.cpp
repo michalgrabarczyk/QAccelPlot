@@ -67,7 +67,7 @@ void setupRenderingLoop(QGuiApplication& app, QQuickWindow* window, const std::v
     auto* elapsedTimer = new QElapsedTimer{};
     elapsedTimer->start();
 
-    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [window, ridges, root, &worker, &metrics, elapsedTimer]() {
+    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [ridges, root, &worker, &metrics, elapsedTimer]() {
         const auto elapsedSeconds = static_cast<double>(elapsedTimer->elapsed()) / 1000.0;
         worker.setElapsedSeconds(elapsedSeconds);
         auto batch = QAccelPlotExample::PulsarBatch{};
