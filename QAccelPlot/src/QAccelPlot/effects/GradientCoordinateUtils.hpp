@@ -26,4 +26,18 @@ inline float unboundedGradientCoordinate(const GradientDirection direction, cons
     return static_cast<float>(direction == GradientDirection::Vertical ? 1.0 - normalized : normalized);
 }
 
+/// \brief Fills each unset gradient value bound of \a payload from [\a dataMin, \a dataMax].
+///
+/// Bounds resolve independently, so a \c Fixed bound is kept when the other
+/// bound uses \c DataRange.
+template <typename Payload> void resolveGradientValueRange(Payload& payload, const qreal dataMin, const qreal dataMax)
+{
+    if (!payload.gradientValueMin.has_value()) {
+        payload.gradientValueMin = dataMin;
+    }
+    if (!payload.gradientValueMax.has_value()) {
+        payload.gradientValueMax = dataMax;
+    }
+}
+
 } // namespace QAccelPlot
