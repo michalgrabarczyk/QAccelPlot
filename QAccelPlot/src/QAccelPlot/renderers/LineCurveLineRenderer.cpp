@@ -213,11 +213,10 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
     return createLineRootNode(strokeVertexCount, gradientStroke);
 }
 
-void assembleVertices(
-    QSGGeometry* geometry, const std::vector<float>& data, const int pointCount, const QColor& effectiveColor, const std::vector<float>& arcLengths)
+void assembleVertices(QSGGeometry* geometry, [[maybe_unused]] const std::vector<float>& data, const int pointCount, const QColor& effectiveColor,
+    const std::vector<float>& arcLengths)
 {
     auto* vertices = static_cast<LineVertex*>(geometry->vertexData());
-    const auto* src = data.data();
 
     // Hoist base color conversion — avoids 4 QColor::xF() calls per vertex in the common no-gradient path.
     const auto baseR = static_cast<unsigned char>(effectiveColor.red());
@@ -226,13 +225,6 @@ void assembleVertices(
     const auto baseA = static_cast<unsigned char>(effectiveColor.alpha());
 
     for (int index = 0; index < pointCount; ++index) {
-        const auto px = src[index * 2];
-        const auto py = src[index * 2 + 1];
-        const auto prevX = (index == 0) ? px : src[(index - 1) * 2];
-        const auto prevY = (index == 0) ? py : src[(index - 1) * 2 + 1];
-        const auto nextX = (index == pointCount - 1) ? px : src[(index + 1) * 2];
-        const auto nextY = (index == pointCount - 1) ? py : src[(index + 1) * 2 + 1];
-
         vertices[index * 2] = {static_cast<float>(index), kSidePositive, baseR, baseG, baseB, baseA, arcLengths.empty() ? 0.0f : arcLengths[index]};
         vertices[index * 2 + 1] = {static_cast<float>(index), kSideNegative, baseR, baseG, baseB, baseA, arcLengths.empty() ? 0.0f : arcLengths[index]};
     }
@@ -240,12 +232,11 @@ void assembleVertices(
 
 } // namespace
 
-void LineCurveLineRenderer::buildVertexCache(const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
+void LineCurveLineRenderer::buildVertexCache([[maybe_unused]] const std::vector<float>& data, const int pointCount, std::vector<char>& cache) const
 {
     const auto byteSize = static_cast<std::size_t>(pointCount) * 2 * sizeof(LineVertex);
     cache.resize(byteSize);
     auto* vertices = reinterpret_cast<LineVertex*>(cache.data());
-    const auto* src = data.data();
 
     // Writes neutral RGBA — the shader uses the material color uniform (useVertexColor==0)
     // for non-gradient rendering, so per-vertex color is irrelevant in that path.

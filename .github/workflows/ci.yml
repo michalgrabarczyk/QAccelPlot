@@ -19,12 +19,23 @@ permissions:
 
 jobs:
   build-and-test:
-    name: Qt private API ${{ matrix.qt_private_api }}
-    runs-on: ubuntu-latest
+    name: ${{ matrix.compiler }} / Qt private API ${{ matrix.qt_private_api }}
+    # Pinned so the preinstalled Clang version stays fixed.
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
+        compiler: [gcc]
         qt_private_api: ['ON', 'OFF']
+        include:
+          - compiler: gcc
+            cxx: g++
+          # Clang against libstdc++, which the aqt gcc_64 Qt binaries require.
+          # Warnings are reported but not fatal until the build is warning-clean.
+          - compiler: clang
+            qt_private_api: 'ON'
+            cxx: clang++-18
+            cxx_flags: -Wall -Wextra
 
     steps:
       - uses: actions/checkout@v6
@@ -47,6 +58,8 @@ jobs:
         run: >-
           cmake -S . -B build -G Ninja
           -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          "-DCMAKE_CXX_FLAGS=${{ matrix.cxx_flags }}"
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_EXAMPLES=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF

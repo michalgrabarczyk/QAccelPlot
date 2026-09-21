@@ -31,7 +31,7 @@ void DateTimeTickLabelFormatter::setDateTimeFormat(const QString& format)
     emit formatChanged();
 }
 
-QString DateTimeTickLabelFormatter::doFormat(const qreal value, const qreal tickStep) const
+QString DateTimeTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
     return QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(value)).toString(dateTimeFormat_);
 }
