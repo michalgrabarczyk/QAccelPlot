@@ -36,6 +36,11 @@
 * **planRunSampling** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
+## r
+
+* **resolveGradientValueRange** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
 ## s
 
 * **sampledSourceIndex** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))

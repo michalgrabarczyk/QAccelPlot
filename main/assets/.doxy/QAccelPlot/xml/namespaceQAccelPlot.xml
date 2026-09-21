@@ -187,6 +187,39 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" line="21" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" bodystart="21" bodyend="27"/>
       </memberdef>
+      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1ab02a40a9e484dff0dc95ff41ab4cb05a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Payload</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void QAccelPlot::resolveGradientValueRange</definition>
+        <argsstring>(Payload &amp;payload, const qreal dataMin, const qreal dataMax)</argsstring>
+        <name>resolveGradientValueRange</name>
+        <qualifiedname>QAccelPlot::resolveGradientValueRange</qualifiedname>
+        <param>
+          <type>Payload &amp;</type>
+          <declname>payload</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMin</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMax</declname>
+        </param>
+        <briefdescription>
+<para>Fills each unset gradient value bound of <emphasis>payload</emphasis> from [<emphasis>dataMin</emphasis>, <emphasis>dataMax</emphasis>]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Bounds resolve independently, so a <computeroutput>Fixed</computeroutput> bound is kept when the other bound uses <computeroutput>DataRange</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" line="33" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" bodystart="33" bodyend="41"/>
+      </memberdef>
       <memberdef kind="function" id="GradientUtils_8hpp_1a0f5087bac1074c27bc00a3d8d5004090" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::appendStopFromObject</definition>

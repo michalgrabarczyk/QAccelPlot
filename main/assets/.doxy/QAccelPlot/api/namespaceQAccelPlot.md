@@ -147,6 +147,7 @@
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
+|  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
 
@@ -340,6 +341,30 @@ inline bool QAccelPlot::nearly_equal (
 
 
 
+
+<hr>
+
+
+
+
+### function resolveGradientValueRange {#function-resolvegradientvaluerange}
+
+_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._
+```C++
+template<typename Payload>
+void QAccelPlot::resolveGradientValueRange (
+    Payload & payload,
+    const qreal dataMin,
+    const qreal dataMax
+) 
+```
+
+
+
+Bounds resolve independently, so a `Fixed` bound is kept when the other bound uses `DataRange`. 
+
+
+        
 
 <hr>
 

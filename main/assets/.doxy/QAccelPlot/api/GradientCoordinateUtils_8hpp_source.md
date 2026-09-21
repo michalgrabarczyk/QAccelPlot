@@ -31,6 +31,16 @@ inline float unboundedGradientCoordinate(const GradientDirection direction, cons
     return static_cast<float>(direction == GradientDirection::Vertical ? 1.0 - normalized : normalized);
 }
 
+template <typename Payload> void resolveGradientValueRange(Payload& payload, const qreal dataMin, const qreal dataMax)
+{
+    if (!payload.gradientValueMin.has_value()) {
+        payload.gradientValueMin = dataMin;
+    }
+    if (!payload.gradientValueMax.has_value()) {
+        payload.gradientValueMax = dataMax;
+    }
+}
+
 } // namespace QAccelPlot
 ```
 
