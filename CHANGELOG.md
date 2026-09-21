@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- `LineCurve` now renders its marker for a single-point dataset when both lines
+  and markers are enabled.
 - Rectangle hover detection now preserves double precision for large coordinates,
   including Unix-epoch timestamps, so nearby rectangles remain distinguishable.
 - `RectangleList` now refreshes its render coordinates when either axis switches
