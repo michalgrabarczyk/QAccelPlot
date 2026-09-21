@@ -1,0 +1,64 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+name: Static analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clang-tidy:
+    name: clang-tidy
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang-19 clang-tidy-19 cmake ninja-build libgl1-mesa-dev libxkbcommon-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure CMake
+        run: >-
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_CXX_COMPILER=clang++-19
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          -DQACCELPLOT_BUILD_TESTS=OFF
+          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+
+      # Building the library produces the moc, QML type registration, and
+      # shader outputs that the analyzed sources include.
+      - name: Build library
+        run: cmake --build build --parallel --target QAccelPlot
+
+      # .clang-tidy sets WarningsAsErrors, so any finding fails this step.
+      # The file-count check guards against the pattern silently matching nothing.
+      - name: Run clang-tidy
+        shell: bash
+        run: |
+          run-clang-tidy-19 -p build -clang-tidy-binary clang-tidy-19 -quiet \
+            'QAccelPlot/src/QAccelPlot/.*\.cpp$' | tee clang-tidy.log
+          grep -Eq '^Running clang-tidy for [1-9][0-9]* files' clang-tidy.log

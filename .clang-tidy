@@ -1,0 +1,75 @@
+#
+# SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+# SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+#
+# This file is also available under a separate commercial license.
+# See COMMERCIAL-LICENSING.md for contact information.
+#
+# Disabled checks and the reason they do not fit this code base:
+#   bugprone-easily-swappable-parameters         Qt-style setters/ranges take many same-typed arguments.
+#   bugprone-implicit-widening-of-multiplication-result
+#                                                Interleaved XY indexing (index * 2) is bounded by int point counts.
+#   clang-analyzer-cplusplus.NewDelete(Leaks)    False positives from QPointer ref counting and QObject parent ownership.
+#   clang-analyzer-security.FloatLoopCounter     Axis tick loops intentionally step in floating point.
+#   misc-include-cleaner                         Does not understand Qt umbrella/forwarding headers.
+#   misc-non-private-member-variables-in-classes Parameter and payload types expose plain data on purpose.
+#   misc-use-anonymous-namespace                 Style preference only.
+#   modernize-avoid-c-arrays                     Fixed-size arrays mirror GPU uniform layouts.
+#   modernize-return-braced-init-list            Style preference only.
+#   modernize-use-nodiscard                      Would annotate every Qt property getter.
+#   modernize-use-trailing-return-type           Style preference only.
+#   performance-enum-size                        Q_ENUM types must stay int-backed for QML.
+#   readability-avoid-nested-conditional-operator
+#   readability-convert-member-functions-to-static
+#   readability-else-after-return
+#   readability-function-cognitive-complexity
+#   readability-identifier-length
+#   readability-implicit-bool-conversion
+#   readability-magic-numbers
+#   readability-math-missing-parentheses
+#   readability-named-parameter
+#   readability-qualified-auto
+#   readability-uppercase-literal-suffix         Style preferences not followed by this code base.
+#   readability-redundant-access-specifiers      Flags Qt "public slots:" sections.
+#   readability-redundant-casting                qreal casts are kept for platforms where qreal is float.
+#   readability-suspicious-call-argument         Name-based heuristic with false positives on tick math.
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-implicit-widening-of-multiplication-result,
+  clang-analyzer-*,
+  -clang-analyzer-cplusplus.NewDelete,
+  -clang-analyzer-cplusplus.NewDeleteLeaks,
+  -clang-analyzer-security.FloatLoopCounter,
+  cppcoreguidelines-slicing,
+  cppcoreguidelines-virtual-class-destructor,
+  misc-*,
+  -misc-include-cleaner,
+  -misc-non-private-member-variables-in-classes,
+  -misc-use-anonymous-namespace,
+  modernize-*,
+  -modernize-avoid-c-arrays,
+  -modernize-return-braced-init-list,
+  -modernize-use-nodiscard,
+  -modernize-use-trailing-return-type,
+  performance-*,
+  -performance-enum-size,
+  readability-*,
+  -readability-avoid-nested-conditional-operator,
+  -readability-convert-member-functions-to-static,
+  -readability-else-after-return,
+  -readability-function-cognitive-complexity,
+  -readability-identifier-length,
+  -readability-implicit-bool-conversion,
+  -readability-magic-numbers,
+  -readability-math-missing-parentheses,
+  -readability-named-parameter,
+  -readability-qualified-auto,
+  -readability-redundant-access-specifiers,
+  -readability-redundant-casting,
+  -readability-suspicious-call-argument,
+  -readability-uppercase-literal-suffix
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*[/\\]QAccelPlot[/\\]src[/\\]QAccelPlot[/\\].*'
+FormatStyle: file
