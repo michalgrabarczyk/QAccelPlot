@@ -9,6 +9,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
@@ -151,6 +152,34 @@ template <typename T> DataExtents computeDataExtents(const std::vector<T>& buf, 
 template <typename T> DataExtents computeChunkExtents(const T* data, const int first, const int last, const bool logScaleX, const bool logScaleY)
 {
     return computeValidExtents(data, static_cast<std::size_t>(first), static_cast<std::size_t>(last) + 1, logScaleX, logScaleY);
+}
+
+// Returns the payload of the first enabled, valid Effect with unset value bounds
+// resolved from the data range of the axis matching the gradient direction. Using
+// the data range keeps gradient colors invariant to pan/zoom.
+template <typename Effect, typename Payload> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const Axis* xAxis, const Axis* yAxis)
+{
+    for (const auto effect : effects) {
+        if (!effect || !effect->enabled()) {
+            continue;
+        }
+
+        const auto gradientEffect = qobject_cast<Effect*>(effect);
+        if (!gradientEffect) {
+            continue;
+        }
+
+        auto payload = gradientEffect->payload();
+        if (!payload.isValid()) {
+            continue;
+        }
+
+        const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
+        resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
+        return payload;
+    }
+
+    return {};
 }
 
 }
@@ -882,58 +911,12 @@ void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
 
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
-    for (const auto effect : effects_) {
-        if (!effect || !effect->enabled()) {
-            continue;
-        }
-
-        if (const auto gradientEffect = qobject_cast<GradientStroke*>(effect)) {
-            auto payload = gradientEffect->payload();
-            if (payload.isValid()) {
-                // Resolve range from data range when source is DataRange.
-                // This makes gradient colors data-relative and invariant to pan/zoom.
-                if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
-                    if (payload.direction == GradientDirection::Horizontal) {
-                        payload.gradientValueMin = xAxis() ? xAxis()->dataMin() : kFallbackDataMin;
-                        payload.gradientValueMax = xAxis() ? xAxis()->dataMax() : kFallbackDataMax;
-                    } else {
-                        payload.gradientValueMin = yAxis() ? yAxis()->dataMin() : kFallbackDataMin;
-                        payload.gradientValueMax = yAxis() ? yAxis()->dataMax() : kFallbackDataMax;
-                    }
-                }
-                return payload;
-            }
-        }
-    }
-
-    return {};
+    return resolveGradientPayload<GradientStroke, GradientColorPayload>(effects_, xAxis(), yAxis());
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
-    for (auto* effect : effects_) {
-        if (!effect || !effect->enabled()) {
-            continue;
-        }
-
-        if (const auto gradientFill = qobject_cast<GradientFill*>(effect)) {
-            auto payload = gradientFill->payload();
-            if (payload.isValid()) {
-                if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
-                    if (payload.direction == GradientDirection::Horizontal) {
-                        payload.gradientValueMin = xAxis() ? xAxis()->dataMin() : kFallbackDataMin;
-                        payload.gradientValueMax = xAxis() ? xAxis()->dataMax() : kFallbackDataMax;
-                    } else {
-                        payload.gradientValueMin = yAxis() ? yAxis()->dataMin() : kFallbackDataMin;
-                        payload.gradientValueMax = yAxis() ? yAxis()->dataMax() : kFallbackDataMax;
-                    }
-                }
-                return payload;
-            }
-        }
-    }
-
-    return {};
+    return resolveGradientPayload<GradientFill, GradientFillPayload>(effects_, xAxis(), yAxis());
 }
 
 void LineCurve::updateDataRanges(const std::vector<float>& buf, const int count)
