@@ -43,6 +43,9 @@ private slots:
     void ticker_destroyedFormatter_usesDefault();
 
     void tickLabelCallback_receivesValueAndTickStep();
+    void tickLabelCallback_errorFallsBackToFormatter();
+    void tickLabel_nonCallableIsIgnored();
+    void tickLabel_changeEmitsFormatChanged();
 };
 
 void TestFormatters::numericFormat_data()
@@ -58,6 +61,10 @@ void TestFormatters::numericFormat_data()
     QTest::newRow("zero-value") << 0.0 << 10.0 << QStringLiteral("0");
     QTest::newRow("very-small-step") << 0.123456789 << 1e-4 << QStringLiteral("0.12346");
     QTest::newRow("tiny-negative-rounds-to-positive-zero") << -1e-10 << 0.1 << QStringLiteral("0.00");
+    QTest::newRow("five-step") << 15.0 << 5.0 << QStringLiteral("15");
+    QTest::newRow("quarter-step") << 0.75 << 0.25 << QStringLiteral("0.75");
+    QTest::newRow("negative-step") << 2.0 << -1.0 << QStringLiteral("2.0");
+    QTest::newRow("nan-step") << 3.0 << qQNaN() << QStringLiteral("3.0");
 }
 
 void TestFormatters::numericFormat()
@@ -114,6 +121,8 @@ void TestFormatters::logFormat_data()
     const auto aboveThreshold = std::pow(10.0, 1.02);
     QTest::newRow("near-power-below-threshold") << belowThreshold << QStringLiteral("10\u00B9");
     QTest::newRow("near-power-above-threshold") << aboveThreshold << QString::number(aboveThreshold, 'g', 3);
+    QTest::newRow("zero") << 0.0 << QStringLiteral("0");
+    QTest::newRow("negative") << -5.0 << QStringLiteral("-5");
 }
 
 void TestFormatters::logFormat()
@@ -141,6 +150,10 @@ void TestFormatters::textFormat_data()
     QTest::newRow("empty-list") << QStringList{} << 0.0 << QString{};
     QTest::newRow("fraction-rounds-up") << numbers << 1.6 << QStringLiteral("two");
     QTest::newRow("fraction-rounds-down") << numbers << 0.4 << QStringLiteral("zero");
+    QTest::newRow("half-rounds-up") << numbers << 1.5 << QStringLiteral("two");
+    QTest::newRow("small-negative-rounds-to-first") << numbers << -0.4 << QStringLiteral("zero");
+    QTest::newRow("negative-half-is-out-of-range") << numbers << -0.5 << QString{};
+    QTest::newRow("past-last-rounds-out-of-range") << numbers << 2.5 << QString{};
 }
 
 void TestFormatters::textFormat()
@@ -223,6 +236,38 @@ void TestFormatters::tickLabelCallback_receivesValueAndTickStep()
     formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '|' + tickStep; })")));
 
     QCOMPARE(formatter.format(1.5, 0.1), QStringLiteral("1.5|0.1"));
+}
+
+void TestFormatters::tickLabelCallback_errorFallsBackToFormatter()
+{
+    auto engine = QJSEngine{};
+    auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function() { throw new Error('bad label'); })")));
+
+    QCOMPARE(formatter.format(1.25, 0.1), QStringLiteral("1.25"));
+}
+
+void TestFormatters::tickLabel_nonCallableIsIgnored()
+{
+    auto formatter = QAccelPlot::NumericTickLabelFormatter{};
+    formatter.setTickLabel(QJSValue{QStringLiteral("not a function")});
+
+    QCOMPARE(formatter.format(1.25, 0.1), QStringLiteral("1.25"));
+}
+
+void TestFormatters::tickLabel_changeEmitsFormatChanged()
+{
+    auto engine = QJSEngine{};
+    auto formatter = QAccelPlot::LogTickLabelFormatter{};
+    auto spy = QSignalSpy{&formatter, &QAccelPlot::TickLabelFormatter::formatChanged};
+
+    formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value) { return 'v' + value; })")));
+    QCOMPARE(spy.count(), 1);
+    QCOMPARE(formatter.format(100.0, 1.0), QStringLiteral("v100"));
+
+    formatter.setTickLabel(QJSValue{});
+    QCOMPARE(spy.count(), 2);
+    QCOMPARE(formatter.format(100.0, 1.0), QStringLiteral("10²"));
 }
 
 QTEST_GUILESS_MAIN(TestFormatters)
