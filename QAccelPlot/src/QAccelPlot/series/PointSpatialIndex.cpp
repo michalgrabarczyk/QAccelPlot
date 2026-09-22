@@ -22,6 +22,11 @@ constexpr auto kMaxGridDimension = 4096;
 constexpr auto kMinimumExtent = 1e-6;
 } // namespace
 
+bool PointSpatialIndex::Mapping::operator==(const Mapping& other) const
+{
+    return logX == other.logX && logY == other.logY;
+}
+
 void PointSpatialIndex::build(const float* data, const int pointCount, const int stride)
 {
     build(data, pointCount, stride, Mapping{});

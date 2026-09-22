@@ -33,10 +33,7 @@ public:
         bool logY{false}; ///< \brief Index log10(y) instead of y.
 
         /// \brief Returns \c true when both mappings are identical.
-        bool operator==(const Mapping& other) const
-        {
-            return logX == other.logX && logY == other.logY;
-        }
+        bool operator==(const Mapping& other) const;
     };
 
     /// \brief Rebuilds the index from \a pointCount points in \a data using \a stride floats per point.
