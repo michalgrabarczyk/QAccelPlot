@@ -92,8 +92,7 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(qreal dataValueMax READ ... NOTIFY valueRangeChanged)
 
 public:
-    // Same integer values as LineCurve::PointShape minus None (static_assert).
-    enum class MarkerShape { Circle = 1, Square, Diamond, TriangleUp, TriangleDown, Cross };
+    // MarkerShape is inherited from PlotSeries and shared with LineCurve markers.
     enum class ColorMode { UniformColor, ValueColor };
 
     Q_INVOKABLE void setData(const QList<QPointF>& points);
@@ -119,10 +118,12 @@ Data contract:
 - On log axes, non-positive coordinates are skipped the same way.
 - `setValues` / non-empty `values` with a mismatched size → `qCWarning`, reject.
 
-Why a separate `MarkerShape` enum instead of reusing `LineCurve.PointShape`:
-QML must be able to write `QAccelPlot.PointCloud.Circle`, and `None` is
-meaningless for a cloud. Keeping identical integers lets the renderer and
-`LegendSymbol.qml` share the shape code path.
+Marker shapes live on `PlotSeries` as `MarkerShape`, shared with `LineCurve`.
+An earlier draft gave `PointCloud` its own enum so that QML could write
+`QAccelPlot.PointCloud.Circle`, but QML resolves enums through the meta-object
+chain, so a base-class enum is still reachable from the derived type. One
+definition then removes any chance of the two lists drifting apart. `None` is
+meaningless for a cloud, so `PointCloud` rejects it and keeps its current shape.
 
 ## 3. Rendering design
 

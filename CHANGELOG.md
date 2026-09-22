@@ -38,6 +38,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Marker shapes moved to `PlotSeries.MarkerShape`, shared by `LineCurve` and
+  `PointCloud`. `LineCurve.PointShape` is gone; the values and their QML spellings,
+  such as `LineCurve.Circle`, are unchanged, so only C++ code naming the enum type
+  needs updating. `PointCloud` rejects `MarkerShape.None`.
 - Public headers are now included with a `QAccelPlot/` prefix, for example
   `#include <QAccelPlot/series/LineCurve.hpp>`, both when QAccelPlot is
   embedded with `add_subdirectory` or `FetchContent` and when it is installed.

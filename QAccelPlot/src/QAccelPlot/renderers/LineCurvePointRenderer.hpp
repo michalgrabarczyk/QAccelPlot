@@ -37,7 +37,7 @@ struct PointCurveRenderParams {
     qreal antialiasingFeather;                   ///< \brief Anti-aliasing feather width in pixels.
     const GradientColorPayload& gradientPayload; ///< \brief Gradient color parameters.
     const std::vector<char>* vertexCache;        ///< \brief Pre-built vertex buffer, or \c nullptr.
-    int shapeType;                               ///< \brief Marker shape index (\c LineCurve::PointShape value minus one).
+    int shapeType;                               ///< \brief Marker shape index (\c PlotSeries::MarkerShape value minus one).
     qreal markerStrokeWidth;                     ///< \brief Outline width in pixels for hollow markers.
     bool markerFilled;                           ///< \brief Whether closed marker shapes are filled rather than outlined.
 };

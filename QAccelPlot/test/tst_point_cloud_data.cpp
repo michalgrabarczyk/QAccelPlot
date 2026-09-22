@@ -68,7 +68,7 @@ void PointCloudDataTest::defaults()
     QCOMPARE(cloud.count(), 0);
     QCOMPARE(cloud.hoveredIndex(), -1);
     QVERIFY(!cloud.hasValues());
-    QCOMPARE(cloud.markerShape(), PointCloud::MarkerShape::Circle);
+    QCOMPARE(cloud.markerShape(), PlotSeries::MarkerShape::Circle);
     QVERIFY(cloud.markerFilled());
     QCOMPARE(cloud.markerStrokeWidth(), 1.0);
     QCOMPARE(cloud.colorMode(), PointCloud::ColorMode::UniformColor);
@@ -365,8 +365,8 @@ void PointCloudDataTest::propertySettersClampAndNotify()
     QCOMPARE(cloud.antialiasingFeather(), 10.0);
     QCOMPARE(featherSpy.count(), 1);
 
-    cloud.setMarkerShape(PointCloud::MarkerShape::Cross);
-    cloud.setMarkerShape(PointCloud::MarkerShape::Cross);
+    cloud.setMarkerShape(PlotSeries::MarkerShape::Cross);
+    cloud.setMarkerShape(PlotSeries::MarkerShape::Cross);
     QCOMPARE(shapeSpy.count(), 1);
 
     cloud.setHoverRadius(-1.0);

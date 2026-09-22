@@ -42,7 +42,7 @@ public:
     float useVertexColor{0.0f};             ///< \brief 1.0 when per-vertex color overrides \c color.
     float antialiasingEnabled{1.0f};        ///< \brief 1.0 when GPU anti-aliasing is active.
     float antialiasingFeather{1.0f};        ///< \brief Anti-aliasing feather width in pixels.
-    int shapeType{0};                       ///< \brief Marker shape: \c LineCurve::PointShape value minus one (0 = Circle).
+    int shapeType{0};                       ///< \brief Marker shape: \c PlotSeries::MarkerShape value minus one (0 = Circle).
     float markerStrokeWidth{1.0f};          ///< \brief Outline width in pixels for hollow markers.
     float markerFilled{1.0f};               ///< \brief 1.0 for filled markers, 0.0 for hollow outlines.
 };

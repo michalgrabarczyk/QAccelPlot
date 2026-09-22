@@ -14,6 +14,7 @@
 #include <QImage>
 #include <QQuickWindow>
 #include <QSGRendererInterface>
+#include <QRegularExpression>
 #include <QtTest/QtTest>
 
 #include <vector>
@@ -22,7 +23,7 @@ namespace QAccelPlot {
 
 namespace {
 
-using Shape = LineCurve::PointShape;
+using Shape = PlotSeries::MarkerShape;
 
 // A single white marker is drawn on black at the centre of a kCurveSize px curve, i.e. at pixel
 // corner (kCentre, kCentre). Offsets below address the pixel (kCentre + dx, kCentre + dy) in the
@@ -102,7 +103,7 @@ RenderResult renderPointCloudMarker(const MarkerStyle& style)
     cloud.setXAxis(&xAxis);
     cloud.setYAxis(&yAxis);
     cloud.setColor(Qt::white);
-    cloud.setMarkerShape(static_cast<PointCloud::MarkerShape>(style.shape));
+    cloud.setMarkerShape(style.shape);
     cloud.setMarkerSize(style.size);
     cloud.setMarkerFilled(style.filled);
     cloud.setMarkerStrokeWidth(style.strokeWidth);
@@ -131,6 +132,7 @@ class MarkerShapesTest : public QObject {
 
 private slots:
     void shapeIndicesMatchShaders();
+    void pointCloudRejectsNoneShape();
     void shapesCoverTheirOutline_data();
     void shapesCoverTheirOutline();
     void hollowMarkersDrawOnlyTheOutline_data();
@@ -143,7 +145,7 @@ private slots:
 
 void MarkerShapesTest::shapeIndicesMatchShaders()
 {
-    // PointShape values are public API, and point.frag and point.vert select shapes by value - 1.
+    // MarkerShape values are public API, and point.frag and point.vert select shapes by value - 1.
     // Append new shapes at the end; never reorder or insert.
     const auto expected = std::vector<std::pair<Shape, int>>{{Shape::None, 0}, {Shape::Circle, 1}, {Shape::Square, 2}, {Shape::Diamond, 3},
         {Shape::TriangleUp, 4}, {Shape::TriangleDown, 5}, {Shape::TriangleLeft, 6}, {Shape::TriangleRight, 7}, {Shape::Cross, 8}, {Shape::XCross, 9},
@@ -152,6 +154,28 @@ void MarkerShapesTest::shapeIndicesMatchShaders()
     for (const auto& [shape, value] : expected) {
         QCOMPARE(static_cast<int>(shape), value);
     }
+
+    // The enum lives on PlotSeries, but both series must still expose it through their own
+    // meta-object: that is how QML resolves LineCurve.Circle and PointCloud.Circle.
+    for (const auto* meta : {&LineCurve::staticMetaObject, &PointCloud::staticMetaObject}) {
+        const auto index = meta->indexOfEnumerator("MarkerShape");
+        QVERIFY(index >= 0);
+        QCOMPARE(meta->enumerator(index).keyToValue("Pentagon"), static_cast<int>(Shape::Pentagon));
+    }
+}
+
+void MarkerShapesTest::pointCloudRejectsNoneShape()
+{
+    auto cloud = PointCloud{};
+    cloud.setMarkerShape(Shape::Square);
+    auto spy = QSignalSpy{&cloud, &PointCloud::markerShapeChanged};
+
+    // A cloud always draws its points, so None must not silently blank it.
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud.markerShape does not accept None.*"));
+    cloud.setMarkerShape(Shape::None);
+
+    QCOMPARE(cloud.markerShape(), Shape::Square);
+    QCOMPARE(spy.count(), 0);
 }
 
 void MarkerShapesTest::shapesCoverTheirOutline_data()

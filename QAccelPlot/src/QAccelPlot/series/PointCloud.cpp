@@ -31,9 +31,8 @@ namespace QAccelPlot {
 
 namespace {
 
-// Shape integers are shared with LineCurve markers and the point_shapes.glsl shader include.
-static_assert(static_cast<int>(PointCloud::MarkerShape::Circle) == static_cast<int>(LineCurve::PointShape::Circle));
-static_assert(static_cast<int>(PointCloud::MarkerShape::Pentagon) == static_cast<int>(LineCurve::PointShape::Pentagon));
+// The shape integers come from PlotSeries::MarkerShape, shared with LineCurve markers and the
+// point_shapes.glsl shader include, which selects a shape by the value minus one.
 
 constexpr auto kPositionStride = 2;
 constexpr auto kValueStride = 3;
@@ -187,6 +186,11 @@ PointCloud::MarkerShape PointCloud::markerShape() const
 
 void PointCloud::setMarkerShape(const MarkerShape shape)
 {
+    if (shape == MarkerShape::None) {
+        // A cloud always draws its points; there is no "no markers" state to fall back to.
+        qCWarning(lcQAccelPlot) << "PointCloud.markerShape does not accept None; keeping" << static_cast<int>(markerShape_);
+        return;
+    }
     if (markerShape_ == shape) {
         return;
     }

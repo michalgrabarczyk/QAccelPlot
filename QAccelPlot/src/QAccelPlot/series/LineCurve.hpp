@@ -65,8 +65,8 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    /// \brief Shape drawn at each data point. Default: \c PointShape.None (no markers).
-    Q_PROPERTY(PointShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
+    /// \brief Shape drawn at each data point. Default: \c MarkerShape.None (no markers).
+    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
     /// \brief Radius of each marker in pixels. Default: 4.
     Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
     /// \brief Whether closed marker shapes are filled. When \c false they are drawn as outlines of \c markerStrokeWidth
@@ -85,30 +85,6 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
 
 public:
-    /// \brief Marker shape options for data points.
-    ///
-    /// Every shape except \c Pixel fits within a square of half-width \c markerSize.
-    enum class PointShape {
-        None,          ///< \brief No markers.
-        Circle,        ///< \brief Circle.
-        Square,        ///< \brief Square.
-        Diamond,       ///< \brief Diamond, narrower than it is tall.
-        TriangleUp,    ///< \brief Equilateral triangle pointing up.
-        TriangleDown,  ///< \brief Equilateral triangle pointing down.
-        TriangleLeft,  ///< \brief Equilateral triangle pointing left.
-        TriangleRight, ///< \brief Equilateral triangle pointing right.
-        Cross,         ///< \brief Plus sign (+).
-        XCross,        ///< \brief Diagonal cross (×).
-        HLine,         ///< \brief Short horizontal line.
-        VLine,         ///< \brief Short vertical line, e.g. for rug and event plots.
-        Star,          ///< \brief Five-pointed star.
-        Asterisk,      ///< \brief Eight-armed asterisk: a thin plus and a thin diagonal cross.
-        Pixel,         ///< \brief A single pixel; ignores \c markerSize, \c markerFilled, and anti-aliasing. Suited to very dense scatter plots.
-        Hexagon,       ///< \brief Regular hexagon with a vertex up.
-        Pentagon       ///< \brief Regular pentagon with a vertex up.
-    };
-    Q_ENUM(PointShape)
-
     /// \brief Constructs a LineCurve with the given \a parent.
     explicit LineCurve(QQuickItem* parent = nullptr);
 
@@ -136,9 +112,9 @@ public:
     void setLineStyle(LineStyle* style);
 
     /// \brief Returns the marker shape.
-    PointShape markerShape() const;
+    MarkerShape markerShape() const;
     /// \brief Sets the marker shape to \a shape.
-    void setMarkerShape(PointShape shape);
+    void setMarkerShape(MarkerShape shape);
 
     /// \brief Returns the marker size in pixels.
     qreal markerSize() const;
@@ -301,7 +277,7 @@ private:
     int pointCount_{0};
     QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    PointShape markerShape_{PointShape::None};
+    MarkerShape markerShape_{MarkerShape::None};
     qreal markerSize_{4.0};
     bool markerFilled_{true};
     qreal markerStrokeWidth_{1.0};

@@ -40,7 +40,7 @@ void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setPlotRect({0, 0, 100, 100});
-    curve.setMarkerShape(QAccelPlot::LineCurve::PointShape::Circle);
+    curve.setMarkerShape(QAccelPlot::LineCurve::MarkerShape::Circle);
     auto node = std::unique_ptr<QSGNode>{};
 
     for (const auto count : {1, 2, 1}) {
