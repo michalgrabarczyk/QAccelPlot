@@ -42,13 +42,11 @@ public:
     /// \brief Rebuilds the index from \a pointCount points in \a data using \a stride floats per point.
     void build(const float* data, int pointCount, int stride, Mapping mapping);
     /// \brief Rebuilds the index with the identity mapping, for linear axes.
-    void build(const float* data, const int pointCount, const int stride = 2)
-    {
-        // Mapping{} cannot be a default argument: a nested class's default member
-        // initializers are not usable until the enclosing class is complete, which
-        // MSVC accepts but Clang and GCC reject. A function body is fine.
-        build(data, pointCount, stride, Mapping{});
-    }
+    ///
+    /// A separate overload rather than a defaulted \c Mapping argument: a nested class's default
+    /// member initializers are not usable in a default argument until the enclosing class is
+    /// complete, which MSVC accepts but Clang and GCC reject.
+    void build(const float* data, int pointCount, int stride = 2);
     /// \brief Removes all indexed points.
     void clear();
 

@@ -84,9 +84,10 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     /// \brief Read-only: index of the point under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
-    /// \brief Read-only: resolved value mapped to the start of the colormap.
+    /// \brief Read-only: lower bound of the value range, resolved from \c valueMinSource.
+    /// Bind a color bar's scale to this and \c dataValueMax.
     Q_PROPERTY(qreal dataValueMin READ dataValueMin NOTIFY valueRangeChanged)
-    /// \brief Read-only: resolved value mapped to the end of the colormap.
+    /// \brief Read-only: upper bound of the value range, resolved from \c valueMaxSource.
     Q_PROPERTY(qreal dataValueMax READ dataValueMax NOTIFY valueRangeChanged)
 
 public:
@@ -174,9 +175,9 @@ public:
     bool hasValues() const;
     /// \brief Returns the index of the hovered point, or -1.
     int hoveredIndex() const;
-    /// \brief Returns the resolved lower colormap bound.
+    /// \brief Returns the resolved lower bound of the value range.
     qreal dataValueMin() const;
-    /// \brief Returns the resolved upper colormap bound.
+    /// \brief Returns the resolved upper bound of the value range.
     qreal dataValueMax() const;
 
     /// \brief Replaces all points with \a points and clears per-point values.
