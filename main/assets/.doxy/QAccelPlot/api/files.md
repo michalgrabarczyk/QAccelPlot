@@ -27,7 +27,6 @@ Here is a list of all files with brief descriptions:
                 * **file** [**LineCurveEffect.hpp**](LineCurveEffect_8hpp.md)     
             * **dir** [**formatters**](dir_4eeeb48ede2263d8d479500d459323d3.md)     
                 * **file** [**DateTimeTickLabelFormatter.hpp**](DateTimeTickLabelFormatter_8hpp.md)     
-                * **file** [**LogTickLabelFormatter.hpp**](LogTickLabelFormatter_8hpp.md)     
                 * **file** [**NumericTickLabelFormatter.hpp**](NumericTickLabelFormatter_8hpp.md)     
                 * **file** [**TextTickLabelFormatter.hpp**](TextTickLabelFormatter_8hpp.md)     
                 * **file** [**TickLabelFormatter.hpp**](TickLabelFormatter_8hpp.md)     

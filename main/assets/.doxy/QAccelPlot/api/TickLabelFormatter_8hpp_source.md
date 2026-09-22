@@ -34,6 +34,8 @@ public:
 
     QString format(qreal value, qreal tickStep) const;
 
+    QString formatLogTick(qreal value) const;
+
     QJSValue tickLabel() const;
     void setTickLabel(const QJSValue& tickLabel);
 
@@ -44,7 +46,11 @@ signals:
 protected:
     virtual QString doFormat(qreal value, qreal tickStep) const = 0;
 
+    virtual QString doFormatLogTick(qreal value) const;
+
 private:
+    bool callTickLabel(qreal value, qreal tickStep, QString& label) const;
+
     QJSValue tickLabel_;
 };
 

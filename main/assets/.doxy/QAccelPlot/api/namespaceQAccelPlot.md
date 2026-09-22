@@ -85,7 +85,6 @@
 | class | [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) <br>_QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._ |
 | class | [**LineStyle**](classQAccelPlot_1_1LineStyle.md) <br>_Abstract base class for all line styles._  |
 | struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._  |
-| class | [**LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) <br>_A tick label formatter that produces power-of-ten labels for logarithmic axes._  |
 | class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An animation transition that smoothly interpolates point positions between two datasets._  |
 | class | [**NoLine**](classQAccelPlot_1_1NoLine.md) <br>_A line style that suppresses line rendering entirely, leaving only markers visible._  |
 | class | [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) <br>_The default tick label formatter — produces numeric labels with automatic decimal precision._  |

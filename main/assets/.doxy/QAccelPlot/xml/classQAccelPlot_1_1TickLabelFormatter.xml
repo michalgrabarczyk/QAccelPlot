@@ -4,7 +4,6 @@
     <compoundname>QAccelPlot::TickLabelFormatter</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::DateTimeTickLabelFormatter</derivedcompoundref>
-    <derivedcompoundref refid="classQAccelPlot_1_1LogTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::LogTickLabelFormatter</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1NumericTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::NumericTickLabelFormatter</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public" virt="non-virtual">QAccelPlot::TextTickLabelFormatter</derivedcompoundref>
     <includes local="no">TickLabelFormatter.hpp</includes>
@@ -40,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="54" column="14" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="54" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="69" column="14" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -88,6 +87,26 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="36" column="13"/>
       </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::TickLabelFormatter::formatLogTick</definition>
+        <argsstring>(qreal value) const</argsstring>
+        <name>formatLogTick</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::formatLogTick</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns the display string for a major tick at <emphasis>value</emphasis> on a logarithmic axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Log-scale ticks have no single step, so the <computeroutput>tickLabel</computeroutput> JS callback receives <emphasis>value</emphasis> as its <computeroutput>tickStep</computeroutput>. Without a callback this delegates to <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" kindref="member">doFormatLogTick()</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="42" column="13"/>
+      </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QJSValue</type>
         <definition>QJSValue QAccelPlot::TickLabelFormatter::tickLabel</definition>
@@ -101,7 +120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="39" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="45" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -120,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="41" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="47" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -137,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="45" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="51" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -152,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="47" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="53" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -163,7 +182,6 @@
         <name>doFormat</name>
         <qualifiedname>QAccelPlot::TickLabelFormatter::doFormat</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1DateTimeTickLabelFormatter_1a645a7a42c679a92684baec50280f41bc">doFormat</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1LogTickLabelFormatter_1a9cf7767769458b35befc9f2c2455d31e">doFormat</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1NumericTickLabelFormatter_1adf4fcaeb623da82077c1b56957fcc6fb">doFormat</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1TextTickLabelFormatter_1a383f71783d6e3052200b1f01087362a2">doFormat</reimplementedby>
         <param>
@@ -181,7 +199,57 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="51" column="21"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="57" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>virtual QString QAccelPlot::TickLabelFormatter::doFormatLogTick</definition>
+        <argsstring>(qreal value) const</argsstring>
+        <name>doFormatLogTick</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::doFormatLogTick</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1NumericTickLabelFormatter_1abfa00afac2e6c89152be73a9e9543870">doFormatLogTick</reimplementedby>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Subclass entry point for log-scale major ticks — returns the label for <emphasis>value</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default implementation returns <computeroutput>doFormat(value, value)</computeroutput>, using the tick&apos;s own magnitude as a proxy for the precision it needs. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="63" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1TickLabelFormatter_1a2b2b07707bb70cffd2d853519652b236" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::TickLabelFormatter::callTickLabel</definition>
+        <argsstring>(qreal value, qreal tickStep, QString &amp;label) const</argsstring>
+        <name>callTickLabel</name>
+        <qualifiedname>QAccelPlot::TickLabelFormatter::callTickLabel</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>tickStep</declname>
+        </param>
+        <param>
+          <type>QString &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+<para>Calls the <computeroutput>tickLabel</computeroutput> JS callback; returns <computeroutput>true</computeroutput> and sets <emphasis>label</emphasis> on success. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="67" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -189,7 +257,7 @@
     </briefdescription>
     <detaileddescription>
 <para>Subclasses implement <computeroutput><ref refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kindref="member">doFormat()</ref></computeroutput> to produce a display string for each tick value. An optional <computeroutput>tickLabel</computeroutput> JavaScript callback can override the default formatting at the QML level.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1LogTickLabelFormatter" kindref="compound">LogTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref> </para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1NumericTickLabelFormatter" kindref="compound">NumericTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TextTickLabelFormatter" kindref="compound">TextTickLabelFormatter</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -201,18 +269,12 @@
         </childnode>
       </node>
       <node id="4">
-        <label>QAccelPlot::LogTickLabelFormatter</label>
-        <link refid="classQAccelPlot_1_1LogTickLabelFormatter"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="5">
         <label>QAccelPlot::NumericTickLabelFormatter</label>
         <link refid="classQAccelPlot_1_1NumericTickLabelFormatter"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="5">
         <label>QAccelPlot::TextTickLabelFormatter</label>
         <link refid="classQAccelPlot_1_1TextTickLabelFormatter"/>
         <childnode refid="1" relation="public-inheritance">
@@ -239,11 +301,14 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="22" bodyend="55"/>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/TickLabelFormatter.hpp" bodystart="22" bodyend="70"/>
     <listofallmembers>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a2b2b07707bb70cffd2d853519652b236" prot="private" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>callTickLabel</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" prot="protected" virt="pure-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" prot="protected" virt="virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>doFormatLogTick</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>format</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>formatLogTick</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>setTickLabel</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabel</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" prot="public" virt="non-virtual"><scope>QAccelPlot::TickLabelFormatter</scope><name>tickLabel</name></member>

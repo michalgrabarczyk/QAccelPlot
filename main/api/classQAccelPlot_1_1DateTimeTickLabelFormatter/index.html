@@ -1472,6 +1472,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-format"><strong>format</strong></a> (qreal value, qreal tickStep) const<br><em>Returns the display string for</em> <em>value</em> <em>at the given__tickStep</em> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatlogtick"><strong>formatLogTick</strong></a> (qreal value) const<br><em>Returns the display string for a major tick at</em> <em>value</em> <em>on a logarithmic axis.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-setticklabel"><strong>setTickLabel</strong></a> (const QJSValue &amp; tickLabel) <br><em>Sets the JavaScript override callback to</em> <em>tickLabel</em> <em>.</em></td>
 </tr>
@@ -1509,6 +1513,10 @@
 <tr>
 <td style="text-align: right;">virtual QString</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformat"><strong>doFormat</strong></a> (qreal value, qreal tickStep) const = 0<br><em>Subclass entry point — returns the formatted label for</em> <em>value</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformatlogtick"><strong>doFormatLogTick</strong></a> (qreal value) const<br><em>Subclass entry point for log-scale major ticks — returns the label for</em> <em>value</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>

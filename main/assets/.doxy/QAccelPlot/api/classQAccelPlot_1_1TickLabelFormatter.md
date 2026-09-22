@@ -24,7 +24,7 @@ _Abstract base class for tick label formatters._ [More...](#detailed-description
 Inherits the following classes: QObject
 
 
-Inherited by the following classes: [QAccelPlot::DateTimeTickLabelFormatter](classQAccelPlot_1_1DateTimeTickLabelFormatter.md),  [QAccelPlot::LogTickLabelFormatter](classQAccelPlot_1_1LogTickLabelFormatter.md),  [QAccelPlot::NumericTickLabelFormatter](classQAccelPlot_1_1NumericTickLabelFormatter.md),  [QAccelPlot::TextTickLabelFormatter](classQAccelPlot_1_1TextTickLabelFormatter.md)
+Inherited by the following classes: [QAccelPlot::DateTimeTickLabelFormatter](classQAccelPlot_1_1DateTimeTickLabelFormatter.md),  [QAccelPlot::NumericTickLabelFormatter](classQAccelPlot_1_1NumericTickLabelFormatter.md),  [QAccelPlot::TextTickLabelFormatter](classQAccelPlot_1_1TextTickLabelFormatter.md)
 
 
 ## Inheritance diagram
@@ -39,10 +39,6 @@ flowchart TB
   classQAccelPlot_1_1DateTimeTickLabelFormatter["QAccelPlot::DateTimeTickLabelFormatter"]
   classQAccelPlot_1_1TickLabelFormatter --> classQAccelPlot_1_1DateTimeTickLabelFormatter
   click classQAccelPlot_1_1DateTimeTickLabelFormatter "../classQAccelPlot_1_1DateTimeTickLabelFormatter/" "Open QAccelPlot::DateTimeTickLabelFormatter"
-
-  classQAccelPlot_1_1LogTickLabelFormatter["QAccelPlot::LogTickLabelFormatter"]
-  classQAccelPlot_1_1TickLabelFormatter --> classQAccelPlot_1_1LogTickLabelFormatter
-  click classQAccelPlot_1_1LogTickLabelFormatter "../classQAccelPlot_1_1LogTickLabelFormatter/" "Open QAccelPlot::LogTickLabelFormatter"
 
   classQAccelPlot_1_1NumericTickLabelFormatter["QAccelPlot::NumericTickLabelFormatter"]
   classQAccelPlot_1_1TickLabelFormatter --> classQAccelPlot_1_1NumericTickLabelFormatter
@@ -102,6 +98,7 @@ flowchart TB
 | ---: | :--- |
 |   | [**TickLabelFormatter**](#function-ticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs an_ [_**TickLabelFormatter**_](classQAccelPlot_1_1TickLabelFormatter.md) _with the given__parent_ _._ |
 |  QString | [**format**](#function-format) (qreal value, qreal tickStep) const<br>_Returns the display string for_ _value_ _at the given__tickStep_ _._ |
+|  QString | [**formatLogTick**](#function-formatlogtick) (qreal value) const<br>_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._ |
 |  void | [**setTickLabel**](#function-setticklabel) (const QJSValue & tickLabel) <br>_Sets the JavaScript override callback to_ _tickLabel_ _._ |
 |  QJSValue | [**tickLabel**](#function-ticklabel-22) () const<br>_Returns the optional JavaScript override callback._  |
 
@@ -133,6 +130,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | virtual QString | [**doFormat**](#function-doformat) (qreal value, qreal tickStep) const = 0<br>_Subclass entry point — returns the formatted label for_ _value_ _._ |
+| virtual QString | [**doFormatLogTick**](#function-doformatlogtick) (qreal value) const<br>_Subclass entry point for log-scale major ticks — returns the label for_ _value_ _._ |
 
 
 
@@ -145,7 +143,7 @@ Subclasses implement `doFormat()` to produce a display string for each tick valu
 
 
 
-**See also:** [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md), [**LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md), [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) 
+**See also:** [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md), [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md), [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) 
 
 
 
@@ -244,6 +242,27 @@ Calls the `tickLabel` JS callback if set; otherwise delegates to `doFormat()`.
 
 
 
+### function formatLogTick {#function-formatlogtick}
+
+_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._
+```C++
+QString QAccelPlot::TickLabelFormatter::formatLogTick (
+    qreal value
+) const
+```
+
+
+
+Log-scale ticks have no single step, so the `tickLabel` JS callback receives _value_ as its `tickStep`. Without a callback this delegates to `doFormatLogTick()`. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function setTickLabel {#function-setticklabel}
 
 _Sets the JavaScript override callback to_ _tickLabel_ _._
@@ -290,6 +309,27 @@ virtual QString QAccelPlot::TickLabelFormatter::doFormat (
 
 
 
+
+<hr>
+
+
+
+
+### function doFormatLogTick {#function-doformatlogtick}
+
+_Subclass entry point for log-scale major ticks — returns the label for_ _value_ _._
+```C++
+virtual QString QAccelPlot::TickLabelFormatter::doFormatLogTick (
+    qreal value
+) const
+```
+
+
+
+The default implementation returns `doFormat(value, value)`, using the tick's own magnitude as a proxy for the precision it needs. 
+
+
+        
 
 <hr>
 

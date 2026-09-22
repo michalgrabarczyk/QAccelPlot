@@ -954,10 +954,6 @@
     <member refid="structQAccelPlot_1_1LineVertex_1a1f49eae0fcbdb15688abae266bcb2468" kind="variable"><name>a</name></member>
     <member refid="structQAccelPlot_1_1LineVertex_1a4739bf28534bcb6366e14aec5d64d42d" kind="variable"><name>arcLength</name></member>
   </compound>
-  <compound refid="classQAccelPlot_1_1LogTickLabelFormatter" kind="class"><name>QAccelPlot::LogTickLabelFormatter</name>
-    <member refid="classQAccelPlot_1_1LogTickLabelFormatter_1a2632ac326eeaef5e0215e200a3831385" kind="function"><name>LogTickLabelFormatter</name></member>
-    <member refid="classQAccelPlot_1_1LogTickLabelFormatter_1a9cf7767769458b35befc9f2c2455d31e" kind="function"><name>doFormat</name></member>
-  </compound>
   <compound refid="classQAccelPlot_1_1MorphTransition" kind="class"><name>QAccelPlot::MorphTransition</name>
     <member refid="classQAccelPlot_1_1MorphTransition_1add70f1c5550cd9d654dad57b686e8e3b" kind="function"><name>MorphTransition</name></member>
     <member refid="classQAccelPlot_1_1MorphTransition_1a873dfef752394bb3ece9112ca88a3db5" kind="function"><name>interpolateCoordinate</name></member>
@@ -970,6 +966,7 @@
   <compound refid="classQAccelPlot_1_1NumericTickLabelFormatter" kind="class"><name>QAccelPlot::NumericTickLabelFormatter</name>
     <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1a28ed47abe2071b22ece08395dc7b6e2a" kind="function"><name>NumericTickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1adf4fcaeb623da82077c1b56957fcc6fb" kind="function"><name>doFormat</name></member>
+    <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1abfa00afac2e6c89152be73a9e9543870" kind="function"><name>doFormatLogTick</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext" kind="struct"><name>QAccelPlot::AxisTickPainter::PaintContext</name>
     <member refid="structQAccelPlot_1_1AxisTickPainter_1_1PaintContext_1a744d4202c7a9da597f84dbe047a931c1" kind="variable"><name>painter</name></member>
@@ -1300,11 +1297,14 @@
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a3ca0c93bb6a280377ae34fc1ecf1c312" kind="variable"><name>tickLabel_</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a6abf21321f9724038fa9ac3ddc246344" kind="function"><name>TickLabelFormatter</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" kind="function"><name>format</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" kind="function"><name>formatLogTick</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a926532dedf9007b09c792cac8009d314" kind="function"><name>tickLabel</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" kind="function"><name>setTickLabel</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a9bf9272bca76afa4a3b51b711e90e077" kind="signal"><name>tickLabelChanged</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" kind="signal"><name>formatChanged</name></member>
     <member refid="classQAccelPlot_1_1TickLabelFormatter_1a84fb0b326dd0923d83be291369bc05b8" kind="function"><name>doFormat</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597" kind="function"><name>doFormatLogTick</name></member>
+    <member refid="classQAccelPlot_1_1TickLabelFormatter_1a2b2b07707bb70cffd2d853519652b236" kind="function"><name>callTickLabel</name></member>
   </compound>
   <compound refid="namespaceQAccelPlot" kind="namespace"><name>QAccelPlot</name>
     <member refid="GradientColorTypes_8hpp_1abdfd4e46ff9d7137968ad094b723654a" kind="typedef"><name>GradientDirection</name></member>
@@ -1375,8 +1375,6 @@
   <compound refid="LineCurveEffect_8hpp" kind="file"><name>LineCurveEffect.hpp</name>
   </compound>
   <compound refid="DateTimeTickLabelFormatter_8hpp" kind="file"><name>DateTimeTickLabelFormatter.hpp</name>
-  </compound>
-  <compound refid="LogTickLabelFormatter_8hpp" kind="file"><name>LogTickLabelFormatter.hpp</name>
   </compound>
   <compound refid="NumericTickLabelFormatter_8hpp" kind="file"><name>NumericTickLabelFormatter.hpp</name>
   </compound>

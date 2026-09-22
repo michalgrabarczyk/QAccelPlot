@@ -815,6 +815,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1299,6 +1310,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1435,8 +1457,22 @@
   The library sources moved to <code>QAccelPlot/src/QAccelPlot/</code>. Replace unprefixed
   includes such as <code>"series/LineCurve.hpp"</code>.</li>
 </ul>
+<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
+  logarithmic axes with the same superscript powers of ten.</li>
+</ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Numeric tick labels no longer show a spurious trailing zero. Labels now use
+  exactly the decimal places needed to write the tick step, so steps of 1 and 2
+  read <code>0, 1, 2</code> instead of <code>0.0, 1.0, 2.0</code>, and steps of 0.1 and 0.2 read
+  <code>0.1, 0.2</code> instead of <code>0.10, 0.20</code>. All labels on a linear axis keep the
+  same number of decimals, for example <code>0.0, 0.5, 1.0, 1.5, 2.0</code>.</li>
+<li>Logarithmic axes now label decades as superscript powers of ten
+  (<code>10⁻², 10⁻¹, 10⁰, 10¹, 10²</code>) by default, instead of
+  <code>0.010, 0.10, 1.0, 10, 100</code>. Custom formatters can override the new
+  <code>TickLabelFormatter::doFormatLogTick()</code>; <code>tickLabel</code> callbacks are unchanged.</li>
 <li><code>LineCurve</code> now renders its marker for a single-point dataset when both lines
   and markers are enabled.</li>
 <li>Rectangle hover detection now preserves double precision for large coordinates,

@@ -106,8 +106,6 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineVertex**](structQAccelPlot_1_1LineVertex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## m

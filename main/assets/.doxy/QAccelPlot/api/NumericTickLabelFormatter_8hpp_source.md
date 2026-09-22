@@ -32,6 +32,7 @@ public:
 
 protected:
     QString doFormat(qreal value, qreal tickStep) const override;
+    QString doFormatLogTick(qreal value) const override;
 };
 
 } // namespace QAccelPlot
