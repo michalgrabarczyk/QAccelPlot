@@ -35,7 +35,7 @@ public:
     PointCloudStreamer(const PointCloudStreamer&) = delete;
     PointCloudStreamer& operator=(const PointCloudStreamer&) = delete;
 
-    /// Requests a cloud of  pointCount points. Generating it is the expensive part of a
+    /// Requests a cloud of \a pointCount points. Generating it is the expensive part of a
     /// point-count change, so it runs on the streaming thread: the caller returns immediately
     /// and the first frame arrives through postData() once it is ready. A later request
     /// supersedes an earlier one that has not been applied yet.
@@ -52,7 +52,7 @@ private:
 
     void run();
     /// Blocks until there is something to do, reporting which job the caller should run.
-    ///  pointCount receives the requested size for \c BuildSource,  source the cloud
+    /// \a pointCount receives the requested size for \c BuildSource, \a source the cloud
     /// to compose from for \c ComposeFrame.
     Work waitForWork(int& pointCount, std::shared_ptr<const ClusterCloud>& source);
     void buildSource(int pointCount);

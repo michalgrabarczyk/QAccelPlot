@@ -47,9 +47,9 @@ public:
     float valueMin{0.0f};            ///< \brief Value mapped to colormap position 0.
     float valueMax{1.0f};            ///< \brief Value mapped to colormap position 1.
     float stride{2.0f};              ///< \brief Floats per point in the data texture: 2 (x, y) or 3 (x, y, value).
-    int shapeType{0};                ///< \brief Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross.
-    float markerStrokeWidth{1.0f};   ///< rief Outline width in pixels for hollow markers.
-    float markerFilled{1.0f};        ///< rief 1.0 for filled markers, 0.0 for hollow outlines.
+    int shapeType{0};                ///< \brief Marker shape: \c PointCloud::MarkerShape value minus one (0 = Circle).
+    float markerStrokeWidth{1.0f};   ///< \brief Outline width in pixels for hollow markers.
+    float markerFilled{1.0f};        ///< \brief 1.0 for filled markers, 0.0 for hollow outlines.
     GradientTexture colorMap;        ///< \brief Colormap lookup texture sampled at binding 2.
 
 protected:
