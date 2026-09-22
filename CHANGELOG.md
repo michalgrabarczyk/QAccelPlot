@@ -31,9 +31,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Removed
 
 - `LogTickLabelFormatter`. The default `NumericTickLabelFormatter` now labels
-  logarithmic axes with the same superscript powers of ten, so delete any
-  `QAccelPlot.LogTickLabelFormatter` object and the
-  `ticker.tickLabelFormatter` binding that referenced it.
+  logarithmic axes with the same superscript powers of ten.
 
 ### Fixed
 
