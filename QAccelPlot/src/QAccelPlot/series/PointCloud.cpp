@@ -138,9 +138,9 @@ const std::vector<GradientStopData>& neutralColorStops()
     return stops;
 }
 
-bool isDrawableCoordinate(const float value, const bool logarithmic)
+bool isDrawableCoordinate(const qreal value, const bool logarithmic)
 {
-    return std::isfinite(value) && (!logarithmic || value > 0.0f);
+    return std::isfinite(value) && (!logarithmic || value > 0.0);
 }
 
 } // namespace
@@ -408,12 +408,13 @@ qreal PointCloud::dataValueMax() const
 void PointCloud::setData(const QList<QPointF>& points)
 {
     const auto pointCount = static_cast<int>(points.size());
-    auto xy = std::vector<float>(static_cast<std::size_t>(pointCount) * kPositionStride);
+    auto xy = std::vector<double>(static_cast<std::size_t>(pointCount) * kPositionStride);
     for (auto index = 0; index < pointCount; ++index) {
-        xy[static_cast<std::size_t>(index) * 2] = static_cast<float>(points[index].x());
-        xy[static_cast<std::size_t>(index) * 2 + 1] = static_cast<float>(points[index].y());
+        xy[static_cast<std::size_t>(index) * 2] = points[index].x();
+        xy[static_cast<std::size_t>(index) * 2 + 1] = points[index].y();
     }
-    applyData(std::move(xy), {}, pointCount, true);
+    // QPointF is double precision, so keep it: applyDoubleData() origin-shifts the upload.
+    applyDoubleData(std::move(xy), {}, pointCount, true);
 }
 
 void PointCloud::setValues(const QList<qreal>& values)
@@ -430,6 +431,7 @@ void PointCloud::setValues(const QList<qreal>& values)
         }
         data_.resize(static_cast<std::size_t>(pointCount_) * kPositionStride);
         hasValues_ = false;
+        valuesF_.clear();
         finishDataChange(pointCount_, hadValues, false);
         return;
     }
@@ -448,8 +450,18 @@ void PointCloud::setValues(const QList<qreal>& values)
         }
         hasValues_ = true;
     }
+    // Keep the sidecar in step, so rebuilding the upload buffer after a scale change
+    // does not lose the values.
+    const auto precise = hasPreciseData();
+    if (precise) {
+        valuesF_.resize(static_cast<std::size_t>(pointCount_));
+    }
     for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        data_[index * 3 + 2] = static_cast<float>(values[static_cast<qsizetype>(index)]);
+        const auto value = static_cast<float>(values[static_cast<qsizetype>(index)]);
+        data_[index * 3 + 2] = value;
+        if (precise) {
+            valuesF_[index] = value;
+        }
     }
     finishDataChange(pointCount_, hadValues, false);
 }
@@ -463,6 +475,10 @@ QPointF PointCloud::pointAt(const int index) const
 {
     if (index < 0 || index >= pointCount_) {
         return {kNaN, kNaN};
+    }
+    if (hasPreciseData()) {
+        const auto base = static_cast<std::size_t>(index) * 2;
+        return {dataD_[base], dataD_[base + 1]};
     }
     const auto base = static_cast<std::size_t>(index) * static_cast<std::size_t>(stride());
     return {static_cast<qreal>(data_[base]), static_cast<qreal>(data_[base + 1])};
@@ -525,6 +541,42 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
         Qt::QueuedConnection);
 }
 
+void PointCloud::setData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    setData(std::move(xyInterleaved), {}, pointCount);
+}
+
+void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+        return;
+    }
+    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, true);
+}
+
+void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+        return;
+    }
+    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, false);
+}
+
+void PointCloud::postData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    postData(std::move(xyInterleaved), {}, pointCount);
+}
+
+void PointCloud::postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    QMetaObject::invokeMethod(
+        this,
+        [this, xy = std::move(xyInterleaved), pointValues = std::move(values), pointCount]() mutable {
+            setData(std::move(xy), std::move(pointValues), pointCount);
+        },
+        Qt::QueuedConnection);
+}
+
 int PointCloud::pointIndexAt(const QPointF& position) const
 {
     if (pointCount_ <= 0 || !xAxis() || !yAxis() || width() <= 0.0 || height() <= 0.0 || hoverRadius_ <= 0.0) {
@@ -549,10 +601,11 @@ int PointCloud::pointIndexAt(const QPointF& position) const
         return -1;
     }
 
-    // Convert the pixel radius to mapped data units separately per axis.
+    // Convert the pixel radius to mapped data units separately per axis. The origins cancel in
+    // these differences, but the cursor itself must move into the index's origin-relative space.
     const auto radiusX = std::abs(viewportMaxX - viewportMinX) / width() * hoverRadius_;
     const auto radiusY = std::abs(viewportMaxY - viewportMinY) / height() * hoverRadius_;
-    return spatialIndex_.nearest(cursorX, cursorY, radiusX, radiusY);
+    return spatialIndex_.nearest(cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY);
 }
 
 bool PointCloud::contains(const QPointF& point) const
@@ -602,8 +655,12 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     material->colorMap.upload(window, useValueColor ? colorStops_ : neutralColorStops());
 
     material->color = color_;
-    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin()), static_cast<float>(yAxis()->viewportMin()));
-    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax()), static_cast<float>(yAxis()->viewportMax()));
+    // data_ is origin-relative, so the domain must be shifted by the same origin. Both are zero
+    // for float data and for logarithmic dimensions, which are never shifted.
+    material->domainMin
+        = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
+    material->domainMax
+        = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     material->viewportSize = QVector2D(static_cast<float>(plotArea.width()), static_cast<float>(plotArea.height()));
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
@@ -676,6 +733,11 @@ void PointCloud::storeInterleaved(std::vector<float>&& xyInterleaved, const std:
 {
     pointCount_ = pointCount;
     hasValues_ = !values.empty();
+    // The *F APIs supply single precision, so any previously stored precise data is stale.
+    dataD_.clear();
+    valuesF_.clear();
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
     if (!hasValues_) {
         data_ = std::move(xyInterleaved);
         return;
@@ -688,6 +750,84 @@ void PointCloud::storeInterleaved(std::vector<float>&& xyInterleaved, const std:
         data_[index * 3 + 1] = xyInterleaved[index * 2 + 1];
         data_[index * 3 + 2] = values[index];
     }
+}
+
+bool PointCloud::hasPreciseData() const
+{
+    return !dataD_.empty();
+}
+
+void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount, const bool reportRanges)
+{
+    const auto previousCount = pointCount_;
+    const auto hadValues = hasValues_;
+
+    dataD_ = std::move(xyInterleaved);
+    pointCount_ = pointCount;
+    hasValues_ = !values.empty();
+    valuesF_ = std::move(values);
+    rebuildRenderData();
+    finishDataChange(previousCount, hadValues, reportRanges);
+}
+
+// Builds the single-precision upload buffer from dataD_, subtracting a per-dimension origin so
+// coordinates far from zero keep their resolution. The origin is the first finite coordinate,
+// matching LineCurve. A logarithmic dimension is never shifted: the vertex shader takes log10 of
+// the uploaded value, which a shift would invalidate.
+void PointCloud::rebuildRenderData()
+{
+    if (dataD_.empty()) {
+        return;
+    }
+
+    const auto logX = xAxis() && xAxis()->logScale();
+    const auto logY = yAxis() && yAxis()->logScale();
+    renderLogScaleX_ = logX;
+    renderLogScaleY_ = logY;
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+
+    auto foundOriginX = logX;
+    auto foundOriginY = logY;
+    for (auto index = 0; index < pointCount_ && !(foundOriginX && foundOriginY); ++index) {
+        const auto x = dataD_[static_cast<std::size_t>(index) * 2];
+        const auto y = dataD_[static_cast<std::size_t>(index) * 2 + 1];
+        if (!foundOriginX && std::isfinite(x)) {
+            renderOriginX_ = x;
+            foundOriginX = true;
+        }
+        if (!foundOriginY && std::isfinite(y)) {
+            renderOriginY_ = y;
+            foundOriginY = true;
+        }
+    }
+
+    const auto strideFloats = static_cast<std::size_t>(stride());
+    data_.resize(static_cast<std::size_t>(pointCount_) * strideFloats);
+    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
+        data_[index * strideFloats] = static_cast<float>(dataD_[index * 2] - renderOriginX_);
+        data_[index * strideFloats + 1] = static_cast<float>(dataD_[index * 2 + 1] - renderOriginY_);
+        if (hasValues_) {
+            data_[index * strideFloats + 2] = valuesF_[index];
+        }
+    }
+
+    dataChanged_ = true;
+    spatialIndexValid_ = false;
+}
+
+void PointCloud::onAxisScaleChanged()
+{
+    if (!hasPreciseData()) {
+        return;
+    }
+    const auto logX = xAxis() && xAxis()->logScale();
+    const auto logY = yAxis() && yAxis()->logScale();
+    if (logX == renderLogScaleX_ && logY == renderLogScaleY_) {
+        return;
+    }
+    rebuildRenderData();
+    update();
 }
 
 void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool reportRanges)
@@ -718,16 +858,19 @@ void PointCloud::updateDataRanges()
     auto yMin = std::numeric_limits<qreal>::max();
     auto yMax = std::numeric_limits<qreal>::lowest();
     auto anyValid = false;
+    // data_ is origin-shifted when precise coordinates are stored, so range reporting reads
+    // dataD_ instead: the axes must see the real data extents.
+    const auto precise = hasPreciseData();
     for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        const auto x = data_[index * pointStride];
-        const auto y = data_[index * pointStride + 1];
+        const auto x = precise ? dataD_[index * 2] : static_cast<qreal>(data_[index * pointStride]);
+        const auto y = precise ? dataD_[index * 2 + 1] : static_cast<qreal>(data_[index * pointStride + 1]);
         if (!isDrawableCoordinate(x, logX) || !isDrawableCoordinate(y, logY)) {
             continue;
         }
-        xMin = std::min(xMin, static_cast<qreal>(x));
-        xMax = std::max(xMax, static_cast<qreal>(x));
-        yMin = std::min(yMin, static_cast<qreal>(y));
-        yMax = std::max(yMax, static_cast<qreal>(y));
+        xMin = std::min(xMin, x);
+        xMax = std::max(xMax, x);
+        yMin = std::min(yMin, y);
+        yMax = std::max(yMax, y);
         anyValid = true;
     }
 

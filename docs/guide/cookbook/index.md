@@ -19,7 +19,7 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](multiple-axes.md) | Secondary scales and signals with different domains |
 | [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |
-| [Point clouds](point-clouds.md) | Large unconnected scatter data, value colormaps, and hover picking |
+| [Point clouds](point-clouds.md) | Large unconnected scatter data, coloring points by value, and hover picking |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](../api.md). For choosing a

@@ -24,6 +24,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `Gradient`, logarithmic axes, hover picking with `hoveredIndex`, and
   thread-safe `postData()`. Non-finite and non-positive (on log axes) points are
   skipped automatically.
+- `PointCloud::setData()` and `PointCloud::postData()` overloads taking an
+  interleaved `std::vector<double>`. Positions are uploaded relative to an
+  origin taken from the first finite point, so coordinates far from zero such as
+  epoch timestamps keep their resolution. The QML `setData()` now keeps the
+  double precision of its `QPointF` list instead of truncating to float.
 - `PointCloud.markerFilled` and `PointCloud.markerStrokeWidth`, matching the
   `LineCurve` properties: closed shapes draw as outlines inside the shape's
   edge, and legend symbols follow.

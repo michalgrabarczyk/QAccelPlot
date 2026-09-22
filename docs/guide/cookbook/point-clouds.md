@@ -1,5 +1,5 @@
 ---
-description: "Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, value-based colormaps, logarithmic axes, hover picking, and streaming from worker threads."
+description: "Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, logarithmic axes, hover picking, and streaming from worker threads."
 ---
 
 <!--
@@ -81,12 +81,22 @@ QAccelPlot.PointCloud {
 }
 ```
 
+The `Gradient` here is only a container for color stops. Unlike `GradientFill`
+and `GradientStroke`, which paint a gradient across the plot and so have a
+`direction`, `colorGradient` is a one-dimensional lookup indexed by each
+point's value, not by its position on screen. The gradient's `orientation` is
+therefore ignored, and there is no radial form.
+
 From QML, call `setValues()` after `setData()` with one value per point. From
 C++, pass values together with the positions:
 
 ```cpp
 cloud->setDataF(std::move(xyInterleaved), std::move(values), pointCount);
 ```
+
+`setData()` takes the same shape with a `std::vector<double>` of positions when
+the coordinates need double precision. Values stay single precision either way,
+because they only index the colormap.
 
 With the default `DataRange` sources, the colormap spans the finite value
 range of the data. The resolved bounds are exposed as `dataValueMin` and
@@ -143,8 +153,12 @@ stacked series underneath still receive hover events elsewhere.
 
 ## Limits
 
-- Coordinates are single precision. Subtract a local origin from very large
-  values, such as epoch timestamps, before handing them to the series.
+- The GPU renders in single precision. `setData()` accepts doubles, from QML
+  points or a `std::vector<double>`, and uploads positions relative to an
+  origin taken from the first finite point, so values far from zero such as
+  epoch timestamps keep their resolution. Logarithmic dimensions are never
+  shifted. The `setDataF()` family takes floats and is not origin-shifted; use
+  it when the data is already single precision.
 - The number of drawable points is bounded by the GPU's maximum texture size:
   about 5.5 million points with values, or 8.3 million without, on a GPU with
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra

@@ -58,6 +58,8 @@ private slots:
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
     void propertySettersClampAndNotify();
+    void doubleDataKeepsPrecisionForLargeCoordinates();
+    void doubleDataSurvivesLogScaleChange();
 };
 
 void PointCloudDataTest::defaults()
@@ -382,6 +384,58 @@ void PointCloudDataTest::propertySettersClampAndNotify()
     cloud.setMarkerStrokeWidth(2.5);
     QCOMPARE(cloud.markerStrokeWidth(), 2.5);
     QCOMPARE(strokeSpy.count(), 2);
+}
+
+void PointCloudDataTest::doubleDataKeepsPrecisionForLargeCoordinates()
+{
+    // Epoch-second timestamps one millisecond apart: a float mantissa cannot separate these,
+    // so a single-precision path would collapse them onto one coordinate.
+    constexpr auto baseTime = 1758000000.0;
+    constexpr auto stepSeconds = 0.001;
+    constexpr auto pointCount = 4;
+
+    auto xy = std::vector<double>{};
+    for (auto index = 0; index < pointCount; ++index) {
+        xy.push_back(baseTime + index * stepSeconds);
+        xy.push_back(static_cast<double>(index));
+    }
+
+    auto cloud = PointCloud{};
+    cloud.setData(std::move(xy), pointCount);
+    QCOMPARE(cloud.count(), pointCount);
+
+    // pointAt() reports the value that was supplied, not a rounded one.
+    for (auto index = 0; index < pointCount; ++index) {
+        QCOMPARE(cloud.pointAt(index).x(), baseTime + index * stepSeconds);
+    }
+    // Distinct inputs stay distinct.
+    QVERIFY(cloud.pointAt(0).x() != cloud.pointAt(1).x());
+
+    // Confirm the float path really does lose them, so this test would fail without the change.
+    QCOMPARE(static_cast<float>(baseTime), static_cast<float>(baseTime + stepSeconds));
+}
+
+void PointCloudDataTest::doubleDataSurvivesLogScaleChange()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setOrientation(Axis::Horizontal);
+    yAxis.setOrientation(Axis::Vertical);
+
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&xAxis);
+    cloud.setYAxis(&yAxis);
+    cloud.setData(std::vector<double>{10.0, 100.0, 20.0, 200.0}, std::vector<float>{1.0f, 2.0f}, 2);
+
+    QCOMPARE(cloud.count(), 2);
+    QVERIFY(cloud.hasValues());
+    QCOMPARE(cloud.valueAt(1), 2.0);
+
+    // A log axis must not be origin-shifted; the values must survive the rebuild.
+    yAxis.setLogScale(true);
+    QCOMPARE(cloud.pointAt(1), QPointF(20.0, 200.0));
+    QCOMPARE(cloud.valueAt(1), 2.0);
+    QVERIFY(cloud.hasValues());
 }
 
 } // namespace QAccelPlot

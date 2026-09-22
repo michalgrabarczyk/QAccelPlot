@@ -225,6 +225,21 @@ public:
     /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
     void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
 
+    /// \brief Moves \a pointCount interleaved XY pairs of doubles into the cloud and clears values.
+    ///
+    /// The GPU renders in single precision, so positions are uploaded relative to an origin
+    /// taken from the first finite point. Coordinates far from zero, such as epoch timestamps,
+    /// therefore keep their resolution. Logarithmic dimensions are never origin-shifted.
+    void setData(std::vector<double>&& xyInterleaved, int pointCount);
+    /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
+    void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Like the double \c setData() but does not report X/Y data ranges to the axes.
+    void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a pointCount) to the item's thread.
+    void postData(std::vector<double>&& xyInterleaved, int pointCount);
+    /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
+    void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+
     /// \brief Returns the index of the valid point within \c hoverRadius of item position \a position, or -1.
     int pointIndexAt(const QPointF& position) const;
     /// \brief Returns \c true when a valid point lies within \c hoverRadius of item position \a point.
@@ -277,6 +292,10 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \endcond
 
+protected:
+    /// \brief Rebuilds the origin-relative upload buffer, because log dimensions are not shifted.
+    void onAxisScaleChanged() override;
+
 private:
     Q_SLOT void onColorGradientUpdated();
 
@@ -292,6 +311,9 @@ private:
     void setHoveredIndex(int index);
     int stride() const;
     void ensureSpatialIndex() const;
+    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
+    void rebuildRenderData();
+    bool hasPreciseData() const;
 
     QColor color_{Qt::blue};
     MarkerShape markerShape_{MarkerShape::Circle};
@@ -309,6 +331,19 @@ private:
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
+
+    // Precise interleaved (x, y) pairs, populated only by the double setData() overloads.
+    // Empty when the float *F APIs supplied the data, which is already single precision.
+    std::vector<double> dataD_;
+    // Per-point values kept alongside dataD_, so the upload buffer can be rebuilt when an
+    // axis switches scale without the caller resupplying them.
+    std::vector<float> valuesF_;
+    // Origin subtracted from dataD_ when building data_, so the float upload keeps its
+    // resolution near the data. Zero for a dimension that is unshifted or logarithmic.
+    qreal renderOriginX_{0.0};
+    qreal renderOriginY_{0.0};
+    bool renderLogScaleX_{false};
+    bool renderLogScaleY_{false};
 
     // Interleaved storage: (x, y) per point, or (x, y, value) when hasValues_ is true.
     std::vector<float> data_;
