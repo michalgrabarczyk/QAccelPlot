@@ -94,21 +94,19 @@ bool populateStaticSeries(QQuickWindow* window, QObject* root)
     return true;
 }
 
-void setupInteractiveUpdates(QGuiApplication& app, QQuickWindow* window, QObject* root, PointCloud* clusterCloud,
-    QAccelPlotExample::PointCloudStreamer& streamer, const std::shared_ptr<SceneState>& state)
+void setupInteractiveUpdates(
+    QGuiApplication& app, QQuickWindow* window, QObject* root, QAccelPlotExample::PointCloudStreamer& streamer, const std::shared_ptr<SceneState>& state)
 {
     QObject::connect(window, &QQuickWindow::frameSwapped, &app, [&streamer]() { streamer.notifyFramePresented(); }, Qt::DirectConnection);
 
     // Poll QML-owned controls once per animation tick, like the other examples do.
-    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, clusterCloud, &streamer, state]() {
+    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, &streamer, state]() {
         const auto pointCount = requestedClusterPointCount(root);
         if (pointCount != state->appliedPointCount) {
-            // Swap the source first, then queue the new data behind any in-flight worker frame.
-            // postData() is used (not setDataF) so queue order, not timing, decides what is shown.
-            auto source = makeClusterSource(pointCount);
-            auto frame = firstFrame(*source);
-            streamer.setSource(std::move(source));
-            clusterCloud->postData(std::move(frame.xy), std::move(frame.values), frame.pointCount);
+            // Generating a million-point cloud must not run on this thread: afterAnimating is
+            // the GUI thread, and the stall would show up as dropped frames. The streamer
+            // builds it and posts the first frame when it is ready.
+            streamer.requestPointCount(pointCount);
             state->appliedPointCount = pointCount;
         }
 
@@ -159,7 +157,7 @@ int main(int argc, char* argv[])
 
     auto streamer = QAccelPlotExample::PointCloudStreamer{clusterCloud};
     auto state = std::make_shared<SceneState>();
-    setupInteractiveUpdates(app, window, root, clusterCloud, streamer, state);
+    setupInteractiveUpdates(app, window, root, streamer, state);
     if (animateRequested) {
         root->setProperty("animate", true);
     }

@@ -35,9 +35,11 @@ public:
     PointCloudStreamer(const PointCloudStreamer&) = delete;
     PointCloudStreamer& operator=(const PointCloudStreamer&) = delete;
 
-    /// Replaces the source cloud (e.g. after the point count changed). Frames composed from
-    /// the previous source are dropped; a postData() queued after this call is applied last.
-    void setSource(std::shared_ptr<const ClusterCloud> cloud);
+    /// Requests a cloud of  pointCount points. Generating it is the expensive part of a
+    /// point-count change, so it runs on the streaming thread: the caller returns immediately
+    /// and the first frame arrives through postData() once it is ready. A later request
+    /// supersedes an earlier one that has not been applied yet.
+    void requestPointCount(int pointCount);
     /// Starts or pauses streaming; the last posted frame stays on screen when paused.
     void setRunning(bool running);
     /// Call from QQuickWindow::frameSwapped (any thread).
@@ -46,13 +48,22 @@ public:
     void stop();
 
 private:
+    enum class Work { Quit, BuildSource, ComposeFrame };
+
     void run();
-    bool waitForWork();
+    /// Blocks until there is something to do, reporting which job the caller should run.
+    ///  pointCount receives the requested size for \c BuildSource,  source the cloud
+    /// to compose from for \c ComposeFrame.
+    Work waitForWork(int& pointCount, std::shared_ptr<const ClusterCloud>& source);
+    void buildSource(int pointCount);
+    void composeFrame(const std::shared_ptr<const ClusterCloud>& source, PointCloudData& frame);
 
     QAccelPlot::PointCloud* target_{nullptr};
     std::mutex mutex_;
     std::condition_variable wake_;
     std::shared_ptr<const ClusterCloud> source_;
+    // Non-zero while a point-count change is waiting to be generated on the streaming thread.
+    int pendingPointCount_{0};
     bool running_{false};
     bool quit_{false};
     bool framePresented_{true};
