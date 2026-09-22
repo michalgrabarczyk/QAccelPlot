@@ -52,7 +52,7 @@ public:
     /// The perceptually uniform ramps are sampled from the matplotlib originals. Prefer them over
     /// \c Rainbow, whose uneven lightness invents boundaries that are not in the data.
     enum class Preset {
-        Viridis,   ///< \brief Perceptually uniform, dark blue to yellow. A good default.
+        Viridis,   ///< \brief Perceptually uniform, dark blue to yellow.
         Plasma,    ///< \brief Perceptually uniform, dark blue to yellow through magenta.
         Inferno,   ///< \brief Perceptually uniform, black to pale yellow through red.
         Magma,     ///< \brief Perceptually uniform, black to pale pink through purple.
