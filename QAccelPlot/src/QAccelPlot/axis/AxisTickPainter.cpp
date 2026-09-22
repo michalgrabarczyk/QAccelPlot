@@ -152,14 +152,13 @@ AxisTicks AxisTickPainter::computeLogScaleTicks(const qreal viewportMin, const q
         }
     }
 
-    // Log-scale ticks have no single step (each decade is 10x the last), so pass each
-    // tick's own value as its "step" — the label formatter derives precision from it,
-    // and a value's own magnitude is a reasonable proxy for the precision it needs.
+    // Log-scale ticks have no single step (each decade is 10x the last), so the formatter
+    // gets a dedicated entry point; the default numeric formatter labels them as powers of ten.
     const auto* formatter = ticker.tickLabelFormatter();
     for (auto exponent = logMin; exponent <= logMax; ++exponent) {
         const auto value = std::pow(10.0, exponent);
         if (value >= viewportLow && value <= viewportHigh) {
-            ticks.majorTicks.append(AxisTick{value, formatter->format(value, value)});
+            ticks.majorTicks.append(AxisTick{value, formatter->formatLogTick(value)});
         }
     }
     return ticks;

@@ -16,13 +16,6 @@ Item {
     required property var typography
     property bool logarithmic: true
 
-    QAccelPlot.LogTickLabelFormatter {
-        id: logarithmicFormatter
-    }
-    QAccelPlot.NumericTickLabelFormatter {
-        id: numericFormatter
-    }
-
     function responseAt(frequency) {
         const logFrequency = Math.log(frequency) / Math.LN10;
         const bassLift = 2.2 * Math.exp(-Math.pow((logFrequency - Math.log(110) / Math.LN10) / 0.23, 2));
@@ -73,7 +66,6 @@ Item {
                 labelFont: root.typography.axisLabel
                 ticker.tickLabelColor: root.palette.axisTickLabel
                 ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.tickLabelFormatter: root.logarithmic ? logarithmicFormatter : numericFormatter
             }
 
             yAxis: QAccelPlot.Axis {

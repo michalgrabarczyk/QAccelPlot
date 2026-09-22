@@ -116,8 +116,11 @@ private slots:
 
     void computeTicks_linearTicksAndLabels();
     void computeTicks_passesTickStepToFormatter();
+    void computeTicks_linearLabelsShareDecimals_data();
+    void computeTicks_linearLabelsShareDecimals();
     void computeTicks_logScaleTicksAndSubticks();
     void computeTicks_logScaleMajorTicksReceiveNonZeroStep();
+    void computeTicks_logScaleLabelsUsePowersOfTen();
     void computeTicks_nullTickerIsEmpty();
     void axis_formatsTickLabelsOnGuiThread();
 };
@@ -357,6 +360,56 @@ void TestAxisTickPainter::computeTicks_passesTickStepToFormatter()
     for (const auto& tick : ticks.majorTicks) {
         QCOMPARE(tick.label, QStringLiteral("step=10"));
     }
+}
+
+void TestAxisTickPainter::computeTicks_linearLabelsShareDecimals_data()
+{
+    QTest::addColumn<qreal>("viewportMin");
+    QTest::addColumn<qreal>("viewportMax");
+    QTest::addColumn<int>("tickCount");
+    QTest::addColumn<QStringList>("expected");
+
+    QTest::newRow("step-0.5") << 0.0 << 2.0 << 4 << QStringList{"0.0", "0.5", "1.0", "1.5", "2.0"};
+    QTest::newRow("step-0.5-offset") << 0.1 << 2.0 << 4 << QStringList{"0.5", "1.0", "1.5", "2.0"};
+    QTest::newRow("step-0.5-negative") << -1.0 << 1.0 << 4 << QStringList{"-1.0", "-0.5", "0.0", "0.5", "1.0"};
+    QTest::newRow("step-0.2") << 0.0 << 1.0 << 5 << QStringList{"0.0", "0.2", "0.4", "0.6", "0.8", "1.0"};
+    QTest::newRow("step-0.05") << 0.0 << 0.2 << 4 << QStringList{"0.00", "0.05", "0.10", "0.15", "0.20"};
+    QTest::newRow("step-1") << 0.0 << 5.0 << 5 << QStringList{"0", "1", "2", "3", "4", "5"};
+    QTest::newRow("step-2") << 0.0 << 10.0 << 5 << QStringList{"0", "2", "4", "6", "8", "10"};
+}
+
+void TestAxisTickPainter::computeTicks_linearLabelsShareDecimals()
+{
+    QFETCH(qreal, viewportMin);
+    QFETCH(qreal, viewportMax);
+    QFETCH(int, tickCount);
+    QFETCH(QStringList, expected);
+
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(tickCount);
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(viewportMin, viewportMax, false, &ticker);
+
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    QCOMPARE(labels, expected);
+}
+
+void TestAxisTickPainter::computeTicks_logScaleLabelsUsePowersOfTen()
+{
+    auto ticker = QAccelPlot::AxisTicker{};
+
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.01, 100.0, true, &ticker);
+
+    auto labels = QStringList{};
+    for (const auto& tick : ticks.majorTicks) {
+        labels.append(tick.label);
+    }
+    const auto expected = QStringList{
+        QStringLiteral("10\u207B\u00B2"), QStringLiteral("10\u207B\u00B9"), QStringLiteral("10\u2070"), QStringLiteral("10\u00B9"), QStringLiteral("10\u00B2")};
+    QCOMPARE(labels, expected);
 }
 
 void TestAxisTickPainter::computeTicks_logScaleTicksAndSubticks()

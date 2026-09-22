@@ -18,7 +18,7 @@ namespace QAccelPlot {
 /// Subclasses implement \c doFormat() to produce a display string for each tick value.
 /// An optional \c tickLabel JavaScript callback can override the default formatting at the QML level.
 ///
-/// \sa NumericTickLabelFormatter, DateTimeTickLabelFormatter, LogTickLabelFormatter, TextTickLabelFormatter
+/// \sa NumericTickLabelFormatter, DateTimeTickLabelFormatter, TextTickLabelFormatter
 class TickLabelFormatter : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
@@ -35,6 +35,12 @@ public:
     /// Calls the \c tickLabel JS callback if set; otherwise delegates to \c doFormat().
     QString format(qreal value, qreal tickStep) const;
 
+    /// \brief Returns the display string for a major tick at \a value on a logarithmic axis.
+    ///
+    /// Log-scale ticks have no single step, so the \c tickLabel JS callback receives \a value as
+    /// its \c tickStep. Without a callback this delegates to \c doFormatLogTick().
+    QString formatLogTick(qreal value) const;
+
     /// \brief Returns the optional JavaScript override callback.
     QJSValue tickLabel() const;
     /// \brief Sets the JavaScript override callback to \a tickLabel.
@@ -50,7 +56,16 @@ protected:
     /// \brief Subclass entry point — returns the formatted label for \a value.
     virtual QString doFormat(qreal value, qreal tickStep) const = 0;
 
+    /// \brief Subclass entry point for log-scale major ticks — returns the label for \a value.
+    ///
+    /// The default implementation returns \c doFormat(value, value), using the tick's own
+    /// magnitude as a proxy for the precision it needs.
+    virtual QString doFormatLogTick(qreal value) const;
+
 private:
+    /// \brief Calls the \c tickLabel JS callback; returns \c true and sets \a label on success.
+    bool callTickLabel(qreal value, qreal tickStep, QString& label) const;
+
     QJSValue tickLabel_;
 };
 

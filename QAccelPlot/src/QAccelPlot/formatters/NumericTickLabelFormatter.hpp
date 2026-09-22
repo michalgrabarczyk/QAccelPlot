@@ -16,9 +16,12 @@ namespace QAccelPlot {
 /// \brief The default tick label formatter — produces numeric labels with automatic decimal precision.
 ///
 /// The number of decimal places is derived from \a tickStep so that labels are neither
-/// truncated nor cluttered with unnecessary digits.
+/// truncated nor cluttered with unnecessary digits. Every label on a linear axis shares one
+/// tick step, so all of them show the same number of decimal places (for example
+/// 0.0, 0.5, 1.0, 1.5). Decade ticks on a logarithmic axis use superscript powers of ten
+/// (10⁻¹, 10⁰, 10¹, 10²).
 ///
-/// \sa DateTimeTickLabelFormatter, LogTickLabelFormatter, TickLabelFormatter
+/// \sa DateTimeTickLabelFormatter, TickLabelFormatter
 class NumericTickLabelFormatter : public TickLabelFormatter {
     Q_OBJECT
     QML_NAMED_ELEMENT(NumericTickLabelFormatter)
@@ -30,6 +33,8 @@ public:
 protected:
     /// \brief Returns a numeric string for \a value, precision matched to \a tickStep.
     QString doFormat(qreal value, qreal tickStep) const override;
+    /// \brief Returns a decade tick as a superscript power of ten, for example "10²" for 100.
+    QString doFormatLogTick(qreal value) const override;
 };
 
 } // namespace QAccelPlot

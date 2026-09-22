@@ -50,23 +50,21 @@ The data points still use X coordinates `0` through `6`.
 
 ## Logarithmic axes
 
-Enable a base-10 logarithmic mapping and use logarithmic labels:
+Enable a base-10 logarithmic mapping:
 
 ```qml
-QAccelPlot.LogTickLabelFormatter { id: logLabels }
-
 xAxis: QAccelPlot.Axis {
     viewportMin: 20
     viewportMax: 20000
     dataMin: 20
     dataMax: 20000
     logScale: true
-    ticker.tickLabelFormatter: logLabels
 }
 ```
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
-Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
+The default `NumericTickLabelFormatter` labels each decade tick as a power of
+ten with a superscript exponent, such as `10⁻³`, `10²`, and `10³`.
 
 ## Application-specific labels
 
