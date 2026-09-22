@@ -32,6 +32,7 @@ layout(std140, binding = 0) uniform buf {
     int   shapeType;
     float markerStrokeWidth;
     float markerFilled;
+    float valueLogScale;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D colorMapSampler;

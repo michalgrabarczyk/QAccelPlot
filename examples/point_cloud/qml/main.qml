@@ -208,12 +208,13 @@ Window {
                         markerShape: QAccelPlot.PointCloud.Circle
                         markerSize: markerSizeSlider.value
                         antialiasingEnabled: antialiasingSwitch.checked
-                        colorMode: QAccelPlot.PointCloud.ValueColor
-                        colorGradient: distanceColorMap
-                        valueMinSource: QAccelPlot.GradientValueSource.Fixed
-                        valueMin: 0
-                        valueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                        valueMax: 1
+                        // The colour bar below paints the same stops, so share them rather than
+                        // repeating the ramp or reaching for a preset that would not match it.
+                        colormap: QAccelPlot.Colormap {
+                            stops: distanceColorMap.stops
+                            min: 0
+                            max: 1
+                        }
                         hoverRadius: 8
                     }
 

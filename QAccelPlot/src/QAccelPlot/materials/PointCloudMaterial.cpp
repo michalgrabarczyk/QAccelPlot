@@ -30,12 +30,13 @@ struct PointCloudUboTail {
     int shapeType;             // 140–143
     float markerStrokeWidth;   // 144–147
     float markerFilled;        // 148–151
+    float valueLogScale;       // 152–155
 };
 
 constexpr auto kPointCloudUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointCloudUboTail));
 
-static_assert(sizeof(PointCloudUboTail) == 36);
-static_assert(kPointCloudUboSize == 152);
+static_assert(sizeof(PointCloudUboTail) == 40);
+static_assert(kPointCloudUboSize == 156);
 
 int compareValues(const float left, const float right)
 {
@@ -76,6 +77,7 @@ public:
         tail.shapeType = material->shapeType;
         tail.markerStrokeWidth = material->markerStrokeWidth;
         tail.markerFilled = material->markerFilled;
+        tail.valueLogScale = material->valueLogScale;
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;
     }
@@ -133,6 +135,7 @@ int PointCloudMaterial::compareExtra(const QSGMaterial* other) const
         compareValues(stride, material->stride),
         compareValues(markerStrokeWidth, material->markerStrokeWidth),
         compareValues(markerFilled, material->markerFilled),
+        compareValues(valueLogScale, material->valueLogScale),
     };
     for (const auto result : fields) {
         if (result != 0) {

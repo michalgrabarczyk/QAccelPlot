@@ -50,6 +50,7 @@ public:
     int shapeType{0};                ///< \brief Marker shape: \c PlotSeries::MarkerShape value minus one (0 = Circle).
     float markerStrokeWidth{1.0f};   ///< \brief Outline width in pixels for hollow markers.
     float markerFilled{1.0f};        ///< \brief 1.0 for filled markers, 0.0 for hollow outlines.
+    float valueLogScale{0.0f};       ///< \brief 1.0 to place values on the ramp in log10 instead of linearly.
     GradientTexture colorMap;        ///< \brief Colormap lookup texture sampled at binding 2.
 
 protected:

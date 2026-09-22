@@ -47,31 +47,9 @@ void appendStopFromObject(std::vector<GradientStopData>& outStops, QObject* stop
     outStops.push_back(stopData);
 }
 
-} // namespace
-
-std::vector<GradientStopData> readGradientStops(QObject* gradient)
+/// \brief Sorts \a stops and extends them to cover [0, 1]. Shared by both entry points.
+std::vector<GradientStopData> normalizeStops(std::vector<GradientStopData> stops)
 {
-    auto stops = std::vector<GradientStopData>{};
-    if (!gradient) {
-        return stops;
-    }
-
-    const auto stopsVariant = QQmlProperty::read(gradient, QStringLiteral("stops"));
-    if (stopsVariant.isValid()) {
-        const auto stopsList = stopsVariant.toList();
-        for (const auto& stopVariant : stopsList) {
-            appendStopFromObject(stops, stopVariant.value<QObject*>());
-        }
-    }
-
-    if (stops.empty()) {
-        const auto& stopObjects = gradient->children();
-        stops.reserve(static_cast<std::size_t>(stopObjects.size()));
-        for (auto* stopObject : stopObjects) {
-            appendStopFromObject(stops, stopObject);
-        }
-    }
-
     std::sort(stops.begin(), stops.end(), [](const auto& lhs, const auto& rhs) { return lhs.position < rhs.position; });
 
     if (stops.empty()) {
@@ -97,6 +75,44 @@ std::vector<GradientStopData> readGradientStops(QObject* gradient)
     }
 
     return stops;
+}
+
+} // namespace
+
+std::vector<GradientStopData> readGradientStops(QObject* gradient)
+{
+    auto stops = std::vector<GradientStopData>{};
+    if (!gradient) {
+        return stops;
+    }
+
+    const auto stopsVariant = QQmlProperty::read(gradient, QStringLiteral("stops"));
+    if (stopsVariant.isValid()) {
+        const auto stopsList = stopsVariant.toList();
+        for (const auto& stopVariant : stopsList) {
+            appendStopFromObject(stops, stopVariant.value<QObject*>());
+        }
+    }
+
+    if (stops.empty()) {
+        const auto& stopObjects = gradient->children();
+        stops.reserve(static_cast<std::size_t>(stopObjects.size()));
+        for (auto* stopObject : stopObjects) {
+            appendStopFromObject(stops, stopObject);
+        }
+    }
+
+    return normalizeStops(std::move(stops));
+}
+
+std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects)
+{
+    auto stops = std::vector<GradientStopData>{};
+    stops.reserve(static_cast<std::size_t>(stopObjects.size()));
+    for (const auto& stopVariant : stopObjects) {
+        appendStopFromObject(stops, stopVariant.value<QObject*>());
+    }
+    return normalizeStops(std::move(stops));
 }
 
 } // namespace QAccelPlot

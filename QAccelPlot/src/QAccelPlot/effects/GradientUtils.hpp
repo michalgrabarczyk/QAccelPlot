@@ -9,6 +9,8 @@
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 
+#include <QVariantList>
+
 #include <vector>
 
 class QObject;
@@ -23,5 +25,13 @@ namespace QAccelPlot {
 ///
 /// \sa GradientFill, GradientStroke, PointCloud
 std::vector<GradientStopData> readGradientStops(QObject* gradient);
+
+/// \brief Reads a list of stop objects, each exposing \c position and \c color, into position order.
+///
+/// Normalized the same way as \c readGradientStops(): a single stop is duplicated and the end colors
+/// are extended to 0 and 1. Entries that are not stop-like are skipped.
+///
+/// \sa Colormap
+std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
 
 } // namespace QAccelPlot

@@ -33,6 +33,7 @@ layout(std140, binding = 0) uniform buf {
     int   shapeType;           // 140-143
     float markerStrokeWidth;   // 144-147
     float markerFilled;        // 148-151
+    float valueLogScale;       // 152-155
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -98,10 +99,22 @@ void main() {
     if (ubuf.useVertexColor > 0.5 && strideInt >= 3) {
         uint valueBits = fetchFloatBits(base + 2);
         if (isFiniteBits(valueBits)) {
-            float valueRange = ubuf.valueMax - ubuf.valueMin;
             float value = uintBitsToFloat(valueBits);
-            v_colorT = abs(valueRange) > 0.0 ? clamp((value - ubuf.valueMin) / valueRange, 0.0, 1.0) : 0.0;
-            v_useValue = 1.0;
+            float lo = ubuf.valueMin;
+            float hi = ubuf.valueMax;
+            bool mappable = true;
+            if (ubuf.valueLogScale > 0.5) {
+                // Log normalization is undefined at or below zero; those points keep the uniform color.
+                mappable = value > 0.0 && lo > 0.0 && hi > 0.0;
+                value = safeLog10(value);
+                lo = safeLog10(lo);
+                hi = safeLog10(hi);
+            }
+            float valueRange = hi - lo;
+            if (mappable) {
+                v_colorT = abs(valueRange) > 0.0 ? clamp((value - lo) / valueRange, 0.0, 1.0) : 0.0;
+                v_useValue = 1.0;
+            }
         }
     }
 

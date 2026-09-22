@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 
 #include <QtTest/QtTest>
@@ -71,7 +72,7 @@ void PointCloudDataTest::defaults()
     QCOMPARE(cloud.markerShape(), PlotSeries::MarkerShape::Circle);
     QVERIFY(cloud.markerFilled());
     QCOMPARE(cloud.markerStrokeWidth(), 1.0);
-    QCOMPARE(cloud.colorMode(), PointCloud::ColorMode::UniformColor);
+    QVERIFY(cloud.colormap() == nullptr);
     QCOMPARE(cloud.legendSymbol(), PlotSeries::LegendSymbol::Marker);
     QCOMPARE(cloud.dataValueMin(), 0.0);
     QCOMPARE(cloud.dataValueMax(), 1.0);
@@ -209,18 +210,21 @@ void PointCloudDataTest::valueRangeResolvesDataAndFixedSources()
     QCOMPARE(cloud.dataValueMax(), 12.0);
     QCOMPARE(rangeSpy.count(), 1);
 
-    cloud.setValueMin(-10.0);
+    // An unset bound stays resolved from the data; setting one pins just that end.
+    auto colormap = Colormap{};
+    cloud.setColormap(&colormap);
     QCOMPARE(cloud.dataValueMin(), -4.0);
-    cloud.setValueMinSource(GradientValueSource::Fixed);
+    QCOMPARE(cloud.dataValueMax(), 12.0);
+
+    colormap.setMin(-10.0);
     QCOMPARE(cloud.dataValueMin(), -10.0);
     QCOMPARE(cloud.dataValueMax(), 12.0);
 
-    cloud.setValueMaxSource(GradientValueSource::Fixed);
-    cloud.setValueMax(20.0);
+    colormap.setMax(20.0);
     QCOMPARE(cloud.dataValueMax(), 20.0);
 
-    // Clearing values falls back to the default [0, 1] data range for DataRange sources.
-    cloud.setValueMinSource(GradientValueSource::DataRange);
+    // Clearing the values falls back to the default [0, 1] for a bound that is not pinned.
+    colormap.setMin(std::numeric_limits<qreal>::quiet_NaN());
     cloud.setValues({});
     QCOMPARE(cloud.dataValueMin(), 0.0);
     QCOMPARE(cloud.dataValueMax(), 20.0);

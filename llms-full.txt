@@ -1475,30 +1475,45 @@ The default legend shows the marker shape and `color` for point clouds.
 Give each point a value and map it through a QML `Gradient`:
 
 ```qml
+QAccelPlot.PointCloud {
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
+}
+```
+
+A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
+on value coloring: without it, or without per-point values, every point uses `color`.
+
+The built-in ramps are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Turbo`, `Grayscale`, and
+`Rainbow`. Prefer the perceptually uniform ones over `Rainbow`, whose uneven lightness invents
+boundaries that are not in the data.
+
+For a custom ramp, list the stops instead. The same stops can feed a color bar, so a swatch and
+the points cannot drift apart:
+
+```qml
 Gradient {
-    id: viridis
+    id: ramp
     GradientStop { position: 0.0; color: "#fde725" }
-    GradientStop { position: 0.5; color: "#21918c" }
     GradientStop { position: 1.0; color: "#440154" }
 }
 
 QAccelPlot.PointCloud {
-    xAxis: plot.xAxis
-    yAxis: plot.yAxis
-    colorMode: QAccelPlot.PointCloud.ValueColor
-    colorGradient: viridis
-    valueMinSource: QAccelPlot.GradientValueSource.Fixed
-    valueMin: 0
-    valueMaxSource: QAccelPlot.GradientValueSource.Fixed
-    valueMax: 1
+    colormap: QAccelPlot.Colormap { stops: ramp.stops }
 }
+Rectangle { gradient: ramp }   // the color bar
 ```
 
-The `Gradient` here is only a container for color stops. Unlike `GradientFill`
-and `GradientStroke`, which paint a gradient across the plot and so have a
-`direction`, `colorGradient` is a one-dimensional lookup indexed by each
-point's value, not by its position on screen. The gradient's `orientation` is
-therefore ignored, and there is no radial form.
+`min` and `max` bound the value range. Leave either unset and it is resolved from the data, so one
+colormap can be shared between series that resolve different ranges. Set `norm` to
+`Colormap.Log` when the values span decades, such as counts or intensities; values at or below
+zero are then left unmapped and drawn with `color`.
+
+A colormap has no geometry. Unlike `GradientFill` and `GradientStroke`, which paint a gradient
+across the plot and so have a `direction`, a colormap is a one-dimensional ramp indexed by each
+point's value, not by its position on screen. That is why there is no orientation here and no
+radial form: only the stop colors are taken from the `Gradient` above.
 
 From QML, call `setValues()` after `setData()` with one value per point. From
 C++, pass values together with the positions:

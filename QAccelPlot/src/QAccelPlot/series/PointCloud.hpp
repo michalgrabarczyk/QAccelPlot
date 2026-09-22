@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
@@ -24,8 +25,8 @@ namespace QAccelPlot {
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
 /// Every point is drawn as a GPU billboard with one of the marker shapes shared with \c LineCurve.
-/// Points are colored uniformly with \c color, or by a per-point scalar value mapped through
-/// \c colorGradient when \c colorMode is \c ValueColor.
+/// Points are colored uniformly with \c color, or by a per-point scalar value mapped through a
+/// \c Colormap.
 ///
 /// Positions and values are uploaded as a single data texture; the vertex buffer depends only on the
 /// point count, so updating a cloud of constant size is one texture upload per frame. Methods whose
@@ -60,18 +61,9 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
     /// \brief Outline width in pixels of hollow markers. Has effect only when \c markerFilled is \c false. Default: 1.
     Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
-    /// \brief Coloring mode. Default: \c UniformColor.
-    Q_PROPERTY(ColorMode colorMode READ colorMode WRITE setColorMode NOTIFY colorModeChanged)
-    /// \brief QML \c Gradient used as the colormap in \c ValueColor mode. Its orientation is ignored.
-    Q_PROPERTY(QObject* colorGradient READ colorGradient WRITE setColorGradient NOTIFY colorGradientChanged)
-    /// \brief Whether \c valueMin is taken from the data or from the \c valueMin property. Default: \c DataRange.
-    Q_PROPERTY(GradientValueSource valueMinSource READ valueMinSource WRITE setValueMinSource NOTIFY valueMinSourceChanged)
-    /// \brief Value mapped to the start of the colormap when \c valueMinSource is \c Fixed. Default: 0.
-    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin NOTIFY valueMinChanged)
-    /// \brief Whether \c valueMax is taken from the data or from the \c valueMax property. Default: \c DataRange.
-    Q_PROPERTY(GradientValueSource valueMaxSource READ valueMaxSource WRITE setValueMaxSource NOTIFY valueMaxSourceChanged)
-    /// \brief Value mapped to the end of the colormap when \c valueMaxSource is \c Fixed. Default: 1.
-    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax NOTIFY valueMaxChanged)
+    /// \brief Maps per-point values to colors. Points are colored uniformly with \c color when this
+    /// is null or no values are stored. Default: null.
+    Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     /// \brief Whether GPU-side anti-aliasing is applied to markers. Default: \c true.
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     /// \brief Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1.
@@ -84,20 +76,14 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     /// \brief Read-only: index of the point under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
-    /// \brief Read-only: lower bound of the value range, resolved from \c valueMinSource.
-    /// Bind a color bar's scale to this and \c dataValueMax.
+    /// \brief Read-only: lower bound of the value range, taken from \c Colormap::min when it is set
+    /// and from the data otherwise. Bind a color bar's scale to this and \c dataValueMax.
     Q_PROPERTY(qreal dataValueMin READ dataValueMin NOTIFY valueRangeChanged)
-    /// \brief Read-only: upper bound of the value range, resolved from \c valueMaxSource.
+    /// \brief Read-only: upper bound of the value range, taken from \c Colormap::max when it is set
+    /// and from the data otherwise.
     Q_PROPERTY(qreal dataValueMax READ dataValueMax NOTIFY valueRangeChanged)
 
 public:
-    /// \brief Point coloring modes.
-    enum class ColorMode {
-        UniformColor, ///< \brief Every point uses \c color.
-        ValueColor,   ///< \brief Points with a finite value are colored through \c colorGradient.
-    };
-    Q_ENUM(ColorMode)
-
     /// \brief Constructs a PointCloud with the given \a parent.
     explicit PointCloud(QQuickItem* parent = nullptr);
 
@@ -126,33 +112,10 @@ public:
     /// \brief Sets the outline width of hollow markers to \a width pixels. Negative values are clamped to 0.
     void setMarkerStrokeWidth(qreal width);
 
-    /// \brief Returns the coloring mode.
-    ColorMode colorMode() const;
-    /// \brief Sets the coloring mode to \a mode.
-    void setColorMode(ColorMode mode);
-
-    /// \brief Returns the colormap gradient object.
-    QObject* colorGradient() const;
-    /// \brief Sets the colormap gradient to \a gradient (a QML \c Gradient).
-    void setColorGradient(QObject* gradient);
-
-    /// \brief Returns the source of the lower colormap bound.
-    GradientValueSource valueMinSource() const;
-    /// \brief Sets the source of the lower colormap bound to \a source.
-    void setValueMinSource(GradientValueSource source);
-    /// \brief Returns the fixed lower colormap bound.
-    qreal valueMin() const;
-    /// \brief Sets the fixed lower colormap bound to \a value.
-    void setValueMin(qreal value);
-
-    /// \brief Returns the source of the upper colormap bound.
-    GradientValueSource valueMaxSource() const;
-    /// \brief Sets the source of the upper colormap bound to \a source.
-    void setValueMaxSource(GradientValueSource source);
-    /// \brief Returns the fixed upper colormap bound.
-    qreal valueMax() const;
-    /// \brief Sets the fixed upper colormap bound to \a value.
-    void setValueMax(qreal value);
+    /// \brief Returns the colormap, or \c nullptr when points are colored uniformly.
+    Colormap* colormap() const;
+    /// \brief Sets the colormap to \a colormap. Pass \c nullptr to color every point with \c color.
+    void setColormap(Colormap* colormap);
 
     /// \brief Returns \c true when GPU anti-aliasing is enabled.
     bool antialiasingEnabled() const;
@@ -240,18 +203,8 @@ signals:
     void markerFilledChanged();
     /// \brief Emitted when the markerStrokeWidth property changes.
     void markerStrokeWidthChanged();
-    /// \brief Emitted when the colorMode property changes.
-    void colorModeChanged();
-    /// \brief Emitted when the colorGradient property changes.
-    void colorGradientChanged();
-    /// \brief Emitted when the valueMinSource property changes.
-    void valueMinSourceChanged();
-    /// \brief Emitted when the valueMin property changes.
-    void valueMinChanged();
-    /// \brief Emitted when the valueMaxSource property changes.
-    void valueMaxSourceChanged();
-    /// \brief Emitted when the valueMax property changes.
-    void valueMaxChanged();
+    /// \brief Emitted when the colormap property changes.
+    void colormapChanged();
     /// \brief Emitted when the antialiasingEnabled property changes.
     void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -278,7 +231,7 @@ protected:
     void onAxisScaleChanged() override;
 
 private:
-    Q_SLOT void onColorGradientUpdated();
+    Q_SLOT void onColormapUpdated();
 
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
@@ -287,7 +240,7 @@ private:
     void updateDataRanges();
     void updateValueRange();
     void reconnectAxisSignals();
-    void reconnectGradientSignals();
+    void reconnectColormapSignals();
     void refreshColorStops();
     void setHoveredIndex(int index);
     int stride() const;
@@ -301,13 +254,8 @@ private:
     qreal markerSize_{3.0};
     bool markerFilled_{true};
     qreal markerStrokeWidth_{1.0};
-    ColorMode colorMode_{ColorMode::UniformColor};
-    QPointer<QObject> colorGradient_;
+    QPointer<Colormap> colormap_;
     std::vector<GradientStopData> colorStops_;
-    GradientValueSource valueMinSource_{GradientValueSource::DataRange};
-    qreal valueMin_{0.0};
-    GradientValueSource valueMaxSource_{GradientValueSource::DataRange};
-    qreal valueMax_{1.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
