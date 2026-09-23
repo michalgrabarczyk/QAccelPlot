@@ -76,3 +76,97 @@ jobs:
         run: >-
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
           -L '^unit-test$'
+
+  coverage:
+    name: C++ coverage
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install gcovr
+        run: python -m pip install gcovr==8.2
+
+      - name: Configure coverage build
+        run: >-
+          cmake -S . -B build-coverage -G Ninja
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_CXX_COMPILER=g++
+          -DCMAKE_CXX_FLAGS=--coverage
+          -DCMAKE_EXE_LINKER_FLAGS=--coverage
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_INSTALL=OFF
+          -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
+
+      - name: Build library and unit tests
+        run: cmake --build build-coverage --config Debug --parallel 2 --target QAccelPlotTests
+
+      - name: Run library unit tests
+        run: >-
+          xvfb-run -a ctest --test-dir build-coverage -C Debug --output-on-failure
+          -L '^unit-test-core$'
+
+      - name: Generate coverage report and badge
+        run: |
+          mkdir -p build-coverage/coverage
+          gcovr --root . \
+            --filter 'QAccelPlot/src/QAccelPlot/.*\.cpp$' \
+            --html-details build-coverage/coverage/index.html \
+            --json-summary build-coverage/coverage/summary.json \
+            build-coverage
+          python .github/scripts/coverage_badge.py \
+            build-coverage/coverage/summary.json \
+            build-coverage/coverage/badge.json
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaccelplot-coverage
+          path: build-coverage/coverage/
+          retention-days: 14
+
+  publish-coverage:
+    name: Publish coverage report
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: coverage
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    concurrency:
+      group: docs-pages
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: qaccelplot-coverage
+          path: coverage-site/coverage
+
+      - name: Publish coverage to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: coverage-site
+          keep_files: true
