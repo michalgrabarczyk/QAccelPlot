@@ -60,7 +60,7 @@ _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1
 |  qreal | [**markerSize**](#variable-markersize)  <br>_Marker radius in pixels._  |
 |  qreal | [**markerStrokeWidth**](#variable-markerstrokewidth)  <br>_Outline width in pixels for hollow markers._  |
 |  int | [**pointCount**](#variable-pointcount)  <br>_Number of points in_ `data` _._ |
-|  int | [**shapeType**](#variable-shapetype)  <br>_Marker shape index (_ `LineCurve::PointShape` _value minus one)._ |
+|  int | [**shapeType**](#variable-shapetype)  <br>_Marker shape index (_ `PlotSeries::MarkerShape` _value minus one)._ |
 |  [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) | [**sourceData**](#variable-sourcedata)  <br>_Original float or double data used by CPU-side operations._  |
 |  const std::vector&lt; char &gt; \* | [**vertexCache**](#variable-vertexcache)  <br>_Pre-built vertex buffer, or_ `nullptr` _._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)  <br>_Viewport size in pixels._  |
@@ -341,7 +341,7 @@ int QAccelPlot::PointCurveRenderParams::pointCount;
 
 ### variable shapeType {#variable-shapetype}
 
-_Marker shape index (_ `LineCurve::PointShape` _value minus one)._
+_Marker shape index (_ `PlotSeries::MarkerShape` _value minus one)._
 ```C++
 int QAccelPlot::PointCurveRenderParams::shapeType;
 ```

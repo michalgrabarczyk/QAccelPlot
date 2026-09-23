@@ -453,6 +453,8 @@
       
         
       
+        
+      
     
     
     
@@ -662,6 +664,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1253,17 +1283,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#function-appendstopfromobject" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function appendStopFromObject
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#function-isemptychunk" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1290,6 +1309,28 @@
     <span class="md-ellipsis">
       
         function nearly_equal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-readgradientstoplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function readGradientStopList
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-readgradientstops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function readGradientStops
       
     </span>
   </a>
@@ -1409,6 +1450,10 @@
 <tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1ColorPalette/"><strong>ColorPalette</strong></a> <br><em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> <br><em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1559,12 +1604,24 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> <br><em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> <br><em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>PointCloudMaterial</strong></a> <br><em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>PointCurveRenderParams</strong></a> <br><em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PointMaterial/"><strong>PointMaterial</strong></a> <br><em>QSGMaterial for marker (point) rendering.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>PointSpatialIndex</strong></a> <br><em>Uniform-grid spatial index for nearest-point queries over large point sets.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">struct</td>
@@ -1660,10 +1717,6 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-appendstopfromobject"><strong>appendStopFromObject</strong></a> (std::vector&lt; <a href="../structQAccelPlot_1_1GradientStopData/"><strong>GradientStopData</strong></a> &gt; &amp; outStops, QObject * stopObject) <br><em>Reads a QML gradient stop object and appends it to</em> <em>outStops</em> <em>.</em></td>
-</tr>
-<tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-isemptychunk"><strong>isEmptyChunk</strong></a> (const <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> &amp; chunk) <br><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid sample and can be skipped by hit tests.</em></td>
 </tr>
@@ -1674,6 +1727,14 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-nearly_equal"><strong>nearly_equal</strong></a> (double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=kNearlyEqualEpsilon) noexcept<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; <a href="../structQAccelPlot_1_1GradientStopData/"><strong>GradientStopData</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-readgradientstoplist"><strong>readGradientStopList</strong></a> (const QVariantList &amp; stopObjects) <br><em>Reads a list of stop objects, each exposing</em> <code>position</code> <em>and</em><code>color</code> <em>, into position order.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">std::vector&lt; <a href="../structQAccelPlot_1_1GradientStopData/"><strong>GradientStopData</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-readgradientstops"><strong>readGradientStops</strong></a> (QObject * gradient) <br><em>Reads the stops of a QML</em> <code>Gradient</code> <em>into position order, covering the full [0, 1] range.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1717,62 +1778,72 @@
 </code></pre></div>
 <hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-appendstopfromobject">function appendStopFromObject<a class="headerlink" href="#function-appendstopfromobject" title="Permanent link">&para;</a></h3>
-<p><em>Reads a QML gradient stop object and appends it to</em> <em>outStops</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">appendStopFromObject</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GradientStopData</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outStops</span><span class="p">,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stopObject</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<p>The stop object is expected to expose <code>position</code> (real) and <code>color</code> (color) properties via the QML meta-object system. </p>
-<hr>
-
 <h3 id="function-isemptychunk">function isEmptyChunk<a class="headerlink" href="#function-isemptychunk" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>when__chunk</em> <em>contains no valid sample and can be skipped by hit tests.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isEmptyChunk</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isEmptyChunk</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveChunk</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">chunk</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-isvalidsample">function isValidSample<a class="headerlink" href="#function-isvalidsample" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidSample</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">isValidSample</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-nearly_equal">function nearly_equal<a class="headerlink" href="#function-nearly_equal" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">nearly_equal</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">eps_rel</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span><span class="p">,</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">eps_abs</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">nearly_equal</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">eps_rel</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">eps_abs</span><span class="o">=</span><span class="n">kNearlyEqualEpsilon</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </code></pre></div>
+<hr>
+
+<h3 id="function-readgradientstoplist">function readGradientStopList<a class="headerlink" href="#function-readgradientstoplist" title="Permanent link">&para;</a></h3>
+<p><em>Reads a list of stop objects, each exposing</em> <code>position</code> <em>and</em><code>color</code> <em>, into position order.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GradientStopData</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">readGradientStopList</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stopObjects</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Normalized the same way as <code>readGradientStops()</code>: a single stop is duplicated and the end colors are extended to 0 and 1. Entries that are not stop-like are skipped.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> </p>
+<hr>
+
+<h3 id="function-readgradientstops">function readGradientStops<a class="headerlink" href="#function-readgradientstops" title="Permanent link">&para;</a></h3>
+<p><em>Reads the stops of a QML</em> <code>Gradient</code> <em>into position order, covering the full [0, 1] range.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GradientStopData</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">readGradientStops</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Stops are read from the <code>stops</code> list property, falling back to child objects. A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty vector when <em>gradient</em> is null or has no valid stops.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1GradientFill/"><strong>GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>GradientStroke</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> </p>
 <hr>
 
 <h3 id="function-resolvegradientvaluerange">function resolveGradientValueRange<a class="headerlink" href="#function-resolvegradientvaluerange" title="Permanent link">&para;</a></h3>
 <p><em>Fills each unset gradient value bound of</em> <em>payload</em> <em>from [__dataMin</em> <em>,__dataMax</em> <em>].</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Payload</span><span class="o">&gt;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">resolveGradientValueRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">Payload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dataMin</span><span class="p">,</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dataMax</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Payload</span><span class="o">&gt;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">resolveGradientValueRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">Payload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">payload</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dataMin</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">dataMax</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Bounds resolve independently, so a <code>Fixed</code> bound is kept when the other bound uses <code>DataRange</code>. </p>
 <hr>
 
 <h3 id="function-unboundedgradientcoordinate">function unboundedGradientCoordinate<a class="headerlink" href="#function-unboundedgradientcoordinate" title="Permanent link">&para;</a></h3>
 <p><em>Returns an unbounded palette coordinate for a data-space</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">unboundedGradientCoordinate</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">minimum</span><span class="p">,</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">maximum</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">unboundedGradientCoordinate</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">minimum</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">maximum</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Coordinates outside [0, 1] are intentionally preserved for interpolation. Renderers must clamp only after interpolation, immediately before sampling the gradient, so values beyond the configured range retain endpoint colors. </p>
 <hr>

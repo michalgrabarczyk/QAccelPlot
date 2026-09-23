@@ -24,7 +24,7 @@ _Base QSGMaterial that uploads curve data as a floating-point texture and expose
 Inherits the following classes: QSGMaterial
 
 
-Inherited by the following classes: [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+Inherited by the following classes: [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 
 ## Inheritance diagram
@@ -43,6 +43,10 @@ flowchart TB
   classQAccelPlot_1_1GradientLineMaterial["QAccelPlot::GradientLineMaterial"]
   classQAccelPlot_1_1LineMaterial --> classQAccelPlot_1_1GradientLineMaterial
   click classQAccelPlot_1_1GradientLineMaterial "../classQAccelPlot_1_1GradientLineMaterial/" "Open QAccelPlot::GradientLineMaterial"
+
+  classQAccelPlot_1_1PointCloudMaterial["QAccelPlot::PointCloudMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1PointCloudMaterial
+  click classQAccelPlot_1_1PointCloudMaterial "../classQAccelPlot_1_1PointCloudMaterial/" "Open QAccelPlot::PointCloudMaterial"
 
   classQAccelPlot_1_1RectMaterial["QAccelPlot::RectMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1RectMaterial

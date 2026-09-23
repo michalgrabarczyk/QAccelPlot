@@ -54,6 +54,7 @@
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
 | struct | [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) <br>_The visible tick and subtick values, with formatted labels, for one axis viewport._  |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |
+| class | [**Colormap**](classQAccelPlot_1_1Colormap.md) <br>_Maps data values to colors: a color ramp plus the rule that places a value on it._  |
 | class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._ |
 | struct | [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) <br>_Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._  |
 | struct | [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) <br>_Read-only view over either interleaved float or double curve coordinates._  |
@@ -91,8 +92,11 @@
 | class | [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) <br>_Decorative frame configuration exposed by_ `PlotView::border` _._ |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
+| class | [**PointCloud**](classQAccelPlot_1_1PointCloud.md) <br>_A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._  |
+| class | [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) <br>_QSGMaterial for_ `PointCloud` _rendering._ |
 | struct | [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._ |
 | class | [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) <br>_QSGMaterial for marker (point) rendering._  |
+| class | [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) <br>_Uniform-grid spatial index for nearest-point queries over large point sets._  |
 | struct | [**PointVertex**](structQAccelPlot_1_1PointVertex.md) <br>_Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._  |
 | class | [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) <br>_The main plot canvas QML item — hosts axes, curves, and a grid._  |
 | class | [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) <br>_QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._ |
@@ -142,10 +146,11 @@
 
 | Type | Name |
 | ---: | :--- |
-|  void | [**appendStopFromObject**](#function-appendstopfromobject) (std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & outStops, QObject \* stopObject) <br>_Reads a QML gradient stop object and appends it to_ _outStops_ _._ |
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
+|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
+|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
@@ -271,28 +276,6 @@ constexpr double QAccelPlot::kNearlyEqualEpsilon;
 
 
 
-### function appendStopFromObject {#function-appendstopfromobject}
-
-_Reads a QML gradient stop object and appends it to_ _outStops_ _._
-```C++
-inline void QAccelPlot::appendStopFromObject (
-    std::vector< GradientStopData > & outStops,
-    QObject * stopObject
-) 
-```
-
-
-
-The stop object is expected to expose `position` (real) and `color` (color) properties via the QML meta-object system. 
-
-
-        
-
-<hr>
-
-
-
-
 ### function isEmptyChunk {#function-isemptychunk}
 
 _Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._
@@ -340,6 +323,60 @@ inline bool QAccelPlot::nearly_equal (
 
 
 
+
+<hr>
+
+
+
+
+### function readGradientStopList {#function-readgradientstoplist}
+
+_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._
+```C++
+std::vector< GradientStopData > QAccelPlot::readGradientStopList (
+    const QVariantList & stopObjects
+) 
+```
+
+
+
+Normalized the same way as `readGradientStops()`: a single stop is duplicated and the end colors are extended to 0 and 1. Entries that are not stop-like are skipped.
+
+
+
+
+**See also:** [**Colormap**](classQAccelPlot_1_1Colormap.md) 
+
+
+
+        
+
+<hr>
+
+
+
+
+### function readGradientStops {#function-readgradientstops}
+
+_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._
+```C++
+std::vector< GradientStopData > QAccelPlot::readGradientStops (
+    QObject * gradient
+) 
+```
+
+
+
+Stops are read from the `stops` list property, falling back to child objects. A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty vector when _gradient_ is null or has no valid stops.
+
+
+
+
+**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md) 
+
+
+
+        
 
 <hr>
 

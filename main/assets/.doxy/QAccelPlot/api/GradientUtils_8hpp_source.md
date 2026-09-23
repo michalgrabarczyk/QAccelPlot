@@ -19,39 +19,17 @@
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 
-#include <QColor>
-#include <QObject>
-#include <QQmlProperty>
+#include <QVariantList>
 
-#include <algorithm>
 #include <vector>
+
+class QObject;
 
 namespace QAccelPlot {
 
-inline void appendStopFromObject(std::vector<GradientStopData>& outStops, QObject* stopObject)
-{
-    if (!stopObject) {
-        return;
-    }
+std::vector<GradientStopData> readGradientStops(QObject* gradient);
 
-    const auto positionVariant = QQmlProperty::read(stopObject, QStringLiteral("position"));
-    const auto colorVariant = QQmlProperty::read(stopObject, QStringLiteral("color"));
-
-    if (!positionVariant.isValid() || !colorVariant.isValid()) {
-        return;
-    }
-
-    const auto color = colorVariant.value<QColor>();
-    if (!color.isValid()) {
-        return;
-    }
-
-    const auto unclampedPosition = static_cast<float>(positionVariant.toReal());
-    auto stopData = GradientStopData{};
-    stopData.position = std::clamp(unclampedPosition, 0.0f, 1.0f);
-    stopData.color = color;
-    outStops.push_back(stopData);
-}
+std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
 
 } // namespace QAccelPlot
 ```

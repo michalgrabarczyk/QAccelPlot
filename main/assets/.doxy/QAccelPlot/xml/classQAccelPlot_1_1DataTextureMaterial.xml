@@ -4,6 +4,7 @@
     <compoundname>QAccelPlot::DataTextureMaterial</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QSGMaterial</basecompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineMaterial" prot="public" virt="non-virtual">QAccelPlot::LineMaterial</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1PointCloudMaterial" prot="public" virt="non-virtual">QAccelPlot::PointCloudMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectMaterial" prot="public" virt="non-virtual">QAccelPlot::RectMaterial</derivedcompoundref>
     <includes local="no">DataTextureMaterial.hpp</includes>
     <sectiondef kind="public-attrib">
@@ -336,6 +337,7 @@
         <qualifiedname>QAccelPlot::DataTextureMaterial::compareExtra</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1GradientLineMaterial_1a4ea998d5a0d1b31f79c6366ed9d4ec62">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd">compareExtra</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloudMaterial_1aa96ef790f251fd28099bd81a8bf03643">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectMaterial_1a2abf002186c8d1e59811d645bc2e2d62">compareExtra</reimplementedby>
         <param>
           <type>const QSGMaterial *</type>
@@ -389,6 +391,12 @@
         </childnode>
       </node>
       <node id="5">
+        <label>QAccelPlot::PointCloudMaterial</label>
+        <link refid="classQAccelPlot_1_1PointCloudMaterial"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
         <label>QAccelPlot::RectMaterial</label>
         <link refid="classQAccelPlot_1_1RectMaterial"/>
         <childnode refid="1" relation="public-inheritance">

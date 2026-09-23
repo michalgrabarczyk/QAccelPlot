@@ -14,6 +14,16 @@
 * **LegendSymbol** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 
 
+## m
+
+* **MarkerShape** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
+
+
+## n
+
+* **Normalization** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+
+
 ## o
 
 * **Orientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
@@ -21,7 +31,7 @@
 
 ## p
 
-* **PointShape** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **Preset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 
 
 ## s

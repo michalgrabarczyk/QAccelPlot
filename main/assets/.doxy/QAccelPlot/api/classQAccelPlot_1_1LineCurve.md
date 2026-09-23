@@ -52,11 +52,6 @@ flowchart TB
 
 
 
-## Public Types
-
-| Type | Name |
-| ---: | :--- |
-| enum  | [**PointShape**](#enum-pointshape)  <br>_Marker shape options for data points._  |
 
 
 ## Public Types inherited from QAccelPlot::PlotSeries
@@ -66,6 +61,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol)  <br>_Supported default legend symbols._  |
+| enum  | [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -101,7 +97,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property qreal | [**lineWidth**](classQAccelPlot_1_1LineCurve.md#property-linewidth-12)  <br>_Line stroke width in pixels. Default: 1._  |
 | property bool | [**markerFilled**](classQAccelPlot_1_1LineCurve.md#property-markerfilled-12)  <br>_Whether closed marker shapes are filled. When_ `false` _they are drawn as outlines of_`markerStrokeWidth` _inside the shape's edge. Line-like shapes (_`Cross` _,_`XCross` _,_`Asterisk` _,_`HLine` _,_`VLine` _) and_`Pixel` _are unaffected. Default:_`true` _._ |
-| property [**PointShape**](classQAccelPlot_1_1LineCurve.md#enum-pointshape) | [**markerShape**](classQAccelPlot_1_1LineCurve.md#property-markershape-12)  <br>_Shape drawn at each data point. Default:_ `PointShape.None` _(no markers)._ |
+| property [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](classQAccelPlot_1_1LineCurve.md#property-markershape-12)  <br>_Shape drawn at each data point. Default:_ `MarkerShape.None` _(no markers)._ |
 | property qreal | [**markerSize**](classQAccelPlot_1_1LineCurve.md#property-markersize-12)  <br>_Radius of each marker in pixels. Default: 4._  |
 | property qreal | [**markerStrokeWidth**](classQAccelPlot_1_1LineCurve.md#property-markerstrokewidth-12)  <br>_Outline width in pixels of hollow markers. Has effect only when_ `markerFilled` _is_`false` _. Default: 1._ |
 | property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1LineCurve.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
@@ -176,7 +172,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#function-linestyle-22) () const<br>_Returns the active line style._  |
 |  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the line stroke width._  |
 |  bool | [**markerFilled**](#function-markerfilled-22) () const<br>_Returns_ `true` _if closed marker shapes are filled._ |
-|  [**PointShape**](classQAccelPlot_1_1LineCurve.md#enum-pointshape) | [**markerShape**](#function-markershape-22) () const<br>_Returns the marker shape._  |
+|  [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](#function-markershape-22) () const<br>_Returns the marker shape._  |
 |  qreal | [**markerSize**](#function-markersize-22) () const<br>_Returns the marker size in pixels._  |
 |  qreal | [**markerStrokeWidth**](#function-markerstrokewidth-22) () const<br>_Returns the outline width of hollow markers in pixels._  |
 |  void | [**postData**](#function-postdata-12) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) <br>_Posts data to the curve from any thread. Equivalent to calling_ `setDataF()` _on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe._ |
@@ -196,7 +192,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the line style to_ _style_ _._ |
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
 |  void | [**setMarkerFilled**](#function-setmarkerfilled) (bool filled) <br>_Sets whether closed marker shapes are filled (_ _filled_ _) or drawn as outlines._ |
-|  void | [**setMarkerShape**](#function-setmarkershape) ([**PointShape**](classQAccelPlot_1_1LineCurve.md#enum-pointshape) shape) <br>_Sets the marker shape to_ _shape_ _._ |
+|  void | [**setMarkerShape**](#function-setmarkershape) ([**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) shape) <br>_Sets the marker shape to_ _shape_ _._ |
 |  void | [**setMarkerSize**](#function-setmarkersize) (qreal r) <br>_Sets the marker size to_ _r_ _pixels._ |
 |  void | [**setMarkerStrokeWidth**](#function-setmarkerstrokewidth) (qreal width) <br>_Sets the outline width of hollow markers to_ _width_ _pixels._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
@@ -286,6 +282,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**extendXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual void | [**onAxisScaleChanged**](classQAccelPlot_1_1PlotSeries.md#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
+|  QRectF | [**resolvePlotRect**](classQAccelPlot_1_1PlotSeries.md#function-resolveplotrect) () <br>_Returns the plot area to render into, adopting it from the parent plot if needed._  |
 |  void | [**setDataRanges**](classQAccelPlot_1_1PlotSeries.md#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
 |  void | [**setXDataRange**](classQAccelPlot_1_1PlotSeries.md#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
 |  void | [**setYDataRange**](classQAccelPlot_1_1PlotSeries.md#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
@@ -332,45 +329,6 @@ A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strict
 
 
     
-## Public Types Documentation
-
-
-
-
-
-### enum PointShape {#enum-pointshape}
-
-_Marker shape options for data points._ 
-```C++
-enum QAccelPlot::LineCurve::PointShape {
-    None,
-    Circle,
-    Square,
-    Diamond,
-    TriangleUp,
-    TriangleDown,
-    TriangleLeft,
-    TriangleRight,
-    Cross,
-    XCross,
-    HLine,
-    VLine,
-    Star,
-    Asterisk,
-    Pixel,
-    Hexagon,
-    Pentagon
-};
-```
-
-
-
-Every shape except `Pixel` fits within a square of half-width `markerSize`. 
-
-
-        
-
-<hr>
 ## Public Properties Documentation
 
 
@@ -514,9 +472,9 @@ bool QAccelPlot::LineCurve::markerFilled;
 
 ### property markerShape {#property-markershape-12}
 
-_Shape drawn at each data point. Default:_ `PointShape.None` _(no markers)._
+_Shape drawn at each data point. Default:_ `MarkerShape.None` _(no markers)._
 ```C++
-PointShape QAccelPlot::LineCurve::markerShape;
+MarkerShape QAccelPlot::LineCurve::markerShape;
 ```
 
 
@@ -930,7 +888,7 @@ bool QAccelPlot::LineCurve::markerFilled () const
 
 _Returns the marker shape._ 
 ```C++
-PointShape QAccelPlot::LineCurve::markerShape () const
+MarkerShape QAccelPlot::LineCurve::markerShape () const
 ```
 
 
@@ -1283,7 +1241,7 @@ void QAccelPlot::LineCurve::setMarkerFilled (
 _Sets the marker shape to_ _shape_ _._
 ```C++
 void QAccelPlot::LineCurve::setMarkerShape (
-    PointShape shape
+    MarkerShape shape
 ) 
 ```
 

@@ -18,6 +18,8 @@
 
 ## c
 
+* [**Colormap**](classQAccelPlot_1_1Colormap.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colors**](classQAccelPlot_1_1Colors.md)
@@ -81,6 +83,7 @@
 
 ## i
 
+* [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)
 * [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)
 
 
@@ -110,6 +113,8 @@
 
 ## m
 
+* [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md)
+([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -134,9 +139,15 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointCloud**](classQAccelPlot_1_1PointCloud.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointVertex**](structQAccelPlot_1_1PointVertex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))

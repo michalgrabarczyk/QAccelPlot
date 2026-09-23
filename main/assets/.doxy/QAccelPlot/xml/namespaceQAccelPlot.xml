@@ -7,6 +7,7 @@
     <innerclass refid="classQAccelPlot_1_1AxisTicker" prot="public">QAccelPlot::AxisTicker</innerclass>
     <innerclass refid="classQAccelPlot_1_1AxisTickPainter" prot="public">QAccelPlot::AxisTickPainter</innerclass>
     <innerclass refid="structQAccelPlot_1_1AxisTicks" prot="public">QAccelPlot::AxisTicks</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Colormap" prot="public">QAccelPlot::Colormap</innerclass>
     <innerclass refid="classQAccelPlot_1_1ColorPalette" prot="public">QAccelPlot::ColorPalette</innerclass>
     <innerclass refid="classQAccelPlot_1_1Colors" prot="public">QAccelPlot::Colors</innerclass>
     <innerclass refid="structQAccelPlot_1_1CurveChunk" prot="public">QAccelPlot::CurveChunk</innerclass>
@@ -45,8 +46,11 @@
     <innerclass refid="classQAccelPlot_1_1PlotBorder" prot="public">QAccelPlot::PlotBorder</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotMouseEvent" prot="public">QAccelPlot::PlotMouseEvent</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotSeries" prot="public">QAccelPlot::PlotSeries</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointCloud" prot="public">QAccelPlot::PointCloud</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointCloudMaterial" prot="public">QAccelPlot::PointCloudMaterial</innerclass>
     <innerclass refid="structQAccelPlot_1_1PointCurveRenderParams" prot="public">QAccelPlot::PointCurveRenderParams</innerclass>
     <innerclass refid="classQAccelPlot_1_1PointMaterial" prot="public">QAccelPlot::PointMaterial</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointSpatialIndex" prot="public">QAccelPlot::PointSpatialIndex</innerclass>
     <innerclass refid="structQAccelPlot_1_1PointVertex" prot="public">QAccelPlot::PointVertex</innerclass>
     <innerclass refid="classQAccelPlot_1_1QAccelPlot" prot="public">QAccelPlot::QAccelPlot</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectangleList" prot="public">QAccelPlot::RectangleList</innerclass>
@@ -219,29 +223,51 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" line="33" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" bodystart="33" bodyend="41"/>
       </memberdef>
-      <memberdef kind="function" id="GradientUtils_8hpp_1a0f5087bac1074c27bc00a3d8d5004090" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::appendStopFromObject</definition>
-        <argsstring>(std::vector&lt; GradientStopData &gt; &amp;outStops, QObject *stopObject)</argsstring>
-        <name>appendStopFromObject</name>
-        <qualifiedname>QAccelPlot::appendStopFromObject</qualifiedname>
-        <param>
-          <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
-          <declname>outStops</declname>
-        </param>
+      <memberdef kind="function" id="GradientUtils_8hpp_1a01559e11c48716fb64ab60d66528b16f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readGradientStops</definition>
+        <argsstring>(QObject *gradient)</argsstring>
+        <name>readGradientStops</name>
+        <qualifiedname>QAccelPlot::readGradientStops</qualifiedname>
         <param>
           <type>QObject *</type>
-          <declname>stopObject</declname>
+          <declname>gradient</declname>
         </param>
         <briefdescription>
-<para>Reads a QML gradient stop object and appends it to <emphasis>outStops</emphasis>. </para>
+<para>Reads the stops of a QML <computeroutput>Gradient</computeroutput> into position order, covering the full [0, 1] range. </para>
         </briefdescription>
         <detaileddescription>
-<para>The stop object is expected to expose <computeroutput>position</computeroutput> (real) and <computeroutput>color</computeroutput> (color) properties via the QML meta-object system. </para>
+<para>Stops are read from the <computeroutput>stops</computeroutput> list property, falling back to child objects. A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty vector when <emphasis>gradient</emphasis> is null or has no valid stops.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="25" column="13" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" bodystart="25" bodyend="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="27" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientUtils_8hpp_1adb5493efd24befa81d92387aa6a20e41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readGradientStopList</definition>
+        <argsstring>(const QVariantList &amp;stopObjects)</argsstring>
+        <name>readGradientStopList</name>
+        <qualifiedname>QAccelPlot::readGradientStopList</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>stopObjects</declname>
+        </param>
+        <briefdescription>
+<para>Reads a list of stop objects, each exposing <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, into position order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Normalized the same way as <computeroutput>readGradientStops()</computeroutput>: a single stop is duplicated and the end colors are extended to 0 and 1. Entries that are not stop-like are skipped.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="35" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="35" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>

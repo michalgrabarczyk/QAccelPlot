@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -666,6 +668,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1124,6 +1154,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> <em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>Colormap</strong></a> <em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colors/"><strong>Colors</strong></a> <em>QML singleton exposing</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>'s built-in color palettes.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveChunk/"><strong>CurveChunk</strong></a> <em>Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a> <em>Read-only view over either interleaved float or double curve coordinates.</em>     </li>
@@ -1167,8 +1198,14 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotBorder/"><strong>PlotBorder</strong></a> <em>Decorative frame configuration exposed by</em> <code>PlotView::border</code> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>PlotMouseEvent</strong></a> <em>Carries mouse event data for the mouse signals.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>PointCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>PointMaterial</strong></a> <em>QSGMaterial for marker (point) rendering.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>PointSpatialIndex</strong></a> <em>Uniform-grid spatial index for nearest-point queries over large point sets.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>Mapping</strong></a> <em>Coordinate mapping applied before indexing.</em>     </li>
+</ul>
+</li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    </li>
@@ -1183,6 +1220,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>DataRange</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache/"><strong>FillRunCache</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>IndexedPoint</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>RectVertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>ItemBounds</strong></a>     </li>
 </ul>

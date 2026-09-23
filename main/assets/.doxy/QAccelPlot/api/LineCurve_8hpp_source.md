@@ -47,7 +47,7 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    Q_PROPERTY(PointShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
+    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
     Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
     Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
     Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
@@ -57,28 +57,6 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
 
 public:
-    enum class PointShape {
-        None,          
-        Circle,        
-        Square,        
-        Diamond,       
-        TriangleUp,    
-        TriangleDown,  
-        TriangleLeft,  
-        TriangleRight, 
-        Cross,         
-        XCross,        
-        HLine,         
-        VLine,         
-        Star,          
-        Asterisk,      
-        Pixel,         
-        Hexagon,       
-        Pentagon       
-    };
-    Q_ENUM(PointShape)
-
-    
     explicit LineCurve(QQuickItem* parent = nullptr);
 
     QColor color() const;
@@ -95,8 +73,8 @@ public:
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
 
-    PointShape markerShape() const;
-    void setMarkerShape(PointShape shape);
+    MarkerShape markerShape() const;
+    void setMarkerShape(MarkerShape shape);
 
     qreal markerSize() const;
     void setMarkerSize(qreal r);
@@ -215,7 +193,7 @@ private:
     int pointCount_{0};
     QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    PointShape markerShape_{PointShape::None};
+    MarkerShape markerShape_{MarkerShape::None};
     qreal markerSize_{4.0};
     bool markerFilled_{true};
     qreal markerStrokeWidth_{1.0};

@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -666,6 +668,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1118,6 +1148,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode marker geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a> <em>Owns a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>'s pre-built vertex bytes and the metadata required to use them safely.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a> <em>Uniform-grid spatial index for nearest-point queries over large point sets.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTick/"><strong>QAccelPlot::AxisTick</strong></a> <em>A single major tick: its data-space value and its formatted label.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a> <em>Groups the QPainter context arguments passed into sub-painting helpers.</em> </li>
@@ -1133,11 +1164,13 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>QAccelPlot::PointSpatialIndex::Mapping</strong></a> <em>Coordinate mapping applied before indexing.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SampleRun/"><strong>QAccelPlot::SampleRun</strong></a> <em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillRunCache</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>QAccelPlot::PointSpatialIndex::IndexedPoint</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a> </li>
 <li><strong>class</strong> <strong>QQuickPaintedItem</strong>    <ul>
@@ -1147,6 +1180,7 @@
 <li><strong>class</strong> <strong>QObject</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>QAccelPlot::ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>QAccelPlot::Colormap</strong></a> <em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colors/"><strong>QAccelPlot::Colors</strong></a> <em>QML singleton exposing</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>'s built-in color palettes.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineStyle/"><strong>QAccelPlot::LineStyle</strong></a> <em>Abstract base class for all line styles.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DashLine/"><strong>QAccelPlot::DashLine</strong></a> <em>A line style that renders the curve as a customisable dashed line.</em> </li>
@@ -1236,17 +1270,26 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a> <em>A QQuickItem that tracks a data-coordinate rectangle in pixel space.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
@@ -1258,6 +1301,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em></li>
 </ul>
 </li>
@@ -1267,6 +1311,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em></li>
 </ul>
 </li>
@@ -1275,6 +1320,16 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em></li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em></li>
 </ul>
 </li>
@@ -1284,6 +1339,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle list rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em></li>
 </ul>
 </li>

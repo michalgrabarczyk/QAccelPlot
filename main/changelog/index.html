@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -666,6 +668,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1448,6 +1478,12 @@
   Unix-epoch timestamps without re-interleaving.</li>
 <li><code>LineCurve::postData(std::vector&lt;double&gt;&amp;&amp;, int)</code> hands off an interleaved
   double buffer from a worker thread, like the existing float <code>postData()</code>.</li>
+<li><code>PointCloud</code> series for large unconnected scatter data.</li>
+<li><code>Colormap</code>, mapping data values to colors through a built-in ramp (<code>Viridis</code>, <code>Plasma</code>,
+  <code>Inferno</code>, <code>Magma</code>, <code>Turbo</code>, <code>Grayscale</code>, <code>Rainbow</code>) or custom stops, with optional
+  bounds and linear or logarithmic normalization. <code>PointCloud.colormap</code> replaces its
+  <code>colorMode</code>, <code>colorGradient</code>, <code>valueMin</code>, <code>valueMinSource</code>, <code>valueMax</code>, and
+  <code>valueMaxSource</code> properties.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>

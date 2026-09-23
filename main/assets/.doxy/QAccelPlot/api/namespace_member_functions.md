@@ -3,11 +3,6 @@
 
 
 
-## a
-
-* **appendStopFromObject** ([**QAccelPlot**](namespaceQAccelPlot.md))
-
-
 ## c
 
 * **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
@@ -38,6 +33,8 @@
 
 ## r
 
+* **readGradientStopList** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **readGradientStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **resolveGradientValueRange** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 

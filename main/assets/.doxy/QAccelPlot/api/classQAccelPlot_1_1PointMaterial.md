@@ -66,7 +66,7 @@ flowchart TB
 |  float | [**markerFilled**](#variable-markerfilled)   = `{1.0f}`<br>_1.0 for filled markers, 0.0 for hollow outlines._  |
 |  float | [**markerSize**](#variable-markersize)   = `{4.0f}`<br>_Marker radius in pixels._  |
 |  float | [**markerStrokeWidth**](#variable-markerstrokewidth)   = `{1.0f}`<br>_Outline width in pixels for hollow markers._  |
-|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `LineCurve::PointShape` _value minus one (0 = Circle)._ |
+|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._ |
 |  float | [**useVertexColor**](#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)   = `{800.0f, 600.0f}`<br>_Viewport size in pixels._  |
 
@@ -287,7 +287,7 @@ float QAccelPlot::PointMaterial::markerStrokeWidth;
 
 ### variable shapeType {#variable-shapetype}
 
-_Marker shape:_ `LineCurve::PointShape` _value minus one (0 = Circle)._
+_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._
 ```C++
 int QAccelPlot::PointMaterial::shapeType;
 ```

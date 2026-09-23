@@ -18,10 +18,7 @@
 
 
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
-* `#include <QColor>`
-* `#include <QObject>`
-* `#include <QQmlProperty>`
-* `#include <algorithm>`
+* `#include <QVariantList>`
 * `#include <vector>`
 
 

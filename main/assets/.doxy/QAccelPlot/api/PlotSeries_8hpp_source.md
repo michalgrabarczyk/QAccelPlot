@@ -46,8 +46,30 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
 
 public:
-    enum class LegendSymbol { Line, Fill };
+    enum class LegendSymbol { Line, Fill, Marker };
     Q_ENUM(LegendSymbol)
+
+    
+    enum class MarkerShape {
+        None,          
+        Circle,        
+        Square,        
+        Diamond,       
+        TriangleUp,    
+        TriangleDown,  
+        TriangleLeft,  
+        TriangleRight, 
+        Cross,         
+        XCross,        
+        HLine,         
+        VLine,         
+        Star,          
+        Asterisk,      
+        Pixel,         
+        Hexagon,       
+        Pentagon       
+    };
+    Q_ENUM(MarkerShape)
 
     explicit PlotSeries(QQuickItem* parent = nullptr);
 
@@ -85,6 +107,7 @@ protected:
     void clearXDataRange();
     void clearYDataRange();
     virtual void onAxisScaleChanged();
+    QRectF resolvePlotRect();
 
 private:
     void onAxisRangeChanged();

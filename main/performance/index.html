@@ -628,6 +628,8 @@
       
         
       
+        
+      
     
     
     
@@ -837,6 +839,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1515,6 +1545,11 @@ changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.</p>
 <p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> uses a spatial grid rebuilt on
 data change, giving <code>O(1)</code> lookup per pointer move.</p>
+<p><code>QAccelPlot.PointCloud.hoveredIndex</code> uses a uniform grid of point indices that
+is rebuilt lazily on the first pointer move after a data change (<code>O(N)</code>), then
+answers each move by scanning only the cells within the hover radius. When a
+cloud is replaced every frame while the pointer rests over it, the rebuild
+repeats per frame; set <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows
