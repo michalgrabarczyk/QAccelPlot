@@ -19,8 +19,13 @@
 #include <QSGGeometryNode>
 #include <QSGRendererInterface>
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+// QRhi is semi-public from Qt 6.6, but its header is only on the include path through the
+// private Qt modules, so querying the texture limit needs both.
+#if QACCELPLOT_USE_QT_PRIVATE_API && QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+#define QACCELPLOT_CAN_QUERY_RHI 1
 #include <rhi/qrhi.h>
+#else
+#define QACCELPLOT_CAN_QUERY_RHI 0
 #endif
 
 #include <algorithm>
@@ -39,7 +44,8 @@ constexpr auto kValueStride = 3;
 constexpr auto kVerticesPerPoint = 6;
 // Must match kTextureWidth in DataTextureMaterial.cpp and data_texture.glsl.
 constexpr auto kDataTextureWidth = 2048;
-// Texture height assumed when the RHI cannot be queried (Qt < 6.6); supported by every target GPU.
+// Texture height assumed when the RHI cannot be queried (Qt < 6.6, or built without the private
+// Qt API); supported by every target GPU.
 constexpr auto kFallbackMaxTextureSize = 8192;
 // Point ids are passed as float vertex attributes, which represent integers exactly up to 2^24.
 constexpr auto kMaxExactFloatInteger = 16777216;
@@ -65,7 +71,7 @@ bool hoverEnabled()
 
 int maxTextureSize(QQuickWindow* window)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+#if QACCELPLOT_CAN_QUERY_RHI
     if (auto* rendererInterface = window->rendererInterface()) {
         const auto* rhi = static_cast<QRhi*>(rendererInterface->getResource(window, QSGRendererInterface::RhiResource));
         if (rhi) {
