@@ -9,42 +9,29 @@
 
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 
-#include <QColor>
-#include <QObject>
-#include <QQmlProperty>
+#include <QVariantList>
 
-#include <algorithm>
 #include <vector>
+
+class QObject;
 
 namespace QAccelPlot {
 
-/// \brief Reads a QML gradient stop object and appends it to \a outStops.
+/// \brief Reads the stops of a QML \c Gradient into position order, covering the full [0, 1] range.
 ///
-/// The stop object is expected to expose \c position (real) and \c color (color)
-/// properties via the QML meta-object system.
-inline void appendStopFromObject(std::vector<GradientStopData>& outStops, QObject* stopObject)
-{
-    if (!stopObject) {
-        return;
-    }
+/// Stops are read from the \c stops list property, falling back to child objects. A single stop is
+/// duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty
+/// vector when \a gradient is null or has no valid stops.
+///
+/// \sa GradientFill, GradientStroke, PointCloud
+std::vector<GradientStopData> readGradientStops(QObject* gradient);
 
-    const auto positionVariant = QQmlProperty::read(stopObject, QStringLiteral("position"));
-    const auto colorVariant = QQmlProperty::read(stopObject, QStringLiteral("color"));
-
-    if (!positionVariant.isValid() || !colorVariant.isValid()) {
-        return;
-    }
-
-    const auto color = colorVariant.value<QColor>();
-    if (!color.isValid()) {
-        return;
-    }
-
-    const auto unclampedPosition = static_cast<float>(positionVariant.toReal());
-    auto stopData = GradientStopData{};
-    stopData.position = std::clamp(unclampedPosition, 0.0f, 1.0f);
-    stopData.color = color;
-    outStops.push_back(stopData);
-}
+/// \brief Reads a list of stop objects, each exposing \c position and \c color, into position order.
+///
+/// Normalized the same way as \c readGradientStops(): a single stop is duplicated and the end colors
+/// are extended to 0 and 1. Entries that are not stop-like are skipped.
+///
+/// \sa Colormap
+std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
 
 } // namespace QAccelPlot

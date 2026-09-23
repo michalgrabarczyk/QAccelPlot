@@ -273,12 +273,12 @@ void LineCurve::setLineStyle(LineStyle* style)
     update();
 }
 
-LineCurve::PointShape LineCurve::markerShape() const
+LineCurve::MarkerShape LineCurve::markerShape() const
 {
     return markerShape_;
 }
 
-void LineCurve::setMarkerShape(PointShape shape)
+void LineCurve::setMarkerShape(MarkerShape shape)
 {
     if (markerShape_ == shape) {
         return;
@@ -596,15 +596,6 @@ void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCou
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
-static QRectF resolvePlotRect(const LineCurve* curve)
-{
-    const auto pr = curve->plotRect();
-    if (!pr.isEmpty()) {
-        return pr;
-    }
-    return QRectF(0, 0, curve->width(), curve->height());
-}
-
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
 {
     Q_UNUSED(updatePaintNodeData)
@@ -620,7 +611,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != PointShape::None;
+    const auto hasPoints = markerShape_ != MarkerShape::None;
     if (!hasLine && !hasPoints) {
         delete oldNode;
         return nullptr;
@@ -667,7 +658,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
-    const auto pr = resolvePlotRect(this);
+    const auto pr = resolvePlotRect();
     const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
     const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     const auto viewportSize = QVector2D(static_cast<float>(pr.width()), static_cast<float>(pr.height()));
@@ -797,10 +788,10 @@ bool LineCurve::contains(const QPointF& point) const
     const auto logX = logScaleX();
     const auto logY = logScaleY();
 
-    if (markerShape_ != PointShape::None) {
+    if (markerShape_ != MarkerShape::None) {
         // Pixel markers ignore markerSize, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
-        const auto hitRadius = markerShape_ == PointShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
+        const auto hitRadius = markerShape_ == MarkerShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
         return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
@@ -1174,7 +1165,7 @@ void LineCurve::refreshVertexCacheForDataChange()
     const auto hasFillGradient = resolveGradientFillPayload().isValid();
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != PointShape::None;
+    const auto hasPoints = markerShape_ != MarkerShape::None;
 
     if (hasGradient || hasFillGradient || isDash || (hasLine && hasPoints)) {
         vertexCache_.invalidate();
@@ -1197,7 +1188,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
         return 0;
     }
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != PointShape::None;
+    const auto hasPoints = markerShape_ != MarkerShape::None;
     const auto isDash = hasLine && lineStyle_->dashParameters().enabled;
     const auto hasGradient = resolveGradientColorPayload().isValid() || resolveGradientFillPayload().isValid();
     if (hasGradient || isDash || (hasLine && hasPoints)) {
@@ -1245,7 +1236,7 @@ void LineCurve::rebuildVertexCache()
     if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, renderPointCount(),
             [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
-    } else if (markerShape_ != PointShape::None && renderPointCount() >= 1) {
+    } else if (markerShape_ != MarkerShape::None && renderPointCount() >= 1) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, renderPointCount(),
             [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
     } else {

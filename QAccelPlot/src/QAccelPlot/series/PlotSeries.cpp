@@ -8,6 +8,7 @@
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/QAccelPlot.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -195,6 +196,22 @@ void PlotSeries::clearYDataRange()
 
 void PlotSeries::onAxisScaleChanged()
 {
+}
+
+QRectF PlotSeries::resolvePlotRect()
+{
+    if (!plotRect_.isEmpty()) {
+        // setPlotRect() already aligned the item geometry with it.
+        return plotRect_;
+    }
+    if (const auto* plot = qobject_cast<QAccelPlot*>(parentItem())) {
+        const auto rect = plot->plotRect();
+        if (!rect.isEmpty()) {
+            setPlotRect(rect);
+            return rect;
+        }
+    }
+    return QRectF(0, 0, width(), height());
 }
 
 void PlotSeries::onAxisRangeChanged()

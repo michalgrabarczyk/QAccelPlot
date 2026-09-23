@@ -262,7 +262,7 @@ void LineCurveDataTest::stoppedTransitionBeforeFirstFrame()
     QFETCH(TransitionStopMode, stopMode);
     auto curve = LineCurve{};
     curve.setLineStyle(nullptr);
-    curve.setMarkerShape(LineCurve::PointShape::Circle);
+    curve.setMarkerShape(LineCurve::MarkerShape::Circle);
     auto transition = std::make_unique<MorphTransition>();
     curve.setTransition(transition.get());
     curve.setDataF(makeData(2), 2);

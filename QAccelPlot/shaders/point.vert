@@ -32,9 +32,8 @@ layout(std140, binding = 0) uniform buf {
     float markerFilled;
 } ubuf;
 
-const int kPixelShape = 13; // LineCurve::PointShape::Pixel - 1
-
 #include "math_utils.glsl"
+#include "point_shapes.glsl"
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
@@ -74,7 +73,7 @@ void main() {
     );
 
     float halfExtent = ubuf.markerSize;
-    if (ubuf.shapeType == kPixelShape) {
+    if (ubuf.shapeType == kPixel) {
         // A Pixel marker covers exactly one pixel: snap the centre to the pixel grid
         // and ignore markerSize and antialiasing.
         p_local = floor(p_local) + 0.5;

@@ -56,7 +56,7 @@ A dash pattern lists alternating on/off lengths in pixels.
 `markerSize` is the marker radius in pixels. Every shape fits within a square
 of that half-width.
 
-| Group | `LineCurve` shapes |
+| Group | `MarkerShape` values |
 | --- | --- |
 | Filled shapes | `Circle`, `Square`, `Diamond`, `TriangleUp`, `TriangleDown`, `TriangleLeft`, `TriangleRight`, `Pentagon`, `Hexagon`, `Star` |
 | Line shapes | `Cross` (+), `XCross` (×), `Asterisk`, `HLine`, `VLine` |

@@ -32,9 +32,15 @@ public:
         MaxRate, ///< Existing buffers are copied as fast as possible without an update-rate cap.
     };
 
+    /// \brief Plot series type exercised by the scenario.
+    enum class SeriesType {
+        LineCurve,  ///< Connected curves (\c LineCurve).
+        PointCloud, ///< Unconnected markers (\c PointCloud).
+    };
+
     /// \brief Constructs a scenario with all parameters.
-    BenchmarkScenario(const QString& name, const QString& label, const QString& description, int pointCount, int curveCount, UpdateMode updateMode, int durationSeconds = 10,
-        int warmupSeconds = 2);
+    BenchmarkScenario(const QString& name, const QString& label, const QString& description, int pointCount, int curveCount, UpdateMode updateMode,
+        int durationSeconds = 10, int warmupSeconds = 2, SeriesType seriesType = SeriesType::LineCurve);
 
     /// \brief Returns the scenario's short identifier (e.g. "live_2m_single_curve").
     const QString& name() const;
@@ -60,6 +66,12 @@ public:
     /// \brief Warmup duration in seconds (frames discarded before measurement).
     int warmupSeconds() const;
 
+    /// \brief Plot series type exercised by the scenario.
+    SeriesType seriesType() const;
+
+    /// \brief Returns \c true for CPU-only micro-benchmarks that run without rendering.
+    bool isCpuOnly() const;
+
     /// \brief Returns the default set of benchmark scenarios.
     ///
     /// This is the canonical list shared between the regression runner and
@@ -75,6 +87,7 @@ private:
     UpdateMode updateMode_;
     int durationSeconds_;
     int warmupSeconds_;
+    SeriesType seriesType_;
 };
 
 } // namespace QAccelPlot

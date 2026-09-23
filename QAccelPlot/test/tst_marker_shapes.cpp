@@ -8,11 +8,13 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/linestyles/NoLine.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/PointCloud.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
 #include <QQuickWindow>
 #include <QSGRendererInterface>
+#include <QRegularExpression>
 #include <QtTest/QtTest>
 
 #include <vector>
@@ -21,7 +23,7 @@ namespace QAccelPlot {
 
 namespace {
 
-using Shape = LineCurve::PointShape;
+using Shape = PlotSeries::MarkerShape;
 
 // A single white marker is drawn on black at the centre of a kCurveSize px curve, i.e. at pixel
 // corner (kCentre, kCentre). Offsets below address the pixel (kCentre + dx, kCentre + dy) in the
@@ -81,6 +83,43 @@ RenderResult renderMarker(const MarkerStyle& style)
     return result;
 }
 
+RenderResult renderPointCloudMarker(const MarkerStyle& style)
+{
+    auto window = QQuickWindow{};
+    window.setColor(Qt::black);
+    window.resize(kCurveSize, kCurveSize);
+
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setOrientation(Axis::Horizontal);
+    yAxis.setOrientation(Axis::Vertical);
+    for (auto* axis : {&xAxis, &yAxis}) {
+        axis->setViewportMin(0.0);
+        axis->setViewportMax(1.0);
+    }
+
+    auto cloud = PointCloud{window.contentItem()};
+    cloud.setSize(QSizeF{kCurveSize, kCurveSize});
+    cloud.setXAxis(&xAxis);
+    cloud.setYAxis(&yAxis);
+    cloud.setColor(Qt::white);
+    cloud.setMarkerShape(style.shape);
+    cloud.setMarkerSize(style.size);
+    cloud.setMarkerFilled(style.filled);
+    cloud.setMarkerStrokeWidth(style.strokeWidth);
+    cloud.setAntialiasingEnabled(false);
+    cloud.setDataF(std::vector<float>{0.5f, 0.5f}, 1);
+
+    window.show();
+    if (!QTest::qWaitForWindowExposed(&window)) {
+        return {};
+    }
+    auto result = RenderResult{};
+    result.image = window.grabWindow();
+    result.softwareBackend = window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software;
+    return result;
+}
+
 bool isLit(const QImage& image, const QPoint& offset)
 {
     return qGray(image.pixel(kCentre + offset.x(), kCentre + offset.y())) > 127;
@@ -93,17 +132,20 @@ class MarkerShapesTest : public QObject {
 
 private slots:
     void shapeIndicesMatchShaders();
+    void pointCloudRejectsNoneShape();
     void shapesCoverTheirOutline_data();
     void shapesCoverTheirOutline();
     void hollowMarkersDrawOnlyTheOutline_data();
     void hollowMarkersDrawOnlyTheOutline();
+    void pointCloudMarkersMatchLineCurve_data();
+    void pointCloudMarkersMatchLineCurve();
     void pixelMarkerCoversOnePixel();
     void pixelMarkerHitTestIgnoresMarkerSize();
 };
 
 void MarkerShapesTest::shapeIndicesMatchShaders()
 {
-    // PointShape values are public API, and point.frag and point.vert select shapes by value - 1.
+    // MarkerShape values are public API, and point.frag and point.vert select shapes by value - 1.
     // Append new shapes at the end; never reorder or insert.
     const auto expected = std::vector<std::pair<Shape, int>>{{Shape::None, 0}, {Shape::Circle, 1}, {Shape::Square, 2}, {Shape::Diamond, 3},
         {Shape::TriangleUp, 4}, {Shape::TriangleDown, 5}, {Shape::TriangleLeft, 6}, {Shape::TriangleRight, 7}, {Shape::Cross, 8}, {Shape::XCross, 9},
@@ -112,6 +154,28 @@ void MarkerShapesTest::shapeIndicesMatchShaders()
     for (const auto& [shape, value] : expected) {
         QCOMPARE(static_cast<int>(shape), value);
     }
+
+    // The enum lives on PlotSeries, but both series must still expose it through their own
+    // meta-object: that is how QML resolves LineCurve.Circle and PointCloud.Circle.
+    for (const auto* meta : {&LineCurve::staticMetaObject, &PointCloud::staticMetaObject}) {
+        const auto index = meta->indexOfEnumerator("MarkerShape");
+        QVERIFY(index >= 0);
+        QCOMPARE(meta->enumerator(index).keyToValue("Pentagon"), static_cast<int>(Shape::Pentagon));
+    }
+}
+
+void MarkerShapesTest::pointCloudRejectsNoneShape()
+{
+    auto cloud = PointCloud{};
+    cloud.setMarkerShape(Shape::Square);
+    auto spy = QSignalSpy{&cloud, &PointCloud::markerShapeChanged};
+
+    // A cloud always draws its points, so None must not silently blank it.
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud.markerShape does not accept None.*"));
+    cloud.setMarkerShape(Shape::None);
+
+    QCOMPARE(cloud.markerShape(), Shape::Square);
+    QCOMPARE(spy.count(), 0);
 }
 
 void MarkerShapesTest::shapesCoverTheirOutline_data()
@@ -192,6 +256,48 @@ void MarkerShapesTest::hollowMarkersDrawOnlyTheOutline()
     }
     for (const auto& offset : outside) {
         QVERIFY2(!isLit(result.image, offset), qPrintable(QStringLiteral("(%1, %2) should be empty").arg(offset.x()).arg(offset.y())));
+    }
+}
+
+void MarkerShapesTest::pointCloudMarkersMatchLineCurve_data()
+{
+    QTest::addColumn<Shape>("shape");
+    QTest::addColumn<bool>("filled");
+
+    // PointCloud and LineCurve markers share point_shapes.glsl, so the same style must
+    // produce the same pixels. Covers a closed shape, a line shape, and hollow outlines.
+    QTest::newRow("Circle filled") << Shape::Circle << true;
+    QTest::newRow("Circle hollow") << Shape::Circle << false;
+    QTest::newRow("Square hollow") << Shape::Square << false;
+    QTest::newRow("Hexagon hollow") << Shape::Hexagon << false;
+    // Line shapes have no interior, so markerFilled must not change them.
+    QTest::newRow("Cross hollow") << Shape::Cross << false;
+}
+
+void MarkerShapesTest::pointCloudMarkersMatchLineCurve()
+{
+    QFETCH(Shape, shape);
+    QFETCH(bool, filled);
+
+    auto style = MarkerStyle{shape};
+    style.filled = filled;
+    style.strokeWidth = 3.0;
+
+    const auto curveResult = renderMarker(style);
+    const auto cloudResult = renderPointCloudMarker(style);
+    QVERIFY(!curveResult.image.isNull());
+    QVERIFY(!cloudResult.image.isNull());
+    if (curveResult.softwareBackend || cloudResult.softwareBackend) {
+        QSKIP("Custom materials do not render with the software scene graph backend");
+    }
+
+    QCOMPARE(cloudResult.image.size(), curveResult.image.size());
+    for (auto y = 0; y < curveResult.image.height(); ++y) {
+        for (auto x = 0; x < curveResult.image.width(); ++x) {
+            const auto offset = QPoint{x - kCentre, y - kCentre};
+            QVERIFY2(isLit(cloudResult.image, offset) == isLit(curveResult.image, offset),
+                qPrintable(QStringLiteral("(%1, %2) differs between PointCloud and LineCurve").arg(offset.x()).arg(offset.y())));
+        }
     }
 }
 
