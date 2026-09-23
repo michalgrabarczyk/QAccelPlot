@@ -9,14 +9,12 @@
 
 #include <QAccelPlot/series/PointCloud.hpp>
 
-#include <chrono>
 #include <utility>
 
 namespace QAccelPlotExample {
 
 namespace {
 constexpr auto kPhaseStepRadians = 0.012f;
-constexpr auto kMinimumFrameInterval = std::chrono::milliseconds{16};
 } // namespace
 
 PointCloudStreamer::PointCloudStreamer(QAccelPlot::PointCloud* target)
@@ -139,10 +137,8 @@ void PointCloudStreamer::run()
             continue;
         }
 
-        const auto frameStart = std::chrono::steady_clock::now();
         composeFrame(source, frame);
         frame = PointCloudData{};
-        std::this_thread::sleep_until(frameStart + kMinimumFrameInterval);
     }
 }
 

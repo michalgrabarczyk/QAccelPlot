@@ -26,7 +26,9 @@ namespace QAccelPlotExample {
 ///
 /// Back-pressure: a new frame is composed only after the window has presented
 /// a frame since the previous post, so queued frames can never pile up when
-/// rendering falls behind.
+/// rendering falls behind. That gate alone paces the stream to the display;
+/// sleeping on top of it would add to the wait rather than overlap with it,
+/// which halved the frame rate regardless of how much data was being sent.
 class PointCloudStreamer {
 public:
     explicit PointCloudStreamer(QAccelPlot::PointCloud* target);
