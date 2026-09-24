@@ -40,7 +40,7 @@ from ai_visual_acceptance import (  # noqa: E402
 CONTRACTS_DIR = VISUAL_DIR / "contracts"
 EXAMPLES_DIR = PROJECT_ROOT / "examples"
 EXAMPLE_TESTS_DIR = VISUAL_DIR.parent
-CONTRACT_PATH = CONTRACTS_DIR / "styling_and_transitions" / "styling.json"
+CONTRACT_PATH = CONTRACTS_DIR / "line_styles" / "default.json"
 AI_WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "ai-regression.yml"
 TEST_HELPERS_PATH = PROJECT_ROOT / "cmake" / "QAccelPlotTestHelpers.cmake"
 
@@ -353,7 +353,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         self.assertNotIn("left third", expectation)
         self.assertNotIn("220.08", expectation)
 
-    def test_styling_contract_does_not_grade_cosmetic_line_rasterization(self):
+    def test_line_styles_contract_does_not_grade_cosmetic_line_rasterization(self):
         line_patterns_check = next(
             check for check in self.contract["checks"] if check["id"] == "line_patterns_panel"
         )
@@ -443,7 +443,7 @@ class VisualAcceptanceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             contract_path = Path(directory) / "page.json"
             contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
-            contract["sources"] = "qml/StylingPage.qml"
+            contract["sources"] = "qml/main.qml"
             contract_path.write_text(json.dumps(contract), encoding="utf-8")
             with self.assertRaisesRegex(VisualAcceptanceError, "sources must be a list"):
                 load_contract(contract_path)

@@ -5,14 +5,9 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-qaccelplot_add_example(StylingAndTransitions
+qaccelplot_add_example(MissingData
     SOURCES
         src/main.cpp
     QML_FILES
         qml/main.qml
-        qml/StylingPage.qml
-        qml/TransitionsPage.qml
-        qml/FillsGradientsPage.qml
-        qml/GapsPage.qml
-        qml/MarkersPage.qml
 )

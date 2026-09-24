@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   each sample as a single pixel for very dense scatter plots.
 - Hollow markers: set `marker.filled` to `false` to outline filled shapes with
   `marker.strokeWidth` pixels. Legend symbols follow the series.
-- A Markers page in the styling and transitions example shows every shape.
+- The `styling/markers` example shows every shape.
 - `LineCurve::setData(std::vector<double>&&, int)` moves an interleaved double
   buffer into the curve, keeping double precision for large coordinates such as
   Unix-epoch timestamps without re-interleaving.
@@ -42,6 +42,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `performance_showcase` → `showcases/performance`, and `pulsar_showcase` →
   `showcases/pulsar`. Their executables are renamed to match, for example
   `QAccelPlotExampleTickFormats`.
+- The styling and transitions example is split into single-topic examples:
+  `styling/line_styles`, `styling/markers`, `styling/gradients`,
+  `styling/transitions`, `styling/theming` (dark and light palettes), and
+  `data/missing_data` (invalid samples and gaps).
 
 ### Removed
 

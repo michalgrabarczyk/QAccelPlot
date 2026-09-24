@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "line_styles/default",
+  "description": "Two vertically stacked plots demonstrating line patterns and line weights. Judge only the plot panels; ignore the antialiasing controls, headings, and other surrounding UI.",
+  "expected_image": {
+    "width": 900,
+    "height": 760,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "Line-pattern and line-weight plot panels are stacked vertically. The two plot panels and their plot content do not overlap or extend beyond their intended areas. Do not evaluate the controls or other content outside the plots."
+    },
+    {
+      "id": "line_patterns_panel",
+      "severity": "medium",
+      "expectation": "The upper panel shows several offset sample signals with recognizably distinct solid, dash, dot-dash, and dotted patterns. Evaluate only whether the intended pattern types are present and distinguishable; cosmetic stroke smoothness is not part of this check. Normal antialiasing, subpixel sampling, screenshot resampling, dash-cap or dash-join variations, moire, and thin light or dark banding confined to the strokes are acceptable. Fail only if a pattern series is missing, the pattern types cannot be distinguished, or a line has clear large-scale corruption beyond these normal rasterization effects."
+    },
+    {
+      "id": "line_weights_panel",
+      "severity": "medium",
+      "expectation": "The lower panel shows several offset sample signals with clearly different 1 px, 2 px, 4 px, and 6 px line weights."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the two plots, axis titles, tick labels, and legends are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn substantially outside its plot area. Grid lines, curves, fills, and axes remain visually distinguishable."
+    }
+  ]
+}

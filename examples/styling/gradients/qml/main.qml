@@ -10,9 +10,10 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
-Item {
-    id: root
-    required property var palette
+Window {
+    id: window
+
+    readonly property QtObject colorPalette: QAccelPlot.Colors.dark
     property int presetIndex: 2
     property int directionIndex: 0
     property int baselineIndex: 0
@@ -132,15 +133,23 @@ Item {
 
     readonly property var qAccelPlotGradients: [polarGradient, neonGradient, viridisGradient, spectrumGradient]
 
+    width: 900
+    height: 960
+    visible: true
+    title: "QAccelPlot Gradients"
+    color: colorPalette.window
+    Material.theme: Material.Dark
+    Material.accent: colorPalette.materialAccent
+    Material.foreground: colorPalette.text
+
     ColumnLayout {
         anchors.fill: parent
-        spacing: 10
+        anchors.margins: 12
+        spacing: 8
 
-        Label {
-            text: "A home imports power below 0 kW and exports surplus solar power above it. Compare filling from the chart minimum with filling from the meaningful 0 kW baseline."
-            color: root.palette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Gradients"
+            description: "Upper plot: a home imports power below 0 kW and exports surplus solar power above it. Compare filling from the chart minimum with filling from the meaningful 0 kW baseline. Lower plot: a gradient stroke on battery temperature during a charge cycle, using the same settings."
         }
 
         RowLayout {
@@ -149,36 +158,33 @@ Item {
 
             Label {
                 text: "Preset"
-                color: root.palette.text
             }
             ComboBox {
-                model: root.presetNames
-                currentIndex: root.presetIndex
+                model: window.presetNames
+                currentIndex: window.presetIndex
                 Layout.preferredWidth: 175
-                Material.background: root.palette.plotArea
-                onActivated: root.presetIndex = currentIndex
+                Material.background: colorPalette.plotArea
+                onActivated: window.presetIndex = currentIndex
             }
             Label {
                 text: "Direction"
-                color: root.palette.text
             }
             ComboBox {
                 model: ["Vertical", "Horizontal"]
-                currentIndex: root.directionIndex
+                currentIndex: window.directionIndex
                 Layout.preferredWidth: 120
-                Material.background: root.palette.plotArea
-                onActivated: root.directionIndex = currentIndex
+                Material.background: colorPalette.plotArea
+                onActivated: window.directionIndex = currentIndex
             }
             Label {
                 text: "Baseline"
-                color: root.palette.text
             }
             ComboBox {
                 model: ["Axis minimum", "Grid balance (0 kW)"]
-                currentIndex: root.baselineIndex
+                currentIndex: window.baselineIndex
                 Layout.preferredWidth: 175
-                Material.background: root.palette.plotArea
-                onActivated: root.baselineIndex = currentIndex
+                Material.background: colorPalette.plotArea
+                onActivated: window.baselineIndex = currentIndex
             }
             Item {
                 Layout.fillWidth: true
@@ -190,41 +196,32 @@ Item {
             spacing: 10
 
             Label {
-                text: "Fill opacity " + Math.round(root.gradientOpacity * 100) + "%"
-                color: root.palette.text
+                text: "Fill opacity " + Math.round(window.gradientOpacity * 100) + "%"
             }
             Slider {
                 from: 0.1
                 to: 1.0
                 stepSize: 0.05
-                value: root.gradientOpacity
+                value: window.gradientOpacity
                 Layout.preferredWidth: 190
-                onMoved: root.gradientOpacity = value
+                onMoved: window.gradientOpacity = value
             }
             Label {
-                text: "Vertical maximum " + root.verticalMaximumPercent.toFixed(0) + "% of Y-axis range"
-                color: root.palette.text
-                opacity: root.directionIndex === 0 ? 1.0 : 0.45
+                text: "Vertical maximum " + window.verticalMaximumPercent.toFixed(0) + "% of Y-axis range"
+                opacity: window.directionIndex === 0 ? 1.0 : 0.45
             }
             Slider {
                 from: 1.0
                 to: 100.0
                 stepSize: 1.0
-                value: root.verticalMaximumPercent
-                enabled: root.directionIndex === 0
+                value: window.verticalMaximumPercent
+                enabled: window.directionIndex === 0
                 Layout.preferredWidth: 190
-                onMoved: root.verticalMaximumPercent = value
+                onMoved: window.verticalMaximumPercent = value
             }
             Item {
                 Layout.fillWidth: true
             }
-        }
-
-        Label {
-            text: "The lower chart shows battery temperature during a charge cycle. Its gradient stroke uses the same preset, direction, opacity, and normalized vertical maximum as the solar plot, with a heat spike during cell balancing."
-            color: root.palette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
         }
 
         ColumnLayout {
@@ -238,13 +235,9 @@ Item {
                 Layout.fillHeight: true
                 Layout.preferredHeight: 1
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -6
                     viewportMax: 6
                     dataMin: -6
@@ -253,7 +246,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -4
                     viewportMax: 6
                     dataMin: -4
@@ -266,34 +258,33 @@ Item {
                 QAccelPlot.LineCurve {
                     xAxis: solarPlot.xAxis
                     yAxis: solarPlot.yAxis
-                    color: root.palette.text
+                    color: colorPalette.text
                     lineWidth: 3
-                    antialiasingEnabled: true
                     effects: [
                         QAccelPlot.GradientFill {
-                            direction: root.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
-                            baseline: root.baselineIndex === 0 ? QAccelPlot.GradientFillBaseline.AxisMinimum : QAccelPlot.GradientFillBaseline.Value
+                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            baseline: window.baselineIndex === 0 ? QAccelPlot.GradientFillBaseline.AxisMinimum : QAccelPlot.GradientFillBaseline.Value
                             baselineValue: 0
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: root.directionIndex === 0 ? -4 : -6
+                            gradientValueMin: window.directionIndex === 0 ? -4 : -6
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: root.directionIndex === 0 ? root.solarVerticalMaximum : 6
-                            opacity: root.gradientOpacity
-                            gradient: root.activeGradient
+                            gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
+                            opacity: window.gradientOpacity
+                            gradient: window.activeGradient
                         },
                         QAccelPlot.GradientStroke {
-                            direction: root.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: root.directionIndex === 0 ? -4 : -6
+                            gradientValueMin: window.directionIndex === 0 ? -4 : -6
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: root.directionIndex === 0 ? root.solarVerticalMaximum : 6
-                            gradient: root.activeGradient
+                            gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
+                            gradient: window.activeGradient
                         }
                     ]
                     Component.onCompleted: {
                         const points = [];
                         for (let hour = -6; hour <= 6; hour += 0.05)
-                            points.push(Qt.point(hour, root.netGridPowerAt(hour)));
+                            points.push(Qt.point(hour, window.netGridPowerAt(hour)));
                         setData(points);
                     }
                 }
@@ -305,13 +296,9 @@ Item {
                 Layout.fillHeight: true
                 Layout.preferredHeight: 1
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 0
                     viewportMax: 100
                     dataMin: 0
@@ -320,7 +307,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 20
                     viewportMax: 30
                     dataMin: 20
@@ -333,18 +319,17 @@ Item {
                 QAccelPlot.LineCurve {
                     xAxis: batteryPlot.xAxis
                     yAxis: batteryPlot.yAxis
-                    color: root.palette.text
+                    color: colorPalette.text
                     lineWidth: 3
-                    opacity: root.gradientOpacity
-                    antialiasingEnabled: true
+                    opacity: window.gradientOpacity
                     effects: [
                         QAccelPlot.GradientStroke {
-                            direction: root.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: root.directionIndex === 0 ? 20 : 0
+                            gradientValueMin: window.directionIndex === 0 ? 20 : 0
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: root.directionIndex === 0 ? root.batteryVerticalMaximum : 100
-                            gradient: root.activeGradient
+                            gradientValueMax: window.directionIndex === 0 ? window.batteryVerticalMaximum : 100
+                            gradient: window.activeGradient
                         }
                     ]
                     Component.onCompleted: {

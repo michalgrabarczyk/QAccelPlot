@@ -1,11 +1,10 @@
 {
   "version": 1,
-  "name": "styling_and_transitions/fills_gradients",
-  "sources": ["qml/FillsGradientsPage.qml"],
+  "name": "gradients/default",
   "description": "Two stacked plots demonstrating a gradient area fill and a gradient line stroke. Judge only the plot panels; ignore preset, direction, baseline, and opacity controls, headings, descriptions, and other surrounding UI.",
   "expected_image": {
-    "width": 880,
-    "height": 1120,
+    "width": 900,
+    "height": 960,
     "minimum_file_size_bytes": 50000
   },
   "policy": {
@@ -31,7 +30,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Within the plots, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+      "expectation": "Within the plots, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

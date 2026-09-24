@@ -98,8 +98,10 @@ class ImpactRoutingTests(unittest.TestCase):
         self.assertEqual(result["scenarios"], ["styling/gaps"])
 
     def test_repository_contracts_are_routable(self):
-        result = self.impact.classify_paths(["examples/styling/styling_and_transitions/qml/StylingPage.qml"])
-        self.assertEqual(result["scenarios"], ["styling_and_transitions/styling"])
+        result = self.impact.classify_paths(["examples/axes/tick_formats/qml/LogScalePage.qml"])
+        self.assertEqual(result["scenarios"], ["tick_formats/logarithmic"])
+        result = self.impact.classify_paths(["examples/styling/markers/qml/main.qml"])
+        self.assertEqual(result["scenarios"], ["markers/default"])
 
 
 class MatrixSelectionTests(unittest.TestCase):
