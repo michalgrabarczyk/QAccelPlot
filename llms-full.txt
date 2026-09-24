@@ -524,7 +524,7 @@ repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 ### Other rendering costs
 
 - Markers add geometry and fragment work per visible point. Fragment work grows
-  with `markerSize`; `LineCurve.Pixel` markers shade one pixel per point and
+  with marker size; `LineCurve.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
 - Gradient effects add material and domain work.
 - Transitions update intermediate data while animating.
@@ -879,8 +879,8 @@ QAccelPlot.Plot {
         color: "dodgerblue"
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
-        markerShape: QAccelPlot.LineCurve.Diamond
-        markerSize: 7
+        marker.shape: QAccelPlot.LineCurve.Diamond
+        marker.size: 7
     }
 }
 ```
@@ -1206,8 +1206,8 @@ QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.DashLine {
         pattern: [14, 5, 3, 5]
     }
-    markerShape: QAccelPlot.LineCurve.Diamond
-    markerSize: 5
+    marker.shape: QAccelPlot.LineCurve.Diamond
+    marker.size: 5
     antialiasingEnabled: true
     antialiasingFeather: 1
 }
@@ -1215,11 +1215,13 @@ QAccelPlot.LineCurve {
 
 Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
 `QAccelPlot.NoLine`. `NoLine` with a marker shape gives a marker-only series.
+Marker settings are grouped under `marker`: `shape`, `size`, `filled`, and
+`strokeWidth`.
 A dash pattern lists alternating on/off lengths in pixels.
 
 ## Marker shapes
 
-`markerSize` is the marker radius in pixels. Every shape fits within a square
+`marker.size` is the marker radius in pixels. Every shape fits within a square
 of that half-width.
 
 | Group | `MarkerShape` values |
@@ -1228,22 +1230,22 @@ of that half-width.
 | Line shapes | `Cross` (+), `XCross` (×), `Asterisk`, `HLine`, `VLine` |
 | Single pixel | `Pixel` |
 
-Set `markerFilled: false` to draw filled shapes as outlines of
-`markerStrokeWidth` pixels. The outline lies inside the shape's edge, so hollow
+Set `marker.filled: false` to draw filled shapes as outlines of
+`marker.strokeWidth` pixels. The outline lies inside the shape's edge, so hollow
 and filled markers have the same size. Line shapes and `Pixel` ignore both
 properties.
 
 ```qml
 QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.NoLine {}
-    markerShape: QAccelPlot.LineCurve.Circle
-    markerSize: 4
-    markerFilled: false
-    markerStrokeWidth: 1
+    marker.shape: QAccelPlot.LineCurve.Circle
+    marker.size: 4
+    marker.filled: false
+    marker.strokeWidth: 1
 }
 ```
 
-`Pixel` draws each sample as one logical pixel and ignores `markerSize` and
+`Pixel` draws each sample as one logical pixel and ignores `marker.size` and
 anti-aliasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a `Pixel` marker within 3 px.
@@ -1446,23 +1448,23 @@ QAccelPlot.Plot {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "#8065b5ff"
-        markerShape: QAccelPlot.PointCloud.Circle
-        markerSize: 2
+        marker.shape: QAccelPlot.PointCloud.Circle
+        marker.size: 2
 
         Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])
     }
 }
 ```
 
-`markerSize` is the marker radius in pixels. Point clouds accept every
-`LineCurve` marker shape; see the [shape table](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#marker-shapes).
-`Pixel` ignores `markerSize` and draws one pixel per point, which suits very
-dense clouds.
+Marker settings are grouped under `marker`. `marker.size` is the marker radius
+in pixels. Point clouds accept every marker shape except `None`; see the
+[shape table](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#marker-shapes). `Pixel` ignores `marker.size` and
+draws one pixel per point, which suits very dense clouds.
 
-Set `markerFilled: false` to draw closed shapes as outlines of
-`markerStrokeWidth` pixels, exactly as on `LineCurve`. Hollow markers read well
-on dense clouds, where filled shapes merge into a solid mass. Line shapes and
-`Pixel` ignore both properties.
+Set `marker.filled: false` to draw closed shapes as outlines of
+`marker.strokeWidth` pixels. Hollow markers read well on dense clouds, where
+filled shapes merge into a solid mass. Line shapes and `Pixel` ignore both
+properties.
 
 Translucent colors make dense regions read as density, because overlapping
 markers blend. Points are drawn in data order, so put background points first

@@ -69,9 +69,12 @@ void PointCloudDataTest::defaults()
     QCOMPARE(cloud.count(), 0);
     QCOMPARE(cloud.hoveredIndex(), -1);
     QVERIFY(!cloud.hasValues());
-    QCOMPARE(cloud.markerShape(), PlotSeries::MarkerShape::Circle);
-    QVERIFY(cloud.markerFilled());
-    QCOMPARE(cloud.markerStrokeWidth(), 1.0);
+    QVERIFY(cloud.marker());
+    QCOMPARE(cloud.marker()->parent(), &cloud);
+    QCOMPARE(cloud.marker()->shape(), PlotSeries::MarkerShape::Circle);
+    QCOMPARE(cloud.marker()->size(), 3.0);
+    QVERIFY(cloud.marker()->filled());
+    QCOMPARE(cloud.marker()->strokeWidth(), 1.0);
     QVERIFY(cloud.colormap() == nullptr);
     QCOMPARE(cloud.legendSymbol(), PlotSeries::LegendSymbol::Marker);
     QCOMPARE(cloud.dataValueMin(), 0.0);
@@ -356,37 +359,38 @@ void PointCloudDataTest::pointIndexAtUsesLogarithmicMapping()
 void PointCloudDataTest::propertySettersClampAndNotify()
 {
     auto cloud = PointCloud{};
-    auto sizeSpy = QSignalSpy{&cloud, &PointCloud::markerSizeChanged};
+    auto* marker = cloud.marker();
+    auto sizeSpy = QSignalSpy{marker, &SeriesMarker::sizeChanged};
     auto featherSpy = QSignalSpy{&cloud, &PointCloud::antialiasingFeatherChanged};
-    auto shapeSpy = QSignalSpy{&cloud, &PointCloud::markerShapeChanged};
+    auto shapeSpy = QSignalSpy{marker, &SeriesMarker::shapeChanged};
 
-    cloud.setMarkerSize(-3.0);
-    QCOMPARE(cloud.markerSize(), 0.0);
-    cloud.setMarkerSize(0.0);
+    marker->setSize(-3.0);
+    QCOMPARE(marker->size(), 0.0);
+    marker->setSize(0.0);
     QCOMPARE(sizeSpy.count(), 1);
 
     cloud.setAntialiasingFeather(50.0);
     QCOMPARE(cloud.antialiasingFeather(), 10.0);
     QCOMPARE(featherSpy.count(), 1);
 
-    cloud.setMarkerShape(PlotSeries::MarkerShape::Cross);
-    cloud.setMarkerShape(PlotSeries::MarkerShape::Cross);
+    marker->setShape(PlotSeries::MarkerShape::Cross);
+    marker->setShape(PlotSeries::MarkerShape::Cross);
     QCOMPARE(shapeSpy.count(), 1);
 
     cloud.setHoverRadius(-1.0);
     QCOMPARE(cloud.hoverRadius(), 0.0);
 
-    auto filledSpy = QSignalSpy{&cloud, &PointCloud::markerFilledChanged};
-    cloud.setMarkerFilled(false);
-    cloud.setMarkerFilled(false);
-    QVERIFY(!cloud.markerFilled());
+    auto filledSpy = QSignalSpy{marker, &SeriesMarker::filledChanged};
+    marker->setFilled(false);
+    marker->setFilled(false);
+    QVERIFY(!marker->filled());
     QCOMPARE(filledSpy.count(), 1);
 
-    auto strokeSpy = QSignalSpy{&cloud, &PointCloud::markerStrokeWidthChanged};
-    cloud.setMarkerStrokeWidth(-2.0);
-    QCOMPARE(cloud.markerStrokeWidth(), 0.0);
-    cloud.setMarkerStrokeWidth(2.5);
-    QCOMPARE(cloud.markerStrokeWidth(), 2.5);
+    auto strokeSpy = QSignalSpy{marker, &SeriesMarker::strokeWidthChanged};
+    marker->setStrokeWidth(-2.0);
+    QCOMPARE(marker->strokeWidth(), 0.0);
+    marker->setStrokeWidth(2.5);
+    QCOMPARE(marker->strokeWidth(), 2.5);
     QCOMPARE(strokeSpy.count(), 2);
 }
 

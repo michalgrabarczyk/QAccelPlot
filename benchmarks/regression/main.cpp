@@ -270,7 +270,7 @@ private slots:
     {
         if (currentSeriesType_ == QAccelPlot::BenchmarkScenario::SeriesType::PointCloud) {
             auto* cloud = new QAccelPlot::PointCloud(plot_);
-            cloud->setMarkerSize(1.5);
+            cloud->marker()->setSize(1.5);
             return cloud;
         }
         return new QAccelPlot::LineCurve(plot_);

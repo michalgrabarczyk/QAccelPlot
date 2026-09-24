@@ -40,8 +40,8 @@ QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.DashLine {
         pattern: [14, 5, 3, 5]
     }
-    markerShape: QAccelPlot.LineCurve.Diamond
-    markerSize: 5
+    marker.shape: QAccelPlot.LineCurve.Diamond
+    marker.size: 5
     antialiasingEnabled: true
     antialiasingFeather: 1
 }
@@ -49,11 +49,13 @@ QAccelPlot.LineCurve {
 
 Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
 `QAccelPlot.NoLine`. `NoLine` with a marker shape gives a marker-only series.
+Marker settings are grouped under `marker`: `shape`, `size`, `filled`, and
+`strokeWidth`.
 A dash pattern lists alternating on/off lengths in pixels.
 
 ## Marker shapes
 
-`markerSize` is the marker radius in pixels. Every shape fits within a square
+`marker.size` is the marker radius in pixels. Every shape fits within a square
 of that half-width.
 
 | Group | `MarkerShape` values |
@@ -62,22 +64,22 @@ of that half-width.
 | Line shapes | `Cross` (+), `XCross` (×), `Asterisk`, `HLine`, `VLine` |
 | Single pixel | `Pixel` |
 
-Set `markerFilled: false` to draw filled shapes as outlines of
-`markerStrokeWidth` pixels. The outline lies inside the shape's edge, so hollow
+Set `marker.filled: false` to draw filled shapes as outlines of
+`marker.strokeWidth` pixels. The outline lies inside the shape's edge, so hollow
 and filled markers have the same size. Line shapes and `Pixel` ignore both
 properties.
 
 ```qml
 QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.NoLine {}
-    markerShape: QAccelPlot.LineCurve.Circle
-    markerSize: 4
-    markerFilled: false
-    markerStrokeWidth: 1
+    marker.shape: QAccelPlot.LineCurve.Circle
+    marker.size: 4
+    marker.filled: false
+    marker.strokeWidth: 1
 }
 ```
 
-`Pixel` draws each sample as one logical pixel and ignores `markerSize` and
+`Pixel` draws each sample as one logical pixel and ignores `marker.size` and
 anti-aliasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a `Pixel` marker within 3 px.

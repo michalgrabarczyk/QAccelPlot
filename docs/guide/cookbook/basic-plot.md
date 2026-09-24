@@ -58,8 +58,8 @@ QAccelPlot.Plot {
         color: "dodgerblue"
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
-        markerShape: QAccelPlot.LineCurve.Diamond
-        markerSize: 7
+        marker.shape: QAccelPlot.LineCurve.Diamond
+        marker.size: 7
     }
 }
 ```

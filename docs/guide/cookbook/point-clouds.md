@@ -33,23 +33,23 @@ QAccelPlot.Plot {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "#8065b5ff"
-        markerShape: QAccelPlot.PointCloud.Circle
-        markerSize: 2
+        marker.shape: QAccelPlot.PointCloud.Circle
+        marker.size: 2
 
         Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])
     }
 }
 ```
 
-`markerSize` is the marker radius in pixels. Point clouds accept every
-`LineCurve` marker shape; see the [shape table](styling.md#marker-shapes).
-`Pixel` ignores `markerSize` and draws one pixel per point, which suits very
-dense clouds.
+Marker settings are grouped under `marker`. `marker.size` is the marker radius
+in pixels. Point clouds accept every marker shape except `None`; see the
+[shape table](styling.md#marker-shapes). `Pixel` ignores `marker.size` and
+draws one pixel per point, which suits very dense clouds.
 
-Set `markerFilled: false` to draw closed shapes as outlines of
-`markerStrokeWidth` pixels, exactly as on `LineCurve`. Hollow markers read well
-on dense clouds, where filled shapes merge into a solid mass. Line shapes and
-`Pixel` ignore both properties.
+Set `marker.filled: false` to draw closed shapes as outlines of
+`marker.strokeWidth` pixels. Hollow markers read well on dense clouds, where
+filled shapes merge into a solid mass. Line shapes and `Pixel` ignore both
+properties.
 
 Translucent colors make dense regions read as density, because overlapping
 markers blend. Points are drawn in data order, so put background points first

@@ -45,6 +45,9 @@ add_qaccelplot_test(tst_colormap             core tst_colormap.cpp)
 # Instantiates Colormap from QML, so it needs the QML module plugin.
 target_link_libraries(tst_colormap PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_colormap)
+# Sets marker groups from QML and loads Legend.qml, so it needs the QML module plugin.
+target_link_libraries(tst_marker_shapes PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_marker_shapes)
 # Loads Legend.qml to check QML-side palette defaults, so it needs the QML module plugin.
 target_link_libraries(tst_color_palette PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_color_palette)

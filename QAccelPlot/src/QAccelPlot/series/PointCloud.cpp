@@ -168,6 +168,9 @@ PointCloud::PointCloud(QQuickItem* parent)
         updateDataRanges();
         spatialIndexValid_ = false;
     });
+    for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
+        connect(marker_, signal, this, &QQuickItem::update);
+    }
 }
 
 QColor PointCloud::color() const
@@ -185,71 +188,9 @@ void PointCloud::setColor(const QColor& color)
     update();
 }
 
-PointCloud::MarkerShape PointCloud::markerShape() const
+SeriesMarker* PointCloud::marker() const
 {
-    return markerShape_;
-}
-
-void PointCloud::setMarkerShape(const MarkerShape shape)
-{
-    if (shape == MarkerShape::None) {
-        // A cloud always draws its points; there is no "no markers" state to fall back to.
-        qCWarning(lcQAccelPlot) << "PointCloud.markerShape does not accept None; keeping" << static_cast<int>(markerShape_);
-        return;
-    }
-    if (markerShape_ == shape) {
-        return;
-    }
-    markerShape_ = shape;
-    emit markerShapeChanged();
-    update();
-}
-
-qreal PointCloud::markerSize() const
-{
-    return markerSize_;
-}
-
-void PointCloud::setMarkerSize(const qreal size)
-{
-    const auto clamped = std::max(size, qreal{0.0});
-    if (nearly_equal(markerSize_, clamped)) {
-        return;
-    }
-    markerSize_ = clamped;
-    emit markerSizeChanged();
-    update();
-}
-
-bool PointCloud::markerFilled() const
-{
-    return markerFilled_;
-}
-
-void PointCloud::setMarkerFilled(const bool filled)
-{
-    if (markerFilled_ == filled) {
-        return;
-    }
-    markerFilled_ = filled;
-    emit markerFilledChanged();
-    update();
-}
-
-qreal PointCloud::markerStrokeWidth() const
-{
-    return markerStrokeWidth_;
-}
-
-void PointCloud::setMarkerStrokeWidth(const qreal width)
-{
-    const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(markerStrokeWidth_, clamped)) {
-        return;
-    }
-    markerStrokeWidth_ = clamped;
-    emit markerStrokeWidthChanged();
-    update();
+    return marker_;
 }
 
 Colormap* PointCloud::colormap() const
@@ -269,7 +210,6 @@ void PointCloud::setColormap(Colormap* colormap)
     emit colormapChanged();
     update();
 }
-
 
 bool PointCloud::antialiasingEnabled() const
 {
@@ -594,24 +534,22 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     material->color = color_;
     // data_ is origin-relative, so the domain must be shifted by the same origin. Both are zero
     // for float data and for logarithmic dimensions, which are never shifted.
-    material->domainMin
-        = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
-    material->domainMax
-        = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
+    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
     material->viewportSize = QVector2D(static_cast<float>(plotArea.width()), static_cast<float>(plotArea.height()));
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material->useVertexColor = useValueColor ? 1.0f : 0.0f;
     material->valueLogScale = useValueColor && colormap_->norm() == Colormap::Normalization::Log ? 1.0f : 0.0f;
-    material->markerSize = static_cast<float>(markerSize_);
-    material->markerFilled = markerFilled_ ? 1.0f : 0.0f;
-    material->markerStrokeWidth = static_cast<float>(markerStrokeWidth_);
+    material->markerSize = static_cast<float>(marker_->size());
+    material->markerFilled = marker_->filled() ? 1.0f : 0.0f;
+    material->markerStrokeWidth = static_cast<float>(marker_->strokeWidth());
     material->antialiasingEnabled = antialiasingEnabled_ ? 1.0f : 0.0f;
     material->antialiasingFeather = static_cast<float>(antialiasingFeather_);
     material->valueMin = static_cast<float>(dataValueMin_);
     material->valueMax = static_cast<float>(dataValueMax_);
     material->stride = static_cast<float>(stride());
-    material->shapeType = static_cast<int>(markerShape_) - 1;
+    material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 
     return node;
