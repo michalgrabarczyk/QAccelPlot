@@ -22,10 +22,7 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
@@ -57,9 +54,9 @@ Window {
                 dataMax: 24
                 label: "Time of day (h)"
                 labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
+                labelFont.pixelSize: 13
                 ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
+                ticker.tickLabelFont.pixelSize: 12
                 ticker.tickCount: 7
             }
 
@@ -72,9 +69,9 @@ Window {
                 layoutSize: 60
                 label: "Temperature (°C)"
                 labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
+                labelFont.pixelSize: 13
                 ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
+                ticker.tickLabelFont.pixelSize: 12
             }
 
             QAccelPlot.LineCurve {

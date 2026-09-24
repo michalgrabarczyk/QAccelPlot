@@ -13,7 +13,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property int formatIndex: 0
     readonly property var formats: ["hh:mm:ss", "mm:ss", "hh:mm:ss.zzz"]
     readonly property real traceStart: new Date(2026, 8, 10, 9, 30, 0, 0).getTime()
@@ -50,8 +49,6 @@ Item {
                 currentIndex: root.formatIndex
                 Layout.preferredWidth: 190
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onActivated: root.formatIndex = currentIndex
             }
         }
@@ -63,23 +60,19 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: root.traceStart
                 viewportMax: root.traceEnd
                 dataMin: root.traceStart
                 dataMax: root.traceEnd
                 label: "Trace time"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
                 ticker.tickCount: 6
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
                 ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
                     dateTimeFormat: root.formats[root.formatIndex]
                 }
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 95
                 dataMin: 20
@@ -87,10 +80,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Response time (ms)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
             QAccelPlot.LineCurve {

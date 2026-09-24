@@ -8,9 +8,8 @@
 #include "ExampleUtils.hpp"
 #include "PointCloudGenerators.hpp"
 #include "PointCloudStreamer.hpp"
-#include <QAccelPlot/series/PointCloud.hpp>
 
-using namespace QAccelPlot;
+#include <QAccelPlot/series/PointCloud.hpp>
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -24,6 +23,8 @@ using namespace QAccelPlot;
 #include <cstdlib>
 #include <memory>
 #include <utility>
+
+using namespace QAccelPlot;
 
 namespace {
 

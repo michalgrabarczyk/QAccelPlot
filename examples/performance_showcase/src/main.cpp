@@ -12,10 +12,7 @@
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/shapes/RectangleList.hpp>
 
-using namespace QAccelPlot;
-
 #include <QCoreApplication>
-#include <QDebug>
 #include <QElapsedTimer>
 #include <QGuiApplication>
 #include <QLocale>
@@ -23,19 +20,22 @@ using namespace QAccelPlot;
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
 #include <QTimer>
+
 #include <atomic>
 #include <chrono>
 #include <cstdint>
 #include <memory>
 #include <utility>
 
+using namespace QAccelPlot;
+
 namespace {
 
 struct FrameMetrics {
-    std::atomic<int> presentedFrames { 0 };
-    std::atomic<qint64> accumulatedIntervalNanoseconds { 0 };
-    std::atomic<int> intervalSamples { 0 };
-    std::atomic<qint64> previousSwapNanoseconds { 0 };
+    std::atomic<int> presentedFrames{0};
+    std::atomic<qint64> accumulatedIntervalNanoseconds{0};
+    std::atomic<int> intervalSamples{0};
+    std::atomic<qint64> previousSwapNanoseconds{0};
 };
 
 std::int64_t steadyNanoseconds()
@@ -52,9 +52,7 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
     }
 
     QObject::connect(
-        window,
-        &QQuickWindow::frameSwapped,
-        &app,
+        window, &QQuickWindow::frameSwapped, &app,
         [metrics]() {
             const auto nowNanoseconds = steadyNanoseconds();
             const auto previousNanoseconds = metrics->previousSwapNanoseconds.exchange(nowNanoseconds, std::memory_order_relaxed);
@@ -83,23 +81,20 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
         const auto dataUpdateRate = qRound(deliverySnapshot.appliedBatches / elapsedSeconds);
         const auto longestDataGapMs = deliverySnapshot.longestDataGapNanoseconds / 1'000'000.0;
         root->setProperty("fps", displayFps);
-        root->setProperty(
-            "averageFrameTimeMs", intervalSamples > 0 ? accumulatedNanoseconds / (intervalSamples * 1'000'000.0) : 0.0);
+        root->setProperty("averageFrameTimeMs", intervalSamples > 0 ? accumulatedNanoseconds / (intervalSamples * 1'000'000.0) : 0.0);
         root->setProperty("updateRate", dataUpdateRate);
         root->setProperty("longestDataGapMs", longestDataGapMs);
     });
     reportTimer->start();
 }
 
-void setupCurveUpdates(
-    QGuiApplication& app, QQuickWindow* window, QObject* root, LineCurve* curve, RectangleList* rectangleList, DataGenerationWorker& generator,
-    const std::shared_ptr<QAccelPlotExample::DataDeliveryMetrics>& deliveryMetrics, const bool screenshotMode)
+void setupCurveUpdates(QGuiApplication& app, QQuickWindow* window, QObject* root, LineCurve* curve, RectangleList* rectangleList,
+    DataGenerationWorker& generator, const std::shared_ptr<QAccelPlotExample::DataDeliveryMetrics>& deliveryMetrics, const bool screenshotMode)
 {
     auto elapsedTimer = std::make_shared<QElapsedTimer>();
     elapsedTimer->start();
 
-    QObject::connect(window, &QQuickWindow::afterAnimating, &app,
-        [root, curve, rectangleList, &generator, deliveryMetrics, elapsedTimer, screenshotMode]() {
+    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, curve, rectangleList, &generator, deliveryMetrics, elapsedTimer, screenshotMode]() {
         const auto rectanglesVisible = root->property("rectanglesVisible").toBool();
         generator.setRectangleTestMode(rectanglesVisible);
         const auto phase = screenshotMode ? 0.0 : elapsedTimer->elapsed() * 0.0012;
@@ -129,7 +124,6 @@ void setupCurveUpdates(
 
 int main(int argc, char* argv[])
 {
-    qDebug() << "Application Started";
     QLocale::setDefault(QLocale::English);
     QAccelPlotExample::configureGraphicsApi();
 
@@ -139,7 +133,7 @@ int main(int argc, char* argv[])
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
     const auto screenshotMode = app.arguments().contains(QStringLiteral("--screenshot"));
-    const auto initialProperties = QVariantMap{ { QStringLiteral("metricsEnabled"), !screenshotMode } };
+    const auto initialProperties = QVariantMap{{QStringLiteral("metricsEnabled"), !screenshotMode}};
     engine.setInitialProperties(initialProperties);
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
     auto* root = engine.rootObjects().value(0);

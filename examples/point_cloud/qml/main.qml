@@ -29,10 +29,7 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     Gradient {
         id: distanceColorMap
@@ -59,18 +56,6 @@ Window {
         }
     }
 
-    component StyledAxis: QAccelPlot.Axis {
-        baselineColor: window.colorPalette.axisLine
-        baselineWidth: 2
-        labelColor: window.colorPalette.axisLabel
-        labelFont: typography.axisLabel
-        hoverColor: window.colorPalette.hover
-        ticker.tickColor: window.colorPalette.tick
-        ticker.tickLabelColor: window.colorPalette.axisTickLabel
-        ticker.tickLabelFont: typography.axisTickLabel
-        ticker.subtickColor: window.colorPalette.subtick
-    }
-
     component StyledPlot: QAccelPlot.Plot {
         plotAreaColor: window.colorPalette.plotArea
         axesAreaColor: window.colorPalette.axesArea
@@ -91,19 +76,9 @@ Window {
         anchors.margins: 12
         spacing: 6
 
-        Label {
-            text: "Point clouds"
-            color: colorPalette.text
-            font.bold: true
-            font.pixelSize: 16
-        }
-
-        Label {
-            text: "Unconnected scatter data rendered as GPU markers: value-colored clusters, every marker shape, and log-log axes that skip invalid samples. Hover a point on the left plot; pan and zoom any plot."
-            color: colorPalette.textSecondary
-            font.pixelSize: 12
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Point clouds"
+            description: "Unconnected scatter data rendered as GPU markers: value-colored clusters, every marker shape, and log-log axes that skip invalid samples. Hover a point on the left plot; pan and zoom any plot."
         }
 
         RowLayout {
@@ -120,7 +95,6 @@ Window {
                 currentIndex: 1
                 Layout.preferredWidth: 140
                 Material.background: colorPalette.plotArea
-                Material.foreground: colorPalette.text
             }
             Label {
                 text: "Marker radius " + markerSizeSlider.value.toFixed(1) + " px"
@@ -133,18 +107,15 @@ Window {
                 stepSize: 0.5
                 value: 1.5
                 Layout.preferredWidth: 160
-                Material.foreground: colorPalette.text
             }
             Switch {
                 id: antialiasingSwitch
                 text: "Antialiasing"
                 checked: true
-                Material.foreground: colorPalette.text
             }
             Switch {
                 text: "Animate"
                 checked: window.animate
-                Material.foreground: colorPalette.text
                 onToggled: window.animate = checked
             }
             Item {
@@ -179,7 +150,7 @@ Window {
                         border.color: colorPalette.legendBorder
                     }
 
-                    xAxis: StyledAxis {
+                    xAxis: ExampleAxis {
                         viewportMin: -10
                         viewportMax: 10
                         dataMin: -10
@@ -187,7 +158,7 @@ Window {
                         label: "East offset (m)"
                     }
 
-                    yAxis: StyledAxis {
+                    yAxis: ExampleAxis {
                         viewportMin: -8
                         viewportMax: 8
                         dataMin: -8
@@ -342,7 +313,7 @@ Window {
                         border.color: colorPalette.legendBorder
                     }
 
-                    xAxis: StyledAxis {
+                    xAxis: ExampleAxis {
                         // Leaves the right side free for the legend.
                         viewportMin: 0
                         viewportMax: 16
@@ -351,7 +322,7 @@ Window {
                         label: "Sample"
                     }
 
-                    yAxis: StyledAxis {
+                    yAxis: ExampleAxis {
                         viewportMin: 0
                         viewportMax: 7
                         dataMin: 0
@@ -398,7 +369,7 @@ Window {
                     Layout.fillHeight: true
                     legendVisible: false
 
-                    xAxis: StyledAxis {
+                    xAxis: ExampleAxis {
                         viewportMin: 1
                         viewportMax: 10000
                         dataMin: 1
@@ -407,7 +378,7 @@ Window {
                         label: "Event energy (keV)"
                     }
 
-                    yAxis: StyledAxis {
+                    yAxis: ExampleAxis {
                         viewportMin: 1
                         viewportMax: 10000
                         dataMin: 1

@@ -23,99 +23,48 @@ Window {
     color: colorPalette.window
     Material.theme: isDark ? Material.Dark : Material.Light
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
-        spacing: 10
+        spacing: 8
 
-        RowLayout {
-            Layout.fillWidth: true
-
-            ColumnLayout {
-                spacing: 1
-
-                Label {
-                    text: "Styling and transitions"
-                    color: colorPalette.text
-                    font.bold: true
-                    font.pixelSize: 20
-                }
-
-                Label {
-                    text: "Explore curve styling, data-driven fills and gradients, and animated data transitions."
-                    color: colorPalette.textSecondary
-                }
-            }
-
-            Item {
-                Layout.fillWidth: true
-            }
+        ExampleHeader {
+            title: "Styling and transitions"
+            description: "Explore curve styling, data-driven fills and gradients, and animated data transitions."
+            colorPalette: window.colorPalette
 
             Switch {
                 text: "Dark theme"
                 checked: window.isDark
-                Material.foreground: colorPalette.text
-                Material.accent: colorPalette.materialAccent
                 onToggled: window.isDark = checked
             }
         }
 
-        TabBar {
-            id: tabBar
-            objectName: "examplePages"
-            Layout.fillWidth: true
-
-            TabButton {
-                objectName: "styling"
-                text: "Styling"
-            }
-            TabButton {
-                objectName: "fillsGradients"
-                text: "Fills and Gradients"
-            }
-            TabButton {
-                objectName: "transitions"
-                text: "Transitions"
-            }
-            TabButton {
-                objectName: "gaps"
-                text: "Gaps"
-            }
-            TabButton {
-                objectName: "markers"
-                text: "Markers"
-            }
-        }
-
-        StackLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            currentIndex: tabBar.currentIndex
+        ExamplePages {
+            tabs: [
+                { name: "styling", title: "Styling" },
+                { name: "fillsGradients", title: "Fills and Gradients" },
+                { name: "transitions", title: "Transitions" },
+                { name: "gaps", title: "Gaps" },
+                { name: "markers", title: "Markers" }
+            ]
 
             StylingPage {
                 palette: colorPalette
-                typography: typography
             }
             FillsGradientsPage {
                 palette: colorPalette
-                typography: typography
             }
             TransitionsPage {
                 palette: colorPalette
-                typography: typography
             }
             GapsPage {
                 palette: colorPalette
-                typography: typography
             }
             MarkersPage {
                 palette: colorPalette
-                typography: typography
             }
         }
     }

@@ -12,7 +12,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property bool synchronizingScales: false
 
     function synchronizeFrequencyFromWavelength() {
@@ -60,7 +59,7 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 id: wavelengthAxis
                 viewportMin: 400
                 viewportMax: 700
@@ -69,14 +68,10 @@ Item {
                 label: "Wavelength (nm)"
                 baselineColor: root.palette.seriesPrimary
                 baselineWidth: 2
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
                 ticker.tickColor: root.palette.seriesPrimary
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1.1
                 dataMin: 0
@@ -85,14 +80,10 @@ Item {
                 layoutSize: 60
                 label: "Relative intensity"
                 baselineWidth: 2
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
             extraAxes: [
-                QAccelPlot.Axis {
+                ExampleAxis {
                     id: frequencyAxis
                     // Keep wavelength as the coordinate domain so each frequency
                     // label is placed at the physically corresponding wavelength.
@@ -105,11 +96,7 @@ Item {
                     label: "Frequency (THz)"
                     baselineColor: root.palette.seriesCyan
                     baselineWidth: 2
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
                     ticker.tickColor: root.palette.seriesCyan
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
                     ticker.tickCount: 6
                     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
                         tickLabel: function (wavelength) {

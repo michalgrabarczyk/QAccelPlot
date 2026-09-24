@@ -6,7 +6,6 @@
 # See COMMERCIAL-LICENSING.md for contact information.
 #
 add_library(QAccelPlotExampleCommon STATIC
-    src/SampleDataGenerators.cpp
     src/ExampleUtils.cpp
 )
 

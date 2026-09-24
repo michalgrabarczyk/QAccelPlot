@@ -26,10 +26,7 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     function addTool(component, properties) {
         const tool = component.createObject(toolLayer, properties);
@@ -128,17 +125,9 @@ Window {
         anchors.margins: 12
         spacing: 8
 
-        Label {
-            text: "Terrain cross-section measurements"
-            color: colorPalette.text
-            font.bold: true
-            font.pixelSize: 18
-        }
-
-        Label {
-            text: "Drag a measurement or its handles. All axes use metres, so angle values are measured in data space."
-            color: colorPalette.textSecondary
-            font.pixelSize: 12
+        ExampleHeader {
+            title: "Terrain cross-section measurements"
+            description: "Drag a measurement or its handles. All axes use meters, so angle values are measured in data space."
         }
 
         RowLayout {
@@ -229,20 +218,16 @@ Window {
                 }
             }
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1000
                 dataMin: 0
                 dataMax: 1000
                 label: "Distance (m)"
                 baselineWidth: 2
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 80
                 dataMin: 0
@@ -251,10 +236,6 @@ Window {
                 layoutSize: 60
                 label: "Elevation (m)"
                 baselineWidth: 2
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
             }
 
             onMousePressed: event => {

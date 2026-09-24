@@ -31,10 +31,7 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     FrameDriver {
         running: true
@@ -58,18 +55,9 @@ Window {
             Layout.fillHeight: true
             spacing: 10
 
-            Label {
-                text: window.pointCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live points"
-                color: colorPalette.text
-                font.bold: true
-                font.pixelSize: 20
-            }
-
-            Label {
-                text: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new curve datasets are applied to the plot each second."
-                color: colorPalette.textSecondary
-                wrapMode: Text.WordWrap
-                Layout.fillWidth: true
+            ExampleHeader {
+                title: window.pointCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live points"
+                description: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new curve datasets are applied to the plot each second."
             }
 
             GridLayout {
@@ -146,19 +134,15 @@ Window {
                 Layout.fillHeight: true
                 legendVisible: false
 
-                xAxis: QAccelPlot.Axis {
+                xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 1000
                     dataMin: 0
                     dataMax: 1000
                     label: "Sample domain"
-                    labelColor: colorPalette.axisLabel
-                    labelFont: typography.axisLabel
-                    ticker.tickLabelColor: colorPalette.axisTickLabel
-                    ticker.tickLabelFont: typography.axisTickLabel
                 }
 
-                yAxis: QAccelPlot.Axis {
+                yAxis: ExampleAxis {
                     viewportMin: -10
                     viewportMax: 10
                     dataMin: -10
@@ -166,10 +150,6 @@ Window {
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Amplitude"
-                    labelColor: colorPalette.axisLabel
-                    labelFont: typography.axisLabel
-                    ticker.tickLabelColor: colorPalette.axisTickLabel
-                    ticker.tickLabelFont: typography.axisTickLabel
                 }
 
                 QAccelPlot.RectangleList {

@@ -14,7 +14,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property real markerSize: 8
     property real markerStrokeWidth: 1.5
     property bool antialiasingEnabled: true
@@ -106,8 +105,6 @@ Item {
                 stepSize: 1
                 value: root.markerSize
                 Layout.preferredWidth: 120
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onMoved: root.markerSize = value
             }
             Label {
@@ -128,15 +125,11 @@ Item {
                 stepSize: 0.5
                 value: root.markerStrokeWidth
                 Layout.preferredWidth: 120
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onMoved: root.markerStrokeWidth = value
             }
             Switch {
                 text: "Antialiasing"
                 checked: root.antialiasingEnabled
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onToggled: root.antialiasingEnabled = checked
             }
             Item {
@@ -164,23 +157,17 @@ Item {
                     border.color: root.palette.legendBorder
                 }
 
-                xAxis: QAccelPlot.Axis {
+                xAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -8
                     viewportMax: 8
                     dataMin: -8
                     dataMax: 8
                     label: "X"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
-                yAxis: QAccelPlot.Axis {
+                yAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -5
                     viewportMax: 5
                     dataMin: -5
@@ -188,14 +175,6 @@ Item {
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Y"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
                 QAccelPlot.LineCurve {
@@ -233,7 +212,8 @@ Item {
                 grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
-                xAxis: QAccelPlot.Axis {
+                xAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -0.6
                     viewportMax: root.shapes.length - 0.4
                     dataMin: -0.6
@@ -241,37 +221,26 @@ Item {
                     layoutSize: 118
                     axisTitlePadding: 100
                     label: "Shape"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
                     // One tick per shape: range / tickCount must stay at or below 1.
                     ticker.tickCount: root.shapes.length + 1
                     ticker.subtickCount: 0
                     ticker.tickLabelRotation: -40
                     ticker.tickLabelPadding: 25
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
                     ticker.tickLabelFont: root.galleryTickLabelFont
                     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
                         labels: root.shapeLabels
                     }
                 }
 
-                yAxis: QAccelPlot.Axis {
+                yAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -0.6
                     viewportMax: 1.6
                     dataMin: -0.6
                     dataMax: 1.6
                     layoutSize: 70
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
                     ticker.tickCount: 3
                     ticker.subtickCount: 0
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
                     ticker.tickLabelFont: root.galleryTickLabelFont
                     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
                         labels: ["Hollow", "Filled"]

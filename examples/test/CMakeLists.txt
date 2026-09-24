@@ -28,15 +28,6 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
 )
 
-add_qaccelplot_standalone_test(tst_sample_data_generators
-    examples
-    tst_sample_data_generators.cpp
-    "${CMAKE_SOURCE_DIR}/examples/common/src/SampleDataGenerators.cpp"
-)
-target_include_directories(tst_sample_data_generators PRIVATE
-    "${CMAKE_SOURCE_DIR}/examples/common/include"
-)
-
 # ── Visual acceptance (smoke + optional AI inspection) ────────────────────────
 if(QACCELPLOT_BUILD_VISUAL_TESTS)
     # Scenario names and contracts are described in cmake/QAccelPlotTestHelpers.cmake.
