@@ -14,7 +14,6 @@
 #include "QAccelPlot/grid/GridNode.hpp"
 
 #include <QCoreApplication>
-#include <QCursor>
 #include <QHoverEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>
@@ -340,6 +339,7 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
 
 void QAccelPlot::mousePressEvent(QMouseEvent* event)
 {
+    pointerPos_ = event->position();
     mousePressEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mousePressed(&mousePressEvent_);
     if (mousePressEvent_.isAccepted()) {
@@ -355,8 +355,15 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     }
 }
 
+void QAccelPlot::hoverEnterEvent(QHoverEvent* event)
+{
+    pointerPos_ = event->position();
+    QQuickItem::hoverEnterEvent(event);
+}
+
 void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 {
+    pointerPos_ = event->position();
     if (isDragging_) {
         QQuickItem::hoverMoveEvent(event);
         return;
@@ -372,8 +379,15 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
     QQuickItem::hoverMoveEvent(event);
 }
 
+void QAccelPlot::hoverLeaveEvent(QHoverEvent* event)
+{
+    pointerPos_.reset();
+    QQuickItem::hoverLeaveEvent(event);
+}
+
 void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 {
+    pointerPos_ = event->position();
     mouseMoveEvent_.reset(static_cast<int>(event->buttons()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
@@ -441,16 +455,19 @@ void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 
 void QAccelPlot::keyPressEvent(QKeyEvent* event)
 {
-    const auto mousePos = mapFromGlobal(QPointF(QCursor::pos()));
+    if (!pointerPos_) {
+        QQuickItem::keyPressEvent(event);
+        return;
+    }
 
     for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
-        if (tryForwardKeyEventToAxis(axis, mousePos, event) && event->isAccepted()) {
+        if (tryForwardKeyEventToAxis(axis, *pointerPos_, event) && event->isAccepted()) {
             return;
         }
     }
 
     for (Axis* axis : extraAxes_) {
-        if (tryForwardKeyEventToAxis(axis, mousePos, event) && event->isAccepted()) {
+        if (tryForwardKeyEventToAxis(axis, *pointerPos_, event) && event->isAccepted()) {
             return;
         }
     }
