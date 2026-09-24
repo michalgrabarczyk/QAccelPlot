@@ -190,6 +190,11 @@ LineCurve::LineCurve(QQuickItem* parent)
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(hoverEnabled());
     connect(gaps_, &LineCurveGaps::nanModeChanged, this, &LineCurve::onNanGapModeChanged);
+    connect(marker_, &SeriesMarker::shapeChanged, this, &LineCurve::onMarkerShapeChanged);
+    // Size, fill, and outline width are material uniforms, so they need no vertex rebuild.
+    connect(marker_, &SeriesMarker::sizeChanged, this, &QQuickItem::update);
+    connect(marker_, &SeriesMarker::filledChanged, this, &QQuickItem::update);
+    connect(marker_, &SeriesMarker::strokeWidthChanged, this, &QQuickItem::update);
 }
 
 QColor LineCurve::color() const
@@ -273,69 +278,6 @@ void LineCurve::setLineStyle(LineStyle* style)
     update();
 }
 
-LineCurve::MarkerShape LineCurve::markerShape() const
-{
-    return markerShape_;
-}
-
-void LineCurve::setMarkerShape(MarkerShape shape)
-{
-    if (markerShape_ == shape) {
-        return;
-    }
-    markerShape_ = shape;
-    styleChanged_ = true;
-    emit markerShapeChanged();
-    invalidateVertices();
-    update();
-}
-
-qreal LineCurve::markerSize() const
-{
-    return markerSize_;
-}
-
-void LineCurve::setMarkerSize(qreal r)
-{
-    if (nearly_equal(markerSize_, r)) {
-        return;
-    }
-    markerSize_ = r;
-    emit markerSizeChanged();
-    // markerSize is a material uniform — no vertex rebuild needed.
-    update();
-}
-
-bool LineCurve::markerFilled() const
-{
-    return markerFilled_;
-}
-
-void LineCurve::setMarkerFilled(const bool filled)
-{
-    if (markerFilled_ == filled) {
-        return;
-    }
-    markerFilled_ = filled;
-    emit markerFilledChanged();
-    update();
-}
-
-qreal LineCurve::markerStrokeWidth() const
-{
-    return markerStrokeWidth_;
-}
-
-void LineCurve::setMarkerStrokeWidth(const qreal width)
-{
-    if (nearly_equal(markerStrokeWidth_, width)) {
-        return;
-    }
-    markerStrokeWidth_ = width;
-    emit markerStrokeWidthChanged();
-    update();
-}
-
 bool LineCurve::antialiasingEnabled() const
 {
     return antialiasingEnabled_;
@@ -377,6 +319,11 @@ QQmlListProperty<LineCurveEffect> LineCurve::effects()
 LineCurveGaps* LineCurve::gaps() const
 {
     return gaps_;
+}
+
+SeriesMarker* LineCurve::marker() const
+{
+    return marker_;
 }
 
 void LineCurve::appendData(const qreal x, const qreal y)
@@ -611,7 +558,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != MarkerShape::None;
+    const auto hasPoints = marker_->shape() != MarkerShape::None;
     if (!hasLine && !hasPoints) {
         delete oldNode;
         return nullptr;
@@ -709,10 +656,10 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     if (hasPoints) {
-        const auto shapeType = static_cast<int>(markerShape_) - 1;
-        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged_, color_, hovered_, markerSize_, domainMin,
-            domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
-            hasLine ? nullptr : cache, shapeType, markerStrokeWidth_, markerFilled_};
+        const auto shapeType = static_cast<int>(marker_->shape()) - 1;
+        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged_, color_, hovered_, marker_->size(),
+            domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
+            hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
     }
 
@@ -788,10 +735,10 @@ bool LineCurve::contains(const QPointF& point) const
     const auto logX = logScaleX();
     const auto logY = logScaleY();
 
-    if (markerShape_ != MarkerShape::None) {
-        // Pixel markers ignore markerSize, so hover them within a small fixed radius.
+    if (marker_->shape() != MarkerShape::None) {
+        // Pixel markers ignore the marker size, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
-        const auto hitRadius = markerShape_ == MarkerShape::Pixel ? kPixelMarkerHitRadiusPx : markerSize_;
+        const auto hitRadius = marker_->shape() == MarkerShape::Pixel ? kPixelMarkerHitRadiusPx : marker_->size();
         return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
     }
 
@@ -841,6 +788,13 @@ void LineCurve::onNanGapModeChanged()
     rebuildGapConnectData();
     invalidateData();
     refreshVertexCacheForDataChange();
+    update();
+}
+
+void LineCurve::onMarkerShapeChanged()
+{
+    styleChanged_ = true;
+    invalidateVertices();
     update();
 }
 
@@ -1165,7 +1119,7 @@ void LineCurve::refreshVertexCacheForDataChange()
     const auto hasFillGradient = resolveGradientFillPayload().isValid();
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != MarkerShape::None;
+    const auto hasPoints = marker_->shape() != MarkerShape::None;
 
     if (hasGradient || hasFillGradient || isDash || (hasLine && hasPoints)) {
         vertexCache_.invalidate();
@@ -1188,7 +1142,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
         return 0;
     }
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
-    const auto hasPoints = markerShape_ != MarkerShape::None;
+    const auto hasPoints = marker_->shape() != MarkerShape::None;
     const auto isDash = hasLine && lineStyle_->dashParameters().enabled;
     const auto hasGradient = resolveGradientColorPayload().isValid() || resolveGradientFillPayload().isValid();
     if (hasGradient || isDash || (hasLine && hasPoints)) {
@@ -1236,7 +1190,7 @@ void LineCurve::rebuildVertexCache()
     if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, renderPointCount(),
             [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
-    } else if (markerShape_ != MarkerShape::None && renderPointCount() >= 1) {
+    } else if (marker_->shape() != MarkerShape::None && renderPointCount() >= 1) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, renderPointCount(),
             [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
     } else {

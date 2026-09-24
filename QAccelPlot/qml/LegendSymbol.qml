@@ -19,14 +19,16 @@ Item {
     readonly property color curveColor: sourceSeries.color !== undefined ? sourceSeries.color : "#808080"
     readonly property var curveLineStyle: sourceSeries.lineStyle !== undefined ? sourceSeries.lineStyle : null
     readonly property bool showLine: !isMarkerSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
-    readonly property int curveMarker: sourceSeries.markerShape !== undefined ? sourceSeries.markerShape : LineCurve.None
+    // Series without markers, such as RectangleList, have no marker group.
+    readonly property var curveMarkerGroup: sourceSeries.marker !== undefined ? sourceSeries.marker : null
+    readonly property int curveMarker: curveMarkerGroup ? curveMarkerGroup.shape : LineCurve.None
     // Marker-only series such as dense point clouds often use tiny markers; keep their swatch legible.
     readonly property real curveMarkerSize: {
-        const size = sourceSeries.markerSize !== undefined ? Math.max(0, sourceSeries.markerSize) : 0;
+        const size = curveMarkerGroup ? curveMarkerGroup.size : 0;
         return isMarkerSymbol ? Math.min(Math.max(size, 3.5), 7) : size;
     }
-    readonly property bool curveMarkerFilled: sourceSeries.markerFilled !== undefined ? sourceSeries.markerFilled : true
-    readonly property real curveMarkerStrokeWidth: sourceSeries.markerStrokeWidth !== undefined ? Math.max(0, sourceSeries.markerStrokeWidth) : 1
+    readonly property bool curveMarkerFilled: curveMarkerGroup ? curveMarkerGroup.filled : true
+    readonly property real curveMarkerStrokeWidth: curveMarkerGroup ? curveMarkerGroup.strokeWidth : 1
     readonly property real curveLineWidth: sourceSeries.lineWidth !== undefined ? Math.max(0, sourceSeries.lineWidth) : 1
     readonly property bool curveAntialiasingEnabled: sourceSeries.antialiasingEnabled !== undefined ? sourceSeries.antialiasingEnabled : true
     readonly property real curveAntialiasingFeather: sourceSeries.antialiasingFeather !== undefined ? sourceSeries.antialiasingFeather : 1
@@ -88,7 +90,6 @@ Item {
         color: root.curveColor
         lineWidth: root.curveLineWidth
         lineStyle: root.curveLineStyle || defaultLineStyle
-        markerShape: LineCurve.None
         antialiasingEnabled: root.curveAntialiasingEnabled
         antialiasingFeather: root.curveAntialiasingFeather
 
@@ -105,10 +106,10 @@ Item {
         yAxis: sampleYAxis
         color: root.curveColor
         lineStyle: markerOnlyStyle
-        markerShape: root.sampleMarker
-        markerSize: root.sampleMarkerSize
-        markerFilled: root.curveMarkerFilled
-        markerStrokeWidth: root.curveMarkerStrokeWidth
+        marker.shape: root.sampleMarker
+        marker.size: root.sampleMarkerSize
+        marker.filled: root.curveMarkerFilled
+        marker.strokeWidth: root.curveMarkerStrokeWidth
         antialiasingEnabled: root.curveAntialiasingEnabled
         antialiasingFeather: root.curveAntialiasingFeather
 

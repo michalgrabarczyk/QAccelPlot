@@ -12,11 +12,14 @@
 
 #include <QGuiApplication>
 #include <QImage>
+#include <QQmlComponent>
+#include <QQmlEngine>
 #include <QQuickWindow>
-#include <QSGRendererInterface>
 #include <QRegularExpression>
+#include <QSGRendererInterface>
 #include <QtTest/QtTest>
 
+#include <memory>
 #include <vector>
 
 namespace QAccelPlot {
@@ -65,10 +68,10 @@ RenderResult renderMarker(const MarkerStyle& style)
     curve.setYAxis(&yAxis);
     curve.setLineStyle(new NoLine{&curve});
     curve.setColor(Qt::white);
-    curve.setMarkerShape(style.shape);
-    curve.setMarkerSize(style.size);
-    curve.setMarkerFilled(style.filled);
-    curve.setMarkerStrokeWidth(style.strokeWidth);
+    curve.marker()->setShape(style.shape);
+    curve.marker()->setSize(style.size);
+    curve.marker()->setFilled(style.filled);
+    curve.marker()->setStrokeWidth(style.strokeWidth);
     // Hard edges make every sampled pixel either fully inside or fully outside.
     curve.setAntialiasingEnabled(false);
     curve.setData(std::vector<double>{0.5}, std::vector<double>{0.5});
@@ -103,10 +106,10 @@ RenderResult renderPointCloudMarker(const MarkerStyle& style)
     cloud.setXAxis(&xAxis);
     cloud.setYAxis(&yAxis);
     cloud.setColor(Qt::white);
-    cloud.setMarkerShape(style.shape);
-    cloud.setMarkerSize(style.size);
-    cloud.setMarkerFilled(style.filled);
-    cloud.setMarkerStrokeWidth(style.strokeWidth);
+    cloud.marker()->setShape(style.shape);
+    cloud.marker()->setSize(style.size);
+    cloud.marker()->setFilled(style.filled);
+    cloud.marker()->setStrokeWidth(style.strokeWidth);
     cloud.setAntialiasingEnabled(false);
     cloud.setDataF(std::vector<float>{0.5f, 0.5f}, 1);
 
@@ -125,6 +128,20 @@ bool isLit(const QImage& image, const QPoint& offset)
     return qGray(image.pixel(kCentre + offset.x(), kCentre + offset.y())) > 127;
 }
 
+// Returns the legend symbol item drawn for \a series, or nullptr.
+QQuickItem* findLegendSymbol(QQuickItem* item, const QObject* series)
+{
+    if (item->property("sourceSeries").value<QObject*>() == series) {
+        return item;
+    }
+    for (auto* child : item->childItems()) {
+        if (auto* symbol = findLegendSymbol(child, series)) {
+            return symbol;
+        }
+    }
+    return nullptr;
+}
+
 } // namespace
 
 class MarkerShapesTest : public QObject {
@@ -132,6 +149,9 @@ class MarkerShapesTest : public QObject {
 
 private slots:
     void shapeIndicesMatchShaders();
+    void lineCurveMarkerDefaultsAndNotifies();
+    void lineCurveMarkerGroupBindsFromQml();
+    void legendSymbolFollowsMarkerSettings();
     void pointCloudRejectsNoneShape();
     void shapesCoverTheirOutline_data();
     void shapesCoverTheirOutline();
@@ -164,17 +184,137 @@ void MarkerShapesTest::shapeIndicesMatchShaders()
     }
 }
 
+void MarkerShapesTest::lineCurveMarkerDefaultsAndNotifies()
+{
+    auto curve = LineCurve{};
+    auto* marker = curve.marker();
+    QVERIFY(marker);
+    QCOMPARE(marker->parent(), &curve);
+    QCOMPARE(marker->shape(), Shape::None);
+    QCOMPARE(marker->size(), 4.0);
+    QVERIFY(marker->filled());
+    QCOMPARE(marker->strokeWidth(), 1.0);
+
+    auto shapeSpy = QSignalSpy{marker, &SeriesMarker::shapeChanged};
+    auto sizeSpy = QSignalSpy{marker, &SeriesMarker::sizeChanged};
+    auto filledSpy = QSignalSpy{marker, &SeriesMarker::filledChanged};
+    auto strokeSpy = QSignalSpy{marker, &SeriesMarker::strokeWidthChanged};
+    for (auto i = 0; i < 2; ++i) {
+        marker->setShape(Shape::Star);
+        marker->setSize(9.0);
+        marker->setFilled(false);
+        marker->setStrokeWidth(2.5);
+    }
+
+    QCOMPARE(marker->shape(), Shape::Star);
+    QCOMPARE(marker->size(), 9.0);
+    QVERIFY(!marker->filled());
+    QCOMPARE(marker->strokeWidth(), 2.5);
+    QCOMPARE(shapeSpy.count(), 1);
+    QCOMPARE(sizeSpy.count(), 1);
+    QCOMPARE(filledSpy.count(), 1);
+    QCOMPARE(strokeSpy.count(), 1);
+
+    marker->setShape(Shape::None);
+    QCOMPARE(marker->shape(), Shape::None);
+    marker->setSize(-3.0);
+    QCOMPARE(marker->size(), 0.0);
+    marker->setStrokeWidth(-2.0);
+    QCOMPARE(marker->strokeWidth(), 0.0);
+}
+
+void MarkerShapesTest::lineCurveMarkerGroupBindsFromQml()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot\n"
+                      "LineCurve {\n"
+                      "    marker.shape: LineCurve.Diamond\n"
+                      "    marker.size: 7\n"
+                      "    marker.filled: false\n"
+                      "    marker.strokeWidth: 2\n"
+                      "}\n",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+
+    const auto* curve = qobject_cast<LineCurve*>(root.get());
+    QVERIFY(curve);
+    QCOMPARE(curve->marker()->shape(), Shape::Diamond);
+    QCOMPARE(curve->marker()->size(), 7.0);
+    QVERIFY(!curve->marker()->filled());
+    QCOMPARE(curve->marker()->strokeWidth(), 2.0);
+}
+
+void MarkerShapesTest::legendSymbolFollowsMarkerSettings()
+{
+    auto engine = QQmlEngine{};
+    auto warnings = QList<QQmlError>{};
+    connect(&engine, &QQmlEngine::warnings, this, [&warnings](const QList<QQmlError>& errors) { warnings.append(errors); });
+    auto component = QQmlComponent{&engine};
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot\n"
+                      "Item {\n"
+                      "    property alias curve: curve\n"
+                      "    property alias cloud: cloud\n"
+                      "    LineCurve {\n"
+                      "        id: curve\n"
+                      "        marker.shape: LineCurve.Hexagon\n"
+                      "        marker.size: 6\n"
+                      "        marker.filled: false\n"
+                      "        marker.strokeWidth: 2\n"
+                      "    }\n"
+                      "    PointCloud {\n"
+                      "        id: cloud\n"
+                      "        marker.shape: PointCloud.Square\n"
+                      "        marker.size: 5\n"
+                      "        marker.filled: false\n"
+                      "        marker.strokeWidth: 1.5\n"
+                      "    }\n"
+                      "    Legend { series: [curve, cloud] }\n"
+                      "}\n",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    for (const auto& warning : std::as_const(warnings)) {
+        QFAIL(qPrintable(warning.toString()));
+    }
+
+    auto* rootItem = qobject_cast<QQuickItem*>(root.get());
+    auto* curve = root->property("curve").value<LineCurve*>();
+    const auto* cloud = root->property("cloud").value<PointCloud*>();
+    QVERIFY(rootItem && curve && cloud);
+
+    const auto* curveSymbol = findLegendSymbol(rootItem, curve);
+    QVERIFY(curveSymbol);
+    QCOMPARE(curveSymbol->property("curveMarker").toInt(), static_cast<int>(Shape::Hexagon));
+    QCOMPARE(curveSymbol->property("curveMarkerSize").toReal(), 6.0);
+    QVERIFY(!curveSymbol->property("curveMarkerFilled").toBool());
+    QCOMPARE(curveSymbol->property("curveMarkerStrokeWidth").toReal(), 2.0);
+
+    curve->marker()->setSize(8.0);
+    QCOMPARE(curveSymbol->property("curveMarkerSize").toReal(), 8.0);
+
+    const auto* cloudSymbol = findLegendSymbol(rootItem, cloud);
+    QVERIFY(cloudSymbol);
+    QCOMPARE(cloudSymbol->property("curveMarker").toInt(), static_cast<int>(Shape::Square));
+    QCOMPARE(cloudSymbol->property("curveMarkerSize").toReal(), 5.0);
+    QVERIFY(!cloudSymbol->property("curveMarkerFilled").toBool());
+    QCOMPARE(cloudSymbol->property("curveMarkerStrokeWidth").toReal(), 1.5);
+}
+
 void MarkerShapesTest::pointCloudRejectsNoneShape()
 {
     auto cloud = PointCloud{};
-    cloud.setMarkerShape(Shape::Square);
-    auto spy = QSignalSpy{&cloud, &PointCloud::markerShapeChanged};
+    cloud.marker()->setShape(Shape::Square);
+    auto spy = QSignalSpy{cloud.marker(), &SeriesMarker::shapeChanged};
 
     // A cloud always draws its points, so None must not silently blank it.
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud.markerShape does not accept None.*"));
-    cloud.setMarkerShape(Shape::None);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud marker\\.shape does not accept None.*"));
+    cloud.marker()->setShape(Shape::None);
 
-    QCOMPARE(cloud.markerShape(), Shape::Square);
+    QCOMPARE(cloud.marker()->shape(), Shape::Square);
     QCOMPARE(spy.count(), 0);
 }
 
@@ -336,15 +476,15 @@ void MarkerShapesTest::pixelMarkerHitTestIgnoresMarkerSize()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setSize(QSizeF{100.0, 100.0});
-    curve.setMarkerSize(20.0);
+    curve.marker()->setSize(20.0);
     curve.setData(std::vector<double>{0.5}, std::vector<double>{0.5});
     // QQuickItem::contains() is public; LineCurve narrows its override to protected.
     const auto hits = [&curve](const QPointF& point) { return static_cast<const QQuickItem&>(curve).contains(point); };
 
-    curve.setMarkerShape(Shape::Circle);
+    curve.marker()->setShape(Shape::Circle);
     QVERIFY(hits({60.0, 50.0}));
 
-    curve.setMarkerShape(Shape::Pixel);
+    curve.marker()->setShape(Shape::Pixel);
     QVERIFY(hits({52.0, 50.0}));
     QVERIFY(!hits({60.0, 50.0}));
 }

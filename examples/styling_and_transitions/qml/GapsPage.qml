@@ -227,8 +227,8 @@ Item {
                     lineStyle: QAccelPlot.DashLine {
                         pattern: [6, 4]
                     }
-                    markerShape: QAccelPlot.LineCurve.Circle
-                    markerSize: 6
+                    marker.shape: QAccelPlot.LineCurve.Circle
+                    marker.size: 6
                     Component.onCompleted: {
                         const points = root.pressurePoints().filter((point, index) => index % 3 === 0 || !isFinite(point.y));
                         setData(points);

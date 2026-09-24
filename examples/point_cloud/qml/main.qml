@@ -205,8 +205,8 @@ Window {
                         yAxis: clusterPlot.yAxis
                         // Legend swatch: a mid-range colormap color.
                         color: "#21918c"
-                        markerShape: QAccelPlot.PointCloud.Circle
-                        markerSize: markerSizeSlider.value
+                        marker.shape: QAccelPlot.PointCloud.Circle
+                        marker.size: markerSizeSlider.value
                         antialiasingEnabled: antialiasingSwitch.checked
                         // The colour bar below paints the same stops, so share them rather than
                         // repeating the ramp or reaching for a preset that would not match it.
@@ -380,8 +380,8 @@ Window {
                             xAxis: shapesPlot.xAxis
                             yAxis: shapesPlot.yAxis
                             color: modelData.color
-                            markerShape: modelData.shape
-                            markerSize: 7
+                            marker.shape: modelData.shape
+                            marker.size: 7
                             antialiasingEnabled: antialiasingSwitch.checked
                         }
                     }
@@ -426,8 +426,8 @@ Window {
                         yAxis: powerLawPlot.yAxis
                         // seriesSecondary at ~55 % alpha, so overlapping samples read as density.
                         color: "#8cffb454"
-                        markerShape: QAccelPlot.PointCloud.Diamond
-                        markerSize: 3
+                        marker.shape: QAccelPlot.PointCloud.Diamond
+                        marker.size: 3
                         antialiasingEnabled: antialiasingSwitch.checked
                     }
                 }

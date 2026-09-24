@@ -95,8 +95,8 @@ Window {
                 lineStyle: QAccelPlot.DashLine {
                     pattern: [8, 5]
                 }
-                markerShape: QAccelPlot.LineCurve.Diamond
-                markerSize: 7
+                marker.shape: QAccelPlot.LineCurve.Diamond
+                marker.size: 7
 
                 Component.onCompleted: setData([Qt.point(0, 18.0), Qt.point(6, 19.5), Qt.point(12, 25.0), Qt.point(18, 23.5), Qt.point(24, 18.0)])
             }

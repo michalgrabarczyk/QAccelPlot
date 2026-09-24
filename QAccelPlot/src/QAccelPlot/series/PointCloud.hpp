@@ -11,6 +11,8 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
+#include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QList>
@@ -48,19 +50,12 @@ class PointCloud : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
 
-    /// \brief Uniform marker color, also used by the legend. Default: \c Qt::blue.
+    /// \brief Uniform marker color, also used by the legend. Default: \c Colors.dark.seriesPrimary.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    /// \brief Marker shape. \c MarkerShape.None is not accepted, because a cloud always draws
-    /// markers; assigning it leaves the shape unchanged. Default: \c Circle.
-    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
-    /// \brief Marker radius in pixels. Default: 3.
-    Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
-    /// \brief Whether closed marker shapes are filled. When \c false they are drawn as outlines of \c markerStrokeWidth
-    /// inside the shape's edge. Line-like shapes (\c Cross, \c XCross, \c Asterisk, \c HLine, \c VLine) and \c Pixel
-    /// are unaffected. Default: \c true.
-    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
-    /// \brief Outline width in pixels of hollow markers. Has effect only when \c markerFilled is \c false. Default: 1.
-    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
+    /// \brief Grouped marker settings, e.g. <tt>marker.shape</tt> and <tt>marker.size</tt>. <tt>marker.shape</tt>
+    /// defaults to \c Circle and does not accept \c None, because a cloud always draws markers; <tt>marker.size</tt>
+    /// defaults to 3.
+    Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
     /// \brief Maps per-point values to colors. Points are colored uniformly with \c color when this
     /// is null or no values are stored. Default: null.
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
@@ -92,25 +87,8 @@ public:
     /// \brief Sets the uniform marker color to \a color.
     void setColor(const QColor& color);
 
-    /// \brief Returns the marker shape.
-    MarkerShape markerShape() const;
-    /// \brief Sets the marker shape to \a shape. \c MarkerShape.None is ignored.
-    void setMarkerShape(MarkerShape shape);
-
-    /// \brief Returns the marker radius in pixels.
-    qreal markerSize() const;
-    /// \brief Sets the marker radius to \a size pixels. Negative values are clamped to 0.
-    void setMarkerSize(qreal size);
-
-    /// \brief Returns \c true if closed marker shapes are filled.
-    bool markerFilled() const;
-    /// \brief Sets whether closed marker shapes are filled (\a filled) or drawn as outlines.
-    void setMarkerFilled(bool filled);
-
-    /// \brief Returns the outline width of hollow markers in pixels.
-    qreal markerStrokeWidth() const;
-    /// \brief Sets the outline width of hollow markers to \a width pixels. Negative values are clamped to 0.
-    void setMarkerStrokeWidth(qreal width);
+    /// \brief Returns the grouped marker settings. The object is owned by the cloud.
+    SeriesMarker* marker() const;
 
     /// \brief Returns the colormap, or \c nullptr when points are colored uniformly.
     Colormap* colormap() const;
@@ -195,14 +173,6 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the markerShape property changes.
-    void markerShapeChanged();
-    /// \brief Emitted when the markerSize property changes.
-    void markerSizeChanged();
-    /// \brief Emitted when the markerFilled property changes.
-    void markerFilledChanged();
-    /// \brief Emitted when the markerStrokeWidth property changes.
-    void markerStrokeWidthChanged();
     /// \brief Emitted when the colormap property changes.
     void colormapChanged();
     /// \brief Emitted when the antialiasingEnabled property changes.
@@ -249,11 +219,8 @@ private:
     void rebuildRenderData();
     bool hasPreciseData() const;
 
-    QColor color_{Qt::blue};
-    MarkerShape markerShape_{MarkerShape::Circle};
-    qreal markerSize_{3.0};
-    bool markerFilled_{true};
-    qreal markerStrokeWidth_{1.0};
+    QColor color_{ColorPalette::dark().seriesPrimary};
+    SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
     QPointer<Colormap> colormap_;
     std::vector<GradientStopData> colorStops_;
     bool antialiasingEnabled_{true};

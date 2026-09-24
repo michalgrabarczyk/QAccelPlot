@@ -8,6 +8,7 @@
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/shapes/RectangleList.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/theme/Colors.hpp"
@@ -88,6 +89,9 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     const QAccelPlot::LineCurve curve;
     QCOMPARE(curve.color(), palette.seriesPrimary);
 
+    const QAccelPlot::PointCloud cloud;
+    QCOMPARE(cloud.color(), palette.seriesPrimary);
+
     const QAccelPlot::RectangleList rectangles;
     QCOMPARE(rectangles.color().rgb(), palette.seriesPrimary.rgb());
     QCOMPARE(rectangles.color().alpha(), 50);
@@ -97,9 +101,7 @@ void TestColorPalette::qmlLegendDefaultsUseDarkPalette()
 {
     QQmlEngine engine;
     QList<QQmlError> warnings;
-    connect(&engine, &QQmlEngine::warnings, this, [&warnings](const QList<QQmlError>& errors) {
-        warnings.append(errors);
-    });
+    connect(&engine, &QQmlEngine::warnings, this, [&warnings](const QList<QQmlError>& errors) { warnings.append(errors); });
 
     QQmlComponent component(&engine);
     component.setData("import QtQuick\n"

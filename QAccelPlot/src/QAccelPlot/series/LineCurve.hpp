@@ -15,6 +15,7 @@
 #include "QAccelPlot/series/LineCurveGaps.hpp"
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -37,6 +38,10 @@ namespace QAccelPlot {
 /// The curve is rendered on the Qt Scene Graph render thread using GPU-side data textures, making it suitable
 /// for real-time plots with millions of points.
 ///
+/// \par Markers
+/// Markers are configured through the \c marker grouped property, for example
+/// <tt>marker.shape: QAccelPlot.LineCurve.Circle</tt>. No markers are drawn by default.
+///
 /// \par Effects
 /// Visual effects (gradient stroke, gradient fill) are attached via the \c effects list property.
 ///
@@ -50,7 +55,7 @@ namespace QAccelPlot {
 /// gradient fill treat them is controlled by the \c gaps grouped property: <tt>gaps.nanMode</tt> \c Break (default)
 /// leaves a gap, \c Connect joins the neighboring valid samples. Insert \c NaN to mark missing telemetry explicitly.
 ///
-/// \sa Axis, GradientFill, GradientStroke, DrawTransition, MorphTransition
+/// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
 class LineCurve : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(LineCurve)
@@ -65,16 +70,6 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    /// \brief Shape drawn at each data point. Default: \c MarkerShape.None (no markers).
-    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
-    /// \brief Radius of each marker in pixels. Default: 4.
-    Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
-    /// \brief Whether closed marker shapes are filled. When \c false they are drawn as outlines of \c markerStrokeWidth
-    /// inside the shape's edge. Line-like shapes (\c Cross, \c XCross, \c Asterisk, \c HLine, \c VLine) and \c Pixel
-    /// are unaffected. Default: \c true.
-    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
-    /// \brief Outline width in pixels of hollow markers. Has effect only when \c markerFilled is \c false. Default: 1.
-    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
     /// \brief Whether GPU-side anti-aliasing is applied to lines and markers. Default: \c true.
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     /// \brief Anti-aliasing feather width in pixels. Has effect only when \c antialiasingEnabled is \c true. Default: 1.
@@ -83,6 +78,8 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     /// \brief Grouped gap-rendering settings, e.g. <tt>gaps.nanMode</tt>.
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
+    /// \brief Grouped marker settings, e.g. <tt>marker.shape</tt> and <tt>marker.size</tt>.
+    Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
 
 public:
     /// \brief Constructs a LineCurve with the given \a parent.
@@ -111,26 +108,6 @@ public:
     /// \brief Sets the line style to \a style.
     void setLineStyle(LineStyle* style);
 
-    /// \brief Returns the marker shape.
-    MarkerShape markerShape() const;
-    /// \brief Sets the marker shape to \a shape.
-    void setMarkerShape(MarkerShape shape);
-
-    /// \brief Returns the marker size in pixels.
-    qreal markerSize() const;
-    /// \brief Sets the marker size to \a r pixels.
-    void setMarkerSize(qreal r);
-
-    /// \brief Returns \c true if closed marker shapes are filled.
-    bool markerFilled() const;
-    /// \brief Sets whether closed marker shapes are filled (\a filled) or drawn as outlines.
-    void setMarkerFilled(bool filled);
-
-    /// \brief Returns the outline width of hollow markers in pixels.
-    qreal markerStrokeWidth() const;
-    /// \brief Sets the outline width of hollow markers to \a width pixels.
-    void setMarkerStrokeWidth(qreal width);
-
     /// \brief Returns \c true when GPU anti-aliasing is enabled.
     bool antialiasingEnabled() const;
     /// \brief Sets anti-aliasing to \a enabled.
@@ -147,6 +124,9 @@ public:
     /// \brief Returns the grouped gap-rendering settings. The object is owned by the curve.
     LineCurveGaps* gaps() const;
 
+    /// \brief Returns the grouped marker settings. The object is owned by the curve.
+    SeriesMarker* marker() const;
+
     /// \brief Appends a single data point (\a x, \a y) to the curve. Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y);
     /// \brief Removes all data points from the curve.
@@ -155,7 +135,7 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    /// rief Sets data by moving a pre-filled interleaved double vector of  pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
+    /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
     /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
     void setData(std::vector<double>&& xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
@@ -173,7 +153,7 @@ public:
     /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
     /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
-    /// rief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
+    /// \brief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
     /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
     /// is made. This call is thread-safe.
     void postData(std::vector<double>&& xyInterleaved, int pointCount);
@@ -200,14 +180,6 @@ signals:
     void transitionChanged();
     /// \brief Emitted when the lineStyle property changes.
     void lineStyleChanged();
-    /// \brief Emitted when the markerShape property changes.
-    void markerShapeChanged();
-    /// \brief Emitted when the markerSize property changes.
-    void markerSizeChanged();
-    /// \brief Emitted when the markerFilled property changes.
-    void markerFilledChanged();
-    /// \brief Emitted when the markerStrokeWidth property changes.
-    void markerStrokeWidthChanged();
     /// \brief Emitted when the antialiasingEnabled property changes.
     void antialiasingEnabledChanged();
     /// \brief Emitted when the antialiasingFeather property changes.
@@ -218,6 +190,7 @@ private:
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
+    void onMarkerShapeChanged();
 
     static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
     static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
@@ -277,14 +250,11 @@ private:
     int pointCount_{0};
     QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    MarkerShape markerShape_{MarkerShape::None};
-    qreal markerSize_{4.0};
-    bool markerFilled_{true};
-    qreal markerStrokeWidth_{1.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
+    SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
     // True when the most recent data update computed ranges; the NoRange APIs leave
     // range management to the caller, so log-scale changes must not overwrite it.
     bool autoDataRanges_{true};

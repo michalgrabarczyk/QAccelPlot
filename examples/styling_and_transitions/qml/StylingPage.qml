@@ -152,10 +152,10 @@ Item {
                     yAxis: markerPlot.yAxis
                     color: root.palette.seriesPrimary
                     lineWidth: 2
-                    markerSize: 7
-                    markerShape: root.markerShapes[root.markerShapeIndex]
-                    markerFilled: root.markerFilled
-                    markerStrokeWidth: 2
+                    marker.size: 7
+                    marker.shape: root.markerShapes[root.markerShapeIndex]
+                    marker.filled: root.markerFilled
+                    marker.strokeWidth: 2
                     antialiasingEnabled: root.antialiasingEnabled
                     antialiasingFeather: root.antialiasingFeather
                     Component.onCompleted: setData(root.curvePoints(0))

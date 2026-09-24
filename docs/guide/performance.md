@@ -97,7 +97,7 @@ repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 ### Other rendering costs
 
 - Markers add geometry and fragment work per visible point. Fragment work grows
-  with `markerSize`; `LineCurve.Pixel` markers shade one pixel per point and
+  with marker size; `LineCurve.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
 - Gradient effects add material and domain work.
 - Transitions update intermediate data while animating.

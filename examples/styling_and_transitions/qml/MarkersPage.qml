@@ -204,7 +204,7 @@ Item {
                     yAxis: densePlot.yAxis
                     color: Qt.rgba(root.palette.seriesPrimary.r, root.palette.seriesPrimary.g, root.palette.seriesPrimary.b, 0.6)
                     lineStyle: QAccelPlot.NoLine {}
-                    markerShape: QAccelPlot.LineCurve.Pixel
+                    marker.shape: QAccelPlot.LineCurve.Pixel
                     Component.onCompleted: setData(root.gaussianCloud(40000, -2.5, 1.5, 1.0, 7))
                 }
 
@@ -214,10 +214,10 @@ Item {
                     yAxis: densePlot.yAxis
                     color: root.palette.seriesSecondary
                     lineStyle: QAccelPlot.NoLine {}
-                    markerShape: QAccelPlot.LineCurve.Circle
-                    markerFilled: false
-                    markerSize: 4
-                    markerStrokeWidth: 1
+                    marker.shape: QAccelPlot.LineCurve.Circle
+                    marker.filled: false
+                    marker.size: 4
+                    marker.strokeWidth: 1
                     antialiasingEnabled: root.antialiasingEnabled
                     Component.onCompleted: setData(root.gaussianCloud(2000, 2.5, -1.5, 1.0, 11))
                 }
@@ -287,10 +287,10 @@ Item {
                         yAxis: galleryPlot.yAxis
                         color: root.palette.seriesPrimary
                         lineStyle: QAccelPlot.NoLine {}
-                        markerShape: modelData.shape
-                        markerFilled: modelData.filled
-                        markerSize: root.markerSize
-                        markerStrokeWidth: root.markerStrokeWidth
+                        marker.shape: modelData.shape
+                        marker.filled: modelData.filled
+                        marker.size: root.markerSize
+                        marker.strokeWidth: root.markerStrokeWidth
                         antialiasingEnabled: root.antialiasingEnabled
                         Component.onCompleted: setData([Qt.point(modelData.x, modelData.y)])
                     }
