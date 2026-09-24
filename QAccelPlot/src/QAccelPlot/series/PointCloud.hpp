@@ -12,6 +12,7 @@
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QList>
@@ -49,7 +50,7 @@ class PointCloud : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
 
-    /// \brief Uniform marker color, also used by the legend. Default: \c Qt::blue.
+    /// \brief Uniform marker color, also used by the legend. Default: \c Colors.dark.seriesPrimary.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Grouped marker settings, e.g. <tt>marker.shape</tt> and <tt>marker.size</tt>. <tt>marker.shape</tt>
     /// defaults to \c Circle and does not accept \c None, because a cloud always draws markers; <tt>marker.size</tt>
@@ -218,7 +219,7 @@ private:
     void rebuildRenderData();
     bool hasPreciseData() const;
 
-    QColor color_{Qt::blue};
+    QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
     QPointer<Colormap> colormap_;
     std::vector<GradientStopData> colorStops_;
