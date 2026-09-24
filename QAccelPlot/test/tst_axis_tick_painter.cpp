@@ -100,9 +100,13 @@ public:
     using QAccelPlot::Axis::hoverLeaveEvent;
 };
 
-// Counts the pixels of an axis painted in a color at any alpha coverage.
+// Counts the pixels of an axis painted in the primary \a color. Antialiased pixels are matched by
+// which channels are set, because their channel values depend on coverage and the raster backend.
 int countPaintedPixels(QAccelPlot::Axis& axis, const QColor& color)
 {
+    const auto hasSameChannels = [&color](const QRgb pixel) {
+        return (qRed(pixel) > 0) == (color.red() > 0) && (qGreen(pixel) > 0) == (color.green() > 0) && (qBlue(pixel) > 0) == (color.blue() > 0);
+    };
     auto image = QImage{axis.size().toSize(), QImage::Format_ARGB32};
     image.fill(Qt::transparent);
     auto painter = QPainter{&image};
@@ -112,7 +116,7 @@ int countPaintedPixels(QAccelPlot::Axis& axis, const QColor& color)
     for (auto y = 0; y < image.height(); ++y) {
         for (auto x = 0; x < image.width(); ++x) {
             const auto pixel = image.pixel(x, y);
-            count += qAlpha(pixel) > 0 && (pixel & RGB_MASK) == (color.rgb() & RGB_MASK) ? 1 : 0;
+            count += qAlpha(pixel) > 0 && hasSameChannels(pixel) ? 1 : 0;
         }
     }
     return count;
