@@ -94,6 +94,9 @@ void setupCurveUpdates(QGuiApplication& app, QQuickWindow* window, QObject* root
     auto elapsedTimer = std::make_shared<QElapsedTimer>();
     elapsedTimer->start();
 
+    // Pulls at most one batch per frame instead of using postData(), so the worker never queues
+    // frames the display cannot show and can prebuild the vertex cache. The point_cloud example
+    // shows the simpler postData() handoff.
     QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, curve, rectangleList, &generator, deliveryMetrics, elapsedTimer, screenshotMode]() {
         const auto rectanglesVisible = root->property("rectanglesVisible").toBool();
         generator.setRectangleTestMode(rectanglesVisible);
