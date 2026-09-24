@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-24 09:03:16</td>
+      <td>2026-09-24 13:38:20</td>
     </tr>
   </table>
 </div>
@@ -71,7 +71,7 @@
       <th>Block coverage</th>
     </tr>
     <tr><td><a href="#l106">QAccelPlot::GridNode::collectAxisGridLines(QList&lt;QRectF&gt;&amp;, QList&lt;QRectF&gt;&amp;, QAccelPlot::Grid const*, QAccelPlot::GridNode::GridLineCollectionParams const&amp;) const (line 106)</a></td><td>called 10 times</td><td>58.0%</td></tr>
-    <tr><td><a href="#l56">QAccelPlot::GridNode::update(QAccelPlot::Grid const*, QAccelPlot::Axis const*, QAccelPlot::Axis const*, QRectF const&amp;) (line 56)</a></td><td>called 6 times</td><td>68.0%</td></tr>
+    <tr><td><a href="#l56">QAccelPlot::GridNode::update(QAccelPlot::Grid const*, QAccelPlot::Axis const*, QAccelPlot::Axis const*, QRectF const&amp;) (line 56)</a></td><td>called 7 times</td><td>68.0%</td></tr>
     <tr><td><a href="#l23">QAccelPlot::buildRectangleNode(QList&lt;QRectF&gt; const&amp;, QColor const&amp;) (line 23)</a></td><td>called 10 times</td><td>80.0%</td></tr>
     <tr><td><a href="#l82">auto QAccelPlot::GridNode::update(QAccelPlot::Grid const*, QAccelPlot::Axis const*, QAccelPlot::Axis const*, QRectF const&amp;)::{lambda(auto:1, auto:2)#1}::operator()&lt;double, double&gt;(double, double) const (line 82)</a></td><td>called 108 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l89">auto QAccelPlot::GridNode::update(QAccelPlot::Grid const*, QAccelPlot::Axis const*, QAccelPlot::Axis const*, QRectF const&amp;)::{lambda(auto:1, auto:2)#2}::operator()&lt;double, double&gt;(double, double) const (line 89)</a></td><td>not called</td><td>0.0%</td></tr>
@@ -520,7 +520,7 @@
       <td class="lineno"><a id="l56" href="#l56">56</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">6</td>
+      <td class="linecount coveredLine">7</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">GridNode::update</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Grid</span><span class="o">*</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">xAxis</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">yAxis</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="o">&amp;</span><span class="w"> </span><span class="n">plotRect</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -536,14 +536,14 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 8 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 9 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="takenBranch">&check; Branch 3 taken 2 times.</div>
-            <div class="takenBranch">&check; Branch 4 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 4 taken 7 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">14</td>
+      <td class="linecount partialCoveredLine">16</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">childCount</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -599,7 +599,7 @@
       <td class="lineno"><a id="l64" href="#l64">64</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">6</td>
+      <td class="linecount coveredLine">7</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">plotRect_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plotRect</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -615,25 +615,25 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">3/8</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 7 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
-            <div class="takenBranch">&check; Branch 4 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 4 taken 7 times.</div>
             <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 6 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 7 not taken.</div>
-            <div class="takenBranch">&check; Branch 8 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 8 taken 7 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">6</td>
+      <td class="linecount partialCoveredLine">7</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">plotRect_</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">xAxis</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">yAxis</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1</td>
+      <td class="linecount coveredLine">2</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -649,27 +649,27 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">7/10</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 7 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-            <div class="takenBranch">&check; Branch 3 taken 1 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 2 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 5 times.</div>
-            <div class="takenBranch">&check; Branch 6 taken 1 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 2 times.</div>
             <div class="notTakenBranch">&cross; Branch 7 not taken.</div>
-            <div class="takenBranch">&check; Branch 8 taken 1 times.</div>
+            <div class="takenBranch">&check; Branch 8 taken 2 times.</div>
             <div class="notTakenBranch">&cross; Branch 9 not taken.</div>
-            <div class="takenBranch">&check; Branch 10 taken 1 times.</div>
+            <div class="takenBranch">&check; Branch 10 taken 2 times.</div>
             <div class="takenBranch">&check; Branch 11 taken 5 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">6</td>
+      <td class="linecount partialCoveredLine">7</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">grid</span><span class="o">-&gt;</span><span class="n">gridVisible</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">grid</span><span class="o">-&gt;</span><span class="n">subGridVisible</span><span class="p">())</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l70" href="#l70">70</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1</td>
+      <td class="linecount coveredLine">2</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
