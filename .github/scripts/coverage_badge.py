@@ -24,7 +24,7 @@ def main() -> None:
         color = "red"
     badge = {
         "schemaVersion": 1,
-        "label": "code coverage",
+        "label": "Code coverage",
         "message": f"{percent:.1f}%",
         "color": color,
     }
