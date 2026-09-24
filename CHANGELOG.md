@@ -35,6 +35,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   The library sources moved to `QAccelPlot/src/QAccelPlot/`. Replace unprefixed
   includes such as `"series/LineCurve.hpp"`.
 - `LineCurve.markerShape` and `markerSize` moved to `marker.shape` and `marker.size`.
+- Examples are grouped by category under `examples/`: `plot_types/`, `styling/`,
+  `axes/`, `data/`, `interaction/`, and `showcases/`, with `quickstart/` at the
+  top. Renamed examples: `axis_formats` → `axes/tick_formats`, `custom_axis` →
+  `axes/multiple_axes`, `interactive_tools` → `interaction/measurement_tools`,
+  `performance_showcase` → `showcases/performance`, and `pulsar_showcase` →
+  `showcases/pulsar`. Their executables are renamed to match, for example
+  `QAccelPlotExampleTickFormats`.
 
 ### Removed
 

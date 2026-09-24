@@ -49,13 +49,18 @@ def camel_to_snake(value):
     return re.sub(r"(?<!^)(?=[A-Z])", "_", value).lower()
 
 
-def example_names():
-    names = set()
-    for cmake_path in EXAMPLES_DIR.glob("*/CMakeLists.txt"):
+def example_dirs():
+    """Maps each example name, the snake_case form of its target name, to its directory."""
+    dirs = {}
+    for cmake_path in EXAMPLES_DIR.rglob("CMakeLists.txt"):
         match = re.search(r"qaccelplot_add_example\(\s*([A-Za-z0-9_]+)", cmake_path.read_text(encoding="utf-8"))
         if match:
-            names.add(camel_to_snake(match.group(1)))
-    return names
+            dirs[camel_to_snake(match.group(1))] = cmake_path.parent
+    return dirs
+
+
+def example_names():
+    return set(example_dirs())
 
 
 def registered_visual_scenarios():
@@ -127,6 +132,8 @@ class VisualAcceptanceTests(unittest.TestCase):
         contract_paths = list(CONTRACTS_DIR.glob("*/*.json"))
         self.assertEqual(list(CONTRACTS_DIR.glob("*.json")), [], "Contracts belong in contracts/<example>/<scenario>.json")
         self.assertEqual({path.parent.name for path in contract_paths}, example_names())
+        for name, directory in example_dirs().items():
+            self.assertEqual(directory.name, name, "An example directory is named after its target")
 
         registered = registered_visual_scenarios()
         contract_scenarios = {f"{path.parent.name}/{path.stem}" for path in contract_paths}
@@ -134,7 +141,7 @@ class VisualAcceptanceTests(unittest.TestCase):
             {identity for identity, flags in registered.items() if not flags["smoke_only"]},
             contract_scenarios,
         )
-        self.assertEqual(registered["pulsar_showcase/default"]["ai_inspection"], False)
+        self.assertEqual(registered["pulsar/default"]["ai_inspection"], False)
 
         for path in contract_paths:
             identity = f"{path.parent.name}/{path.stem}"
@@ -143,7 +150,7 @@ class VisualAcceptanceTests(unittest.TestCase):
                 self.assertEqual(contract["name"], identity)
                 self.assertEqual(contract.get("ai_inspection", True), registered[identity]["ai_inspection"])
                 for source in contract.get("sources", []):
-                    self.assertTrue((EXAMPLES_DIR / path.parent.name / source).is_file(), source)
+                    self.assertTrue((example_dirs()[path.parent.name] / source).is_file(), source)
                 raster_quality_checks = [check for check in contract["checks"] if check["id"] == "text_raster_quality"]
                 self.assertEqual(len(raster_quality_checks), 1)
                 self.assertEqual(raster_quality_checks[0]["severity"], "high")
@@ -335,8 +342,8 @@ class VisualAcceptanceTests(unittest.TestCase):
                 self.assertIn("Do not compare", expectation)
                 self.assertIn("text outside the plot", expectation.replace("plots", "plot"))
 
-    def test_interactive_tools_contract_ignores_controls_and_ruler_position(self):
-        contract = load_contract(CONTRACTS_DIR / "interactive_tools" / "default.json")
+    def test_measurement_tools_contract_ignores_controls_and_ruler_position(self):
+        contract = load_contract(CONTRACTS_DIR / "measurement_tools" / "default.json")
         check_ids = {check["id"] for check in contract["checks"]}
         self.assertNotIn("tool_controls", check_ids)
         ruler_check = next(check for check in contract["checks"] if check["id"] == "initial_ruler")

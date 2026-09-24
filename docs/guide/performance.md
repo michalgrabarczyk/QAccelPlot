@@ -60,7 +60,7 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
-[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime).
+[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
 
 ## Keep work off the UI thread
 
@@ -70,7 +70,7 @@ the worker.
 
 If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-[`performance_showcase` worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp)
+[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp)
 waits until the UI thread consumes the previous batch. See
 [Background data production](cookbook/background-data.md).
 

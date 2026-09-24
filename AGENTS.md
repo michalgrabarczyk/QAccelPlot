@@ -94,9 +94,11 @@ QAccelPlot/
 
 ### Other directories
 
-- `examples/` — Complete runnable applications (quickstart, realtime,
-  pulsar_showcase, annotations, axis_formats, custom_axis, interactive_tools,
-  performance_showcase, point_cloud, styling_and_transitions)
+- `examples/` — Complete runnable applications. `quickstart/` sits at the top;
+  the rest are grouped by category: `plot_types/`, `styling/`, `axes/`,
+  `data/`, `interaction/`, and `showcases/`. Each example directory is named
+  after its target in snake_case (`QAccelPlotExampleTickFormats` →
+  `axes/tick_formats/`).
 - `benchmarks/` — Performance measurement scenarios and harness
 - `docs/` — MkDocs guide source + Doxygen configuration
 - `qml/` — Top-level QML types (Plot wrapper, Legend)

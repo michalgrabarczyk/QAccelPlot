@@ -26,6 +26,7 @@ from visual_scenarios import DEFAULT_CONTRACTS_DIR, Scenario, discover_scenarios
 SHARED_VISUAL_PREFIXES = (
     "QAccelPlot/",
     "qml/",
+    "examples/cmake/",
     "examples/common/",
 )
 
@@ -46,9 +47,21 @@ def ai_scenarios(contracts_dir: Path) -> dict[str, Scenario]:
     return {identity: scenario for identity, scenario in discover_scenarios(contracts_dir).items() if scenario.ai_inspection}
 
 
+def match_example(path: str, examples: set[str]) -> tuple[str, str] | None:
+    """Splits ``examples/[<category>/]<example>/<file>`` into the example and its relative file."""
+    parts = path.split("/")
+    if len(parts) < 3 or parts[0] != "examples":
+        return None
+    for index, part in enumerate(parts[1:3], start=1):
+        if part in examples and index + 1 < len(parts):
+            return part, "/".join(parts[index + 1 :])
+    return None
+
+
 def classify_paths(paths: list[str], contracts_dir: Path = DEFAULT_CONTRACTS_DIR) -> dict[str, object]:
     """Selects the scenarios whose screenshots a change can affect.
 
+    Examples live in ``examples/<example>/`` or ``examples/<category>/<example>/``.
     A contract change selects its scenario. A change to an example file listed in a
     contract's ``sources`` selects only the scenarios listing it; any other example file,
     such as ``main.qml`` or C++ sources, selects every scenario of that example.
@@ -70,9 +83,9 @@ def classify_paths(paths: list[str], contracts_dir: Path = DEFAULT_CONTRACTS_DIR
                 selected.add(identity)
             continue
 
-        example_match = re.match(r"examples/([^/]+)/(.+)", path)
-        if example_match and example_match.group(1) in examples:
-            example, relative_path = example_match.groups()
+        example_match = match_example(path, examples)
+        if example_match:
+            example, relative_path = example_match
             example_scenarios = [scenario for scenario in scenarios.values() if scenario.example == example]
             page_scenarios = [scenario for scenario in example_scenarios if relative_path in scenario.sources]
             selected.update(scenario.identity for scenario in (page_scenarios or example_scenarios))

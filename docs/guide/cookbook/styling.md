@@ -133,7 +133,7 @@ QAccelPlot.LineCurve {
 Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.
 
-Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
+Complete source: [`examples/styling/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/styling_and_transitions)
 
 [effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
 [transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12

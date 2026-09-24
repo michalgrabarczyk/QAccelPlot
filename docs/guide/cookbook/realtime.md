@@ -76,7 +76,7 @@ To draw across dropouts instead, set
 `gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
 [Invalid samples and gaps](../concepts.md#invalid-samples-and-gaps).
 
-Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
+Complete source: [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 
 [set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22

@@ -50,7 +50,7 @@ only after profiling the simpler handoff.
 
 Complete sources:
 
-- [`examples/performance_showcase`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/performance_showcase)
+- [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 - [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
 
 [post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
