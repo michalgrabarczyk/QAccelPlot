@@ -31,6 +31,8 @@
 #include <QQuickItem>
 #include <QRectF>
 
+#include <optional>
+
 namespace QAccelPlot {
 
 class GridNode;
@@ -112,8 +114,10 @@ signals:
 protected:
     void wheelEvent(QWheelEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
-    void mouseMoveEvent(QMouseEvent* event) override;
+    void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
@@ -149,6 +153,8 @@ private:
 
     bool isDragging_{false};
     QPointF lastMousePos_;
+    // Last pointer position over the plot; key events go to the axis under it.
+    std::optional<QPointF> pointerPos_;
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};

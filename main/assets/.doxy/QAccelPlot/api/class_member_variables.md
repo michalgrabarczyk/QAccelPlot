@@ -263,6 +263,7 @@
 * **points\_** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **padding\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **plotAreaColor\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **pointerPos\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
 ## r

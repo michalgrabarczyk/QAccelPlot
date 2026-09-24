@@ -819,9 +819,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp" line="124" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1GradientFill_1afae06c7e2a1ea6b03b52a29a32955109" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::GradientFill::onGradientObjectChanged</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientFill_1a3a277b02edc0adc9b21deb844d2d8b4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_SLOT void</type>
+        <definition>Q_SLOT void QAccelPlot::GradientFill::onGradientObjectChanged</definition>
         <argsstring>()</argsstring>
         <name>onGradientObjectChanged</name>
         <qualifiedname>QAccelPlot::GradientFill::onGradientObjectChanged</qualifiedname>
@@ -831,7 +831,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp" line="125" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp" line="125" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -919,7 +919,7 @@
       <member refid="classQAccelPlot_1_1GradientFill_1a23756c6d047dd0351d753a2e09909593" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradientValueMinSource_</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1ab63937ee08bd448bea7898fb3dfba12b" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>gradientValueMinSourceChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>LineCurveEffect</name></member>
-      <member refid="classQAccelPlot_1_1GradientFill_1afae06c7e2a1ea6b03b52a29a32955109" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>onGradientObjectChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientFill_1a3a277b02edc0adc9b21deb844d2d8b4b" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>onGradientObjectChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a70dfbc7fb3e0278fa1ef799ceb5092f4" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>opacity</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1a26b7b164edc77f3ebc5a18097e64afd3" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>opacity</name></member>
       <member refid="classQAccelPlot_1_1GradientFill_1aaf46f3ea6570e6c58b7bb80a4f12f61a" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientFill</scope><name>opacity_</name></member>

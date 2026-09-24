@@ -29,6 +29,7 @@
 * `#include <QQmlListProperty>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`
+* `#include <optional>`
 
 
 

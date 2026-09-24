@@ -489,6 +489,7 @@
 * **pixelToDataY** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **plotAreaColor** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **plotAreaColor\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **pointerPos\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
 ## q

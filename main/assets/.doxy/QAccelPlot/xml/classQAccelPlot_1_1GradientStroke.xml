@@ -576,9 +576,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="97" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1afab71b0f18c6dd5962765844cdc1b106" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::GradientStroke::onGradientObjectChanged</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1GradientStroke_1aa7b872da4f16b4fd140f733539e71bad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_SLOT void</type>
+        <definition>Q_SLOT void QAccelPlot::GradientStroke::onGradientObjectChanged</definition>
         <argsstring>()</argsstring>
         <name>onGradientObjectChanged</name>
         <qualifiedname>QAccelPlot::GradientStroke::onGradientObjectChanged</qualifiedname>
@@ -588,7 +588,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="98" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp" line="98" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -668,7 +668,7 @@
       <member refid="classQAccelPlot_1_1GradientStroke_1a330d5209fd87f878f9b530207c59c23d" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSource_</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a1e8ed604c882f3fa8b5591f972881d18" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>gradientValueMinSourceChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>LineCurveEffect</name></member>
-      <member refid="classQAccelPlot_1_1GradientStroke_1afab71b0f18c6dd5962765844cdc1b106" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>onGradientObjectChanged</name></member>
+      <member refid="classQAccelPlot_1_1GradientStroke_1aa7b872da4f16b4fd140f733539e71bad" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>onGradientObjectChanged</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a2bf3a8fae25ca86bf45119a45de49463" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>payload</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" prot="private" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>reconnectGradientSignals</name></member>
       <member refid="classQAccelPlot_1_1GradientStroke_1a3e5d28caacdedb78c4f4fcd07a4626fb" prot="public" virt="non-virtual"><scope>QAccelPlot::GradientStroke</scope><name>setDirection</name></member>

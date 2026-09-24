@@ -17,8 +17,8 @@
 //
 #pragma once
 
-#include "QAccelPlot/effects/LineCurveEffect.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/LineCurveEffect.hpp"
 
 #include <QMetaObject>
 #include <QObject>
@@ -88,7 +88,7 @@ signals:
 private:
     void reconnectGradientSignals();
     void disconnectGradientSignals();
-    void onGradientObjectChanged();
+    Q_SLOT void onGradientObjectChanged();
 
     GradientDirection direction_{GradientDirection::Horizontal};
     QObject* gradient_{nullptr};
