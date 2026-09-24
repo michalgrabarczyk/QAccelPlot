@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "parametric_curves/default",
+  "description": "Four plots in a 2x2 grid showing line curves whose X values do not increase monotonically: a double spiral, a Lissajous figure, a spirograph, and a Van der Pol phase portrait. Judge only content inside the four plots and their panel titles; ignore the page heading, description, buttons, sliders, and combo boxes.",
+  "expected_image": {
+    "width": 1200,
+    "height": 900,
+    "minimum_file_size_bytes": 80000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "Four plot panels are arranged in two rows and two columns, each with axes, tick labels, a grid, and a bold panel title above it: 'Archimedean spiral' top left, 'Lissajous figure' top right, 'Spirograph (hypotrochoid)' bottom left, and 'Van der Pol phase portrait' bottom right. Panels do not overlap."
+    },
+    {
+      "id": "spiral",
+      "severity": "high",
+      "expectation": "The top-left plot shows two interleaved spiral arms, one blue and one orange, winding outward from the center for about five turns. The spiral is round, not squashed into an ellipse, and is fully drawn. Fail if either arm is missing, partly drawn, or if a straight line cuts across the spiral."
+    },
+    {
+      "id": "lissajous",
+      "severity": "medium",
+      "expectation": "The top-right plot shows one closed Lissajous figure filling most of the plot: a smooth looping curve that crosses itself several times, with lobes touching roughly the top, bottom, left, and right of the -1 to 1 range. The curve color shifts from orange near the bottom to purple near the top. Fail if the curve is missing, partly drawn, or a single uniform color."
+    },
+    {
+      "id": "spirograph",
+      "severity": "medium",
+      "expectation": "The bottom-left plot shows a round, symmetric flower-like spirograph pattern of many overlapping loops or petals around the center. Its color shifts from purple near the top to yellow-green near the bottom. Fail if the pattern is missing, partly drawn, clearly asymmetric, or squashed into an ellipse."
+    },
+    {
+      "id": "phase_portrait",
+      "severity": "high",
+      "expectation": "The bottom-right plot shows several differently colored trajectories, each starting at a small white dot. Trajectories starting near the center spiral outward and trajectories starting far away move inward, and all of them converge onto one shared closed loop spanning roughly -2 to 2 on the Position x axis. A thin light dashed or dotted loop lies on that shared loop. Fail if trajectories are missing, end abruptly away from the loop, or if straight lines connect unrelated trajectories."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plots, axis titles, tick labels, and panel titles are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make text materially illegible. Do not compare plot text with the page heading, description, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Curves render as thin smooth lines without spikes, gaps, or blocky segments."
+    }
+  ]
+}

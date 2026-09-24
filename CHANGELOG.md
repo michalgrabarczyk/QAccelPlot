@@ -14,6 +14,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Hollow markers: set `marker.filled` to `false` to outline filled shapes with
   `marker.strokeWidth` pixels. Legend symbols follow the series.
 - The `styling/markers` example shows every shape.
+- The `plot_types/parametric_curves` example draws curves whose x values do
+  not increase: a spiral, a Lissajous figure, a spirograph, and a Van der Pol
+  phase portrait.
 - `LineCurve::setData(std::vector<double>&&, int)` moves an interleaved double
   buffer into the curve, keeping double precision for large coordinates such as
   Unix-epoch timestamps without re-interleaving.
