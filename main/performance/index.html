@@ -1525,14 +1525,14 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 </ul>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>.</p>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
 the worker.</p>
 <p>If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp"><code>performance_showcase</code> worker</a>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp"><code>performance</code> example worker</a>
 waits until the UI thread consumes the previous batch. See
 <a href="../cookbook/background-data/">Background data production</a>.</p>
 <h2 id="optional-rendering-costs">Optional rendering costs<a class="headerlink" href="#optional-rendering-costs" title="Permanent link">&para;</a></h2>

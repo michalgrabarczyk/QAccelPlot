@@ -487,7 +487,7 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
-[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime).
+[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
 
 ## Keep work off the UI thread
 
@@ -497,7 +497,7 @@ the worker.
 
 If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-[`performance_showcase` worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp)
+[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp)
 waits until the UI thread consumes the previous batch. See
 [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
 
@@ -970,7 +970,7 @@ To draw across dropouts instead, set
 `gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
 [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
 
-Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
+Complete source: [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 
 [set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
@@ -1060,7 +1060,7 @@ yAxis: QAccelPlot.Axis {
 }
 ```
 
-Complete source: [`examples/axis_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axis_formats)
+Complete source: [`examples/axes/tick_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/tick_formats)
 
 [tick-label]: ../api/classQAccelPlot_1_1TickLabelFormatter.md#property-ticklabel-12
 
@@ -1163,7 +1163,7 @@ QAccelPlot.Plot {
 }
 ```
 
-Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
+Complete source: [`examples/axes/multiple_axes`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/multiple_axes)
 
 [x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
 [y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12
@@ -1299,7 +1299,7 @@ QAccelPlot.LineCurve {
 Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.
 
-Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
+Complete source: [`examples/styling/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/styling_and_transitions)
 
 [effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
 [transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12
@@ -1404,8 +1404,8 @@ rectangle origin to convert between plot and layer coordinates.
 
 Complete sources:
 
-- [`examples/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/annotations)
-- [`examples/interactive_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interactive_tools)
+- [`examples/interaction/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/annotations)
+- [`examples/interaction/measurement_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/measurement_tools)
 
 [plot-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
 [data-to-pixel-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixelx
@@ -1596,7 +1596,7 @@ stacked series underneath still receive hover events elsewhere.
 
 Complete source:
 
-- [`examples/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/point_cloud)
+- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
 
@@ -1648,7 +1648,7 @@ only after profiling the simpler handoff.
 
 Complete sources:
 
-- [`examples/performance_showcase`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/performance_showcase)
+- [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 - [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
 
 [post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
