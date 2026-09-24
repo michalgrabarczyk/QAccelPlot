@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SeriesMarker" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SeriesMarker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">SeriesMarker.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>NoneShape</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::NoneShape</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9ba382ab522931673c11e398ead1b7b1678" prot="public">
+          <name>Accepted</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9bad37b1f6c0512e2118cee17fea015b699" prot="public">
+          <name>Rejected</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Whether <computeroutput>MarkerShape.None</computeroutput> is a valid shape for the owning series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSPlotSeries::MarkerShape</type>
+        <definition>QML_ANONYMOUSPlotSeries::MarkerShape QAccelPlot::SeriesMarker::shape</definition>
+        <argsstring></argsstring>
+        <name>shape</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::shape</qualifiedname>
+        <read>shape</read>
+        <write>setShape</write>
+        <briefdescription>
+<para>Shape drawn at each data point. Series that always draw markers, such as <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, ignore <computeroutput>MarkerShape.None</computeroutput> and log a warning. Default: <computeroutput>None</computeroutput> on <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, <computeroutput>Circle</computeroutput> on <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="28" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::size</qualifiedname>
+        <read>size</read>
+        <write>setSize</write>
+        <briefdescription>
+<para>Radius of each marker in pixels, clamped to at least 0. Default: 4 on <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>, 3 on <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesMarker::filled</definition>
+        <argsstring></argsstring>
+        <name>filled</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::filled</qualifiedname>
+        <read>filled</read>
+        <write>setFilled</write>
+        <briefdescription>
+<para>Whether closed marker shapes are filled. When <computeroutput>false</computeroutput> they are drawn as outlines of <computeroutput>strokeWidth</computeroutput> inside the shape&apos;s edge. Line-like shapes (<computeroutput>Cross</computeroutput>, <computeroutput>XCross</computeroutput>, <computeroutput>Asterisk</computeroutput>, <computeroutput>HLine</computeroutput>, <computeroutput>VLine</computeroutput>) and <computeroutput>Pixel</computeroutput> are unaffected. Default: <computeroutput>true</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="34" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::strokeWidth</definition>
+        <argsstring></argsstring>
+        <name>strokeWidth</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::strokeWidth</qualifiedname>
+        <read>strokeWidth</read>
+        <write>setStrokeWidth</write>
+        <briefdescription>
+<para>Outline width in pixels of hollow markers, clamped to at least 0. Has effect only when <computeroutput>filled</computeroutput> is <computeroutput>false</computeroutput>. Default: 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesMarker_1a3a3fa9029191f13c298647052bc0d3ba" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref></type>
+        <definition>PlotSeries::MarkerShape QAccelPlot::SeriesMarker::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::shape_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="77" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesMarker_1af2716b7177ea5ed1ec87993860846019" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::size_</definition>
+        <argsstring></argsstring>
+        <name>size_</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::size_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="78" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesMarker_1a2794d2b7fdd0d261af39e39637929630" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kindref="member">NoneShape</ref></type>
+        <definition>NoneShape QAccelPlot::SeriesMarker::noneShape_</definition>
+        <argsstring></argsstring>
+        <name>noneShape_</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::noneShape_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="79" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesMarker_1abcb8e09e403376d2860f080c059574b4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesMarker::filled_</definition>
+        <argsstring></argsstring>
+        <name>filled_</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::filled_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="80" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesMarker_1a78d73d5cd94fa60abf777e083399bc9a" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::strokeWidth_</definition>
+        <argsstring></argsstring>
+        <name>strokeWidth_</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::strokeWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="81" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a55c2fca196bada79a38b7e969a566b3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SeriesMarker::SeriesMarker</definition>
+        <argsstring>(PlotSeries::MarkerShape shape, qreal size, NoneShape noneShape, QObject *parent)</argsstring>
+        <name>SeriesMarker</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::SeriesMarker</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref></type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kindref="member">NoneShape</ref></type>
+          <declname>noneShape</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref> with the default <emphasis>shape</emphasis> and <emphasis>size</emphasis>, owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="44" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a43fa299986344e714fa9b5ec99581017" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref></type>
+        <definition>PlotSeries::MarkerShape QAccelPlot::SeriesMarker::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::shape</qualifiedname>
+        <briefdescription>
+<para>Returns the marker shape. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="47" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a476615dd293b9cf9390dbc87b4a196ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::setShape</definition>
+        <argsstring>(PlotSeries::MarkerShape shape)</argsstring>
+        <name>setShape</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::setShape</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref></type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+<para>Sets the marker shape to <emphasis>shape</emphasis>. <computeroutput>MarkerShape.None</computeroutput> is ignored when the series rejects it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="49" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1acb32354f96ccb22f4c282c50c2e308e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::size</qualifiedname>
+        <briefdescription>
+<para>Returns the marker radius in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="52" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a13d63615c84553e42607fa7791dca791" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::setSize</definition>
+        <argsstring>(qreal size)</argsstring>
+        <name>setSize</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::setSize</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Sets the marker radius to <emphasis>size</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="54" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a05bf880c4db982e7d4813e511724e907" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesMarker::filled</definition>
+        <argsstring>() const</argsstring>
+        <name>filled</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::filled</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> if closed marker shapes are filled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="57" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a339813c5992afab91afd269e98d68f9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::setFilled</definition>
+        <argsstring>(bool filled)</argsstring>
+        <name>setFilled</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::setFilled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>filled</declname>
+        </param>
+        <briefdescription>
+<para>Sets whether closed marker shapes are filled (<emphasis>filled</emphasis>) or drawn as outlines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="59" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1a10d96fcc3d0b54eccd0e1d7ae9b0a6a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SeriesMarker::strokeWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>strokeWidth</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::strokeWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the outline width of hollow markers in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="62" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesMarker_1ad1f7b3402500ad1070fde5d085fd8956" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::setStrokeWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setStrokeWidth</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::setStrokeWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the outline width of hollow markers to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="64" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesMarker_1a5f9660ed56b72f67d8a949f23c987b6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::shapeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>shapeChanged</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::shapeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the shape property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="68" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesMarker_1a25b7f4333251a158a7e7ceaa54ecfb5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::sizeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>sizeChanged</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::sizeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the size property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="70" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesMarker_1a12dd2303e6e8a7fc896d80ce9afe0abe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::filledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>filledChanged</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::filledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the filled property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="72" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesMarker_1a7cf160223a9c210ce367708466e2059c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesMarker::strokeWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>strokeWidthChanged</name>
+        <qualifiedname>QAccelPlot::SeriesMarker::strokeWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the strokeWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="74" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controls the markers a series draws at its data points. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Accessible via the <computeroutput>marker</computeroutput> CONSTANT grouped property of <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, for example <computeroutput>marker.shape: <ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a8f7671185d590914ac21c7511767b699" kindref="member">QAccelPlot.LineCurve.Diamond</ref></computeroutput>. Defaults depend on the owning series.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::SeriesMarker</label>
+        <link refid="classQAccelPlot_1_1SeriesMarker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SeriesMarker</label>
+        <link refid="classQAccelPlot_1_1SeriesMarker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp" bodystart="22" bodyend="82"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>filled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a05bf880c4db982e7d4813e511724e907" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>filled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1abcb8e09e403376d2860f080c059574b4" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>filled_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a12dd2303e6e8a7fc896d80ce9afe0abe" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>filledChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>NoneShape</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a2794d2b7fdd0d261af39e39637929630" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>noneShape_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a55c2fca196bada79a38b7e969a566b3f" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>SeriesMarker</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a339813c5992afab91afd269e98d68f9a" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>setFilled</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a476615dd293b9cf9390dbc87b4a196ac" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>setShape</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a13d63615c84553e42607fa7791dca791" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>setSize</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1ad1f7b3402500ad1070fde5d085fd8956" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>setStrokeWidth</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>shape</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a43fa299986344e714fa9b5ec99581017" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>shape</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a3a3fa9029191f13c298647052bc0d3ba" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>shape_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a5f9660ed56b72f67d8a949f23c987b6c" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>shapeChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>size</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1acb32354f96ccb22f4c282c50c2e308e6" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>size</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1af2716b7177ea5ed1ec87993860846019" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>size_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a25b7f4333251a158a7e7ceaa54ecfb5b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>sizeChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>strokeWidth</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a10d96fcc3d0b54eccd0e1d7ae9b0a6a2" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>strokeWidth</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a78d73d5cd94fa60abf777e083399bc9a" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>strokeWidth_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesMarker_1a7cf160223a9c210ce367708466e2059c" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesMarker</scope><name>strokeWidthChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -25,6 +25,7 @@
 #include "QAccelPlot/series/LineCurveGaps.hpp"
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
@@ -47,14 +48,11 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
-    Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
-    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
-    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
+    Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
 
 public:
     explicit LineCurve(QQuickItem* parent = nullptr);
@@ -73,18 +71,6 @@ public:
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
 
-    MarkerShape markerShape() const;
-    void setMarkerShape(MarkerShape shape);
-
-    qreal markerSize() const;
-    void setMarkerSize(qreal r);
-
-    bool markerFilled() const;
-    void setMarkerFilled(bool filled);
-
-    qreal markerStrokeWidth() const;
-    void setMarkerStrokeWidth(qreal width);
-
     bool antialiasingEnabled() const;
     void setAntialiasingEnabled(bool enabled);
 
@@ -94,6 +80,8 @@ public:
     QQmlListProperty<LineCurveEffect> effects();
 
     LineCurveGaps* gaps() const;
+
+    SeriesMarker* marker() const;
 
     Q_INVOKABLE void appendData(qreal x, qreal y);
     Q_INVOKABLE void clearData();
@@ -122,10 +110,6 @@ signals:
     void hoveredChanged();
     void transitionChanged();
     void lineStyleChanged();
-    void markerShapeChanged();
-    void markerSizeChanged();
-    void markerFilledChanged();
-    void markerStrokeWidthChanged();
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
 
@@ -134,6 +118,7 @@ private:
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
+    void onMarkerShapeChanged();
 
     static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
     static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
@@ -193,14 +178,11 @@ private:
     int pointCount_{0};
     QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    MarkerShape markerShape_{MarkerShape::None};
-    qreal markerSize_{4.0};
-    bool markerFilled_{true};
-    qreal markerStrokeWidth_{1.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
+    SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
     // True when the most recent data update computed ranges; the NoRange APIs leave
     // range management to the caller, so log-scale changes must not overwrite it.
     bool autoDataRanges_{true};

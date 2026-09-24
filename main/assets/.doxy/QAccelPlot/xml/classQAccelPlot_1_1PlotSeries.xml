@@ -162,7 +162,7 @@
         <enumvalue id="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a08822b3ae4e2aede0afe08abe600e9c0" prot="public">
           <name>Pixel</name>
           <briefdescription>
-<para>A single pixel; ignores <computeroutput>markerSize</computeroutput>, <computeroutput>markerFilled</computeroutput>, and anti-aliasing. Suited to very dense scatter plots. </para>
+<para>A single pixel; ignores the marker size, fill, and anti-aliasing. Suited to very dense scatter plots. </para>
           </briefdescription>
           <detaileddescription>
           </detaileddescription>
@@ -187,7 +187,7 @@
 <para>Marker shapes shared by every series that draws markers. </para>
         </briefdescription>
         <detaileddescription>
-<para>Every shape except <computeroutput>Pixel</computeroutput> fits within a square of half-width <computeroutput>markerSize</computeroutput>. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, do not accept <computeroutput>None</computeroutput>. </para>
+<para>Every shape except <computeroutput>Pixel</computeroutput> fits within a square whose half-width is the marker size. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput>, do not accept <computeroutput>None</computeroutput>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>

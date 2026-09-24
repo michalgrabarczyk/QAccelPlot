@@ -90,7 +90,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | ---: | :--- |
 | property bool | [**antialiasingEnabled**](classQAccelPlot_1_1PointCloud.md#property-antialiasingenabled-12)  <br>_Whether GPU-side anti-aliasing is applied to markers. Default:_ `true` _._ |
 | property qreal | [**antialiasingFeather**](classQAccelPlot_1_1PointCloud.md#property-antialiasingfeather-12)  <br>_Anti-aliasing feather width in pixels, clamped to [0, 10]. Default: 1._  |
-| property QColor | [**color**](classQAccelPlot_1_1PointCloud.md#property-color-12)  <br>_Uniform marker color, also used by the legend. Default:_ `Qt::blue` _._ |
+| property QColor | [**color**](classQAccelPlot_1_1PointCloud.md#property-color-12)  <br>_Uniform marker color, also used by the legend. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1PointCloud.md#property-colormap-12)  <br>_Maps per-point values to colors. Points are colored uniformly with_ `color` _when this is null or no values are stored. Default: null._ |
 | property int | [**count**](classQAccelPlot_1_1PointCloud.md#property-count-12)  <br>_Read-only: number of points currently stored, including invalid ones._  |
 | property qreal | [**dataValueMax**](classQAccelPlot_1_1PointCloud.md#property-datavaluemax-12)  <br>_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._ |
@@ -98,10 +98,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property bool | [**hasValues**](classQAccelPlot_1_1PointCloud.md#property-hasvalues-12)  <br>_Read-only:_ `true` _when per-point values are stored._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick radius in pixels used for hover detection. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the point under the cursor, or -1 when none._  |
-| property bool | [**markerFilled**](classQAccelPlot_1_1PointCloud.md#property-markerfilled-12)  <br>_Whether closed marker shapes are filled. When_ `false` _they are drawn as outlines of_`markerStrokeWidth` _inside the shape's edge. Line-like shapes (_`Cross` _,_`XCross` _,_`Asterisk` _,_`HLine` _,_`VLine` _) and_`Pixel` _are unaffected. Default:_`true` _._ |
-| property [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](classQAccelPlot_1_1PointCloud.md#property-markershape-12)  <br>_Marker shape._ `MarkerShape.None` _is not accepted, because a cloud always draws markers; assigning it leaves the shape unchanged. Default:_`Circle` _._ |
-| property qreal | [**markerSize**](classQAccelPlot_1_1PointCloud.md#property-markersize-12)  <br>_Marker radius in pixels. Default: 3._  |
-| property qreal | [**markerStrokeWidth**](classQAccelPlot_1_1PointCloud.md#property-markerstrokewidth-12)  <br>_Outline width in pixels of hollow markers. Has effect only when_ `markerFilled` _is_`false` _. Default: 1._ |
+| property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1PointCloud.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._`marker.shape` _defaults to_`Circle` _and does not accept_`None` _, because a cloud always draws markers;_`marker.size` _defaults to 3._ |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -132,10 +129,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**countChanged**](classQAccelPlot_1_1PointCloud.md#signal-countchanged)  <br>_Emitted when the number of points or the presence of values changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered point changes._  |
-| signal void | [**markerFilledChanged**](classQAccelPlot_1_1PointCloud.md#signal-markerfilledchanged)  <br>_Emitted when the markerFilled property changes._  |
-| signal void | [**markerShapeChanged**](classQAccelPlot_1_1PointCloud.md#signal-markershapechanged)  <br>_Emitted when the markerShape property changes._  |
-| signal void | [**markerSizeChanged**](classQAccelPlot_1_1PointCloud.md#signal-markersizechanged)  <br>_Emitted when the markerSize property changes._  |
-| signal void | [**markerStrokeWidthChanged**](classQAccelPlot_1_1PointCloud.md#signal-markerstrokewidthchanged)  <br>_Emitted when the markerStrokeWidth property changes._  |
 | signal void | [**valueRangeChanged**](classQAccelPlot_1_1PointCloud.md#signal-valuerangechanged)  <br>_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._ |
 
 
@@ -175,10 +168,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  bool | [**hasValues**](#function-hasvalues-22) () const<br>_Returns_ `true` _when per-point values are stored._ |
 |  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the hover pick radius in pixels._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered point, or -1._  |
-|  bool | [**markerFilled**](#function-markerfilled-22) () const<br>_Returns_ `true` _if closed marker shapes are filled._ |
-|  [**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) | [**markerShape**](#function-markershape-22) () const<br>_Returns the marker shape._  |
-|  qreal | [**markerSize**](#function-markersize-22) () const<br>_Returns the marker radius in pixels._  |
-|  qreal | [**markerStrokeWidth**](#function-markerstrokewidth-22) () const<br>_Returns the outline width of hollow markers in pixels._  |
+|  [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](#function-marker-22) () const<br>_Returns the grouped marker settings. The object is owned by the cloud._  |
 |  Q\_INVOKABLE QPointF | [**pointAt**](#function-pointat) (int index) const<br>_Returns point_ _index_ _, or a NaN point when__index_ _is out of range._ |
 |  int | [**pointIndexAt**](#function-pointindexat) (const QPointF & position) const<br>_Returns the index of the valid point within_ `hoverRadius` _of item position__position_ _, or -1._ |
 |  void | [**postData**](#function-postdata-14) (std::vector&lt; float &gt; && xyInterleaved, int pointCount) <br>_Thread-safe: queues_ `setDataF` _(__xyInterleaved_ _,__pointCount_ _) to the item's thread._ |
@@ -198,10 +188,6 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataFNoRange**](#function-setdatafnorange) (std::vector&lt; float &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Like_ `setDataF()` _but does not report X/Y data ranges to the axes._ |
 |  void | [**setDataNoRange**](#function-setdatanorange) (std::vector&lt; double &gt; && xyInterleaved, std::vector&lt; float &gt; && values, int pointCount) <br>_Like the double_ `setData()` _but does not report X/Y data ranges to the axes._ |
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0._ |
-|  void | [**setMarkerFilled**](#function-setmarkerfilled) (bool filled) <br>_Sets whether closed marker shapes are filled (_ _filled_ _) or drawn as outlines._ |
-|  void | [**setMarkerShape**](#function-setmarkershape) ([**MarkerShape**](classQAccelPlot_1_1PlotSeries.md#enum-markershape) shape) <br>_Sets the marker shape to_ _shape_ _._`MarkerShape.None` _is ignored._ |
-|  void | [**setMarkerSize**](#function-setmarkersize) (qreal size) <br>_Sets the marker radius to_ _size_ _pixels. Negative values are clamped to 0._ |
-|  void | [**setMarkerStrokeWidth**](#function-setmarkerstrokewidth) (qreal width) <br>_Sets the outline width of hollow markers to_ _width_ _pixels. Negative values are clamped to 0._ |
 |  Q\_INVOKABLE void | [**setValues**](#function-setvalues) (const QList&lt; qreal &gt; & values) <br>_Sets one value per point. An empty list clears values; any other size must equal_ `count` _._ |
 |  Q\_INVOKABLE qreal | [**valueAt**](#function-valueat) (int index) const<br>_Returns the value of point_ _index_ _, or NaN when out of range or no values are stored._ |
 
@@ -368,7 +354,7 @@ qreal QAccelPlot::PointCloud::antialiasingFeather;
 
 ### property color {#property-color-12}
 
-_Uniform marker color, also used by the legend. Default:_ `Qt::blue` _._
+_Uniform marker color, also used by the legend. Default:_ `Colors.dark.seriesPrimary` _._
 ```C++
 QColor QAccelPlot::PointCloud::color;
 ```
@@ -486,56 +472,11 @@ int QAccelPlot::PointCloud::hoveredIndex;
 
 
 
-### property markerFilled {#property-markerfilled-12}
+### property marker {#property-marker-12}
 
-_Whether closed marker shapes are filled. When_ `false` _they are drawn as outlines of_`markerStrokeWidth` _inside the shape's edge. Line-like shapes (_`Cross` _,_`XCross` _,_`Asterisk` _,_`HLine` _,_`VLine` _) and_`Pixel` _are unaffected. Default:_`true` _._
+_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._`marker.shape` _defaults to_`Circle` _and does not accept_`None` _, because a cloud always draws markers;_`marker.size` _defaults to 3._
 ```C++
-bool QAccelPlot::PointCloud::markerFilled;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property markerShape {#property-markershape-12}
-
-_Marker shape._ `MarkerShape.None` _is not accepted, because a cloud always draws markers; assigning it leaves the shape unchanged. Default:_`Circle` _._
-```C++
-MarkerShape QAccelPlot::PointCloud::markerShape;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property markerSize {#property-markersize-12}
-
-_Marker radius in pixels. Default: 3._ 
-```C++
-qreal QAccelPlot::PointCloud::markerSize;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property markerStrokeWidth {#property-markerstrokewidth-12}
-
-_Outline width in pixels of hollow markers. Has effect only when_ `markerFilled` _is_`false` _. Default: 1._
-```C++
-qreal QAccelPlot::PointCloud::markerStrokeWidth;
+SeriesMarker* QAccelPlot::PointCloud::marker;
 ```
 
 
@@ -643,66 +584,6 @@ void QAccelPlot::PointCloud::hoverRadiusChanged;
 _Emitted when the hovered point changes._ 
 ```C++
 void QAccelPlot::PointCloud::hoveredIndexChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal markerFilledChanged {#signal-markerfilledchanged}
-
-_Emitted when the markerFilled property changes._ 
-```C++
-void QAccelPlot::PointCloud::markerFilledChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal markerShapeChanged {#signal-markershapechanged}
-
-_Emitted when the markerShape property changes._ 
-```C++
-void QAccelPlot::PointCloud::markerShapeChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal markerSizeChanged {#signal-markersizechanged}
-
-_Emitted when the markerSize property changes._ 
-```C++
-void QAccelPlot::PointCloud::markerSizeChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal markerStrokeWidthChanged {#signal-markerstrokewidthchanged}
-
-_Emitted when the markerStrokeWidth property changes._ 
-```C++
-void QAccelPlot::PointCloud::markerStrokeWidthChanged;
 ```
 
 
@@ -933,56 +814,11 @@ int QAccelPlot::PointCloud::hoveredIndex () const
 
 
 
-### function markerFilled {#function-markerfilled-22}
+### function marker {#function-marker-22}
 
-_Returns_ `true` _if closed marker shapes are filled._
+_Returns the grouped marker settings. The object is owned by the cloud._ 
 ```C++
-bool QAccelPlot::PointCloud::markerFilled () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function markerShape {#function-markershape-22}
-
-_Returns the marker shape._ 
-```C++
-MarkerShape QAccelPlot::PointCloud::markerShape () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function markerSize {#function-markersize-22}
-
-_Returns the marker radius in pixels._ 
-```C++
-qreal QAccelPlot::PointCloud::markerSize () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function markerStrokeWidth {#function-markerstrokewidth-22}
-
-_Returns the outline width of hollow markers in pixels._ 
-```C++
-qreal QAccelPlot::PointCloud::markerStrokeWidth () const
+SeriesMarker * QAccelPlot::PointCloud::marker () const
 ```
 
 
@@ -1330,74 +1166,6 @@ _Sets the hover pick radius to_ _radius_ _pixels. Negative values are clamped to
 ```C++
 void QAccelPlot::PointCloud::setHoverRadius (
     qreal radius
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setMarkerFilled {#function-setmarkerfilled}
-
-_Sets whether closed marker shapes are filled (_ _filled_ _) or drawn as outlines._
-```C++
-void QAccelPlot::PointCloud::setMarkerFilled (
-    bool filled
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setMarkerShape {#function-setmarkershape}
-
-_Sets the marker shape to_ _shape_ _._`MarkerShape.None` _is ignored._
-```C++
-void QAccelPlot::PointCloud::setMarkerShape (
-    MarkerShape shape
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setMarkerSize {#function-setmarkersize}
-
-_Sets the marker radius to_ _size_ _pixels. Negative values are clamped to 0._
-```C++
-void QAccelPlot::PointCloud::setMarkerSize (
-    qreal size
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setMarkerStrokeWidth {#function-setmarkerstrokewidth}
-
-_Sets the outline width of hollow markers to_ _width_ _pixels. Negative values are clamped to 0._
-```C++
-void QAccelPlot::PointCloud::setMarkerStrokeWidth (
-    qreal width
 ) 
 ```
 

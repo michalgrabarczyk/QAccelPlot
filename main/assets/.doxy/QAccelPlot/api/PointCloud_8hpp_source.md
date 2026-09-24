@@ -21,6 +21,8 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
+#include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QList>
@@ -38,10 +40,7 @@ class PointCloud : public PlotSeries {
 
     
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
-    Q_PROPERTY(MarkerShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
-    Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
-    Q_PROPERTY(bool markerFilled READ markerFilled WRITE setMarkerFilled NOTIFY markerFilledChanged)
-    Q_PROPERTY(qreal markerStrokeWidth READ markerStrokeWidth WRITE setMarkerStrokeWidth NOTIFY markerStrokeWidthChanged)
+    Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
@@ -58,17 +57,7 @@ public:
     QColor color() const;
     void setColor(const QColor& color);
 
-    MarkerShape markerShape() const;
-    void setMarkerShape(MarkerShape shape);
-
-    qreal markerSize() const;
-    void setMarkerSize(qreal size);
-
-    bool markerFilled() const;
-    void setMarkerFilled(bool filled);
-
-    qreal markerStrokeWidth() const;
-    void setMarkerStrokeWidth(qreal width);
+    SeriesMarker* marker() const;
 
     Colormap* colormap() const;
     void setColormap(Colormap* colormap);
@@ -112,10 +101,6 @@ public:
 
 signals:
     void colorChanged();
-    void markerShapeChanged();
-    void markerSizeChanged();
-    void markerFilledChanged();
-    void markerStrokeWidthChanged();
     void colormapChanged();
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
@@ -152,11 +137,8 @@ private:
     void rebuildRenderData();
     bool hasPreciseData() const;
 
-    QColor color_{Qt::blue};
-    MarkerShape markerShape_{MarkerShape::Circle};
-    qreal markerSize_{3.0};
-    bool markerFilled_{true};
-    qreal markerStrokeWidth_{1.0};
+    QColor color_{ColorPalette::dark().seriesPrimary};
+    SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
     QPointer<Colormap> colormap_;
     std::vector<GradientStopData> colorStops_;
     bool antialiasingEnabled_{true};

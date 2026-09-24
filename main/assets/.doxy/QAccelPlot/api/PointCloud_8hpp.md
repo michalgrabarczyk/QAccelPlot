@@ -21,6 +21,8 @@
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
 * `#include "QAccelPlot/series/PointSpatialIndex.hpp"`
+* `#include "QAccelPlot/series/SeriesMarker.hpp"`
+* `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QList>`
 * `#include <QMetaObject>`

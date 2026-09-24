@@ -1470,15 +1470,16 @@
 <li>Marker shapes <code>TriangleLeft</code>, <code>TriangleRight</code>, <code>XCross</code>, <code>HLine</code>, <code>VLine</code>,
   <code>Star</code>, <code>Asterisk</code>, <code>Hexagon</code>, and <code>Pentagon</code>, and a <code>Pixel</code> marker that draws
   each sample as a single pixel for very dense scatter plots.</li>
-<li>Hollow markers: set <code>LineCurve.markerFilled</code> to <code>false</code> to outline filled
-  shapes with <code>markerStrokeWidth</code> pixels. Legend symbols follow the curve.</li>
+<li>Hollow markers: set <code>marker.filled</code> to <code>false</code> to outline filled shapes with
+  <code>marker.strokeWidth</code> pixels. Legend symbols follow the series.</li>
 <li>A Markers page in the styling and transitions example shows every shape.</li>
 <li><code>LineCurve::setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> moves an interleaved double
   buffer into the curve, keeping double precision for large coordinates such as
   Unix-epoch timestamps without re-interleaving.</li>
 <li><code>LineCurve::postData(std::vector&lt;double&gt;&amp;&amp;, int)</code> hands off an interleaved
   double buffer from a worker thread, like the existing float <code>postData()</code>.</li>
-<li><code>PointCloud</code> series for large unconnected scatter data.</li>
+<li><code>PointCloud</code> series for large unconnected scatter data. Its markers use the
+  same <code>marker</code> grouped property as <code>LineCurve</code>.</li>
 <li><code>Colormap</code>, mapping data values to colors through a built-in ramp (<code>Viridis</code>, <code>Plasma</code>,
   <code>Inferno</code>, <code>Magma</code>, <code>Turbo</code>, <code>Grayscale</code>, <code>Rainbow</code>) or custom stops, with optional
   bounds and linear or logarithmic normalization. <code>PointCloud.colormap</code> replaces its
@@ -1492,6 +1493,7 @@
   embedded with <code>add_subdirectory</code> or <code>FetchContent</code> and when it is installed.
   The library sources moved to <code>QAccelPlot/src/QAccelPlot/</code>. Replace unprefixed
   includes such as <code>"series/LineCurve.hpp"</code>.</li>
+<li><code>LineCurve.markerShape</code> and <code>markerSize</code> moved to <code>marker.shape</code> and <code>marker.size</code>.</li>
 </ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 <ul>

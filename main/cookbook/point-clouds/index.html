@@ -1345,21 +1345,21 @@ texture upload per update.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">color:</span> <span class="s2">"#8065b5ff"</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">markerShape:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span><span class="p">.</span><span class="nx">Circle</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">markerSize:</span> <span class="mi">2</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">marker.shape:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span><span class="p">.</span><span class="nx">Circle</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">marker.size:</span> <span class="mi">2</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">([</span><span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)])</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="p">}</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>markerSize</code> is the marker radius in pixels. Point clouds accept every
-<code>LineCurve</code> marker shape; see the <a href="../styling/#marker-shapes">shape table</a>.
-<code>Pixel</code> ignores <code>markerSize</code> and draws one pixel per point, which suits very
-dense clouds.</p>
-<p>Set <code>markerFilled: false</code> to draw closed shapes as outlines of
-<code>markerStrokeWidth</code> pixels, exactly as on <code>LineCurve</code>. Hollow markers read well
-on dense clouds, where filled shapes merge into a solid mass. Line shapes and
-<code>Pixel</code> ignore both properties.</p>
+<p>Marker settings are grouped under <code>marker</code>. <code>marker.size</code> is the marker radius
+in pixels. Point clouds accept every marker shape except <code>None</code>; see the
+<a href="../styling/#marker-shapes">shape table</a>. <code>Pixel</code> ignores <code>marker.size</code> and
+draws one pixel per point, which suits very dense clouds.</p>
+<p>Set <code>marker.filled: false</code> to draw closed shapes as outlines of
+<code>marker.strokeWidth</code> pixels. Hollow markers read well on dense clouds, where
+filled shapes merge into a solid mass. Line shapes and <code>Pixel</code> ignore both
+properties.</p>
 <p>Translucent colors make dense regions read as density, because overlapping
 markers blend. Points are drawn in data order, so put background points first
 when they should appear underneath.</p>

@@ -233,7 +233,7 @@ enum QAccelPlot::PlotSeries::MarkerShape {
 
 
 
-Every shape except `Pixel` fits within a square of half-width `markerSize`. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as `PointCloud`, do not accept `None`. 
+Every shape except `Pixel` fits within a square whose half-width is the marker size. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as `PointCloud`, do not accept `None`. 
 
 
         

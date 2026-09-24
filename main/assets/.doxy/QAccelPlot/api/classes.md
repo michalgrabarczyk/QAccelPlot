@@ -172,6 +172,8 @@
 
 * [**SampleRun**](structQAccelPlot_1_1SampleRun.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SolidLine**](classQAccelPlot_1_1SolidLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md)

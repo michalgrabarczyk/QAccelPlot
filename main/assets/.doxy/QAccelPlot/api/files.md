@@ -62,6 +62,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**PlotSeries.hpp**](PlotSeries_8hpp.md)     
                 * **file** [**PointCloud.hpp**](PointCloud_8hpp.md)     
                 * **file** [**PointSpatialIndex.hpp**](PointSpatialIndex_8hpp.md)     
+                * **file** [**SeriesMarker.hpp**](SeriesMarker_8hpp.md)     
                 * **file** [**SpatialGrid.hpp**](SpatialGrid_8hpp.md)     
             * **dir** [**shapes**](dir_8b04ad397f0acbf5ea360af28d82ce99.md)     
                 * **file** [**RectangleList.hpp**](RectangleList_8hpp.md)     

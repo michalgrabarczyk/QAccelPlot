@@ -25,6 +25,7 @@
 * `#include "QAccelPlot/series/LineCurveGaps.hpp"`
 * `#include "QAccelPlot/series/LineCurveVertexCache.hpp"`
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
+* `#include "QAccelPlot/series/SeriesMarker.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QPointF>`
