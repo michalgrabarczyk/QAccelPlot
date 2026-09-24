@@ -11,6 +11,7 @@
 #include "QAccelPlot/series/LineCurveVertexCache.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
+#include <QHoverEvent>
 #include <QPointer>
 #include <QThread>
 #include <QtTest/QtTest>
@@ -36,6 +37,8 @@ private slots:
     void invalidRawArgumentsAreRejected();
     void invalidVectorArgumentsAreRejected();
     void rawUpdateHonorsTransition();
+    void cachedUpdatesHonorTransition();
+    void mismatchedVertexCacheIsIgnored();
     void destroyedTransitionClearsReference();
     void replacedTransitionDestructionDoesNotNotify();
     void stoppedTransitionBeforeFirstFrame_data();
@@ -49,6 +52,8 @@ private slots:
     void invalidInterleavedDoubleDataIsRejected();
     void postedDoubleDataPreservesModernEpochPrecision();
     void postedDoubleDataFromWorkerThreadIsApplied();
+    void postedFloatDataFromWorkerThreadIsApplied();
+    void hoverEnterAndLeaveToggleHovered();
     void invalidPostedDoubleDataIsRejected();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
@@ -74,6 +79,12 @@ std::vector<float> makeData(const int pointCount, const float offset = 0.0f)
     }
     return data;
 }
+
+class HoverableCurve final : public LineCurve {
+public:
+    using LineCurve::hoverEnterEvent;
+    using LineCurve::hoverLeaveEvent;
+};
 
 std::vector<char> makeLineCache(const std::vector<float>& data, const int pointCount)
 {
@@ -217,6 +228,38 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     curve.setDataFNoRange(second.data(), 3);
 
     QVERIFY(transition.running());
+}
+
+void LineCurveDataTest::cachedUpdatesHonorTransition()
+{
+    auto curve = LineCurve{};
+    auto transition = MorphTransition{&curve};
+    curve.setTransition(&transition);
+
+    curve.setDataFNoRangeWithCache(makeData(2), 2, {});
+    QVERIFY(transition.running());
+
+    transition.cancel();
+    auto raw = makeData(3, 8.0f);
+    curve.setDataFNoRangeWithCache(raw.data(), 3, {});
+    QVERIFY(transition.running());
+}
+
+void LineCurveDataTest::mismatchedVertexCacheIsIgnored()
+{
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 3 bytes; expected \\d+"));
+    curve.setDataFNoRangeWithCache(makeData(4), 4, std::vector<char>(3));
+    auto raw = makeData(4);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 5 bytes; expected \\d+"));
+    curve.setDataFNoRangeWithCache(raw.data(), 4, std::vector<char>(5));
+
+    // No-range updates leave range bookkeeping to the caller.
+    QCOMPARE(xRangeSpy.count(), 0);
 }
 
 void LineCurveDataTest::destroyedTransitionClearsReference()
@@ -449,6 +492,39 @@ void LineCurveDataTest::postedDoubleDataFromWorkerThreadIsApplied()
     QTRY_COMPARE(yRangeSpy.count(), 1);
     QCOMPARE(yAxis.dataMin(), -2.5);
     QCOMPARE(yAxis.dataMax(), 7.25);
+}
+
+void LineCurveDataTest::postedFloatDataFromWorkerThreadIsApplied()
+{
+    auto yAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setYAxis(&yAxis);
+    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+
+    auto* worker = QThread::create([&curve]() { curve.postData(std::vector<float>{0.0f, -1.5f, 1.0f, 4.5f}, 2); });
+    worker->start();
+    QVERIFY(worker->wait());
+    delete worker;
+
+    QTRY_COMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(yAxis.dataMin(), -1.5);
+    QCOMPARE(yAxis.dataMax(), 4.5);
+}
+
+void LineCurveDataTest::hoverEnterAndLeaveToggleHovered()
+{
+    auto curve = HoverableCurve{};
+    auto hoveredSpy = QSignalSpy{&curve, &LineCurve::hoveredChanged};
+    const auto position = QPointF{5.0, 5.0};
+
+    auto enter = QHoverEvent{QEvent::HoverEnter, position, position, position};
+    curve.hoverEnterEvent(&enter);
+    QVERIFY(curve.hovered());
+
+    auto leave = QHoverEvent{QEvent::HoverLeave, position, position, position};
+    curve.hoverLeaveEvent(&leave);
+    QVERIFY(!curve.hovered());
+    QCOMPARE(hoveredSpy.count(), 2);
 }
 
 void LineCurveDataTest::invalidPostedDoubleDataIsRejected()

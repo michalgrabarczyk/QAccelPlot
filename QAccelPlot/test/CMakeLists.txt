@@ -42,6 +42,8 @@ add_qaccelplot_test(tst_axis_rescale         core tst_axis_rescale.cpp)
 add_qaccelplot_test(tst_plot_series_data_ranges core tst_plot_series_data_ranges.cpp)
 add_qaccelplot_test(tst_color_palette        core tst_color_palette.cpp)
 add_qaccelplot_test(tst_colormap             core tst_colormap.cpp)
+add_qaccelplot_test(tst_property_notifications core tst_property_notifications.cpp)
+add_qaccelplot_test(tst_plot_rendering       core tst_plot_rendering.cpp)
 # Instantiates Colormap from QML, so it needs the QML module plugin.
 target_link_libraries(tst_colormap PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_colormap)
@@ -51,3 +53,6 @@ qt_import_qml_plugins(tst_marker_shapes)
 # Loads Legend.qml to check QML-side palette defaults, so it needs the QML module plugin.
 target_link_libraries(tst_color_palette PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_color_palette)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_plot_rendering PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_plot_rendering)
