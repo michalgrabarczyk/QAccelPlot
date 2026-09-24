@@ -155,7 +155,7 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    /// rief Sets data by moving a pre-filled interleaved double vector of  pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
+    /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
     /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
     void setData(std::vector<double>&& xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
@@ -173,7 +173,7 @@ public:
     /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
     /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
-    /// rief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
+    /// \brief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
     /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
     /// is made. This call is thread-safe.
     void postData(std::vector<double>&& xyInterleaved, int pointCount);
