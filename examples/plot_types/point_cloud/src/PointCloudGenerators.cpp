@@ -162,19 +162,6 @@ void composeClusterFrame(const ClusterCloud& cloud, const float phaseRadians, Po
     }
 }
 
-std::vector<float> generateShapeRow(const int rowIndex, const int columns)
-{
-    const auto count = std::max(columns, 0);
-    auto xy = std::vector<float>(static_cast<std::size_t>(count) * 2);
-    for (auto column = 0; column < count; ++column) {
-        const auto index = static_cast<std::size_t>(column);
-        // Slight wave so each row reads as a set of separate markers, not a line.
-        xy[index * 2] = static_cast<float>(column + 1);
-        xy[index * 2 + 1] = static_cast<float>(rowIndex + 1) + 0.18f * std::sin(static_cast<float>(column) * 1.3f + static_cast<float>(rowIndex));
-    }
-    return xy;
-}
-
 std::vector<float> generatePowerLawScatter(const int pointCount, const unsigned int seed)
 {
     const auto validCount = std::max(pointCount, 0);

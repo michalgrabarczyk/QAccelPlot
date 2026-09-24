@@ -116,7 +116,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Showcases | **[Cosmic Pulsar](examples/showcases/pulsar/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
 | Showcases | **[Performance](examples/showcases/performance/)** | Stress test up to 10M points with display FPS and data update rate. |
 | Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
-| Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
+| Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 250K value-colored scatter points, log-log axes, hover picking, and worker-thread streaming. |
 | Styling | **[Line Styles](examples/styling/line_styles/)** | Dash patterns, line weights, and antialiasing. |
 | Styling | **[Markers](examples/styling/markers/)** | Every marker shape, filled and hollow, and dense Pixel scatter. |
 | Styling | **[Gradients](examples/styling/gradients/)** | Gradient area fills and strokes with presets, direction, and baseline. |

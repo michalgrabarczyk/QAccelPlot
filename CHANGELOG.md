@@ -46,6 +46,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `styling/line_styles`, `styling/markers`, `styling/gradients`,
   `styling/transitions`, `styling/theming` (dark and light palettes), and
   `data/missing_data` (invalid samples and gaps).
+- The point cloud example no longer repeats the marker-shape gallery; see
+  `styling/markers`.
 
 ### Removed
 

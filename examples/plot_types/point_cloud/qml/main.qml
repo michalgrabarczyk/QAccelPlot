@@ -57,12 +57,8 @@ Window {
     }
 
     component StyledPlot: QAccelPlot.Plot {
-        plotAreaColor: window.colorPalette.plotArea
-        axesAreaColor: window.colorPalette.axesArea
         border.color: window.colorPalette.plotBorder
         border.width: 2
-        grid.gridColor: window.colorPalette.grid
-        grid.subGridColor: window.colorPalette.subGrid
     }
 
     component PanelTitle: Label {
@@ -78,7 +74,7 @@ Window {
 
         ExampleHeader {
             title: "Point clouds"
-            description: "Unconnected scatter data rendered as GPU markers: value-colored clusters, every marker shape, and log-log axes that skip invalid samples. Hover a point on the left plot; pan and zoom any plot."
+            description: "Unconnected scatter data rendered as GPU markers: value-colored clusters and log-log axes that skip invalid samples. Hover a point on the left plot; pan and zoom any plot."
         }
 
         RowLayout {
@@ -145,9 +141,6 @@ Window {
                     Layout.fillHeight: true
                     legend: QAccelPlot.Legend {
                         series: clusterPlot.series
-                        color: colorPalette.legendBackground
-                        textColor: colorPalette.text
-                        border.color: colorPalette.legendBorder
                     }
 
                     xAxis: ExampleAxis {
@@ -296,67 +289,6 @@ Window {
                 Layout.fillHeight: true
                 Layout.preferredWidth: 2
                 spacing: 4
-
-                // ── Marker shapes: one uniform-color series per shape ──────────────
-                PanelTitle {
-                    text: "Marker shapes"
-                }
-
-                StyledPlot {
-                    id: shapesPlot
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    legend: QAccelPlot.Legend {
-                        series: shapesPlot.series
-                        color: colorPalette.legendBackground
-                        textColor: colorPalette.text
-                        border.color: colorPalette.legendBorder
-                    }
-
-                    xAxis: ExampleAxis {
-                        // Leaves the right side free for the legend.
-                        viewportMin: 0
-                        viewportMax: 16
-                        dataMin: 0
-                        dataMax: 16
-                        label: "Sample"
-                    }
-
-                    yAxis: ExampleAxis {
-                        viewportMin: 0
-                        viewportMax: 7
-                        dataMin: 0
-                        dataMax: 7
-                        axisTitlePadding: 34
-                        layoutSize: 54
-                        label: "Shape row"
-                    }
-
-                    Repeater {
-                        model: [
-                            { name: "Circle", shape: QAccelPlot.PointCloud.Circle, color: window.colorPalette.seriesPrimary },
-                            { name: "Square", shape: QAccelPlot.PointCloud.Square, color: window.colorPalette.seriesSecondary },
-                            { name: "Diamond", shape: QAccelPlot.PointCloud.Diamond, color: window.colorPalette.seriesTertiary },
-                            { name: "Triangle up", shape: QAccelPlot.PointCloud.TriangleUp, color: window.colorPalette.seriesQuaternary },
-                            { name: "Triangle down", shape: QAccelPlot.PointCloud.TriangleDown, color: window.colorPalette.seriesRose },
-                            { name: "Cross", shape: QAccelPlot.PointCloud.Cross, color: window.colorPalette.seriesYellow }
-                        ]
-
-                        delegate: QAccelPlot.PointCloud {
-                            required property var modelData
-                            required property int index
-
-                            objectName: "shape_" + index
-                            name: modelData.name
-                            xAxis: shapesPlot.xAxis
-                            yAxis: shapesPlot.yAxis
-                            color: modelData.color
-                            marker.shape: modelData.shape
-                            marker.size: 7
-                            antialiasingEnabled: antialiasingSwitch.checked
-                        }
-                    }
-                }
 
                 // ── Power law: log-log axes, invalid samples skipped ───────────────
                 PanelTitle {
