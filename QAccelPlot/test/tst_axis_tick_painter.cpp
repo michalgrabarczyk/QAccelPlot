@@ -8,6 +8,7 @@
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
+#include <QHoverEvent>
 #include <QImage>
 #include <QJSEngine>
 #include <QMutex>
@@ -92,6 +93,31 @@ private:
     QThread* paintThread_{nullptr};
 };
 
+class HoverableAxis final : public QAccelPlot::Axis {
+public:
+    using QAccelPlot::Axis::Axis;
+    using QAccelPlot::Axis::hoverEnterEvent;
+    using QAccelPlot::Axis::hoverLeaveEvent;
+};
+
+// Counts the pixels of an axis painted in a color at any alpha coverage.
+int countPaintedPixels(QAccelPlot::Axis& axis, const QColor& color)
+{
+    auto image = QImage{axis.size().toSize(), QImage::Format_ARGB32};
+    image.fill(Qt::transparent);
+    auto painter = QPainter{&image};
+    axis.paint(&painter);
+    painter.end();
+    auto count = 0;
+    for (auto y = 0; y < image.height(); ++y) {
+        for (auto x = 0; x < image.width(); ++x) {
+            const auto pixel = image.pixel(x, y);
+            count += qAlpha(pixel) > 0 && (pixel & RGB_MASK) == (color.rgb() & RGB_MASK) ? 1 : 0;
+        }
+    }
+    return count;
+}
+
 class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
@@ -123,6 +149,8 @@ private slots:
     void computeTicks_logScaleLabelsUsePowersOfTen();
     void computeTicks_nullTickerIsEmpty();
     void axis_formatsTickLabelsOnGuiThread();
+    void axis_paintsTitleOnEverySide_data();
+    void axis_paintsTitleOnEverySide();
 };
 
 void TestAxisTickPainter::initTestCase()
@@ -473,6 +501,44 @@ void TestAxisTickPainter::axis_formatsTickLabelsOnGuiThread()
     for (const auto* thread : formatThreads) {
         QCOMPARE(thread, QThread::currentThread());
     }
+}
+
+void TestAxisTickPainter::axis_paintsTitleOnEverySide_data()
+{
+    QTest::addColumn<QAccelPlot::Axis::Side>("side");
+    QTest::newRow("bottom") << QAccelPlot::Axis::Bottom;
+    QTest::newRow("top") << QAccelPlot::Axis::Top;
+    QTest::newRow("left") << QAccelPlot::Axis::Left;
+    QTest::newRow("right") << QAccelPlot::Axis::Right;
+}
+
+void TestAxisTickPainter::axis_paintsTitleOnEverySide()
+{
+    QFETCH(QAccelPlot::Axis::Side, side);
+    const auto titleColor = QColor{Qt::red};
+    const auto hoverColor = QColor{Qt::blue};
+    auto axis = HoverableAxis{nullptr, side};
+    axis.setSize(axis.orientation() == QAccelPlot::Axis::Horizontal ? QSizeF{200, 80} : QSizeF{80, 200});
+    axis.ticker()->setTickCount(0);
+    axis.setBaselineColor(Qt::green);
+    axis.setLabel(QStringLiteral("Title"));
+    axis.setLabelColor(titleColor);
+    axis.setHoverColor(hoverColor);
+    auto hoveredSpy = QSignalSpy{&axis, &QAccelPlot::Axis::hoveredChanged};
+
+    QVERIFY(countPaintedPixels(axis, titleColor) > 0);
+    QCOMPARE(countPaintedPixels(axis, hoverColor), 0);
+
+    auto enter = QHoverEvent{QEvent::HoverEnter, QPointF{}, QPointF{}, QPointF{}};
+    axis.hoverEnterEvent(&enter);
+    QVERIFY(axis.hovered());
+    QCOMPARE(countPaintedPixels(axis, titleColor), 0);
+    QVERIFY(countPaintedPixels(axis, hoverColor) > 0);
+
+    auto leave = QHoverEvent{QEvent::HoverLeave, QPointF{}, QPointF{}, QPointF{}};
+    axis.hoverLeaveEvent(&leave);
+    QVERIFY(!axis.hovered());
+    QCOMPARE(hoveredSpy.count(), 2);
 }
 
 QTEST_MAIN(TestAxisTickPainter)

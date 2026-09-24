@@ -37,6 +37,7 @@ private slots:
     void topSideExtraAxisStacksAboveThePlot();
     void rightSideExtraAxisStacksRightOfThePlot();
     void duplicateExtraAxisIsIgnored();
+    void clearingExtraAxesReleasesThem();
     void outOfBoundsExtraAxisIndexReturnsNull();
     void tinyPlotNeverGivesAxesNegativeSize();
     void axisHoverEnvironmentControlsAcceptance();
@@ -249,6 +250,27 @@ void TestPlotAppearance::duplicateExtraAxisIsIgnored()
 
     QCOMPARE(extraAxes.count(&extraAxes), 1);
     QCOMPARE(plot.plotRect(), plotRectAfterFirstAppend);
+}
+
+void TestPlotAppearance::clearingExtraAxesReleasesThem()
+{
+    QAccelPlot::QAccelPlot plot;
+    plot.setSize({400.0, 300.0});
+    const auto initialPlotRect = plot.plotRect();
+    auto first = QAccelPlot::Axis{nullptr, QAccelPlot::Axis::Bottom};
+    auto second = QAccelPlot::Axis{nullptr, QAccelPlot::Axis::Left};
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, &first);
+    extraAxes.append(&extraAxes, &second);
+    QCOMPARE(extraAxes.count(&extraAxes), 2);
+    QVERIFY(plot.plotRect() != initialPlotRect);
+
+    extraAxes.clear(&extraAxes);
+
+    QCOMPARE(extraAxes.count(&extraAxes), 0);
+    QCOMPARE(first.parentItem(), nullptr);
+    QCOMPARE(second.parentItem(), nullptr);
+    QCOMPARE(plot.plotRect(), initialPlotRect);
 }
 
 void TestPlotAppearance::outOfBoundsExtraAxisIndexReturnsNull()

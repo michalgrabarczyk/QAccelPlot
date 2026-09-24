@@ -9,8 +9,10 @@
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 
+#include <QHoverEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QQuickWindow>
 #include <QSignalSpy>
 #include <QWheelEvent>
 #include <QtTest/QtTest>
@@ -21,6 +23,10 @@ namespace {
 
 class TestablePlot final : public QAccelPlot::QAccelPlot {
 public:
+    using QAccelPlot::QAccelPlot::hoverEnterEvent;
+    using QAccelPlot::QAccelPlot::hoverLeaveEvent;
+    using QAccelPlot::QAccelPlot::hoverMoveEvent;
+    using QAccelPlot::QAccelPlot::keyPressEvent;
     using QAccelPlot::QAccelPlot::mouseDoubleClickEvent;
     using QAccelPlot::QAccelPlot::mouseMoveEvent;
     using QAccelPlot::QAccelPlot::mousePressEvent;
@@ -112,6 +118,8 @@ private slots:
     void axisRightButton_doesNotStartDrag();
     void axisKeyL_togglesLogScale();
     void axisDoubleClick_emitsSignal();
+    void keyPress_isForwardedToAxisUnderPointer();
+    void keyPress_followsWindowHoverOverAxes();
 
     void plotMouseEvent_resetClearsAcceptance();
 };
@@ -436,6 +444,72 @@ void TestPlotInteraction::axisDoubleClick_emitsSignal()
     axis.mouseDoubleClickEvent(&right);
 
     QCOMPARE(spy.count(), 1);
+}
+
+void TestPlotInteraction::keyPress_isForwardedToAxisUnderPointer()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({400.0, 300.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    const auto yAxisCenter = QRectF{yAxis->position(), yAxis->size()}.center();
+    const auto pressL = [&plot]() {
+        auto event = QKeyEvent{QEvent::KeyPress, Qt::Key_L, Qt::NoModifier, QStringLiteral("l")};
+        plot.keyPressEvent(&event);
+        return event.isAccepted();
+    };
+    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QHoverEvent{type, pos, pos, pos}; };
+
+    // Without a known pointer position no axis is targeted.
+    QVERIFY(!pressL());
+
+    auto enter = hover(QEvent::HoverEnter, plot.plotRect().center());
+    plot.hoverEnterEvent(&enter);
+    QVERIFY(!pressL());
+
+    auto move = hover(QEvent::HoverMove, yAxisCenter);
+    plot.hoverMoveEvent(&move);
+    QVERIFY(pressL());
+    QVERIFY(yAxis->logScale());
+    QVERIFY(!xAxis->logScale());
+
+    auto leave = hover(QEvent::HoverLeave, yAxisCenter);
+    plot.hoverLeaveEvent(&leave);
+    QVERIFY(!pressL());
+    QVERIFY(yAxis->logScale());
+
+    auto press = mouseEvent(QEvent::MouseButtonPress, yAxisCenter, Qt::RightButton, Qt::RightButton);
+    plot.mousePressEvent(&press);
+    QVERIFY(pressL());
+    QVERIFY(!yAxis->logScale());
+}
+
+void TestPlotInteraction::keyPress_followsWindowHoverOverAxes()
+{
+    // The window stays hidden: synthetic events are still delivered, and the real mouse cannot interfere.
+    auto window = QQuickWindow{};
+    window.resize(400, 300);
+    auto plot = TestablePlot{};
+    plot.setParentItem(window.contentItem());
+    plot.setSize({400.0, 300.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    QVERIFY(yAxis->acceptHoverEvents());
+
+    // The axis accepts hover itself, yet the plot must still track the pointer over it.
+    QTest::mouseMove(&window, plot.plotRect().center().toPoint());
+    QTest::mouseMove(&window, QRectF{yAxis->position(), yAxis->size()}.center().toPoint());
+    QVERIFY(yAxis->hovered());
+    auto event = QKeyEvent{QEvent::KeyPress, Qt::Key_L, Qt::NoModifier, QStringLiteral("l")};
+    plot.keyPressEvent(&event);
+
+    QVERIFY(event.isAccepted());
+    QVERIFY(yAxis->logScale());
+    QVERIFY(!xAxis->logScale());
 }
 
 void TestPlotInteraction::plotMouseEvent_resetClearsAcceptance()

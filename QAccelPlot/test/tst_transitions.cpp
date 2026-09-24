@@ -71,6 +71,7 @@ private slots:
     void morph_singlePointBothSides();
     void draw_minimumToPointCount_alwaysTwo();
     void transition_advance_whenNotRunning_returnsFalse();
+    void transition_advance_interpolatesUntilDurationElapses();
 
     // Invalid samples
     void morph_invalidTarget_appearsImmediately();
@@ -335,6 +336,31 @@ void TestTransitions::transition_advance_whenNotRunning_returnsFalse()
     // advance() without a prior start() must return false immediately.
     const auto stillRunning = t.advance(out, outCount);
     QCOMPARE(stillRunning, false);
+}
+
+void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
+{
+    auto t = QAccelPlot::MorphTransition{};
+    t.setDuration(10'000);
+    t.setEasing(QEasingCurve{QEasingCurve::Linear});
+    t.start({0.0, 0.0}, 1, {10.0, 20.0}, 1);
+
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QVERIFY(t.advance(out, outCount));
+    QVERIFY(t.running());
+    QCOMPARE(outCount, 1);
+    QVERIFY(out[0] < 10.0);
+    QVERIFY(out[1] < 20.0);
+
+    auto runningSpy = QSignalSpy{&t, &QAccelPlot::DataTransition::runningChanged};
+    t.setDuration(0);
+    QTest::qWait(2);
+    QVERIFY(!t.advance(out, outCount));
+    QVERIFY(!t.running());
+    QCOMPARE(runningSpy.count(), 1);
+    QCOMPARE(outCount, 1);
+    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
 }
 
 // ---------------------------------------------------------------------------

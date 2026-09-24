@@ -9,6 +9,7 @@
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 
+#include <QHoverEvent>
 #include <QtTest/QtTest>
 
 #include <cmath>
@@ -38,6 +39,13 @@ struct AxisPair {
     }
 };
 
+class HoverableCloud final : public PointCloud {
+public:
+    using PointCloud::hoverEnterEvent;
+    using PointCloud::hoverLeaveEvent;
+    using PointCloud::hoverMoveEvent;
+};
+
 } // namespace
 
 class PointCloudDataTest : public QObject {
@@ -56,6 +64,9 @@ private slots:
     void accessorsReturnNaNOutOfRange();
     void clearDataResetsState();
     void postDataIsAppliedFromWorkerThread();
+    void postedDoubleDataIsApplied();
+    void doubleNoRangeDataDoesNotReportRanges();
+    void hoverEventsTrackPointUnderCursor();
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
     void propertySettersClampAndNotify();
@@ -300,6 +311,65 @@ void PointCloudDataTest::postDataIsAppliedFromWorkerThread()
     QTRY_COMPARE(cloud.count(), 3);
     QVERIFY(!cloud.hasValues());
     QCOMPARE(cloud.pointAt(2), QPointF(9.0, 10.0));
+}
+
+void PointCloudDataTest::postedDoubleDataIsApplied()
+{
+    auto cloud = PointCloud{};
+    auto worker = std::thread{[&cloud]() {
+        cloud.postData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{0.1f, 0.2f}, 2);
+        cloud.postData(std::vector<double>{5.0, 6.0, 7.0, 8.0, 9.0, 10.0}, 3);
+    }};
+    worker.join();
+
+    QCOMPARE(cloud.count(), 0);
+    QTRY_COMPARE(cloud.count(), 3);
+    QVERIFY(!cloud.hasValues());
+    QCOMPARE(cloud.pointAt(2), QPointF(9.0, 10.0));
+}
+
+void PointCloudDataTest::doubleNoRangeDataDoesNotReportRanges()
+{
+    auto axes = AxisPair{0.0, 100.0};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    auto xRangeSpy = QSignalSpy{&cloud, &PointCloud::xDataRangeChanged};
+
+    cloud.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{0.5f, 1.5f}, 2);
+
+    QCOMPARE(cloud.count(), 2);
+    QVERIFY(cloud.hasValues());
+    QCOMPARE(cloud.valueAt(1), 1.5);
+    QCOMPARE(xRangeSpy.count(), 0);
+}
+
+void PointCloudDataTest::hoverEventsTrackPointUnderCursor()
+{
+    auto axes = AxisPair{0.0, 100.0};
+    auto cloud = HoverableCloud{};
+    cloud.setSize({200.0, 100.0});
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    cloud.setHoverRadius(5.0);
+    // Pixel positions: (20, 90), (100, 50).
+    cloud.setDataF(std::vector<float>{10.0f, 10.0f, 50.0f, 50.0f}, 2);
+    auto hoveredSpy = QSignalSpy{&cloud, &PointCloud::hoveredIndexChanged};
+    const auto hover = [](const QEvent::Type type, const QPointF& position) { return QHoverEvent{type, position, position, position}; };
+
+    auto enter = hover(QEvent::HoverEnter, {21.0, 90.0});
+    cloud.hoverEnterEvent(&enter);
+    QCOMPARE(cloud.hoveredIndex(), 0);
+    auto move = hover(QEvent::HoverMove, {100.0, 51.0});
+    cloud.hoverMoveEvent(&move);
+    QCOMPARE(cloud.hoveredIndex(), 1);
+    auto stay = hover(QEvent::HoverMove, {101.0, 50.0});
+    cloud.hoverMoveEvent(&stay);
+    auto leave = hover(QEvent::HoverLeave, {101.0, 50.0});
+    cloud.hoverLeaveEvent(&leave);
+
+    QCOMPARE(cloud.hoveredIndex(), -1);
+    QCOMPARE(hoveredSpy.count(), 3);
 }
 
 void PointCloudDataTest::pointIndexAtFindsNearestPointWithinRadius()
