@@ -25,10 +25,7 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     FrameDriver {
         running: root.realtimeEnabled
@@ -41,34 +38,13 @@ Window {
         anchors.margins: 12
         spacing: 8
 
-        RowLayout {
-            Layout.fillWidth: true
-
-            ColumnLayout {
-                spacing: 1
-
-                Label {
-                    text: "Realtime vibration sensor"
-                    color: colorPalette.text
-                    font.bold: true
-                    font.pixelSize: 20
-                }
-
-                Label {
-                    text: "A scrolling curve synchronized to rendered frames while retaining a fixed twenty-second window."
-                    color: colorPalette.textSecondary
-                }
-            }
-
-            Item {
-                Layout.fillWidth: true
-            }
+        ExampleHeader {
+            title: "Realtime vibration sensor"
+            description: "A scrolling curve synchronized to rendered frames while retaining a fixed twenty-second window."
 
             Button {
                 text: root.updatesRunning ? "Pause" : "Resume"
                 Material.background: colorPalette.control
-                Material.foreground: colorPalette.text
-                Material.accent: colorPalette.materialAccent
                 onClicked: root.updatesRunning = !root.updatesRunning
             }
         }
@@ -80,20 +56,16 @@ Window {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: -20
                 viewportMax: 0
                 dataMin: -20
                 dataMax: 0
                 label: "Time before present (s)"
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
                 ticker.tickCount: 6
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 2.5
                 dataMin: -2.5
@@ -101,10 +73,6 @@ Window {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
             }
 
             QAccelPlot.LineCurve {

@@ -7,8 +7,10 @@
 #
 include_guard(GLOBAL)
 
-set(QACCELPLOT_EXAMPLE_TYPOGRAPHY_FILE
-    "${CMAKE_CURRENT_LIST_DIR}/../common/qml/Typography.qml"
+set(QACCELPLOT_EXAMPLE_COMMON_QML_FILES
+    "${CMAKE_CURRENT_LIST_DIR}/../common/qml/ExampleAxis.qml"
+    "${CMAKE_CURRENT_LIST_DIR}/../common/qml/ExampleHeader.qml"
+    "${CMAKE_CURRENT_LIST_DIR}/../common/qml/ExamplePages.qml"
 )
 if(Qt6_VERSION VERSION_LESS 6.4)
     set(QACCELPLOT_EXAMPLE_FRAME_DRIVER_FILE
@@ -44,9 +46,12 @@ function(qaccelplot_add_example EXAMPLE_NAME)
             PROPERTIES QT_RESOURCE_ALIAS ${QML_FILE}
         )
     endforeach()
-    set_source_files_properties(${QACCELPLOT_EXAMPLE_TYPOGRAPHY_FILE}
-        PROPERTIES QT_RESOURCE_ALIAS qml/Typography.qml
-    )
+    foreach(QML_FILE IN LISTS QACCELPLOT_EXAMPLE_COMMON_QML_FILES)
+        get_filename_component(QML_FILE_NAME ${QML_FILE} NAME)
+        set_source_files_properties(${QML_FILE}
+            PROPERTIES QT_RESOURCE_ALIAS qml/${QML_FILE_NAME}
+        )
+    endforeach()
     set_source_files_properties(${QACCELPLOT_EXAMPLE_FRAME_DRIVER_FILE}
         PROPERTIES QT_RESOURCE_ALIAS qml/FrameDriver.qml
     )
@@ -55,7 +60,7 @@ function(qaccelplot_add_example EXAMPLE_NAME)
         PREFIX "/app"
         FILES
             ${ARG_QML_FILES}
-            ${QACCELPLOT_EXAMPLE_TYPOGRAPHY_FILE}
+            ${QACCELPLOT_EXAMPLE_COMMON_QML_FILES}
             ${QACCELPLOT_EXAMPLE_FRAME_DRIVER_FILE}
     )
 

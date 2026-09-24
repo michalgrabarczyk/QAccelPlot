@@ -12,7 +12,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
 
     ColumnLayout {
         anchors.fill: parent
@@ -32,24 +31,20 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 6
                 dataMin: 0
                 dataMax: 6
                 label: "Day of week"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
                 ticker.tickCount: 6
                 ticker.subtickCount: 0
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
                 ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
                     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
                 }
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 55
                 dataMin: 20
@@ -57,10 +52,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Electricity use (kWh)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
             QAccelPlot.LineCurve {

@@ -22,57 +22,32 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
         spacing: 8
 
-        Label {
-            text: "Custom axes gallery"
-            color: colorPalette.text
-            font.bold: true
-            font.pixelSize: 18
+        ExampleHeader {
+            title: "Custom axes gallery"
         }
 
-        TabBar {
-            id: tabs
-            objectName: "examplePages"
-            Layout.fillWidth: true
-            TabButton {
-                objectName: "dualScale"
-                text: "Dual scale"
-            }
-            TabButton {
-                objectName: "multiRate"
-                text: "Multi-rate"
-            }
-            TabButton {
-                objectName: "sharedTime"
-                text: "Shared time"
-            }
-        }
-
-        StackLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            currentIndex: tabs.currentIndex
+        ExamplePages {
+            tabs: [
+                { name: "dualScale", title: "Dual scale" },
+                { name: "multiRate", title: "Multi-rate" },
+                { name: "sharedTime", title: "Shared time" }
+            ]
 
             SpectrumPage {
                 palette: colorPalette
-                typography: typography
             }
             MultiRatePage {
                 palette: colorPalette
-                typography: typography
             }
             EcgPanelsPage {
                 palette: colorPalette
-                typography: typography
             }
         }
     }

@@ -12,7 +12,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     readonly property int sampleCount: 4000
 
     function ecg(phase) {
@@ -45,7 +44,7 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: 1.2
                 dataMin: -0.5
@@ -53,10 +52,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Lead I (mV)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
                 ticker.tickCount: 4
             }
 
@@ -84,7 +79,7 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -0.7
                 viewportMax: 1.5
                 dataMin: -0.7
@@ -92,10 +87,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Lead II (mV)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
                 ticker.tickCount: 4
             }
 
@@ -123,20 +114,16 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 10
                 dataMin: 0
                 dataMax: 10
                 label: "Shared time (s) — pan or zoom here"
                 baselineWidth: 2
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -1
                 viewportMax: 1
                 dataMin: -1
@@ -144,10 +131,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Respiration"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
                 ticker.tickCount: 4
             }
 

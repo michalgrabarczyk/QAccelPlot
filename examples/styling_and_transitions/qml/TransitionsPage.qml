@@ -13,7 +13,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property int duration: 900
     property int easingType: Easing.InOutCubic
     property bool nextShapeIsB: true
@@ -64,8 +63,6 @@ Item {
             Button {
                 text: "Morph"
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onClicked: {
                     root.applyMorph(root.nextShapeIsB ? root.shapeB() : root.shapeA());
                     root.nextShapeIsB = !root.nextShapeIsB;
@@ -75,8 +72,6 @@ Item {
             Button {
                 text: "Draw"
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onClicked: {
                     root.applyDraw(root.nextShapeIsB ? root.shapeB() : root.shapeA());
                     root.nextShapeIsB = !root.nextShapeIsB;
@@ -98,8 +93,6 @@ Item {
                 stepSize: 100
                 value: root.duration
                 Layout.preferredWidth: 180
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onMoved: root.duration = value
             }
 
@@ -108,8 +101,6 @@ Item {
                 currentIndex: 1
                 Layout.preferredWidth: 140
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onActivated: {
                     if (currentIndex === 0)
                         root.easingType = Easing.Linear;
@@ -131,23 +122,17 @@ Item {
             grid.gridColor: root.palette.grid
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
+                colorPalette: root.palette
                 viewportMin: 0
                 viewportMax: 8
                 dataMin: 0
                 dataMax: 8
                 label: "x"
-                baselineColor: root.palette.axisLine
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
+                colorPalette: root.palette
                 viewportMin: -1.2
                 viewportMax: 1.2
                 dataMin: -1.2
@@ -155,14 +140,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Value"
-                baselineColor: root.palette.axisLine
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                hoverColor: root.palette.hover
-                ticker.tickColor: root.palette.tick
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
-                ticker.subtickColor: root.palette.subtick
             }
 
             QAccelPlot.LineCurve {

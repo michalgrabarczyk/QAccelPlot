@@ -13,7 +13,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property int presetIndex: 2
     property int directionIndex: 0
     property int baselineIndex: 0
@@ -157,8 +156,6 @@ Item {
                 currentIndex: root.presetIndex
                 Layout.preferredWidth: 175
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onActivated: root.presetIndex = currentIndex
             }
             Label {
@@ -170,8 +167,6 @@ Item {
                 currentIndex: root.directionIndex
                 Layout.preferredWidth: 120
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onActivated: root.directionIndex = currentIndex
             }
             Label {
@@ -183,8 +178,6 @@ Item {
                 currentIndex: root.baselineIndex
                 Layout.preferredWidth: 175
                 Material.background: root.palette.plotArea
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onActivated: root.baselineIndex = currentIndex
             }
             Item {
@@ -206,8 +199,6 @@ Item {
                 stepSize: 0.05
                 value: root.gradientOpacity
                 Layout.preferredWidth: 190
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onMoved: root.gradientOpacity = value
             }
             Label {
@@ -222,8 +213,6 @@ Item {
                 value: root.verticalMaximumPercent
                 enabled: root.directionIndex === 0
                 Layout.preferredWidth: 190
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onMoved: root.verticalMaximumPercent = value
             }
             Item {
@@ -254,23 +243,17 @@ Item {
                 grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
-                xAxis: QAccelPlot.Axis {
+                xAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -6
                     viewportMax: 6
                     dataMin: -6
                     dataMax: 6
                     label: "Hours from solar noon"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
-                yAxis: QAccelPlot.Axis {
+                yAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: -4
                     viewportMax: 6
                     dataMin: -4
@@ -278,14 +261,6 @@ Item {
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Net grid power (kW)"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
                 QAccelPlot.LineCurve {
@@ -335,23 +310,17 @@ Item {
                 grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
-                xAxis: QAccelPlot.Axis {
+                xAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: 0
                     viewportMax: 100
                     dataMin: 0
                     dataMax: 100
                     label: "State of charge (%)"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
-                yAxis: QAccelPlot.Axis {
+                yAxis: ExampleAxis {
+                    colorPalette: root.palette
                     viewportMin: 20
                     viewportMax: 30
                     dataMin: 20
@@ -359,14 +328,6 @@ Item {
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Battery temperature (°C)"
-                    baselineColor: root.palette.axisLine
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
-                    hoverColor: root.palette.hover
-                    ticker.tickColor: root.palette.tick
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
-                    ticker.subtickColor: root.palette.subtick
                 }
 
                 QAccelPlot.LineCurve {

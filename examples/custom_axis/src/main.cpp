@@ -8,26 +8,21 @@
 #include "ExampleUtils.hpp"
 
 #include <QCoreApplication>
-#include <QDebug>
 #include <QGuiApplication>
 #include <QLocale>
-#include <QObject>
 #include <QQmlApplicationEngine>
 
 int main(int argc, char* argv[])
 {
-    qDebug() << "Application Started";
     QLocale::setDefault(QLocale::English);
     QAccelPlotExample::configureGraphicsApi();
 
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
-
     return app.exec();
 }

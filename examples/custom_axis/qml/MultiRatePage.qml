@@ -12,7 +12,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
 
     ColumnLayout {
         anchors.fill: parent
@@ -39,7 +38,7 @@ Item {
             grid.gridVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 10
                 dataMin: 0
@@ -47,14 +46,10 @@ Item {
                 label: "Slow channel time (s)"
                 baselineColor: root.palette.seriesPrimary
                 baselineWidth: 2
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
                 ticker.tickColor: root.palette.seriesPrimary
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -1.8
                 viewportMax: 1.8
                 dataMin: -1.8
@@ -63,14 +58,10 @@ Item {
                 layoutSize: 60
                 label: "Amplitude"
                 baselineWidth: 2
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
             extraAxes: [
-                QAccelPlot.Axis {
+                ExampleAxis {
                     id: fastAxis
                     viewportMin: 0
                     viewportMax: 0.5
@@ -81,11 +72,7 @@ Item {
                     label: "Fast channel time (s)"
                     baselineColor: root.palette.seriesSecondary
                     baselineWidth: 2
-                    labelColor: root.palette.axisLabel
-                    labelFont: root.typography.axisLabel
                     ticker.tickColor: root.palette.seriesSecondary
-                    ticker.tickLabelColor: root.palette.axisTickLabel
-                    ticker.tickLabelFont: root.typography.axisTickLabel
                     ticker.tickCount: 6
                 }
             ]

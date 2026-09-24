@@ -27,29 +27,16 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
         spacing: 6
 
-        Label {
-            text: "Process telemetry annotations"
-            color: colorPalette.text
-            font.bold: true
-            font.pixelSize: 16
-        }
-
-        Label {
-            text: "Peak, valley, event marker, and warning range stay attached to data while you pan or zoom. Hover the event marker or warning range."
-            color: colorPalette.textSecondary
-            font.pixelSize: 12
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Process telemetry annotations"
+            description: "Peak, valley, event marker, and warning range stay attached to data while you pan or zoom. Hover the event marker or warning range."
         }
 
         QAccelPlot.Plot {
@@ -60,20 +47,16 @@ Window {
             border.color: colorPalette.plotBorder
             border.width: 3
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 100
                 dataMin: 0
                 dataMax: 100
                 label: "Process time (s)"
                 baselineWidth: 3
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -6
                 viewportMax: 8
                 dataMin: -6
@@ -82,10 +65,6 @@ Window {
                 layoutSize: 60
                 label: "Pressure response (units)"
                 baselineWidth: 3
-                labelColor: colorPalette.axisLabel
-                labelFont: typography.axisLabel
-                ticker.tickLabelColor: colorPalette.axisTickLabel
-                ticker.tickLabelFont: typography.axisTickLabel
             }
 
             Item {

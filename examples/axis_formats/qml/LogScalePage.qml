@@ -13,7 +13,6 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
     required property var palette
-    required property var typography
     property bool logarithmic: true
 
     function responseAt(frequency) {
@@ -42,8 +41,6 @@ Item {
             Switch {
                 text: "Logarithmic axis"
                 checked: root.logarithmic
-                Material.foreground: root.palette.text
-                Material.accent: root.palette.materialAccent
                 onToggled: root.logarithmic = checked
             }
         }
@@ -55,20 +52,16 @@ Item {
             legendVisible: false
             grid.subGridVisible: false
 
-            xAxis: QAccelPlot.Axis {
+            xAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 20000
                 dataMin: 20
                 dataMax: 20000
                 logScale: root.logarithmic
                 label: "Frequency (Hz)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
-            yAxis: QAccelPlot.Axis {
+            yAxis: ExampleAxis {
                 viewportMin: -18
                 viewportMax: 3
                 dataMin: -18
@@ -76,10 +69,6 @@ Item {
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative level (dB)"
-                labelColor: root.palette.axisLabel
-                labelFont: root.typography.axisLabel
-                ticker.tickLabelColor: root.palette.axisTickLabel
-                ticker.tickLabelFont: root.typography.axisTickLabel
             }
 
             QAccelPlot.LineCurve {

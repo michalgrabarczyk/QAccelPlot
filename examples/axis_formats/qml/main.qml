@@ -23,65 +23,33 @@ Window {
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
-
-    Typography {
-        id: typography
-    }
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
         spacing: 8
 
-        Label {
-            text: "Axis formats"
-            color: colorPalette.text
-            font.bold: true
-            font.pixelSize: 20
+        ExampleHeader {
+            title: "Axis formats"
+            description: "Format numeric coordinates as time, logarithmic powers, or named categories without changing the underlying series data."
         }
 
-        Label {
-            text: "Format numeric coordinates as time, logarithmic powers, or named categories without changing the underlying series data."
-            color: colorPalette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
-        }
-
-        TabBar {
-            id: tabs
-            objectName: "examplePages"
-            Layout.fillWidth: true
-
-            TabButton {
-                objectName: "dateTime"
-                text: "Date and time"
-            }
-            TabButton {
-                objectName: "logarithmic"
-                text: "Logarithmic"
-            }
-            TabButton {
-                objectName: "categories"
-                text: "Categories"
-            }
-        }
-
-        StackLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            currentIndex: tabs.currentIndex
+        ExamplePages {
+            tabs: [
+                { name: "dateTime", title: "Date and time" },
+                { name: "logarithmic", title: "Logarithmic" },
+                { name: "categories", title: "Categories" }
+            ]
 
             DateTimePage {
                 palette: colorPalette
-                typography: typography
             }
             LogScalePage {
                 palette: colorPalette
-                typography: typography
             }
             CategoryPage {
                 palette: colorPalette
-                typography: typography
             }
         }
     }

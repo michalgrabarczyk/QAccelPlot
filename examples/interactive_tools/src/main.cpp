@@ -6,21 +6,35 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "ExampleUtils.hpp"
-#include "SampleDataGenerators.hpp"
 
 #include <QAccelPlot/series/LineCurve.hpp>
 
-using namespace QAccelPlot;
-
-#include <QCoreApplication>
-#include <QDebug>
 #include <QGuiApplication>
 #include <QLocale>
-#include <QObject>
 #include <QQmlApplicationEngine>
-#include <QQuickWindow>
+
+#include <algorithm>
+#include <cmath>
+#include <vector>
 
 namespace {
+
+std::vector<float> terrainProfile(const int pointCount)
+{
+    constexpr auto distance = 1000.0f;
+    auto data = std::vector<float>(static_cast<size_t>(pointCount) * 2);
+    const auto xScale = distance / static_cast<float>(std::max(1, pointCount - 1));
+
+    for (auto i = 0; i < pointCount; ++i) {
+        const auto x = static_cast<float>(i) * xScale;
+        const auto elevation = 28.0f + 20.0f * std::exp(-std::pow((x - 240.0f) / 120.0f, 2.0f)) - 11.0f * std::exp(-std::pow((x - 500.0f) / 75.0f, 2.0f))
+            + 34.0f * std::exp(-std::pow((x - 720.0f) / 150.0f, 2.0f)) + 1.8f * std::sin(6.28318530718f * x / 95.0f);
+        data[static_cast<size_t>(i) * 2] = x;
+        data[static_cast<size_t>(i) * 2 + 1] = elevation;
+    }
+
+    return data;
+}
 
 void populateExampleData(QQmlApplicationEngine& engine)
 {
@@ -29,10 +43,9 @@ void populateExampleData(QQmlApplicationEngine& engine)
         return;
     }
 
-    const auto configuredPointCount = root->property("pointCount").toInt();
-    const auto pointCount = configuredPointCount > 0 ? configuredPointCount : 1000;
-    if (auto* curve = root->findChild<LineCurve*>("terrainProfile")) {
-        curve->setDataF(QAccelPlotExample::generateTerrainProfile(pointCount), pointCount);
+    const auto pointCount = root->property("pointCount").toInt();
+    if (auto* curve = root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("terrainProfile"))) {
+        curve->setDataF(terrainProfile(pointCount), pointCount);
     }
 }
 
@@ -40,19 +53,16 @@ void populateExampleData(QQmlApplicationEngine& engine)
 
 int main(int argc, char* argv[])
 {
-    qDebug() << "Application Started";
     QLocale::setDefault(QLocale::English);
     QAccelPlotExample::configureGraphicsApi();
 
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
-
     populateExampleData(engine);
-    QAccelPlotExample::setupScreenshotHandler(app, engine);
 
+    QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();
 }
