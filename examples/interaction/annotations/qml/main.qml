@@ -10,6 +10,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
+
 Window {
     id: window
 
@@ -23,16 +24,50 @@ Window {
     width: 1200
     height: 800
     visible: true
-    title: "Annotations Example"
+    title: "QAccelPlot Annotations"
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
 
+    // Anchors children to data coordinates of the plot below.
+    component PlotAnchor: QAccelPlot.DataAnchor {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
+    }
+
+    component CalloutLabel: Rectangle {
+        property alias text: label.text
+        property color accentColor
+
+        width: label.implicitWidth + 12
+        height: label.implicitHeight + 8
+        radius: 3
+        color: colorPalette.control
+        border.color: accentColor
+
+        Text {
+            id: label
+            anchors.centerIn: parent
+            color: colorPalette.text
+            font.pixelSize: 12
+        }
+    }
+
+    component PointMarker: Rectangle {
+        anchors.centerIn: parent
+        width: 10
+        height: 10
+        radius: 5
+        border.color: colorPalette.annotationMarkerOutline
+        border.width: 1
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
-        spacing: 6
+        spacing: 8
 
         ExampleHeader {
             title: "Process telemetry annotations"
@@ -40,7 +75,7 @@ Window {
         }
 
         QAccelPlot.Plot {
-            id: plot1
+            id: plot
 
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -67,23 +102,22 @@ Window {
                 baselineWidth: 3
             }
 
+            // Clips annotations to the drawable plot area.
             Item {
                 id: annotationLayer
                 z: 1
-                x: plot1.plotRect.x
-                y: plot1.plotRect.y
-                width: plot1.plotRect.width
-                height: plot1.plotRect.height
+                x: plot.plotRect.x
+                y: plot.plotRect.y
+                width: plot.plotRect.width
+                height: plot.plotRect.height
                 clip: true
 
-                QAccelPlot.DataAnchor {
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
+                // Event: a vertical line spanning the visible Y range.
+                PlotAnchor {
                     dataX1: 42
-                    dataY1: plot1.yAxis.viewportMin
+                    dataY1: plot.yAxis.viewportMin
                     dataX2: 42
-                    dataY2: plot1.yAxis.viewportMax
+                    dataY2: plot.yAxis.viewportMax
 
                     HoverHandler {
                         id: eventMarkerHover
@@ -97,114 +131,62 @@ Window {
                         color: colorPalette.annotationEvent
                     }
 
-                    Rectangle {
+                    CalloutLabel {
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.topMargin: 10
-                        anchors.leftMargin: 5
-                        width: eventLabel.implicitWidth + 12
-                        height: eventLabel.implicitHeight + 8
-                        color: colorPalette.control
-                        border.color: colorPalette.annotationEvent
-                        radius: 4
-
-                        Text {
-                            id: eventLabel
-                            anchors.centerIn: parent
-                            color: colorPalette.text
-                            text: "Valve opened · 42 s"
-                            font.pixelSize: 11
-                        }
+                        anchors.leftMargin: 6
+                        text: "Valve opened · 42 s"
+                        accentColor: colorPalette.annotationEvent
                     }
                 }
 
-                QAccelPlot.DataAnchor {
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
+                // Points: a zero-size anchor at a data coordinate.
+                PlotAnchor {
                     dataX1: window.peakX
                     dataY1: window.peakY
                     dataX2: window.peakX
                     dataY2: window.peakY
 
-                    Rectangle {
-                        anchors.centerIn: parent
-                        width: 10
-                        height: 10
-                        radius: 5
+                    PointMarker {
                         color: colorPalette.annotationPeak
-                        border.color: colorPalette.annotationMarkerOutline
-                        border.width: 1
                     }
 
-                    Rectangle {
+                    CalloutLabel {
                         anchors.left: parent.right
                         anchors.bottom: parent.top
                         anchors.leftMargin: 6
                         anchors.bottomMargin: 4
-                        width: peakLabel.implicitWidth + 10
-                        height: peakLabel.implicitHeight + 6
-                        color: colorPalette.control
-                        border.color: colorPalette.annotationPeak
-                        radius: 3
-
-                        Text {
-                            id: peakLabel
-                            anchors.centerIn: parent
-                            color: colorPalette.text
-                            text: "Peak pressure · " + window.peakY.toFixed(1)
-                            font.pixelSize: 12
-                        }
+                        text: "Peak pressure · " + window.peakY.toFixed(1)
+                        accentColor: colorPalette.annotationPeak
                     }
                 }
 
-                QAccelPlot.DataAnchor {
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
+                PlotAnchor {
                     dataX1: window.valleyX
                     dataY1: window.valleyY
                     dataX2: window.valleyX
                     dataY2: window.valleyY
 
-                    Rectangle {
-                        anchors.centerIn: parent
-                        width: 10
-                        height: 10
-                        radius: 5
+                    PointMarker {
                         color: colorPalette.annotationValley
-                        border.color: colorPalette.annotationMarkerOutline
-                        border.width: 1
                     }
 
-                    Rectangle {
+                    CalloutLabel {
                         anchors.left: parent.right
                         anchors.top: parent.bottom
                         anchors.leftMargin: 6
                         anchors.topMargin: 4
-                        width: valleyLabel.implicitWidth + 10
-                        height: valleyLabel.implicitHeight + 6
-                        color: colorPalette.control
-                        border.color: colorPalette.annotationValley
-                        radius: 3
-
-                        Text {
-                            id: valleyLabel
-                            anchors.centerIn: parent
-                            color: colorPalette.text
-                            text: "Pressure drop · " + window.valleyY.toFixed(1)
-                            font.pixelSize: 12
-                        }
+                        text: "Pressure drop · " + window.valleyY.toFixed(1)
+                        accentColor: colorPalette.annotationValley
                     }
                 }
 
-                QAccelPlot.DataAnchor {
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    plotRect: Qt.rect(0, 0, annotationLayer.width, annotationLayer.height)
-                    dataX1: plot1.xAxis.viewportMin
+                // Range: a band spanning the visible X range.
+                PlotAnchor {
+                    dataX1: plot.xAxis.viewportMin
                     dataY1: 4
-                    dataX2: plot1.xAxis.viewportMax
+                    dataX2: plot.xAxis.viewportMax
                     dataY2: 6
 
                     HoverHandler {
@@ -217,32 +199,21 @@ Window {
                         opacity: warningRangeHover.hovered ? 1.0 : 0.6
                     }
 
-                    Rectangle {
+                    CalloutLabel {
                         anchors.top: parent.top
                         anchors.right: parent.right
                         anchors.margins: 6
-                        width: warningLabel.implicitWidth + 10
-                        height: warningLabel.implicitHeight + 6
-                        color: colorPalette.control
-                        border.color: colorPalette.annotationRange
-                        radius: 3
-
-                        Text {
-                            id: warningLabel
-                            anchors.centerIn: parent
-                            color: colorPalette.text
-                            text: "Warning range · 4–6 units"
-                            font.pixelSize: 11
-                        }
+                        text: "Warning range · 4–6 units"
+                        accentColor: colorPalette.annotationRange
                     }
                 }
             }
 
             QAccelPlot.LineCurve {
-                objectName: "curve1"
+                objectName: "pressureCurve"
                 name: "Pressure response"
-                xAxis: plot1.xAxis
-                yAxis: plot1.yAxis
+                xAxis: plot.xAxis
+                yAxis: plot.yAxis
                 color: colorPalette.seriesPrimary
                 lineWidth: hovered ? 4 : 2
             }

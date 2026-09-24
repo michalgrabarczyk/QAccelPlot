@@ -72,7 +72,7 @@ void populateExampleData(QQmlApplicationEngine& engine)
     root->setProperty("valleyX", response.valleyX);
     root->setProperty("valleyY", response.valleyY);
 
-    if (auto* curve = root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("curve1"))) {
+    if (auto* curve = root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("pressureCurve"))) {
         curve->setDataF(std::move(response.points), pointCount);
     }
 }

@@ -37,9 +37,6 @@ ClusterCloud generateClusterCloud(int pointCount, unsigned int seed = 20260912u)
 /// Rotates every cluster around its own center by \a phaseRadians and writes the result.
 void composeClusterFrame(const ClusterCloud& cloud, float phaseRadians, PointCloudData& frame);
 
-/// One point per marker shape row: a small, evenly spaced grid for shape inspection.
-std::vector<float> generateShapeRow(int rowIndex, int columns = 8);
-
 /// Power-law samples for log-log axes. Includes a few non-positive and NaN
 /// coordinates on purpose: the series must skip them without breaking ranges.
 std::vector<float> generatePowerLawScatter(int pointCount, unsigned int seed = 7u);

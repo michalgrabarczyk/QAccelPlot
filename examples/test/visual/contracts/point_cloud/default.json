@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "point_cloud/default",
-  "description": "Three scatter plots rendered with the PointCloud series: value-colored clusters with a color bar on the left, a marker-shape gallery top right, and a log-log power-law scatter bottom right. Judge only content inside the three plots and their panel titles; ignore the page heading, description, and control row.",
+  "description": "Two scatter plots rendered with the PointCloud series: value-colored clusters with a color bar on the left and a log-log power-law scatter on the right. Judge only content inside the two plots and their panel titles; ignore the page heading, description, and control row.",
   "expected_image": {
     "width": 1200,
     "height": 800,
@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "A wide plot on the left and two stacked plots on the right are visible, each with axes, tick labels, and a grid. Legends, the color bar, and panel titles do not overlap each other or hide the data."
+      "expectation": "A wide plot on the left and a narrower plot on the right are visible side by side, each with axes, tick labels, and a grid. The legend, the color bar, and panel titles do not overlap each other or hide the data."
     },
     {
       "id": "cluster_density_and_colormap",
@@ -28,14 +28,9 @@
       "expectation": "The left panel title reads 'Clustered returns' followed by a point count of 250,000 (thousands separators may vary). A legend entry 'Sensor returns' shows a dot marker, not a line. A color bar labeled 'Distance from cluster core' uses the same yellow-to-purple colors as the dots."
     },
     {
-      "id": "marker_shapes",
-      "severity": "high",
-      "expectation": "The top-right plot shows six horizontal rows of about eight separate markers with no connecting lines. From bottom to top the rows are circles, squares, diamonds, upward-pointing triangles, downward-pointing triangles, and plus-shaped crosses, each row in a different color. The legend lists Circle, Square, Diamond, Triangle up, Triangle down, and Cross, each with a marker symbol matching its row's shape and color."
-    },
-    {
       "id": "log_log_scatter",
       "severity": "high",
-      "expectation": "The bottom-right plot has logarithmic X and Y axes with decade tick labels. Semi-transparent orange diamond markers form a rising diagonal band from lower left to upper right with visible spread. There are no stray lines, spikes, or markers stuck at an axis edge or corner. The panel title reads 'Power-law scatter (log-log)' and reports 4000 valid of 4004."
+      "expectation": "The right plot has logarithmic X and Y axes with decade tick labels. Semi-transparent orange diamond markers form a rising diagonal band from lower left to upper right with visible spread. There are no stray lines, spikes, or markers stuck at an axis edge or corner. The panel title reads 'Power-law scatter (log-log)' and reports 4000 valid of 4004."
     },
     {
       "id": "text_raster_quality",

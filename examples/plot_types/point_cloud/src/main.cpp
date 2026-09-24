@@ -17,7 +17,6 @@
 #include <QLocale>
 #include <QObject>
 #include <QQmlApplicationEngine>
-#include <QQuickItem>
 #include <QQuickWindow>
 
 #include <cstdlib>
@@ -29,8 +28,6 @@ using namespace QAccelPlot;
 namespace {
 
 constexpr auto kDefaultClusterPointCount = 250'000;
-constexpr auto kShapeSeriesCount = 6;
-constexpr auto kShapeColumns = 8;
 constexpr auto kPowerLawPointCount = 4'000;
 
 struct SceneState {
@@ -56,34 +53,8 @@ QAccelPlotExample::PointCloudData firstFrame(const QAccelPlotExample::ClusterClo
     return frame;
 }
 
-// Repeater delegates are visual children only, so QObject::findChild() cannot see them.
-PointCloud* findPointCloud(QQuickItem* item, const QString& objectName)
+bool populateStaticSeries(QObject* root)
 {
-    if (!item) {
-        return nullptr;
-    }
-    if (auto* cloud = qobject_cast<PointCloud*>(item); cloud && cloud->objectName() == objectName) {
-        return cloud;
-    }
-    for (auto* child : item->childItems()) {
-        if (auto* found = findPointCloud(child, objectName)) {
-            return found;
-        }
-    }
-    return nullptr;
-}
-
-bool populateStaticSeries(QQuickWindow* window, QObject* root)
-{
-    for (auto row = 0; row < kShapeSeriesCount; ++row) {
-        auto* shapeCloud = findPointCloud(window->contentItem(), QStringLiteral("shape_%1").arg(row));
-        if (!shapeCloud) {
-            qCritical() << "Unable to find marker shape series:" << row;
-            return false;
-        }
-        shapeCloud->setDataF(QAccelPlotExample::generateShapeRow(row, kShapeColumns), kShapeColumns);
-    }
-
     auto* powerLaw = root->findChild<PointCloud*>(QStringLiteral("powerLawCloud"));
     if (!powerLaw) {
         qCritical() << "Unable to find power-law series";
@@ -140,7 +111,7 @@ int main(int argc, char* argv[])
     }
 
     auto* clusterCloud = root->findChild<PointCloud*>(QStringLiteral("clusterCloud"));
-    if (!clusterCloud || !populateStaticSeries(window, root)) {
+    if (!clusterCloud || !populateStaticSeries(root)) {
         qCritical() << "Point cloud example scene is incomplete";
         return EXIT_FAILURE;
     }
