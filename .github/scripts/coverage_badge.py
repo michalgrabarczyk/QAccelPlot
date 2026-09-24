@@ -16,15 +16,12 @@ def main() -> None:
         raise ValueError("gcovr did not report valid library line coverage")
 
     percent = 100 * covered / total
-    color = (
-        "brightgreen"
-        if percent >= 90
-        else "yellow"
-        if percent >= 80
-        else "orange"
-        if percent >= 60
-        else "red"
-    )
+    if percent >= 80:
+        color = "brightgreen"
+    elif percent >= 60:
+        color = "yellow"
+    else:
+        color = "red"
     badge = {
         "schemaVersion": 1,
         "label": "code coverage",

@@ -1,7 +1,7 @@
 # QAccelPlot
 
 <p align="left">
-  <a href="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/ci.yml"><img src="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/ci.yml/badge.svg" alt="CI Build & Tests" /></a>
+  <a href="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/ci.yml"><img src="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/ci.yml/badge.svg" alt="Build" /></a>
   <a href="https://michalgrabarczyk.github.io/QAccelPlot/coverage/"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fmichalgrabarczyk.github.io%2FQAccelPlot%2Fcoverage%2Fbadge.json" alt="Code coverage" /></a>
   <a href="https://michalgrabarczyk.github.io/QAccelPlot/"><img src="https://github.com/michalgrabarczyk/QAccelPlot/actions/workflows/docs.yml/badge.svg" alt="Documentation" /></a>
   <img src="https://img.shields.io/badge/Qt-6.2%2B-41CD52?logo=qt&logoColor=white" alt="Qt 6.2+" />
