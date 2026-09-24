@@ -87,6 +87,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `GradientStroke` and `GradientFill` now keep a `Fixed` gradient value bound
   when the other bound uses `DataRange`. Previously both bounds were taken from
   the data range.
+- `GradientStroke` and `GradientFill` now redraw when a stop of their
+  `gradient` changes color or position at runtime.
 
 ## [0.2.0] — 2026-09-16
 
