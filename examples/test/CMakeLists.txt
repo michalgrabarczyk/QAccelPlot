@@ -13,33 +13,33 @@ include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 add_qaccelplot_test(tst_data_generation_worker
     examples
     tst_data_generation_worker.cpp
-    "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataGenerationWorker.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/DataGenerationWorker.cpp"
 )
 target_include_directories(tst_data_generation_worker PRIVATE
-    "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
 )
 
 add_qaccelplot_standalone_test(tst_data_delivery_metrics
     examples
     tst_data_delivery_metrics.cpp
-    "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src/DataDeliveryMetrics.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/DataDeliveryMetrics.cpp"
 )
 target_include_directories(tst_data_delivery_metrics PRIVATE
-    "${CMAKE_SOURCE_DIR}/examples/performance_showcase/src"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
 )
 
 # ── Visual acceptance (smoke + optional AI inspection) ────────────────────────
 if(QACCELPLOT_BUILD_VISUAL_TESTS)
     # Scenario names and contracts are described in cmake/QAccelPlotTestHelpers.cmake.
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleAxisFormats            axis_formats PAGES dateTime logarithmic categories)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleCustomAxis             custom_axis PAGES dualScale multiRate sharedTime)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleInteractiveTools       interactive_tools)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleMultipleAxes           multiple_axes PAGES dualScale multiRate sharedTime)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleTickFormats            tick_formats PAGES dateTime logarithmic categories)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
-    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformanceShowcase    performance_showcase)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleMeasurementTools       measurement_tools)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePointCloud             point_cloud)
-    add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsarShowcase         pulsar_showcase NO_AI_INSPECTION)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar NO_AI_INSPECTION)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions PAGES styling fillsGradients transitions gaps markers)
 
     add_qaccelplot_example_visual_scenario(QAccelPlotExampleStylingAndTransitions styling_and_transitions styling_light

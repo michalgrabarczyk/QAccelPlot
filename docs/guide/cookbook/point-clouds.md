@@ -181,6 +181,6 @@ stacked series underneath still receive hover events elsewhere.
 
 Complete source:
 
-- [`examples/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/point_cloud)
+- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md

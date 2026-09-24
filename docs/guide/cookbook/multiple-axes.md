@@ -101,7 +101,7 @@ QAccelPlot.Plot {
 }
 ```
 
-Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
+Complete source: [`examples/axes/multiple_axes`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/multiple_axes)
 
 [x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
 [y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12

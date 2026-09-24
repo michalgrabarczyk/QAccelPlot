@@ -93,8 +93,12 @@ class ImpactRoutingTests(unittest.TestCase):
         result = self.classify(["examples/pulsar/src/main.cpp", "examples/test/visual/contracts/pulsar/default.json"])
         self.assertEqual(result["scope"], "none")
 
+    def test_examples_inside_category_folders_are_routable(self):
+        result = self.classify(["examples/showcases/pulsar/src/main.cpp", "examples/category/styling/qml/GapsPage.qml"])
+        self.assertEqual(result["scenarios"], ["styling/gaps"])
+
     def test_repository_contracts_are_routable(self):
-        result = self.impact.classify_paths(["examples/styling_and_transitions/qml/StylingPage.qml"])
+        result = self.impact.classify_paths(["examples/styling/styling_and_transitions/qml/StylingPage.qml"])
         self.assertEqual(result["scenarios"], ["styling_and_transitions/styling"])
 
 
@@ -191,7 +195,7 @@ class MatrixSelectionTests(unittest.TestCase):
 
     def test_summary_explains_failed_checks(self):
         report = {
-            "contract": "interactive_tools",
+            "contract": "measurement_tools",
             "verdict": "fail",
             "rendering": {"qt_version": "6.2.4", "actual_graphics_api": "opengl"},
             "matrix": {"os_name": "ubuntu-24.04"},
@@ -219,7 +223,7 @@ class MatrixSelectionTests(unittest.TestCase):
 
         self.assertIn("- Failed renders: 1", summary)
         self.assertIn("## Failed AI checks", summary)
-        self.assertIn("interactive_tools / Qt 6.2.4 / opengl / ubuntu-24.04", summary)
+        self.assertIn("measurement_tools / Qt 6.2.4 / opengl / ubuntu-24.04", summary)
         self.assertIn("`terrain_plot`", summary)
         self.assertIn("| high | 0.93 | yes |", summary)
         self.assertIn("Terrain curve is missing \\| lower plot.", summary)

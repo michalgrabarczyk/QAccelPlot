@@ -19,7 +19,7 @@ level-of-detail (LOD) reduction.
 <div align="center">
   <img src="docs/guide/assets/pulsar_resonance_portrait.gif" alt="Portrait Cosmic Pulsar CP 1919 animated 3D waterfall rendered by QAccelPlot" height="851" />
   <br />
-  <sub><a href="examples/pulsar_showcase/">Explore the Cosmic Pulsar example</a></sub>
+  <sub><a href="examples/showcases/pulsar/">Explore the Cosmic Pulsar example</a></sub>
 </div>
 
 ## ⚡ Highlights
@@ -111,18 +111,18 @@ For CMake integration, see
 
 Explore runnable applications in the [`examples/`](examples/) directory:
 
-| Example | Description |
-| :--- | :--- |
-| **[Cosmic Pulsar](examples/pulsar_showcase/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
-| **[Realtime](examples/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
-| **[Performance Showcase](examples/performance_showcase/)** | Stress test up to 10M points with display FPS and data update rate. |
-| **[Styling & Transitions](examples/styling_and_transitions/)** | Gradient fills and strokes, dashes, markers, gaps, and morph/draw transitions. |
-| **[Interactive Tools](examples/interactive_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
-| **[Custom Axis](examples/custom_axis/)** | Multi-lead ECG layout, multi-rate waveforms, and logarithmic spectra. |
-| **[Axis Formats](examples/axis_formats/)** | Category, logarithmic, and date/time tick labels. |
-| **[Point Cloud](examples/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
-| **[Annotations](examples/annotations/)** | QML overlays anchored to data coordinates. |
-| **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
+| Category | Example | Description |
+| :--- | :--- | :--- |
+| Showcases | **[Cosmic Pulsar](examples/showcases/pulsar/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
+| Showcases | **[Performance](examples/showcases/performance/)** | Stress test up to 10M points with display FPS and data update rate. |
+| Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
+| Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
+| Styling | **[Styling & Transitions](examples/styling/styling_and_transitions/)** | Gradient fills and strokes, dashes, markers, gaps, and morph/draw transitions. |
+| Axes | **[Tick Formats](examples/axes/tick_formats/)** | Category, logarithmic, and date/time tick labels. |
+| Axes | **[Multiple Axes](examples/axes/multiple_axes/)** | Dual wavelength/frequency scale, multi-rate time axes, and ECG panels sharing one time axis. |
+| Data | **[Realtime](examples/data/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
+| Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
+| Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
 
 ---
 
