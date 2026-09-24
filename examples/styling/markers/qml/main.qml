@@ -11,9 +11,10 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 
-Item {
-    id: root
-    required property var palette
+Window {
+    id: window
+
+    readonly property QtObject colorPalette: QAccelPlot.Colors.dark
     property real markerSize: 8
     property real markerStrokeWidth: 1.5
     property bool antialiasingEnabled: true
@@ -71,15 +72,23 @@ Item {
         return points;
     }
 
+    width: 900
+    height: 900
+    visible: true
+    title: "QAccelPlot Markers"
+    color: colorPalette.window
+    Material.theme: Material.Dark
+    Material.accent: colorPalette.materialAccent
+    Material.foreground: colorPalette.text
+
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 12
         spacing: 8
 
-        Label {
-            text: "Every marker shape, filled and hollow. For dense scatter plots, Pixel markers draw one pixel per sample and hollow markers keep overlapping points readable."
-            color: root.palette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Markers"
+            description: "Every marker shape, filled and hollow. For dense scatter plots, Pixel markers draw one pixel per sample and hollow markers keep overlapping points readable."
         }
 
         RowLayout {
@@ -89,8 +98,7 @@ Item {
             // Value labels keep the width of their widest value so the sliders do not shift while dragging.
             Label {
                 id: sizeLabel
-                text: "Size " + root.markerSize.toFixed(0) + " px"
-                color: root.palette.text
+                text: "Size " + window.markerSize.toFixed(0) + " px"
                 Layout.preferredWidth: Math.ceil(widestSizeText.advanceWidth)
 
                 TextMetrics {
@@ -103,14 +111,13 @@ Item {
                 from: 3
                 to: 12
                 stepSize: 1
-                value: root.markerSize
+                value: window.markerSize
                 Layout.preferredWidth: 120
-                onMoved: root.markerSize = value
+                onMoved: window.markerSize = value
             }
             Label {
                 id: outlineLabel
-                text: "Outline " + root.markerStrokeWidth.toFixed(1) + " px"
-                color: root.palette.text
+                text: "Outline " + window.markerStrokeWidth.toFixed(1) + " px"
                 Layout.preferredWidth: Math.ceil(widestOutlineText.advanceWidth)
 
                 TextMetrics {
@@ -123,14 +130,14 @@ Item {
                 from: 0.5
                 to: 4
                 stepSize: 0.5
-                value: root.markerStrokeWidth
+                value: window.markerStrokeWidth
                 Layout.preferredWidth: 120
-                onMoved: root.markerStrokeWidth = value
+                onMoved: window.markerStrokeWidth = value
             }
             Switch {
                 text: "Antialiasing"
-                checked: root.antialiasingEnabled
-                onToggled: root.antialiasingEnabled = checked
+                checked: window.antialiasingEnabled
+                onToggled: window.antialiasingEnabled = checked
             }
             Item {
                 Layout.fillWidth: true
@@ -146,19 +153,12 @@ Item {
                 id: densePlot
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
                 legend: QAccelPlot.Legend {
                     series: densePlot.series
-                    color: root.palette.legendBackground
-                    textColor: root.palette.text
-                    border.color: root.palette.legendBorder
                 }
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -8
                     viewportMax: 8
                     dataMin: -8
@@ -167,7 +167,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -5
                     viewportMax: 5
                     dataMin: -5
@@ -181,24 +180,24 @@ Item {
                     name: "Pixel, 40 000 points"
                     xAxis: densePlot.xAxis
                     yAxis: densePlot.yAxis
-                    color: Qt.rgba(root.palette.seriesPrimary.r, root.palette.seriesPrimary.g, root.palette.seriesPrimary.b, 0.6)
+                    color: Qt.rgba(colorPalette.seriesPrimary.r, colorPalette.seriesPrimary.g, colorPalette.seriesPrimary.b, 0.6)
                     lineStyle: QAccelPlot.NoLine {}
                     marker.shape: QAccelPlot.LineCurve.Pixel
-                    Component.onCompleted: setData(root.gaussianCloud(40000, -2.5, 1.5, 1.0, 7))
+                    Component.onCompleted: setData(window.gaussianCloud(40000, -2.5, 1.5, 1.0, 7))
                 }
 
                 QAccelPlot.LineCurve {
                     name: "Hollow circle, 2 000 points"
                     xAxis: densePlot.xAxis
                     yAxis: densePlot.yAxis
-                    color: root.palette.seriesSecondary
+                    color: colorPalette.seriesSecondary
                     lineStyle: QAccelPlot.NoLine {}
                     marker.shape: QAccelPlot.LineCurve.Circle
                     marker.filled: false
                     marker.size: 4
                     marker.strokeWidth: 1
-                    antialiasingEnabled: root.antialiasingEnabled
-                    Component.onCompleted: setData(root.gaussianCloud(2000, 2.5, -1.5, 1.0, 11))
+                    antialiasingEnabled: window.antialiasingEnabled
+                    Component.onCompleted: setData(window.gaussianCloud(2000, 2.5, -1.5, 1.0, 11))
                 }
             }
 
@@ -207,33 +206,28 @@ Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 300
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -0.6
-                    viewportMax: root.shapes.length - 0.4
+                    viewportMax: window.shapes.length - 0.4
                     dataMin: -0.6
-                    dataMax: root.shapes.length - 0.4
+                    dataMax: window.shapes.length - 0.4
                     layoutSize: 118
                     axisTitlePadding: 100
                     label: "Shape"
                     // One tick per shape: range / tickCount must stay at or below 1.
-                    ticker.tickCount: root.shapes.length + 1
+                    ticker.tickCount: window.shapes.length + 1
                     ticker.subtickCount: 0
                     ticker.tickLabelRotation: -40
                     ticker.tickLabelPadding: 25
-                    ticker.tickLabelFont: root.galleryTickLabelFont
+                    ticker.tickLabelFont: window.galleryTickLabelFont
                     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
-                        labels: root.shapeLabels
+                        labels: window.shapeLabels
                     }
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: -0.6
                     viewportMax: 1.6
                     dataMin: -0.6
@@ -241,26 +235,26 @@ Item {
                     layoutSize: 70
                     ticker.tickCount: 3
                     ticker.subtickCount: 0
-                    ticker.tickLabelFont: root.galleryTickLabelFont
+                    ticker.tickLabelFont: window.galleryTickLabelFont
                     ticker.tickLabelFormatter: QAccelPlot.TextTickLabelFormatter {
                         labels: ["Hollow", "Filled"]
                     }
                 }
 
                 Repeater {
-                    model: root.galleryCells
+                    model: window.galleryCells
 
                     QAccelPlot.LineCurve {
                         required property var modelData
                         xAxis: galleryPlot.xAxis
                         yAxis: galleryPlot.yAxis
-                        color: root.palette.seriesPrimary
+                        color: colorPalette.seriesPrimary
                         lineStyle: QAccelPlot.NoLine {}
                         marker.shape: modelData.shape
                         marker.filled: modelData.filled
-                        marker.size: root.markerSize
-                        marker.strokeWidth: root.markerStrokeWidth
-                        antialiasingEnabled: root.antialiasingEnabled
+                        marker.size: window.markerSize
+                        marker.strokeWidth: window.markerStrokeWidth
+                        antialiasingEnabled: window.antialiasingEnabled
                         Component.onCompleted: setData([Qt.point(modelData.x, modelData.y)])
                     }
                 }

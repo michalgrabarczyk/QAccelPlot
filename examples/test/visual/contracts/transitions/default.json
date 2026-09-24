@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "name": "styling_and_transitions/transitions",
-  "sources": ["qml/TransitionsPage.qml"],
+  "name": "transitions/default",
   "description": "A single plot whose curve can animate between waveforms; the screenshot shows its settled initial waveform. Judge only content inside the plot; ignore the Morph and Draw buttons, duration and easing controls, headings, descriptions, and other surrounding UI.",
   "expected_image": {
-    "width": 880,
-    "height": 1120,
-    "minimum_file_size_bytes": 50000
+    "width": 900,
+    "height": 620,
+    "minimum_file_size_bytes": 30000
   },
   "policy": {
     "blocking_severities": ["high", "medium"],
@@ -26,7 +25,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

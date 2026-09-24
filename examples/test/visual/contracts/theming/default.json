@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "theming/default",
+  "description": "One plot with three seasonal temperature curves drawn with the dark palette. Judge only the plot; ignore the theme switch, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 900,
+    "height": 640,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "One large plot is visible with its axes, grid, legend, and curves. Do not evaluate the switch, headings, or other content outside the plot."
+    },
+    {
+      "id": "dark_palette",
+      "severity": "medium",
+      "expectation": "The window and plot area are dark, and grid lines, axes, tick labels, and axis titles are light enough to read against them. Fail if the plot area is light or if axis text is dark on the dark background."
+    },
+    {
+      "id": "seasonal_curves",
+      "severity": "medium",
+      "expectation": "Three smooth, distinctly colored curves each rise to a single broad maximum near the middle of the year and fall toward both ends. A legend names Coastal, Inland, and Mountain with matching colors. Fail if a curve or legend entry is missing."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plot, axis titles, tick labels, and the legend are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, controls, or any text outside the plot. Normal antialiasing, small fonts, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "No plot element is blank, corrupted, reduced to a solid rectangle, or drawn outside the plot area. Grid lines, curves, the legend, and axes remain visually distinguishable."
+    }
+  ]
+}

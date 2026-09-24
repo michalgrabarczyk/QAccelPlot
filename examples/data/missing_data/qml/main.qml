@@ -11,9 +11,10 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 
-Item {
-    id: root
-    required property var palette
+Window {
+    id: window
+
+    readonly property QtObject colorPalette: QAccelPlot.Colors.dark
     property int nanGapModeIndex: 0
     property real lineWidth: 3.0
 
@@ -47,27 +48,23 @@ Item {
         return points;
     }
 
-    Gradient {
-        id: pressureGradient
-        GradientStop {
-            position: 0.0
-            color: root.palette.seriesPrimary
-        }
-        GradientStop {
-            position: 1.0
-            color: Qt.rgba(root.palette.seriesPrimary.r, root.palette.seriesPrimary.g, root.palette.seriesPrimary.b, 0.0)
-        }
-    }
+    width: 900
+    height: 960
+    visible: true
+    title: "QAccelPlot Missing Data"
+    color: colorPalette.window
+    Material.theme: Material.Dark
+    Material.accent: colorPalette.materialAccent
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: 12
         spacing: 8
 
-        Label {
-            text: "Telemetry often contains missing or invalid samples. NaN, ±Inf, and non-positive values on a log axis are invalid: Break leaves a gap, Connect joins the neighboring valid samples. Invalid samples never draw markers and are excluded from auto-ranging."
-            color: root.palette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Missing data"
+            description: "Telemetry often contains missing or invalid samples. NaN, ±Inf, and non-positive values on a log axis are invalid: Break leaves a gap, Connect joins the neighboring valid samples. Invalid samples never draw markers and are excluded from auto-ranging."
         }
 
         RowLayout {
@@ -76,26 +73,24 @@ Item {
 
             Label {
                 text: "NaN gap mode"
-                color: root.palette.text
             }
             ComboBox {
                 model: ["Break", "Connect"]
-                currentIndex: root.nanGapModeIndex
+                currentIndex: window.nanGapModeIndex
                 Layout.preferredWidth: 140
-                Material.background: root.palette.plotArea
-                onActivated: root.nanGapModeIndex = currentIndex
+                Material.background: colorPalette.plotArea
+                onActivated: window.nanGapModeIndex = currentIndex
             }
             Label {
-                text: "Line width " + root.lineWidth.toFixed(0) + " px"
-                color: root.palette.text
+                text: "Line width " + window.lineWidth.toFixed(0) + " px"
             }
             Slider {
                 from: 1
                 to: 12
                 stepSize: 1
-                value: root.lineWidth
+                value: window.lineWidth
                 Layout.preferredWidth: 160
-                onMoved: root.lineWidth = value
+                onMoved: window.lineWidth = value
             }
             Item {
                 Layout.fillWidth: true
@@ -112,13 +107,9 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 0
                     viewportMax: 120
                     dataMin: 0
@@ -127,7 +118,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 2
                     viewportMax: 6.5
                     dataMin: 2
@@ -140,18 +130,10 @@ Item {
                 QAccelPlot.LineCurve {
                     xAxis: pressurePlot.xAxis
                     yAxis: pressurePlot.yAxis
-                    color: root.palette.seriesPrimary
-                    lineWidth: root.lineWidth
-                    gaps.nanMode: root.activeNanGapMode
-                    effects: [
-                        QAccelPlot.GradientFill {
-                            direction: QAccelPlot.GradientDirection.Vertical
-                            baseline: QAccelPlot.GradientFillBaseline.AxisMinimum
-                            opacity: 0.45
-                            gradient: pressureGradient
-                        }
-                    ]
-                    Component.onCompleted: setData(root.pressurePoints())
+                    color: colorPalette.seriesPrimary
+                    lineWidth: window.lineWidth
+                    gaps.nanMode: window.activeNanGapMode
+                    Component.onCompleted: setData(window.pressurePoints())
                 }
             }
 
@@ -160,13 +142,9 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 0
                     viewportMax: 120
                     dataMin: 0
@@ -175,7 +153,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 2
                     viewportMax: 6.5
                     dataMin: 2
@@ -188,16 +165,13 @@ Item {
                 QAccelPlot.LineCurve {
                     xAxis: markerPlot.xAxis
                     yAxis: markerPlot.yAxis
-                    color: root.palette.seriesSecondary
-                    lineWidth: root.lineWidth
-                    gaps.nanMode: root.activeNanGapMode
-                    lineStyle: QAccelPlot.DashLine {
-                        pattern: [6, 4]
-                    }
+                    color: colorPalette.seriesSecondary
+                    lineWidth: window.lineWidth
+                    gaps.nanMode: window.activeNanGapMode
                     marker.shape: QAccelPlot.LineCurve.Circle
                     marker.size: 6
                     Component.onCompleted: {
-                        const points = root.pressurePoints().filter((point, index) => index % 3 === 0 || !isFinite(point.y));
+                        const points = window.pressurePoints().filter((point, index) => index % 3 === 0 || !isFinite(point.y));
                         setData(points);
                     }
                 }
@@ -208,13 +182,9 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 legendVisible: false
-                plotAreaColor: root.palette.plotArea
-                axesAreaColor: root.palette.axesArea
-                grid.gridColor: root.palette.grid
                 grid.subGridVisible: false
 
                 xAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 0
                     viewportMax: 200
                     dataMin: 0
@@ -223,7 +193,6 @@ Item {
                 }
 
                 yAxis: ExampleAxis {
-                    colorPalette: root.palette
                     viewportMin: 0.01
                     viewportMax: 100
                     dataMin: 0.01
@@ -237,10 +206,10 @@ Item {
                 QAccelPlot.LineCurve {
                     xAxis: vibrationPlot.xAxis
                     yAxis: vibrationPlot.yAxis
-                    color: root.palette.seriesTertiary
-                    lineWidth: root.lineWidth
-                    gaps.nanMode: root.activeNanGapMode
-                    Component.onCompleted: setData(root.vibrationPoints())
+                    color: colorPalette.seriesTertiary
+                    lineWidth: window.lineWidth
+                    gaps.nanMode: window.activeNanGapMode
+                    Component.onCompleted: setData(window.vibrationPoints())
                 }
             }
         }

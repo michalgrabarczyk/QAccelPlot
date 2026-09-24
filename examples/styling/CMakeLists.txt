@@ -5,4 +5,8 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-add_subdirectory(styling_and_transitions)
+add_subdirectory(gradients)
+add_subdirectory(line_styles)
+add_subdirectory(markers)
+add_subdirectory(theming)
+add_subdirectory(transitions)

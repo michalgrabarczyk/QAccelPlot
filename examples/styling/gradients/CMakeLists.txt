@@ -5,5 +5,9 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-add_subdirectory(missing_data)
-add_subdirectory(realtime)
+qaccelplot_add_example(Gradients
+    SOURCES
+        src/main.cpp
+    QML_FILES
+        qml/main.qml
+)

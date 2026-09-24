@@ -117,10 +117,15 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Showcases | **[Performance](examples/showcases/performance/)** | Stress test up to 10M points with display FPS and data update rate. |
 | Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 250K value-colored scatter points, every marker shape, log-log axes, hover picking, and worker-thread streaming. |
-| Styling | **[Styling & Transitions](examples/styling/styling_and_transitions/)** | Gradient fills and strokes, dashes, markers, gaps, and morph/draw transitions. |
+| Styling | **[Line Styles](examples/styling/line_styles/)** | Dash patterns, line weights, and antialiasing. |
+| Styling | **[Markers](examples/styling/markers/)** | Every marker shape, filled and hollow, and dense Pixel scatter. |
+| Styling | **[Gradients](examples/styling/gradients/)** | Gradient area fills and strokes with presets, direction, and baseline. |
+| Styling | **[Transitions](examples/styling/transitions/)** | Morph and draw animations between datasets. |
+| Styling | **[Theming](examples/styling/theming/)** | Plot, axis, grid, legend, and series colors bound to the dark or light palette. |
 | Axes | **[Tick Formats](examples/axes/tick_formats/)** | Category, logarithmic, and date/time tick labels. |
 | Axes | **[Multiple Axes](examples/axes/multiple_axes/)** | Dual wavelength/frequency scale, multi-rate time axes, and ECG panels sharing one time axis. |
 | Data | **[Realtime](examples/data/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
+| Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid samples drawn as gaps or connected. |
 | Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
 | Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
 

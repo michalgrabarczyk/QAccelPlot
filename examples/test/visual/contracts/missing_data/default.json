@@ -1,11 +1,10 @@
 {
   "version": 1,
-  "name": "styling_and_transitions/gaps",
-  "sources": ["qml/GapsPage.qml"],
+  "name": "missing_data/default",
   "description": "Three vertically stacked plots of telemetry with missing and invalid samples, shown in the default Break gap mode where invalid samples leave gaps. Judge only the plot panels; ignore the NaN gap mode selector, line width slider, headings, descriptions, and other surrounding UI.",
   "expected_image": {
-    "width": 880,
-    "height": 1120,
+    "width": 900,
+    "height": 960,
     "minimum_file_size_bytes": 50000
   },
   "policy": {
@@ -16,17 +15,17 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "Three plot panels are stacked vertically: Pressure (bar) against Time (s) with a shaded fill on top, Pressure (bar) against Time (s) with markers in the middle, and Amplitude (log) against Frequency (Hz) at the bottom. Panels do not overlap. Do not evaluate the controls or other content outside the plots."
+      "expectation": "Three plot panels are stacked vertically: Pressure (bar) against Time (s) on top, Pressure (bar) against Time (s) with markers in the middle, and Amplitude (log) against Frequency (Hz) at the bottom. Panels do not overlap. Do not evaluate the controls or other content outside the plots."
     },
     {
-      "id": "filled_line_gaps",
+      "id": "line_gaps",
       "severity": "high",
-      "expectation": "In the top plot, the blue line and its shaded fill are split into several separate segments by empty gaps, including one wide gap roughly between 38 and 50 s and narrower gaps elsewhere. Nothing is drawn inside a gap: no line, no fill, and no straight line joining the segments on either side. Fail if the line is one unbroken curve, if a line or fill visibly bridges a gap, or if a vertical spike shoots to the top or bottom edge of the plot at a gap."
+      "expectation": "In the top plot, the blue line is split into several separate segments by empty gaps, including one wide gap roughly between 38 and 50 s and narrower gaps elsewhere. Nothing is drawn inside a gap, and no straight line joins the segments on either side. Fail if the line is one unbroken curve, if a line visibly bridges a gap, or if a vertical spike shoots to the top or bottom edge of the plot at a gap."
     },
     {
       "id": "marker_line_gaps",
       "severity": "medium",
-      "expectation": "In the middle plot, an orange dashed line with round markers is split into several separate segments by empty gaps, including a wide gap roughly between 38 and 50 s. Markers appear only on the drawn segments. Fail if the dashed line visibly continues across a gap, or if markers appear inside a gap or along the top or bottom edge of the plot."
+      "expectation": "In the middle plot, an orange line with round markers is split into several separate segments by empty gaps, including a wide gap roughly between 38 and 50 s. Markers appear only on the drawn segments. Fail if the line visibly continues across a gap, or if markers appear inside a gap or along the top or bottom edge of the plot."
     },
     {
       "id": "log_axis_gaps",
@@ -41,7 +40,7 @@
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Curves, fills, markers, grids, and axes remain visually distinguishable. Curves and markers clipped at the left and right plot borders are expected; fail only if axis titles or tick labels are visibly missing characters."
+      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Curves, markers, grids, and axes remain visually distinguishable. Curves and markers clipped at the left and right plot borders are expected; fail only if axis titles or tick labels are visibly missing characters."
     }
   ]
 }

@@ -35,15 +35,19 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMultipleAxes           multiple_axes PAGES dualScale multiRate sharedTime)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleTickFormats            tick_formats PAGES dateTime logarithmic categories)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleRealtime               realtime)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleMissingData            missing_data)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMeasurementTools       measurement_tools)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePointCloud             point_cloud)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar NO_AI_INSPECTION)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleStylingAndTransitions  styling_and_transitions PAGES styling fillsGradients transitions gaps markers)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleLineStyles             line_styles)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleMarkers                markers)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleGradients              gradients)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleTransitions            transitions)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleTheming                theming)
 
-    add_qaccelplot_example_visual_scenario(QAccelPlotExampleStylingAndTransitions styling_and_transitions styling_light
-        PAGE styling
+    add_qaccelplot_example_visual_scenario(QAccelPlotExampleTheming theming light
         ARGS --light-theme
         SMOKE_ONLY
     )

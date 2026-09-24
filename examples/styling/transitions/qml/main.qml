@@ -10,9 +10,11 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
-Item {
-    id: root
-    required property var palette
+
+Window {
+    id: window
+
+    readonly property QtObject colorPalette: QAccelPlot.Colors.dark
     property int duration: 900
     property int easingType: Easing.InOutCubic
     property bool nextShapeIsB: true
@@ -35,25 +37,29 @@ Item {
         return points;
     }
 
-    function applyMorph(target) {
-        transitionCurve.transition = morphTransition;
-        transitionCurve.setData(target);
+    function animateTo(transition) {
+        transitionCurve.transition = transition;
+        transitionCurve.setData(nextShapeIsB ? shapeB() : shapeA());
+        nextShapeIsB = !nextShapeIsB;
     }
 
-    function applyDraw(target) {
-        transitionCurve.transition = drawTransition;
-        transitionCurve.setData(target);
-    }
+    width: 900
+    height: 620
+    visible: true
+    title: "QAccelPlot Transitions"
+    color: colorPalette.window
+    Material.theme: Material.Dark
+    Material.accent: colorPalette.materialAccent
+    Material.foreground: colorPalette.text
 
     ColumnLayout {
         anchors.fill: parent
-        spacing: 10
+        anchors.margins: 12
+        spacing: 8
 
-        Label {
-            text: "Click Morph or Draw to animate the curve between two waveform shapes. Adjust the duration and easing to compare the transitions."
-            color: root.palette.textSecondary
-            wrapMode: Text.WordWrap
-            Layout.fillWidth: true
+        ExampleHeader {
+            title: "Transitions"
+            description: "Click Morph or Draw to animate the curve between two waveform shapes. Adjust the duration and easing to compare the transitions."
         }
 
         RowLayout {
@@ -62,20 +68,14 @@ Item {
 
             Button {
                 text: "Morph"
-                Material.background: root.palette.plotArea
-                onClicked: {
-                    root.applyMorph(root.nextShapeIsB ? root.shapeB() : root.shapeA());
-                    root.nextShapeIsB = !root.nextShapeIsB;
-                }
+                Material.background: colorPalette.plotArea
+                onClicked: window.animateTo(morphTransition)
             }
 
             Button {
                 text: "Draw"
-                Material.background: root.palette.plotArea
-                onClicked: {
-                    root.applyDraw(root.nextShapeIsB ? root.shapeB() : root.shapeA());
-                    root.nextShapeIsB = !root.nextShapeIsB;
-                }
+                Material.background: colorPalette.plotArea
+                onClicked: window.animateTo(drawTransition)
             }
 
             Item {
@@ -83,47 +83,35 @@ Item {
             }
 
             Label {
-                text: "Duration " + root.duration + " ms"
-                color: root.palette.text
+                text: "Duration " + window.duration + " ms"
             }
 
             Slider {
                 from: 200
                 to: 2400
                 stepSize: 100
-                value: root.duration
+                value: window.duration
                 Layout.preferredWidth: 180
-                onMoved: root.duration = value
+                onMoved: window.duration = value
             }
 
             ComboBox {
                 model: ["Linear", "In/out cubic", "Out elastic"]
                 currentIndex: 1
                 Layout.preferredWidth: 140
-                Material.background: root.palette.plotArea
-                onActivated: {
-                    if (currentIndex === 0)
-                        root.easingType = Easing.Linear;
-                    else if (currentIndex === 1)
-                        root.easingType = Easing.InOutCubic;
-                    else
-                        root.easingType = Easing.OutElastic;
-                }
+                Material.background: colorPalette.plotArea
+                onActivated: window.easingType = [Easing.Linear, Easing.InOutCubic, Easing.OutElastic][currentIndex]
             }
         }
 
         QAccelPlot.Plot {
-            id: transitionPlot
+            id: plot
             Layout.fillWidth: true
             Layout.fillHeight: true
             legendVisible: false
-            plotAreaColor: root.palette.plotArea
-            axesAreaColor: root.palette.axesArea
-            grid.gridColor: root.palette.grid
             grid.subGridVisible: false
 
             xAxis: ExampleAxis {
-                colorPalette: root.palette
                 viewportMin: 0
                 viewportMax: 8
                 dataMin: 0
@@ -132,7 +120,6 @@ Item {
             }
 
             yAxis: ExampleAxis {
-                colorPalette: root.palette
                 viewportMin: -1.2
                 viewportMax: 1.2
                 dataMin: -1.2
@@ -144,25 +131,24 @@ Item {
 
             QAccelPlot.LineCurve {
                 id: transitionCurve
-                xAxis: transitionPlot.xAxis
-                yAxis: transitionPlot.yAxis
-                color: root.palette.seriesPrimary
+                xAxis: plot.xAxis
+                yAxis: plot.yAxis
+                color: colorPalette.seriesPrimary
                 lineWidth: 3
-                antialiasingEnabled: true
                 transition: morphTransition
-                Component.onCompleted: setData(root.shapeA())
+                Component.onCompleted: setData(window.shapeA())
             }
 
             QAccelPlot.MorphTransition {
                 id: morphTransition
-                duration: root.duration
-                easing.type: root.easingType
+                duration: window.duration
+                easing.type: window.easingType
             }
 
             QAccelPlot.DrawTransition {
                 id: drawTransition
-                duration: root.duration
-                easing.type: root.easingType
+                duration: window.duration
+                easing.type: window.easingType
             }
         }
     }
