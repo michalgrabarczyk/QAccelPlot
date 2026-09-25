@@ -46,7 +46,7 @@ Pin a release tag rather than `main`:
 FetchContent_Declare(
     QAccelPlot
     GIT_REPOSITORY https://github.com/michalgrabarczyk/QAccelPlot.git
-    GIT_TAG v0.2.0
+    GIT_TAG v0.3.0
 )
 ```
 

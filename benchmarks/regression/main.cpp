@@ -361,7 +361,7 @@ int main(int argc, char* argv[])
     // Need a GUI application for QQuickRenderControl
     auto app = QGuiApplication{argc, argv};
     QCoreApplication::setApplicationName("QAccelPlotBenchmarkRegression");
-    QCoreApplication::setApplicationVersion("0.2.0");
+    QCoreApplication::setApplicationVersion("0.3.0");
 
     auto parser = QCommandLineParser{};
     parser.setApplicationDescription("QAccelPlot headless regression benchmarks");

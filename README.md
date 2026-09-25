@@ -103,7 +103,7 @@ For CMake integration, see
 [Getting Started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/).
 
 > [!NOTE]
-> **Pre-1.0 (v0.2):** The API may change between minor releases until 1.0.
+> **Pre-1.0 (v0.3):** The API may change between minor releases until 1.0.
 
 ---
 

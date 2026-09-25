@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-09-25
+
 ### Added
 
 - Marker shapes `TriangleLeft`, `TriangleRight`, `XCross`, `HLine`, `VLine`,
@@ -30,9 +32,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `Inferno`, `Magma`, `Grayscale`, `Rainbow`) or custom stops, with optional
   bounds, linear or logarithmic normalization, and a `reversed` flag. `GradientFill.colormap` and
   `GradientStroke.colormap` take a colormap as an alternative to `gradient`, which
-  it overrides when both are set. `PointCloud.colormap` replaces its
-  `colorMode`, `colorGradient`, `valueMin`, `valueMinSource`, `valueMax`, and
-  `valueMaxSource` properties.
+  it overrides when both are set. `PointCloud.colormap` colors points by their
+  per-point values.
 - `ColorBar`, a continuous key for a `PointCloud` colormap. It draws the ramp
   with ticks for the series' resolved value range, follows `Linear` and `Log`
   normalization, and redraws when the colormap or range changes. Vertical and
@@ -57,8 +58,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `styling/line_styles`, `styling/markers`, `styling/gradients`,
   `styling/transitions`, `styling/theming` (dark and light palettes), and
   `data/missing_data` (invalid samples and gaps).
-- The point cloud example no longer repeats the marker-shape gallery; see
-  `styling/markers`.
 
 ### Removed
 
@@ -106,7 +105,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   grid generation instead of potentially exhausting memory, and hiding both
   the main grid and subgrid clears existing geometry.
 - Antialiased lines and markers no longer lose coverage inside their nominal
-  size. The `antialiasingFeather` ramp is now centred on the edge, so 1 px lines
+  size. The `antialiasingFeather` ramp is now centered on the edge, so 1 px lines
   stay continuous regardless of pixel alignment, the 1 px legend symbol is
   visible, and thicker lines render at their full width. Lines thinner than
   1 px draw 1 px wide with proportionally reduced alpha.
