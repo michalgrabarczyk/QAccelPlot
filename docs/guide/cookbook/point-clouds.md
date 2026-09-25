@@ -51,8 +51,9 @@ Set `marker.filled: false` to draw closed shapes as outlines of
 filled shapes merge into a solid mass. Line shapes and `Pixel` ignore both
 properties.
 
-Translucent colors make dense regions read as density, because overlapping
-markers blend. Points are drawn in data order, so put background points first
+Translucent colors, or an `opacity` below 1 on the cloud or a parent item, make
+dense regions read as density, because each overlapping marker blends
+separately. Points are drawn in data order, so put background points first
 when they should appear underneath.
 
 The default legend shows the marker shape and `color` for point clouds.

@@ -31,6 +31,7 @@ layout(std140, binding = 0) uniform buf {
     float dashOffset;
     int dashPatternSize;
     vec4 dashPattern[2];
+    float opacity;
 } ubuf;
 
 void main() {
@@ -63,6 +64,6 @@ void main() {
         alpha = clamp(edgeDistance / ubuf.antialiasingFeather + 0.5, 0.0, 1.0);
         alpha *= clamp(ubuf.lineWidth, 0.0, 1.0);
     }
-    float a = v_color.a * alpha;
+    float a = v_color.a * alpha * ubuf.opacity;
     fragColor = vec4(v_color.rgb * a, a);
 }

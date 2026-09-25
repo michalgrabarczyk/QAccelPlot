@@ -32,9 +32,10 @@ struct GradientLineUbo {
     int dashPatternSize;
     float dashPattern[8];
     float gradientParameters[4];
+    float opacity;
 };
 
-static_assert(sizeof(GradientLineUbo) == 192);
+static_assert(sizeof(GradientLineUbo) == 196);
 
 class GradientLineShader : public QSGMaterialShader {
 public:
@@ -79,6 +80,7 @@ public:
         ubo.gradientParameters[0] = material->gradientDirection;
         ubo.gradientParameters[1] = material->gradientValueMin;
         ubo.gradientParameters[2] = material->gradientValueMax;
+        ubo.opacity = state.opacity();
         std::memcpy(buffer->data(), &ubo, sizeof(ubo));
         return true;
     }

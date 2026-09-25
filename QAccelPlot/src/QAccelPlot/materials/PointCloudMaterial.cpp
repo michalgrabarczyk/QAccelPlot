@@ -31,12 +31,13 @@ struct PointCloudUboTail {
     float markerStrokeWidth;   // 144–147
     float markerFilled;        // 148–151
     float valueLogScale;       // 152–155
+    float opacity;             // 156–159
 };
 
 constexpr auto kPointCloudUboSize = kCommonUniformSize + static_cast<int>(sizeof(PointCloudUboTail));
 
-static_assert(sizeof(PointCloudUboTail) == 40);
-static_assert(kPointCloudUboSize == 156);
+static_assert(sizeof(PointCloudUboTail) == 44);
+static_assert(kPointCloudUboSize == 160);
 
 int compareValues(const float left, const float right)
 {
@@ -78,6 +79,7 @@ public:
         tail.markerStrokeWidth = material->markerStrokeWidth;
         tail.markerFilled = material->markerFilled;
         tail.valueLogScale = material->valueLogScale;
+        tail.opacity = state.opacity();
         std::memcpy(buffer->data() + kCommonUniformSize, &tail, sizeof(tail));
         return true;
     }

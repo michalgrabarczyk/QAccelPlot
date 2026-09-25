@@ -14,7 +14,7 @@ namespace QAccelPlot {
 /// \brief QSGMaterial for line rendering, extending DataTextureMaterial with line-specific uniforms.
 ///
 /// Supplies line width, point count, anti-aliasing parameters, and dash pattern data
-/// to the line fragment shader (std140 offsets 116–175 in the UBO).
+/// to the line shaders (std140 offsets 104–179 in the UBO; 176–179 holds the inherited item opacity).
 class LineMaterial : public DataTextureMaterial {
 public:
     /// \brief Constructs a LineMaterial with default uniform values.

@@ -24,9 +24,10 @@ struct RectUbo {
     float logScaleY;       // 108–111
     float useVertexColor;  // 112–115
     float rectCount;       // 116–119
+    float opacity;         // 120–123
 };
 
-static_assert(sizeof(RectUbo) == 120);
+static_assert(sizeof(RectUbo) == 124);
 
 class RectShader : public QSGMaterialShader {
 public:
@@ -63,6 +64,7 @@ public:
         ubo.logScaleY = mat->logScaleY;
         ubo.useVertexColor = mat->useVertexColor;
         ubo.rectCount = mat->rectCount;
+        ubo.opacity = state.opacity();
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

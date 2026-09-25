@@ -24,6 +24,7 @@ layout(std140, binding = 0) uniform buf {
     float logScaleY;   // 108-111
     float useVertexColor; // 112-115
     float rectCount;   // 116-119
+    float opacity;     // 120-123: inherited item opacity
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -46,6 +47,7 @@ vec2 cornerUV(int c) {
 
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
+    v_color.a *= ubuf.opacity;
 
     int idx = int(rectId);
     int base = idx * 4;

@@ -30,6 +30,7 @@ layout(std140, binding = 0) uniform buf {
     int   shapeType;
     float markerStrokeWidth;
     float markerFilled;
+    float opacity;
 } ubuf;
 
 #include "math_utils.glsl"

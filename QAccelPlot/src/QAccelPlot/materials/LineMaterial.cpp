@@ -36,9 +36,10 @@ struct LineUbo {
     float dashOffset;          // 136–139
     int dashPatternSize;       // 140–143
     float dashPattern[8];      // 144–175
+    float opacity;             // 176–179
 };
 
-static_assert(sizeof(LineUbo) == 176);
+static_assert(sizeof(LineUbo) == 180);
 
 class LineShader : public QSGMaterialShader {
 public:
@@ -82,6 +83,7 @@ public:
         ubo.dashOffset = mat->dashOffset;
         ubo.dashPatternSize = mat->dashPatternSize;
         memcpy(ubo.dashPattern, mat->dashPattern, sizeof(ubo.dashPattern));
+        ubo.opacity = state.opacity();
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

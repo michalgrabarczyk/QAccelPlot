@@ -28,6 +28,7 @@ layout(std140, binding = 0) uniform buf {
     int   shapeType;
     float markerStrokeWidth;
     float markerFilled;
+    float opacity;
 } ubuf;
 
 #include "point_shapes.glsl"
@@ -35,7 +36,8 @@ layout(std140, binding = 0) uniform buf {
 void main() {
     if (ubuf.shapeType == kPixel) {
         // point.vert sizes the quad to exactly one pixel.
-        fragColor = vec4(v_color.rgb * v_color.a, v_color.a);
+        float pixelAlpha = v_color.a * ubuf.opacity;
+        fragColor = vec4(v_color.rgb * pixelAlpha, pixelAlpha);
         return;
     }
 
@@ -48,6 +50,6 @@ void main() {
         discard;
     }
 
-    float a = v_color.a * alpha;
+    float a = v_color.a * alpha * ubuf.opacity;
     fragColor = vec4(v_color.rgb * a, a);
 }

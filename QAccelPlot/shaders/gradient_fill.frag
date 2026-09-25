@@ -20,6 +20,7 @@ layout(binding = 1) uniform sampler2D gradientSampler;
 void main()
 {
     vec4 color = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
-    float alpha = color.a * ubuf.parameters.x;
+    // parameters.x: fill opacity; parameters.y: inherited item opacity.
+    float alpha = color.a * ubuf.parameters.x * ubuf.parameters.y;
     fragColor = vec4(color.rgb * alpha, alpha);
 }

@@ -33,6 +33,7 @@ layout(std140, binding = 0) uniform buf {
     float markerStrokeWidth;
     float markerFilled;
     float valueLogScale;
+    float opacity;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D colorMapSampler;
@@ -59,6 +60,6 @@ void main() {
     // then pick it only for points that carry a finite value.
     vec4 mapped = texture(colorMapSampler, vec2(v_colorT, 0.5));
     vec4 c = mix(ubuf.color, mapped, step(0.5, v_useValue));
-    float a = c.a * alpha;
+    float a = c.a * alpha * ubuf.opacity;
     fragColor = vec4(c.rgb * a, a);
 }
