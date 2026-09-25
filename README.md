@@ -119,7 +119,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip. |
 | Styling | **[Line Styles](examples/styling/line_styles/)** | Dash patterns, line weights, and antialiasing. |
-| Styling | **[Markers](examples/styling/markers/)** | Every marker shape, filled and hollow, and dense Pixel scatter. |
+| Styling | **[Markers](examples/styling/markers/)** | Every marker shape, filled and hollow; click one to draw a scatter plot with it. |
 | Styling | **[Gradients](examples/styling/gradients/)** | Gradient area fills and strokes with presets, direction, and baseline. |
 | Styling | **[Transitions](examples/styling/transitions/)** | Morph and draw animations between datasets. |
 | Styling | **[Theming](examples/styling/theming/)** | Plot, axis, grid, legend, and series colors bound to the dark or light palette. |

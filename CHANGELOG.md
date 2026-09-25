@@ -13,7 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   each sample as a single pixel for very dense scatter plots.
 - Hollow markers: set `marker.filled` to `false` to outline filled shapes with
   `marker.strokeWidth` pixels. Legend symbols follow the series.
-- The `styling/markers` example shows every shape.
+- The `styling/markers` example shows every shape. Click a shape to draw a
+  scatter plot with it, and adjust marker size, outline, and opacity.
 - The `plot_types/parametric_curves` example draws curves whose x values do
   not increase: a spiral, a Lissajous figure, a spirograph, and a Van der Pol
   phase portrait.
