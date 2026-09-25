@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/effects/LineCurveEffect.hpp"
 
@@ -19,11 +20,11 @@ namespace QAccelPlot {
 
 /// \brief A LineCurve effect that replaces the solid line color with a color gradient.
 ///
-/// Attach to \c LineCurve::effects to color the line with a gradient derived from a Qt
-/// \c Gradient object. The gradient can run horizontally (along X data values) or
-/// vertically (along Y data values).
+/// Attach to \c LineCurve::effects to color the line with a gradient. The color stops come from
+/// \c colormap when set, otherwise from a Qt \c Gradient assigned to \c gradient. The gradient
+/// can run horizontally (along X data values) or vertically (along Y data values).
 ///
-/// \sa GradientFill, LineCurveEffect, LineCurve
+/// \sa GradientFill, Colormap, LineCurveEffect, LineCurve
 class GradientStroke : public LineCurveEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(GradientStroke)
@@ -32,6 +33,11 @@ class GradientStroke : public LineCurveEffect {
     Q_PROPERTY(GradientDirection direction READ direction WRITE setDirection NOTIFY directionChanged)
     /// \brief A Qt \c Gradient (or compatible) object supplying the color stops.
     Q_PROPERTY(QObject* gradient READ gradient WRITE setGradient NOTIFY gradientChanged)
+    /// \brief Colormap supplying the color stops. Overrides \c gradient when set.
+    ///
+    /// Only the ramp is used. \c Colormap::min, \c Colormap::max, and \c Colormap::norm are ignored;
+    /// \c gradientValueMin and \c gradientValueMax place the ramp instead.
+    Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     /// \brief How the gradient normalization minimum is determined; see \c GradientValueSource.
     Q_PROPERTY(GradientValueSource gradientValueMinSource READ gradientValueMinSource WRITE setGradientValueMinSource NOTIFY gradientValueMinSourceChanged)
     /// \brief Data-space value that maps to gradient position 0.0. Only used when gradientValueMinSource is Fixed.
@@ -54,6 +60,11 @@ public:
     QObject* gradient() const;
     /// \brief Sets the Qt Gradient object to \a gradient.
     void setGradient(QObject* gradient);
+
+    /// \brief Returns the colormap supplying color stops, or \c nullptr when \c gradient supplies them.
+    Colormap* colormap() const;
+    /// \brief Sets the colormap to \a colormap. Pass \c nullptr to take the stops from \c gradient.
+    void setColormap(Colormap* colormap);
 
     /// \brief Returns how the gradient normalization minimum is determined.
     GradientValueSource gradientValueMinSource() const;
@@ -83,6 +94,8 @@ signals:
     void directionChanged();
     /// \brief Emitted when the gradient property changes.
     void gradientChanged();
+    /// \brief Emitted when the colormap property changes.
+    void colormapChanged();
     /// \brief Emitted when the gradientValueMinSource property changes.
     void gradientValueMinSourceChanged();
     /// \brief Emitted when the gradientValueMin property changes.
@@ -96,10 +109,14 @@ private:
     void reconnectGradientSignals();
     void disconnectGradientSignals();
     Q_SLOT void onGradientObjectChanged();
+    void reconnectColormapSignals();
+    void disconnectColormapSignals();
 
     GradientDirection direction_{GradientDirection::Horizontal};
     QObject* gradient_{nullptr};
     QVector<QMetaObject::Connection> gradientConnections_;
+    Colormap* colormap_{nullptr};
+    QVector<QMetaObject::Connection> colormapConnections_;
     GradientValueSource gradientValueMinSource_{GradientValueSource::DataRange};
     qreal gradientValueMin_{0.0};
     GradientValueSource gradientValueMaxSource_{GradientValueSource::DataRange};

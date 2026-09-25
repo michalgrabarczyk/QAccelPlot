@@ -1269,12 +1269,25 @@ QAccelPlot.LineCurve {
             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
             gradientValueMax: 8
             opacity: 0.65
-            gradient: Gradient {
-                GradientStop { position: 0; color: "royalblue" }
-                GradientStop { position: 1; color: "goldenrod" }
-            }
+            colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
         }
     ]
+}
+```
+
+Both effects take their color stops from one of two properties:
+
+- `colormap`: a [`Colormap`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value) preset or
+  custom ramp. Overrides `gradient` when both are set. Only the ramp is used;
+  the colormap's `min`, `max`, and `norm` are ignored.
+- `gradient`: a Qt Quick `Gradient`.
+
+```qml
+QAccelPlot.GradientStroke {
+    gradient: Gradient {
+        GradientStop { position: 0; color: "royalblue" }
+        GradientStop { position: 1; color: "goldenrod" }
+    }
 }
 ```
 

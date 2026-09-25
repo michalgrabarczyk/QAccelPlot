@@ -26,7 +26,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   same `marker` grouped property as `LineCurve`.
 - `Colormap`, mapping data values to colors through a built-in ramp (`Viridis`, `Plasma`,
   `Inferno`, `Magma`, `Turbo`, `Grayscale`, `Rainbow`) or custom stops, with optional
-  bounds and linear or logarithmic normalization. `PointCloud.colormap` replaces its
+  bounds and linear or logarithmic normalization. `GradientFill.colormap` and
+  `GradientStroke.colormap` take a colormap as an alternative to `gradient`, which
+  it overrides when both are set. `PointCloud.colormap` replaces its
   `colorMode`, `colorGradient`, `valueMin`, `valueMinSource`, `valueMax`, and
   `valueMaxSource` properties.
 

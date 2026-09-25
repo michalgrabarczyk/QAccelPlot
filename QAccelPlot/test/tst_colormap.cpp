@@ -6,6 +6,8 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/effects/GradientFill.hpp"
+#include "QAccelPlot/effects/GradientStroke.hpp"
 
 #include <QQmlComponent>
 #include <QQmlEngine>
@@ -29,6 +31,25 @@ QObject* build(QQmlEngine& engine, QQmlComponent& component, const char* qml)
     return root;
 }
 
+template <typename Effect> void verifyEffectFollowsColormap()
+{
+    auto effect = Effect{};
+    auto* colormap = new Colormap{};
+    effect.setColormap(colormap);
+    QCOMPARE(effect.payload().stops.front().color, QColor{"#440154"});
+
+    auto effectSpy = QSignalSpy{&effect, &Effect::effectChanged};
+    colormap->setPreset(Colormap::Preset::Grayscale);
+    QCOMPARE(effectSpy.count(), 1);
+    QCOMPARE(effect.payload().stops.front().color, QColor{Qt::black});
+
+    auto colormapSpy = QSignalSpy{&effect, &Effect::colormapChanged};
+    delete colormap;
+    QCOMPARE(effect.colormap(), nullptr);
+    QCOMPARE(colormapSpy.count(), 1);
+    QVERIFY(effect.payload().stops.empty());
+}
+
 } // namespace
 
 class ColormapTest : public QObject {
@@ -40,6 +61,9 @@ private slots:
     void boundsAreUnsetUntilAssigned();
     void qmlStopsOverridePreset();
     void qmlGradientIsAccepted();
+    void gradientFillFollowsColormap();
+    void gradientStrokeFollowsColormap();
+    void qmlEffectColormapOverridesGradient();
 };
 
 void ColormapTest::defaultsToViridisRamp()
@@ -135,6 +159,59 @@ void ColormapTest::qmlGradientIsAccepted()
     QCOMPARE(stops.size(), std::size_t{2});
     QCOMPARE(stops.front().color, QColor{"#fde725"});
     QCOMPARE(stops.back().color, QColor{"#440154"});
+    delete root;
+}
+
+void ColormapTest::gradientFillFollowsColormap()
+{
+    verifyEffectFollowsColormap<GradientFill>();
+}
+
+void ColormapTest::gradientStrokeFollowsColormap()
+{
+    verifyEffectFollowsColormap<GradientStroke>();
+}
+
+void ColormapTest::qmlEffectColormapOverridesGradient()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    property alias fill: fillEffect\n"
+        "    property alias stroke: strokeEffect\n"
+        "    Gradient {\n"
+        "        id: ramp\n"
+        "        GradientStop { position: 0.0; color: \"#ff0000\" }\n"
+        "        GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+        "    }\n"
+        "    GradientFill {\n"
+        "        id: fillEffect\n"
+        "        gradient: ramp\n"
+        "        colormap: Colormap { preset: Colormap.Grayscale }\n"
+        "    }\n"
+        "    GradientStroke {\n"
+        "        id: strokeEffect\n"
+        "        gradient: ramp\n"
+        "        colormap: Colormap { preset: Colormap.Grayscale }\n"
+        "    }\n"
+        "}\n");
+    QVERIFY(root);
+
+    auto* fill = root->property("fill").value<GradientFill*>();
+    auto* stroke = root->property("stroke").value<GradientStroke*>();
+    QVERIFY(fill);
+    QVERIFY(stroke);
+    QCOMPARE(fill->payload().stops.front().color, QColor{Qt::black});
+    QCOMPARE(stroke->payload().stops.back().color, QColor{Qt::white});
+
+    // Without a colormap the effects fall back to the gradient stops.
+    fill->setColormap(nullptr);
+    stroke->setColormap(nullptr);
+    QCOMPARE(fill->payload().stops.front().color, QColor{"#ff0000"});
+    QCOMPARE(stroke->payload().stops.back().color, QColor{"#0000ff"});
     delete root;
 }
 
