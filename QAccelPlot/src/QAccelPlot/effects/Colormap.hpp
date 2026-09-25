@@ -40,6 +40,9 @@ class Colormap : public QObject {
     /// \brief Custom ramp as a list of objects with \c position and \c color, such as \c GradientStop.
     /// Overrides \c preset when non-empty.
     Q_PROPERTY(QQmlListProperty<QObject> stops READ stops NOTIFY colormapChanged)
+    /// \brief Whether the ramp runs from its last color to its first. Applies to \c preset and
+    /// \c stops alike. Default: \c false.
+    Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
     /// \brief Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset.
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
     /// \brief Value at ramp position 1. Unset (NaN) resolves it from the data. Default: unset.
@@ -57,7 +60,6 @@ public:
         Plasma,    ///< \brief Perceptually uniform, dark blue to yellow through magenta.
         Inferno,   ///< \brief Perceptually uniform, black to pale yellow through red.
         Magma,     ///< \brief Perceptually uniform, black to pale pink through purple.
-        Turbo,     ///< \brief High-contrast rainbow with smooth lightness, for fine detail.
         Grayscale, ///< \brief Black to white.
         Rainbow    ///< \brief Classic blue-to-red rainbow. Not perceptually uniform.
     };
@@ -81,6 +83,11 @@ public:
     /// \brief Returns the custom ramp stops, empty when the preset supplies the ramp.
     QQmlListProperty<QObject> stops();
 
+    /// \brief Returns whether the ramp is reversed.
+    bool reversed() const;
+    /// \brief Sets whether the ramp is reversed to \a reversed.
+    void setReversed(bool reversed);
+
     /// \brief Returns the fixed lower bound, or NaN when it is resolved from the data.
     qreal min() const;
     /// \brief Sets the fixed lower bound to \a value. NaN resolves it from the data.
@@ -98,7 +105,7 @@ public:
 
     /// \brief Returns the resolved ramp stops, in position order and covering [0, 1].
     ///
-    /// Custom \c stops when set, otherwise the \c preset ramp.
+    /// Custom \c stops when set, otherwise the \c preset ramp, flipped when \c reversed is set.
     const std::vector<GradientStopData>& resolvedStops() const;
 
 signals:
@@ -107,6 +114,7 @@ signals:
 
 private:
     void rebuildStops();
+    std::vector<GradientStopData> customStops() const;
 
     static void appendStop(QQmlListProperty<QObject>* list, QObject* stop);
     static qsizetype stopCount(QQmlListProperty<QObject>* list);
@@ -115,6 +123,7 @@ private:
 
     Preset preset_{Preset::Viridis};
     QList<QObject*> stopObjects_;
+    bool reversed_{false};
     std::vector<GradientStopData> resolvedStops_;
     qreal min_;
     qreal max_;

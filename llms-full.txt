@@ -1509,9 +1509,12 @@ QAccelPlot.PointCloud {
 A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
 on value coloring: without it, or without per-point values, every point uses `color`.
 
-The built-in ramps are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Turbo`, `Grayscale`, and
-`Rainbow`. Prefer the perceptually uniform ones over `Rainbow`, whose uneven lightness invents
-boundaries that are not in the data.
+The built-in ramps are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Grayscale`, and `Rainbow`.
+Prefer the perceptually uniform ones over `Rainbow`, whose uneven lightness invents boundaries that
+are not in the data.
+
+Set `reversed: true` to run a ramp from its last color to its first. For example, a reversed
+`Inferno` or `Magma` fades low values into a light background.
 
 For a custom ramp, list the stops instead. The same stops can feed a color bar, so a swatch and
 the points cannot drift apart:
