@@ -21,6 +21,9 @@ namespace QAccelPlot {
 GradientFill::GradientFill(QObject* parent)
     : LineCurveEffect(parent)
 {
+    // Connected first, so curves reacting to effectChanged() see the updated payload.
+    connect(this, &LineCurveEffect::effectChanged, this, &GradientFill::updatePayload);
+    updatePayload();
 }
 
 GradientDirection GradientFill::direction() const
@@ -190,7 +193,22 @@ void GradientFill::setOpacity(const qreal value)
     emit effectChanged();
 }
 
-GradientFillPayload GradientFill::payload() const
+const GradientFillPayload& GradientFill::payload() const
+{
+    return payload_;
+}
+
+void GradientFill::refresh()
+{
+    if (colormap_ || !gradient_ || !enabled()) {
+        return;
+    }
+    if (readEffectStops(colormap_, gradient_) != payload_.stops) {
+        emit effectChanged();
+    }
+}
+
+GradientFillPayload GradientFill::readPayload() const
 {
     auto payload = GradientFillPayload{};
     payload.enabled = enabled();
@@ -207,6 +225,11 @@ GradientFillPayload GradientFill::payload() const
 
     payload.stops = readEffectStops(colormap_, gradient_);
     return payload;
+}
+
+void GradientFill::updatePayload()
+{
+    payload_ = readPayload();
 }
 
 void GradientFill::reconnectGradientSignals()
@@ -268,8 +291,6 @@ void GradientFill::reconnectGradientSignals()
             const auto signalMethod = stopObject->metaObject()->method(signalIndex);
             gradientConnections_.push_back(QObject::connect(stopObject, signalMethod, this, slotMethod));
         }
-
-        gradientConnections_.push_back(connect(stopObject, &QObject::destroyed, this, [this]() { emit effectChanged(); }));
     }
 }
 

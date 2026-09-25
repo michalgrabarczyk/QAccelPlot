@@ -64,6 +64,18 @@ using GradientValueSource = GradientValueSourceNS::Source;
 struct GradientStopData {
     float position{0.0f};          ///< \brief Normalized stop position in [0, 1].
     QColor color{Qt::transparent}; ///< \brief Color at this stop.
+
+    /// \brief Returns \c true if both stops have the same position and color.
+    friend bool operator==(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return lhs.position == rhs.position && lhs.color == rhs.color;
+    }
+
+    /// \brief Returns \c true if the stops differ in position or color.
+    friend bool operator!=(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return !(lhs == rhs);
+    }
 };
 
 /// \brief Render-thread snapshot of gradient stroke (line-color) parameters.

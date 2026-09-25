@@ -34,6 +34,11 @@ public:
     /// \brief Sets the effect's enabled state to \a enabled.
     void setEnabled(bool enabled);
 
+    /// \brief Re-reads inputs that can change without a notification and emits \c effectChanged() if they did.
+    ///
+    /// LineCurve calls this on the GUI thread once per frame. The default implementation does nothing.
+    virtual void refresh();
+
 signals:
     /// \brief Emitted when the enabled property changes.
     void enabledChanged();

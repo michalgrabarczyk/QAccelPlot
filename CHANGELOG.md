@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
+  a snapshot that the effect updates on the GUI thread. The new
+  `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
+
 ### Fixed
 
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
@@ -16,6 +22,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `new LineCurve(plot)`, is now listed in `PlotView.series` and follows the plot
   area when the plot is resized. Previously it kept the first plot area it saw,
   which it adopted from the scene graph render thread.
+- `LineCurve` no longer reads the QML `Gradient` of a `GradientStroke` or
+  `GradientFill` from the scene graph render thread on every frame. The effect
+  now reads it on the GUI thread when it changes and once per frame, so stop
+  changes that `Gradient` does not signal still show up.
 
 ## [0.3.0] — 2026-09-25
 
