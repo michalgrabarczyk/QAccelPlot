@@ -195,50 +195,6 @@ Window {
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
 
-    Gradient {
-        id: plasmaGradient
-        GradientStop {
-            position: 0.0
-            color: "#6a00a8"
-        }
-        GradientStop {
-            position: 0.35
-            color: "#b12a90"
-        }
-        GradientStop {
-            position: 0.65
-            color: "#e16462"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#fca636"
-        }
-    }
-
-    Gradient {
-        id: viridisGradient
-        GradientStop {
-            position: 0.0
-            color: "#440154"
-        }
-        GradientStop {
-            position: 0.3
-            color: "#3b528b"
-        }
-        GradientStop {
-            position: 0.6
-            color: "#21918c"
-        }
-        GradientStop {
-            position: 0.85
-            color: "#5ec962"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#fde725"
-        }
-    }
-
     ListModel {
         id: startsModel
     }
@@ -458,7 +414,9 @@ Window {
                                 gradientValueMin: -1
                                 gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
                                 gradientValueMax: 1
-                                gradient: plasmaGradient
+                                colormap: QAccelPlot.Colormap {
+                                    preset: QAccelPlot.Colormap.Plasma
+                                }
                             }
                         ]
                         transition: QAccelPlot.DrawTransition {
@@ -524,7 +482,9 @@ Window {
                                 gradientValueMin: -spirographPlot.curveSpan
                                 gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
                                 gradientValueMax: spirographPlot.curveSpan
-                                gradient: viridisGradient
+                                colormap: QAccelPlot.Colormap {
+                                    preset: QAccelPlot.Colormap.Viridis
+                                }
                             }
                         ]
                         transition: QAccelPlot.DrawTransition {

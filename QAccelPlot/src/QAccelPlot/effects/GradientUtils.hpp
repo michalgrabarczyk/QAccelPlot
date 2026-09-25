@@ -17,6 +17,8 @@ class QObject;
 
 namespace QAccelPlot {
 
+class Colormap;
+
 /// \brief Reads the stops of a QML \c Gradient into position order, covering the full [0, 1] range.
 ///
 /// Stops are read from the \c stops list property, falling back to child objects. A single stop is
@@ -33,5 +35,13 @@ std::vector<GradientStopData> readGradientStops(QObject* gradient);
 ///
 /// \sa Colormap
 std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
+
+/// \brief Returns the color stops of a gradient effect: the \a colormap ramp when set, otherwise
+/// the stops of \a gradient.
+///
+/// Returns an empty vector when both are null.
+///
+/// \sa GradientFill, GradientStroke
+std::vector<GradientStopData> readEffectStops(const Colormap* colormap, QObject* gradient);
 
 } // namespace QAccelPlot

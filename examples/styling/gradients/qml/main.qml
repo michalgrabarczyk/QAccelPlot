@@ -14,14 +14,14 @@ Window {
     id: window
 
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
-    property int presetIndex: 2
+    property int presetIndex: 0
     property int directionIndex: 0
     property int baselineIndex: 0
     property real gradientOpacity: 0.75
     property real verticalMaximumPercent: 100.0
 
-    readonly property var presetNames: ["Polar", "Neon", "Viridis", "Spectrum"]
-    readonly property var activeGradient: qAccelPlotGradients[presetIndex]
+    readonly property var presetNames: ["Viridis", "Plasma", "Inferno", "Magma", "Turbo"]
+    readonly property var presets: [QAccelPlot.Colormap.Viridis, QAccelPlot.Colormap.Plasma, QAccelPlot.Colormap.Inferno, QAccelPlot.Colormap.Magma, QAccelPlot.Colormap.Turbo]
     readonly property real solarVerticalMaximum: -4.0 + (verticalMaximumPercent / 100.0) * 10.0
     readonly property real batteryVerticalMaximum: 20.0 + (verticalMaximumPercent / 100.0) * 10.0
 
@@ -35,103 +35,10 @@ Window {
         return solarGeneration * passingCloud - baseConsumption - morningDemand - eveningDemand;
     }
 
-    Gradient {
-        id: polarGradient
-        GradientStop {
-            position: 0.0
-            color: "#08306b"
-        }
-        GradientStop {
-            position: 0.25
-            color: "#4292c6"
-        }
-        GradientStop {
-            position: 0.55
-            color: "#f7fbff"
-        }
-        GradientStop {
-            position: 0.78
-            color: "#ef8a62"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#b2182b"
-        }
+    QAccelPlot.Colormap {
+        id: activeColormap
+        preset: window.presets[window.presetIndex]
     }
-
-    Gradient {
-        id: neonGradient
-        GradientStop {
-            position: 0.0
-            color: "#17002d"
-        }
-        GradientStop {
-            position: 0.25
-            color: "#5926ff"
-        }
-        GradientStop {
-            position: 0.55
-            color: "#e02bff"
-        }
-        GradientStop {
-            position: 0.78
-            color: "#ff3b81"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#ffe66d"
-        }
-    }
-
-    Gradient {
-        id: viridisGradient
-        GradientStop {
-            position: 0.0
-            color: "#440154"
-        }
-        GradientStop {
-            position: 0.25
-            color: "#3b528b"
-        }
-        GradientStop {
-            position: 0.55
-            color: "#21918c"
-        }
-        GradientStop {
-            position: 0.78
-            color: "#5ec962"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#fde725"
-        }
-    }
-
-    Gradient {
-        id: spectrumGradient
-        GradientStop {
-            position: 0.0
-            color: "#6a00ff"
-        }
-        GradientStop {
-            position: 0.25
-            color: "#00a7ff"
-        }
-        GradientStop {
-            position: 0.55
-            color: "#00e5a8"
-        }
-        GradientStop {
-            position: 0.78
-            color: "#ffe600"
-        }
-        GradientStop {
-            position: 1.0
-            color: "#ff3d71"
-        }
-    }
-
-    readonly property var qAccelPlotGradients: [polarGradient, neonGradient, viridisGradient, spectrumGradient]
 
     width: 900
     height: 960
@@ -270,7 +177,7 @@ Window {
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
                             opacity: window.gradientOpacity
-                            gradient: window.activeGradient
+                            colormap: activeColormap
                         },
                         QAccelPlot.GradientStroke {
                             direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
@@ -278,7 +185,7 @@ Window {
                             gradientValueMin: window.directionIndex === 0 ? -4 : -6
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
-                            gradient: window.activeGradient
+                            colormap: activeColormap
                         }
                     ]
                     Component.onCompleted: {
@@ -329,7 +236,7 @@ Window {
                             gradientValueMin: window.directionIndex === 0 ? 20 : 0
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
                             gradientValueMax: window.directionIndex === 0 ? window.batteryVerticalMaximum : 100
-                            gradient: window.activeGradient
+                            colormap: activeColormap
                         }
                     ]
                     Component.onCompleted: {

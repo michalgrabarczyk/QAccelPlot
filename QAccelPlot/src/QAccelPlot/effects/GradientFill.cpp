@@ -58,6 +58,25 @@ void GradientFill::setGradient(QObject* gradient)
     emit effectChanged();
 }
 
+Colormap* GradientFill::colormap() const
+{
+    return colormap_;
+}
+
+void GradientFill::setColormap(Colormap* colormap)
+{
+    if (colormap_ == colormap) {
+        return;
+    }
+
+    disconnectColormapSignals();
+    colormap_ = colormap;
+    reconnectColormapSignals();
+
+    emit colormapChanged();
+    emit effectChanged();
+}
+
 GradientValueSource GradientFill::gradientValueMinSource() const
 {
     return gradientValueMinSource_;
@@ -182,11 +201,11 @@ GradientFillPayload GradientFill::payload() const
     payload.baselineValue = baselineValue_;
     payload.opacity = static_cast<float>(opacity_);
 
-    if (!payload.enabled || !gradient_) {
+    if (!payload.enabled) {
         return payload;
     }
 
-    payload.stops = readGradientStops(gradient_);
+    payload.stops = readEffectStops(colormap_, gradient_);
     return payload;
 }
 
@@ -265,6 +284,29 @@ void GradientFill::disconnectGradientSignals()
 void GradientFill::onGradientObjectChanged()
 {
     emit effectChanged();
+}
+
+void GradientFill::reconnectColormapSignals()
+{
+    if (!colormap_) {
+        return;
+    }
+
+    colormapConnections_.push_back(connect(colormap_, &Colormap::colormapChanged, this, &LineCurveEffect::effectChanged));
+    colormapConnections_.push_back(connect(colormap_, &QObject::destroyed, this, [this]() {
+        colormap_ = nullptr;
+        disconnectColormapSignals();
+        emit colormapChanged();
+        emit effectChanged();
+    }));
+}
+
+void GradientFill::disconnectColormapSignals()
+{
+    for (const auto& connection : colormapConnections_) {
+        disconnect(connection);
+    }
+    colormapConnections_.clear();
 }
 
 } // namespace QAccelPlot

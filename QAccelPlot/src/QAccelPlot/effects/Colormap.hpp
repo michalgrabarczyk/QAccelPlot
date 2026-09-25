@@ -22,14 +22,15 @@ namespace QAccelPlot {
 /// A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate
 /// in [0, 1], and \c norm decides how a value reaches that coordinate. Series that color by value,
 /// such as \c PointCloud, index the ramp with each point's value. Effects that paint a ramp across
-/// the plot supply the coordinate from a position instead, and own that geometry themselves.
+/// the plot, such as \c GradientFill and \c GradientStroke, supply the coordinate from a position
+/// instead and own that geometry themselves, so they use only the ramp.
 ///
 /// The ramp comes from \c preset, or from \c stops when a custom ramp is given. \c min and \c max
 /// bound the value range; leaving either unset resolves it from the data, so one colormap can be
 /// shared between series that resolve different ranges. Each series reports what it resolved, for
 /// example through \c PointCloud::dataValueMin().
 ///
-/// \sa PointCloud
+/// \sa PointCloud, GradientFill, GradientStroke
 class Colormap : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(Colormap)

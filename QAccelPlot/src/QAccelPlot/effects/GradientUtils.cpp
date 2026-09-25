@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/effects/GradientUtils.hpp"
 
+#include "QAccelPlot/effects/Colormap.hpp"
+
 #include <QColor>
 #include <QObject>
 #include <QQmlProperty>
@@ -113,6 +115,14 @@ std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjec
         appendStopFromObject(stops, stopVariant.value<QObject*>());
     }
     return normalizeStops(std::move(stops));
+}
+
+std::vector<GradientStopData> readEffectStops(const Colormap* colormap, QObject* gradient)
+{
+    if (colormap) {
+        return colormap->resolvedStops();
+    }
+    return readGradientStops(gradient);
 }
 
 } // namespace QAccelPlot
