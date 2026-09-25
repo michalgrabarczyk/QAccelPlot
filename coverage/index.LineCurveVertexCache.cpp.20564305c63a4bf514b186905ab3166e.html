@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-25 14:26:36</td>
+      <td>2026-09-25 19:00:16</td>
     </tr>
   </table>
 </div>
@@ -72,13 +72,13 @@
     </tr>
     <tr><td><a href="#l64">QAccelPlot::LineCurveVertexCache::bytes() const (line 64)</a></td><td>called 4 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l53">QAccelPlot::LineCurveVertexCache::clear() (line 53)</a></td><td>called 4 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l59">QAccelPlot::LineCurveVertexCache::data() const (line 59)</a></td><td>called 34 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l59">QAccelPlot::LineCurveVertexCache::data() const (line 59)</a></td><td>called 38 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l14">QAccelPlot::LineCurveVertexCache::install(std::vector&lt;char, std::allocator&lt;char&gt; &gt;&amp;&amp;, QAccelPlot::LineCurveVertexCache::Layout, int, unsigned long) (line 14)</a></td><td>called 9 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l46">QAccelPlot::LineCurveVertexCache::invalidate() (line 46)</a></td><td>called 245 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l41">QAccelPlot::LineCurveVertexCache::isReusableForDataChange(QAccelPlot::LineCurveVertexCache::Layout, int) const (line 41)</a></td><td>called 52 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l46">QAccelPlot::LineCurveVertexCache::invalidate() (line 46)</a></td><td>called 251 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l41">QAccelPlot::LineCurveVertexCache::isReusableForDataChange(QAccelPlot::LineCurveVertexCache::Layout, int) const (line 41)</a></td><td>called 53 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l74">QAccelPlot::LineCurveVertexCache::layout() const (line 74)</a></td><td>called 2 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l79">QAccelPlot::LineCurveVertexCache::pointCount() const (line 79)</a></td><td>called 2 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l28">QAccelPlot::LineCurveVertexCache::rebuild(QAccelPlot::LineCurveVertexCache::Layout, int, std::function&lt;void (std::vector&lt;char, std::allocator&lt;char&gt; &gt;&amp;)&gt; const&amp;) (line 28)</a></td><td>called 69 times</td><td>83.0%</td></tr>
+    <tr><td><a href="#l28">QAccelPlot::LineCurveVertexCache::rebuild(QAccelPlot::LineCurveVertexCache::Layout, int, std::function&lt;void (std::vector&lt;char, std::allocator&lt;char&gt; &gt;&amp;)&gt; const&amp;) (line 28)</a></td><td>called 71 times</td><td>83.0%</td></tr>
     <tr><td><a href="#l69">QAccelPlot::LineCurveVertexCache::valid() const (line 69)</a></td><td>called 4 times</td><td>100.0%</td></tr>
   </table>
 </details>
@@ -303,7 +303,7 @@
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">LineCurveVertexCache::rebuild</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Builder</span><span class="o">&amp;</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -317,14 +317,14 @@
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">invalidate</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">builder</span><span class="p">(</span><span class="n">bytes_</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -333,18 +333,18 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">4/8</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 69 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 71 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-            <div class="takenBranch">&check; Branch 3 taken 69 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 71 times.</div>
             <div class="notTakenBranch">&cross; Branch 4 not taken.</div>
             <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
-            <div class="takenBranch">&check; Branch 6 taken 69 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 71 times.</div>
             <div class="notTakenBranch">&cross; Branch 7 not taken.</div>
-            <div class="takenBranch">&check; Branch 8 taken 69 times.</div>
+            <div class="takenBranch">&check; Branch 8 taken 71 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">69</td>
+      <td class="linecount partialCoveredLine">71</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bytes_</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Layout</span><span class="o">::</span><span class="n">None</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">pointCount</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -372,21 +372,21 @@
       <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">layout_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">pointCount_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
+      <td class="linecount coveredLine">71</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">valid_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -407,7 +407,7 @@
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">52</td>
+      <td class="linecount coveredLine">53</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">LineCurveVertexCache::isReusableForDataChange</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Layout</span><span class="w"> </span><span class="n">requiredLayout</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -424,7 +424,7 @@
           <summary class="linebranchSummary">7/8</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 6 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 46 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 47 times.</div>
             <div class="takenBranch">&check; Branch 2 taken 5 times.</div>
             <div class="takenBranch">&check; Branch 3 taken 1 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 5 times.</div>
@@ -434,7 +434,7 @@
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">52</td>
+      <td class="linecount partialCoveredLine">53</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">valid_</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">requiredLayout</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Layout</span><span class="o">::</span><span class="n">Line</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">layout_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Layout</span><span class="o">::</span><span class="n">Line</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">pointCount_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pointCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -455,7 +455,7 @@
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">245</td>
+      <td class="linecount coveredLine">251</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">LineCurveVertexCache::invalidate</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -469,28 +469,28 @@
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">245</td>
+      <td class="linecount coveredLine">251</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">valid_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">245</td>
+      <td class="linecount coveredLine">251</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">layout_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Layout</span><span class="o">::</span><span class="n">None</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">245</td>
+      <td class="linecount coveredLine">251</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">pointCount_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">245</td>
+      <td class="linecount coveredLine">251</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -546,7 +546,7 @@
       <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">34</td>
+      <td class="linecount coveredLine">38</td>
       <td class="src coveredLine"><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">LineCurveVertexCache</span><span class="o">::</span><span class="n">data</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -562,12 +562,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 27 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 7 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 29 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 9 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">34</td>
+      <td class="linecount coveredLine">38</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">valid_</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">&amp;</span><span class="n">bytes_</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
