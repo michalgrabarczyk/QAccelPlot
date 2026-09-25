@@ -50,7 +50,6 @@ only after profiling the simpler handoff.
 
 Complete sources:
 
-- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud): simplest handoff; its streamer calls `PointCloud::postData()`
 - [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance): one-batch handoff with a worker-built vertex cache
 - [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
 

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "point_cloud/default",
-  "description": "Two scatter plots rendered with the PointCloud series: value-colored clusters with a color bar on the left and a log-log power-law scatter on the right. Judge only content inside the two plots and their panel titles; ignore the page heading, description, and control row.",
+  "description": "One scatter plot rendered with the PointCloud series: 200,000 points of a Clifford attractor colored by value with the Plasma colormap, keyed by a vertical color bar. Judge only content inside the plot; ignore the page heading, description, and marker radius slider.",
   "expected_image": {
     "width": 1200,
     "height": 800,
@@ -15,32 +15,22 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "A wide plot on the left and a narrower plot on the right are visible side by side, each with axes, tick labels, and a grid. The legend, the color bar, and panel titles do not overlap each other or hide the data."
+      "expectation": "A single wide plot fills most of the window below the header, with X and Y axes labeled 'x' and 'y', tick labels, and a grid. A small vertical color bar sits in the top-right corner of the plot area on a dark panel, labeled 'Jump length', with numeric tick labels beside a strip running from dark blue-violet at the bottom to yellow at the top. It does not cover the attractor's bright yellow band."
     },
     {
-      "id": "cluster_density_and_colormap",
+      "id": "attractor_shape_and_colormap",
       "severity": "high",
-      "expectation": "The left plot shows many thousands of small, unconnected dots forming three distinct elongated or round clusters over a sparse uniform background of scattered dots. Dots are colored by a yellow-green-teal-purple colormap: cluster cores are yellow or green and outer points and background noise are blue or purple. No lines connect the dots."
-    },
-    {
-      "id": "cluster_annotations",
-      "severity": "medium",
-      "expectation": "The left panel title reads 'Clustered returns' followed by a point count of 250,000 (thousands separators may vary). A legend entry 'Sensor returns' shows a dot marker, not a line. A color bar labeled 'Distance from cluster core' uses the same yellow-to-purple colors as the dots."
-    },
-    {
-      "id": "log_log_scatter",
-      "severity": "high",
-      "expectation": "The right plot has logarithmic X and Y axes with decade tick labels. Semi-transparent orange diamond markers form a rising diagonal band from lower left to upper right with visible spread. There are no stray lines, spikes, or markers stuck at an axis edge or corner. The panel title reads 'Power-law scatter (log-log)' and reports 4000 valid of 4004."
+      "expectation": "Many thousands of small, unconnected dots trace looping, ribbon-like bands that cross each other, filling most of the plot. The dots are colored from dark blue-violet through magenta and orange to yellow, with the yellow and orange concentrated on a few bands. No lines connect the dots."
     },
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Within the plots, axis titles, tick labels, legend text, color bar text, and panel titles are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make text materially illegible. Do not compare plot text with the page heading, description, controls, or any text outside the plots. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+      "expectation": "Within the plot, axis titles, tick labels, and color bar text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the slider label, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",
       "severity": "high",
-      "expectation": "No plot is blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Markers render as small anti-aliased shapes, not as large squares, triangles spanning the plot, or a single solid blob."
+      "expectation": "The plot is not blank, corrupted, reduced to a solid rectangle, or drawn outside its plot area. Markers render as small anti-aliased dots, not as large squares, triangles spanning the plot, or a single solid blob."
     }
   ]
 }

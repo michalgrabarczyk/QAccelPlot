@@ -26,6 +26,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   markers, data ingestion, effects, transitions, gaps, and hover.
 - [`PointCloud`](api/classQAccelPlot_1_1PointCloud.md) — large sets of
   unconnected points as markers, colored uniformly or by per-point values.
+- [`ColorBar`](api/classQAccelPlot_1_1ColorBar.md) — continuous key for a
+  point cloud's colormap and value range.
 - [`RectangleList`](api/classQAccelPlot_1_1RectangleList.md) — many data-space
   rectangles in one item.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data

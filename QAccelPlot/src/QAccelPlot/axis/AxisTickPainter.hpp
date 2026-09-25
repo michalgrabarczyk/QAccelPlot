@@ -13,9 +13,11 @@
 
 #include <QColor>
 #include <QRectF>
+#include <QSizeF>
 
 #include <functional>
 
+QT_FORWARD_DECLARE_CLASS(QFontMetricsF)
 QT_FORWARD_DECLARE_CLASS(QPainter)
 
 namespace QAccelPlot {
@@ -65,6 +67,9 @@ public:
     ///
     /// Shared by both AxisTickPainter and GridNode so grid lines remain aligned with ticks.
     static qreal computeNiceStep(qreal viewportMin, qreal viewportMax, int tickCount);
+
+    /// \brief Returns the size of the rectangle \c paintTicks() lays out for \a label, measured with \a metrics.
+    static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
 private:
     static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);

@@ -42,12 +42,16 @@ add_qaccelplot_test(tst_axis_rescale         core tst_axis_rescale.cpp)
 add_qaccelplot_test(tst_plot_series_data_ranges core tst_plot_series_data_ranges.cpp)
 add_qaccelplot_test(tst_color_palette        core tst_color_palette.cpp)
 add_qaccelplot_test(tst_colormap             core tst_colormap.cpp)
+add_qaccelplot_test(tst_color_bar            core tst_color_bar.cpp)
 add_qaccelplot_test(tst_property_notifications core tst_property_notifications.cpp)
 add_qaccelplot_test(tst_plot_rendering       core tst_plot_rendering.cpp)
 add_qaccelplot_test(tst_series_opacity       core tst_series_opacity.cpp)
 # Instantiates Colormap from QML, so it needs the QML module plugin.
 target_link_libraries(tst_colormap PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_colormap)
+# Renders ColorBar and loads it inside Plot.qml, so it needs the QML module plugin.
+target_link_libraries(tst_color_bar PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_color_bar)
 # Sets marker groups from QML and loads Legend.qml, so it needs the QML module plugin.
 target_link_libraries(tst_marker_shapes PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_marker_shapes)

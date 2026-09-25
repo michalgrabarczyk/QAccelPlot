@@ -9,6 +9,7 @@
 #include "QAccelPlot/annotations/DataAnchor.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/colorbar/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
@@ -44,6 +45,7 @@ const std::map<QString, Factory>& factories()
     static const auto instances = std::map<QString, Factory>{
         {QStringLiteral("Axis"), make<Axis>()},
         {QStringLiteral("AxisTicker"), make<AxisTicker>()},
+        {QStringLiteral("ColorBar"), make<ColorBar>()},
         {QStringLiteral("Colormap"), make<Colormap>()},
         {QStringLiteral("DataAnchor"), make<DataAnchor>()},
         {QStringLiteral("DateTimeTickLabelFormatter"), make<DateTimeTickLabelFormatter>()},
@@ -91,6 +93,15 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("AxisTicker", "subtickLengthOut", 6.0);
     row("AxisTicker", "subtickColor", QColor{Qt::darkRed});
     row("AxisTicker", "subtickWidth", 3.0);
+
+    row("ColorBar", "orientation", QVariant::fromValue(ColorBar::Horizontal));
+    row("ColorBar", "label", QStringLiteral("Intensity"));
+    row("ColorBar", "labelFont", QFont{QStringLiteral("Arial"), 17});
+    row("ColorBar", "labelColor", QColor{Qt::cyan});
+    row("ColorBar", "labelPadding", 9.0);
+    row("ColorBar", "barThickness", 20.0);
+    row("ColorBar", "borderColor", QColor{Qt::magenta});
+    row("ColorBar", "borderWidth", 2.0);
 
     row("Colormap", "norm", QVariant::fromValue(Colormap::Normalization::Log));
 
