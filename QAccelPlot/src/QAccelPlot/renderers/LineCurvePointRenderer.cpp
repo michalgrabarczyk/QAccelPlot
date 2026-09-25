@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <iterator>
 
 namespace QAccelPlot {
 
@@ -38,24 +39,21 @@ QColor evaluateGradientColor(const GradientColorPayload& gradientPayload, const 
         return gradientPayload.stops.back().color;
     }
 
-    for (size_t stopIndex = 1; stopIndex < gradientPayload.stops.size(); ++stopIndex) {
-        const auto& leftStop = gradientPayload.stops[stopIndex - 1];
-        const auto& rightStop = gradientPayload.stops[stopIndex];
-        if (normalizedValue > rightStop.position) {
-            continue;
-        }
+    // Evaluated once per marker, so the bracketing stops are found by binary search.
+    const auto& stops = gradientPayload.stops;
+    const auto right
+        = std::lower_bound(stops.begin() + 1, stops.end(), normalizedValue, [](const auto& stop, const float value) { return stop.position < value; });
+    const auto& leftStop = *std::prev(right);
+    const auto& rightStop = *right;
 
-        const auto stopRange = std::max(rightStop.position - leftStop.position, kMinGradientRangeEpsilon);
-        const auto interpolation = std::clamp((normalizedValue - leftStop.position) / stopRange, 0.0f, 1.0f);
+    const auto stopRange = std::max(rightStop.position - leftStop.position, kMinGradientRangeEpsilon);
+    const auto interpolation = std::clamp((normalizedValue - leftStop.position) / stopRange, 0.0f, 1.0f);
 
-        const auto red = leftStop.color.redF() + (rightStop.color.redF() - leftStop.color.redF()) * interpolation;
-        const auto green = leftStop.color.greenF() + (rightStop.color.greenF() - leftStop.color.greenF()) * interpolation;
-        const auto blue = leftStop.color.blueF() + (rightStop.color.blueF() - leftStop.color.blueF()) * interpolation;
-        const auto alpha = leftStop.color.alphaF() + (rightStop.color.alphaF() - leftStop.color.alphaF()) * interpolation;
-        return QColor::fromRgbF(red, green, blue, alpha);
-    }
-
-    return gradientPayload.stops.back().color;
+    const auto red = leftStop.color.redF() + (rightStop.color.redF() - leftStop.color.redF()) * interpolation;
+    const auto green = leftStop.color.greenF() + (rightStop.color.greenF() - leftStop.color.greenF()) * interpolation;
+    const auto blue = leftStop.color.blueF() + (rightStop.color.blueF() - leftStop.color.blueF()) * interpolation;
+    const auto alpha = leftStop.color.alphaF() + (rightStop.color.alphaF() - leftStop.color.alphaF()) * interpolation;
+    return QColor::fromRgbF(red, green, blue, alpha);
 }
 
 float normalizedGradientValue(const GradientColorPayload& gradientPayload, const qreal dataX, const qreal dataY)

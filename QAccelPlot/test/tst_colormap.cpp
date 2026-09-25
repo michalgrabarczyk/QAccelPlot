@@ -58,6 +58,10 @@ class ColormapTest : public QObject {
 private slots:
     void defaultsToViridisRamp();
     void presetsDifferFromEachOther();
+    void presetsSpanReferenceColors_data();
+    void presetsSpanReferenceColors();
+    void reversedFlipsPresetRamp();
+    void qmlReversedFlipsCustomStops();
     void boundsAreUnsetUntilAssigned();
     void qmlStopsOverridePreset();
     void qmlGradientIsAccepted();
@@ -92,6 +96,88 @@ void ColormapTest::presetsDifferFromEachOther()
     QCOMPARE(grayscale.front().color, QColor{Qt::black});
     QCOMPARE(grayscale.back().color, QColor{Qt::white});
     QVERIFY(grayscale.front().color != viridis.front().color);
+}
+
+void ColormapTest::presetsSpanReferenceColors_data()
+{
+    QTest::addColumn<Colormap::Preset>("preset");
+    QTest::addColumn<QColor>("first");
+    QTest::addColumn<QColor>("last");
+
+    QTest::newRow("Viridis") << Colormap::Preset::Viridis << QColor{"#440154"} << QColor{"#fde725"};
+    QTest::newRow("Plasma") << Colormap::Preset::Plasma << QColor{"#0d0887"} << QColor{"#f0f921"};
+    QTest::newRow("Inferno") << Colormap::Preset::Inferno << QColor{"#000004"} << QColor{"#fcffa4"};
+    QTest::newRow("Magma") << Colormap::Preset::Magma << QColor{"#000004"} << QColor{"#fcfdbf"};
+}
+
+void ColormapTest::presetsSpanReferenceColors()
+{
+    QFETCH(Colormap::Preset, preset);
+    QFETCH(QColor, first);
+    QFETCH(QColor, last);
+
+    auto colormap = Colormap{};
+    colormap.setPreset(preset);
+    const auto& stops = colormap.resolvedStops();
+    QCOMPARE(stops.size(), std::size_t{32});
+    QCOMPARE(stops.front().position, 0.0f);
+    QCOMPARE(stops.back().position, 1.0f);
+    QCOMPARE(stops.front().color, first);
+    QCOMPARE(stops.back().color, last);
+}
+
+void ColormapTest::reversedFlipsPresetRamp()
+{
+    auto colormap = Colormap{};
+    const auto forward = colormap.resolvedStops();
+    QVERIFY(!colormap.reversed());
+
+    auto spy = QSignalSpy{&colormap, &Colormap::colormapChanged};
+    colormap.setReversed(true);
+    QCOMPARE(spy.count(), 1);
+    colormap.setReversed(true);
+    QCOMPARE(spy.count(), 1);
+
+    const auto& reversed = colormap.resolvedStops();
+    QCOMPARE(reversed.size(), forward.size());
+    for (auto index = std::size_t{0}; index < reversed.size(); ++index) {
+        const auto& mirrored = forward[forward.size() - 1 - index];
+        QCOMPARE(reversed[index].color, mirrored.color);
+        QCOMPARE(reversed[index].position, 1.0f - mirrored.position);
+    }
+
+    // The flip follows the ramp when the preset changes afterwards.
+    colormap.setPreset(Colormap::Preset::Grayscale);
+    QCOMPARE(colormap.resolvedStops().front().color, QColor{Qt::white});
+    QCOMPARE(colormap.resolvedStops().back().color, QColor{Qt::black});
+}
+
+void ColormapTest::qmlReversedFlipsCustomStops()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Colormap {\n"
+        "    reversed: true\n"
+        "    stops: [ GradientStop { position: 0.0; color: \"#ff0000\" },\n"
+        "             GradientStop { position: 0.25; color: \"#0000ff\" } ]\n"
+        "}\n");
+    QVERIFY(root);
+
+    const auto* colormap = qobject_cast<Colormap*>(root);
+    QVERIFY(colormap);
+    // The last stop is extended to 1, then the whole ramp is mirrored.
+    const auto& stops = colormap->resolvedStops();
+    QCOMPARE(stops.size(), std::size_t{3});
+    QCOMPARE(stops[0].color, QColor{"#0000ff"});
+    QCOMPARE(stops[0].position, 0.0f);
+    QCOMPARE(stops[1].color, QColor{"#0000ff"});
+    QCOMPARE(stops[1].position, 0.75f);
+    QCOMPARE(stops[2].color, QColor{"#ff0000"});
+    QCOMPARE(stops[2].position, 1.0f);
+    delete root;
 }
 
 void ColormapTest::boundsAreUnsetUntilAssigned()

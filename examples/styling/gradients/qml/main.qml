@@ -15,13 +15,14 @@ Window {
 
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
     property int presetIndex: 0
+    property bool presetReversed: false
     property int directionIndex: 0
     property int baselineIndex: 0
     property real gradientOpacity: 0.75
     property real verticalMaximumPercent: 100.0
 
-    readonly property var presetNames: ["Viridis", "Plasma", "Inferno", "Magma", "Turbo"]
-    readonly property var presets: [QAccelPlot.Colormap.Viridis, QAccelPlot.Colormap.Plasma, QAccelPlot.Colormap.Inferno, QAccelPlot.Colormap.Magma, QAccelPlot.Colormap.Turbo]
+    readonly property var presetNames: ["Viridis", "Plasma", "Inferno", "Magma", "Grayscale", "Rainbow"]
+    readonly property var presets: [QAccelPlot.Colormap.Viridis, QAccelPlot.Colormap.Plasma, QAccelPlot.Colormap.Inferno, QAccelPlot.Colormap.Magma, QAccelPlot.Colormap.Grayscale, QAccelPlot.Colormap.Rainbow]
     readonly property real solarVerticalMaximum: -4.0 + (verticalMaximumPercent / 100.0) * 10.0
     readonly property real batteryVerticalMaximum: 20.0 + (verticalMaximumPercent / 100.0) * 10.0
 
@@ -38,6 +39,7 @@ Window {
     QAccelPlot.Colormap {
         id: activeColormap
         preset: window.presets[window.presetIndex]
+        reversed: window.presetReversed
     }
 
     width: 900
@@ -72,6 +74,11 @@ Window {
                 Layout.preferredWidth: 175
                 Material.background: colorPalette.plotArea
                 onActivated: window.presetIndex = currentIndex
+            }
+            Switch {
+                text: "Reversed"
+                checked: window.presetReversed
+                onToggled: window.presetReversed = checked
             }
             Label {
                 text: "Direction"

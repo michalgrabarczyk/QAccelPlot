@@ -161,6 +161,7 @@ private slots:
     void pointCloudMarkersMatchLineCurve();
     void pixelMarkerCoversOnePixel();
     void pixelMarkerHitTestIgnoresMarkerSize();
+    void gradientStrokeColorsMarkersBetweenStops();
 };
 
 void MarkerShapesTest::shapeIndicesMatchShaders()
@@ -487,6 +488,60 @@ void MarkerShapesTest::pixelMarkerHitTestIgnoresMarkerSize()
     curve.marker()->setShape(Shape::Pixel);
     QVERIFY(hits({52.0, 50.0}));
     QVERIFY(!hits({60.0, 50.0}));
+}
+
+void MarkerShapesTest::gradientStrokeColorsMarkersBetweenStops()
+{
+    auto window = QQuickWindow{};
+    window.setColor(Qt::black);
+    window.resize(kCurveSize, kCurveSize);
+
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    // Markers at x = 0.25 and 0.75 fall midway into the first and second of three stops.
+    component.setData("import QtQuick\n"
+                      "import QAccelPlot\n"
+                      "LineCurve {\n"
+                      "    width: 64; height: 64\n"
+                      "    xAxis: Axis { orientation: Axis.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
+                      "    yAxis: Axis { orientation: Axis.Vertical; viewportMin: 0; viewportMax: 1 }\n"
+                      "    lineStyle: NoLine {}\n"
+                      "    marker.shape: LineCurve.Square\n"
+                      "    marker.size: 8\n"
+                      "    antialiasingEnabled: false\n"
+                      "    effects: GradientStroke {\n"
+                      "        direction: GradientDirection.Horizontal\n"
+                      "        gradientValueMinSource: GradientValueSource.Fixed; gradientValueMin: 0\n"
+                      "        gradientValueMaxSource: GradientValueSource.Fixed; gradientValueMax: 1\n"
+                      "        gradient: Gradient {\n"
+                      "            GradientStop { position: 0.0; color: \"#ff0000\" }\n"
+                      "            GradientStop { position: 0.5; color: \"#00ff00\" }\n"
+                      "            GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+                      "        }\n"
+                      "    }\n"
+                      "    Component.onCompleted: setData([Qt.point(0.25, 0.5), Qt.point(0.75, 0.5)])\n"
+                      "}\n",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    qobject_cast<QQuickItem*>(root.get())->setParentItem(window.contentItem());
+
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    const auto image = window.grabWindow();
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom materials do not render with the software scene graph backend");
+    }
+
+    const auto near = [](const QColor& pixel, const QColor& expected) {
+        constexpr auto kTolerance = 8;
+        return std::abs(pixel.red() - expected.red()) <= kTolerance && std::abs(pixel.green() - expected.green()) <= kTolerance
+            && std::abs(pixel.blue() - expected.blue()) <= kTolerance;
+    };
+    const auto left = image.pixelColor(kCurveSize / 4, kCentre);
+    const auto right = image.pixelColor(kCurveSize * 3 / 4, kCentre);
+    QVERIFY2(near(left, QColor{128, 128, 0}), qPrintable(left.name()));
+    QVERIFY2(near(right, QColor{0, 128, 128}), qPrintable(right.name()));
 }
 
 } // namespace QAccelPlot
