@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**colorbar**](dir_ec4b087c20c73e780aa15e00311366bc.md) **>** [**ColorBar.hpp**](ColorBar_8hpp.md)
+[**FileList**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**ColorBar.hpp**](ColorBar_8hpp.md)
 
 [Go to the source code of this file](ColorBar_8hpp_source.md)
 
@@ -108,5 +108,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp`
 

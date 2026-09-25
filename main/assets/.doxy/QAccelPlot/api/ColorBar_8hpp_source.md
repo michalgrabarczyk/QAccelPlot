@@ -2,7 +2,7 @@
 
 # File ColorBar.hpp
 
-[**File List**](files.md) **>** [**colorbar**](dir_ec4b087c20c73e780aa15e00311366bc.md) **>** [**ColorBar.hpp**](ColorBar_8hpp.md)
+[**File List**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**ColorBar.hpp**](ColorBar_8hpp.md)
 
 [Go to the documentation of this file](ColorBar_8hpp.md)
 

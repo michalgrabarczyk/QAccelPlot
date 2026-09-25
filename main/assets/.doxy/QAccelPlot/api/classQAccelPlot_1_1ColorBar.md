@@ -902,5 +902,5 @@ void QAccelPlot::ColorBar::updatePolish () override
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp`
 
