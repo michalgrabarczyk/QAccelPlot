@@ -272,6 +272,7 @@
 * **rangeSourceConnections\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **rect** ([**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md))
 * **resolvedStops\_** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **reversed\_** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **running\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * **renderData\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **renderLogScaleX\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))

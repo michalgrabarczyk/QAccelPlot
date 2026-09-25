@@ -1374,9 +1374,11 @@ when they should appear underneath.</p>
 </code></pre></div>
 <p>A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
 on value coloring: without it, or without per-point values, every point uses <code>color</code>.</p>
-<p>The built-in ramps are <code>Viridis</code>, <code>Plasma</code>, <code>Inferno</code>, <code>Magma</code>, <code>Turbo</code>, <code>Grayscale</code>, and
-<code>Rainbow</code>. Prefer the perceptually uniform ones over <code>Rainbow</code>, whose uneven lightness invents
-boundaries that are not in the data.</p>
+<p>The built-in ramps are <code>Viridis</code>, <code>Plasma</code>, <code>Inferno</code>, <code>Magma</code>, <code>Grayscale</code>, and <code>Rainbow</code>.
+Prefer the perceptually uniform ones over <code>Rainbow</code>, whose uneven lightness invents boundaries that
+are not in the data.</p>
+<p>Set <code>reversed: true</code> to run a ramp from its last color to its first. For example, a reversed
+<code>Inferno</code> or <code>Magma</code> fades low values into a light background.</p>
 <p>For a custom ramp, list the stops instead. The same stops can feed a color bar, so a swatch and
 the points cannot drift apart:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">Gradient</span> <span class="p">{</span>

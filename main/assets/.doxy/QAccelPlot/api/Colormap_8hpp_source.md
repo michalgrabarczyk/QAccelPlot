@@ -34,6 +34,7 @@ class Colormap : public QObject {
     
     Q_PROPERTY(Preset preset READ preset WRITE setPreset NOTIFY colormapChanged)
     Q_PROPERTY(QQmlListProperty<QObject> stops READ stops NOTIFY colormapChanged)
+    Q_PROPERTY(bool reversed READ reversed WRITE setReversed NOTIFY colormapChanged)
     Q_PROPERTY(qreal min READ min WRITE setMin NOTIFY colormapChanged)
     Q_PROPERTY(qreal max READ max WRITE setMax NOTIFY colormapChanged)
     Q_PROPERTY(Normalization norm READ norm WRITE setNorm NOTIFY colormapChanged)
@@ -44,7 +45,6 @@ public:
         Plasma,    
         Inferno,   
         Magma,     
-        Turbo,     
         Grayscale, 
         Rainbow    
     };
@@ -65,6 +65,9 @@ public:
 
     QQmlListProperty<QObject> stops();
 
+    bool reversed() const;
+    void setReversed(bool reversed);
+
     qreal min() const;
     void setMin(qreal value);
 
@@ -81,6 +84,7 @@ signals:
 
 private:
     void rebuildStops();
+    std::vector<GradientStopData> customStops() const;
 
     static void appendStop(QQmlListProperty<QObject>* list, QObject* stop);
     static qsizetype stopCount(QQmlListProperty<QObject>* list);
@@ -89,6 +93,7 @@ private:
 
     Preset preset_{Preset::Viridis};
     QList<QObject*> stopObjects_;
+    bool reversed_{false};
     std::vector<GradientStopData> resolvedStops_;
     qreal min_;
     qreal max_;

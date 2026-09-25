@@ -74,6 +74,7 @@ flowchart TB
 | property qreal | [**min**](classQAccelPlot_1_1Colormap.md#property-min-12)  <br>_Value at ramp position 0. Unset (NaN) resolves it from the data. Default: unset._  |
 | property [**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) | [**norm**](classQAccelPlot_1_1Colormap.md#property-norm-12)  <br>_How a value is placed on the ramp. Default:_ `Linear` _._ |
 | property [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](classQAccelPlot_1_1Colormap.md#property-preset-12)  <br>_Built-in color ramp. Ignored when_ `stops` _is non-empty. Default:_`Viridis` _._ |
+| property bool | [**reversed**](classQAccelPlot_1_1Colormap.md#property-reversed-12)  <br>_Whether the ramp runs from its last color to its first. Applies to_ `preset` _and_`stops` _alike. Default:_`false` _._ |
 | property QQmlListProperty&lt; QObject &gt; | [**stops**](classQAccelPlot_1_1Colormap.md#property-stops-12)  <br>_Custom ramp as a list of objects with_ `position` _and_`color` _, such as_`GradientStop` _. Overrides_`preset` _when non-empty._ |
 
 
@@ -98,10 +99,12 @@ flowchart TB
 |  [**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) | [**norm**](#function-norm-22) () const<br>_Returns the normalization._  |
 |  [**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) | [**preset**](#function-preset-22) () const<br>_Returns the built-in ramp._  |
 |  const std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; & | [**resolvedStops**](#function-resolvedstops) () const<br>_Returns the resolved ramp stops, in position order and covering [0, 1]._  |
+|  bool | [**reversed**](#function-reversed-22) () const<br>_Returns whether the ramp is reversed._  |
 |  void | [**setMax**](#function-setmax) (qreal value) <br>_Sets the fixed upper bound to_ _value_ _. NaN resolves it from the data._ |
 |  void | [**setMin**](#function-setmin) (qreal value) <br>_Sets the fixed lower bound to_ _value_ _. NaN resolves it from the data._ |
 |  void | [**setNorm**](#function-setnorm) ([**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) norm) <br>_Sets the normalization to_ _norm_ _._ |
 |  void | [**setPreset**](#function-setpreset) ([**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) preset) <br>_Sets the built-in ramp to_ _preset_ _._ |
+|  void | [**setReversed**](#function-setreversed) (bool reversed) <br>_Sets whether the ramp is reversed to_ _reversed_ _._ |
 |  QQmlListProperty&lt; QObject &gt; | [**stops**](#function-stops-22) () <br>_Returns the custom ramp stops, empty when the preset supplies the ramp._  |
 
 
@@ -180,7 +183,6 @@ enum QAccelPlot::Colormap::Preset {
     Plasma,
     Inferno,
     Magma,
-    Turbo,
     Grayscale,
     Rainbow
 };
@@ -250,6 +252,21 @@ Normalization QAccelPlot::Colormap::norm;
 _Built-in color ramp. Ignored when_ `stops` _is non-empty. Default:_`Viridis` _._
 ```C++
 Preset QAccelPlot::Colormap::preset;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property reversed {#property-reversed-12}
+
+_Whether the ramp runs from its last color to its first. Applies to_ `preset` _and_`stops` _alike. Default:_`false` _._
+```C++
+bool QAccelPlot::Colormap::reversed;
 ```
 
 
@@ -380,10 +397,25 @@ const std::vector< GradientStopData > & QAccelPlot::Colormap::resolvedStops () c
 
 
 
-Custom `stops` when set, otherwise the `preset` ramp. 
+Custom `stops` when set, otherwise the `preset` ramp, flipped when `reversed` is set. 
 
 
         
+
+<hr>
+
+
+
+
+### function reversed {#function-reversed-22}
+
+_Returns whether the ramp is reversed._ 
+```C++
+bool QAccelPlot::Colormap::reversed () const
+```
+
+
+
 
 <hr>
 
@@ -447,6 +479,23 @@ _Sets the built-in ramp to_ _preset_ _._
 ```C++
 void QAccelPlot::Colormap::setPreset (
     Preset preset
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setReversed {#function-setreversed}
+
+_Sets whether the ramp is reversed to_ _reversed_ _._
+```C++
+void QAccelPlot::Colormap::setReversed (
+    bool reversed
 ) 
 ```
 

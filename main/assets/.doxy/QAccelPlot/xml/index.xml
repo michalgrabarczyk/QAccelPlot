@@ -250,7 +250,6 @@
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fdab20a4217acaf4316739c6a5f6679ef60" kind="enumvalue"><name>Plasma</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda8bb279f735c1d9c831e935cca2613b58" kind="enumvalue"><name>Inferno</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda1b62e99f86d45e754e5e79d9fa9dfcde" kind="enumvalue"><name>Magma</name></member>
-    <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda6f53bfe04e78da893ba0c4f35ba6847e" kind="enumvalue"><name>Turbo</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fdad3f6975213fb5546d8486b54b025dbd7" kind="enumvalue"><name>Grayscale</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda4aca5ee9a087fb9218bfb662fe92605c" kind="enumvalue"><name>Rainbow</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962" kind="enum"><name>Normalization</name></member>
@@ -258,11 +257,13 @@
     <member refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962ace0be71e33226e4c1db2bcea5959f16b" kind="enumvalue"><name>Log</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a67a5ff395bc2320f2fa84e6087b7f6c7" kind="property"><name>preset</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1acc9f034415f0e2f96bccd938e5b73c5b" kind="property"><name>stops</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1ac75d75fedfdd93322fab4617af7e80cd" kind="property"><name>reversed</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kind="property"><name>min</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a1e42c41384869c79a017a49ee22c9fea" kind="property"><name>max</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a941f5943785c9594e2f3707b2b8c0023" kind="property"><name>norm</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a94ccb9533269d56f736a32ff0fb8465e" kind="variable"><name>preset_</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a6f49f5565aec94244870a2a6dff0ebac" kind="variable"><name>stopObjects_</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a2f309f69815df4079075f60a80c32cef" kind="variable"><name>reversed_</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1adbf8925f5f6253b4214585e76429acf8" kind="variable"><name>resolvedStops_</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a28c4a72711e298351ab2e43202aa2e7f" kind="variable"><name>min_</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a0cb6749919ddcb7831941bc1f21ebcf5" kind="variable"><name>max_</name></member>
@@ -271,6 +272,8 @@
     <member refid="classQAccelPlot_1_1Colormap_1af589ac4b82e4e5dfab6314cae86f1d1e" kind="function"><name>preset</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a6d890738d894bf61e553d1f782ddfbe7" kind="function"><name>setPreset</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a04057c70cd99668ad2077dd8e28d65ea" kind="function"><name>stops</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a24ec3d6ee53964f2d4cc163e020eb2b8" kind="function"><name>reversed</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1ab0adf49c864c6c5ef75cf461103d9418" kind="function"><name>setReversed</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a3c086f67be351339faeaeb894bfa5b03" kind="function"><name>min</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a702b39ccd52aec3bb8401322bb1b1a63" kind="function"><name>setMin</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aea67b4ee565f06e135b66baa5b24e362" kind="function"><name>max</name></member>
@@ -280,6 +283,7 @@
     <member refid="classQAccelPlot_1_1Colormap_1a9aefa3bd8e5a7fca6e52ce493a4652e2" kind="function"><name>resolvedStops</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" kind="signal"><name>colormapChanged</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a1a2888b90e3bdc25514fa44e0368400d" kind="function"><name>rebuildStops</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a6b7b91313f6c94b47b3230bd633be38c" kind="function"><name>customStops</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1ab55c6351837426360833d91559512c2b" kind="function"><name>appendStop</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a3540c36c726c0968ad185df0e20374ab" kind="function"><name>stopCount</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a9f79d1cbbee08dd069b309dcac337bfa" kind="function"><name>stopAt</name></member>
