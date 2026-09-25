@@ -6,8 +6,6 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "ExampleUtils.hpp"
-#include "PointCloudGenerators.hpp"
-#include "PointCloudStreamer.hpp"
 
 #include <QAccelPlot/series/PointCloud.hpp>
 
@@ -15,79 +13,45 @@
 #include <QDebug>
 #include <QGuiApplication>
 #include <QLocale>
-#include <QObject>
 #include <QQmlApplicationEngine>
-#include <QQuickWindow>
 
+#include <cmath>
 #include <cstdlib>
-#include <memory>
 #include <utility>
-
-using namespace QAccelPlot;
+#include <vector>
 
 namespace {
 
-constexpr auto kDefaultClusterPointCount = 250'000;
-constexpr auto kPowerLawPointCount = 4'000;
+constexpr auto kPointCount = 200'000;
 
-struct SceneState {
-    int appliedPointCount{0};
-    bool animating{false};
+struct PointCloudData {
+    std::vector<float> xy; // interleaved x0, y0, x1, y1, ...
+    std::vector<float> values;
 };
 
-int requestedClusterPointCount(const QObject* root)
+// Iterates the Clifford attractor. Each point's value is the length of the jump that reached it.
+PointCloudData cliffordAttractor(const int pointCount)
 {
-    const auto configured = root->property("pointCount").toInt();
-    return configured > 0 ? configured : kDefaultClusterPointCount;
-}
+    constexpr auto a = -1.7f;
+    constexpr auto b = 1.8f;
+    constexpr auto c = -1.9f;
+    constexpr auto d = -0.4f;
 
-std::shared_ptr<const QAccelPlotExample::ClusterCloud> makeClusterSource(const int pointCount)
-{
-    return std::make_shared<const QAccelPlotExample::ClusterCloud>(QAccelPlotExample::generateClusterCloud(pointCount));
-}
-
-QAccelPlotExample::PointCloudData firstFrame(const QAccelPlotExample::ClusterCloud& source)
-{
-    auto frame = QAccelPlotExample::PointCloudData{};
-    QAccelPlotExample::composeClusterFrame(source, 0.0f, frame);
-    return frame;
-}
-
-bool populateStaticSeries(QObject* root)
-{
-    auto* powerLaw = root->findChild<PointCloud*>(QStringLiteral("powerLawCloud"));
-    if (!powerLaw) {
-        qCritical() << "Unable to find power-law series";
-        return false;
+    auto data = PointCloudData{};
+    data.xy.reserve(static_cast<std::size_t>(pointCount) * 2);
+    data.values.reserve(static_cast<std::size_t>(pointCount));
+    auto x = 0.1f;
+    auto y = 0.1f;
+    for (auto i = 0; i < pointCount; ++i) {
+        const auto nextX = std::sin(a * y) + c * std::cos(a * x);
+        const auto nextY = std::sin(b * x) + d * std::cos(b * y);
+        data.values.push_back(std::hypot(nextX - x, nextY - y));
+        x = nextX;
+        y = nextY;
+        data.xy.push_back(x);
+        data.xy.push_back(y);
     }
-    const auto totalCount = kPowerLawPointCount + QAccelPlotExample::kPowerLawInvalidPointCount;
-    powerLaw->setDataF(QAccelPlotExample::generatePowerLawScatter(kPowerLawPointCount), totalCount);
-    root->setProperty("powerLawValidCount", kPowerLawPointCount);
-    return true;
-}
-
-void setupInteractiveUpdates(
-    QGuiApplication& app, QQuickWindow* window, QObject* root, QAccelPlotExample::PointCloudStreamer& streamer, const std::shared_ptr<SceneState>& state)
-{
-    QObject::connect(window, &QQuickWindow::frameSwapped, &app, [&streamer]() { streamer.notifyFramePresented(); }, Qt::DirectConnection);
-
-    // Poll QML-owned controls once per animation tick, like the other examples do.
-    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, &streamer, state]() {
-        const auto pointCount = requestedClusterPointCount(root);
-        if (pointCount != state->appliedPointCount) {
-            // Generating a million-point cloud must not run on this thread: afterAnimating is
-            // the GUI thread, and the stall would show up as dropped frames. The streamer
-            // builds it and posts the first frame when it is ready.
-            streamer.requestPointCount(pointCount);
-            state->appliedPointCount = pointCount;
-        }
-
-        const auto animate = root->property("animate").toBool();
-        if (animate != state->animating) {
-            streamer.setRunning(animate);
-            state->animating = animate;
-        }
-    });
+    return data;
 }
 
 } // namespace
@@ -101,43 +65,17 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    const auto screenshotMode = app.arguments().contains(QStringLiteral("--screenshot"));
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
-
     auto* root = engine.rootObjects().value(0);
-    auto* window = qobject_cast<QQuickWindow*>(root);
-    if (!root || !window) {
+    auto* cloud = root ? root->findChild<QAccelPlot::PointCloud*>(QStringLiteral("cloud")) : nullptr;
+    if (!cloud) {
+        qCritical() << "Unable to find the point cloud";
         return EXIT_FAILURE;
     }
 
-    auto* clusterCloud = root->findChild<PointCloud*>(QStringLiteral("clusterCloud"));
-    if (!clusterCloud || !populateStaticSeries(root)) {
-        qCritical() << "Point cloud example scene is incomplete";
-        return EXIT_FAILURE;
-    }
+    auto data = cliffordAttractor(kPointCount);
+    cloud->setDataF(std::move(data.xy), std::move(data.values), kPointCount);
 
-    // --animate starts streaming immediately; combined with --screenshot it smoke-tests postData().
-    const auto animateRequested = app.arguments().contains(QStringLiteral("--animate"));
-    if (screenshotMode && !animateRequested) {
-        // Deterministic still frame: default count, phase 0, no streaming.
-        root->setProperty("animate", false);
-        auto frame = firstFrame(*makeClusterSource(requestedClusterPointCount(root)));
-        clusterCloud->setDataF(std::move(frame.xy), std::move(frame.values), frame.pointCount);
-        QAccelPlotExample::setupScreenshotHandler(app, engine);
-        return app.exec();
-    }
-
-    auto streamer = QAccelPlotExample::PointCloudStreamer{clusterCloud};
-    auto state = std::make_shared<SceneState>();
-    setupInteractiveUpdates(app, window, root, streamer, state);
-    if (animateRequested) {
-        root->setProperty("animate", true);
-    }
-    if (screenshotMode) {
-        QAccelPlotExample::setupScreenshotHandler(app, engine);
-    }
-
-    const auto result = app.exec();
-    streamer.stop();
-    return result;
+    QAccelPlotExample::setupScreenshotHandler(app, engine);
+    return app.exec();
 }

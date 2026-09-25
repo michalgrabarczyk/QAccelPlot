@@ -7,8 +7,6 @@
 #
 qaccelplot_add_example(PointCloud
     SOURCES
-        src/PointCloudGenerators.cpp
-        src/PointCloudStreamer.cpp
         src/main.cpp
     QML_FILES
         qml/main.qml
