@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "point_cloud/default",
-  "description": "One scatter plot rendered with the PointCloud series: 200,000 points of a Clifford attractor colored by value with the Plasma colormap. Judge only content inside the plot; ignore the page heading, description, and marker radius slider.",
+  "description": "One scatter plot rendered with the PointCloud series: 200,000 points of a Clifford attractor colored by value with the Plasma colormap, keyed by a vertical color bar. Judge only content inside the plot; ignore the page heading, description, and marker radius slider.",
   "expected_image": {
     "width": 1200,
     "height": 800,
@@ -15,7 +15,7 @@
     {
       "id": "overall_layout",
       "severity": "high",
-      "expectation": "A single wide plot fills most of the window below the header, with X and Y axes labeled 'x' and 'y', tick labels, and a grid."
+      "expectation": "A single wide plot fills most of the window below the header, with X and Y axes labeled 'x' and 'y', tick labels, and a grid. A small vertical color bar sits in the top-right corner of the plot area on a dark panel, labeled 'Jump length', with numeric tick labels beside a strip running from dark blue-violet at the bottom to yellow at the top. It does not cover the attractor's bright yellow band."
     },
     {
       "id": "attractor_shape_and_colormap",
@@ -25,7 +25,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the slider label, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+      "expectation": "Within the plot, axis titles, tick labels, and color bar text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the slider label, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

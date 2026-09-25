@@ -71,6 +71,7 @@ QAccelPlot/
 │       ├── QAccelPlotLogging.*   — Qt logging category
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
 │       ├── axis/                 — Axis, AxisTicker, AxisTickPainter
+│       ├── colorbar/             — ColorBar (continuous key for a series' Colormap)
 │       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
 │       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,
 │       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback)

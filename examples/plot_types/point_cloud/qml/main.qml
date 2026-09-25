@@ -93,6 +93,31 @@ Window {
                 height: plot.plotRect.height
                 clip: true
 
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.margins: 10
+                    width: jumpBar.width + 20
+                    height: jumpBar.height + 16
+                    radius: 4
+                    color: colorPalette.legendBackground
+                    border.color: colorPalette.legendBorder
+
+                    QAccelPlot.ColorBar {
+                        id: jumpBar
+                        x: 10
+                        y: 8
+                        height: 130
+                        series: cloud
+                        label: "Jump length"
+                        labelColor: colorPalette.axisLabel
+                        borderColor: colorPalette.axisLine
+                        ticker.tickColor: colorPalette.tick
+                        ticker.tickLabelColor: colorPalette.axisTickLabel
+                        ticker.tickCount: 8
+                    }
+                }
+
                 QAccelPlot.DataAnchor {
                     id: hoverAnchor
 

@@ -25,18 +25,6 @@ namespace {
 constexpr auto kTickLabelMargin = qreal{1.0};
 constexpr auto kMinimumTickLabelHeight = qreal{20.0};
 
-QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label)
-{
-    const auto bounds = metrics.boundingRect(label);
-    const auto advance = metrics.horizontalAdvance(label);
-    const auto leftOverhang = std::max(qreal{0.0}, -bounds.left());
-    const auto rightOverhang = std::max(qreal{0.0}, bounds.right() - advance);
-    const auto overhang = std::max(leftOverhang, rightOverhang);
-    const auto width = std::ceil(advance + 2.0 * overhang + 2.0 * kTickLabelMargin);
-    const auto measuredHeight = std::ceil(std::max(metrics.height(), bounds.height()) + 2.0 * kTickLabelMargin);
-    return {width, std::max(kMinimumTickLabelHeight, measuredHeight)};
-}
-
 QRectF rotatedTickLabelBounds(const QRectF& rect, const qreal rotation)
 {
     auto transform = QTransform{};
@@ -132,6 +120,18 @@ qreal AxisTickPainter::computeNiceStep(const qreal viewportMin, const qreal view
         niceResidual = 5.0;
     }
     return niceResidual * magnitude;
+}
+
+QSizeF AxisTickPainter::tickLabelSize(const QFontMetricsF& metrics, const QString& label)
+{
+    const auto bounds = metrics.boundingRect(label);
+    const auto advance = metrics.horizontalAdvance(label);
+    const auto leftOverhang = std::max(qreal{0.0}, -bounds.left());
+    const auto rightOverhang = std::max(qreal{0.0}, bounds.right() - advance);
+    const auto overhang = std::max(leftOverhang, rightOverhang);
+    const auto width = std::ceil(advance + 2.0 * overhang + 2.0 * kTickLabelMargin);
+    const auto measuredHeight = std::ceil(std::max(metrics.height(), bounds.height()) + 2.0 * kTickLabelMargin);
+    return {width, std::max(kMinimumTickLabelHeight, measuredHeight)};
 }
 
 AxisTicks AxisTickPainter::computeLogScaleTicks(const qreal viewportMin, const qreal viewportMax, const AxisTicker& ticker)

@@ -1,5 +1,5 @@
 ---
-description: "Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, logarithmic axes, hover picking, and streaming from worker threads."
+description: "Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, color bars, logarithmic axes, hover picking, and streaming from worker threads."
 ---
 
 <!--
@@ -59,7 +59,7 @@ The default legend shows the marker shape and `color` for point clouds.
 
 ## Color points by value
 
-Give each point a value and map it through a QML `Gradient`:
+Give each point a value and assign a [`Colormap`][colormap]:
 
 ```qml
 QAccelPlot.PointCloud {
@@ -79,8 +79,7 @@ are not in the data.
 Set `reversed: true` to run a ramp from its last color to its first. For example, a reversed
 `Inferno` or `Magma` fades low values into a light background.
 
-For a custom ramp, list the stops instead. The same stops can feed a color bar, so a swatch and
-the points cannot drift apart:
+For a custom ramp, list the stops instead:
 
 ```qml
 Gradient {
@@ -92,7 +91,6 @@ Gradient {
 QAccelPlot.PointCloud {
     colormap: QAccelPlot.Colormap { stops: ramp.stops }
 }
-Rectangle { gradient: ramp }   // the color bar
 ```
 
 `min` and `max` bound the value range. Leave either unset and it is resolved from the data, so one
@@ -116,10 +114,49 @@ cloud->setDataF(std::move(xyInterleaved), std::move(values), pointCount);
 the coordinates need double precision. Values stay single precision either way,
 because they only index the colormap.
 
-With the default `DataRange` sources, the colormap spans the finite value
-range of the data. The resolved bounds are exposed as `dataValueMin` and
-`dataValueMax`, so a color bar can bind to them. Points with a non-finite value
-fall back to `color`.
+The resolved bounds, from `min` and `max` or from the finite values in the
+data, are exposed as `dataValueMin` and `dataValueMax`. Points with a
+non-finite value fall back to `color`.
+
+## Show a color bar
+
+[`QAccelPlot.ColorBar`][color-bar] is the key for a value-colored cloud. It
+draws the series' colormap with ticks for the resolved value range, and redraws
+when the colormap, its range, or the assigned colormap changes:
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+
+    QAccelPlot.PointCloud {
+        id: cloud
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Plasma }
+    }
+
+    QAccelPlot.ColorBar {
+        series: cloud
+        label: "Intensity"
+        x: plot.plotRect.left + 8
+        y: plot.plotRect.top + 8
+    }
+}
+```
+
+- The bar is an ordinary item. Position it with `x`, `y`, or anchors; it does
+  not reserve layout space. The default legend sits at the top right of the
+  plot area, so place the bar elsewhere or move the legend.
+- A vertical bar, the default, has its minimum at the bottom and its ticks and
+  `label` on the right. `orientation: QAccelPlot.ColorBar.Horizontal` puts the
+  minimum on the left and the ticks and `label` below.
+- The implicit size fits the strip, ticks, labels, and `label`, with a length
+  of 160 pixels. Set `height` on a vertical bar, or `width` on a horizontal
+  one, to change the length.
+- Ticks follow `norm`: a `Log` colormap gets one major tick per decade.
+  `ticker` sets tick count, colors, fonts, and label formatters, as on
+  `Axis.ticker`.
+- Nothing is drawn while the series has no colormap.
 
 ## Stream point data
 
@@ -185,6 +222,8 @@ stacked series underneath still receive hover events elsewhere.
 Complete source:
 
 - [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud):
-  one value-colored cloud with a hover tooltip.
+  one value-colored cloud with a color bar and a hover tooltip.
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
+[colormap]: ../api/classQAccelPlot_1_1Colormap.md
+[color-bar]: ../api/classQAccelPlot_1_1ColorBar.md

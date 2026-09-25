@@ -45,7 +45,7 @@ namespace QAccelPlot {
 /// texture size: about 5.5 million points with values, or 8.3 million without, for an 8192-pixel
 /// limit, and twice that for 16384. Points beyond it are not drawn and a warning is logged once.
 ///
-/// \sa LineCurve, Axis, PlotSeries
+/// \sa LineCurve, Axis, PlotSeries, ColorBar
 class PointCloud : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
@@ -72,7 +72,7 @@ class PointCloud : public PlotSeries {
     /// \brief Read-only: index of the point under the cursor, or -1 when none.
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
     /// \brief Read-only: lower bound of the value range, taken from \c Colormap::min when it is set
-    /// and from the data otherwise. Bind a color bar's scale to this and \c dataValueMax.
+    /// and from the data otherwise. \c ColorBar labels its ticks from this and \c dataValueMax.
     Q_PROPERTY(qreal dataValueMin READ dataValueMin NOTIFY valueRangeChanged)
     /// \brief Read-only: upper bound of the value range, taken from \c Colormap::max when it is set
     /// and from the data otherwise.
