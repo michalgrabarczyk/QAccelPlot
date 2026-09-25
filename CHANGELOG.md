@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The `plot_types/parametric_curves` example draws curves whose x values do
   not increase: a spiral, a Lissajous figure, a spirograph, and a Van der Pol
   phase portrait.
-- The `plot_types/point_cloud` example draws a value-colored cloud.
+- The `plot_types/point_cloud` example draws a value-colored cloud with a color bar.
 - `LineCurve::setData(std::vector<double>&&, int)` moves an interleaved double
   buffer into the curve, keeping double precision for large coordinates such as
   Unix-epoch timestamps without re-interleaving.
@@ -32,6 +32,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   it overrides when both are set. `PointCloud.colormap` replaces its
   `colorMode`, `colorGradient`, `valueMin`, `valueMinSource`, `valueMax`, and
   `valueMaxSource` properties.
+- `ColorBar`, a continuous key for a `PointCloud` colormap. It draws the ramp
+  with ticks for the series' resolved value range, follows `Linear` and `Log`
+  normalization, and redraws when the colormap or range changes. Vertical and
+  horizontal orientations; ticks are configured through `ticker`, as on `Axis`.
 
 ### Changed
 
