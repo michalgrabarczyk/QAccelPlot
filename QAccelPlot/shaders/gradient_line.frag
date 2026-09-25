@@ -33,6 +33,7 @@ layout(std140, binding = 0) uniform buf {
     int dashPatternSize;
     vec4 dashPattern[2];
     vec4 gradientParameters;
+    float opacity;
 } ubuf;
 
 layout(binding = 2) uniform sampler2D gradientSampler;
@@ -68,6 +69,6 @@ void main() {
     }
 
     vec4 gradientColor = texture(gradientSampler, vec2(clamp(v_gradientCoordinate, 0.0, 1.0), 0.5));
-    float outputAlpha = gradientColor.a * alpha;
+    float outputAlpha = gradientColor.a * alpha * ubuf.opacity;
     fragColor = vec4(gradientColor.rgb * outputAlpha, outputAlpha);
 }

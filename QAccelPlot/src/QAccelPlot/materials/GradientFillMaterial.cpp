@@ -41,6 +41,7 @@ public:
         const auto matrix = state.combinedMatrix();
         std::memcpy(ubo.matrix, matrix.constData(), sizeof(ubo.matrix));
         ubo.parameters[0] = material->opacity;
+        ubo.parameters[1] = state.opacity();
         std::memcpy(buffer->data(), &ubo, sizeof(ubo));
         return true;
     }

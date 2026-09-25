@@ -28,9 +28,10 @@ struct PointUbo {
     int shapeType;             // 128–131
     float markerStrokeWidth;   // 132–135
     float markerFilled;        // 136–139
+    float opacity;             // 140–143
 };
 
-static_assert(sizeof(PointUbo) == 140);
+static_assert(sizeof(PointUbo) == 144);
 
 class PointShader : public QSGMaterialShader {
 public:
@@ -73,6 +74,7 @@ public:
         ubo.shapeType = mat->shapeType;
         ubo.markerStrokeWidth = mat->markerStrokeWidth;
         ubo.markerFilled = mat->markerFilled;
+        ubo.opacity = state.opacity();
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }

@@ -37,6 +37,7 @@ layout(std140, binding = 0) uniform buf {
     int dashPatternSize;
     vec4 dashPattern[2];
     vec4 gradientParameters;
+    float opacity;
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;

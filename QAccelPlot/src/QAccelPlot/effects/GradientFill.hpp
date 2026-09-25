@@ -51,6 +51,9 @@ class GradientFill : public LineCurveEffect {
     /// \brief Fixed baseline data value used when \c baseline is \c GradientFillBaseline.Value.
     Q_PROPERTY(qreal baselineValue READ baselineValue WRITE setBaselineValue NOTIFY baselineValueChanged)
     /// \brief Overall opacity of the fill area in [0, 1]. Default: 0.35.
+    ///
+    /// Applies to the fill only. The curve's \c opacity and the \c opacity of its parent
+    /// items also apply, so the rendered fill alpha is the product of all of them.
     Q_PROPERTY(qreal opacity READ opacity WRITE setOpacity NOTIFY opacityChanged)
 
 public:

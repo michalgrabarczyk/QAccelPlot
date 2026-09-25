@@ -34,6 +34,7 @@ layout(std140, binding = 0) uniform buf {
     float markerStrokeWidth;   // 144-147
     float markerFilled;        // 148-151
     float valueLogScale;       // 152-155
+    float opacity;             // 156-159: inherited item opacity
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;

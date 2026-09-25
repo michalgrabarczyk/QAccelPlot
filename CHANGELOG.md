@@ -61,6 +61,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- The Qt Quick `opacity` property, set on a series or inherited from a parent
+  item, now applies to `LineCurve` lines, markers, `GradientStroke`, and
+  `GradientFill`, and to `PointCloud` and `RectangleList`. Previously it had no
+  effect. Each fragment blends on its own, so overlapping translucent markers
+  build up density.
 - Numeric tick labels no longer show a spurious trailing zero. Labels now use
   exactly the decimal places needed to write the tick step, so steps of 1 and 2
   read `0, 1, 2` instead of `0.0, 1.0, 2.0`, and steps of 0.1 and 0.2 read

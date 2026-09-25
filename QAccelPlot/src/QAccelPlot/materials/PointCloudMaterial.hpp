@@ -28,6 +28,8 @@ namespace QAccelPlot {
 /// - 140–143 int   shapeType
 /// - 144–147 float markerStrokeWidth
 /// - 148–151 float markerFilled
+/// - 152–155 float valueLogScale
+/// - 156–159 float opacity (inherited item opacity from the render state)
 class PointCloudMaterial : public DataTextureMaterial {
 public:
     /// \brief Constructs a PointCloudMaterial with default uniform values.
