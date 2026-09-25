@@ -22,6 +22,7 @@
 * `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include <QColor>`
 * `#include <QRectF>`
+* `#include <QSizeF>`
 * `#include <functional>`
 
 

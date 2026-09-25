@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, logarithmic axes, hover picking, and streaming from worker threads.">
+        <meta name="description" content="Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, color bars, logarithmic axes, hover picking, and streaming from worker threads.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, logarithmic axes, hover picking, and streaming from worker threads.">
+<meta property="og:description" content="Render hundreds of thousands of unconnected scatter points in QAccelPlot with PointCloud: marker shapes, coloring points by value, color bars, logarithmic axes, hover picking, and streaming from worker threads.">
 
 <script type="application/ld+json">
 {
@@ -774,6 +774,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#show-a-color-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show a color bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stream-point-data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1259,6 +1270,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#show-a-color-bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show a color bar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stream-point-data" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1365,7 +1387,7 @@ markers blend. Points are drawn in data order, so put background points first
 when they should appear underneath.</p>
 <p>The default legend shows the marker shape and <code>color</code> for point clouds.</p>
 <h2 id="color-points-by-value">Color points by value<a class="headerlink" href="#color-points-by-value" title="Permanent link">&para;</a></h2>
-<p>Give each point a value and map it through a QML <code>Gradient</code>:</p>
+<p>Give each point a value and assign a <a href="../../api/classQAccelPlot_1_1Colormap/"><code>Colormap</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
@@ -1379,8 +1401,7 @@ Prefer the perceptually uniform ones over <code>Rainbow</code>, whose uneven lig
 are not in the data.</p>
 <p>Set <code>reversed: true</code> to run a ramp from its last color to its first. For example, a reversed
 <code>Inferno</code> or <code>Magma</code> fades low values into a light background.</p>
-<p>For a custom ramp, list the stops instead. The same stops can feed a color bar, so a swatch and
-the points cannot drift apart:</p>
+<p>For a custom ramp, list the stops instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">Gradient</span> <span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="kd">id: ramp</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mf">0.0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"#fde725"</span> <span class="p">}</span>
@@ -1390,7 +1411,6 @@ the points cannot drift apart:</p>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span> <span class="p">{</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">stops:</span> <span class="nx">ramp</span><span class="p">.</span><span class="nx">stops</span> <span class="p">}</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nx">Rectangle</span> <span class="p">{</span> <span class="k">gradient:</span> <span class="nx">ramp</span> <span class="p">}</span>   <span class="c1">// the color bar</span>
 </code></pre></div>
 <p><code>min</code> and <code>max</code> bound the value range. Leave either unset and it is resolved from the data, so one
 colormap can be shared between series that resolve different ranges. Set <code>norm</code> to
@@ -1407,15 +1427,51 @@ C++, pass values together with the positions:</p>
 <p><code>setData()</code> takes the same shape with a <code>std::vector&lt;double&gt;</code> of positions when
 the coordinates need double precision. Values stay single precision either way,
 because they only index the colormap.</p>
-<p>With the default <code>DataRange</code> sources, the colormap spans the finite value
-range of the data. The resolved bounds are exposed as <code>dataValueMin</code> and
-<code>dataValueMax</code>, so a color bar can bind to them. Points with a non-finite value
-fall back to <code>color</code>.</p>
+<p>The resolved bounds, from <code>min</code> and <code>max</code> or from the finite values in the
+data, are exposed as <code>dataValueMin</code> and <code>dataValueMax</code>. Points with a
+non-finite value fall back to <code>color</code>.</p>
+<h2 id="show-a-color-bar">Show a color bar<a class="headerlink" href="#show-a-color-bar" title="Permanent link">&para;</a></h2>
+<p><a href="../../api/classQAccelPlot_1_1ColorBar/"><code>QAccelPlot.ColorBar</code></a> is the key for a value-colored cloud. It
+draws the series' colormap with ticks for the resolved value range, and redraws
+when the colormap, its range, or the assigned colormap changes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="kd">id: plot</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span> <span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="kd">id: cloud</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Plasma</span> <span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="p">}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">ColorBar</span> <span class="p">{</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="k">series:</span> <span class="nx">cloud</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="k">label:</span> <span class="s2">"Intensity"</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        <span class="k">x:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="mi">8</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        <span class="k">y:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">plotRect</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="mi">8</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="p">}</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>The bar is an ordinary item. Position it with <code>x</code>, <code>y</code>, or anchors; it does
+  not reserve layout space. The default legend sits at the top right of the
+  plot area, so place the bar elsewhere or move the legend.</li>
+<li>A vertical bar, the default, has its minimum at the bottom and its ticks and
+  <code>label</code> on the right. <code>orientation: QAccelPlot.ColorBar.Horizontal</code> puts the
+  minimum on the left and the ticks and <code>label</code> below.</li>
+<li>The implicit size fits the strip, ticks, labels, and <code>label</code>, with a length
+  of 160 pixels. Set <code>height</code> on a vertical bar, or <code>width</code> on a horizontal
+  one, to change the length.</li>
+<li>Ticks follow <code>norm</code>: a <code>Log</code> colormap gets one major tick per decade.
+  <code>ticker</code> sets tick count, colors, fonts, and label formatters, as on
+  <code>Axis.ticker</code>.</li>
+<li>Nothing is drawn while the series has no colormap.</li>
+</ul>
 <h2 id="stream-point-data">Stream point data<a class="headerlink" href="#stream-point-data" title="Permanent link">&para;</a></h2>
 <p><code>postData()</code> is thread-safe. It moves the buffers into a queued call, so a
 worker thread can produce complete frames without copying them again:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Worker thread</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">cloud</span><span class="o">-&gt;</span><span class="n">postData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Worker thread</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">cloud</span><span class="o">-&gt;</span><span class="n">postData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">values</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
 <p>Post a frame only after the window has presented the previous one, for
 example by counting <code>QQuickWindow::frameSwapped</code>, so queued frames cannot pile
@@ -1430,19 +1486,19 @@ need to filter them before handing data to the series.</p>
 <p><code>hoveredIndex</code> is the index of the valid point nearest to the pointer within
 <code>hoverRadius</code> pixels, or <code>-1</code>. Combine it with <code>pointAt()</code>, <code>valueAt()</code>, and a
 <code>QAccelPlot.DataAnchor</code> to show a tooltip:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DataAnchor</span> <span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">point</span> <span class="k">hovered:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">pointAt</span><span class="p">(</span><span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">visible:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">plotRect:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="k">dataX1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">dataY1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="k">dataX2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">dataY2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="nx">Text</span> <span class="p">{</span> <span class="k">text:</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="p">}</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DataAnchor</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">point</span> <span class="k">hovered:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">pointAt</span><span class="p">(</span><span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">visible:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">plotRect:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">dataX1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">dataY1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">dataX2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">dataY2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="nx">Text</span> <span class="p">{</span> <span class="k">text:</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="p">}</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
 </code></pre></div>
 <p>The lookup uses a spatial index that is rebuilt on the first pointer move after
 a data change. Only positions near a point count as inside the series, so
@@ -1463,7 +1519,7 @@ stacked series underneath still receive hover events elsewhere.</p>
 <p>Complete source:</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a>:
-  one value-colored cloud with a hover tooltip.</li>
+  one value-colored cloud with a color bar and a hover tooltip.</li>
 </ul>
 
 

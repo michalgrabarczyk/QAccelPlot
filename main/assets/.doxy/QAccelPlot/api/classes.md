@@ -18,6 +18,8 @@
 
 ## c
 
+* [**ColorBar**](classQAccelPlot_1_1ColorBar.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colormap**](classQAccelPlot_1_1Colormap.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md)
@@ -89,6 +91,7 @@
 
 ## l
 
+* [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md)

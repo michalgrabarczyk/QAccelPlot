@@ -1,0 +1,1385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1ColorBar" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::ColorBar</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickPaintedItem</basecompoundref>
+    <includes local="no">ColorBar.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1ColorBar_1_1Layout" prot="private">QAccelPlot::ColorBar::Layout</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Orientation</name>
+        <qualifiedname>QAccelPlot::ColorBar::Orientation</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" prot="public">
+          <name>Horizontal</name>
+          <briefdescription>
+<para>Minimum on the left, ticks below. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" prot="public">
+          <name>Vertical</name>
+          <briefdescription>
+<para>Minimum at the bottom, ticks on the right. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Direction of the color ramp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="83" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="83" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
+        <definition>PointCloud* QAccelPlot::ColorBar::series</definition>
+        <argsstring></argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::ColorBar::series</qualifiedname>
+        <read>series</read>
+        <write>setSeries</write>
+        <briefdescription>
+<para>Series whose colormap and resolved value range are shown. Default: null. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="58" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
+        <definition>Orientation QAccelPlot::ColorBar::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::ColorBar::orientation</qualifiedname>
+        <read>orientation</read>
+        <write>setOrientation</write>
+        <briefdescription>
+<para>Direction of the ramp: <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">ColorBar.Vertical</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" kindref="member">ColorBar.Horizontal</ref></computeroutput>. Default: <computeroutput>Vertical</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::ColorBar::label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>QAccelPlot::ColorBar::label</qualifiedname>
+        <read>label</read>
+        <write>setLabel</write>
+        <briefdescription>
+<para>Optional title drawn beside the tick labels. Default: empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="62" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::ColorBar::labelFont</definition>
+        <argsstring></argsstring>
+        <name>labelFont</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelFont</qualifiedname>
+        <read>labelFont</read>
+        <write>setLabelFont</write>
+        <briefdescription>
+<para>Font of the title. Default: application default font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="64" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::labelColor</definition>
+        <argsstring></argsstring>
+        <name>labelColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelColor</qualifiedname>
+        <read>labelColor</read>
+        <write>setLabelColor</write>
+        <briefdescription>
+<para>Color of the title. Default: <computeroutput>Colors.dark.axisLine</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="66" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::labelPadding</definition>
+        <argsstring></argsstring>
+        <name>labelPadding</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelPadding</qualifiedname>
+        <read>labelPadding</read>
+        <write>setLabelPadding</write>
+        <briefdescription>
+<para>Gap in pixels between the tick labels and the title. Default: 6. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::barThickness</definition>
+        <argsstring></argsstring>
+        <name>barThickness</name>
+        <qualifiedname>QAccelPlot::ColorBar::barThickness</qualifiedname>
+        <read>barThickness</read>
+        <write>setBarThickness</write>
+        <briefdescription>
+<para>Thickness in pixels of the color strip across the ramp direction. Default: 12. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::borderColor</definition>
+        <argsstring></argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderColor</qualifiedname>
+        <read>borderColor</read>
+        <write>setBorderColor</write>
+        <briefdescription>
+<para>Color of the outline around the strip. Default: <computeroutput>Colors.dark.axisLine</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="72" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::borderWidth</definition>
+        <argsstring></argsstring>
+        <name>borderWidth</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderWidth</qualifiedname>
+        <read>borderWidth</read>
+        <write>setBorderWidth</write>
+        <briefdescription>
+<para>Width in pixels of the outline around the strip. 0 draws no outline. Default: 1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker* QAccelPlot::ColorBar::ticker</definition>
+        <argsstring></argsstring>
+        <name>ticker</name>
+        <qualifiedname>QAccelPlot::ColorBar::ticker</qualifiedname>
+        <read>ticker</read>
+        <briefdescription>
+<para>Read-only constant: tick appearance, count, and label formatter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Defaults differ from <computeroutput><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>:</computeroutput> <computeroutput>tickLengthIn</computeroutput> 0, <computeroutput>tickLengthOut</computeroutput> 4, <computeroutput>subtickLengthIn</computeroutput> 0, <computeroutput>subtickLengthOut</computeroutput> 2, <computeroutput>subtickCount</computeroutput> 0, and <computeroutput>tickWidth</computeroutput> 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="79" column="5" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> &gt;</type>
+        <definition>QPointer&lt;PointCloud&gt; QAccelPlot::ColorBar::series_</definition>
+        <argsstring></argsstring>
+        <name>series_</name>
+        <qualifiedname>QAccelPlot::ColorBar::series_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="198" column="14" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" prot="private" static="no" mutable="no">
+        <type>QList&lt; QMetaObject::Connection &gt;</type>
+        <definition>QList&lt;QMetaObject::Connection&gt; QAccelPlot::ColorBar::seriesConnections_</definition>
+        <argsstring></argsstring>
+        <name>seriesConnections_</name>
+        <qualifiedname>QAccelPlot::ColorBar::seriesConnections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="199" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a70e69eca7d8adc85a719d971fc92805e" prot="private" static="no" mutable="no">
+        <type>QMetaObject::Connection</type>
+        <definition>QMetaObject::Connection QAccelPlot::ColorBar::colormapConnection_</definition>
+        <argsstring></argsstring>
+        <name>colormapConnection_</name>
+        <qualifiedname>QAccelPlot::ColorBar::colormapConnection_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="200" column="29" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a5dce5fd6ba789a6eb57eb0aa1cbb3123" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
+        <definition>Orientation QAccelPlot::ColorBar::orientation_</definition>
+        <argsstring></argsstring>
+        <name>orientation_</name>
+        <qualifiedname>QAccelPlot::ColorBar::orientation_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">Vertical</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="201" column="17" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="201" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a3e4049cb3180800c936161ab7b2196e3" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::ColorBar::label_</definition>
+        <argsstring></argsstring>
+        <name>label_</name>
+        <qualifiedname>QAccelPlot::ColorBar::label_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="202" column="13" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ad4a52472c7fb8af460e8b6c13a397c5f" prot="private" static="no" mutable="no">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::ColorBar::labelFont_</definition>
+        <argsstring></argsstring>
+        <name>labelFont_</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelFont_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="203" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ab49dc820641b677bc2d12c7949e1292c" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::labelColor_</definition>
+        <argsstring></argsstring>
+        <name>labelColor_</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().axisLine}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="204" column="12" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="204" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ad4644efe22daa7b48f35c1699177ac98" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::labelPadding_</definition>
+        <argsstring></argsstring>
+        <name>labelPadding_</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelPadding_</qualifiedname>
+        <initializer>{6.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="205" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="205" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a38e0cb089ebfa2e2ddbe644ae761a2b2" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::barThickness_</definition>
+        <argsstring></argsstring>
+        <name>barThickness_</name>
+        <qualifiedname>QAccelPlot::ColorBar::barThickness_</qualifiedname>
+        <initializer>{12.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="206" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a4054fa31f2bb8ef74af0a1601ea55bbf" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::borderColor_</definition>
+        <argsstring></argsstring>
+        <name>borderColor_</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().axisLine}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="207" column="12" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ac6552988ce6dad168cccc3cab10569eb" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::borderWidth_</definition>
+        <argsstring></argsstring>
+        <name>borderWidth_</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="208" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="208" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a3561709a783fe4657dab2b1cf828cf5a" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker* QAccelPlot::ColorBar::ticker_</definition>
+        <argsstring></argsstring>
+        <name>ticker_</name>
+        <qualifiedname>QAccelPlot::ColorBar::ticker_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="209" column="16" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt;GradientStopData&gt; QAccelPlot::ColorBar::stops_</definition>
+        <argsstring></argsstring>
+        <name>stops_</name>
+        <qualifiedname>QAccelPlot::ColorBar::stops_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="212" column="17" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::valueMin_</definition>
+        <argsstring></argsstring>
+        <name>valueMin_</name>
+        <qualifiedname>QAccelPlot::ColorBar::valueMin_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="213" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::valueMax_</definition>
+        <argsstring></argsstring>
+        <name>valueMax_</name>
+        <qualifiedname>QAccelPlot::ColorBar::valueMax_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="214" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1af1423dbdf8e66a3dd125a06fb629dc63" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::ColorBar::logScale_</definition>
+        <argsstring></argsstring>
+        <name>logScale_</name>
+        <qualifiedname>QAccelPlot::ColorBar::logScale_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="215" column="10" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="215" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aad2f54b099b14dc09b9c02212ee8195b" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
+        <definition>AxisTicks QAccelPlot::ColorBar::ticks_</definition>
+        <argsstring></argsstring>
+        <name>ticks_</name>
+        <qualifiedname>QAccelPlot::ColorBar::ticks_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="216" column="15" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a4872eadee025fa57ed379f096e395540" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::maxTickLabelWidth_</definition>
+        <argsstring></argsstring>
+        <name>maxTickLabelWidth_</name>
+        <qualifiedname>QAccelPlot::ColorBar::maxTickLabelWidth_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="217" column="11" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="217" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a2352959ad1605f096f4b90dd4980f03d" prot="private" static="no" mutable="no">
+        <type>Layout</type>
+        <definition>Layout QAccelPlot::ColorBar::layout_</definition>
+        <argsstring></argsstring>
+        <name>layout_</name>
+        <qualifiedname>QAccelPlot::ColorBar::layout_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="218" column="12" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="218" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a8c9cbcd87aa5c6af687ce0073f2c7c41" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::ColorBar::ColorBar</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>ColorBar</name>
+        <qualifiedname>QAccelPlot::ColorBar::ColorBar</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="90" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
+        <definition>PointCloud * QAccelPlot::ColorBar::series</definition>
+        <argsstring>() const</argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::ColorBar::series</qualifiedname>
+        <briefdescription>
+<para>Returns the series whose colormap is shown, or <computeroutput>nullptr</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="93" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setSeries</definition>
+        <argsstring>(PointCloud *series)</argsstring>
+        <name>setSeries</name>
+        <qualifiedname>QAccelPlot::ColorBar::setSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+<para>Sets the series whose colormap is shown to <emphasis>series</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="95" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a0cd8beed6eead5106153536d8671a991" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
+        <definition>Orientation QAccelPlot::ColorBar::orientation</definition>
+        <argsstring>() const</argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::ColorBar::orientation</qualifiedname>
+        <briefdescription>
+<para>Returns the ramp direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="98" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setOrientation</definition>
+        <argsstring>(Orientation orientation)</argsstring>
+        <name>setOrientation</name>
+        <qualifiedname>QAccelPlot::ColorBar::setOrientation</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
+          <declname>orientation</declname>
+        </param>
+        <briefdescription>
+<para>Sets the ramp direction to <emphasis>orientation</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="100" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1adefc69970edbe3c6273f770b0a5523e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::ColorBar::label</definition>
+        <argsstring>() const</argsstring>
+        <name>label</name>
+        <qualifiedname>QAccelPlot::ColorBar::label</qualifiedname>
+        <briefdescription>
+<para>Returns the title. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="103" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setLabel</definition>
+        <argsstring>(const QString &amp;label)</argsstring>
+        <name>setLabel</name>
+        <qualifiedname>QAccelPlot::ColorBar::setLabel</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title to <emphasis>label</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="105" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1abe8290e8c357b9adbd539ab17a08ec5f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QFont</type>
+        <definition>QFont QAccelPlot::ColorBar::labelFont</definition>
+        <argsstring>() const</argsstring>
+        <name>labelFont</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelFont</qualifiedname>
+        <briefdescription>
+<para>Returns the title font. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="108" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setLabelFont</definition>
+        <argsstring>(const QFont &amp;font)</argsstring>
+        <name>setLabelFont</name>
+        <qualifiedname>QAccelPlot::ColorBar::setLabelFont</qualifiedname>
+        <param>
+          <type>const QFont &amp;</type>
+          <declname>font</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title font to <emphasis>font</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="110" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1abd425c79b41bf5d16d85cd41cf30a090" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::labelColor</definition>
+        <argsstring>() const</argsstring>
+        <name>labelColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelColor</qualifiedname>
+        <briefdescription>
+<para>Returns the title color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="113" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setLabelColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setLabelColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::setLabelColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the title color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="115" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1adc92096ead2a9cc5f9ece98d3c008281" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::labelPadding</definition>
+        <argsstring>() const</argsstring>
+        <name>labelPadding</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelPadding</qualifiedname>
+        <briefdescription>
+<para>Returns the gap between the tick labels and the title in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="118" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setLabelPadding</definition>
+        <argsstring>(qreal padding)</argsstring>
+        <name>setLabelPadding</name>
+        <qualifiedname>QAccelPlot::ColorBar::setLabelPadding</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>padding</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gap between the tick labels and the title to <emphasis>padding</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="120" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad2580d791678ad1f83f19c0321f9b124" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::barThickness</definition>
+        <argsstring>() const</argsstring>
+        <name>barThickness</name>
+        <qualifiedname>QAccelPlot::ColorBar::barThickness</qualifiedname>
+        <briefdescription>
+<para>Returns the strip thickness in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="123" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setBarThickness</definition>
+        <argsstring>(qreal thickness)</argsstring>
+        <name>setBarThickness</name>
+        <qualifiedname>QAccelPlot::ColorBar::setBarThickness</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>thickness</declname>
+        </param>
+        <briefdescription>
+<para>Sets the strip thickness to <emphasis>thickness</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="125" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ab5ba78b5228b1ae1f255a3ff6103d6c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::ColorBar::borderColor</definition>
+        <argsstring>() const</argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderColor</qualifiedname>
+        <briefdescription>
+<para>Returns the strip outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="128" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setBorderColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setBorderColor</name>
+        <qualifiedname>QAccelPlot::ColorBar::setBorderColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the strip outline color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad480aaac27702f143143e8fc20255fcd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::borderWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>borderWidth</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the strip outline width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="133" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::setBorderWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setBorderWidth</name>
+        <qualifiedname>QAccelPlot::ColorBar::setBorderWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the strip outline width to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="135" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
+        <definition>AxisTicker * QAccelPlot::ColorBar::ticker</definition>
+        <argsstring>() const</argsstring>
+        <name>ticker</name>
+        <qualifiedname>QAccelPlot::ColorBar::ticker</qualifiedname>
+        <briefdescription>
+<para>Returns the tick configuration object. The object is owned by the color bar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="138" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::valueToPixel</definition>
+        <argsstring>(qreal value, qreal length) const</argsstring>
+        <name>valueToPixel</name>
+        <qualifiedname>QAccelPlot::ColorBar::valueToPixel</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps <emphasis>value</emphasis> to a pixel position along a strip of <emphasis>length</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Horizontal bars measure from the left edge, vertical bars from the top edge. Uses the range and normalization captured at the last polish, so it matches what <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" kindref="member">paint()</ref></computeroutput> draws. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="144" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::paint</definition>
+        <argsstring>(QPainter *painter) override</argsstring>
+        <name>paint</name>
+        <qualifiedname>QAccelPlot::ColorBar::paint</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <briefdescription>
+<para>Paints the strip, ticks, tick labels, and title computed in <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" kindref="member">updatePolish()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="147" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::seriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>seriesChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::seriesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the series property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="151" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::orientationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>orientationChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::orientationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the orientation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="153" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::labelChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the label property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="155" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::labelFontChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelFontChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelFontChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelFont property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="157" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::labelColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelColorChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="159" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::labelPaddingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>labelPaddingChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::labelPaddingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the labelPadding property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::barThicknessChanged</definition>
+        <argsstring>()</argsstring>
+        <name>barThicknessChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::barThicknessChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the barThickness property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="163" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::borderColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>borderColorChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the borderColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="165" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::borderWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>borderWidthChanged</name>
+        <qualifiedname>QAccelPlot::ColorBar::borderWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the borderWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="167" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::updatePolish</definition>
+        <argsstring>() override</argsstring>
+        <name>updatePolish</name>
+        <qualifiedname>QAccelPlot::ColorBar::updatePolish</qualifiedname>
+        <briefdescription>
+<para>Captures the colormap, formats tick labels, and lays out the bar on the GUI thread, ahead of <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" kindref="member">paint()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="171" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::geometryChange</definition>
+        <argsstring>(const QRectF &amp;newGeometry, const QRectF &amp;oldGeometry) override</argsstring>
+        <name>geometryChange</name>
+        <qualifiedname>QAccelPlot::ColorBar::geometryChange</qualifiedname>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>newGeometry</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>oldGeometry</declname>
+        </param>
+        <briefdescription>
+<para>Schedules a new layout when the item is resized. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="173" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::reconnectSeries</definition>
+        <argsstring>()</argsstring>
+        <name>reconnectSeries</name>
+        <qualifiedname>QAccelPlot::ColorBar::reconnectSeries</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="183" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::reconnectColormap</definition>
+        <argsstring>()</argsstring>
+        <name>reconnectColormap</name>
+        <qualifiedname>QAccelPlot::ColorBar::reconnectColormap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="184" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a5cf931d18d5d44de566fe6f3fe41252d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::invalidate</definition>
+        <argsstring>()</argsstring>
+        <name>invalidate</name>
+        <qualifiedname>QAccelPlot::ColorBar::invalidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a66f599422717d919c81529540efcfbff" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::captureColormap</definition>
+        <argsstring>()</argsstring>
+        <name>captureColormap</name>
+        <qualifiedname>QAccelPlot::ColorBar::captureColormap</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="186" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a8c051389a73456fc06460c5baea25bb1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::updateImplicitSize</definition>
+        <argsstring>()</argsstring>
+        <name>updateImplicitSize</name>
+        <qualifiedname>QAccelPlot::ColorBar::updateImplicitSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9ffdef7c9bdabd463265b76ab68ad483" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Layout</type>
+        <definition>Layout QAccelPlot::ColorBar::computeLayout</definition>
+        <argsstring>() const</argsstring>
+        <name>computeLayout</name>
+        <qualifiedname>QAccelPlot::ColorBar::computeLayout</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="188" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a70fd4230fdb60af367a3cff394a84157" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::endInset</definition>
+        <argsstring>() const</argsstring>
+        <name>endInset</name>
+        <qualifiedname>QAccelPlot::ColorBar::endInset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="189" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9c206cf126e70e8f7a658973bda689d9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::tickLabelHeight</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelHeight</name>
+        <qualifiedname>QAccelPlot::ColorBar::tickLabelHeight</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="190" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a15a2ab4f5ad6952a74734ab393e9fee7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::tickLabelThickness</definition>
+        <argsstring>() const</argsstring>
+        <name>tickLabelThickness</name>
+        <qualifiedname>QAccelPlot::ColorBar::tickLabelThickness</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="191" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9f647de5ff65a1ac32e31a6774b499e4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::titleThickness</definition>
+        <argsstring>() const</argsstring>
+        <name>titleThickness</name>
+        <qualifiedname>QAccelPlot::ColorBar::titleThickness</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="192" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6cf2757918dabf983a1f1f36d95a5f10" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::titleOffset</definition>
+        <argsstring>() const</argsstring>
+        <name>titleOffset</name>
+        <qualifiedname>QAccelPlot::ColorBar::titleOffset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="193" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aec0e081953e5c5189d5b146f6b3a767e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::paintStrip</definition>
+        <argsstring>(QPainter *painter) const</argsstring>
+        <name>paintStrip</name>
+        <qualifiedname>QAccelPlot::ColorBar::paintStrip</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="194" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6bde2ed387ebb8706d7a5f78306c0882" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::paintTicks</definition>
+        <argsstring>(QPainter *painter) const</argsstring>
+        <name>paintTicks</name>
+        <qualifiedname>QAccelPlot::ColorBar::paintTicks</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="195" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad445331b51651a8c1c7ea773108e5732" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::ColorBar::paintTitle</definition>
+        <argsstring>(QPainter *painter) const</argsstring>
+        <name>paintTitle</name>
+        <qualifiedname>QAccelPlot::ColorBar::paintTitle</qualifiedname>
+        <param>
+          <type>QPainter *</type>
+          <declname>painter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="196" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A continuous key that shows how a series&apos; <computeroutput><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref></computeroutput> maps values to colors. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Draws the series&apos; color ramp as a strip, with ticks and labels for the value range the series resolved (<computeroutput><ref refid="classQAccelPlot_1_1PointCloud_1a97f64ffffd4391114cf4e9ccf8270a1d" kindref="member">PointCloud::dataValueMin</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud_1ad76ed015cc686207bab4c21bba2db56b" kindref="member">PointCloud::dataValueMax</ref></computeroutput>). Ticks follow the colormap&apos;s <computeroutput>norm</computeroutput>, so a <computeroutput>Log</computeroutput> colormap gets decade ticks. The bar redraws when the colormap, the resolved range, or the assigned colormap changes. Nothing is drawn while the series has no colormap.</para>
+<para>A vertical bar has its minimum at the bottom, with ticks on the right and <computeroutput>label</computeroutput> beside them, reading top to bottom. A horizontal bar has its minimum on the left, with ticks and <computeroutput>label</computeroutput> below. Position the bar like any item, for example inside the plot area:</para>
+<para><programlisting><codeline><highlight class="normal">QAccelPlot.ColorBar<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref>:<sp/>cloud</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref>:<sp/></highlight><highlight class="stringliteral">&quot;Intensity&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x:<sp/>plot.<ref refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" kindref="member">plotRect</ref>.right<sp/>-<sp/>width<sp/>-<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>y:<sp/>plot.plotRect.y<sp/>+<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The implicit size fits the strip, ticks, tick labels, and <computeroutput>label</computeroutput>, with a length of 160 pixels along the ramp. Tick labels at the ends are kept inside the item.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref>, <ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::ColorBar</label>
+        <link refid="classQAccelPlot_1_1ColorBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::ColorBar</label>
+        <link refid="classQAccelPlot_1_1ColorBar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickPaintedItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" line="53" column="1" bodyfile="QAccelPlot/src/QAccelPlot/colorbar/ColorBar.hpp" bodystart="53" bodyend="219"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThickness</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad2580d791678ad1f83f19c0321f9b124" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThickness</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a38e0cb089ebfa2e2ddbe644ae761a2b2" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThickness_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThicknessChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ab5ba78b5228b1ae1f255a3ff6103d6c4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a4054fa31f2bb8ef74af0a1601ea55bbf" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderColor_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderWidth</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad480aaac27702f143143e8fc20255fcd" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderWidth</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ac6552988ce6dad168cccc3cab10569eb" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderWidth_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>borderWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a66f599422717d919c81529540efcfbff" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>captureColormap</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a8c9cbcd87aa5c6af687ce0073f2c7c41" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ColorBar</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a70e69eca7d8adc85a719d971fc92805e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>colormapConnection_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a9ffdef7c9bdabd463265b76ab68ad483" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>computeLayout</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a70fd4230fdb60af367a3cff394a84157" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>endInset</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>geometryChange</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Horizontal</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a5cf931d18d5d44de566fe6f3fe41252d" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>invalidate</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1adefc69970edbe3c6273f770b0a5523e0" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>label</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a3e4049cb3180800c936161ab7b2196e3" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>label_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1abd425c79b41bf5d16d85cd41cf30a090" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ab49dc820641b677bc2d12c7949e1292c" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelColor_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelFont</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1abe8290e8c357b9adbd539ab17a08ec5f" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelFont</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad4a52472c7fb8af460e8b6c13a397c5f" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelFont_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelFontChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelPadding</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1adc92096ead2a9cc5f9ece98d3c008281" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelPadding</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad4644efe22daa7b48f35c1699177ac98" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelPadding_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>labelPaddingChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a2352959ad1605f096f4b90dd4980f03d" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>layout_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1af1423dbdf8e66a3dd125a06fb629dc63" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>logScale_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a4872eadee025fa57ed379f096e395540" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>maxTickLabelWidth_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Orientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a0cd8beed6eead5106153536d8671a991" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a5dce5fd6ba789a6eb57eb0aa1cbb3123" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientationChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paint</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aec0e081953e5c5189d5b146f6b3a767e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paintStrip</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a6bde2ed387ebb8706d7a5f78306c0882" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paintTicks</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad445331b51651a8c1c7ea773108e5732" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paintTitle</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>reconnectColormap</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>reconnectSeries</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>series_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>seriesChanged</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>seriesConnections_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setBarThickness</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setBorderColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setBorderWidth</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabel</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelColor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelFont</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelPadding</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setOrientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setSeries</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>stops_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ticker</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ticker</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a3561709a783fe4657dab2b1cf828cf5a" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ticker_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a9c206cf126e70e8f7a658973bda689d9" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>tickLabelHeight</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a15a2ab4f5ad6952a74734ab393e9fee7" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>tickLabelThickness</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aad2f54b099b14dc09b9c02212ee8195b" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ticks_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a6cf2757918dabf983a1f1f36d95a5f10" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>titleOffset</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a9f647de5ff65a1ac32e31a6774b499e4" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>titleThickness</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a8c051389a73456fc06460c5baea25bb1" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>updateImplicitSize</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>updatePolish</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueMax_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueMin_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueToPixel</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Vertical</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

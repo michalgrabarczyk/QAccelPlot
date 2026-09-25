@@ -94,7 +94,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1PointCloud.md#property-colormap-12)  <br>_Maps per-point values to colors. Points are colored uniformly with_ `color` _when this is null or no values are stored. Default: null._ |
 | property int | [**count**](classQAccelPlot_1_1PointCloud.md#property-count-12)  <br>_Read-only: number of points currently stored, including invalid ones._  |
 | property qreal | [**dataValueMax**](classQAccelPlot_1_1PointCloud.md#property-datavaluemax-12)  <br>_Read-only: upper bound of the value range, taken from_ `Colormap::max` _when it is set and from the data otherwise._ |
-| property qreal | [**dataValueMin**](classQAccelPlot_1_1PointCloud.md#property-datavaluemin-12)  <br>_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise. Bind a color bar's scale to this and_`dataValueMax` _._ |
+| property qreal | [**dataValueMin**](classQAccelPlot_1_1PointCloud.md#property-datavaluemin-12)  <br>_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._ |
 | property bool | [**hasValues**](classQAccelPlot_1_1PointCloud.md#property-hasvalues-12)  <br>_Read-only:_ `true` _when per-point values are stored._ |
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick radius in pixels used for hover detection. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the point under the cursor, or -1 when none._  |
@@ -311,7 +311,7 @@ Coordinates are single precision. The number of renderable points is bounded by 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md) 
 
 
 
@@ -414,7 +414,7 @@ qreal QAccelPlot::PointCloud::dataValueMax;
 
 ### property dataValueMin {#property-datavaluemin-12}
 
-_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise. Bind a color bar's scale to this and_`dataValueMax` _._
+_Read-only: lower bound of the value range, taken from_ `Colormap::min` _when it is set and from the data otherwise._`ColorBar` _labels its ticks from this and_`dataValueMax` _._
 ```C++
 qreal QAccelPlot::PointCloud::dataValueMin;
 ```

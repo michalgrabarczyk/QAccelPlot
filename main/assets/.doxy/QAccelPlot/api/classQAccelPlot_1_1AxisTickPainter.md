@@ -77,6 +77,7 @@ _Internal helper that computes and paints tick marks and labels for a single_ [_
 |  qreal | [**computeNiceStep**](#function-computenicestep) (qreal viewportMin, qreal viewportMax, int tickCount) <br>_Returns a "nice" major tick step for the given_ _viewportMin_ _,__viewportMax_ _range and target__tickCount_ _._ |
 |  [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) | [**computeTicks**](#function-computeticks) (qreal viewportMin, qreal viewportMax, bool logScale, const [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* ticker) <br>_Returns the visible ticks, subticks and formatted labels for the_ _viewportMin_ _to__viewportMax_ _range._ |
 |  void | [**paintTicks**](#function-paintticks) (QPainter \* painter, const QRectF & rect, qreal axisX, qreal axisY, const [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) & params, const [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) & ticks, const [**MapToPosition**](classQAccelPlot_1_1AxisTickPainter.md#typedef-maptoposition) & mapToPosition) <br>_Paints_ _ticks_ _and their labels onto__painter_ _, placing them according to__params_ _and__mapToPosition_ _._ |
+|  QSizeF | [**tickLabelSize**](#function-ticklabelsize) (const QFontMetricsF & metrics, const QString & label) <br>_Returns the size of the rectangle_ `paintTicks()` _lays out for__label_ _, measured with__metrics_ _._ |
 
 
 
@@ -192,6 +193,24 @@ static void QAccelPlot::AxisTickPainter::paintTicks (
     const Params & params,
     const AxisTicks & ticks,
     const MapToPosition & mapToPosition
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function tickLabelSize {#function-ticklabelsize}
+
+_Returns the size of the rectangle_ `paintTicks()` _lays out for__label_ _, measured with__metrics_ _._
+```C++
+static QSizeF QAccelPlot::AxisTickPainter::tickLabelSize (
+    const QFontMetricsF & metrics,
+    const QString & label
 ) 
 ```
 

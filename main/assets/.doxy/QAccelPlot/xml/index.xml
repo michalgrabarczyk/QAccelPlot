@@ -234,6 +234,7 @@
     <member refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kind="function"><name>computeTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kind="function"><name>paintTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" kind="function"><name>computeNiceStep</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1a51a073feeab54964b7384724777edfd4" kind="function"><name>tickLabelSize</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" kind="function"><name>computeLogScaleTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" kind="function"><name>computeLinearTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" kind="function"><name>paintTick</name></member>
@@ -243,6 +244,87 @@
   <compound refid="structQAccelPlot_1_1AxisTicks" kind="struct"><name>QAccelPlot::AxisTicks</name>
     <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kind="variable"><name>subtickValues</name></member>
     <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kind="variable"><name>majorTicks</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1ColorBar" kind="class"><name>QAccelPlot::ColorBar</name>
+    <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kind="enum"><name>Orientation</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" kind="enumvalue"><name>Horizontal</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kind="enumvalue"><name>Vertical</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kind="property"><name>series</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" kind="property"><name>orientation</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kind="property"><name>label</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" kind="property"><name>labelFont</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" kind="property"><name>labelColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" kind="property"><name>labelPadding</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" kind="property"><name>barThickness</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" kind="property"><name>borderColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" kind="property"><name>borderWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" kind="property"><name>ticker</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" kind="variable"><name>series_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" kind="variable"><name>seriesConnections_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a70e69eca7d8adc85a719d971fc92805e" kind="variable"><name>colormapConnection_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a5dce5fd6ba789a6eb57eb0aa1cbb3123" kind="variable"><name>orientation_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a3e4049cb3180800c936161ab7b2196e3" kind="variable"><name>label_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad4a52472c7fb8af460e8b6c13a397c5f" kind="variable"><name>labelFont_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ab49dc820641b677bc2d12c7949e1292c" kind="variable"><name>labelColor_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad4644efe22daa7b48f35c1699177ac98" kind="variable"><name>labelPadding_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a38e0cb089ebfa2e2ddbe644ae761a2b2" kind="variable"><name>barThickness_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a4054fa31f2bb8ef74af0a1601ea55bbf" kind="variable"><name>borderColor_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ac6552988ce6dad168cccc3cab10569eb" kind="variable"><name>borderWidth_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a3561709a783fe4657dab2b1cf828cf5a" kind="variable"><name>ticker_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" kind="variable"><name>stops_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" kind="variable"><name>valueMin_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" kind="variable"><name>valueMax_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1af1423dbdf8e66a3dd125a06fb629dc63" kind="variable"><name>logScale_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aad2f54b099b14dc09b9c02212ee8195b" kind="variable"><name>ticks_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a4872eadee025fa57ed379f096e395540" kind="variable"><name>maxTickLabelWidth_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a2352959ad1605f096f4b90dd4980f03d" kind="variable"><name>layout_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a8c9cbcd87aa5c6af687ce0073f2c7c41" kind="function"><name>ColorBar</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" kind="function"><name>series</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" kind="function"><name>setSeries</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a0cd8beed6eead5106153536d8671a991" kind="function"><name>orientation</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" kind="function"><name>setOrientation</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1adefc69970edbe3c6273f770b0a5523e0" kind="function"><name>label</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" kind="function"><name>setLabel</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1abe8290e8c357b9adbd539ab17a08ec5f" kind="function"><name>labelFont</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" kind="function"><name>setLabelFont</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1abd425c79b41bf5d16d85cd41cf30a090" kind="function"><name>labelColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" kind="function"><name>setLabelColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1adc92096ead2a9cc5f9ece98d3c008281" kind="function"><name>labelPadding</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" kind="function"><name>setLabelPadding</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad2580d791678ad1f83f19c0321f9b124" kind="function"><name>barThickness</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" kind="function"><name>setBarThickness</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ab5ba78b5228b1ae1f255a3ff6103d6c4" kind="function"><name>borderColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" kind="function"><name>setBorderColor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad480aaac27702f143143e8fc20255fcd" kind="function"><name>borderWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" kind="function"><name>setBorderWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" kind="function"><name>ticker</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" kind="function"><name>valueToPixel</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" kind="function"><name>paint</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" kind="signal"><name>seriesChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" kind="signal"><name>orientationChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" kind="signal"><name>labelChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" kind="signal"><name>labelFontChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" kind="signal"><name>labelColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" kind="signal"><name>labelPaddingChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" kind="signal"><name>barThicknessChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" kind="signal"><name>borderColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" kind="signal"><name>borderWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" kind="function"><name>updatePolish</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" kind="function"><name>geometryChange</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" kind="function"><name>reconnectSeries</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" kind="function"><name>reconnectColormap</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a5cf931d18d5d44de566fe6f3fe41252d" kind="function"><name>invalidate</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a66f599422717d919c81529540efcfbff" kind="function"><name>captureColormap</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a8c051389a73456fc06460c5baea25bb1" kind="function"><name>updateImplicitSize</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a9ffdef7c9bdabd463265b76ab68ad483" kind="function"><name>computeLayout</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a70fd4230fdb60af367a3cff394a84157" kind="function"><name>endInset</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a9c206cf126e70e8f7a658973bda689d9" kind="function"><name>tickLabelHeight</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a15a2ab4f5ad6952a74734ab393e9fee7" kind="function"><name>tickLabelThickness</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a9f647de5ff65a1ac32e31a6774b499e4" kind="function"><name>titleThickness</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a6cf2757918dabf983a1f1f36d95a5f10" kind="function"><name>titleOffset</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aec0e081953e5c5189d5b146f6b3a767e" kind="function"><name>paintStrip</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a6bde2ed387ebb8706d7a5f78306c0882" kind="function"><name>paintTicks</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ad445331b51651a8c1c7ea773108e5732" kind="function"><name>paintTitle</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1Colormap" kind="class"><name>QAccelPlot::Colormap</name>
     <member refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kind="enum"><name>Preset</name></member>
@@ -753,6 +835,12 @@
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a1d29eb27b4fa62bfde1c41a901935742" kind="variable"><name>maxX</name></member>
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a79447aa3658b2ff390d36e38a10ca754" kind="variable"><name>maxY</name></member>
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1ad9d6510149c311ed3819145361c94698" kind="function"><name>contains</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1ColorBar_1_1Layout" kind="struct"><name>QAccelPlot::ColorBar::Layout</name>
+    <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a3251f25c5b71f4cfead675e955eb7263" kind="variable"><name>strip</name></member>
+    <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a4f7bb2d24aa34c7f6cb19782b15961ab" kind="variable"><name>tickArea</name></member>
+    <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a74398e2db31982974a2e35405e9fb2de" kind="variable"><name>title</name></member>
+    <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a70e16cf58be02709954857bac91a8829" kind="variable"><name>endInset</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurve" kind="class"><name>QAccelPlot::LineCurve</name>
     <member refid="classQAccelPlot_1_1LineCurve_1a704a657779b30adf8228592a5359468b" kind="enum"><name>DataType</name></member>
@@ -1589,6 +1677,8 @@
   </compound>
   <compound refid="AxisTicks_8hpp" kind="file"><name>AxisTicks.hpp</name>
   </compound>
+  <compound refid="ColorBar_8hpp" kind="file"><name>ColorBar.hpp</name>
+  </compound>
   <compound refid="Colormap_8hpp" kind="file"><name>Colormap.hpp</name>
   </compound>
   <compound refid="GradientColorTypes_8hpp" kind="file"><name>GradientColorTypes.hpp</name>
@@ -1690,6 +1780,8 @@
   <compound refid="dir_e8bec8340f9666b044480da91801ccc6" kind="dir"><name>QAccelPlot/src/QAccelPlot/annotations</name>
   </compound>
   <compound refid="dir_4047c0a16b95170c37806a99233d1784" kind="dir"><name>QAccelPlot/src/QAccelPlot/axis</name>
+  </compound>
+  <compound refid="dir_ec4b087c20c73e780aa15e00311366bc" kind="dir"><name>QAccelPlot/src/QAccelPlot/colorbar</name>
   </compound>
   <compound refid="dir_2cb1ffa6338b0172fd78b92843e0e53d" kind="dir"><name>QAccelPlot/src/QAccelPlot/effects</name>
   </compound>

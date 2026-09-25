@@ -23,9 +23,11 @@
 
 #include <QColor>
 #include <QRectF>
+#include <QSizeF>
 
 #include <functional>
 
+QT_FORWARD_DECLARE_CLASS(QFontMetricsF)
 QT_FORWARD_DECLARE_CLASS(QPainter)
 
 namespace QAccelPlot {
@@ -58,6 +60,8 @@ public:
         QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const AxisTicks& ticks, const MapToPosition& mapToPosition);
 
     static qreal computeNiceStep(qreal viewportMin, qreal viewportMax, int tickCount);
+
+    static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
 private:
     static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);

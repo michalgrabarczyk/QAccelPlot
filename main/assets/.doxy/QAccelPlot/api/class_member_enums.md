@@ -27,7 +27,7 @@
 
 ## o
 
-* **Orientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **Orientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 
 
 ## p

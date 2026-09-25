@@ -53,6 +53,7 @@
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
 | struct | [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) <br>_The visible tick and subtick values, with formatted labels, for one axis viewport._  |
+| class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
 | class | [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) <br>_A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._ |
 | class | [**Colormap**](classQAccelPlot_1_1Colormap.md) <br>_Maps data values to colors: a color ramp plus the rule that places a value on it._  |
 | class | [**Colors**](classQAccelPlot_1_1Colors.md) <br>_QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._ |

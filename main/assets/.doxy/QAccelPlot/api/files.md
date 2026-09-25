@@ -18,6 +18,8 @@ Here is a list of all files with brief descriptions:
                 * **file** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)     
                 * **file** [**AxisTicker.hpp**](AxisTicker_8hpp.md)     
                 * **file** [**AxisTicks.hpp**](AxisTicks_8hpp.md)     
+            * **dir** [**colorbar**](dir_ec4b087c20c73e780aa15e00311366bc.md)     
+                * **file** [**ColorBar.hpp**](ColorBar_8hpp.md)     
             * **dir** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md)     
                 * **file** [**Colormap.hpp**](Colormap_8hpp.md)     
                 * **file** [**GradientColorTypes.hpp**](GradientColorTypes_8hpp.md)     

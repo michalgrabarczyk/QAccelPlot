@@ -1232,6 +1232,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-ticklabelsize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function tickLabelSize
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1315,6 +1326,10 @@
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-paintticks"><strong>paintTicks</strong></a> (QPainter * painter, const QRectF &amp; rect, qreal axisX, qreal axisY, const <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>Params</strong></a> &amp; params, const <a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> &amp; ticks, const <a href="./#typedef-maptoposition"><strong>MapToPosition</strong></a> &amp; mapToPosition) <br><em>Paints</em> <em>ticks</em> <em>and their labels onto__painter</em> <em>, placing them according to__params</em> <em>and__mapToPosition</em> <em>.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">QSizeF</td>
+<td style="text-align: left;"><a href="#function-ticklabelsize"><strong>tickLabelSize</strong></a> (const QFontMetricsF &amp; metrics, const QString &amp; label) <br><em>Returns the size of the rectangle</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>, measured with__metrics</em> <em>.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
@@ -1360,6 +1375,15 @@
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AxisTicks</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ticks</span><span class="p">,</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MapToPosition</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapToPosition</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-ticklabelsize">function tickLabelSize<a class="headerlink" href="#function-ticklabelsize" title="Permanent link">&para;</a></h3>
+<p><em>Returns the size of the rectangle</em> <code>paintTicks()</code> <em>lays out for__label</em> <em>, measured with__metrics</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSizeF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">AxisTickPainter</span><span class="o">::</span><span class="n">tickLabelSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFontMetricsF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">metrics</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">label</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

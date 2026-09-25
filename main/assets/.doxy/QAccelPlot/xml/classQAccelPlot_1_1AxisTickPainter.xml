@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="44" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="58" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="60" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="61" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="63" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -124,7 +124,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="67" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="69" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a51a073feeab54964b7384724777edfd4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSizeF</type>
+        <definition>static QSizeF QAccelPlot::AxisTickPainter::tickLabelSize</definition>
+        <argsstring>(const QFontMetricsF &amp;metrics, const QString &amp;label)</argsstring>
+        <name>tickLabelSize</name>
+        <qualifiedname>QAccelPlot::AxisTickPainter::tickLabelSize</qualifiedname>
+        <param>
+          <type>const QFontMetricsF &amp;</type>
+          <declname>metrics</declname>
+        </param>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+<para>Returns the size of the rectangle <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kindref="member">paintTicks()</ref></computeroutput> lays out for <emphasis>label</emphasis>, measured with <emphasis>metrics</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="72" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-func">
@@ -152,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="70" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="75" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
@@ -178,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="71" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="76" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -208,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="72" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="77" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -238,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="73" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="78" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -272,7 +295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="74" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="79" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -281,7 +304,7 @@
     <detaileddescription>
 <para>Tick computation and painting are split: <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kindref="member">computeTicks()</ref></computeroutput> formats labels and must run on the formatter&apos;s (GUI) thread, while <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kindref="member">paintTicks()</ref></computeroutput> only draws precomputed ticks and is safe to call from <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput> on the render thread. Also provides <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" kindref="member">computeNiceStep()</ref></computeroutput>, which is shared with <computeroutput><ref refid="classQAccelPlot_1_1GridNode" kindref="compound">GridNode</ref></computeroutput> to keep grid lines aligned with tick positions. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="29" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="29" bodyend="75"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="31" bodyend="80"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLinearTicks</name></member>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>computeLogScaleTicks</name></member>
@@ -292,6 +315,7 @@
       <member refid="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintSubtick</name></member>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" prot="private" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintTick</name></member>
       <member refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>paintTicks</name></member>
+      <member refid="classQAccelPlot_1_1AxisTickPainter_1a51a073feeab54964b7384724777edfd4" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter</scope><name>tickLabelSize</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

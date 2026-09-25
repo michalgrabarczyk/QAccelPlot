@@ -162,7 +162,7 @@
         <qualifiedname>QAccelPlot::PointCloud::dataValueMin</qualifiedname>
         <read>dataValueMin</read>
         <briefdescription>
-<para>Read-only: lower bound of the value range, taken from <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> when it is set and from the data otherwise. Bind a color bar&apos;s scale to this and <computeroutput>dataValueMax</computeroutput>. </para>
+<para>Read-only: lower bound of the value range, taken from <computeroutput><ref refid="classQAccelPlot_1_1Colormap_1ad2faff816266d69fb598cad7c7c3c626" kindref="member">Colormap::min</ref></computeroutput> when it is set and from the data otherwise. <computeroutput><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref></computeroutput> labels its ticks from this and <computeroutput>dataValueMax</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1680,7 +1680,7 @@
 </simplesect>
 <simplesect kind="par"><title>Limits</title><para>Coordinates are single precision. The number of renderable points is bounded by the GPU&apos;s maximum texture size: about 5.5 million points with values, or 8.3 million without, for an 8192-pixel limit, and twice that for 16384. Points beyond it are not drawn and a warning is logged once.</para>
 </simplesect>
-<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> </para>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>, <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>, <ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>

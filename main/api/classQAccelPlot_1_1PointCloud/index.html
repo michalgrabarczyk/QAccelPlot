@@ -1999,7 +1999,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property qreal</td>
-<td style="text-align: left;"><a href="./#property-datavaluemin-12"><strong>dataValueMin</strong></a>  <br><em>Read-only: lower bound of the value range, taken from</em> <code>Colormap::min</code> <em>when it is set and from the data otherwise. Bind a color bar's scale to this and</em><code>dataValueMax</code> <em>.</em></td>
+<td style="text-align: left;"><a href="./#property-datavaluemin-12"><strong>dataValueMin</strong></a>  <br><em>Read-only: lower bound of the value range, taken from</em> <code>Colormap::min</code> <em>when it is set and from the data otherwise.</em><code>ColorBar</code> <em>labels its ticks from this and</em><code>dataValueMax</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
@@ -2417,7 +2417,7 @@
 <p>**
 **</p>
 <p>Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum texture size: about 5.5 million points with values, or 8.3 million without, for an 8192-pixel limit, and twice that for 16384. Points beyond it are not drawn and a warning is logged once.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a>, <a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a>, <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-antialiasingenabled-12">property antialiasingEnabled<a class="headerlink" href="#property-antialiasingenabled-12" title="Permanent link">&para;</a></h3>
 <p><em>Whether GPU-side anti-aliasing is applied to markers. Default:</em> <code>true</code> <em>.</em>
@@ -2456,7 +2456,7 @@
 <hr>
 
 <h3 id="property-datavaluemin-12">property dataValueMin<a class="headerlink" href="#property-datavaluemin-12" title="Permanent link">&para;</a></h3>
-<p><em>Read-only: lower bound of the value range, taken from</em> <code>Colormap::min</code> <em>when it is set and from the data otherwise. Bind a color bar's scale to this and</em><code>dataValueMax</code> <em>.</em>
+<p><em>Read-only: lower bound of the value range, taken from</em> <code>Colormap::min</code> <em>when it is set and from the data otherwise.</em><code>ColorBar</code> <em>labels its ticks from this and</em><code>dataValueMax</code> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloud</span><span class="o">::</span><span class="n">dataValueMin</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
