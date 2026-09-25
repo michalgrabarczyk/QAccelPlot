@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "point_cloud/default",
-  "description": "One scatter plot rendered with the PointCloud series: 200,000 points of a Clifford attractor colored by value with the Plasma colormap, keyed by a vertical color bar. Judge only content inside the plot; ignore the page heading, description, and marker radius slider.",
+  "description": "One scatter plot rendered with the PointCloud series: 200,000 points of a Clifford attractor colored by value with the Plasma colormap, keyed by a vertical color bar. Judge only content inside the plot; ignore the page heading, description, and the marker radius and opacity sliders.",
   "expected_image": {
     "width": 1200,
     "height": 800,
@@ -25,7 +25,7 @@
     {
       "id": "text_raster_quality",
       "severity": "high",
-      "expectation": "Within the plot, axis titles, tick labels, and color bar text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the slider label, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+      "expectation": "Within the plot, axis titles, tick labels, and color bar text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, the slider labels, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
     },
     {
       "id": "rendering_integrity",

@@ -46,6 +46,19 @@ Window {
                 value: 1
                 Layout.preferredWidth: 160
             }
+
+            Label {
+                text: "Opacity " + opacitySlider.value.toFixed(2)
+                color: colorPalette.text
+            }
+            Slider {
+                id: opacitySlider
+                from: 0.05
+                to: 1
+                stepSize: 0.05
+                value: 1
+                Layout.preferredWidth: 160
+            }
         }
 
         QAccelPlot.Plot {
@@ -80,6 +93,7 @@ Window {
                 yAxis: plot.yAxis
                 marker.shape: QAccelPlot.PointCloud.Circle
                 marker.size: markerSizeSlider.value
+                opacity: opacitySlider.value
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma
                 }
