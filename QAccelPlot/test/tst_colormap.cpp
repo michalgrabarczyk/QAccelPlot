@@ -12,6 +12,7 @@
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQmlError>
+#include <QQmlProperty>
 #include <QtTest/QtTest>
 
 namespace QAccelPlot {
@@ -68,6 +69,10 @@ private slots:
     void gradientFillFollowsColormap();
     void gradientStrokeFollowsColormap();
     void qmlEffectColormapOverridesGradient();
+    void destroyedStopsAreRemoved();
+    void sharedGradientStopChangesUpdateRamp();
+    void notifyingStopChangesUpdateRamp();
+    void replacedStopsAreNoLongerTracked();
 };
 
 void ColormapTest::defaultsToViridisRamp()
@@ -298,6 +303,141 @@ void ColormapTest::qmlEffectColormapOverridesGradient()
     stroke->setColormap(nullptr);
     QCOMPARE(fill->payload().stops.front().color, QColor{"#ff0000"});
     QCOMPARE(stroke->payload().stops.back().color, QColor{"#0000ff"});
+    delete root;
+}
+
+void ColormapTest::destroyedStopsAreRemoved()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    property alias colormap: map\n"
+        "    property alias ramp: ramp\n"
+        "    Gradient {\n"
+        "        id: ramp\n"
+        "        GradientStop { position: 0.0; color: \"#ff0000\" }\n"
+        "        GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+        "    }\n"
+        "    Colormap { id: map; Component.onCompleted: stops = ramp.stops }\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#ff0000"});
+    auto spy = QSignalSpy{colormap, &Colormap::colormapChanged};
+
+    // The stops belong to the gradient, which can go away before the colormap does.
+    delete root->property("ramp").value<QObject*>();
+
+    auto stops = colormap->stops();
+    QCOMPARE(stops.count(&stops), 0);
+    QVERIFY(spy.count() >= 1);
+    // Without valid stops the preset supplies the ramp again.
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#440154"});
+    colormap->setReversed(true);
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#fde725"});
+    delete root;
+}
+
+void ColormapTest::sharedGradientStopChangesUpdateRamp()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    property alias colormap: map\n"
+        "    property alias firstStop: firstStop\n"
+        "    Gradient {\n"
+        "        id: ramp\n"
+        "        GradientStop { id: firstStop; position: 0.0; color: \"#ff0000\" }\n"
+        "        GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+        "    }\n"
+        "    Colormap { id: map; stops: ramp.stops }\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    auto spy = QSignalSpy{colormap, &Colormap::colormapChanged};
+
+    // GradientStop has no change signals of its own; its Gradient emits updated().
+    auto* firstStop = root->property("firstStop").value<QObject*>();
+    QVERIFY(firstStop);
+    firstStop->setProperty("color", QColor{"#00ff00"});
+
+    QCOMPARE(spy.count(), 1);
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#00ff00"});
+    delete root;
+}
+
+void ColormapTest::notifyingStopChangesUpdateRamp()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Colormap {\n"
+        "    property alias firstStop: firstStop\n"
+        "    stops: [ QtObject { id: firstStop; property real position: 0.0; property color color: \"#ff0000\" },\n"
+        "             QtObject { property real position: 1.0; property color color: \"#0000ff\" } ]\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = qobject_cast<Colormap*>(root);
+    QVERIFY(colormap);
+    auto spy = QSignalSpy{colormap, &Colormap::colormapChanged};
+
+    auto* firstStop = root->property("firstStop").value<QObject*>();
+    QVERIFY(firstStop);
+    firstStop->setProperty("color", QColor{"#00ff00"});
+    firstStop->setProperty("position", 0.5);
+
+    QCOMPARE(spy.count(), 2);
+    const auto& stops = colormap->resolvedStops();
+    QCOMPARE(stops.front().color, QColor{"#00ff00"});
+    QCOMPARE(stops[1].position, 0.5f);
+    delete root;
+}
+
+void ColormapTest::replacedStopsAreNoLongerTracked()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    property alias colormap: map\n"
+        "    property alias firstStop: firstStop\n"
+        "    property alias otherRamp: otherRamp\n"
+        "    Gradient {\n"
+        "        id: ramp\n"
+        "        GradientStop { id: firstStop; position: 0.0; color: \"#ff0000\" }\n"
+        "        GradientStop { position: 1.0; color: \"#0000ff\" }\n"
+        "    }\n"
+        "    Gradient {\n"
+        "        id: otherRamp\n"
+        "        GradientStop { position: 0.0; color: \"#00ff00\" }\n"
+        "        GradientStop { position: 1.0; color: \"#ffffff\" }\n"
+        "    }\n"
+        "    Colormap { id: map; stops: ramp.stops }\n"
+        "}\n");
+    QVERIFY(root);
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    QQmlProperty::write(colormap, "stops", QQmlProperty::read(root->property("otherRamp").value<QObject*>(), "stops"));
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#00ff00"});
+    auto spy = QSignalSpy{colormap, &Colormap::colormapChanged};
+
+    root->property("firstStop").value<QObject*>()->setProperty("color", QColor{"#ffff00"});
+    delete root->property("firstStop").value<QObject*>();
+
+    QCOMPARE(spy.count(), 0);
+    QCOMPARE(colormap->resolvedStops().front().color, QColor{"#00ff00"});
     delete root;
 }
 
