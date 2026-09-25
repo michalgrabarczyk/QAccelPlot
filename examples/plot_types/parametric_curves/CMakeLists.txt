@@ -5,5 +5,9 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-add_subdirectory(parametric_curves)
-add_subdirectory(point_cloud)
+qaccelplot_add_example(ParametricCurves
+    SOURCES
+        src/main.cpp
+    QML_FILES
+        qml/main.qml
+)
