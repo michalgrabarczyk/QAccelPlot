@@ -1525,6 +1525,11 @@
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>The Qt Quick <code>opacity</code> property, set on a series or inherited from a parent
+  item, now applies to <code>LineCurve</code> lines, markers, <code>GradientStroke</code>, and
+  <code>GradientFill</code>, and to <code>PointCloud</code> and <code>RectangleList</code>. Previously it had no
+  effect. Each fragment blends on its own, so overlapping translucent markers
+  build up density.</li>
 <li>Numeric tick labels no longer show a spurious trailing zero. Labels now use
   exactly the decimal places needed to write the tick step, so steps of 1 and 2
   read <code>0, 1, 2</code> instead of <code>0.0, 1.0, 2.0</code>, and steps of 0.1 and 0.2 read

@@ -1382,8 +1382,9 @@ draws one pixel per point, which suits very dense clouds.</p>
 <code>marker.strokeWidth</code> pixels. Hollow markers read well on dense clouds, where
 filled shapes merge into a solid mass. Line shapes and <code>Pixel</code> ignore both
 properties.</p>
-<p>Translucent colors make dense regions read as density, because overlapping
-markers blend. Points are drawn in data order, so put background points first
+<p>Translucent colors, or an <code>opacity</code> below 1 on the cloud or a parent item, make
+dense regions read as density, because each overlapping marker blends
+separately. Points are drawn in data order, so put background points first
 when they should appear underneath.</p>
 <p>The default legend shows the marker shape and <code>color</code> for point clouds.</p>
 <h2 id="color-points-by-value">Color points by value<a class="headerlink" href="#color-points-by-value" title="Permanent link">&para;</a></h2>

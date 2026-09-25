@@ -393,6 +393,10 @@ qreal QAccelPlot::GradientFill::opacity;
 
 
 
+Applies to the fill only. The curve's `opacity` and the `opacity` of its parent items also apply, so the rendered fill alpha is the product of all of them. 
+
+
+        
 
 <hr>
 ## Public Signals Documentation
