@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- `LineCurve` transitions now advance on the GUI thread, so `DataTransition.running`
+  changes, and the QML handlers and bindings that react to them, no longer run on
+  the scene graph render thread.
+
 ## [0.3.0] — 2026-09-25
 
 ### Added

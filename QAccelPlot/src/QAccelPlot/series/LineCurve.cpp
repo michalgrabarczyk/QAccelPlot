@@ -583,24 +583,9 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         styleChanged_ = false;
     }
 
-    auto stillAnimating = false;
-    if (dataChanged_ && transition_ && transition_->running()) {
-        stillAnimating = transition_->advance(data_, pointCount_);
-        dataType_ = DataType::Double;
-        rebuildDoubleRenderData(xAxis()->logScale(), yAxis()->logScale());
-        rebuildGapConnectData();
-        // Transition mutates data_ each frame; mark chunks stale so the main thread
-        // rebuilds them on the next contains() call with the current interpolated data.
-        chunksValid_ = false;
-    }
-
-    // Checked after the transition step because Connect mode can change the drawable count.
     const auto drawnPointCount = renderPointCount();
     const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {
-        if (stillAnimating) {
-            update();
-        }
         delete oldNode;
         return nullptr;
     }
@@ -687,15 +672,16 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         node = hasLine ? lineNode : pointNode;
     }
 
-    if (dataChanged_) {
-        if (stillAnimating) {
-            update();
-        } else {
-            dataChanged_ = false;
-        }
-    }
-
+    dataChanged_ = false;
     return node;
+}
+
+void LineCurve::itemChange(const ItemChange change, const ItemChangeData& value)
+{
+    PlotSeries::itemChange(change, value);
+    if (change == ItemSceneChange) {
+        connectFrameTicks(value.window);
+    }
 }
 
 void LineCurve::hoverEnterEvent(QHoverEvent* event)
@@ -945,6 +931,8 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         promoteFloatDataToDouble();
         dataType_ = DataType::Double;
         transition_->start(data_, pointCount_, std::move(newData), newPointCount);
+        // An item constructed with a parent already in a window misses its ItemSceneChange.
+        connectFrameTicks(window());
 
         // Do not update pointCount_ here. transition_->advance() updates it through its
         // output argument when it produces data_; changing only the count now would
@@ -1243,6 +1231,35 @@ void LineCurve::cancelRunningTransition()
 {
     if (transition_ && transition_->running()) {
         transition_->cancel();
+    }
+}
+
+void LineCurve::connectFrameTicks(QQuickWindow* window)
+{
+    if (frameTickWindow_ == window && frameTickConnection_) {
+        return;
+    }
+    disconnect(frameTickConnection_);
+    frameTickWindow_ = window;
+    frameTickConnection_ = window ? connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::advanceTransition) : QMetaObject::Connection{};
+}
+
+void LineCurve::advanceTransition()
+{
+    if (!transition_ || !transition_->running()) {
+        return;
+    }
+    // afterAnimating is emitted on the GUI thread before the scene graph syncs, so runningChanged
+    // reaches QML there, and this frame renders the new step.
+    const auto stillAnimating = transition_->advance(data_, pointCount_);
+    dataType_ = DataType::Double;
+    rebuildDoubleRenderData(logScaleX(), logScaleY());
+    rebuildGapConnectData();
+    invalidateData();
+    update();
+    // The item is still dirty from this frame, so update() alone does not schedule the next one.
+    if (stillAnimating && frameTickWindow_) {
+        frameTickWindow_->update();
     }
 }
 
