@@ -9,7 +9,7 @@
 #include "QAccelPlot/annotations/DataAnchor.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
-#include "QAccelPlot/colorbar/ColorBar.hpp"
+#include "QAccelPlot/axis/ColorBar.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
