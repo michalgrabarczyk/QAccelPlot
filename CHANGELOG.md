@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- A series constructed in C++ with a `PlotView` as its parent, such as
+  `new LineCurve(plot)`, is now listed in `PlotView.series` and follows the plot
+  area when the plot is resized. Previously it kept the first plot area it saw,
+  which it adopted from the scene graph render thread.
+
 ## [0.3.0] — 2026-09-25
 
 ### Added
