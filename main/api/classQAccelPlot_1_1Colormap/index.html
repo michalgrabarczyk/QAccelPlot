@@ -1610,9 +1610,9 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and <code>norm</code> decides how a value reaches that coordinate. Series that color by value, such as <code>PointCloud</code>, index the ramp with each point's value. Effects that paint a ramp across the plot supply the coordinate from a position instead, and own that geometry themselves.</p>
+<p>A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and <code>norm</code> decides how a value reaches that coordinate. Series that color by value, such as <code>PointCloud</code>, index the ramp with each point's value. Effects that paint a ramp across the plot, such as <code>GradientFill</code> and <code>GradientStroke</code>, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.</p>
 <p>The ramp comes from <code>preset</code>, or from <code>stops</code> when a custom ramp is given. <code>min</code> and <code>max</code> bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved, for example through <code>PointCloud::dataValueMin()</code>.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a> </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1GradientFill/"><strong>GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>GradientStroke</strong></a> </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-normalization">enum Normalization<a class="headerlink" href="#enum-normalization" title="Permanent link">&para;</a></h3>
 <p><em>How a value is mapped onto the [0, 1] ramp coordinate.</em> 

@@ -134,7 +134,7 @@ flowchart TB
 ## Detailed Description
 
 
-A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `norm` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud`, index the ramp with each point's value. Effects that paint a ramp across the plot supply the coordinate from a position instead, and own that geometry themselves.
+A colormap has no geometry. It is a one-dimensional ramp addressed by a normalized coordinate in [0, 1], and `norm` decides how a value reaches that coordinate. Series that color by value, such as `PointCloud`, index the ramp with each point's value. Effects that paint a ramp across the plot, such as `GradientFill` and `GradientStroke`, supply the coordinate from a position instead and own that geometry themselves, so they use only the ramp.
 
 
 The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min` and `max` bound the value range; leaving either unset resolves it from the data, so one colormap can be shared between series that resolve different ranges. Each series reports what it resolved, for example through `PointCloud::dataValueMin()`.
@@ -142,7 +142,7 @@ The ramp comes from `preset`, or from `stops` when a custom ramp is given. `min`
 
 
 
-**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md) 
+**See also:** [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
 
 
 

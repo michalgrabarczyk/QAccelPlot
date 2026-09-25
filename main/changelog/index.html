@@ -1485,7 +1485,9 @@
   same <code>marker</code> grouped property as <code>LineCurve</code>.</li>
 <li><code>Colormap</code>, mapping data values to colors through a built-in ramp (<code>Viridis</code>, <code>Plasma</code>,
   <code>Inferno</code>, <code>Magma</code>, <code>Turbo</code>, <code>Grayscale</code>, <code>Rainbow</code>) or custom stops, with optional
-  bounds and linear or logarithmic normalization. <code>PointCloud.colormap</code> replaces its
+  bounds and linear or logarithmic normalization. <code>GradientFill.colormap</code> and
+  <code>GradientStroke.colormap</code> take a colormap as an alternative to <code>gradient</code>, which
+  it overrides when both are set. <code>PointCloud.colormap</code> replaces its
   <code>colorMode</code>, <code>colorGradient</code>, <code>valueMin</code>, <code>valueMinSource</code>, <code>valueMax</code>, and
   <code>valueMaxSource</code> properties.</li>
 </ul>

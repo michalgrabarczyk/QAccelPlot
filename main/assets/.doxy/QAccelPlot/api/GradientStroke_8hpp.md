@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/effects/Colormap.hpp"`
 * `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
 * `#include "QAccelPlot/effects/LineCurveEffect.hpp"`
 * `#include <QMetaObject>`

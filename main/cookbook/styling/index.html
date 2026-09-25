@@ -1392,13 +1392,24 @@ Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            <span class="k">gradientValueMaxSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            <span class="k">gradientValueMax:</span> <span class="mi">8</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            <span class="k">opacity:</span> <span class="mf">0.65</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>            <span class="k">gradient:</span> <span class="nx">Gradient</span> <span class="p">{</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"royalblue"</span> <span class="p">}</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"goldenrod"</span> <span class="p">}</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="p">}</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="p">}</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="p">]</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">}</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>            <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span> <span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="p">}</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</code></pre></div>
+<p>Both effects take their color stops from one of two properties:</p>
+<ul>
+<li><code>colormap</code>: a <a href="../point-clouds/#color-points-by-value"><code>Colormap</code></a> preset or
+  custom ramp. Overrides <code>gradient</code> when both are set. Only the ramp is used;
+  the colormap's <code>min</code>, <code>max</code>, and <code>norm</code> are ignored.</li>
+<li><code>gradient</code>: a Qt Quick <code>Gradient</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientStroke</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">gradient:</span> <span class="nx">Gradient</span> <span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"royalblue"</span> <span class="p">}</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"goldenrod"</span> <span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
 </code></pre></div>
 <p>Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
 data-derived bounds make colors follow the current range.</p>
@@ -1406,15 +1417,15 @@ data-derived bounds make colors follow the current range.</p>
 <p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve/#property-transition-12"><code>transition</code></a> to
 interpolate from old to new samples, or a <code>QAccelPlot.DrawTransition</code> to reveal
 the new curve:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="kd">id: morph</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="kd">id: morph</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
 </code></pre></div>
 <p>Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.</p>

@@ -27,9 +27,13 @@ class QObject;
 
 namespace QAccelPlot {
 
+class Colormap;
+
 std::vector<GradientStopData> readGradientStops(QObject* gradient);
 
 std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
+
+std::vector<GradientStopData> readEffectStops(const Colormap* colormap, QObject* gradient);
 
 } // namespace QAccelPlot
 ```

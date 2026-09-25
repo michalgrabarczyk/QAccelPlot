@@ -33,6 +33,7 @@
 
 ## r
 
+* **readEffectStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStopList** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **resolveGradientValueRange** ([**QAccelPlot**](namespaceQAccelPlot.md))

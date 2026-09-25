@@ -150,6 +150,7 @@
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
+|  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
@@ -324,6 +325,34 @@ inline bool QAccelPlot::nearly_equal (
 
 
 
+
+<hr>
+
+
+
+
+### function readEffectStops {#function-readeffectstops}
+
+_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._
+```C++
+std::vector< GradientStopData > QAccelPlot::readEffectStops (
+    const Colormap * colormap,
+    QObject * gradient
+) 
+```
+
+
+
+Returns an empty vector when both are null.
+
+
+
+
+**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md) 
+
+
+
+        
 
 <hr>
 

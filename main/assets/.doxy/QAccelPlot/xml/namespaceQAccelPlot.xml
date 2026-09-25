@@ -245,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="27" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="27" declcolumn="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="29" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="29" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="GradientUtils_8hpp_1adb5493efd24befa81d92387aa6a20e41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
@@ -268,7 +268,34 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="35" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="35" declcolumn="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="37" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="37" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientUtils_8hpp_1aa9c81c1f9c0977be0c389df9d451b47d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readEffectStops</definition>
+        <argsstring>(const Colormap *colormap, QObject *gradient)</argsstring>
+        <name>readEffectStops</name>
+        <qualifiedname>QAccelPlot::readEffectStops</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+          <declname>colormap</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Returns the color stops of a gradient effect: the <emphasis>colormap</emphasis> ramp when set, otherwise the stops of <emphasis>gradient</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns an empty vector when both are null.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="45" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="45" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
