@@ -1285,5 +1285,5 @@ qreal QAccelPlot::AxisTicker::tickWidth () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/AxisTicker.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp`
 

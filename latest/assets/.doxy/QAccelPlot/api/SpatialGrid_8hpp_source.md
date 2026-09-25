@@ -2,7 +2,7 @@
 
 # File SpatialGrid.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md) **>** [**SpatialGrid.hpp**](SpatialGrid_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**SpatialGrid.hpp**](SpatialGrid_8hpp.md)
 
 [Go to the documentation of this file](SpatialGrid_8hpp.md)
 
@@ -23,33 +23,34 @@ namespace QAccelPlot {
 
 class SpatialGrid {
 public:
-    void build(const float* data, int itemCount, int floatsPerItem = 4);
-    int query(float x, float y) const;
+    void build(const double* data, int itemCount, int valuesPerItem = 4);
+    int query(double x, double y) const;
 
 private:
     struct ItemBounds {
-        float minX;
-        float minY;
-        float maxX;
-        float maxY;
+        double minX;
+        double minY;
+        double maxX;
+        double maxY;
 
-        bool contains(float x, float y) const;
+        bool contains(double x, double y) const;
     };
 
-    void computeDataBounds(const float* data, int itemCount, int floatsPerItem);
+    void computeDataBounds(const double* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);
     void fillSpatialGrid(int itemCount);
 
-    float minX_{0.0f};
-    float minY_{0.0f};
-    float maxX_{1.0f};
-    float maxY_{1.0f};
+    double minX_{0.0};
+    double minY_{0.0};
+    double maxX_{1.0};
+    double maxY_{1.0};
     int cols_{0};
     int rows_{0};
-    float cellW_{1.0f};
-    float cellH_{1.0f};
+    double cellW_{1.0};
+    double cellH_{1.0};
     std::vector<ItemBounds> itemBounds_;
     std::vector<std::vector<int>> cells_;
+    std::vector<int> largeItems_;
 };
 
 } // namespace QAccelPlot

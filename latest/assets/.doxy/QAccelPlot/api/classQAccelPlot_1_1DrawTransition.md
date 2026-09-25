@@ -263,5 +263,5 @@ Implements [*QAccelPlot::DataTransition::interpolate*](classQAccelPlot_1_1DataTr
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/transitions/DrawTransition.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/transitions/DrawTransition.hpp`
 

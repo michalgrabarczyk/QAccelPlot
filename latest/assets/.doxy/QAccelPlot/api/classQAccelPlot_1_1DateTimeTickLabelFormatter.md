@@ -134,6 +134,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 | ---: | :--- |
 |   | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabelformatter) (QObject \* parent=nullptr) <br>_Constructs an_ [_**TickLabelFormatter**_](classQAccelPlot_1_1TickLabelFormatter.md) _with the given__parent_ _._ |
 |  QString | [**format**](classQAccelPlot_1_1TickLabelFormatter.md#function-format) (qreal value, qreal tickStep) const<br>_Returns the display string for_ _value_ _at the given__tickStep_ _._ |
+|  QString | [**formatLogTick**](classQAccelPlot_1_1TickLabelFormatter.md#function-formatlogtick) (qreal value) const<br>_Returns the display string for a major tick at_ _value_ _on a logarithmic axis._ |
 |  void | [**setTickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-setticklabel) (const QJSValue & tickLabel) <br>_Sets the JavaScript override callback to_ _tickLabel_ _._ |
 |  QJSValue | [**tickLabel**](classQAccelPlot_1_1TickLabelFormatter.md#function-ticklabel-22) () const<br>_Returns the optional JavaScript override callback._  |
 
@@ -196,6 +197,7 @@ See [QAccelPlot::TickLabelFormatter](classQAccelPlot_1_1TickLabelFormatter.md)
 | Type | Name |
 | ---: | :--- |
 | virtual QString | [**doFormat**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformat) (qreal value, qreal tickStep) const = 0<br>_Subclass entry point — returns the formatted label for_ _value_ _._ |
+| virtual QString | [**doFormatLogTick**](classQAccelPlot_1_1TickLabelFormatter.md#function-doformatlogtick) (qreal value) const<br>_Subclass entry point for log-scale major ticks — returns the label for_ _value_ _._ |
 
 
 
@@ -324,5 +326,5 @@ Implements [*QAccelPlot::TickLabelFormatter::doFormat*](classQAccelPlot_1_1TickL
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/formatters/DateTimeTickLabelFormatter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp`
 

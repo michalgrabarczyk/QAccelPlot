@@ -18,6 +18,10 @@
 
 ## c
 
+* [**ColorBar**](classQAccelPlot_1_1ColorBar.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**Colormap**](classQAccelPlot_1_1Colormap.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Colors**](classQAccelPlot_1_1Colors.md)
@@ -81,11 +85,13 @@
 
 ## i
 
+* [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)
 * [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)
 
 
 ## l
 
+* [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)
 * [**LineCurve**](classQAccelPlot_1_1LineCurve.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md)
@@ -106,12 +112,12 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**LineVertex**](structQAccelPlot_1_1LineVertex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md)
-([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## m
 
+* [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md)
+([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -136,9 +142,15 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointCloud**](classQAccelPlot_1_1PointCloud.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointVertex**](structQAccelPlot_1_1PointVertex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -162,6 +174,8 @@
 ## s
 
 * [**SampleRun**](structQAccelPlot_1_1SampleRun.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**SolidLine**](classQAccelPlot_1_1SolidLine.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))

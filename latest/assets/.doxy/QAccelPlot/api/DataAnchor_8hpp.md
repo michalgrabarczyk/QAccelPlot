@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**annotations**](dir_5d1eadbc468a43ed1cfc69b314db38f6.md) **>** [**DataAnchor.hpp**](DataAnchor_8hpp.md)
+[**FileList**](files.md) **>** [**annotations**](dir_e8bec8340f9666b044480da91801ccc6.md) **>** [**DataAnchor.hpp**](DataAnchor_8hpp.md)
 
 [Go to the source code of this file](DataAnchor_8hpp_source.md)
 
 
 
-* `#include "axis/Axis.hpp"`
+* `#include "QAccelPlot/axis/Axis.hpp"`
 * `#include <QPointer>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`
@@ -101,5 +101,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/annotations/DataAnchor.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/annotations/DataAnchor.hpp`
 

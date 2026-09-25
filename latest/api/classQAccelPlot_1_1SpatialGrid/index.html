@@ -23,7 +23,7 @@
     
     
       
-        <title>Class QAccelPlot::SpatialGrid - QAccelPlot v0.2.0 Documentation</title>
+        <title>Class QAccelPlot::SpatialGrid - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -75,7 +75,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -434,6 +434,8 @@
       
         
           
+        
+      
         
       
         
@@ -659,6 +661,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1162,7 +1192,7 @@
 
 <h1 id="class-qaccelplotspatialgrid">Class QAccelPlot::SpatialGrid<a class="headerlink" href="#class-qaccelplotspatialgrid" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>SpatialGrid</strong></a></p>
-<p><em>Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Uniform-grid spatial index with bounded per-rectangle storage.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;SpatialGrid.hpp&gt;</code></li>
 </ul>
@@ -1177,44 +1207,44 @@
 <tbody>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-build"><strong>build</strong></a> (const float * data, int itemCount, int floatsPerItem=4) <br><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em></td>
+<td style="text-align: left;"><a href="#function-build"><strong>build</strong></a> (const double * data, int itemCount, int valuesPerItem=4) <br><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-query"><strong>query</strong></a> (float x, float y) const<br><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em></td>
+<td style="text-align: left;"><a href="#function-query"><strong>query</strong></a> (double x, double y) const<br><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Each item is stored as four consecutive floats (x1, y1, x2, y2) in a flat array with a configurable <em>floatsPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. </p>
+<p>Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable <em>valuesPerItem</em> stride. Intended for use by <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-build">function build<a class="headerlink" href="#function-build" title="Permanent link">&para;</a></h3>
 <p><em>Rebuilds the spatial index from</em> <em>data</em> <em>containing__itemCount</em> <em>axis-aligned rectangles.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">build</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">itemCount</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">floatsPerItem</span><span class="o">=</span><span class="mi">4</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">valuesPerItem</span><span class="o">=</span><span class="mi">4</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>data</code> Pointer to the flat float array (x1, y1, x2, y2 per item, with <em>floatsPerItem</em> stride). </li>
+<li><code>data</code> Pointer to the flat double array (x1, y1, x2, y2 per item, with <em>valuesPerItem</em> stride). </li>
 <li><code>itemCount</code> Number of rectangles in <em>data</em>. </li>
-<li><code>floatsPerItem</code> Number of floats per rectangle entry (default 4). </li>
+<li><code>valuesPerItem</code> Number of doubles per rectangle entry (default 4). </li>
 </ul>
 <hr>
 
 <h3 id="function-query">function query<a class="headerlink" href="#function-query" title="Permanent link">&para;</a></h3>
 <p><em>Returns the index of the topmost rectangle that contains point (</em> <em>x</em> <em>,__y</em> <em>), or -1 if none.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SpatialGrid</span><span class="o">::</span><span class="n">query</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/series/SpatialGrid.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/series/SpatialGrid.hpp</code></p>
 
 
 

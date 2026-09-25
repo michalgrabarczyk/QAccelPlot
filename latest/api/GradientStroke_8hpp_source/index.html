@@ -23,7 +23,7 @@
     
     
       
-        <title>File GradientStroke.hpp - QAccelPlot v0.2.0 Documentation</title>
+        <title>File GradientStroke.hpp - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -75,7 +75,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -434,6 +434,8 @@
       
         
           
+        
+      
         
       
         
@@ -659,6 +661,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1092,7 +1122,7 @@
 
 
 <h1 id="file-gradientstrokehpp">File GradientStroke.hpp<a class="headerlink" href="#file-gradientstrokehpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_a4c3deeda37ae6198148ecdf2e43fc36/"><strong>effects</strong></a> <strong>&gt;</strong> <a href="../GradientStroke_8hpp/"><strong>GradientStroke.hpp</strong></a></p>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_2cb1ffa6338b0172fd78b92843e0e53d/"><strong>effects</strong></a> <strong>&gt;</strong> <a href="../GradientStroke_8hpp/"><strong>GradientStroke.hpp</strong></a></p>
 <p><a href="../GradientStroke_8hpp/">Go to the documentation of this file</a></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">//</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// SPDX-FileCopyrightText: 2026 Michal Grabarczyk</span>
@@ -1103,74 +1133,84 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">//</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cp">#pragma once</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"effects/LineCurveEffect.hpp"</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"effects/GradientColorTypes.hpp"</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QMetaObject&gt;</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QObject&gt;</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QVector&gt;</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QtQml/qqmlregistration.h&gt;</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">class</span><span class="w"> </span><span class="nc">GradientStroke</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">LineCurveEffect</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">Q_OBJECT</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nf">QML_NAMED_ELEMENT</span><span class="p">(</span><span class="n">GradientStroke</span><span class="p">)</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/effects/Colormap.hpp"</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/effects/GradientColorTypes.hpp"</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/effects/LineCurveEffect.hpp"</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QMetaObject&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QObject&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QVector&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QtQml/qqmlregistration.h&gt;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">GradientStroke</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">LineCurveEffect</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">Q_OBJECT</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nf">QML_NAMED_ELEMENT</span><span class="p">(</span><span class="n">GradientStroke</span><span class="p">)</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setDirection</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">directionChanged</span><span class="p">)</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradient</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientChanged</span><span class="p">)</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMinSource</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMinSource</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMinSource</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMinSourceChanged</span><span class="p">)</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMin</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMin</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMin</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMinChanged</span><span class="p">)</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMaxSource</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMaxSource</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMaxSource</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMaxSourceChanged</span><span class="p">)</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMax</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMax</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMax</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMaxChanged</span><span class="p">)</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">public</span><span class="o">:</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">GradientStroke</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="nf">direction</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setDirection</span><span class="p">(</span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="p">);</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="nf">gradient</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradient</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span><span class="p">);</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="nf">gradientValueMinSource</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMinSource</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="nf">gradientValueMin</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMin</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="nf">gradientValueMaxSource</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMaxSource</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="nf">gradientValueMax</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMax</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="n">GradientColorPayload</span><span class="w"> </span><span class="nf">payload</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setDirection</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">directionChanged</span><span class="p">)</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradient</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientChanged</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">Colormap</span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">colormap</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setColormap</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">colormapChanged</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMinSource</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMinSource</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMinSource</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMinSourceChanged</span><span class="p">)</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMin</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMin</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMin</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMinChanged</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMaxSource</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMaxSource</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMaxSource</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMaxSourceChanged</span><span class="p">)</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="n">Q_PROPERTY</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMax</span><span class="w"> </span><span class="n">READ</span><span class="w"> </span><span class="n">gradientValueMax</span><span class="w"> </span><span class="n">WRITE</span><span class="w"> </span><span class="n">setGradientValueMax</span><span class="w"> </span><span class="n">NOTIFY</span><span class="w"> </span><span class="n">gradientValueMaxChanged</span><span class="p">)</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">GradientStroke</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="nf">direction</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setDirection</span><span class="p">(</span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span><span class="p">);</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="nf">gradient</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradient</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span><span class="p">);</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="n">Colormap</span><span class="o">*</span><span class="w"> </span><span class="nf">colormap</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setColormap</span><span class="p">(</span><span class="n">Colormap</span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span><span class="p">);</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="nf">gradientValueMinSource</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMinSource</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="nf">gradientValueMin</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMin</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="nf">gradientValueMaxSource</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMaxSource</span><span class="p">(</span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="nl">signals</span><span class="p">:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">directionChanged</span><span class="p">();</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientChanged</span><span class="p">();</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMinSourceChanged</span><span class="p">();</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMinChanged</span><span class="p">();</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMaxSourceChanged</span><span class="p">();</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMaxChanged</span><span class="p">();</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="k">private</span><span class="o">:</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">reconnectGradientSignals</span><span class="p">();</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">disconnectGradientSignals</span><span class="p">();</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">onGradientObjectChanged</span><span class="p">();</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction_</span><span class="p">{</span><span class="n">GradientDirection</span><span class="o">::</span><span class="n">Horizontal</span><span class="p">};</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">    </span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient_</span><span class="p">{</span><span class="nb">nullptr</span><span class="p">};</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="n">QVector</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gradientConnections_</span><span class="p">;</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMinSource_</span><span class="p">{</span><span class="n">GradientValueSource</span><span class="o">::</span><span class="n">DataRange</span><span class="p">};</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMin_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMaxSource_</span><span class="p">{</span><span class="n">GradientValueSource</span><span class="o">::</span><span class="n">DataRange</span><span class="p">};</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMax_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="p">};</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
-<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="nf">gradientValueMax</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setGradientValueMax</span><span class="p">(</span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="n">GradientColorPayload</span><span class="w"> </span><span class="nf">payload</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="nl">signals</span><span class="p">:</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">directionChanged</span><span class="p">();</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientChanged</span><span class="p">();</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">colormapChanged</span><span class="p">();</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMinSourceChanged</span><span class="p">();</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMinChanged</span><span class="p">();</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMaxSourceChanged</span><span class="p">();</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">gradientValueMaxChanged</span><span class="p">();</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="k">private</span><span class="o">:</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">reconnectGradientSignals</span><span class="p">();</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">disconnectGradientSignals</span><span class="p">();</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="n">Q_SLOT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">onGradientObjectChanged</span><span class="p">();</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">reconnectColormapSignals</span><span class="p">();</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">disconnectColormapSignals</span><span class="p">();</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction_</span><span class="p">{</span><span class="n">GradientDirection</span><span class="o">::</span><span class="n">Horizontal</span><span class="p">};</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">    </span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">gradient_</span><span class="p">{</span><span class="nb">nullptr</span><span class="p">};</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="w">    </span><span class="n">QVector</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gradientConnections_</span><span class="p">;</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">    </span><span class="n">Colormap</span><span class="o">*</span><span class="w"> </span><span class="n">colormap_</span><span class="p">{</span><span class="nb">nullptr</span><span class="p">};</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">    </span><span class="n">QVector</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">colormapConnections_</span><span class="p">;</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMinSource_</span><span class="p">{</span><span class="n">GradientValueSource</span><span class="o">::</span><span class="n">DataRange</span><span class="p">};</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMin_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">gradientValueMaxSource_</span><span class="p">{</span><span class="n">GradientValueSource</span><span class="o">::</span><span class="n">DataRange</span><span class="p">};</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">gradientValueMax_</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="p">};</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
 </code></pre></div>
 
 

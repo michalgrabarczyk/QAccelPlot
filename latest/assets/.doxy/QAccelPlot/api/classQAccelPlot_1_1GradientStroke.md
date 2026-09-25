@@ -80,6 +80,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1GradientStroke.md#property-colormap-12)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._ |
 | property [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](classQAccelPlot_1_1GradientStroke.md#property-direction-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies (Horizontal or Vertical)._ |
 | property QObject \* | [**gradient**](classQAccelPlot_1_1GradientStroke.md#property-gradient-12)  <br>_A Qt_ `Gradient` _(or compatible) object supplying the color stops._ |
 | property qreal | [**gradientValueMax**](classQAccelPlot_1_1GradientStroke.md#property-gradientvaluemax-12)  <br>_Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed._  |
@@ -105,6 +106,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**colormapChanged**](classQAccelPlot_1_1GradientStroke.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
 | signal void | [**directionChanged**](classQAccelPlot_1_1GradientStroke.md#signal-directionchanged)  <br>_Emitted when the direction property changes._  |
 | signal void | [**gradientChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientchanged)  <br>_Emitted when the gradient property changes._  |
 | signal void | [**gradientValueMaxChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientvaluemaxchanged)  <br>_Emitted when the gradientValueMax property changes._  |
@@ -132,6 +134,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**GradientStroke**](#function-gradientstroke) (QObject \* parent=nullptr) <br>_Constructs a_ [_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _with the given__parent_ _._ |
+|  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](#function-colormap-22) () const<br>_Returns the colormap supplying color stops, or_ `nullptr` _when_`gradient` _supplies them._ |
 |  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#function-direction-22) () const<br>_Returns the gradient direction._  |
 |  QObject \* | [**gradient**](#function-gradient-22) () const<br>_Returns the Qt Gradient object supplying color stops._  |
 |  qreal | [**gradientValueMax**](#function-gradientvaluemax-22) () const<br>_Returns the maximum data value for gradient normalization._  |
@@ -139,6 +142,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 |  qreal | [**gradientValueMin**](#function-gradientvaluemin-22) () const<br>_Returns the minimum data value for gradient normalization._  |
 |  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMinSource**](#function-gradientvalueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
 |  [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) | [**payload**](#function-payload) () const<br>_Returns a render-thread-safe snapshot of all stroke parameters._  |
+|  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._ |
 |  void | [**setDirection**](#function-setdirection) ([**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction) <br>_Sets the gradient direction to_ _direction_ _._ |
 |  void | [**setGradient**](#function-setgradient) (QObject \* gradient) <br>_Sets the Qt Gradient object to_ _gradient_ _._ |
 |  void | [**setGradientValueMax**](#function-setgradientvaluemax) (qreal value) <br>_Sets the maximum data value for gradient normalization to_ _value_ _._ |
@@ -213,18 +217,37 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 ## Detailed Description
 
 
-Attach to `LineCurve::effects` to color the line with a gradient derived from a Qt `Gradient` object. The gradient can run horizontally (along X data values) or vertically (along Y data values).
+Attach to `LineCurve::effects` to color the line with a gradient. The color stops come from `colormap` when set, otherwise from a Qt `Gradient` assigned to `gradient`. The gradient can run horizontally (along X data values) or vertically (along Y data values).
 
 
 
 
-**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
+**See also:** [**GradientFill**](classQAccelPlot_1_1GradientFill.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
 
 
 
     
 ## Public Properties Documentation
 
+
+
+
+
+### property colormap {#property-colormap-12}
+
+[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._
+```C++
+Colormap* QAccelPlot::GradientStroke::colormap;
+```
+
+
+
+Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` are ignored; `gradientValueMin` and `gradientValueMax` place the ramp instead. 
+
+
+        
+
+<hr>
 
 
 
@@ -317,6 +340,21 @@ GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource;
 <hr>
 ## Public Signals Documentation
 
+
+
+
+
+### signal colormapChanged {#signal-colormapchanged}
+
+_Emitted when the colormap property changes._ 
+```C++
+void QAccelPlot::GradientStroke::colormapChanged;
+```
+
+
+
+
+<hr>
 
 
 
@@ -420,6 +458,21 @@ _Constructs a_ [_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _wit
 explicit QAccelPlot::GradientStroke::GradientStroke (
     QObject * parent=nullptr
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function colormap {#function-colormap-22}
+
+_Returns the colormap supplying color stops, or_ `nullptr` _when_`gradient` _supplies them._
+```C++
+Colormap * QAccelPlot::GradientStroke::colormap () const
 ```
 
 
@@ -535,6 +588,23 @@ GradientColorPayload QAccelPlot::GradientStroke::payload () const
 
 
 
+### function setColormap {#function-setcolormap}
+
+_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._
+```C++
+void QAccelPlot::GradientStroke::setColormap (
+    Colormap * colormap
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setDirection {#function-setdirection}
 
 _Sets the gradient direction to_ _direction_ _._
@@ -635,5 +705,5 @@ void QAccelPlot::GradientStroke::setGradientValueMinSource (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientStroke.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientStroke.hpp`
 

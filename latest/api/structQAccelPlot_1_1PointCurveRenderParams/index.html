@@ -23,7 +23,7 @@
     
     
       
-        <title>Struct QAccelPlot::PointCurveRenderParams - QAccelPlot v0.2.0 Documentation</title>
+        <title>Struct QAccelPlot::PointCurveRenderParams - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -75,7 +75,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -434,6 +434,8 @@
       
         
           
+        
+      
         
       
         
@@ -659,6 +661,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1227,10 +1257,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variable-markerfilled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable markerFilled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#variable-markersize" class="md-nav__link">
     <span class="md-ellipsis">
       
         variable markerSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-markerstrokewidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable markerStrokeWidth
       
     </span>
   </a>
@@ -1374,8 +1426,16 @@
 <td style="text-align: left;"><a href="#variable-logscaley"><strong>logScaleY</strong></a>  <br><em>Whether the Y axis uses log scale.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-markerfilled"><strong>markerFilled</strong></a>  <br><em>Whether closed marker shapes are filled rather than outlined.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">qreal</td>
 <td style="text-align: left;"><a href="#variable-markersize"><strong>markerSize</strong></a>  <br><em>Marker radius in pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#variable-markerstrokewidth"><strong>markerStrokeWidth</strong></a>  <br><em>Outline width in pixels for hollow markers.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1383,7 +1443,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>  <br><em>Marker shape index (matches</em> <code>LineCurve::PointShape</code> <em>).</em></td>
+<td style="text-align: left;"><a href="#variable-shapetype"><strong>shapeType</strong></a>  <br><em>Marker shape index (</em> <code>PlotSeries::MarkerShape</code> <em>value minus one).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a></td>
@@ -1466,44 +1526,56 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="variable-markerfilled">variable markerFilled<a class="headerlink" href="#variable-markerfilled" title="Permanent link">&para;</a></h3>
+<p><em>Whether closed marker shapes are filled rather than outlined.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerFilled</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="variable-markersize">variable markerSize<a class="headerlink" href="#variable-markersize" title="Permanent link">&para;</a></h3>
 <p><em>Marker radius in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerSize</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="variable-markerstrokewidth">variable markerStrokeWidth<a class="headerlink" href="#variable-markerstrokewidth" title="Permanent link">&para;</a></h3>
+<p><em>Outline width in pixels for hollow markers.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">markerStrokeWidth</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-pointcount">variable pointCount<a class="headerlink" href="#variable-pointcount" title="Permanent link">&para;</a></h3>
 <p><em>Number of points in</em> <code>data</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-shapetype">variable shapeType<a class="headerlink" href="#variable-shapetype" title="Permanent link">&para;</a></h3>
-<p><em>Marker shape index (matches</em> <code>LineCurve::PointShape</code> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
+<p><em>Marker shape index (</em> <code>PlotSeries::MarkerShape</code> <em>value minus one).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">shapeType</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-sourcedata">variable sourceData<a class="headerlink" href="#variable-sourcedata" title="Permanent link">&para;</a></h3>
 <p><em>Original float or double data used by CPU-side operations.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">CurveDataView</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">sourceData</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">CurveDataView</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">sourceData</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-vertexcache">variable vertexCache<a class="headerlink" href="#variable-vertexcache" title="Permanent link">&para;</a></h3>
 <p><em>Pre-built vertex buffer, or</em> <code>nullptr</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">vertexCache</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">vertexCache</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="variable-viewportsize">variable viewportSize<a class="headerlink" href="#variable-viewportsize" title="Permanent link">&para;</a></h3>
 <p><em>Viewport size in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QVector2D</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCurveRenderParams</span><span class="o">::</span><span class="n">viewportSize</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/renderers/LineCurvePointRenderer.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp</code></p>
 
 
 

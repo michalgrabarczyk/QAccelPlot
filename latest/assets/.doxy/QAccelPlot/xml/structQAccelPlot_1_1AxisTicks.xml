@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="30" column="11" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="30" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" prot="public" static="no" mutable="no">
         <type>QList&lt; <ref refid="structQAccelPlot_1_1AxisTick" kindref="compound">AxisTick</ref> &gt;</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="31" column="11" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="31" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -42,7 +42,7 @@
 <para>Holds data-space values and label text only; no pixel geometry. Placement (padding, font metrics, rotation, value-to-pixel mapping) is resolved in <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput>.</para>
 <para>Built on the GUI thread by <computeroutput><ref refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kindref="member">AxisTickPainter::computeTicks()</ref></computeroutput>, because label formatting may call into the QML/JS engine, and consumed by <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3613ed1b3cae19f09cc42571153a751c" kindref="member">Axis::paint()</ref></computeroutput>, which runs on the render thread with the threaded render loop. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/axis/AxisTicks.hpp" line="29" column="1" bodyfile="QAccelPlot/src/axis/AxisTicks.hpp" bodystart="29" bodyend="32"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" line="29" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp" bodystart="29" bodyend="32"/>
     <listofallmembers>
       <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>majorTicks</name></member>
       <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTicks</scope><name>subtickValues</name></member>

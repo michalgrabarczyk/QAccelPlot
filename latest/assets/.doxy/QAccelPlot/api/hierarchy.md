@@ -9,7 +9,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) _Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md) _Internal renderer responsible for building and updating QSGNode marker geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._
 * **class** [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md) _Owns a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _'s pre-built vertex bytes and the metadata required to use them safely._
-* **class** [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._ 
+* **class** [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) _Uniform-grid spatial index for nearest-point queries over large point sets._ 
+* **class** [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._ 
 * **struct** [**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md) _A single major tick: its data-space value and its formatted label._ 
 * **struct** [**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md) _Groups the QPainter context arguments passed into sub-painting helpers._ 
 * **struct** [**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All style inputs required for a single paint call, bundled to reduce parameter count._ 
@@ -24,18 +25,23 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
 * **struct** [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._
+* **struct** [**QAccelPlot::PointSpatialIndex::Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._ 
 * **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._ 
 * **struct** [**QAccelPlot::SampleRun**](structQAccelPlot_1_1SampleRun.md) _Contiguous range of valid curve samples, used to break fills and hit tests at gaps._ 
 * **struct** [**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md) 
+* **struct** [**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md) 
 * **struct** [**QAccelPlot::GridNode::GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md) 
 * **struct** [**QAccelPlot::LineCurveLineRenderer::FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md) 
+* **struct** [**QAccelPlot::PointSpatialIndex::IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md) 
 * **struct** [**QAccelPlot::RectangleList::RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md) 
 * **struct** [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md) 
 * **class** **QQuickPaintedItem**    
     * **class** [**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md) _A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._ 
+    * **class** [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._
 * **class** **QObject**    
     * **class** [**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md) _Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._
     * **class** [**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._
+    * **class** [**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._ 
     * **class** [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._
     * **class** [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 
@@ -46,7 +52,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An animation transition that smoothly interpolates point positions between two datasets._ 
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
-        * **class** [**QAccelPlot::LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot elements._     
@@ -67,11 +72,6 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 
         * **class** [**QAccelPlot::NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._ 
         * **class** [**QAccelPlot::SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._ 
-    * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
-        * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
-        * **class** [**QAccelPlot::LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._ 
-        * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
-        * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot elements._     
         * **class** [**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target curve by drawing it point-by-point from start to end._ 
         * **class** [**QAccelPlot::MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An animation transition that smoothly interpolates point positions between two datasets._ 
@@ -81,55 +81,69 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._ 
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
-        * **class** [**QAccelPlot::LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md) _Decorative frame configuration exposed by_ `PlotView::border` _._
     * **class** [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._ 
+    * **class** [**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._ 
     * **class** [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 
         * **class** [**QAccelPlot::NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._ 
         * **class** [**QAccelPlot::SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._ 
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
-        * **class** [**QAccelPlot::LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
         * **class** [**QAccelPlot::DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._ 
-        * **class** [**QAccelPlot::LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._ 
         * **class** [**QAccelPlot::NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) _The default tick label formatter — produces numeric labels with automatic decimal precision._ 
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
 * **class** **QQuickItem**    
     * **class** [**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md) _A QQuickItem that tracks a data-coordinate rectangle in pixel space._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
+        * **class** [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._ 
         * **class** [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
+        * **class** [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._ 
+        * **class** [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
+    * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
+        * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
+        * **class** [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._ 
         * **class** [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
     * **class** [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._ 
     * **class** [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
         * **class** [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._ 
+        * **class** [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._ 
         * **class** [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._ 
 * **class** **QSGMaterial**    
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
     * **class** [**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) _Scene-graph material that evaluates fill gradients per fragment._ 
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
+        * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
+    * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
+        * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
+            * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
     * **class** [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for marker (point) rendering._ 
     * **class** [**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
         * **class** [**QAccelPlot::LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
             * **class** [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md) _Line material variant that samples a one-dimensional gradient texture._ 
+        * **class** [**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._
         * **class** [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._
 * **class** **QSGNode**    
     * **class** [**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._ 

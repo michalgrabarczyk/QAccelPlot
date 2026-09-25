@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**internal**](dir_5aa3f24811c9670c2734670df8b3bd19.md) **>** [**DataTextureUpload.hpp**](DataTextureUpload_8hpp.md)
+[**FileList**](files.md) **>** [**internal**](dir_3c3be61dbf90c69b9ad6cd32d23f3e24.md) **>** [**DataTextureUpload.hpp**](DataTextureUpload_8hpp.md)
 
 [Go to the source code of this file](DataTextureUpload_8hpp_source.md)
 
@@ -94,5 +94,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/internal/DataTextureUpload.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp`
 

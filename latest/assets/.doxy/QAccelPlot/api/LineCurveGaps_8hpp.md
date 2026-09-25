@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md) **>** [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md)
+[**FileList**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**LineCurveGaps.hpp**](LineCurveGaps_8hpp.md)
 
 [Go to the source code of this file](LineCurveGaps_8hpp_source.md)
 
@@ -99,5 +99,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/LineCurveGaps.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp`
 

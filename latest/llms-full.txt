@@ -111,7 +111,7 @@ include(FetchContent)
 FetchContent_Declare(
     QAccelPlot
     GIT_REPOSITORY https://github.com/michalgrabarczyk/QAccelPlot.git
-    GIT_TAG v0.2.0
+    GIT_TAG v0.3.0
 )
 FetchContent_MakeAvailable(QAccelPlot)
 
@@ -225,7 +225,7 @@ Every series needs an X and a Y axis. [`viewportMin`][viewport-min] and
 Create `main.cpp`:
 
 ```cpp
-#include "series/LineCurve.hpp"
+#include <QAccelPlot/series/LineCurve.hpp>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -252,6 +252,9 @@ int main(int argc, char* argv[])
     return app.exec();
 }
 ```
+
+Public headers are included with the `QAccelPlot/` prefix, for example
+`<QAccelPlot/series/LineCurve.hpp>`.
 
 [`setData()`][set-data-vectors] takes separate X and Y vectors and suits small,
 static data. For large or streaming data, see the
@@ -444,11 +447,13 @@ numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAc
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
+| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Range scan; buffer ownership is moved immediately and coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
 | [`setDataFNoRange(const float*, count)`][set-data-f-no-range-copy] | Existing interleaved memory remains caller-owned and axis ranges are maintained separately | One reusable-buffer copy; skips the range scan and signals |
 | [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff, followed by the normal range scan |
+| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)`, followed by the normal range scan |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets. Switch to [`setDataFNoRange()`][set-data-f-no-range] only when
@@ -482,7 +487,7 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
-[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime).
+[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
 
 ## Keep work off the UI thread
 
@@ -492,7 +497,7 @@ the worker.
 
 If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-[`performance_showcase` worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp)
+[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp)
 waits until the UI thread consumes the previous batch. See
 [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
 
@@ -510,9 +515,17 @@ rebuilding geometry; gradient effects may need per-vertex work.
 [`RectangleList.hoveredIndex`][hovered-index] uses a spatial grid rebuilt on
 data change, giving `O(1)` lookup per pointer move.
 
+`QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
+is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
+answers each move by scanning only the cells within the hover radius. When a
+cloud is replaced every frame while the pointer rests over it, the rebuild
+repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+
 ### Other rendering costs
 
-- Markers add geometry and fragment work per visible point.
+- Markers add geometry and fragment work per visible point. Fragment work grows
+  with marker size; `LineCurve.Pixel` markers shade one pixel per point and
+  suit very dense scatter plots.
 - Gradient effects add material and domain work.
 - Transitions update intermediate data while animating.
 - Many series add per-node and per-material overhead at the same total point
@@ -804,6 +817,7 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
+| [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/). For choosing a
@@ -865,8 +879,8 @@ QAccelPlot.Plot {
         color: "dodgerblue"
         lineWidth: 2
         lineStyle: QAccelPlot.DashLine { pattern: [8, 5] }
-        markerShape: QAccelPlot.LineCurve.Diamond
-        markerSize: 5
+        marker.shape: QAccelPlot.LineCurve.Diamond
+        marker.size: 7
     }
 }
 ```
@@ -956,7 +970,10 @@ To draw across dropouts instead, set
 `gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
 [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
 
-Complete source: [`examples/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime)
+Complete sources:
+
+- [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
+- [`examples/data/missing_data`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/missing_data)
 
 [set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
@@ -1009,23 +1026,21 @@ The data points still use X coordinates `0` through `6`.
 
 ## Logarithmic axes
 
-Enable a base-10 logarithmic mapping and use logarithmic labels:
+Enable a base-10 logarithmic mapping:
 
 ```qml
-QAccelPlot.LogTickLabelFormatter { id: logLabels }
-
 xAxis: QAccelPlot.Axis {
     viewportMin: 20
     viewportMax: 20000
     dataMin: 20
     dataMax: 20000
     logScale: true
-    ticker.tickLabelFormatter: logLabels
 }
 ```
 
 Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
-Power-of-ten ticks use superscript exponents, such as `10²`, `10³`, and `10⁻³`.
+The default `NumericTickLabelFormatter` labels each decade tick as a power of
+ten with a superscript exponent, such as `10⁻³`, `10²`, and `10³`.
 
 ## Application-specific labels
 
@@ -1048,7 +1063,7 @@ yAxis: QAccelPlot.Axis {
 }
 ```
 
-Complete source: [`examples/axis_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axis_formats)
+Complete source: [`examples/axes/tick_formats`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/tick_formats)
 
 [tick-label]: ../api/classQAccelPlot_1_1TickLabelFormatter.md#property-ticklabel-12
 
@@ -1151,7 +1166,7 @@ QAccelPlot.Plot {
 }
 ```
 
-Complete source: [`examples/custom_axis`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/custom_axis)
+Complete source: [`examples/axes/multiple_axes`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/axes/multiple_axes)
 
 [x2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12
 [y2-axis]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-y2axis-12
@@ -1194,8 +1209,8 @@ QAccelPlot.LineCurve {
     lineStyle: QAccelPlot.DashLine {
         pattern: [14, 5, 3, 5]
     }
-    markerShape: QAccelPlot.LineCurve.Diamond
-    markerSize: 5
+    marker.shape: QAccelPlot.LineCurve.Diamond
+    marker.size: 5
     antialiasingEnabled: true
     antialiasingFeather: 1
 }
@@ -1203,7 +1218,40 @@ QAccelPlot.LineCurve {
 
 Line styles are `QAccelPlot.SolidLine`, `QAccelPlot.DashLine`, and
 `QAccelPlot.NoLine`. `NoLine` with a marker shape gives a marker-only series.
+Marker settings are grouped under `marker`: `shape`, `size`, `filled`, and
+`strokeWidth`.
 A dash pattern lists alternating on/off lengths in pixels.
+
+## Marker shapes
+
+`marker.size` is the marker radius in pixels. Every shape fits within a square
+of that half-width.
+
+| Group | `MarkerShape` values |
+| --- | --- |
+| Filled shapes | `Circle`, `Square`, `Diamond`, `TriangleUp`, `TriangleDown`, `TriangleLeft`, `TriangleRight`, `Pentagon`, `Hexagon`, `Star` |
+| Line shapes | `Cross` (+), `XCross` (×), `Asterisk`, `HLine`, `VLine` |
+| Single pixel | `Pixel` |
+
+Set `marker.filled: false` to draw filled shapes as outlines of
+`marker.strokeWidth` pixels. The outline lies inside the shape's edge, so hollow
+and filled markers have the same size. Line shapes and `Pixel` ignore both
+properties.
+
+```qml
+QAccelPlot.LineCurve {
+    lineStyle: QAccelPlot.NoLine {}
+    marker.shape: QAccelPlot.LineCurve.Circle
+    marker.size: 4
+    marker.filled: false
+    marker.strokeWidth: 1
+}
+```
+
+`Pixel` draws each sample as one logical pixel and ignores `marker.size` and
+anti-aliasing. Use it with a semi-transparent color for scatter plots with
+hundreds of thousands of points, where overlapping points build up density.
+Hover still detects a `Pixel` marker within 3 px.
 
 ## Gradient stroke and fill
 
@@ -1221,12 +1269,25 @@ QAccelPlot.LineCurve {
             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
             gradientValueMax: 8
             opacity: 0.65
-            gradient: Gradient {
-                GradientStop { position: 0; color: "royalblue" }
-                GradientStop { position: 1; color: "goldenrod" }
-            }
+            colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
         }
     ]
+}
+```
+
+Both effects take their color stops from one of two properties:
+
+- `colormap`: a [`Colormap`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#color-points-by-value) preset or
+  custom ramp. Overrides `gradient` when both are set. Only the ramp is used;
+  the colormap's `min`, `max`, and `norm` are ignored.
+- `gradient`: a Qt Quick `Gradient`.
+
+```qml
+QAccelPlot.GradientStroke {
+    gradient: Gradient {
+        GradientStop { position: 0; color: "royalblue" }
+        GradientStop { position: 1; color: "goldenrod" }
+    }
 }
 ```
 
@@ -1254,7 +1315,13 @@ QAccelPlot.LineCurve {
 Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.
 
-Complete source: [`examples/styling_and_transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions)
+Complete sources:
+
+- [`examples/styling/theming`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/theming)
+- [`examples/styling/line_styles`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/line_styles)
+- [`examples/styling/markers`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers)
+- [`examples/styling/gradients`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients)
+- [`examples/styling/transitions`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions)
 
 [effects]: ../api/classQAccelPlot_1_1LineCurve.md#property-effects-12
 [transition]: ../api/classQAccelPlot_1_1LineCurve.md#property-transition-12
@@ -1359,8 +1426,8 @@ rectangle origin to convert between plot and layer coordinates.
 
 Complete sources:
 
-- [`examples/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/annotations)
-- [`examples/interactive_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interactive_tools)
+- [`examples/interaction/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/annotations)
+- [`examples/interaction/measurement_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/measurement_tools)
 
 [plot-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
 [data-to-pixel-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixelx
@@ -1371,6 +1438,233 @@ Complete sources:
 [rectangle-list]: ../api/classQAccelPlot_1_1RectangleList.md
 [rectangle-list-set-data]: ../api/classQAccelPlot_1_1RectangleList.md#function-setdata
 [hovered-index]: ../api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
+
+
+---
+
+<!-- source: docs/guide/cookbook/point-clouds.md -->
+
+# Point clouds
+
+Use [`QAccelPlot.PointCloud`][point-cloud] for scatter data whose points are
+not connected: sensor returns, clustering results, particle positions, or
+detector events. Every point is drawn as a GPU marker, and the series scales
+to hundreds of thousands of points updated every frame.
+
+A `LineCurve` with `NoLine` and markers can draw small scatter plots, but it
+builds marker geometry on the CPU for every data change. `PointCloud` uploads
+positions as a data texture instead, so a cloud of constant size costs one
+texture upload per update.
+
+## Draw a scatter plot
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    xAxis: QAccelPlot.Axis { viewportMin: -10; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: -8; viewportMax: 8 }
+
+    QAccelPlot.PointCloud {
+        id: samples
+        name: "Samples"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "#8065b5ff"
+        marker.shape: QAccelPlot.PointCloud.Circle
+        marker.size: 2
+
+        Component.onCompleted: setData([Qt.point(-2, 1), Qt.point(3, 4), Qt.point(1, -3)])
+    }
+}
+```
+
+Marker settings are grouped under `marker`. `marker.size` is the marker radius
+in pixels. Point clouds accept every marker shape except `None`; see the
+[shape table](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#marker-shapes). `Pixel` ignores `marker.size` and
+draws one pixel per point, which suits very dense clouds.
+
+Set `marker.filled: false` to draw closed shapes as outlines of
+`marker.strokeWidth` pixels. Hollow markers read well on dense clouds, where
+filled shapes merge into a solid mass. Line shapes and `Pixel` ignore both
+properties.
+
+Translucent colors, or an `opacity` below 1 on the cloud or a parent item, make
+dense regions read as density, because each overlapping marker blends
+separately. Points are drawn in data order, so put background points first
+when they should appear underneath.
+
+The default legend shows the marker shape and `color` for point clouds.
+
+## Color points by value
+
+Give each point a value and assign a [`Colormap`][colormap]:
+
+```qml
+QAccelPlot.PointCloud {
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
+}
+```
+
+A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
+on value coloring: without it, or without per-point values, every point uses `color`.
+
+The built-in ramps are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Grayscale`, and `Rainbow`.
+Prefer the perceptually uniform ones over `Rainbow`, whose uneven lightness invents boundaries that
+are not in the data.
+
+Set `reversed: true` to run a ramp from its last color to its first. For example, a reversed
+`Inferno` or `Magma` fades low values into a light background.
+
+For a custom ramp, list the stops instead:
+
+```qml
+Gradient {
+    id: ramp
+    GradientStop { position: 0.0; color: "#fde725" }
+    GradientStop { position: 1.0; color: "#440154" }
+}
+
+QAccelPlot.PointCloud {
+    colormap: QAccelPlot.Colormap { stops: ramp.stops }
+}
+```
+
+`min` and `max` bound the value range. Leave either unset and it is resolved from the data, so one
+colormap can be shared between series that resolve different ranges. Set `norm` to
+`Colormap.Log` when the values span decades, such as counts or intensities; values at or below
+zero are then left unmapped and drawn with `color`.
+
+A colormap has no geometry. Unlike `GradientFill` and `GradientStroke`, which paint a gradient
+across the plot and so have a `direction`, a colormap is a one-dimensional ramp indexed by each
+point's value, not by its position on screen. That is why there is no orientation here and no
+radial form: only the stop colors are taken from the `Gradient` above.
+
+From QML, call `setValues()` after `setData()` with one value per point. From
+C++, pass values together with the positions:
+
+```cpp
+cloud->setDataF(std::move(xyInterleaved), std::move(values), pointCount);
+```
+
+`setData()` takes the same shape with a `std::vector<double>` of positions when
+the coordinates need double precision. Values stay single precision either way,
+because they only index the colormap.
+
+The resolved bounds, from `min` and `max` or from the finite values in the
+data, are exposed as `dataValueMin` and `dataValueMax`. Points with a
+non-finite value fall back to `color`.
+
+## Show a color bar
+
+[`QAccelPlot.ColorBar`][color-bar] is the key for a value-colored cloud. It
+draws the series' colormap with ticks for the resolved value range, and redraws
+when the colormap, its range, or the assigned colormap changes:
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+
+    QAccelPlot.PointCloud {
+        id: cloud
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Plasma }
+    }
+
+    QAccelPlot.ColorBar {
+        series: cloud
+        label: "Intensity"
+        x: plot.plotRect.left + 8
+        y: plot.plotRect.top + 8
+    }
+}
+```
+
+- The bar is an ordinary item. Position it with `x`, `y`, or anchors; it does
+  not reserve layout space. The default legend sits at the top right of the
+  plot area, so place the bar elsewhere or move the legend.
+- A vertical bar, the default, has its minimum at the bottom and its ticks and
+  `label` on the right. `orientation: QAccelPlot.ColorBar.Horizontal` puts the
+  minimum on the left and the ticks and `label` below.
+- The implicit size fits the strip, ticks, labels, and `label`, with a length
+  of 160 pixels. Set `height` on a vertical bar, or `width` on a horizontal
+  one, to change the length.
+- Ticks follow `norm`: a `Log` colormap gets one major tick per decade.
+  `ticker` sets tick count, colors, fonts, and label formatters, as on
+  `Axis.ticker`.
+- Nothing is drawn while the series has no colormap.
+
+## Stream point data
+
+`postData()` is thread-safe. It moves the buffers into a queued call, so a
+worker thread can produce complete frames without copying them again:
+
+```cpp
+// Worker thread
+cloud->postData(std::move(xy), std::move(values), pointCount);
+```
+
+Post a frame only after the window has presented the previous one, for
+example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
+up when rendering falls behind. Use `setDataFNoRange()` when the application
+manages `dataMin` and `dataMax` on the axes itself.
+
+## Invalid points and logarithmic axes
+
+Non-finite coordinates are kept in storage, so indices stay stable, but they
+are not drawn, not picked, and do not contribute to axis data ranges. On a
+logarithmic axis, non-positive coordinates are skipped the same way. You do not
+need to filter them before handing data to the series.
+
+## Hover and tooltips
+
+`hoveredIndex` is the index of the valid point nearest to the pointer within
+`hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`, and a
+`QAccelPlot.DataAnchor` to show a tooltip:
+
+```qml
+QAccelPlot.DataAnchor {
+    readonly property point hovered: samples.hoveredIndex >= 0 ? samples.pointAt(samples.hoveredIndex) : Qt.point(0, 0)
+    visible: samples.hoveredIndex >= 0
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    plotRect: Qt.rect(0, 0, overlay.width, overlay.height)
+    dataX1: hovered.x
+    dataY1: hovered.y
+    dataX2: hovered.x
+    dataY2: hovered.y
+
+    Text { text: "#" + samples.hoveredIndex }
+}
+```
+
+The lookup uses a spatial index that is rebuilt on the first pointer move after
+a data change. Only positions near a point count as inside the series, so
+stacked series underneath still receive hover events elsewhere.
+
+## Limits
+
+- The GPU renders in single precision. `setData()` accepts doubles, from QML
+  points or a `std::vector<double>`, and uploads positions relative to an
+  origin taken from the first finite point, so values far from zero such as
+  epoch timestamps keep their resolution. Logarithmic dimensions are never
+  shifted. The `setDataF()` family takes floats and is not origin-shifted; use
+  it when the data is already single precision.
+- The number of drawable points is bounded by the GPU's maximum texture size:
+  about 5.5 million points with values, or 8.3 million without, on a GPU with
+  an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
+  points are not drawn, and a warning is logged once.
+
+Complete source:
+
+- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud):
+  one value-colored cloud with a color bar and a hover tooltip.
+
+[point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
+[colormap]: ../api/classQAccelPlot_1_1Colormap.md
+[color-bar]: ../api/classQAccelPlot_1_1ColorBar.md
 
 
 ---
@@ -1420,7 +1714,7 @@ only after profiling the simpler handoff.
 
 Complete sources:
 
-- [`examples/performance_showcase`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/performance_showcase)
+- [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance): one-batch handoff with a worker-built vertex cache
 - [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
 
 [post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
@@ -1448,6 +1742,10 @@ Complete sources:
   and per-axis pan and zoom.
 - [`LineCurve`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/) — GPU-rendered lines and
   markers, data ingestion, effects, transitions, gaps, and hover.
+- [`PointCloud`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PointCloud/) — large sets of
+  unconnected points as markers, colored uniformly or by per-point values.
+- [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ColorBar/) — continuous key for a
+  point cloud's colormap and value range.
 - [`RectangleList`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleList/) — many data-space
   rectangles in one item.
 - [`DataAnchor`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1DataAnchor/) — QML overlays at data

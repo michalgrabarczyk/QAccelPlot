@@ -44,10 +44,10 @@
 
 | Type | Name |
 | ---: | :--- |
-|  float | [**maxX**](#variable-maxx)  <br> |
-|  float | [**maxY**](#variable-maxy)  <br> |
-|  float | [**minX**](#variable-minx)  <br> |
-|  float | [**minY**](#variable-miny)  <br> |
+|  double | [**maxX**](#variable-maxx)  <br> |
+|  double | [**maxY**](#variable-maxy)  <br> |
+|  double | [**minX**](#variable-minx)  <br> |
+|  double | [**minY**](#variable-miny)  <br> |
 
 
 
@@ -68,7 +68,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  bool | [**contains**](#function-contains) (float x, float y) const<br> |
+|  bool | [**contains**](#function-contains) (double x, double y) const<br> |
 
 
 
@@ -106,7 +106,7 @@
 ### variable maxX {#variable-maxx}
 
 ```C++
-float QAccelPlot::SpatialGrid::ItemBounds::maxX;
+double QAccelPlot::SpatialGrid::ItemBounds::maxX;
 ```
 
 
@@ -120,7 +120,7 @@ float QAccelPlot::SpatialGrid::ItemBounds::maxX;
 ### variable maxY {#variable-maxy}
 
 ```C++
-float QAccelPlot::SpatialGrid::ItemBounds::maxY;
+double QAccelPlot::SpatialGrid::ItemBounds::maxY;
 ```
 
 
@@ -134,7 +134,7 @@ float QAccelPlot::SpatialGrid::ItemBounds::maxY;
 ### variable minX {#variable-minx}
 
 ```C++
-float QAccelPlot::SpatialGrid::ItemBounds::minX;
+double QAccelPlot::SpatialGrid::ItemBounds::minX;
 ```
 
 
@@ -148,7 +148,7 @@ float QAccelPlot::SpatialGrid::ItemBounds::minX;
 ### variable minY {#variable-miny}
 
 ```C++
-float QAccelPlot::SpatialGrid::ItemBounds::minY;
+double QAccelPlot::SpatialGrid::ItemBounds::minY;
 ```
 
 
@@ -165,8 +165,8 @@ float QAccelPlot::SpatialGrid::ItemBounds::minY;
 
 ```C++
 bool ItemBounds::contains (
-    float x,
-    float y
+    double x,
+    double y
 ) const
 ```
 
@@ -176,5 +176,5 @@ bool ItemBounds::contains (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/SpatialGrid.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/SpatialGrid.hpp`
 

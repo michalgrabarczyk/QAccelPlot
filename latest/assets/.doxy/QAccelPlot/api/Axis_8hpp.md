@@ -11,15 +11,15 @@
 
 
 
-[**FileList**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**Axis.hpp**](Axis_8hpp.md)
+[**FileList**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**Axis.hpp**](Axis_8hpp.md)
 
 [Go to the source code of this file](Axis_8hpp_source.md)
 
 
 
-* `#include "axis/AxisTicker.hpp"`
-* `#include "axis/AxisTicks.hpp"`
-* `#include "theme/ColorPalette.hpp"`
+* `#include "QAccelPlot/axis/AxisTicker.hpp"`
+* `#include "QAccelPlot/axis/AxisTicks.hpp"`
+* `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QHash>`
@@ -103,5 +103,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/Axis.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/Axis.hpp`
 

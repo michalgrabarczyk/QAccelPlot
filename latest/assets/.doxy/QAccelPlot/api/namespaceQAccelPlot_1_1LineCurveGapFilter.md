@@ -259,5 +259,5 @@ int QAccelPlot::LineCurveGapFilter::sampledSourceIndex (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/LineCurveGapFilter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp`
 

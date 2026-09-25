@@ -2,17 +2,17 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="LineCurvePointRenderer_8hpp" kind="file" language="C++">
     <compoundname>LineCurvePointRenderer.hpp</compoundname>
-    <includes refid="GradientColorTypes_8hpp" local="yes">effects/GradientColorTypes.hpp</includes>
-    <includes refid="CurveRendererParams_8hpp" local="yes">renderers/CurveRendererParams.hpp</includes>
+    <includes refid="GradientColorTypes_8hpp" local="yes">QAccelPlot/effects/GradientColorTypes.hpp</includes>
+    <includes refid="CurveRendererParams_8hpp" local="yes">QAccelPlot/renderers/CurveRendererParams.hpp</includes>
     <includes local="no">QColor</includes>
     <includes local="no">QPointF</includes>
     <includes local="no">QSGNode</includes>
     <includes local="no">QVector2D</includes>
     <includes local="no">vector</includes>
-    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/series/LineCurve.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/renderers/LineCurvePointRenderer.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp</label>
         <link refid="LineCurvePointRenderer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -59,8 +59,8 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;effects/GradientColorTypes.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;renderers/CurveRendererParams.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/effects/GradientColorTypes.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/renderers/CurveRendererParams.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointF&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -89,30 +89,32 @@
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1GradientColorPayload" kindref="compound">GradientColorPayload</ref>&amp;<sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams_1a45527a10f2db2a5ba39226fdeb53cacc" kindref="member">gradientPayload</ref>;<sp/></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;char&gt;*<sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams_1ad5f4d27e5b86b555dea526542be25ab9" kindref="member">vertexCache</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams_1a8306dba154f844fd86a3cf8d1aef7b80" kindref="member">shapeType</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="41"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="structQAccelPlot_1_1PointVertex" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1PointVertex" kindref="compound">PointVertex</ref><sp/>{</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a2bd7ddc4c66850847e26c112f12864d0" kindref="member">x</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1ad08410d87c9f1e0d98d6ea725829dc89" kindref="member">y</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a812277ea710afb8d9343e3effc13ee3b" kindref="member">cornerX</ref>;<sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a4f3a42b513e7e4ba5cb88d85f7103106" kindref="member">cornerY</ref>;<sp/></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1aa77496b0d983bbad3e893cfe305c9a5d" kindref="member">r</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a2f145f34d6b463a0154d569a19b5f61f" kindref="member">g</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a28cc575c2a4b6e4d10df8704a8d693a8" kindref="member">b</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" kindref="member">a</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="53"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59" refid="classQAccelPlot_1_1LineCurvePointRenderer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LineCurvePointRenderer" kindref="compound">LineCurvePointRenderer</ref><sp/>{</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1aeec69e3fbde7288e816628524bbf17da" kindref="member">buildVertexCache</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/>std::vector&lt;char&gt;&amp;<sp/>cache)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" kindref="member">contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams" kindref="compound">CurveHitTestParams</ref>&amp;<sp/>params)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGNode*<sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" kindref="member">paint</ref>(QSGNode*<sp/>oldNode,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams" kindref="compound">PointCurveRenderParams</ref>&amp;<sp/>params)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams_1a97c7dfa326594956775a80e1d8f8eefb" kindref="member">markerStrokeWidth</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams_1a53be39fcb259900620ff26254b5e6632" kindref="member">markerFilled</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="structQAccelPlot_1_1PointVertex" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structQAccelPlot_1_1PointVertex" kindref="compound">PointVertex</ref><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a2bd7ddc4c66850847e26c112f12864d0" kindref="member">x</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1ad08410d87c9f1e0d98d6ea725829dc89" kindref="member">y</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a812277ea710afb8d9343e3effc13ee3b" kindref="member">cornerX</ref>;<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a4f3a42b513e7e4ba5cb88d85f7103106" kindref="member">cornerY</ref>;<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1aa77496b0d983bbad3e893cfe305c9a5d" kindref="member">r</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a2f145f34d6b463a0154d569a19b5f61f" kindref="member">g</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1a28cc575c2a4b6e4d10df8704a8d693a8" kindref="member">b</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" kindref="member">a</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classQAccelPlot_1_1LineCurvePointRenderer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1LineCurvePointRenderer" kindref="compound">LineCurvePointRenderer</ref><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1aeec69e3fbde7288e816628524bbf17da" kindref="member">buildVertexCache</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pointCount,<sp/>std::vector&lt;char&gt;&amp;<sp/>cache)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1af95a1d6fb2fd390603024cef6a15d5d5" kindref="member">contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/>point,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1CurveHitTestParams" kindref="compound">CurveHitTestParams</ref>&amp;<sp/>params)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>QSGNode*<sp/><ref refid="classQAccelPlot_1_1LineCurvePointRenderer_1a938ef71f14fe97ae9eee935fc4ceef52" kindref="member">paint</ref>(QSGNode*<sp/>oldNode,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1PointCurveRenderParams" kindref="compound">PointCurveRenderParams</ref>&amp;<sp/>params)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/renderers/LineCurvePointRenderer.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp"/>
   </compounddef>
 </doxygen>

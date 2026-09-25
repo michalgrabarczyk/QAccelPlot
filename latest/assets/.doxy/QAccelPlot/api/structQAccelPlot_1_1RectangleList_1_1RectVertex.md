@@ -182,5 +182,5 @@ unsigned char QAccelPlot::RectangleList::RectVertex::r;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/shapes/RectangleList.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/shapes/RectangleList.hpp`
 

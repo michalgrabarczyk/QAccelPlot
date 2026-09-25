@@ -11,14 +11,15 @@
 
 
 
-[**FileList**](files.md) **>** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md) **>** [**GradientFill.hpp**](GradientFill_8hpp.md)
+[**FileList**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientFill.hpp**](GradientFill_8hpp.md)
 
 [Go to the source code of this file](GradientFill_8hpp_source.md)
 
 
 
-* `#include "effects/LineCurveEffect.hpp"`
-* `#include "effects/GradientColorTypes.hpp"`
+* `#include "QAccelPlot/effects/Colormap.hpp"`
+* `#include "QAccelPlot/effects/GradientColorTypes.hpp"`
+* `#include "QAccelPlot/effects/LineCurveEffect.hpp"`
 * `#include <QMetaObject>`
 * `#include <QObject>`
 * `#include <QVector>`
@@ -102,5 +103,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientFill.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp`
 

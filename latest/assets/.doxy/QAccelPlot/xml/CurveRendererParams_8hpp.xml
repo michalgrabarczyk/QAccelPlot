@@ -2,14 +2,14 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="CurveRendererParams_8hpp" kind="file" language="C++">
     <compoundname>CurveRendererParams.hpp</compoundname>
-    <includes refid="Axis_8hpp" local="yes">axis/Axis.hpp</includes>
+    <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
     <includes local="no">vector</includes>
-    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurveLineRenderer.hpp</includedby>
-    <includedby refid="LineCurvePointRenderer_8hpp" local="yes">QAccelPlot/src/renderers/LineCurvePointRenderer.hpp</includedby>
-    <includedby refid="LineCurveGapFilter_8hpp" local="yes">QAccelPlot/src/series/LineCurveGapFilter.hpp</includedby>
+    <includedby refid="LineCurveLineRenderer_8hpp" local="yes">QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp</includedby>
+    <includedby refid="LineCurvePointRenderer_8hpp" local="yes">QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp</includedby>
+    <includedby refid="LineCurveGapFilter_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/renderers/CurveRendererParams.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp</label>
         <link refid="CurveRendererParams_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -36,7 +36,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
@@ -88,6 +88,6 @@
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp"/>
   </compounddef>
 </doxygen>

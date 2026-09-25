@@ -2,19 +2,21 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="PlotSeries_8hpp" kind="file" language="C++">
     <compoundname>PlotSeries.hpp</compoundname>
-    <includes refid="Axis_8hpp" local="yes">axis/Axis.hpp</includes>
+    <includes refid="Axis_8hpp" local="yes">QAccelPlot/axis/Axis.hpp</includes>
     <includes local="no">QPointer</includes>
     <includes local="no">QQuickItem</includes>
     <includes local="no">QRectF</includes>
     <includes local="no">QString</includes>
     <includes local="no">QtQml/qqmlregistration.h</includes>
     <includes local="no">limits</includes>
-    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot.hpp</includedby>
-    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/series/LineCurve.hpp</includedby>
-    <includedby refid="RectangleList_8hpp" local="yes">QAccelPlot/src/shapes/RectangleList.hpp</includedby>
+    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot/QAccelPlot.hpp</includedby>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
+    <includedby refid="PointCloud_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/PointCloud.hpp</includedby>
+    <includedby refid="SeriesMarker_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp</includedby>
+    <includedby refid="RectangleList_8hpp" local="yes">QAccelPlot/src/QAccelPlot/shapes/RectangleList.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>QAccelPlot/src/series/PlotSeries.hpp</label>
+        <label>QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp</label>
         <link refid="PlotSeries_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -64,7 +66,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/Axis.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointer&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QQuickItem&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -93,64 +95,87 @@
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" kindref="member">legendSymbol</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" kindref="member">legendSymbol</ref><sp/>WRITE<sp/>setLegendSymbol<sp/>NOTIFY<sp/>legendSymbolChanged)</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>{<sp/>Line,<sp/>Fill<sp/>};</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref>)</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" kindref="member">xAxis</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setXAxis(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis);</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" kindref="member">yAxis</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setYAxis(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" kindref="member">plotRect</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" kindref="member">setPlotRect</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QRectF&amp;<sp/>rect);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" kindref="member">legendSymbol</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setLegendSymbol(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>symbol);</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal">signals:</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>nameChanged();</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>xAxisChanged();</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>yAxisChanged();</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plotRectChanged();</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>legendSymbolChanged();</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" kindref="member">xDataRangeChanged</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" kindref="member">yDataRangeChanged</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>{<sp/>Line,<sp/>Fill,<sp/>Marker<sp/>};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">MarkerShape</ref><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a6adf97f83acf6453d4a6a4b1070f3754" kindref="member">None</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a30954d90085f6eaaf5817917fc5fecb3" kindref="member">Circle</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619aceb46ca115d05c51aa5a16a8867c3304" kindref="member">Square</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a8f7671185d590914ac21c7511767b699" kindref="member">Diamond</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619acc8b4d708cd6657a142e0ed0861e22e5" kindref="member">TriangleUp</ref>,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a84d5dab02246a5db0018fac6251bfeb8" kindref="member">TriangleDown</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619ae5df3626957bbdaa6de4e3e7190b36c1" kindref="member">TriangleLeft</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a9bb547f4cfe205fae637ac29a274f591" kindref="member">TriangleRight</ref>,<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619ae76b449b9fc8536af7557ffa6321d269" kindref="member">Cross</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a727d820d1768aaa0b26040a70fc1028f" kindref="member">XCross</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a88e50bb9a298238d324d31ffb592bcc1" kindref="member">HLine</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a942204a00bd4ab062d02663e70ff3762" kindref="member">VLine</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a26f93e6e68e28a698377e941cb59f29a" kindref="member">Star</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a9c8ae0945940e5baec5a93c4c8ec869e" kindref="member">Asterisk</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a08822b3ae4e2aede0afe08abe600e9c0" kindref="member">Pixel</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a125e13c182697c5a282e4de6d7999eb0" kindref="member">Hexagon</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619a09fcf42bcab804addc759acce8ec9051" kindref="member">Pentagon</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">MarkerShape</ref>)</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" kindref="member">setDataRanges</ref>(qreal<sp/>xMin,<sp/>qreal<sp/>xMax,<sp/>qreal<sp/>yMin,<sp/>qreal<sp/>yMax);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" kindref="member">setXDataRange</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" kindref="member">setYDataRange</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" kindref="member">extendXDataRange</ref>(qreal<sp/>x);</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" kindref="member">extendYDataRange</ref>(qreal<sp/>y);</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" kindref="member">clearDataRanges</ref>();</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" kindref="member">clearXDataRange</ref>();</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" kindref="member">clearYDataRange</ref>();</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" kindref="member">onAxisScaleChanged</ref>();</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onAxisRangeChanged();</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reportXDataRangeToAxis()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reportYDataRangeToAxis()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>name_;</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;Axis&gt;<sp/>xAxis_;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;Axis&gt;<sp/>yAxis_;</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/>plotRect_;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>legendSymbol_{LegendSymbol::Line};</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastXMin_{std::numeric_limits&lt;qreal&gt;::max()};</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastXMax_{std::numeric_limits&lt;qreal&gt;::lowest()};</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastYMin_{std::numeric_limits&lt;qreal&gt;::max()};</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastYMax_{std::numeric_limits&lt;qreal&gt;::lowest()};</highlight></codeline>
-<codeline lineno="123"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" kindref="member">xAxis</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setXAxis(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" kindref="member">yAxis</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setYAxis(<ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref>*<sp/>axis);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" kindref="member">plotRect</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" kindref="member">setPlotRect</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QRectF&amp;<sp/>rect);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" kindref="member">legendSymbol</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setLegendSymbol(<ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>symbol);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>nameChanged();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>xAxisChanged();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>yAxisChanged();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plotRectChanged();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>legendSymbolChanged();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" kindref="member">xDataRangeChanged</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" kindref="member">yDataRangeChanged</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" kindref="member">setDataRanges</ref>(qreal<sp/>xMin,<sp/>qreal<sp/>xMax,<sp/>qreal<sp/>yMin,<sp/>qreal<sp/>yMax);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" kindref="member">setXDataRange</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" kindref="member">setYDataRange</ref>(qreal<sp/>min,<sp/>qreal<sp/>max);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" kindref="member">extendXDataRange</ref>(qreal<sp/>x);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" kindref="member">extendYDataRange</ref>(qreal<sp/>y);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" kindref="member">clearDataRanges</ref>();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" kindref="member">clearXDataRange</ref>();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" kindref="member">clearYDataRange</ref>();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" kindref="member">onAxisScaleChanged</ref>();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ab1e36d6bbcc6333fa2fed85a7198d4f0" kindref="member">resolvePlotRect</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onAxisRangeChanged();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reportXDataRangeToAxis()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reportYDataRangeToAxis()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>name_;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;Axis&gt;<sp/>xAxis_;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;Axis&gt;<sp/>yAxis_;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/>plotRect_;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref><sp/>legendSymbol_{LegendSymbol::Line};</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastXMin_{std::numeric_limits&lt;qreal&gt;::max()};</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastXMax_{std::numeric_limits&lt;qreal&gt;::lowest()};</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastYMin_{std::numeric_limits&lt;qreal&gt;::max()};</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>lastYMax_{std::numeric_limits&lt;qreal&gt;::lowest()};</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="QAccelPlot/src/series/PlotSeries.hpp"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp"/>
   </compounddef>
 </doxygen>

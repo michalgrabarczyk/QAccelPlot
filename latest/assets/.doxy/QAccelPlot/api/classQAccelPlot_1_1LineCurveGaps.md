@@ -216,5 +216,5 @@ void QAccelPlot::LineCurveGaps::setNanMode (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/LineCurveGaps.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp`
 

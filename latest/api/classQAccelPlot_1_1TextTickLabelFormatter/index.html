@@ -23,7 +23,7 @@
     
     
       
-        <title>Class QAccelPlot::TextTickLabelFormatter - QAccelPlot v0.2.0 Documentation</title>
+        <title>Class QAccelPlot::TextTickLabelFormatter - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -75,7 +75,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -127,7 +127,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +141,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -265,13 +265,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -434,6 +434,8 @@
       
         
           
+        
+      
         
       
         
@@ -659,6 +661,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1469,6 +1499,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-format"><strong>format</strong></a> (qreal value, qreal tickStep) const<br><em>Returns the display string for</em> <em>value</em> <em>at the given__tickStep</em> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-formatlogtick"><strong>formatLogTick</strong></a> (qreal value) const<br><em>Returns the display string for a major tick at</em> <em>value</em> <em>on a logarithmic axis.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-setticklabel"><strong>setTickLabel</strong></a> (const QJSValue &amp; tickLabel) <br><em>Sets the JavaScript override callback to</em> <em>tickLabel</em> <em>.</em></td>
 </tr>
@@ -1506,6 +1540,10 @@
 <tr>
 <td style="text-align: right;">virtual QString</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformat"><strong>doFormat</strong></a> (qreal value, qreal tickStep) const = 0<br><em>Subclass entry point — returns the formatted label for</em> <em>value</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual QString</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1TickLabelFormatter/#function-doformatlogtick"><strong>doFormatLogTick</strong></a> (qreal value) const<br><em>Subclass entry point for log-scale major ticks — returns the label for</em> <em>value</em> <em>.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1558,7 +1596,7 @@
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/formatters/TextTickLabelFormatter.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/formatters/TextTickLabelFormatter.hpp</code></p>
 
 
 

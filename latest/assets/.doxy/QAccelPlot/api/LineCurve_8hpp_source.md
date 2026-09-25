@@ -2,7 +2,7 @@
 
 # File LineCurve.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md) **>** [**LineCurve.hpp**](LineCurve_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**LineCurve.hpp**](LineCurve_8hpp.md)
 
 [Go to the documentation of this file](LineCurve_8hpp.md)
 
@@ -17,16 +17,17 @@
 //
 #pragma once
 
-#include "effects/GradientColorTypes.hpp"
-#include "effects/LineCurveEffect.hpp"
-#include "linestyles/SolidLine.hpp"
-#include "renderers/LineCurveLineRenderer.hpp"
-#include "renderers/LineCurvePointRenderer.hpp"
-#include "series/LineCurveGaps.hpp"
-#include "series/LineCurveVertexCache.hpp"
-#include "series/PlotSeries.hpp"
-#include "theme/ColorPalette.hpp"
-#include "transitions/DataTransition.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/LineCurveEffect.hpp"
+#include "QAccelPlot/linestyles/SolidLine.hpp"
+#include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
+#include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
+#include "QAccelPlot/series/LineCurveGaps.hpp"
+#include "QAccelPlot/series/LineCurveVertexCache.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/SeriesMarker.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QPointF>
 #include <QPointer>
@@ -47,18 +48,13 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
-    Q_PROPERTY(PointShape markerShape READ markerShape WRITE setMarkerShape NOTIFY markerShapeChanged)
-    Q_PROPERTY(qreal markerSize READ markerSize WRITE setMarkerSize NOTIFY markerSizeChanged)
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(QQmlListProperty<LineCurveEffect> effects READ effects)
     Q_PROPERTY(LineCurveGaps* gaps READ gaps CONSTANT)
+    Q_PROPERTY(SeriesMarker* marker READ marker CONSTANT)
 
 public:
-    enum class PointShape { None, Circle, Square, Diamond, TriangleUp, TriangleDown, Cross };
-    Q_ENUM(PointShape)
-
-    
     explicit LineCurve(QQuickItem* parent = nullptr);
 
     QColor color() const;
@@ -75,12 +71,6 @@ public:
     LineStyle* lineStyle() const;
     void setLineStyle(LineStyle* style);
 
-    PointShape markerShape() const;
-    void setMarkerShape(PointShape shape);
-
-    qreal markerSize() const;
-    void setMarkerSize(qreal r);
-
     bool antialiasingEnabled() const;
     void setAntialiasingEnabled(bool enabled);
 
@@ -91,10 +81,13 @@ public:
 
     LineCurveGaps* gaps() const;
 
+    SeriesMarker* marker() const;
+
     Q_INVOKABLE void appendData(qreal x, qreal y);
     Q_INVOKABLE void clearData();
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
+    void setData(std::vector<double>&& xyInterleaved, int pointCount);
     void setDataF(const float* xyInterleaved, int pointCount);
     void setDataF(std::vector<float>&& data, int pointCount);
     void setDataFNoRange(std::vector<float>&& data, int pointCount);
@@ -102,6 +95,7 @@ public:
     void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
+    void postData(std::vector<double>&& xyInterleaved, int pointCount);
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
@@ -116,15 +110,15 @@ signals:
     void hoveredChanged();
     void transitionChanged();
     void lineStyleChanged();
-    void markerShapeChanged();
-    void markerSizeChanged();
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
 
 private:
+    void onTransitionDestroyed();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
+    void onMarkerShapeChanged();
 
     static void appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveEffect* effect);
     static qsizetype effectCount(QQmlListProperty<LineCurveEffect>* list);
@@ -146,6 +140,7 @@ private:
     void applyNewData(std::vector<double>&& newData, int newPointCount);
     bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
+    bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);
     void promoteFloatDataToDouble();
     void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
@@ -181,14 +176,13 @@ private:
     bool renderOriginXSettled_{false};
     bool renderOriginYSettled_{false};
     int pointCount_{0};
-    DataTransition* transition_{nullptr};
+    QPointer<DataTransition> transition_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
-    PointShape markerShape_{PointShape::None};
-    qreal markerSize_{4.0};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
+    SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
     // True when the most recent data update computed ranges; the NoRange APIs leave
     // range management to the caller, so log-scale changes must not overwrite it.
     bool autoDataRanges_{true};

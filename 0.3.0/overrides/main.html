@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block announce %}
+{% if config.extra.docs_channel == "development" %}
+<strong>Development documentation — main branch / unreleased.</strong>
+<a href="{{ config.site_url }}">View the latest stable documentation.</a>
+{% endif %}
+{% endblock %}
+{% block extrahead %}
+{% if page and page.meta and page.meta.description %}
+<meta property="og:description" content="{{ page.meta.description }}">
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "{{ config.extra.docs_version }}",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+{% endblock %}

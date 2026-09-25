@@ -11,7 +11,7 @@
 
 
 
-[**FileList**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**AxisTicks.hpp**](AxisTicks_8hpp.md)
+[**FileList**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**AxisTicks.hpp**](AxisTicks_8hpp.md)
 
 [Go to the source code of this file](AxisTicks_8hpp_source.md)
 
@@ -99,5 +99,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/AxisTicks.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/AxisTicks.hpp`
 

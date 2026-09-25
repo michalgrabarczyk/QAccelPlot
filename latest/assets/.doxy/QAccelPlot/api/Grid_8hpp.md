@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**grid**](dir_786c72ef44ba61f7b8903e40bd644b8e.md) **>** [**Grid.hpp**](Grid_8hpp.md)
+[**FileList**](files.md) **>** [**grid**](dir_112dd686688a4740e45fb78d5fc35b31.md) **>** [**Grid.hpp**](Grid_8hpp.md)
 
 [Go to the source code of this file](Grid_8hpp_source.md)
 
 
 
-* `#include "theme/ColorPalette.hpp"`
+* `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QObject>`
 * `#include <QtQml/qqmlregistration.h>`
@@ -100,5 +100,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/grid/Grid.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/grid/Grid.hpp`
 

@@ -259,5 +259,5 @@ qreal QAccelPlot::PlotBorder::width () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/PlotBorder.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/PlotBorder.hpp`
 

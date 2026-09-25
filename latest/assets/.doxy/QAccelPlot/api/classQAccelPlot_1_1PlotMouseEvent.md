@@ -376,5 +376,5 @@ qreal QAccelPlot::PlotMouseEvent::y () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/PlotMouseEvent.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/PlotMouseEvent.hpp`
 

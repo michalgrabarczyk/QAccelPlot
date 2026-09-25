@@ -2,7 +2,7 @@
 
 # File GradientStroke.hpp
 
-[**File List**](files.md) **>** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md) **>** [**GradientStroke.hpp**](GradientStroke_8hpp.md)
+[**File List**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientStroke.hpp**](GradientStroke_8hpp.md)
 
 [Go to the documentation of this file](GradientStroke_8hpp.md)
 
@@ -17,8 +17,9 @@
 //
 #pragma once
 
-#include "effects/LineCurveEffect.hpp"
-#include "effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/LineCurveEffect.hpp"
 
 #include <QMetaObject>
 #include <QObject>
@@ -34,6 +35,7 @@ class GradientStroke : public LineCurveEffect {
     
     Q_PROPERTY(GradientDirection direction READ direction WRITE setDirection NOTIFY directionChanged)
     Q_PROPERTY(QObject* gradient READ gradient WRITE setGradient NOTIFY gradientChanged)
+    Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     Q_PROPERTY(GradientValueSource gradientValueMinSource READ gradientValueMinSource WRITE setGradientValueMinSource NOTIFY gradientValueMinSourceChanged)
     Q_PROPERTY(qreal gradientValueMin READ gradientValueMin WRITE setGradientValueMin NOTIFY gradientValueMinChanged)
     Q_PROPERTY(GradientValueSource gradientValueMaxSource READ gradientValueMaxSource WRITE setGradientValueMaxSource NOTIFY gradientValueMaxSourceChanged)
@@ -47,6 +49,9 @@ public:
 
     QObject* gradient() const;
     void setGradient(QObject* gradient);
+
+    Colormap* colormap() const;
+    void setColormap(Colormap* colormap);
 
     GradientValueSource gradientValueMinSource() const;
     void setGradientValueMinSource(GradientValueSource source);
@@ -65,6 +70,7 @@ public:
 signals:
     void directionChanged();
     void gradientChanged();
+    void colormapChanged();
     void gradientValueMinSourceChanged();
     void gradientValueMinChanged();
     void gradientValueMaxSourceChanged();
@@ -73,11 +79,15 @@ signals:
 private:
     void reconnectGradientSignals();
     void disconnectGradientSignals();
-    void onGradientObjectChanged();
+    Q_SLOT void onGradientObjectChanged();
+    void reconnectColormapSignals();
+    void disconnectColormapSignals();
 
     GradientDirection direction_{GradientDirection::Horizontal};
     QObject* gradient_{nullptr};
     QVector<QMetaObject::Connection> gradientConnections_;
+    Colormap* colormap_{nullptr};
+    QVector<QMetaObject::Connection> colormapConnections_;
     GradientValueSource gradientValueMinSource_{GradientValueSource::DataRange};
     qreal gradientValueMin_{0.0};
     GradientValueSource gradientValueMaxSource_{GradientValueSource::DataRange};

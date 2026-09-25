@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SeriesMarker_8hpp" kind="file" language="C++">
+    <compoundname>SeriesMarker.hpp</compoundname>
+    <includes refid="PlotSeries_8hpp" local="yes">QAccelPlot/series/PlotSeries.hpp</includes>
+    <includes local="no">QObject</includes>
+    <includedby refid="LineCurve_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/LineCurve.hpp</includedby>
+    <includedby refid="PointCloud_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/PointCloud.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp</label>
+        <link refid="SeriesMarker_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1SeriesMarker" prot="public">QAccelPlot::SeriesMarker</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/series/PlotSeries.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classQAccelPlot_1_1SeriesMarker" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kindref="member">shape</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kindref="member">shape</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a476615dd293b9cf9390dbc87b4a196ac" kindref="member">setShape</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5f9660ed56b72f67d8a949f23c987b6c" kindref="member">shapeChanged</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kindref="member">size</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kindref="member">size</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a13d63615c84553e42607fa7791dca791" kindref="member">setSize</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a25b7f4333251a158a7e7ceaa54ecfb5b" kindref="member">sizeChanged</ref>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" kindref="member">filled</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" kindref="member">filled</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a339813c5992afab91afd269e98d68f9a" kindref="member">setFilled</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a12dd2303e6e8a7fc896d80ce9afe0abe" kindref="member">filledChanged</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" kindref="member">strokeWidth</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" kindref="member">strokeWidth</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ad1f7b3402500ad1070fde5d085fd8956" kindref="member">setStrokeWidth</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a7cf160223a9c210ce367708466e2059c" kindref="member">strokeWidthChanged</ref>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kindref="member">NoneShape</ref><sp/>{<sp/>Accepted,<sp/>Rejected<sp/>};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesMarker" kindref="compound">SeriesMarker</ref>(<ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kindref="member">shape</ref>,<sp/>qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kindref="member">size</ref>,<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kindref="member">NoneShape</ref><sp/>noneShape,<sp/>QObject*<sp/>parent);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kindref="member">shape</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a476615dd293b9cf9390dbc87b4a196ac" kindref="member">setShape</ref>(<ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ac548c78f9c0be75b6502646a667adfe9" kindref="member">shape</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kindref="member">size</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a13d63615c84553e42607fa7791dca791" kindref="member">setSize</ref>(qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ab5a3599b69fd4d255271d00c6df80b3c" kindref="member">size</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" kindref="member">filled</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a339813c5992afab91afd269e98d68f9a" kindref="member">setFilled</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a878db6250b53645878188f63496c7383" kindref="member">filled</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5d17fef6fda199e26c9b81e795f9c8bb" kindref="member">strokeWidth</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1ad1f7b3402500ad1070fde5d085fd8956" kindref="member">setStrokeWidth</ref>(qreal<sp/>width);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5f9660ed56b72f67d8a949f23c987b6c" kindref="member">shapeChanged</ref>();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a25b7f4333251a158a7e7ceaa54ecfb5b" kindref="member">sizeChanged</ref>();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a12dd2303e6e8a7fc896d80ce9afe0abe" kindref="member">filledChanged</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a7cf160223a9c210ce367708466e2059c" kindref="member">strokeWidthChanged</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" kindref="member">PlotSeries::MarkerShape</ref><sp/>shape_;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>size_;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesMarker_1a5ca5f50687b737db61497817c6ac3f9b" kindref="member">NoneShape</ref><sp/>noneShape_;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>filled_{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>strokeWidth_{1.0};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/series/SeriesMarker.hpp"/>
+  </compounddef>
+</doxygen>

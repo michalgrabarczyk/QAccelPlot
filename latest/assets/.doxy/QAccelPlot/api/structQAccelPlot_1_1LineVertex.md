@@ -205,5 +205,5 @@ float QAccelPlot::LineVertex::side;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/renderers/LineCurveLineRenderer.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp`
 

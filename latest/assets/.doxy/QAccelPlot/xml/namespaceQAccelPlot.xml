@@ -7,6 +7,8 @@
     <innerclass refid="classQAccelPlot_1_1AxisTicker" prot="public">QAccelPlot::AxisTicker</innerclass>
     <innerclass refid="classQAccelPlot_1_1AxisTickPainter" prot="public">QAccelPlot::AxisTickPainter</innerclass>
     <innerclass refid="structQAccelPlot_1_1AxisTicks" prot="public">QAccelPlot::AxisTicks</innerclass>
+    <innerclass refid="classQAccelPlot_1_1ColorBar" prot="public">QAccelPlot::ColorBar</innerclass>
+    <innerclass refid="classQAccelPlot_1_1Colormap" prot="public">QAccelPlot::Colormap</innerclass>
     <innerclass refid="classQAccelPlot_1_1ColorPalette" prot="public">QAccelPlot::ColorPalette</innerclass>
     <innerclass refid="classQAccelPlot_1_1Colors" prot="public">QAccelPlot::Colors</innerclass>
     <innerclass refid="structQAccelPlot_1_1CurveChunk" prot="public">QAccelPlot::CurveChunk</innerclass>
@@ -39,20 +41,23 @@
     <innerclass refid="classQAccelPlot_1_1LineMaterial" prot="public">QAccelPlot::LineMaterial</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineStyle" prot="public">QAccelPlot::LineStyle</innerclass>
     <innerclass refid="structQAccelPlot_1_1LineVertex" prot="public">QAccelPlot::LineVertex</innerclass>
-    <innerclass refid="classQAccelPlot_1_1LogTickLabelFormatter" prot="public">QAccelPlot::LogTickLabelFormatter</innerclass>
     <innerclass refid="classQAccelPlot_1_1MorphTransition" prot="public">QAccelPlot::MorphTransition</innerclass>
     <innerclass refid="classQAccelPlot_1_1NoLine" prot="public">QAccelPlot::NoLine</innerclass>
     <innerclass refid="classQAccelPlot_1_1NumericTickLabelFormatter" prot="public">QAccelPlot::NumericTickLabelFormatter</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotBorder" prot="public">QAccelPlot::PlotBorder</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotMouseEvent" prot="public">QAccelPlot::PlotMouseEvent</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotSeries" prot="public">QAccelPlot::PlotSeries</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointCloud" prot="public">QAccelPlot::PointCloud</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointCloudMaterial" prot="public">QAccelPlot::PointCloudMaterial</innerclass>
     <innerclass refid="structQAccelPlot_1_1PointCurveRenderParams" prot="public">QAccelPlot::PointCurveRenderParams</innerclass>
     <innerclass refid="classQAccelPlot_1_1PointMaterial" prot="public">QAccelPlot::PointMaterial</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PointSpatialIndex" prot="public">QAccelPlot::PointSpatialIndex</innerclass>
     <innerclass refid="structQAccelPlot_1_1PointVertex" prot="public">QAccelPlot::PointVertex</innerclass>
     <innerclass refid="classQAccelPlot_1_1QAccelPlot" prot="public">QAccelPlot::QAccelPlot</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectangleList" prot="public">QAccelPlot::RectangleList</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectMaterial" prot="public">QAccelPlot::RectMaterial</innerclass>
     <innerclass refid="structQAccelPlot_1_1SampleRun" prot="public">QAccelPlot::SampleRun</innerclass>
+    <innerclass refid="classQAccelPlot_1_1SeriesMarker" prot="public">QAccelPlot::SeriesMarker</innerclass>
     <innerclass refid="classQAccelPlot_1_1SolidLine" prot="public">QAccelPlot::SolidLine</innerclass>
     <innerclass refid="classQAccelPlot_1_1SpatialGrid" prot="public">QAccelPlot::SpatialGrid</innerclass>
     <innerclass refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public">QAccelPlot::TextTickLabelFormatter</innerclass>
@@ -76,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="31" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="31" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a3128c25839dcba34322ff28cc4883a8f" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaselineNS::Mode</ref></type>
@@ -90,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="46" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="46" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSourceNS::Source</ref></type>
@@ -104,7 +109,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientColorTypes.hpp" line="61" column="1" bodyfile="QAccelPlot/src/effects/GradientColorTypes.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="61" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="LineCurveGaps_8hpp_1a11817d21a4214c355f999476b958e020" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapModeNS::Mode</ref></type>
@@ -118,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/series/LineCurveGaps.hpp" line="28" column="1" bodyfile="QAccelPlot/src/series/LineCurveGaps.hpp" bodystart="28" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/LineCurveGaps.hpp" bodystart="28" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
@@ -136,7 +141,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/linestyles/LineStyle.hpp" line="16" column="22" bodyfile="QAccelPlot/src/linestyles/LineStyle.hpp" bodystart="16" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/linestyles/LineStyle.hpp" line="16" column="22" bodyfile="QAccelPlot/src/QAccelPlot/linestyles/LineStyle.hpp" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="MathUtils_8hpp_1a5d7d51876775f2a846a29ae3032b7f1e" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr double</type>
@@ -151,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/MathUtils.hpp" line="20" column="25" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="20" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="20" column="25" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -185,31 +190,113 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" line="21" column="14" bodyfile="QAccelPlot/src/effects/GradientCoordinateUtils.hpp" bodystart="21" bodyend="27"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" line="21" column="14" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" bodystart="21" bodyend="27"/>
       </memberdef>
-      <memberdef kind="function" id="GradientUtils_8hpp_1a0f5087bac1074c27bc00a3d8d5004090" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1ab02a40a9e484dff0dc95ff41ab4cb05a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Payload</type>
+          </param>
+        </templateparamlist>
         <type>void</type>
-        <definition>void QAccelPlot::appendStopFromObject</definition>
-        <argsstring>(std::vector&lt; GradientStopData &gt; &amp;outStops, QObject *stopObject)</argsstring>
-        <name>appendStopFromObject</name>
-        <qualifiedname>QAccelPlot::appendStopFromObject</qualifiedname>
+        <definition>void QAccelPlot::resolveGradientValueRange</definition>
+        <argsstring>(Payload &amp;payload, const qreal dataMin, const qreal dataMax)</argsstring>
+        <name>resolveGradientValueRange</name>
+        <qualifiedname>QAccelPlot::resolveGradientValueRange</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt; &amp;</type>
-          <declname>outStops</declname>
+          <type>Payload &amp;</type>
+          <declname>payload</declname>
         </param>
         <param>
-          <type>QObject *</type>
-          <declname>stopObject</declname>
+          <type>const qreal</type>
+          <declname>dataMin</declname>
+        </param>
+        <param>
+          <type>const qreal</type>
+          <declname>dataMax</declname>
         </param>
         <briefdescription>
-<para>Reads a QML gradient stop object and appends it to <emphasis>outStops</emphasis>. </para>
+<para>Fills each unset gradient value bound of <emphasis>payload</emphasis> from [<emphasis>dataMin</emphasis>, <emphasis>dataMax</emphasis>]. </para>
         </briefdescription>
         <detaileddescription>
-<para>The stop object is expected to expose <computeroutput>position</computeroutput> (real) and <computeroutput>color</computeroutput> (color) properties via the QML meta-object system. </para>
+<para>Bounds resolve independently, so a <computeroutput>Fixed</computeroutput> bound is kept when the other bound uses <computeroutput>DataRange</computeroutput>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/effects/GradientUtils.hpp" line="25" column="13" bodyfile="QAccelPlot/src/effects/GradientUtils.hpp" bodystart="25" bodyend="48"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" line="33" column="18" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientCoordinateUtils.hpp" bodystart="33" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientUtils_8hpp_1a01559e11c48716fb64ab60d66528b16f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readGradientStops</definition>
+        <argsstring>(QObject *gradient)</argsstring>
+        <name>readGradientStops</name>
+        <qualifiedname>QAccelPlot::readGradientStops</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Reads the stops of a QML <computeroutput>Gradient</computeroutput> into position order, covering the full [0, 1] range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Stops are read from the <computeroutput>stops</computeroutput> list property, falling back to child objects. A single stop is duplicated, and the first and last colors are extended to positions 0 and 1. Returns an empty vector when <emphasis>gradient</emphasis> is null or has no valid stops.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="29" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="29" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientUtils_8hpp_1adb5493efd24befa81d92387aa6a20e41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readGradientStopList</definition>
+        <argsstring>(const QVariantList &amp;stopObjects)</argsstring>
+        <name>readGradientStopList</name>
+        <qualifiedname>QAccelPlot::readGradientStopList</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>stopObjects</declname>
+        </param>
+        <briefdescription>
+<para>Reads a list of stop objects, each exposing <computeroutput>position</computeroutput> and <computeroutput>color</computeroutput>, into position order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Normalized the same way as <computeroutput>readGradientStops()</computeroutput>: a single stop is duplicated and the end colors are extended to 0 and 1. Entries that are not stop-like are skipped.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="37" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="37" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="GradientUtils_8hpp_1aa9c81c1f9c0977be0c389df9d451b47d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
+        <definition>std::vector&lt; GradientStopData &gt; QAccelPlot::readEffectStops</definition>
+        <argsstring>(const Colormap *colormap, QObject *gradient)</argsstring>
+        <name>readEffectStops</name>
+        <qualifiedname>QAccelPlot::readEffectStops</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
+          <declname>colormap</declname>
+        </param>
+        <param>
+          <type>QObject *</type>
+          <declname>gradient</declname>
+        </param>
+        <briefdescription>
+<para>Returns the color stops of a gradient effect: the <emphasis>colormap</emphasis> ramp when set, otherwise the stops of <emphasis>gradient</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns an empty vector when both are null.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1GradientFill" kindref="compound">GradientFill</ref>, <ref refid="classQAccelPlot_1_1GradientStroke" kindref="compound">GradientStroke</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="45" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="45" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -241,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="33" bodyend="46"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="33" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -263,7 +350,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/MathUtils.hpp" line="57" column="14" bodyfile="QAccelPlot/src/MathUtils.hpp" bodystart="57" bodyend="60"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="57" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="57" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -282,13 +369,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/renderers/CurveRendererParams.hpp" line="65" column="13" bodyfile="QAccelPlot/src/renderers/CurveRendererParams.hpp" bodystart="65" bodyend="68"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" line="65" column="13" bodyfile="QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp" bodystart="65" bodyend="68"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/annotations/DataAnchor.hpp" line="21" column="1"/>
+    <location file="QAccelPlot/src/QAccelPlot/annotations/DataAnchor.hpp" line="21" column="1"/>
   </compounddef>
 </doxygen>

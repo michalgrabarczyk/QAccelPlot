@@ -2,7 +2,7 @@
 
 # File GradientUtils.hpp
 
-[**File List**](files.md) **>** [**effects**](dir_a4c3deeda37ae6198148ecdf2e43fc36.md) **>** [**GradientUtils.hpp**](GradientUtils_8hpp.md)
+[**File List**](files.md) **>** [**effects**](dir_2cb1ffa6338b0172fd78b92843e0e53d.md) **>** [**GradientUtils.hpp**](GradientUtils_8hpp.md)
 
 [Go to the documentation of this file](GradientUtils_8hpp.md)
 
@@ -17,41 +17,23 @@
 //
 #pragma once
 
-#include "effects/GradientColorTypes.hpp"
+#include "QAccelPlot/effects/GradientColorTypes.hpp"
 
-#include <QColor>
-#include <QObject>
-#include <QQmlProperty>
+#include <QVariantList>
 
-#include <algorithm>
 #include <vector>
+
+class QObject;
 
 namespace QAccelPlot {
 
-inline void appendStopFromObject(std::vector<GradientStopData>& outStops, QObject* stopObject)
-{
-    if (!stopObject) {
-        return;
-    }
+class Colormap;
 
-    const auto positionVariant = QQmlProperty::read(stopObject, QStringLiteral("position"));
-    const auto colorVariant = QQmlProperty::read(stopObject, QStringLiteral("color"));
+std::vector<GradientStopData> readGradientStops(QObject* gradient);
 
-    if (!positionVariant.isValid() || !colorVariant.isValid()) {
-        return;
-    }
+std::vector<GradientStopData> readGradientStopList(const QVariantList& stopObjects);
 
-    const auto color = colorVariant.value<QColor>();
-    if (!color.isValid()) {
-        return;
-    }
-
-    const auto unclampedPosition = static_cast<float>(positionVariant.toReal());
-    auto stopData = GradientStopData{};
-    stopData.position = std::clamp(unclampedPosition, 0.0f, 1.0f);
-    stopData.color = color;
-    outStops.push_back(stopData);
-}
+std::vector<GradientStopData> readEffectStops(const Colormap* colormap, QObject* gradient);
 
 } // namespace QAccelPlot
 ```

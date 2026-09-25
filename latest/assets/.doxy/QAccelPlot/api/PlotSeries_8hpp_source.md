@@ -2,7 +2,7 @@
 
 # File PlotSeries.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**series**](dir_d1bb17d10be635dda10fdf13c9e6bbc5.md) **>** [**PlotSeries.hpp**](PlotSeries_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**series**](dir_70064bc2bead69da871bd372e93dce80.md) **>** [**PlotSeries.hpp**](PlotSeries_8hpp.md)
 
 [Go to the documentation of this file](PlotSeries_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "axis/Axis.hpp"
+#include "QAccelPlot/axis/Axis.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -46,8 +46,30 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
 
 public:
-    enum class LegendSymbol { Line, Fill };
+    enum class LegendSymbol { Line, Fill, Marker };
     Q_ENUM(LegendSymbol)
+
+    
+    enum class MarkerShape {
+        None,          
+        Circle,        
+        Square,        
+        Diamond,       
+        TriangleUp,    
+        TriangleDown,  
+        TriangleLeft,  
+        TriangleRight, 
+        Cross,         
+        XCross,        
+        HLine,         
+        VLine,         
+        Star,          
+        Asterisk,      
+        Pixel,         
+        Hexagon,       
+        Pentagon       
+    };
+    Q_ENUM(MarkerShape)
 
     explicit PlotSeries(QQuickItem* parent = nullptr);
 
@@ -85,6 +107,7 @@ protected:
     void clearXDataRange();
     void clearYDataRange();
     virtual void onAxisScaleChanged();
+    QRectF resolvePlotRect();
 
 private:
     void onAxisRangeChanged();

@@ -2,7 +2,7 @@
 
 # File Axis.hpp
 
-[**File List**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**Axis.hpp**](Axis_8hpp.md)
+[**File List**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**Axis.hpp**](Axis_8hpp.md)
 
 [Go to the documentation of this file](Axis_8hpp.md)
 
@@ -17,9 +17,9 @@
 //
 #pragma once
 
-#include "axis/AxisTicker.hpp"
-#include "axis/AxisTicks.hpp"
-#include "theme/ColorPalette.hpp"
+#include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/axis/AxisTicks.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QFont>

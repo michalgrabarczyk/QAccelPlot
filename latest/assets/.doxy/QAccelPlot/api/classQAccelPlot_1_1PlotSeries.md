@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::RectangleList](classQAccelPlot_1_1RectangleList.md)
+Inherited by the following classes: [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleList](classQAccelPlot_1_1RectangleList.md)
 
 
 ## Inheritance diagram
@@ -39,6 +39,10 @@ flowchart TB
   classQAccelPlot_1_1LineCurve["QAccelPlot::LineCurve"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1LineCurve
   click classQAccelPlot_1_1LineCurve "../classQAccelPlot_1_1LineCurve/" "Open QAccelPlot::LineCurve"
+
+  classQAccelPlot_1_1PointCloud["QAccelPlot::PointCloud"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
+  click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
   classQAccelPlot_1_1RectangleList["QAccelPlot::RectangleList"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleList
@@ -62,6 +66,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | enum  | [**LegendSymbol**](#enum-legendsymbol)  <br>_Supported default legend symbols._  |
+| enum  | [**MarkerShape**](#enum-markershape)  <br>_Marker shapes shared by every series that draws markers._  |
 
 
 
@@ -151,6 +156,7 @@ flowchart TB
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
+|  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () <br>_Returns the plot area to render into, adopting it from the parent plot if needed._  |
 |  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
 |  void | [**setXDataRange**](#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
 |  void | [**setYDataRange**](#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
@@ -166,7 +172,7 @@ flowchart TB
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**RectangleList**](classQAccelPlot_1_1RectangleList.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleList**](classQAccelPlot_1_1RectangleList.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
 
 
 
@@ -183,12 +189,54 @@ _Supported default legend symbols._
 ```C++
 enum QAccelPlot::PlotSeries::LegendSymbol {
     Line,
-    Fill
+    Fill,
+    Marker
 };
 ```
 
 
 
+`Line` draws the series line style and marker, `Fill` a filled swatch, and `Marker` only the series marker shape (used by unconnected series such as `PointCloud`). 
+
+
+        
+
+<hr>
+
+
+
+
+### enum MarkerShape {#enum-markershape}
+
+_Marker shapes shared by every series that draws markers._ 
+```C++
+enum QAccelPlot::PlotSeries::MarkerShape {
+    None,
+    Circle,
+    Square,
+    Diamond,
+    TriangleUp,
+    TriangleDown,
+    TriangleLeft,
+    TriangleRight,
+    Cross,
+    XCross,
+    HLine,
+    VLine,
+    Star,
+    Asterisk,
+    Pixel,
+    Hexagon,
+    Pentagon
+};
+```
+
+
+
+Every shape except `Pixel` fits within a square whose half-width is the marker size. The shaders select a shape by this value minus one, so append new shapes at the end and never reorder or insert. Series that always draw markers, such as `PointCloud`, do not accept `None`. 
+
+
+        
 
 <hr>
 ## Public Properties Documentation
@@ -647,6 +695,25 @@ Log scale changes which samples are valid, so series that apply the invalid-samp
 
 
 
+### function resolvePlotRect {#function-resolveplotrect}
+
+_Returns the plot area to render into, adopting it from the parent plot if needed._ 
+```C++
+QRectF QAccelPlot::PlotSeries::resolvePlotRect () 
+```
+
+
+
+Normally `plotRect` has already been assigned, and this just returns it. A series constructed in C++ with the plot as its parent is added before its own constructor runs, so the plot cannot assign `plotRect` at that point; calling this from `updatePaintNode` adopts the plot area lazily. Without a parent plot, returns the current size. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function setDataRanges {#function-setdataranges}
 
 _Reports this series' data extents to its bound axes._ 
@@ -701,5 +768,5 @@ void QAccelPlot::PlotSeries::setYDataRange (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/PlotSeries.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp`
 

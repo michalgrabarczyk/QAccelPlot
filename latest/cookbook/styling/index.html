@@ -27,7 +27,7 @@
     
     
       
-        <title>Styling and transitions - QAccelPlot v0.2.0 Documentation</title>
+        <title>Styling and transitions - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -442,6 +442,8 @@
       
         
           
+        
+      
         
       
         
@@ -713,6 +715,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marker-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marker shapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gradient-stroke-and-fill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -758,6 +771,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1204,6 +1245,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marker-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marker shapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gradient-stroke-and-fill" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1272,35 +1324,89 @@ module with an alias to keep <code>Colors</code> out of the unqualified namespac
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">lineStyle:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DashLine</span> <span class="p">{</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">pattern:</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">}</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">markerShape:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span><span class="p">.</span><span class="nx">Diamond</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">markerSize:</span> <span class="mi">5</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">marker.shape:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span><span class="p">.</span><span class="nx">Diamond</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">marker.size:</span> <span class="mi">5</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">antialiasingEnabled:</span> <span class="kc">true</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">antialiasingFeather:</span> <span class="mi">1</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
 </code></pre></div>
 <p>Line styles are <code>QAccelPlot.SolidLine</code>, <code>QAccelPlot.DashLine</code>, and
 <code>QAccelPlot.NoLine</code>. <code>NoLine</code> with a marker shape gives a marker-only series.
+Marker settings are grouped under <code>marker</code>: <code>shape</code>, <code>size</code>, <code>filled</code>, and
+<code>strokeWidth</code>.
 A dash pattern lists alternating on/off lengths in pixels.</p>
+<h2 id="marker-shapes">Marker shapes<a class="headerlink" href="#marker-shapes" title="Permanent link">&para;</a></h2>
+<p><code>marker.size</code> is the marker radius in pixels. Every shape fits within a square
+of that half-width.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th><code>MarkerShape</code> values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filled shapes</td>
+<td><code>Circle</code>, <code>Square</code>, <code>Diamond</code>, <code>TriangleUp</code>, <code>TriangleDown</code>, <code>TriangleLeft</code>, <code>TriangleRight</code>, <code>Pentagon</code>, <code>Hexagon</code>, <code>Star</code></td>
+</tr>
+<tr>
+<td>Line shapes</td>
+<td><code>Cross</code> (+), <code>XCross</code> (×), <code>Asterisk</code>, <code>HLine</code>, <code>VLine</code></td>
+</tr>
+<tr>
+<td>Single pixel</td>
+<td><code>Pixel</code></td>
+</tr>
+</tbody>
+</table>
+<p>Set <code>marker.filled: false</code> to draw filled shapes as outlines of
+<code>marker.strokeWidth</code> pixels. The outline lies inside the shape's edge, so hollow
+and filled markers have the same size. Line shapes and <code>Pixel</code> ignore both
+properties.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">lineStyle:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NoLine</span> <span class="p">{}</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">marker.shape:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span><span class="p">.</span><span class="nx">Circle</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">marker.size:</span> <span class="mi">4</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">marker.filled:</span> <span class="kc">false</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">marker.strokeWidth:</span> <span class="mi">1</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>Pixel</code> draws each sample as one logical pixel and ignores <code>marker.size</code> and
+anti-aliasing. Use it with a semi-transparent color for scatter plots with
+hundreds of thousands of points, where overlapping points build up density.
+Hover still detects a <code>Pixel</code> marker within 3 px.</p>
 <h2 id="gradient-stroke-and-fill">Gradient stroke and fill<a class="headerlink" href="#gradient-stroke-and-fill" title="Permanent link">&para;</a></h2>
 <p>Effects are attached through the curve's <a href="../../api/classQAccelPlot_1_1LineCurve/#property-effects-12"><code>effects</code></a> property:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFill</span> <span class="p">{</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            <span class="k">direction:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientDirection</span><span class="p">.</span><span class="nx">Vertical</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            <span class="k">baseline:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFillBaseline</span><span class="p">.</span><span class="nx">Value</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            <span class="k">baselineValue:</span> <span class="mi">0</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="k">gradientValueMinSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="k">gradientValueMin:</span> <span class="o">-</span><span class="mi">4</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="k">gradientValueMaxSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="k">gradientValueMax:</span> <span class="mi">8</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="k">opacity:</span> <span class="mf">0.65</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="k">gradient:</span> <span class="nx">Gradient</span> <span class="p">{</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"royalblue"</span> <span class="p">}</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"goldenrod"</span> <span class="p">}</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="p">}</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="p">}</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="p">]</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">effects:</span> <span class="p">[</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFill</span> <span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>            <span class="k">direction:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientDirection</span><span class="p">.</span><span class="nx">Vertical</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            <span class="k">baseline:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientFillBaseline</span><span class="p">.</span><span class="nx">Value</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            <span class="k">baselineValue:</span> <span class="mi">0</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            <span class="k">gradientValueMinSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            <span class="k">gradientValueMin:</span> <span class="o">-</span><span class="mi">4</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            <span class="k">gradientValueMaxSource:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientValueSource</span><span class="p">.</span><span class="nx">Fixed</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>            <span class="k">gradientValueMax:</span> <span class="mi">8</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>            <span class="k">opacity:</span> <span class="mf">0.65</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>            <span class="k">colormap:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span> <span class="p">{</span> <span class="k">preset:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colormap</span><span class="p">.</span><span class="nx">Viridis</span> <span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="p">}</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</code></pre></div>
+<p>Both effects take their color stops from one of two properties:</p>
+<ul>
+<li><code>colormap</code>: a <a href="../point-clouds/#color-points-by-value"><code>Colormap</code></a> preset or
+  custom ramp. Overrides <code>gradient</code> when both are set. Only the ramp is used;
+  the colormap's <code>min</code>, <code>max</code>, and <code>norm</code> are ignored.</li>
+<li><code>gradient</code>: a Qt Quick <code>Gradient</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">GradientStroke</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">gradient:</span> <span class="nx">Gradient</span> <span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"royalblue"</span> <span class="p">}</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="nx">GradientStop</span> <span class="p">{</span> <span class="k">position:</span> <span class="mi">1</span><span class="p">;</span> <span class="k">color:</span> <span class="s2">"goldenrod"</span> <span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
 </code></pre></div>
 <p>Fixed gradient bounds keep colors stable while the viewport changes. Axis- or
 data-derived bounds make colors follow the current range.</p>
@@ -1308,19 +1414,26 @@ data-derived bounds make colors follow the current range.</p>
 <p>Assign a <code>QAccelPlot.MorphTransition</code> to <a href="../../api/classQAccelPlot_1_1LineCurve/#property-transition-12"><code>transition</code></a> to
 interpolate from old to new samples, or a <code>QAccelPlot.DrawTransition</code> to reveal
 the new curve:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="kd">id: morph</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="kd">id: morph</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">duration:</span> <span class="mi">500</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
 </code></pre></div>
 <p>Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.</p>
-<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling_and_transitions"><code>examples/styling_and_transitions</code></a></p>
+<p>Complete sources:</p>
+<ul>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/theming"><code>examples/styling/theming</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/line_styles"><code>examples/styling/line_styles</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/markers"><code>examples/styling/markers</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/gradients"><code>examples/styling/gradients</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/styling/transitions"><code>examples/styling/transitions</code></a></li>
+</ul>
 
 
 

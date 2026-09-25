@@ -212,5 +212,5 @@ QAccelPlot::GradientTexture::~GradientTexture ()
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/GradientTexture.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/GradientTexture.hpp`
 

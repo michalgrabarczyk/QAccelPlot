@@ -253,5 +253,5 @@ Axis* QAccelPlot::CurveHitTestParams::yAxis;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/renderers/CurveRendererParams.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/CurveRendererParams.hpp`
 

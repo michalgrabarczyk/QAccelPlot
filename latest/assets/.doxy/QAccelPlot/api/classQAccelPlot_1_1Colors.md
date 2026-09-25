@@ -215,5 +215,5 @@ ColorPalette * QAccelPlot::Colors::light () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/theme/Colors.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/theme/Colors.hpp`
 

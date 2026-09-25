@@ -11,14 +11,14 @@
 
 
 
-[**FileList**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**AxisTicker.hpp**](AxisTicker_8hpp.md)
+[**FileList**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**AxisTicker.hpp**](AxisTicker_8hpp.md)
 
 [Go to the source code of this file](AxisTicker_8hpp_source.md)
 
 
 
-* `#include "formatters/TickLabelFormatter.hpp"`
-* `#include "theme/ColorPalette.hpp"`
+* `#include "QAccelPlot/formatters/TickLabelFormatter.hpp"`
+* `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
 * `#include <QObject>`
@@ -103,5 +103,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/AxisTicker.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/AxisTicker.hpp`
 

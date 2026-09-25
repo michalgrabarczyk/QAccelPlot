@@ -2,7 +2,7 @@
 
 # File SolidLine.hpp
 
-[**File List**](files.md) **>** [**linestyles**](dir_2a035f8043b68ba8becf10bf9401d5c5.md) **>** [**SolidLine.hpp**](SolidLine_8hpp.md)
+[**File List**](files.md) **>** [**linestyles**](dir_45c5c52b7ff7182bdf01ac21f48c7474.md) **>** [**SolidLine.hpp**](SolidLine_8hpp.md)
 
 [Go to the documentation of this file](SolidLine_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "linestyles/LineStyle.hpp"
+#include "QAccelPlot/linestyles/LineStyle.hpp"
 
 namespace QAccelPlot {
 

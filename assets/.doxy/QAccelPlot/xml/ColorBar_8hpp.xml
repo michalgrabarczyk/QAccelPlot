@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ColorBar_8hpp" kind="file" language="C++">
+    <compoundname>ColorBar.hpp</compoundname>
+    <includes refid="AxisTicker_8hpp" local="yes">QAccelPlot/axis/AxisTicker.hpp</includes>
+    <includes refid="AxisTicks_8hpp" local="yes">QAccelPlot/axis/AxisTicks.hpp</includes>
+    <includes refid="GradientColorTypes_8hpp" local="yes">QAccelPlot/effects/GradientColorTypes.hpp</includes>
+    <includes refid="PointCloud_8hpp" local="yes">QAccelPlot/series/PointCloud.hpp</includes>
+    <includes refid="ColorPalette_8hpp" local="yes">QAccelPlot/theme/ColorPalette.hpp</includes>
+    <includes local="no">QColor</includes>
+    <includes local="no">QFont</includes>
+    <includes local="no">QList</includes>
+    <includes local="no">QMetaObject</includes>
+    <includes local="no">QPointer</includes>
+    <includes local="no">QQuickPaintedItem</includes>
+    <includes local="no">vector</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp</label>
+        <link refid="ColorBar_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QFont</label>
+      </node>
+      <node id="4">
+        <label>QList</label>
+      </node>
+      <node id="5">
+        <label>QMetaObject</label>
+      </node>
+      <node id="6">
+        <label>QPointer</label>
+      </node>
+      <node id="7">
+        <label>QQuickPaintedItem</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1ColorBar" prot="public">QAccelPlot::ColorBar</innerclass>
+    <innerclass refid="structQAccelPlot_1_1ColorBar_1_1Layout" prot="private">QAccelPlot::ColorBar::Layout</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/AxisTicker.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/axis/AxisTicks.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/effects/GradientColorTypes.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/series/PointCloud.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/theme/ColorPalette.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QFont&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QList&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QMetaObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointer&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QQuickPaintedItem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classQAccelPlot_1_1ColorBar" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QQuickPaintedItem<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_NAMED_ELEMENT(<ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>*<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" kindref="member">setSeries</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" kindref="member">seriesChanged</ref>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref><sp/><ref refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" kindref="member">orientation</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" kindref="member">orientation</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" kindref="member">setOrientation</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" kindref="member">orientationChanged</ref>)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QString<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" kindref="member">setLabel</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" kindref="member">labelChanged</ref>)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QFont<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" kindref="member">labelFont</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" kindref="member">labelFont</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" kindref="member">setLabelFont</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" kindref="member">labelFontChanged</ref>)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" kindref="member">labelColor</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" kindref="member">labelColor</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" kindref="member">setLabelColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" kindref="member">labelColorChanged</ref>)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" kindref="member">labelPadding</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" kindref="member">labelPadding</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" kindref="member">setLabelPadding</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" kindref="member">labelPaddingChanged</ref>)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" kindref="member">barThickness</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" kindref="member">barThickness</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" kindref="member">setBarThickness</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" kindref="member">barThicknessChanged</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" kindref="member">borderColor</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" kindref="member">borderColor</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" kindref="member">setBorderColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" kindref="member">borderColorChanged</ref>)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" kindref="member">borderWidth</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" kindref="member">borderWidth</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" kindref="member">setBorderWidth</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" kindref="member">borderWidthChanged</ref>)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>*<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" kindref="member">ticker</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" kindref="member">ticker</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" kindref="member">Horizontal</ref>,<sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">Vertical</ref><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_ENUM(<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref>)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar" kindref="compound">ColorBar</ref>(QQuickItem*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>*<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" kindref="member">setSeries</ref>(<ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>*<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" kindref="member">series</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref><sp/><ref refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" kindref="member">orientation</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" kindref="member">setOrientation</ref>(<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref><sp/><ref refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" kindref="member">orientation</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" kindref="member">setLabel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QString&amp;<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aaaa69c6f48bf42480d87e441120e6284" kindref="member">label</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>QFont<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a7c6fd03194058aec33a9c344919ed331" kindref="member">labelFont</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" kindref="member">setLabelFont</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QFont&amp;<sp/>font);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ae22a440d4f679cc6442350e260e9620e" kindref="member">labelColor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" kindref="member">setLabelColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/>color);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1af20a353266eb0f59e85ef36f88647285" kindref="member">labelPadding</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" kindref="member">setLabelPadding</ref>(qreal<sp/>padding);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" kindref="member">barThickness</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" kindref="member">setBarThickness</ref>(qreal<sp/>thickness);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" kindref="member">borderColor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" kindref="member">setBorderColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/>color);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" kindref="member">borderWidth</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" kindref="member">setBorderWidth</ref>(qreal<sp/>width);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>*<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" kindref="member">ticker</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" kindref="member">valueToPixel</ref>(qreal<sp/>value,<sp/>qreal<sp/>length)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" kindref="member">paint</ref>(QPainter*<sp/>painter)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" kindref="member">seriesChanged</ref>();</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" kindref="member">orientationChanged</ref>();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" kindref="member">labelChanged</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" kindref="member">labelFontChanged</ref>();</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" kindref="member">labelColorChanged</ref>();</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" kindref="member">labelPaddingChanged</ref>();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" kindref="member">barThicknessChanged</ref>();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" kindref="member">borderColorChanged</ref>();</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" kindref="member">borderWidthChanged</ref>();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" kindref="member">updatePolish</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" kindref="member">geometryChange</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QRectF&amp;<sp/>newGeometry,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QRectF&amp;<sp/>oldGeometry)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Layout<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QRectF<sp/>strip;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QRectF<sp/>tickArea;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QRectF<sp/>title;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/>endInset{0.0};</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reconnectSeries();</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reconnectColormap();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>invalidate();</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>captureColormap();</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateImplicitSize();</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>Layout<sp/>computeLayout()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>endInset()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>tickLabelHeight()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>tickLabelThickness()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>titleThickness()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>titleOffset()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>paintStrip(QPainter*<sp/>painter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>paintTicks(QPainter*<sp/>painter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>paintTitle(QPainter*<sp/>painter)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>QPointer&lt;PointCloud&gt;<sp/>series_;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QMetaObject::Connection&gt;<sp/>seriesConnections_;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>QMetaObject::Connection<sp/>colormapConnection_;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref><sp/>orientation_{<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">Vertical</ref>};</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>QString<sp/>label_;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>QFont<sp/>labelFont_;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>labelColor_{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().axisLine};</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>labelPadding_{6.0};</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>barThickness_{12.0};</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>borderColor_{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().axisLine};</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>borderWidth_{1.0};</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref>*<sp/>ticker_;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Captured<sp/>on<sp/>the<sp/>GUI<sp/>thread<sp/>in<sp/>updatePolish()<sp/>and<sp/>read<sp/>by<sp/>paint(),<sp/>which<sp/>may<sp/>run<sp/>on<sp/>the<sp/>render<sp/>thread.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GradientStopData&gt;<sp/>stops_;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>valueMin_{0.0};</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>valueMax_{1.0};</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logScale_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref><sp/>ticks_;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>maxTickLabelWidth_{0.0};</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>Layout<sp/>layout_;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp"/>
+  </compounddef>
+</doxygen>

@@ -11,17 +11,18 @@
 
 
 
-[**FileList**](files.md) **>** [**axis**](dir_f07047c7c39e03c70b8bf3fe272880c9.md) **>** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)
+[**FileList**](files.md) **>** [**axis**](dir_4047c0a16b95170c37806a99233d1784.md) **>** [**AxisTickPainter.hpp**](AxisTickPainter_8hpp.md)
 
 [Go to the source code of this file](AxisTickPainter_8hpp_source.md)
 
 
 
-* `#include "axis/Axis.hpp"`
-* `#include "axis/AxisTicker.hpp"`
-* `#include "axis/AxisTicks.hpp"`
+* `#include "QAccelPlot/axis/Axis.hpp"`
+* `#include "QAccelPlot/axis/AxisTicker.hpp"`
+* `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include <QColor>`
 * `#include <QRectF>`
+* `#include <QSizeF>`
 * `#include <functional>`
 
 
@@ -104,5 +105,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/axis/AxisTickPainter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp`
 

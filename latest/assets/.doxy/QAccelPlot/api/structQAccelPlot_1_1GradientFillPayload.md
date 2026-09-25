@@ -250,5 +250,5 @@ inline bool QAccelPlot::GradientFillPayload::isValid () const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientColorTypes.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp`
 

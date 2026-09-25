@@ -27,7 +27,7 @@
     
     
       
-        <title>Performance - QAccelPlot v0.2.0 Documentation</title>
+        <title>Performance - QAccelPlot v0.3.0 Documentation</title>
       
     
     
@@ -81,7 +81,7 @@
     "@type": "Person",
     "name": "Michal Grabarczyk"
   },
-  "softwareVersion": "0.2.0",
+  "softwareVersion": "0.3.0",
   "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
   "applicationCategory": "DeveloperApplication",
   "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
@@ -133,7 +133,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.3.0 Documentation" class="md-header__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -147,7 +147,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            QAccelPlot v0.2.0 Documentation
+            QAccelPlot v0.3.0 Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -271,13 +271,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot v0.2.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.2.0 Documentation" data-md-component="logo">
+    <a href=".." title="QAccelPlot v0.3.0 Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot v0.3.0 Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    QAccelPlot v0.2.0 Documentation
+    QAccelPlot v0.3.0 Documentation
   </label>
   
     <div class="md-nav__source">
@@ -625,6 +625,8 @@
       
         
       
+        
+      
     
     
     
@@ -834,6 +836,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
   
 
     
@@ -1427,6 +1457,11 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <td>Allocation plus interleaving; coordinates remain doubles</td>
 </tr>
 <tr>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
+<td>Existing C++ data is already interleaved as doubles, e.g. epoch timestamps</td>
+<td>Range scan; buffer ownership is moved immediately and coordinates remain doubles</td>
+</tr>
+<tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
 <td>Existing interleaved memory cannot be transferred</td>
 <td>One copy plus a range scan</td>
@@ -1450,6 +1485,11 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>A worker thread owns the completed buffer</td>
 <td>Queues the same moved-buffer handoff, followed by the normal range scan</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
+<td>A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps</td>
+<td>Queues the same moved-buffer handoff as <code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code>, followed by the normal range scan</td>
 </tr>
 </tbody>
 </table>
@@ -1482,14 +1522,14 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 </ul>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/realtime"><code>realtime</code> example</a>.</p>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
 the worker.</p>
 <p>If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/performance_showcase/src/DataGenerationWorker.cpp"><code>performance_showcase</code> worker</a>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp"><code>performance</code> example worker</a>
 waits until the UI thread consumes the previous batch. See
 <a href="../cookbook/background-data/">Background data production</a>.</p>
 <h2 id="optional-rendering-costs">Optional rendering costs<a class="headerlink" href="#optional-rendering-costs" title="Permanent link">&para;</a></h2>
@@ -1502,9 +1542,16 @@ changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.</p>
 <p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> uses a spatial grid rebuilt on
 data change, giving <code>O(1)</code> lookup per pointer move.</p>
+<p><code>QAccelPlot.PointCloud.hoveredIndex</code> uses a uniform grid of point indices that
+is rebuilt lazily on the first pointer move after a data change (<code>O(N)</code>), then
+answers each move by scanning only the cells within the hover radius. When a
+cloud is replaced every frame while the pointer rests over it, the rebuild
+repeats per frame; set <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Markers add geometry and fragment work per visible point.</li>
+<li>Markers add geometry and fragment work per visible point. Fragment work grows
+  with marker size; <code>LineCurve.Pixel</code> markers shade one pixel per point and
+  suit very dense scatter plots.</li>
 <li>Gradient effects add material and domain work.</li>
 <li>Transitions update intermediate data while animating.</li>
 <li>Many series add per-node and per-material overhead at the same total point

@@ -220,7 +220,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 ## Detailed Description
 
 
-Supplies line width, point count, anti-aliasing parameters, and dash pattern data to the line fragment shader (std140 offsets 116–175 in the UBO). 
+Supplies line width, point count, anti-aliasing parameters, and dash pattern data to the line shaders (std140 offsets 104–179 in the UBO; 176–179 holds the inherited item opacity). 
 
 
     
@@ -418,5 +418,5 @@ Implements [*QAccelPlot::DataTextureMaterial::compareExtra*](classQAccelPlot_1_1
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/LineMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp`
 

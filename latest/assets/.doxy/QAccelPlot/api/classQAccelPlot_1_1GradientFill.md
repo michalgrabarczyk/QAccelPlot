@@ -82,6 +82,7 @@ flowchart TB
 | ---: | :--- |
 | property [**GradientFillBaseline**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**baseline**](classQAccelPlot_1_1GradientFill.md#property-baseline-12)  <br>_Where the filled area's baseline starts (axis minimum or a fixed value)._  |
 | property qreal | [**baselineValue**](classQAccelPlot_1_1GradientFill.md#property-baselinevalue-12)  <br>_Fixed baseline data value used when_ `baseline` _is_`GradientFillBaseline.Value` _._ |
+| property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1GradientFill.md#property-colormap-12)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._ |
 | property [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](classQAccelPlot_1_1GradientFill.md#property-direction-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies (Horizontal or Vertical)._ |
 | property QObject \* | [**gradient**](classQAccelPlot_1_1GradientFill.md#property-gradient-12)  <br>_A Qt_ `Gradient` _(or compatible) object supplying the color stops._ |
 | property qreal | [**gradientValueMax**](classQAccelPlot_1_1GradientFill.md#property-gradientvaluemax-12)  <br>_Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed._  |
@@ -110,6 +111,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | ---: | :--- |
 | signal void | [**baselineChanged**](classQAccelPlot_1_1GradientFill.md#signal-baselinechanged)  <br>_Emitted when the baseline property changes._  |
 | signal void | [**baselineValueChanged**](classQAccelPlot_1_1GradientFill.md#signal-baselinevaluechanged)  <br>_Emitted when the baselineValue property changes._  |
+| signal void | [**colormapChanged**](classQAccelPlot_1_1GradientFill.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
 | signal void | [**directionChanged**](classQAccelPlot_1_1GradientFill.md#signal-directionchanged)  <br>_Emitted when the direction property changes._  |
 | signal void | [**gradientChanged**](classQAccelPlot_1_1GradientFill.md#signal-gradientchanged)  <br>_Emitted when the gradient property changes._  |
 | signal void | [**gradientValueMaxChanged**](classQAccelPlot_1_1GradientFill.md#signal-gradientvaluemaxchanged)  <br>_Emitted when the gradientValueMax property changes._  |
@@ -140,6 +142,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 |   | [**GradientFill**](#function-gradientfill) (QObject \* parent=nullptr) <br>_Constructs a_ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _with the given__parent_ _._ |
 |  [**GradientFillBaseline**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**baseline**](#function-baseline-22) () const<br>_Returns the baseline mode._  |
 |  qreal | [**baselineValue**](#function-baselinevalue-22) () const<br>_Returns the fixed baseline data value._  |
+|  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](#function-colormap-22) () const<br>_Returns the colormap supplying color stops, or_ `nullptr` _when_`gradient` _supplies them._ |
 |  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#function-direction-22) () const<br>_Returns the gradient direction._  |
 |  QObject \* | [**gradient**](#function-gradient-22) () const<br>_Returns the Qt Gradient object supplying color stops._  |
 |  qreal | [**gradientValueMax**](#function-gradientvaluemax-22) () const<br>_Returns the maximum data value for gradient normalization._  |
@@ -150,6 +153,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 |  [**GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md) | [**payload**](#function-payload) () const<br>_Returns a render-thread-safe snapshot of all fill parameters._  |
 |  void | [**setBaseline**](#function-setbaseline) ([**GradientFillBaseline**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) baseline) <br>_Sets the baseline mode to_ _baseline_ _._ |
 |  void | [**setBaselineValue**](#function-setbaselinevalue) (qreal value) <br>_Sets the fixed baseline data value to_ _value_ _._ |
+|  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._ |
 |  void | [**setDirection**](#function-setdirection) ([**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction) <br>_Sets the gradient direction to_ _direction_ _._ |
 |  void | [**setGradient**](#function-setgradient) (QObject \* gradient) <br>_Sets the Qt Gradient object to_ _gradient_ _._ |
 |  void | [**setGradientValueMax**](#function-setgradientvaluemax) (qreal value) <br>_Sets the maximum data value for gradient normalization to_ _value_ _._ |
@@ -225,12 +229,12 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 ## Detailed Description
 
 
-Attach to `LineCurve::effects` to render a shaded fill between the curve and a configurable baseline. Both the fill direction and color stops are taken from a Qt `Gradient` object assigned to `gradient`.
+Attach to `LineCurve::effects` to render a shaded fill between the curve and a configurable baseline. The color stops come from `colormap` when set, otherwise from a Qt `Gradient` assigned to `gradient`. `direction` sets the axis the colors vary along.
 
 
 
 
-**See also:** [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
+**See also:** [**GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**Colormap**](classQAccelPlot_1_1Colormap.md), [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
 
 
 
@@ -265,6 +269,25 @@ qreal QAccelPlot::GradientFill::baselineValue;
 
 
 
+
+<hr>
+
+
+
+
+### property colormap {#property-colormap-12}
+
+[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._
+```C++
+Colormap* QAccelPlot::GradientFill::colormap;
+```
+
+
+
+Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` are ignored; `gradientValueMin` and `gradientValueMax` place the ramp instead. 
+
+
+        
 
 <hr>
 
@@ -370,6 +393,10 @@ qreal QAccelPlot::GradientFill::opacity;
 
 
 
+Applies to the fill only. The curve's `opacity` and the `opacity` of its parent items also apply, so the rendered fill alpha is the product of all of them. 
+
+
+        
 
 <hr>
 ## Public Signals Documentation
@@ -398,6 +425,21 @@ void QAccelPlot::GradientFill::baselineChanged;
 _Emitted when the baselineValue property changes._ 
 ```C++
 void QAccelPlot::GradientFill::baselineValueChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal colormapChanged {#signal-colormapchanged}
+
+_Emitted when the colormap property changes._ 
+```C++
+void QAccelPlot::GradientFill::colormapChanged;
 ```
 
 
@@ -562,6 +604,21 @@ qreal QAccelPlot::GradientFill::baselineValue () const
 
 
 
+### function colormap {#function-colormap-22}
+
+_Returns the colormap supplying color stops, or_ `nullptr` _when_`gradient` _supplies them._
+```C++
+Colormap * QAccelPlot::GradientFill::colormap () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function direction {#function-direction-22}
 
 _Returns the gradient direction._ 
@@ -716,6 +773,23 @@ void QAccelPlot::GradientFill::setBaselineValue (
 
 
 
+### function setColormap {#function-setcolormap}
+
+_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._
+```C++
+void QAccelPlot::GradientFill::setColormap (
+    Colormap * colormap
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setDirection {#function-setdirection}
 
 _Sets the gradient direction to_ _direction_ _._
@@ -833,5 +907,5 @@ void QAccelPlot::GradientFill::setOpacity (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/effects/GradientFill.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/effects/GradientFill.hpp`
 

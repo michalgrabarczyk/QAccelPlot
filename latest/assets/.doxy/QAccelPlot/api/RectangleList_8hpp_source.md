@@ -2,7 +2,7 @@
 
 # File RectangleList.hpp
 
-[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**shapes**](dir_bdc19b5408ae96d0ef2607428fba59ea.md) **>** [**RectangleList.hpp**](RectangleList_8hpp.md)
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**shapes**](dir_8b04ad397f0acbf5ea360af28d82ce99.md) **>** [**RectangleList.hpp**](RectangleList_8hpp.md)
 
 [Go to the documentation of this file](RectangleList_8hpp.md)
 
@@ -17,9 +17,9 @@
 //
 #pragma once
 
-#include "series/PlotSeries.hpp"
-#include "series/SpatialGrid.hpp"
-#include "theme/ColorPalette.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/SpatialGrid.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -64,6 +64,7 @@ protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
+    void onAxisScaleChanged() override;
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;

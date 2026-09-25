@@ -12,7 +12,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md) _All style inputs required for a single paint call, bundled to reduce parameter count._     
     * **class** [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) _Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._    
     * **struct** [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) _The visible tick and subtick values, with formatted labels, for one axis viewport._     
+    * **class** [**ColorBar**](classQAccelPlot_1_1ColorBar.md) _A continuous key that shows how a series'_ `Colormap` _maps values to colors._    
     * **class** [**ColorPalette**](classQAccelPlot_1_1ColorPalette.md) _A named set of theme colors shared by QML (via the_ `Colors` _singleton) and C++ defaults._    
+    * **class** [**Colormap**](classQAccelPlot_1_1Colormap.md) _Maps data values to colors: a color ramp plus the rule that places a value on it._     
     * **class** [**Colors**](classQAccelPlot_1_1Colors.md) _QML singleton exposing_ [_**QAccelPlot**_](classQAccelPlot_1_1QAccelPlot.md) _'s built-in color palettes._    
     * **struct** [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) _Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling._     
     * **struct** [**CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._     
@@ -49,7 +51,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**LineMaterial**](classQAccelPlot_1_1LineMaterial.md) _QSGMaterial for line rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with line-specific uniforms._    
     * **class** [**LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
     * **struct** [**LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._     
-    * **class** [**LogTickLabelFormatter**](classQAccelPlot_1_1LogTickLabelFormatter.md) _A tick label formatter that produces power-of-ten labels for logarithmic axes._     
     * **class** [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) _An animation transition that smoothly interpolates point positions between two datasets._     
     * **namespace** [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) _Namespace exposing the_ `NanGapMode` _enum to QML._    
     * **class** [**NoLine**](classQAccelPlot_1_1NoLine.md) _A line style that suppresses line rendering entirely, leaving only markers visible._     
@@ -57,20 +58,27 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) _Decorative frame configuration exposed by_ `PlotView::border` _._    
     * **class** [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._     
     * **class** [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
+    * **class** [**PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._     
+    * **class** [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._    
     * **struct** [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._    
     * **class** [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md) _QSGMaterial for marker (point) rendering._     
+    * **class** [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md) _Uniform-grid spatial index for nearest-point queries over large point sets._     
+        * **struct** [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._     
     * **struct** [**PointVertex**](structQAccelPlot_1_1PointVertex.md) _Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._     
     * **class** [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
     * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
     * **class** [**RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
     * **struct** [**SampleRun**](structQAccelPlot_1_1SampleRun.md) _Contiguous range of valid curve samples, used to break fills and hit tests at gaps._     
+    * **class** [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._     
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
-    * **class** [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index for O(1) point-in-rectangle hit-test queries._     
+    * **class** [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) _Uniform-grid spatial index with bounded per-rectangle storage._     
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
 * **struct** [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)     
+* **struct** [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
 * **struct** [**FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md)     
+* **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
 * **struct** [**RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md)     
 * **struct** [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)     
 

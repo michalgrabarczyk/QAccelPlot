@@ -2,7 +2,7 @@
 
 # File Grid.hpp
 
-[**File List**](files.md) **>** [**grid**](dir_786c72ef44ba61f7b8903e40bd644b8e.md) **>** [**Grid.hpp**](Grid_8hpp.md)
+[**File List**](files.md) **>** [**grid**](dir_112dd686688a4740e45fb78d5fc35b31.md) **>** [**Grid.hpp**](Grid_8hpp.md)
 
 [Go to the documentation of this file](Grid_8hpp.md)
 
@@ -17,7 +17,7 @@
 //
 #pragma once
 
-#include "theme/ColorPalette.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QColor>
 #include <QObject>

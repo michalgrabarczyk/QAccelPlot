@@ -221,5 +221,5 @@ float QAccelPlot::PointVertex::y;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/renderers/LineCurvePointRenderer.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/renderers/LineCurvePointRenderer.hpp`
 

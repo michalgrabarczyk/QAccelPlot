@@ -63,8 +63,10 @@ flowchart TB
 |  QVector2D | [**domainMin**](#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
 |  float | [**logScaleX**](#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale._  |
 |  float | [**logScaleY**](#variable-logscaley)   = `{0.0f}`<br>_1.0 when the Y axis uses log scale._  |
+|  float | [**markerFilled**](#variable-markerfilled)   = `{1.0f}`<br>_1.0 for filled markers, 0.0 for hollow outlines._  |
 |  float | [**markerSize**](#variable-markersize)   = `{4.0f}`<br>_Marker radius in pixels._  |
-|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross._  |
+|  float | [**markerStrokeWidth**](#variable-markerstrokewidth)   = `{1.0f}`<br>_Outline width in pixels for hollow markers._  |
+|  int | [**shapeType**](#variable-shapetype)   = `{0}`<br>_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._ |
 |  float | [**useVertexColor**](#variable-usevertexcolor)   = `{0.0f}`<br>_1.0 when per-vertex color overrides_ `color` _._ |
 |  QVector2D | [**viewportSize**](#variable-viewportsize)   = `{800.0f, 600.0f}`<br>_Viewport size in pixels._  |
 
@@ -238,6 +240,21 @@ float QAccelPlot::PointMaterial::logScaleY;
 
 
 
+### variable markerFilled {#variable-markerfilled}
+
+_1.0 for filled markers, 0.0 for hollow outlines._ 
+```C++
+float QAccelPlot::PointMaterial::markerFilled;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable markerSize {#variable-markersize}
 
 _Marker radius in pixels._ 
@@ -253,9 +270,24 @@ float QAccelPlot::PointMaterial::markerSize;
 
 
 
+### variable markerStrokeWidth {#variable-markerstrokewidth}
+
+_Outline width in pixels for hollow markers._ 
+```C++
+float QAccelPlot::PointMaterial::markerStrokeWidth;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### variable shapeType {#variable-shapetype}
 
-_Marker shape: 0=Circle, 1=Square, 2=Diamond, 3=TriangleUp, 4=TriangleDown, 5=Cross._ 
+_Marker shape:_ `PlotSeries::MarkerShape` _value minus one (0 = Circle)._
 ```C++
 int QAccelPlot::PointMaterial::shapeType;
 ```
@@ -376,5 +408,5 @@ QAccelPlot::PointMaterial::~PointMaterial () override
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/PointMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/PointMaterial.hpp`
 

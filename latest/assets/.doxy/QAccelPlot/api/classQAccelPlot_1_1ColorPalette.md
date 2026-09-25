@@ -920,5 +920,5 @@ static const ColorPalette & QAccelPlot::ColorPalette::light ()
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/theme/ColorPalette.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/theme/ColorPalette.hpp`
 

@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PointSpatialIndex" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PointSpatialIndex</compoundname>
+    <includes local="no">PointSpatialIndex.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint" prot="private">QAccelPlot::PointSpatialIndex::IndexedPoint</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" prot="public">QAccelPlot::PointSpatialIndex::Mapping</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a2319e779b46c166ec0f9a6263037620a" prot="private" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kindref="compound">Mapping</ref></type>
+        <definition>Mapping QAccelPlot::PointSpatialIndex::mapping_</definition>
+        <argsstring></argsstring>
+        <name>mapping_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::mapping_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="80" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1ad8dc0308082f64becd7bc341b91d0da4" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::PointSpatialIndex::minX_</definition>
+        <argsstring></argsstring>
+        <name>minX_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::minX_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="81" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a7593cf52b259c760122bf7389f387f38" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::PointSpatialIndex::minY_</definition>
+        <argsstring></argsstring>
+        <name>minY_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::minY_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="82" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a64309ecba6bcb36a081c437c6b33c673" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::PointSpatialIndex::cellWidth_</definition>
+        <argsstring></argsstring>
+        <name>cellWidth_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="83" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1aa11f18d109696af450da7c02a4d80e4a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::PointSpatialIndex::cellHeight_</definition>
+        <argsstring></argsstring>
+        <name>cellHeight_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellHeight_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="84" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a6105df2a658f35ca26ef776f1a303d8c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::columns_</definition>
+        <argsstring></argsstring>
+        <name>columns_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::columns_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="85" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a3d693d24da6177f47f68fc64fd994a17" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::rows_</definition>
+        <argsstring></argsstring>
+        <name>rows_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::rows_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="86" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1a43a88e65d901016daf52644806d76188" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; IndexedPoint &gt;</type>
+        <definition>std::vector&lt;IndexedPoint&gt; QAccelPlot::PointSpatialIndex::points_</definition>
+        <argsstring></argsstring>
+        <name>points_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::points_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="87" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1ac9a033ecbbea4c7c9cddf015aa3d450d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::PointSpatialIndex::cellStart_</definition>
+        <argsstring></argsstring>
+        <name>cellStart_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellStart_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="88" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PointSpatialIndex_1ae38dcda79a4bf096eb07c77967942c09" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::PointSpatialIndex::cellEntries_</definition>
+        <argsstring></argsstring>
+        <name>cellEntries_</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellEntries_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="89" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a48c7e9fdda24911c321eb5a4414c6b53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::build</definition>
+        <argsstring>(const float *data, int pointCount, int stride, Mapping mapping)</argsstring>
+        <name>build</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::build</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stride</declname>
+        </param>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kindref="compound">Mapping</ref></type>
+          <declname>mapping</declname>
+        </param>
+        <briefdescription>
+<para>Rebuilds the index from <emphasis>pointCount</emphasis> points in <emphasis>data</emphasis> using <emphasis>stride</emphasis> floats per point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1ae4d6c1d15e6d2649d541d06f87e9c5b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::build</definition>
+        <argsstring>(const float *data, int pointCount, int stride=2)</argsstring>
+        <name>build</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::build</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stride</declname>
+          <defval>2</defval>
+        </param>
+        <briefdescription>
+<para>Rebuilds the index with the identity mapping, for linear axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A separate overload rather than a defaulted <computeroutput><ref refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kindref="compound">Mapping</ref></computeroutput> argument: a nested class&apos;s default member initializers are not usable in a default argument until the enclosing class is complete, which MSVC accepts but Clang and GCC reject. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="46" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1ac2cb50467658bcfe43260c8034db0301" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::clear</qualifiedname>
+        <briefdescription>
+<para>Removes all indexed points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a96f90d73209fb6396375aa44ad813a00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PointSpatialIndex::isEmpty</definition>
+        <argsstring>() const</argsstring>
+        <name>isEmpty</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::isEmpty</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when no valid point is indexed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1ac718df26ffb058ffff583d361c67e109" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::validPointCount</definition>
+        <argsstring>() const</argsstring>
+        <name>validPointCount</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::validPointCount</qualifiedname>
+        <briefdescription>
+<para>Returns the number of indexed (valid) points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="53" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a3eed295b7f3335c311baac4aa2a56432" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1PointSpatialIndex_1_1Mapping" kindref="compound">Mapping</ref></type>
+        <definition>Mapping QAccelPlot::PointSpatialIndex::mapping</definition>
+        <argsstring>() const</argsstring>
+        <name>mapping</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::mapping</qualifiedname>
+        <briefdescription>
+<para>Returns the mapping used by the last build. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="55" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1acdff94e8eb4e3c69f5b2e42df0063848" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::nearest</definition>
+        <argsstring>(double x, double y, double radiusX, double radiusY) const</argsstring>
+        <name>nearest</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::nearest</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radiusX</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radiusY</declname>
+        </param>
+        <briefdescription>
+<para>Returns the index of the point nearest to (<emphasis>x</emphasis>, <emphasis>y</emphasis>) inside the ellipse with radii <emphasis>radiusX</emphasis> and <emphasis>radiusY</emphasis>, or -1 when none. All arguments are in mapped space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Distance is normalized by the radii, so an anisotropic pixel radius behaves like a circle on screen. Ties resolve to the highest index, the point drawn last. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="62" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a3786a88dd5a30ff7c16ed05c054bb970" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool QAccelPlot::PointSpatialIndex::mapCoordinate</definition>
+        <argsstring>(double value, bool logarithmic, double &amp;mapped)</argsstring>
+        <name>mapCoordinate</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::mapCoordinate</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logarithmic</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>mapped</declname>
+        </param>
+        <briefdescription>
+<para>Maps <emphasis>value</emphasis> for indexing. Returns <computeroutput>false</computeroutput> when the value cannot be indexed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="65" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1add4e63042226790d12cd1e1f30ca7533" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::collectValidPoints</definition>
+        <argsstring>(const float *data, int pointCount, int stride)</argsstring>
+        <name>collectValidPoints</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::collectValidPoints</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pointCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="74" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a670891ac54b2fccd4cd9e3f2758ead1a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::computeGridDimensions</definition>
+        <argsstring>()</argsstring>
+        <name>computeGridDimensions</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::computeGridDimensions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a018d2385293a421f42141c09b0376b8b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PointSpatialIndex::fillCells</definition>
+        <argsstring>()</argsstring>
+        <name>fillCells</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::fillCells</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a8f8818c74cbcdfc6bb530f9444f3259a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::cellColumn</definition>
+        <argsstring>(double x) const</argsstring>
+        <name>cellColumn</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellColumn</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="77" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PointSpatialIndex_1a10f10356ef4926654c1466e412562872" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PointSpatialIndex::cellRow</definition>
+        <argsstring>(double y) const</argsstring>
+        <name>cellRow</name>
+        <qualifiedname>QAccelPlot::PointSpatialIndex::cellRow</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="78" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Uniform-grid spatial index for nearest-point queries over large point sets. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Points are read from a flat float array with a configurable stride whose first two components are <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput>. Coordinates are indexed in <emphasis>mapped</emphasis> space: log10 of the value on logarithmic axes, the value itself otherwise, so a pixel radius converts to a constant mapped-space radius at any zoom level. Non-finite points, and non-positive points on logarithmic axes, are excluded.</para>
+<para>Cells are stored in a compressed layout (<computeroutput>cellStart_</computeroutput> offsets into one index array), which keeps a rebuild over a million points to a handful of allocations.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" line="28" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/PointSpatialIndex.hpp" bodystart="28" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a48c7e9fdda24911c321eb5a4414c6b53" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>build</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ae4d6c1d15e6d2649d541d06f87e9c5b9" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>build</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a8f8818c74cbcdfc6bb530f9444f3259a" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellColumn</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ae38dcda79a4bf096eb07c77967942c09" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellEntries_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1aa11f18d109696af450da7c02a4d80e4a" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellHeight_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a10f10356ef4926654c1466e412562872" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellRow</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ac9a033ecbbea4c7c9cddf015aa3d450d" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellStart_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a64309ecba6bcb36a081c437c6b33c673" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>cellWidth_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ac2cb50467658bcfe43260c8034db0301" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1add4e63042226790d12cd1e1f30ca7533" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>collectValidPoints</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a6105df2a658f35ca26ef776f1a303d8c" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>columns_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a670891ac54b2fccd4cd9e3f2758ead1a" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>computeGridDimensions</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a018d2385293a421f42141c09b0376b8b" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>fillCells</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a96f90d73209fb6396375aa44ad813a00" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>isEmpty</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a3786a88dd5a30ff7c16ed05c054bb970" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>mapCoordinate</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a3eed295b7f3335c311baac4aa2a56432" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>mapping</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a2319e779b46c166ec0f9a6263037620a" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>mapping_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ad8dc0308082f64becd7bc341b91d0da4" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>minX_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a7593cf52b259c760122bf7389f387f38" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>minY_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1acdff94e8eb4e3c69f5b2e42df0063848" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>nearest</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a43a88e65d901016daf52644806d76188" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>points_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1a3d693d24da6177f47f68fc64fd994a17" prot="private" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>rows_</name></member>
+      <member refid="classQAccelPlot_1_1PointSpatialIndex_1ac718df26ffb058ffff583d361c67e109" prot="public" virt="non-virtual"><scope>QAccelPlot::PointSpatialIndex</scope><name>validPointCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

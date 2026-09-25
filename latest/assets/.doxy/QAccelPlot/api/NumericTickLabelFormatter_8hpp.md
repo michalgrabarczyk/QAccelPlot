@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**formatters**](dir_d8921b289ee138c4c21e0a56c5dc2c98.md) **>** [**NumericTickLabelFormatter.hpp**](NumericTickLabelFormatter_8hpp.md)
+[**FileList**](files.md) **>** [**formatters**](dir_4eeeb48ede2263d8d479500d459323d3.md) **>** [**NumericTickLabelFormatter.hpp**](NumericTickLabelFormatter_8hpp.md)
 
 [Go to the source code of this file](NumericTickLabelFormatter_8hpp_source.md)
 
 
 
-* `#include "formatters/TickLabelFormatter.hpp"`
+* `#include "QAccelPlot/formatters/TickLabelFormatter.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
 
 
@@ -98,5 +98,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp`
 

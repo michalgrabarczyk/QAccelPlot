@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp" line="28" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp" line="31" column="14"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -49,15 +49,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp" line="32" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp" line="35" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1NumericTickLabelFormatter_1abfa00afac2e6c89152be73a9e9543870" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::NumericTickLabelFormatter::doFormatLogTick</definition>
+        <argsstring>(qreal value) const override</argsstring>
+        <name>doFormatLogTick</name>
+        <qualifiedname>QAccelPlot::NumericTickLabelFormatter::doFormatLogTick</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1TickLabelFormatter_1a0d9e566d8c97dab3c8b506b45dea4597">doFormatLogTick</reimplements>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns a decade tick as a superscript power of ten, for example &quot;10²&quot; for 100. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp" line="37" column="13"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>The default tick label formatter — produces numeric labels with automatic decimal precision. </para>
     </briefdescription>
     <detaileddescription>
-<para>The number of decimal places is derived from <emphasis>tickStep</emphasis> so that labels are neither truncated nor cluttered with unnecessary digits.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1LogTickLabelFormatter" kindref="compound">LogTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
+<para>The number of decimal places is derived from <emphasis>tickStep</emphasis> so that labels are neither truncated nor cluttered with unnecessary digits. Every label on a linear axis shares one tick step, so all of them show the same number of decimal places (for example 0.0, 0.5, 1.0, 1.5). Decade ticks on a logarithmic axis use superscript powers of ten (10⁻¹, 10⁰, 10¹, 10²).</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kindref="compound">DateTimeTickLabelFormatter</ref>, <ref refid="classQAccelPlot_1_1TickLabelFormatter" kindref="compound">TickLabelFormatter</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -95,11 +115,13 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp" line="22" column="1" bodyfile="QAccelPlot/src/formatters/NumericTickLabelFormatter.hpp" bodystart="22" bodyend="33"/>
+    <location file="QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp" line="25" column="1" bodyfile="QAccelPlot/src/QAccelPlot/formatters/NumericTickLabelFormatter.hpp" bodystart="25" bodyend="38"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1adf4fcaeb623da82077c1b56957fcc6fb" prot="protected" virt="virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>doFormat</name></member>
+      <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1abfa00afac2e6c89152be73a9e9543870" prot="protected" virt="virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>doFormatLogTick</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a917283d2336c53aefad3317824c48083" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>format</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a958ae780917a92606338ba702984b9cf" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>formatChanged</name></member>
+      <member refid="classQAccelPlot_1_1TickLabelFormatter_1a0831ef9f994c099050754469340637e9" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>formatLogTick</name></member>
       <member refid="classQAccelPlot_1_1NumericTickLabelFormatter_1a28ed47abe2071b22ece08395dc7b6e2a" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>NumericTickLabelFormatter</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1a1d838ad53d9751fc656b24b6c5e9df9a" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>setTickLabel</name></member>
       <member refid="classQAccelPlot_1_1TickLabelFormatter_1ac653e2484200ea89af8facc8cffab00b" prot="public" virt="non-virtual"><scope>QAccelPlot::NumericTickLabelFormatter</scope><name>tickLabel</name></member>

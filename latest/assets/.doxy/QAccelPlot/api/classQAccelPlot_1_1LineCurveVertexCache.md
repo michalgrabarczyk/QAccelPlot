@@ -326,5 +326,5 @@ bool QAccelPlot::LineCurveVertexCache::valid () noexcept const
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/series/LineCurveVertexCache.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/LineCurveVertexCache.hpp`
 

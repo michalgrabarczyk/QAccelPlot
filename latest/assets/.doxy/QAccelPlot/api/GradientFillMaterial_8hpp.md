@@ -11,13 +11,13 @@
 
 
 
-[**FileList**](files.md) **>** [**materials**](dir_d8d9f4c155782c7a914c1dbe847fe73b.md) **>** [**GradientFillMaterial.hpp**](GradientFillMaterial_8hpp.md)
+[**FileList**](files.md) **>** [**materials**](dir_c94e933d4aa9b037e187c1fb93a79d8a.md) **>** [**GradientFillMaterial.hpp**](GradientFillMaterial_8hpp.md)
 
 [Go to the source code of this file](GradientFillMaterial_8hpp_source.md)
 
 
 
-* `#include "materials/GradientTexture.hpp"`
+* `#include "QAccelPlot/materials/GradientTexture.hpp"`
 * `#include <QSGMaterial>`
 
 
@@ -98,5 +98,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/materials/GradientFillMaterial.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/GradientFillMaterial.hpp`
 
