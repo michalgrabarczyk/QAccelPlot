@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/colorbar/ColorBar.hpp"
+#include "QAccelPlot/axis/ColorBar.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
