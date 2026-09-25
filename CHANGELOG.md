@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- `LineCurve` no longer reads the QML `Gradient` of a `GradientStroke` or
+  `GradientFill` from the scene graph render thread on every frame. It now reads
+  the gradient on the GUI thread when the effect changes.
+
 ## [0.3.0] — 2026-09-25
 
 ### Added

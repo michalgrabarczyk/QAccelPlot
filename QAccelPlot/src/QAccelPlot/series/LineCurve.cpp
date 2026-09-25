@@ -154,10 +154,9 @@ template <typename T> DataExtents computeChunkExtents(const T* data, const int f
     return computeValidExtents(data, static_cast<std::size_t>(first), static_cast<std::size_t>(last) + 1, logScaleX, logScaleY);
 }
 
-// Returns the payload of the first enabled, valid Effect with unset value bounds
-// resolved from the data range of the axis matching the gradient direction. Using
-// the data range keeps gradient colors invariant to pan/zoom.
-template <typename Effect, typename Payload> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const Axis* xAxis, const Axis* yAxis)
+// Returns the payload of the first enabled, valid Effect. Reads the effect's gradient,
+// which may be a QML object, so it must run on the GUI thread.
+template <typename Effect, typename Payload> Payload firstGradientPayload(const QList<LineCurveEffect*>& effects)
 {
     for (const auto effect : effects) {
         if (!effect || !effect->enabled()) {
@@ -170,16 +169,23 @@ template <typename Effect, typename Payload> Payload resolveGradientPayload(cons
         }
 
         auto payload = gradientEffect->payload();
-        if (!payload.isValid()) {
-            continue;
+        if (payload.isValid()) {
+            return payload;
         }
-
-        const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
-        resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
-        return payload;
     }
 
     return {};
+}
+
+// Resolves unset value bounds from the data range of the axis matching the gradient
+// direction. Using the data range keeps gradient colors invariant to pan/zoom.
+template <typename Payload> Payload withResolvedValueRange(Payload payload, const Axis* xAxis, const Axis* yAxis)
+{
+    if (payload.isValid()) {
+        const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
+        resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
+    }
+    return payload;
 }
 
 }
@@ -814,12 +820,17 @@ void LineCurve::appendEffect(QQmlListProperty<LineCurveEffect>* list, LineCurveE
     }
     curve->effects_.append(effect);
 
-    QObject::connect(effect, &LineCurveEffect::effectChanged, curve, [curve]() { curve->update(); });
+    QObject::connect(effect, &LineCurveEffect::effectChanged, curve, [curve]() {
+        curve->refreshEffectPayloads();
+        curve->update();
+    });
     QObject::connect(effect, &QObject::destroyed, curve, [curve, effect]() {
         curve->effects_.removeAll(effect);
+        curve->refreshEffectPayloads();
         curve->update();
     });
 
+    curve->refreshEffectPayloads();
     curve->update();
 }
 
@@ -851,17 +862,24 @@ void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
         QObject::disconnect(effect, nullptr, curve, nullptr);
     }
     curve->effects_.clear();
+    curve->refreshEffectPayloads();
     curve->update();
+}
+
+void LineCurve::refreshEffectPayloads()
+{
+    strokePayload_ = firstGradientPayload<GradientStroke, GradientColorPayload>(effects_);
+    fillPayload_ = firstGradientPayload<GradientFill, GradientFillPayload>(effects_);
 }
 
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
-    return resolveGradientPayload<GradientStroke, GradientColorPayload>(effects_, xAxis(), yAxis());
+    return withResolvedValueRange(strokePayload_, xAxis(), yAxis());
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
-    return resolveGradientPayload<GradientFill, GradientFillPayload>(effects_, xAxis(), yAxis());
+    return withResolvedValueRange(fillPayload_, xAxis(), yAxis());
 }
 
 void LineCurve::updateDataRanges(const std::vector<float>& buf, const int count)
