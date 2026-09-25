@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "markers/default",
-  "description": "A larger dense scatter plot above a short marker-shape gallery. Judge only the two plot panels; ignore the size and outline sliders, the antialiasing switch, headings, descriptions, and other surrounding UI.",
+  "description": "A larger spiral scatter plot above a short marker-shape gallery. Judge only the two plot panels; ignore the size, outline, and opacity sliders, the antialiasing switch, headings, descriptions, and other surrounding UI.",
   "expected_image": {
     "width": 900,
     "height": 900,
@@ -28,9 +28,14 @@
       "expectation": "In the Filled row every marker is solid. In the Hollow row Circle through Star are drawn as thin outlines with an empty interior, while Cross, XCross, Asterisk, HLine, and VLine look the same as in the Filled row. Markers are not cut off at their tips or corners."
     },
     {
-      "id": "dense_scatter",
+      "id": "gallery_selection",
       "severity": "medium",
-      "expectation": "The scatter plot shows a large, fine-grained blue point cloud in the upper left made of single-pixel dots, and a smaller orange cloud of hollow circles in the lower right. A legend names both series. Fail if either cloud is missing or the blue cloud is drawn as large markers instead of fine dots."
+      "expectation": "An orange square outline frames the filled Circle in the gallery and no other cell."
+    },
+    {
+      "id": "spiral_scatter",
+      "severity": "medium",
+      "expectation": "The scatter plot shows a two-arm spiral of semi-transparent blue filled circles centered near the origin, brighter where markers overlap. A legend names the series as Circle. Fail if the spiral is missing, the markers are clearly not circles, or they are fully opaque."
     },
     {
       "id": "text_raster_quality",

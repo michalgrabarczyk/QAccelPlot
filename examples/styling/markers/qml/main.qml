@@ -15,9 +15,12 @@ Window {
     id: window
 
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
-    property real markerSize: 8
+    property real markerSize: 6
     property real markerStrokeWidth: 1.5
+    property real markerOpacity: 0.25
     property bool antialiasingEnabled: true
+    property int selectedColumn: 0
+    property bool selectedFilled: true
 
     // The gallery's shape names are its only labels, so they are drawn larger than other tick labels.
     readonly property font galleryTickLabelFont: Qt.font({
@@ -25,7 +28,6 @@ Window {
         weight: Font.Normal
     })
 
-    // Pixel draws a single pixel, so it is shown in the dense scatter plot instead of the gallery.
     readonly property var shapes: [
         { name: "Circle", shape: QAccelPlot.LineCurve.Circle },
         { name: "Square", shape: QAccelPlot.LineCurve.Square },
@@ -56,18 +58,25 @@ Window {
 
     readonly property var shapeLabels: shapes.map(entry => entry.name)
 
-    // Deterministic Gaussian cloud, so every run and screenshot shows the same points.
-    function gaussianCloud(count, centerX, centerY, spread, seed) {
+    readonly property string scatterMarkerName: (selectedFilled ? "" : "Hollow ") + shapes[selectedColumn].name
+
+    // Deterministic two-arm spiral with Gaussian scatter, so every run and screenshot shows the same points.
+    function spiralCloud(count, seed) {
         let state = seed;
         function random() {
             state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
             return (state + 0.5) / 4294967296;
         }
+        function gaussian() {
+            return Math.sqrt(-2 * Math.log(random())) * Math.cos(2 * Math.PI * random());
+        }
         const points = [];
         for (let i = 0; i < count; ++i) {
-            const radius = Math.sqrt(-2 * Math.log(random())) * spread;
-            const angle = 2 * Math.PI * random();
-            points.push(Qt.point(centerX + radius * Math.cos(angle), centerY + 0.6 * radius * Math.sin(angle)));
+            const t = random();
+            const angle = 2.5 * Math.PI * t + Math.PI * (i % 2);
+            const radius = 0.2 + 5.5 * t;
+            const scatter = 0.1 + 0.25 * t;
+            points.push(Qt.point(radius * Math.cos(angle) + scatter * gaussian(), 0.6 * radius * Math.sin(angle) + scatter * gaussian()));
         }
         return points;
     }
@@ -88,7 +97,7 @@ Window {
 
         ExampleHeader {
             title: "Markers"
-            description: "Every marker shape, filled and hollow. For dense scatter plots, Pixel markers draw one pixel per sample and hollow markers keep overlapping points readable."
+            description: "Click a shape in the gallery to draw the scatter cloud with it. Lower the opacity to see where overlapping markers pile up."
         }
 
         RowLayout {
@@ -98,21 +107,21 @@ Window {
             // Value labels keep the width of their widest value so the sliders do not shift while dragging.
             Label {
                 id: sizeLabel
-                text: "Size " + window.markerSize.toFixed(0) + " px"
+                text: "Size " + window.markerSize.toFixed(1) + " px"
                 Layout.preferredWidth: Math.ceil(widestSizeText.advanceWidth)
 
                 TextMetrics {
                     id: widestSizeText
                     font: sizeLabel.font
-                    text: "Size 88 px"
+                    text: "Size 88.8 px"
                 }
             }
             Slider {
-                from: 3
+                from: 0.1
                 to: 12
-                stepSize: 1
+                stepSize: 0.1
                 value: window.markerSize
-                Layout.preferredWidth: 120
+                Layout.preferredWidth: 100
                 onMoved: window.markerSize = value
             }
             Label {
@@ -131,8 +140,27 @@ Window {
                 to: 4
                 stepSize: 0.5
                 value: window.markerStrokeWidth
-                Layout.preferredWidth: 120
+                Layout.preferredWidth: 100
                 onMoved: window.markerStrokeWidth = value
+            }
+            Label {
+                id: opacityLabel
+                text: "Opacity " + Math.round(window.markerOpacity * 100) + " %"
+                Layout.preferredWidth: Math.ceil(widestOpacityText.advanceWidth)
+
+                TextMetrics {
+                    id: widestOpacityText
+                    font: opacityLabel.font
+                    text: "Opacity 100 %"
+                }
+            }
+            Slider {
+                from: 0.1
+                to: 1
+                stepSize: 0.05
+                value: window.markerOpacity
+                Layout.preferredWidth: 100
+                onMoved: window.markerOpacity = value
             }
             Switch {
                 text: "Antialiasing"
@@ -150,12 +178,12 @@ Window {
             Layout.fillHeight: true
 
             QAccelPlot.Plot {
-                id: densePlot
+                id: scatterPlot
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 grid.subGridVisible: false
                 legend: QAccelPlot.Legend {
-                    series: densePlot.series
+                    series: scatterPlot.series
                 }
 
                 xAxis: ExampleAxis {
@@ -177,27 +205,18 @@ Window {
                 }
 
                 QAccelPlot.LineCurve {
-                    name: "Pixel, 40 000 points"
-                    xAxis: densePlot.xAxis
-                    yAxis: densePlot.yAxis
-                    color: Qt.rgba(colorPalette.seriesPrimary.r, colorPalette.seriesPrimary.g, colorPalette.seriesPrimary.b, 0.6)
+                    name: window.scatterMarkerName + ", 4 000 points"
+                    xAxis: scatterPlot.xAxis
+                    yAxis: scatterPlot.yAxis
+                    color: colorPalette.seriesPrimary
+                    opacity: window.markerOpacity
                     lineStyle: QAccelPlot.NoLine {}
-                    marker.shape: QAccelPlot.LineCurve.Pixel
-                    Component.onCompleted: setData(window.gaussianCloud(40000, -2.5, 1.5, 1.0, 7))
-                }
-
-                QAccelPlot.LineCurve {
-                    name: "Hollow circle, 2 000 points"
-                    xAxis: densePlot.xAxis
-                    yAxis: densePlot.yAxis
-                    color: colorPalette.seriesSecondary
-                    lineStyle: QAccelPlot.NoLine {}
-                    marker.shape: QAccelPlot.LineCurve.Circle
-                    marker.filled: false
-                    marker.size: 4
-                    marker.strokeWidth: 1
+                    marker.shape: window.shapes[window.selectedColumn].shape
+                    marker.filled: window.selectedFilled
+                    marker.size: window.markerSize
+                    marker.strokeWidth: window.markerStrokeWidth
                     antialiasingEnabled: window.antialiasingEnabled
-                    Component.onCompleted: setData(window.gaussianCloud(2000, 2.5, -1.5, 1.0, 11))
+                    Component.onCompleted: setData(window.spiralCloud(4000, 7))
                 }
             }
 
@@ -207,6 +226,24 @@ Window {
                 Layout.preferredHeight: 300
                 legendVisible: false
                 grid.subGridVisible: false
+
+                onMousePressed: event => {
+                    if (event.button !== Qt.LeftButton || !isInsidePlotArea(event.x, event.y)) {
+                        return;
+                    }
+                    const column = Math.round(pixelToDataX(event.x));
+                    const row = Math.round(pixelToDataY(event.y));
+                    if (column < 0 || column >= window.shapes.length || row < 0 || row > 1) {
+                        return;
+                    }
+                    window.selectedColumn = column;
+                    window.selectedFilled = row === 1;
+                    event.accept();
+                }
+
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
 
                 xAxis: ExampleAxis {
                     viewportMin: -0.6
@@ -257,6 +294,22 @@ Window {
                         antialiasingEnabled: window.antialiasingEnabled
                         Component.onCompleted: setData([Qt.point(modelData.x, modelData.y)])
                     }
+                }
+
+                // The selection frame is itself a marker: a large hollow square around the chosen cell.
+                QAccelPlot.LineCurve {
+                    readonly property point cell: Qt.point(window.selectedColumn, window.selectedFilled ? 1 : 0)
+                    xAxis: galleryPlot.xAxis
+                    yAxis: galleryPlot.yAxis
+                    color: colorPalette.seriesSecondary
+                    lineStyle: QAccelPlot.NoLine {}
+                    marker.shape: QAccelPlot.LineCurve.Square
+                    marker.filled: false
+                    marker.size: window.markerSize + 8
+                    marker.strokeWidth: 2
+                    antialiasingEnabled: window.antialiasingEnabled
+                    onCellChanged: setData([cell])
+                    Component.onCompleted: setData([cell])
                 }
             }
         }
