@@ -134,13 +134,10 @@ protected:
     /// Log scale changes which samples are valid, so series that apply the invalid-sample contract
     /// override this to refresh ranges and cached geometry. The default implementation does nothing.
     virtual void onAxisScaleChanged();
-    /// \brief Returns the plot area to render into, adopting it from the parent plot if needed.
+    /// \brief Returns the plot area to render into: \c plotRect when set, otherwise the item's current size.
     ///
-    /// Normally \c plotRect has already been assigned, and this just returns it. A series
-    /// constructed in C++ with the plot as its parent is added before its own constructor runs,
-    /// so the plot cannot assign \c plotRect at that point; calling this from \c updatePaintNode
-    /// adopts the plot area lazily. Without a parent plot, returns the current size.
-    QRectF resolvePlotRect();
+    /// Safe to call from \c updatePaintNode(); it never modifies the item.
+    QRectF resolvePlotRect() const;
 
 private:
     void onAxisRangeChanged();
