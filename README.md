@@ -199,7 +199,6 @@ ctest --test-dir build --output-on-failure
 
 Planned before 1.0:
 
-- Point-cloud series for large sets of unconnected points.
 - Bar charts.
 - Heatmaps.
 - SVG and PNG export.
