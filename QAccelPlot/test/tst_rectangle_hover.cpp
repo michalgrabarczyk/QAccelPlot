@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/shapes/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleList.hpp"
 
 #include <QtTest/QtTest>
 

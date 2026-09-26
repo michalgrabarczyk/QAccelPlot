@@ -13,6 +13,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
+- Moved `RectangleList.hpp` from `QAccelPlot/shapes/` to `QAccelPlot/series/`.
+  Update C++ includes to `<QAccelPlot/series/RectangleList.hpp>`. QML usage is
+  unchanged.
 
 ### Fixed
 

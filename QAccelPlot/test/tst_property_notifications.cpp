@@ -17,7 +17,7 @@
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
-#include "QAccelPlot/shapes/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleList.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QEasingCurve>

@@ -9,7 +9,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
-#include "QAccelPlot/shapes/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleList.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/theme/Colors.hpp"
 

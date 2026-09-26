@@ -7,7 +7,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
-#include "QAccelPlot/shapes/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleList.hpp"
 
 #include <QQuickWindow>
 #include <QSGGeometryNode>
