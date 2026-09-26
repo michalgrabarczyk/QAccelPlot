@@ -10,6 +10,7 @@
 * **axisX** ([**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md))
 * **axisY** ([**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md))
 * **animTimer\_** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
+* **animationTickWindow\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **antialiasingEnabled\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **antialiasingFeather\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **autoDataRanges\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))

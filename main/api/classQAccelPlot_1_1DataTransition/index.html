@@ -1634,7 +1634,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Subclasses implement <code>interpolate()</code> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <code>advance()</code>, which is called from the host element's <code>updatePaintNode()</code>.</p>
+<p>Subclasses implement <code>interpolate()</code> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <code>advance()</code>, which the host element calls on the GUI thread before each scene graph synchronization, so <code>runningChanged</code> is always emitted on the GUI thread.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-duration-12">property duration<a class="headerlink" href="#property-duration-12" title="Permanent link">&para;</a></h3>

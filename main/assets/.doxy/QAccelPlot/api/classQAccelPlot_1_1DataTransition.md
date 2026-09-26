@@ -144,7 +144,7 @@ flowchart TB
 ## Detailed Description
 
 
-Subclasses implement `interpolate()` to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by `advance()`, which is called from the host element's `updatePaintNode()`.
+Subclasses implement `interpolate()` to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by `advance()`, which the host element calls on the GUI thread before each scene graph synchronization, so `runningChanged` is always emitted on the GUI thread.
 
 
 

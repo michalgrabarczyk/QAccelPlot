@@ -99,6 +99,7 @@ public:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
+    void itemChange(ItemChange change, const ItemChangeData& value) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     bool contains(const QPointF& point) const override;
@@ -161,6 +162,9 @@ private:
     void invalidateVertices();
     void invalidateData();
     void cancelRunningTransition();
+    // Transitions advance on the GUI thread once per frame, from QQuickWindow::afterAnimating.
+    void connectAnimationTicks(QQuickWindow* window);
+    void advanceTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
@@ -177,6 +181,7 @@ private:
     bool renderOriginYSettled_{false};
     int pointCount_{0};
     QPointer<DataTransition> transition_;
+    QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     bool antialiasingEnabled_{true};
     qreal antialiasingFeather_{1.0};
