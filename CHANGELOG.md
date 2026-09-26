@@ -8,13 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- `RectangleList::rectangleIndexAt()` returns the topmost rectangle under an
-  item position.
-- `RectangleList.rectangleAt()` returns a rectangle's bounds as an object with
-  `x1`, `y1`, `x2`, `y2`, for tooltips and other lookups.
-- `RectangleList.clearData()` removes all rectangles.
-- `RectangleList::setData(std::vector<double>&&, int)` moves a buffer into the
-  list without copying, and `postData()` hands one off from a worker thread.
+- `RectangleList`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
+  `setData(std::vector<double>&&, int)`, and `postData()`.
 
 ### Changed
 
@@ -23,9 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
-- Moved `RectangleList.hpp` from `QAccelPlot/shapes/` to `QAccelPlot/series/`.
-  Update C++ includes to `<QAccelPlot/series/RectangleList.hpp>`. QML usage is
-  unchanged.
+- Moved `RectangleList.hpp` to `QAccelPlot/series/`.
 
 ### Fixed
 
@@ -49,12 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
-- `RectangleList` no longer blocks hover for series stacked underneath it.
-  Hover events outside its rectangles now reach those series.
-- `RectangleList.hoveredIndex` resets to -1 when new data removes the hovered
-  rectangle, instead of pointing past `count`.
-- `RectangleList.countChanged` is emitted only when the count changes, not on
-  every `setData()` call.
+- `RectangleList` no longer blocks hover for series underneath it.
 
 ## [0.3.0] — 2026-09-25
 
