@@ -20,7 +20,8 @@ namespace QAccelPlot {
 ///
 /// Subclasses implement \c interpolate() to define how the element animates between
 /// an old dataset and a new one. The transition is driven frame-by-frame by \c advance(),
-/// which is called from the host element's \c updatePaintNode().
+/// which the host element calls on the GUI thread before each scene graph synchronization,
+/// so \c runningChanged is always emitted on the GUI thread.
 ///
 /// \sa DrawTransition, MorphTransition, LineCurve
 class DataTransition : public QObject {
