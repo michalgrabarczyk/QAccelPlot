@@ -59,6 +59,7 @@
 * **createLight** ([**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md))
 * **Colormap** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **clearStops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **connectStop** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **customStops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **Colors** ([**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md))
 * **contains** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md), [**QAccelPlot::LineCurvePointRenderer**](classQAccelPlot_1_1LineCurvePointRenderer.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
@@ -99,6 +100,7 @@
 * **dataMin** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **drawTickLabel** ([**QAccelPlot::AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md))
 * **dark** ([**QAccelPlot::ColorPalette**](classQAccelPlot_1_1ColorPalette.md), [**QAccelPlot::Colors**](classQAccelPlot_1_1Colors.md))
+* **disconnectStops** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **DashLine** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md))
 * **dashParameters** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md), [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md))
 * **DataAnchor** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md))
@@ -267,6 +269,8 @@
 ## o
 
 * **orientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **onStopChanged** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **onStopDestroyed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **onGradientObjectChanged** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **opacity** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md))
 * **operator=** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md))

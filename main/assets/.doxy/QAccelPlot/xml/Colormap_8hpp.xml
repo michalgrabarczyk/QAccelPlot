@@ -118,24 +118,29 @@
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1Colormap_1adb30844fc484d5c9fc331388c6b80a71" kindref="member">colormapChanged</ref>();</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>rebuildStops();</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GradientStopData&gt;<sp/>customStops()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>appendStop(QQmlListProperty&lt;QObject&gt;*<sp/>list,<sp/>QObject*<sp/>stop);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>qsizetype<sp/>stopCount(QQmlListProperty&lt;QObject&gt;*<sp/>list);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>QObject*<sp/>stopAt(QQmlListProperty&lt;QObject&gt;*<sp/>list,<sp/>qsizetype<sp/>index);</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clearStops(QQmlListProperty&lt;QObject&gt;*<sp/>list);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_SLOT<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onStopChanged();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onStopDestroyed(QObject*<sp/>stop);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Tracks<sp/>the<sp/>stop&apos;s<sp/>lifetime<sp/>and<sp/>its<sp/>position<sp/>and<sp/>color<sp/>edits.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>connectStop(QObject*<sp/>stop);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>disconnectStops();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>rebuildStops();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GradientStopData&gt;<sp/>customStops()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref><sp/>preset_{<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda951ee92ee5e947e1e7e1cb6376523c1a" kindref="member">Preset::Viridis</ref>};</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QObject*&gt;<sp/>stopObjects_;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>reversed_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GradientStopData&gt;<sp/>resolvedStops_;</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>min_;</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>max_;</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962" kindref="member">Normalization</ref><sp/>norm_{<ref refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962a32a843da6ea40ab3b17a3421ccdf671b" kindref="member">Normalization::Linear</ref>};</highlight></codeline>
-<codeline lineno="131"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>appendStop(QQmlListProperty&lt;QObject&gt;*<sp/>list,<sp/>QObject*<sp/>stop);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>qsizetype<sp/>stopCount(QQmlListProperty&lt;QObject&gt;*<sp/>list);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>QObject*<sp/>stopAt(QQmlListProperty&lt;QObject&gt;*<sp/>list,<sp/>qsizetype<sp/>index);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>clearStops(QQmlListProperty&lt;QObject&gt;*<sp/>list);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fd" kindref="member">Preset</ref><sp/>preset_{<ref refid="classQAccelPlot_1_1Colormap_1aa15fef934b0935f5a3b0f904b849f4fda951ee92ee5e947e1e7e1cb6376523c1a" kindref="member">Preset::Viridis</ref>};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>QList&lt;QObject*&gt;<sp/>stopObjects_;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>reversed_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GradientStopData&gt;<sp/>resolvedStops_;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>min_;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>max_;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962" kindref="member">Normalization</ref><sp/>norm_{<ref refid="classQAccelPlot_1_1Colormap_1aaeb1e9075c86180a18dcdf084e723962a32a843da6ea40ab3b17a3421ccdf671b" kindref="member">Normalization::Linear</ref>};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="QAccelPlot/src/QAccelPlot/effects/Colormap.hpp"/>
   </compounddef>
