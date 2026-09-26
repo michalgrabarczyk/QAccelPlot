@@ -266,6 +266,7 @@
 * **patternSize** ([**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md))
 * **period** ([**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md))
 * **plotRect\_** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **payload\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **position** ([**QAccelPlot::GradientStopData**](structQAccelPlot_1_1GradientStopData.md))
 * **pointCount\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **pointRenderer\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))

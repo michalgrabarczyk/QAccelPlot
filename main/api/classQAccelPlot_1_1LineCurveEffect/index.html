@@ -1272,6 +1272,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setenabled" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1379,6 +1390,10 @@
 <td style="text-align: left;"><a href="#function-enabled-22"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>if the effect is active.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-refresh"><strong>refresh</strong></a> () <br><em>Re-reads inputs that can change without a notification and emits</em> <code>effectChanged()</code> <em>if they did.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setenabled"><strong>setEnabled</strong></a> (bool enabled) <br><em>Sets the effect's enabled state to</em> <em>enabled</em> <em>.</em></td>
 </tr>
@@ -1420,11 +1435,18 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-refresh">function refresh<a class="headerlink" href="#function-refresh" title="Permanent link">&para;</a></h3>
+<p><em>Re-reads inputs that can change without a notification and emits</em> <code>effectChanged()</code> <em>if they did.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveEffect</span><span class="o">::</span><span class="n">refresh</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<p><a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> calls this on the GUI thread once per frame. The default implementation does nothing. </p>
+<hr>
+
 <h3 id="function-setenabled">function setEnabled<a class="headerlink" href="#function-setenabled" title="Permanent link">&para;</a></h3>
 <p><em>Sets the effect's enabled state to</em> <em>enabled</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveEffect</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveEffect</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

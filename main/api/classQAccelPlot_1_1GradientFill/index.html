@@ -1602,6 +1602,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setbaseline" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1943,8 +1954,12 @@
 <td style="text-align: left;"><a href="#function-opacity-22"><strong>opacity</strong></a> () const<br><em>Returns the fill opacity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>GradientFillPayload</strong></a></td>
-<td style="text-align: left;"><a href="#function-payload"><strong>payload</strong></a> () const<br><em>Returns a render-thread-safe snapshot of all fill parameters.</em></td>
+<td style="text-align: right;">const <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>GradientFillPayload</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-payload"><strong>payload</strong></a> () const<br><em>Returns a snapshot of all fill parameters, updated on the GUI thread when the effect changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-refresh"><strong>refresh</strong></a> () override<br><em>Re-reads the</em> <code>gradient</code> <em>stops, which can change without a notification, and emits</em><code>effectChanged()</code> <em>if they differ from the snapshot.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2005,6 +2020,10 @@
 <tr>
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveEffect/#function-enabled-22"><strong>enabled</strong></a> () const<br><em>Returns</em> <code>true</code> <em>if the effect is active.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveEffect/#function-refresh"><strong>refresh</strong></a> () <br><em>Re-reads inputs that can change without a notification and emits</em> <code>effectChanged()</code> <em>if they did.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2207,88 +2226,96 @@
 <hr>
 
 <h3 id="function-payload">function payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
-<p><em>Returns a render-thread-safe snapshot of all fill parameters.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">GradientFillPayload</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns a snapshot of all fill parameters, updated on the GUI thread when the effect changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">const</span><span class="w"> </span><span class="n">GradientFillPayload</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
+<p>Does not read the QML gradient, so <code>updatePaintNode()</code> can call it on the render thread. </p>
+<hr>
+
+<h3 id="function-refresh">function refresh<a class="headerlink" href="#function-refresh" title="Permanent link">&para;</a></h3>
+<p><em>Re-reads the</em> <code>gradient</code> <em>stops, which can change without a notification, and emits</em><code>effectChanged()</code> <em>if they differ from the snapshot.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">refresh</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1LineCurveEffect/#function-refresh"><em>QAccelPlot::LineCurveEffect::refresh</em></a></p>
 <hr>
 
 <h3 id="function-setbaseline">function setBaseline<a class="headerlink" href="#function-setbaseline" title="Permanent link">&para;</a></h3>
 <p><em>Sets the baseline mode to</em> <em>baseline</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setBaseline</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="n">baseline</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setBaseline</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">GradientFillBaseline</span><span class="w"> </span><span class="n">baseline</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbaselinevalue">function setBaselineValue<a class="headerlink" href="#function-setbaselinevalue" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fixed baseline data value to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setBaselineValue</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setBaselineValue</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setcolormap">function setColormap<a class="headerlink" href="#function-setcolormap" title="Permanent link">&para;</a></h3>
 <p><em>Sets the colormap to</em> <em>colormap</em> <em>. Pass</em><code>nullptr</code> <em>to take the stops from</em><code>gradient</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setColormap</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setColormap</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">Colormap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">colormap</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdirection">function setDirection<a class="headerlink" href="#function-setdirection" title="Permanent link">&para;</a></h3>
 <p><em>Sets the gradient direction to</em> <em>direction</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setDirection</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setDirection</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="n">GradientDirection</span><span class="w"> </span><span class="n">direction</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradient">function setGradient<a class="headerlink" href="#function-setgradient" title="Permanent link">&para;</a></h3>
 <p><em>Sets the Qt Gradient object to</em> <em>gradient</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradient</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradient</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradientvaluemax">function setGradientValueMax<a class="headerlink" href="#function-setgradientvaluemax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the maximum data value for gradient normalization to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradientvaluemaxsource">function setGradientValueMaxSource<a class="headerlink" href="#function-setgradientvaluemaxsource" title="Permanent link">&para;</a></h3>
 <p><em>Sets the gradient normalization maximum source to</em> <em>source</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMaxSource</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMaxSource</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradientvaluemin">function setGradientValueMin<a class="headerlink" href="#function-setgradientvaluemin" title="Permanent link">&para;</a></h3>
 <p><em>Sets the minimum data value for gradient normalization to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMin</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setgradientvalueminsource">function setGradientValueMinSource<a class="headerlink" href="#function-setgradientvalueminsource" title="Permanent link">&para;</a></h3>
 <p><em>Sets the gradient normalization minimum source to</em> <em>source</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMinSource</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setGradientValueMinSource</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">GradientValueSource</span><span class="w"> </span><span class="n">source</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setopacity">function setOpacity<a class="headerlink" href="#function-setopacity" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fill opacity to</em> <em>value</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setOpacity</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">GradientFill</span><span class="o">::</span><span class="n">setOpacity</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 

@@ -70,6 +70,16 @@ using GradientValueSource = GradientValueSourceNS::Source;
 struct GradientStopData {
     float position{0.0f};          
     QColor color{Qt::transparent}; 
+
+    friend bool operator==(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return lhs.position == rhs.position && lhs.color == rhs.color;
+    }
+
+    friend bool operator!=(const GradientStopData& lhs, const GradientStopData& rhs)
+    {
+        return !(lhs == rhs);
+    }
 };
 
 struct GradientColorPayload {

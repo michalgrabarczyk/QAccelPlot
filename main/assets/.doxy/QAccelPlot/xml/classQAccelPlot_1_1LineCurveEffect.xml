@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="44" column="10" bodyfile="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" bodystart="44" bodyend="44"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="49" column="10" bodyfile="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" bodystart="49" bodyend="49"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -97,6 +97,24 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="35" column="10"/>
       </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveEffect_1ab3467a9512c14f99b7a3ce373123fc62" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void QAccelPlot::LineCurveEffect::refresh</definition>
+        <argsstring>()</argsstring>
+        <name>refresh</name>
+        <qualifiedname>QAccelPlot::LineCurveEffect::refresh</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1GradientFill_1a3208cff5859359efa191c6bcc36dba7e">refresh</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b">refresh</reimplementedby>
+        <briefdescription>
+<para>Re-reads inputs that can change without a notification and emits <computeroutput><ref refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" kindref="member">effectChanged()</ref></computeroutput> if they did. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref> calls this on the GUI thread once per frame. The default implementation does nothing. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="40" column="18"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -112,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="39" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="44" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -127,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="41" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="46" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -173,7 +191,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" bodystart="21" bodyend="45"/>
+    <location file="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/LineCurveEffect.hpp" bodystart="21" bodyend="50"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>effectChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1affda62643e26d7fbf7ea48d1338af1bd" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabled</name></member>
@@ -181,6 +199,7 @@
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a5bc88c916e34fcf2113f62e227e2c97e" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabled_</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>enabledChanged</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>LineCurveEffect</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveEffect_1ab3467a9512c14f99b7a3ce373123fc62" prot="public" virt="virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>refresh</name></member>
       <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveEffect</scope><name>setEnabled</name></member>
     </listofallmembers>
   </compounddef>

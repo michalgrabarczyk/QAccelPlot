@@ -634,6 +634,7 @@
     <member refid="classQAccelPlot_1_1GradientFill_1a2c7108ece48dbb7342bc0d83c56bab11" kind="variable"><name>baseline_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a8b8522b272ffaeab05a38683bbfea95f" kind="variable"><name>baselineValue_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1aaf46f3ea6570e6c58b7bb80a4f12f61a" kind="variable"><name>opacity_</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a6388607e6255ece8d0d7a14fb4e8b14a" kind="variable"><name>payload_</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a0d065a5049043b6fcba28bfccc01b422" kind="function"><name>GradientFill</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a846bb84331616f5a099c4148df96c86a" kind="function"><name>direction</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a4eed12038ed1688ec5ea07e0233aaaa3" kind="function"><name>setDirection</name></member>
@@ -655,7 +656,8 @@
     <member refid="classQAccelPlot_1_1GradientFill_1a04cb4035c703fb23b544609ce5a1d9b0" kind="function"><name>setBaselineValue</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a26b7b164edc77f3ebc5a18097e64afd3" kind="function"><name>opacity</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1ae5d5f4caaff9ec7751523ab83e6cc5bb" kind="function"><name>setOpacity</name></member>
-    <member refid="classQAccelPlot_1_1GradientFill_1af815012823c34725a8d720fdbf81af15" kind="function"><name>payload</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a136a08bcea909032c7e635b4a88e77fc" kind="function"><name>payload</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a3208cff5859359efa191c6bcc36dba7e" kind="function"><name>refresh</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1af82b411512117911e2219826767e1148" kind="signal"><name>directionChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a36c54758981c2a3f263ef48aba58a078" kind="signal"><name>gradientChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a78d84722a1dd9efc06ced1bf087d7cfa" kind="signal"><name>colormapChanged</name></member>
@@ -666,6 +668,8 @@
     <member refid="classQAccelPlot_1_1GradientFill_1aef643de3faf0970b533948fa06aa2172" kind="signal"><name>baselineChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1ab6e6d4f3150f6e667ce90916b86cd21c" kind="signal"><name>baselineValueChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1afb0ecb83c685d1b12cf181d478952cdb" kind="signal"><name>opacityChanged</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a9ce1f59b85fe378ebc40488c2a684064" kind="function"><name>readPayload</name></member>
+    <member refid="classQAccelPlot_1_1GradientFill_1a0ffc9bac298dcfe29cb83d3f914c7e9e" kind="function"><name>updatePayload</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a49056e9df002a618ffe66d01f00ff2ad" kind="function"><name>reconnectGradientSignals</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a223ddf738bdd286e9fc254da55092f5f" kind="function"><name>disconnectGradientSignals</name></member>
     <member refid="classQAccelPlot_1_1GradientFill_1a3a277b02edc0adc9b21deb844d2d8b4b" kind="function"><name>onGradientObjectChanged</name></member>
@@ -703,6 +707,8 @@
   <compound refid="structQAccelPlot_1_1GradientStopData" kind="struct"><name>QAccelPlot::GradientStopData</name>
     <member refid="structQAccelPlot_1_1GradientStopData_1a963d43b136f1c4175a66fbbaf557bef6" kind="variable"><name>position</name></member>
     <member refid="structQAccelPlot_1_1GradientStopData_1aa7cc3fcbd9411f60d18a3b0401bb76ee" kind="variable"><name>color</name></member>
+    <member refid="structQAccelPlot_1_1GradientStopData_1a6be52daca6df8c7e3c16c14fa5f8cbba" kind="friend"><name>operator==</name></member>
+    <member refid="structQAccelPlot_1_1GradientStopData_1a5e6cb404be1aed838ede6ab1e4e99d7f" kind="friend"><name>operator!=</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1GradientStroke" kind="class"><name>QAccelPlot::GradientStroke</name>
     <member refid="classQAccelPlot_1_1GradientStroke_1aacceb38520e8b5c9f819297f8f40a615" kind="property"><name>direction</name></member>
@@ -721,6 +727,7 @@
     <member refid="classQAccelPlot_1_1GradientStroke_1ac6f4b52093ccf45f1c6f9eff1b67af99" kind="variable"><name>gradientValueMin_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1adc2d66ce58f128f57b3127d065098142" kind="variable"><name>gradientValueMaxSource_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1aee9e7cae64ab292e7b64d7bf4cac3675" kind="variable"><name>gradientValueMax_</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1abc8b3933b6481d0ddc56eb4358283438" kind="variable"><name>payload_</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1aa29355fe8b5b136c5db2d0fc744c710f" kind="function"><name>GradientStroke</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a989b18dfc369f68e6ea9e0b3532da501" kind="function"><name>direction</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a3e5d28caacdedb78c4f4fcd07a4626fb" kind="function"><name>setDirection</name></member>
@@ -736,7 +743,8 @@
     <member refid="classQAccelPlot_1_1GradientStroke_1a385c8a403eb17ee94647d0c61297599f" kind="function"><name>setGradientValueMaxSource</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1acb5b5dd910ee6945cb9bfb887d5ac50e" kind="function"><name>gradientValueMax</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a3457261d23c9ddb8fe0dc70fd94a39ea" kind="function"><name>setGradientValueMax</name></member>
-    <member refid="classQAccelPlot_1_1GradientStroke_1a2bf3a8fae25ca86bf45119a45de49463" kind="function"><name>payload</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1a1de4a851580f5218cee501fb4270807c" kind="function"><name>payload</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1acc1824c52ded07b2b684c4d1a1d3983b" kind="function"><name>refresh</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1ad6ee3ef33d81185aeed6a1c1a425fe" kind="signal"><name>directionChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a110402e070406c086458e465af320bbe" kind="signal"><name>gradientChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ace60f0af12eafeccd93f82120b79539a" kind="signal"><name>colormapChanged</name></member>
@@ -744,6 +752,8 @@
     <member refid="classQAccelPlot_1_1GradientStroke_1a04568535dcda6405c1c8a7ee3cd3e6cc" kind="signal"><name>gradientValueMinChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a01ba4689775a620eb6c8ebada7a23963" kind="signal"><name>gradientValueMaxSourceChanged</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a0bdb609f57e4ac40f7ea7da9f2b5b7ea" kind="signal"><name>gradientValueMaxChanged</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1af1300b958c249ceaa16187c5333ba907" kind="function"><name>readPayload</name></member>
+    <member refid="classQAccelPlot_1_1GradientStroke_1a604959d56ba28b6eb11a9d85c1d4d1b5" kind="function"><name>updatePayload</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1a1ee508aba76e894ed11922895c40ed6d" kind="function"><name>reconnectGradientSignals</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1ad001a3c737b7d7d43c11eb8d1452729b" kind="function"><name>disconnectGradientSignals</name></member>
     <member refid="classQAccelPlot_1_1GradientStroke_1aa7b872da4f16b4fd140f733539e71bad" kind="function"><name>onGradientObjectChanged</name></member>
@@ -938,6 +948,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a78010918673eb08bcc452b7ff0dcc4b2" kind="function"><name>onLineStyleDestroyed</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a87b6fb68dac4d84bc3cb5f0fdf7ce57b" kind="function"><name>onNanGapModeChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a48bdf57083a9e8fd213c85cd4d2f36bb" kind="function"><name>onMarkerShapeChanged</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1aeb78384844d07268e0a6ef032f1f2071" kind="function"><name>hasGradientEffect</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a24845103565c8152a4ed5a9b8ded8588" kind="function"><name>resolveGradientColorPayload</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ac5c0cf8db24ffc1735f61a0ac9c71c01" kind="function"><name>resolveGradientFillPayload</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a022b41d79f435b73c0ef68fb09a80fce" kind="function"><name>updateDataRanges</name></member>
@@ -968,6 +979,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a31cc6b7acceb31032ef7a59e07b6561a" kind="function"><name>invalidateData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a3bd8ad34ea074373d7b8b4f17b479c5d" kind="function"><name>cancelRunningTransition</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a753913803b91862c837f9622f2ff9d06" kind="function"><name>connectAnimationTicks</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a45aff54708a91655240183e26d9df816" kind="function"><name>refreshEffects</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5ee58218fb7c9241824f5cb4da023cbc" kind="function"><name>advanceTransition</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a9146859ddcf2ae395ab8a55d988f27b2" kind="function"><name>appendEffect</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aaee2ba5b3d12616f80eae65bab9b37e4" kind="function"><name>effectCount</name></member>
@@ -980,6 +992,7 @@
     <member refid="classQAccelPlot_1_1LineCurveEffect_1a57df52d947c5450b4143c95e290c6b42" kind="function"><name>LineCurveEffect</name></member>
     <member refid="classQAccelPlot_1_1LineCurveEffect_1a50ccdb596e68bbe5d0ef32e6ac7bdf0f" kind="function"><name>enabled</name></member>
     <member refid="classQAccelPlot_1_1LineCurveEffect_1afe12b20cd1e7c02b31d4f857be450d86" kind="function"><name>setEnabled</name></member>
+    <member refid="classQAccelPlot_1_1LineCurveEffect_1ab3467a9512c14f99b7a3ce373123fc62" kind="function"><name>refresh</name></member>
     <member refid="classQAccelPlot_1_1LineCurveEffect_1a7f30e2acc9d45a6d6b4fb788c660b224" kind="signal"><name>enabledChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurveEffect_1a75de56e1980ec445ce581f1f31b95e3b" kind="signal"><name>effectChanged</name></member>
   </compound>

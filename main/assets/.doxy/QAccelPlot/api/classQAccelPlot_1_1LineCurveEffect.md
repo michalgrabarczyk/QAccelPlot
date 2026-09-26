@@ -94,6 +94,7 @@ flowchart TB
 | ---: | :--- |
 |   | [**LineCurveEffect**](#function-linecurveeffect) (QObject \* parent=nullptr) <br>_Constructs an_ [_**LineCurveEffect**_](classQAccelPlot_1_1LineCurveEffect.md) _with the given__parent_ _._ |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns_ `true` _if the effect is active._ |
+| virtual void | [**refresh**](#function-refresh) () <br>_Re-reads inputs that can change without a notification and emits_ `effectChanged()` _if they did._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Sets the effect's enabled state to_ _enabled_ _._ |
 
 
@@ -217,6 +218,25 @@ bool QAccelPlot::LineCurveEffect::enabled () const
 
 
 
+
+<hr>
+
+
+
+
+### function refresh {#function-refresh}
+
+_Re-reads inputs that can change without a notification and emits_ `effectChanged()` _if they did._
+```C++
+virtual void QAccelPlot::LineCurveEffect::refresh () 
+```
+
+
+
+[**LineCurve**](classQAccelPlot_1_1LineCurve.md) calls this on the GUI thread once per frame. The default implementation does nothing. 
+
+
+        
 
 <hr>
 

@@ -77,7 +77,9 @@ public:
     qreal opacity() const;
     void setOpacity(qreal value);
 
-    GradientFillPayload payload() const;
+    const GradientFillPayload& payload() const;
+
+    void refresh() override;
 
 signals:
     void directionChanged();
@@ -92,6 +94,8 @@ signals:
     void opacityChanged();
 
 private:
+    GradientFillPayload readPayload() const;
+    void updatePayload();
     void reconnectGradientSignals();
     void disconnectGradientSignals();
     Q_SLOT void onGradientObjectChanged();
@@ -110,6 +114,7 @@ private:
     GradientFillBaseline baseline_{GradientFillBaseline::AxisMinimum};
     qreal baselineValue_{0.0};
     qreal opacity_{0.35};
+    GradientFillPayload payload_;
 };
 
 } // namespace QAccelPlot

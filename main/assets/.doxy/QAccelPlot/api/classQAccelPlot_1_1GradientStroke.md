@@ -141,7 +141,8 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 |  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMaxSource**](#function-gradientvaluemaxsource-22) () const<br>_Returns how the gradient normalization maximum is determined._  |
 |  qreal | [**gradientValueMin**](#function-gradientvaluemin-22) () const<br>_Returns the minimum data value for gradient normalization._  |
 |  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMinSource**](#function-gradientvalueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
-|  [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) | [**payload**](#function-payload) () const<br>_Returns a render-thread-safe snapshot of all stroke parameters._  |
+|  const [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) & | [**payload**](#function-payload) () const<br>_Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes._  |
+| virtual void | [**refresh**](#function-refresh) () override<br>_Re-reads the_ `gradient` _stops, which can change without a notification, and emits_`effectChanged()` _if they differ from the snapshot._ |
 |  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._ |
 |  void | [**setDirection**](#function-setdirection) ([**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction) <br>_Sets the gradient direction to_ _direction_ _._ |
 |  void | [**setGradient**](#function-setgradient) (QObject \* gradient) <br>_Sets the Qt Gradient object to_ _gradient_ _._ |
@@ -159,6 +160,7 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | ---: | :--- |
 |   | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md#function-linecurveeffect) (QObject \* parent=nullptr) <br>_Constructs an_ [_**LineCurveEffect**_](classQAccelPlot_1_1LineCurveEffect.md) _with the given__parent_ _._ |
 |  bool | [**enabled**](classQAccelPlot_1_1LineCurveEffect.md#function-enabled-22) () const<br>_Returns_ `true` _if the effect is active._ |
+| virtual void | [**refresh**](classQAccelPlot_1_1LineCurveEffect.md#function-refresh) () <br>_Re-reads inputs that can change without a notification and emits_ `effectChanged()` _if they did._ |
 |  void | [**setEnabled**](classQAccelPlot_1_1LineCurveEffect.md#function-setenabled) (bool enabled) <br>_Sets the effect's enabled state to_ _enabled_ _._ |
 
 
@@ -575,12 +577,33 @@ GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource () const
 
 ### function payload {#function-payload}
 
-_Returns a render-thread-safe snapshot of all stroke parameters._ 
+_Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes._ 
 ```C++
-GradientColorPayload QAccelPlot::GradientStroke::payload () const
+const GradientColorPayload & QAccelPlot::GradientStroke::payload () const
 ```
 
 
+
+Does not read the QML gradient, so `updatePaintNode()` can call it on the render thread. 
+
+
+        
+
+<hr>
+
+
+
+
+### function refresh {#function-refresh}
+
+_Re-reads the_ `gradient` _stops, which can change without a notification, and emits_`effectChanged()` _if they differ from the snapshot._
+```C++
+virtual void QAccelPlot::GradientStroke::refresh () override
+```
+
+
+
+Implements [*QAccelPlot::LineCurveEffect::refresh*](classQAccelPlot_1_1LineCurveEffect.md#function-refresh)
 
 
 <hr>

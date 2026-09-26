@@ -65,7 +65,9 @@ public:
     qreal gradientValueMax() const;
     void setGradientValueMax(qreal value);
 
-    GradientColorPayload payload() const;
+    const GradientColorPayload& payload() const;
+
+    void refresh() override;
 
 signals:
     void directionChanged();
@@ -77,6 +79,8 @@ signals:
     void gradientValueMaxChanged();
 
 private:
+    GradientColorPayload readPayload() const;
+    void updatePayload();
     void reconnectGradientSignals();
     void disconnectGradientSignals();
     Q_SLOT void onGradientObjectChanged();
@@ -92,6 +96,7 @@ private:
     qreal gradientValueMin_{0.0};
     GradientValueSource gradientValueMaxSource_{GradientValueSource::DataRange};
     qreal gradientValueMax_{0.0};
+    GradientColorPayload payload_;
 };
 
 } // namespace QAccelPlot

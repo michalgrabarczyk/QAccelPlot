@@ -34,6 +34,8 @@ public:
     bool enabled() const;
     void setEnabled(bool enabled);
 
+    virtual void refresh();
+
 signals:
     void enabledChanged();
     void effectChanged();

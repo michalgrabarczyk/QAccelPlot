@@ -122,6 +122,44 @@ float QAccelPlot::GradientStopData::position;
 
 
 
+<hr>## Friends Documentation
+
+
+
+
+
+
+### friend operator!= {#friend-operator}
+
+_Returns_ `true` _if the stops differ in position or color._
+```C++
+inline bool QAccelPlot::GradientStopData::operator!= (
+    const GradientStopData & lhs,
+    const GradientStopData & rhs
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### friend operator== {#friend-operator}
+
+_Returns_ `true` _if both stops have the same position and color._
+```C++
+inline bool QAccelPlot::GradientStopData::operator== (
+    const GradientStopData & lhs,
+    const GradientStopData & rhs
+) 
+```
+
+
+
+
 <hr>
 
 ------------------------------
