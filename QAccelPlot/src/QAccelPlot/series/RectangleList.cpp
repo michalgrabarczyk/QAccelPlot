@@ -15,6 +15,7 @@
 #include <QSGGeometryNode>
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <cstring>
 #include <limits>
@@ -28,6 +29,12 @@ bool hoverEnabled()
     auto isInteger = false;
     const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
     return !isInteger || value != 0;
+}
+
+const std::array<QString, 4>& rectangleKeys()
+{
+    static const auto keys = std::array<QString, 4>{QStringLiteral("x1"), QStringLiteral("y1"), QStringLiteral("x2"), QStringLiteral("y2")};
+    return keys;
 }
 
 QColor defaultRectangleColor()
@@ -76,26 +83,16 @@ int RectangleList::hoveredIndex() const
 
 void RectangleList::setData(const QVariantList& rects)
 {
-    if (rects.size() != rectCount_) {
-        vertexCacheValid_ = false;
-    }
-    rectCount_ = static_cast<int>(rects.size());
-    data_.resize(static_cast<size_t>(rectCount_) * 4);
-
-    for (auto i = 0; i < rectCount_; ++i) {
+    const auto& keys = rectangleKeys();
+    auto data = std::vector<double>(static_cast<size_t>(rects.size()) * keys.size());
+    for (qsizetype i = 0; i < rects.size(); ++i) {
         const auto map = rects[i].toMap();
-        const auto base = static_cast<size_t>(i) * 4;
-        data_[base] = map.value(QStringLiteral("x1")).toDouble();
-        data_[base + 1] = map.value(QStringLiteral("y1")).toDouble();
-        data_[base + 2] = map.value(QStringLiteral("x2")).toDouble();
-        data_[base + 3] = map.value(QStringLiteral("y2")).toDouble();
+        const auto base = static_cast<size_t>(i) * keys.size();
+        for (size_t k = 0; k < keys.size(); ++k) {
+            data[base + k] = map.value(keys[k]).toDouble();
+        }
     }
-
-    dataChanged_ = true;
-    buildSpatialGrid();
-    updateDataRanges();
-    emit countChanged();
-    update();
+    applyData(std::move(data), static_cast<int>(rects.size()));
 }
 
 void RectangleList::setData(const float* data, const int rectCount)
@@ -103,21 +100,8 @@ void RectangleList::setData(const float* data, const int rectCount)
     if (!validateRawDataArguments(data, rectCount)) {
         return;
     }
-    if (rectCount != rectCount_) {
-        vertexCacheValid_ = false;
-    }
-    rectCount_ = rectCount;
     const auto floatCount = static_cast<size_t>(rectCount) * 4;
-    data_.resize(floatCount);
-    for (size_t i = 0; i < floatCount; ++i) {
-        data_[i] = static_cast<double>(data[i]);
-    }
-
-    dataChanged_ = true;
-    buildSpatialGrid();
-    updateDataRanges();
-    emit countChanged();
-    update();
+    applyData(std::vector<double>(data, data + floatCount), rectCount);
 }
 
 void RectangleList::setData(const double* data, const int rectCount)
@@ -125,21 +109,40 @@ void RectangleList::setData(const double* data, const int rectCount)
     if (!validateRawDataArguments(data, rectCount)) {
         return;
     }
-    if (rectCount != rectCount_) {
-        vertexCacheValid_ = false;
-    }
-    rectCount_ = rectCount;
     const auto doubleCount = static_cast<size_t>(rectCount) * 4;
-    data_.resize(doubleCount);
-    if (doubleCount > 0) {
-        memcpy(data_.data(), data, doubleCount * sizeof(double));
-    }
+    applyData(std::vector<double>(data, data + doubleCount), rectCount);
+}
 
-    dataChanged_ = true;
-    buildSpatialGrid();
-    updateDataRanges();
-    emit countChanged();
-    update();
+void RectangleList::setData(std::vector<double>&& data, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), rectCount)) {
+        return;
+    }
+    applyData(std::move(data), rectCount);
+}
+
+void RectangleList::postData(std::vector<double>&& data, const int rectCount)
+{
+    QMetaObject::invokeMethod(this, [this, rects = std::move(data), rectCount]() mutable { setData(std::move(rects), rectCount); }, Qt::QueuedConnection);
+}
+
+void RectangleList::clearData()
+{
+    applyData({}, 0);
+}
+
+QVariantMap RectangleList::rectangleAt(const int index) const
+{
+    if (index < 0 || index >= rectCount_) {
+        return {};
+    }
+    const auto& keys = rectangleKeys();
+    const auto base = static_cast<size_t>(index) * keys.size();
+    auto rect = QVariantMap{};
+    for (size_t k = 0; k < keys.size(); ++k) {
+        rect.insert(keys[k], data_[base + k]);
+    }
+    return rect;
 }
 
 int RectangleList::rectangleIndexAt(const QPointF& position) const
@@ -168,6 +171,40 @@ bool RectangleList::validateRawDataArguments(const void* data, const int rectCou
         return false;
     }
     return true;
+}
+
+bool RectangleList::validateDataArguments(const std::size_t valueCount, const int rectCount) const
+{
+    if (rectCount < 0) {
+        qCWarning(lcQAccelPlot) << "RectangleList data rectangle count cannot be negative:" << rectCount;
+        return false;
+    }
+    const auto expectedValueCount = static_cast<std::size_t>(rectCount) * 4;
+    if (valueCount != expectedValueCount) {
+        qCWarning(lcQAccelPlot) << "RectangleList received" << valueCount << "coordinates for" << rectCount << "rectangles; expected" << expectedValueCount;
+        return false;
+    }
+    return true;
+}
+
+void RectangleList::applyData(std::vector<double>&& data, const int rectCount)
+{
+    const auto previousCount = rectCount_;
+    if (rectCount != rectCount_) {
+        vertexCacheValid_ = false;
+    }
+    data_ = std::move(data);
+    rectCount_ = rectCount;
+    dataChanged_ = true;
+    buildSpatialGrid();
+    updateDataRanges();
+    if (hoveredIndex_ >= rectCount_) {
+        setHoveredIndex(-1);
+    }
+    if (previousCount != rectCount_) {
+        emit countChanged();
+    }
+    update();
 }
 
 void RectangleList::setHoveredIndex(const int index)

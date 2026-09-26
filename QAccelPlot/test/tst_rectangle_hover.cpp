@@ -57,6 +57,7 @@ private slots:
     void nearbyTimestampRectangles();
     void rectangleIndexAtReturnsTopmostRectangle();
     void hoverEventsTrackRectangleUnderCursor();
+    void removingHoveredRectangleClearsHover();
     void seriesUnderneathReceiveHoverOutsideRectangles();
 };
 
@@ -142,6 +143,28 @@ void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()
 
     QCOMPARE(rectangles.hoveredIndex(), -1);
     QCOMPARE(hoveredSpy.count(), 5);
+}
+
+void RectangleHoverTest::removingHoveredRectangleClearsHover()
+{
+    auto axes = AxisPair{};
+    auto rectangles = HoverableRectangles{};
+    setOverlappingRectangles(rectangles, axes);
+    auto move = QHoverEvent{QEvent::HoverMove, {250.0, 150.0}, {250.0, 150.0}, {250.0, 150.0}};
+    rectangles.hoverMoveEvent(&move);
+    QCOMPARE(rectangles.hoveredIndex(), 1);
+
+    rectangles.setData(std::vector<double>{0.0, 0.0, 2.0, 2.0}, 1);
+    QCOMPARE(rectangles.hoveredIndex(), -1);
+
+    rectangles.hoverMoveEvent(&move);
+    QCOMPARE(rectangles.hoveredIndex(), -1);
+    auto moveToFirst = QHoverEvent{QEvent::HoverMove, {50.0, 350.0}, {50.0, 350.0}, {50.0, 350.0}};
+    rectangles.hoverMoveEvent(&moveToFirst);
+    QCOMPARE(rectangles.hoveredIndex(), 0);
+
+    rectangles.clearData();
+    QCOMPARE(rectangles.hoveredIndex(), -1);
 }
 
 void RectangleHoverTest::seriesUnderneathReceiveHoverOutsideRectangles()

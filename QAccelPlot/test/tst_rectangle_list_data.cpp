@@ -14,6 +14,8 @@
 #include <QtTest/QtTest>
 
 #include <array>
+#include <thread>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -32,6 +34,12 @@ private slots:
     void invalidRawArgumentsAreRejected();
     void rawDoubleDataPreservesModernEpochPrecision();
     void variantListDataPreservesModernEpochPrecision();
+    void movedDataIsApplied();
+    void movedDataWithWrongSizeIsRejected();
+    void postedDataIsAppliedFromWorkerThread();
+    void clearDataRemovesRectangles();
+    void countChangedOnlyWhenCountChanges();
+    void rectangleAtReturnsBounds();
     void scaleChangesRefreshRenderCoordinates_data();
     void scaleChangesRefreshRenderCoordinates();
 };
@@ -115,6 +123,98 @@ void RectangleListDataTest::variantListDataPreservesModernEpochPrecision()
 
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void RectangleListDataTest::movedDataIsApplied()
+{
+    auto xAxis = Axis{};
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0}, 2);
+
+    QCOMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x2")).toDouble(), 7.0);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 7.0);
+}
+
+void RectangleListDataTest::movedDataWithWrongSizeIsRejected()
+{
+    auto rectangles = RectangleList{};
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0}, 1);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
+    rectangles.setData(std::vector<double>{}, -1);
+
+    QCOMPARE(rectangles.count(), 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), 4.0);
+}
+
+void RectangleListDataTest::postedDataIsAppliedFromWorkerThread()
+{
+    auto rectangles = RectangleList{};
+    auto worker = std::thread{[&rectangles]() {
+        rectangles.postData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+        rectangles.postData(std::vector<double>{5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0}, 2);
+    }};
+    worker.join();
+
+    // Queued: nothing is applied until the event loop runs.
+    QCOMPARE(rectangles.count(), 0);
+    QTRY_COMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 9.0);
+}
+
+void RectangleListDataTest::clearDataRemovesRectangles()
+{
+    auto xAxis = Axis{};
+    auto remaining = RectangleList{};
+    remaining.setXAxis(&xAxis);
+    remaining.setData(std::vector<double>{10.0, 0.0, 20.0, 1.0}, 1);
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
+
+    rectangles.clearData();
+
+    QCOMPARE(rectangles.count(), 0);
+    QCOMPARE(countSpy.count(), 1);
+    QVERIFY(rectangles.rectangleAt(0).isEmpty());
+    QCOMPARE(xAxis.dataMin(), 10.0);
+    QCOMPARE(xAxis.dataMax(), 20.0);
+}
+
+void RectangleListDataTest::countChangedOnlyWhenCountChanges()
+{
+    auto rectangles = RectangleList{};
+    auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
+
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+    rectangles.setData(std::vector<double>{5.0, 6.0, 7.0, 8.0}, 1);
+    QCOMPARE(countSpy.count(), 1);
+
+    rectangles.setData(QVariantList{});
+    QCOMPARE(countSpy.count(), 2);
+}
+
+void RectangleListDataTest::rectangleAtReturnsBounds()
+{
+    auto rectangles = RectangleList{};
+    auto rectMap = QVariantMap{};
+    rectMap.insert(QStringLiteral("x1"), 1.5);
+    rectMap.insert(QStringLiteral("y1"), -2.0);
+    rectMap.insert(QStringLiteral("x2"), 3.5);
+    rectMap.insert(QStringLiteral("y2"), 4.0);
+    rectangles.setData(QVariantList{rectMap});
+
+    QCOMPARE(rectangles.rectangleAt(0), rectMap);
+    QVERIFY(rectangles.rectangleAt(-1).isEmpty());
+    QVERIFY(rectangles.rectangleAt(1).isEmpty());
 }
 
 void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()

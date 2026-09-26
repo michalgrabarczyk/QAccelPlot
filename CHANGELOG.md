@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `RectangleList::rectangleIndexAt()` returns the topmost rectangle under an
   item position.
+- `RectangleList.rectangleAt()` returns a rectangle's bounds as an object with
+  `x1`, `y1`, `x2`, `y2`, for tooltips and other lookups.
+- `RectangleList.clearData()` removes all rectangles.
+- `RectangleList::setData(std::vector<double>&&, int)` moves a buffer into the
+  list without copying, and `postData()` hands one off from a worker thread.
 
 ### Changed
 
@@ -46,6 +51,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   animation.
 - `RectangleList` no longer blocks hover for series stacked underneath it.
   Hover events outside its rectangles now reach those series.
+- `RectangleList.hoveredIndex` resets to -1 when new data removes the hovered
+  rectangle, instead of pointing past `count`.
+- `RectangleList.countChanged` is emitted only when the count changes, not on
+  every `setData()` call.
 
 ## [0.3.0] — 2026-09-25
 

@@ -63,6 +63,20 @@ public:
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
     void setData(const double* data, int rectCount);
 
+    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the list. No copy is made.
+    void setData(std::vector<double>&& data, int rectCount);
+
+    /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
+    void postData(std::vector<double>&& data, int rectCount);
+
+    /// \brief Removes all rectangles.
+    Q_INVOKABLE void clearData();
+
+    /// \brief Returns rectangle \a index as an object with \c x1, \c y1, \c x2, \c y2 properties.
+    ///
+    /// Returns an empty object when \a index is out of range.
+    Q_INVOKABLE QVariantMap rectangleAt(int index) const;
+
     /// \brief Returns the index of the topmost rectangle under item position \a position, or -1.
     int rectangleIndexAt(const QPointF& position) const;
     /// \brief Returns \c true when a rectangle lies under item position \a point.
@@ -89,6 +103,8 @@ protected:
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
+    bool validateDataArguments(std::size_t valueCount, int rectCount) const;
+    void applyData(std::vector<double>&& data, int rectCount);
     void setHoveredIndex(int index);
     void buildSpatialGrid();
     void buildVertexCache();
