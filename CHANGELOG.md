@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `RectangleList::rectangleIndexAt()` returns the topmost rectangle under an
+  item position.
+
 ### Changed
 
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
@@ -39,6 +44,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
+- `RectangleList` no longer blocks hover for series stacked underneath it.
+  Hover events outside its rectangles now reach those series.
 
 ## [0.3.0] — 2026-09-25
 

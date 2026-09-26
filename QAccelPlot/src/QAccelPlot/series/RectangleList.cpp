@@ -142,6 +142,21 @@ void RectangleList::setData(const double* data, const int rectCount)
     update();
 }
 
+int RectangleList::rectangleIndexAt(const QPointF& position) const
+{
+    if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
+        return -1;
+    }
+    const auto dataX = xAxis()->pixelToCoord(position.x(), width());
+    const auto dataY = yAxis()->pixelToCoord(position.y(), height());
+    return spatialGrid_.query(dataX, dataY);
+}
+
+bool RectangleList::contains(const QPointF& point) const
+{
+    return boundingRect().contains(point) && rectangleIndexAt(point) >= 0;
+}
+
 bool RectangleList::validateRawDataArguments(const void* data, const int rectCount) const
 {
     if (rectCount < 0) {
@@ -153,6 +168,15 @@ bool RectangleList::validateRawDataArguments(const void* data, const int rectCou
         return false;
     }
     return true;
+}
+
+void RectangleList::setHoveredIndex(const int index)
+{
+    if (hoveredIndex_ == index) {
+        return;
+    }
+    hoveredIndex_ = index;
+    emit hoveredIndexChanged();
 }
 
 QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
@@ -231,50 +255,22 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     return node;
 }
 
-void RectangleList::hoverMoveEvent(QHoverEvent* event)
+void RectangleList::hoverEnterEvent(QHoverEvent* event)
 {
-    if (!xAxis() || !yAxis() || plotRect().isEmpty() || rectCount_ <= 0) {
-        if (hoveredIndex_ != -1) {
-            hoveredIndex_ = -1;
-            emit hoveredIndexChanged();
-        }
-        return;
-    }
-
-    // Map pixel position to data coordinates
-    const auto pos = event->position();
-    const auto dataX = xAxis()->pixelToCoord(pos.x(), width());
-    const auto dataY = yAxis()->pixelToCoord(pos.y(), height());
-
-    // Query spatial grid
-    const auto candidate = spatialGrid_.query(dataX, dataY);
-
-    auto newHovered = -1;
-    if (candidate >= 0 && candidate < rectCount_) {
-        // Containment test
-        const auto base = static_cast<size_t>(candidate) * 4;
-        const auto x1 = std::min(data_[base], data_[base + 2]);
-        const auto y1 = std::min(data_[base + 1], data_[base + 3]);
-        const auto x2 = std::max(data_[base], data_[base + 2]);
-        const auto y2 = std::max(data_[base + 1], data_[base + 3]);
-
-        if (dataX >= x1 && dataX <= x2 && dataY >= y1 && dataY <= y2) {
-            newHovered = candidate;
-        }
-    }
-
-    if (hoveredIndex_ != newHovered) {
-        hoveredIndex_ = newHovered;
-        emit hoveredIndexChanged();
-    }
+    setHoveredIndex(rectangleIndexAt(event->position()));
+    QQuickItem::hoverEnterEvent(event);
 }
 
-void RectangleList::hoverLeaveEvent(QHoverEvent* /*event*/)
+void RectangleList::hoverMoveEvent(QHoverEvent* event)
 {
-    if (hoveredIndex_ != -1) {
-        hoveredIndex_ = -1;
-        emit hoveredIndexChanged();
-    }
+    setHoveredIndex(rectangleIndexAt(event->position()));
+    QQuickItem::hoverMoveEvent(event);
+}
+
+void RectangleList::hoverLeaveEvent(QHoverEvent* event)
+{
+    setHoveredIndex(-1);
+    QQuickItem::hoverLeaveEvent(event);
 }
 
 void RectangleList::onAxisScaleChanged()

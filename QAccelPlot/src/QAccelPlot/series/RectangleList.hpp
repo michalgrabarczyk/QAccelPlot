@@ -63,6 +63,14 @@ public:
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
     void setData(const double* data, int rectCount);
 
+    /// \brief Returns the index of the topmost rectangle under item position \a position, or -1.
+    int rectangleIndexAt(const QPointF& position) const;
+    /// \brief Returns \c true when a rectangle lies under item position \a point.
+    ///
+    /// Hover delivery uses this test, so stacked series underneath still receive hover events
+    /// outside this list's rectangles.
+    bool contains(const QPointF& point) const override;
+
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
@@ -73,6 +81,7 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \brief Invalidates uploaded coordinates when an axis changes scale.
@@ -80,6 +89,7 @@ protected:
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
+    void setHoveredIndex(int index);
     void buildSpatialGrid();
     void buildVertexCache();
     void updateDataRanges();
