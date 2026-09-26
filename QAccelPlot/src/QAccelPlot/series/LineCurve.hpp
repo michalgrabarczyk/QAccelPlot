@@ -197,6 +197,8 @@ private:
     static LineCurveEffect* effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index);
     static void clearEffects(QQmlListProperty<LineCurveEffect>* list);
 
+    // Caches the effects' payloads on the GUI thread; updatePaintNode() must not read their QML gradients.
+    void refreshEffectPayloads();
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
 
@@ -265,6 +267,9 @@ private:
     std::vector<double> gapConnectData_;      // valid double samples (double data only)
     std::vector<float> gapConnectRenderData_; // valid GPU samples; also the source view for float data
     QList<LineCurveEffect*> effects_;
+    // Payloads of the first enabled gradient effects, with value bounds not yet resolved from the axes.
+    GradientColorPayload strokePayload_;
+    GradientFillPayload fillPayload_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
 
