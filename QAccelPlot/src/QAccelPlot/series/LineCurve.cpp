@@ -154,32 +154,34 @@ template <typename T> DataExtents computeChunkExtents(const T* data, const int f
     return computeValidExtents(data, static_cast<std::size_t>(first), static_cast<std::size_t>(last) + 1, logScaleX, logScaleY);
 }
 
-// Returns the payload of the first enabled, valid Effect with unset value bounds
-// resolved from the data range of the axis matching the gradient direction. Using
-// the data range keeps gradient colors invariant to pan/zoom.
-template <typename Effect, typename Payload> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const Axis* xAxis, const Axis* yAxis)
+// Returns the first enabled Effect with a valid payload. Effects snapshot their payloads on the
+// GUI thread, so this does not touch QML objects and is safe in updatePaintNode().
+template <typename Effect> const Effect* firstActiveGradientEffect(const QList<LineCurveEffect*>& effects)
 {
     for (const auto effect : effects) {
-        if (!effect || !effect->enabled()) {
-            continue;
+        const auto gradientEffect = qobject_cast<const Effect*>(effect);
+        if (gradientEffect && gradientEffect->enabled() && gradientEffect->payload().isValid()) {
+            return gradientEffect;
         }
-
-        const auto gradientEffect = qobject_cast<Effect*>(effect);
-        if (!gradientEffect) {
-            continue;
-        }
-
-        auto payload = gradientEffect->payload();
-        if (!payload.isValid()) {
-            continue;
-        }
-
-        const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
-        resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
-        return payload;
     }
 
-    return {};
+    return nullptr;
+}
+
+// Returns the payload of the first active Effect with unset value bounds resolved from the data
+// range of the axis matching the gradient direction. Using the data range keeps gradient colors
+// invariant to pan/zoom.
+template <typename Effect, typename Payload> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const Axis* xAxis, const Axis* yAxis)
+{
+    const auto gradientEffect = firstActiveGradientEffect<Effect>(effects);
+    if (!gradientEffect) {
+        return {};
+    }
+
+    auto payload = gradientEffect->payload();
+    const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
+    resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
+    return payload;
 }
 
 }
@@ -840,6 +842,11 @@ void LineCurve::clearEffects(QQmlListProperty<LineCurveEffect>* list)
     curve->update();
 }
 
+bool LineCurve::hasGradientEffect() const
+{
+    return firstActiveGradientEffect<GradientStroke>(effects_) || firstActiveGradientEffect<GradientFill>(effects_);
+}
+
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
     return resolveGradientPayload<GradientStroke, GradientColorPayload>(effects_, xAxis(), yAxis());
@@ -1103,13 +1110,11 @@ void LineCurve::releaseGapConnectData()
 
 void LineCurve::refreshVertexCacheForDataChange()
 {
-    const auto hasGradient = resolveGradientColorPayload().isValid();
-    const auto hasFillGradient = resolveGradientFillPayload().isValid();
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
     const auto hasPoints = marker_->shape() != MarkerShape::None;
 
-    if (hasGradient || hasFillGradient || isDash || (hasLine && hasPoints)) {
+    if (hasGradientEffect() || isDash || (hasLine && hasPoints)) {
         vertexCache_.invalidate();
         return;
     }
@@ -1132,8 +1137,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
     const auto hasLine = lineStyle_ && lineStyle_->showLine();
     const auto hasPoints = marker_->shape() != MarkerShape::None;
     const auto isDash = hasLine && lineStyle_->dashParameters().enabled;
-    const auto hasGradient = resolveGradientColorPayload().isValid() || resolveGradientFillPayload().isValid();
-    if (hasGradient || isDash || (hasLine && hasPoints)) {
+    if (hasGradientEffect() || isDash || (hasLine && hasPoints)) {
         return 0;
     }
     if (hasLine && renderPointCount() >= 2) {
@@ -1167,10 +1171,8 @@ void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 
 void LineCurve::rebuildVertexCache()
 {
-    const auto hasGradient = resolveGradientColorPayload().isValid();
-    const auto hasFillGradient = resolveGradientFillPayload().isValid();
     const auto isTransitioning = transition_ && transition_->running();
-    if (hasGradient || hasFillGradient || isTransitioning || renderPointCount() == 0) {
+    if (hasGradientEffect() || isTransitioning || renderPointCount() == 0) {
         vertexCache_.invalidate();
         return;
     }
@@ -1240,11 +1242,22 @@ void LineCurve::connectAnimationTicks(QQuickWindow* window)
         return;
     }
     if (animationTickWindow_) {
+        disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
         disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::advanceTransition);
     }
     animationTickWindow_ = window;
     if (window) {
+        connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
         connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::advanceTransition);
+    }
+}
+
+void LineCurve::refreshEffects()
+{
+    // Loop by index rather than range-for: refresh() emits effectChanged(), and a handler that
+    // removes an effect would invalidate the iterators.
+    for (auto i = qsizetype{0}; i < effects_.size(); ++i) {
+        effects_.at(i)->refresh();
     }
 }
 

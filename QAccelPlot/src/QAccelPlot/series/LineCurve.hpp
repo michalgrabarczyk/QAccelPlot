@@ -198,6 +198,7 @@ private:
     static LineCurveEffect* effectAt(QQmlListProperty<LineCurveEffect>* list, qsizetype index);
     static void clearEffects(QQmlListProperty<LineCurveEffect>* list);
 
+    bool hasGradientEffect() const;
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
 
@@ -234,8 +235,9 @@ private:
     void invalidateVertices();
     void invalidateData();
     void cancelRunningTransition();
-    // Transitions advance on the GUI thread once per frame, from QQuickWindow::afterAnimating.
+    // Effects refresh and transitions advance on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
+    void refreshEffects();
     void advanceTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};

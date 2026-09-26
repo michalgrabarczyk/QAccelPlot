@@ -21,6 +21,9 @@ namespace QAccelPlot {
 GradientStroke::GradientStroke(QObject* parent)
     : LineCurveEffect(parent)
 {
+    // Connected first, so curves reacting to effectChanged() see the updated payload.
+    connect(this, &LineCurveEffect::effectChanged, this, &GradientStroke::updatePayload);
+    updatePayload();
 }
 
 GradientDirection GradientStroke::direction() const
@@ -139,7 +142,22 @@ void GradientStroke::setGradientValueMax(const qreal value)
     emit effectChanged();
 }
 
-GradientColorPayload GradientStroke::payload() const
+const GradientColorPayload& GradientStroke::payload() const
+{
+    return payload_;
+}
+
+void GradientStroke::refresh()
+{
+    if (colormap_ || !gradient_ || !enabled()) {
+        return;
+    }
+    if (readEffectStops(colormap_, gradient_) != payload_.stops) {
+        emit effectChanged();
+    }
+}
+
+GradientColorPayload GradientStroke::readPayload() const
 {
     GradientColorPayload payload;
     payload.enabled = enabled();
@@ -158,6 +176,11 @@ GradientColorPayload GradientStroke::payload() const
     payload.gradientValueMax = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMax_} : std::nullopt;
 
     return payload;
+}
+
+void GradientStroke::updatePayload()
+{
+    payload_ = readPayload();
 }
 
 void GradientStroke::reconnectGradientSignals()
@@ -219,8 +242,6 @@ void GradientStroke::reconnectGradientSignals()
             const auto signalMethod = stopObject->metaObject()->method(signalIndex);
             gradientConnections_.push_back(QObject::connect(stopObject, signalMethod, this, slotMethod));
         }
-
-        gradientConnections_.push_back(connect(stopObject, &QObject::destroyed, this, [this]() { emit effectChanged(); }));
     }
 }
 

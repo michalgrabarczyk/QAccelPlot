@@ -86,8 +86,14 @@ public:
     /// \brief Sets the maximum data value for gradient normalization to \a value.
     void setGradientValueMax(qreal value);
 
-    /// \brief Returns a render-thread-safe snapshot of all stroke parameters.
-    GradientColorPayload payload() const;
+    /// \brief Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes.
+    ///
+    /// Does not read the QML gradient, so \c updatePaintNode() can call it on the render thread.
+    const GradientColorPayload& payload() const;
+
+    /// \brief Re-reads the \c gradient stops, which can change without a notification, and emits
+    /// \c effectChanged() if they differ from the snapshot.
+    void refresh() override;
 
 signals:
     /// \brief Emitted when the direction property changes.
@@ -106,6 +112,8 @@ signals:
     void gradientValueMaxChanged();
 
 private:
+    GradientColorPayload readPayload() const;
+    void updatePayload();
     void reconnectGradientSignals();
     void disconnectGradientSignals();
     Q_SLOT void onGradientObjectChanged();
@@ -121,6 +129,7 @@ private:
     qreal gradientValueMin_{0.0};
     GradientValueSource gradientValueMaxSource_{GradientValueSource::DataRange};
     qreal gradientValueMax_{0.0};
+    GradientColorPayload payload_;
 };
 
 } // namespace QAccelPlot

@@ -30,4 +30,8 @@ void LineCurveEffect::setEnabled(const bool enabled)
     emit effectChanged();
 }
 
+void LineCurveEffect::refresh()
+{
+}
+
 } // namespace QAccelPlot
