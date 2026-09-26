@@ -156,7 +156,7 @@ flowchart TB
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
-|  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () <br>_Returns the plot area to render into, adopting it from the parent plot if needed._  |
+|  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
 |  void | [**setXDataRange**](#function-setxdatarange) (qreal min, qreal max) <br>_Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored._  |
 |  void | [**setYDataRange**](#function-setydatarange) (qreal min, qreal max) <br>_Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored._  |
@@ -697,14 +697,14 @@ Log scale changes which samples are valid, so series that apply the invalid-samp
 
 ### function resolvePlotRect {#function-resolveplotrect}
 
-_Returns the plot area to render into, adopting it from the parent plot if needed._ 
+_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._
 ```C++
-QRectF QAccelPlot::PlotSeries::resolvePlotRect () 
+QRectF QAccelPlot::PlotSeries::resolvePlotRect () const
 ```
 
 
 
-Normally `plotRect` has already been assigned, and this just returns it. A series constructed in C++ with the plot as its parent is added before its own constructor runs, so the plot cannot assign `plotRect` at that point; calling this from `updatePaintNode` adopts the plot area lazily. Without a parent plot, returns the current size. 
+Safe to call from `updatePaintNode()`; it never modifies the item. 
 
 
         

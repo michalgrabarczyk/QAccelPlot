@@ -1527,6 +1527,10 @@
 <li><code>LineCurve</code> transitions now advance on the GUI thread, so <code>DataTransition.running</code>
   changes, and the QML handlers and bindings that react to them, no longer run on
   the scene graph render thread.</li>
+<li>A series constructed in C++ with a <code>PlotView</code> as its parent, such as
+  <code>new LineCurve(plot)</code>, is now listed in <code>PlotView.series</code> and follows the plot
+  area when the plot is resized. Previously it kept the first plot area it saw,
+  which it adopted from the scene graph render thread.</li>
 </ul>
 <h2 id="030-2026-09-25">[0.3.0] — 2026-09-25<a class="headerlink" href="#030-2026-09-25" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>

@@ -1885,7 +1885,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">QRectF</td>
-<td style="text-align: left;"><a href="#function-resolveplotrect"><strong>resolvePlotRect</strong></a> () <br><em>Returns the plot area to render into, adopting it from the parent plot if needed.</em></td>
+<td style="text-align: left;"><a href="#function-resolveplotrect"><strong>resolvePlotRect</strong></a> () const<br><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2119,10 +2119,10 @@
 <hr>
 
 <h3 id="function-resolveplotrect">function resolvePlotRect<a class="headerlink" href="#function-resolveplotrect" title="Permanent link">&para;</a></h3>
-<p><em>Returns the plot area to render into, adopting it from the parent plot if needed.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">resolvePlotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<p><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">resolvePlotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
-<p>Normally <code>plotRect</code> has already been assigned, and this just returns it. A series constructed in C++ with the plot as its parent is added before its own constructor runs, so the plot cannot assign <code>plotRect</code> at that point; calling this from <code>updatePaintNode</code> adopts the plot area lazily. Without a parent plot, returns the current size. </p>
+<p>Safe to call from <code>updatePaintNode()</code>; it never modifies the item. </p>
 <hr>
 
 <h3 id="function-setdataranges">function setDataRanges<a class="headerlink" href="#function-setdataranges" title="Permanent link">&para;</a></h3>
