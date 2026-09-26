@@ -11,6 +11,8 @@
 #include "QAccelPlot/effects/GradientUtils.hpp"
 
 #include <QColor>
+#include <QMetaMethod>
+#include <QMetaProperty>
 
 #include <algorithm>
 #include <array>
@@ -75,6 +77,16 @@ std::vector<GradientStopData> presetStops(const Colormap::Preset preset)
     return stops;
 }
 
+// A QML GradientStop has no change signals; its Gradient parent emits updated() instead.
+QObject* updatingParent(const QObject* stop)
+{
+    auto* parent = stop->parent();
+    if (parent == nullptr || parent->metaObject()->indexOfSignal("updated()") < 0) {
+        return nullptr;
+    }
+    return parent;
+}
+
 } // namespace
 
 Colormap::Colormap(QObject* parent)
@@ -109,6 +121,7 @@ void Colormap::appendStop(QQmlListProperty<QObject>* list, QObject* stop)
 {
     auto* self = static_cast<Colormap*>(list->data);
     self->stopObjects_.append(stop);
+    self->connectStop(stop);
     self->rebuildStops();
     emit self->colormapChanged();
 }
@@ -126,6 +139,7 @@ QObject* Colormap::stopAt(QQmlListProperty<QObject>* list, const qsizetype index
 void Colormap::clearStops(QQmlListProperty<QObject>* list)
 {
     auto* self = static_cast<Colormap*>(list->data);
+    self->disconnectStops();
     self->stopObjects_.clear();
     self->rebuildStops();
     emit self->colormapChanged();
@@ -192,6 +206,45 @@ void Colormap::setNorm(const Normalization norm)
 const std::vector<GradientStopData>& Colormap::resolvedStops() const
 {
     return resolvedStops_;
+}
+
+void Colormap::onStopChanged()
+{
+    rebuildStops();
+    emit colormapChanged();
+}
+
+void Colormap::onStopDestroyed(QObject* stop)
+{
+    stopObjects_.removeAll(stop);
+    rebuildStops();
+    emit colormapChanged();
+}
+
+void Colormap::connectStop(QObject* stop)
+{
+    connect(stop, &QObject::destroyed, this, &Colormap::onStopDestroyed, Qt::UniqueConnection);
+    const auto onChanged = metaObject()->method(metaObject()->indexOfSlot("onStopChanged()"));
+    const auto* stopMeta = stop->metaObject();
+    for (const auto* name : {"position", "color"}) {
+        const auto property = stopMeta->property(stopMeta->indexOfProperty(name));
+        if (property.hasNotifySignal()) {
+            connect(stop, property.notifySignal(), this, onChanged, Qt::UniqueConnection);
+        }
+    }
+    if (auto* gradient = updatingParent(stop)) {
+        connect(gradient, gradient->metaObject()->method(gradient->metaObject()->indexOfSignal("updated()")), this, onChanged, Qt::UniqueConnection);
+    }
+}
+
+void Colormap::disconnectStops()
+{
+    for (auto* stop : std::as_const(stopObjects_)) {
+        disconnect(stop, nullptr, this, nullptr);
+        if (auto* gradient = updatingParent(stop)) {
+            disconnect(gradient, nullptr, this, nullptr);
+        }
+    }
 }
 
 void Colormap::rebuildStops()
