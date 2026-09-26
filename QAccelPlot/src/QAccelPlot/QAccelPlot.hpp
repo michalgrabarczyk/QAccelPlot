@@ -210,6 +210,7 @@ private:
     void zoomAxis(Axis* axis, qreal factor, qreal centerRatio);
     void panAxis(Axis* axis, qreal delta, qreal length);
     void layoutAxes();
+    void registerSeries(QQuickItem* item);
 
     Axis* xAxis_{nullptr};
     Axis* yAxis_{nullptr};

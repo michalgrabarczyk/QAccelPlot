@@ -17,6 +17,7 @@
 #include <QHoverEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QPointer>
 #include <QQuickWindow>
 #include <QSGRectangleNode>
 #include <QWheelEvent>
@@ -485,12 +486,12 @@ void QAccelPlot::itemChange(ItemChange change, const ItemChangeData& value)
 {
     QQuickItem::itemChange(change, value);
     if (change == ItemChildAddedChange) {
-        if (auto* series = qobject_cast<PlotSeries*>(value.item)) {
-            if (!series_.contains(series)) {
-                series->setPlotRect(plotRect_);
-                series_.append(series);
-                emit seriesChanged();
-            }
+        if (qobject_cast<PlotSeries*>(value.item)) {
+            registerSeries(value.item);
+        } else {
+            // A series constructed with this plot as its parent is added from the QQuickItem
+            // constructor, before it is a PlotSeries. Check again once construction is done.
+            QMetaObject::invokeMethod(this, [this, item = QPointer<QQuickItem>{value.item}]() { registerSeries(item); }, Qt::QueuedConnection);
         }
     } else if (change == ItemChildRemovedChange) {
         // During QQuickItem destruction the child no longer casts to PlotSeries.
@@ -890,6 +891,17 @@ void QAccelPlot::layoutAxes()
             }
         }
     }
+}
+
+void QAccelPlot::registerSeries(QQuickItem* item)
+{
+    auto* series = qobject_cast<PlotSeries*>(item);
+    if (!series || series->parentItem() != this || series_.contains(series)) {
+        return;
+    }
+    series->setPlotRect(plotRect_);
+    series_.append(series);
+    emit seriesChanged();
 }
 
 } // namespace QAccelPlot
