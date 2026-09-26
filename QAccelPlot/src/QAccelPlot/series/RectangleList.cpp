@@ -83,13 +83,17 @@ int RectangleList::hoveredIndex() const
 
 void RectangleList::setData(const QVariantList& rects)
 {
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
     const auto& keys = rectangleKeys();
     auto data = std::vector<double>(static_cast<size_t>(rects.size()) * keys.size());
     for (qsizetype i = 0; i < rects.size(); ++i) {
         const auto map = rects[i].toMap();
         const auto base = static_cast<size_t>(i) * keys.size();
         for (size_t k = 0; k < keys.size(); ++k) {
-            data[base + k] = map.value(keys[k]).toDouble();
+            const auto value = map.value(keys[k]);
+            // A missing or null x1/y1 is unbounded below, and a missing x2/y2 unbounded above.
+            const auto unbounded = k < 2 ? -kInf : kInf;
+            data[base + k] = value.isValid() && !value.isNull() ? value.toDouble() : unbounded;
         }
     }
     applyData(std::move(data), static_cast<int>(rects.size()));
@@ -364,23 +368,38 @@ void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY
 
 void RectangleList::updateDataRanges()
 {
-    if (data_.empty()) {
-        clearDataRanges();
-        return;
-    }
-
+    // Infinite edges don't widen the ranges, so a full-height span leaves Y autoscaling alone.
     auto xMin = std::numeric_limits<qreal>::max();
     auto xMax = std::numeric_limits<qreal>::lowest();
     auto yMin = std::numeric_limits<qreal>::max();
     auto yMax = std::numeric_limits<qreal>::lowest();
+    const auto include = [](const double value, qreal& min, qreal& max) {
+        if (std::isfinite(value)) {
+            min = std::min(min, static_cast<qreal>(value));
+            max = std::max(max, static_cast<qreal>(value));
+        }
+    };
     for (int i = 0; i < rectCount_; ++i) {
-        const auto base = static_cast<size_t>(i) * 4;
-        xMin = std::min({xMin, static_cast<qreal>(data_[base]), static_cast<qreal>(data_[base + 2])});
-        xMax = std::max({xMax, static_cast<qreal>(data_[base]), static_cast<qreal>(data_[base + 2])});
-        yMin = std::min({yMin, static_cast<qreal>(data_[base + 1]), static_cast<qreal>(data_[base + 3])});
-        yMax = std::max({yMax, static_cast<qreal>(data_[base + 1]), static_cast<qreal>(data_[base + 3])});
+        const auto* rect = data_.data() + static_cast<size_t>(i) * 4;
+        if (std::isnan(rect[0]) || std::isnan(rect[1]) || std::isnan(rect[2]) || std::isnan(rect[3])) {
+            continue;
+        }
+        include(rect[0], xMin, xMax);
+        include(rect[2], xMin, xMax);
+        include(rect[1], yMin, yMax);
+        include(rect[3], yMin, yMax);
     }
-    setDataRanges(xMin, xMax, yMin, yMax);
+
+    if (xMin <= xMax) {
+        setXDataRange(xMin, xMax);
+    } else {
+        clearXDataRange();
+    }
+    if (yMin <= yMax) {
+        setYDataRange(yMin, yMax);
+    } else {
+        clearYDataRange();
+    }
 }
 
 void RectangleList::buildVertexCache()

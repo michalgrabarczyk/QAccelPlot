@@ -17,6 +17,7 @@ namespace QAccelPlot {
 /// with a configurable \a valuesPerItem stride. Intended for use by RectangleList
 /// and similar shape types.
 /// Rectangles spanning more than 64 cells are stored once and checked separately during queries.
+/// An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit.
 class SpatialGrid {
 public:
     /// \brief Rebuilds the spatial index from \a data containing \a itemCount axis-aligned rectangles.
@@ -35,16 +36,23 @@ private:
         double maxY;
 
         bool contains(double x, double y) const;
+        bool isValid() const;
     };
+
+    // Cell coordinate of \a value, clamped to [0, count - 1] so infinite values map to the edge cells.
+    static int cellIndex(double value, double min, double cellSize, int count);
 
     void computeDataBounds(const double* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);
     void fillSpatialGrid(int itemCount);
 
+    // The grid covers the finite extent of all edges. An axis without finite edges gets a single cell.
     double minX_{0.0};
     double minY_{0.0};
     double maxX_{1.0};
     double maxY_{1.0};
+    bool boundedX_{false};
+    bool boundedY_{false};
     int cols_{0};
     int rows_{0};
     double cellW_{1.0};

@@ -12,6 +12,8 @@
 #include <QtTest/QtTest>
 
 #include <array>
+#include <limits>
+#include <vector>
 
 namespace {
 class HoverableRectangles final : public QAccelPlot::RectangleList {
@@ -58,6 +60,7 @@ private slots:
     void rectangleIndexAtReturnsTopmostRectangle();
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
+    void spansAreHoveredAtAnyHeight();
     void seriesUnderneathReceiveHoverOutsideRectangles();
 };
 
@@ -165,6 +168,25 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
 
     rectangles.clearData();
     QCOMPARE(rectangles.hoveredIndex(), -1);
+}
+
+void RectangleHoverTest::spansAreHoveredAtAnyHeight()
+{
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleList{};
+    rectangles.setXAxis(&axes.x);
+    rectangles.setYAxis(&axes.y);
+    rectangles.setPlotRect(kPlotRect);
+    rectangles.setData(std::vector<double>{1.0, -kInf, 2.0, kInf}, 1);
+
+    QCOMPARE(rectangles.rectangleIndexAt({150.0, 1.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({150.0, 399.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({250.0, 200.0}), -1);
+
+    axes.y.setViewportMin(1.0e9);
+    axes.y.setViewportMax(1.0e9 + 4.0);
+    QCOMPARE(rectangles.rectangleIndexAt({150.0, 200.0}), 0);
 }
 
 void RectangleHoverTest::seriesUnderneathReceiveHoverOutsideRectangles()

@@ -27,6 +27,10 @@ namespace QAccelPlot {
 /// as a data texture, making it suitable for tens of thousands of rectangles.
 /// Hover detection uses an internal \c SpatialGrid for O(1) hit tests.
 ///
+/// An infinite edge extends the rectangle to the plot edge, e.g. \c y1 = -Infinity and
+/// \c y2 = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges.
+/// Rectangles with a NaN edge are not drawn or hovered.
+///
 /// \sa LineCurve, Axis
 class RectangleList : public PlotSeries {
     Q_OBJECT
@@ -54,6 +58,9 @@ public:
     int hoveredIndex() const;
 
     /// \brief Loads rectangles from \a rects, a QML list of objects with \c x1, \c y1, \c x2, \c y2 properties.
+    ///
+    /// A missing or null \c x1 / \c y1 is -Infinity and a missing \c x2 / \c y2 is +Infinity, so
+    /// <tt>{ x1: 8, x2: 12 }</tt> is a full-height span.
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     /// \brief Loads rectangles from a C++ raw float array (\a data must have \a rectCount × 4 floats: x1, y1, x2, y2).

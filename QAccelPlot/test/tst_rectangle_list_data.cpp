@@ -14,6 +14,7 @@
 #include <QtTest/QtTest>
 
 #include <array>
+#include <limits>
 #include <thread>
 #include <vector>
 
@@ -40,6 +41,8 @@ private slots:
     void clearDataRemovesRectangles();
     void countChangedOnlyWhenCountChanges();
     void rectangleAtReturnsBounds();
+    void missingEdgesAreUnbounded();
+    void unboundedAndInvalidEdgesAreExcludedFromRanges();
     void scaleChangesRefreshRenderCoordinates_data();
     void scaleChangesRefreshRenderCoordinates();
 };
@@ -215,6 +218,55 @@ void RectangleListDataTest::rectangleAtReturnsBounds()
     QCOMPARE(rectangles.rectangleAt(0), rectMap);
     QVERIFY(rectangles.rectangleAt(-1).isEmpty());
     QVERIFY(rectangles.rectangleAt(1).isEmpty());
+}
+
+void RectangleListDataTest::missingEdgesAreUnbounded()
+{
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
+    auto rectangles = RectangleList{};
+    auto span = QVariantMap{};
+    span.insert(QStringLiteral("x1"), 8.0);
+    span.insert(QStringLiteral("x2"), 12.0);
+    auto band = QVariantMap{};
+    band.insert(QStringLiteral("x1"), QVariant::fromValue(nullptr));
+    band.insert(QStringLiteral("y1"), 1.0);
+    band.insert(QStringLiteral("y2"), 2.0);
+    rectangles.setData(QVariantList{span, band});
+
+    const auto first = rectangles.rectangleAt(0);
+    QCOMPARE(first.value(QStringLiteral("x1")).toDouble(), 8.0);
+    QCOMPARE(first.value(QStringLiteral("y1")).toDouble(), -kInf);
+    QCOMPARE(first.value(QStringLiteral("x2")).toDouble(), 12.0);
+    QCOMPARE(first.value(QStringLiteral("y2")).toDouble(), kInf);
+    const auto second = rectangles.rectangleAt(1);
+    QCOMPARE(second.value(QStringLiteral("x1")).toDouble(), -kInf);
+    QCOMPARE(second.value(QStringLiteral("x2")).toDouble(), kInf);
+}
+
+void RectangleListDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
+{
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
+    constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto other = RectangleList{};
+    other.setYAxis(&yAxis);
+    other.setData(std::vector<double>{0.0, 100.0, 1.0, 200.0}, 1);
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setYAxis(&yAxis);
+
+    rectangles.setData(std::vector<double>{8.0, -kInf, 12.0, kInf, -kInf, 5.0, 20.0, 6.0, -50.0, -50.0, 50.0, kNaN}, 3);
+
+    QCOMPARE(xAxis.dataMin(), 8.0);
+    QCOMPARE(xAxis.dataMax(), 20.0);
+    QCOMPARE(yAxis.dataMin(), 5.0);
+    QCOMPARE(yAxis.dataMax(), 200.0);
+
+    // Only full-height spans: the list stops contributing a Y range.
+    rectangles.setData(std::vector<double>{8.0, -kInf, 12.0, kInf}, 1);
+    QCOMPARE(yAxis.dataMin(), 100.0);
+    QCOMPARE(yAxis.dataMax(), 200.0);
 }
 
 void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()

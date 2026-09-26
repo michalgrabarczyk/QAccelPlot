@@ -45,43 +45,59 @@ vec2 cornerUV(int c) {
     return vec2(0.0, 1.0); // c == 5
 }
 
+bool isNaNBits(uint bits) {
+    return (bits & 0x7FFFFFFFu) > 0x7F800000u;
+}
+
+// Returns an edge's position as a fraction of the viewport from dMin (0) to dMax (1),
+// clamped to one viewport beyond each side. Infinite edges map straight onto that margin,
+// so they reach past the plot edge even when dMin and dMax are too far from the render
+// origin to differ in single precision.
+float viewportFraction(uint bits, float dMin, float dMax, bool logScale) {
+    if (!isFiniteBits(bits)) {
+        bool towardMin = ((bits & 0x80000000u) != 0u) == (dMax >= dMin);
+        return towardMin ? -1.0 : 2.0;
+    }
+    float value = uintBitsToFloat(bits);
+    if (logScale) {
+        value = safeLog10(value);
+    }
+    return clamp((value - dMin) / (dMax - dMin), -1.0, 2.0);
+}
+
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_color.a *= ubuf.opacity;
 
-    int idx = int(rectId);
-    int base = idx * 4;
-    float x1 = fetchFloat(base);
-    float y1 = fetchFloat(base + 1);
-    float x2 = fetchFloat(base + 2);
-    float y2 = fetchFloat(base + 3);
+    int base = int(rectId) * 4;
+    uint x1Bits = fetchFloatBits(base);
+    uint y1Bits = fetchFloatBits(base + 1);
+    uint x2Bits = fetchFloatBits(base + 2);
+    uint y2Bits = fetchFloatBits(base + 3);
+    if (isNaNBits(x1Bits) || isNaNBits(y1Bits) || isNaNBits(x2Bits) || isNaNBits(y2Bits)) {
+        gl_Position = kCulledClipPosition;
+        return;
+    }
 
-    vec2 uv = cornerUV(int(corner));
-    float px = mix(x1, x2, uv.x);
-    float py = mix(y1, y2, uv.y);
-
-    // Apply log scale if active
+    bool logX = ubuf.logScaleX > 0.5;
+    bool logY = ubuf.logScaleY > 0.5;
     vec2 dMin = ubuf.domainMin;
     vec2 dMax = ubuf.domainMax;
-
-    if (ubuf.logScaleX > 0.5) {
+    if (logX) {
         dMin.x = safeLog10(dMin.x);
         dMax.x = safeLog10(dMax.x);
-        px = safeLog10(px);
     }
-
-    if (ubuf.logScaleY > 0.5) {
+    if (logY) {
         dMin.y = safeLog10(dMin.y);
         dMax.y = safeLog10(dMax.y);
-        py = safeLog10(py);
     }
 
-    // Map domain coordinates to item-local pixel coordinates
-    vec2 range = dMax - dMin;
-    vec2 p_local = vec2(
-        (px - dMin.x) / range.x * ubuf.viewportSize.x,
-        (1.0 - (py - dMin.y) / range.y) * ubuf.viewportSize.y
-    );
+    vec2 uv = cornerUV(int(corner));
+    float fx = viewportFraction(uv.x < 0.5 ? x1Bits : x2Bits, dMin.x, dMax.x, logX);
+    float fy = viewportFraction(uv.y < 0.5 ? y1Bits : y2Bits, dMin.y, dMax.y, logY);
+
+    // Map viewport fractions to item-local pixel coordinates
+    vec2 p_local = vec2(fx * ubuf.viewportSize.x, (1.0 - fy) * ubuf.viewportSize.y);
 
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

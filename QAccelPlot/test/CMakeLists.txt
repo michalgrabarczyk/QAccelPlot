@@ -36,6 +36,7 @@ add_qaccelplot_test(tst_line_curve_line_renderer core tst_line_curve_line_render
 add_qaccelplot_test(tst_marker_shapes        core tst_marker_shapes.cpp)
 add_qaccelplot_test(tst_rectangle_list_data  core tst_rectangle_list_data.cpp)
 add_qaccelplot_test(tst_rectangle_hover      core tst_rectangle_hover.cpp)
+add_qaccelplot_test(tst_rectangle_list_rendering core tst_rectangle_list_rendering.cpp)
 add_qaccelplot_test(tst_point_spatial_index  core tst_point_spatial_index.cpp)
 add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_line_styles          core tst_line_styles.cpp)
@@ -67,3 +68,6 @@ qt_import_qml_plugins(tst_plot_rendering)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_series_opacity PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_series_opacity)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_rectangle_list_rendering PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_rectangle_list_rendering)
