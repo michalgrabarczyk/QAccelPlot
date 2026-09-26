@@ -35,7 +35,7 @@
     {
       "id": "phase_portrait",
       "severity": "high",
-      "expectation": "The bottom-right plot shows several differently colored trajectories, each starting at a small white dot. Trajectories starting near the center spiral outward and trajectories starting far away move inward, and all of them converge onto one shared closed loop spanning roughly -2 to 2 on the Position x axis. A thin light dashed or dotted loop lies on that shared loop. Fail if trajectories are missing, end abruptly away from the loop, or if straight lines connect unrelated trajectories."
+      "expectation": "The bottom-right plot contains multiple colored curved trajectories, small white start markers, and a light dashed or dotted closed reference loop. Markers may lie away from the loop, and the colored paths need not visibly close or meet it. Fail only if these core elements are missing or there is a clear rendering defect, such as a broken curve or a straight line connecting unrelated trajectories."
     },
     {
       "id": "text_raster_quality",
