@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-26 20:10:06</td>
+      <td>2026-09-26 20:28:29</td>
     </tr>
   </table>
 </div>
@@ -72,13 +72,13 @@
     </tr>
     <tr><td><a href="#l104">QAccelPlot::(anonymous namespace)::createPointCloudNode() (line 104)</a></td><td>called 7 times</td><td>67.0%</td></tr>
     <tr><td><a href="#l121">QAccelPlot::(anonymous namespace)::fillPointVertices(QSGGeometry*, int) (line 121)</a></td><td>called 7 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l65">QAccelPlot::(anonymous namespace)::hoverEnabled() (line 65)</a></td><td>called 44 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l65">QAccelPlot::(anonymous namespace)::hoverEnabled() (line 65)</a></td><td>called 45 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l146">QAccelPlot::(anonymous namespace)::isDrawableCoordinate(double, bool) (line 146)</a></td><td>called 182 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l72">QAccelPlot::(anonymous namespace)::maxTextureSize(QQuickWindow*) (line 72)</a></td><td>called 7 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l140">QAccelPlot::(anonymous namespace)::neutralColorStops() (line 140)</a></td><td>called 6 times</td><td>71.0%</td></tr>
     <tr><td><a href="#l87">QAccelPlot::(anonymous namespace)::renderablePointCount(QQuickWindow*, int, int) (line 87)</a></td><td>called 7 times</td><td>22.0%</td></tr>
     <tr><td><a href="#l56">QAccelPlot::(anonymous namespace)::supportsCustomShaderRendering(QQuickWindow const*) (line 56)</a></td><td>called 7 times</td><td>80.0%</td></tr>
-    <tr><td><a href="#l153">QAccelPlot::PointCloud::PointCloud(QQuickItem*) (line 153)</a></td><td>called 44 times</td><td>55.0%</td></tr>
+    <tr><td><a href="#l153">QAccelPlot::PointCloud::PointCloud(QQuickItem*) (line 153)</a></td><td>called 45 times</td><td>55.0%</td></tr>
     <tr><td><a href="#l161">QAccelPlot::PointCloud::PointCloud(QQuickItem*)::{lambda()#1}::operator()() const (line 161)</a></td><td>called 16 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l166">QAccelPlot::PointCloud::PointCloud(QQuickItem*)::{lambda()#2}::operator()() const (line 166)</a></td><td>called 16 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l214">QAccelPlot::PointCloud::antialiasingEnabled() const (line 214)</a></td><td>called 4 times</td><td>100.0%</td></tr>
@@ -621,7 +621,7 @@
       <td class="lineno"><a id="l65" href="#l65">65</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">44</td>
+      <td class="linecount coveredLine">45</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">hoverEnabled</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
@@ -635,14 +635,14 @@
       <td class="lineno"><a id="l67" href="#l67">67</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">44</td>
+      <td class="linecount coveredLine">45</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">isInteger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l68" href="#l68">68</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">44</td>
+      <td class="linecount coveredLine">45</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qEnvironmentVariableIntValue</span><span class="p">(</span><span class="s">"QACCELPLOT_HOVER_ENABLED"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isInteger</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -652,13 +652,13 @@
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 43 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 44 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="takenBranch">&check; Branch 3 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">isInteger</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -1322,7 +1322,7 @@
       <td class="lineno"><a id="l153" href="#l153">153</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">44</td>
+      <td class="linecount coveredLine">45</td>
       <td class="src coveredLine"><span class="n">PointCloud</span><span class="o">::</span><span class="n">PointCloud</span><span class="p">(</span><span class="n">QQuickItem</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -1331,16 +1331,16 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">3/6</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
-            <div class="takenBranch">&check; Branch 5 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 5 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 6 not taken.</div>
-            <div class="takenBranch">&check; Branch 8 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 8 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 9 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">PlotSeries</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -1356,12 +1356,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setFlag</span><span class="p">(</span><span class="n">ItemHasContents</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -1370,12 +1370,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setAcceptHoverEvents</span><span class="p">(</span><span class="n">hoverEnabled</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
@@ -1384,12 +1384,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setAcceptedMouseButtons</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">NoButton</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -1398,12 +1398,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setLegendSymbol</span><span class="p">(</span><span class="n">LegendSymbol</span><span class="o">::</span><span class="n">Marker</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -1419,12 +1419,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">xAxisChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -1461,12 +1461,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 45 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">44</td>
+      <td class="linecount partialCoveredLine">45</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">connect</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">yAxisChanged</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -1503,12 +1503,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 176 times.</div>
-            <div class="takenBranch">&check; Branch 3 taken 44 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 180 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 45 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">220</td>
+      <td class="linecount coveredLine">225</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">signal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">SeriesMarker</span><span class="o">::</span><span class="n">shapeChanged</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SeriesMarker</span><span class="o">::</span><span class="n">sizeChanged</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SeriesMarker</span><span class="o">::</span><span class="n">filledChanged</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SeriesMarker</span><span class="o">::</span><span class="n">strokeWidthChanged</span><span class="p">})</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -1517,12 +1517,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 176 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 180 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">176</td>
+      <td class="linecount partialCoveredLine">180</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="n">connect</span><span class="p">(</span><span class="n">marker_</span><span class="p">,</span><span class="w"> </span><span class="n">signal</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">QQuickItem</span><span class="o">::</span><span class="n">update</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -1536,7 +1536,7 @@
       <td class="lineno"><a id="l174" href="#l174">174</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">44</td>
+      <td class="linecount coveredLine">45</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
