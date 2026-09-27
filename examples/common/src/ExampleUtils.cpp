@@ -22,11 +22,14 @@
 #include <QSGRendererInterface>
 #include <QSaveFile>
 #include <QSurfaceFormat>
+#include <QThread>
 #include <QTimer>
 #include <QtMath>
 
 #include <cstdlib>
+#include <functional>
 #include <optional>
+#include <utility>
 
 namespace QAccelPlotExample {
 
@@ -106,6 +109,7 @@ OpenGlContextInfo openGlContextInfo(QQuickWindow* window)
     auto info = OpenGlContextInfo{};
     const auto* context = static_cast<QOpenGLContext*>(window->rendererInterface()->getResource(window, QSGRendererInterface::OpenGLContextResource));
     if (context) {
+        Q_ASSERT(context->thread() == QThread::currentThread());
         const auto format = context->format();
         info.observed = true;
         info.isOpenGles = context->isOpenGLES();
@@ -113,6 +117,21 @@ OpenGlContextInfo openGlContextInfo(QQuickWindow* window)
         info.minorVersion = format.minorVersion();
     }
     return info;
+}
+
+void scheduleScreenshotCapture(QQuickWindow* window, const int delayMs, std::function<void(OpenGlContextInfo)> capture)
+{
+    QTimer::singleShot(delayMs, window, [window, capture = std::move(capture)]() {
+        QObject::connect(
+            window, &QQuickWindow::beforeRendering, window,
+            [window, capture]() {
+                const auto contextInfo = openGlContextInfo(window);
+                // Only the value snapshot crosses back to the GUI thread; destroying the window cancels delivery.
+                QMetaObject::invokeMethod(window, [capture, contextInfo]() { capture(contextInfo); }, Qt::QueuedConnection);
+            },
+            static_cast<Qt::ConnectionType>(Qt::DirectConnection | Qt::SingleShotConnection));
+        window->update();
+    });
 }
 
 // A desktop Qt build may hand back a desktop OpenGL context despite the ES request, so a
@@ -330,7 +349,7 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         app.exit(EXIT_FAILURE);
     });
 
-    QTimer::singleShot(delayMs, &app, [&app, window, path]() {
+    scheduleScreenshotCapture(window, delayMs, [&app, window, path](const OpenGlContextInfo contextInfo) {
         auto fail = [&app](const QString& message) {
             qCritical().noquote() << message;
             app.exit(EXIT_FAILURE);
@@ -343,7 +362,6 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
             fail(QStringLiteral("Requested graphics API '%1', but Qt Quick initialized '%2'.").arg(requestedApi, actualApi));
             return;
         }
-        const auto contextInfo = openGlContextInfo(window);
         if (contextInfo.observed) {
             qInfo().noquote() << QStringLiteral("Qt Quick OpenGL context: ES=%1 version=%2.%3")
                                      .arg(contextInfo.isOpenGles ? QStringLiteral("true") : QStringLiteral("false"))
