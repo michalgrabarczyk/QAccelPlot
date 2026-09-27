@@ -52,7 +52,7 @@ QML_NAMED_ELEMENT(GradientValueSource)
 
 /// \brief Determines how the gradient normalisation range is resolved.
 enum class Source {
-    DataRange, ///< \brief Range is derived from the curve's current data range.
+    DataRange, ///< \brief Range is the curve's own data extent; the axis data range after a no-range data update.
     Fixed,     ///< \brief Range is set explicitly via \c gradientValueMin / \c gradientValueMax.
 };
 Q_ENUM_NS(Source)

@@ -168,10 +168,9 @@ template <typename Effect> const Effect* firstActiveGradientEffect(const QList<L
     return nullptr;
 }
 
-// Returns the payload of the first active Effect with unset value bounds resolved from the data
-// range of the axis matching the gradient direction. Using the data range keeps gradient colors
-// invariant to pan/zoom.
-template <typename Effect, typename Payload> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const Axis* xAxis, const Axis* yAxis)
+// Returns the payload of the first active Effect with unset value bounds resolved by
+// rangeFn(direction). Using the data range keeps gradient colors invariant to pan/zoom.
+template <typename Effect, typename Payload, typename RangeFn> Payload resolveGradientPayload(const QList<LineCurveEffect*>& effects, const RangeFn& rangeFn)
 {
     const auto gradientEffect = firstActiveGradientEffect<Effect>(effects);
     if (!gradientEffect) {
@@ -179,8 +178,8 @@ template <typename Effect, typename Payload> Payload resolveGradientPayload(cons
     }
 
     auto payload = gradientEffect->payload();
-    const auto axis = (payload.direction == GradientDirection::Horizontal) ? xAxis : yAxis;
-    resolveGradientValueRange(payload, axis ? axis->dataMin() : kFallbackDataMin, axis ? axis->dataMax() : kFallbackDataMax);
+    const auto [min, max] = rangeFn(payload.direction);
+    resolveGradientValueRange(payload, min, max);
     return payload;
 }
 
@@ -866,12 +865,27 @@ bool LineCurve::hasGradientEffect() const
 
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
-    return resolveGradientPayload<GradientStroke, GradientColorPayload>(effects_, xAxis(), yAxis());
+    return resolveGradientPayload<GradientStroke, GradientColorPayload>(
+        effects_, [this](const GradientDirection direction) { return gradientDataRange(direction); });
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
-    return resolveGradientPayload<GradientFill, GradientFillPayload>(effects_, xAxis(), yAxis());
+    return resolveGradientPayload<GradientFill, GradientFillPayload>(
+        effects_, [this](const GradientDirection direction) { return gradientDataRange(direction); });
+}
+
+std::pair<qreal, qreal> LineCurve::gradientDataRange(const GradientDirection direction) const
+{
+    const auto horizontal = direction == GradientDirection::Horizontal;
+    // The no-range APIs leave the extents to the application, which keeps them on the axes.
+    if (autoDataRanges_) {
+        if (const auto range = horizontal ? xDataRange() : yDataRange()) {
+            return {range->min, range->max};
+        }
+    }
+    const auto* axis = horizontal ? xAxis() : yAxis();
+    return axis ? std::pair{axis->dataMin(), axis->dataMax()} : std::pair{kFallbackDataMin, kFallbackDataMax};
 }
 
 void LineCurve::updateDataRanges(const std::vector<float>& buf, const int count)

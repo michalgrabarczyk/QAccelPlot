@@ -5,8 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/materials/PointMaterial.hpp"
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
+#include "QAccelPlot/renderers/LineCurvePointRenderer.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 
 #include <QQuickWindow>
@@ -29,6 +32,7 @@ class LineCurveRenderingTest : public QObject {
 private slots:
     void markersSurviveSinglePointDatasets();
     void prebuiltVertexCacheIsUploaded();
+    void gradientDataRangeIsCurveExtent();
 };
 
 void LineCurveRenderingTest::markersSurviveSinglePointDatasets()
@@ -100,6 +104,47 @@ void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
     curve.setDataFNoRangeWithCache(fourPoints.data(), 4, std::vector<char>(fourPointCache));
     node.reset(curve.updatePaintNode(node.release(), nullptr));
     QVERIFY(lineVerticesMatch(node.get(), fourPointCache));
+}
+
+void LineCurveRenderingTest::gradientDataRangeIsCurveExtent()
+{
+    auto window = QQuickWindow{};
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom curve materials require a hardware scene graph backend");
+    }
+    auto xAxis = QAccelPlot::Axis{};
+    auto yAxis = QAccelPlot::Axis{};
+    auto colormap = QAccelPlot::Colormap{};
+    colormap.setPreset(QAccelPlot::Colormap::Preset::Grayscale);
+    auto curve = RenderableCurve{};
+    curve.setParentItem(window.contentItem());
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.setLineStyle(nullptr);
+    curve.marker()->setShape(QAccelPlot::LineCurve::MarkerShape::Square);
+    auto* stroke = new QAccelPlot::GradientStroke(&curve);
+    stroke->setDirection(QAccelPlot::GradientDirection::Vertical);
+    stroke->setColormap(&colormap);
+    auto effects = curve.effects();
+    effects.append(&effects, stroke);
+    curve.setData(QList<QPointF>{{0.0, 0.0}, {1.0, 1.0}});
+
+    // Another series on the same axis widens the axis data range to [0, 10].
+    auto other = QAccelPlot::LineCurve{};
+    other.setXAxis(&xAxis);
+    other.setYAxis(&yAxis);
+    other.setData(QList<QPointF>{{0.0, 0.0}, {1.0, 10.0}});
+
+    const auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
+    QVERIFY(node);
+    const auto* geometry = static_cast<const QSGGeometryNode*>(node.get())->geometry();
+    QCOMPARE(geometry->vertexCount(), 2 * 6);
+    const auto* vertices = static_cast<const QAccelPlot::PointVertex*>(geometry->vertexData());
+
+    // A vertical gradient puts the curve's highest value at position 0 (black) and its lowest at 1 (white).
+    QVERIFY2(std::abs(vertices[6].r) < 0.01f, qPrintable(QString::number(vertices[6].r)));
+    QVERIFY2(std::abs(vertices[0].r - 1.0f) < 0.01f, qPrintable(QString::number(vertices[0].r)));
 }
 
 QTEST_MAIN(LineCurveRenderingTest)

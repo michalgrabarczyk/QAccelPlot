@@ -119,6 +119,22 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
     emit legendSymbolChanged();
 }
 
+std::optional<PlotSeries::DataExtent> PlotSeries::xDataRange() const
+{
+    if (lastXMin_ > lastXMax_) {
+        return std::nullopt;
+    }
+    return DataExtent{lastXMin_, lastXMax_};
+}
+
+std::optional<PlotSeries::DataExtent> PlotSeries::yDataRange() const
+{
+    if (lastYMin_ > lastYMax_) {
+        return std::nullopt;
+    }
+    return DataExtent{lastYMin_, lastYMax_};
+}
+
 void PlotSeries::setDataRanges(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
 {
     setXDataRange(xMin, xMax);

@@ -20,6 +20,7 @@
 #endif
 
 #include <limits>
+#include <optional>
 
 namespace QAccelPlot {
 
@@ -110,6 +111,16 @@ signals:
     void yDataRangeChanged(qreal min, qreal max);
 
 protected:
+    /// \brief Extent of the valid coordinates in one dimension.
+    struct DataExtent {
+        qreal min; ///< \brief Smallest valid coordinate.
+        qreal max; ///< \brief Largest valid coordinate.
+    };
+
+    /// \brief Returns this series' X data range, or \c std::nullopt when it has none.
+    std::optional<DataExtent> xDataRange() const;
+    /// \brief Returns this series' Y data range, or \c std::nullopt when it has none.
+    std::optional<DataExtent> yDataRange() const;
     /// \brief Reports this series' data extents to its bound axes.
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     /// \brief Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.
