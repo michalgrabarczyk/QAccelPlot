@@ -25,6 +25,7 @@ layout(std140, binding = 0) uniform buf {
     float useVertexColor; // 112-115
     float rectCount;   // 116-119
     float opacity;     // 120-123: inherited item opacity
+    vec2 minimumSize;  // 128-135: minimum drawn width and height in pixels
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -65,6 +66,13 @@ float viewportFraction(uint bits, float dMin, float dMax, bool logScale) {
     return clamp((value - dMin) / (dMax - dMin), -1.0, 2.0);
 }
 
+// Widens the pixel span from a to b around its center to at least minSize, keeping a and b in order.
+vec2 widenedSpan(float a, float b, float minSize) {
+    float grow = 0.5 * max(minSize - abs(b - a), 0.0);
+    float direction = a <= b ? 1.0 : -1.0;
+    return vec2(a - direction * grow, b + direction * grow);
+}
+
 void main() {
     v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_color.a *= ubuf.opacity;
@@ -92,12 +100,15 @@ void main() {
         dMax.y = safeLog10(dMax.y);
     }
 
-    vec2 uv = cornerUV(int(corner));
-    float fx = viewportFraction(uv.x < 0.5 ? x1Bits : x2Bits, dMin.x, dMax.x, logX);
-    float fy = viewportFraction(uv.y < 0.5 ? y1Bits : y2Bits, dMin.y, dMax.y, logY);
+    // Edges in item-local pixels, with y growing downward.
+    vec2 size = ubuf.viewportSize;
+    vec2 xs = widenedSpan(viewportFraction(x1Bits, dMin.x, dMax.x, logX) * size.x,
+                          viewportFraction(x2Bits, dMin.x, dMax.x, logX) * size.x, ubuf.minimumSize.x);
+    vec2 ys = widenedSpan((1.0 - viewportFraction(y1Bits, dMin.y, dMax.y, logY)) * size.y,
+                          (1.0 - viewportFraction(y2Bits, dMin.y, dMax.y, logY)) * size.y, ubuf.minimumSize.y);
 
-    // Map viewport fractions to item-local pixel coordinates
-    vec2 p_local = vec2(fx * ubuf.viewportSize.x, (1.0 - fy) * ubuf.viewportSize.y);
+    vec2 uv = cornerUV(int(corner));
+    vec2 p_local = vec2(uv.x < 0.5 ? xs.x : xs.y, uv.y < 0.5 ? ys.x : ys.y);
 
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

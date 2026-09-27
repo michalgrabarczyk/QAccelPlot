@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/series/RectangleList.hpp"
 
+#include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
@@ -19,6 +20,7 @@
 #include <cmath>
 #include <cstring>
 #include <limits>
+#include <utility>
 
 namespace QAccelPlot {
 
@@ -42,6 +44,28 @@ QColor defaultRectangleColor()
     auto color = ColorPalette::dark().seriesPrimary;
     color.setAlpha(50);
     return color;
+}
+
+// Maps an edge to item pixels. Infinite edges, and non-positive edges on a log axis, map to
+// infinity on the matching side, as the shader extends them past the plot edge.
+qreal edgePixel(const double value, const Axis& axis, const qreal length)
+{
+    constexpr auto kInf = std::numeric_limits<qreal>::infinity();
+    const auto belowRange = value == -kInf || (axis.logScale() && value <= 0.0);
+    if (!belowRange && value != kInf) {
+        return axis.coordToPixel(value, length);
+    }
+    const auto pixelsGrowWithData = axis.coordToPixel(axis.viewportMax(), length) >= axis.coordToPixel(axis.viewportMin(), length);
+    return pixelsGrowWithData == belowRange ? -kInf : kInf;
+}
+
+// Returns the pixel span between edges a and b, widened around its center to at least minimumSize.
+std::pair<qreal, qreal> widenedSpan(const qreal a, const qreal b, const qreal minimumSize)
+{
+    const auto low = std::min(a, b);
+    const auto high = std::max(a, b);
+    const auto grow = 0.5 * std::max(minimumSize - (high - low), qreal{0.0});
+    return {low - grow, high + grow};
 }
 
 }
@@ -68,6 +92,38 @@ void RectangleList::setColor(const QColor& color)
     }
     color_ = color;
     emit colorChanged();
+    update();
+}
+
+qreal RectangleList::minimumWidth() const
+{
+    return minimumWidth_;
+}
+
+void RectangleList::setMinimumWidth(const qreal width)
+{
+    const auto clamped = std::max(width, qreal{0.0});
+    if (nearly_equal(minimumWidth_, clamped)) {
+        return;
+    }
+    minimumWidth_ = clamped;
+    emit minimumWidthChanged();
+    update();
+}
+
+qreal RectangleList::minimumHeight() const
+{
+    return minimumHeight_;
+}
+
+void RectangleList::setMinimumHeight(const qreal height)
+{
+    const auto clamped = std::max(height, qreal{0.0});
+    if (nearly_equal(minimumHeight_, clamped)) {
+        return;
+    }
+    minimumHeight_ = clamped;
+    emit minimumHeightChanged();
     update();
 }
 
@@ -154,9 +210,14 @@ int RectangleList::rectangleIndexAt(const QPointF& position) const
     if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
     }
-    const auto dataX = xAxis()->pixelToCoord(position.x(), width());
-    const auto dataY = yAxis()->pixelToCoord(position.y(), height());
-    return spatialGrid_.query(dataX, dataY);
+    // A rectangle widened to contain the cursor has its center, and so part of itself, within half
+    // the minimum size of it. That box in data space bounds the candidates for the pixel test.
+    const auto x1 = xAxis()->pixelToCoord(position.x() - 0.5 * minimumWidth_, width());
+    const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
+    const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
+    const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
+    return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
+        [this, &position](const int index) { return containsInPixels(index, position); });
 }
 
 bool RectangleList::contains(const QPointF& point) const
@@ -209,6 +270,14 @@ void RectangleList::applyData(std::vector<double>&& data, const int rectCount)
         emit countChanged();
     }
     update();
+}
+
+bool RectangleList::containsInPixels(const int index, const QPointF& position) const
+{
+    const auto* rect = data_.data() + static_cast<size_t>(index) * 4;
+    const auto [left, right] = widenedSpan(edgePixel(rect[0], *xAxis(), width()), edgePixel(rect[2], *xAxis(), width()), minimumWidth_);
+    const auto [top, bottom] = widenedSpan(edgePixel(rect[1], *yAxis(), height()), edgePixel(rect[3], *yAxis(), height()), minimumHeight_);
+    return position.x() >= left && position.x() <= right && position.y() >= top && position.y() <= bottom;
 }
 
 void RectangleList::setHoveredIndex(const int index)
@@ -290,6 +359,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material->useVertexColor = 0.0f;
     material->rectCount = static_cast<float>(rectCount_);
+    material->minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
 
     node->markDirty(QSGNode::DirtyMaterial);
 

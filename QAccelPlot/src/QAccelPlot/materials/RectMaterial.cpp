@@ -25,9 +25,11 @@ struct RectUbo {
     float useVertexColor;  // 112–115
     float rectCount;       // 116–119
     float opacity;         // 120–123
+    float padding0;        // 124–127: std140 aligns vec2 to 8 bytes
+    float minimumSize[2];  // 128–135
 };
 
-static_assert(sizeof(RectUbo) == 124);
+static_assert(sizeof(RectUbo) == 136);
 
 class RectShader : public QSGMaterialShader {
 public:
@@ -65,6 +67,8 @@ public:
         ubo.useVertexColor = mat->useVertexColor;
         ubo.rectCount = mat->rectCount;
         ubo.opacity = state.opacity();
+        ubo.minimumSize[0] = mat->minimumSize.x();
+        ubo.minimumSize[1] = mat->minimumSize.y();
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -96,6 +100,11 @@ int RectMaterial::compareExtra(const QSGMaterial* other) const
     const auto* m = static_cast<const RectMaterial*>(other);
     if (rectCount != m->rectCount) {
         return rectCount < m->rectCount ? -1 : 1;
+    }
+    for (auto i = 0; i < 2; ++i) {
+        if (minimumSize[i] != m->minimumSize[i]) {
+            return minimumSize[i] < m->minimumSize[i] ? -1 : 1;
+        }
     }
     return 0;
 }

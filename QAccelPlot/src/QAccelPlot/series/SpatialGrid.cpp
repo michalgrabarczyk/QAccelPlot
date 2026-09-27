@@ -56,9 +56,44 @@ int SpatialGrid::query(const double x, const double y) const
     return candidate;
 }
 
+int SpatialGrid::queryTopmost(const double minX, const double minY, const double maxX, const double maxY, const std::function<bool(int)>& accept) const
+{
+    if (cols_ <= 0 || rows_ <= 0 || std::isnan(minX) || std::isnan(minY) || std::isnan(maxX) || std::isnan(maxY)) {
+        return -1;
+    }
+
+    const auto isCandidate = [&](const int index) { return itemBounds_[static_cast<size_t>(index)].overlaps(minX, minY, maxX, maxY) && accept(index); };
+    auto best = -1;
+    const auto c1 = cellIndex(maxX, minX_, cellW_, cols_);
+    const auto r1 = cellIndex(maxY, minY_, cellH_, rows_);
+    for (auto r = cellIndex(minY, minY_, cellH_, rows_); r <= r1; ++r) {
+        for (auto c = cellIndex(minX, minX_, cellW_, cols_); c <= c1; ++c) {
+            // Cells list their items in ascending index order.
+            const auto& cell = cells_[static_cast<size_t>(r) * static_cast<size_t>(cols_) + static_cast<size_t>(c)];
+            for (auto it = cell.rbegin(); it != cell.rend() && *it > best; ++it) {
+                if (isCandidate(*it)) {
+                    best = *it;
+                    break;
+                }
+            }
+        }
+    }
+    for (auto it = largeItems_.rbegin(); it != largeItems_.rend() && *it > best; ++it) {
+        if (isCandidate(*it)) {
+            return *it;
+        }
+    }
+    return best;
+}
+
 bool SpatialGrid::ItemBounds::contains(const double x, const double y) const
 {
     return x >= minX && x <= maxX && y >= minY && y <= maxY;
+}
+
+bool SpatialGrid::ItemBounds::overlaps(const double boxMinX, const double boxMinY, const double boxMaxX, const double boxMaxY) const
+{
+    return minX <= boxMaxX && maxX >= boxMinX && minY <= boxMaxY && maxY >= boxMinY;
 }
 
 bool SpatialGrid::ItemBounds::isValid() const

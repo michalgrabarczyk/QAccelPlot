@@ -22,7 +22,8 @@ public:
     /// \brief Creates and returns the rectangle shader program.
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 
-    float rectCount{0.0f}; ///< \brief Number of rectangles in the data texture (used to index the sampler).
+    float rectCount{0.0f};             ///< \brief Number of rectangles in the data texture (used to index the sampler).
+    QVector2D minimumSize{0.0f, 0.0f}; ///< \brief Minimum drawn rectangle width and height in pixels.
 
 protected:
     /// \brief Compares the \c rectCount field after the base-class comparison succeeds.

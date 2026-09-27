@@ -61,6 +61,7 @@ private slots:
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
     void spansAreHoveredAtAnyHeight();
+    void narrowRectanglesAreHoveredAtMinimumSize();
     void seriesUnderneathReceiveHoverOutsideRectangles();
 };
 
@@ -187,6 +188,34 @@ void RectangleHoverTest::spansAreHoveredAtAnyHeight()
     axes.y.setViewportMin(1.0e9);
     axes.y.setViewportMax(1.0e9 + 4.0);
     QCOMPARE(rectangles.rectangleIndexAt({150.0, 200.0}), 0);
+}
+
+void RectangleHoverTest::narrowRectanglesAreHoveredAtMinimumSize()
+{
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleList{};
+    rectangles.setXAxis(&axes.x);
+    rectangles.setYAxis(&axes.y);
+    rectangles.setPlotRect(kPlotRect);
+    // A 0.01 px wide span centered at x = 100 px, and a zero-height rectangle at y = 200 px.
+    rectangles.setData(std::vector<double>{1.0, -kInf, 1.0001, kInf, 3.0, 2.0, 3.5, 2.0}, 2);
+
+    QCOMPARE(rectangles.rectangleIndexAt({100.3, 50.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({101.0, 50.0}), -1);
+    QCOMPARE(rectangles.rectangleIndexAt({325.0, 200.3}), 1);
+    QCOMPARE(rectangles.rectangleIndexAt({325.0, 201.0}), -1);
+
+    rectangles.setMinimumWidth(10.0);
+    rectangles.setMinimumHeight(10.0);
+    QCOMPARE(rectangles.rectangleIndexAt({104.0, 50.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({106.0, 50.0}), -1);
+    QCOMPARE(rectangles.rectangleIndexAt({325.0, 196.0}), 1);
+    QCOMPARE(rectangles.rectangleIndexAt({325.0, 206.0}), -1);
+
+    rectangles.setMinimumWidth(-1.0);
+    QCOMPARE(rectangles.minimumWidth(), 0.0);
+    QCOMPARE(rectangles.rectangleIndexAt({100.3, 50.0}), -1);
 }
 
 void RectangleHoverTest::seriesUnderneathReceiveHoverOutsideRectangles()

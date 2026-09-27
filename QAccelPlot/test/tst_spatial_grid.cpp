@@ -38,6 +38,9 @@ private slots:
     void query_spanAboveBox_returnsTopmost();
     void build_nanRect_isNeverHit();
     void query_nanPoint_returnsMinusOne();
+
+    // Box queries
+    void queryTopmost_returnsHighestAcceptedOverlap();
 };
 
 namespace {
@@ -259,6 +262,29 @@ void TestSpatialGrid::query_nanPoint_returnsMinusOne()
 
     QCOMPARE(grid.query(kNaN, 0.0), -1);
     QCOMPARE(grid.query(0.0, kNaN), -1);
+}
+
+void TestSpatialGrid::queryTopmost_returnsHighestAcceptedOverlap()
+{
+    // Index 2 is large enough to be checked outside the cells.
+    auto data = std::vector<double>{
+        0.0, 0.0, 1.0, 1.0,           // index 0
+        1.5, 0.0, 2.0, 1.0,           // index 1
+        -100.0, -100.0, 100.0, 100.0, // index 2
+    };
+    for (auto i = 0; i < 97; ++i) {
+        data.insert(data.end(), {50.0 + i, 50.0, 50.5 + i, 50.5});
+    }
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), 100);
+    const auto acceptAll = [](int) { return true; };
+    const auto rejectLarge = [](const int index) { return index != 2; };
+
+    QCOMPARE(grid.queryTopmost(0.9, 0.5, 1.6, 0.5, acceptAll), 2);
+    QCOMPARE(grid.queryTopmost(0.9, 0.5, 1.6, 0.5, rejectLarge), 1);
+    QCOMPARE(grid.queryTopmost(0.9, 0.5, 1.2, 0.5, rejectLarge), 0);
+    QCOMPARE(grid.queryTopmost(1.1, 0.5, 1.2, 0.5, rejectLarge), -1);
+    QCOMPARE(grid.queryTopmost(200.0, 200.0, 300.0, 300.0, acceptAll), -1);
 }
 
 QTEST_GUILESS_MAIN(TestSpatialGrid)

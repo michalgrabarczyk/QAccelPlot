@@ -22,9 +22,7 @@ namespace QAccelPlot {
 
 namespace {
 
-// A red full-height span at x 1..2, a red rectangle with a NaN edge at x 6..8, and a blue
-// full-width band at y 4..5 drawn on top.
-constexpr auto kScene = R"(
+constexpr auto kScenePrefix = R"(
 import QtQuick
 import QAccelPlot
 
@@ -39,7 +37,11 @@ PlotView {
 
     xAxis: Axis { viewportMin: 0; viewportMax: 10 }
     yAxis: Axis { viewportMin: 0; viewportMax: 10 }
+)";
 
+// A red full-height span at x 1..2, a red rectangle with a NaN edge at x 6..8, and a blue
+// full-width band at y 4..5 drawn on top.
+constexpr auto kUnboundedScene = R"(
     RectangleList {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
@@ -56,6 +58,81 @@ PlotView {
 }
 )";
 
+// A red span far narrower than a pixel at x = 5, and a blue rectangle of zero height at y = 2.
+constexpr auto kNarrowScene = R"(
+    RectangleList {
+        objectName: "narrow"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        minimumWidth: 8
+        Component.onCompleted: setData([{ x1: 5, x2: 5.0001 }])
+    }
+
+    RectangleList {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "blue"
+        minimumHeight: 8
+        Component.onCompleted: setData([{ x1: 1, y1: 2, x2: 3, y2: 2 }])
+    }
+}
+)";
+
+// Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
+class SceneWindow {
+public:
+    explicit SceneWindow(const char* sceneBody)
+    {
+        window_.setColor(Qt::black);
+        window_.resize(400, 300);
+        component_.setData(QByteArray{kScenePrefix} + sceneBody, QUrl{});
+        root_.reset(component_.create());
+        plot_ = qobject_cast<QAccelPlot*>(root_.get());
+        if (plot_) {
+            plot_->setParentItem(window_.contentItem());
+            window_.show();
+        }
+    }
+
+    bool isSoftware() const
+    {
+        return window_.rendererInterface()->graphicsApi() == QSGRendererInterface::Software;
+    }
+
+    QString error() const
+    {
+        return component_.errorString();
+    }
+
+    QQuickWindow& window()
+    {
+        return window_;
+    }
+
+    QAccelPlot* plot() const
+    {
+        return plot_;
+    }
+
+    QImage grab()
+    {
+        return window_.grabWindow();
+    }
+
+    QPoint pixel(const qreal x, const qreal y) const
+    {
+        return {qRound(plot_->dataToPixelX(x)), qRound(plot_->dataToPixelY(y))};
+    }
+
+private:
+    QQuickWindow window_;
+    QQmlEngine engine_;
+    QQmlComponent component_{&engine_};
+    std::unique_ptr<QObject> root_;
+    QAccelPlot* plot_{nullptr};
+};
+
 bool isColor(const QColor& pixel, const QColor& expected)
 {
     constexpr auto kTolerance = 60;
@@ -70,48 +147,39 @@ class RectangleListRenderingTest : public QObject {
 
 private slots:
     void unboundedEdgesReachThePlotEdges();
+    void narrowRectanglesKeepMinimumSize();
 };
 
 void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
 {
-    auto window = QQuickWindow{};
-    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+    auto scene = SceneWindow{kUnboundedScene};
+    if (scene.isSoftware()) {
         QSKIP("Custom materials require a hardware scene graph backend");
     }
-    window.setColor(Qt::black);
-    window.resize(400, 300);
-
-    auto engine = QQmlEngine{};
-    auto component = QQmlComponent{&engine};
-    component.setData(kScene, QUrl{});
-    const auto root = std::unique_ptr<QObject>{component.create()};
-    QVERIFY2(root, qPrintable(component.errorString()));
-    auto* plot = qobject_cast<QAccelPlot*>(root.get());
-    QVERIFY(plot);
-    plot->setParentItem(window.contentItem());
-    window.show();
-    QVERIFY(QTest::qWaitForWindowExposed(&window));
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
 
     const auto area = plot->plotRect().toAlignedRect();
     const auto top = area.top() + 2;
     const auto bottom = area.bottom() - 2;
     const auto left = area.left() + 2;
     const auto right = area.right() - 2;
-    const auto pixelX = [plot](const qreal x) { return qRound(plot->dataToPixelX(x)); };
-    const auto pixelY = [plot](const qreal y) { return qRound(plot->dataToPixelY(y)); };
+    const auto pixelX = [&scene](const qreal x) { return scene.pixel(x, 0.0).x(); };
+    const auto pixelY = [&scene](const qreal y) { return scene.pixel(0.0, y).y(); };
 
-    auto image = window.grabWindow();
+    auto image = scene.grab();
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), top), Qt::red));
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), bottom), Qt::red));
     QVERIFY(isColor(image.pixelColor(left, pixelY(4.5)), Qt::blue));
     QVERIFY(isColor(image.pixelColor(right, pixelY(4.5)), Qt::blue));
-    QVERIFY(isColor(image.pixelColor(pixelX(7.0), pixelY(7.0)), Qt::black));
-    QVERIFY(isColor(image.pixelColor(pixelX(5.0), pixelY(8.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(7.0, 7.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 8.0)), Qt::black));
 
     // Far from the data, the span still fills the plot height and the band leaves the view.
     plot->yAxis()->setViewportMin(1.0e6);
     plot->yAxis()->setViewportMax(1.0e6 + 10.0);
-    image = window.grabWindow();
+    image = scene.grab();
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), top), Qt::red));
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), bottom), Qt::red));
     QVERIFY(isColor(image.pixelColor(pixelX(5.0), (top + bottom) / 2), Qt::black));
@@ -119,17 +187,51 @@ void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
     plot->yAxis()->setViewportMin(1.0);
     plot->yAxis()->setViewportMax(1000.0);
     plot->yAxis()->setLogScale(true);
-    image = window.grabWindow();
+    image = scene.grab();
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), top), Qt::red));
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), bottom), Qt::red));
     QVERIFY(isColor(image.pixelColor(left, pixelY(4.5)), Qt::blue));
 
     plot->xAxis()->setViewportMin(1.0e9);
     plot->xAxis()->setViewportMax(1.0e9 + 10.0);
-    image = window.grabWindow();
+    image = scene.grab();
     QVERIFY(isColor(image.pixelColor(left, pixelY(4.5)), Qt::blue));
     QVERIFY(isColor(image.pixelColor(right, pixelY(4.5)), Qt::blue));
     QVERIFY(isColor(image.pixelColor((left + right) / 2, top), Qt::black));
+}
+
+void RectangleListRenderingTest::narrowRectanglesKeepMinimumSize()
+{
+    auto scene = SceneWindow{kNarrowScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto span = scene.pixel(5.0, 5.0);
+    const auto band = scene.pixel(2.0, 2.0);
+    auto image = scene.grab();
+    for (const auto offset : {-3, 0, 3}) {
+        QVERIFY(isColor(image.pixelColor(span.x() + offset, span.y()), Qt::red));
+        QVERIFY(isColor(image.pixelColor(band.x(), band.y() + offset), Qt::blue));
+    }
+    for (const auto offset : {-7, 7}) {
+        QVERIFY(isColor(image.pixelColor(span.x() + offset, span.y()), Qt::black));
+        QVERIFY(isColor(image.pixelColor(band.x(), band.y() + offset), Qt::black));
+    }
+
+    // Without a minimum, the 0.004 px wide span covers at most one pixel center.
+    auto* narrow = plot->findChild<QQuickItem*>(QStringLiteral("narrow"));
+    QVERIFY(narrow);
+    narrow->setProperty("minimumWidth", 0.0);
+    image = scene.grab();
+    auto redPixels = 0;
+    for (auto offset = -3; offset <= 3; ++offset) {
+        redPixels += isColor(image.pixelColor(span.x() + offset, span.y()), Qt::red) ? 1 : 0;
+    }
+    QVERIFY(redPixels <= 1);
 }
 
 } // namespace QAccelPlot

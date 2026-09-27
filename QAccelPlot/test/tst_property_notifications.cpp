@@ -152,6 +152,8 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("PlotView", "axesAreaColor", QColor{Qt::darkBlue});
 
     row("RectangleList", "color", QColor{Qt::darkCyan});
+    row("RectangleList", "minimumWidth", 4.0);
+    row("RectangleList", "minimumHeight", 0.0);
 
     row("TextTickLabelFormatter", "labels", QStringList{QStringLiteral("a"), QStringLiteral("b")});
 }

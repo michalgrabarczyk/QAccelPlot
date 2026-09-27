@@ -38,6 +38,12 @@ class RectangleList : public PlotSeries {
 
     /// \brief Fill color applied to all rectangles. Default: \c Colors.dark.seriesPrimary with alpha 50.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    /// \brief Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.
+    ///
+    /// Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0.
+    Q_PROPERTY(qreal minimumWidth READ minimumWidth WRITE setMinimumWidth NOTIFY minimumWidthChanged)
+    /// \brief Minimum drawn height in pixels, like \c minimumWidth. Default: 1.
+    Q_PROPERTY(qreal minimumHeight READ minimumHeight WRITE setMinimumHeight NOTIFY minimumHeightChanged)
     /// \brief Read-only: number of rectangles currently loaded.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the rectangle under the cursor, or -1 when none.
@@ -51,6 +57,16 @@ public:
     QColor color() const;
     /// \brief Sets the fill color to \a color.
     void setColor(const QColor& color);
+
+    /// \brief Returns the minimum drawn width in pixels.
+    qreal minimumWidth() const;
+    /// \brief Sets the minimum drawn width to \a width pixels. Negative values are clamped to 0.
+    void setMinimumWidth(qreal width);
+
+    /// \brief Returns the minimum drawn height in pixels.
+    qreal minimumHeight() const;
+    /// \brief Sets the minimum drawn height to \a height pixels. Negative values are clamped to 0.
+    void setMinimumHeight(qreal height);
 
     /// \brief Returns the number of rectangles currently loaded.
     int count() const;
@@ -95,6 +111,10 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
+    /// \brief Emitted when the minimumWidth property changes.
+    void minimumWidthChanged();
+    /// \brief Emitted when the minimumHeight property changes.
+    void minimumHeightChanged();
     /// \brief Emitted when the rectangle count changes.
     void countChanged();
     /// \brief Emitted when the hovered rectangle index changes.
@@ -112,12 +132,14 @@ private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
     bool validateDataArguments(std::size_t valueCount, int rectCount) const;
     void applyData(std::vector<double>&& data, int rectCount);
+    // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
+    bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void buildSpatialGrid();
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
-    // data_, so GPU upload and hover hit-testing stay accurate for large coordinates
+    // data_, so the GPU upload stays accurate for large coordinates
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
     void rebuildRenderData(bool logScaleX, bool logScaleY);
 
@@ -130,10 +152,12 @@ private:
     };
 
     QColor color_;
+    qreal minimumWidth_{1.0};
+    qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
     // Data: 4 doubles per rect (x1, y1, x2, y2), full precision.
     std::vector<double> data_;
-    // Origin-relative float mirror of data_, uploaded to the GPU and used for hover hit-testing.
+    // Origin-relative float mirror of data_, uploaded to the GPU.
     std::vector<float> renderData_;
     qreal renderOriginX_{0.0};
     qreal renderOriginY_{0.0};
