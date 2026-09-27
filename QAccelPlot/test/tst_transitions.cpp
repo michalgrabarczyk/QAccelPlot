@@ -12,6 +12,7 @@
 
 #include <cmath>
 #include <limits>
+#include <memory>
 #include <vector>
 
 // ---------------------------------------------------------------------------
@@ -65,6 +66,11 @@ private slots:
     // DataTransition state
     void transition_startSetsRunning();
     void transition_cancelClearsRunning();
+    void transition_sharedRunsAdvanceIndependently();
+    void transition_cancelLeavesRunsPending();
+    void transition_destructionLeavesRunPending();
+    void transition_destroyedRunEndsItsAnimation();
+    void transition_startingRunOnAnotherTransitionEndsTheFirst();
 
     // Corner cases
     void morph_identicalFromAndTo_outputUnchanged();
@@ -258,23 +264,122 @@ void TestTransitions::draw_singlePointTo_outputIsSinglePoint()
 void TestTransitions::transition_startSetsRunning()
 {
     auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
     QCOMPARE(t.running(), false);
 
     auto data = std::vector<double>{1.0f, 2.0f};
-    t.start({}, 0, std::move(data), 1);
+    t.start(run, {}, 0, std::move(data), 1);
 
     QCOMPARE(t.running(), true);
+    QVERIFY(run.active());
+    QVERIFY(run.pending());
 }
 
 void TestTransitions::transition_cancelClearsRunning()
 {
     auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
     auto data = std::vector<double>{1.0f, 2.0f};
-    t.start({}, 0, std::move(data), 1);
+    t.start(run, {}, 0, std::move(data), 1);
     QCOMPARE(t.running(), true);
 
     t.cancel();
     QCOMPARE(t.running(), false);
+}
+
+void TestTransitions::transition_sharedRunsAdvanceIndependently()
+{
+    auto t = QAccelPlot::MorphTransition{};
+    t.setDuration(10'000);
+    auto first = QAccelPlot::DataTransition::Run{};
+    auto second = QAccelPlot::DataTransition::Run{};
+    t.start(first, {0.0, 0.0}, 1, {10.0, 10.0}, 1);
+    t.start(second, {100.0, 100.0}, 1, {200.0, 200.0}, 1);
+
+    auto firstOut = std::vector<double>{};
+    auto secondOut = std::vector<double>{};
+    auto firstCount = 0;
+    auto secondCount = 0;
+    QVERIFY(t.advance(first, firstOut, firstCount));
+    QVERIFY(t.advance(second, secondOut, secondCount));
+    QVERIFY(firstOut[0] >= 0.0 && firstOut[0] < 10.0);
+    QVERIFY(secondOut[0] >= 100.0 && secondOut[0] < 200.0);
+
+    t.setDuration(0);
+    QTest::qWait(2);
+    QVERIFY(!t.advance(first, firstOut, firstCount));
+    QCOMPARE(firstOut, (std::vector<double>{10.0, 10.0}));
+    QVERIFY(t.running());
+    QVERIFY(!t.advance(second, secondOut, secondCount));
+    QCOMPARE(secondOut, (std::vector<double>{200.0, 200.0}));
+    QVERIFY(!t.running());
+}
+
+void TestTransitions::transition_cancelLeavesRunsPending()
+{
+    auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
+    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+
+    t.cancel();
+
+    QVERIFY(!run.active());
+    QVERIFY(run.pending());
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QVERIFY(!t.advance(run, out, outCount));
+    QVERIFY(run.finish(out, outCount));
+    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+    QCOMPARE(outCount, 1);
+    QVERIFY(!run.pending());
+    QVERIFY(!run.finish(out, outCount));
+}
+
+void TestTransitions::transition_destructionLeavesRunPending()
+{
+    auto run = QAccelPlot::DataTransition::Run{};
+    auto t = std::make_unique<QAccelPlot::MorphTransition>();
+    t->start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+
+    t.reset();
+
+    QVERIFY(!run.active());
+    QVERIFY(run.pending());
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QVERIFY(run.finish(out, outCount));
+    QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+}
+
+void TestTransitions::transition_destroyedRunEndsItsAnimation()
+{
+    auto t = QAccelPlot::MorphTransition{};
+    auto kept = QAccelPlot::DataTransition::Run{};
+    t.start(kept, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    {
+        auto destroyed = QAccelPlot::DataTransition::Run{};
+        t.start(destroyed, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    }
+    QVERIFY(t.running());
+
+    kept.cancel();
+
+    QVERIFY(!t.running());
+    QVERIFY(!kept.pending());
+}
+
+void TestTransitions::transition_startingRunOnAnotherTransitionEndsTheFirst()
+{
+    auto first = QAccelPlot::MorphTransition{};
+    auto second = QAccelPlot::DrawTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
+    first.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
+
+    second.start(run, {0.0, 0.0}, 1, {30.0, 40.0}, 1);
+
+    QVERIFY(!first.running());
+    QVERIFY(second.running());
+    QCOMPARE(run.targetData(), (std::vector<double>{30.0, 40.0}));
 }
 
 void TestTransitions::morph_identicalFromAndTo_outputUnchanged()
@@ -330,24 +435,26 @@ void TestTransitions::draw_minimumToPointCount_alwaysTwo()
 void TestTransitions::transition_advance_whenNotRunning_returnsFalse()
 {
     auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
     auto out = std::vector<double>{};
     auto outCount = int{};
 
     // advance() without a prior start() must return false immediately.
-    const auto stillRunning = t.advance(out, outCount);
+    const auto stillRunning = t.advance(run, out, outCount);
     QCOMPARE(stillRunning, false);
 }
 
 void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
 {
     auto t = QAccelPlot::MorphTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
     t.setDuration(10'000);
     t.setEasing(QEasingCurve{QEasingCurve::Linear});
-    t.start({0.0, 0.0}, 1, {10.0, 20.0}, 1);
+    t.start(run, {0.0, 0.0}, 1, {10.0, 20.0}, 1);
 
     auto out = std::vector<double>{};
     auto outCount = 0;
-    QVERIFY(t.advance(out, outCount));
+    QVERIFY(t.advance(run, out, outCount));
     QVERIFY(t.running());
     QCOMPARE(outCount, 1);
     QVERIFY(out[0] < 10.0);
@@ -356,8 +463,9 @@ void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
     auto runningSpy = QSignalSpy{&t, &QAccelPlot::DataTransition::runningChanged};
     t.setDuration(0);
     QTest::qWait(2);
-    QVERIFY(!t.advance(out, outCount));
+    QVERIFY(!t.advance(run, out, outCount));
     QVERIFY(!t.running());
+    QVERIFY(!run.pending());
     QCOMPARE(runningSpy.count(), 1);
     QCOMPARE(outCount, 1);
     QCOMPARE(out, (std::vector<double>{10.0, 20.0}));

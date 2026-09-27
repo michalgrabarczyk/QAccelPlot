@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
   a snapshot that the effect updates on the GUI thread. The new
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
+- `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
+  one element's animation state.
 
 ### Fixed
 
@@ -26,6 +28,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `GradientFill` from the scene graph render thread on every frame. The effect
   now reads it on the GUI thread when it changes and once per frame, so stop
   changes that `Gradient` does not signal still show up.
+- Curves sharing one `DataTransition` animate to their own data.
+- Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
+  or calling `appendData()` during it, shows the new data instead of freezing the
+  animation.
 
 ## [0.3.0] — 2026-09-25
 

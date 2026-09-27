@@ -8,12 +8,74 @@
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <algorithm>
+#include <utility>
 
 namespace QAccelPlot {
+
+DataTransition::Run::~Run()
+{
+    detach();
+}
+
+bool DataTransition::Run::active() const
+{
+    return transition_ != nullptr;
+}
+
+bool DataTransition::Run::pending() const
+{
+    return pending_;
+}
+
+const std::vector<double>& DataTransition::Run::targetData() const
+{
+    return toData_;
+}
+
+int DataTransition::Run::targetPointCount() const
+{
+    return toPointCount_;
+}
+
+bool DataTransition::Run::finish(std::vector<double>& outData, int& outPointCount)
+{
+    if (!pending_) {
+        return false;
+    }
+    outData = std::move(toData_);
+    outPointCount = toPointCount_;
+    cancel();
+    return true;
+}
+
+void DataTransition::Run::cancel()
+{
+    // Cleared before detaching, so runningChanged handlers see the run as ended.
+    pending_ = false;
+    fromData_.clear();
+    toData_.clear();
+    fromPointCount_ = 0;
+    toPointCount_ = 0;
+    detach();
+}
+
+void DataTransition::Run::detach()
+{
+    if (auto* transition = std::exchange(transition_, nullptr)) {
+        transition->removeRun(this);
+    }
+}
 
 DataTransition::DataTransition(QObject* parent)
     : QObject(parent)
 {
+}
+
+DataTransition::~DataTransition()
+{
+    for (auto* run : std::as_const(runs_)) {
+        run->transition_ = nullptr;
+    }
 }
 
 int DataTransition::duration() const
@@ -63,49 +125,54 @@ bool DataTransition::running() const
     return running_;
 }
 
-void DataTransition::start(const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount)
+void DataTransition::start(
+    Run& run, const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount)
 {
-    fromData_ = currentData;
-    fromPointCount_ = currentPointCount;
-    toData_ = std::move(newData);
-    toPointCount_ = newPointCount;
-
+    if (run.transition_ != this) {
+        run.detach();
+        run.transition_ = this;
+        runs_.append(&run);
+    }
+    run.pending_ = true;
+    run.fromData_ = currentData;
+    run.fromPointCount_ = currentPointCount;
+    run.toData_ = std::move(newData);
+    run.toPointCount_ = newPointCount;
+    run.timer_.start();
     setRunning(true);
-    animTimer_.start();
 }
 
 void DataTransition::cancel()
 {
-    fromData_.clear();
-    toData_.clear();
-    fromPointCount_ = 0;
-    toPointCount_ = 0;
+    for (auto* run : std::as_const(runs_)) {
+        run->transition_ = nullptr;
+    }
+    runs_.clear();
     setRunning(false);
 }
 
-bool DataTransition::advance(std::vector<double>& outData, int& outPointCount)
+bool DataTransition::advance(Run& run, std::vector<double>& outData, int& outPointCount)
 {
-    if (!running_) {
+    if (run.transition_ != this) {
         return false;
     }
 
-    const auto elapsed = animTimer_.elapsed();
+    const auto elapsed = run.timer_.elapsed();
     const auto dur = std::max(duration_, 1);
     const auto progress = std::clamp(static_cast<qreal>(elapsed) / dur, 0.0, 1.0);
-    const auto easedProgress = easing_.valueForProgress(progress);
-
-    interpolate(easedProgress, fromData_, fromPointCount_, toData_, toPointCount_, outData, outPointCount);
-
     if (progress >= 1.0) {
-        outData = toData_;
-        outPointCount = toPointCount_;
-        fromData_.clear();
-        toData_.clear();
-        setRunning(false);
+        run.finish(outData, outPointCount);
         return false;
     }
 
+    interpolate(easing_.valueForProgress(progress), run.fromData_, run.fromPointCount_, run.toData_, run.toPointCount_, outData, outPointCount);
     return true;
+}
+
+void DataTransition::removeRun(Run* run)
+{
+    runs_.removeOne(run);
+    setRunning(!runs_.isEmpty());
 }
 
 void DataTransition::setRunning(const bool running)

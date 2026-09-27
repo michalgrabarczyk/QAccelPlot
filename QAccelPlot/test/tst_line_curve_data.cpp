@@ -45,6 +45,7 @@ private slots:
     void stoppedTransitionBeforeFirstFrame();
     void disablingTransitionMidRunCancelsIt();
     void appendDataCancelsRunningTransition();
+    void axisScaleChangeDuringTransitionReportsTargetRange();
     void axisAggregatesCurrentSeriesRanges();
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
@@ -358,6 +359,24 @@ void LineCurveDataTest::appendDataCancelsRunningTransition()
     curve.appendData(5.0, 6.0);
 
     QVERIFY(!transition.running());
+}
+
+void LineCurveDataTest::axisScaleChangeDuringTransitionReportsTargetRange()
+{
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    auto transition = MorphTransition{};
+    curve.setTransition(&transition);
+
+    // Without a window no frame advances the transition, so the curve still shows its start data.
+    curve.setData(QList<QPointF>{{10.0, 0.0}, {20.0, 1.0}});
+    QVERIFY(transition.running());
+    xAxis.setLogScale(true);
+
+    QCOMPARE(xAxis.dataMin(), 10.0);
+    QCOMPARE(xAxis.dataMax(), 20.0);
+    curve.setTransition(nullptr);
 }
 
 void LineCurveDataTest::axisAggregatesCurrentSeriesRanges()
