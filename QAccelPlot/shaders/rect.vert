@@ -15,8 +15,28 @@ layout(location = 2) in vec4 vertexColor;
 layout(location = 0) out vec4 v_color;
 // Pixel distances to the left, right, top, and bottom edges, for the outline.
 layout(location = 1) out vec4 v_edgeDistance;
+// The outline settings pass through varyings, so only this stage declares ubuf: shader
+// compilers trim unused trailing block members per stage, and OpenGL rejects blocks that differ.
+layout(location = 2) out vec4 v_borderColor;
+layout(location = 3) out float v_borderWidth;
 
-#include "rect_uniforms.glsl"
+layout(std140, binding = 0) uniform buf {
+    mat4 matrix;          //   0-63
+    vec4 color;           //  64-79
+    vec2 domainMin;       //  80-87
+    vec2 domainMax;       //  88-95
+    vec2 viewportSize;    //  96-103
+    float logScaleX;      // 104-107
+    float logScaleY;      // 108-111
+    float useVertexColor; // 112-115
+    float rectCount;      // 116-119
+    float opacity;        // 120-123: inherited item opacity
+    vec2 minimumSize;     // 128-135: minimum drawn width and height in pixels
+    float borderWidth;    // 136-139: outline width in pixels
+    vec4 borderColor;     // 144-159
+    vec4 hoverColor;      // 160-175
+    float hoveredIndex;   // 176-179: -1 when no rectangle is highlighted
+} ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
 
@@ -67,6 +87,8 @@ void main() {
     int index = int(rectId);
     v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_color.a *= ubuf.opacity;
+    v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
+    v_borderWidth = ubuf.borderWidth;
 
     int base = index * 4;
     uint x1Bits = fetchFloatBits(base);
