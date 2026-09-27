@@ -1,5 +1,5 @@
 ---
-description: "Add data-attached annotations, event regions, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList."
+description: "Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList."
 ---
 
 <!--
@@ -57,8 +57,9 @@ number of rich annotations. For thousands of simple regions, use
 ## Highlight many data regions
 
 [`RectangleList`][rectangle-list] draws many data-space rectangles, such as
-event windows. [`setData()`][rectangle-list-set-data] takes rectangle bounds,
-and [`hoveredIndex`][hovered-index] reports the rectangle under the pointer:
+event windows or machine states. [`setData()`][rectangle-list-set-data] takes
+rectangle bounds. An omitted or infinite edge reaches the plot edge, so
+`{ x1: 8, x2: 12 }` is a full-height span:
 
 ```qml
 QAccelPlot.RectangleList {
@@ -67,14 +68,48 @@ QAccelPlot.RectangleList {
     color: "goldenrod"
 
     Component.onCompleted: setData([
-        { x1: 8, y1: -1.2, x2: 12, y2: 1.2 },
-        { x1: 19, y1: -1.2, x2: 22, y2: 1.2 }
+        { x1: 8, x2: 12 },
+        { x1: 19, x2: 22 }
     ])
 }
 ```
 
-Hover lookup uses a spatial grid and stays constant-time for large collections;
-see [Hover interactions](../performance.md#hover-interactions).
+Infinite edges don't change the axes' data ranges.
+
+| Property | Use |
+| :--- | :--- |
+| `category`, `categoryColors` | Per-rectangle color: `category` indexes `categoryColors`; others use `color` |
+| `minimumWidth`, `minimumHeight` | Minimum drawn size in pixels (default 1), so short events stay visible |
+| `border.width`, `border.color` | Outline inside each rectangle, e.g. to separate adjacent states |
+| `hoverColor` | Fill of the hovered rectangle |
+| [`hoveredIndex`][hovered-index], `rectangleAt()` | The rectangle under the pointer and its bounds, for tooltips |
+
+A state timeline puts one lane per row, colored by category:
+
+```qml
+QAccelPlot.RectangleList {
+    xAxis: plot.xAxis
+    yAxis: plot.yAxis
+    categoryColors: ["seagreen", "slategray", "firebrick"] // Running, Idle, Alarm
+    border.width: 1
+
+    Component.onCompleted: setData([
+        { x1: 0, x2: 40, y1: -0.4, y2: 0.4, category: 0 },
+        { x1: 40, x2: 43, y1: -0.4, y2: 0.4, category: 2 },
+        { x1: 0, x2: 25, y1: 0.6, y2: 1.4, category: 1 }
+    ])
+}
+```
+
+Label the lanes with a [`TextTickLabelFormatter`](axis-formats.md#categories) on the
+Y axis. From C++, `setData(std::vector<double>&&, std::vector<int>&&, int)`
+moves bounds and categories in without copying; `postData()` hands them off
+from a worker thread.
+
+RectangleList only accepts hover over its rectangles, so series underneath
+still receive hover elsewhere. Hover lookup uses a spatial grid and stays
+constant-time for large collections; see
+[Hover interactions](../performance.md#hover-interactions).
 
 ## Build interactive tools
 
@@ -104,6 +139,7 @@ Complete sources:
 
 - [`examples/interaction/annotations`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/annotations)
 - [`examples/interaction/measurement_tools`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/measurement_tools)
+- [`examples/plot_types/state_timeline`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/state_timeline)
 
 [plot-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12
 [data-to-pixel-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-datatopixelx

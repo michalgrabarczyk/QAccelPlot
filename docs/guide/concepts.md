@@ -57,8 +57,10 @@ and legend symbol.
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 stores points as interleaved floats and accepts data from QML or C++ buffers.
 
-`RectangleList` renders many data-space rectangles in one item and reports the
-hovered rectangle index.
+`RectangleList` renders many data-space rectangles in one item, such as event
+spans, bands, and state timelines. Infinite edges reach the plot edge, and a
+per-rectangle category selects the fill color. It reports the hovered
+rectangle index.
 
 ## Invalid samples and gaps
 

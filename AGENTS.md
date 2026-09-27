@@ -79,6 +79,7 @@ QAccelPlot/
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
 │       ├── series/               — LineCurve, PointCloud, RectangleList, PlotSeries,
+│       │                           RectangleBorder (border grouped property),
 │       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),

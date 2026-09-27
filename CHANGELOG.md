@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleList` categories: `category`, `categoryColors`, and `setCategories()`.
 - `RectangleList.border.width` and `border.color`.
 - `RectangleList.hoverColor`.
+- The `plot_types/state_timeline` example.
 
 ### Changed
 
