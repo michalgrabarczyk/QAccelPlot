@@ -209,6 +209,11 @@ void PlotSeries::onAxisScaleChanged()
 {
 }
 
+void PlotSeries::onAxisRangeChanged()
+{
+    update();
+}
+
 QRectF PlotSeries::resolvePlotRect() const
 {
     if (!plotRect_.isEmpty()) {
@@ -216,11 +221,6 @@ QRectF PlotSeries::resolvePlotRect() const
         return plotRect_;
     }
     return QRectF(0, 0, width(), height());
-}
-
-void PlotSeries::onAxisRangeChanged()
-{
-    update();
 }
 
 void PlotSeries::reportXDataRangeToAxis() const
