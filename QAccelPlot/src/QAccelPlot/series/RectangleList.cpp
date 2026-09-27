@@ -206,7 +206,7 @@ void RectangleList::setData(const QVariantList& rects)
     if (!anyCategory) {
         categories.clear();
     }
-    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
+    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()), true);
 }
 
 void RectangleList::setData(const float* data, const int rectCount)
@@ -215,7 +215,7 @@ void RectangleList::setData(const float* data, const int rectCount)
         return;
     }
     const auto floatCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + floatCount), {}, rectCount);
+    applyData(std::vector<double>(data, data + floatCount), {}, rectCount, true);
 }
 
 void RectangleList::setData(const double* data, const int rectCount)
@@ -224,7 +224,7 @@ void RectangleList::setData(const double* data, const int rectCount)
         return;
     }
     const auto doubleCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount);
+    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount, true);
 }
 
 void RectangleList::setData(std::vector<double>&& data, const int rectCount)
@@ -237,7 +237,15 @@ void RectangleList::setData(std::vector<double>&& data, std::vector<int>&& categ
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
     }
-    applyData(std::move(data), std::move(categories), rectCount);
+    applyData(std::move(data), std::move(categories), rectCount, true);
+}
+
+void RectangleList::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+        return;
+    }
+    applyData(std::move(data), std::move(categories), rectCount, false);
 }
 
 void RectangleList::postData(std::vector<double>&& data, const int rectCount)
@@ -268,7 +276,7 @@ void RectangleList::setCategories(const QList<int>& categories)
 
 void RectangleList::clearData()
 {
-    applyData({}, {}, 0);
+    applyData({}, {}, 0, true);
 }
 
 QVariantMap RectangleList::rectangleAt(const int index) const
@@ -299,6 +307,7 @@ int RectangleList::rectangleIndexAt(const QPointF& position) const
     const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
     const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
     const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
+    ensureSpatialGrid();
     return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
         [this, &position](const int index) { return containsInPixels(index, position); });
 }
@@ -339,7 +348,7 @@ bool RectangleList::validateDataArguments(const std::size_t valueCount, const st
     return true;
 }
 
-void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
 {
     const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
@@ -350,8 +359,10 @@ void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& cat
     categories_ = std::move(categories);
     rectCount_ = rectCount;
     dataChanged_ = true;
-    buildSpatialGrid();
-    updateDataRanges();
+    spatialGridValid_ = false;
+    if (reportRanges) {
+        updateDataRanges();
+    }
     if (hoveredIndex_ >= rectCount_) {
         setHoveredIndex(-1);
     }
@@ -500,9 +511,13 @@ void RectangleList::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-void RectangleList::buildSpatialGrid()
+void RectangleList::ensureSpatialGrid() const
 {
+    if (spatialGridValid_) {
+        return;
+    }
     spatialGrid_.build(data_.data(), rectCount_);
+    spatialGridValid_ = true;
 }
 
 void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY)

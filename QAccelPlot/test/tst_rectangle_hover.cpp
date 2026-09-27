@@ -60,6 +60,7 @@ private slots:
     void rectangleIndexAtReturnsTopmostRectangle();
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
+    void hitTestsFollowDataChanges();
     void spansAreHoveredAtAnyHeight();
     void narrowRectanglesAreHoveredAtMinimumSize();
     void seriesUnderneathReceiveHoverOutsideRectangles();
@@ -169,6 +170,32 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
 
     rectangles.clearData();
     QCOMPARE(rectangles.hoveredIndex(), -1);
+}
+
+void RectangleHoverTest::hitTestsFollowDataChanges()
+{
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleList{};
+    setOverlappingRectangles(rectangles, axes);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+
+    // Same count, moved coordinates: rectangle 0 now spans (3, 3)–(4, 4).
+    rectangles.setData(std::vector<double>{3.0, 3.0, 4.0, 4.0, 1.0, 1.0, 3.0, 3.0}, 2);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), 0);
+
+    rectangles.setDataNoRange(std::vector<double>{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0}, {}, 3);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({250.0, 150.0}), 2);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), -1);
+
+    rectangles.clearData();
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    QVERIFY(!rectangles.contains({50.0, 350.0}));
+
+    rectangles.setData(std::vector<double>{3.0, 0.0, 4.0, 1.0}, 1);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 350.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
 }
 
 void RectangleHoverTest::spansAreHoveredAtAnyHeight()

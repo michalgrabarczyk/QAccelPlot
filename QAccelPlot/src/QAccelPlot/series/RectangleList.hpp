@@ -118,6 +118,11 @@ public:
     /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
+    /// \brief Like \c setData() but does not report X/Y data ranges to the axes.
+    ///
+    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
+    void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+
     /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
     void postData(std::vector<double>&& data, int rectCount);
 
@@ -170,14 +175,14 @@ protected:
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
     bool hasCategories() const;
     QColor rectangleColor(int index) const;
     // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void updateMaterial(RectMaterial& material) const;
-    void buildSpatialGrid();
+    void ensureSpatialGrid() const;
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
@@ -212,7 +217,9 @@ private:
     bool dataChanged_{false};
     std::vector<RectVertex> vertexCache_;
     bool vertexCacheValid_{false};
-    SpatialGrid spatialGrid_;
+    // Built on the first hit test after a data change, so streaming without hover skips it.
+    mutable SpatialGrid spatialGrid_;
+    mutable bool spatialGridValid_{false};
 };
 
 } // namespace QAccelPlot

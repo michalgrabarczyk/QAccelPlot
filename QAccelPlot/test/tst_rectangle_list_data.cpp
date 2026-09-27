@@ -37,6 +37,7 @@ private slots:
     void variantListDataPreservesModernEpochPrecision();
     void movedDataIsApplied();
     void movedDataWithWrongSizeIsRejected();
+    void noRangeDataDoesNotReportRanges();
     void postedDataIsAppliedFromWorkerThread();
     void clearDataRemovesRectangles();
     void countChangedOnlyWhenCountChanges();
@@ -158,6 +159,48 @@ void RectangleListDataTest::movedDataWithWrongSizeIsRejected()
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), 4.0);
+}
+
+void RectangleListDataTest::noRangeDataDoesNotReportRanges()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setViewportMin(0);
+    xAxis.setViewportMax(100);
+    yAxis.setViewportMin(0);
+    yAxis.setViewportMax(100);
+    auto window = QQuickWindow{};
+    auto rectangles = RenderableRectangles{};
+    rectangles.setParentItem(window.contentItem());
+    rectangles.setXAxis(&xAxis);
+    rectangles.setYAxis(&yAxis);
+    rectangles.setPlotRect({0, 0, 100, 100});
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+    auto node = std::unique_ptr<QSGNode>{rectangles.updatePaintNode(nullptr, nullptr)};
+    QVERIFY(node);
+    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleList::xDataRangeChanged};
+    auto yRangeSpy = QSignalSpy{&rectangles, &RectangleList::yDataRangeChanged};
+
+    rectangles.setDataNoRange(std::vector<double>{10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0}, std::vector<int>{1, 0}, 2);
+
+    QCOMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 50.0);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 0);
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(yRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(yAxis.dataMin(), 2.0);
+    QCOMPARE(yAxis.dataMax(), 4.0);
+
+    node.reset(rectangles.updatePaintNode(node.release(), nullptr));
+    const auto* material = static_cast<RectMaterial*>(static_cast<QSGGeometryNode*>(node.get())->material());
+    QCOMPARE(material->rectCount, 2.0f);
+    QCOMPARE(material->useVertexColor, 1.0f);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    rectangles.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0}, {}, 1);
+    QCOMPARE(rectangles.count(), 2);
 }
 
 void RectangleListDataTest::postedDataIsAppliedFromWorkerThread()
