@@ -61,8 +61,9 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-For `RectangleList`, use
-[`setDataNoRange()`][rectangle-list-set-data-no-range].
+`RectangleList` has the same `setDataF()` and
+[`setDataFNoRange()`][rectangle-list-set-data-f-no-range] paths, plus
+[`setDataNoRange()`][rectangle-list-set-data-no-range] for double coordinates.
 
 ## Keep work off the UI thread
 
@@ -201,6 +202,7 @@ Scenarios are defined in
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
 [hovered-index]: api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
 [rectangle-list-set-data-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatanorange
+[rectangle-list-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatafnorange
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

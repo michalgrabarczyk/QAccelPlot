@@ -117,7 +117,7 @@ void setupCurveUpdates(QGuiApplication& app, QQuickWindow* window, QObject* root
             deliveryMetrics->dataApplied(steadyNanoseconds());
         }
         if (rectangleList) {
-            rectangleList->setData(batch.rects.empty() ? nullptr : batch.rects.data(), batch.rectangleCount);
+            rectangleList->setDataF(batch.rects.empty() ? nullptr : batch.rects.data(), batch.rectangleCount);
         }
     });
 }

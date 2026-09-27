@@ -38,6 +38,10 @@ private slots:
     void movedDataIsApplied();
     void movedDataWithWrongSizeIsRejected();
     void noRangeDataDoesNotReportRanges();
+    void floatDataIsApplied();
+    void floatNoRangeDataDoesNotReportRanges();
+    void floatDataIsUploadedWithoutOrigin();
+    void postedFloatDataIsAppliedFromWorkerThread();
     void postedDataIsAppliedFromWorkerThread();
     void clearDataRemovesRectangles();
     void countChangedOnlyWhenCountChanges();
@@ -76,7 +80,8 @@ void RectangleListDataTest::hoverEnvironmentControlsAcceptance()
 void RectangleListDataTest::invalidRawArgumentsAreRejected()
 {
     auto rectangles = RectangleList{};
-    const auto data = std::array<float, 4>{0.0f, 1.0f, 2.0f, 3.0f};
+    const auto data = std::array<double, 4>{0.0, 1.0, 2.0, 3.0};
+    const auto floatData = std::array<float, 4>{0.0f, 1.0f, 2.0f, 3.0f};
     auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
 
     rectangles.setData(data.data(), 1);
@@ -84,9 +89,11 @@ void RectangleListDataTest::invalidRawArgumentsAreRejected()
     QCOMPARE(countSpy.count(), 1);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer.*"));
-    rectangles.setData(static_cast<const float*>(nullptr), 1);
+    rectangles.setData(static_cast<const double*>(nullptr), 1);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
     rectangles.setData(data.data(), -1);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
+    rectangles.setDataF(floatData.data(), -1);
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
@@ -201,6 +208,127 @@ void RectangleListDataTest::noRangeDataDoesNotReportRanges()
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
     rectangles.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0}, {}, 1);
     QCOMPARE(rectangles.count(), 2);
+
+    rectangles.setDataNoRange(std::vector<double>{90.0, 91.0, 92.0, 93.0}, 1);
+    QCOMPARE(rectangles.count(), 1);
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
+}
+
+void RectangleListDataTest::floatDataIsApplied()
+{
+    constexpr auto kInf = std::numeric_limits<float>::infinity();
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setYAxis(&yAxis);
+
+    rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, -kInf, 7.0f, kInf}, 2);
+    QCOMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x2")).toDouble(), 7.0);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("y1")).toDouble(), -std::numeric_limits<double>::infinity());
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 7.0);
+    QCOMPARE(yAxis.dataMin(), 2.0);
+    QCOMPARE(yAxis.dataMax(), 4.0);
+
+    const auto raw = std::array<float, 4>{10.0f, 20.0f, 30.0f, 40.0f};
+    rectangles.setDataF(raw.data(), 1);
+    QCOMPARE(rectangles.count(), 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), 40.0);
+    QCOMPARE(xAxis.dataMin(), 10.0);
+
+    rectangles.setDataF(std::vector<float>{0.0f, 0.0f, 1.0f, 1.0f}, std::vector<int>{3}, 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 3);
+
+    // Switching back to double data reads the double storage again.
+    rectangles.setData(std::vector<double>{100.0, 200.0, 300.0, 400.0}, 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 100.0);
+    QCOMPARE(xAxis.dataMin(), 100.0);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f}, 1);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer for 1 rectangles"));
+    rectangles.setDataF(nullptr, 1);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 2 categories for 1 rectangles"));
+    rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, std::vector<int>{1, 2}, 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 100.0);
+}
+
+void RectangleListDataTest::floatNoRangeDataDoesNotReportRanges()
+{
+    auto xAxis = Axis{};
+    auto rectangles = RectangleList{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 1);
+    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleList::xDataRangeChanged};
+
+    rectangles.setDataFNoRange(std::vector<float>{10.0f, 20.0f, 30.0f, 40.0f}, 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
+
+    rectangles.setDataFNoRange(std::vector<float>{50.0f, 60.0f, 70.0f, 80.0f, 90.0f, 91.0f, 92.0f, 93.0f}, std::vector<int>{0, 1}, 2);
+    QCOMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 1);
+
+    const auto raw = std::array<float, 4>{-5.0f, -6.0f, -7.0f, -8.0f};
+    rectangles.setDataFNoRange(raw.data(), 1);
+    QCOMPARE(rectangles.count(), 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), -8.0);
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
+}
+
+void RectangleListDataTest::floatDataIsUploadedWithoutOrigin()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setViewportMin(1);
+    xAxis.setViewportMax(1000);
+    yAxis.setViewportMin(1);
+    yAxis.setViewportMax(1000);
+    auto window = QQuickWindow{};
+    auto rectangles = RenderableRectangles{};
+    rectangles.setParentItem(window.contentItem());
+    rectangles.setXAxis(&xAxis);
+    rectangles.setYAxis(&yAxis);
+    rectangles.setPlotRect({0, 0, 100, 100});
+    auto node = std::unique_ptr<QSGNode>{};
+    const auto paintedDomainMin = [&rectangles, &node]() {
+        node.reset(rectangles.updatePaintNode(node.release(), nullptr));
+        return static_cast<RectMaterial*>(static_cast<QSGGeometryNode*>(node.get())->material())->domainMin;
+    };
+
+    rectangles.setData(std::vector<double>{10, 20, 100, 200}, 1);
+    QCOMPARE(paintedDomainMin(), QVector2D(1 - 10, 1 - 20));
+
+    rectangles.setDataF(std::vector<float>{10, 20, 100, 200}, 1);
+    QCOMPARE(paintedDomainMin(), QVector2D(1, 1));
+
+    xAxis.setLogScale(true);
+    QCOMPARE(paintedDomainMin(), QVector2D(1, 1));
+
+    rectangles.setData(std::vector<double>{10, 20, 100, 200}, 1);
+    QCOMPARE(paintedDomainMin(), QVector2D(1, 1 - 20));
+}
+
+void RectangleListDataTest::postedFloatDataIsAppliedFromWorkerThread()
+{
+    auto rectangles = RectangleList{};
+    auto worker = std::thread{[&rectangles]() {
+        rectangles.postData(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 1);
+        rectangles.postData(std::vector<float>{5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f}, std::vector<int>{4, 5}, 2);
+    }};
+    worker.join();
+
+    QCOMPARE(rectangles.count(), 0);
+    QTRY_COMPARE(rectangles.count(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 9.0);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 5);
 }
 
 void RectangleListDataTest::postedDataIsAppliedFromWorkerThread()

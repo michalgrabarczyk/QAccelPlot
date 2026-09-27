@@ -26,6 +26,8 @@ public:
     /// \param itemCount Number of rectangles in \a data.
     /// \param valuesPerItem Number of doubles per rectangle entry (default 4).
     void build(const double* data, int itemCount, int valuesPerItem = 4);
+    /// \brief Rebuilds the spatial index from single-precision \a data, like \c build().
+    void buildF(const float* data, int itemCount, int valuesPerItem = 4);
     /// \brief Returns the index of the topmost rectangle that contains point (\a x, \a y), or -1 if none.
     int query(double x, double y) const;
     /// \brief Returns the highest index among rectangles overlapping the box for which \a accept returns true, or -1.
@@ -48,7 +50,8 @@ private:
     // Cell coordinate of \a value, clamped to [0, count - 1] so infinite values map to the edge cells.
     static int cellIndex(double value, double min, double cellSize, int count);
 
-    void computeDataBounds(const double* data, int itemCount, int valuesPerItem);
+    template <typename T> void buildFrom(const T* data, int itemCount, int valuesPerItem);
+    template <typename T> void computeDataBounds(const T* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);
     void fillSpatialGrid(int itemCount);
 

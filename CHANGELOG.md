@@ -15,7 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleList` categories: `category`, `categoryColors`, and `setCategories()`.
 - `RectangleList.border.width` and `border.color`.
 - `RectangleList.hoverColor`.
-- `RectangleList::setDataNoRange()`.
+- `RectangleList`: `setDataNoRange()`, `setDataF()`, `setDataFNoRange()`, and float
+  `postData()` overloads.
+- `SpatialGrid::buildF()`.
 - The `plot_types/state_timeline` example.
 
 ### Changed
@@ -26,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
 - Moved `RectangleList.hpp` to `QAccelPlot/series/`.
+- Replaced `RectangleList::setData(const float*, int)` with `setDataF(const float*, int)`.
 
 ### Fixed
 
