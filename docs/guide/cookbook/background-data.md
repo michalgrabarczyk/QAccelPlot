@@ -48,10 +48,9 @@ range changes, set the new bounds on the UI thread or use
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.
 
-Complete sources:
-
-- [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance): one-batch handoff with a worker-built vertex cache
-- [`benchmarks/common/BenchDataWorker.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchDataWorker.cpp)
+Complete source:
+[`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance),
+a one-batch handoff with a worker-built vertex cache.
 
 [post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
