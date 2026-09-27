@@ -28,7 +28,7 @@ private slots:
     void findValidRunsSplitsAtInvalidSamples();
     void planRunSamplingKeepsSmallCurvesIntact();
     void planRunSamplingDistributesBudget();
-    void sampledSourceIndexIncludesRunEndpoints();
+    void envelopeSamplesKeepEndpointsAndPeaks();
     void compactValidPointsFloat();
     void compactValidPointsDouble();
     void shaderFiniteBitPredicateMatchesStdIsFinite_data();
@@ -149,12 +149,30 @@ void LineCurveGapsTest::planRunSamplingDistributesBudget()
     QCOMPARE(sampled[2], 2); // every drawable run keeps at least its endpoints
 }
 
-void LineCurveGapsTest::sampledSourceIndexIncludesRunEndpoints()
+void LineCurveGapsTest::envelopeSamplesKeepEndpointsAndPeaks()
 {
+    // Flat samples with a peak at 120 and a trough at 140.
+    auto data = std::vector<float>(151 * 2, 0.0f);
+    data[120 * 2 + 1] = 5.0f;
+    data[140 * 2 + 1] = -5.0f;
+    const auto view = CurveDataView{data.data(), nullptr};
     const auto run = SampleRun{100, 51};
-    QCOMPARE(LineCurveGapFilter::sampledSourceIndex(run, 0, 6), 100);
-    QCOMPARE(LineCurveGapFilter::sampledSourceIndex(run, 5, 6), 150);
-    QCOMPARE(LineCurveGapFilter::sampledSourceIndex(run, 3, 51), 103);
+
+    auto all = std::vector<int>{};
+    LineCurveGapFilter::appendEnvelopeSamples(view, run, 51, all);
+    QCOMPARE(all.size(), std::size_t{51});
+    QCOMPARE(all.front(), 100);
+    QCOMPARE(all.back(), 150);
+
+    // Two buckets, [101, 125) and [125, 150), each keep their lowest and highest sample.
+    auto even = std::vector<int>{};
+    LineCurveGapFilter::appendEnvelopeSamples(view, run, 6, even);
+    QVERIFY(even == (std::vector<int>{100, 101, 120, 125, 140, 150}));
+
+    // An odd count repeats the last sample.
+    auto odd = std::vector<int>{7};
+    LineCurveGapFilter::appendEnvelopeSamples(view, run, 5, odd);
+    QVERIFY(odd == (std::vector<int>{7, 100, 120, 140, 150, 150}));
 }
 
 void LineCurveGapsTest::compactValidPointsFloat()

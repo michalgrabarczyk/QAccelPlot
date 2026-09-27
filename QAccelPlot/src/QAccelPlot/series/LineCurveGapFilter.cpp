@@ -101,13 +101,38 @@ std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, const int m
     return sampled;
 }
 
-int sampledSourceIndex(const SampleRun& run, const int sampleIndex, const int sampledCount)
+void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, const int sampledCount, std::vector<int>& indices)
 {
     if (sampledCount >= run.count || sampledCount < kMinRunSamples) {
-        return run.start + sampleIndex;
+        for (auto sample = 0; sample < std::min(sampledCount, run.count); ++sample) {
+            indices.push_back(run.start + sample);
+        }
+        return;
     }
-    const auto offset = (static_cast<qint64>(sampleIndex) * (run.count - 1)) / (sampledCount - 1);
-    return run.start + static_cast<int>(offset);
+
+    const auto last = run.start + run.count - 1;
+    const auto interiorSlots = sampledCount - kMinRunSamples;
+    const auto buckets = interiorSlots / 2;
+    const auto interiorStart = run.start + 1;
+    const auto interiorCount = static_cast<qint64>(run.count - kMinRunSamples);
+    indices.push_back(run.start);
+    for (auto bucket = 0; bucket < buckets; ++bucket) {
+        const auto begin = interiorStart + static_cast<int>(bucket * interiorCount / buckets);
+        const auto end = interiorStart + static_cast<int>((bucket + 1) * interiorCount / buckets);
+        auto lowest = begin;
+        auto highest = begin;
+        for (auto index = begin + 1; index < end; ++index) {
+            lowest = data.y(index) < data.y(lowest) ? index : lowest;
+            highest = data.y(index) > data.y(highest) ? index : highest;
+        }
+        indices.push_back(std::min(lowest, highest));
+        indices.push_back(std::max(lowest, highest));
+    }
+    // An odd slot count leaves one slot, which repeats the last sample as a degenerate vertex.
+    if (interiorSlots % 2 != 0) {
+        indices.push_back(last);
+    }
+    indices.push_back(last);
 }
 
 int compactValidPoints(const std::vector<float>& data, const int pointCount, const bool logScaleX, const bool logScaleY, std::vector<float>& output)
