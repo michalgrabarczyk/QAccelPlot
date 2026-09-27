@@ -152,6 +152,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("PlotView", "axesAreaColor", QColor{Qt::darkBlue});
 
     row("RectangleList", "color", QColor{Qt::darkCyan});
+    row("RectangleList", "categoryColors", QVariant::fromValue(QList<QColor>{Qt::red, Qt::green}));
     row("RectangleList", "minimumWidth", 4.0);
     row("RectangleList", "minimumHeight", 0.0);
 

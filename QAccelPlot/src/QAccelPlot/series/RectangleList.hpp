@@ -31,13 +31,18 @@ namespace QAccelPlot {
 /// \c y2 = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges.
 /// Rectangles with a NaN edge are not drawn or hovered.
 ///
+/// Each rectangle can carry a \c category, an index into \c categoryColors. Rectangles without a
+/// category, or with one outside \c categoryColors, use \c color.
+///
 /// \sa LineCurve, Axis
 class RectangleList : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(RectangleList)
 
-    /// \brief Fill color applied to all rectangles. Default: \c Colors.dark.seriesPrimary with alpha 50.
+    /// \brief Fill color of rectangles without a category color. Default: \c Colors.dark.seriesPrimary with alpha 50.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
+    /// \brief Fill colors indexed by each rectangle's \c category. Default: empty.
+    Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
     /// \brief Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.
     ///
     /// Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0.
@@ -58,6 +63,11 @@ public:
     /// \brief Sets the fill color to \a color.
     void setColor(const QColor& color);
 
+    /// \brief Returns the fill colors indexed by category.
+    QList<QColor> categoryColors() const;
+    /// \brief Sets the fill colors indexed by category to \a colors.
+    void setCategoryColors(const QList<QColor>& colors);
+
     /// \brief Returns the minimum drawn width in pixels.
     qreal minimumWidth() const;
     /// \brief Sets the minimum drawn width to \a width pixels. Negative values are clamped to 0.
@@ -76,7 +86,8 @@ public:
     /// \brief Loads rectangles from \a rects, a QML list of objects with \c x1, \c y1, \c x2, \c y2 properties.
     ///
     /// A missing or null \c x1 / \c y1 is -Infinity and a missing \c x2 / \c y2 is +Infinity, so
-    /// <tt>{ x1: 8, x2: 12 }</tt> is a full-height span.
+    /// <tt>{ x1: 8, x2: 12 }</tt> is a full-height span. An optional integer \c category selects
+    /// the fill color from \c categoryColors.
     Q_INVOKABLE void setData(const QVariantList& rects);
 
     /// \brief Loads rectangles from a C++ raw float array (\a data must have \a rectCount × 4 floats: x1, y1, x2, y2).
@@ -86,18 +97,27 @@ public:
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
     void setData(const double* data, int rectCount);
 
-    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the list. No copy is made.
+    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made.
     void setData(std::vector<double>&& data, int rectCount);
+
+    /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
+    void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
     void postData(std::vector<double>&& data, int rectCount);
+
+    /// \brief Thread-safe: queues \c setData(\a data, \a categories, \a rectCount) to the item's thread.
+    void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+
+    /// \brief Sets one category per rectangle. An empty list clears categories; any other size must equal \c count.
+    Q_INVOKABLE void setCategories(const QList<int>& categories);
 
     /// \brief Removes all rectangles.
     Q_INVOKABLE void clearData();
 
     /// \brief Returns rectangle \a index as an object with \c x1, \c y1, \c x2, \c y2 properties.
     ///
-    /// Returns an empty object when \a index is out of range.
+    /// Includes \c category when categories are set. Returns an empty object when \a index is out of range.
     Q_INVOKABLE QVariantMap rectangleAt(int index) const;
 
     /// \brief Returns the index of the topmost rectangle under item position \a position, or -1.
@@ -111,6 +131,8 @@ public:
 signals:
     /// \brief Emitted when the color property changes.
     void colorChanged();
+    /// \brief Emitted when the categoryColors property changes.
+    void categoryColorsChanged();
     /// \brief Emitted when the minimumWidth property changes.
     void minimumWidthChanged();
     /// \brief Emitted when the minimumHeight property changes.
@@ -130,8 +152,10 @@ protected:
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
-    bool validateDataArguments(std::size_t valueCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, int rectCount);
+    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    bool hasCategories() const;
+    QColor rectangleColor(int index) const;
     // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
@@ -143,8 +167,8 @@ private:
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
     void rebuildRenderData(bool logScaleX, bool logScaleY);
 
-    // Vertex cache: 6 vertices per rect, 12 bytes each.
-    // Rebuilt only when rectCount_ changes — vertex data is deterministic from count alone.
+    // Vertex cache: 6 vertices per rect, 12 bytes each. The color is the rectangle's category
+    // color when categories are set; otherwise it is unused and \c color is a uniform.
     struct RectVertex {
         float id;
         float corner;
@@ -152,11 +176,14 @@ private:
     };
 
     QColor color_;
+    QList<QColor> categoryColors_;
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
     // Data: 4 doubles per rect (x1, y1, x2, y2), full precision.
     std::vector<double> data_;
+    // One category per rect, or empty when no rectangle has one.
+    std::vector<int> categories_;
     // Origin-relative float mirror of data_, uploaded to the GPU.
     std::vector<float> renderData_;
     qreal renderOriginX_{0.0};

@@ -79,6 +79,23 @@ constexpr auto kNarrowScene = R"(
 }
 )";
 
+// Full-height spans in categories 0 and 1, and one without a category.
+constexpr auto kCategoryScene = R"(
+    RectangleList {
+        objectName: "categorized"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "blue"
+        categoryColors: ["red", "lime"]
+        Component.onCompleted: setData([
+            { x1: 1, x2: 2, category: 0 },
+            { x1: 4, x2: 5, category: 1 },
+            { x1: 7, x2: 8 }
+        ])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -148,6 +165,7 @@ class RectangleListRenderingTest : public QObject {
 private slots:
     void unboundedEdgesReachThePlotEdges();
     void narrowRectanglesKeepMinimumSize();
+    void categoriesSelectFillColors();
 };
 
 void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
@@ -232,6 +250,39 @@ void RectangleListRenderingTest::narrowRectanglesKeepMinimumSize()
         redPixels += isColor(image.pixelColor(span.x() + offset, span.y()), Qt::red) ? 1 : 0;
     }
     QVERIFY(redPixels <= 1);
+}
+
+void RectangleListRenderingTest::categoriesSelectFillColors()
+{
+    auto scene = SceneWindow{kCategoryScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* rectangles = plot->findChild<QQuickItem*>(QStringLiteral("categorized"));
+    QVERIFY(rectangles);
+
+    const auto first = scene.pixel(1.5, 5.0);
+    const auto second = scene.pixel(4.5, 5.0);
+    const auto uncategorized = scene.pixel(7.5, 5.0);
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(first), Qt::red));
+    QVERIFY(isColor(image.pixelColor(second), Qt::green));
+    QVERIFY(isColor(image.pixelColor(uncategorized), Qt::blue));
+
+    rectangles->setProperty("categoryColors", QVariant::fromValue(QList<QColor>{Qt::yellow, Qt::green}));
+    rectangles->setProperty("color", QColor{Qt::white});
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(first), Qt::yellow));
+    QVERIFY(isColor(image.pixelColor(uncategorized), Qt::white));
+
+    QVERIFY(QMetaObject::invokeMethod(rectangles, "setCategories", Q_ARG(QList<int>, (QList<int>{1, 5, 0}))));
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(first), Qt::green));
+    QVERIFY(isColor(image.pixelColor(second), Qt::white));
+    QVERIFY(isColor(image.pixelColor(uncategorized), Qt::yellow));
 }
 
 } // namespace QAccelPlot

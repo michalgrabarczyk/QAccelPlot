@@ -43,6 +43,9 @@ private slots:
     void rectangleAtReturnsBounds();
     void missingEdgesAreUnbounded();
     void unboundedAndInvalidEdgesAreExcludedFromRanges();
+    void variantListCategoriesAreStored();
+    void categoriesFollowTheData();
+    void mismatchedCategoriesAreRejected();
     void scaleChangesRefreshRenderCoordinates_data();
     void scaleChangesRefreshRenderCoordinates();
 };
@@ -267,6 +270,58 @@ void RectangleListDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
     rectangles.setData(std::vector<double>{8.0, -kInf, 12.0, kInf}, 1);
     QCOMPARE(yAxis.dataMin(), 100.0);
     QCOMPARE(yAxis.dataMax(), 200.0);
+}
+
+void RectangleListDataTest::variantListCategoriesAreStored()
+{
+    auto rectangles = RectangleList{};
+    auto first = QVariantMap{};
+    first.insert(QStringLiteral("x2"), 1.0);
+    first.insert(QStringLiteral("category"), 2);
+    auto second = QVariantMap{};
+    second.insert(QStringLiteral("x2"), 2.0);
+    rectangles.setData(QVariantList{first, second});
+
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), -1);
+
+    rectangles.setData(QVariantList{second});
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+}
+
+void RectangleListDataTest::categoriesFollowTheData()
+{
+    auto rectangles = RectangleList{};
+    rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}, std::vector<int>{1, 0}, 2);
+    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 0);
+
+    rectangles.setCategories({3, 4});
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 3);
+
+    rectangles.setCategories({});
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+
+    rectangles.setCategories({5, 6});
+    rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 1);
+    QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
+
+    auto worker = std::thread{[&rectangles]() { rectangles.postData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, std::vector<int>{7}, 1); }};
+    worker.join();
+    QTRY_COMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 7);
+}
+
+void RectangleListDataTest::mismatchedCategoriesAreRejected()
+{
+    auto rectangles = RectangleList{};
+    rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, std::vector<int>{1}, 1);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 2 categories for 1 rectangles"));
+    rectangles.setData(std::vector<double>{5.0, 5.0, 6.0, 6.0}, std::vector<int>{1, 2}, 1);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 categories for 1 rectangles"));
+    rectangles.setCategories({1, 2, 3});
+
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 0.0);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 1);
 }
 
 void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()

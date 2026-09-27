@@ -91,7 +91,28 @@ void RectangleList::setColor(const QColor& color)
         return;
     }
     color_ = color;
+    if (hasCategories()) {
+        vertexCacheValid_ = false;
+    }
     emit colorChanged();
+    update();
+}
+
+QList<QColor> RectangleList::categoryColors() const
+{
+    return categoryColors_;
+}
+
+void RectangleList::setCategoryColors(const QList<QColor>& colors)
+{
+    if (categoryColors_ == colors) {
+        return;
+    }
+    categoryColors_ = colors;
+    if (hasCategories()) {
+        vertexCacheValid_ = false;
+    }
+    emit categoryColorsChanged();
     update();
 }
 
@@ -141,7 +162,10 @@ void RectangleList::setData(const QVariantList& rects)
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     const auto& keys = rectangleKeys();
+    const auto categoryKey = QStringLiteral("category");
     auto data = std::vector<double>(static_cast<size_t>(rects.size()) * keys.size());
+    auto categories = std::vector<int>(static_cast<size_t>(rects.size()), -1);
+    auto anyCategory = false;
     for (qsizetype i = 0; i < rects.size(); ++i) {
         const auto map = rects[i].toMap();
         const auto base = static_cast<size_t>(i) * keys.size();
@@ -151,8 +175,16 @@ void RectangleList::setData(const QVariantList& rects)
             const auto unbounded = k < 2 ? -kInf : kInf;
             data[base + k] = value.isValid() && !value.isNull() ? value.toDouble() : unbounded;
         }
+        const auto category = map.value(categoryKey);
+        if (category.isValid() && !category.isNull()) {
+            categories[static_cast<size_t>(i)] = category.toInt();
+            anyCategory = true;
+        }
     }
-    applyData(std::move(data), static_cast<int>(rects.size()));
+    if (!anyCategory) {
+        categories.clear();
+    }
+    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
 }
 
 void RectangleList::setData(const float* data, const int rectCount)
@@ -161,7 +193,7 @@ void RectangleList::setData(const float* data, const int rectCount)
         return;
     }
     const auto floatCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + floatCount), rectCount);
+    applyData(std::vector<double>(data, data + floatCount), {}, rectCount);
 }
 
 void RectangleList::setData(const double* data, const int rectCount)
@@ -170,25 +202,51 @@ void RectangleList::setData(const double* data, const int rectCount)
         return;
     }
     const auto doubleCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + doubleCount), rectCount);
+    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount);
 }
 
 void RectangleList::setData(std::vector<double>&& data, const int rectCount)
 {
-    if (!validateDataArguments(data.size(), rectCount)) {
+    setData(std::move(data), {}, rectCount);
+}
+
+void RectangleList::setData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
     }
-    applyData(std::move(data), rectCount);
+    applyData(std::move(data), std::move(categories), rectCount);
 }
 
 void RectangleList::postData(std::vector<double>&& data, const int rectCount)
 {
-    QMetaObject::invokeMethod(this, [this, rects = std::move(data), rectCount]() mutable { setData(std::move(rects), rectCount); }, Qt::QueuedConnection);
+    postData(std::move(data), {}, rectCount);
+}
+
+void RectangleList::postData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    QMetaObject::invokeMethod(
+        this,
+        [this, rects = std::move(data), rectCategories = std::move(categories), rectCount]() mutable {
+            setData(std::move(rects), std::move(rectCategories), rectCount);
+        },
+        Qt::QueuedConnection);
+}
+
+void RectangleList::setCategories(const QList<int>& categories)
+{
+    if (!categories.isEmpty() && categories.size() != rectCount_) {
+        qCWarning(lcQAccelPlot) << "RectangleList received" << categories.size() << "categories for" << rectCount_ << "rectangles";
+        return;
+    }
+    categories_.assign(categories.cbegin(), categories.cend());
+    vertexCacheValid_ = false;
+    update();
 }
 
 void RectangleList::clearData()
 {
-    applyData({}, 0);
+    applyData({}, {}, 0);
 }
 
 QVariantMap RectangleList::rectangleAt(const int index) const
@@ -201,6 +259,9 @@ QVariantMap RectangleList::rectangleAt(const int index) const
     auto rect = QVariantMap{};
     for (size_t k = 0; k < keys.size(); ++k) {
         rect.insert(keys[k], data_[base + k]);
+    }
+    if (hasCategories()) {
+        rect.insert(QStringLiteral("category"), categories_[static_cast<size_t>(index)]);
     }
     return rect;
 }
@@ -238,7 +299,7 @@ bool RectangleList::validateRawDataArguments(const void* data, const int rectCou
     return true;
 }
 
-bool RectangleList::validateDataArguments(const std::size_t valueCount, const int rectCount) const
+bool RectangleList::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int rectCount) const
 {
     if (rectCount < 0) {
         qCWarning(lcQAccelPlot) << "RectangleList data rectangle count cannot be negative:" << rectCount;
@@ -249,16 +310,22 @@ bool RectangleList::validateDataArguments(const std::size_t valueCount, const in
         qCWarning(lcQAccelPlot) << "RectangleList received" << valueCount << "coordinates for" << rectCount << "rectangles; expected" << expectedValueCount;
         return false;
     }
+    if (categoryCount != 0 && categoryCount != static_cast<std::size_t>(rectCount)) {
+        qCWarning(lcQAccelPlot) << "RectangleList received" << categoryCount << "categories for" << rectCount << "rectangles";
+        return false;
+    }
     return true;
 }
 
-void RectangleList::applyData(std::vector<double>&& data, const int rectCount)
+void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
     const auto previousCount = rectCount_;
-    if (rectCount != rectCount_) {
+    // Vertex colors depend on the categories, but not on the coordinates.
+    if (rectCount != rectCount_ || hasCategories() || !categories.empty()) {
         vertexCacheValid_ = false;
     }
     data_ = std::move(data);
+    categories_ = std::move(categories);
     rectCount_ = rectCount;
     dataChanged_ = true;
     buildSpatialGrid();
@@ -270,6 +337,17 @@ void RectangleList::applyData(std::vector<double>&& data, const int rectCount)
         emit countChanged();
     }
     update();
+}
+
+bool RectangleList::hasCategories() const
+{
+    return !categories_.empty();
+}
+
+QColor RectangleList::rectangleColor(const int index) const
+{
+    const auto category = hasCategories() ? categories_[static_cast<size_t>(index)] : -1;
+    return category >= 0 && category < categoryColors_.size() ? categoryColors_[category] : color_;
 }
 
 bool RectangleList::containsInPixels(const int index, const QPointF& position) const
@@ -332,7 +410,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     } else {
         material = static_cast<RectMaterial*>(node->material());
 
-        // Vertex data is deterministic from rectCount_ alone — only rebuild when count changes.
+        // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
         if (!vertexCacheValid_) {
             buildVertexCache();
             auto* geometry = node->geometry();
@@ -357,7 +435,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     material->viewportSize = QVector2D(static_cast<float>(width()), static_cast<float>(height()));
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
-    material->useVertexColor = 0.0f;
+    material->useVertexColor = hasCategories() ? 1.0f : 0.0f;
     material->rectCount = static_cast<float>(rectCount_);
     material->minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
 
@@ -476,19 +554,18 @@ void RectangleList::buildVertexCache()
 {
     const auto totalVerts = static_cast<size_t>(rectCount_) * 6;
     vertexCache_.resize(totalVerts);
-    // Default RGBA: opaque white, which the shader multiplies by the per-rect color uniform.
-    constexpr static auto kOpaqueChannelByte = quint8{255};
     for (auto i = 0; i < rectCount_; ++i) {
         const auto vbase = static_cast<size_t>(i) * 6;
         const auto fid = static_cast<float>(i);
+        const auto rgba = hasCategories() ? rectangleColor(i).toRgb() : QColor{Qt::white};
         for (auto c = 0; c < 6; ++c) {
             auto& v = vertexCache_[vbase + static_cast<size_t>(c)];
             v.id = fid;
             v.corner = static_cast<float>(c);
-            v.r = kOpaqueChannelByte;
-            v.g = kOpaqueChannelByte;
-            v.b = kOpaqueChannelByte;
-            v.a = kOpaqueChannelByte;
+            v.r = static_cast<unsigned char>(rgba.red());
+            v.g = static_cast<unsigned char>(rgba.green());
+            v.b = static_cast<unsigned char>(rgba.blue());
+            v.a = static_cast<unsigned char>(rgba.alpha());
         }
     }
     vertexCacheValid_ = true;
