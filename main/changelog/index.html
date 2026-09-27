@@ -1563,6 +1563,8 @@
   <code>new LineCurve(plot)</code>, is now listed in <code>PlotView.series</code> and follows the plot
   area when the plot is resized. Previously it kept the first plot area it saw,
   which it adopted from the scene graph render thread.</li>
+<li>The <code>showcases/performance</code> and <code>showcases/pulsar</code> examples no longer hang on
+  exit.</li>
 <li><code>LineCurve</code> no longer reads the QML <code>Gradient</code> of a <code>GradientStroke</code> or
   <code>GradientFill</code> from the scene graph render thread on every frame. The effect
   now reads it on the GUI thread when it changes and once per frame, so stop
