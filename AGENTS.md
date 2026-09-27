@@ -78,12 +78,12 @@ QAccelPlot/
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│       ├── series/               — LineCurve, PointCloud, PlotSeries,
+│       ├── series/               — LineCurve, PointCloud, RectangleList, PlotSeries,
+│       │                           RectangleBorder (border grouped property),
 │       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
-│       ├── shapes/               — RectangleList
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition
 ├── qml/                          — QML helper types (Plot, Legend)

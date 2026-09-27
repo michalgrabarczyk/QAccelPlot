@@ -9,6 +9,8 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
+#include <limits>
 
 namespace QAccelPlot {
 
@@ -29,15 +31,13 @@ void SpatialGrid::build(const double* data, const int itemCount, const int value
 
 int SpatialGrid::query(const double x, const double y) const
 {
-    if (cols_ <= 0 || rows_ <= 0) {
-        return -1;
-    }
-    if (x < minX_ || x > maxX_ || y < minY_ || y > maxY_) {
+    if (cols_ <= 0 || rows_ <= 0 || std::isnan(x) || std::isnan(y)) {
         return -1;
     }
 
-    const auto c = std::max(0, std::min(cols_ - 1, static_cast<int>((x - minX_) / cellW_)));
-    const auto r = std::max(0, std::min(rows_ - 1, static_cast<int>((y - minY_) / cellH_)));
+    // Points outside the grid can still hit unbounded rectangles, which reach the edge cells.
+    const auto c = cellIndex(x, minX_, cellW_, cols_);
+    const auto r = cellIndex(y, minY_, cellH_, rows_);
     const auto& cell = cells_[static_cast<size_t>(r) * static_cast<size_t>(cols_) + static_cast<size_t>(c)];
 
     auto candidate = -1;
@@ -56,43 +56,107 @@ int SpatialGrid::query(const double x, const double y) const
     return candidate;
 }
 
+int SpatialGrid::queryTopmost(const double minX, const double minY, const double maxX, const double maxY, const std::function<bool(int)>& accept) const
+{
+    if (cols_ <= 0 || rows_ <= 0 || std::isnan(minX) || std::isnan(minY) || std::isnan(maxX) || std::isnan(maxY)) {
+        return -1;
+    }
+
+    const auto isCandidate = [&](const int index) { return itemBounds_[static_cast<size_t>(index)].overlaps(minX, minY, maxX, maxY) && accept(index); };
+    auto best = -1;
+    const auto c1 = cellIndex(maxX, minX_, cellW_, cols_);
+    const auto r1 = cellIndex(maxY, minY_, cellH_, rows_);
+    for (auto r = cellIndex(minY, minY_, cellH_, rows_); r <= r1; ++r) {
+        for (auto c = cellIndex(minX, minX_, cellW_, cols_); c <= c1; ++c) {
+            // Cells list their items in ascending index order.
+            const auto& cell = cells_[static_cast<size_t>(r) * static_cast<size_t>(cols_) + static_cast<size_t>(c)];
+            for (auto it = cell.rbegin(); it != cell.rend() && *it > best; ++it) {
+                if (isCandidate(*it)) {
+                    best = *it;
+                    break;
+                }
+            }
+        }
+    }
+    for (auto it = largeItems_.rbegin(); it != largeItems_.rend() && *it > best; ++it) {
+        if (isCandidate(*it)) {
+            return *it;
+        }
+    }
+    return best;
+}
+
 bool SpatialGrid::ItemBounds::contains(const double x, const double y) const
 {
     return x >= minX && x <= maxX && y >= minY && y <= maxY;
 }
 
+bool SpatialGrid::ItemBounds::overlaps(const double boxMinX, const double boxMinY, const double boxMaxX, const double boxMaxY) const
+{
+    return minX <= boxMaxX && maxX >= boxMinX && minY <= boxMaxY && maxY >= boxMinY;
+}
+
+bool SpatialGrid::ItemBounds::isValid() const
+{
+    return !std::isnan(minX) && !std::isnan(minY) && !std::isnan(maxX) && !std::isnan(maxY);
+}
+
+int SpatialGrid::cellIndex(const double value, const double min, const double cellSize, const int count)
+{
+    return static_cast<int>(std::clamp((value - min) / cellSize, 0.0, static_cast<double>(count - 1)));
+}
+
 void SpatialGrid::computeDataBounds(const double* data, const int itemCount, const int valuesPerItem)
 {
+    constexpr auto kInf = std::numeric_limits<double>::infinity();
+    constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
+    auto minX = kInf;
+    auto minY = kInf;
+    auto maxX = -kInf;
+    auto maxY = -kInf;
     itemBounds_.reserve(static_cast<size_t>(itemCount));
     for (auto i = 0; i < itemCount; ++i) {
-        const auto base = i * valuesPerItem;
+        const auto* item = data + static_cast<ptrdiff_t>(i) * valuesPerItem;
+        // std::min/max can drop a NaN operand, so invalid items are marked explicitly.
+        if (std::isnan(item[0]) || std::isnan(item[1]) || std::isnan(item[2]) || std::isnan(item[3])) {
+            itemBounds_.push_back({kNaN, kNaN, kNaN, kNaN});
+            continue;
+        }
         const auto bounds = ItemBounds{
-            std::min(data[base], data[base + 2]),
-            std::min(data[base + 1], data[base + 3]),
-            std::max(data[base], data[base + 2]),
-            std::max(data[base + 1], data[base + 3]),
+            std::min(item[0], item[2]),
+            std::min(item[1], item[3]),
+            std::max(item[0], item[2]),
+            std::max(item[1], item[3]),
         };
         itemBounds_.push_back(bounds);
 
-        if (i == 0) {
-            minX_ = bounds.minX;
-            minY_ = bounds.minY;
-            maxX_ = bounds.maxX;
-            maxY_ = bounds.maxY;
-        } else {
-            minX_ = std::min(minX_, bounds.minX);
-            minY_ = std::min(minY_, bounds.minY);
-            maxX_ = std::max(maxX_, bounds.maxX);
-            maxY_ = std::max(maxY_, bounds.maxY);
+        for (const auto x : {bounds.minX, bounds.maxX}) {
+            if (std::isfinite(x)) {
+                minX = std::min(minX, x);
+                maxX = std::max(maxX, x);
+            }
+        }
+        for (const auto y : {bounds.minY, bounds.maxY}) {
+            if (std::isfinite(y)) {
+                minY = std::min(minY, y);
+                maxY = std::max(maxY, y);
+            }
         }
     }
 
+    boundedX_ = minX <= maxX;
+    boundedY_ = minY <= maxY;
+    minX_ = boundedX_ ? minX : 0.0;
+    minY_ = boundedY_ ? minY : 0.0;
+    maxX_ = boundedX_ ? maxX : 0.0;
+    maxY_ = boundedY_ ? maxY : 0.0;
+
     // Add small padding to avoid zero-size ranges
     if (maxX_ <= minX_) {
-        maxX_ = minX_ + 1.0f;
+        maxX_ = minX_ + 1.0;
     }
     if (maxY_ <= minY_) {
-        maxY_ = minY_ + 1.0f;
+        maxY_ = minY_ + 1.0;
     }
 }
 
@@ -101,8 +165,10 @@ void SpatialGrid::computeGridDimensions(const int itemCount)
     // Grid dimensions: sqrt(N), capped at kMaxGridDimension
     constexpr auto kMaxGridDimension = int{1024}; // Upper cap on the number of rows/columns to bound memory and iteration cost.
     const auto dim = std::max(1, std::min(kMaxGridDimension, static_cast<int>(std::sqrt(static_cast<float>(itemCount)))));
-    cols_ = dim;
-    rows_ = dim;
+    // An axis without finite edges has nothing to subdivide, so the other axis gets the whole cell budget.
+    // Without this, full-height spans would each cover a whole column and fall back to the linear large-item scan.
+    cols_ = boundedX_ ? (boundedY_ ? dim : dim * dim) : 1;
+    rows_ = boundedY_ ? (boundedX_ ? dim : dim * dim) : 1;
     cellW_ = (maxX_ - minX_) / static_cast<double>(cols_);
     cellH_ = (maxY_ - minY_) / static_cast<double>(rows_);
 
@@ -114,11 +180,14 @@ void SpatialGrid::fillSpatialGrid(const int itemCount)
     // Insert each rect into all overlapping cells
     for (auto i = 0; i < itemCount; ++i) {
         const auto& bounds = itemBounds_[static_cast<size_t>(i)];
+        if (!bounds.isValid()) {
+            continue;
+        }
 
-        const auto c0 = std::max(0, std::min(cols_ - 1, static_cast<int>((bounds.minX - minX_) / cellW_)));
-        const auto r0 = std::max(0, std::min(rows_ - 1, static_cast<int>((bounds.minY - minY_) / cellH_)));
-        const auto c1 = std::max(0, std::min(cols_ - 1, static_cast<int>((bounds.maxX - minX_) / cellW_)));
-        const auto r1 = std::max(0, std::min(rows_ - 1, static_cast<int>((bounds.maxY - minY_) / cellH_)));
+        const auto c0 = cellIndex(bounds.minX, minX_, cellW_, cols_);
+        const auto r0 = cellIndex(bounds.minY, minY_, cellH_, rows_);
+        const auto c1 = cellIndex(bounds.maxX, minX_, cellW_, cols_);
+        const auto r1 = cellIndex(bounds.maxY, minY_, cellH_, rows_);
 
         constexpr auto kMaxCellsPerItem = 64;
         if ((c1 - c0 + 1) * (r1 - r0 + 1) > kMaxCellsPerItem) {

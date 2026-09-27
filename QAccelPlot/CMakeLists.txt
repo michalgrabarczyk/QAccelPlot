@@ -121,7 +121,6 @@ target_include_directories(QAccelPlot
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/materials>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/renderers>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/series>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/shapes>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/theme>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/transitions>
 )

@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `RectangleList`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
+  `setData(std::vector<double>&&, int)`, and `postData()`.
+- `RectangleList` spans: infinite or omitted edges reach the plot edge.
+- `RectangleList.minimumWidth` and `minimumHeight`, 1 px by default.
+- `RectangleList` categories: `category`, `categoryColors`, and `setCategories()`.
+- `RectangleList.border.width` and `border.color`.
+- `RectangleList.hoverColor`.
+- The `plot_types/state_timeline` example.
+
 ### Changed
 
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
@@ -13,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
+- Moved `RectangleList.hpp` to `QAccelPlot/series/`.
 
 ### Fixed
 
@@ -36,6 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
+- `RectangleList` no longer blocks hover for series underneath it.
 
 ## [0.3.0] — 2026-09-25
 

@@ -10,7 +10,7 @@
 #include "ExampleUtils.hpp"
 
 #include <QAccelPlot/series/LineCurve.hpp>
-#include <QAccelPlot/shapes/RectangleList.hpp>
+#include <QAccelPlot/series/RectangleList.hpp>
 
 #include <QCoreApplication>
 #include <QElapsedTimer>

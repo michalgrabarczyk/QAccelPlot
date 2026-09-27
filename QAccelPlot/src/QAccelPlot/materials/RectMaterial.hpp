@@ -22,10 +22,15 @@ public:
     /// \brief Creates and returns the rectangle shader program.
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 
-    float rectCount{0.0f}; ///< \brief Number of rectangles in the data texture (used to index the sampler).
+    float rectCount{0.0f};              ///< \brief Number of rectangles in the data texture (used to index the sampler).
+    QVector2D minimumSize{0.0f, 0.0f};  ///< \brief Minimum drawn rectangle width and height in pixels.
+    float borderWidth{0.0f};            ///< \brief Outline width in pixels, drawn inside each rectangle.
+    QColor borderColor{Qt::black};      ///< \brief Outline color.
+    QColor hoverColor{Qt::transparent}; ///< \brief Fill color of the highlighted rectangle.
+    float hoveredIndex{-1.0f};          ///< \brief Index of the highlighted rectangle, or -1 for none.
 
 protected:
-    /// \brief Compares the \c rectCount field after the base-class comparison succeeds.
+    /// \brief Compares the rectangle-specific uniforms after the base-class comparison succeeds.
     int compareExtra(const QSGMaterial* other) const override;
 };
 

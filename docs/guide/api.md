@@ -29,7 +29,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`ColorBar`](api/classQAccelPlot_1_1ColorBar.md) — continuous key for a
   point cloud's colormap and value range.
 - [`RectangleList`](api/classQAccelPlot_1_1RectangleList.md) — many data-space
-  rectangles in one item.
+  rectangles in one item: spans, bands, and state timelines.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
