@@ -44,7 +44,6 @@ void PlotSeries::setXAxis(Axis* axis)
     if (xAxis_ == axis) {
         return;
     }
-    const auto wasLogScale = xAxis_ && xAxis_->logScale();
     if (xAxis_) {
         disconnect(xAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
@@ -56,9 +55,8 @@ void PlotSeries::setXAxis(Axis* axis)
         connect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         reportXDataRangeToAxis();
     }
-    if (wasLogScale != (xAxis_ && xAxis_->logScale())) {
-        onAxisScaleChanged();
-    }
+    // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
+    onAxisScaleChanged();
     emit xAxisChanged();
     update();
 }
@@ -73,7 +71,6 @@ void PlotSeries::setYAxis(Axis* axis)
     if (yAxis_ == axis) {
         return;
     }
-    const auto wasLogScale = yAxis_ && yAxis_->logScale();
     if (yAxis_) {
         disconnect(yAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
@@ -85,9 +82,8 @@ void PlotSeries::setYAxis(Axis* axis)
         connect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         reportYDataRangeToAxis();
     }
-    if (wasLogScale != (yAxis_ && yAxis_->logScale())) {
-        onAxisScaleChanged();
-    }
+    // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
+    onAxisScaleChanged();
     emit yAxisChanged();
     update();
 }

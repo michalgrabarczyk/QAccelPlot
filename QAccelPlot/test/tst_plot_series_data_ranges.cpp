@@ -11,6 +11,7 @@
 #include <QtTest/QtTest>
 
 #include <limits>
+#include <memory>
 
 namespace QAccelPlot {
 
@@ -20,6 +21,14 @@ class TestPlotSeries final : public PlotSeries {
 public:
     using PlotSeries::PlotSeries;
     using PlotSeries::setDataRanges;
+
+    int scaleChangeCount{0};
+
+protected:
+    void onAxisScaleChanged() override
+    {
+        ++scaleChangeCount;
+    }
 };
 
 } // namespace
@@ -30,6 +39,7 @@ class PlotSeriesDataRangesTest : public QObject {
 private slots:
     void nonFiniteXDoesNotBlockFiniteYUpdate();
     void nonFiniteYDoesNotBlockFiniteXUpdate();
+    void replacingDestroyedLogAxisReportsScaleChange();
 };
 
 void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYUpdate()
@@ -54,6 +64,23 @@ void PlotSeriesDataRangesTest::nonFiniteYDoesNotBlockFiniteXUpdate()
 
     QCOMPARE(xSpy.count(), 1);
     QCOMPARE(ySpy.count(), 0);
+}
+
+void PlotSeriesDataRangesTest::replacingDestroyedLogAxisReportsScaleChange()
+{
+    auto series = TestPlotSeries{};
+    auto logAxis = std::make_unique<Axis>();
+    logAxis->setLogScale(true);
+    series.setXAxis(logAxis.get());
+    series.setYAxis(logAxis.get());
+    QCOMPARE(series.scaleChangeCount, 2);
+
+    logAxis.reset();
+    auto linearAxis = Axis{};
+    series.setXAxis(&linearAxis);
+    series.setYAxis(&linearAxis);
+
+    QCOMPARE(series.scaleChangeCount, 4);
 }
 
 } // namespace QAccelPlot

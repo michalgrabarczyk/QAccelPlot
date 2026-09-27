@@ -14,6 +14,7 @@
 #include <cmath>
 #include <cstring>
 #include <limits>
+#include <memory>
 #include <vector>
 
 namespace QAccelPlot {
@@ -41,6 +42,7 @@ private slots:
     void allInvalidDataClearsRanges();
     void logScaleExcludesNonPositiveValues();
     void noRangeDataIsNotRescannedOnLogScaleChange();
+    void replacingDestroyedLogAxisRescansRanges();
     void appendDataExcludesInvalidCoordinates();
     void appendDataAfterNoRangeDataRescans();
 
@@ -328,6 +330,23 @@ void LineCurveGapsTest::noRangeDataIsNotRescannedOnLogScaleChange()
     yAxis.setLogScale(false);
 
     QCOMPARE(yRangeSpy.count(), 0);
+}
+
+void LineCurveGapsTest::replacingDestroyedLogAxisRescansRanges()
+{
+    auto curve = LineCurve{};
+    auto logAxis = std::make_unique<Axis>();
+    logAxis->setLogScale(true);
+    curve.setYAxis(logAxis.get());
+    curve.setData(QList<QPointF>{{0.0, -1.0}, {1.0, 10.0}, {2.0, 100.0}});
+    QCOMPARE(logAxis->dataMin(), 10.0);
+
+    logAxis.reset();
+    auto linearAxis = Axis{};
+    curve.setYAxis(&linearAxis);
+
+    QCOMPARE(linearAxis.dataMin(), -1.0);
+    QCOMPARE(linearAxis.dataMax(), 100.0);
 }
 
 void LineCurveGapsTest::appendDataExcludesInvalidCoordinates()
