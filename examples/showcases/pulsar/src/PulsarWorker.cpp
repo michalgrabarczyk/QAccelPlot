@@ -46,11 +46,11 @@ void PulsarWorker::start()
 
 void PulsarWorker::stop()
 {
-    if (!running_.exchange(false, std::memory_order_acq_rel)) {
-        if (workerThread_.joinable()) {
-            workerThread_.join();
-        }
-        return;
+    {
+        // The worker checks running_ while holding the mutex, so clearing it under the mutex
+        // keeps the notification from falling between that check and the worker's wait.
+        std::lock_guard<std::mutex> lock(mutex_);
+        running_.store(false, std::memory_order_release);
     }
 
     conditionVariable_.notify_one();

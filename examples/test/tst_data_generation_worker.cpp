@@ -12,6 +12,10 @@
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <future>
+#include <memory>
+#include <random>
+#include <thread>
 
 namespace {
 
@@ -32,6 +36,7 @@ private slots:
     void lookupTracksSine();
     void rectanglesTrackCurveSamples();
     void pendingBatchIsNotOverwritten();
+    void stopReturnsAtAnyPointOfTheCycle();
 };
 
 void DataGenerationWorkerTest::lookupTracksSine()
@@ -113,6 +118,35 @@ void DataGenerationWorkerTest::pendingBatchIsNotOverwritten()
     QVERIFY2(waitForBatch(worker, secondBatch), "Timed out waiting for the next batch after consumption");
     worker.stop();
     QVERIFY(std::abs(secondBatch.curve1[1] - config.curve1Amplitude * std::sin(secondPhase)) < 0.003f);
+}
+
+void DataGenerationWorkerTest::stopReturnsAtAnyPointOfTheCycle()
+{
+    // Stops the worker at random moments while it produces its next batch. A wake-up lost by
+    // stop() leaves the worker waiting forever, so the loop runs on a detached thread with a deadline.
+    auto config = DataGenerationConfig{};
+    config.defaultPointCount = 2;
+    auto finished = std::make_shared<std::promise<void>>();
+    auto done = finished->get_future();
+    std::thread([config, finished]() {
+        auto random = std::mt19937{12345};
+        auto delay = std::uniform_int_distribution<int>{0, 4000};
+        for (auto iteration = 0; iteration < 40'000; ++iteration) {
+            auto worker = DataGenerationWorker{config};
+            worker.start();
+            auto batch = DataGenerationBatch{};
+            if (worker.waitForData(std::chrono::seconds{5})) {
+                // Consuming wakes the worker to produce the next batch.
+                worker.tryConsume(batch);
+            }
+            const auto spins = delay(random);
+            for (volatile auto spin = 0; spin < spins; spin = spin + 1) { }
+            worker.stop();
+        }
+        finished->set_value();
+    }).detach();
+
+    QVERIFY2(done.wait_for(std::chrono::seconds{60}) == std::future_status::ready, "DataGenerationWorker::stop() did not return");
 }
 
 QTEST_GUILESS_MAIN(DataGenerationWorkerTest)

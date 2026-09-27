@@ -26,6 +26,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `new LineCurve(plot)`, is now listed in `PlotView.series` and follows the plot
   area when the plot is resized. Previously it kept the first plot area it saw,
   which it adopted from the scene graph render thread.
+- The `showcases/performance` and `showcases/pulsar` examples no longer hang on
+  exit.
 - `LineCurve` no longer reads the QML `Gradient` of a `GradientStroke` or
   `GradientFill` from the scene graph render thread on every frame. The effect
   now reads it on the GUI thread when it changes and once per frame, so stop
