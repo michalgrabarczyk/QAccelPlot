@@ -14,27 +14,27 @@
 
 namespace QAccelPlot {
 
+// Mirrors the std140 block in rect.vert. Members are ordered by alignment (mat4, vec4, vec2,
+// float), so every offset is already aligned and the block needs no padding.
 struct RectUbo {
     float matrix[16];      // 0–63
     float color[4];        // 64–79
-    float domainMin[2];    // 80–87
-    float domainMax[2];    // 88–95
-    float viewportSize[2]; // 96–103
-    float logScaleX;       // 104–107
-    float logScaleY;       // 108–111
-    float useVertexColor;  // 112–115
-    float rectCount;       // 116–119
-    float opacity;         // 120–123
-    float padding0;        // 124–127: std140 aligns vec2 to 8 bytes
-    float minimumSize[2];  // 128–135
-    float borderWidth;     // 136–139
-    float padding1;        // 140–143: std140 aligns vec4 to 16 bytes
-    float borderColor[4];  // 144–159
-    float hoverColor[4];   // 160–175
-    float hoveredIndex;    // 176–179
+    float borderColor[4];  // 80–95
+    float hoverColor[4];   // 96–111
+    float domainMin[2];    // 112–119
+    float domainMax[2];    // 120–127
+    float viewportSize[2]; // 128–135
+    float minimumSize[2];  // 136–143
+    float logScaleX;       // 144–147
+    float logScaleY;       // 148–151
+    float useVertexColor;  // 152–155
+    float rectCount;       // 156–159
+    float opacity;         // 160–163
+    float borderWidth;     // 164–167
+    float hoveredIndex;    // 168–171
 };
 
-static_assert(sizeof(RectUbo) == 180);
+static_assert(sizeof(RectUbo) == 172);
 
 class RectShader : public QSGMaterialShader {
 public:
