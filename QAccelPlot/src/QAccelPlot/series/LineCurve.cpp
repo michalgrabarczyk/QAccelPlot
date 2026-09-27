@@ -197,6 +197,9 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(marker_, &SeriesMarker::sizeChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::filledChanged, this, &QQuickItem::update);
     connect(marker_, &SeriesMarker::strokeWidthChanged, this, &QQuickItem::update);
+    // A parent already in a window adds the curve to it from the QQuickItem constructor, where the
+    // ItemSceneChange does not reach this class's itemChange().
+    connectAnimationTicks(window());
 }
 
 QColor LineCurve::color() const
@@ -938,8 +941,6 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         promoteFloatDataToDouble();
         dataType_ = DataType::Double;
         transition_->start(data_, pointCount_, std::move(newData), newPointCount);
-        // An item constructed with a parent already in a window misses its ItemSceneChange.
-        connectAnimationTicks(window());
 
         // Do not update pointCount_ here. transition_->advance() updates it through its
         // output argument when it produces data_; changing only the count now would

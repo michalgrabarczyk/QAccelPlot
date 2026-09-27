@@ -147,24 +147,26 @@ std::unique_ptr<Axis> makeAxis(const Axis::Orientation orientation)
 // The curve with a red GradientStroke over a blue GradientFill, shown in a threaded-render-loop window.
 class Scene {
 public:
-    Scene()
+    // Without parentAtConstruction the curve gets its parent after construction, as in QML.
+    explicit Scene(const bool parentAtConstruction = false)
+        : curve(parentAtConstruction ? new LineCurve(window.contentItem()) : new LineCurve)
     {
         window.setColor(Qt::black);
         window.resize(kSize, kSize);
-        curve.setParentItem(window.contentItem());
-        curve.setXAxis(xAxis.get());
-        curve.setYAxis(yAxis.get());
-        curve.setPlotRect({0, 0, kSize, kSize});
-        curve.setColor(Qt::white);
-        curve.setLineWidth(8);
-        curve.setAntialiasingEnabled(false);
+        curve->setParentItem(window.contentItem());
+        curve->setXAxis(xAxis.get());
+        curve->setYAxis(yAxis.get());
+        curve->setPlotRect({0, 0, kSize, kSize});
+        curve->setColor(Qt::white);
+        curve->setLineWidth(8);
+        curve->setAntialiasingEnabled(false);
         stroke->setGradient(&strokeGradient);
         fill->setGradient(&fillGradient);
         fill->setOpacity(1.0);
-        auto effects = curve.effects();
+        auto effects = curve->effects();
         effects.append(&effects, stroke);
         effects.append(&effects, fill);
-        curve.setData(QList<QPointF>{{0.0, 0.5}, {1.0, 0.5}});
+        curve->setData(QList<QPointF>{{0.0, 0.5}, {1.0, 0.5}});
     }
 
     bool isSoftware()
@@ -194,9 +196,9 @@ public:
     ReadLog log;
     ProbeGradient strokeGradient{Qt::red, log};
     ProbeGradient fillGradient{Qt::blue, log};
-    LineCurve curve;
-    GradientStroke* stroke{new GradientStroke(&curve)};
-    GradientFill* fill{new GradientFill(&curve)};
+    std::unique_ptr<LineCurve> curve;
+    GradientStroke* stroke{new GradientStroke(curve.get())};
+    GradientFill* fill{new GradientFill(curve.get())};
 };
 
 } // namespace
@@ -206,6 +208,7 @@ class GradientEffectThreadsTest : public QObject {
 
 private slots:
     void gradientsAreReadOnGuiThreadOnly();
+    void unsignalledStopChangesAreRendered_data();
     void unsignalledStopChangesAreRendered();
     void effectChangesAreRendered();
 };
@@ -228,9 +231,18 @@ void GradientEffectThreadsTest::gradientsAreReadOnGuiThreadOnly()
     QCOMPARE(scene.log.threads(), QSet<QThread*>{qApp->thread()});
 }
 
+void GradientEffectThreadsTest::unsignalledStopChangesAreRendered_data()
+{
+    QTest::addColumn<bool>("parentAtConstruction");
+    QTest::newRow("parent assigned later") << false;
+    // new LineCurve(parent) with the parent already in the window.
+    QTest::newRow("parent at construction") << true;
+}
+
 void GradientEffectThreadsTest::unsignalledStopChangesAreRendered()
 {
-    auto scene = Scene{};
+    QFETCH(bool, parentAtConstruction);
+    auto scene = Scene{parentAtConstruction};
     if (scene.isSoftware()) {
         QSKIP("Custom curve materials require a hardware scene graph backend");
     }
@@ -255,7 +267,7 @@ void GradientEffectThreadsTest::effectChangesAreRendered()
     QTRY_COMPARE(scene.linePixel(), QColor{Qt::white});
     QCOMPARE(scene.fillPixel(), QColor{Qt::blue});
 
-    auto effects = scene.curve.effects();
+    auto effects = scene.curve->effects();
     effects.clear(&effects);
     QTRY_COMPARE(scene.fillPixel(), QColor{Qt::black});
     QCOMPARE(scene.linePixel(), QColor{Qt::white});
