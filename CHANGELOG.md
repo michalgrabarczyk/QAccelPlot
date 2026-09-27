@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
 - A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.

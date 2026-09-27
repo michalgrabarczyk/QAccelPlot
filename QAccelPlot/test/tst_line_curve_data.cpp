@@ -55,6 +55,7 @@ private slots:
     void postedDoubleDataFromWorkerThreadIsApplied();
     void postedFloatDataFromWorkerThreadIsApplied();
     void hoverEnterAndLeaveToggleHovered();
+    void lineAndMarkerCurveContainsLineAndMarkers();
     void invalidPostedDoubleDataIsRejected();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
@@ -544,6 +545,25 @@ void LineCurveDataTest::hoverEnterAndLeaveToggleHovered()
     curve.hoverLeaveEvent(&leave);
     QVERIFY(!curve.hovered());
     QCOMPARE(hoveredSpy.count(), 2);
+}
+
+void LineCurveDataTest::lineAndMarkerCurveContainsLineAndMarkers()
+{
+    auto xAxis = Axis{};
+    xAxis.setOrientation(Axis::Horizontal);
+    auto yAxis = Axis{};
+    yAxis.setOrientation(Axis::Vertical);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    curve.setData(QList<QPointF>{{0.1, 0.5}, {0.9, 0.5}});
+
+    const auto& item = static_cast<const QQuickItem&>(curve);
+    QVERIFY(item.contains({10, 50}));
+    QVERIFY(item.contains({50, 50}));
+    QVERIFY(!item.contains({50, 20}));
 }
 
 void LineCurveDataTest::invalidPostedDoubleDataIsRejected()
