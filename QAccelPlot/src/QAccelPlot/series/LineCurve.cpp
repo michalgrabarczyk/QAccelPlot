@@ -584,13 +584,6 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
-    if (dataType_ == DataType::Double && (renderLogScaleX_ != xAxis()->logScale() || renderLogScaleY_ != yAxis()->logScale())) {
-        rebuildDoubleRenderData(xAxis()->logScale(), yAxis()->logScale());
-        rebuildGapConnectData();
-        invalidateVertices();
-        chunksValid_ = false;
-    }
-
     // When the style changes the node type must be recreated from scratch.
     if (styleChanged_) {
         delete oldNode;

@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
+- A series whose log-scale axis was destroyed refreshes its data ranges when bound
+  to a linear axis.
 - `LineCurve` transitions now advance on the GUI thread, so `DataTransition.running`
   changes, and the QML handlers and bindings that react to them, no longer run on
   the scene graph render thread.
