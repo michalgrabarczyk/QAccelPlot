@@ -55,6 +55,7 @@ private slots:
     void cleanup();
     void runningChangedIsEmittedOnGuiThread();
     void transitionReachesTargetData();
+    void transitionAdvancesWithParentAtConstruction();
 
 private:
     Scene scene_;
@@ -121,6 +122,25 @@ void LineCurveTransitionsTest::transitionReachesTargetData()
     QVERIFY(item->contains({50, 20}));
     QVERIFY(!item->contains({50, 80}));
     scene_.curve->setTransition(nullptr);
+}
+
+void LineCurveTransitionsTest::transitionAdvancesWithParentAtConstruction()
+{
+    // The parent is already in the window, so the curve joins it from the QQuickItem constructor.
+    auto curve = std::make_unique<LineCurve>(scene_.window->contentItem());
+    curve->setXAxis(scene_.xAxis.get());
+    curve->setYAxis(scene_.yAxis.get());
+    curve->setPlotRect({0, 0, kSize, kSize});
+    curve->setData(horizontalLine(0.2));
+    auto transition = MorphTransition{};
+    transition.setDuration(50);
+    curve->setTransition(&transition);
+
+    curve->setData(horizontalLine(0.8));
+    QTRY_VERIFY_WITH_TIMEOUT(!transition.running(), 2000);
+
+    QVERIFY(static_cast<const QQuickItem*>(curve.get())->contains({50, 20}));
+    curve->setTransition(nullptr);
 }
 
 } // namespace QAccelPlot
