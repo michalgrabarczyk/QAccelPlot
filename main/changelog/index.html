@@ -1554,6 +1554,8 @@
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
+<li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
+  to a linear axis.</li>
 <li><code>LineCurve</code> transitions now advance on the GUI thread, so <code>DataTransition.running</code>
   changes, and the QML handlers and bindings that react to them, no longer run on
   the scene graph render thread.</li>
