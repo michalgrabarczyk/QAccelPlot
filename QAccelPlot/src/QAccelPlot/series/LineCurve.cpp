@@ -202,6 +202,15 @@ LineCurve::LineCurve(QQuickItem* parent)
     connectAnimationTicks(window());
 }
 
+LineCurve::~LineCurve()
+{
+    // Ending the run emits runningChanged, which must not reach this partly destroyed curve.
+    if (transition_) {
+        disconnect(transition_, nullptr, this, nullptr);
+    }
+    transitionRun_.cancel();
+}
+
 QColor LineCurve::color() const
 {
     return color_;
@@ -248,12 +257,15 @@ void LineCurve::setTransition(DataTransition* transition)
     if (transition_ == transition) {
         return;
     }
+    finishTransition();
     if (transition_) {
         disconnect(transition_, &QObject::destroyed, this, &LineCurve::onTransitionDestroyed);
+        disconnect(transition_, &DataTransition::runningChanged, this, &LineCurve::onTransitionRunningChanged);
     }
     transition_ = transition;
     if (transition_) {
         connect(transition_, &QObject::destroyed, this, &LineCurve::onTransitionDestroyed);
+        connect(transition_, &DataTransition::runningChanged, this, &LineCurve::onTransitionRunningChanged);
     }
     emit transitionChanged();
 }
@@ -333,7 +345,7 @@ SeriesMarker* LineCurve::marker() const
 
 void LineCurve::appendData(const qreal x, const qreal y)
 {
-    cancelRunningTransition();
+    finishTransition();
     promoteFloatDataToDouble();
 
     const auto logX = logScaleX();
@@ -371,9 +383,7 @@ void LineCurve::appendData(const qreal x, const qreal y)
 
 void LineCurve::clearData()
 {
-    if (transition_) {
-        transition_->cancel();
-    }
+    cancelRunningTransition();
     data_.clear();
     dataF_.clear();
     renderData_.clear();
@@ -756,8 +766,17 @@ void LineCurve::onAxisScaleChanged()
 
 void LineCurve::onTransitionDestroyed()
 {
+    finishTransition();
     emit transitionChanged();
     update();
+}
+
+void LineCurve::onTransitionRunningChanged()
+{
+    // DataTransition::cancel() ends every run but leaves its data pending for the host.
+    if (!transitionRun_.active()) {
+        finishTransition();
+    }
 }
 
 void LineCurve::onLineStyleChanged()
@@ -890,7 +909,9 @@ void LineCurve::applyDataExtents(const qreal xMin, const qreal xMax, const qreal
 
 void LineCurve::recomputeDataRanges()
 {
-    if (dataType_ == DataType::Double) {
+    if (transitionRun_.pending()) {
+        updateDataRanges(transitionRun_.targetData(), transitionRun_.targetPointCount());
+    } else if (dataType_ == DataType::Double) {
         updateDataRanges(data_, pointCount_);
     } else {
         updateDataRanges(dataF_, pointCount_);
@@ -940,7 +961,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     if (transition_ && transition_->enabled()) {
         promoteFloatDataToDouble();
         dataType_ = DataType::Double;
-        transition_->start(data_, pointCount_, std::move(newData), newPointCount);
+        transition_->start(transitionRun_, data_, pointCount_, std::move(newData), newPointCount);
 
         // Do not update pointCount_ here. transition_->advance() updates it through its
         // output argument when it produces data_; changing only the count now would
@@ -1172,8 +1193,7 @@ void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 
 void LineCurve::rebuildVertexCache()
 {
-    const auto isTransitioning = transition_ && transition_->running();
-    if (hasGradientEffect() || isTransitioning || renderPointCount() == 0) {
+    if (hasGradientEffect() || transitionRun_.active() || renderPointCount() == 0) {
         vertexCache_.invalidate();
         return;
     }
@@ -1232,8 +1252,13 @@ void LineCurve::invalidateData()
 
 void LineCurve::cancelRunningTransition()
 {
-    if (transition_ && transition_->running()) {
-        transition_->cancel();
+    transitionRun_.cancel();
+}
+
+void LineCurve::finishTransition()
+{
+    if (transitionRun_.finish(data_, pointCount_)) {
+        applyTransitionData();
     }
 }
 
@@ -1264,21 +1289,27 @@ void LineCurve::refreshEffects()
 
 void LineCurve::advanceTransition()
 {
-    if (!transition_ || !transition_->running()) {
+    if (!transition_ || !transitionRun_.active()) {
         return;
     }
     // afterAnimating is emitted on the GUI thread before the scene graph syncs, so runningChanged
     // reaches QML there, and this frame renders the new step.
-    const auto stillAnimating = transition_->advance(data_, pointCount_);
+    transition_->advance(transitionRun_, data_, pointCount_);
+    applyTransitionData();
+    // The item is still dirty from this frame, so update() alone does not schedule the next one.
+    // A runningChanged handler may have started a new run, so the run is checked again here.
+    if (transitionRun_.active() && animationTickWindow_) {
+        animationTickWindow_->update();
+    }
+}
+
+void LineCurve::applyTransitionData()
+{
     dataType_ = DataType::Double;
     rebuildDoubleRenderData(logScaleX(), logScaleY());
     rebuildGapConnectData();
     invalidateData();
     update();
-    // The item is still dirty from this frame, so update() alone does not schedule the next one.
-    if (stillAnimating && animationTickWindow_) {
-        animationTickWindow_->update();
-    }
 }
 
 } // namespace QAccelPlot
