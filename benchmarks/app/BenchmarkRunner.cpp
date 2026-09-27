@@ -23,7 +23,6 @@ namespace QAccelPlot {
 
 BenchmarkRunner::BenchmarkRunner(QObject* parent)
     : QObject(parent)
-    , reporter_("0.3.0")
     , availableScenarios_(BenchmarkScenario::defaultScenarios())
 {
     // Filter out CPU-only scenarios — those have no rendering and shouldn't appear in the GUI.

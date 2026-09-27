@@ -841,7 +841,7 @@ ApplicationWindow {
                     }
 
                     Text {
-                        text: "QAccelPlot v0.3.0"
+                        text: "QAccelPlot v" + Qt.application.version
                         font {
                             pixelSize: 11
                             weight: Font.Medium
