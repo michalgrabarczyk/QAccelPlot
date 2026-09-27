@@ -1127,6 +1127,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#public-properties" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1436,6 +1447,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-datatransition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function ~DataTransition
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1509,6 +1531,21 @@
   classQAccelPlot_1_1DataTransition --&gt; classQAccelPlot_1_1MorphTransition
   click classQAccelPlot_1_1MorphTransition "../classQAccelPlot_1_1MorphTransition/" "Open QAccelPlot::MorphTransition"
 </code></pre>
+<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <br><em>One animation of a transition on one host element.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-properties">Public Properties<a class="headerlink" href="#public-properties" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1532,7 +1569,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">property bool</td>
-<td style="text-align: left;"><a href="./#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing.</em></td>
+<td style="text-align: left;"><a href="./#property-running-12"><strong>running</strong></a>  <br><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one element.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1578,11 +1615,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-advance"><strong>advance</strong></a> (std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Advances the animation by one frame, writing the interpolated data into</em> <em>outData</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-advance"><strong>advance</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, std::vector&lt; double &gt; &amp; outData, int &amp; outPointCount) <br><em>Advances</em> <em>run</em> <em>by one frame, writing the interpolated data into__outData</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-cancel"><strong>cancel</strong></a> () <br><em>Cancels the running transition immediately.</em></td>
+<td style="text-align: left;"><a href="#function-cancel"><strong>cancel</strong></a> () <br><em>Ends every active run immediately.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -1598,7 +1635,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-running-22"><strong>running</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while a transition is actively playing.</em></td>
+<td style="text-align: left;"><a href="#function-running-22"><strong>running</strong></a> () const<br><em>Returns</em> <code>true</code> <em>while at least one run is active.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1614,7 +1651,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount) <br><em>Starts a new transition from</em> <em>currentData</em> <em>to__newData</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-start"><strong>start</strong></a> (<a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> &amp; run, const std::vector&lt; double &gt; &amp; currentData, int currentPointCount, std::vector&lt; double &gt; &amp;&amp; newData, int newPointCount) <br><em>Starts</em> <em>run</em> <em>from__currentData</em> <em>to__newData</em> <em>, restarting it if it is already active.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-datatransition"><strong>~DataTransition</strong></a> () override<br><em>Destroys the transition. Its runs stay pending, so their hosts can still show the target data.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1635,6 +1676,7 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Subclasses implement <code>interpolate()</code> to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by <code>advance()</code>, which the host element calls on the GUI thread before each scene graph synchronization, so <code>runningChanged</code> is always emitted on the GUI thread.</p>
+<p>One transition can be assigned to several elements. Each element keeps its own <code>Run</code> with the data it animates between, so the elements animate independently.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a>, <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-duration-12">property duration<a class="headerlink" href="#property-duration-12" title="Permanent link">&para;</a></h3>
@@ -1656,7 +1698,7 @@
 <hr>
 
 <h3 id="property-running-12">property running<a class="headerlink" href="#property-running-12" title="Permanent link">&para;</a></h3>
-<p><em>Read-only:</em> <code>true</code> <em>while the transition is playing.</em>
+<p><em>Read-only:</em> <code>true</code> <em>while the transition is playing on at least one element.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
@@ -1694,20 +1736,23 @@
 <hr>
 
 <h3 id="function-advance">function advance<a class="headerlink" href="#function-advance" title="Permanent link">&para;</a></h3>
-<p><em>Advances the animation by one frame, writing the interpolated data into</em> <em>outData</em> <em>.</em>
+<p><em>Advances</em> <em>run</em> <em>by one frame, writing the interpolated data into__outData</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">advance</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
+<p>When the duration has elapsed, writes the target data and finishes the run. </p>
 <p><strong>Returns:</strong></p>
-<p><code>true</code> if the animation is still running after this call. </p>
+<p><code>true</code> if <em>run</em> is still active after this call. </p>
 <hr>
 
 <h3 id="function-cancel">function cancel<a class="headerlink" href="#function-cancel" title="Permanent link">&para;</a></h3>
-<p><em>Cancels the running transition immediately.</em> 
+<p><em>Ends every active run immediately.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">cancel</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
+<p>The runs stay pending; hosts show the target data after <code>running</code> turns <code>false</code>. </p>
 <hr>
 
 <h3 id="function-duration-22">function duration<a class="headerlink" href="#function-duration-22" title="Permanent link">&para;</a></h3>
@@ -1729,7 +1774,7 @@
 <hr>
 
 <h3 id="function-running-22">function running<a class="headerlink" href="#function-running-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>while a transition is actively playing.</em>
+<p><em>Returns</em> <code>true</code> <em>while at least one run is active.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">running</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -1759,34 +1804,42 @@
 <hr>
 
 <h3 id="function-start">function start<a class="headerlink" href="#function-start" title="Permanent link">&para;</a></h3>
-<p><em>Starts a new transition from</em> <em>currentData</em> <em>to__newData</em> <em>.</em>
+<p><em>Starts</em> <em>run</em> <em>from__currentData</em> <em>to__newData</em> <em>, restarting it if it is already active.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">start</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">currentData</span><span class="p">,</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newData</span><span class="p">,</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">Run</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">currentData</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPointCount</span><span class="p">,</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">newData</span><span class="p">,</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">newPointCount</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
+<li><code>run</code> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> of the host element; ended first if another transition advances it. </li>
 <li><code>currentData</code> Current XY double buffer (copied as the <em>from</em> state). </li>
 <li><code>currentPointCount</code> Number of points in <em>currentData</em>. </li>
 <li><code>newData</code> Target XY double buffer (moved as the <em>to</em> state). </li>
 <li><code>newPointCount</code> Number of points in <em>newData</em>. </li>
 </ul>
 <hr>
+
+<h3 id="function-datatransition">function ~DataTransition<a class="headerlink" href="#function-datatransition" title="Permanent link">&para;</a></h3>
+<p><em>Destroys the transition. Its runs stay pending, so their hosts can still show the target data.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::~</span><span class="n">DataTransition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-interpolate">function interpolate<a class="headerlink" href="#function-interpolate" title="Permanent link">&para;</a></h3>
 <p><em>Subclass entry point — computes the interpolated dataset at</em> <em>easedProgress</em> <em>(0–1).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span><span class="p">,</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fromData</span><span class="p">,</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fromPointCount</span><span class="p">,</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">toData</span><span class="p">,</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">toPointCount</span><span class="p">,</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTransition</span><span class="o">::</span><span class="n">interpolate</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">easedProgress</span><span class="p">,</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fromData</span><span class="p">,</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fromPointCount</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">toData</span><span class="p">,</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">toPointCount</span><span class="p">,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outData</span><span class="p">,</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">outPointCount</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </code></pre></div></p>
 <hr>
 

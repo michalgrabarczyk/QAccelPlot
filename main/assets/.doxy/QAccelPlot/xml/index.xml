@@ -560,12 +560,9 @@
     <member refid="classQAccelPlot_1_1DataTransition_1a2c42460c1f3a7376f5f105db39ff508d" kind="variable"><name>easing_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a58d2ee8d8403665f4efd1f85ffb4d4bd" kind="variable"><name>enabled_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a13cb90cef73c65a2822547aca7fed6ee" kind="variable"><name>running_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a0ae1dc8eff4935b0321b398134c3bc80" kind="variable"><name>fromData_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a74557d187ae1fc51f7af589127042075" kind="variable"><name>toData_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1aa060783c34f994cdc0da548388c6868c" kind="variable"><name>fromPointCount_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1aeed85a6430cb4a99d41300cfa3b6dca3" kind="variable"><name>toPointCount_</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a5e94fe4b2570b47a989c938d86c28902" kind="variable"><name>animTimer_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a8b3db77a643f39554bf846c3f66e8031" kind="variable"><name>runs_</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a87c1716f9cb4ddb72592903f3fd33915" kind="function"><name>DataTransition</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1add330610df13a318feacdf411be112b4" kind="function"><name>~DataTransition</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a93166a6418361d8e209fcdfa32465e1e" kind="function"><name>duration</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a67e4af4b0d23f49bcdb3e6ddef906c3c" kind="function"><name>setDuration</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1abcc106afb46ed281fcc49e2793dd5ff7" kind="function"><name>easing</name></member>
@@ -573,14 +570,15 @@
     <member refid="classQAccelPlot_1_1DataTransition_1adce79119ca3c12b0d59f69ab369e56e8" kind="function"><name>enabled</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a4ba895ca83cfa3163d6dbebe782c8e2b" kind="function"><name>setEnabled</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a96c40d0c05b880893df10a2fdd013ebe" kind="function"><name>running</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1ae058f161b51444d9439db6761ddd5512" kind="function"><name>start</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a837c967f2878e24d0cd8fa2aa53ee983" kind="function"><name>start</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" kind="function"><name>cancel</name></member>
-    <member refid="classQAccelPlot_1_1DataTransition_1a2dedefb71ff7b3812a9e0b36d835cfb1" kind="function"><name>advance</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a7ebc5e33c7d4e524e50eccd2457fb8d7" kind="function"><name>advance</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1adb5d9d25b47e39a4fb73fd0a30bc5e75" kind="signal"><name>durationChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1ae40837c466a956e404cb353552c7ae77" kind="signal"><name>easingChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1ae75636538a959ce1a08227aa09d7aed5" kind="signal"><name>enabledChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a99928e9029236f818855a1f445d7635d" kind="signal"><name>runningChanged</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1a4b227c5553fe7a558b9956202f709d55" kind="function"><name>interpolate</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1a1adc6249c09b25b5bf9c8fd2f709862c" kind="function"><name>removeRun</name></member>
     <member refid="classQAccelPlot_1_1DataTransition_1afb7e074e6e4c1e1538209a6eb14d2945" kind="function"><name>setRunning</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1DateTimeTickLabelFormatter" kind="class"><name>QAccelPlot::DateTimeTickLabelFormatter</name>
@@ -885,6 +883,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a9168029ca2925da8146847ce95b8e593" kind="variable"><name>renderOriginYSettled_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa465dbb3eec4da47591d4073f1901037" kind="variable"><name>pointCount_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa47961a7ca7a6990f4432384511a9e82" kind="variable"><name>transition_</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a32fa69e6393d0aa220512c81e49c00d0" kind="variable"><name>transitionRun_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8e430803797ca65db407a90e40837211" kind="variable"><name>animationTickWindow_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a9cf2522f5761103fac1ad7c89a084c8f" kind="variable"><name>lineStyle_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a16fa4890c3b65b5f73b5d0832f8c7480" kind="variable"><name>antialiasingEnabled_</name></member>
@@ -905,6 +904,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a116e085b17dc4314f7faa1a04eb27d2a" kind="variable"><name>chunks_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a24c236eba2c692749c4aa43d99afd742" kind="variable"><name>chunksValid_</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1af8b02c2b82f56224992bb90ac7a6f3f6" kind="function"><name>LineCurve</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1aa5a84254048055e12aed6bb2ed9c4206" kind="function"><name>~LineCurve</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a3a402a001bee52f8caa9bb823bd93752" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1adde3a2b4b580868777dc03add814a1db" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ad994fcbd64368c3bf92c14b7c56df7ce" kind="function"><name>lineWidth</name></member>
@@ -944,6 +944,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1adeb1c85fe5606e9ddd1513af329a4c40" kind="signal"><name>antialiasingEnabledChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1abd7343d8d2679fae990517629a395134" kind="signal"><name>antialiasingFeatherChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a67e91391ff98db2ebf6a455d922f3a4c" kind="function"><name>onTransitionDestroyed</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a896c076117f5c11f225b6e5c3af03f7c" kind="function"><name>onTransitionRunningChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa37cd6e308baa0caf70d89328d3632dd" kind="function"><name>onLineStyleChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a78010918673eb08bcc452b7ff0dcc4b2" kind="function"><name>onLineStyleDestroyed</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a87b6fb68dac4d84bc3cb5f0fdf7ce57b" kind="function"><name>onNanGapModeChanged</name></member>
@@ -978,9 +979,11 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a0273989b02da49bd0e3e725c6105c4c4" kind="function"><name>invalidateVertices</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a31cc6b7acceb31032ef7a59e07b6561a" kind="function"><name>invalidateData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a3bd8ad34ea074373d7b8b4f17b479c5d" kind="function"><name>cancelRunningTransition</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1ae137b097e2885ae37c8d7d7f90744691" kind="function"><name>finishTransition</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a753913803b91862c837f9622f2ff9d06" kind="function"><name>connectAnimationTicks</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a45aff54708a91655240183e26d9df816" kind="function"><name>refreshEffects</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5ee58218fb7c9241824f5cb4da023cbc" kind="function"><name>advanceTransition</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1a0c5e59e9c2517bc92bb248c9beb1af73" kind="function"><name>applyTransitionData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a9146859ddcf2ae395ab8a55d988f27b2" kind="function"><name>appendEffect</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aaee2ba5b3d12616f80eae65bab9b37e4" kind="function"><name>effectCount</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a5bfa3ca7939f740c497285c0cb56b757" kind="function"><name>effectAt</name></member>
@@ -1564,6 +1567,27 @@
     <member refid="structQAccelPlot_1_1RectangleList_1_1RectVertex_1a23dae40be16533e6dd4fe5cbb756d78b" kind="variable"><name>g</name></member>
     <member refid="structQAccelPlot_1_1RectangleList_1_1RectVertex_1a87cf75061dd957f4e3f4b6f02b22ab65" kind="variable"><name>b</name></member>
     <member refid="structQAccelPlot_1_1RectangleList_1_1RectVertex_1a42281b616548797d880e60efa3a87dc5" kind="variable"><name>a</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1DataTransition_1_1Run" kind="class"><name>QAccelPlot::DataTransition::Run</name>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a3fc2ec9b2f153e00f753a9f6a21957b0" kind="friend"><name>DataTransition</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a800dcd4f3ac2da0f2dab81f448f3043d" kind="variable"><name>transition_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1aff0f335c67aa21067add8f849fe26834" kind="variable"><name>pending_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a8acaa9fb44470a93a6b35d1444ee8ea8" kind="variable"><name>fromData_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a2e55d10075cc69a89a62ff70e6489ad3" kind="variable"><name>toData_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a2b49f923916f4dc6f469179ec8adef65" kind="variable"><name>fromPointCount_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a5db0dd271e33bdbe56d38d7ace1cbf74" kind="variable"><name>toPointCount_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1ada81aa8072cc514bd4402b1659ff7598" kind="variable"><name>timer_</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1aa36e282c925ae7e71551aef5e52306df" kind="function"><name>Run</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a658fd5396ad09234d4632e6a93eb7cbc" kind="function"><name>~Run</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a9dbc249ed7b1e041b6034278ba90271b" kind="function"><name>Run</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a73550e4e14b8102cad9d1ec96322a99a" kind="function"><name>operator=</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a86b0fdc489fc2c5000a6b1367d1bed6a" kind="function"><name>active</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1abc5498d25adbd22f24d6933922dadfad" kind="function"><name>pending</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a537de5c8a7de4cd207647b0254a33f08" kind="function"><name>targetData</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a0061eb81bf6c9d4c279013dccfea4f66" kind="function"><name>targetPointCount</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a6c2cef1e39fff13250f0d99cff73a79b" kind="function"><name>finish</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a344062aa896d29fe0f1dba9382d3ece8" kind="function"><name>cancel</name></member>
+    <member refid="classQAccelPlot_1_1DataTransition_1_1Run_1a44a80f40c3a5f212eff0730cc4291cf7" kind="function"><name>detach</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1SampleRun" kind="struct"><name>QAccelPlot::SampleRun</name>
     <member refid="structQAccelPlot_1_1SampleRun_1af3381113a7084f7375977693e9a822b9" kind="variable"><name>start</name></member>

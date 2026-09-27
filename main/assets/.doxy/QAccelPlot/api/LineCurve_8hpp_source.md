@@ -56,6 +56,7 @@ class LineCurve : public PlotSeries {
 
 public:
     explicit LineCurve(QQuickItem* parent = nullptr);
+    ~LineCurve() override;
 
     QColor color() const;
     void setColor(const QColor& c);
@@ -116,6 +117,7 @@ signals:
 
 private:
     void onTransitionDestroyed();
+    void onTransitionRunningChanged();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
@@ -163,10 +165,13 @@ private:
     void invalidateVertices();
     void invalidateData();
     void cancelRunningTransition();
+    // Shows the target data of a transition that stopped before its end.
+    void finishTransition();
     // Effects refresh and transitions advance on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
     void refreshEffects();
     void advanceTransition();
+    void applyTransitionData();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
@@ -183,6 +188,8 @@ private:
     bool renderOriginYSettled_{false};
     int pointCount_{0};
     QPointer<DataTransition> transition_;
+    // While it is pending, data_ holds an animation frame and the run holds the data set by the caller.
+    DataTransition::Run transitionRun_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     bool antialiasingEnabled_{true};

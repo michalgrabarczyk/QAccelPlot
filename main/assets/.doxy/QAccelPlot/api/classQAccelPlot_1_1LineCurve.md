@@ -183,6 +183,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
 |  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
+|   | [**~LineCurve**](#function-linecurve) () override<br>_Destroys the curve, ending its animation on the assigned transition._  |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -305,7 +306,7 @@ Visual effects (gradient stroke, gradient fill) are attached via the `effects` l
 **
 **
 
-Animated data updates are enabled by assigning a `DrawTransition` or `MorphTransition` to `transition`.
+Animated data updates are enabled by assigning a `DrawTransition` or `MorphTransition` to `transition`. Several curves can share one transition. Replacing or clearing `transition`, cancelling it, or appending data during an animation skips to the new data.
 
 
 
@@ -1079,6 +1080,21 @@ void QAccelPlot::LineCurve::setTransition (
 _Returns the active data transition, or_ `nullptr` _if none._
 ```C++
 DataTransition * QAccelPlot::LineCurve::transition () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ~LineCurve {#function-linecurve}
+
+_Destroys the curve, ending its animation on the assigned transition._ 
+```C++
+QAccelPlot::LineCurve::~LineCurve () override
 ```
 
 

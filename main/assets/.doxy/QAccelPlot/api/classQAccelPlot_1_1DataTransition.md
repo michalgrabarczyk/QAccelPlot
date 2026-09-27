@@ -55,6 +55,11 @@ flowchart TB
 
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| class | [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) <br>_One animation of a transition on one host element._  |
 
 
 
@@ -76,7 +81,7 @@ flowchart TB
 | property QML\_ANONYMOUSint | [**duration**](classQAccelPlot_1_1DataTransition.md#property-duration-12)  <br>_Duration of the transition in milliseconds. Default: 300._  |
 | property QEasingCurve | [**easing**](classQAccelPlot_1_1DataTransition.md#property-easing-12)  <br>_Easing curve applied to the animation progress. Default:_ `QEasingCurve::Linear` _._ |
 | property bool | [**enabled**](classQAccelPlot_1_1DataTransition.md#property-enabled-12)  <br>_Whether the transition is active. When_ `false` _, data updates are applied instantly._ |
-| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing._ |
+| property bool | [**running**](classQAccelPlot_1_1DataTransition.md#property-running-12)  <br>_Read-only:_ `true` _while the transition is playing on at least one element._ |
 
 
 
@@ -98,16 +103,17 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**DataTransition**](#function-datatransition) (QObject \* parent=nullptr) <br>_Constructs an_ [_**DataTransition**_](classQAccelPlot_1_1DataTransition.md) _with the given__parent_ _._ |
-|  bool | [**advance**](#function-advance) (std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._ |
-|  void | [**cancel**](#function-cancel) () <br>_Cancels the running transition immediately._  |
+|  bool | [**advance**](#function-advance) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, std::vector&lt; double &gt; & outData, int & outPointCount) <br>_Advances_ _run_ _by one frame, writing the interpolated data into__outData_ _._ |
+|  void | [**cancel**](#function-cancel) () <br>_Ends every active run immediately._  |
 |  int | [**duration**](#function-duration-22) () const<br>_Returns the animation duration in milliseconds._  |
 |  QEasingCurve | [**easing**](#function-easing-22) () const<br>_Returns the easing curve._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns_ `true` _if the transition is enabled._ |
-|  bool | [**running**](#function-running-22) () const<br>_Returns_ `true` _while a transition is actively playing._ |
+|  bool | [**running**](#function-running-22) () const<br>_Returns_ `true` _while at least one run is active._ |
 |  void | [**setDuration**](#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](#function-start) (const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts a new transition from_ _currentData_ _to__newData_ _._ |
+|  void | [**start**](#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._ |
+|   | [**~DataTransition**](#function-datatransition) () override<br>_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._  |
 
 
 
@@ -145,6 +151,9 @@ flowchart TB
 
 
 Subclasses implement `interpolate()` to define how the element animates between an old dataset and a new one. The transition is driven frame-by-frame by `advance()`, which the host element calls on the GUI thread before each scene graph synchronization, so `runningChanged` is always emitted on the GUI thread.
+
+
+One transition can be assigned to several elements. Each element keeps its own `Run` with the data it animates between, so the elements animate independently.
 
 
 
@@ -207,7 +216,7 @@ bool QAccelPlot::DataTransition::enabled;
 
 ### property running {#property-running-12}
 
-_Read-only:_ `true` _while the transition is playing._
+_Read-only:_ `true` _while the transition is playing on at least one element._
 ```C++
 bool QAccelPlot::DataTransition::running;
 ```
@@ -303,9 +312,10 @@ explicit QAccelPlot::DataTransition::DataTransition (
 
 ### function advance {#function-advance}
 
-_Advances the animation by one frame, writing the interpolated data into_ _outData_ _._
+_Advances_ _run_ _by one frame, writing the interpolated data into__outData_ _._
 ```C++
 bool QAccelPlot::DataTransition::advance (
+    Run & run,
     std::vector< double > & outData,
     int & outPointCount
 ) 
@@ -313,11 +323,11 @@ bool QAccelPlot::DataTransition::advance (
 
 
 
-
+When the duration has elapsed, writes the target data and finishes the run. 
 
 **Returns:**
 
-`true` if the animation is still running after this call. 
+`true` if _run_ is still active after this call. 
 
 
 
@@ -332,13 +342,17 @@ bool QAccelPlot::DataTransition::advance (
 
 ### function cancel {#function-cancel}
 
-_Cancels the running transition immediately._ 
+_Ends every active run immediately._ 
 ```C++
 void QAccelPlot::DataTransition::cancel () 
 ```
 
 
 
+The runs stay pending; hosts show the target data after `running` turns `false`. 
+
+
+        
 
 <hr>
 
@@ -392,7 +406,7 @@ bool QAccelPlot::DataTransition::enabled () const
 
 ### function running {#function-running-22}
 
-_Returns_ `true` _while a transition is actively playing._
+_Returns_ `true` _while at least one run is active._
 ```C++
 bool QAccelPlot::DataTransition::running () const
 ```
@@ -458,9 +472,10 @@ void QAccelPlot::DataTransition::setEnabled (
 
 ### function start {#function-start}
 
-_Starts a new transition from_ _currentData_ _to__newData_ _._
+_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._
 ```C++
 void QAccelPlot::DataTransition::start (
+    Run & run,
     const std::vector< double > & currentData,
     int currentPointCount,
     std::vector< double > && newData,
@@ -475,6 +490,7 @@ void QAccelPlot::DataTransition::start (
 **Parameters:**
 
 
+* `run` [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) of the host element; ended first if another transition advances it. 
 * `currentData` Current XY double buffer (copied as the _from_ state). 
 * `currentPointCount` Number of points in _currentData_. 
 * `newData` Target XY double buffer (moved as the _to_ state). 
@@ -484,6 +500,21 @@ void QAccelPlot::DataTransition::start (
 
 
         
+
+<hr>
+
+
+
+
+### function ~DataTransition {#function-datatransition}
+
+_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._ 
+```C++
+QAccelPlot::DataTransition::~DataTransition () override
+```
+
+
+
 
 <hr>
 ## Protected Functions Documentation

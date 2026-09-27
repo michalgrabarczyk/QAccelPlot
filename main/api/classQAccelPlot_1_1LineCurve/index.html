@@ -1799,6 +1799,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-linecurve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function ~LineCurve
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2189,6 +2200,10 @@
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> *</td>
 <td style="text-align: left;"><a href="#function-transition-22"><strong>transition</strong></a> () const<br><em>Returns the active data transition, or</em> <code>nullptr</code> <em>if none.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-linecurve"><strong>~LineCurve</strong></a> () override<br><em>Destroys the curve, ending its animation on the assigned transition.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="public-functions-inherited-from-qaccelplotplotseries">Public Functions inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#public-functions-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
@@ -2328,7 +2343,7 @@
 <p>Visual effects (gradient stroke, gradient fill) are attached via the <code>effects</code> list property.</p>
 <p>**
 **</p>
-<p>Animated data updates are enabled by assigning a <code>DrawTransition</code> or <code>MorphTransition</code> to <code>transition</code>.</p>
+<p>Animated data updates are enabled by assigning a <code>DrawTransition</code> or <code>MorphTransition</code> to <code>transition</code>. Several curves can share one transition. Replacing or clearing <code>transition</code>, cancelling it, or appending data during an animation skips to the new data.</p>
 <p>**
 **</p>
 <p>A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and gradient fill treat them is controlled by the <code>gaps</code> grouped property: <code>gaps.nanMode</code> <code>Break</code> (default) leaves a gap, <code>Connect</code> joins the neighboring valid samples. Insert <code>NaN</code> to mark missing telemetry explicitly.</p>
@@ -2666,18 +2681,24 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
+
+<h3 id="function-linecurve">function ~LineCurve<a class="headerlink" href="#function-linecurve" title="Permanent link">&para;</a></h3>
+<p><em>Destroys the curve, ending its animation on the assigned transition.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::~</span><span class="n">LineCurve</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if__point</em> <em>lies within the curve's hit-test region.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>

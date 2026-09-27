@@ -19,6 +19,7 @@
 
 #include <QEasingCurve>
 #include <QElapsedTimer>
+#include <QList>
 #include <QObject>
 #include <QtQml/qqmlregistration.h>
 
@@ -36,7 +37,38 @@ class DataTransition : public QObject {
     Q_PROPERTY(bool running READ running NOTIFY runningChanged)
 
 public:
+    class Run {
+    public:
+        Run() = default;
+        ~Run();
+
+        Run(const Run&) = delete;
+        Run& operator=(const Run&) = delete;
+
+        bool active() const;
+        bool pending() const;
+        const std::vector<double>& targetData() const;
+        int targetPointCount() const;
+
+        bool finish(std::vector<double>& outData, int& outPointCount);
+        void cancel();
+
+    private:
+        friend class DataTransition;
+
+        void detach();
+
+        DataTransition* transition_{nullptr};
+        bool pending_{false};
+        std::vector<double> fromData_;
+        std::vector<double> toData_;
+        int fromPointCount_{0};
+        int toPointCount_{0};
+        QElapsedTimer timer_;
+    };
+
     explicit DataTransition(QObject* parent = nullptr);
+    ~DataTransition() override;
 
     int duration() const;
     void setDuration(int duration);
@@ -49,11 +81,11 @@ public:
 
     bool running() const;
 
-    void start(const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
+    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
 
     void cancel();
 
-    bool advance(std::vector<double>& outData, int& outPointCount);
+    bool advance(Run& run, std::vector<double>& outData, int& outPointCount);
 
 signals:
     void durationChanged();
@@ -67,18 +99,14 @@ protected:
         = 0;
 
 private:
+    void removeRun(Run* run);
     void setRunning(bool running);
 
     int duration_{300};
     QEasingCurve easing_{QEasingCurve(QEasingCurve::Linear)};
     bool enabled_{true};
     bool running_{false};
-
-    std::vector<double> fromData_;
-    std::vector<double> toData_;
-    int fromPointCount_{0};
-    int toPointCount_{0};
-    QElapsedTimer animTimer_;
+    QList<Run*> runs_;
 };
 
 } // namespace QAccelPlot

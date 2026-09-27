@@ -1427,6 +1427,9 @@ the new curve:</p>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="k">transition:</span> <span class="nx">morph</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
 </code></pre></div>
+<p>Several curves can share one transition; each animates to its own data.
+Replacing or clearing <code>transition</code>, or calling <code>appendData()</code>, during an
+animation shows the new data at once.</p>
 <p>Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.</p>
 <p>Complete sources:</p>

@@ -24,6 +24,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) _A QQuickItem that tracks a data-coordinate rectangle in pixel space._     
     * **class** [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._     
     * **class** [**DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot elements._     
+        * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._     
     * **class** [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._     
     * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target curve by drawing it point-by-point from start to end._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
