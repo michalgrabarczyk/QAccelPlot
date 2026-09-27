@@ -20,6 +20,7 @@
 #include <QPointF>
 #include <QPointer>
 
+#include <limits>
 #include <vector>
 
 namespace QAccelPlot {
@@ -43,7 +44,8 @@ namespace QAccelPlot {
 /// \par Limits
 /// Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum
 /// texture size: about 22 million points with values, or 33 million without, for an 8192-pixel
-/// limit, and twice that for 16384. Points beyond it are not drawn and a warning is logged once.
+/// limit, and twice that for 16384. Points beyond it are not drawn or hovered, and a warning is logged
+/// once.
 ///
 /// \sa LineCurve, Axis, PlotSeries, ColorBar
 class PointCloud : public PlotSeries {
@@ -254,6 +256,10 @@ private:
     bool dataChanged_{true};
     // False after a no-range update: the application maintains the axis data ranges.
     bool autoDataRanges_{true};
+
+    // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
+    // neither drawn nor hovered.
+    int renderCapacity_{std::numeric_limits<int>::max()};
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
