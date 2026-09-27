@@ -18,6 +18,7 @@
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QEasingCurve>
@@ -151,9 +152,10 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("PlotView", "plotAreaColor", QColor{Qt::darkGreen});
     row("PlotView", "axesAreaColor", QColor{Qt::darkBlue});
 
-    row("RectangleList", "color", QColor{Qt::darkCyan});
-    row("RectangleList", "categoryColors", QVariant::fromValue(QList<QColor>{Qt::red, Qt::green}));
-    row("RectangleList", "hoverColor", QColor{Qt::yellow});
+    const auto& palette = ColorPalette::dark();
+    row("RectangleList", "color", palette.seriesSecondary);
+    row("RectangleList", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
+    row("RectangleList", "hoverColor", palette.seriesYellow);
     row("RectangleList", "minimumWidth", 4.0);
     row("RectangleList", "minimumHeight", 0.0);
 
