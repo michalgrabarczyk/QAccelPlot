@@ -29,6 +29,8 @@ class RectangleBorder : public QObject {
     QML_ANONYMOUS
 
     /// \brief Outline width in pixels, clamped to at least 0. Default: 0, no outline.
+    ///
+    /// On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible.
     Q_PROPERTY(qreal width READ width WRITE setWidth NOTIFY widthChanged)
     /// \brief Outline color. Default: black.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
