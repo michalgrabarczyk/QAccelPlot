@@ -10,6 +10,16 @@
 include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
 # ── Component unit tests ──────────────────────────────────────────────────────
+add_qaccelplot_standalone_test(tst_screenshot_capture
+    examples
+    tst_screenshot_capture.cpp
+    "${CMAKE_SOURCE_DIR}/examples/common/src/ExampleUtils.cpp"
+)
+target_include_directories(tst_screenshot_capture PRIVATE "${CMAKE_SOURCE_DIR}/examples/common/include")
+target_link_libraries(tst_screenshot_capture PRIVATE Qt6::Quick)
+# Keep the context-affinity assertion active in Release CI builds too.
+target_compile_definitions(tst_screenshot_capture PRIVATE QT_FORCE_ASSERTS)
+
 add_qaccelplot_test(tst_data_generation_worker
     examples
     tst_data_generation_worker.cpp
