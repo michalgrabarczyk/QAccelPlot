@@ -30,9 +30,11 @@ struct RectUbo {
     float borderWidth;     // 136–139
     float padding1;        // 140–143: std140 aligns vec4 to 16 bytes
     float borderColor[4];  // 144–159
+    float hoverColor[4];   // 160–175
+    float hoveredIndex;    // 176–179
 };
 
-static_assert(sizeof(RectUbo) == 160);
+static_assert(sizeof(RectUbo) == 180);
 
 class RectShader : public QSGMaterialShader {
 public:
@@ -77,6 +79,11 @@ public:
         ubo.borderColor[1] = float(mat->borderColor.greenF());
         ubo.borderColor[2] = float(mat->borderColor.blueF());
         ubo.borderColor[3] = float(mat->borderColor.alphaF());
+        ubo.hoverColor[0] = float(mat->hoverColor.redF());
+        ubo.hoverColor[1] = float(mat->hoverColor.greenF());
+        ubo.hoverColor[2] = float(mat->hoverColor.blueF());
+        ubo.hoverColor[3] = float(mat->hoverColor.alphaF());
+        ubo.hoveredIndex = mat->hoveredIndex;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -119,6 +126,12 @@ int RectMaterial::compareExtra(const QSGMaterial* other) const
     }
     if (borderColor != m->borderColor) {
         return borderColor.rgba() < m->borderColor.rgba() ? -1 : 1;
+    }
+    if (hoverColor != m->hoverColor) {
+        return hoverColor.rgba() < m->hoverColor.rgba() ? -1 : 1;
+    }
+    if (hoveredIndex != m->hoveredIndex) {
+        return hoveredIndex < m->hoveredIndex ? -1 : 1;
     }
     return 0;
 }

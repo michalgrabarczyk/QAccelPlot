@@ -123,6 +123,21 @@ RectangleBorder* RectangleList::border() const
     return border_;
 }
 
+QColor RectangleList::hoverColor() const
+{
+    return hoverColor_;
+}
+
+void RectangleList::setHoverColor(const QColor& color)
+{
+    if (hoverColor_ == color) {
+        return;
+    }
+    hoverColor_ = color;
+    emit hoverColorChanged();
+    update();
+}
+
 qreal RectangleList::minimumWidth() const
 {
     return minimumWidth_;
@@ -372,6 +387,9 @@ void RectangleList::setHoveredIndex(const int index)
     }
     hoveredIndex_ = index;
     emit hoveredIndexChanged();
+    if (hoverColor_.isValid()) {
+        update();
+    }
 }
 
 QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
@@ -478,6 +496,8 @@ void RectangleList::updateMaterial(RectMaterial& material) const
     material.minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
     material.borderWidth = static_cast<float>(border_->width());
     material.borderColor = border_->color();
+    material.hoverColor = hoverColor_.isValid() ? hoverColor_ : QColor{Qt::transparent};
+    material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
 void RectangleList::buildSpatialGrid()

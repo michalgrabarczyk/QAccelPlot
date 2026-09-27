@@ -21,4 +21,6 @@ layout(std140, binding = 0) uniform buf {
     vec2 minimumSize;     // 128-135: minimum drawn width and height in pixels
     float borderWidth;    // 136-139: outline width in pixels
     vec4 borderColor;     // 144-159
+    vec4 hoverColor;      // 160-175
+    float hoveredIndex;   // 176-179: -1 when no rectangle is highlighted
 } ubuf;

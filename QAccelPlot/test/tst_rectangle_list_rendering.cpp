@@ -110,6 +110,19 @@ constexpr auto kBorderScene = R"(
 }
 )";
 
+// Two red spans that turn yellow while hovered.
+constexpr auto kHoverScene = R"(
+    RectangleList {
+        objectName: "hoverable"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        hoverColor: "yellow"
+        Component.onCompleted: setData([{ x1: 1, x2: 3 }, { x1: 6, x2: 8 }])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -181,6 +194,7 @@ private slots:
     void narrowRectanglesKeepMinimumSize();
     void categoriesSelectFillColors();
     void borderOutlinesEachRectangle();
+    void hoverColorHighlightsHoveredRectangle();
 };
 
 void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
@@ -328,6 +342,43 @@ void RectangleListRenderingTest::borderOutlinesEachRectangle()
     rectangles->property("border").value<QObject*>()->setProperty("width", 0.0);
     image = scene.grab();
     QVERIFY(isColor(image.pixelColor(leftEdge.x() + 1, leftEdge.y()), Qt::red));
+}
+
+void RectangleListRenderingTest::hoverColorHighlightsHoveredRectangle()
+{
+    auto scene = SceneWindow{kHoverScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* rectangles = plot->findChild<QQuickItem*>(QStringLiteral("hoverable"));
+    QVERIFY(rectangles);
+
+    const auto first = scene.pixel(2.0, 5.0);
+    const auto second = scene.pixel(7.0, 5.0);
+    // Deliver hover straight to the item, so the real mouse cannot interfere.
+    const auto hover = [rectangles](const QEvent::Type type, const QPoint& windowPosition) {
+        const auto position = rectangles->mapFromScene(windowPosition);
+        auto event = QHoverEvent{type, position, position, position};
+        QCoreApplication::sendEvent(rectangles, &event);
+    };
+
+    hover(QEvent::HoverEnter, first);
+    QCOMPARE(rectangles->property("hoveredIndex").toInt(), 0);
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(first), Qt::yellow));
+    QVERIFY(isColor(image.pixelColor(second), Qt::red));
+
+    hover(QEvent::HoverMove, second);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(first), Qt::red));
+    QVERIFY(isColor(image.pixelColor(second), Qt::yellow));
+
+    rectangles->setProperty("hoverColor", QColor{});
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(second), Qt::red));
 }
 
 } // namespace QAccelPlot

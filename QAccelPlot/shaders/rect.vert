@@ -64,10 +64,11 @@ vec2 widenedSpan(float a, float b, float minSize) {
 }
 
 void main() {
-    v_color = mix(ubuf.color, vertexColor, ubuf.useVertexColor);
+    int index = int(rectId);
+    v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
     v_color.a *= ubuf.opacity;
 
-    int base = int(rectId) * 4;
+    int base = index * 4;
     uint x1Bits = fetchFloatBits(base);
     uint y1Bits = fetchFloatBits(base + 1);
     uint x2Bits = fetchFloatBits(base + 2);

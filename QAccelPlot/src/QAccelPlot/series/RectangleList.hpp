@@ -48,6 +48,8 @@ class RectangleList : public PlotSeries {
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
     /// \brief Grouped outline settings, e.g. <tt>border.width</tt> and <tt>border.color</tt>. No outline by default.
     Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
+    /// \brief Fill color of the rectangle under the cursor. Default: an invalid color, no highlight.
+    Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
     /// \brief Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.
     ///
     /// Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0.
@@ -75,6 +77,11 @@ public:
 
     /// \brief Returns the grouped outline settings. The object is owned by the list.
     RectangleBorder* border() const;
+
+    /// \brief Returns the fill color of the hovered rectangle.
+    QColor hoverColor() const;
+    /// \brief Sets the fill color of the hovered rectangle to \a color. An invalid color disables the highlight.
+    void setHoverColor(const QColor& color);
 
     /// \brief Returns the minimum drawn width in pixels.
     qreal minimumWidth() const;
@@ -141,6 +148,8 @@ signals:
     void colorChanged();
     /// \brief Emitted when the categoryColors property changes.
     void categoryColorsChanged();
+    /// \brief Emitted when the hoverColor property changes.
+    void hoverColorChanged();
     /// \brief Emitted when the minimumWidth property changes.
     void minimumWidthChanged();
     /// \brief Emitted when the minimumHeight property changes.
@@ -187,6 +196,7 @@ private:
     QColor color_;
     QList<QColor> categoryColors_;
     RectangleBorder* border_{new RectangleBorder{this}};
+    QColor hoverColor_;
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
