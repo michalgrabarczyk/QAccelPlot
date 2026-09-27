@@ -18,3 +18,7 @@ target_include_directories(QAccelPlotBenchmarkCommon
 target_link_libraries(QAccelPlotBenchmarkCommon
     PUBLIC Qt6::Core Qt6::Gui QAccelPlot::Core
 )
+
+target_compile_definitions(QAccelPlotBenchmarkCommon
+    PUBLIC QACCELPLOT_VERSION="${QAccelPlot_VERSION}"
+)

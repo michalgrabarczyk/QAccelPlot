@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
     auto app = QGuiApplication{argc, argv};
     QCoreApplication::setApplicationName(QStringLiteral("QAccelPlot Benchmark"));
-    QCoreApplication::setApplicationVersion(QStringLiteral("0.3.0"));
+    QCoreApplication::setApplicationVersion(QStringLiteral(QACCELPLOT_VERSION));
 
     auto runner = QAccelPlot::BenchmarkRunner{};
 
