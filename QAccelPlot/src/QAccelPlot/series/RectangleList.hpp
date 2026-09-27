@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -20,6 +21,8 @@
 #include <vector>
 
 namespace QAccelPlot {
+
+class RectMaterial;
 
 /// \brief A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.
 ///
@@ -43,6 +46,8 @@ class RectangleList : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     /// \brief Fill colors indexed by each rectangle's \c category. Default: empty.
     Q_PROPERTY(QList<QColor> categoryColors READ categoryColors WRITE setCategoryColors NOTIFY categoryColorsChanged)
+    /// \brief Grouped outline settings, e.g. <tt>border.width</tt> and <tt>border.color</tt>. No outline by default.
+    Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
     /// \brief Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1.
     ///
     /// Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0.
@@ -67,6 +72,9 @@ public:
     QList<QColor> categoryColors() const;
     /// \brief Sets the fill colors indexed by category to \a colors.
     void setCategoryColors(const QList<QColor>& colors);
+
+    /// \brief Returns the grouped outline settings. The object is owned by the list.
+    RectangleBorder* border() const;
 
     /// \brief Returns the minimum drawn width in pixels.
     qreal minimumWidth() const;
@@ -159,6 +167,7 @@ private:
     // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
+    void updateMaterial(RectMaterial& material) const;
     void buildSpatialGrid();
     void buildVertexCache();
     void updateDataRanges();
@@ -177,6 +186,7 @@ private:
 
     QColor color_;
     QList<QColor> categoryColors_;
+    RectangleBorder* border_{new RectangleBorder{this}};
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};

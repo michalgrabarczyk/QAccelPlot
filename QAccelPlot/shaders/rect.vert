@@ -13,20 +13,10 @@ layout(location = 1) in float corner; // 0-5: which vertex of the two-triangle q
 layout(location = 2) in vec4 vertexColor;
 
 layout(location = 0) out vec4 v_color;
+// Pixel distances to the left, right, top, and bottom edges, for the outline.
+layout(location = 1) out vec4 v_edgeDistance;
 
-layout(std140, binding = 0) uniform buf {
-    mat4 matrix;       //   0-63
-    vec4 color;        //  64-79
-    vec2 domainMin;    //  80-87
-    vec2 domainMax;    //  88-95
-    vec2 viewportSize; //  96-103
-    float logScaleX;   // 104-107
-    float logScaleY;   // 108-111
-    float useVertexColor; // 112-115
-    float rectCount;   // 116-119
-    float opacity;     // 120-123: inherited item opacity
-    vec2 minimumSize;  // 128-135: minimum drawn width and height in pixels
-} ubuf;
+#include "rect_uniforms.glsl"
 
 layout(binding = 1) uniform sampler2D dataSampler;
 
@@ -84,6 +74,7 @@ void main() {
     uint y2Bits = fetchFloatBits(base + 3);
     if (isNaNBits(x1Bits) || isNaNBits(y1Bits) || isNaNBits(x2Bits) || isNaNBits(y2Bits)) {
         gl_Position = kCulledClipPosition;
+        v_edgeDistance = vec4(0.0);
         return;
     }
 
@@ -109,6 +100,8 @@ void main() {
 
     vec2 uv = cornerUV(int(corner));
     vec2 p_local = vec2(uv.x < 0.5 ? xs.x : xs.y, uv.y < 0.5 ? ys.x : ys.y);
+    v_edgeDistance = vec4(p_local.x - min(xs.x, xs.y), max(xs.x, xs.y) - p_local.x,
+                          p_local.y - min(ys.x, ys.y), max(ys.x, ys.y) - p_local.y);
 
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

@@ -78,6 +78,8 @@ RectangleList::RectangleList(QQuickItem* parent)
     setAcceptHoverEvents(hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
+    connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
+    connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
 }
 
 QColor RectangleList::color() const
@@ -114,6 +116,11 @@ void RectangleList::setCategoryColors(const QList<QColor>& colors)
     }
     emit categoryColorsChanged();
     update();
+}
+
+RectangleBorder* RectangleList::border() const
+{
+    return border_;
 }
 
 qreal RectangleList::minimumWidth() const
@@ -428,17 +435,7 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
         dataChanged_ = false;
     }
 
-    // Set material uniforms
-    material->color = color_;
-    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
-    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
-    material->viewportSize = QVector2D(static_cast<float>(width()), static_cast<float>(height()));
-    material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
-    material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
-    material->useVertexColor = hasCategories() ? 1.0f : 0.0f;
-    material->rectCount = static_cast<float>(rectCount_);
-    material->minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
-
+    updateMaterial(*material);
     node->markDirty(QSGNode::DirtyMaterial);
 
     return node;
@@ -466,6 +463,21 @@ void RectangleList::onAxisScaleChanged()
 {
     dataChanged_ = true;
     update();
+}
+
+void RectangleList::updateMaterial(RectMaterial& material) const
+{
+    material.color = color_;
+    material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
+    material.domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    material.viewportSize = QVector2D(static_cast<float>(width()), static_cast<float>(height()));
+    material.logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
+    material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
+    material.useVertexColor = hasCategories() ? 1.0f : 0.0f;
+    material.rectCount = static_cast<float>(rectCount_);
+    material.minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
+    material.borderWidth = static_cast<float>(border_->width());
+    material.borderColor = border_->color();
 }
 
 void RectangleList::buildSpatialGrid()

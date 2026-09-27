@@ -27,9 +27,12 @@ struct RectUbo {
     float opacity;         // 120–123
     float padding0;        // 124–127: std140 aligns vec2 to 8 bytes
     float minimumSize[2];  // 128–135
+    float borderWidth;     // 136–139
+    float padding1;        // 140–143: std140 aligns vec4 to 16 bytes
+    float borderColor[4];  // 144–159
 };
 
-static_assert(sizeof(RectUbo) == 136);
+static_assert(sizeof(RectUbo) == 160);
 
 class RectShader : public QSGMaterialShader {
 public:
@@ -69,6 +72,11 @@ public:
         ubo.opacity = state.opacity();
         ubo.minimumSize[0] = mat->minimumSize.x();
         ubo.minimumSize[1] = mat->minimumSize.y();
+        ubo.borderWidth = mat->borderWidth;
+        ubo.borderColor[0] = float(mat->borderColor.redF());
+        ubo.borderColor[1] = float(mat->borderColor.greenF());
+        ubo.borderColor[2] = float(mat->borderColor.blueF());
+        ubo.borderColor[3] = float(mat->borderColor.alphaF());
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -105,6 +113,12 @@ int RectMaterial::compareExtra(const QSGMaterial* other) const
         if (minimumSize[i] != m->minimumSize[i]) {
             return minimumSize[i] < m->minimumSize[i] ? -1 : 1;
         }
+    }
+    if (borderWidth != m->borderWidth) {
+        return borderWidth < m->borderWidth ? -1 : 1;
+    }
+    if (borderColor != m->borderColor) {
+        return borderColor.rgba() < m->borderColor.rgba() ? -1 : 1;
     }
     return 0;
 }

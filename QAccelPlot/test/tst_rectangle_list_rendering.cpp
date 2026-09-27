@@ -96,6 +96,20 @@ constexpr auto kCategoryScene = R"(
 }
 )";
 
+// Two touching red rectangles with a 3 px white outline.
+constexpr auto kBorderScene = R"(
+    RectangleList {
+        objectName: "outlined"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        border.width: 3
+        border.color: "white"
+        Component.onCompleted: setData([{ x1: 2, y1: 2, x2: 5, y2: 8 }, { x1: 5, y1: 2, x2: 8, y2: 8 }])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -166,6 +180,7 @@ private slots:
     void unboundedEdgesReachThePlotEdges();
     void narrowRectanglesKeepMinimumSize();
     void categoriesSelectFillColors();
+    void borderOutlinesEachRectangle();
 };
 
 void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
@@ -283,6 +298,36 @@ void RectangleListRenderingTest::categoriesSelectFillColors()
     QVERIFY(isColor(image.pixelColor(first), Qt::green));
     QVERIFY(isColor(image.pixelColor(second), Qt::white));
     QVERIFY(isColor(image.pixelColor(uncategorized), Qt::yellow));
+}
+
+void RectangleListRenderingTest::borderOutlinesEachRectangle()
+{
+    auto scene = SceneWindow{kBorderScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto center = scene.pixel(3.5, 5.0);
+    const auto leftEdge = scene.pixel(2.0, 5.0);
+    const auto sharedEdge = scene.pixel(5.0, 5.0);
+    const auto topEdge = scene.pixel(3.5, 8.0);
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(center), Qt::red));
+    QVERIFY(isColor(image.pixelColor(leftEdge.x() + 1, leftEdge.y()), Qt::white));
+    QVERIFY(isColor(image.pixelColor(leftEdge.x() + 6, leftEdge.y()), Qt::red));
+    QVERIFY(isColor(image.pixelColor(sharedEdge.x() - 2, sharedEdge.y()), Qt::white));
+    QVERIFY(isColor(image.pixelColor(sharedEdge.x() + 1, sharedEdge.y()), Qt::white));
+    QVERIFY(isColor(image.pixelColor(topEdge.x(), topEdge.y() + 1), Qt::white));
+    QVERIFY(isColor(image.pixelColor(leftEdge.x() - 2, leftEdge.y()), Qt::black));
+
+    auto* rectangles = plot->findChild<QQuickItem*>(QStringLiteral("outlined"));
+    QVERIFY(rectangles);
+    rectangles->property("border").value<QObject*>()->setProperty("width", 0.0);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(leftEdge.x() + 1, leftEdge.y()), Qt::red));
 }
 
 } // namespace QAccelPlot

@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleList` spans: infinite or omitted edges reach the plot edge.
 - `RectangleList.minimumWidth` and `minimumHeight`, 1 px by default.
 - `RectangleList` categories: `category`, `categoryColors`, and `setCategories()`.
+- `RectangleList.border.width` and `border.color`.
 
 ### Changed
 

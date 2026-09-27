@@ -46,6 +46,7 @@ private slots:
     void variantListCategoriesAreStored();
     void categoriesFollowTheData();
     void mismatchedCategoriesAreRejected();
+    void borderSettingsClampAndNotify();
     void scaleChangesRefreshRenderCoordinates_data();
     void scaleChangesRefreshRenderCoordinates();
 };
@@ -322,6 +323,25 @@ void RectangleListDataTest::mismatchedCategoriesAreRejected()
 
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 0.0);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 1);
+}
+
+void RectangleListDataTest::borderSettingsClampAndNotify()
+{
+    auto rectangles = RectangleList{};
+    auto* border = rectangles.border();
+    QCOMPARE(border->width(), 0.0);
+    QCOMPARE(border->color(), QColor{Qt::black});
+    auto widthSpy = QSignalSpy{border, &RectangleBorder::widthChanged};
+    auto colorSpy = QSignalSpy{border, &RectangleBorder::colorChanged};
+
+    border->setWidth(2.0);
+    border->setWidth(2.0);
+    border->setColor(Qt::white);
+    QCOMPARE(widthSpy.count(), 1);
+    QCOMPARE(colorSpy.count(), 1);
+
+    border->setWidth(-1.0);
+    QCOMPARE(border->width(), 0.0);
 }
 
 void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()
