@@ -86,6 +86,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._ 
     * **class** [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md) _Decorative frame configuration exposed by_ `PlotView::border` _._
     * **class** [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._ 
+    * **class** [**QAccelPlot::RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) _Controls the outline a_ `RectangleList` _draws inside each rectangle's edges._
     * **class** [**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._ 
     * **class** [**QAccelPlot::LineStyle**](classQAccelPlot_1_1LineStyle.md) _Abstract base class for all line styles._     
         * **class** [**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md) _A line style that renders the curve as a customisable dashed line._ 

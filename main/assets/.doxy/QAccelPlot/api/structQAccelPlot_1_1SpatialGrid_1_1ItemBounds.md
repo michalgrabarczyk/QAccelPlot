@@ -69,6 +69,8 @@
 | Type | Name |
 | ---: | :--- |
 |  bool | [**contains**](#function-contains) (double x, double y) const<br> |
+|  bool | [**isValid**](#function-isvalid) () const<br> |
+|  bool | [**overlaps**](#function-overlaps) (double boxMinX, double boxMinY, double boxMaxX, double boxMaxY) const<br> |
 
 
 
@@ -167,6 +169,39 @@ double QAccelPlot::SpatialGrid::ItemBounds::minY;
 bool ItemBounds::contains (
     double x,
     double y
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function isValid {#function-isvalid}
+
+```C++
+bool ItemBounds::isValid () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function overlaps {#function-overlaps}
+
+```C++
+bool ItemBounds::overlaps (
+    double boxMinX,
+    double boxMinY,
+    double boxMaxX,
+    double boxMaxY
 ) const
 ```
 

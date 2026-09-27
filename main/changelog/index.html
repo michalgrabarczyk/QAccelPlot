@@ -823,6 +823,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -862,7 +873,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
+  <a href="#added_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -923,7 +934,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added_1" class="md-nav__link">
+  <a href="#added_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -973,7 +984,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added_2" class="md-nav__link">
+  <a href="#added_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -1357,6 +1368,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#changed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1396,7 +1418,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
+  <a href="#added_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -1457,7 +1479,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added_1" class="md-nav__link">
+  <a href="#added_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -1507,7 +1529,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added_2" class="md-nav__link">
+  <a href="#added_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         Added
@@ -1543,6 +1565,17 @@
 <p>All notable changes to QAccelPlot are documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>RectangleList</code>: <code>rectangleAt()</code>, <code>rectangleIndexAt()</code>, <code>clearData()</code>,
+  <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code>, and <code>postData()</code>.</li>
+<li><code>RectangleList</code> spans: infinite or omitted edges reach the plot edge.</li>
+<li><code>RectangleList.minimumWidth</code> and <code>minimumHeight</code>, 1 px by default.</li>
+<li><code>RectangleList</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
+<li><code>RectangleList.border.width</code> and <code>border.color</code>.</li>
+<li><code>RectangleList.hoverColor</code>.</li>
+<li>The <code>plot_types/state_timeline</code> example.</li>
+</ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>GradientStroke::payload()</code> and <code>GradientFill::payload()</code> return a reference to
@@ -1550,6 +1583,7 @@
   <code>LineCurveEffect::refresh()</code> re-reads inputs that change without a notification.</li>
 <li><code>DataTransition::start()</code> and <code>advance()</code> take a <code>DataTransition::Run</code> that holds
   one element's animation state.</li>
+<li>Moved <code>RectangleList.hpp</code> to <code>QAccelPlot/series/</code>.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1573,9 +1607,10 @@
 <li>Replacing, clearing, cancelling, or destroying a running <code>LineCurve</code> transition,
   or calling <code>appendData()</code> during it, shows the new data instead of freezing the
   animation.</li>
+<li><code>RectangleList</code> no longer blocks hover for series underneath it.</li>
 </ul>
 <h2 id="030-2026-09-25">[0.3.0] — 2026-09-25<a class="headerlink" href="#030-2026-09-25" title="Permanent link">&para;</a></h2>
-<h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Marker shapes <code>TriangleLeft</code>, <code>TriangleRight</code>, <code>XCross</code>, <code>HLine</code>, <code>VLine</code>,
   <code>Star</code>, <code>Asterisk</code>, <code>Hexagon</code>, and <code>Pentagon</code>, and a <code>Pixel</code> marker that draws
@@ -1686,7 +1721,7 @@
   <code>gradient</code> changes color or position at runtime.</li>
 </ul>
 <h2 id="020-2026-09-16">[0.2.0] — 2026-09-16<a class="headerlink" href="#020-2026-09-16" title="Permanent link">&para;</a></h2>
-<h3 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
+<h3 id="added_2">Added<a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Per-axis <code>layoutSize</code> control for explicitly reserving horizontal-axis height
   or vertical-axis width.</li>
@@ -1814,7 +1849,7 @@
   text colors instead of falling back to a white box with dark text.</li>
 </ul>
 <h2 id="010-2026-09-08">[0.1.0] — 2026-09-08<a class="headerlink" href="#010-2026-09-08" title="Permanent link">&para;</a></h2>
-<h3 id="added_2">Added<a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h3>
+<h3 id="added_3">Added<a class="headerlink" href="#added_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>GPU-accelerated <code>LineCurve</code> rendering integrated with a QML-first <code>Plot</code>
   component and C++ <code>PlotView</code> API.</li>

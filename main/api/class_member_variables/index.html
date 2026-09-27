@@ -1419,7 +1419,11 @@
 <li><strong>bytes_</strong> (<a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a>)</li>
 <li><strong>b</strong> (<a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a>, <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>, <a href="../structQAccelPlot_1_1RectangleList_1_1RectVertex/"><strong>QAccelPlot::RectangleList::RectVertex</strong></a>)</li>
 <li><strong>button_</strong> (<a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a>)</li>
-<li><strong>border_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>border_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>borderColor</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
+<li><strong>borderWidth</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
+<li><strong>boundedX_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
+<li><strong>boundedY_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 </ul>
 <h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1435,7 +1439,7 @@
 <li><strong>colormap_</strong> (<a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a>, <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>chunksValid_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
 <li><strong>chunks_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
-<li><strong>color_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>color_</strong> (<a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleBorder/"><strong>QAccelPlot::RectangleBorder</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
 <li><strong>colorStops_</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>colorMap</strong> (<a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a>)</li>
 <li><strong>cellEntries_</strong> (<a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a>)</li>
@@ -1445,6 +1449,8 @@
 <li><strong>columns_</strong> (<a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a>)</li>
 <li><strong>cornerX</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
 <li><strong>cornerY</strong> (<a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a>)</li>
+<li><strong>categories_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>categoryColors_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
 <li><strong>cellH_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>cellW_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>cells_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
@@ -1532,9 +1538,9 @@
 <h2 id="h">h<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>horizontalDataRanges_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
-<li><strong>hoverColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>)</li>
+<li><strong>hoverColor_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
 <li><strong>hovered_</strong> (<a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a>, <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a>)</li>
-<li><strong>hoverColor</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>)</li>
+<li><strong>hoverColor</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>, <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
 <li><strong>hovered</strong> (<a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a>, <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>, <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a>)</li>
 <li><strong>height</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
 <li><strong>hitThreshold</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
@@ -1542,6 +1548,7 @@
 <li><strong>hasValues_</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>hoverRadius_</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>)</li>
 <li><strong>hoveredIndex_</strong> (<a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>hoveredIndex</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
 </ul>
 <h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1602,6 +1609,9 @@
 <li><strong>mouseMoveEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>mousePressEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
 <li><strong>mouseReleaseEvent_</strong> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a>)</li>
+<li><strong>minimumSize</strong> (<a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a>)</li>
+<li><strong>minimumHeight_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
+<li><strong>minimumWidth_</strong> (<a href="../classQAccelPlot_1_1RectangleList/"><strong>QAccelPlot::RectangleList</strong></a>)</li>
 <li><strong>maxX_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>maxY_</strong> (<a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a>)</li>
 <li><strong>max</strong> (<a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a>)</li>
@@ -1752,7 +1762,7 @@
 <li><strong>width</strong> (<a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a>)</li>
 <li><strong>warnedAboutTextureSize_</strong> (<a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a>)</li>
 <li><strong>window</strong> (<a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a>)</li>
-<li><strong>width_</strong> (<a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>)</li>
+<li><strong>width_</strong> (<a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a>, <a href="../classQAccelPlot_1_1RectangleBorder/"><strong>QAccelPlot::RectangleBorder</strong></a>)</li>
 </ul>
 <h2 id="x">x<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
 <ul>

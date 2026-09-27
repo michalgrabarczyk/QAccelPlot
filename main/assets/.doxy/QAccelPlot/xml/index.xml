@@ -847,6 +847,8 @@
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a1d29eb27b4fa62bfde1c41a901935742" kind="variable"><name>maxX</name></member>
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a79447aa3658b2ff390d36e38a10ca754" kind="variable"><name>maxY</name></member>
     <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1ad9d6510149c311ed3819145361c94698" kind="function"><name>contains</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a67decb9bae5a1ee0a4f93f6dd69d734a" kind="function"><name>overlaps</name></member>
+    <member refid="structQAccelPlot_1_1SpatialGrid_1_1ItemBounds_1a5dff50341cb641bbd515bd167d3618be" kind="function"><name>isValid</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1ColorBar_1_1Layout" kind="struct"><name>QAccelPlot::ColorBar::Layout</name>
     <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a3251f25c5b71f4cfead675e955eb7263" kind="variable"><name>strip</name></member>
@@ -1517,13 +1519,37 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1aa51ddf9954f678a3f7fe89b60e0451eb" kind="function"><name>layoutAxes</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a27ff9c96189d70f1e50d454455c0bbf5" kind="function"><name>registerSeries</name></member>
   </compound>
+  <compound refid="classQAccelPlot_1_1RectangleBorder" kind="class"><name>QAccelPlot::RectangleBorder</name>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1aa2b155a8a877d933e9dc0a7d335b69d3" kind="property"><name>width</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1a45efdc0f35a60526ba09c951dd304467" kind="property"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1ace27a816b8a4b01acbaea34e68866aa5" kind="variable"><name>width_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1ab1cd484c25e899aef82fcb7f5c449e2b" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1a469b1df4689295b7c28ccd090ce85a83" kind="function"><name>RectangleBorder</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1af92c68719658a4be7564a81bf221f59f" kind="function"><name>width</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1a38216b4026646cebf51a1d520a39609f" kind="function"><name>setWidth</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1aa560ffe94b4cfd2d3c7c24d086c4be50" kind="function"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1ae3d188081bc6bd9fc78587877c99db39" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1ac2913a93c28b4607c73919f662aa11a4" kind="signal"><name>widthChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleBorder_1a90204251ae4578b1d7a1d3e18c9d398b" kind="signal"><name>colorChanged</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1RectangleList" kind="class"><name>QAccelPlot::RectangleList</name>
     <member refid="classQAccelPlot_1_1RectangleList_1ab7dcda8abdfe6d2e5cacb7a9d9cfd11c" kind="property"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0585f47330f280c751253df95af055c0" kind="property"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a6dda867e878c52259b41f5916aed4118" kind="property"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a68872ad75d0393a5c24e04279425b810" kind="property"><name>hoverColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a3662ebc36268a3d416d97aa036a66d4c" kind="property"><name>minimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a863185f0373b347f6bc5456596b99e4e" kind="property"><name>minimumHeight</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a0f06adfa96de42945be362cef7d879b9" kind="property"><name>count</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1afb85815f91d34b3a35bbf957e9aa5e09" kind="property"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a364ecdc65dc3d5d7cb2b41c917d54901" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ab13e298fb349c264ffd57089b92013cc" kind="variable"><name>categoryColors_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a758259a7d259b300a0bffd166ca9af08" kind="variable"><name>border_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aae40b68476d48080db549af564f60b0c" kind="variable"><name>hoverColor_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a60354c9ebe00bdefb0693295c4eba3ea" kind="variable"><name>minimumWidth_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1afbd38146d351cd51e56010849e4e26a5" kind="variable"><name>minimumHeight_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a1255a86b7e7c901f85d586cb37addd7e" kind="variable"><name>hoveredIndex_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aae88b5092f7351fb3943d13f32fc02b5" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ad266e8b659acd5749e920f981d6ea761" kind="variable"><name>categories_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a80a20367abfb3e359784128774c2778d" kind="variable"><name>renderData_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a0918aa462742b16fcf8b70bc9920ec72" kind="variable"><name>renderOriginX_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad45ff0b56702b495d7b0fe866abf3aa6" kind="variable"><name>renderOriginY_</name></member>
@@ -1535,19 +1561,49 @@
     <member refid="classQAccelPlot_1_1RectangleList_1a8ceccfe8fa3827ca39741106195912dd" kind="function"><name>RectangleList</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a4ff9d70f8365e709a431807c4c3b52ab" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad88eef0ebc4890e3871ac16c72c010fc" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ab9c5b0b74457c796e27a2bb2c95a00f4" kind="function"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ae938cf7fd8cdaee754184bc9621a14f1" kind="function"><name>setCategoryColors</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a12f32593ccb63c6651e4b4f25fc6eae9" kind="function"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a6b41d1f75bf49393bfbdd47ee5e0edd3" kind="function"><name>hoverColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a5f4131f8bf4fc7abe268e10d4949d2c5" kind="function"><name>setHoverColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a2bbb6017d26d3c0e36ad7b2e4ce99925" kind="function"><name>minimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1afce7b76668f6bca57264ac168ac79c0d" kind="function"><name>setMinimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa05cc119ff55a537734f9cf421588c8c" kind="function"><name>minimumHeight</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aead27f0a3731b72a52769c2120d3bbe6" kind="function"><name>setMinimumHeight</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ac2b88872407ccf0a5fefbba9ce965766" kind="function"><name>count</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" kind="function"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aaead3aa540e3521e1e6a365bdc313d6c" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a35f7deacf42488739dd08bde442f25ad" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ab500efcec42566f233b04b120150fbbd" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa31ea0331864ab907ec1b4eb9bec5703" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a07de2eced7484d8c246a134de345c23a" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ad5758d6de68f337ec968ff46e8f8439c" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1af92e79d17aa08a40a1a3b275752b695a" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ab52222e4d9aa2709019a32ad72284227" kind="function"><name>setCategories</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a1c662546f98fbc8ab5df94adb2843a6f" kind="function"><name>clearData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa1aa8fe4989eab7636d936ba714594c1" kind="function"><name>rectangleAt</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ac11b7a507770f78f919dfb51f83444f5" kind="function"><name>rectangleIndexAt</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1abf9ac9850d5888d12a4dd69f450fe545" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a10c3250bf698158afe0b8337ef617461" kind="signal"><name>colorChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a143c94f4ee9363ae28413d9bd78014cc" kind="signal"><name>categoryColorsChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aca02201d1d66cea4ffcd579d6524dec4" kind="signal"><name>hoverColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a3860fdda64d75a4548122ffda0c2119a" kind="signal"><name>minimumWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a7451d79f469ffb7e5b527c0e5e107f7e" kind="signal"><name>minimumHeightChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a60895961bbd88e59a4f72e3f2acb2e14" kind="signal"><name>countChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a417dd70d38b73655c7d28afea5b72c5a" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ab516c589f39fb4944e945a48aacbc2c8" kind="function"><name>updatePaintNode</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a4676eb931646b973755134f6fa6dd659" kind="function"><name>hoverEnterEvent</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1addaa4d1d572c8f13bbd11598b6a2b9de" kind="function"><name>hoverMoveEvent</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad82d14e9396949683e2b904f5ccf6ef2" kind="function"><name>hoverLeaveEvent</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a7aaae8ff6eead5fe2d4cfa189f0dca31" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a267d4171f8f4a8e7b2cffba5e0403f5d" kind="function"><name>validateRawDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a3a8b9beb0d7b8a0fe0e4cf3f3faf76cb" kind="function"><name>validateDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0d842160dbdb8edeb4459dc8a3abff12" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a9732928725a67a366fb23c2a380252c1" kind="function"><name>hasCategories</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a452936e65b721d2e61c2ab49052ac3a3" kind="function"><name>rectangleColor</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1af19cdc63a2721e1751c2d1a966fc164e" kind="function"><name>containsInPixels</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a77bc5c0048346853c074f3c2289c081d" kind="function"><name>setHoveredIndex</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0a8f286028c74a34bf4bb494d73fadd9" kind="function"><name>updateMaterial</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" kind="function"><name>buildSpatialGrid</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" kind="function"><name>updateDataRanges</name></member>
@@ -1555,6 +1611,11 @@
   </compound>
   <compound refid="classQAccelPlot_1_1RectMaterial" kind="class"><name>QAccelPlot::RectMaterial</name>
     <member refid="classQAccelPlot_1_1RectMaterial_1acbd0c649fb0243d0e145249f895bbbce" kind="variable"><name>rectCount</name></member>
+    <member refid="classQAccelPlot_1_1RectMaterial_1a5df8166d92dddbc659571540ae574641" kind="variable"><name>minimumSize</name></member>
+    <member refid="classQAccelPlot_1_1RectMaterial_1a7d1b3c0ec82e4851ccc53fc0547f3152" kind="variable"><name>borderWidth</name></member>
+    <member refid="classQAccelPlot_1_1RectMaterial_1aded43fc5644be7a0210f2d54a1513de1" kind="variable"><name>borderColor</name></member>
+    <member refid="classQAccelPlot_1_1RectMaterial_1a46fdd9051d09e02072a939850ed20fc9" kind="variable"><name>hoverColor</name></member>
+    <member refid="classQAccelPlot_1_1RectMaterial_1a2a9af79ebb07f92579bcbb2b5273e64f" kind="variable"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectMaterial_1ad5f9dd17a7fb8c372266245f8107b100" kind="function"><name>RectMaterial</name></member>
     <member refid="classQAccelPlot_1_1RectMaterial_1aeef85727a0e90c51a98c9c35fe408cf0" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1RectMaterial_1a3121b3a11e312b4e7d1bfcb5956e8c6d" kind="function"><name>createShader</name></member>
@@ -1628,6 +1689,8 @@
     <member refid="classQAccelPlot_1_1SpatialGrid_1a391683e276365a591626b5ba5657b442" kind="variable"><name>minY_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a1b99eb6be563fbc10748db10ef0f0c22" kind="variable"><name>maxX_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a15104f0d3e1850a20e7b28835d104cd5" kind="variable"><name>maxY_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1abf74baa3bdb7064e3413c292906b4086" kind="variable"><name>boundedX_</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a379fa195207c2d2f034b303d557c861e" kind="variable"><name>boundedY_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1adfac97e641581b9f117351814972ac6d" kind="variable"><name>cols_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1ae256c0c263f38ddd883534adbdf39da7" kind="variable"><name>rows_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a1d6241bcfe6271e5a8d5593ecde151bb" kind="variable"><name>cellW_</name></member>
@@ -1637,6 +1700,8 @@
     <member refid="classQAccelPlot_1_1SpatialGrid_1a29f4a6e3d418fff5246c51c8c423906f" kind="variable"><name>largeItems_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a90ce851f81c48debe103fca226a208de" kind="function"><name>build</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a1cdf1a17c095ec0bee15fc40c6c6c6a3" kind="function"><name>query</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1af683677f7495b953097d21851e426927" kind="function"><name>queryTopmost</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a980818e0aae0f97816152dca0484dfe0" kind="function"><name>cellIndex</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a713a5aeb2fc0ba5148e37c53a6236e4a" kind="function"><name>computeDataBounds</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" kind="function"><name>computeGridDimensions</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a8eac80f44444015e46af281c378e7139" kind="function"><name>fillSpatialGrid</name></member>
@@ -1806,11 +1871,13 @@
   </compound>
   <compound refid="PointSpatialIndex_8hpp" kind="file"><name>PointSpatialIndex.hpp</name>
   </compound>
+  <compound refid="RectangleBorder_8hpp" kind="file"><name>RectangleBorder.hpp</name>
+  </compound>
+  <compound refid="RectangleList_8hpp" kind="file"><name>RectangleList.hpp</name>
+  </compound>
   <compound refid="SeriesMarker_8hpp" kind="file"><name>SeriesMarker.hpp</name>
   </compound>
   <compound refid="SpatialGrid_8hpp" kind="file"><name>SpatialGrid.hpp</name>
-  </compound>
-  <compound refid="RectangleList_8hpp" kind="file"><name>RectangleList.hpp</name>
   </compound>
   <compound refid="ColorPalette_8hpp" kind="file"><name>ColorPalette.hpp</name>
   </compound>
@@ -1845,8 +1912,6 @@
   <compound refid="dir_a5593d4bbe882811c43c55c842f746b7" kind="dir"><name>QAccelPlot/src/QAccelPlot/renderers</name>
   </compound>
   <compound refid="dir_70064bc2bead69da871bd372e93dce80" kind="dir"><name>QAccelPlot/src/QAccelPlot/series</name>
-  </compound>
-  <compound refid="dir_8b04ad397f0acbf5ea360af28d82ce99" kind="dir"><name>QAccelPlot/src/QAccelPlot/shapes</name>
   </compound>
   <compound refid="dir_3588d0448386bbe164b4703bb7530415" kind="dir"><name>QAccelPlot/src</name>
   </compound>

@@ -64,6 +64,11 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+|  QColor | [**borderColor**](#variable-bordercolor)   = `{Qt::black}`<br>_Outline color._  |
+|  float | [**borderWidth**](#variable-borderwidth)   = `{0.0f}`<br>_Outline width in pixels, drawn inside each rectangle._  |
+|  QColor | [**hoverColor**](#variable-hovercolor)   = `{Qt::transparent}`<br>_Fill color of the highlighted rectangle._  |
+|  float | [**hoveredIndex**](#variable-hoveredindex)   = `{-1.0f}`<br>_Index of the highlighted rectangle, or -1 for none._  |
+|  QVector2D | [**minimumSize**](#variable-minimumsize)   = `{0.0f, 0.0f}`<br>_Minimum drawn rectangle width and height in pixels._  |
 |  float | [**rectCount**](#variable-rectcount)   = `{0.0f}`<br>_Number of rectangles in the data texture (used to index the sampler)._  |
 
 
@@ -189,7 +194,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the_ `rectCount` _field after the base-class comparison succeeds._ |
+| virtual int | [**compareExtra**](#function-compareextra) (const QSGMaterial \* other) override const<br>_Compares the rectangle-specific uniforms after the base-class comparison succeeds._  |
 
 
 ## Protected Functions inherited from QAccelPlot::DataTextureMaterial
@@ -207,6 +212,81 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 ## Public Attributes Documentation
 
+
+
+
+
+### variable borderColor {#variable-bordercolor}
+
+_Outline color._ 
+```C++
+QColor QAccelPlot::RectMaterial::borderColor;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable borderWidth {#variable-borderwidth}
+
+_Outline width in pixels, drawn inside each rectangle._ 
+```C++
+float QAccelPlot::RectMaterial::borderWidth;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable hoverColor {#variable-hovercolor}
+
+_Fill color of the highlighted rectangle._ 
+```C++
+QColor QAccelPlot::RectMaterial::hoverColor;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable hoveredIndex {#variable-hoveredindex}
+
+_Index of the highlighted rectangle, or -1 for none._ 
+```C++
+float QAccelPlot::RectMaterial::hoveredIndex;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable minimumSize {#variable-minimumsize}
+
+_Minimum drawn rectangle width and height in pixels._ 
+```C++
+QVector2D QAccelPlot::RectMaterial::minimumSize;
+```
+
+
+
+
+<hr>
 
 
 
@@ -279,7 +359,7 @@ QSGMaterialType * QAccelPlot::RectMaterial::type () override const
 
 ### function compareExtra {#function-compareextra}
 
-_Compares the_ `rectCount` _field after the base-class comparison succeeds._
+_Compares the rectangle-specific uniforms after the base-class comparison succeeds._ 
 ```C++
 virtual int QAccelPlot::RectMaterial::compareExtra (
     const QSGMaterial * other

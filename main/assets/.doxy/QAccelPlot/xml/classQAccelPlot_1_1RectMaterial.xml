@@ -21,6 +21,86 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="25" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="25" bodyend="25"/>
       </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1a5df8166d92dddbc659571540ae574641" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::RectMaterial::minimumSize</definition>
+        <argsstring></argsstring>
+        <name>minimumSize</name>
+        <qualifiedname>QAccelPlot::RectMaterial::minimumSize</qualifiedname>
+        <initializer>{0.0f, 0.0f}</initializer>
+        <briefdescription>
+<para>Minimum drawn rectangle width and height in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="26" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1a7d1b3c0ec82e4851ccc53fc0547f3152" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::RectMaterial::borderWidth</definition>
+        <argsstring></argsstring>
+        <name>borderWidth</name>
+        <qualifiedname>QAccelPlot::RectMaterial::borderWidth</qualifiedname>
+        <initializer>{0.0f}</initializer>
+        <briefdescription>
+<para>Outline width in pixels, drawn inside each rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="27" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1aded43fc5644be7a0210f2d54a1513de1" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectMaterial::borderColor</definition>
+        <argsstring></argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::RectMaterial::borderColor</qualifiedname>
+        <initializer>{Qt::black}</initializer>
+        <briefdescription>
+<para>Outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="28" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1a46fdd9051d09e02072a939850ed20fc9" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectMaterial::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::RectMaterial::hoverColor</qualifiedname>
+        <initializer>{Qt::transparent}</initializer>
+        <briefdescription>
+<para>Fill color of the highlighted rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="29" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectMaterial_1a2a9af79ebb07f92579bcbb2b5273e64f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::RectMaterial::hoveredIndex</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::RectMaterial::hoveredIndex</qualifiedname>
+        <initializer>{-1.0f}</initializer>
+        <briefdescription>
+<para>Index of the highlighted rectangle, or -1 for none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="30" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="classQAccelPlot_1_1RectMaterial_1ad5f9dd17a7fb8c372266245f8107b100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -85,13 +165,13 @@
           <declname>other</declname>
         </param>
         <briefdescription>
-<para>Compares the <computeroutput>rectCount</computeroutput> field after the base-class comparison succeeds. </para>
+<para>Compares the rectangle-specific uniforms after the base-class comparison succeeds. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="29" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="34" column="9"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -133,9 +213,11 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="15" bodyend="30"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/RectMaterial.hpp" bodystart="15" bodyend="35"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>attributeSet</name></member>
+      <member refid="classQAccelPlot_1_1RectMaterial_1aded43fc5644be7a0210f2d54a1513de1" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1RectMaterial_1a7d1b3c0ec82e4851ccc53fc0547f3152" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>borderWidth</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>color</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1aa6f67a4e56ced1d154072f9e76429c14" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>commitTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>compare</name></member>
@@ -145,8 +227,11 @@
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>DataTextureMaterial</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>domainMax</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>domainMin</name></member>
+      <member refid="classQAccelPlot_1_1RectMaterial_1a46fdd9051d09e02072a939850ed20fc9" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1RectMaterial_1a2a9af79ebb07f92579bcbb2b5273e64f" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>hoveredIndex</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1RectMaterial_1a5df8166d92dddbc659571540ae574641" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>minimumSize</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1acbd0c649fb0243d0e145249f895bbbce" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>rectCount</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1ad5f9dd17a7fb8c372266245f8107b100" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>RectMaterial</name></member>
       <member refid="classQAccelPlot_1_1RectMaterial_1aeef85727a0e90c51a98c9c35fe408cf0" prot="public" virt="non-virtual"><scope>QAccelPlot::RectMaterial</scope><name>type</name></member>

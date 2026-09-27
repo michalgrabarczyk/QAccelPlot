@@ -37,7 +37,11 @@
 * **bytes\_** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **b** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md), [**QAccelPlot::RectangleList::RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md))
 * **button\_** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
-* **border\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **border\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **borderColor** ([**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
+* **borderWidth** ([**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
+* **boundedX\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
+* **boundedY\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 
 
 ## c
@@ -54,7 +58,7 @@
 * **colormap\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **chunksValid\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **chunks\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **color\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **color\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **colorStops\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **colorMap** ([**QAccelPlot::PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md))
 * **cellEntries\_** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
@@ -64,6 +68,8 @@
 * **columns\_** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **cornerX** ([**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
 * **cornerY** ([**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md))
+* **categories\_** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **categoryColors\_** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **cellH\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **cellW\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **cells\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
@@ -156,9 +162,9 @@
 ## h
 
 * **horizontalDataRanges\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **hoverColor\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **hoverColor\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **hovered\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **hoverColor** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
+* **hoverColor** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 * **hovered** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))
 * **height** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
 * **hitThreshold** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
@@ -166,6 +172,7 @@
 * **hasValues\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **hoverRadius\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **hoveredIndex\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **hoveredIndex** ([**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
 
 
 ## i
@@ -229,6 +236,9 @@
 * **mouseMoveEvent\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **mousePressEvent\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **mouseReleaseEvent\_** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **minimumSize** ([**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
+* **minimumHeight\_** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
+* **minimumWidth\_** ([**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **maxX\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **maxY\_** ([**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **max** ([**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md))
@@ -388,7 +398,7 @@
 * **width** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
 * **warnedAboutTextureSize\_** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **window** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md))
-* **width\_** ([**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md))
+* **width\_** ([**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md))
 
 
 ## x

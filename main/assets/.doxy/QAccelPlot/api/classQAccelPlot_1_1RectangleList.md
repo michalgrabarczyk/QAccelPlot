@@ -88,9 +88,14 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
-| property QColor | [**color**](classQAccelPlot_1_1RectangleList.md#property-color-12)  <br>_Fill color applied to all rectangles. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._ |
+| property [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](classQAccelPlot_1_1RectangleList.md#property-border-12)  <br>_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._ |
+| property QList&lt; QColor &gt; | [**categoryColors**](classQAccelPlot_1_1RectangleList.md#property-categorycolors-12)  <br>_Fill colors indexed by each rectangle's_ `category` _. Default: empty._ |
+| property QColor | [**color**](classQAccelPlot_1_1RectangleList.md#property-color-12)  <br>_Fill color of rectangles without a category color. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._ |
 | property int | [**count**](classQAccelPlot_1_1RectangleList.md#property-count-12)  <br>_Read-only: number of rectangles currently loaded._  |
+| property QColor | [**hoverColor**](classQAccelPlot_1_1RectangleList.md#property-hovercolor-12)  <br>_Fill color of the rectangle under the cursor. Default: an invalid color, no highlight._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12)  <br>_Read-only: index of the rectangle under the cursor, or -1 when none._  |
+| property qreal | [**minimumHeight**](classQAccelPlot_1_1RectangleList.md#property-minimumheight-12)  <br>_Minimum drawn height in pixels, like_ `minimumWidth` _. Default: 1._ |
+| property qreal | [**minimumWidth**](classQAccelPlot_1_1RectangleList.md#property-minimumwidth-12)  <br>_Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1._  |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -114,9 +119,13 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**categoryColorsChanged**](classQAccelPlot_1_1RectangleList.md#signal-categorycolorschanged)  <br>_Emitted when the categoryColors property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1RectangleList.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
 | signal void | [**countChanged**](classQAccelPlot_1_1RectangleList.md#signal-countchanged)  <br>_Emitted when the rectangle count changes._  |
+| signal void | [**hoverColorChanged**](classQAccelPlot_1_1RectangleList.md#signal-hovercolorchanged)  <br>_Emitted when the hoverColor property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1RectangleList.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered rectangle index changes._  |
+| signal void | [**minimumHeightChanged**](classQAccelPlot_1_1RectangleList.md#signal-minimumheightchanged)  <br>_Emitted when the minimumHeight property changes._  |
+| signal void | [**minimumWidthChanged**](classQAccelPlot_1_1RectangleList.md#signal-minimumwidthchanged)  <br>_Emitted when the minimumWidth property changes._  |
 
 
 ## Public Signals inherited from QAccelPlot::PlotSeries
@@ -143,13 +152,31 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**RectangleList**](#function-rectanglelist) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**RectangleList**_](classQAccelPlot_1_1RectangleList.md) _with the given__parent_ _._ |
+|  [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) \* | [**border**](#function-border-22) () const<br>_Returns the grouped outline settings. The object is owned by the list._  |
+|  QList&lt; QColor &gt; | [**categoryColors**](#function-categorycolors-22) () const<br>_Returns the fill colors indexed by category._  |
+|  Q\_INVOKABLE void | [**clearData**](#function-cleardata) () <br>_Removes all rectangles._  |
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the rectangle fill color._  |
+|  bool | [**contains**](#function-contains) (const QPointF & point) override const<br>_Returns_ `true` _when a rectangle lies under item position__point_ _._ |
 |  int | [**count**](#function-count-22) () const<br>_Returns the number of rectangles currently loaded._  |
+|  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the fill color of the hovered rectangle._  |
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered rectangle, or -1 if none._  |
+|  qreal | [**minimumHeight**](#function-minimumheight-22) () const<br>_Returns the minimum drawn height in pixels._  |
+|  qreal | [**minimumWidth**](#function-minimumwidth-22) () const<br>_Returns the minimum drawn width in pixels._  |
+|  void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__rectCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-22) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._ |
+|  Q\_INVOKABLE QVariantMap | [**rectangleAt**](#function-rectangleat) (int index) const<br>_Returns rectangle_ _index_ _as an object with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
+|  int | [**rectangleIndexAt**](#function-rectangleindexat) (const QPointF & position) const<br>_Returns the index of the topmost rectangle under item position_ _position_ _, or -1._ |
+|  Q\_INVOKABLE void | [**setCategories**](#function-setcategories) (const QList&lt; int &gt; & categories) <br>_Sets one category per rectangle. An empty list clears categories; any other size must equal_ `count` _._ |
+|  void | [**setCategoryColors**](#function-setcategorycolors) (const QList&lt; QColor &gt; & colors) <br>_Sets the fill colors indexed by category to_ _colors_ _._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the fill color to_ _color_ _._ |
-|  Q\_INVOKABLE void | [**setData**](#function-setdata-13) (const QVariantList & rects) <br>_Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
-|  void | [**setData**](#function-setdata-23) (const float \* data, int rectCount) <br>_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._ |
-|  void | [**setData**](#function-setdata-33) (const double \* data, int rectCount) <br>_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._ |
+|  Q\_INVOKABLE void | [**setData**](#function-setdata-15) (const QVariantList & rects) <br>_Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
+|  void | [**setData**](#function-setdata-25) (const float \* data, int rectCount) <br>_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._ |
+|  void | [**setData**](#function-setdata-35) (const double \* data, int rectCount) <br>_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._ |
+|  void | [**setData**](#function-setdata-45) (std::vector&lt; double &gt; && data, int rectCount) <br>_Moves_ _data_ _(__rectCount_ _× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made._ |
+|  void | [**setData**](#function-setdata-55) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Moves_ _data_ _and per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._ |
+|  void | [**setHoverColor**](#function-sethovercolor) (const QColor & color) <br>_Sets the fill color of the hovered rectangle to_ _color_ _. An invalid color disables the highlight._ |
+|  void | [**setMinimumHeight**](#function-setminimumheight) (qreal height) <br>_Sets the minimum drawn height to_ _height_ _pixels. Negative values are clamped to 0._ |
+|  void | [**setMinimumWidth**](#function-setminimumwidth) (qreal width) <br>_Sets the minimum drawn width to_ _width_ _pixels. Negative values are clamped to 0._ |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -219,6 +246,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 
 | Type | Name |
 | ---: | :--- |
+|  void | [**hoverEnterEvent**](#function-hoverenterevent) (QHoverEvent \* event) override<br> |
 |  void | [**hoverLeaveEvent**](#function-hoverleaveevent) (QHoverEvent \* event) override<br> |
 |  void | [**hoverMoveEvent**](#function-hovermoveevent) (QHoverEvent \* event) override<br> |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Invalidates uploaded coordinates when an axis changes scale._  |
@@ -253,6 +281,12 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 All rectangles are stored as interleaved floats (x1, y1, x2, y2) and uploaded to the GPU as a data texture, making it suitable for tens of thousands of rectangles. Hover detection uses an internal `SpatialGrid` for O(1) hit tests.
 
 
+An infinite edge extends the rectangle to the plot edge, e.g. `y1` = -Infinity and `y2` = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges. Rectangles with a NaN edge are not drawn or hovered.
+
+
+Each rectangle can carry a `category`, an index into `categoryColors`. Rectangles without a category, or with one outside `categoryColors`, use `color`.
+
+
 
 
 **See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md) 
@@ -266,9 +300,39 @@ All rectangles are stored as interleaved floats (x1, y1, x2, y2) and uploaded to
 
 
 
+### property border {#property-border-12}
+
+_Grouped outline settings, e.g._ `border.width` _and_`border.color` _. No outline by default._
+```C++
+RectangleBorder* QAccelPlot::RectangleList::border;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property categoryColors {#property-categorycolors-12}
+
+_Fill colors indexed by each rectangle's_ `category` _. Default: empty._
+```C++
+QList<QColor> QAccelPlot::RectangleList::categoryColors;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property color {#property-color-12}
 
-_Fill color applied to all rectangles. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._
+_Fill color of rectangles without a category color. Default:_ `Colors.dark.seriesPrimary` _with alpha 50._
 ```C++
 QColor QAccelPlot::RectangleList::color;
 ```
@@ -296,6 +360,21 @@ int QAccelPlot::RectangleList::count;
 
 
 
+### property hoverColor {#property-hovercolor-12}
+
+_Fill color of the rectangle under the cursor. Default: an invalid color, no highlight._ 
+```C++
+QColor QAccelPlot::RectangleList::hoverColor;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property hoveredIndex {#property-hoveredindex-12}
 
 _Read-only: index of the rectangle under the cursor, or -1 when none._ 
@@ -307,8 +386,57 @@ int QAccelPlot::RectangleList::hoveredIndex;
 
 
 <hr>
+
+
+
+
+### property minimumHeight {#property-minimumheight-12}
+
+_Minimum drawn height in pixels, like_ `minimumWidth` _. Default: 1._
+```C++
+qreal QAccelPlot::RectangleList::minimumHeight;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property minimumWidth {#property-minimumwidth-12}
+
+_Minimum drawn width in pixels, so narrow rectangles stay visible when zoomed out. Default: 1._ 
+```C++
+qreal QAccelPlot::RectangleList::minimumWidth;
+```
+
+
+
+Narrower rectangles are widened around their center. Hover uses the widened size. Clamped to at least 0. 
+
+
+        
+
+<hr>
 ## Public Signals Documentation
 
+
+
+
+
+### signal categoryColorsChanged {#signal-categorycolorschanged}
+
+_Emitted when the categoryColors property changes._ 
+```C++
+void QAccelPlot::RectangleList::categoryColorsChanged;
+```
+
+
+
+
+<hr>
 
 
 
@@ -343,11 +471,56 @@ void QAccelPlot::RectangleList::countChanged;
 
 
 
+### signal hoverColorChanged {#signal-hovercolorchanged}
+
+_Emitted when the hoverColor property changes._ 
+```C++
+void QAccelPlot::RectangleList::hoverColorChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### signal hoveredIndexChanged {#signal-hoveredindexchanged}
 
 _Emitted when the hovered rectangle index changes._ 
 ```C++
 void QAccelPlot::RectangleList::hoveredIndexChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal minimumHeightChanged {#signal-minimumheightchanged}
+
+_Emitted when the minimumHeight property changes._ 
+```C++
+void QAccelPlot::RectangleList::minimumHeightChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal minimumWidthChanged {#signal-minimumwidthchanged}
+
+_Emitted when the minimumWidth property changes._ 
+```C++
+void QAccelPlot::RectangleList::minimumWidthChanged;
 ```
 
 
@@ -377,6 +550,51 @@ explicit QAccelPlot::RectangleList::RectangleList (
 
 
 
+### function border {#function-border-22}
+
+_Returns the grouped outline settings. The object is owned by the list._ 
+```C++
+RectangleBorder * QAccelPlot::RectangleList::border () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function categoryColors {#function-categorycolors-22}
+
+_Returns the fill colors indexed by category._ 
+```C++
+QList< QColor > QAccelPlot::RectangleList::categoryColors () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function clearData {#function-cleardata}
+
+_Removes all rectangles._ 
+```C++
+Q_INVOKABLE void QAccelPlot::RectangleList::clearData () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function color {#function-color-22}
 
 _Returns the rectangle fill color._ 
@@ -386,6 +604,27 @@ QColor QAccelPlot::RectangleList::color () const
 
 
 
+
+<hr>
+
+
+
+
+### function contains {#function-contains}
+
+_Returns_ `true` _when a rectangle lies under item position__point_ _._
+```C++
+bool QAccelPlot::RectangleList::contains (
+    const QPointF & point
+) override const
+```
+
+
+
+Hover delivery uses this test, so stacked series underneath still receive hover events outside this list's rectangles. 
+
+
+        
 
 <hr>
 
@@ -407,11 +646,165 @@ int QAccelPlot::RectangleList::count () const
 
 
 
+### function hoverColor {#function-hovercolor-22}
+
+_Returns the fill color of the hovered rectangle._ 
+```C++
+QColor QAccelPlot::RectangleList::hoverColor () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function hoveredIndex {#function-hoveredindex-22}
 
 _Returns the index of the hovered rectangle, or -1 if none._ 
 ```C++
 int QAccelPlot::RectangleList::hoveredIndex () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function minimumHeight {#function-minimumheight-22}
+
+_Returns the minimum drawn height in pixels._ 
+```C++
+qreal QAccelPlot::RectangleList::minimumHeight () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function minimumWidth {#function-minimumwidth-22}
+
+_Returns the minimum drawn width in pixels._ 
+```C++
+qreal QAccelPlot::RectangleList::minimumWidth () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-12}
+
+_Thread-safe: queues_ `setData` _(__data_ _,__rectCount_ _) to the item's thread._
+```C++
+void QAccelPlot::RectangleList::postData (
+    std::vector< double > && data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-22}
+
+_Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._
+```C++
+void QAccelPlot::RectangleList::postData (
+    std::vector< double > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function rectangleAt {#function-rectangleat}
+
+_Returns rectangle_ _index_ _as an object with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._
+```C++
+Q_INVOKABLE QVariantMap QAccelPlot::RectangleList::rectangleAt (
+    int index
+) const
+```
+
+
+
+Includes `category` when categories are set. Returns an empty object when _index_ is out of range. 
+
+
+        
+
+<hr>
+
+
+
+
+### function rectangleIndexAt {#function-rectangleindexat}
+
+_Returns the index of the topmost rectangle under item position_ _position_ _, or -1._
+```C++
+int QAccelPlot::RectangleList::rectangleIndexAt (
+    const QPointF & position
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setCategories {#function-setcategories}
+
+_Sets one category per rectangle. An empty list clears categories; any other size must equal_ `count` _._
+```C++
+Q_INVOKABLE void QAccelPlot::RectangleList::setCategories (
+    const QList< int > & categories
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setCategoryColors {#function-setcategorycolors}
+
+_Sets the fill colors indexed by category to_ _colors_ _._
+```C++
+void QAccelPlot::RectangleList::setCategoryColors (
+    const QList< QColor > & colors
+) 
 ```
 
 
@@ -439,7 +832,7 @@ void QAccelPlot::RectangleList::setColor (
 
 
 
-### function setData {#function-setdata-13}
+### function setData {#function-setdata-15}
 
 _Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._
 ```C++
@@ -450,13 +843,17 @@ Q_INVOKABLE void QAccelPlot::RectangleList::setData (
 
 
 
+A missing or null `x1` / `y1` is -Infinity and a missing `x2` / `y2` is +Infinity, so `{ x1: 8, x2: 12 }` is a full-height span. An optional integer `category` selects the fill color from `categoryColors`. 
+
+
+        
 
 <hr>
 
 
 
 
-### function setData {#function-setdata-23}
+### function setData {#function-setdata-25}
 
 _Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._
 ```C++
@@ -474,7 +871,7 @@ void QAccelPlot::RectangleList::setData (
 
 
 
-### function setData {#function-setdata-33}
+### function setData {#function-setdata-35}
 
 _Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._
 ```C++
@@ -488,8 +885,112 @@ void QAccelPlot::RectangleList::setData (
 
 
 <hr>
+
+
+
+
+### function setData {#function-setdata-45}
+
+_Moves_ _data_ _(__rectCount_ _× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made._
+```C++
+void QAccelPlot::RectangleList::setData (
+    std::vector< double > && data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-55}
+
+_Moves_ _data_ _and per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._
+```C++
+void QAccelPlot::RectangleList::setData (
+    std::vector< double > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setHoverColor {#function-sethovercolor}
+
+_Sets the fill color of the hovered rectangle to_ _color_ _. An invalid color disables the highlight._
+```C++
+void QAccelPlot::RectangleList::setHoverColor (
+    const QColor & color
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setMinimumHeight {#function-setminimumheight}
+
+_Sets the minimum drawn height to_ _height_ _pixels. Negative values are clamped to 0._
+```C++
+void QAccelPlot::RectangleList::setMinimumHeight (
+    qreal height
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setMinimumWidth {#function-setminimumwidth}
+
+_Sets the minimum drawn width to_ _width_ _pixels. Negative values are clamped to 0._
+```C++
+void QAccelPlot::RectangleList::setMinimumWidth (
+    qreal width
+) 
+```
+
+
+
+
+<hr>
 ## Protected Functions Documentation
 
+
+
+
+
+### function hoverEnterEvent {#function-hoverenterevent}
+
+```C++
+void QAccelPlot::RectangleList::hoverEnterEvent (
+    QHoverEvent * event
+) override
+```
+
+
+
+
+<hr>
 
 
 
@@ -558,5 +1059,5 @@ QSGNode * QAccelPlot::RectangleList::updatePaintNode (
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/shapes/RectangleList.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/series/RectangleList.hpp`
 

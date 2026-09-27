@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Add data-attached annotations, event regions, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
+        <meta name="description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Add data-attached annotations, event regions, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
+<meta property="og:description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
 
 <script type="application/ld+json">
 {
@@ -1300,31 +1300,83 @@ number of rich annotations. For thousands of simple regions, use
 <a href="../../api/classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a>, which is a single item.</p>
 <h2 id="highlight-many-data-regions">Highlight many data regions<a class="headerlink" href="#highlight-many-data-regions" title="Permanent link">&para;</a></h2>
 <p><a href="../../api/classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a> draws many data-space rectangles, such as
-event windows. <a href="../../api/classQAccelPlot_1_1RectangleList/#function-setdata"><code>setData()</code></a> takes rectangle bounds,
-and <a href="../../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>hoveredIndex</code></a> reports the rectangle under the pointer:</p>
+event windows or machine states. <a href="../../api/classQAccelPlot_1_1RectangleList/#function-setdata"><code>setData()</code></a> takes
+rectangle bounds. An omitted or infinite edge reaches the plot edge, so
+<code>{ x1: 8, x2: 12 }</code> is a full-height span:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleList</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">color:</span> <span class="s2">"goldenrod"</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">([</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">8</span><span class="p">,</span> <span class="k">y1:</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">12</span><span class="p">,</span> <span class="k">y2:</span> <span class="mf">1.2</span> <span class="p">},</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">19</span><span class="p">,</span> <span class="k">y1:</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">22</span><span class="p">,</span> <span class="k">y2:</span> <span class="mf">1.2</span> <span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">8</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">12</span> <span class="p">},</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">19</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">22</span> <span class="p">}</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">])</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
 </code></pre></div>
-<p>Hover lookup uses a spatial grid and stays constant-time for large collections;
-see <a href="../../performance/#hover-interactions">Hover interactions</a>.</p>
+<p>Infinite edges don't change the axes' data ranges.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>category</code>, <code>categoryColors</code></td>
+<td style="text-align: left;">Per-rectangle color: <code>category</code> indexes <code>categoryColors</code>; others use <code>color</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>minimumWidth</code>, <code>minimumHeight</code></td>
+<td style="text-align: left;">Minimum drawn size in pixels (default 1), so short events stay visible</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>border.width</code>, <code>border.color</code></td>
+<td style="text-align: left;">Outline inside each rectangle, e.g. to separate adjacent states</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hoverColor</code></td>
+<td style="text-align: left;">Fill of the hovered rectangle</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="../../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>hoveredIndex</code></a>, <code>rectangleAt()</code></td>
+<td style="text-align: left;">The rectangle under the pointer and its bounds, for tooltips</td>
+</tr>
+</tbody>
+</table>
+<p>A state timeline puts one lane per row, colored by category:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleList</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">categoryColors:</span> <span class="p">[</span><span class="s2">"seagreen"</span><span class="p">,</span> <span class="s2">"slategray"</span><span class="p">,</span> <span class="s2">"firebrick"</span><span class="p">]</span> <span class="c1">// Running, Idle, Alarm</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">border.width:</span> <span class="mi">1</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">Component.onCompleted:</span> <span class="nx">setData</span><span class="p">([</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">0</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">40</span><span class="p">,</span> <span class="k">y1:</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="k">y2:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="k">category:</span> <span class="mi">0</span> <span class="p">},</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">40</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">43</span><span class="p">,</span> <span class="k">y1:</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="k">y2:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="k">category:</span> <span class="mi">2</span> <span class="p">},</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="p">{</span> <span class="k">x1:</span> <span class="mi">0</span><span class="p">,</span> <span class="k">x2:</span> <span class="mi">25</span><span class="p">,</span> <span class="k">y1:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="k">y2:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="k">category:</span> <span class="mi">1</span> <span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">])</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>Label the lanes with a <a href="../axis-formats/#categories"><code>TextTickLabelFormatter</code></a> on the
+Y axis. From C++, <code>setData(std::vector&lt;double&gt;&amp;&amp;, std::vector&lt;int&gt;&amp;&amp;, int)</code>
+moves bounds and categories in without copying; <code>postData()</code> hands them off
+from a worker thread.</p>
+<p>RectangleList only accepts hover over its rectangles, so series underneath
+still receive hover elsewhere. Hover lookup uses a spatial grid and stays
+constant-time for large collections; see
+<a href="../../performance/#hover-interactions">Hover interactions</a>.</p>
 <h2 id="build-interactive-tools">Build interactive tools<a class="headerlink" href="#build-interactive-tools" title="Permanent link">&para;</a></h2>
 <p>Plot mouse events carry pixel positions; convert them to data coordinates:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">onMousePressed:</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">button</span> <span class="o">===</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">RightButton</span><span class="p">)</span> <span class="p">{</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="kr">const</span> <span class="nx">dataX</span> <span class="o">=</span> <span class="nx">pixelToDataX</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="kr">const</span> <span class="nx">dataY</span> <span class="o">=</span> <span class="nx">pixelToDataY</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="nx">createToolAt</span><span class="p">(</span><span class="nx">dataX</span><span class="p">,</span> <span class="nx">dataY</span><span class="p">)</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="nx">event</span><span class="p">.</span><span class="nx">accept</span><span class="p">()</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">}</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">onMousePressed:</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">button</span> <span class="o">===</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">RightButton</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        <span class="kr">const</span> <span class="nx">dataX</span> <span class="o">=</span> <span class="nx">pixelToDataX</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="kr">const</span> <span class="nx">dataY</span> <span class="o">=</span> <span class="nx">pixelToDataY</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="nx">createToolAt</span><span class="p">(</span><span class="nx">dataX</span><span class="p">,</span> <span class="nx">dataY</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="nx">event</span><span class="p">.</span><span class="nx">accept</span><span class="p">()</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
 </code></pre></div>
 <p>Position handles with <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a> and
 <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>; convert drag positions back with
@@ -1337,6 +1389,7 @@ rectangle origin to convert between plot and layer coordinates.</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/annotations"><code>examples/interaction/annotations</code></a></li>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/measurement_tools"><code>examples/interaction/measurement_tools</code></a></li>
+<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/state_timeline"><code>examples/plot_types/state_timeline</code></a></li>
 </ul>
 
 

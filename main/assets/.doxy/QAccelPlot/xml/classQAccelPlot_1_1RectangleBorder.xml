@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1RectangleBorder" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::RectangleBorder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">RectangleBorder.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleBorder_1aa2b155a8a877d933e9dc0a7d335b69d3" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSqreal</type>
+        <definition>QML_ANONYMOUSqreal QAccelPlot::RectangleBorder::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::width</qualifiedname>
+        <read>width</read>
+        <write>setWidth</write>
+        <briefdescription>
+<para>Outline width in pixels, clamped to at least 0. Default: 0, no outline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>On rectangles too small for two outlines, the outline narrows so at least 1 px of fill stays visible. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="34" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1RectangleBorder_1a45efdc0f35a60526ba09c951dd304467" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleBorder::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Outline color. Default: black. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleBorder_1ace27a816b8a4b01acbaea34e68866aa5" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::RectangleBorder::width_</definition>
+        <argsstring></argsstring>
+        <name>width_</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::width_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="59" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleBorder_1ab1cd484c25e899aef82fcb7f5c449e2b" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleBorder::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::color_</qualifiedname>
+        <initializer>{Qt::black}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="60" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleBorder_1a469b1df4689295b7c28ccd090ce85a83" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::RectangleBorder::RectangleBorder</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>RectangleBorder</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::RectangleBorder</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="40" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleBorder_1af92c68719658a4be7564a81bf221f59f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::RectangleBorder::width</definition>
+        <argsstring>() const</argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::width</qualifiedname>
+        <briefdescription>
+<para>Returns the outline width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="43" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleBorder_1a38216b4026646cebf51a1d520a39609f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleBorder::setWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setWidth</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::setWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the outline width to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleBorder_1aa560ffe94b4cfd2d3c7c24d086c4be50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::RectangleBorder::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::color</qualifiedname>
+        <briefdescription>
+<para>Returns the outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="48" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleBorder_1ae3d188081bc6bd9fc78587877c99db39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleBorder::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the outline color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="50" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleBorder_1ac2913a93c28b4607c73919f662aa11a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleBorder::widthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>widthChanged</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::widthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the width property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="54" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1RectangleBorder_1a90204251ae4578b1d7a1d3e18c9d398b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleBorder::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::RectangleBorder::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="56" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controls the outline a <computeroutput><ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref></computeroutput> draws inside each rectangle&apos;s edges. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Accessible via the <computeroutput>border</computeroutput> CONSTANT grouped property of <computeroutput><ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref></computeroutput>, for example <computeroutput>border.width: 1</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::RectangleBorder</label>
+        <link refid="classQAccelPlot_1_1RectangleBorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::RectangleBorder</label>
+        <link refid="classQAccelPlot_1_1RectangleBorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" line="27" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp" bodystart="27" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1a45efdc0f35a60526ba09c951dd304467" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1aa560ffe94b4cfd2d3c7c24d086c4be50" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1ab1cd484c25e899aef82fcb7f5c449e2b" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1a90204251ae4578b1d7a1d3e18c9d398b" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1a469b1df4689295b7c28ccd090ce85a83" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>RectangleBorder</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1ae3d188081bc6bd9fc78587877c99db39" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1a38216b4026646cebf51a1d520a39609f" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>setWidth</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1aa2b155a8a877d933e9dc0a7d335b69d3" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1af92c68719658a4be7564a81bf221f59f" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1ace27a816b8a4b01acbaea34e68866aa5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>width_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleBorder_1ac2913a93c28b4607c73919f662aa11a4" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleBorder</scope><name>widthChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

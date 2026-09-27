@@ -164,6 +164,8 @@
 
 ## r
 
+* [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectangleList**](classQAccelPlot_1_1RectangleList.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md)

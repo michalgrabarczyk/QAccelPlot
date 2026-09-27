@@ -6,35 +6,31 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleList, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/concepts/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/RectangleBorder_8hpp/">
       
       
-        <link rel="prev" href="../getting-started/">
-      
-      
-        <link rel="next" href="../performance/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Concepts and architecture - QAccelPlot Documentation</title>
+        <title>File RectangleBorder.hpp - QAccelPlot Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,18 +49,16 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/palette.css">
+      <link rel="stylesheet" href="../../stylesheets/palette.css">
     
-      <link rel="stylesheet" href="../stylesheets/theme.css">
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-
-<meta property="og:description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleList, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
 
 <script type="application/ld+json">
 {
@@ -107,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#concepts-and-architecture" class="md-skip">
+        <a href="#file-rectangleborderhpp" class="md-skip">
           Skip to content
         </a>
       
@@ -136,7 +130,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="QAccelPlot Documentation" class="md-header__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot Documentation" class="md-header__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -156,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Concepts and architecture
+              File RectangleBorder.hpp
             
           </span>
         </div>
@@ -274,7 +268,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="QAccelPlot Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+    <a href="../.." title="QAccelPlot Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -304,7 +298,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -331,7 +325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   
@@ -355,37 +349,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Concepts and architecture
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
         
   
   
@@ -401,92 +368,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plot-and-plotview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plot and PlotView
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#axes-and-ranges" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Axes and ranges
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#series" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Series
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#invalid-samples-and-gaps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Invalid samples and gaps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#composition-and-overlays" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Composition and overlays
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rendering-and-threads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rendering and threads
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -498,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../../performance/" class="md-nav__link">
         
   
   
@@ -525,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance-comparison/" class="md-nav__link">
+      <a href="../../performance-comparison/" class="md-nav__link">
         
   
   
@@ -591,7 +472,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../cookbook/" class="md-nav__link ">
+            <a href="../../cookbook/" class="md-nav__link ">
               
   
   
@@ -635,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/basic-plot/" class="md-nav__link">
+      <a href="../../cookbook/basic-plot/" class="md-nav__link">
         
   
   
@@ -663,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/realtime/" class="md-nav__link">
+      <a href="../../cookbook/realtime/" class="md-nav__link">
         
   
   
@@ -691,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/axis-formats/" class="md-nav__link">
+      <a href="../../cookbook/axis-formats/" class="md-nav__link">
         
   
   
@@ -719,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/multiple-axes/" class="md-nav__link">
+      <a href="../../cookbook/multiple-axes/" class="md-nav__link">
         
   
   
@@ -747,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/styling/" class="md-nav__link">
+      <a href="../../cookbook/styling/" class="md-nav__link">
         
   
   
@@ -775,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/annotations/" class="md-nav__link">
+      <a href="../../cookbook/annotations/" class="md-nav__link">
         
   
   
@@ -803,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/point-clouds/" class="md-nav__link">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
         
   
   
@@ -831,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cookbook/background-data/" class="md-nav__link">
+      <a href="../../cookbook/background-data/" class="md-nav__link">
         
   
   
@@ -866,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
+      <a href="../../changelog/" class="md-nav__link">
         
   
   
@@ -893,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../versioning/" class="md-nav__link">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   
@@ -920,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
+      <a href="../../faq/" class="md-nav__link">
         
   
   
@@ -947,7 +828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -1040,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1068,7 +949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/annotated/" class="md-nav__link">
+      <a href="../annotated/" class="md-nav__link">
         
   
   
@@ -1096,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/classes/" class="md-nav__link">
+      <a href="../classes/" class="md-nav__link">
         
   
   
@@ -1124,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/hierarchy/" class="md-nav__link">
+      <a href="../hierarchy/" class="md-nav__link">
         
   
   
@@ -1152,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/namespaces/" class="md-nav__link">
+      <a href="../namespaces/" class="md-nav__link">
         
   
   
@@ -1180,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/files/" class="md-nav__link">
+      <a href="../files/" class="md-nav__link">
         
   
   
@@ -1235,10 +1116,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plot-and-plotview" class="md-nav__link">
+  <a href="#namespaces" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Plot and PlotView
+        Namespaces
       
     </span>
   </a>
@@ -1246,54 +1127,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#axes-and-ranges" class="md-nav__link">
+  <a href="#classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Axes and ranges
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#series" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Series
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#invalid-samples-and-gaps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Invalid samples and gaps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#composition-and-overlays" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Composition and overlays
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rendering-and-threads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rendering and threads
+        Classes
       
     </span>
   </a>
@@ -1317,145 +1154,52 @@
 
 
 
-<!--
-SPDX-FileCopyrightText: 2026 Michal Grabarczyk
-SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
--->
-
-<h1 id="concepts-and-architecture">Concepts and architecture<a class="headerlink" href="#concepts-and-architecture" title="Permanent link">&para;</a></h1>
-<p><img alt="QAccelPlot architecture" src="../assets/architecture.svg" /></p>
-<h2 id="plot-and-plotview">Plot and PlotView<a class="headerlink" href="#plot-and-plotview" title="Permanent link">&para;</a></h2>
-<p><code>PlotView</code> is the C++ plot item. It lays out axes, converts between data and
-pixel coordinates, handles pan and zoom, and collects child series.</p>
-<p><code>Plot</code> is the QML wrapper most applications use. It adds a <code>Legend</code> and
-<code>legendVisible</code> to the full <code>PlotView</code> interface.</p>
-<p><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-plotrect-12"><code>plotRect</code></a> is the data area, excluding axes and padding. Use it to
-place clipped overlays and custom tools.</p>
-<h2 id="axes-and-ranges">Axes and ranges<a class="headerlink" href="#axes-and-ranges" title="Permanent link">&para;</a></h2>
-<p>An <code>Axis</code> has two related ranges:</p>
+<h1 id="file-rectangleborderhpp">File RectangleBorder.hpp<a class="headerlink" href="#file-rectangleborderhpp" title="Permanent link">&para;</a></h1>
+<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_84505bf06e96cd50072ae15b96eb466a/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../dir_3588d0448386bbe164b4703bb7530415/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_0cbea278626d30118177d562182e643b/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../dir_70064bc2bead69da871bd372e93dce80/"><strong>series</strong></a> <strong>&gt;</strong> <a href="./"><strong>RectangleBorder.hpp</strong></a></p>
+<p><a href="../RectangleBorder_8hpp_source/">Go to the source code of this file</a></p>
 <ul>
-<li>The <strong>viewport range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-viewportmin-12"><code>viewportMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-viewportmax-12"><code>viewportMax</code></a>) is visible.</li>
-<li>The <strong>data range</strong> (<a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>, <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a>) is the extent reported by
-  attached series.</li>
+<li><code>#include &lt;QColor&gt;</code></li>
+<li><code>#include &lt;QObject&gt;</code></li>
+<li><code>#include &lt;QtQml/qqmlregistration.h&gt;</code></li>
 </ul>
-<p>Panning and zooming change the viewport. <a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a>
-sets the viewport to fit the data range. A series reports its extent to the
-axes set in its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.</p>
+<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Plot property</th>
-<th>Side</th>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-xaxis-12"><code>xAxis</code></a></td>
-<td>Bottom</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-x2axis-12"><code>x2Axis</code></a></td>
-<td>Top</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-yaxis-12"><code>yAxis</code></a></td>
-<td>Left</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-y2axis-12"><code>y2Axis</code></a></td>
-<td>Right</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1QAccelPlot/#property-extraaxes-12"><code>extraAxes</code></a></td>
-<td>Set by each axis's <code>side</code></td>
+<td style="text-align: right;">namespace</td>
+<td style="text-align: left;"><a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <br></td>
 </tr>
 </tbody>
 </table>
-<p>Each series selects its own axes.</p>
-<p><code>AxisTicker</code> controls tick count, subticks, lengths, colors, fonts, rotation,
-and label formatting. Built-in formatters cover numeric, date/time,
-logarithmic, and categorical labels; <code>TickLabelFormatter</code> also accepts a
-JavaScript callback.</p>
-<h2 id="series">Series<a class="headerlink" href="#series" title="Permanent link">&para;</a></h2>
-<p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
-and legend symbol.</p>
-<p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
-stores points as interleaved floats and accepts data from QML or C++ buffers.</p>
-<p><code>RectangleList</code> renders many data-space rectangles in one item, such as event
-spans, bands, and state timelines. Infinite edges reach the plot edge, and a
-per-rectangle category selects the fill color. It reports the hovered
-rectangle index.</p>
-<h2 id="invalid-samples-and-gaps">Invalid samples and gaps<a class="headerlink" href="#invalid-samples-and-gaps" title="Permanent link">&para;</a></h2>
-<p><code>LineCurve</code> applies one invalid-sample contract to rendering, gradient fills,
-dash patterns, transitions, auto-ranging, and hover hit testing.</p>
-<p>A sample is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
-coordinate is zero or negative on a logarithmic axis. Mark missing data by
-inserting a sample with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
-are not gap markers.</p>
-<p>Gap rendering is configured through the curve's <a href="../api/classQAccelPlot_1_1LineCurve/"><code>gaps</code></a> grouped
-property. <code>gaps.nanMode</code> selects how the line and fill treat invalid samples:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">gaps.nanMode:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">NanGapMode</span><span class="p">.</span><span class="nx">Connect</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
-</code></pre></div>
+<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th><code>gaps.nanMode</code></th>
-<th>Behavior</th>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>NanGapMode.Break</code> (default)</td>
-<td>No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line.</td>
-</tr>
-<tr>
-<td><code>NanGapMode.Connect</code></td>
-<td>Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples.</td>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1RectangleBorder/"><strong>RectangleBorder</strong></a> <br><em>Controls the outline a</em> <code>RectangleList</code> <em>draws inside each rectangle's edges.</em></td>
 </tr>
 </tbody>
 </table>
-<p>Despite its name, <code>nanMode</code> applies to every invalid sample, including <code>±Inf</code>
-and non-positive log-axis values.</p>
-<p>In both modes:</p>
-<ul>
-<li><strong>Markers</strong> are never drawn for invalid samples.</li>
-<li><strong>Auto-ranging</strong> judges each coordinate on its own. A sample with a valid X
-  and an invalid Y still extends the X range, so a dropout keeps its timestamp.
-  If a dimension has no valid coordinate, the series clears that range.</li>
-<li><strong>Dash patterns</strong> continue across a gap; the gap contributes no dash length.</li>
-<li><strong><code>MorphTransition</code></strong> shows a sample that becomes invalid as a gap
-  immediately, and a sample that becomes valid jumps to its target instead of
-  animating from <code>NaN</code>.</li>
-<li><strong>Hover</strong> never reports a hit on an invalid sample or across a break.</li>
-<li>The <code>NoRange</code> data APIs still render gaps; they only skip range calculation.</li>
-</ul>
-<h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
-<p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps
-one or two data coordinates to a QML item's geometry, so labels, event lines,
-regions, and drag handles follow the data while panning and zooming.</p>
-<p>For custom tools, <code>PlotView</code> provides <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixelx"><code>dataToPixelX()</code></a>,
-<a href="../api/classQAccelPlot_1_1QAccelPlot/#function-datatopixely"><code>dataToPixelY()</code></a>, <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatax"><code>pixelToDataX()</code></a>,
-<a href="../api/classQAccelPlot_1_1QAccelPlot/#function-pixeltodatay"><code>pixelToDataY()</code></a>, and <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-isinsideplotarea"><code>isInsidePlotArea()</code></a>.
-Accepting a plot mouse event suppresses the default pan.</p>
-<h2 id="rendering-and-threads">Rendering and threads<a class="headerlink" href="#rendering-and-threads" title="Permanent link">&para;</a></h2>
-<p>QML objects and setters run on the UI thread; Qt synchronizes their state to
-the Scene Graph render thread. Curve renderers keep persistent Scene Graph
-nodes and use precompiled shaders for the active graphics API. The software
-backend cannot run these shaders.</p>
-<p>Produce data on a worker thread if needed, but never mutate UI objects from it.
-Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineCurve::postData()</code></a> or a queued call. See
-<a href="../cookbook/background-data/">Background data production</a>.</p>
+<hr />
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/series/RectangleBorder.hpp</code></p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -1480,44 +1224,6 @@ Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineC
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting started">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Getting started
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../performance/" class="md-footer__link md-footer__link--next" aria-label="Next: Performance">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Performance
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1560,10 +1266,10 @@ Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineC
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
