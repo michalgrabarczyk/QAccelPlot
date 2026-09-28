@@ -11,7 +11,8 @@
 // normalised to [0,1]. Multiply by 255 and round to recover the original bytes.
 // Requires: sampler2D dataSampler declared before this include.
 uint fetchFloatBits(int floatIndex) {
-    int w = 2048; // Must match texWidth in DataTextureMaterial.cpp
+    // Floats per row, kDataTextureWidth in DataTextureLayout.hpp; read from the texture so it has one definition.
+    int w = textureSize(dataSampler, 0).x;
     vec4 texel = texelFetch(dataSampler, ivec2(floatIndex % w, floatIndex / w), 0);
     uint b0 = uint(round(texel.r * 255.0));
     uint b1 = uint(round(texel.g * 255.0));

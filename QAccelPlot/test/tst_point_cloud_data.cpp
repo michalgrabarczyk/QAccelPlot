@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 
 #include <QHoverEvent>
@@ -72,6 +73,7 @@ private slots:
     void propertySettersClampAndNotify();
     void doubleDataKeepsPrecisionForLargeCoordinates();
     void doubleDataSurvivesLogScaleChange();
+    void dataTextureCapacityFollowsTextureHeight();
 };
 
 void PointCloudDataTest::defaults()
@@ -514,6 +516,19 @@ void PointCloudDataTest::doubleDataSurvivesLogScaleChange()
     QCOMPARE(cloud.pointAt(1), QPointF(20.0, 200.0));
     QCOMPARE(cloud.valueAt(1), 2.0);
     QVERIFY(cloud.hasValues());
+}
+
+void PointCloudDataTest::dataTextureCapacityFollowsTextureHeight()
+{
+    constexpr auto kWithValues = 3;
+    constexpr auto kWithoutValues = 2;
+    QCOMPARE(Internal::dataTextureItemCapacity(8192, kWithValues), qint64{22'369'621});
+    QCOMPARE(Internal::dataTextureItemCapacity(8192, kWithoutValues), qint64{33'554'432});
+    QCOMPARE(Internal::dataTextureItemCapacity(16384, kWithValues), qint64{44'739'242});
+    QCOMPARE(Internal::dataTextureHeight(1), 1);
+    QCOMPARE(Internal::dataTextureHeight(Internal::kDataTextureWidth), 1);
+    QCOMPARE(Internal::dataTextureHeight(Internal::kDataTextureWidth + 1), 2);
+    QCOMPARE(Internal::dataTextureHeight(10'000'000 * kWithValues), 3663);
 }
 
 } // namespace QAccelPlot

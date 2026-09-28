@@ -1695,7 +1695,7 @@ stacked series underneath still receive hover events elsewhere.
   shifted. The `setDataF()` family takes floats and is not origin-shifted; use
   it when the data is already single precision.
 - The number of drawable points is bounded by the GPU's maximum texture size:
-  about 5.5 million points with values, or 8.3 million without, on a GPU with
+  about 22 million points with values, or 33 million without, on a GPU with
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
   points are not drawn, and a warning is logged once.
 
