@@ -9,6 +9,12 @@
 * **countInvalidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
+## d
+
+* **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## f
 
 * **findValidRuns** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))

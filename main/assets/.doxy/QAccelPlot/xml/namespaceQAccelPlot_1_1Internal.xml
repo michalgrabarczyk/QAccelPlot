@@ -2,7 +2,68 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceQAccelPlot_1_1Internal" kind="namespace" language="C++">
     <compoundname>QAccelPlot::Internal</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::Internal::kDataTextureWidth</definition>
+        <argsstring></argsstring>
+        <name>kDataTextureWidth</name>
+        <qualifiedname>QAccelPlot::Internal::kDataTextureWidth</qualifiedname>
+        <initializer>{8192}</initializer>
+        <briefdescription>
+<para>Number of floats stored per data texture row, one float per RGBA8 texel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>data_texture.glsl reads the width from the bound texture, so this is the only definition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="17" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="func">
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr int</type>
+        <definition>constexpr int QAccelPlot::Internal::dataTextureHeight</definition>
+        <argsstring>(const int floatCount)</argsstring>
+        <name>dataTextureHeight</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureHeight</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>floatCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns the number of data texture rows needed to store <emphasis>floatCount</emphasis> floats. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="20" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr qint64</type>
+        <definition>constexpr qint64 QAccelPlot::Internal::dataTextureItemCapacity</definition>
+        <argsstring>(const int maxHeight, const int floatsPerItem)</argsstring>
+        <name>dataTextureItemCapacity</name>
+        <qualifiedname>QAccelPlot::Internal::dataTextureItemCapacity</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>maxHeight</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>floatsPerItem</declname>
+        </param>
+        <briefdescription>
+<para>Returns how many items of <emphasis>floatsPerItem</emphasis> floats fit in a data texture at most <emphasis>maxHeight</emphasis> rows tall. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="26" column="18" bodyfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" bodystart="26" bodyend="29"/>
+      </memberdef>
       <memberdef kind="function" id="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::Internal::uploadDataTexture</definition>
@@ -35,6 +96,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" line="18" column="1"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="12" column="1"/>
   </compounddef>
 </doxygen>

@@ -12,6 +12,8 @@
 ## d
 
 * **Direction** ([**QAccelPlot::GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md))
+* **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## f
@@ -35,6 +37,7 @@
 
 ## k
 
+* **kDataTextureWidth** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **kMaxDashPatternSize** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **kNearlyEqualEpsilon** ([**QAccelPlot**](namespaceQAccelPlot.md))
 

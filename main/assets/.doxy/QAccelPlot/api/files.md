@@ -49,6 +49,7 @@ Here is a list of all files with brief descriptions:
                 * **file** [**PointCloudMaterial.hpp**](PointCloudMaterial_8hpp.md)     
                 * **file** [**PointMaterial.hpp**](PointMaterial_8hpp.md)     
                 * **dir** [**internal**](dir_3c3be61dbf90c69b9ad6cd32d23f3e24.md)     
+                    * **file** [**DataTextureLayout.hpp**](DataTextureLayout_8hpp.md)     
                     * **file** [**DataTextureUpload.hpp**](DataTextureUpload_8hpp.md)     
                 * **file** [**RectMaterial.hpp**](RectMaterial_8hpp.md)     
             * **dir** [**renderers**](dir_a5593d4bbe882811c43c55c842f746b7.md)     

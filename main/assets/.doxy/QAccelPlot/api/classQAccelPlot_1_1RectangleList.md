@@ -298,6 +298,14 @@ Each rectangle can carry a `category`, an index into `categoryColors`. Rectangle
 
 
 
+**
+**
+
+Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.
+
+
+
+
 **See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md) 
 
 

@@ -2412,6 +2412,9 @@
 <p>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <code>setDataF()</code> overloads store floats and upload them without conversion. Hover detection uses an internal <code>SpatialGrid</code> for O(1) hit tests.</p>
 <p>An infinite edge extends the rectangle to the plot edge, e.g. <code>y1</code> = -Infinity and <code>y2</code> = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges. Rectangles with a NaN edge are not drawn or hovered.</p>
 <p>Each rectangle can carry a <code>category</code>, an index into <code>categoryColors</code>. Rectangles without a category, or with one outside <code>categoryColors</code>, use <code>color</code>.</p>
+<p>**
+**</p>
+<p>Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> </p>
 <h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="property-border-12">property border<a class="headerlink" href="#property-border-12" title="Permanent link">&para;</a></h3>
