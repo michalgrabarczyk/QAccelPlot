@@ -565,7 +565,10 @@ void Axis::setSourceDataRange(const QObject* source, const Orientation dimension
 void Axis::clearSourceDataRange(const QObject* source, const Orientation dimension)
 {
     auto& ranges = dimension == Horizontal ? horizontalDataRanges_ : verticalDataRanges_;
-    ranges.remove(source);
+    // A source that never reported a range must not replace an application-set data range.
+    if (!ranges.remove(source)) {
+        return;
+    }
 
     if (!horizontalDataRanges_.contains(source) && !verticalDataRanges_.contains(source)) {
         disconnect(rangeSourceConnections_.take(source));
