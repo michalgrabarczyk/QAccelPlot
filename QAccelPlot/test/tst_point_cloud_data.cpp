@@ -60,6 +60,7 @@ private slots:
     void dataRangesSkipNonFinitePoints();
     void dataRangesFollowLogarithmicAxes();
     void noRangeUpdateDoesNotReportRanges();
+    void noRangeDataSurvivesAxisChanges();
     void valueRangeResolvesDataAndFixedSources();
     void setValuesExpandsAndClearsInPlace();
     void accessorsReturnNaNOutOfRange();
@@ -214,6 +215,37 @@ void PointCloudDataTest::noRangeUpdateDoesNotReportRanges()
     cloud.setDataFNoRange(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, {}, 2);
     QCOMPARE(xRangeSpy.count(), 0);
     QCOMPARE(cloud.count(), 2);
+}
+
+void PointCloudDataTest::noRangeDataSurvivesAxisChanges()
+{
+    auto axes = AxisPair{0.0, 10.0};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    cloud.setDataFNoRange(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, {}, 2);
+    axes.x.setDataMin(-100.0);
+    axes.x.setDataMax(100.0);
+    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
+    auto yRangeSpy = QSignalSpy{&cloud, &PlotSeries::yDataRangeChanged};
+
+    axes.y.setLogScale(true);
+    auto otherY = Axis{};
+    otherY.setOrientation(Axis::Vertical);
+    cloud.setYAxis(&otherY);
+
+    // The application maintains the ranges of no-range data.
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(yRangeSpy.count(), 0);
+    QCOMPARE(axes.x.dataMin(), -100.0);
+    QCOMPARE(axes.x.dataMax(), 100.0);
+
+    // A ranged update reports again, and so do later axis changes.
+    cloud.setDataF(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, 2);
+    QCOMPARE(xRangeSpy.count(), 1);
+    axes.x.setLogScale(true);
+    cloud.setDataF(std::vector<float>{-1.0f, 1.0f, 9.0f, 9.0f}, 2);
+    QCOMPARE(xRangeSpy.last().at(0).toReal(), 9.0);
 }
 
 void PointCloudDataTest::valueRangeResolvesDataAndFixedSources()

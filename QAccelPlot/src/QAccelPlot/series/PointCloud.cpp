@@ -590,6 +590,7 @@ void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float
 {
     const auto previousCount = pointCount_;
     const auto hadValues = hasValues_;
+    autoDataRanges_ = reportRanges;
     storeInterleaved(std::move(xyInterleaved), values, pointCount);
     finishDataChange(previousCount, hadValues, reportRanges);
 }
@@ -627,6 +628,7 @@ void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vecto
     const auto previousCount = pointCount_;
     const auto hadValues = hasValues_;
 
+    autoDataRanges_ = reportRanges;
     dataD_ = std::move(xyInterleaved);
     pointCount_ = pointCount;
     hasValues_ = !values.empty();
@@ -714,6 +716,9 @@ void PointCloud::finishDataChange(const int previousCount, const bool hadValues,
 
 void PointCloud::updateDataRanges()
 {
+    if (!autoDataRanges_) {
+        return;
+    }
     const auto logX = xAxis() && xAxis()->logScale();
     const auto logY = yAxis() && yAxis()->logScale();
     const auto pointStride = static_cast<std::size_t>(stride());
