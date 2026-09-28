@@ -30,6 +30,7 @@
 #include <QPointF>
 #include <QPointer>
 
+#include <limits>
 #include <vector>
 
 namespace QAccelPlot {
@@ -171,6 +172,10 @@ private:
     bool dataChanged_{true};
     // False after a no-range update: the application maintains the axis data ranges.
     bool autoDataRanges_{true};
+
+    // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
+    // neither drawn nor hovered.
+    int renderCapacity_{std::numeric_limits<int>::max()};
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};

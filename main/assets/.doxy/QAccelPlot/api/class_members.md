@@ -606,6 +606,7 @@
 * **rebuildRenderData** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **reconnectAxisSignals** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **refreshColorStops** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
+* **renderCapacity\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **rows\_** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md), [**QAccelPlot::SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md))
 * **registerSeries** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **rescaleAllAxes** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))

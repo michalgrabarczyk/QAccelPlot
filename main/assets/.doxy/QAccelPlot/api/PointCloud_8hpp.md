@@ -28,6 +28,7 @@
 * `#include <QMetaObject>`
 * `#include <QPointF>`
 * `#include <QPointer>`
+* `#include <limits>`
 * `#include <vector>`
 
 
