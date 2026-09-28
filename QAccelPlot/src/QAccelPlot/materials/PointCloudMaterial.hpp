@@ -40,7 +40,9 @@ public:
     /// \brief Creates and returns the point cloud shader program.
     QSGMaterialShader* createShader(QSGRendererInterface::RenderMode) const override;
 
-    /// \brief Returns the per-vertex attribute set: \c {float pointId, float corner} (8 bytes).
+    /// \brief Returns the per-vertex attribute set: one ignored \c uchar4 placeholder (4 bytes).
+    ///
+    /// The shader derives the point index and billboard corner from \c gl_VertexIndex.
     static const QSGGeometry::AttributeSet& attributeSet();
 
     float markerSize{3.0f};          ///< \brief Marker radius in pixels.
