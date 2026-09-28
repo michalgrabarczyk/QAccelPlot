@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-28 18:46:08</td>
+      <td>2026-09-28 19:13:34</td>
     </tr>
   </table>
 </div>
@@ -70,12 +70,12 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l43">QAccelPlot::DataTextureMaterial::DataTextureMaterial() (line 43)</a></td><td>called 82 times</td><td>69.0%</td></tr>
+    <tr><td><a href="#l43">QAccelPlot::DataTextureMaterial::DataTextureMaterial() (line 43)</a></td><td>called 83 times</td><td>69.0%</td></tr>
     <tr><td><a href="#l164">QAccelPlot::DataTextureMaterial::attributeSet() (line 164)</a></td><td>called 16 times</td><td>83.0%</td></tr>
     <tr><td><a href="#l147">QAccelPlot::DataTextureMaterial::commitTexture(QSGMaterialShader::RenderState&amp;, int, QSGTexture**, QSGTexture*) (line 147)</a></td><td>called 369 times</td><td>82.0%</td></tr>
     <tr><td><a href="#l48">QAccelPlot::DataTextureMaterial::compare(QSGMaterial const*) const (line 48)</a></td><td>called 45 times</td><td>68.0%</td></tr>
     <tr><td><a href="#l184">QAccelPlot::DataTextureMaterial::compareExtra(QSGMaterial const*) const (line 184)</a></td><td>not called</td><td>0.0%</td></tr>
-    <tr><td><a href="#l106">QAccelPlot::DataTextureMaterial::uploadTexture(std::unique_ptr&lt;QSGTexture, std::default_delete&lt;QSGTexture&gt; &gt;&amp;, QQuickWindow*, float const*, int) (line 106)</a></td><td>called 132 times</td><td>53.0%</td></tr>
+    <tr><td><a href="#l106">QAccelPlot::DataTextureMaterial::uploadTexture(std::unique_ptr&lt;QSGTexture, std::default_delete&lt;QSGTexture&gt; &gt;&amp;, QQuickWindow*, float const*, int) (line 106)</a></td><td>called 133 times</td><td>53.0%</td></tr>
     <tr><td><a href="#l81">QAccelPlot::DataTextureMaterial::writeCommonUniforms(char*, int, QMatrix4x4 const&amp;, QAccelPlot::DataTextureMaterial const*) (line 81)</a></td><td>called 57 times</td><td>94.0%</td></tr>
   </table>
 </details>
@@ -388,7 +388,7 @@
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">82</td>
+      <td class="linecount coveredLine">83</td>
       <td class="src coveredLine"><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
@@ -404,19 +404,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 82 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 83 times.</div>
             <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">82</td>
+      <td class="linecount partialCoveredLine">83</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">setFlag</span><span class="p">(</span><span class="n">QSGMaterial</span><span class="o">::</span><span class="n">Blending</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="o">::</span><span class="n">RequiresFullMatrix</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">82</td>
+      <td class="linecount coveredLine">83</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -967,7 +967,7 @@
       <td class="lineno"><a id="l106" href="#l106">106</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">132</td>
+      <td class="linecount coveredLine">133</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">uploadTexture</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">QSGTexture</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span><span class="w"> </span><span class="n">QQuickWindow</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">floatCount</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -984,20 +984,20 @@
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 0 taken 128 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 4 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 5 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
             <div class="takenBranch">&check; Branch 3 taken 128 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">132</td>
+      <td class="linecount partialCoveredLine">133</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">window</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">floatCount</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l109" href="#l109">109</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">4</td>
+      <td class="linecount coveredLine">5</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
