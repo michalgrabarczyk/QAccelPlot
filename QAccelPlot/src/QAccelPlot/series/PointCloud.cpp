@@ -67,7 +67,7 @@ bool hoverEnabled()
     return !isInteger || value != 0;
 }
 
-int maxTextureSize(QQuickWindow* window)
+int gpuMaxTextureSize(QQuickWindow* window)
 {
 #if QACCELPLOT_CAN_QUERY_RHI
     if (auto* rendererInterface = window->rendererInterface()) {
@@ -82,22 +82,30 @@ int maxTextureSize(QQuickWindow* window)
     return kFallbackMaxTextureSize;
 }
 
-int renderablePointCount(QQuickWindow* window, const int pointCount, const int stride)
+// QACCELPLOT_MAX_TEXTURE_SIZE lowers the assumed limit, e.g. to exercise the capacity cap in tests.
+int maxTextureSize(QQuickWindow* window)
+{
+    static const auto overrideSize = qEnvironmentVariableIntValue("QACCELPLOT_MAX_TEXTURE_SIZE");
+    const auto gpuSize = gpuMaxTextureSize(window);
+    return overrideSize > 0 ? std::min(overrideSize, gpuSize) : gpuSize;
+}
+
+// Number of points of stride floats each that the GPU data texture holds.
+int pointCapacity(QQuickWindow* window, const int stride)
 {
     // QSGGeometry sizes its vertex buffer in int bytes.
     const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * PointCloudMaterial::attributeSet().stride);
-    const auto capacity = std::min<qint64>(Internal::dataTextureItemCapacity(maxTextureSize(window), stride), maxGeometryPoints);
-    if (pointCount <= capacity) {
-        return pointCount;
-    }
+    return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(maxTextureSize(window), stride), maxGeometryPoints));
+}
 
+void warnOnceIfOverCapacity(const int pointCount, const int capacity)
+{
     static auto warned = false;
-    if (!warned) {
+    if (pointCount > capacity && !warned) {
         qCWarning(lcQAccelPlot) << "PointCloud has" << pointCount << "points but the GPU data texture holds at most" << capacity
                                 << "; the remaining points are not drawn.";
         warned = true;
     }
-    return static_cast<int>(capacity);
 }
 
 QSGGeometryNode* createPointCloudNode()
@@ -498,7 +506,13 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
         return nullptr;
     }
 
-    const auto renderCount = renderablePointCount(window, pointCount_, stride());
+    const auto capacity = pointCapacity(window, stride());
+    if (capacity != renderCapacity_) {
+        renderCapacity_ = capacity;
+        spatialIndexValid_ = false;
+    }
+    warnOnceIfOverCapacity(pointCount_, capacity);
+    const auto renderCount = std::min(pointCount_, capacity);
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointCloudNode();
     auto* material = static_cast<PointCloudMaterial*>(node->material());
 
@@ -864,7 +878,7 @@ void PointCloud::ensureSpatialIndex() const
     if (spatialIndexValid_ && spatialIndex_.mapping() == mapping) {
         return;
     }
-    spatialIndex_.build(data_.data(), pointCount_, stride(), mapping);
+    spatialIndex_.build(data_.data(), std::min(pointCount_, renderCapacity_), stride(), mapping);
     spatialIndexValid_ = true;
 }
 
