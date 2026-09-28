@@ -64,6 +64,12 @@ struct LineVertex {
     float arcLength; ///< \brief Cumulative screen-space arc length in pixels; 0 for solid lines.
 };
 
+/// \brief Samples of a gradient fill: one group per valid-sample run, broken at gaps.
+struct FillSamples {
+    std::vector<int> sampledCounts; ///< \brief Number of samples of each run; zero for runs too short to fill.
+    std::vector<int> indices;       ///< \brief Source indices of all sampled runs, run after run.
+};
+
 /// \brief Internal renderer responsible for building and updating QSGNode line geometry for a LineCurve.
 ///
 /// Supports solid and dashed lines, gradient stroke, gradient fill, and optional pre-built
@@ -85,17 +91,17 @@ public:
     QSGNode* paint(QSGNode* oldNode, const LineCurveRenderParams& params) const;
 
 private:
-    // Valid-sample runs used to break the gradient fill at gaps, cached across frames.
-    struct FillRunCache {
+    // Gradient fill samples, cached across frames because they depend only on the data.
+    struct FillSampleCache {
         const void* data{nullptr};
         int pointCount{-1};
         bool logScaleX{false};
         bool logScaleY{false};
-        std::vector<SampleRun> runs;
+        FillSamples samples;
     };
 
     void updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const;
-    const std::vector<SampleRun>& validRuns(const LineCurveRenderParams& params) const;
+    const FillSamples& fillSamples(const LineCurveRenderParams& params) const;
     void updateLineMaterial(
         LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor, bool useVertexColor, const DashParameters& dashParams) const;
     std::vector<float> computeArcLengths(const LineCurveRenderParams& params, const DashParameters& dashParams) const;
@@ -103,7 +109,7 @@ private:
         const std::vector<float>& arcLengths) const;
 
     // Render-thread state touched only by paint(); workers that call buildVertexCache() never read it.
-    mutable FillRunCache fillRunCache_;
+    mutable FillSampleCache fillSampleCache_;
 };
 
 } // namespace QAccelPlot

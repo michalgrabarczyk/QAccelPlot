@@ -41,8 +41,11 @@ namespace LineCurveGapFilter {
 /// exceed the budget by at most two samples per run when a curve contains very many gaps.
 [[nodiscard]] std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, int maxSampledPoints);
 
-/// \brief Maps a sampled position \a sampleIndex of \a sampledCount onto a source index within \a run.
-[[nodiscard]] int sampledSourceIndex(const SampleRun& run, int sampleIndex, int sampledCount);
+/// \brief Appends \a sampledCount source indices of \a run in \a data to \a indices, in index order.
+///
+/// Keeps every sample when \a sampledCount covers the run. Otherwise keeps the run's endpoints and
+/// the lowest and highest Y sample of equally sized buckets, so the decimated curve keeps its peaks.
+void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, int sampledCount, std::vector<int>& indices);
 
 /// \brief Copies the valid samples of interleaved float \a data into \a output.
 ///

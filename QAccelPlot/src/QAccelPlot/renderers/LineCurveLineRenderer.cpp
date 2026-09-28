@@ -104,32 +104,23 @@ QSGGeometryNode* createFillNode(const int vertexCount)
     return node;
 }
 
-// Sampling plan for a gap-aware gradient fill: one triangle strip per run of valid
-// samples, joined by two degenerate vertices so the strip never spans a gap.
-struct FillPlan {
-    const std::vector<SampleRun>* runs{nullptr};
-    std::vector<int> sampledCounts;
-    int vertexCount{0};
-};
-
-FillPlan planFill(const std::vector<SampleRun>& runs)
+// Vertex count of a gap-aware gradient fill: one triangle strip per sampled run, joined by two
+// degenerate vertices so the strip never spans a gap.
+int fillVertexCount(const FillSamples& samples)
 {
-    auto plan = FillPlan{};
-    plan.runs = &runs;
-    plan.sampledCounts = LineCurveGapFilter::planRunSampling(runs, kMaxFillVertices / 2);
+    auto vertexCount = int{0};
     auto drawnRuns = int{0};
-    for (const auto sampled : plan.sampledCounts) {
+    for (const auto sampled : samples.sampledCounts) {
         if (sampled > 0) {
-            plan.vertexCount += sampled * 2;
+            vertexCount += sampled * 2;
             ++drawnRuns;
         }
     }
     // Two restart vertices (the previous run's last vertex and the next run's first vertex) per join.
-    plan.vertexCount += std::max(0, drawnRuns - 1) * 2;
-    return plan;
+    return vertexCount + std::max(0, drawnRuns - 1) * 2;
 }
 
-void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const FillPlan& plan, Axis* xAxis, Axis* yAxis, const qreal width,
+void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const FillSamples& samples, Axis* xAxis, Axis* yAxis, const qreal width,
     const qreal height, const GradientFillPayload& gradientFillPayload)
 {
     auto* vertices = static_cast<GradientFillVertex*>(geometry->vertexData());
@@ -137,8 +128,8 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
     const auto baselinePixel = static_cast<float>(yAxis->coordToPixel(baselineData, height));
 
     auto written = int{0};
-    for (auto runIndex = std::size_t{0}; runIndex < plan.sampledCounts.size(); ++runIndex) {
-        const auto sampledCount = plan.sampledCounts[runIndex];
+    auto nextSample = std::size_t{0};
+    for (const auto sampledCount : samples.sampledCounts) {
         if (sampledCount <= 0) {
             continue;
         }
@@ -149,7 +140,7 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
             written += 2;
         }
         for (auto sample = int{0}; sample < sampledCount; ++sample) {
-            const auto sourceIndex = LineCurveGapFilter::sampledSourceIndex((*plan.runs)[runIndex], sample, sampledCount);
+            const auto sourceIndex = samples.indices[nextSample++];
             const auto px = data.x(sourceIndex);
             const auto py = data.y(sourceIndex);
             const auto xPixel = static_cast<float>(xAxis->coordToPixel(px, width));
@@ -349,13 +340,13 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
 void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const LineCurveRenderParams& params) const
 {
     const auto fillEnabled = params.gradientFillPayload.isValid() && params.xAxis && params.yAxis;
-    const auto plan = fillEnabled ? planFill(validRuns(params)) : FillPlan{};
-    const auto fillVertexCount = plan.vertexCount;
-    if (fillNode->geometry()->vertexCount() != fillVertexCount) {
-        fillNode->geometry()->allocate(fillVertexCount);
+    const auto* samples = fillEnabled ? &fillSamples(params) : nullptr;
+    const auto vertexCount = samples ? fillVertexCount(*samples) : 0;
+    if (fillNode->geometry()->vertexCount() != vertexCount) {
+        fillNode->geometry()->allocate(vertexCount);
     }
-    if (fillEnabled && fillVertexCount > 0) {
-        assembleFillVertices(fillNode->geometry(), params.sourceData, plan, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(),
+    if (samples && vertexCount > 0) {
+        assembleFillVertices(fillNode->geometry(), params.sourceData, *samples, params.xAxis, params.yAxis, params.viewportSize.x(), params.viewportSize.y(),
             params.gradientFillPayload);
         fillNode->markDirty(QSGNode::DirtyGeometry);
         auto* material = static_cast<GradientFillMaterial*>(fillNode->material());
@@ -365,23 +356,28 @@ void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const 
     }
 }
 
-const std::vector<SampleRun>& LineCurveLineRenderer::validRuns(const LineCurveRenderParams& params) const
+const FillSamples& LineCurveLineRenderer::fillSamples(const LineCurveRenderParams& params) const
 {
-    // The fill is rebuilt every frame (it is assembled in pixel space), but the runs
+    // The fill is rebuilt every frame (it is assembled in pixel space), but its samples
     // only change with the data, so scanning every sample is limited to data updates.
-    auto& cache = fillRunCache_;
+    auto& cache = fillSampleCache_;
     const auto* dataIdentity
         = params.sourceData.doubleData ? static_cast<const void*>(params.sourceData.doubleData) : static_cast<const void*>(params.sourceData.floatData);
     const auto stale = params.dataChanged || cache.data != dataIdentity || cache.pointCount != params.pointCount || cache.logScaleX != params.logScaleX
         || cache.logScaleY != params.logScaleY;
     if (stale) {
-        cache.runs = LineCurveGapFilter::findValidRuns(params.sourceData, params.pointCount, params.logScaleX, params.logScaleY);
+        const auto runs = LineCurveGapFilter::findValidRuns(params.sourceData, params.pointCount, params.logScaleX, params.logScaleY);
+        cache.samples.sampledCounts = LineCurveGapFilter::planRunSampling(runs, kMaxFillVertices / 2);
+        cache.samples.indices.clear();
+        for (auto run = std::size_t{0}; run < runs.size(); ++run) {
+            LineCurveGapFilter::appendEnvelopeSamples(params.sourceData, runs[run], cache.samples.sampledCounts[run], cache.samples.indices);
+        }
         cache.data = dataIdentity;
         cache.pointCount = params.pointCount;
         cache.logScaleX = params.logScaleX;
         cache.logScaleY = params.logScaleY;
     }
-    return cache.runs;
+    return cache.samples;
 }
 
 void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor,

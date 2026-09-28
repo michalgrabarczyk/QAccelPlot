@@ -11,6 +11,7 @@
 #include <QSGGeometryNode>
 #include <QtTest/QtTest>
 
+#include <cmath>
 #include <memory>
 
 namespace {
@@ -35,6 +36,7 @@ class LineCurveLineRendererTest : public QObject {
     Q_OBJECT
 private slots:
     void gradientChangesPreserveOwnedRoot();
+    void decimatedFillKeepsPeaks();
 };
 
 void LineCurveLineRendererTest::gradientChangesPreserveOwnedRoot()
@@ -66,6 +68,55 @@ void LineCurveLineRendererTest::gradientChangesPreserveOwnedRoot()
         auto* stroke = static_cast<QSGGeometryNode*>(root->lastChild());
         QCOMPARE(dynamic_cast<GradientLineMaterial*>(stroke->material()) != nullptr, enabled);
         QCOMPARE(root->childCount(), 2);
+    }
+}
+
+void LineCurveLineRendererTest::decimatedFillKeepsPeaks()
+{
+    using namespace QAccelPlot;
+    // More samples than the fill's vertex budget, flat at 0 except two one-sample spikes to 1.
+    constexpr auto kPointCount = 100'000;
+    constexpr auto kWidth = 1000.0;
+    constexpr auto kHeight = 100.0;
+    const auto spikes = {1, 50'002};
+    auto data = std::vector<float>(static_cast<std::size_t>(kPointCount) * 2);
+    for (auto i = 0; i < kPointCount; ++i) {
+        data[static_cast<std::size_t>(i) * 2] = static_cast<float>(i);
+    }
+    for (const auto spike : spikes) {
+        data[static_cast<std::size_t>(spike) * 2 + 1] = 1.0f;
+    }
+    auto xAxis = Axis{};
+    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setViewportMin(0);
+    xAxis.setViewportMax(kPointCount - 1);
+    auto yAxis = Axis{};
+    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setViewportMin(0);
+    yAxis.setViewportMax(1);
+    const auto gradient = GradientColorPayload{};
+    auto fill = GradientFillPayload{};
+    fill.enabled = true;
+    fill.stops = {{0, Qt::red}, {1, Qt::blue}};
+    fill.gradientValueMin = 0;
+    fill.gradientValueMax = 1;
+    const auto params = LineCurveRenderParams{nullptr, data, {data.data(), nullptr}, kPointCount, true, Qt::red, false, 1, {0, 0}, {kPointCount - 1, 1},
+        {kWidth, kHeight}, &xAxis, &yAxis, false, false, true, 1, gradient, fill, nullptr, nullptr};
+
+    const auto root = std::unique_ptr<QSGNode>{LineCurveLineRenderer{}.paint(nullptr, params)};
+    const auto* geometry = static_cast<const QSGGeometryNode*>(root->firstChild())->geometry();
+    QVERIFY(geometry->vertexCount() > 0);
+    QVERIFY(geometry->vertexCount() < kPointCount);
+
+    // Fill vertices are {x, y, gradientCoordinate} in pixels; a spike reaches pixel row 0.
+    const auto* vertices = static_cast<const float*>(geometry->vertexData());
+    for (const auto spike : spikes) {
+        const auto spikeX = static_cast<float>(spike * kWidth / (kPointCount - 1));
+        auto reached = false;
+        for (auto v = 0; v < geometry->vertexCount() && !reached; ++v) {
+            reached = std::abs(vertices[v * 3] - spikeX) < 0.5f && vertices[v * 3 + 1] < 0.5f;
+        }
+        QVERIFY2(reached, qPrintable(QStringLiteral("fill misses the spike at sample %1").arg(spike)));
     }
 }
 
