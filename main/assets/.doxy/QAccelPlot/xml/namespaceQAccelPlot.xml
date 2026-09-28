@@ -332,6 +332,58 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="33" bodyend="46"/>
       </memberdef>
+      <memberdef kind="function" id="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::renderOriginTooFar</definition>
+        <argsstring>(double origin, double viewportMin, double viewportMax) noexcept</argsstring>
+        <name>renderOriginTooFar</name>
+        <qualifiedname>QAccelPlot::renderOriginTooFar</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>viewportMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="52" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="52" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::renderOriginForViewport</definition>
+        <argsstring>(double origin, double viewportMin, double viewportMax) noexcept</argsstring>
+        <name>renderOriginForViewport</name>
+        <qualifiedname>QAccelPlot::renderOriginForViewport</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>viewportMin</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>viewportMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="64" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="64" bodyend="67"/>
+      </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::isValidSample</definition>
@@ -352,7 +404,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="57" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="57" bodyend="60"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="78" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="78" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>

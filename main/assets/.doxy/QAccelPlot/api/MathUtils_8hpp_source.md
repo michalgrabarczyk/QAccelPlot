@@ -55,6 +55,27 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
     return diff <= std::max(eps_abs, scale * eps_rel);
 }
 
+// Returns true when float coordinates stored relative to origin lose precision in the
+// viewport [viewportMin, viewportMax]. Series upload double data to the GPU as floats
+// relative to a render origin; far from it, the float spacing becomes visible. At 64
+// viewport widths the rounding error stays below 1e-5 of the viewport.
+[[nodiscard]] inline bool renderOriginTooFar(double origin, double viewportMin, double viewportMax) noexcept
+{
+    constexpr auto kMaxDistanceInViewports = 64.0;
+    const auto span = viewportMax - viewportMin;
+    if (!(span > 0.0) || !std::isfinite(span) || !std::isfinite(origin)) {
+        return false;
+    }
+    const auto center = viewportMin + span * 0.5;
+    return std::abs(center - origin) > kMaxDistanceInViewports * span;
+}
+
+// Returns origin, or the viewport center when origin is too far from the viewport.
+[[nodiscard]] inline double renderOriginForViewport(double origin, double viewportMin, double viewportMax) noexcept
+{
+    return renderOriginTooFar(origin, viewportMin, viewportMax) ? viewportMin + (viewportMax - viewportMin) * 0.5 : origin;
+}
+
 // Returns true if a single sample coordinate can be plotted.
 //
 // A coordinate is invalid when it is non-finite (NaN or +/-Inf) or, on a

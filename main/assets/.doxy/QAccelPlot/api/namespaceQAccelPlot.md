@@ -156,6 +156,8 @@
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
+|  double | [**renderOriginForViewport**](#function-renderoriginforviewport) (double origin, double viewportMin, double viewportMax) noexcept<br> |
+|  bool | [**renderOriginTooFar**](#function-renderorigintoofar) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
 |  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
@@ -410,6 +412,42 @@ Stops are read from the `stops` list property, falling back to child objects. A 
 
 
         
+
+<hr>
+
+
+
+
+### function renderOriginForViewport {#function-renderoriginforviewport}
+
+```C++
+inline double QAccelPlot::renderOriginForViewport (
+    double origin,
+    double viewportMin,
+    double viewportMax
+) noexcept
+```
+
+
+
+
+<hr>
+
+
+
+
+### function renderOriginTooFar {#function-renderorigintoofar}
+
+```C++
+inline bool QAccelPlot::renderOriginTooFar (
+    double origin,
+    double viewportMin,
+    double viewportMax
+) noexcept
+```
+
+
+
 
 <hr>
 

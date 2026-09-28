@@ -117,6 +117,7 @@ protected:
 
 protected:
     void onAxisScaleChanged() override;
+    void onAxisRangeChanged() override;
 
 private:
     Q_SLOT void onColormapUpdated();

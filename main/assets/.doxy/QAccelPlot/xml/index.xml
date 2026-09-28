@@ -946,6 +946,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1a646c0d9f0cd14bc54c0b223b265c5a59" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a8464f7503308b812e70979c2885f99f5" kind="function"><name>contains</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a81600a34c7dd5c5970431b1a1a3ab2e8" kind="function"><name>onAxisScaleChanged</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1ac4491b8ec7f7b84db8c34c21a75e3117" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a4be39a929b65a00809eefda7a47ab3d6" kind="signal"><name>colorChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a05f59aacd68555f119845d3a5cae263e" kind="signal"><name>lineWidthChanged</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1aa17f0d933c2734d5e25d5006722ca5e9" kind="signal"><name>hoveredChanged</name></member>
@@ -1244,8 +1245,8 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" kind="function"><name>clearXDataRange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" kind="function"><name>clearYDataRange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" kind="function"><name>onAxisScaleChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" kind="function"><name>resolvePlotRect</name></member>
-    <member refid="classQAccelPlot_1_1PlotSeries_1ae5f2fcdab0edb3556439065314e66278" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2f5bb085b529a5ab4601ea1afaeb6a42" kind="function"><name>reportXDataRangeToAxis</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a31f621ebbb45eda4bf0bd8587b6da9b5" kind="function"><name>reportYDataRangeToAxis</name></member>
   </compound>
@@ -1330,6 +1331,7 @@
     <member refid="classQAccelPlot_1_1PointCloud_1a76242f92d2aedf45d9226a8057b57644" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a132c6c6fca3d5a891d799c4a7f469aff" kind="signal"><name>valueRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a7c2ecabe80870f75863ba1705b4f82cb" kind="function"><name>onAxisScaleChanged</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a0ce99ed2eaa2a7743eafec4381d19820" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a133369c5ad35c86c23bcf8999d09b36a" kind="function"><name>onColormapUpdated</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a2e433c5260f5e820fd78b14717d58063" kind="function"><name>validateDataArguments</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1ab1675cefdcf77e2e9bceadfa6b2e5501" kind="function"><name>applyData</name></member>
@@ -1771,6 +1773,8 @@
     <member refid="GradientUtils_8hpp_1adb5493efd24befa81d92387aa6a20e41" kind="function"><name>readGradientStopList</name></member>
     <member refid="GradientUtils_8hpp_1aa9c81c1f9c0977be0c389df9d451b47d" kind="function"><name>readEffectStops</name></member>
     <member refid="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" kind="function"><name>nearly_equal</name></member>
+    <member refid="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" kind="function"><name>renderOriginTooFar</name></member>
+    <member refid="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" kind="function"><name>renderOriginForViewport</name></member>
     <member refid="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" kind="function"><name>isValidSample</name></member>
     <member refid="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" kind="function"><name>isEmptyChunk</name></member>
   </compound>

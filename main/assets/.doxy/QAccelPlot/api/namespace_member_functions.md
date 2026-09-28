@@ -47,6 +47,8 @@
 * **readEffectStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStopList** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **readGradientStops** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **renderOriginForViewport** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **renderOriginTooFar** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **resolveGradientValueRange** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 

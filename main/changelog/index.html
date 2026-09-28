@@ -1597,6 +1597,7 @@
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
 <li><code>PointCloud</code> no longer reports data ranges on axis changes after <code>setDataFNoRange()</code> or <code>setDataNoRange()</code>.</li>
+<li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
 <li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.</li>

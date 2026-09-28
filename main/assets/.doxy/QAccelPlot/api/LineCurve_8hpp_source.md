@@ -106,6 +106,7 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     bool contains(const QPointF& point) const override;
     void onAxisScaleChanged() override;
+    void onAxisRangeChanged() override;
 
 signals:
     void colorChanged();

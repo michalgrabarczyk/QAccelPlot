@@ -115,10 +115,10 @@ protected:
     void clearXDataRange();
     void clearYDataRange();
     virtual void onAxisScaleChanged();
+    virtual void onAxisRangeChanged();
     QRectF resolvePlotRect() const;
 
 private:
-    void onAxisRangeChanged();
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
 

@@ -155,6 +155,7 @@ flowchart TB
 |  void | [**clearYDataRange**](#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+| virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
 |  void | [**setDataRanges**](#function-setdataranges) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Reports this series' data extents to its bound axes._  |
@@ -668,6 +669,21 @@ _Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the ex
 void QAccelPlot::PlotSeries::extendYDataRange (
     qreal y
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function onAxisRangeChanged {#function-onaxisrangechanged}
+
+_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._ 
+```C++
+virtual void QAccelPlot::PlotSeries::onAxisRangeChanged () 
 ```
 
 
