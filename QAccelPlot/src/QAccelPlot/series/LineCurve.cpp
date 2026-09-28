@@ -758,6 +758,23 @@ void LineCurve::onAxisScaleChanged()
     update();
 }
 
+void LineCurve::onAxisRangeChanged()
+{
+    PlotSeries::onAxisRangeChanged();
+    if (dataType_ != DataType::Double) {
+        return;
+    }
+    const auto rebaseX = !renderLogScaleX_ && xAxis() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    const auto rebaseY = !renderLogScaleY_ && yAxis() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
+    if (!rebaseX && !rebaseY) {
+        return;
+    }
+    rebuildDoubleRenderData(logScaleX(), logScaleY());
+    rebuildGapConnectData();
+    dataChanged_ = true;
+    refreshVertexCacheForDataChange();
+}
+
 void LineCurve::onTransitionDestroyed()
 {
     finishTransition();
@@ -1071,6 +1088,13 @@ void LineCurve::rebuildDoubleRenderData(const bool logScaleX, const bool logScal
         if (foundOriginX && foundOriginY) {
             break;
         }
+    }
+    // Log dimensions are never shifted: the vertex shader takes log10 of the uploaded value.
+    if (!logScaleX && xAxis()) {
+        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    }
+    if (!logScaleY && yAxis()) {
+        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
     }
 
     renderOriginXSettled_ = foundOriginX;

@@ -199,6 +199,8 @@ protected:
 protected:
     /// \brief Rebuilds the origin-relative upload buffer, because log dimensions are not shifted.
     void onAxisScaleChanged() override;
+    /// \brief Moves the render origin to the new viewport when the float upload buffer would lose precision there.
+    void onAxisRangeChanged() override;
 
 private:
     Q_SLOT void onColormapUpdated();

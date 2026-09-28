@@ -174,6 +174,8 @@ protected:
     bool contains(const QPointF& point) const override;
     /// \brief Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
+    /// \brief Moves the render origin to the new viewport when the float render data would lose precision there.
+    void onAxisRangeChanged() override;
 
 signals:
     /// \brief Emitted when the color property changes.

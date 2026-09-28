@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
 - `PointCloud` no longer reports data ranges on axis changes after `setDataFNoRange()` or `setDataNoRange()`.
+- `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
 - A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.

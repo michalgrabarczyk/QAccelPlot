@@ -145,13 +145,14 @@ protected:
     /// Log scale changes which samples are valid, so series that apply the invalid-sample contract
     /// override this to refresh ranges and cached geometry. The default implementation does nothing.
     virtual void onAxisScaleChanged();
+    /// \brief Called when the viewport of a bound axis changes. The default implementation schedules a repaint.
+    virtual void onAxisRangeChanged();
     /// \brief Returns the plot area to render into: \c plotRect when set, otherwise the item's current size.
     ///
     /// Safe to call from \c updatePaintNode(); it never modifies the item.
     QRectF resolvePlotRect() const;
 
 private:
-    void onAxisRangeChanged();
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
 

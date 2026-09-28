@@ -638,9 +638,10 @@ void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vecto
 }
 
 // Builds the single-precision upload buffer from dataD_, subtracting a per-dimension origin so
-// coordinates far from zero keep their resolution. The origin is the first finite coordinate,
-// matching LineCurve. A logarithmic dimension is never shifted: the vertex shader takes log10 of
-// the uploaded value, which a shift would invalidate.
+// coordinates far from zero keep their resolution. The origin is the first finite coordinate, or
+// the viewport center when that is far from the viewport, matching LineCurve. A logarithmic
+// dimension is never shifted: the vertex shader takes log10 of the uploaded value, which a shift
+// would invalidate.
 void PointCloud::rebuildRenderData()
 {
     if (dataD_.empty()) {
@@ -667,6 +668,12 @@ void PointCloud::rebuildRenderData()
             renderOriginY_ = y;
             foundOriginY = true;
         }
+    }
+    if (!logX && xAxis()) {
+        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    }
+    if (!logY && yAxis()) {
+        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
     }
 
     const auto strideFloats = static_cast<std::size_t>(stride());
@@ -695,6 +702,19 @@ void PointCloud::onAxisScaleChanged()
     }
     rebuildRenderData();
     update();
+}
+
+void PointCloud::onAxisRangeChanged()
+{
+    PlotSeries::onAxisRangeChanged();
+    if (!hasPreciseData()) {
+        return;
+    }
+    const auto rebaseX = !renderLogScaleX_ && xAxis() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    const auto rebaseY = !renderLogScaleY_ && yAxis() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
+    if (rebaseX || rebaseY) {
+        rebuildRenderData();
+    }
 }
 
 void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool reportRanges)
