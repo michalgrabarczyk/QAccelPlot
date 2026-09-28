@@ -68,6 +68,36 @@ std::pair<qreal, qreal> widenedSpan(const qreal a, const qreal b, const qreal mi
     return {low - grow, high + grow};
 }
 
+struct FiniteBounds {
+    qreal xMin{std::numeric_limits<qreal>::max()};
+    qreal xMax{std::numeric_limits<qreal>::lowest()};
+    qreal yMin{std::numeric_limits<qreal>::max()};
+    qreal yMax{std::numeric_limits<qreal>::lowest()};
+};
+
+// Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone.
+template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount)
+{
+    auto bounds = FiniteBounds{};
+    const auto include = [](const T value, qreal& min, qreal& max) {
+        if (std::isfinite(value)) {
+            min = std::min(min, static_cast<qreal>(value));
+            max = std::max(max, static_cast<qreal>(value));
+        }
+    };
+    for (int i = 0; i < rectCount; ++i) {
+        const auto* rect = data + static_cast<size_t>(i) * 4;
+        if (std::isnan(rect[0]) || std::isnan(rect[1]) || std::isnan(rect[2]) || std::isnan(rect[3])) {
+            continue;
+        }
+        include(rect[0], bounds.xMin, bounds.xMax);
+        include(rect[2], bounds.xMin, bounds.xMax);
+        include(rect[1], bounds.yMin, bounds.yMax);
+        include(rect[3], bounds.yMin, bounds.yMax);
+    }
+    return bounds;
+}
+
 }
 
 RectangleList::RectangleList(QQuickItem* parent)
@@ -206,16 +236,7 @@ void RectangleList::setData(const QVariantList& rects)
     if (!anyCategory) {
         categories.clear();
     }
-    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
-}
-
-void RectangleList::setData(const float* data, const int rectCount)
-{
-    if (!validateRawDataArguments(data, rectCount)) {
-        return;
-    }
-    const auto floatCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + floatCount), {}, rectCount);
+    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()), true);
 }
 
 void RectangleList::setData(const double* data, const int rectCount)
@@ -224,7 +245,7 @@ void RectangleList::setData(const double* data, const int rectCount)
         return;
     }
     const auto doubleCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount);
+    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount, true);
 }
 
 void RectangleList::setData(std::vector<double>&& data, const int rectCount)
@@ -237,7 +258,56 @@ void RectangleList::setData(std::vector<double>&& data, std::vector<int>&& categ
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
     }
-    applyData(std::move(data), std::move(categories), rectCount);
+    applyData(std::move(data), std::move(categories), rectCount, true);
+}
+
+void RectangleList::setDataNoRange(std::vector<double>&& data, const int rectCount)
+{
+    setDataNoRange(std::move(data), {}, rectCount);
+}
+
+void RectangleList::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+        return;
+    }
+    applyData(std::move(data), std::move(categories), rectCount, false);
+}
+
+void RectangleList::setDataF(const float* data, const int rectCount)
+{
+    setDataFFromArray(data, rectCount, true);
+}
+
+void RectangleList::setDataF(std::vector<float>&& data, const int rectCount)
+{
+    setDataF(std::move(data), {}, rectCount);
+}
+
+void RectangleList::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+        return;
+    }
+    applyFloatData(std::move(data), std::move(categories), rectCount, true);
+}
+
+void RectangleList::setDataFNoRange(std::vector<float>&& data, const int rectCount)
+{
+    setDataFNoRange(std::move(data), {}, rectCount);
+}
+
+void RectangleList::setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+        return;
+    }
+    applyFloatData(std::move(data), std::move(categories), rectCount, false);
+}
+
+void RectangleList::setDataFNoRange(const float* data, const int rectCount)
+{
+    setDataFFromArray(data, rectCount, false);
 }
 
 void RectangleList::postData(std::vector<double>&& data, const int rectCount)
@@ -255,6 +325,21 @@ void RectangleList::postData(std::vector<double>&& data, std::vector<int>&& cate
         Qt::QueuedConnection);
 }
 
+void RectangleList::postData(std::vector<float>&& data, const int rectCount)
+{
+    postData(std::move(data), {}, rectCount);
+}
+
+void RectangleList::postData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+{
+    QMetaObject::invokeMethod(
+        this,
+        [this, rects = std::move(data), rectCategories = std::move(categories), rectCount]() mutable {
+            setDataF(std::move(rects), std::move(rectCategories), rectCount);
+        },
+        Qt::QueuedConnection);
+}
+
 void RectangleList::setCategories(const QList<int>& categories)
 {
     if (!categories.isEmpty() && categories.size() != rectCount_) {
@@ -268,7 +353,7 @@ void RectangleList::setCategories(const QList<int>& categories)
 
 void RectangleList::clearData()
 {
-    applyData({}, {}, 0);
+    applyData({}, {}, 0, true);
 }
 
 QVariantMap RectangleList::rectangleAt(const int index) const
@@ -277,10 +362,9 @@ QVariantMap RectangleList::rectangleAt(const int index) const
         return {};
     }
     const auto& keys = rectangleKeys();
-    const auto base = static_cast<size_t>(index) * keys.size();
     auto rect = QVariantMap{};
     for (size_t k = 0; k < keys.size(); ++k) {
-        rect.insert(keys[k], data_[base + k]);
+        rect.insert(keys[k], coordinate(index, static_cast<int>(k)));
     }
     if (hasCategories()) {
         rect.insert(QStringLiteral("category"), categories_[static_cast<size_t>(index)]);
@@ -299,6 +383,7 @@ int RectangleList::rectangleIndexAt(const QPointF& position) const
     const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
     const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
     const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
+    ensureSpatialGrid();
     return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
         [this, &position](const int index) { return containsInPixels(index, position); });
 }
@@ -339,19 +424,45 @@ bool RectangleList::validateDataArguments(const std::size_t valueCount, const st
     return true;
 }
 
-void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+{
+    data_ = std::move(data);
+    finishDataChange(std::move(categories), rectCount, reportRanges);
+}
+
+void RectangleList::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+{
+    data_ = std::vector<double>{};
+    renderData_ = std::move(data);
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    finishDataChange(std::move(categories), rectCount, reportRanges);
+}
+
+void RectangleList::setDataFFromArray(const float* data, const int rectCount, const bool reportRanges)
+{
+    if (!validateRawDataArguments(data, rectCount)) {
+        return;
+    }
+    auto buffer = std::move(renderData_);
+    buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
+    applyFloatData(std::move(buffer), {}, rectCount, reportRanges);
+}
+
+void RectangleList::finishDataChange(std::vector<int>&& categories, const int rectCount, const bool reportRanges)
 {
     const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
     if (rectCount != rectCount_ || hasCategories() || !categories.empty()) {
         vertexCacheValid_ = false;
     }
-    data_ = std::move(data);
     categories_ = std::move(categories);
     rectCount_ = rectCount;
     dataChanged_ = true;
-    buildSpatialGrid();
-    updateDataRanges();
+    spatialGridValid_ = false;
+    if (reportRanges) {
+        updateDataRanges();
+    }
     if (hoveredIndex_ >= rectCount_) {
         setHoveredIndex(-1);
     }
@@ -359,6 +470,17 @@ void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& cat
         emit countChanged();
     }
     update();
+}
+
+bool RectangleList::hasPreciseData() const
+{
+    return !data_.empty();
+}
+
+double RectangleList::coordinate(const int index, const int component) const
+{
+    const auto offset = static_cast<size_t>(index) * 4 + static_cast<size_t>(component);
+    return hasPreciseData() ? data_[offset] : static_cast<double>(renderData_[offset]);
 }
 
 bool RectangleList::hasCategories() const
@@ -374,9 +496,10 @@ QColor RectangleList::rectangleColor(const int index) const
 
 bool RectangleList::containsInPixels(const int index, const QPointF& position) const
 {
-    const auto* rect = data_.data() + static_cast<size_t>(index) * 4;
-    const auto [left, right] = widenedSpan(edgePixel(rect[0], *xAxis(), width()), edgePixel(rect[2], *xAxis(), width()), minimumWidth_);
-    const auto [top, bottom] = widenedSpan(edgePixel(rect[1], *yAxis(), height()), edgePixel(rect[3], *yAxis(), height()), minimumHeight_);
+    const auto [left, right]
+        = widenedSpan(edgePixel(coordinate(index, 0), *xAxis(), width()), edgePixel(coordinate(index, 2), *xAxis(), width()), minimumWidth_);
+    const auto [top, bottom]
+        = widenedSpan(edgePixel(coordinate(index, 1), *yAxis(), height()), edgePixel(coordinate(index, 3), *yAxis(), height()), minimumHeight_);
     return position.x() >= left && position.x() <= right && position.y() >= top && position.y() <= bottom;
 }
 
@@ -447,7 +570,9 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 
     // Upload data texture
     if (dataChanged_ || nodeRecreated) {
-        rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
+        if (hasPreciseData()) {
+            rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
+        }
         const auto numFloats = rectCount_ * 4;
         material->uploadTexture(material->dataTexture, window, renderData_.data(), numFloats);
         dataChanged_ = false;
@@ -479,7 +604,10 @@ void RectangleList::hoverLeaveEvent(QHoverEvent* event)
 
 void RectangleList::onAxisScaleChanged()
 {
-    dataChanged_ = true;
+    // Only origin-shifted double data depends on the scale; float data is uploaded as is.
+    if (hasPreciseData()) {
+        dataChanged_ = true;
+    }
     update();
 }
 
@@ -500,9 +628,17 @@ void RectangleList::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-void RectangleList::buildSpatialGrid()
+void RectangleList::ensureSpatialGrid() const
 {
-    spatialGrid_.build(data_.data(), rectCount_);
+    if (spatialGridValid_) {
+        return;
+    }
+    if (hasPreciseData()) {
+        spatialGrid_.build(data_.data(), rectCount_);
+    } else {
+        spatialGrid_.buildF(renderData_.data(), rectCount_);
+    }
+    spatialGridValid_ = true;
 }
 
 void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY)
@@ -548,35 +684,14 @@ void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY
 
 void RectangleList::updateDataRanges()
 {
-    // Infinite edges don't widen the ranges, so a full-height span leaves Y autoscaling alone.
-    auto xMin = std::numeric_limits<qreal>::max();
-    auto xMax = std::numeric_limits<qreal>::lowest();
-    auto yMin = std::numeric_limits<qreal>::max();
-    auto yMax = std::numeric_limits<qreal>::lowest();
-    const auto include = [](const double value, qreal& min, qreal& max) {
-        if (std::isfinite(value)) {
-            min = std::min(min, static_cast<qreal>(value));
-            max = std::max(max, static_cast<qreal>(value));
-        }
-    };
-    for (int i = 0; i < rectCount_; ++i) {
-        const auto* rect = data_.data() + static_cast<size_t>(i) * 4;
-        if (std::isnan(rect[0]) || std::isnan(rect[1]) || std::isnan(rect[2]) || std::isnan(rect[3])) {
-            continue;
-        }
-        include(rect[0], xMin, xMax);
-        include(rect[2], xMin, xMax);
-        include(rect[1], yMin, yMax);
-        include(rect[3], yMin, yMax);
-    }
-
-    if (xMin <= xMax) {
-        setXDataRange(xMin, xMax);
+    const auto bounds = hasPreciseData() ? finiteBounds(data_.data(), rectCount_) : finiteBounds(renderData_.data(), rectCount_);
+    if (bounds.xMin <= bounds.xMax) {
+        setXDataRange(bounds.xMin, bounds.xMax);
     } else {
         clearXDataRange();
     }
-    if (yMin <= yMax) {
-        setYDataRange(yMin, yMax);
+    if (bounds.yMin <= bounds.yMax) {
+        setYDataRange(bounds.yMin, bounds.yMax);
     } else {
         clearYDataRange();
     }

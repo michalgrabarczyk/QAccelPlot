@@ -23,6 +23,7 @@ private slots:
     void query_outsideBounds_returnsMinusOne();
     void query_fourRectsGrid_returnsCorrectIndex();
     void query_withStride_readsCorrectCoordinates();
+    void buildF_floatData_matchesDoubleData();
 
     // Corner cases
     void build_invertedRect_isNormalized();
@@ -104,6 +105,24 @@ void TestSpatialGrid::query_fourRectsGrid_returnsCorrectIndex()
     QCOMPARE(grid.query(2.5, 0.5), 1);
     QCOMPARE(grid.query(0.5, 2.5), 2);
     QCOMPARE(grid.query(2.5, 2.5), 3);
+}
+
+void TestSpatialGrid::buildF_floatData_matchesDoubleData()
+{
+    constexpr auto kInfF = std::numeric_limits<float>::infinity();
+    const auto data = std::array<float, 16>{
+        0.0f, 0.0f, 1.0f, 1.0f,                                    // index 0
+        2.0f, 0.0f, 3.0f, 1.0f,                                    // index 1
+        0.5f, -kInfF, 0.6f, kInfF,                                 // index 2: full-height span
+        std::numeric_limits<float>::quiet_NaN(), 2.0f, 3.0f, 3.0f, // index 3: invalid
+    };
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.buildF(data.data(), 4);
+
+    QCOMPARE(grid.query(0.2, 0.5), 0);
+    QCOMPARE(grid.query(2.5, 0.5), 1);
+    QCOMPARE(grid.query(0.55, 100.0), 2);
+    QCOMPARE(grid.query(2.5, 2.5), -1);
 }
 
 void TestSpatialGrid::query_withStride_readsCorrectCoordinates()

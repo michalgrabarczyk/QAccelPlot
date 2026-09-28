@@ -60,6 +60,8 @@ private slots:
     void rectangleIndexAtReturnsTopmostRectangle();
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
+    void hitTestsFollowDataChanges();
+    void floatDataIsHitTested();
     void spansAreHoveredAtAnyHeight();
     void narrowRectanglesAreHoveredAtMinimumSize();
     void seriesUnderneathReceiveHoverOutsideRectangles();
@@ -169,6 +171,51 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
 
     rectangles.clearData();
     QCOMPARE(rectangles.hoveredIndex(), -1);
+}
+
+void RectangleHoverTest::hitTestsFollowDataChanges()
+{
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleList{};
+    setOverlappingRectangles(rectangles, axes);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+
+    // Same count, moved coordinates: rectangle 0 now spans (3, 3)–(4, 4).
+    rectangles.setData(std::vector<double>{3.0, 3.0, 4.0, 4.0, 1.0, 1.0, 3.0, 3.0}, 2);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), 0);
+
+    rectangles.setDataNoRange(std::vector<double>{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0}, {}, 3);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({250.0, 150.0}), 2);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), -1);
+
+    rectangles.clearData();
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    QVERIFY(!rectangles.contains({50.0, 350.0}));
+
+    rectangles.setData(std::vector<double>{3.0, 0.0, 4.0, 1.0}, 1);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 350.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+}
+
+void RectangleHoverTest::floatDataIsHitTested()
+{
+    constexpr auto kInf = std::numeric_limits<float>::infinity();
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleList{};
+    setOverlappingRectangles(rectangles, axes);
+
+    rectangles.setDataF(std::vector<float>{0.0f, 0.0f, 2.0f, 2.0f, 1.0f, 1.0f, 3.0f, 3.0f, 3.5f, -kInf, 3.6f, kInf}, 3);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+    QCOMPARE(rectangles.rectangleIndexAt({150.0, 250.0}), 1);
+    QCOMPARE(rectangles.rectangleIndexAt({355.0, 10.0}), 2);
+    QCOMPARE(rectangles.rectangleIndexAt({380.0, 10.0}), -1);
+
+    const auto raw = std::array<float, 4>{3.0f, 3.0f, 4.0f, 4.0f};
+    rectangles.setDataFNoRange(raw.data(), 1);
+    QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), 0);
 }
 
 void RectangleHoverTest::spansAreHoveredAtAnyHeight()

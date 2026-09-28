@@ -16,17 +16,12 @@ namespace QAccelPlot {
 
 void SpatialGrid::build(const double* data, const int itemCount, const int valuesPerItem)
 {
-    cells_.clear();
-    largeItems_.clear();
-    itemBounds_.clear();
-    cols_ = 0;
-    rows_ = 0;
-    if (itemCount <= 0 || !data) {
-        return;
-    }
-    computeDataBounds(data, itemCount, valuesPerItem);
-    computeGridDimensions(itemCount);
-    fillSpatialGrid(itemCount);
+    buildFrom(data, itemCount, valuesPerItem);
+}
+
+void SpatialGrid::buildF(const float* data, const int itemCount, const int valuesPerItem)
+{
+    buildFrom(data, itemCount, valuesPerItem);
 }
 
 int SpatialGrid::query(const double x, const double y) const
@@ -106,7 +101,22 @@ int SpatialGrid::cellIndex(const double value, const double min, const double ce
     return static_cast<int>(std::clamp((value - min) / cellSize, 0.0, static_cast<double>(count - 1)));
 }
 
-void SpatialGrid::computeDataBounds(const double* data, const int itemCount, const int valuesPerItem)
+template <typename T> void SpatialGrid::buildFrom(const T* data, const int itemCount, const int valuesPerItem)
+{
+    cells_.clear();
+    largeItems_.clear();
+    itemBounds_.clear();
+    cols_ = 0;
+    rows_ = 0;
+    if (itemCount <= 0 || !data) {
+        return;
+    }
+    computeDataBounds(data, itemCount, valuesPerItem);
+    computeGridDimensions(itemCount);
+    fillSpatialGrid(itemCount);
+}
+
+template <typename T> void SpatialGrid::computeDataBounds(const T* data, const int itemCount, const int valuesPerItem)
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
