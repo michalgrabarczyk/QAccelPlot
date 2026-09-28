@@ -54,6 +54,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
 - `RectangleList` no longer blocks hover for series underneath it.
+- Attaching an empty series no longer resets an axis's `dataMin` and `dataMax` to 0 and 1.
 
 ## [0.3.0] — 2026-09-25
 

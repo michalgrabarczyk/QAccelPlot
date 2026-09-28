@@ -5,13 +5,17 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/RectangleList.hpp"
 
 #include <QSignalSpy>
 #include <QtTest/QtTest>
 
 #include <limits>
 #include <memory>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -31,6 +35,27 @@ protected:
     }
 };
 
+struct AppRangeAxes {
+    Axis x;
+    Axis y;
+
+    AppRangeAxes()
+    {
+        x.setDataMin(-5.0);
+        x.setDataMax(5.0);
+        y.setDataMin(-1.15);
+        y.setDataMax(1.15);
+    }
+
+    void verifyAppRange() const
+    {
+        QCOMPARE(x.dataMin(), -5.0);
+        QCOMPARE(x.dataMax(), 5.0);
+        QCOMPARE(y.dataMin(), -1.15);
+        QCOMPARE(y.dataMax(), 1.15);
+    }
+};
+
 } // namespace
 
 class PlotSeriesDataRangesTest : public QObject {
@@ -40,6 +65,11 @@ private slots:
     void nonFiniteXDoesNotBlockFiniteYUpdate();
     void nonFiniteYDoesNotBlockFiniteXUpdate();
     void replacingDestroyedLogAxisReportsScaleChange();
+    void emptyPointCloudKeepsApplicationDataRange();
+    void emptyRectangleListKeepsApplicationDataRange();
+    void clearedEmptyLineCurveKeepsApplicationDataRange();
+    void rescaleAfterEmptySeriesUsesApplicationDataRange();
+    void clearingReportedRangeUpdatesAxis();
 };
 
 void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYUpdate()
@@ -81,6 +111,77 @@ void PlotSeriesDataRangesTest::replacingDestroyedLogAxisReportsScaleChange()
     series.setYAxis(&linearAxis);
 
     QCOMPARE(series.scaleChangeCount, 4);
+}
+
+void PlotSeriesDataRangesTest::emptyPointCloudKeepsApplicationDataRange()
+{
+    auto axes = AppRangeAxes{};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    axes.verifyAppRange();
+
+    cloud.setDataFNoRange({0.0F, 0.0F, 1.0F, 1.0F}, {}, 2);
+    axes.verifyAppRange();
+}
+
+void PlotSeriesDataRangesTest::emptyRectangleListKeepsApplicationDataRange()
+{
+    auto axes = AppRangeAxes{};
+    auto rects = RectangleList{};
+    rects.setXAxis(&axes.x);
+    rects.setYAxis(&axes.y);
+    rects.clearData();
+    axes.verifyAppRange();
+}
+
+void PlotSeriesDataRangesTest::clearedEmptyLineCurveKeepsApplicationDataRange()
+{
+    auto axes = AppRangeAxes{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&axes.x);
+    curve.setYAxis(&axes.y);
+    curve.clearData();
+    axes.verifyAppRange();
+}
+
+void PlotSeriesDataRangesTest::rescaleAfterEmptySeriesUsesApplicationDataRange()
+{
+    auto axes = AppRangeAxes{};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+
+    axes.y.rescaleToData();
+
+    QCOMPARE(axes.y.viewportMin(), -1.15);
+    QCOMPARE(axes.y.viewportMax(), 1.15);
+}
+
+void PlotSeriesDataRangesTest::clearingReportedRangeUpdatesAxis()
+{
+    auto axes = AppRangeAxes{};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    auto reporter = PointCloud{};
+    reporter.setXAxis(&axes.x);
+    reporter.setYAxis(&axes.y);
+
+    cloud.setData(QList<QPointF>{{2.0, 3.0}, {4.0, 6.0}});
+    reporter.setData(QList<QPointF>{{1.0, 2.0}});
+    QCOMPARE(axes.x.dataMin(), 1.0);
+    QCOMPARE(axes.x.dataMax(), 4.0);
+
+    cloud.clearData();
+    QCOMPARE(axes.x.dataMin(), 1.0);
+    QCOMPARE(axes.x.dataMax(), 1.0);
+    QCOMPARE(axes.y.dataMin(), 2.0);
+    QCOMPARE(axes.y.dataMax(), 2.0);
+
+    reporter.clearData();
+    QCOMPARE(axes.x.dataMin(), 0.0);
+    QCOMPARE(axes.x.dataMax(), 1.0);
 }
 
 } // namespace QAccelPlot
