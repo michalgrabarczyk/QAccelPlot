@@ -1665,7 +1665,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">const QSGGeometry::AttributeSet &amp;</td>
-<td style="text-align: left;"><a href="#function-attributeset"><strong>attributeSet</strong></a> () <br><em>Returns the per-vertex attribute set:</em> <code>{float</code> <em>pointId, float corner} (8 bytes).</em></td>
+<td style="text-align: left;"><a href="#function-attributeset"><strong>attributeSet</strong></a> () <br><em>Returns the per-vertex attribute set: one ignored</em> <code>uchar4</code> <em>placeholder (4 bytes).</em></td>
 </tr>
 </tbody>
 </table>
@@ -1829,9 +1829,10 @@
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-attributeset">function attributeSet<a class="headerlink" href="#function-attributeset" title="Permanent link">&para;</a></h3>
-<p><em>Returns the per-vertex attribute set:</em> <code>{float</code> <em>pointId, float corner} (8 bytes).</em>
+<p><em>Returns the per-vertex attribute set: one ignored</em> <code>uchar4</code> <em>placeholder (4 bytes).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointCloudMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
+<p>The shader derives the point index and billboard corner from <code>gl_VertexIndex</code>. </p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>

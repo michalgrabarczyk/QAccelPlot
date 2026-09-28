@@ -146,7 +146,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 | Type | Name |
 | ---: | :--- |
-|  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the per-vertex attribute set:_ `{float` _pointId, float corner} (8 bytes)._ |
+|  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the per-vertex attribute set: one ignored_ `uchar4` _placeholder (4 bytes)._ |
 
 
 ## Public Static Functions inherited from QAccelPlot::DataTextureMaterial
@@ -475,13 +475,17 @@ QSGMaterialType * QAccelPlot::PointCloudMaterial::type () override const
 
 ### function attributeSet {#function-attributeset}
 
-_Returns the per-vertex attribute set:_ `{float` _pointId, float corner} (8 bytes)._
+_Returns the per-vertex attribute set: one ignored_ `uchar4` _placeholder (4 bytes)._
 ```C++
 static const QSGGeometry::AttributeSet & QAccelPlot::PointCloudMaterial::attributeSet () 
 ```
 
 
 
+The shader derives the point index and billboard corner from `gl_VertexIndex`. 
+
+
+        
 
 <hr>
 ## Protected Functions Documentation
