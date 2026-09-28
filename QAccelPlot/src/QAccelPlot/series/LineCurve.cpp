@@ -733,7 +733,9 @@ bool LineCurve::contains(const QPointF& point) const
         // Pixel markers ignore the marker size, so hover them within a small fixed radius.
         constexpr static auto kPixelMarkerHitRadiusPx = qreal{3.0};
         const auto hitRadius = marker_->shape() == MarkerShape::Pixel ? kPixelMarkerHitRadiusPx : marker_->size();
-        return pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY});
+        if (pointRenderer_.contains(point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hitRadius, logX, logY})) {
+            return true;
+        }
     }
 
     if (lineStyle_ && lineStyle_->showLine()) {
