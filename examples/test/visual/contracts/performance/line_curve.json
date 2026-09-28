@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "name": "performance/default",
-  "description": "A high-density live-data plot. Judge only content inside the plot; ignore metric cards, telemetry, headings, buttons, controls, side panels, and other surrounding UI.",
+  "name": "performance/line_curve",
+  "description": "The LineCurve tab of a live-data performance showcase. Judge only content inside the plot; ignore metric cards, telemetry, headings, buttons, controls, side panels, and other surrounding UI.",
   "expected_image": {
     "width": 1400,
     "height": 900,
@@ -20,7 +20,7 @@
     {
       "id": "dense_curve",
       "severity": "high",
-      "expectation": "A continuous high-density oscillating curve spans the Sample domain plot between approximately -10 and 10 Amplitude. Repeated peaks and troughs are visible rather than a blank plot or solid block."
+      "expectation": "A continuous high-density sine wave spans the Sample domain plot between approximately -8 and 8 Amplitude. Repeated peaks and troughs of equal height are visible rather than a blank plot or solid block."
     },
     {
       "id": "text_raster_quality",

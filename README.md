@@ -114,7 +114,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Category | Example | Description |
 | :--- | :--- | :--- |
 | Showcases | **[Cosmic Pulsar](examples/showcases/pulsar/)** | Animated 80-ridge CP 1919 waterfall; dense antialiased lines fed from a worker thread. |
-| Showcases | **[Performance](examples/showcases/performance/)** | Stress test up to 10M points with display FPS and data update rate. |
+| Showcases | **[Performance](examples/showcases/performance/)** | Stream up to 10M points or rectangles per tab with display FPS and data update rate. |
 | Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 | Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip. |

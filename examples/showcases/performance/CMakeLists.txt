@@ -8,9 +8,16 @@
 qaccelplot_add_example(Performance
     SOURCES
         src/DataDeliveryMetrics.cpp
-        src/DataGenerationWorker.cpp
+        src/GalaxyGenerator.cpp
+        src/PlasmaGenerator.cpp
+        src/ShowcaseController.cpp
+        src/SineLookup.cpp
+        src/SineWaveGenerator.cpp
         src/main.cpp
     QML_FILES
         qml/ControlPanel.qml
+        qml/LineCurvePage.qml
+        qml/PointCloudPage.qml
+        qml/RectangleListPage.qml
         qml/main.qml
 )

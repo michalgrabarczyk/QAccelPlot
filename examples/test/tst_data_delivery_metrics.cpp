@@ -15,6 +15,7 @@ class DataDeliveryMetricsTest : public QObject {
 private slots:
     void countsAppliedBatches();
     void recordsLongestApplicationGap();
+    void restartedGapTrackingSkipsTheNextGap();
     void snapshotsResetIntervalCounters();
 };
 
@@ -36,6 +37,20 @@ void DataDeliveryMetricsTest::recordsLongestApplicationGap()
     metrics.dataApplied(190);
 
     QCOMPARE(metrics.takeSnapshot().longestDataGapNanoseconds, std::int64_t{65});
+}
+
+void DataDeliveryMetricsTest::restartedGapTrackingSkipsTheNextGap()
+{
+    auto metrics = QAccelPlotExample::DataDeliveryMetrics{};
+    metrics.dataApplied(100);
+    metrics.dataApplied(110);
+    metrics.restartGapTracking();
+    metrics.dataApplied(500);
+    metrics.dataApplied(520);
+
+    const auto snapshot = metrics.takeSnapshot();
+    QCOMPARE(snapshot.appliedBatches, std::uint64_t{4});
+    QCOMPARE(snapshot.longestDataGapNanoseconds, std::int64_t{20});
 }
 
 void DataDeliveryMetricsTest::snapshotsResetIntervalCounters()

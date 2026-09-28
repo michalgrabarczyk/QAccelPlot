@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "name": "performance/point_cloud",
+  "description": "The PointCloud tab of a live-data performance showcase. Judge only content inside the plot; ignore metric cards, telemetry, headings, tabs, buttons, controls, side panels, and other surrounding UI.",
+  "expected_image": {
+    "width": 1400,
+    "height": 900,
+    "minimum_file_size_bytes": 50000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "One coherent plot is visible with its axes and grid. Fail only if the axes, tick labels, or the plot area itself are cut off, or points are drawn outside the plot area. Do not evaluate metric cards, telemetry, tabs, controls, side panels, or other content outside the plot."
+    },
+    {
+      "id": "spiral_galaxy",
+      "severity": "high",
+      "expectation": "A dense cloud of small points forms a roughly circular spiral galaxy centered near x = 0, y = 0 with a radius of about 1. Several curved spiral arms are visible, separated by sparser gaps, rather than a blank plot or a uniform solid disk."
+    },
+    {
+      "id": "galaxy_colors",
+      "severity": "medium",
+      "expectation": "Points are colored like a galaxy: a warm white or golden core, arms shifting through pale blue to deeper blue and violet toward the rim, with scattered pink points in the arms."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plot, axis titles and tick labels are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with metric cards, telemetry, headings, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    }
+  ]
+}
