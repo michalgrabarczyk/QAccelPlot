@@ -527,6 +527,10 @@
     <member refid="classQAccelPlot_1_1DataAnchor_1a3b62c968bf2e879ab6c9bf25a9ad8ba3" kind="signal"><name>hoverThresholdChanged</name></member>
     <member refid="classQAccelPlot_1_1DataAnchor_1af424922e0f32b06e5d6f0999aa7d96ec" kind="function"><name>updateGeometry</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kind="struct"><name>QAccelPlot::PlotSeries::DataExtent</name>
+    <member refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent_1a38c5fa456f786ce2cc0e0e5b119666a6" kind="variable"><name>min</name></member>
+    <member refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent_1a0de2a64b24b0f548a6e7a213d944f5e3" kind="variable"><name>max</name></member>
+  </compound>
   <compound refid="structQAccelPlot_1_1Axis_1_1DataRange" kind="struct"><name>QAccelPlot::Axis::DataRange</name>
     <member refid="structQAccelPlot_1_1Axis_1_1DataRange_1a46482e10374742e55c07358888031091" kind="variable"><name>min</name></member>
     <member refid="structQAccelPlot_1_1Axis_1_1DataRange_1a6b20814830d46aaf11b12e686774f2eb" kind="variable"><name>max</name></member>
@@ -958,6 +962,7 @@
     <member refid="classQAccelPlot_1_1LineCurve_1aeb78384844d07268e0a6ef032f1f2071" kind="function"><name>hasGradientEffect</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a24845103565c8152a4ed5a9b8ded8588" kind="function"><name>resolveGradientColorPayload</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1ac5c0cf8db24ffc1735f61a0ac9c71c01" kind="function"><name>resolveGradientFillPayload</name></member>
+    <member refid="classQAccelPlot_1_1LineCurve_1adcbdeb736c1f4278274cdb5c53525cb5" kind="function"><name>gradientDataRange</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a022b41d79f435b73c0ef68fb09a80fce" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1af826e94992e7574e4b2615f6e5723842" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1LineCurve_1a05a62864d4aa6ef64cb35c457117da06" kind="function"><name>applyDataExtents</name></member>
@@ -1228,6 +1233,8 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" kind="signal"><name>legendSymbolChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" kind="signal"><name>xDataRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" kind="signal"><name>yDataRangeChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" kind="function"><name>xDataRange</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" kind="function"><name>yDataRange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" kind="function"><name>setDataRanges</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" kind="function"><name>setXDataRange</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" kind="function"><name>setYDataRange</name></member>

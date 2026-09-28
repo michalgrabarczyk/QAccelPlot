@@ -42,6 +42,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md)
+([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)
 * [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))

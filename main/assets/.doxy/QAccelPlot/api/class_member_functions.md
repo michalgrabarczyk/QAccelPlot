@@ -189,6 +189,7 @@
 * **gridVisible** ([**QAccelPlot::Grid**](classQAccelPlot_1_1Grid.md))
 * **GridNode** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
 * **gaps** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **gradientDataRange** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **grid** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
@@ -611,6 +612,7 @@
 
 * **x** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **xAxis** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **xDataRange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **x2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
@@ -618,6 +620,7 @@
 
 * **y** ([**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md), [**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **yAxis** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **yDataRange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **y2Axis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 

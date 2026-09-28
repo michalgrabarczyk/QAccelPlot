@@ -30,6 +30,7 @@
 #endif
 
 #include <limits>
+#include <optional>
 
 namespace QAccelPlot {
 
@@ -98,6 +99,13 @@ signals:
     void yDataRangeChanged(qreal min, qreal max);
 
 protected:
+    struct DataExtent {
+        qreal min; 
+        qreal max; 
+    };
+
+    std::optional<DataExtent> xDataRange() const;
+    std::optional<DataExtent> yDataRange() const;
     void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     void setXDataRange(qreal min, qreal max);
     void setYDataRange(qreal min, qreal max);

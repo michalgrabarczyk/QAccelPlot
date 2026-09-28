@@ -1595,6 +1595,7 @@
 <ul>
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
+<li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
 <li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.</li>

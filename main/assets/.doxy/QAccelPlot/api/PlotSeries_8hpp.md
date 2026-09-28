@@ -24,6 +24,7 @@
 * `#include <QString>`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <limits>`
+* `#include <optional>`
 
 
 

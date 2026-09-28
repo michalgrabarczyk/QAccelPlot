@@ -34,6 +34,7 @@
 #include <QQmlListProperty>
 #include <QQuickItem>
 
+#include <utility>
 #include <vector>
 
 namespace QAccelPlot {
@@ -131,6 +132,7 @@ private:
     bool hasGradientEffect() const;
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
+    std::pair<qreal, qreal> gradientDataRange(GradientDirection direction) const;
 
     enum class DataType { Float, Double };
 
