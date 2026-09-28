@@ -1150,6 +1150,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#function-appendenvelopesamples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function appendEnvelopeSamples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-compactvalidpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1215,17 +1226,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#function-sampledsourceindex" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function sampledSourceIndex
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1261,6 +1261,10 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-appendenvelopesamples"><strong>appendEnvelopeSamples</strong></a> (const <a href="../structQAccelPlot_1_1CurveDataView/"><strong>CurveDataView</strong></a> &amp; data, const <a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> &amp; run, int sampledCount, std::vector&lt; int &gt; &amp; indices) <br><em>Appends</em> <em>sampledCount</em> <em>source indices of__run</em> <em>in__data</em> <em>to__indices</em> <em>, in index order.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#function-compactvalidpoints"><strong>compactValidPoints</strong></a> (const std::vector&lt; float &gt; &amp; data, int pointCount, bool logScaleX, bool logScaleY, std::vector&lt; float &gt; &amp; output) <br><em>Copies the valid samples of interleaved float</em> <em>data</em> <em>into__output</em> <em>.</em></td>
 </tr>
@@ -1284,57 +1288,54 @@
 <td style="text-align: right;">std::vector&lt; int &gt;</td>
 <td style="text-align: left;"><a href="#function-planrunsampling"><strong>planRunSampling</strong></a> (const std::vector&lt; <a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> &gt; &amp; runs, int maxSampledPoints) <br><em>Distributes a budget of</em> <em>maxSampledPoints</em> <em>across__runs</em> <em>.</em></td>
 </tr>
-<tr>
-<td style="text-align: right;">int</td>
-<td style="text-align: left;"><a href="#function-sampledsourceindex"><strong>sampledSourceIndex</strong></a> (const <a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> &amp; run, int sampleIndex, int sampledCount) <br><em>Maps a sampled position</em> <em>sampleIndex</em> <em>of__sampledCount</em> <em>onto a source index within__run</em> <em>.</em></td>
-</tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>A sample is invalid when either coordinate is non-finite, or is not strictly positive on a logarithmic dimension. See <code>isValidSample()</code> in <code>MathUtils.hpp</code>. </p>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-appendenvelopesamples">function appendEnvelopeSamples<a class="headerlink" href="#function-appendenvelopesamples" title="Permanent link">&para;</a></h3>
+<p><em>Appends</em> <em>sampledCount</em> <em>source indices of__run</em> <em>in__data</em> <em>to__indices</em> <em>, in index order.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">appendEnvelopeSamples</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveDataView</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampledCount</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">indices</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Keeps every sample when <em>sampledCount</em> covers the run. Otherwise keeps the run's endpoints and the lowest and highest Y sample of equally sized buckets, so the decimated curve keeps its peaks. </p>
+<hr>
+
 <h3 id="function-compactvalidpoints">function compactValidPoints<a class="headerlink" href="#function-compactvalidpoints" title="Permanent link">&para;</a></h3>
 <p><em>Copies the valid samples of interleaved float</em> <em>data</em> <em>into__output</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">compactValidPoints</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">compactValidPoints</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Returns the number of samples written. <em>output</em> is resized to exactly that many XY pairs. </p>
 <hr>
 
 <h3 id="function-compactvalidpoints">function compactValidPoints<a class="headerlink" href="#function-compactvalidpoints" title="Permanent link">&para;</a></h3>
 <p><em>Copies the valid samples of interleaved double</em> <em>data</em> <em>into__output</em> <em>and the matching entries of the parallel float__renderData</em> <em>into__renderOutput</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">compactValidPoints</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">renderData</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span><span class="p">,</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">,</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">renderOutput</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">compactValidPoints</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">renderData</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">renderOutput</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Validity is decided from the double values. Returns the number of samples written. </p>
 <hr>
 
 <h3 id="function-countinvalidpoints">function countInvalidPoints<a class="headerlink" href="#function-countinvalidpoints" title="Permanent link">&para;</a></h3>
 <p><em>Returns the number of invalid samples among the first</em> <em>pointCount</em> <em>samples of__data</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">countInvalidPoints</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveDataView</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-findvalidruns">function findValidRuns<a class="headerlink" href="#function-findvalidruns" title="Permanent link">&para;</a></h3>
-<p><em>Returns the maximal runs of consecutive valid samples in</em> <em>data</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">findValidRuns</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">countInvalidPoints</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveDataView</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
@@ -1343,35 +1344,36 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-isvalidpoint">function isValidPoint<a class="headerlink" href="#function-isvalidpoint" title="Permanent link">&para;</a></h3>
-<p><em>Returns</em> <code>true</code> <em>when both coordinates of sample__index</em> <em>in__data</em> <em>are valid.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">isValidPoint</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-findvalidruns">function findValidRuns<a class="headerlink" href="#function-findvalidruns" title="Permanent link">&para;</a></h3>
+<p><em>Returns the maximal runs of consecutive valid samples in</em> <em>data</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">findValidRuns</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveDataView</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-planrunsampling">function planRunSampling<a class="headerlink" href="#function-planrunsampling" title="Permanent link">&para;</a></h3>
-<p><em>Distributes a budget of</em> <em>maxSampledPoints</em> <em>across__runs</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">planRunSampling</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">runs</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSampledPoints</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-isvalidpoint">function isValidPoint<a class="headerlink" href="#function-isvalidpoint" title="Permanent link">&para;</a></h3>
+<p><em>Returns</em> <code>true</code> <em>when both coordinates of sample__index</em> <em>in__data</em> <em>are valid.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">isValidPoint</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CurveDataView</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleX</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScaleY</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>Returns one sampled count per run. Runs with fewer than two samples receive zero (they cannot form an area). Every other run keeps at least its first and last sample, so the total may exceed the budget by at most two samples per run when a curve contains very many gaps. </p>
 <hr>
 
-<h3 id="function-sampledsourceindex">function sampledSourceIndex<a class="headerlink" href="#function-sampledsourceindex" title="Permanent link">&para;</a></h3>
-<p><em>Maps a sampled position</em> <em>sampleIndex</em> <em>of__sampledCount</em> <em>onto a source index within__run</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">sampledSourceIndex</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">run</span><span class="p">,</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleIndex</span><span class="p">,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampledCount</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span><span class="w"> </span>
+<h3 id="function-planrunsampling">function planRunSampling<a class="headerlink" href="#function-planrunsampling" title="Permanent link">&para;</a></h3>
+<p><em>Distributes a budget of</em> <em>maxSampledPoints</em> <em>across__runs</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveGapFilter</span><span class="o">::</span><span class="n">planRunSampling</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">SampleRun</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">runs</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSampledPoints</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
+<p>Returns one sampled count per run. Runs with fewer than two samples receive zero (they cannot form an area). Every other run keeps at least its first and last sample, so the total may exceed the budget by at most two samples per run when a curve contains very many gaps. </p>
 <hr>
 
 <hr />

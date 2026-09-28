@@ -54,6 +54,7 @@
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Samples of a gradient fill: one group per valid-sample run, broken at gaps._  |
 | class | [**LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md) <br>_Internal renderer responsible for building and updating QSGNode line geometry for a_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _._ |
 | struct | [**LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) <br>_Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._ |
 | struct | [**LineVertex**](structQAccelPlot_1_1LineVertex.md) <br>_Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._  |

@@ -20,6 +20,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::CurveDataView**](structQAccelPlot_1_1CurveDataView.md) _Read-only view over either interleaved float or double curve coordinates._ 
 * **struct** [**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md) _All inputs required for a_ `contains()` _hit-test, bundled to reduce parameter count._
 * **struct** [**QAccelPlot::DashParameters**](structQAccelPlot_1_1DashParameters.md) _Plain-data snapshot of dash rendering parameters._ 
+* **struct** [**QAccelPlot::FillSamples**](structQAccelPlot_1_1FillSamples.md) _Samples of a gradient fill: one group per valid-sample run, broken at gaps._ 
 * **struct** [**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._ 
 * **struct** [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md) _Render-thread snapshot of gradient fill (area-under-curve) parameters._ 
 * **struct** [**QAccelPlot::GradientStopData**](structQAccelPlot_1_1GradientStopData.md) _A single color stop within a gradient definition._ 
@@ -32,7 +33,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md) 
 * **struct** [**QAccelPlot::ColorBar::Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md) 
 * **struct** [**QAccelPlot::GridNode::GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md) 
-* **struct** [**QAccelPlot::LineCurveLineRenderer::FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md) 
+* **struct** [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md) 
 * **struct** [**QAccelPlot::PointSpatialIndex::IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md) 
 * **struct** [**QAccelPlot::RectangleList::RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md) 
 * **struct** [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md) 

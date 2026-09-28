@@ -55,7 +55,9 @@
 
 ## f
 
-* [**FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md)
+* [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)
+* [**FillSamples**](structQAccelPlot_1_1FillSamples.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## g

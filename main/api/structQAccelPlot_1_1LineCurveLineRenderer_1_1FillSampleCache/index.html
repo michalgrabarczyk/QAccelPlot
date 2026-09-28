@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/LineCurveLineRenderer_8hpp/">
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>File LineCurveLineRenderer.hpp - QAccelPlot Documentation</title>
+        <title>Struct QAccelPlot::LineCurveLineRenderer::FillSampleCache - QAccelPlot Documentation</title>
       
     
     
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#file-linecurvelinerendererhpp" class="md-skip">
+        <a href="#struct-qaccelplotlinecurvelinerendererfillsamplecache" class="md-skip">
           Skip to content
         </a>
       
@@ -150,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              File LineCurveLineRenderer.hpp
+              Struct QAccelPlot::LineCurveLineRenderer::FillSampleCache
             
           </span>
         </div>
@@ -1116,10 +1116,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#namespaces" class="md-nav__link">
+  <a href="#public-attributes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Namespaces
+        Public Attributes
       
     </span>
   </a>
@@ -1127,13 +1127,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#classes" class="md-nav__link">
+  <a href="#public-attributes-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Classes
+        Public Attributes Documentation
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Public Attributes Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-logscalex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable logScaleX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-logscaley" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable logScaleY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-pointcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable pointCount
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable samples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1154,23 +1215,9 @@
 
 
 
-<h1 id="file-linecurvelinerendererhpp">File LineCurveLineRenderer.hpp<a class="headerlink" href="#file-linecurvelinerendererhpp" title="Permanent link">&para;</a></h1>
-<p><a href="../files/"><strong>FileList</strong></a> <strong>&gt;</strong> <a href="../dir_84505bf06e96cd50072ae15b96eb466a/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../dir_3588d0448386bbe164b4703bb7530415/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../dir_0cbea278626d30118177d562182e643b/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="../dir_a5593d4bbe882811c43c55c842f746b7/"><strong>renderers</strong></a> <strong>&gt;</strong> <a href="./"><strong>LineCurveLineRenderer.hpp</strong></a></p>
-<p><a href="../LineCurveLineRenderer_8hpp_source/">Go to the source code of this file</a></p>
-<ul>
-<li><code>#include "QAccelPlot/axis/Axis.hpp"</code></li>
-<li><code>#include "QAccelPlot/effects/GradientColorTypes.hpp"</code></li>
-<li><code>#include "QAccelPlot/linestyles/LineStyle.hpp"</code></li>
-<li><code>#include "QAccelPlot/renderers/CurveRendererParams.hpp"</code></li>
-<li><code>#include "QAccelPlot/series/LineCurveGapFilter.hpp"</code></li>
-<li><code>#include &lt;QColor&gt;</code></li>
-<li><code>#include &lt;QPointF&gt;</code></li>
-<li><code>#include &lt;QSGGeometry&gt;</code></li>
-<li><code>#include &lt;QSGNode&gt;</code></li>
-<li><code>#include &lt;QVector2D&gt;</code></li>
-<li><code>#include &lt;vector&gt;</code></li>
-</ul>
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
+<h1 id="struct-qaccelplotlinecurvelinerendererfillsamplecache">Struct QAccelPlot::LineCurveLineRenderer::FillSampleCache<a class="headerlink" href="#struct-qaccelplotlinecurvelinerendererfillsamplecache" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="./"><strong>FillSampleCache</strong></a></p>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1180,38 +1227,53 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">namespace</td>
-<td style="text-align: left;"><a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <br></td>
+<td style="text-align: right;">const void *</td>
+<td style="text-align: left;"><a href="#variable-data"><strong>data</strong></a>   = <code>{nullptr}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-logscalex"><strong>logScaleX</strong></a>   = <code>{false}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#variable-logscaley"><strong>logScaleY</strong></a>   = <code>{false}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#variable-pointcount"><strong>pointCount</strong></a>   = <code>{-1}</code><br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a></td>
+<td style="text-align: left;"><a href="#variable-samples"><strong>samples</strong></a>  <br></td>
 </tr>
 </tbody>
 </table>
-<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <br><em>Samples of a gradient fill: one group per valid-sample run, broken at gaps.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>LineCurveLineRenderer</strong></a> <br><em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>LineCurveRenderParams</strong></a> <br><em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">struct</td>
-<td style="text-align: left;"><a href="../structQAccelPlot_1_1LineVertex/"><strong>LineVertex</strong></a> <br><em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em></td>
-</tr>
-</tbody>
-</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-data">variable data<a class="headerlink" href="#variable-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">FillSampleCache</span><span class="o">::</span><span class="n">data</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-logscalex">variable logScaleX<a class="headerlink" href="#variable-logscalex" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">FillSampleCache</span><span class="o">::</span><span class="n">logScaleX</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-logscaley">variable logScaleY<a class="headerlink" href="#variable-logscaley" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">FillSampleCache</span><span class="o">::</span><span class="n">logScaleY</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-pointcount">variable pointCount<a class="headerlink" href="#variable-pointcount" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">FillSampleCache</span><span class="o">::</span><span class="n">pointCount</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
+<h3 id="variable-samples">variable samples<a class="headerlink" href="#variable-samples" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">FillSamples</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurveLineRenderer</span><span class="o">::</span><span class="n">FillSampleCache</span><span class="o">::</span><span class="n">samples</span><span class="p">;</span>
+</code></pre></div>
+<hr>
+
 <hr />
 <p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp</code></p>
 

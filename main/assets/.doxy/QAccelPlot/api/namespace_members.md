@@ -3,6 +3,11 @@
 
 
 
+## a
+
+* **appendEnvelopeSamples** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
+
+
 ## c
 
 * **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
@@ -69,7 +74,6 @@
 ## s
 
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
-* **sampledSourceIndex** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
 ## u

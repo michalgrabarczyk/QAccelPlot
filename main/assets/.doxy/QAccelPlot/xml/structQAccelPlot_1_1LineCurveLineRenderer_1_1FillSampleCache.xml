@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::LineCurveLineRenderer::FillSampleCache</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a1a8ed73aed0b0982c6d537678697fe58" prot="public" static="no" mutable="no">
+        <type>const void *</type>
+        <definition>const void* QAccelPlot::LineCurveLineRenderer::FillSampleCache::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::FillSampleCache::data</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="96" column="20" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a9bc0fa0309af1dd29fd5b0e4e118fc07" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineCurveLineRenderer::FillSampleCache::pointCount</definition>
+        <argsstring></argsstring>
+        <name>pointCount</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::FillSampleCache::pointCount</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="97" column="13" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a437129e2bae38b9ce0043cdd2b111ee1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveLineRenderer::FillSampleCache::logScaleX</definition>
+        <argsstring></argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::FillSampleCache::logScaleX</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="98" column="14" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a457ba48f251c42e63a254ded7f1eb42b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineCurveLineRenderer::FillSampleCache::logScaleY</definition>
+        <argsstring></argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::FillSampleCache::logScaleY</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="99" column="14" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1ae7841549972de5bba482a7b8e75ab3c8" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1FillSamples" kindref="compound">FillSamples</ref></type>
+        <definition>FillSamples QAccelPlot::LineCurveLineRenderer::FillSampleCache::samples</definition>
+        <argsstring></argsstring>
+        <name>samples</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::FillSampleCache::samples</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="100" column="21" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::FillSamples</label>
+        <link refid="structQAccelPlot_1_1FillSamples"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LineCurveLineRenderer::FillSampleCache</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>samples</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="95" column="5" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="95" bodyend="101"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a1a8ed73aed0b0982c6d537678697fe58" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer::FillSampleCache</scope><name>data</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a437129e2bae38b9ce0043cdd2b111ee1" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer::FillSampleCache</scope><name>logScaleX</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a457ba48f251c42e63a254ded7f1eb42b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer::FillSampleCache</scope><name>logScaleY</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1a9bc0fa0309af1dd29fd5b0e4e118fc07" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer::FillSampleCache</scope><name>pointCount</name></member>
+      <member refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache_1ae7841549972de5bba482a7b8e75ab3c8" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer::FillSampleCache</scope><name>samples</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

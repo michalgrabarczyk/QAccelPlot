@@ -3,21 +3,21 @@
   <compounddef id="classQAccelPlot_1_1LineCurveLineRenderer" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::LineCurveLineRenderer</compoundname>
     <includes local="no">LineCurveLineRenderer.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache" prot="private">QAccelPlot::LineCurveLineRenderer::FillRunCache</innerclass>
+    <innerclass refid="structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache" prot="private">QAccelPlot::LineCurveLineRenderer::FillSampleCache</innerclass>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveLineRenderer_1aa6dd314ead87dbb322d5a5dad7c3548b" prot="private" static="no" mutable="yes">
-        <type>FillRunCache</type>
-        <definition>FillRunCache QAccelPlot::LineCurveLineRenderer::fillRunCache_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1LineCurveLineRenderer_1aa99d416e318386cbd8e05b097059a2f5" prot="private" static="no" mutable="yes">
+        <type>FillSampleCache</type>
+        <definition>FillSampleCache QAccelPlot::LineCurveLineRenderer::fillSampleCache_</definition>
         <argsstring></argsstring>
-        <name>fillRunCache_</name>
-        <qualifiedname>QAccelPlot::LineCurveLineRenderer::fillRunCache_</qualifiedname>
+        <name>fillSampleCache_</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::fillSampleCache_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="106" column="26" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="106" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="112" column="29" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="112" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="76" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="82" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="79" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="85" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QSGNode *</type>
@@ -94,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="85" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="91" column="13"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -118,14 +118,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="97" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="103" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1ac4a9e0289f123eb53052f505cc8c1931" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>const std::vector&lt; <ref refid="structQAccelPlot_1_1SampleRun" kindref="compound">SampleRun</ref> &gt; &amp;</type>
-        <definition>const std::vector&lt; SampleRun &gt; &amp; QAccelPlot::LineCurveLineRenderer::validRuns</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1a1b52a3889372e19d879605bba2fc3cc9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structQAccelPlot_1_1FillSamples" kindref="compound">FillSamples</ref> &amp;</type>
+        <definition>const FillSamples &amp; QAccelPlot::LineCurveLineRenderer::fillSamples</definition>
         <argsstring>(const LineCurveRenderParams &amp;params) const</argsstring>
-        <name>validRuns</name>
-        <qualifiedname>QAccelPlot::LineCurveLineRenderer::validRuns</qualifiedname>
+        <name>fillSamples</name>
+        <qualifiedname>QAccelPlot::LineCurveLineRenderer::fillSamples</qualifiedname>
         <param>
           <type>const <ref refid="structQAccelPlot_1_1LineCurveRenderParams" kindref="compound">LineCurveRenderParams</ref> &amp;</type>
           <declname>params</declname>
@@ -136,7 +136,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="98" column="23"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="104" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -170,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="99" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="105" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="101" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="107" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1LineCurveLineRenderer_1abfab712d021f205b5f87da1134df7eb5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -226,7 +226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="102" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="108" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -235,17 +235,17 @@
     <detaileddescription>
 <para>Supports solid and dashed lines, gradient stroke, gradient fill, and optional pre-built vertex caches assembled on the main thread for reduced render-thread stalls. </para>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="71" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="71" bodyend="107"/>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="77" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="77" bodyend="113"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa3fd5b32404b8e54f73ab1a06a9dd837" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>buildVertexCache</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1acd5483c4b2fa460e54d9ed26707b3664" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>computeArcLengths</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a17184b26756ffd86f96dcdf75bb64261" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>contains</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa6dd314ead87dbb322d5a5dad7c3548b" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>fillRunCache_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aa99d416e318386cbd8e05b097059a2f5" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>fillSampleCache_</name></member>
+      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1a1b52a3889372e19d879605bba2fc3cc9" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>fillSamples</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1af7080fe3330b521649272adbb02774d2" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>paint</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1aad2aeb6202a3f49358ebef70f7984a74" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateFillGeometry</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abdb98a8664940d4af7055b827f0cdc6a" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineMaterial</name></member>
       <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1abfab712d021f205b5f87da1134df7eb5" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>updateLineVertices</name></member>
-      <member refid="classQAccelPlot_1_1LineCurveLineRenderer_1ac4a9e0289f123eb53052f505cc8c1931" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurveLineRenderer</scope><name>validRuns</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

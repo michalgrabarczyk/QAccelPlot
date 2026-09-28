@@ -120,32 +120,37 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="42" column="14" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="42" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a2dc9ce0bd784c50fc775e5a92d606839" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::LineCurveGapFilter::sampledSourceIndex</definition>
-        <argsstring>(const SampleRun &amp;run, int sampleIndex, int sampledCount)</argsstring>
-        <name>sampledSourceIndex</name>
-        <qualifiedname>QAccelPlot::LineCurveGapFilter::sampledSourceIndex</qualifiedname>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1aaf745771170699f3cb1f3c3338ae11d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::LineCurveGapFilter::appendEnvelopeSamples</definition>
+        <argsstring>(const CurveDataView &amp;data, const SampleRun &amp;run, int sampledCount, std::vector&lt; int &gt; &amp;indices)</argsstring>
+        <name>appendEnvelopeSamples</name>
+        <qualifiedname>QAccelPlot::LineCurveGapFilter::appendEnvelopeSamples</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1CurveDataView" kindref="compound">CurveDataView</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
         <param>
           <type>const <ref refid="structQAccelPlot_1_1SampleRun" kindref="compound">SampleRun</ref> &amp;</type>
           <declname>run</declname>
         </param>
         <param>
           <type>int</type>
-          <declname>sampleIndex</declname>
-        </param>
-        <param>
-          <type>int</type>
           <declname>sampledCount</declname>
         </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
         <briefdescription>
-<para>Maps a sampled position <emphasis>sampleIndex</emphasis> of <emphasis>sampledCount</emphasis> onto a source index within <emphasis>run</emphasis>. </para>
+<para>Appends <emphasis>sampledCount</emphasis> source indices of <emphasis>run</emphasis> in <emphasis>data</emphasis> to <emphasis>indices</emphasis>, in index order. </para>
         </briefdescription>
         <detaileddescription>
+<para>Keeps every sample when <emphasis>sampledCount</emphasis> covers the run. Otherwise keeps the run&apos;s endpoints and the lowest and highest Y sample of equally sized buckets, so the decimated curve keeps its peaks. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="45" column="6" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="45" declcolumn="6"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="48" column="6" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="48" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1a38e5da38fd1d66c688725c7b9c9f1d13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -181,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="50" column="5" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="50" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="53" column="5" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="53" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="namespaceQAccelPlot_1_1LineCurveGapFilter_1aaf77fba8f05844eca0d5250c7b07e262" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -225,7 +230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="56" column="5" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="56" declcolumn="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" line="59" column="5" declfile="QAccelPlot/src/QAccelPlot/series/LineCurveGapFilter.hpp" declline="59" declcolumn="5"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

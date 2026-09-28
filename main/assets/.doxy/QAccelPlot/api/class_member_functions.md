@@ -161,6 +161,7 @@
 
 * **finish** ([**QAccelPlot::DataTransition::Run**](classQAccelPlot_1_1DataTransition_1_1Run.md))
 * **finishTransition** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **fillSamples** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **finishDataChange** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **fillCells** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
 * **filled** ([**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md))
@@ -594,7 +595,6 @@
 * **valueToPixel** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **validateRawDataArguments** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **validateVectorDataArguments** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **validRuns** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **valid** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **validateDataArguments** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleList**](classQAccelPlot_1_1RectangleList.md))
 * **valueAt** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))

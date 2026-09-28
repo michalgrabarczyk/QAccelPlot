@@ -67,6 +67,7 @@
 | class | [**DataTransition**](classQAccelPlot_1_1DataTransition.md) <br>_Abstract base class for animated data transitions on plot elements._  |
 | class | [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) <br>_A tick label formatter that displays tick values as formatted date/time strings._  |
 | class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target curve by drawing it point-by-point from start to end._  |
+| struct | [**FillSamples**](structQAccelPlot_1_1FillSamples.md) <br>_Samples of a gradient fill: one group per valid-sample run, broken at gaps._  |
 | struct | [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) <br>_Render-thread snapshot of gradient stroke (line-color) parameters._  |
 | class | [**GradientFill**](classQAccelPlot_1_1GradientFill.md) <br>_A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._ |
 | class | [**GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) <br>_Scene-graph material that evaluates fill gradients per fragment._  |

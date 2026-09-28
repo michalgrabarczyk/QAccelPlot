@@ -27,6 +27,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._     
     * **class** [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._     
     * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target curve by drawing it point-by-point from start to end._     
+    * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Samples of a gradient fill: one group per valid-sample run, broken at gaps._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **namespace** [**GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md) _Namespace exposing the_ `GradientDirection` _enum to QML._    
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
@@ -79,7 +80,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)     
 * **struct** [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
-* **struct** [**FillRunCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillRunCache.md)     
+* **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
 * **struct** [**RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md)     
 * **struct** [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)     

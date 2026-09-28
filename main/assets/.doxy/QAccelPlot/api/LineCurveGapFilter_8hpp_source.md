@@ -38,7 +38,7 @@ namespace LineCurveGapFilter {
 
 [[nodiscard]] std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, int maxSampledPoints);
 
-[[nodiscard]] int sampledSourceIndex(const SampleRun& run, int sampleIndex, int sampledCount);
+void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, int sampledCount, std::vector<int>& indices);
 
 int compactValidPoints(const std::vector<float>& data, int pointCount, bool logScaleX, bool logScaleY, std::vector<float>& output);
 

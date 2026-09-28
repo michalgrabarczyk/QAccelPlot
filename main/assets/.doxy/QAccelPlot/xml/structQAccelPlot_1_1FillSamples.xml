@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1FillSamples" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::FillSamples</compoundname>
+    <includes local="no">LineCurveLineRenderer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1FillSamples_1ad44cbb10f3ba069744505cb4d6098664" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::FillSamples::sampledCounts</definition>
+        <argsstring></argsstring>
+        <name>sampledCounts</name>
+        <qualifiedname>QAccelPlot::FillSamples::sampledCounts</qualifiedname>
+        <briefdescription>
+<para>Number of samples of each run; zero for runs too short to fill. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="69" column="17" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1FillSamples_1ad6b22fe0a92689c6bbc01da4497259c8" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::FillSamples::indices</definition>
+        <argsstring></argsstring>
+        <name>indices</name>
+        <qualifiedname>QAccelPlot::FillSamples::indices</qualifiedname>
+        <briefdescription>
+<para>Source indices of all sampled runs, run after run. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="70" column="17" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Samples of a gradient fill: one group per valid-sample run, broken at gaps. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" line="68" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineCurveLineRenderer.hpp" bodystart="68" bodyend="71"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1FillSamples_1ad6b22fe0a92689c6bbc01da4497259c8" prot="public" virt="non-virtual"><scope>QAccelPlot::FillSamples</scope><name>indices</name></member>
+      <member refid="structQAccelPlot_1_1FillSamples_1ad44cbb10f3ba069744505cb4d6098664" prot="public" virt="non-virtual"><scope>QAccelPlot::FillSamples</scope><name>sampledCounts</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
