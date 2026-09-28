@@ -30,6 +30,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <limits>
 
 namespace QAccelPlot {
@@ -47,8 +48,6 @@ constexpr auto kDataTextureWidth = 2048;
 // Texture height assumed when the RHI cannot be queried (Qt < 6.6, or built without the private
 // Qt API); supported by every target GPU.
 constexpr auto kFallbackMaxTextureSize = 8192;
-// Point ids are passed as float vertex attributes, which represent integers exactly up to 2^24.
-constexpr auto kMaxExactFloatInteger = 16777216;
 constexpr auto kMinFeather = qreal{0.0};
 constexpr auto kMaxFeather = qreal{10.0};
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
@@ -87,7 +86,9 @@ int maxTextureSize(QQuickWindow* window)
 int renderablePointCount(QQuickWindow* window, const int pointCount, const int stride)
 {
     const auto maxFloats = static_cast<qint64>(kDataTextureWidth) * static_cast<qint64>(maxTextureSize(window));
-    const auto capacity = std::min<qint64>(maxFloats / stride, kMaxExactFloatInteger);
+    // QSGGeometry sizes its vertex buffer in int bytes.
+    const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * PointCloudMaterial::attributeSet().stride);
+    const auto capacity = std::min<qint64>(maxFloats / stride, maxGeometryPoints);
     if (pointCount <= capacity) {
         return pointCount;
     }
@@ -118,23 +119,12 @@ QSGGeometryNode* createPointCloudNode()
 
 // Two unindexed triangles per point. A 4-vertex indexed quad was measured ~11% slower on desktop
 // OpenGL (44 vs 49 FPS panning 1M points), despite fewer vertex shader invocations.
-void fillPointVertices(QSGGeometry* geometry, const int pointCount)
+// The shader derives everything from gl_VertexIndex and ignores the vertex content; zeroing only
+// avoids uploading uninitialized memory.
+void clearPointVertices(QSGGeometry* geometry)
 {
-    struct PointCloudVertex {
-        float pointId;
-        float corner;
-    };
-
-    static_assert(sizeof(PointCloudVertex) == 8);
-
-    auto* vertices = static_cast<PointCloudVertex*>(geometry->vertexData());
-    for (auto point = 0; point < pointCount; ++point) {
-        const auto base = static_cast<std::size_t>(point) * kVerticesPerPoint;
-        const auto id = static_cast<float>(point);
-        for (auto corner = 0; corner < kVerticesPerPoint; ++corner) {
-            vertices[base + static_cast<std::size_t>(corner)] = {id, static_cast<float>(corner)};
-        }
-    }
+    const auto byteCount = static_cast<std::size_t>(geometry->vertexCount()) * static_cast<std::size_t>(geometry->sizeOfVertex());
+    std::memset(geometry->vertexData(), 0, byteCount);
 }
 
 const std::vector<GradientStopData>& neutralColorStops()
@@ -517,7 +507,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     const auto vertexCount = renderCount * kVerticesPerPoint;
     if (node->geometry()->vertexCount() != vertexCount) {
         node->geometry()->allocate(vertexCount);
-        fillPointVertices(node->geometry(), renderCount);
+        clearPointVertices(node->geometry());
         node->markDirty(QSGNode::DirtyGeometry);
     }
 

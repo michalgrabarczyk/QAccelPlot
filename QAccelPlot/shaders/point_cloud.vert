@@ -8,8 +8,10 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
-layout(location = 0) in float pointId;  // index of the point in the data texture
-layout(location = 1) in float corner;   // 0-5: which vertex of the two-triangle billboard
+// The point index and billboard corner come from gl_VertexIndex. The scene graph requires at least
+// one vertex attribute, so the vertex buffer holds this placeholder; its content is ignored. It is
+// stored as 4 unsigned bytes (UNormByte4, 4 bytes per vertex) and read as a normalized vec4.
+layout(location = 0) in vec4 vertexPadding;
 
 layout(location = 0) out vec2 v_uv;        // +-1 is markerSize; the quad extends further with antialiasing
 layout(location = 1) out float v_colorT;   // normalized colormap coordinate
@@ -62,8 +64,14 @@ void discardPoint() {
 }
 
 void main() {
+    // Reading the placeholder keeps it in the shader interface on every backend. UNorm values are
+    // finite, so the product is always zero.
+    int vertexIndex = gl_VertexIndex + int(vertexPadding.x * 0.0);
+    int pointId = vertexIndex / 6;
+    int corner = vertexIndex % 6;
+
     int strideInt = int(ubuf.stride + 0.5);
-    int base = int(pointId + 0.5) * strideInt;
+    int base = pointId * strideInt;
     uint xBits = fetchFloatBits(base);
     uint yBits = fetchFloatBits(base + 1);
     if (!isFiniteBits(xBits) || !isFiniteBits(yBits)) {
@@ -119,7 +127,7 @@ void main() {
         }
     }
 
-    vec2 offset = cornerOffset(int(corner + 0.5));
+    vec2 offset = cornerOffset(corner);
 
     vec2 range = dMax - dMin;
     vec2 p_local = vec2(

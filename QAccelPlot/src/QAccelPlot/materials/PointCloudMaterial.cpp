@@ -113,13 +113,11 @@ QSGMaterialShader* PointCloudMaterial::createShader(QSGRendererInterface::Render
 
 const QSGGeometry::AttributeSet& PointCloudMaterial::attributeSet()
 {
-    static constexpr int kVertexStride{8};       // float pointId (4) + float corner (4)
-    static constexpr int kAttrLocationId{0};     // layout(location = 0) in point_cloud.vert
-    static constexpr int kAttrLocationCorner{1}; // layout(location = 1)
+    static constexpr int kVertexStride{4};        // uchar4 placeholder; Metal needs a multiple of 4
+    static constexpr int kAttrLocationPadding{0}; // layout(location = 0) in point_cloud.vert
 
     static const QSGGeometry::Attribute attributes[] = {
-        QSGGeometry::Attribute::create(kAttrLocationId, 1, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::create(kAttrLocationCorner, 1, QSGGeometry::FloatType),
+        QSGGeometry::Attribute::create(kAttrLocationPadding, 4, QSGGeometry::UnsignedByteType),
     };
     static const QSGGeometry::AttributeSet attrSet = {static_cast<int>(std::size(attributes)), kVertexStride, attributes};
     return attrSet;
