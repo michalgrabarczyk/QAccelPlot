@@ -42,7 +42,7 @@ namespace QAccelPlot {
 ///
 /// \par Limits
 /// Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum
-/// texture size: about 5.5 million points with values, or 8.3 million without, for an 8192-pixel
+/// texture size: about 22 million points with values, or 33 million without, for an 8192-pixel
 /// limit, and twice that for 16384. Points beyond it are not drawn and a warning is logged once.
 ///
 /// \sa LineCurve, Axis, PlotSeries, ColorBar

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/materials/internal/DataTextureUpload.hpp"
 
 #include <QColorSpace>
@@ -18,12 +19,12 @@
 
 namespace QAccelPlot {
 
-constexpr int kTextureWidth{2048};
 constexpr int kCommonUniformSize{116};
-// Conservative texture height bound below which virtually every RHI backend Qt Quick
-// supports (Direct3D 11/12, Metal, Vulkan, OpenGL 3.3+) is guaranteed to allow texture
-// creation. Actual hardware limits are commonly higher (e.g. 16384), but querying the live
-// RHI limit needs QRhi, which isn't available as public API in every supported Qt version.
+// Conservative per-dimension texture size bound, which the row width also stays within, below
+// which virtually every RHI backend Qt Quick supports (Direct3D 11/12, Metal, Vulkan, OpenGL
+// 3.3+) is guaranteed to allow texture creation. Actual hardware limits are commonly higher
+// (e.g. 16384), but querying the live RHI limit needs QRhi, which isn't available as public API
+// in every supported Qt version.
 constexpr int kMaxSafeTextureHeight{8192};
 
 struct CommonUbo {
@@ -108,7 +109,7 @@ void DataTextureMaterial::uploadTexture(std::unique_ptr<QSGTexture>& texture, QQ
         return;
     }
 
-    const auto texHeight = (floatCount + kTextureWidth - 1) / kTextureWidth;
+    const auto texHeight = Internal::dataTextureHeight(floatCount);
     if (texHeight > kMaxSafeTextureHeight && !warnedAboutTextureSize_) {
         warnedAboutTextureSize_ = true;
         qCWarning(lcQAccelPlot) << "DataTextureMaterial: data texture height" << texHeight << "(for" << floatCount << "floats) exceeds the safe limit of"
@@ -120,9 +121,9 @@ void DataTextureMaterial::uploadTexture(std::unique_ptr<QSGTexture>& texture, QQ
     // Reuse QImage storage across frames. The upload helper either updates the
     // scene-graph texture in place or recreates it through public Qt API,
     // depending on the configured build mode.
-    const auto dimensionsChanged = imageBuffer_.width() != kTextureWidth || imageBuffer_.height() != texHeight;
+    const auto dimensionsChanged = imageBuffer_.width() != Internal::kDataTextureWidth || imageBuffer_.height() != texHeight;
     if (dimensionsChanged) {
-        imageBuffer_ = QImage(kTextureWidth, texHeight, QImage::Format_RGBA8888_Premultiplied);
+        imageBuffer_ = QImage(Internal::kDataTextureWidth, texHeight, QImage::Format_RGBA8888_Premultiplied);
         imageBuffer_.setColorSpace(QColorSpace());
     }
 

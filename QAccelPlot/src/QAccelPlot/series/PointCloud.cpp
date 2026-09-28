@@ -12,6 +12,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/GradientUtils.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 
 #include <QHoverEvent>
@@ -43,8 +44,6 @@ namespace {
 constexpr auto kPositionStride = 2;
 constexpr auto kValueStride = 3;
 constexpr auto kVerticesPerPoint = 6;
-// Must match kTextureWidth in DataTextureMaterial.cpp and data_texture.glsl.
-constexpr auto kDataTextureWidth = 2048;
 // Texture height assumed when the RHI cannot be queried (Qt < 6.6, or built without the private
 // Qt API); supported by every target GPU.
 constexpr auto kFallbackMaxTextureSize = 8192;
@@ -85,10 +84,9 @@ int maxTextureSize(QQuickWindow* window)
 
 int renderablePointCount(QQuickWindow* window, const int pointCount, const int stride)
 {
-    const auto maxFloats = static_cast<qint64>(kDataTextureWidth) * static_cast<qint64>(maxTextureSize(window));
     // QSGGeometry sizes its vertex buffer in int bytes.
     const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * PointCloudMaterial::attributeSet().stride);
-    const auto capacity = std::min<qint64>(maxFloats / stride, maxGeometryPoints);
+    const auto capacity = std::min<qint64>(Internal::dataTextureItemCapacity(maxTextureSize(window), stride), maxGeometryPoints);
     if (pointCount <= capacity) {
         return pointCount;
     }

@@ -55,6 +55,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   animation.
 - `RectangleList` no longer blocks hover for series underneath it.
 - Attaching an empty series no longer resets an axis's `dataMin` and `dataMax` to 0 and 1.
+- `RectangleList` and `PointCloud` render up to about 16M rectangles or 22M points
+  (data texture rows are 8192 texels wide).
 
 ## [0.3.0] — 2026-09-25
 

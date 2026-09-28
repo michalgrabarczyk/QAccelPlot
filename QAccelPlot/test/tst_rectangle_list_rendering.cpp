@@ -127,6 +127,28 @@ constexpr auto kHoverScene = R"(
 }
 )";
 
+// NaN rectangles, which are not drawn, except a red one at index 600 and a blue one at index 2500.
+// Their data texture floats 2400 and 10000 lie in rows 0 and 1 of the 8192-wide texture, but
+// in rows 1 and 4 of a 2048-wide one, so a width mismatch between C++ and the shader loses them.
+constexpr auto kWideTextureScene = R"(
+    RectangleList {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        categoryColors: ["blue"]
+        Component.onCompleted: {
+            const rectangles = [];
+            for (let i = 0; i < 3000; ++i) {
+                rectangles.push({ x1: NaN, y1: NaN, x2: NaN, y2: NaN });
+            }
+            rectangles[600] = { x1: 1, y1: 1, x2: 3, y2: 3 };
+            rectangles[2500] = { x1: 6, y1: 6, x2: 8, y2: 8, category: 0 };
+            setData(rectangles);
+        }
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -199,6 +221,7 @@ private slots:
     void categoriesSelectFillColors();
     void borderOutlinesEachRectangle();
     void hoverColorHighlightsHoveredRectangle();
+    void rectanglesBeyondFirstTextureRowsAreDrawn();
 };
 
 void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
@@ -391,6 +414,21 @@ void RectangleListRenderingTest::hoverColorHighlightsHoveredRectangle()
     rectangles->setProperty("hoverColor", QColor{});
     image = scene.grab();
     QVERIFY(isColor(image.pixelColor(second), Qt::red));
+}
+
+void RectangleListRenderingTest::rectanglesBeyondFirstTextureRowsAreDrawn()
+{
+    auto scene = SceneWindow{kWideTextureScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    QVERIFY2(scene.plot(), qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 2.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(7.0, 7.0)), Qt::blue));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 5.0)), Qt::black));
 }
 
 } // namespace QAccelPlot

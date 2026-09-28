@@ -17,6 +17,7 @@
 #include <QSGRendererInterface>
 #include <QtTest/QtTest>
 
+#include <limits>
 #include <memory>
 #include <vector>
 
@@ -168,6 +169,7 @@ class PlotRenderingTest : public QObject {
 private slots:
     void rendersFillStrokeRectanglesAndPoints();
     void rendersEveryPointOfSeveralPointClouds();
+    void rendersPointsBeyondFirstTextureRows();
 };
 
 void PlotRenderingTest::rendersFillStrokeRectanglesAndPoints()
@@ -264,6 +266,52 @@ void PlotRenderingTest::rendersEveryPointOfSeveralPointClouds()
     }
     QVERIFY(isColor(pixelAt(image, 1.0, 2.0), Qt::black));
     QVERIFY(isColor(pixelAt(image, 8.0, 8.0), Qt::black));
+}
+
+void PlotRenderingTest::rendersPointsBeyondFirstTextureRows()
+{
+    auto window = QQuickWindow{};
+    if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
+        QSKIP("Custom curve materials require a hardware scene graph backend");
+    }
+    window.setColor(Qt::black);
+    window.resize(kWindowWidth, kWindowHeight);
+
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(kPointCloudScene, QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    auto* plot = qobject_cast<QAccelPlot*>(root.get());
+    QVERIFY(plot);
+    plot->setParentItem(window.contentItem());
+    auto* redCloud = root->property("redCloud").value<PointCloud*>();
+    auto* cyanCloud = root->property("cyanCloud").value<PointCloud*>();
+    QVERIFY(redCloud);
+    QVERIFY(cyanCloud);
+
+    // NaN points are not drawn. With values, points 700 and 2800 start at data texture floats
+    // 2100 and 8400: rows 0 and 1 of the 8192-wide texture, but rows 1 and 4 of a 2048-wide one,
+    // so a width mismatch between C++ and the shader loses them.
+    constexpr auto kCount = 3000;
+    constexpr auto kNaN = std::numeric_limits<float>::quiet_NaN();
+    auto xy = std::vector<float>(2 * kCount, kNaN);
+    xy[2 * 700] = 3.0f;
+    xy[2 * 700 + 1] = 5.0f;
+    xy[2 * 2800] = 7.0f;
+    xy[2 * 2800 + 1] = 5.0f;
+    cyanCloud->setDataF(std::move(xy), std::vector<float>(kCount, 1.0f), kCount);
+    redCloud->clearData();
+
+    window.show();
+    QVERIFY(QTest::qWaitForWindowExposed(&window));
+
+    const auto pixelAt
+        = [plot](const QImage& image, const qreal x, const qreal y) { return image.pixelColor(qRound(plot->dataToPixelX(x)), qRound(plot->dataToPixelY(y))); };
+    const auto image = window.grabWindow();
+    QVERIFY(isColor(pixelAt(image, 3.0, 5.0), Qt::cyan));
+    QVERIFY(isColor(pixelAt(image, 7.0, 5.0), Qt::cyan));
+    QVERIFY(isColor(pixelAt(image, 5.0, 5.0), Qt::black));
 }
 
 } // namespace QAccelPlot
