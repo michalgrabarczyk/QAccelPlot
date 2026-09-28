@@ -25,6 +25,7 @@ namespace QAccelPlot {
 class SpatialGrid {
 public:
     void build(const double* data, int itemCount, int valuesPerItem = 4);
+    void buildF(const float* data, int itemCount, int valuesPerItem = 4);
     int query(double x, double y) const;
     int queryTopmost(double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept) const;
 
@@ -43,7 +44,8 @@ private:
     // Cell coordinate of \a value, clamped to [0, count - 1] so infinite values map to the edge cells.
     static int cellIndex(double value, double min, double cellSize, int count);
 
-    void computeDataBounds(const double* data, int itemCount, int valuesPerItem);
+    template <typename T> void buildFrom(const T* data, int itemCount, int valuesPerItem);
+    template <typename T> void computeDataBounds(const T* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);
     void fillSpatialGrid(int itemCount);
 

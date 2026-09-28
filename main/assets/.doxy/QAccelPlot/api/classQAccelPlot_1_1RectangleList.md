@@ -162,18 +162,27 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  int | [**hoveredIndex**](#function-hoveredindex-22) () const<br>_Returns the index of the hovered rectangle, or -1 if none._  |
 |  qreal | [**minimumHeight**](#function-minimumheight-22) () const<br>_Returns the minimum drawn height in pixels._  |
 |  qreal | [**minimumWidth**](#function-minimumwidth-22) () const<br>_Returns the minimum drawn width in pixels._  |
-|  void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__rectCount_ _) to the item's thread._ |
-|  void | [**postData**](#function-postdata-22) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-14) (std::vector&lt; double &gt; && data, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__rectCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-24) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-34) (std::vector&lt; float &gt; && data, int rectCount) <br>_Thread-safe: queues_ `setDataF` _(__data_ _,__rectCount_ _) to the item's thread._ |
+|  void | [**postData**](#function-postdata-44) (std::vector&lt; float &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Thread-safe: queues_ `setDataF` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._ |
 |  Q\_INVOKABLE QVariantMap | [**rectangleAt**](#function-rectangleat) (int index) const<br>_Returns rectangle_ _index_ _as an object with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
 |  int | [**rectangleIndexAt**](#function-rectangleindexat) (const QPointF & position) const<br>_Returns the index of the topmost rectangle under item position_ _position_ _, or -1._ |
 |  Q\_INVOKABLE void | [**setCategories**](#function-setcategories) (const QList&lt; int &gt; & categories) <br>_Sets one category per rectangle. An empty list clears categories; any other size must equal_ `count` _._ |
 |  void | [**setCategoryColors**](#function-setcategorycolors) (const QList&lt; QColor &gt; & colors) <br>_Sets the fill colors indexed by category to_ _colors_ _._ |
 |  void | [**setColor**](#function-setcolor) (const QColor & color) <br>_Sets the fill color to_ _color_ _._ |
-|  Q\_INVOKABLE void | [**setData**](#function-setdata-15) (const QVariantList & rects) <br>_Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
-|  void | [**setData**](#function-setdata-25) (const float \* data, int rectCount) <br>_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._ |
-|  void | [**setData**](#function-setdata-35) (const double \* data, int rectCount) <br>_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._ |
-|  void | [**setData**](#function-setdata-45) (std::vector&lt; double &gt; && data, int rectCount) <br>_Moves_ _data_ _(__rectCount_ _× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made._ |
-|  void | [**setData**](#function-setdata-55) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Moves_ _data_ _and per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._ |
+|  Q\_INVOKABLE void | [**setData**](#function-setdata-14) (const QVariantList & rects) <br>_Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._ |
+|  void | [**setData**](#function-setdata-24) (const double \* data, int rectCount) <br>_Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._ |
+|  void | [**setData**](#function-setdata-34) (std::vector&lt; double &gt; && data, int rectCount) <br>_Moves_ _data_ _(__rectCount_ _× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made._ |
+|  void | [**setData**](#function-setdata-44) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Moves_ _data_ _and per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._ |
+|  void | [**setDataF**](#function-setdataf-13) (const float \* data, int rectCount) <br>_High-performance C++ overload: copies_ _rectCount_ _× 4 floats (x1, y1, x2, y2) from__data_ _and clears categories._ |
+|  void | [**setDataF**](#function-setdataf-23) (std::vector&lt; float &gt; && data, int rectCount) <br>_High-performance C++ overload: moves_ _data_ _(__rectCount_ _× 4 floats) into the list and clears categories._ |
+|  void | [**setDataF**](#function-setdataf-33) (std::vector&lt; float &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Like_ `setDataF` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._ |
+|  void | [**setDataFNoRange**](#function-setdatafnorange-13) (std::vector&lt; float &gt; && data, int rectCount) <br>_Like_ `setDataF()` _but does not report X/Y data ranges to the axes._ |
+|  void | [**setDataFNoRange**](#function-setdatafnorange-23) (std::vector&lt; float &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Like_ `setDataFNoRange` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _into the list._ |
+|  void | [**setDataFNoRange**](#function-setdatafnorange-33) (const float \* data, int rectCount) <br>_Like_ `setDataFNoRange(vector)` _but copies from a raw float array into the list's reusable buffer._ |
+|  void | [**setDataNoRange**](#function-setdatanorange-12) (std::vector&lt; double &gt; && data, int rectCount) <br>_Like_ `setData()` _but does not report X/Y data ranges to the axes._ |
+|  void | [**setDataNoRange**](#function-setdatanorange-22) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int rectCount) <br>_Like_ `setDataNoRange` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _into the list._ |
 |  void | [**setHoverColor**](#function-sethovercolor) (const QColor & color) <br>_Sets the fill color of the hovered rectangle to_ _color_ _. An invalid color disables the highlight._ |
 |  void | [**setMinimumHeight**](#function-setminimumheight) (qreal height) <br>_Sets the minimum drawn height to_ _height_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setMinimumWidth**](#function-setminimumwidth) (qreal width) <br>_Sets the minimum drawn width to_ _width_ _pixels. Negative values are clamped to 0._ |
@@ -278,7 +287,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 ## Detailed Description
 
 
-All rectangles are stored as interleaved floats (x1, y1, x2, y2) and uploaded to the GPU as a data texture, making it suitable for tens of thousands of rectangles. Hover detection uses an internal `SpatialGrid` for O(1) hit tests.
+Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The `setData()` overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The `setDataF()` overloads store floats and upload them without conversion. Hover detection uses an internal `SpatialGrid` for O(1) hit tests.
 
 
 An infinite edge extends the rectangle to the plot edge, e.g. `y1` = -Infinity and `y2` = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges. Rectangles with a NaN edge are not drawn or hovered.
@@ -706,7 +715,7 @@ qreal QAccelPlot::RectangleList::minimumWidth () const
 
 
 
-### function postData {#function-postdata-12}
+### function postData {#function-postdata-14}
 
 _Thread-safe: queues_ `setData` _(__data_ _,__rectCount_ _) to the item's thread._
 ```C++
@@ -724,12 +733,49 @@ void QAccelPlot::RectangleList::postData (
 
 
 
-### function postData {#function-postdata-22}
+### function postData {#function-postdata-24}
 
 _Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._
 ```C++
 void QAccelPlot::RectangleList::postData (
     std::vector< double > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-34}
+
+_Thread-safe: queues_ `setDataF` _(__data_ _,__rectCount_ _) to the item's thread._
+```C++
+void QAccelPlot::RectangleList::postData (
+    std::vector< float > && data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-44}
+
+_Thread-safe: queues_ `setDataF` _(__data_ _,__categories_ _,__rectCount_ _) to the item's thread._
+```C++
+void QAccelPlot::RectangleList::postData (
+    std::vector< float > && data,
     std::vector< int > && categories,
     int rectCount
 ) 
@@ -832,7 +878,7 @@ void QAccelPlot::RectangleList::setColor (
 
 
 
-### function setData {#function-setdata-15}
+### function setData {#function-setdata-14}
 
 _Loads rectangles from_ _rects_ _, a QML list of objects with_`x1` _,_`y1` _,_`x2` _,_`y2` _properties._
 ```C++
@@ -853,25 +899,7 @@ A missing or null `x1` / `y1` is -Infinity and a missing `x2` / `y2` is +Infinit
 
 
 
-### function setData {#function-setdata-25}
-
-_Loads rectangles from a C++ raw float array (_ _data_ _must have__rectCount_ _× 4 floats: x1, y1, x2, y2)._
-```C++
-void QAccelPlot::RectangleList::setData (
-    const float * data,
-    int rectCount
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setData {#function-setdata-35}
+### function setData {#function-setdata-24}
 
 _Loads rectangles from a C++ raw double array, preserving full precision for large coordinates (e.g. modern Unix-epoch timestamps)._ _data_ _must have__rectCount_ _× 4 doubles._
 ```C++
@@ -889,7 +917,7 @@ void QAccelPlot::RectangleList::setData (
 
 
 
-### function setData {#function-setdata-45}
+### function setData {#function-setdata-34}
 
 _Moves_ _data_ _(__rectCount_ _× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made._
 ```C++
@@ -907,11 +935,166 @@ void QAccelPlot::RectangleList::setData (
 
 
 
-### function setData {#function-setdata-55}
+### function setData {#function-setdata-44}
 
 _Moves_ _data_ _and per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._
 ```C++
 void QAccelPlot::RectangleList::setData (
+    std::vector< double > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-13}
+
+_High-performance C++ overload: copies_ _rectCount_ _× 4 floats (x1, y1, x2, y2) from__data_ _and clears categories._
+```C++
+void QAccelPlot::RectangleList::setDataF (
+    const float * data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-23}
+
+_High-performance C++ overload: moves_ _data_ _(__rectCount_ _× 4 floats) into the list and clears categories._
+```C++
+void QAccelPlot::RectangleList::setDataF (
+    std::vector< float > && data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-33}
+
+_Like_ `setDataF` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _(empty, or exactly__rectCount_ _) into the list._
+```C++
+void QAccelPlot::RectangleList::setDataF (
+    std::vector< float > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataFNoRange {#function-setdatafnorange-13}
+
+_Like_ `setDataF()` _but does not report X/Y data ranges to the axes._
+```C++
+void QAccelPlot::RectangleList::setDataFNoRange (
+    std::vector< float > && data,
+    int rectCount
+) 
+```
+
+
+
+Use it for streaming when the axes' `dataMin` / `dataMax` are managed by the application. 
+
+
+        
+
+<hr>
+
+
+
+
+### function setDataFNoRange {#function-setdatafnorange-23}
+
+_Like_ `setDataFNoRange` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _into the list._
+```C++
+void QAccelPlot::RectangleList::setDataFNoRange (
+    std::vector< float > && data,
+    std::vector< int > && categories,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataFNoRange {#function-setdatafnorange-33}
+
+_Like_ `setDataFNoRange(vector)` _but copies from a raw float array into the list's reusable buffer._
+```C++
+void QAccelPlot::RectangleList::setDataFNoRange (
+    const float * data,
+    int rectCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataNoRange {#function-setdatanorange-12}
+
+_Like_ `setData()` _but does not report X/Y data ranges to the axes._
+```C++
+void QAccelPlot::RectangleList::setDataNoRange (
+    std::vector< double > && data,
+    int rectCount
+) 
+```
+
+
+
+Use it for streaming when the axes' `dataMin` / `dataMax` are managed by the application. 
+
+
+        
+
+<hr>
+
+
+
+
+### function setDataNoRange {#function-setdatanorange-22}
+
+_Like_ `setDataNoRange` _(__data_ _,__rectCount_ _) and also moves per-rectangle__categories_ _into the list._
+```C++
+void QAccelPlot::RectangleList::setDataNoRange (
     std::vector< double > && data,
     std::vector< int > && categories,
     int rectCount

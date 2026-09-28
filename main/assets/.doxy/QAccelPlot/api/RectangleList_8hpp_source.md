@@ -73,17 +73,35 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& rects);
 
-    void setData(const float* data, int rectCount);
-
     void setData(const double* data, int rectCount);
 
     void setData(std::vector<double>&& data, int rectCount);
 
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
+    void setDataNoRange(std::vector<double>&& data, int rectCount);
+
+    void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+
+    void setDataF(const float* data, int rectCount);
+
+    void setDataF(std::vector<float>&& data, int rectCount);
+
+    void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+
+    void setDataFNoRange(std::vector<float>&& data, int rectCount);
+
+    void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+
+    void setDataFNoRange(const float* data, int rectCount);
+
     void postData(std::vector<double>&& data, int rectCount);
 
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+
+    void postData(std::vector<float>&& data, int rectCount);
+
+    void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     Q_INVOKABLE void setCategories(const QList<int>& categories);
 
@@ -113,14 +131,21 @@ protected:
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
+    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
+    void setDataFFromArray(const float* data, int rectCount, bool reportRanges);
+    void finishDataChange(std::vector<int>&& categories, int rectCount, bool reportRanges);
+    // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
+    bool hasPreciseData() const;
+    // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
+    double coordinate(int index, int component) const;
     bool hasCategories() const;
     QColor rectangleColor(int index) const;
     // Tests rectangle \a index against item position \a position in pixels, widened like the shader draws it.
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void updateMaterial(RectMaterial& material) const;
-    void buildSpatialGrid();
+    void ensureSpatialGrid() const;
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
@@ -143,11 +168,11 @@ private:
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
-    // Data: 4 doubles per rect (x1, y1, x2, y2), full precision.
+    // Data: 4 doubles per rect (x1, y1, x2, y2), full precision. Empty when setDataF() supplied the data.
     std::vector<double> data_;
     // One category per rect, or empty when no rectangle has one.
     std::vector<int> categories_;
-    // Origin-relative float mirror of data_, uploaded to the GPU.
+    // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
     std::vector<float> renderData_;
     qreal renderOriginX_{0.0};
     qreal renderOriginY_{0.0};
@@ -155,7 +180,9 @@ private:
     bool dataChanged_{false};
     std::vector<RectVertex> vertexCache_;
     bool vertexCacheValid_{false};
-    SpatialGrid spatialGrid_;
+    // Built on the first hit test after a data change, so streaming without hover skips it.
+    mutable SpatialGrid spatialGrid_;
+    mutable bool spatialGridValid_{false};
 };
 
 } // namespace QAccelPlot

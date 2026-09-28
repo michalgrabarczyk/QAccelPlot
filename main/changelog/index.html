@@ -1574,6 +1574,9 @@
 <li><code>RectangleList</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
 <li><code>RectangleList.border.width</code> and <code>border.color</code>.</li>
 <li><code>RectangleList.hoverColor</code>.</li>
+<li><code>RectangleList</code>: <code>setDataNoRange()</code>, <code>setDataF()</code>, <code>setDataFNoRange()</code>, and float
+  <code>postData()</code> overloads.</li>
+<li><code>SpatialGrid::buildF()</code>.</li>
 <li>The <code>plot_types/state_timeline</code> example.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
@@ -1584,6 +1587,7 @@
 <li><code>DataTransition::start()</code> and <code>advance()</code> take a <code>DataTransition::Run</code> that holds
   one element's animation state.</li>
 <li>Moved <code>RectangleList.hpp</code> to <code>QAccelPlot/series/</code>.</li>
+<li>Replaced <code>RectangleList::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>

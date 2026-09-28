@@ -1558,6 +1558,7 @@
     <member refid="classQAccelPlot_1_1RectangleList_1ae061ab58107693c8798fa6aace2d9ca7" kind="variable"><name>vertexCache_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a51fc7ef98fdf269aa52733c1c181194f" kind="variable"><name>vertexCacheValid_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a4b9d53661e4a1b6b116b05a501ec8c8d" kind="variable"><name>spatialGrid_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a859f0c030883bd272b19bff6f3619b5b" kind="variable"><name>spatialGridValid_</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a8ceccfe8fa3827ca39741106195912dd" kind="function"><name>RectangleList</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a4ff9d70f8365e709a431807c4c3b52ab" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad88eef0ebc4890e3871ac16c72c010fc" kind="function"><name>setColor</name></member>
@@ -1573,12 +1574,21 @@
     <member refid="classQAccelPlot_1_1RectangleList_1ac2b88872407ccf0a5fefbba9ce965766" kind="function"><name>count</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1adf13decb0e8085ef6dc80e8fbb23b837" kind="function"><name>hoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aaead3aa540e3521e1e6a365bdc313d6c" kind="function"><name>setData</name></member>
-    <member refid="classQAccelPlot_1_1RectangleList_1a35f7deacf42488739dd08bde442f25ad" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ab500efcec42566f233b04b120150fbbd" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa31ea0331864ab907ec1b4eb9bec5703" kind="function"><name>setData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a07de2eced7484d8c246a134de345c23a" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ad2e5a1bcc701980e27eeb695bf55844b" kind="function"><name>setDataNoRange</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a227b01f8710a2e44e710f62f2cf8403f" kind="function"><name>setDataNoRange</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a918a087a0ad6aa750d11e52964aaa8dc" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a70c304799d8641938120509e2229f636" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a67c6cffb682b691cb39e71462a0248bf" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aec992a9aee2afb883e93d0ab7dfc7a97" kind="function"><name>setDataFNoRange</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1adf4861dc147c47651d20fa3f4f5e2d76" kind="function"><name>setDataFNoRange</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa78ae4feb76f35c7184810b318c65cef" kind="function"><name>setDataFNoRange</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ad5758d6de68f337ec968ff46e8f8439c" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1af92e79d17aa08a40a1a3b275752b695a" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa980a9572934cf889ac60b90b8397a73" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa13d93f3d5a09a7f3244e93998e20b02" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1ab52222e4d9aa2709019a32ad72284227" kind="function"><name>setCategories</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a1c662546f98fbc8ab5df94adb2843a6f" kind="function"><name>clearData</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa1aa8fe4989eab7636d936ba714594c1" kind="function"><name>rectangleAt</name></member>
@@ -1598,13 +1608,18 @@
     <member refid="classQAccelPlot_1_1RectangleList_1a7aaae8ff6eead5fe2d4cfa189f0dca31" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a267d4171f8f4a8e7b2cffba5e0403f5d" kind="function"><name>validateRawDataArguments</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a3a8b9beb0d7b8a0fe0e4cf3f3faf76cb" kind="function"><name>validateDataArguments</name></member>
-    <member refid="classQAccelPlot_1_1RectangleList_1a0d842160dbdb8edeb4459dc8a3abff12" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ab106e5785af3b53fa7f9f5b286ef9121" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1aa030f041df51e4a4b05085d0808c37eb" kind="function"><name>applyFloatData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a844db4c914c099b54c741e1ebcde00fd" kind="function"><name>setDataFFromArray</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0f98bce3fcc75da8da0013c30313954f" kind="function"><name>finishDataChange</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a62bb5962f737240166199d3021f31f9d" kind="function"><name>hasPreciseData</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1ae1560014278122be66c4fb5648b5be14" kind="function"><name>coordinate</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a9732928725a67a366fb23c2a380252c1" kind="function"><name>hasCategories</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a452936e65b721d2e61c2ab49052ac3a3" kind="function"><name>rectangleColor</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1af19cdc63a2721e1751c2d1a966fc164e" kind="function"><name>containsInPixels</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a77bc5c0048346853c074f3c2289c081d" kind="function"><name>setHoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a0a8f286028c74a34bf4bb494d73fadd9" kind="function"><name>updateMaterial</name></member>
-    <member refid="classQAccelPlot_1_1RectangleList_1a76d3d813e1ce085b79930c443d3480ae" kind="function"><name>buildSpatialGrid</name></member>
+    <member refid="classQAccelPlot_1_1RectangleList_1a0ef6a339ddaac7709bfabe7a207ead73" kind="function"><name>ensureSpatialGrid</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a6866a8bcf07397e1ccf3efe6f117e8dd" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1aa85c7985542d92df4d1d4850b1af29c6" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1RectangleList_1a66249ff9462d5b34fd0a4a29b8e9c7ae" kind="function"><name>rebuildRenderData</name></member>
@@ -1699,10 +1714,12 @@
     <member refid="classQAccelPlot_1_1SpatialGrid_1ada905e5ad9eb3b05bdadb72684722883" kind="variable"><name>cells_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a29f4a6e3d418fff5246c51c8c423906f" kind="variable"><name>largeItems_</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a90ce851f81c48debe103fca226a208de" kind="function"><name>build</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a613af4b9c771c3d3e769ff74a61a1163" kind="function"><name>buildF</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a1cdf1a17c095ec0bee15fc40c6c6c6a3" kind="function"><name>query</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1af683677f7495b953097d21851e426927" kind="function"><name>queryTopmost</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a980818e0aae0f97816152dca0484dfe0" kind="function"><name>cellIndex</name></member>
-    <member refid="classQAccelPlot_1_1SpatialGrid_1a713a5aeb2fc0ba5148e37c53a6236e4a" kind="function"><name>computeDataBounds</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a6c31509f0f06652acc4dda66056d0407" kind="function"><name>buildFrom</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a46dc1b8021cca551fe16a48f0c5feaaa" kind="function"><name>computeDataBounds</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" kind="function"><name>computeGridDimensions</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a8eac80f44444015e46af281c378e7139" kind="function"><name>fillSpatialGrid</name></member>
   </compound>

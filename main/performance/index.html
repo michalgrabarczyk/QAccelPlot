@@ -1525,7 +1525,10 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 </ul>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.</p>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.
+<code>RectangleList</code> has the same <code>setDataF()</code> and
+<a href="../api/classQAccelPlot_1_1RectangleList/#function-setdatafnorange"><code>setDataFNoRange()</code></a> paths, plus
+<a href="../api/classQAccelPlot_1_1RectangleList/#function-setdatanorange"><code>setDataNoRange()</code></a> for double coordinates.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
@@ -1543,13 +1546,13 @@ the boxes, then tests only segments or markers inside matching boxes:
 built during data handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.</p>
-<p><a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> uses a spatial grid rebuilt on
-data change, giving <code>O(1)</code> lookup per pointer move.</p>
 <p><code>QAccelPlot.PointCloud.hoveredIndex</code> uses a uniform grid of point indices that
 is rebuilt lazily on the first pointer move after a data change (<code>O(N)</code>), then
-answers each move by scanning only the cells within the hover radius. When a
-cloud is replaced every frame while the pointer rests over it, the rebuild
-repeats per frame; set <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
+answers each move by scanning only the cells within the hover radius.
+<a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> rebuilds its spatial grid the same
+way, then gives <code>O(1)</code> lookup per pointer move. When a series is replaced every
+frame while the pointer rests over it, the rebuild repeats per frame; set
+<code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows

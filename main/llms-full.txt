@@ -490,6 +490,9 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
+`RectangleList` has the same `setDataF()` and
+[`setDataFNoRange()`][rectangle-list-set-data-f-no-range] paths, plus
+[`setDataNoRange()`][rectangle-list-set-data-no-range] for double coordinates.
 
 ## Keep work off the UI thread
 
@@ -514,14 +517,13 @@ built during data handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.
 
-[`RectangleList.hoveredIndex`][hovered-index] uses a spatial grid rebuilt on
-data change, giving `O(1)` lookup per pointer move.
-
 `QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
 is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
-answers each move by scanning only the cells within the hover radius. When a
-cloud is replaced every frame while the pointer rests over it, the rebuild
-repeats per frame; set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+answers each move by scanning only the cells within the hover radius.
+[`RectangleList.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
+way, then gives `O(1)` lookup per pointer move. When a series is replaced every
+frame while the pointer rests over it, the rebuild repeats per frame; set
+`QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 
 ### Other rendering costs
 
@@ -628,6 +630,8 @@ Scenarios are defined in
 [set-data-f-no-range-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorangewithcache-12
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
 [hovered-index]: api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
+[rectangle-list-set-data-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatanorange
+[rectangle-list-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatafnorange
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

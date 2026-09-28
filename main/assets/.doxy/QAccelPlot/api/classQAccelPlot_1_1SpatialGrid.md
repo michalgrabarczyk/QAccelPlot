@@ -62,6 +62,7 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 | Type | Name |
 | ---: | :--- |
 |  void | [**build**](#function-build) (const double \* data, int itemCount, int valuesPerItem=4) <br>_Rebuilds the spatial index from_ _data_ _containing__itemCount_ _axis-aligned rectangles._ |
+|  void | [**buildF**](#function-buildf) (const float \* data, int itemCount, int valuesPerItem=4) <br>_Rebuilds the spatial index from single-precision_ _data_ _, like_`build()` _._ |
 |  int | [**query**](#function-query) (double x, double y) const<br>_Returns the index of the topmost rectangle that contains point (_ _x_ _,__y_ _), or -1 if none._ |
 |  int | [**queryTopmost**](#function-querytopmost) (double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; & accept) const<br>_Returns the highest index among rectangles overlapping the box for which_ _accept_ _returns true, or -1._ |
 
@@ -131,6 +132,25 @@ void QAccelPlot::SpatialGrid::build (
 
 
         
+
+<hr>
+
+
+
+
+### function buildF {#function-buildf}
+
+_Rebuilds the spatial index from single-precision_ _data_ _, like_`build()` _._
+```C++
+void QAccelPlot::SpatialGrid::buildF (
+    const float * data,
+    int itemCount,
+    int valuesPerItem=4
+) 
+```
+
+
+
 
 <hr>
 
