@@ -1535,7 +1535,7 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 the worker.</p>
 <p>If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp"><code>performance</code> example worker</a>
+<a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/GenerationWorker.hpp"><code>performance</code> example worker</a>
 waits until the UI thread consumes the previous batch. See
 <a href="../cookbook/background-data/">Background data production</a>.</p>
 <h2 id="optional-rendering-costs">Optional rendering costs<a class="headerlink" href="#optional-rendering-costs" title="Permanent link">&para;</a></h2>
@@ -1620,14 +1620,16 @@ appear in public headers or ABI. Gradient textures always use the public path.</
 <li>Separate static rendering, live updates, and data-ingestion measurements.</li>
 <li>Repeat the test and publish the scenario with the result.</li>
 </ol>
-<p>The Performance Showcase reports:</p>
+<p>The Performance Showcase streams a <code>LineCurve</code>, a <code>PointCloud</code>, and a
+<code>RectangleList</code>, one per tab. Only the visible tab generates data. It reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
 <li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
   including worker-side generation. This determines how smooth the changing
-  curve looks.</li>
+  data looks.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
+<li><strong>Throughput</strong> — points or rectangles updated per second.</li>
 </ul>
 <h3 id="what-the-included-benchmarks-measure">What the included benchmarks measure<a class="headerlink" href="#what-the-included-benchmarks-measure" title="Permanent link">&para;</a></h3>
 <ul>
