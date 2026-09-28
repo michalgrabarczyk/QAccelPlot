@@ -17,6 +17,8 @@ ColumnLayout {
     // One { name, title } entry per page item, in the same order.
     required property var tabs
     default property alias pages: stack.data
+    // Name of the visible page.
+    readonly property string currentName: tabBar.currentIndex >= 0 && tabBar.currentIndex < tabs.length ? tabs[tabBar.currentIndex].name : ""
 
     Layout.fillWidth: true
     Layout.fillHeight: true

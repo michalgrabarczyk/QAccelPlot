@@ -73,7 +73,7 @@ the worker.
 
 If producers are faster than the display, keep at most one pending batch or a
 bounded queue. The
-[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/DataGenerationWorker.cpp)
+[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/GenerationWorker.hpp)
 waits until the UI thread consumes the previous batch. See
 [Background data production](cookbook/background-data.md).
 
@@ -156,14 +156,16 @@ cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
 7. Separate static rendering, live updates, and data-ingestion measurements.
 8. Repeat the test and publish the scenario with the result.
 
-The Performance Showcase reports:
+The Performance Showcase streams a `LineCurve`, a `PointCloud`, and a
+`RectangleList`, one per tab. Only the visible tab generates data. It reports:
 
 - **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
   including worker-side generation. This determines how smooth the changing
-  curve looks.
+  data looks.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
+- **Throughput** — points or rectangles updated per second.
 
 ### What the included benchmarks measure
 

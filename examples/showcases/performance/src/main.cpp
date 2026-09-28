@@ -6,13 +6,9 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "DataDeliveryMetrics.hpp"
-#include "DataGenerationWorker.hpp"
 #include "ExampleUtils.hpp"
+#include "ShowcaseController.hpp"
 
-#include <QAccelPlot/series/LineCurve.hpp>
-#include <QAccelPlot/series/RectangleList.hpp>
-
-#include <QCoreApplication>
 #include <QElapsedTimer>
 #include <QGuiApplication>
 #include <QLocale>
@@ -22,12 +18,10 @@
 #include <QTimer>
 
 #include <atomic>
-#include <chrono>
-#include <cstdint>
 #include <memory>
-#include <utility>
 
-using namespace QAccelPlot;
+using QAccelPlotExample::DataDeliveryMetrics;
+using QAccelPlotExample::steadyNanoseconds;
 
 namespace {
 
@@ -38,19 +32,9 @@ struct FrameMetrics {
     std::atomic<qint64> previousSwapNanoseconds{0};
 };
 
-std::int64_t steadyNanoseconds()
-{
-    const auto now = std::chrono::steady_clock::now().time_since_epoch();
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(now).count();
-}
-
 void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject* root, const std::shared_ptr<FrameMetrics>& metrics,
-    const std::shared_ptr<QAccelPlotExample::DataDeliveryMetrics>& deliveryMetrics, const bool metricsEnabled)
+    const std::shared_ptr<DataDeliveryMetrics>& deliveryMetrics)
 {
-    if (!metricsEnabled) {
-        return;
-    }
-
     QObject::connect(
         window, &QQuickWindow::frameSwapped, &app,
         [metrics]() {
@@ -88,40 +72,6 @@ void setupPerformanceMetrics(QGuiApplication& app, QQuickWindow* window, QObject
     reportTimer->start();
 }
 
-void setupCurveUpdates(QGuiApplication& app, QQuickWindow* window, QObject* root, LineCurve* curve, RectangleList* rectangleList,
-    DataGenerationWorker& generator, const std::shared_ptr<QAccelPlotExample::DataDeliveryMetrics>& deliveryMetrics, const bool screenshotMode)
-{
-    auto elapsedTimer = std::make_shared<QElapsedTimer>();
-    elapsedTimer->start();
-
-    // Pulls at most one batch per frame instead of using postData(), so the worker never queues
-    // frames the display cannot show and can prebuild the vertex cache.
-    QObject::connect(window, &QQuickWindow::afterAnimating, &app, [root, curve, rectangleList, &generator, deliveryMetrics, elapsedTimer, screenshotMode]() {
-        const auto rectanglesVisible = root->property("rectanglesVisible").toBool();
-        generator.setRectangleTestMode(rectanglesVisible);
-        const auto phase = screenshotMode ? 0.0 : elapsedTimer->elapsed() * 0.0012;
-        generator.setPhase(phase);
-        generator.setPointCount(root->property("pointCount").toInt());
-        generator.setRectangleCount(root->property("rectangleCount").toInt());
-
-        DataGenerationBatch batch;
-        if (!generator.tryConsume(batch)) {
-            return;
-        }
-        if (curve && !batch.curve1.empty()) {
-            if (batch.curve1VertexCache.empty()) {
-                curve->setDataFNoRange(std::move(batch.curve1), batch.pointCount);
-            } else {
-                curve->setDataFNoRangeWithCache(std::move(batch.curve1), batch.pointCount, std::move(batch.curve1VertexCache));
-            }
-            deliveryMetrics->dataApplied(steadyNanoseconds());
-        }
-        if (rectangleList) {
-            rectangleList->setDataF(batch.rects.empty() ? nullptr : batch.rects.data(), batch.rectangleCount);
-        }
-    });
-}
-
 } // namespace
 
 int main(int argc, char* argv[])
@@ -140,24 +90,16 @@ int main(int argc, char* argv[])
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
     auto* root = engine.rootObjects().value(0);
     auto* window = qobject_cast<QQuickWindow*>(root);
-    auto* curve = root ? root->findChild<LineCurve*>(QStringLiteral("curve1")) : nullptr;
-    auto* rectangleList = root ? root->findChild<RectangleList*>(QStringLiteral("rectangleList")) : nullptr;
 
-    DataGenerationConfig generationConfig;
-    DataGenerationWorker generator(generationConfig);
-    generator.start();
-
-    if (root && window) {
-        auto frameMetrics = std::make_shared<FrameMetrics>();
-        auto deliveryMetrics = std::make_shared<QAccelPlotExample::DataDeliveryMetrics>();
-        setupCurveUpdates(app, window, root, curve, rectangleList, generator, deliveryMetrics, screenshotMode);
-        setupPerformanceMetrics(app, window, root, frameMetrics, deliveryMetrics, !screenshotMode);
+    if (window) {
+        auto deliveryMetrics = std::make_shared<DataDeliveryMetrics>();
+        // Owned by the window, which stops the workers when it is destroyed.
+        new QAccelPlotExample::ShowcaseController(window, root, deliveryMetrics, screenshotMode);
+        if (!screenshotMode) {
+            setupPerformanceMetrics(app, window, root, std::make_shared<FrameMetrics>(), deliveryMetrics);
+        }
     }
     QAccelPlotExample::setupScreenshotHandler(app, engine);
 
-    int ret = app.exec();
-
-    generator.stop();
-
-    return ret;
+    return app.exec();
 }

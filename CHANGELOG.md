@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Moved `RectangleList.hpp` to `QAccelPlot/series/`.
 - Replaced `RectangleList::setData(const float*, int)` with `setDataF(const float*, int)`.
 - `PointCloud` uses half the GPU vertex memory per point.
+- The `showcases/performance` example has `LineCurve`, `PointCloud`, and `RectangleList` tabs.
 
 ### Fixed
 

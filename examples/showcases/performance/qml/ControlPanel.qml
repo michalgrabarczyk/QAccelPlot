@@ -10,11 +10,17 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+// Count controls for the active page.
 ScrollView {
     id: root
     required property var window
     required property var palette
+    readonly property var dataset: window.activeDataset
     clip: true
+
+    function countLabel(count) {
+        return count >= 1000000 ? count / 1000000 + "M" : count / 1000 + "K";
+    }
 
     ColumnLayout {
         width: root.availableWidth
@@ -27,19 +33,19 @@ ScrollView {
         }
 
         Label {
-            text: "Data point count"
+            text: root.dataset.noun.charAt(0).toUpperCase() + root.dataset.noun.slice(1) + " count"
             color: root.palette.textSecondary
             Layout.fillWidth: true
         }
 
         TextField {
-            text: root.window.pointCount.toString()
+            text: root.window.activeCount.toString()
             validator: IntValidator {
                 bottom: 1
-                top: 10000000
+                top: root.window.maximumCount
             }
             Layout.fillWidth: true
-            onEditingFinished: root.window.pointCount = parseInt(text) || 1000
+            onEditingFinished: root.window.setActiveCount(parseInt(text) || 1000)
         }
 
         GridLayout {
@@ -47,69 +53,20 @@ ScrollView {
             Layout.fillWidth: true
 
             Repeater {
-                model: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000]
+                model: root.window.countPresets
 
                 delegate: Button {
                     required property var modelData
-                    text: modelData >= 1000000 ? modelData / 1000000 + "M" : modelData / 1000 + "K"
+                    text: root.countLabel(modelData)
                     Layout.fillWidth: true
-                    onClicked: root.window.pointCount = modelData
-                }
-            }
-        }
-
-        Rectangle {
-            color: root.palette.outline
-            height: 1
-            opacity: 0.4
-            Layout.fillWidth: true
-        }
-
-        Switch {
-            text: "Annotate with rectangles"
-            checked: root.window.rectanglesVisible
-            Layout.fillWidth: true
-            onToggled: root.window.rectanglesVisible = checked
-        }
-
-        Label {
-            text: "Rectangle count"
-            color: root.palette.textSecondary
-            enabled: root.window.rectanglesVisible
-            Layout.fillWidth: true
-        }
-
-        TextField {
-            text: root.window.rectangleCount.toString()
-            validator: IntValidator {
-                bottom: 1
-                top: 10000000
-            }
-            enabled: root.window.rectanglesVisible
-            Layout.fillWidth: true
-            onEditingFinished: root.window.rectangleCount = parseInt(text) || 1000
-        }
-
-        GridLayout {
-            columns: 3
-            enabled: root.window.rectanglesVisible
-            Layout.fillWidth: true
-
-            Repeater {
-                model: [1000, 10000, 100000, 300000, 500000, 1000000]
-
-                delegate: Button {
-                    required property var modelData
-                    text: modelData >= 1000000 ? "1M" : modelData / 1000 + "K"
-                    Layout.fillWidth: true
-                    onClicked: root.window.rectangleCount = modelData
+                    onClicked: root.window.setActiveCount(modelData)
                 }
             }
         }
 
         Label {
-            text: "Rectangles use fixed data-space dimensions and sample the same signal as the curve."
-            color: root.window.rectanglesVisible ? root.palette.textSecondary : root.palette.textMuted
+            text: "Up to " + root.countLabel(root.window.maximumCount) + " " + root.dataset.noun + ". Only the visible tab generates data."
+            color: root.palette.textMuted
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }

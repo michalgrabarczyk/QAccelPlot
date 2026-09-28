@@ -14,15 +14,41 @@ Window {
     id: window
 
     property bool metricsEnabled: true
-    property int pointCount: 1000000
-    property bool rectanglesVisible: false
-    property int rectangleCount: 1000
+    property int lineCurveCount: 1000000
+    property int pointCloudCount: 1000000
+    property int rectangleCount: 100000
     property int fps: 60
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
     property real longestDataGapMs: 0
-    readonly property real curveThroughputMillions: pointCount * updateRate / 1000000
+    readonly property string activePage: pages.currentName
+    readonly property int maximumCount: 10000000
+    readonly property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
+    readonly property var datasets: ({
+            lineCurve: {
+                noun: "points"
+            },
+            pointCloud: {
+                noun: "points"
+            },
+            rectangleList: {
+                noun: "rectangles"
+            }
+        })
+    readonly property var activeDataset: datasets[activePage] || datasets.lineCurve
+    readonly property int activeCount: activePage === "pointCloud" ? pointCloudCount : activePage === "rectangleList" ? rectangleCount : lineCurveCount
+    readonly property real throughputMillions: activeCount * updateRate / 1000000
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
+
+    function setActiveCount(count) {
+        if (activePage === "pointCloud") {
+            pointCloudCount = count;
+        } else if (activePage === "rectangleList") {
+            rectangleCount = count;
+        } else {
+            lineCurveCount = count;
+        }
+    }
 
     width: 1400
     height: 900
@@ -56,8 +82,8 @@ Window {
             spacing: 10
 
             ExampleHeader {
-                title: window.pointCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live points"
-                description: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new curve datasets are applied to the plot each second."
+                title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeDataset.noun
+                description: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
             GridLayout {
@@ -83,9 +109,9 @@ Window {
                             detail: "between presents"
                         },
                         {
-                            label: "CURVE THROUGHPUT",
-                            value: window.curveThroughputMillions.toFixed(1) + " M",
-                            detail: "points updated / second"
+                            label: "THROUGHPUT",
+                            value: window.throughputMillions.toFixed(1) + " M",
+                            detail: window.activeDataset.noun + " updated / second"
                         }
                     ]
 
@@ -128,46 +154,24 @@ Window {
                 }
             }
 
-            QAccelPlot.Plot {
-                id: plot1
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                legendVisible: false
+            ExamplePages {
+                id: pages
+                tabs: [
+                    { name: "lineCurve", title: "LineCurve" },
+                    { name: "pointCloud", title: "PointCloud" },
+                    { name: "rectangleList", title: "RectangleList" }
+                ]
 
-                xAxis: ExampleAxis {
-                    viewportMin: 0
-                    viewportMax: 1000
-                    dataMin: 0
-                    dataMax: 1000
-                    label: "Sample domain"
+                LineCurvePage {
+                    colorPalette: window.colorPalette
                 }
-
-                yAxis: ExampleAxis {
-                    viewportMin: -10
-                    viewportMax: 10
-                    dataMin: -10
-                    dataMax: 10
-                    axisTitlePadding: 40
-                    layoutSize: 60
-                    label: "Amplitude"
+                PointCloudPage {
+                    colorPalette: window.colorPalette
+                    pointCount: window.pointCloudCount
                 }
-
-                QAccelPlot.RectangleList {
-                    objectName: "rectangleList"
-                    z: 1
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    plotRect: plot1.plotRect
-                    color: colorPalette.performanceRectangles
-                }
-
-                QAccelPlot.LineCurve {
-                    objectName: "curve1"
-                    z: 2
-                    xAxis: plot1.xAxis
-                    yAxis: plot1.yAxis
-                    color: colorPalette.performanceCurve
-                    lineWidth: 3
+                RectangleListPage {
+                    colorPalette: window.colorPalette
+                    rectangleCount: window.rectangleCount
                 }
             }
         }

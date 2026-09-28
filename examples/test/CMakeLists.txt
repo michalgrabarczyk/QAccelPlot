@@ -20,12 +20,23 @@ target_link_libraries(tst_screenshot_capture PRIVATE Qt6::Quick)
 # Keep the context-affinity assertion active in Release CI builds too.
 target_compile_definitions(tst_screenshot_capture PRIVATE QT_FORCE_ASSERTS)
 
-add_qaccelplot_test(tst_data_generation_worker
+add_qaccelplot_standalone_test(tst_generation_worker
     examples
-    tst_data_generation_worker.cpp
-    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/DataGenerationWorker.cpp"
+    tst_generation_worker.cpp
 )
-target_include_directories(tst_data_generation_worker PRIVATE
+target_include_directories(tst_generation_worker PRIVATE
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
+)
+
+add_qaccelplot_test(tst_performance_generators
+    examples
+    tst_performance_generators.cpp
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/GalaxyGenerator.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/PlasmaGenerator.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineLookup.cpp"
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineWaveGenerator.cpp"
+)
+target_include_directories(tst_performance_generators PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
 )
 
@@ -51,7 +62,7 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePointCloud             point_cloud)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleParametricCurves       parametric_curves)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleStateTimeline          state_timeline)
-    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance PAGES lineCurve pointCloud rectangleList)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar NO_AI_INSPECTION)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleLineStyles             line_styles)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMarkers                markers)
