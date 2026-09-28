@@ -168,6 +168,8 @@ private:
 
     // True when the data texture must be re-uploaded on the next paint.
     bool dataChanged_{true};
+    // False after a no-range update: the application maintains the axis data ranges.
+    bool autoDataRanges_{true};
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};

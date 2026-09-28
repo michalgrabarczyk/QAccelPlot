@@ -1287,15 +1287,17 @@
 <a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>
 <a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a><span class="w">    </span><span class="c1">// True when the data texture must be re-uploaded on the next paint.</span>
 <a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">dataChanged_</span><span class="p">{</span><span class="nb">true</span><span class="p">};</span>
-<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>
-<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a><span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">PointSpatialIndex</span><span class="w"> </span><span class="n">spatialIndex_</span><span class="p">;</span>
-<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a><span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">spatialIndexValid_</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
-<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>
-<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">axisConnections_</span><span class="p">;</span>
-<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gradientConnections_</span><span class="p">;</span>
-<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a><span class="p">};</span>
-<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>
-<a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a><span class="w">    </span><span class="c1">// False after a no-range update: the application maintains the axis data ranges.</span>
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">autoDataRanges_</span><span class="p">{</span><span class="nb">true</span><span class="p">};</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>
+<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a><span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">PointSpatialIndex</span><span class="w"> </span><span class="n">spatialIndex_</span><span class="p">;</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a><span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">spatialIndexValid_</span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>
+<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">axisConnections_</span><span class="p">;</span>
+<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">QMetaObject</span><span class="o">::</span><span class="n">Connection</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gradientConnections_</span><span class="p">;</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a><span class="p">};</span>
+<a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>
+<a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
 </code></pre></div>
 
 

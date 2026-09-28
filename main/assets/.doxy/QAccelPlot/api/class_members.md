@@ -28,7 +28,7 @@
 * **applyDataExtents** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **applyNewData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **applyTransitionData** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **autoDataRanges\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **autoDataRanges\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **a** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md), [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md), [**QAccelPlot::RectangleList::RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md))
 * **arcLength** ([**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md))
 * **accept** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
