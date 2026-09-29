@@ -96,6 +96,7 @@
 * **clearExtraAxes** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **connectAxis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **connectAxisSignals** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **copyTo** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **categoryColors** ([**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **containsInPixels** ([**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **coordinate** ([**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
@@ -213,7 +214,7 @@
 
 * **invalidateTicks** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **inwardTickOverlap** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **invalidate** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
+* **invalidate** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **interpolate** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md), [**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**QAccelPlot::MorphTransition**](classQAccelPlot_1_1MorphTransition.md))
 * **isValid** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
 * **installVertexCache** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
@@ -375,7 +376,7 @@
 * **renderPointCount** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **resolveGradientColorPayload** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **resolveGradientFillPayload** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **rebuild** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
+* **rebuild** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **reset** ([**QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md))
 * **reportXDataRangeToAxis** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **reportYDataRangeToAxis** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
@@ -596,10 +597,11 @@
 * **valueToPixel** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **validateRawDataArguments** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **validateVectorDataArguments** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
-* **valid** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
+* **valid** ([**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **validateDataArguments** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **valueAt** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **validPointCount** ([**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
+* **vertexCount** ([**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 
 
 ## w

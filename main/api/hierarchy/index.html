@@ -1150,6 +1150,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode marker geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a> <em>Owns a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>'s pre-built vertex bytes and the metadata required to use them safely.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a> <em>Uniform-grid spatial index for nearest-point queries over large point sets.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTick/"><strong>QAccelPlot::AxisTick</strong></a> <em>A single major tick: its data-space value and its formatted label.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a> <em>Groups the QPainter context arguments passed into sub-painting helpers.</em> </li>
@@ -1163,6 +1164,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a> <em>Render-thread snapshot of gradient stroke (line-color) parameters.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a> <em>Render-thread snapshot of gradient fill (area-under-curve) parameters.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientStopData/"><strong>QAccelPlot::GradientStopData</strong></a> <em>A single color stop within a gradient definition.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>QAccelPlot::Internal::RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataExtent/"><strong>QAccelPlot::PlotSeries::DataExtent</strong></a> <em>Extent of the valid coordinates in one dimension.</em> </li>
@@ -1175,7 +1177,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>QAccelPlot::PointSpatialIndex::IndexedPoint</strong></a> </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleSeries_1_1RectVertex/"><strong>QAccelPlot::RectangleSeries::RectVertex</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>QAccelPlot::RectVertexCache::Vertex</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a> </li>
 <li><strong>class</strong> <strong>QQuickPaintedItem</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> <em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em> </li>

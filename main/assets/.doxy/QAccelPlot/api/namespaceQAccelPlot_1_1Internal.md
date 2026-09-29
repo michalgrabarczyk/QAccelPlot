@@ -34,6 +34,11 @@
 
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
 
 
 
@@ -67,7 +72,10 @@
 | ---: | :--- |
 |  constexpr int | [**dataTextureHeight**](#function-datatextureheight) (const int floatCount) <br>_Returns the number of data texture rows needed to store_ _floatCount_ _floats._ |
 |  constexpr qint64 | [**dataTextureItemCapacity**](#function-datatextureitemcapacity) (const int maxHeight, const int floatsPerItem) <br>_Returns how many items of_ _floatsPerItem_ _floats fit in a data texture at most__maxHeight_ _rows tall._ |
+|  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
+|  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
+|  void | [**writeRectUniforms**](#function-writerectuniforms) ([**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) & ubo, const QSGMaterialShader::RenderState & state, const [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) & material) <br>_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._ |
 
 
 
@@ -158,6 +166,29 @@ constexpr qint64 QAccelPlot::Internal::dataTextureItemCapacity (
 
 
 
+### function edgePixel {#function-edgepixel}
+
+_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._
+```C++
+qreal QAccelPlot::Internal::edgePixel (
+    double value,
+    const Axis & axis,
+    qreal length
+) 
+```
+
+
+
+Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as rect\_geometry.glsl extends them past the plot edge. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function uploadDataTexture {#function-uploaddatatexture}
 
 _Uploads an image to the live-data texture using the configured Qt API path._ 
@@ -166,6 +197,48 @@ void QAccelPlot::Internal::uploadDataTexture (
     std::unique_ptr< QSGTexture > & texture,
     QQuickWindow * window,
     const QImage & image
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function widenedSpan {#function-widenedspan}
+
+_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._
+```C++
+std::pair< qreal, qreal > QAccelPlot::Internal::widenedSpan (
+    qreal a,
+    qreal b,
+    qreal minimumSize
+) 
+```
+
+
+
+Matches `widenedSpan()` in rect\_geometry.glsl, so hit tests use the drawn size. 
+
+
+        
+
+<hr>
+
+
+
+
+### function writeRectUniforms {#function-writerectuniforms}
+
+_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._
+```C++
+void QAccelPlot::Internal::writeRectUniforms (
+    RectUbo & ubo,
+    const QSGMaterialShader::RenderState & state,
+    const RectMaterial & material
 ) 
 ```
 

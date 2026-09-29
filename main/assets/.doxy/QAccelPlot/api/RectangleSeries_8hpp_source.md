@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/series/PlotSeries.hpp"
+#include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -153,14 +154,6 @@ private:
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
     void rebuildRenderData(bool logScaleX, bool logScaleY);
 
-    // Vertex cache: 6 vertices per rect, 12 bytes each. The color is the rectangle's category
-    // color when categories are set; otherwise it is unused and \c color is a uniform.
-    struct RectVertex {
-        float id;
-        float corner;
-        unsigned char r, g, b, a;
-    };
-
     QColor color_;
     QList<QColor> categoryColors_;
     RectangleBorder* border_{new RectangleBorder{this}};
@@ -178,8 +171,8 @@ private:
     qreal renderOriginY_{0.0};
     int rectCount_{0};
     bool dataChanged_{false};
-    std::vector<RectVertex> vertexCache_;
-    bool vertexCacheValid_{false};
+    // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
+    RectVertexCache vertexCache_;
     // Built on the first hit test after a data change, so streaming without hover skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};

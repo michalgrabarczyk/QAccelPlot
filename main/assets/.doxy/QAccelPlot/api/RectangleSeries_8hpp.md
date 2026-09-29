@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/series/PlotSeries.hpp"`
+* `#include "QAccelPlot/series/RectVertexCache.hpp"`
 * `#include "QAccelPlot/series/RectangleBorder.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`

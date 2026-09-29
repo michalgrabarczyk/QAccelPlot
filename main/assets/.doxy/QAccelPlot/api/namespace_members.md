@@ -21,6 +21,11 @@
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
+## e
+
+* **edgePixel** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## f
 
 * **findValidRuns** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
@@ -82,6 +87,12 @@
 
 * **uploadDataTexture** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **unboundedGradientCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
+## w
+
+* **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 

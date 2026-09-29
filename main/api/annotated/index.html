@@ -1184,7 +1184,10 @@
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/"><strong>GradientValueSourceNS</strong></a> <em>Namespace exposing the</em> <code>GradientValueSource</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Grid/"><strong>Grid</strong></a> <em>Configuration object that controls the appearance of the plot grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em>     </li>
-<li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1Internal/"><strong>Internal</strong></a>     </li>
+<li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1Internal/"><strong>Internal</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em>     </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>LineCurveEffect</strong></a> <em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em>    </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1LineCurveGapFilter/"><strong>LineCurveGapFilter</strong></a> <em>Stateless helpers implementing the invalid-sample contract shared by</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>subsystems.</em>    </li>
@@ -1217,6 +1220,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleBorder/"><strong>RectangleBorder</strong></a> <em>Controls the outline a</em> <code>RectangleSeries</code> <em>draws inside each rectangle's edges.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> <em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em>     </li>
@@ -1232,7 +1236,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>IndexedPoint</strong></a>     </li>
-<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectangleSeries_1_1RectVertex/"><strong>RectVertex</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>ItemBounds</strong></a>     </li>
 </ul>
 

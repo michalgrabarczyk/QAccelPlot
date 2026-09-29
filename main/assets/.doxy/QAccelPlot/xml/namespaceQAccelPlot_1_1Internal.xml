@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceQAccelPlot_1_1Internal" kind="namespace" language="C++">
     <compoundname>QAccelPlot::Internal</compoundname>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1RectUbo" prot="public">QAccelPlot::Internal::RectUbo</innerclass>
     <sectiondef kind="var">
       <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr int</type>
@@ -90,6 +91,89 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" line="21" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureUpload.hpp" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RectUniforms_8hpp_1a6a5cabe3df31d51d17aa599d49ccfbcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::writeRectUniforms</definition>
+        <argsstring>(RectUbo &amp;ubo, const QSGMaterialShader::RenderState &amp;state, const RectMaterial &amp;material)</argsstring>
+        <name>writeRectUniforms</name>
+        <qualifiedname>QAccelPlot::Internal::writeRectUniforms</qualifiedname>
+        <param>
+          <type><ref refid="structQAccelPlot_1_1Internal_1_1RectUbo" kindref="compound">RectUbo</ref> &amp;</type>
+          <declname>ubo</declname>
+        </param>
+        <param>
+          <type>const QSGMaterialShader::RenderState &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+<para>Fills <emphasis>ubo</emphasis> from <emphasis>material</emphasis> and the matrix and opacity of the render <emphasis>state</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" line="43" column="6" declfile="QAccelPlot/src/QAccelPlot/materials/internal/RectUniforms.hpp" declline="43" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RectGeometry_8hpp_1afd040a5c9d2313b9e7f773a54bcf9c5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::edgePixel</definition>
+        <argsstring>(double value, const Axis &amp;axis, qreal length)</argsstring>
+        <name>edgePixel</name>
+        <qualifiedname>QAccelPlot::Internal::edgePixel</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps rectangle edge <emphasis>value</emphasis> on <emphasis>axis</emphasis> to item pixels along an item side <emphasis>length</emphasis> pixels long. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Infinite edges, and non-positive edges on a log axis, map to infinity on the matching side, as rect_geometry.glsl extends them past the plot edge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="24" column="7" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="24" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="RectGeometry_8hpp_1a8afc11e4c2e9ed57eaef244241915d44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; qreal, qreal &gt;</type>
+        <definition>std::pair&lt; qreal, qreal &gt; QAccelPlot::Internal::widenedSpan</definition>
+        <argsstring>(qreal a, qreal b, qreal minimumSize)</argsstring>
+        <name>widenedSpan</name>
+        <qualifiedname>QAccelPlot::Internal::widenedSpan</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>minimumSize</declname>
+        </param>
+        <briefdescription>
+<para>Returns the pixel span between edges <emphasis>a</emphasis> and <emphasis>b</emphasis>, widened around its center to at least <emphasis>minimumSize</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Matches <computeroutput>widenedSpan()</computeroutput> in rect_geometry.glsl, so hit tests use the drawn size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="29" column="11" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="29" declcolumn="11"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
