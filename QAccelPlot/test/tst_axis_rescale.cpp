@@ -20,6 +20,7 @@ private slots:
     void flatLinearTinyValue_keepsRangeProportionalToMagnitude();
     void flatLogScaleData_synthesizesPositiveRange();
     void flatNonPositiveLogScaleData_synthesizesPositiveRange();
+    void nonFlatNonPositiveLogScaleData_synthesizesPositiveRange();
 };
 
 void AxisRescaleTest::flatLinearData_synthesizesRangeAroundValue()
@@ -86,6 +87,20 @@ void AxisRescaleTest::flatNonPositiveLogScaleData_synthesizesPositiveRange()
 
     QVERIFY(axis.viewportMin() > 0.0);
     QVERIFY(axis.viewportMax() > axis.viewportMin());
+}
+
+void AxisRescaleTest::nonFlatNonPositiveLogScaleData_synthesizesPositiveRange()
+{
+    auto axis = Axis{};
+    axis.setLogScale(true);
+    axis.setDataMin(-10.0);
+    axis.setDataMax(-1.0);
+
+    axis.rescaleToData();
+
+    QVERIFY(axis.viewportMin() > 0.0);
+    QVERIFY(axis.viewportMax() > axis.viewportMin());
+    QCOMPARE(axis.coordToPixel(axis.viewportMax(), 100.0), 100.0);
 }
 
 } // namespace QAccelPlot
