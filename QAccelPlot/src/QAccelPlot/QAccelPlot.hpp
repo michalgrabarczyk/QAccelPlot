@@ -194,6 +194,7 @@ protected:
     Q_INVOKABLE void rescaleAllAxes();
 
 private:
+    bool isAxisRegistered(Axis* axis) const;
     static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
     static qsizetype extraAxisCount(QQmlListProperty<Axis>* list);
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);

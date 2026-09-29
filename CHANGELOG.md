@@ -46,6 +46,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   tick values without an integer conversion failure.
 - Changing an inward or outward tick length now notifies bindings to the total
   tick or subtick length.
+- An axis already assigned to a plot slot cannot also occupy another axis slot
+  or appear in `extraAxes`.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
