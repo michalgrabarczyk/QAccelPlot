@@ -46,7 +46,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) <br>_Controls the outline a_ `RectangleList` _draws inside each rectangle's edges._ |
+| class | [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) <br>_Controls the outline a_ `RectangleSeries` _draws inside each rectangle's edges._ |
 
 
 

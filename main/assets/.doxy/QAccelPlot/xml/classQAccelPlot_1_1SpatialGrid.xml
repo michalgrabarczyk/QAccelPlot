@@ -477,7 +477,7 @@
 <para>Uniform-grid spatial index with bounded per-rectangle storage. </para>
     </briefdescription>
     <detaileddescription>
-<para>Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable <emphasis>valuesPerItem</emphasis> stride. Intended for use by <ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit. </para>
+<para>Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable <emphasis>valuesPerItem</emphasis> stride. Intended for use by <ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref> and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit. </para>
     </detaileddescription>
     <location file="QAccelPlot/src/QAccelPlot/series/SpatialGrid.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/SpatialGrid.hpp" bodystart="22" bodyend="72"/>
     <listofallmembers>

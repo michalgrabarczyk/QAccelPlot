@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleList, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
+        <meta name="description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleList, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
+<meta property="og:description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
 
 <script type="application/ld+json">
 {
@@ -1381,7 +1381,7 @@ JavaScript callback.</p>
 and legend symbol.</p>
 <p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
 stores points as interleaved floats and accepts data from QML or C++ buffers.</p>
-<p><code>RectangleList</code> renders many data-space rectangles in one item, such as event
+<p><code>RectangleSeries</code> renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.</p>

@@ -170,11 +170,11 @@
 
 * [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**RectangleList**](classQAccelPlot_1_1RectangleList.md)
+* [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
-* [**RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md)
+* [**RectVertex**](structQAccelPlot_1_1RectangleSeries_1_1RectVertex.md)
 * [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md)
 ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 

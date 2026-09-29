@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleList](classQAccelPlot_1_1RectangleList.md)
+Inherited by the following classes: [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -44,9 +44,9 @@ flowchart TB
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1PointCloud
   click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
-  classQAccelPlot_1_1RectangleList["QAccelPlot::RectangleList"]
-  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleList
-  click classQAccelPlot_1_1RectangleList "../classQAccelPlot_1_1RectangleList/" "Open QAccelPlot::RectangleList"
+  classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1RectangleSeries
+  click classQAccelPlot_1_1RectangleSeries "../classQAccelPlot_1_1RectangleSeries/" "Open QAccelPlot::RectangleSeries"
 
 ```
 
@@ -175,7 +175,7 @@ flowchart TB
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleList**](classQAccelPlot_1_1RectangleList.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md), [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) 
 
 
 

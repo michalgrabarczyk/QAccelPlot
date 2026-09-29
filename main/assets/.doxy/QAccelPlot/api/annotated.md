@@ -69,9 +69,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **struct** [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._     
     * **struct** [**PointVertex**](structQAccelPlot_1_1PointVertex.md) _Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._     
     * **class** [**QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) _The main plot canvas QML item — hosts axes, curves, and a grid._     
-    * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle list rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
-    * **class** [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) _Controls the outline a_ `RectangleList` _draws inside each rectangle's edges._    
-    * **class** [**RectangleList**](classQAccelPlot_1_1RectangleList.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
+    * **class** [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _with a rect-count uniform._    
+    * **class** [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) _Controls the outline a_ `RectangleSeries` _draws inside each rectangle's edges._    
+    * **class** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) _A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._     
     * **struct** [**SampleRun**](structQAccelPlot_1_1SampleRun.md) _Contiguous range of valid curve samples, used to break fills and hit tests at gaps._     
     * **class** [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) _Controls the markers a series draws at its data points._     
     * **class** [**SolidLine**](classQAccelPlot_1_1SolidLine.md) _The default line style — renders a continuous solid line with no gaps._     
@@ -83,6 +83,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
-* **struct** [**RectVertex**](structQAccelPlot_1_1RectangleList_1_1RectVertex.md)     
+* **struct** [**RectVertex**](structQAccelPlot_1_1RectangleSeries_1_1RectVertex.md)     
 * **struct** [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)     
 

@@ -1567,29 +1567,31 @@
 <h2 id="unreleased">[Unreleased]<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>RectangleList</code>: <code>rectangleAt()</code>, <code>rectangleIndexAt()</code>, <code>clearData()</code>,
+<li><code>RectangleSeries</code>: <code>rectangleAt()</code>, <code>rectangleIndexAt()</code>, <code>clearData()</code>,
   <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code>, and <code>postData()</code>.</li>
-<li><code>RectangleList</code> spans: infinite or omitted edges reach the plot edge.</li>
-<li><code>RectangleList.minimumWidth</code> and <code>minimumHeight</code>, 1 px by default.</li>
-<li><code>RectangleList</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
-<li><code>RectangleList.border.width</code> and <code>border.color</code>.</li>
-<li><code>RectangleList.hoverColor</code>.</li>
-<li><code>RectangleList</code>: <code>setDataNoRange()</code>, <code>setDataF()</code>, <code>setDataFNoRange()</code>, and float
+<li><code>RectangleSeries</code> spans: infinite or omitted edges reach the plot edge.</li>
+<li><code>RectangleSeries.minimumWidth</code> and <code>minimumHeight</code>, 1 px by default.</li>
+<li><code>RectangleSeries</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
+<li><code>RectangleSeries.border.width</code> and <code>border.color</code>.</li>
+<li><code>RectangleSeries.hoverColor</code>.</li>
+<li><code>RectangleSeries</code>: <code>setDataNoRange()</code>, <code>setDataF()</code>, <code>setDataFNoRange()</code>, and float
   <code>postData()</code> overloads.</li>
 <li><code>SpatialGrid::buildF()</code>.</li>
 <li>The <code>plot_types/state_timeline</code> example.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Renamed the C++ and QML <code>RectangleList</code> type to <code>RectangleSeries</code>. Include
+  <code>&lt;QAccelPlot/series/RectangleSeries.hpp&gt;</code> in C++ code.</li>
 <li><code>GradientStroke::payload()</code> and <code>GradientFill::payload()</code> return a reference to
   a snapshot that the effect updates on the GUI thread. The new
   <code>LineCurveEffect::refresh()</code> re-reads inputs that change without a notification.</li>
 <li><code>DataTransition::start()</code> and <code>advance()</code> take a <code>DataTransition::Run</code> that holds
   one element's animation state.</li>
-<li>Moved <code>RectangleList.hpp</code> to <code>QAccelPlot/series/</code>.</li>
-<li>Replaced <code>RectangleList::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
+<li>Moved <code>RectangleSeries.hpp</code> to <code>QAccelPlot/series/</code>.</li>
+<li>Replaced <code>RectangleSeries::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
 <li><code>PointCloud</code> uses half the GPU vertex memory per point.</li>
-<li>The <code>showcases/performance</code> example has <code>LineCurve</code>, <code>PointCloud</code>, and <code>RectangleList</code> tabs.</li>
+<li>The <code>showcases/performance</code> example has <code>LineCurve</code>, <code>PointCloud</code>, and <code>RectangleSeries</code> tabs.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1619,9 +1621,9 @@
 <li>Replacing, clearing, cancelling, or destroying a running <code>LineCurve</code> transition,
   or calling <code>appendData()</code> during it, shows the new data instead of freezing the
   animation.</li>
-<li><code>RectangleList</code> no longer blocks hover for series underneath it.</li>
+<li><code>RectangleSeries</code> no longer blocks hover for series underneath it.</li>
 <li>Attaching an empty series no longer resets an axis's <code>dataMin</code> and <code>dataMax</code> to 0 and 1.</li>
-<li><code>RectangleList</code> and <code>PointCloud</code> render up to about 16M rectangles or 22M points
+<li><code>RectangleSeries</code> and <code>PointCloud</code> render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).</li>
 </ul>
 <h2 id="030-2026-09-25">[0.3.0] — 2026-09-25<a class="headerlink" href="#030-2026-09-25" title="Permanent link">&para;</a></h2>

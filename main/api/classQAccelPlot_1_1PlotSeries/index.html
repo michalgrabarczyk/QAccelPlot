@@ -1719,7 +1719,7 @@
 <li><code>#include &lt;PlotSeries.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: QQuickItem</p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1LineCurve/">QAccelPlot::LineCurve</a>,  <a href="../classQAccelPlot_1_1PointCloud/">QAccelPlot::PointCloud</a>,  <a href="../classQAccelPlot_1_1RectangleList/">QAccelPlot::RectangleList</a></p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1LineCurve/">QAccelPlot::LineCurve</a>,  <a href="../classQAccelPlot_1_1PointCloud/">QAccelPlot::PointCloud</a>,  <a href="../classQAccelPlot_1_1RectangleSeries/">QAccelPlot::RectangleSeries</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1PlotSeries["QAccelPlot::PlotSeries"]
@@ -1735,9 +1735,9 @@
   classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1PointCloud
   click classQAccelPlot_1_1PointCloud "../classQAccelPlot_1_1PointCloud/" "Open QAccelPlot::PointCloud"
 
-  classQAccelPlot_1_1RectangleList["QAccelPlot::RectangleList"]
-  classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1RectangleList
-  click classQAccelPlot_1_1RectangleList "../classQAccelPlot_1_1RectangleList/" "Open QAccelPlot::RectangleList"
+  classQAccelPlot_1_1RectangleSeries["QAccelPlot::RectangleSeries"]
+  classQAccelPlot_1_1PlotSeries --&gt; classQAccelPlot_1_1RectangleSeries
+  click classQAccelPlot_1_1RectangleSeries "../classQAccelPlot_1_1RectangleSeries/" "Open QAccelPlot::RectangleSeries"
 </code></pre>
 <h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
 <table>
@@ -1948,7 +1948,7 @@
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p><a href="./"><strong>PlotSeries</strong></a> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, and legend metadata. Concrete series remain responsible for their data model, rendering, and hit testing.</p>
-<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleList/"><strong>RectangleList</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> </p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-legendsymbol">enum LegendSymbol<a class="headerlink" href="#enum-legendsymbol" title="Permanent link">&para;</a></h3>
 <p><em>Supported default legend symbols.</em> 

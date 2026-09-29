@@ -15,7 +15,7 @@
 
 
 
-_Controls the outline a_ `RectangleList` _draws inside each rectangle's edges._[More...](#detailed-description)
+_Controls the outline a_ `RectangleSeries` _draws inside each rectangle's edges._[More...](#detailed-description)
 
 * `#include <RectangleBorder.hpp>`
 
@@ -120,12 +120,12 @@ flowchart TB
 ## Detailed Description
 
 
-Accessible via the `border` CONSTANT grouped property of `RectangleList`, for example `border.width: 1`.
+Accessible via the `border` CONSTANT grouped property of `RectangleSeries`, for example `border.width: 1`.
 
 
 
 
-**See also:** [**RectangleList**](classQAccelPlot_1_1RectangleList.md) 
+**See also:** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) 
 
 
 

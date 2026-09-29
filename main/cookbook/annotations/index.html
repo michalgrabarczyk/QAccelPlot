@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
+        <meta name="description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleSeries.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList.">
+<meta property="og:description" content="Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleSeries.">
 
 <script type="application/ld+json">
 {
@@ -1297,13 +1297,13 @@ follow panning and zooming. Set matching X and/or Y coordinates for a point or
 line; set all four bounds for a rectangle.</p>
 <p>Each <code>DataAnchor</code> and its children add <code>QQuickItem</code>s, so use it for a moderate
 number of rich annotations. For thousands of simple regions, use
-<a href="../../api/classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a>, which is a single item.</p>
+<a href="../../api/classQAccelPlot_1_1RectangleSeries/"><code>RectangleSeries</code></a>, which is a single item.</p>
 <h2 id="highlight-many-data-regions">Highlight many data regions<a class="headerlink" href="#highlight-many-data-regions" title="Permanent link">&para;</a></h2>
-<p><a href="../../api/classQAccelPlot_1_1RectangleList/"><code>RectangleList</code></a> draws many data-space rectangles, such as
-event windows or machine states. <a href="../../api/classQAccelPlot_1_1RectangleList/#function-setdata"><code>setData()</code></a> takes
+<p><a href="../../api/classQAccelPlot_1_1RectangleSeries/"><code>RectangleSeries</code></a> draws many data-space rectangles, such as
+event windows or machine states. <a href="../../api/classQAccelPlot_1_1RectangleSeries/#function-setdata"><code>setData()</code></a> takes
 rectangle bounds. An omitted or infinite edge reaches the plot edge, so
 <code>{ x1: 8, x2: 12 }</code> is a full-height span:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleList</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleSeries</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">color:</span> <span class="s2">"goldenrod"</span>
@@ -1340,13 +1340,13 @@ rectangle bounds. An omitted or infinite edge reaches the plot edge, so
 <td style="text-align: left;">Fill of the hovered rectangle</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a href="../../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>hoveredIndex</code></a>, <code>rectangleAt()</code></td>
+<td style="text-align: left;"><a href="../../api/classQAccelPlot_1_1RectangleSeries/#property-hoveredindex-12"><code>hoveredIndex</code></a>, <code>rectangleAt()</code></td>
 <td style="text-align: left;">The rectangle under the pointer and its bounds, for tooltips</td>
 </tr>
 </tbody>
 </table>
 <p>A state timeline puts one lane per row, colored by category:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleList</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">RectangleSeries</span> <span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">categoryColors:</span> <span class="p">[</span><span class="s2">"seagreen"</span><span class="p">,</span> <span class="s2">"slategray"</span><span class="p">,</span> <span class="s2">"firebrick"</span><span class="p">]</span> <span class="c1">// Running, Idle, Alarm</span>
@@ -1363,7 +1363,7 @@ rectangle bounds. An omitted or infinite edge reaches the plot edge, so
 Y axis. From C++, <code>setData(std::vector&lt;double&gt;&amp;&amp;, std::vector&lt;int&gt;&amp;&amp;, int)</code>
 moves bounds and categories in without copying; <code>postData()</code> hands them off
 from a worker thread.</p>
-<p>RectangleList only accepts hover over its rectangles, so series underneath
+<p>RectangleSeries only accepts hover over its rectangles, so series underneath
 still receive hover elsewhere. Hover lookup uses a spatial grid and stays
 constant-time for large collections; see
 <a href="../../performance/#hover-interactions">Hover interactions</a>.</p>

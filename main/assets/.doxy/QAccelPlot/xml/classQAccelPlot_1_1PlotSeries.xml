@@ -5,7 +5,7 @@
     <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineCurve" prot="public" virt="non-virtual">QAccelPlot::LineCurve</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloud" prot="public" virt="non-virtual">QAccelPlot::PointCloud</derivedcompoundref>
-    <derivedcompoundref refid="classQAccelPlot_1_1RectangleList" prot="public" virt="non-virtual">QAccelPlot::RectangleList</derivedcompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1RectangleSeries" prot="public" virt="non-virtual">QAccelPlot::RectangleSeries</derivedcompoundref>
     <includes local="no">PlotSeries.hpp</includes>
     <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" prot="protected">QAccelPlot::PlotSeries::DataExtent</innerclass>
     <sectiondef kind="public-type">
@@ -915,7 +915,7 @@
         <qualifiedname>QAccelPlot::PlotSeries::onAxisScaleChanged</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a81600a34c7dd5c5970431b1a1a3ab2e8">onAxisScaleChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a7c2ecabe80870f75863ba1705b4f82cb">onAxisScaleChanged</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1RectangleList_1a7aaae8ff6eead5fe2d4cfa189f0dca31">onAxisScaleChanged</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a9258965161abf24d2853375aedf3752d">onAxisScaleChanged</reimplementedby>
         <briefdescription>
 <para>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound. </para>
         </briefdescription>
@@ -995,7 +995,7 @@
     </briefdescription>
     <detaileddescription>
 <para><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, and legend metadata. Concrete series remain responsible for their data model, rendering, and hit testing.</para>
-<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1RectangleList" kindref="compound">RectangleList</ref>, <ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref> </para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref>, <ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>, <ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref> </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -1019,8 +1019,8 @@
         </childnode>
       </node>
       <node id="5">
-        <label>QAccelPlot::RectangleList</label>
-        <link refid="classQAccelPlot_1_1RectangleList"/>
+        <label>QAccelPlot::RectangleSeries</label>
+        <link refid="classQAccelPlot_1_1RectangleSeries"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

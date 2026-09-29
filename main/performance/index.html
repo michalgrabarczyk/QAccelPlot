@@ -1526,9 +1526,9 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.
-<code>RectangleList</code> has the same <code>setDataF()</code> and
-<a href="../api/classQAccelPlot_1_1RectangleList/#function-setdatafnorange"><code>setDataFNoRange()</code></a> paths, plus
-<a href="../api/classQAccelPlot_1_1RectangleList/#function-setdatanorange"><code>setDataNoRange()</code></a> for double coordinates.</p>
+<code>RectangleSeries</code> has the same <code>setDataF()</code> and
+<a href="../api/classQAccelPlot_1_1RectangleSeries/#function-setdatafnorange"><code>setDataFNoRange()</code></a> paths, plus
+<a href="../api/classQAccelPlot_1_1RectangleSeries/#function-setdatanorange"><code>setDataNoRange()</code></a> for double coordinates.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
@@ -1549,7 +1549,7 @@ rebuilding geometry; gradient effects may need per-vertex work.</p>
 <p><code>QAccelPlot.PointCloud.hoveredIndex</code> uses a uniform grid of point indices that
 is rebuilt lazily on the first pointer move after a data change (<code>O(N)</code>), then
 answers each move by scanning only the cells within the hover radius.
-<a href="../api/classQAccelPlot_1_1RectangleList/#property-hoveredindex-12"><code>RectangleList.hoveredIndex</code></a> rebuilds its spatial grid the same
+<a href="../api/classQAccelPlot_1_1RectangleSeries/#property-hoveredindex-12"><code>RectangleSeries.hoveredIndex</code></a> rebuilds its spatial grid the same
 way, then gives <code>O(1)</code> lookup per pointer move. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
@@ -1621,7 +1621,7 @@ appear in public headers or ABI. Gradient textures always use the public path.</
 <li>Repeat the test and publish the scenario with the result.</li>
 </ol>
 <p>The Performance Showcase streams a <code>LineCurve</code>, a <code>PointCloud</code>, and a
-<code>RectangleList</code>, one per tab. Only the visible tab generates data. It reports:</p>
+<code>RectangleSeries</code>, one per tab. Only the visible tab generates data. It reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
 <li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,

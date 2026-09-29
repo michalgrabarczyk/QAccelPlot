@@ -96,7 +96,7 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 ## Detailed Description
 
 
-Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable _valuesPerItem_ stride. Intended for use by [**RectangleList**](classQAccelPlot_1_1RectangleList.md) and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit. 
+Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array with a configurable _valuesPerItem_ stride. Intended for use by [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) and similar shape types. Rectangles spanning more than 64 cells are stored once and checked separately during queries. An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit. 
 
 
     
