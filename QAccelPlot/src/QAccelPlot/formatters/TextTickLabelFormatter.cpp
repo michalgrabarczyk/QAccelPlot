@@ -9,6 +9,8 @@
 
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 
+#include <cmath>
+
 namespace QAccelPlot {
 
 TextTickLabelFormatter::TextTickLabelFormatter(QObject* parent)
@@ -33,12 +35,15 @@ void TextTickLabelFormatter::setLabels(const QStringList& labels)
 
 QString TextTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
-    const auto index = qRound(value);
-    if (index < 0 || index >= labels_.size()) {
+    if (!std::isfinite(value)) {
+        return {};
+    }
+    const auto index = std::round(value);
+    if (index < 0.0 || index >= static_cast<qreal>(labels_.size())) {
         qCDebug(lcQAccelPlot) << "index" << index << "out of range [0," << labels_.size() << "), returning empty string";
         return {};
     }
-    return labels_.at(index);
+    return labels_.at(static_cast<qsizetype>(index));
 }
 
 } // namespace QAccelPlot

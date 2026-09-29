@@ -183,6 +183,9 @@ void TestFormatters::textFormat_data()
     QTest::newRow("small-negative-rounds-to-first") << numbers << -0.4 << QStringLiteral("zero");
     QTest::newRow("negative-half-is-out-of-range") << numbers << -0.5 << QString{};
     QTest::newRow("past-last-rounds-out-of-range") << numbers << 2.5 << QString{};
+    QTest::newRow("large-positive-index") << numbers << 3e9 << QString{};
+    QTest::newRow("large-negative-index") << numbers << -3e9 << QString{};
+    QTest::newRow("non-finite-index") << numbers << qQNaN() << QString{};
 }
 
 void TestFormatters::textFormat()

@@ -42,6 +42,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- `TextTickLabelFormatter` returns an empty label for non-finite or out-of-range
+  tick values without an integer conversion failure.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
