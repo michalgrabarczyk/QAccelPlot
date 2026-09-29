@@ -25,7 +25,7 @@ class QQuickWindow;
 namespace QAccelPlot {
 class LineCurve;
 class PointCloud;
-class RectangleList;
+class RectangleSeries;
 } // namespace QAccelPlot
 
 namespace QAccelPlotExample {
@@ -37,7 +37,7 @@ namespace QAccelPlotExample {
 class ShowcaseController final : public QObject {
 public:
     /// \brief Showcase pages, each fed by its own worker.
-    enum class Page { LineCurve, PointCloud, RectangleList };
+    enum class Page { LineCurve, PointCloud, RectangleSeries };
 
     /// \brief Connects to \a window's frames and looks up the series below \a root.
     ///
@@ -53,17 +53,17 @@ private:
     int count(Page page) const;
     void updateLineCurve(double timeSeconds);
     void updatePointCloud(double timeSeconds);
-    void updateRectangleList(double timeSeconds);
+    void updateRectangleSeries(double timeSeconds);
     void dataApplied();
 
     QObject* root_;
     QPointer<QAccelPlot::LineCurve> lineCurve_;
     QPointer<QAccelPlot::PointCloud> pointCloud_;
-    QPointer<QAccelPlot::RectangleList> rectangleList_;
+    QPointer<QAccelPlot::RectangleSeries> rectangleSeries_;
     std::shared_ptr<DataDeliveryMetrics> deliveryMetrics_;
     GenerationWorker<SineWaveGenerator> lineCurveWorker_;
     GenerationWorker<GalaxyGenerator> pointCloudWorker_;
-    GenerationWorker<PlasmaGenerator> rectangleListWorker_;
+    GenerationWorker<PlasmaGenerator> rectangleSeriesWorker_;
     std::optional<Page> activePage_;
     QElapsedTimer elapsed_;
     bool screenshotMode_;

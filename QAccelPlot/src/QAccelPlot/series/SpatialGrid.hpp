@@ -15,7 +15,7 @@ namespace QAccelPlot {
 /// \brief Uniform-grid spatial index with bounded per-rectangle storage.
 ///
 /// Each item is stored as four consecutive doubles (x1, y1, x2, y2) in a flat array
-/// with a configurable \a valuesPerItem stride. Intended for use by RectangleList
+/// with a configurable \a valuesPerItem stride. Intended for use by RectangleSeries
 /// and similar shape types.
 /// Rectangles spanning more than 64 cells are stored once and checked separately during queries.
 /// An infinite edge leaves a rectangle unbounded in that direction; a rectangle with a NaN edge is never hit.

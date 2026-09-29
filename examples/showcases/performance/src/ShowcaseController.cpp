@@ -9,7 +9,7 @@
 
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/series/PointCloud.hpp>
-#include <QAccelPlot/series/RectangleList.hpp>
+#include <QAccelPlot/series/RectangleSeries.hpp>
 
 #include <QQuickWindow>
 #include <QString>
@@ -46,7 +46,7 @@ ShowcaseController::ShowcaseController(QQuickWindow* window, QObject* root, std:
     , root_(root)
     , lineCurve_(root->findChild<LineCurve*>(QStringLiteral("lineCurve")))
     , pointCloud_(root->findChild<PointCloud*>(QStringLiteral("pointCloud")))
-    , rectangleList_(root->findChild<RectangleList*>(QStringLiteral("rectangleList")))
+    , rectangleSeries_(root->findChild<RectangleSeries*>(QStringLiteral("rectangleSeries")))
     , deliveryMetrics_(std::move(deliveryMetrics))
     , screenshotMode_(screenshotMode)
 {
@@ -75,8 +75,8 @@ void ShowcaseController::onFrame()
     case Page::PointCloud:
         updatePointCloud(timeSeconds);
         break;
-    case Page::RectangleList:
-        updateRectangleList(timeSeconds);
+    case Page::RectangleSeries:
+        updateRectangleSeries(timeSeconds);
         break;
     }
 }
@@ -90,8 +90,8 @@ std::optional<ShowcaseController::Page> ShowcaseController::requestedPage() cons
     if (name == QLatin1String("pointCloud")) {
         return Page::PointCloud;
     }
-    if (name == QLatin1String("rectangleList")) {
-        return Page::RectangleList;
+    if (name == QLatin1String("rectangleSeries")) {
+        return Page::RectangleSeries;
     }
     return std::nullopt;
 }
@@ -117,8 +117,8 @@ void ShowcaseController::setWorkerRunning(const Page page, const bool running, c
     case Page::PointCloud:
         setRunning(pointCloudWorker_, running, count(page), timeSeconds);
         break;
-    case Page::RectangleList:
-        setRunning(rectangleListWorker_, running, count(page), timeSeconds);
+    case Page::RectangleSeries:
+        setRunning(rectangleSeriesWorker_, running, count(page), timeSeconds);
         break;
     }
 }
@@ -130,7 +130,7 @@ int ShowcaseController::count(const Page page) const
         return root_->property("lineCurveCount").toInt();
     case Page::PointCloud:
         return root_->property("pointCloudCount").toInt();
-    case Page::RectangleList:
+    case Page::RectangleSeries:
         return root_->property("rectangleCount").toInt();
     }
     return 0;
@@ -160,13 +160,13 @@ void ShowcaseController::updatePointCloud(const double timeSeconds)
     dataApplied();
 }
 
-void ShowcaseController::updateRectangleList(const double timeSeconds)
+void ShowcaseController::updateRectangleSeries(const double timeSeconds)
 {
     auto batch = PlasmaBatch{};
-    if (!takeBatch(rectangleListWorker_, count(Page::RectangleList), timeSeconds, batch) || !rectangleList_) {
+    if (!takeBatch(rectangleSeriesWorker_, count(Page::RectangleSeries), timeSeconds, batch) || !rectangleSeries_) {
         return;
     }
-    rectangleList_->setDataFNoRange(std::move(batch.rects), batch.rectangleCount);
+    rectangleSeries_->setDataFNoRange(std::move(batch.rects), batch.rectangleCount);
     dataApplied();
 }
 

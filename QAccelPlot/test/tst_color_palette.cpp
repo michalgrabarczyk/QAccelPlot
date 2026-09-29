@@ -9,7 +9,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/theme/Colors.hpp"
 
@@ -92,7 +92,7 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     const QAccelPlot::PointCloud cloud;
     QCOMPARE(cloud.color(), palette.seriesPrimary);
 
-    const QAccelPlot::RectangleList rectangles;
+    const QAccelPlot::RectangleSeries rectangles;
     QCOMPARE(rectangles.color().rgb(), palette.seriesPrimary.rgb());
     QCOMPARE(rectangles.color().alpha(), 50);
 }

@@ -17,7 +17,7 @@
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 #include "QAccelPlot/transitions/MorphTransition.hpp"
 
@@ -56,7 +56,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("LineCurve"), make<LineCurve>()},
         {QStringLiteral("MorphTransition"), make<MorphTransition>()},
         {QStringLiteral("PlotView"), make<QAccelPlot>()},
-        {QStringLiteral("RectangleList"), make<RectangleList>()},
+        {QStringLiteral("RectangleSeries"), make<RectangleSeries>()},
         {QStringLiteral("TextTickLabelFormatter"), make<TextTickLabelFormatter>()},
     };
     return instances;
@@ -153,11 +153,11 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("PlotView", "axesAreaColor", QColor{Qt::darkBlue});
 
     const auto& palette = ColorPalette::dark();
-    row("RectangleList", "color", palette.seriesSecondary);
-    row("RectangleList", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
-    row("RectangleList", "hoverColor", palette.seriesYellow);
-    row("RectangleList", "minimumWidth", 4.0);
-    row("RectangleList", "minimumHeight", 0.0);
+    row("RectangleSeries", "color", palette.seriesSecondary);
+    row("RectangleSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
+    row("RectangleSeries", "hoverColor", palette.seriesYellow);
+    row("RectangleSeries", "minimumWidth", 4.0);
+    row("RectangleSeries", "minimumHeight", 0.0);
 
     row("TextTickLabelFormatter", "labels", QStringList{QStringLiteral("a"), QStringLiteral("b")});
 }

@@ -18,12 +18,12 @@
 
 namespace QAccelPlot {
 
-/// \brief Controls the outline a \c RectangleList draws inside each rectangle's edges.
+/// \brief Controls the outline a \c RectangleSeries draws inside each rectangle's edges.
 ///
-/// Accessible via the \c border CONSTANT grouped property of \c RectangleList, for example
+/// Accessible via the \c border CONSTANT grouped property of \c RectangleSeries, for example
 /// <tt>border.width: 1</tt>.
 ///
-/// \sa RectangleList
+/// \sa RectangleSeries
 class RectangleBorder : public QObject {
     Q_OBJECT
     QML_ANONYMOUS

@@ -18,6 +18,6 @@ qaccelplot_add_example(Performance
         qml/ControlPanel.qml
         qml/LineCurvePage.qml
         qml/PointCloudPage.qml
-        qml/RectangleListPage.qml
+        qml/RectangleSeriesPage.qml
         qml/main.qml
 )

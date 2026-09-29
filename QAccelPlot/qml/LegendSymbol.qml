@@ -19,7 +19,7 @@ Item {
     readonly property color curveColor: sourceSeries.color !== undefined ? sourceSeries.color : "#808080"
     readonly property var curveLineStyle: sourceSeries.lineStyle !== undefined ? sourceSeries.lineStyle : null
     readonly property bool showLine: !isMarkerSymbol && (curveLineStyle ? curveLineStyle.showLine : true)
-    // Series without markers, such as RectangleList, have no marker group.
+    // Series without markers, such as RectangleSeries, have no marker group.
     readonly property var curveMarkerGroup: sourceSeries.marker !== undefined ? sourceSeries.marker : null
     readonly property int curveMarker: curveMarkerGroup ? curveMarkerGroup.shape : LineCurve.None
     // Marker-only series such as dense point clouds often use tiny markers; keep their swatch legible.

@@ -49,7 +49,7 @@ Window {
 
         ExampleHeader {
             title: "State timeline"
-            description: "Two weeks of machine states in one RectangleList, colored by category. Full-height maintenance windows sit underneath. Short alarms keep a minimum width when zoomed out; hover a state to read it."
+            description: "Two weeks of machine states in one RectangleSeries, colored by category. Full-height maintenance windows sit underneath. Short alarms keep a minimum width when zoomed out; hover a state to read it."
 
             Repeater {
                 model: window.stateNames
@@ -133,7 +133,7 @@ Window {
             }
 
             // Omitting y1 and y2 makes each window span the full plot height.
-            QAccelPlot.RectangleList {
+            QAccelPlot.RectangleSeries {
                 id: maintenance
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
@@ -152,7 +152,7 @@ Window {
             }
 
             // Filled from C++ with setData(), which also passes one state category per interval.
-            QAccelPlot.RectangleList {
+            QAccelPlot.RectangleSeries {
                 id: states
                 objectName: "states"
                 xAxis: plot.xAxis

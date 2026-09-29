@@ -8,29 +8,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- `RectangleList`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
+- `RectangleSeries`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
   `setData(std::vector<double>&&, int)`, and `postData()`.
-- `RectangleList` spans: infinite or omitted edges reach the plot edge.
-- `RectangleList.minimumWidth` and `minimumHeight`, 1 px by default.
-- `RectangleList` categories: `category`, `categoryColors`, and `setCategories()`.
-- `RectangleList.border.width` and `border.color`.
-- `RectangleList.hoverColor`.
-- `RectangleList`: `setDataNoRange()`, `setDataF()`, `setDataFNoRange()`, and float
+- `RectangleSeries` spans: infinite or omitted edges reach the plot edge.
+- `RectangleSeries.minimumWidth` and `minimumHeight`, 1 px by default.
+- `RectangleSeries` categories: `category`, `categoryColors`, and `setCategories()`.
+- `RectangleSeries.border.width` and `border.color`.
+- `RectangleSeries.hoverColor`.
+- `RectangleSeries`: `setDataNoRange()`, `setDataF()`, `setDataFNoRange()`, and float
   `postData()` overloads.
 - `SpatialGrid::buildF()`.
 - The `plot_types/state_timeline` example.
 
 ### Changed
 
+- Renamed the C++ and QML `RectangleList` type to `RectangleSeries`. Include
+  `<QAccelPlot/series/RectangleSeries.hpp>` in C++ code.
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
   a snapshot that the effect updates on the GUI thread. The new
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
-- Moved `RectangleList.hpp` to `QAccelPlot/series/`.
-- Replaced `RectangleList::setData(const float*, int)` with `setDataF(const float*, int)`.
+- Moved `RectangleSeries.hpp` to `QAccelPlot/series/`.
+- Replaced `RectangleSeries::setData(const float*, int)` with `setDataF(const float*, int)`.
 - `PointCloud` uses half the GPU vertex memory per point.
-- The `showcases/performance` example has `LineCurve`, `PointCloud`, and `RectangleList` tabs.
+- The `showcases/performance` example has `LineCurve`, `PointCloud`, and `RectangleSeries` tabs.
 
 ### Fixed
 
@@ -60,9 +62,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
-- `RectangleList` no longer blocks hover for series underneath it.
+- `RectangleSeries` no longer blocks hover for series underneath it.
 - Attaching an empty series no longer resets an axis's `dataMin` and `dataMax` to 0 and 1.
-- `RectangleList` and `PointCloud` render up to about 16M rectangles or 22M points
+- `RectangleSeries` and `PointCloud` render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).
 
 ## [0.3.0] — 2026-09-25

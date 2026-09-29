@@ -7,7 +7,7 @@
 //
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include <QQuickWindow>
 #include <QSGGeometryNode>
@@ -21,13 +21,13 @@
 namespace QAccelPlot {
 
 namespace {
-class RenderableRectangles final : public RectangleList {
+class RenderableRectangles final : public RectangleSeries {
 public:
-    using RectangleList::updatePaintNode;
+    using RectangleSeries::updatePaintNode;
 };
 }
 
-class RectangleListDataTest : public QObject {
+class RectangleSeriesDataTest : public QObject {
     Q_OBJECT
 
 private slots:
@@ -56,16 +56,16 @@ private slots:
     void scaleChangesRefreshRenderCoordinates();
 };
 
-void RectangleListDataTest::hoverEnvironmentControlsAcceptance()
+void RectangleSeriesDataTest::hoverEnvironmentControlsAcceptance()
 {
     constexpr auto variableName = "QACCELPLOT_HOVER_ENABLED";
     const auto wasSet = qEnvironmentVariableIsSet(variableName);
     const auto previousValue = qgetenv(variableName);
 
     qunsetenv(variableName);
-    const auto defaultRectangles = RectangleList{};
+    const auto defaultRectangles = RectangleSeries{};
     qputenv(variableName, "0");
-    const auto hoverDisabledRectangles = RectangleList{};
+    const auto hoverDisabledRectangles = RectangleSeries{};
 
     if (wasSet) {
         qputenv(variableName, previousValue);
@@ -77,33 +77,33 @@ void RectangleListDataTest::hoverEnvironmentControlsAcceptance()
     QVERIFY(!hoverDisabledRectangles.acceptHoverEvents());
 }
 
-void RectangleListDataTest::invalidRawArgumentsAreRejected()
+void RectangleSeriesDataTest::invalidRawArgumentsAreRejected()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     const auto data = std::array<double, 4>{0.0, 1.0, 2.0, 3.0};
     const auto floatData = std::array<float, 4>{0.0f, 1.0f, 2.0f, 3.0f};
-    auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
+    auto countSpy = QSignalSpy{&rectangles, &RectangleSeries::countChanged};
 
     rectangles.setData(data.data(), 1);
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer.*"));
     rectangles.setData(static_cast<const double*>(nullptr), 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
     rectangles.setData(data.data(), -1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
     rectangles.setDataF(floatData.data(), -1);
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(countSpy.count(), 1);
 }
 
-void RectangleListDataTest::rawDoubleDataPreservesModernEpochPrecision()
+void RectangleSeriesDataTest::rawDoubleDataPreservesModernEpochPrecision()
 {
     constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
     auto xAxis = Axis{};
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
 
     const auto data = std::array<double, 8>{
@@ -122,11 +122,11 @@ void RectangleListDataTest::rawDoubleDataPreservesModernEpochPrecision()
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 3.0);
 }
 
-void RectangleListDataTest::variantListDataPreservesModernEpochPrecision()
+void RectangleSeriesDataTest::variantListDataPreservesModernEpochPrecision()
 {
     constexpr auto epochMilliseconds = double{1'789'032'600'000.0};
     auto xAxis = Axis{};
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
 
     auto rectMap = QVariantMap{};
@@ -140,10 +140,10 @@ void RectangleListDataTest::variantListDataPreservesModernEpochPrecision()
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
 }
 
-void RectangleListDataTest::movedDataIsApplied()
+void RectangleSeriesDataTest::movedDataIsApplied()
 {
     auto xAxis = Axis{};
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
 
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0}, 2);
@@ -154,21 +154,21 @@ void RectangleListDataTest::movedDataIsApplied()
     QCOMPARE(xAxis.dataMax(), 7.0);
 }
 
-void RectangleListDataTest::movedDataWithWrongSizeIsRejected()
+void RectangleSeriesDataTest::movedDataWithWrongSizeIsRejected()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 coordinates for 1 rectangles; expected 4"));
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0}, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList data rectangle count cannot be negative.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
     rectangles.setData(std::vector<double>{}, -1);
 
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), 4.0);
 }
 
-void RectangleListDataTest::noRangeDataDoesNotReportRanges()
+void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
 {
     auto xAxis = Axis{};
     auto yAxis = Axis{};
@@ -185,8 +185,8 @@ void RectangleListDataTest::noRangeDataDoesNotReportRanges()
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
     auto node = std::unique_ptr<QSGNode>{rectangles.updatePaintNode(nullptr, nullptr)};
     QVERIFY(node);
-    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleList::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&rectangles, &RectangleList::yDataRangeChanged};
+    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::xDataRangeChanged};
+    auto yRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::yDataRangeChanged};
 
     rectangles.setDataNoRange(std::vector<double>{10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0}, std::vector<int>{1, 0}, 2);
 
@@ -205,7 +205,7 @@ void RectangleListDataTest::noRangeDataDoesNotReportRanges()
     QCOMPARE(material->rectCount, 2.0f);
     QCOMPARE(material->useVertexColor, 1.0f);
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 coordinates for 1 rectangles; expected 4"));
     rectangles.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0}, {}, 1);
     QCOMPARE(rectangles.count(), 2);
 
@@ -216,12 +216,12 @@ void RectangleListDataTest::noRangeDataDoesNotReportRanges()
     QCOMPARE(xAxis.dataMax(), 3.0);
 }
 
-void RectangleListDataTest::floatDataIsApplied()
+void RectangleSeriesDataTest::floatDataIsApplied()
 {
     constexpr auto kInf = std::numeric_limits<float>::infinity();
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setYAxis(&yAxis);
 
@@ -248,22 +248,22 @@ void RectangleListDataTest::floatDataIsApplied()
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 100.0);
     QCOMPARE(xAxis.dataMin(), 100.0);
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 coordinates for 1 rectangles; expected 4"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 coordinates for 1 rectangles; expected 4"));
     rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f}, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received a null data pointer for 1 rectangles"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer for 1 rectangles"));
     rectangles.setDataF(nullptr, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 2 categories for 1 rectangles"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 2 categories for 1 rectangles"));
     rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, std::vector<int>{1, 2}, 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 100.0);
 }
 
-void RectangleListDataTest::floatNoRangeDataDoesNotReportRanges()
+void RectangleSeriesDataTest::floatNoRangeDataDoesNotReportRanges()
 {
     auto xAxis = Axis{};
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 1);
-    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleList::xDataRangeChanged};
+    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::xDataRangeChanged};
 
     rectangles.setDataFNoRange(std::vector<float>{10.0f, 20.0f, 30.0f, 40.0f}, 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
@@ -283,7 +283,7 @@ void RectangleListDataTest::floatNoRangeDataDoesNotReportRanges()
     QCOMPARE(xAxis.dataMax(), 3.0);
 }
 
-void RectangleListDataTest::floatDataIsUploadedWithoutOrigin()
+void RectangleSeriesDataTest::floatDataIsUploadedWithoutOrigin()
 {
     auto xAxis = Axis{};
     auto yAxis = Axis{};
@@ -316,9 +316,9 @@ void RectangleListDataTest::floatDataIsUploadedWithoutOrigin()
     QCOMPARE(paintedDomainMin(), QVector2D(1, 1 - 20));
 }
 
-void RectangleListDataTest::postedFloatDataIsAppliedFromWorkerThread()
+void RectangleSeriesDataTest::postedFloatDataIsAppliedFromWorkerThread()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto worker = std::thread{[&rectangles]() {
         rectangles.postData(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 1);
         rectangles.postData(std::vector<float>{5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f}, std::vector<int>{4, 5}, 2);
@@ -331,9 +331,9 @@ void RectangleListDataTest::postedFloatDataIsAppliedFromWorkerThread()
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 5);
 }
 
-void RectangleListDataTest::postedDataIsAppliedFromWorkerThread()
+void RectangleSeriesDataTest::postedDataIsAppliedFromWorkerThread()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto worker = std::thread{[&rectangles]() {
         rectangles.postData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
         rectangles.postData(std::vector<double>{5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0}, 2);
@@ -346,17 +346,17 @@ void RectangleListDataTest::postedDataIsAppliedFromWorkerThread()
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 9.0);
 }
 
-void RectangleListDataTest::clearDataRemovesRectangles()
+void RectangleSeriesDataTest::clearDataRemovesRectangles()
 {
     auto xAxis = Axis{};
-    auto remaining = RectangleList{};
+    auto remaining = RectangleSeries{};
     remaining.setXAxis(&xAxis);
     remaining.setData(std::vector<double>{10.0, 0.0, 20.0, 1.0}, 1);
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
     QCOMPARE(xAxis.dataMin(), 1.0);
-    auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
+    auto countSpy = QSignalSpy{&rectangles, &RectangleSeries::countChanged};
 
     rectangles.clearData();
 
@@ -367,10 +367,10 @@ void RectangleListDataTest::clearDataRemovesRectangles()
     QCOMPARE(xAxis.dataMax(), 20.0);
 }
 
-void RectangleListDataTest::countChangedOnlyWhenCountChanges()
+void RectangleSeriesDataTest::countChangedOnlyWhenCountChanges()
 {
-    auto rectangles = RectangleList{};
-    auto countSpy = QSignalSpy{&rectangles, &RectangleList::countChanged};
+    auto rectangles = RectangleSeries{};
+    auto countSpy = QSignalSpy{&rectangles, &RectangleSeries::countChanged};
 
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
     rectangles.setData(std::vector<double>{5.0, 6.0, 7.0, 8.0}, 1);
@@ -380,9 +380,9 @@ void RectangleListDataTest::countChangedOnlyWhenCountChanges()
     QCOMPARE(countSpy.count(), 2);
 }
 
-void RectangleListDataTest::rectangleAtReturnsBounds()
+void RectangleSeriesDataTest::rectangleAtReturnsBounds()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto rectMap = QVariantMap{};
     rectMap.insert(QStringLiteral("x1"), 1.5);
     rectMap.insert(QStringLiteral("y1"), -2.0);
@@ -395,10 +395,10 @@ void RectangleListDataTest::rectangleAtReturnsBounds()
     QVERIFY(rectangles.rectangleAt(1).isEmpty());
 }
 
-void RectangleListDataTest::missingEdgesAreUnbounded()
+void RectangleSeriesDataTest::missingEdgesAreUnbounded()
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto span = QVariantMap{};
     span.insert(QStringLiteral("x1"), 8.0);
     span.insert(QStringLiteral("x2"), 12.0);
@@ -418,16 +418,16 @@ void RectangleListDataTest::missingEdgesAreUnbounded()
     QCOMPARE(second.value(QStringLiteral("x2")).toDouble(), kInf);
 }
 
-void RectangleListDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
+void RectangleSeriesDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    auto other = RectangleList{};
+    auto other = RectangleSeries{};
     other.setYAxis(&yAxis);
     other.setData(std::vector<double>{0.0, 100.0, 1.0, 200.0}, 1);
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setYAxis(&yAxis);
 
@@ -444,9 +444,9 @@ void RectangleListDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
     QCOMPARE(yAxis.dataMax(), 200.0);
 }
 
-void RectangleListDataTest::variantListCategoriesAreStored()
+void RectangleSeriesDataTest::variantListCategoriesAreStored()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto first = QVariantMap{};
     first.insert(QStringLiteral("x2"), 1.0);
     first.insert(QStringLiteral("category"), 2);
@@ -461,9 +461,9 @@ void RectangleListDataTest::variantListCategoriesAreStored()
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
 }
 
-void RectangleListDataTest::categoriesFollowTheData()
+void RectangleSeriesDataTest::categoriesFollowTheData()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0}, std::vector<int>{1, 0}, 2);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 0);
 
@@ -482,23 +482,23 @@ void RectangleListDataTest::categoriesFollowTheData()
     QTRY_COMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 7);
 }
 
-void RectangleListDataTest::mismatchedCategoriesAreRejected()
+void RectangleSeriesDataTest::mismatchedCategoriesAreRejected()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, std::vector<int>{1}, 1);
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 2 categories for 1 rectangles"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 2 categories for 1 rectangles"));
     rectangles.setData(std::vector<double>{5.0, 5.0, 6.0, 6.0}, std::vector<int>{1, 2}, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleList received 3 categories for 1 rectangles"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 categories for 1 rectangles"));
     rectangles.setCategories({1, 2, 3});
 
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 0.0);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("category")).toInt(), 1);
 }
 
-void RectangleListDataTest::borderSettingsClampAndNotify()
+void RectangleSeriesDataTest::borderSettingsClampAndNotify()
 {
-    auto rectangles = RectangleList{};
+    auto rectangles = RectangleSeries{};
     auto* border = rectangles.border();
     QCOMPARE(border->width(), 0.0);
     QCOMPARE(border->color(), QColor{Qt::black});
@@ -515,7 +515,7 @@ void RectangleListDataTest::borderSettingsClampAndNotify()
     QCOMPARE(border->width(), 0.0);
 }
 
-void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()
+void RectangleSeriesDataTest::scaleChangesRefreshRenderCoordinates_data()
 {
     QTest::addColumn<bool>("horizontal");
     QTest::addColumn<bool>("logScale");
@@ -525,7 +525,7 @@ void RectangleListDataTest::scaleChangesRefreshRenderCoordinates_data()
     QTest::newRow("y-log-to-linear") << false << false;
 }
 
-void RectangleListDataTest::scaleChangesRefreshRenderCoordinates()
+void RectangleSeriesDataTest::scaleChangesRefreshRenderCoordinates()
 {
     QFETCH(bool, horizontal);
     QFETCH(bool, logScale);
@@ -561,6 +561,6 @@ void RectangleListDataTest::scaleChangesRefreshRenderCoordinates()
 
 } // namespace QAccelPlot
 
-using QAccelPlot::RectangleListDataTest;
-QTEST_MAIN(RectangleListDataTest)
-#include "tst_rectangle_list_data.moc"
+using QAccelPlot::RectangleSeriesDataTest;
+QTEST_MAIN(RectangleSeriesDataTest)
+#include "tst_rectangle_series_data.moc"

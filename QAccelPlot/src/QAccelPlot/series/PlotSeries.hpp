@@ -30,7 +30,7 @@ namespace QAccelPlot {
 /// plot-area layout, data-range reporting, and legend metadata. Concrete series
 /// remain responsible for their data model, rendering, and hit testing.
 ///
-/// \sa LineCurve, PointCloud, RectangleList, QAccelPlot
+/// \sa LineCurve, PointCloud, RectangleSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)

@@ -11,7 +11,7 @@
 
 namespace QAccelPlot {
 
-/// \brief QSGMaterial for rectangle list rendering, extending DataTextureMaterial with a rect-count uniform.
+/// \brief QSGMaterial for rectangle series rendering, extending DataTextureMaterial with a rect-count uniform.
 class RectMaterial : public DataTextureMaterial {
 public:
     /// \brief Constructs a RectMaterial with default uniform values.

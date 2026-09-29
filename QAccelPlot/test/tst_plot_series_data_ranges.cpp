@@ -8,7 +8,7 @@
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include <QSignalSpy>
 #include <QtTest/QtTest>
@@ -66,7 +66,7 @@ private slots:
     void nonFiniteYDoesNotBlockFiniteXUpdate();
     void replacingDestroyedLogAxisReportsScaleChange();
     void emptyPointCloudKeepsApplicationDataRange();
-    void emptyRectangleListKeepsApplicationDataRange();
+    void emptyRectangleSeriesKeepsApplicationDataRange();
     void clearedEmptyLineCurveKeepsApplicationDataRange();
     void rescaleAfterEmptySeriesUsesApplicationDataRange();
     void clearingReportedRangeUpdatesAxis();
@@ -125,10 +125,10 @@ void PlotSeriesDataRangesTest::emptyPointCloudKeepsApplicationDataRange()
     axes.verifyAppRange();
 }
 
-void PlotSeriesDataRangesTest::emptyRectangleListKeepsApplicationDataRange()
+void PlotSeriesDataRangesTest::emptyRectangleSeriesKeepsApplicationDataRange()
 {
     auto axes = AppRangeAxes{};
-    auto rects = RectangleList{};
+    auto rects = RectangleSeries{};
     rects.setXAxis(&axes.x);
     rects.setYAxis(&axes.y);
     rects.clearData();
