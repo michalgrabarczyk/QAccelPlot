@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -112,6 +113,7 @@ private slots:
     void replacingDestroyedLogAxisReportsScaleChange();
     void emptyPointCloudKeepsApplicationDataRange();
     void emptyRectangleSeriesKeepsApplicationDataRange();
+    void emptyBarSeriesKeepsApplicationDataRange();
     void clearedEmptyLineCurveKeepsApplicationDataRange();
     void rescaleAfterEmptySeriesUsesApplicationDataRange();
     void clearingReportedRangeUpdatesAxis();
@@ -142,6 +144,15 @@ void PlotSeriesDataRangesTest::commonDataApiDispatchesThroughBase()
     QCOMPARE(rectangleAxis.dataMax(), 9.0);
     series->clearData();
     QCOMPARE(rectangles.count(), 0);
+
+    auto bars = BarSeries{};
+    auto barAxis = Axis{};
+    bars.setYAxis(&barAxis);
+    series = &bars;
+    series->setDataF(std::vector<float>{0.0F, 11.0F}, 1);
+    QCOMPARE(barAxis.dataMax(), 11.0);
+    series->clearData();
+    QCOMPARE(bars.count(), 0);
 }
 
 void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYUpdate()
@@ -204,6 +215,17 @@ void PlotSeriesDataRangesTest::emptyRectangleSeriesKeepsApplicationDataRange()
     rects.setXAxis(&axes.x);
     rects.setYAxis(&axes.y);
     rects.clearData();
+    axes.verifyAppRange();
+}
+
+void PlotSeriesDataRangesTest::emptyBarSeriesKeepsApplicationDataRange()
+{
+    auto axes = AppRangeAxes{};
+    auto bars = BarSeries{};
+    bars.setXAxis(&axes.x);
+    bars.setYAxis(&axes.y);
+    bars.setBarWidth(2.0);
+    bars.clearData();
     axes.verifyAppRange();
 }
 

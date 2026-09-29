@@ -39,6 +39,9 @@ add_qaccelplot_test(tst_rectangle_series_data  core tst_rectangle_series_data.cp
 add_qaccelplot_test(tst_rectangle_hover      core tst_rectangle_hover.cpp)
 add_qaccelplot_test(tst_rectangle_series_rendering core tst_rectangle_series_rendering.cpp)
 add_qaccelplot_test(tst_rect_vertex_cache    core tst_rect_vertex_cache.cpp)
+add_qaccelplot_test(tst_bar_series_data      core tst_bar_series_data.cpp)
+add_qaccelplot_test(tst_bar_hover            core tst_bar_hover.cpp)
+add_qaccelplot_test(tst_bar_series_rendering core tst_bar_series_rendering.cpp)
 add_qaccelplot_test(tst_point_spatial_index  core tst_point_spatial_index.cpp)
 add_qaccelplot_test(tst_point_cloud_data     core tst_point_cloud_data.cpp)
 add_qaccelplot_test(tst_point_cloud_capacity core tst_point_cloud_capacity.cpp)
@@ -74,3 +77,6 @@ qt_import_qml_plugins(tst_series_opacity)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_rectangle_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_rectangle_series_rendering)
+# Renders a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_bar_series_rendering PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_bar_series_rendering)

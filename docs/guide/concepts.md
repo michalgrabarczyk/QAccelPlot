@@ -62,6 +62,10 @@ spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.
 
+`BarSeries` renders bar charts from (position, value) pairs. `barWidth`,
+`barOffset`, and `baselineValue` shape the bars in the shader, and
+`orientation` selects vertical or horizontal bars.
+
 ## Invalid samples and gaps
 
 `LineCurve` applies one invalid-sample contract to rendering, gradient fills,

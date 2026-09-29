@@ -27,6 +27,7 @@ frame.
   strokes; morph and draw transitions
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
+- **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 
 ### Quick start
 
