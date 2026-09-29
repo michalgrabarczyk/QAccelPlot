@@ -80,22 +80,26 @@ public:
 
     Q_INVOKABLE void setData(const QList<QPointF>& points);
     Q_INVOKABLE void setValues(const QList<qreal>& values);
-    Q_INVOKABLE void clearData();
     Q_INVOKABLE QPointF pointAt(int index) const;
     Q_INVOKABLE qreal valueAt(int index) const;
 
-    void setDataF(const float* xyInterleaved, int pointCount);
-    void setDataF(std::vector<float>&& xyInterleaved, int pointCount);
-    void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void postData(std::vector<float>&& xyInterleaved, int pointCount);
-    void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-
-    void setData(std::vector<double>&& xyInterleaved, int pointCount);
+    void setData(const double* xyInterleaved, int pointCount) override;
+    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
+    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
     void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void postData(std::vector<double>&& xyInterleaved, int pointCount);
+    void setDataF(const float* xyInterleaved, int pointCount) override;
+    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
+    void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
+    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount) override;
+    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
+    void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    Q_INVOKABLE void clearData() override;
 
     int pointIndexAt(const QPointF& position) const;
     bool contains(const QPointF& point) const override;
@@ -124,6 +128,7 @@ private:
     Q_SLOT void onColormapUpdated();
 
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
+    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
     void finishDataChange(int previousCount, bool hadValues, bool reportRanges);

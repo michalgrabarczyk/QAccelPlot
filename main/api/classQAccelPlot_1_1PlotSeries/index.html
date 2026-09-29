@@ -1421,6 +1421,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-cleardata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function clearData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-legendsymbol-22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1447,6 +1458,116 @@
     <span class="md-ellipsis">
       
         function plotRect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-postdata-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdataf-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatafnorange-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataFNoRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatafnorange-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataFNoRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatanorange-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataNoRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatanorange-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataNoRange
       
     </span>
   </a>
@@ -1842,6 +1963,10 @@
 <td style="text-align: left;"><a href="#function-plotseries"><strong>PlotSeries</strong></a> (QQuickItem * parent=nullptr) <br></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-cleardata"><strong>clearData</strong></a> () = 0<br><em>Removes all records from the series.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="./#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="#function-legendsymbol-22"><strong>legendSymbol</strong></a> () const<br></td>
 </tr>
@@ -1852,6 +1977,46 @@
 <tr>
 <td style="text-align: right;">QRectF</td>
 <td style="text-align: left;"><a href="#function-plotrect-22"><strong>plotRect</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Queues a moved double buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Queues a moved float buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdata-12"><strong>setData</strong></a> (const double * data, int count) = 0<br><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdata-22"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Replaces the series data by moving an interleaved double buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdataf-12"><strong>setDataF</strong></a> (const float * data, int count) = 0<br><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdataf-22"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Replaces the series data by moving an interleaved float buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-12"><strong>setDataFNoRange</strong></a> (const float * data, int count) = 0<br><em>Copies float records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-22"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Moves float records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatanorange-12"><strong>setDataNoRange</strong></a> (const double * data, int count) = 0<br><em>Copies double records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatanorange-22"><strong>setDataNoRange</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Moves double records without reporting new data ranges to the axes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -1947,7 +2112,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p><a href="./"><strong>PlotSeries</strong></a> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, and legend metadata. Concrete series remain responsible for their data model, rendering, and hit testing.</p>
+<p><a href="./"><strong>PlotSeries</strong></a> owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API. Concrete series define their record layout, rendering, and hit testing.</p>
 <p><strong>See also:</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>LineCurve</strong></a>, <a href="../classQAccelPlot_1_1PointCloud/"><strong>PointCloud</strong></a>, <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a>, <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot</strong></a> </p>
 <h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="enum-legendsymbol">enum LegendSymbol<a class="headerlink" href="#enum-legendsymbol" title="Permanent link">&para;</a></h3>
@@ -2060,160 +2225,256 @@
 </code></pre></div>
 <hr>
 
+<h3 id="function-cleardata">function clearData<a class="headerlink" href="#function-cleardata" title="Permanent link">&para;</a></h3>
+<p><em>Removes all records from the series.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-legendsymbol-22">function legendSymbol<a class="headerlink" href="#function-legendsymbol-22" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">legendSymbol</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">legendSymbol</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-name-22">function name<a class="headerlink" href="#function-name-22" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">name</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">name</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-plotrect-22">function plotRect<a class="headerlink" href="#function-plotrect-22" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">plotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">plotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
+<h3 id="function-postdata-12">function postData<a class="headerlink" href="#function-postdata-12" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved double buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-postdata-22">function postData<a class="headerlink" href="#function-postdata-22" title="Permanent link">&para;</a></h3>
+<p><em>Queues a moved float buffer for assignment on the series' thread.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-12">function setData<a class="headerlink" href="#function-setdata-12" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges).</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdata-22">function setData<a class="headerlink" href="#function-setdata-22" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data by moving an interleaved double buffer.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-12">function setDataF<a class="headerlink" href="#function-setdataf-12" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved float array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdataf-22">function setDataF<a class="headerlink" href="#function-setdataf-22" title="Permanent link">&para;</a></h3>
+<p><em>Replaces the series data by moving an interleaved float buffer.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatafnorange-12">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-12" title="Permanent link">&para;</a></h3>
+<p><em>Copies float records without reporting new data ranges to the axes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatafnorange-22">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-22" title="Permanent link">&para;</a></h3>
+<p><em>Moves float records without reporting new data ranges to the axes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatanorange-12">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-12" title="Permanent link">&para;</a></h3>
+<p><em>Copies double records without reporting new data ranges to the axes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatanorange-22">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-22" title="Permanent link">&para;</a></h3>
+<p><em>Moves double records without reporting new data ranges to the axes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setlegendsymbol">function setLegendSymbol<a class="headerlink" href="#function-setlegendsymbol" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setLegendSymbol</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">symbol</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setLegendSymbol</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">LegendSymbol</span><span class="w"> </span><span class="n">symbol</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-setname">function setName<a class="headerlink" href="#function-setname" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setName</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-setplotrect">function setPlotRect<a class="headerlink" href="#function-setplotrect" title="Permanent link">&para;</a></h3>
 <p><em>Updates the series geometry to exactly cover</em> <em>rect</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setPlotRect</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setPlotRect</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QRectF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">rect</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setxaxis">function setXAxis<a class="headerlink" href="#function-setxaxis" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setXAxis</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setXAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-setyaxis">function setYAxis<a class="headerlink" href="#function-setyaxis" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setYAxis</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setYAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-xaxis-22">function xAxis<a class="headerlink" href="#function-xaxis-22" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">xAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">xAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-yaxis-22">function yAxis<a class="headerlink" href="#function-yaxis-22" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">yAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">yAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-cleardataranges">function clearDataRanges<a class="headerlink" href="#function-cleardataranges" title="Permanent link">&para;</a></h3>
 <p><em>Clears cached extents after a series has been emptied.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearDataRanges</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearDataRanges</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-clearxdatarange">function clearXDataRange<a class="headerlink" href="#function-clearxdatarange" title="Permanent link">&para;</a></h3>
 <p><em>Clears the cached X extent, e.g. when no sample has a valid X coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearXDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearXDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-clearydatarange">function clearYDataRange<a class="headerlink" href="#function-clearydatarange" title="Permanent link">&para;</a></h3>
 <p><em>Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearYDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">clearYDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-extendxdatarange">function extendXDataRange<a class="headerlink" href="#function-extendxdatarange" title="Permanent link">&para;</a></h3>
 <p><em>Widens the reported X extent to include</em> <em>x</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendXDataRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendXDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. A non-finite <em>x</em> leaves the extent unchanged. </p>
 <hr>
 
 <h3 id="function-extendydatarange">function extendYDataRange<a class="headerlink" href="#function-extendydatarange" title="Permanent link">&para;</a></h3>
 <p><em>Widens the reported Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendYDataRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">y</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">extendYDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">y</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-onaxisrangechanged">function onAxisRangeChanged<a class="headerlink" href="#function-onaxisrangechanged" title="Permanent link">&para;</a></h3>
 <p><em>Called when the viewport of a bound axis changes. The default implementation schedules a repaint.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">onAxisRangeChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">onAxisRangeChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Log scale changes which samples are valid, so series that apply the invalid-sample contract override this to refresh ranges and cached geometry. The default implementation does nothing. </p>
 <hr>
 
 <h3 id="function-resolveplotrect">function resolvePlotRect<a class="headerlink" href="#function-resolveplotrect" title="Permanent link">&para;</a></h3>
 <p><em>Returns the plot area to render into:</em> <code>plotRect</code> <em>when set, otherwise the item's current size.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">resolvePlotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">resolvePlotRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Safe to call from <code>updatePaintNode()</code>; it never modifies the item. </p>
 <hr>
 
 <h3 id="function-setdataranges">function setDataRanges<a class="headerlink" href="#function-setdataranges" title="Permanent link">&para;</a></h3>
 <p><em>Reports this series' data extents to its bound axes.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataRanges</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
-<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setDataRanges</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setxdatarange">function setXDataRange<a class="headerlink" href="#function-setxdatarange" title="Permanent link">&para;</a></h3>
 <p><em>Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setXDataRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setXDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setydatarange">function setYDataRange<a class="headerlink" href="#function-setydatarange" title="Permanent link">&para;</a></h3>
 <p><em>Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setYDataRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">setYDataRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">min</span><span class="p">,</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">max</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-xdatarange">function xDataRange<a class="headerlink" href="#function-xdatarange" title="Permanent link">&para;</a></h3>
 <p><em>Returns this series' X data range, or</em> <code>std::nullopt</code> <em>when it has none.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">DataExtent</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">xDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">DataExtent</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">xDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ydatarange">function yDataRange<a class="headerlink" href="#function-ydatarange" title="Permanent link">&para;</a></h3>
 <p><em>Returns this series' Y data range, or</em> <code>std::nullopt</code> <em>when it has none.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">DataExtent</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">yDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="w"> </span><span class="n">DataExtent</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">yDataRange</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

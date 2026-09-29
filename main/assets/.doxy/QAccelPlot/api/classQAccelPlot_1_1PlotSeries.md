@@ -112,9 +112,20 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**PlotSeries**](#function-plotseries) (QQuickItem \* parent=nullptr) <br> |
+| virtual void | [**clearData**](#function-cleardata) () = 0<br>_Removes all records from the series._  |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br> |
+| virtual void | [**postData**](#function-postdata-12) (std::vector&lt; double &gt; && data, int count) = 0<br>_Queues a moved double buffer for assignment on the series' thread._  |
+| virtual void | [**postData**](#function-postdata-22) (std::vector&lt; float &gt; && data, int count) = 0<br>_Queues a moved float buffer for assignment on the series' thread._  |
+| virtual void | [**setData**](#function-setdata-12) (const double \* data, int count) = 0<br>_Replaces the series data with_ _count_ _records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges)._ |
+| virtual void | [**setData**](#function-setdata-22) (std::vector&lt; double &gt; && data, int count) = 0<br>_Replaces the series data by moving an interleaved double buffer._  |
+| virtual void | [**setDataF**](#function-setdataf-12) (const float \* data, int count) = 0<br>_Replaces the series data with_ _count_ _records copied from an interleaved float array._ |
+| virtual void | [**setDataF**](#function-setdataf-22) (std::vector&lt; float &gt; && data, int count) = 0<br>_Replaces the series data by moving an interleaved float buffer._  |
+| virtual void | [**setDataFNoRange**](#function-setdatafnorange-12) (const float \* data, int count) = 0<br>_Copies float records without reporting new data ranges to the axes._  |
+| virtual void | [**setDataFNoRange**](#function-setdatafnorange-22) (std::vector&lt; float &gt; && data, int count) = 0<br>_Moves float records without reporting new data ranges to the axes._  |
+| virtual void | [**setDataNoRange**](#function-setdatanorange-12) (const double \* data, int count) = 0<br>_Copies double records without reporting new data ranges to the axes._  |
+| virtual void | [**setDataNoRange**](#function-setdatanorange-22) (std::vector&lt; double &gt; && data, int count) = 0<br>_Moves double records without reporting new data ranges to the axes._  |
 |  void | [**setLegendSymbol**](#function-setlegendsymbol) ([**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) symbol) <br> |
 |  void | [**setName**](#function-setname) (const QString & name) <br> |
 |  void | [**setPlotRect**](#function-setplotrect) (const QRectF & rect) <br>_Updates the series geometry to exactly cover_ _rect_ _._ |
@@ -170,7 +181,7 @@ flowchart TB
 ## Detailed Description
 
 
-[**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, and legend metadata. Concrete series remain responsible for their data model, rendering, and hit testing.
+[**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) owns the integration shared by every plot type: axis bindings, plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API. Concrete series define their record layout, rendering, and hit testing.
 
 
 
@@ -443,6 +454,21 @@ explicit QAccelPlot::PlotSeries::PlotSeries (
 
 
 
+### function clearData {#function-cleardata}
+
+_Removes all records from the series._ 
+```C++
+virtual void QAccelPlot::PlotSeries::clearData () = 0
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function legendSymbol {#function-legendsymbol-22}
 
 ```C++
@@ -475,6 +501,186 @@ QString QAccelPlot::PlotSeries::name () const
 
 ```C++
 QRectF QAccelPlot::PlotSeries::plotRect () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-12}
+
+_Queues a moved double buffer for assignment on the series' thread._ 
+```C++
+virtual void QAccelPlot::PlotSeries::postData (
+    std::vector< double > && data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function postData {#function-postdata-22}
+
+_Queues a moved float buffer for assignment on the series' thread._ 
+```C++
+virtual void QAccelPlot::PlotSeries::postData (
+    std::vector< float > && data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-12}
+
+_Replaces the series data with_ _count_ _records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges)._
+```C++
+virtual void QAccelPlot::PlotSeries::setData (
+    const double * data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setData {#function-setdata-22}
+
+_Replaces the series data by moving an interleaved double buffer._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setData (
+    std::vector< double > && data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-12}
+
+_Replaces the series data with_ _count_ _records copied from an interleaved float array._
+```C++
+virtual void QAccelPlot::PlotSeries::setDataF (
+    const float * data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataF {#function-setdataf-22}
+
+_Replaces the series data by moving an interleaved float buffer._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setDataF (
+    std::vector< float > && data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataFNoRange {#function-setdatafnorange-12}
+
+_Copies float records without reporting new data ranges to the axes._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setDataFNoRange (
+    const float * data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataFNoRange {#function-setdatafnorange-22}
+
+_Moves float records without reporting new data ranges to the axes._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setDataFNoRange (
+    std::vector< float > && data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataNoRange {#function-setdatanorange-12}
+
+_Copies double records without reporting new data ranges to the axes._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setDataNoRange (
+    const double * data,
+    int count
+) = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setDataNoRange {#function-setdatanorange-22}
+
+_Moves double records without reporting new data ranges to the axes._ 
+```C++
+virtual void QAccelPlot::PlotSeries::setDataNoRange (
+    std::vector< double > && data,
+    int count
+) = 0
 ```
 
 

@@ -73,39 +73,39 @@ public:
 
     Q_INVOKABLE void setData(const QVariantList& rects);
 
-    void setData(const double* data, int rectCount);
+    void setData(const double* data, int rectCount) override;
 
-    void setData(std::vector<double>&& data, int rectCount);
+    void setData(std::vector<double>&& data, int rectCount) override;
 
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataNoRange(std::vector<double>&& data, int rectCount);
+    void setDataNoRange(const double* data, int rectCount) override;
+    void setDataNoRange(std::vector<double>&& data, int rectCount) override;
 
     void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataF(const float* data, int rectCount);
+    void setDataF(const float* data, int rectCount) override;
 
-    void setDataF(std::vector<float>&& data, int rectCount);
+    void setDataF(std::vector<float>&& data, int rectCount) override;
 
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataFNoRange(std::vector<float>&& data, int rectCount);
+    void setDataFNoRange(const float* data, int rectCount) override;
+    void setDataFNoRange(std::vector<float>&& data, int rectCount) override;
 
     void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataFNoRange(const float* data, int rectCount);
-
-    void postData(std::vector<double>&& data, int rectCount);
+    void postData(std::vector<double>&& data, int rectCount) override;
 
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    void postData(std::vector<float>&& data, int rectCount);
+    void postData(std::vector<float>&& data, int rectCount) override;
 
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    Q_INVOKABLE void setCategories(const QList<int>& categories);
+    Q_INVOKABLE void clearData() override;
 
-    Q_INVOKABLE void clearData();
+    Q_INVOKABLE void setCategories(const QList<int>& categories);
 
     Q_INVOKABLE QVariantMap rectangleAt(int index) const;
 

@@ -31,6 +31,7 @@
 
 #include <limits>
 #include <optional>
+#include <vector>
 
 namespace QAccelPlot {
 
@@ -88,6 +89,18 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+
+    virtual void setData(const double* data, int count) = 0;
+    virtual void setData(std::vector<double>&& data, int count) = 0;
+    virtual void setDataNoRange(const double* data, int count) = 0;
+    virtual void setDataNoRange(std::vector<double>&& data, int count) = 0;
+    virtual void setDataF(const float* data, int count) = 0;
+    virtual void setDataF(std::vector<float>&& data, int count) = 0;
+    virtual void setDataFNoRange(const float* data, int count) = 0;
+    virtual void setDataFNoRange(std::vector<float>&& data, int count) = 0;
+    virtual void postData(std::vector<double>&& data, int count) = 0;
+    virtual void postData(std::vector<float>&& data, int count) = 0;
+    virtual void clearData() = 0;
 
 signals:
     void nameChanged();

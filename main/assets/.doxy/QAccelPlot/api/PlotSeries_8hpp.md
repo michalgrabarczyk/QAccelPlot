@@ -25,6 +25,7 @@
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <limits>`
 * `#include <optional>`
+* `#include <vector>`
 
 
 

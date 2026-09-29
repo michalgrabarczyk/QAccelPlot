@@ -1465,6 +1465,11 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <td>Range scan; buffer ownership is moved immediately and coordinates remain doubles</td>
 </tr>
 <tr>
+<td><code>setDataNoRange(std::vector&lt;double&gt;&amp;&amp;, count)</code></td>
+<td>Double coordinates with axis ranges maintained separately</td>
+<td>Skips the range scan and signals; coordinates remain doubles</td>
+</tr>
+<tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
 <td>Existing interleaved memory cannot be transferred</td>
 <td>One copy plus a range scan</td>
@@ -1506,7 +1511,7 @@ and rebase the GPU buffer so nearby values stay distinct. The <code>F</code> API
 floats; use them only when float precision is sufficient.</p>
 <div class="admonition caution">
 <p class="admonition-title">No-range updates change the contract</p>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> does not report new extents to
+<p><code>setDataNoRange()</code> and <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> do not report new extents to
 attached axes. If the data can leave the declared range, update the axes
 yourself or periodically use a range-calculating path. Otherwise rescaling
 and clipping behavior will be incorrect.</p>
@@ -1526,9 +1531,11 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.
-<code>RectangleSeries</code> has the same <code>setDataF()</code> and
-<a href="../api/classQAccelPlot_1_1RectangleSeries/#function-setdatafnorange"><code>setDataFNoRange()</code></a> paths, plus
-<a href="../api/classQAccelPlot_1_1RectangleSeries/#function-setdatanorange"><code>setDataNoRange()</code></a> for double coordinates.</p>
+<code>LineCurve</code>, <code>PointCloud</code>, and <code>RectangleSeries</code> all support <code>setData()</code> and
+<code>setDataNoRange()</code> for interleaved doubles, <code>setDataF()</code> and <code>setDataFNoRange()</code>
+for interleaved floats, and <code>postData()</code> for either moved vector type. Each
+also accepts a raw array for the four synchronous setters. <code>PointCloud</code> can
+add per-point values and <code>RectangleSeries</code> can add categories with their vector overloads.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from

@@ -1657,7 +1657,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setdata-13" class="md-nav__link">
+  <a href="#function-setdata-14" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setData
@@ -1668,7 +1668,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setdata-23" class="md-nav__link">
+  <a href="#function-setdata-24" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setData
@@ -1679,7 +1679,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#function-setdata-33" class="md-nav__link">
+  <a href="#function-setdata-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdata-44" class="md-nav__link">
     <span class="md-ellipsis">
       
         function setData
@@ -1749,6 +1760,28 @@
     <span class="md-ellipsis">
       
         function setDataFNoRangeWithCache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatanorange-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataNoRange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setdatanorange-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setDataNoRange
       
     </span>
   </a>
@@ -2108,8 +2141,8 @@
 <td style="text-align: left;"><a href="#function-appenddata"><strong>appendData</strong></a> (qreal x, qreal y) <br><em>Appends a single data point (</em> <em>x</em> <em>,__y</em> <em>) to the curve. Triggers a redraw.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-cleardata"><strong>clearData</strong></a> () <br><em>Removes all data points from the curve.</em></td>
+<td style="text-align: right;">virtual Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-cleardata"><strong>clearData</strong></a> () override<br><em>Removes all data points from the curve.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
@@ -2140,12 +2173,12 @@
 <td style="text-align: left;"><a href="#function-marker-22"><strong>marker</strong></a> () const<br><em>Returns the grouped marker settings. The object is owned by the curve.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; xyInterleaved, int pointCount) <br><em>Posts data to the curve from any thread. Equivalent to calling</em> <code>setDataF()</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; xyInterleaved, int pointCount) override<br><em>Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling</em> <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; xyInterleaved, int pointCount) <br><em>Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling</em> <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; xyInterleaved, int pointCount) override<br><em>Posts data to the curve from any thread. Equivalent to calling</em> <code>setDataF()</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2161,31 +2194,35 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-setdata-13"><strong>setData</strong></a> (const QList&lt; QPointF &gt; &amp; data) <br><em>Replaces the curve data with</em> <em>data</em> <em>(a list of QPointF values).</em></td>
+<td style="text-align: left;"><a href="#function-setdata-14"><strong>setData</strong></a> (const QList&lt; QPointF &gt; &amp; data) <br><em>Replaces the curve data with</em> <em>data</em> <em>(a list of QPointF values).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-23"><strong>setData</strong></a> (const std::vector&lt; double &gt; &amp; xs, const std::vector&lt; double &gt; &amp; ys) <br><em>Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-24"><strong>setData</strong></a> (const std::vector&lt; double &gt; &amp; xs, const std::vector&lt; double &gt; &amp; ys) <br><em>Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-33"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; xyInterleaved, int pointCount) <br><em>Sets data by moving a pre-filled interleaved double vector of</em> <em>pointCount</em> <em>XY pairs</em><code>[x0, y0, x1, y1, …]</code> <em>. Retains double precision, e.g. for large timestamp values, without re-interleaving.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdata-34"><strong>setData</strong></a> (const double * xyInterleaved, int pointCount) override<br><em>Copies</em> <em>pointCount</em> <em>interleaved double XY pairs, retaining full precision.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdataf-12"><strong>setDataF</strong></a> (const float * xyInterleaved, int pointCount) <br><em>High-performance C++ overload: sets data from a raw interleaved float array of</em> <em>pointCount</em> <em>XY pairs.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; xyInterleaved, int pointCount) override<br><em>Sets data by moving a pre-filled interleaved double vector of</em> <em>pointCount</em> <em>XY pairs</em><code>[x0, y0, x1, y1, …]</code> <em>. Retains double precision, e.g. for large timestamp values, without re-interleaving.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdataf-22"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int pointCount) <br><em>High-performance C++ overload: sets data by moving a pre-filled float vector of</em> <em>pointCount</em> <em>XY pairs.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdataf-12"><strong>setDataF</strong></a> (const float * xyInterleaved, int pointCount) override<br><em>High-performance C++ overload: sets data from a raw interleaved float array of</em> <em>pointCount</em> <em>XY pairs.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdatafnorange-12"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int pointCount) <br><em>Like</em> <code>setDataF(vector)</code> <em>but skips emitting</em><code>xDataRangeChanged</code> <em>/</em><code>yDataRangeChanged</code> <em>.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdataf-22"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int pointCount) override<br><em>High-performance C++ overload: sets data by moving a pre-filled float vector of</em> <em>pointCount</em> <em>XY pairs.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdatafnorange-22"><strong>setDataFNoRange</strong></a> (const float * xyInterleaved, int pointCount) <br><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw interleaved float array.</em></td>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-12"><strong>setDataFNoRange</strong></a> (const float * xyInterleaved, int pointCount) override<br><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-22"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int pointCount) override<br><em>Like</em> <code>setDataF(vector)</code> <em>but skips emitting</em><code>xDataRangeChanged</code> <em>/</em><code>yDataRangeChanged</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2194,6 +2231,14 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setdatafnorangewithcache-22"><strong>setDataFNoRangeWithCache</strong></a> (const float * xyInterleaved, int pointCount, std::vector&lt; char &gt; &amp;&amp; vertexCache) <br><em>Like</em> <code>setDataFNoRangeWithCache</code> <em>but copies from a raw interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatanorange-12"><strong>setDataNoRange</strong></a> (const double * xyInterleaved, int pointCount) override<br><em>Like</em> <code>setDataNoRange(vector)</code> <em>but copies from a raw interleaved double array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="#function-setdatanorange-22"><strong>setDataNoRange</strong></a> (std::vector&lt; double &gt; &amp;&amp; xyInterleaved, int pointCount) override<br><em>Like</em> <code>setData(vector)</code> <em>but does not report X/Y data ranges to the axes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2232,6 +2277,10 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotseries"><strong>PlotSeries</strong></a> (QQuickItem * parent=nullptr) <br></td>
 </tr>
 <tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () = 0<br><em>Removes all records from the series.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendsymbol-22"><strong>legendSymbol</strong></a> () const<br></td>
 </tr>
@@ -2242,6 +2291,46 @@
 <tr>
 <td style="text-align: right;">QRectF</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-plotrect-22"><strong>plotRect</strong></a> () const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Queues a moved double buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Queues a moved float buffer for assignment on the series' thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-12"><strong>setData</strong></a> (const double * data, int count) = 0<br><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved double array. Each concrete series defines its record layout (XY pairs or rectangle edges).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-22"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Replaces the series data by moving an interleaved double buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-12"><strong>setDataF</strong></a> (const float * data, int count) = 0<br><em>Replaces the series data with</em> <em>count</em> <em>records copied from an interleaved float array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-22"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Replaces the series data by moving an interleaved float buffer.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-12"><strong>setDataFNoRange</strong></a> (const float * data, int count) = 0<br><em>Copies float records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-22"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count) = 0<br><em>Moves float records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-12"><strong>setDataNoRange</strong></a> (const double * data, int count) = 0<br><em>Copies double records without reporting new data ranges to the axes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-22"><strong>setDataNoRange</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count) = 0<br><em>Moves double records without reporting new data ranges to the axes.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2509,8 +2598,9 @@
 
 <h3 id="function-cleardata">function clearData<a class="headerlink" href="#function-cleardata" title="Permanent link">&para;</a></h3>
 <p><em>Removes all data points from the curve.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">clearData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><em>QAccelPlot::PlotSeries::clearData</em></a></p>
 <hr>
 
 <h3 id="function-color-22">function color<a class="headerlink" href="#function-color-22" title="Permanent link">&para;</a></h3>
@@ -2556,21 +2646,23 @@
 <hr>
 
 <h3 id="function-postdata-12">function postData<a class="headerlink" href="#function-postdata-12" title="Permanent link">&para;</a></h3>
-<p><em>Posts data to the curve from any thread. Equivalent to calling</em> <code>setDataF()</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<p><em>Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling</em> <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-12"><em>QAccelPlot::PlotSeries::postData</em></a></p>
 <hr>
 
 <h3 id="function-postdata-22">function postData<a class="headerlink" href="#function-postdata-22" title="Permanent link">&para;</a></h3>
-<p><em>Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling</em> <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<p><em>Posts data to the curve from any thread. Equivalent to calling</em> <code>setDataF()</code> <em>on the UI thread. The data vector is moved into the queued call; no copy is made. This call is thread-safe.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-postdata-22"><em>QAccelPlot::PlotSeries::postData</em></a></p>
 <hr>
 
 <h3 id="function-setantialiasingenabled">function setAntialiasingEnabled<a class="headerlink" href="#function-setantialiasingenabled" title="Permanent link">&para;</a></h3>
@@ -2597,7 +2689,7 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setdata-13">function setData<a class="headerlink" href="#function-setdata-13" title="Permanent link">&para;</a></h3>
+<h3 id="function-setdata-14">function setData<a class="headerlink" href="#function-setdata-14" title="Permanent link">&para;</a></h3>
 <p><em>Replaces the curve data with</em> <em>data</em> <em>(a list of QPointF values).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span>
@@ -2605,7 +2697,7 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setdata-23">function setData<a class="headerlink" href="#function-setdata-23" title="Permanent link">&para;</a></h3>
+<h3 id="function-setdata-24">function setData<a class="headerlink" href="#function-setdata-24" title="Permanent link">&para;</a></h3>
 <p><em>Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">xs</span><span class="p">,</span>
@@ -2614,125 +2706,160 @@
 </code></pre></div></p>
 <hr>
 
-<h3 id="function-setdata-33">function setData<a class="headerlink" href="#function-setdata-33" title="Permanent link">&para;</a></h3>
-<p><em>Sets data by moving a pre-filled interleaved double vector of</em> <em>pointCount</em> <em>XY pairs</em><code>[x0, y0, x1, y1, …]</code> <em>. Retains double precision, e.g. for large timestamp values, without re-interleaving.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<h3 id="function-setdata-34">function setData<a class="headerlink" href="#function-setdata-34" title="Permanent link">&para;</a></h3>
+<p><em>Copies</em> <em>pointCount</em> <em>interleaved double XY pairs, retaining full precision.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
 <a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-12"><em>QAccelPlot::PlotSeries::setData</em></a></p>
+<hr>
+
+<h3 id="function-setdata-44">function setData<a class="headerlink" href="#function-setdata-44" title="Permanent link">&para;</a></h3>
+<p><em>Sets data by moving a pre-filled interleaved double vector of</em> <em>pointCount</em> <em>XY pairs</em><code>[x0, y0, x1, y1, …]</code> <em>. Retains double precision, e.g. for large timestamp values, without re-interleaving.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-22"><em>QAccelPlot::PlotSeries::setData</em></a></p>
 <hr>
 
 <h3 id="function-setdataf-12">function setDataF<a class="headerlink" href="#function-setdataf-12" title="Permanent link">&para;</a></h3>
 <p><em>High-performance C++ overload: sets data from a raw interleaved float array of</em> <em>pointCount</em> <em>XY pairs.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-12"><em>QAccelPlot::PlotSeries::setDataF</em></a></p>
 <hr>
 
 <h3 id="function-setdataf-22">function setDataF<a class="headerlink" href="#function-setdataf-22" title="Permanent link">&para;</a></h3>
 <p><em>High-performance C++ overload: sets data by moving a pre-filled float vector of</em> <em>pointCount</em> <em>XY pairs.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-22"><em>QAccelPlot::PlotSeries::setDataF</em></a></p>
 <hr>
 
 <h3 id="function-setdatafnorange-12">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-12" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF(vector)</code> <em>but skips emitting</em><code>xDataRangeChanged</code> <em>/</em><code>yDataRangeChanged</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw interleaved float array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-12"><em>QAccelPlot::PlotSeries::setDataFNoRange</em></a></p>
 <hr>
 
 <h3 id="function-setdatafnorange-22">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-22" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw interleaved float array.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Like</em> <code>setDataF(vector)</code> <em>but skips emitting</em><code>xDataRangeChanged</code> <em>/</em><code>yDataRangeChanged</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-22"><em>QAccelPlot::PlotSeries::setDataFNoRange</em></a></p>
 <hr>
 
 <h3 id="function-setdatafnorangewithcache-12">function setDataFNoRangeWithCache<a class="headerlink" href="#function-setdatafnorangewithcache-12" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataFNoRange</code> <em>but also accepts a pre-built__vertexCache</em> <em>, bypassing main-thread rebuild.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRangeWithCache</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">vertexCache</span>
-<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setdatafnorangewithcache-22">function setDataFNoRangeWithCache<a class="headerlink" href="#function-setdatafnorangewithcache-22" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataFNoRangeWithCache</code> <em>but copies from a raw interleaved float array.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRangeWithCache</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
 <a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">vertexCache</span>
 <a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setdatafnorangewithcache-22">function setDataFNoRangeWithCache<a class="headerlink" href="#function-setdatafnorangewithcache-22" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataFNoRangeWithCache</code> <em>but copies from a raw interleaved float array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataFNoRangeWithCache</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">vertexCache</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setdatanorange-12">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-12" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setDataNoRange(vector)</code> <em>but copies from a raw interleaved double array.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-12"><em>QAccelPlot::PlotSeries::setDataNoRange</em></a></p>
+<hr>
+
+<h3 id="function-setdatanorange-22">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-22" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setData(vector)</code> <em>but does not report X/Y data ranges to the axes.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">xyInterleaved</span><span class="p">,</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div></p>
+<p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-22"><em>QAccelPlot::PlotSeries::setDataNoRange</em></a></p>
+<hr>
+
 <h3 id="function-setlinestyle">function setLineStyle<a class="headerlink" href="#function-setlinestyle" title="Permanent link">&para;</a></h3>
 <p><em>Sets the line style to</em> <em>style</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setLineStyle</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="n">LineStyle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">style</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setLineStyle</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="n">LineStyle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">style</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setlinewidth">function setLineWidth<a class="headerlink" href="#function-setlinewidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the line stroke width to</em> <em>w</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setLineWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">w</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setLineWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">w</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-settransition">function setTransition<a class="headerlink" href="#function-settransition" title="Permanent link">&para;</a></h3>
 <p><em>Sets the data transition to</em> <em>transition</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setTransition</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">setTransition</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transition</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-transition-22">function transition<a class="headerlink" href="#function-transition-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the active data transition, or</em> <code>nullptr</code> <em>if none.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">DataTransition</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">transition</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-linecurve">function ~LineCurve<a class="headerlink" href="#function-linecurve" title="Permanent link">&para;</a></h3>
 <p><em>Destroys the curve, ending its animation on the assigned transition.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::~</span><span class="n">LineCurve</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::~</span><span class="n">LineCurve</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if__point</em> <em>lies within the curve's hit-test region.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-onaxisrangechanged">function onAxisRangeChanged<a class="headerlink" href="#function-onaxisrangechanged" title="Permanent link">&para;</a></h3>
 <p><em>Moves the render origin to the new viewport when the float render data would lose precision there.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisRangeChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisRangeChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisrangechanged"><em>QAccelPlot::PlotSeries::onAxisRangeChanged</em></a></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineCurve</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>

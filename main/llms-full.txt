@@ -450,6 +450,7 @@ numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAc
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Range scan; buffer ownership is moved immediately and coordinates remain doubles |
+| `setDataNoRange(std::vector<double>&&, count)` | Double coordinates with axis ranges maintained separately | Skips the range scan and signals; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
 | [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
@@ -469,7 +470,7 @@ floats; use them only when float precision is sufficient.
 
 !!! caution "No-range updates change the contract"
 
-    [`setDataFNoRange()`][set-data-f-no-range] does not report new extents to
+    `setDataNoRange()` and [`setDataFNoRange()`][set-data-f-no-range] do not report new extents to
     attached axes. If the data can leave the declared range, update the axes
     yourself or periodically use a range-calculating path. Otherwise rescaling
     and clipping behavior will be incorrect.
@@ -490,9 +491,11 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`RectangleSeries` has the same `setDataF()` and
-[`setDataFNoRange()`][rectangle-series-set-data-f-no-range] paths, plus
-[`setDataNoRange()`][rectangle-series-set-data-no-range] for double coordinates.
+`LineCurve`, `PointCloud`, and `RectangleSeries` all support `setData()` and
+`setDataNoRange()` for interleaved doubles, `setDataF()` and `setDataFNoRange()`
+for interleaved floats, and `postData()` for either moved vector type. Each
+also accepts a raw array for the four synchronous setters. `PointCloud` can
+add per-point values and `RectangleSeries` can add categories with their vector overloads.
 
 ## Keep work off the UI thread
 

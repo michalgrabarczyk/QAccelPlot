@@ -86,18 +86,21 @@ public:
     SeriesMarker* marker() const;
 
     Q_INVOKABLE void appendData(qreal x, qreal y);
-    Q_INVOKABLE void clearData();
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    void setData(std::vector<double>&& xyInterleaved, int pointCount);
-    void setDataF(const float* xyInterleaved, int pointCount);
-    void setDataF(std::vector<float>&& data, int pointCount);
-    void setDataFNoRange(std::vector<float>&& data, int pointCount);
-    void setDataFNoRange(const float* xyInterleaved, int pointCount);
+    void setData(const double* xyInterleaved, int pointCount) override;
+    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
+    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
+    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
+    void setDataF(const float* xyInterleaved, int pointCount) override;
+    void setDataF(std::vector<float>&& data, int pointCount) override;
+    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
+    void setDataFNoRange(std::vector<float>&& data, int pointCount) override;
     void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
-    void postData(std::vector<float>&& xyInterleaved, int pointCount);
-    void postData(std::vector<double>&& xyInterleaved, int pointCount);
+    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
+    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
+    Q_INVOKABLE void clearData() override;
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
@@ -145,7 +148,7 @@ private:
     bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
-    bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
+    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);
