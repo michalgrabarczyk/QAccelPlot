@@ -127,34 +127,13 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& points);
     /// \brief Sets one value per point. An empty list clears values; any other size must equal \c count.
     Q_INVOKABLE void setValues(const QList<qreal>& values);
-    /// \brief Removes all points and values.
-    Q_INVOKABLE void clearData() override;
     /// \brief Returns point \a index, or a NaN point when \a index is out of range.
     Q_INVOKABLE QPointF pointAt(int index) const;
     /// \brief Returns the value of point \a index, or NaN when out of range or no values are stored.
     Q_INVOKABLE qreal valueAt(int index) const;
 
-    /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
-    void setDataF(const float* xyInterleaved, int pointCount) override;
     /// \brief Copies \a pointCount interleaved double XY pairs and clears values.
     void setData(const double* xyInterleaved, int pointCount) override;
-    /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
-    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
-    /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
-    void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
-    ///
-    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataFNoRange() and also moves per-point \a values into the cloud.
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
-    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
-    /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a pointCount) to the item's thread.
-    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
-    /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
-    void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-
     /// \brief Moves \a pointCount interleaved XY pairs of doubles into the cloud and clears values.
     ///
     /// The GPU renders in single precision, so positions are uploaded relative to an origin
@@ -163,16 +142,36 @@ public:
     void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
     /// \brief Like the double \c setData() but does not report X/Y data ranges to the axes.
     void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Like \c setDataNoRange() and also moves per-point \a values into the cloud.
     void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
-    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
+    /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
+    void setDataF(const float* xyInterleaved, int pointCount) override;
+    /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
+    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
+    /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
+    void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
+    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
+    /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
+    ///
+    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
+    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount) override;
+    /// \brief Like \c setDataFNoRange() and also moves per-point \a values into the cloud.
+    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a pointCount) to the item's thread.
     void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a pointCount) to the item's thread.
+    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
+    /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
+    void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Removes all points and values.
+    Q_INVOKABLE void clearData() override;
 
     /// \brief Returns the index of the valid point within \c hoverRadius of item position \a position, or -1.
     int pointIndexAt(const QPointF& position) const;

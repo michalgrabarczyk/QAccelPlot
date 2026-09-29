@@ -339,11 +339,6 @@ void PointCloud::setValues(const QList<qreal>& values)
     finishDataChange(pointCount_, hadValues, false);
 }
 
-void PointCloud::clearData()
-{
-    applyData({}, {}, 0, true);
-}
-
 QPointF PointCloud::pointAt(const int index) const
 {
     if (index < 0 || index >= pointCount_) {
@@ -365,18 +360,6 @@ qreal PointCloud::valueAt(const int index) const
     return static_cast<qreal>(data_[static_cast<std::size_t>(index) * kValueStride + 2]);
 }
 
-void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<float>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    applyData(std::move(xy), {}, pointCount, true);
-}
-
 void PointCloud::setData(const double* xyInterleaved, const int pointCount)
 {
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
@@ -387,6 +370,56 @@ void PointCloud::setData(const double* xyInterleaved, const int pointCount)
         xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
     }
     setData(std::move(xy), pointCount);
+}
+
+void PointCloud::setData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    setData(std::move(xyInterleaved), {}, pointCount);
+}
+
+void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+        return;
+    }
+    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, true);
+}
+
+void PointCloud::setDataNoRange(const double* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto xy = std::vector<double>{};
+    if (pointCount > 0) {
+        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
+    }
+    setDataNoRange(std::move(xy), pointCount);
+}
+
+void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    setDataNoRange(std::move(xyInterleaved), {}, pointCount);
+}
+
+void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+        return;
+    }
+    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, false);
+}
+
+void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto xy = std::vector<float>{};
+    if (pointCount > 0) {
+        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
+    }
+    applyData(std::move(xy), {}, pointCount, true);
 }
 
 void PointCloud::setDataF(std::vector<float>&& xyInterleaved, const int pointCount)
@@ -402,6 +435,18 @@ void PointCloud::setDataF(std::vector<float>&& xyInterleaved, std::vector<float>
     applyData(std::move(xyInterleaved), std::move(values), pointCount, true);
 }
 
+void PointCloud::setDataFNoRange(const float* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto xy = std::vector<float>{};
+    if (pointCount > 0) {
+        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
+    }
+    setDataFNoRange(std::move(xy), pointCount);
+}
+
 void PointCloud::setDataFNoRange(std::vector<float>&& xyInterleaved, const int pointCount)
 {
     setDataFNoRange(std::move(xyInterleaved), {}, pointCount);
@@ -415,16 +460,19 @@ void PointCloud::setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector
     applyData(std::move(xyInterleaved), std::move(values), pointCount, false);
 }
 
-void PointCloud::setDataFNoRange(const float* xyInterleaved, const int pointCount)
+void PointCloud::postData(std::vector<double>&& xyInterleaved, const int pointCount)
 {
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<float>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    setDataFNoRange(std::move(xy), pointCount);
+    postData(std::move(xyInterleaved), {}, pointCount);
+}
+
+void PointCloud::postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
+{
+    QMetaObject::invokeMethod(
+        this,
+        [this, xy = std::move(xyInterleaved), pointValues = std::move(values), pointCount]() mutable {
+            setData(std::move(xy), std::move(pointValues), pointCount);
+        },
+        Qt::QueuedConnection);
 }
 
 void PointCloud::postData(std::vector<float>&& xyInterleaved, const int pointCount)
@@ -442,57 +490,9 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
         Qt::QueuedConnection);
 }
 
-void PointCloud::setData(std::vector<double>&& xyInterleaved, const int pointCount)
+void PointCloud::clearData()
 {
-    setData(std::move(xyInterleaved), {}, pointCount);
-}
-
-void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
-{
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
-        return;
-    }
-    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, true);
-}
-
-void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    setDataNoRange(std::move(xyInterleaved), {}, pointCount);
-}
-
-void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
-{
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
-        return;
-    }
-    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, false);
-}
-
-void PointCloud::setDataNoRange(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<double>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    setDataNoRange(std::move(xy), pointCount);
-}
-
-void PointCloud::postData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    postData(std::move(xyInterleaved), {}, pointCount);
-}
-
-void PointCloud::postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
-{
-    QMetaObject::invokeMethod(
-        this,
-        [this, xy = std::move(xyInterleaved), pointValues = std::move(values), pointCount]() mutable {
-            setData(std::move(xy), std::move(pointValues), pointCount);
-        },
-        Qt::QueuedConnection);
+    applyData({}, {}, 0, true);
 }
 
 int PointCloud::pointIndexAt(const QPointF& position) const
