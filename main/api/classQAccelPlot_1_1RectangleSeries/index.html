@@ -2144,7 +2144,7 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1RectangleBorder/"><strong>RectangleBorder</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-border-22"><strong>border</strong></a> () const<br><em>Returns the grouped outline settings. The object is owned by the list.</em></td>
+<td style="text-align: left;"><a href="#function-border-22"><strong>border</strong></a> () const<br><em>Returns the grouped outline settings. The object is owned by the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QList&lt; QColor &gt;</td>
@@ -2228,11 +2228,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-setdata-34"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int rectCount) override<br><em>Moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-34"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int rectCount) override<br><em>Moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 doubles: x1, y1, x2, y2) into the series and clears categories. No copy is made.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Moves</em> <em>data</em> <em>and per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the list.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Moves</em> <em>data</em> <em>and per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2240,15 +2240,15 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-setdataf-23"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int rectCount) override<br><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 floats) into the list and clears categories.</em></td>
+<td style="text-align: left;"><a href="#function-setdataf-23"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int rectCount) override<br><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 floats) into the series and clears categories.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdataf-33"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the list.</em></td>
+<td style="text-align: left;"><a href="#function-setdataf-33"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-setdatafnorange-13"><strong>setDataFNoRange</strong></a> (const float * data, int rectCount) override<br><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw float array into the list's reusable buffer.</em></td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-13"><strong>setDataFNoRange</strong></a> (const float * data, int rectCount) override<br><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw float array into the series' reusable buffer.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2256,7 +2256,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdatafnorange-33"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataFNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the list.</em></td>
+<td style="text-align: left;"><a href="#function-setdatafnorange-33"><strong>setDataFNoRange</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataFNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2268,7 +2268,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdatanorange-33"><strong>setDataNoRange</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the list.</em></td>
+<td style="text-align: left;"><a href="#function-setdatanorange-33"><strong>setDataNoRange</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int rectCount) <br><em>Like</em> <code>setDataNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2480,7 +2480,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <code>setDataF()</code> overloads store floats and upload them without conversion. Hover detection uses an internal <code>SpatialGrid</code> for O(1) hit tests.</p>
+<p>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <code>setDataF()</code> overloads store floats and upload them without conversion. Hover detection uses an internal <code>SpatialGrid</code>; rectangles spanning more than 64 grid cells are tested linearly.</p>
 <p>An infinite edge extends the rectangle to the plot edge, e.g. <code>y1</code> = -Infinity and <code>y2</code> = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges. Rectangles with a NaN edge are not drawn or hovered.</p>
 <p>Each rectangle can carry a <code>category</code>, an index into <code>categoryColors</code>. Rectangles without a category, or with one outside <code>categoryColors</code>, use <code>color</code>.</p>
 <p>**
@@ -2588,7 +2588,7 @@
 <hr>
 
 <h3 id="function-border-22">function border<a class="headerlink" href="#function-border-22" title="Permanent link">&para;</a></h3>
-<p><em>Returns the grouped outline settings. The object is owned by the list.</em> 
+<p><em>Returns the grouped outline settings. The object is owned by the series.</em> 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">RectangleBorder</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">border</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
@@ -2618,7 +2618,7 @@
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
-<p>Hover delivery uses this test, so stacked series underneath still receive hover events outside this list's rectangles. </p>
+<p>Hover delivery uses this test, so stacked series underneath still receive hover events outside this series rectangles. </p>
 <hr>
 
 <h3 id="function-count-22">function count<a class="headerlink" href="#function-count-22" title="Permanent link">&para;</a></h3>
@@ -2752,7 +2752,7 @@
 <hr>
 
 <h3 id="function-setdata-34">function setData<a class="headerlink" href="#function-setdata-34" title="Permanent link">&para;</a></h3>
-<p><em>Moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made.</em>
+<p><em>Moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 doubles: x1, y1, x2, y2) into the series and clears categories. No copy is made.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
@@ -2762,7 +2762,7 @@
 <hr>
 
 <h3 id="function-setdata-44">function setData<a class="headerlink" href="#function-setdata-44" title="Permanent link">&para;</a></h3>
-<p><em>Moves</em> <em>data</em> <em>and per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the list.</em>
+<p><em>Moves</em> <em>data</em> <em>and per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
@@ -2782,7 +2782,7 @@
 <hr>
 
 <h3 id="function-setdataf-23">function setDataF<a class="headerlink" href="#function-setdataf-23" title="Permanent link">&para;</a></h3>
-<p><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 floats) into the list and clears categories.</em>
+<p><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__rectCount</em> <em>× 4 floats) into the series and clears categories.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
@@ -2792,7 +2792,7 @@
 <hr>
 
 <h3 id="function-setdataf-33">function setDataF<a class="headerlink" href="#function-setdataf-33" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the list.</em>
+<p><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>(empty, or exactly__rectCount</em> <em>) into the series.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
@@ -2802,7 +2802,7 @@
 <hr>
 
 <h3 id="function-setdatafnorange-13">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-13" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw float array into the list's reusable buffer.</em>
+<p><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw float array into the series' reusable buffer.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span>
@@ -2823,7 +2823,7 @@
 <hr>
 
 <h3 id="function-setdatafnorange-33">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-33" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataFNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the list.</em>
+<p><em>Like</em> <code>setDataFNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the series.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
@@ -2854,7 +2854,7 @@
 <hr>
 
 <h3 id="function-setdatanorange-33">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-33" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the list.</em>
+<p><em>Like</em> <code>setDataNoRange</code> <em>(__data</em> <em>,__rectCount</em> <em>) and also moves per-rectangle__categories</em> <em>into the series.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>

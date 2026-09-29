@@ -501,7 +501,7 @@
         <name>border</name>
         <qualifiedname>QAccelPlot::RectangleSeries::border</qualifiedname>
         <briefdescription>
-<para>Returns the grouped outline settings. The object is owned by the list. </para>
+<para>Returns the grouped outline settings. The object is owned by the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -701,7 +701,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Moves <emphasis>data</emphasis> (<emphasis>rectCount</emphasis> × 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made. </para>
+<para>Moves <emphasis>data</emphasis> (<emphasis>rectCount</emphasis> × 4 doubles: x1, y1, x2, y2) into the series and clears categories. No copy is made. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -728,7 +728,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Moves <emphasis>data</emphasis> and per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the list. </para>
+<para>Moves <emphasis>data</emphasis> and per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -804,7 +804,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Like <computeroutput>setDataNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> into the list. </para>
+<para>Like <computeroutput>setDataNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -852,7 +852,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>High-performance C++ overload: moves <emphasis>data</emphasis> (<emphasis>rectCount</emphasis> × 4 floats) into the list and clears categories. </para>
+<para>High-performance C++ overload: moves <emphasis>data</emphasis> (<emphasis>rectCount</emphasis> × 4 floats) into the series and clears categories. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -879,7 +879,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the list. </para>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> (empty, or exactly <emphasis>rectCount</emphasis>) into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -903,7 +903,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Like <computeroutput>setDataFNoRange(vector)</computeroutput> but copies from a raw float array into the list&apos;s reusable buffer. </para>
+<para>Like <computeroutput>setDataFNoRange(vector)</computeroutput> but copies from a raw float array into the series&apos; reusable buffer. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -955,7 +955,7 @@
           <declname>rectCount</declname>
         </param>
         <briefdescription>
-<para>Like <computeroutput>setDataFNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> into the list. </para>
+<para>Like <computeroutput>setDataFNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>rectCount</emphasis>) and also moves per-rectangle <emphasis>categories</emphasis> into the series. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -1153,7 +1153,7 @@
 <para>Returns <computeroutput>true</computeroutput> when a rectangle lies under item position <emphasis>point</emphasis>. </para>
         </briefdescription>
         <detaileddescription>
-<para>Hover delivery uses this test, so stacked series underneath still receive hover events outside this list&apos;s rectangles. </para>
+<para>Hover delivery uses this test, so stacked series underneath still receive hover events outside this series rectangles. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -1716,7 +1716,7 @@
 <para>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles. </para>
     </briefdescription>
     <detaileddescription>
-<para>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1af4639ed97ffa63bbb7c25c2f3495fcd5" kindref="member">setDataF()</ref></computeroutput> overloads store floats and upload them without conversion. Hover detection uses an internal <computeroutput><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></computeroutput> for O(1) hit tests.</para>
+<para>Rectangles are stored as interleaved (x1, y1, x2, y2) values and uploaded to the GPU as a float data texture, making it suitable for millions of rectangles. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1a8a7d03400f338d027b6fa7a823ba9bcd" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the data, so large coordinates such as epoch timestamps stay precise. The <computeroutput><ref refid="classQAccelPlot_1_1RectangleSeries_1af4639ed97ffa63bbb7c25c2f3495fcd5" kindref="member">setDataF()</ref></computeroutput> overloads store floats and upload them without conversion. Hover detection uses an internal <computeroutput><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></computeroutput>; rectangles spanning more than 64 grid cells are tested linearly.</para>
 <para>An infinite edge extends the rectangle to the plot edge, e.g. <computeroutput>y1</computeroutput> = -Infinity and <computeroutput>y2</computeroutput> = +Infinity for a full-height span. Infinite edges don&apos;t affect the axes&apos; data ranges. Rectangles with a NaN edge are not drawn or hovered.</para>
 <para>Each rectangle can carry a <computeroutput>category</computeroutput>, an index into <computeroutput>categoryColors</computeroutput>. Rectangles without a category, or with one outside <computeroutput>categoryColors</computeroutput>, use <computeroutput>color</computeroutput>.</para>
 <para><simplesect kind="par"><title>Limits</title><para>Up to 16,777,216 (2^24) rectangles are drawn correctly. The shader indexes rectangles in single precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.</para>
