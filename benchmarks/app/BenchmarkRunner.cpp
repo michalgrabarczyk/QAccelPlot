@@ -208,6 +208,7 @@ void BenchmarkRunner::stop()
     clearCurves();
     setRunning(false);
     setCurrentScenarioName({});
+    setCurrentScenarioLabel({});
     setLiveFps(0.0);
     setLiveFrameTimeMs(0.0);
     setProgress(0.0);
@@ -296,9 +297,16 @@ void BenchmarkRunner::runNextScenario()
         return;
     }
 
+    const auto generation = runGeneration_;
     const auto scenario = scenariosToRun_[currentScenarioIndex_];
     setCurrentScenarioName(scenario.name());
+    if (!running_ || generation != runGeneration_) {
+        return;
+    }
     setCurrentScenarioLabel(scenario.label());
+    if (!running_ || generation != runGeneration_) {
+        return;
+    }
     qDebug() << "BenchmarkRunner: running" << scenario.name();
 
     setupScene(scenario);

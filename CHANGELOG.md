@@ -42,8 +42,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
-- Stopping the benchmark runner cancels queued scenario starts and does not
-  report completion for a stopped run.
+- Stopping the benchmark runner cancels queued or interrupted scenario starts,
+  clears the current scenario label, and does not report completion for a stopped run.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.

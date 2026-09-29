@@ -18,6 +18,8 @@ class TestBenchmarkRunner : public QObject {
 private slots:
     void stopBeforeQueuedStartLeavesNoActiveScenario();
     void stopFromCompletionSuppressesAllCompleted();
+    void stopFromScenarioNameChangeCancelsSetup();
+    void stopClearsScenarioLabel();
 };
 
 void TestBenchmarkRunner::stopBeforeQueuedStartLeavesNoActiveScenario()
@@ -51,6 +53,35 @@ void TestBenchmarkRunner::stopFromCompletionSuppressesAllCompleted()
 
     QVERIFY(!runner.isRunning());
     QCOMPARE(allCompletedSpy.count(), 0);
+}
+
+void TestBenchmarkRunner::stopFromScenarioNameChangeCancelsSetup()
+{
+    auto runner = QAccelPlot::BenchmarkRunner{};
+    const auto name = QStringLiteral("stop-on-name-change");
+    runner.addCustomScenario(name, name, QString{}, 2, 1, static_cast<int>(QAccelPlot::BenchmarkScenario::UpdateMode::Static), 10, 0);
+    QObject::connect(&runner, &QAccelPlot::BenchmarkRunner::currentScenarioNameChanged, &runner, &QAccelPlot::BenchmarkRunner::stop);
+
+    runner.runScenario(name);
+    QCoreApplication::sendPostedEvents(&runner, QEvent::MetaCall);
+
+    QVERIFY(!runner.isRunning());
+    QCOMPARE(runner.currentScenarioName(), QString{});
+    QCOMPARE(runner.currentScenarioLabel(), QString{});
+}
+
+void TestBenchmarkRunner::stopClearsScenarioLabel()
+{
+    auto runner = QAccelPlot::BenchmarkRunner{};
+    const auto name = QStringLiteral("labeled-stop");
+    runner.addCustomScenario(name, name, QString{}, 2, 1, static_cast<int>(QAccelPlot::BenchmarkScenario::UpdateMode::Static), 10, 0);
+
+    runner.runScenario(name);
+    QCoreApplication::sendPostedEvents(&runner, QEvent::MetaCall);
+    QCOMPARE(runner.currentScenarioLabel(), name);
+
+    runner.stop();
+    QCOMPARE(runner.currentScenarioLabel(), QString{});
 }
 
 QTEST_MAIN(TestBenchmarkRunner)
