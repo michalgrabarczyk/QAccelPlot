@@ -26,6 +26,50 @@ public:
     using PlotSeries::PlotSeries;
     using PlotSeries::setDataRanges;
 
+    void setData(const double*, int) override
+    {
+    }
+
+    void setData(std::vector<double>&&, int) override
+    {
+    }
+
+    void setDataNoRange(const double*, int) override
+    {
+    }
+
+    void setDataNoRange(std::vector<double>&&, int) override
+    {
+    }
+
+    void setDataF(const float*, int) override
+    {
+    }
+
+    void setDataF(std::vector<float>&&, int) override
+    {
+    }
+
+    void setDataFNoRange(const float*, int) override
+    {
+    }
+
+    void setDataFNoRange(std::vector<float>&&, int) override
+    {
+    }
+
+    void postData(std::vector<double>&&, int) override
+    {
+    }
+
+    void postData(std::vector<float>&&, int) override
+    {
+    }
+
+    void clearData() override
+    {
+    }
+
     int scaleChangeCount{0};
 
 protected:
@@ -62,6 +106,7 @@ class PlotSeriesDataRangesTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void commonDataApiDispatchesThroughBase();
     void nonFiniteXDoesNotBlockFiniteYUpdate();
     void nonFiniteYDoesNotBlockFiniteXUpdate();
     void replacingDestroyedLogAxisReportsScaleChange();
@@ -71,6 +116,33 @@ private slots:
     void rescaleAfterEmptySeriesUsesApplicationDataRange();
     void clearingReportedRangeUpdatesAxis();
 };
+
+void PlotSeriesDataRangesTest::commonDataApiDispatchesThroughBase()
+{
+    auto curve = LineCurve{};
+    auto cloud = PointCloud{};
+    auto rectangles = RectangleSeries{};
+    auto curveAxis = Axis{};
+    auto cloudAxis = Axis{};
+    auto rectangleAxis = Axis{};
+    curve.setXAxis(&curveAxis);
+    cloud.setXAxis(&cloudAxis);
+    rectangles.setXAxis(&rectangleAxis);
+
+    auto* series = static_cast<PlotSeries*>(&curve);
+    series->setDataF(std::vector<float>{1.0F, 2.0F, 3.0F, 4.0F}, 2);
+    QCOMPARE(curveAxis.dataMax(), 3.0);
+
+    series = &cloud;
+    series->setDataF(std::vector<float>{5.0F, 6.0F}, 1);
+    QCOMPARE(cloud.pointAt(0), QPointF(5.0, 6.0));
+
+    series = &rectangles;
+    series->setDataF(std::vector<float>{7.0F, 8.0F, 9.0F, 10.0F}, 1);
+    QCOMPARE(rectangleAxis.dataMax(), 9.0);
+    series->clearData();
+    QCOMPARE(rectangles.count(), 0);
+}
 
 void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYUpdate()
 {

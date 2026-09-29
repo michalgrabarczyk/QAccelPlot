@@ -50,6 +50,7 @@ private slots:
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
     void interleavedDoubleDataPreservesModernEpochPrecision();
+    void doubleNoRangeOverloadsSkipRangesAndPreservePrecision();
     void invalidInterleavedDoubleDataIsRejected();
     void postedDoubleDataPreservesModernEpochPrecision();
     void postedDoubleDataFromWorkerThreadIsApplied();
@@ -466,6 +467,31 @@ void LineCurveDataTest::interleavedDoubleDataPreservesModernEpochPrecision()
 
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
+}
+
+void LineCurveDataTest::doubleNoRangeOverloadsSkipRangesAndPreservePrecision()
+{
+    constexpr auto epoch = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setData(std::vector<double>{1.0, 0.0, 2.0, 1.0}, 2);
+    auto xRangeSpy = QSignalSpy{&curve, &PlotSeries::xDataRangeChanged};
+
+    curve.setDataNoRange(std::vector<double>{epoch, 0.0, epoch + 0.5, 1.0}, 2);
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMax(), 2.0);
+
+    const auto raw = std::vector<double>{epoch + 1.0, 0.0, epoch + 1.5, 1.0};
+    curve.setDataNoRange(raw.data(), 2);
+    QCOMPARE(xRangeSpy.count(), 0);
+    curve.setData(raw.data(), 2);
+    QCOMPARE(xAxis.dataMin(), epoch + 1.0);
+    QCOMPARE(xAxis.dataMax(), epoch + 1.5);
+
+    curve.setDataNoRange(static_cast<const double*>(nullptr), 0);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received a null data pointer.*"));
+    curve.setDataNoRange(static_cast<const double*>(nullptr), 1);
 }
 
 void LineCurveDataTest::invalidInterleavedDoubleDataIsRejected()

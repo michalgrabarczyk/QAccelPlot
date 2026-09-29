@@ -134,34 +134,40 @@ public:
 
     /// \brief Appends a single data point (\a x, \a y) to the curve. Triggers a redraw.
     Q_INVOKABLE void appendData(qreal x, qreal y);
-    /// \brief Removes all data points from the curve.
-    Q_INVOKABLE void clearData();
     /// \brief Replaces the curve data with \a data (a list of QPointF values).
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
+    /// \brief Copies \a pointCount interleaved double XY pairs, retaining full precision.
+    void setData(const double* xyInterleaved, int pointCount) override;
     /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
     /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
-    void setData(std::vector<double>&& xyInterleaved, int pointCount);
+    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
+    /// \brief Like \c setData(vector) but does not report X/Y data ranges to the axes.
+    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
-    void setDataF(const float* xyInterleaved, int pointCount);
+    void setDataF(const float* xyInterleaved, int pointCount) override;
     /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
-    void setDataF(std::vector<float>&& data, int pointCount);
-    /// \brief Like \c setDataF(vector) but skips emitting \c xDataRangeChanged / \c yDataRangeChanged.
-    void setDataFNoRange(std::vector<float>&& data, int pointCount);
+    void setDataF(std::vector<float>&& data, int pointCount) override;
     /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
-    void setDataFNoRange(const float* xyInterleaved, int pointCount);
+    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
+    /// \brief Like \c setDataF(vector) but skips emitting \c xDataRangeChanged / \c yDataRangeChanged.
+    void setDataFNoRange(std::vector<float>&& data, int pointCount) override;
     /// \brief Like \c setDataFNoRange but also accepts a pre-built \a vertexCache, bypassing main-thread rebuild.
     void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     /// \brief Like \c setDataFNoRangeWithCache but copies from a raw interleaved float array.
     void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
-    /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
-    /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
-    void postData(std::vector<float>&& xyInterleaved, int pointCount);
     /// \brief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
     /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
     /// is made. This call is thread-safe.
-    void postData(std::vector<double>&& xyInterleaved, int pointCount);
+    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
+    /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
+    /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
+    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
+    /// \brief Removes all data points from the curve.
+    Q_INVOKABLE void clearData() override;
 
 protected:
     /// \cond INTERNAL
@@ -221,7 +227,7 @@ private:
     bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
-    bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
+    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);

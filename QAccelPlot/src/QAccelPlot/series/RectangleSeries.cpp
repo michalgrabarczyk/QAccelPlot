@@ -244,8 +244,11 @@ void RectangleSeries::setData(const double* data, const int rectCount)
     if (!validateRawDataArguments(data, rectCount)) {
         return;
     }
-    const auto doubleCount = static_cast<size_t>(rectCount) * 4;
-    applyData(std::vector<double>(data, data + doubleCount), {}, rectCount, true);
+    auto buffer = std::vector<double>{};
+    if (rectCount > 0) {
+        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
+    }
+    applyData(std::move(buffer), {}, rectCount, true);
 }
 
 void RectangleSeries::setData(std::vector<double>&& data, const int rectCount)
@@ -259,6 +262,18 @@ void RectangleSeries::setData(std::vector<double>&& data, std::vector<int>&& cat
         return;
     }
     applyData(std::move(data), std::move(categories), rectCount, true);
+}
+
+void RectangleSeries::setDataNoRange(const double* data, const int rectCount)
+{
+    if (!validateRawDataArguments(data, rectCount)) {
+        return;
+    }
+    auto buffer = std::vector<double>{};
+    if (rectCount > 0) {
+        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
+    }
+    setDataNoRange(std::move(buffer), rectCount);
 }
 
 void RectangleSeries::setDataNoRange(std::vector<double>&& data, const int rectCount)
@@ -292,6 +307,11 @@ void RectangleSeries::setDataF(std::vector<float>&& data, std::vector<int>&& cat
     applyFloatData(std::move(data), std::move(categories), rectCount, true);
 }
 
+void RectangleSeries::setDataFNoRange(const float* data, const int rectCount)
+{
+    setDataFFromArray(data, rectCount, false);
+}
+
 void RectangleSeries::setDataFNoRange(std::vector<float>&& data, const int rectCount)
 {
     setDataFNoRange(std::move(data), {}, rectCount);
@@ -303,11 +323,6 @@ void RectangleSeries::setDataFNoRange(std::vector<float>&& data, std::vector<int
         return;
     }
     applyFloatData(std::move(data), std::move(categories), rectCount, false);
-}
-
-void RectangleSeries::setDataFNoRange(const float* data, const int rectCount)
-{
-    setDataFFromArray(data, rectCount, false);
 }
 
 void RectangleSeries::postData(std::vector<double>&& data, const int rectCount)
@@ -340,6 +355,11 @@ void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& cat
         Qt::QueuedConnection);
 }
 
+void RectangleSeries::clearData()
+{
+    applyData({}, {}, 0, true);
+}
+
 void RectangleSeries::setCategories(const QList<int>& categories)
 {
     if (!categories.isEmpty() && categories.size() != rectCount_) {
@@ -349,11 +369,6 @@ void RectangleSeries::setCategories(const QList<int>& categories)
     categories_.assign(categories.cbegin(), categories.cend());
     vertexCacheValid_ = false;
     update();
-}
-
-void RectangleSeries::clearData()
-{
-    applyData({}, {}, 0, true);
 }
 
 QVariantMap RectangleSeries::rectangleAt(const int index) const
@@ -445,7 +460,11 @@ void RectangleSeries::setDataFFromArray(const float* data, const int rectCount, 
         return;
     }
     auto buffer = std::move(renderData_);
-    buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
+    if (rectCount > 0) {
+        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
+    } else {
+        buffer.clear();
+    }
     applyFloatData(std::move(buffer), {}, rectCount, reportRanges);
 }
 

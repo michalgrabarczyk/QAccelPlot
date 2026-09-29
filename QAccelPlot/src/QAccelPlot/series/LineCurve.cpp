@@ -380,27 +380,6 @@ void LineCurve::appendData(const qreal x, const qreal y)
     update();
 }
 
-void LineCurve::clearData()
-{
-    cancelRunningTransition();
-    data_.clear();
-    dataF_.clear();
-    renderData_.clear();
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    renderLogScaleX_ = false;
-    renderLogScaleY_ = false;
-    renderOriginXSettled_ = false;
-    renderOriginYSettled_ = false;
-    pointCount_ = 0;
-    releaseGapConnectData();
-    invalidateVertices();
-    chunks_.clear();
-    chunksValid_ = true;
-    clearDataRanges();
-    update();
-}
-
 void LineCurve::setData(const QList<QPointF>& data)
 {
     auto newCount = static_cast<int>(data.size());
@@ -425,12 +404,45 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
     applyNewData(std::move(newData), newCount);
 }
 
+void LineCurve::setData(const double* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto data = std::vector<double>{};
+    if (pointCount > 0) {
+        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
+    }
+    setData(std::move(data), pointCount);
+}
+
 void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCount)
 {
     if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
         return;
     }
     updateDataRanges(xyInterleaved, pointCount);
+    applyNewData(std::move(xyInterleaved), pointCount);
+}
+
+void LineCurve::setDataNoRange(const double* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto data = std::vector<double>{};
+    if (pointCount > 0) {
+        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
+    }
+    setDataNoRange(std::move(data), pointCount);
+}
+
+void LineCurve::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    autoDataRanges_ = false;
     applyNewData(std::move(xyInterleaved), pointCount);
 }
 
@@ -453,15 +465,6 @@ void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
         return;
     }
     updateDataRanges(data, pointCount);
-    applyNewData(std::move(data), pointCount);
-}
-
-void LineCurve::setDataFNoRange(std::vector<float>&& data, const int pointCount)
-{
-    if (!validateVectorDataArguments(data, pointCount)) {
-        return;
-    }
-    autoDataRanges_ = false;
     applyNewData(std::move(data), pointCount);
 }
 
@@ -489,6 +492,15 @@ void LineCurve::setDataFNoRange(const float* xyInterleaved, const int pointCount
     rebuildChunks();
     dataChanged_ = true;
     update();
+}
+
+void LineCurve::setDataFNoRange(std::vector<float>&& data, const int pointCount)
+{
+    if (!validateVectorDataArguments(data, pointCount)) {
+        return;
+    }
+    autoDataRanges_ = false;
+    applyNewData(std::move(data), pointCount);
 }
 
 void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
@@ -545,16 +557,37 @@ void LineCurve::setDataFNoRangeWithCache(const float* xyInterleaved, const int p
     update();
 }
 
+void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    QMetaObject::invokeMethod(
+        this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
+}
+
 void LineCurve::postData(std::vector<float>&& xyInterleaved, const int pointCount)
 {
     QMetaObject::invokeMethod(
         this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setDataF(std::move(data), pointCount); }, Qt::QueuedConnection);
 }
 
-void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCount)
+void LineCurve::clearData()
 {
-    QMetaObject::invokeMethod(
-        this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
+    cancelRunningTransition();
+    data_.clear();
+    dataF_.clear();
+    renderData_.clear();
+    renderOriginX_ = 0.0;
+    renderOriginY_ = 0.0;
+    renderLogScaleX_ = false;
+    renderLogScaleY_ = false;
+    renderOriginXSettled_ = false;
+    renderOriginYSettled_ = false;
+    pointCount_ = 0;
+    releaseGapConnectData();
+    invalidateVertices();
+    chunks_.clear();
+    chunksValid_ = true;
+    clearDataRanges();
+    update();
 }
 
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
@@ -1010,7 +1043,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     update();
 }
 
-bool LineCurve::validateRawDataArguments(const float* xyInterleaved, const int pointCount) const
+bool LineCurve::validateRawDataArguments(const void* xyInterleaved, const int pointCount) const
 {
     if (pointCount < 0) {
         qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;

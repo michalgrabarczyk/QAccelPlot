@@ -113,59 +113,60 @@ public:
 
     /// \brief Loads rectangles from a C++ raw double array, preserving full precision for large
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
-    void setData(const double* data, int rectCount);
+    void setData(const double* data, int rectCount) override;
 
     /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made.
-    void setData(std::vector<double>&& data, int rectCount);
+    void setData(std::vector<double>&& data, int rectCount) override;
 
     /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* data, int rectCount) override;
     /// \brief Like \c setData() but does not report X/Y data ranges to the axes.
     ///
     /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataNoRange(std::vector<double>&& data, int rectCount);
+    void setDataNoRange(std::vector<double>&& data, int rectCount) override;
 
     /// \brief Like \c setDataNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the list.
     void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief High-performance C++ overload: copies \a rectCount × 4 floats (x1, y1, x2, y2) from \a data and clears categories.
-    void setDataF(const float* data, int rectCount);
+    void setDataF(const float* data, int rectCount) override;
 
     /// \brief High-performance C++ overload: moves \a data (\a rectCount × 4 floats) into the list and clears categories.
-    void setDataF(std::vector<float>&& data, int rectCount);
+    void setDataF(std::vector<float>&& data, int rectCount) override;
 
     /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
+    /// \brief Like \c setDataFNoRange(vector) but copies from a raw float array into the list's reusable buffer.
+    void setDataFNoRange(const float* data, int rectCount) override;
     /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
     ///
     /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataFNoRange(std::vector<float>&& data, int rectCount);
+    void setDataFNoRange(std::vector<float>&& data, int rectCount) override;
 
     /// \brief Like \c setDataFNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the list.
     void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw float array into the list's reusable buffer.
-    void setDataFNoRange(const float* data, int rectCount);
-
     /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
-    void postData(std::vector<double>&& data, int rectCount);
+    void postData(std::vector<double>&& data, int rectCount) override;
 
     /// \brief Thread-safe: queues \c setData(\a data, \a categories, \a rectCount) to the item's thread.
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief Thread-safe: queues \c setDataF(\a data, \a rectCount) to the item's thread.
-    void postData(std::vector<float>&& data, int rectCount);
+    void postData(std::vector<float>&& data, int rectCount) override;
 
     /// \brief Thread-safe: queues \c setDataF(\a data, \a categories, \a rectCount) to the item's thread.
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
+    /// \brief Removes all rectangles.
+    Q_INVOKABLE void clearData() override;
+
     /// \brief Sets one category per rectangle. An empty list clears categories; any other size must equal \c count.
     Q_INVOKABLE void setCategories(const QList<int>& categories);
-
-    /// \brief Removes all rectangles.
-    Q_INVOKABLE void clearData();
 
     /// \brief Returns rectangle \a index as an object with \c x1, \c y1, \c x2, \c y2 properties.
     ///

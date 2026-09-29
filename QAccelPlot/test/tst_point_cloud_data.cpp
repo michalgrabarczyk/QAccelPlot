@@ -68,6 +68,7 @@ private slots:
     void postDataIsAppliedFromWorkerThread();
     void postedDoubleDataIsApplied();
     void doubleNoRangeDataDoesNotReportRanges();
+    void noRangeOverloadsAcceptPositionsWithoutValues();
     void hoverEventsTrackPointUnderCursor();
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
@@ -376,6 +377,36 @@ void PointCloudDataTest::doubleNoRangeDataDoesNotReportRanges()
     QVERIFY(cloud.hasValues());
     QCOMPARE(cloud.valueAt(1), 1.5);
     QCOMPARE(xRangeSpy.count(), 0);
+}
+
+void PointCloudDataTest::noRangeOverloadsAcceptPositionsWithoutValues()
+{
+    constexpr auto epoch = double{1'789'032'600'000.0};
+    auto xAxis = Axis{};
+    auto cloud = PointCloud{};
+    cloud.setXAxis(&xAxis);
+    const auto precise = std::vector<double>{epoch, 1.0, epoch + 0.5, 2.0};
+    cloud.setData(precise.data(), 2);
+    QCOMPARE(xAxis.dataMax(), epoch + 0.5);
+    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
+
+    cloud.setDataNoRange(std::vector<double>{epoch + 1.0, 3.0}, 1);
+    QCOMPARE(cloud.pointAt(0).x(), epoch + 1.0);
+    cloud.setDataNoRange(precise.data(), 2);
+    QCOMPARE(cloud.pointAt(1).x(), epoch + 0.5);
+
+    cloud.setDataFNoRange(std::vector<float>{3.0f, 4.0f}, 1);
+    const auto raw = std::vector<float>{5.0f, 6.0f};
+    cloud.setDataFNoRange(raw.data(), 1);
+    QCOMPARE(cloud.pointAt(0), QPointF(5.0, 6.0));
+    QVERIFY(!cloud.hasValues());
+    QCOMPARE(xRangeSpy.count(), 0);
+
+    cloud.setDataFNoRange(static_cast<const float*>(nullptr), 0);
+    QCOMPARE(cloud.count(), 0);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received a null data pointer.*"));
+    cloud.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    QCOMPARE(cloud.count(), 0);
 }
 
 void PointCloudDataTest::hoverEventsTrackPointUnderCursor()
