@@ -30,6 +30,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   point cloud's colormap and value range.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
   rectangles in one item: spans, bands, and state timelines.
+- [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and
+  grouped bar charts.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse

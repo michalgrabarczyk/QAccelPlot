@@ -37,6 +37,7 @@ DOC_FILES = [
     GUIDE_DIR / "cookbook" / "styling.md",
     GUIDE_DIR / "cookbook" / "annotations.md",
     GUIDE_DIR / "cookbook" / "point-clouds.md",
+    GUIDE_DIR / "cookbook" / "bar-charts.md",
     GUIDE_DIR / "cookbook" / "background-data.md",
     GUIDE_DIR / "api.md",
 ]

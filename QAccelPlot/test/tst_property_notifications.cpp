@@ -16,6 +16,7 @@
 #include "QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
+#include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -47,6 +48,7 @@ const std::map<QString, Factory>& factories()
         {QStringLiteral("Axis"), make<Axis>()},
         {QStringLiteral("AxisTicker"), make<AxisTicker>()},
         {QStringLiteral("ColorBar"), make<ColorBar>()},
+        {QStringLiteral("BarSeries"), make<BarSeries>()},
         {QStringLiteral("Colormap"), make<Colormap>()},
         {QStringLiteral("DataAnchor"), make<DataAnchor>()},
         {QStringLiteral("DateTimeTickLabelFormatter"), make<DateTimeTickLabelFormatter>()},
@@ -153,6 +155,15 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("PlotView", "axesAreaColor", QColor{Qt::darkBlue});
 
     const auto& palette = ColorPalette::dark();
+    row("BarSeries", "orientation", QVariant::fromValue(Qt::Horizontal));
+    row("BarSeries", "barWidth", 0.5);
+    row("BarSeries", "barOffset", -0.25);
+    row("BarSeries", "baselineValue", 2.0);
+    row("BarSeries", "minimumWidth", 3.0);
+    row("BarSeries", "color", palette.seriesSecondary);
+    row("BarSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
+    row("BarSeries", "hoverColor", palette.seriesYellow);
+
     row("RectangleSeries", "color", palette.seriesSecondary);
     row("RectangleSeries", "categoryColors", QVariant::fromValue(QList<QColor>{palette.statusGood, palette.statusError}));
     row("RectangleSeries", "hoverColor", palette.seriesYellow);

@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
@@ -95,6 +96,9 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     const QAccelPlot::RectangleSeries rectangles;
     QCOMPARE(rectangles.color().rgb(), palette.seriesPrimary.rgb());
     QCOMPARE(rectangles.color().alpha(), 50);
+
+    const QAccelPlot::BarSeries bars;
+    QCOMPARE(bars.color(), palette.seriesPrimary);
 }
 
 void TestColorPalette::qmlLegendDefaultsUseDarkPalette()

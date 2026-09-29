@@ -62,11 +62,12 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`LineCurve`, `PointCloud`, and `RectangleSeries` all support `setData()` and
-`setDataNoRange()` for interleaved doubles, `setDataF()` and `setDataFNoRange()`
-for interleaved floats, and `postData()` for either moved vector type. Each
-also accepts a raw array for the four synchronous setters. `PointCloud` can
-add per-point values and `RectangleSeries` can add categories with their vector overloads.
+`LineCurve`, `PointCloud`, `RectangleSeries`, and `BarSeries` all support
+`setData()` and `setDataNoRange()` for interleaved doubles, `setDataF()` and
+`setDataFNoRange()` for interleaved floats, and `postData()` for either moved
+vector type. Each also accepts a raw array for the four synchronous setters.
+`PointCloud` can add per-point values, and `RectangleSeries` and `BarSeries`
+can add categories with their vector overloads.
 
 ## Keep work off the UI thread
 
@@ -97,7 +98,8 @@ answers each move by scanning only the cells within the hover radius.
 [`RectangleSeries.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
 way. Each pointer move then tests the rectangles in the cells around the pointer
 plus every rectangle spanning more than 64 cells, so many long rectangles make
-lookup `O(N)`. When a series is replaced every
+lookup `O(N)`. `BarSeries.hoveredIndex` indexes only bar positions, so tall bars
+don't count as long rectangles. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 

@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
@@ -72,6 +73,7 @@ private slots:
     void identicalPointCloudMaterialsCompareEqual();
     void pointCloudMaterialsCompareMarkerAndColorUniforms();
     void pointCloudMaterialsCompareDataTextureIdentity();
+    void barMaterialsCompareRectangleAndBarUniforms();
 };
 
 void MaterialComparisonTest::identicalLineMaterialsCompareEqual()
@@ -212,6 +214,29 @@ void MaterialComparisonTest::pointCloudMaterialsCompareDataTextureIdentity()
     right.dataTexture = std::make_unique<TestTexture>(11);
 
     QVERIFY(left.compare(&right) != 0);
+}
+
+void MaterialComparisonTest::barMaterialsCompareRectangleAndBarUniforms()
+{
+    const auto left = BarMaterial{};
+    QCOMPARE(left.compare(&left), 0);
+
+    auto differentBorder = BarMaterial{};
+    differentBorder.borderWidth = 2.0f;
+    QVERIFY(left.compare(&differentBorder) != 0);
+
+    auto differentWidth = BarMaterial{};
+    differentWidth.barWidth = 0.5f;
+    QVERIFY(left.compare(&differentWidth) != 0);
+    QVERIFY(differentWidth.compare(&left) == -left.compare(&differentWidth));
+
+    auto differentBaseline = BarMaterial{};
+    differentBaseline.baseline = -1.0f;
+    QVERIFY(left.compare(&differentBaseline) != 0);
+
+    auto horizontal = BarMaterial{};
+    horizontal.horizontal = 1.0f;
+    QVERIFY(left.compare(&horizontal) != 0);
 }
 
 } // namespace QAccelPlot

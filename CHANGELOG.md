@@ -19,6 +19,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `postData()` overloads.
 - `SpatialGrid::buildF()`.
 - `RectVertexCache`.
+- `BarSeries`: `orientation`, `barWidth`, `barOffset`, `baselineValue`, `barAt()`, and `barIndexAt()`.
+- The `plot_types/bar_chart` example.
 - The `plot_types/state_timeline` example.
 
 ### Changed

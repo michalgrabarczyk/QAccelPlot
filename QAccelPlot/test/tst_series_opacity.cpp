@@ -20,10 +20,10 @@ namespace QAccelPlot {
 
 namespace {
 
-// Six white series on black, one per data unit along X. With 40 px per unit, data (x, y)
+// Seven white series on black, one per data unit along X. With 40 px per unit, data (x, y)
 // maps to pixel (40 * x, 40 * (1 - y)). Antialiasing is off so sampled pixels are fully covered.
 constexpr auto kPixelsPerUnit = 40;
-constexpr auto kWindowWidth = 6 * kPixelsPerUnit;
+constexpr auto kWindowWidth = 7 * kPixelsPerUnit;
 constexpr auto kWindowHeight = kPixelsPerUnit;
 
 constexpr auto kScene = R"(
@@ -32,13 +32,13 @@ import QAccelPlot
 
 Item {
     id: root
-    width: 240
+    width: 280
     height: 40
 
     property real seriesOpacity: 1
     property real groupOpacity: 1
 
-    Axis { id: xAxis; orientation: Axis.Horizontal; viewportMin: 0; viewportMax: 6 }
+    Axis { id: xAxis; orientation: Axis.Horizontal; viewportMin: 0; viewportMax: 7 }
     Axis { id: yAxis; orientation: Axis.Vertical; viewportMin: 0; viewportMax: 1 }
 
     Item {
@@ -124,6 +124,17 @@ Item {
             color: "white"
             Component.onCompleted: setData([{ x1: 5.1, y1: 0.1, x2: 5.9, y2: 0.9 }])
         }
+
+        BarSeries {
+            anchors.fill: parent
+            opacity: root.seriesOpacity
+            plotRect: Qt.rect(0, 0, width, height)
+            xAxis: xAxis
+            yAxis: yAxis
+            color: "white"
+            baselineValue: 0.1
+            Component.onCompleted: setData([{ position: 6.5, value: 0.9 }])
+        }
     }
 }
 )";
@@ -195,6 +206,7 @@ void SeriesOpacityTest::seriesOpacityBlendsWithBackground_data()
     QTest::newRow("GradientStroke") << QPoint{140, 20};
     QTest::newRow("GradientFill") << QPoint{180, 28};
     QTest::newRow("RectangleSeries") << QPoint{220, 20};
+    QTest::newRow("BarSeries") << QPoint{260, 20};
 }
 
 void SeriesOpacityTest::seriesOpacityBlendsWithBackground()
