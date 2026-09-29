@@ -128,6 +128,8 @@ public:
 
     /// \brief Like \c setDataNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the list.
     void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* data, int rectCount);
 
     /// \brief High-performance C++ overload: copies \a rectCount × 4 floats (x1, y1, x2, y2) from \a data and clears categories.
     void setDataF(const float* data, int rectCount);

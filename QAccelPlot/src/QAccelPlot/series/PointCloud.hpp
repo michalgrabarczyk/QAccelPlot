@@ -136,6 +136,8 @@ public:
 
     /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
     void setDataF(const float* xyInterleaved, int pointCount);
+    /// \brief Copies \a pointCount interleaved double XY pairs and clears values.
+    void setData(const double* xyInterleaved, int pointCount);
     /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
     void setDataF(std::vector<float>&& xyInterleaved, int pointCount);
     /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
@@ -143,7 +145,11 @@ public:
     /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
     ///
     /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
+    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount);
+    /// \brief Like \c setDataFNoRange() and also moves per-point \a values into the cloud.
     void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
+    void setDataFNoRange(const float* xyInterleaved, int pointCount);
     /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a pointCount) to the item's thread.
     void postData(std::vector<float>&& xyInterleaved, int pointCount);
     /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
@@ -158,7 +164,11 @@ public:
     /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Like the double \c setData() but does not report X/Y data ranges to the axes.
+    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount);
+    /// \brief Like \c setDataNoRange() and also moves per-point \a values into the cloud.
     void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* xyInterleaved, int pointCount);
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a pointCount) to the item's thread.
     void postData(std::vector<double>&& xyInterleaved, int pointCount);
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
@@ -208,6 +218,7 @@ private:
     Q_SLOT void onColormapUpdated();
 
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
+    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
     void finishDataChange(int previousCount, bool hadValues, bool reportRanges);

@@ -143,6 +143,12 @@ public:
     /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
     /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
     void setData(std::vector<double>&& xyInterleaved, int pointCount);
+    /// \brief Copies \a pointCount interleaved double XY pairs, retaining full precision.
+    void setData(const double* xyInterleaved, int pointCount);
+    /// \brief Like \c setData(vector) but does not report X/Y data ranges to the axes.
+    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount);
+    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
+    void setDataNoRange(const double* xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
     void setDataF(const float* xyInterleaved, int pointCount);
     /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
@@ -221,7 +227,7 @@ private:
     bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
-    bool validateRawDataArguments(const float* xyInterleaved, int pointCount) const;
+    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
     bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
     void copyRawData(const float* xyInterleaved, int pointCount);

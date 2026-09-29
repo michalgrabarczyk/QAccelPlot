@@ -38,6 +38,7 @@ private slots:
     void movedDataIsApplied();
     void movedDataWithWrongSizeIsRejected();
     void noRangeDataDoesNotReportRanges();
+    void rawDoubleNoRangeSkipsRanges();
     void floatDataIsApplied();
     void floatNoRangeDataDoesNotReportRanges();
     void floatDataIsUploadedWithoutOrigin();
@@ -214,6 +215,27 @@ void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
     QCOMPARE(xRangeSpy.count(), 0);
     QCOMPARE(xAxis.dataMax(), 3.0);
+}
+
+void RectangleSeriesDataTest::rawDoubleNoRangeSkipsRanges()
+{
+    auto xAxis = Axis{};
+    auto rectangles = RectangleSeries{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
+    auto xRangeSpy = QSignalSpy{&rectangles, &PlotSeries::xDataRangeChanged};
+    const auto raw = std::array<double, 4>{10.0, 20.0, 30.0, 40.0};
+
+    rectangles.setDataNoRange(raw.data(), 1);
+    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
+    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
+
+    rectangles.setDataNoRange(static_cast<const double*>(nullptr), 0);
+    QCOMPARE(rectangles.count(), 0);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer.*"));
+    rectangles.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    QCOMPARE(rectangles.count(), 0);
 }
 
 void RectangleSeriesDataTest::floatDataIsApplied()

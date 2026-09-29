@@ -434,6 +434,39 @@ void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCoun
     applyNewData(std::move(xyInterleaved), pointCount);
 }
 
+void LineCurve::setData(const double* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto data = std::vector<double>{};
+    if (pointCount > 0) {
+        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
+    }
+    setData(std::move(data), pointCount);
+}
+
+void LineCurve::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
+{
+    if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    autoDataRanges_ = false;
+    applyNewData(std::move(xyInterleaved), pointCount);
+}
+
+void LineCurve::setDataNoRange(const double* xyInterleaved, const int pointCount)
+{
+    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
+        return;
+    }
+    auto data = std::vector<double>{};
+    if (pointCount > 0) {
+        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
+    }
+    setDataNoRange(std::move(data), pointCount);
+}
+
 void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
 {
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
@@ -1010,7 +1043,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     update();
 }
 
-bool LineCurve::validateRawDataArguments(const float* xyInterleaved, const int pointCount) const
+bool LineCurve::validateRawDataArguments(const void* xyInterleaved, const int pointCount) const
 {
     if (pointCount < 0) {
         qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;
