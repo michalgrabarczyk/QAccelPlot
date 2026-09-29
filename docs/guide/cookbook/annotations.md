@@ -1,5 +1,5 @@
 ---
-description: "Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleList."
+description: "Add data-attached annotations, event regions, state timelines, measurement tools, and custom mouse interaction to QAccelPlot charts using DataAnchor and RectangleSeries."
 ---
 
 <!--
@@ -52,17 +52,17 @@ line; set all four bounds for a rectangle.
 
 Each `DataAnchor` and its children add `QQuickItem`s, so use it for a moderate
 number of rich annotations. For thousands of simple regions, use
-[`RectangleList`][rectangle-list], which is a single item.
+[`RectangleSeries`][rectangle-series], which is a single item.
 
 ## Highlight many data regions
 
-[`RectangleList`][rectangle-list] draws many data-space rectangles, such as
-event windows or machine states. [`setData()`][rectangle-list-set-data] takes
+[`RectangleSeries`][rectangle-series] draws many data-space rectangles, such as
+event windows or machine states. [`setData()`][rectangle-series-set-data] takes
 rectangle bounds. An omitted or infinite edge reaches the plot edge, so
 `{ x1: 8, x2: 12 }` is a full-height span:
 
 ```qml
-QAccelPlot.RectangleList {
+QAccelPlot.RectangleSeries {
     xAxis: plot.xAxis
     yAxis: plot.yAxis
     color: "goldenrod"
@@ -87,7 +87,7 @@ Infinite edges don't change the axes' data ranges.
 A state timeline puts one lane per row, colored by category:
 
 ```qml
-QAccelPlot.RectangleList {
+QAccelPlot.RectangleSeries {
     xAxis: plot.xAxis
     yAxis: plot.yAxis
     categoryColors: ["seagreen", "slategray", "firebrick"] // Running, Idle, Alarm
@@ -106,7 +106,7 @@ Y axis. From C++, `setData(std::vector<double>&&, std::vector<int>&&, int)`
 moves bounds and categories in without copying; `postData()` hands them off
 from a worker thread.
 
-RectangleList only accepts hover over its rectangles, so series underneath
+RectangleSeries only accepts hover over its rectangles, so series underneath
 still receive hover elsewhere. Hover lookup uses a spatial grid and stays
 constant-time for large collections; see
 [Hover interactions](../performance.md#hover-interactions).
@@ -147,6 +147,6 @@ Complete sources:
 [pixel-to-data-x]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
 [pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [data-anchor]: ../api/classQAccelPlot_1_1DataAnchor.md
-[rectangle-list]: ../api/classQAccelPlot_1_1RectangleList.md
-[rectangle-list-set-data]: ../api/classQAccelPlot_1_1RectangleList.md#function-setdata
-[hovered-index]: ../api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
+[rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
+[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata
+[hovered-index]: ../api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12

@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -100,7 +100,7 @@ template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCou
 
 }
 
-RectangleList::RectangleList(QQuickItem* parent)
+RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(parent)
     , color_(defaultRectangleColor())
 {
@@ -112,12 +112,12 @@ RectangleList::RectangleList(QQuickItem* parent)
     connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
 }
 
-QColor RectangleList::color() const
+QColor RectangleSeries::color() const
 {
     return color_;
 }
 
-void RectangleList::setColor(const QColor& color)
+void RectangleSeries::setColor(const QColor& color)
 {
     if (color_ == color) {
         return;
@@ -130,12 +130,12 @@ void RectangleList::setColor(const QColor& color)
     update();
 }
 
-QList<QColor> RectangleList::categoryColors() const
+QList<QColor> RectangleSeries::categoryColors() const
 {
     return categoryColors_;
 }
 
-void RectangleList::setCategoryColors(const QList<QColor>& colors)
+void RectangleSeries::setCategoryColors(const QList<QColor>& colors)
 {
     if (categoryColors_ == colors) {
         return;
@@ -148,17 +148,17 @@ void RectangleList::setCategoryColors(const QList<QColor>& colors)
     update();
 }
 
-RectangleBorder* RectangleList::border() const
+RectangleBorder* RectangleSeries::border() const
 {
     return border_;
 }
 
-QColor RectangleList::hoverColor() const
+QColor RectangleSeries::hoverColor() const
 {
     return hoverColor_;
 }
 
-void RectangleList::setHoverColor(const QColor& color)
+void RectangleSeries::setHoverColor(const QColor& color)
 {
     if (hoverColor_ == color) {
         return;
@@ -168,12 +168,12 @@ void RectangleList::setHoverColor(const QColor& color)
     update();
 }
 
-qreal RectangleList::minimumWidth() const
+qreal RectangleSeries::minimumWidth() const
 {
     return minimumWidth_;
 }
 
-void RectangleList::setMinimumWidth(const qreal width)
+void RectangleSeries::setMinimumWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
     if (nearly_equal(minimumWidth_, clamped)) {
@@ -184,12 +184,12 @@ void RectangleList::setMinimumWidth(const qreal width)
     update();
 }
 
-qreal RectangleList::minimumHeight() const
+qreal RectangleSeries::minimumHeight() const
 {
     return minimumHeight_;
 }
 
-void RectangleList::setMinimumHeight(const qreal height)
+void RectangleSeries::setMinimumHeight(const qreal height)
 {
     const auto clamped = std::max(height, qreal{0.0});
     if (nearly_equal(minimumHeight_, clamped)) {
@@ -200,17 +200,17 @@ void RectangleList::setMinimumHeight(const qreal height)
     update();
 }
 
-int RectangleList::count() const
+int RectangleSeries::count() const
 {
     return rectCount_;
 }
 
-int RectangleList::hoveredIndex() const
+int RectangleSeries::hoveredIndex() const
 {
     return hoveredIndex_;
 }
 
-void RectangleList::setData(const QVariantList& rects)
+void RectangleSeries::setData(const QVariantList& rects)
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     const auto& keys = rectangleKeys();
@@ -239,7 +239,7 @@ void RectangleList::setData(const QVariantList& rects)
     applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()), true);
 }
 
-void RectangleList::setData(const double* data, const int rectCount)
+void RectangleSeries::setData(const double* data, const int rectCount)
 {
     if (!validateRawDataArguments(data, rectCount)) {
         return;
@@ -248,12 +248,12 @@ void RectangleList::setData(const double* data, const int rectCount)
     applyData(std::vector<double>(data, data + doubleCount), {}, rectCount, true);
 }
 
-void RectangleList::setData(std::vector<double>&& data, const int rectCount)
+void RectangleSeries::setData(std::vector<double>&& data, const int rectCount)
 {
     setData(std::move(data), {}, rectCount);
 }
 
-void RectangleList::setData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
@@ -261,12 +261,12 @@ void RectangleList::setData(std::vector<double>&& data, std::vector<int>&& categ
     applyData(std::move(data), std::move(categories), rectCount, true);
 }
 
-void RectangleList::setDataNoRange(std::vector<double>&& data, const int rectCount)
+void RectangleSeries::setDataNoRange(std::vector<double>&& data, const int rectCount)
 {
     setDataNoRange(std::move(data), {}, rectCount);
 }
 
-void RectangleList::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
@@ -274,17 +274,17 @@ void RectangleList::setDataNoRange(std::vector<double>&& data, std::vector<int>&
     applyData(std::move(data), std::move(categories), rectCount, false);
 }
 
-void RectangleList::setDataF(const float* data, const int rectCount)
+void RectangleSeries::setDataF(const float* data, const int rectCount)
 {
     setDataFFromArray(data, rectCount, true);
 }
 
-void RectangleList::setDataF(std::vector<float>&& data, const int rectCount)
+void RectangleSeries::setDataF(std::vector<float>&& data, const int rectCount)
 {
     setDataF(std::move(data), {}, rectCount);
 }
 
-void RectangleList::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
@@ -292,12 +292,12 @@ void RectangleList::setDataF(std::vector<float>&& data, std::vector<int>&& categ
     applyFloatData(std::move(data), std::move(categories), rectCount, true);
 }
 
-void RectangleList::setDataFNoRange(std::vector<float>&& data, const int rectCount)
+void RectangleSeries::setDataFNoRange(std::vector<float>&& data, const int rectCount)
 {
     setDataFNoRange(std::move(data), {}, rectCount);
 }
 
-void RectangleList::setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
@@ -305,17 +305,17 @@ void RectangleList::setDataFNoRange(std::vector<float>&& data, std::vector<int>&
     applyFloatData(std::move(data), std::move(categories), rectCount, false);
 }
 
-void RectangleList::setDataFNoRange(const float* data, const int rectCount)
+void RectangleSeries::setDataFNoRange(const float* data, const int rectCount)
 {
     setDataFFromArray(data, rectCount, false);
 }
 
-void RectangleList::postData(std::vector<double>&& data, const int rectCount)
+void RectangleSeries::postData(std::vector<double>&& data, const int rectCount)
 {
     postData(std::move(data), {}, rectCount);
 }
 
-void RectangleList::postData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::postData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
     QMetaObject::invokeMethod(
         this,
@@ -325,12 +325,12 @@ void RectangleList::postData(std::vector<double>&& data, std::vector<int>&& cate
         Qt::QueuedConnection);
 }
 
-void RectangleList::postData(std::vector<float>&& data, const int rectCount)
+void RectangleSeries::postData(std::vector<float>&& data, const int rectCount)
 {
     postData(std::move(data), {}, rectCount);
 }
 
-void RectangleList::postData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
+void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
     QMetaObject::invokeMethod(
         this,
@@ -340,10 +340,10 @@ void RectangleList::postData(std::vector<float>&& data, std::vector<int>&& categ
         Qt::QueuedConnection);
 }
 
-void RectangleList::setCategories(const QList<int>& categories)
+void RectangleSeries::setCategories(const QList<int>& categories)
 {
     if (!categories.isEmpty() && categories.size() != rectCount_) {
-        qCWarning(lcQAccelPlot) << "RectangleList received" << categories.size() << "categories for" << rectCount_ << "rectangles";
+        qCWarning(lcQAccelPlot) << "RectangleSeries received" << categories.size() << "categories for" << rectCount_ << "rectangles";
         return;
     }
     categories_.assign(categories.cbegin(), categories.cend());
@@ -351,12 +351,12 @@ void RectangleList::setCategories(const QList<int>& categories)
     update();
 }
 
-void RectangleList::clearData()
+void RectangleSeries::clearData()
 {
     applyData({}, {}, 0, true);
 }
 
-QVariantMap RectangleList::rectangleAt(const int index) const
+QVariantMap RectangleSeries::rectangleAt(const int index) const
 {
     if (index < 0 || index >= rectCount_) {
         return {};
@@ -372,7 +372,7 @@ QVariantMap RectangleList::rectangleAt(const int index) const
     return rect;
 }
 
-int RectangleList::rectangleIndexAt(const QPointF& position) const
+int RectangleSeries::rectangleIndexAt(const QPointF& position) const
 {
     if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
@@ -388,49 +388,49 @@ int RectangleList::rectangleIndexAt(const QPointF& position) const
         [this, &position](const int index) { return containsInPixels(index, position); });
 }
 
-bool RectangleList::contains(const QPointF& point) const
+bool RectangleSeries::contains(const QPointF& point) const
 {
     return boundingRect().contains(point) && rectangleIndexAt(point) >= 0;
 }
 
-bool RectangleList::validateRawDataArguments(const void* data, const int rectCount) const
+bool RectangleSeries::validateRawDataArguments(const void* data, const int rectCount) const
 {
     if (rectCount < 0) {
-        qCWarning(lcQAccelPlot) << "RectangleList data rectangle count cannot be negative:" << rectCount;
+        qCWarning(lcQAccelPlot) << "RectangleSeries data rectangle count cannot be negative:" << rectCount;
         return false;
     }
     if (rectCount > 0 && !data) {
-        qCWarning(lcQAccelPlot) << "RectangleList received a null data pointer for" << rectCount << "rectangles";
+        qCWarning(lcQAccelPlot) << "RectangleSeries received a null data pointer for" << rectCount << "rectangles";
         return false;
     }
     return true;
 }
 
-bool RectangleList::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int rectCount) const
+bool RectangleSeries::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int rectCount) const
 {
     if (rectCount < 0) {
-        qCWarning(lcQAccelPlot) << "RectangleList data rectangle count cannot be negative:" << rectCount;
+        qCWarning(lcQAccelPlot) << "RectangleSeries data rectangle count cannot be negative:" << rectCount;
         return false;
     }
     const auto expectedValueCount = static_cast<std::size_t>(rectCount) * 4;
     if (valueCount != expectedValueCount) {
-        qCWarning(lcQAccelPlot) << "RectangleList received" << valueCount << "coordinates for" << rectCount << "rectangles; expected" << expectedValueCount;
+        qCWarning(lcQAccelPlot) << "RectangleSeries received" << valueCount << "coordinates for" << rectCount << "rectangles; expected" << expectedValueCount;
         return false;
     }
     if (categoryCount != 0 && categoryCount != static_cast<std::size_t>(rectCount)) {
-        qCWarning(lcQAccelPlot) << "RectangleList received" << categoryCount << "categories for" << rectCount << "rectangles";
+        qCWarning(lcQAccelPlot) << "RectangleSeries received" << categoryCount << "categories for" << rectCount << "rectangles";
         return false;
     }
     return true;
 }
 
-void RectangleList::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
 {
     data_ = std::move(data);
     finishDataChange(std::move(categories), rectCount, reportRanges);
 }
 
-void RectangleList::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
 {
     data_ = std::vector<double>{};
     renderData_ = std::move(data);
@@ -439,7 +439,7 @@ void RectangleList::applyFloatData(std::vector<float>&& data, std::vector<int>&&
     finishDataChange(std::move(categories), rectCount, reportRanges);
 }
 
-void RectangleList::setDataFFromArray(const float* data, const int rectCount, const bool reportRanges)
+void RectangleSeries::setDataFFromArray(const float* data, const int rectCount, const bool reportRanges)
 {
     if (!validateRawDataArguments(data, rectCount)) {
         return;
@@ -449,7 +449,7 @@ void RectangleList::setDataFFromArray(const float* data, const int rectCount, co
     applyFloatData(std::move(buffer), {}, rectCount, reportRanges);
 }
 
-void RectangleList::finishDataChange(std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int rectCount, const bool reportRanges)
 {
     const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
@@ -472,29 +472,29 @@ void RectangleList::finishDataChange(std::vector<int>&& categories, const int re
     update();
 }
 
-bool RectangleList::hasPreciseData() const
+bool RectangleSeries::hasPreciseData() const
 {
     return !data_.empty();
 }
 
-double RectangleList::coordinate(const int index, const int component) const
+double RectangleSeries::coordinate(const int index, const int component) const
 {
     const auto offset = static_cast<size_t>(index) * 4 + static_cast<size_t>(component);
     return hasPreciseData() ? data_[offset] : static_cast<double>(renderData_[offset]);
 }
 
-bool RectangleList::hasCategories() const
+bool RectangleSeries::hasCategories() const
 {
     return !categories_.empty();
 }
 
-QColor RectangleList::rectangleColor(const int index) const
+QColor RectangleSeries::rectangleColor(const int index) const
 {
     const auto category = hasCategories() ? categories_[static_cast<size_t>(index)] : -1;
     return category >= 0 && category < categoryColors_.size() ? categoryColors_[category] : color_;
 }
 
-bool RectangleList::containsInPixels(const int index, const QPointF& position) const
+bool RectangleSeries::containsInPixels(const int index, const QPointF& position) const
 {
     const auto [left, right]
         = widenedSpan(edgePixel(coordinate(index, 0), *xAxis(), width()), edgePixel(coordinate(index, 2), *xAxis(), width()), minimumWidth_);
@@ -503,7 +503,7 @@ bool RectangleList::containsInPixels(const int index, const QPointF& position) c
     return position.x() >= left && position.x() <= right && position.y() >= top && position.y() <= bottom;
 }
 
-void RectangleList::setHoveredIndex(const int index)
+void RectangleSeries::setHoveredIndex(const int index)
 {
     if (hoveredIndex_ == index) {
         return;
@@ -515,7 +515,7 @@ void RectangleList::setHoveredIndex(const int index)
     }
 }
 
-QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
+QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     if (rectCount_ <= 0) {
         delete oldNode;
@@ -584,25 +584,25 @@ QSGNode* RectangleList::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     return node;
 }
 
-void RectangleList::hoverEnterEvent(QHoverEvent* event)
+void RectangleSeries::hoverEnterEvent(QHoverEvent* event)
 {
     setHoveredIndex(rectangleIndexAt(event->position()));
     QQuickItem::hoverEnterEvent(event);
 }
 
-void RectangleList::hoverMoveEvent(QHoverEvent* event)
+void RectangleSeries::hoverMoveEvent(QHoverEvent* event)
 {
     setHoveredIndex(rectangleIndexAt(event->position()));
     QQuickItem::hoverMoveEvent(event);
 }
 
-void RectangleList::hoverLeaveEvent(QHoverEvent* event)
+void RectangleSeries::hoverLeaveEvent(QHoverEvent* event)
 {
     setHoveredIndex(-1);
     QQuickItem::hoverLeaveEvent(event);
 }
 
-void RectangleList::onAxisScaleChanged()
+void RectangleSeries::onAxisScaleChanged()
 {
     // Only origin-shifted double data depends on the scale; float data is uploaded as is.
     if (hasPreciseData()) {
@@ -611,7 +611,7 @@ void RectangleList::onAxisScaleChanged()
     update();
 }
 
-void RectangleList::updateMaterial(RectMaterial& material) const
+void RectangleSeries::updateMaterial(RectMaterial& material) const
 {
     material.color = color_;
     material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
@@ -628,7 +628,7 @@ void RectangleList::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-void RectangleList::ensureSpatialGrid() const
+void RectangleSeries::ensureSpatialGrid() const
 {
     if (spatialGridValid_) {
         return;
@@ -641,7 +641,7 @@ void RectangleList::ensureSpatialGrid() const
     spatialGridValid_ = true;
 }
 
-void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY)
+void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScaleY)
 {
     // Log-scale coordinates aren't translation-invariant (log10(x - origin) != log10(x) -
     // log10(origin)), so origin-shifting is skipped for a log-scale axis, matching LineCurve.
@@ -682,7 +682,7 @@ void RectangleList::rebuildRenderData(const bool logScaleX, const bool logScaleY
     }
 }
 
-void RectangleList::updateDataRanges()
+void RectangleSeries::updateDataRanges()
 {
     const auto bounds = hasPreciseData() ? finiteBounds(data_.data(), rectCount_) : finiteBounds(renderData_.data(), rectCount_);
     if (bounds.xMin <= bounds.xMax) {
@@ -697,7 +697,7 @@ void RectangleList::updateDataRanges()
     }
 }
 
-void RectangleList::buildVertexCache()
+void RectangleSeries::buildVertexCache()
 {
     const auto totalVerts = static_cast<size_t>(rectCount_) * 6;
     vertexCache_.resize(totalVerts);

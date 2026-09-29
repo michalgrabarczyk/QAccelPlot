@@ -26,7 +26,7 @@ frame.
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
-  `RectangleList` for event spans and state timelines
+  `RectangleSeries` for event spans and state timelines
 
 ### Quick start
 

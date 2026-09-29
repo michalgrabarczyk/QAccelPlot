@@ -85,7 +85,7 @@ PlotView {
         Component.onCompleted: setData([Qt.point(0, 9), Qt.point(10, 9)])
     }
 
-    RectangleList {
+    RectangleSeries {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "blue"

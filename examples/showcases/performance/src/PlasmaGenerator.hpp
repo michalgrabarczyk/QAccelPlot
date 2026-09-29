@@ -11,7 +11,7 @@
 
 namespace QAccelPlotExample {
 
-/// \brief One RectangleList dataset.
+/// \brief One RectangleSeries dataset.
 struct PlasmaBatch {
     std::vector<float> rects; // 4 floats per rectangle (x1, y1, x2, y2)
     int rectangleCount{0};

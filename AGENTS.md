@@ -78,7 +78,7 @@ QAccelPlot/
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│       ├── series/               — LineCurve, PointCloud, RectangleList, PlotSeries,
+│       ├── series/               — LineCurve, PointCloud, RectangleSeries, PlotSeries,
 │       │                           RectangleBorder (border grouped property),
 │       │                           LineCurveVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),

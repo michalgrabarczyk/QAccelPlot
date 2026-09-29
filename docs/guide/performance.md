@@ -61,9 +61,9 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`RectangleList` has the same `setDataF()` and
-[`setDataFNoRange()`][rectangle-list-set-data-f-no-range] paths, plus
-[`setDataNoRange()`][rectangle-list-set-data-no-range] for double coordinates.
+`RectangleSeries` has the same `setDataF()` and
+[`setDataFNoRange()`][rectangle-series-set-data-f-no-range] paths, plus
+[`setDataNoRange()`][rectangle-series-set-data-no-range] for double coordinates.
 
 ## Keep work off the UI thread
 
@@ -91,7 +91,7 @@ rebuilding geometry; gradient effects may need per-vertex work.
 `QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
 is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
 answers each move by scanning only the cells within the hover radius.
-[`RectangleList.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
+[`RectangleSeries.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
 way, then gives `O(1)` lookup per pointer move. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
@@ -157,7 +157,7 @@ cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
 8. Repeat the test and publish the scenario with the result.
 
 The Performance Showcase streams a `LineCurve`, a `PointCloud`, and a
-`RectangleList`, one per tab. Only the visible tab generates data. It reports:
+`RectangleSeries`, one per tab. Only the visible tab generates data. It reports:
 
 - **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
@@ -202,9 +202,9 @@ Scenarios are defined in
 [set-data-f-no-range-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-22
 [set-data-f-no-range-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorangewithcache-12
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
-[hovered-index]: api/classQAccelPlot_1_1RectangleList.md#property-hoveredindex-12
-[rectangle-list-set-data-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatanorange
-[rectangle-list-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleList.md#function-setdatafnorange
+[hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
+[rectangle-series-set-data-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatanorange
+[rectangle-series-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatafnorange
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

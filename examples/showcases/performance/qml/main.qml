@@ -31,19 +31,19 @@ Window {
             pointCloud: {
                 noun: "points"
             },
-            rectangleList: {
+            rectangleSeries: {
                 noun: "rectangles"
             }
         })
     readonly property var activeDataset: datasets[activePage] || datasets.lineCurve
-    readonly property int activeCount: activePage === "pointCloud" ? pointCloudCount : activePage === "rectangleList" ? rectangleCount : lineCurveCount
+    readonly property int activeCount: activePage === "pointCloud" ? pointCloudCount : activePage === "rectangleSeries" ? rectangleCount : lineCurveCount
     readonly property real throughputMillions: activeCount * updateRate / 1000000
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
 
     function setActiveCount(count) {
         if (activePage === "pointCloud") {
             pointCloudCount = count;
-        } else if (activePage === "rectangleList") {
+        } else if (activePage === "rectangleSeries") {
             rectangleCount = count;
         } else {
             lineCurveCount = count;
@@ -159,7 +159,7 @@ Window {
                 tabs: [
                     { name: "lineCurve", title: "LineCurve" },
                     { name: "pointCloud", title: "PointCloud" },
-                    { name: "rectangleList", title: "RectangleList" }
+                    { name: "rectangleSeries", title: "RectangleSeries" }
                 ]
 
                 LineCurvePage {
@@ -169,7 +169,7 @@ Window {
                     colorPalette: window.colorPalette
                     pointCount: window.pointCloudCount
                 }
-                RectangleListPage {
+                RectangleSeriesPage {
                     colorPalette: window.colorPalette
                     rectangleCount: window.rectangleCount
                 }

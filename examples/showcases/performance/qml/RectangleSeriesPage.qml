@@ -37,8 +37,8 @@ QAccelPlot.Plot {
         label: "y"
     }
 
-    QAccelPlot.RectangleList {
-        objectName: "rectangleList"
+    QAccelPlot.RectangleSeries {
+        objectName: "rectangleSeries"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: Qt.rgba(plot.colorPalette.performanceRectangles.r, plot.colorPalette.performanceRectangles.g, plot.colorPalette.performanceRectangles.b, plot.tileOpacity)

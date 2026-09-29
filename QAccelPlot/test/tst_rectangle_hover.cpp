@@ -6,7 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/series/PointCloud.hpp"
-#include "QAccelPlot/series/RectangleList.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include <QQuickWindow>
 #include <QtTest/QtTest>
@@ -16,11 +16,11 @@
 #include <vector>
 
 namespace {
-class HoverableRectangles final : public QAccelPlot::RectangleList {
+class HoverableRectangles final : public QAccelPlot::RectangleSeries {
 public:
-    using RectangleList::hoverEnterEvent;
-    using RectangleList::hoverLeaveEvent;
-    using RectangleList::hoverMoveEvent;
+    using RectangleSeries::hoverEnterEvent;
+    using RectangleSeries::hoverLeaveEvent;
+    using RectangleSeries::hoverMoveEvent;
 };
 
 // Data range 0..4 on both axes over a 400 × 400 plot: one data unit is 100 pixels.
@@ -42,7 +42,7 @@ struct AxisPair {
 constexpr auto kPlotRect = QRectF{0.0, 0.0, 400.0, 400.0};
 
 // Rectangle 0 spans data (0, 0)–(2, 2); rectangle 1 overlaps it at (1, 1)–(3, 3).
-void setOverlappingRectangles(QAccelPlot::RectangleList& rectangles, AxisPair& axes)
+void setOverlappingRectangles(QAccelPlot::RectangleSeries& rectangles, AxisPair& axes)
 {
     rectangles.setXAxis(&axes.x);
     rectangles.setYAxis(&axes.y);
@@ -110,7 +110,7 @@ void RectangleHoverTest::nearbyTimestampRectangles()
 void RectangleHoverTest::rectangleIndexAtReturnsTopmostRectangle()
 {
     auto axes = AxisPair{};
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
     QVERIFY(!rectangles.contains({50.0, 350.0}));
 
@@ -130,7 +130,7 @@ void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()
     auto axes = AxisPair{};
     auto rectangles = HoverableRectangles{};
     setOverlappingRectangles(rectangles, axes);
-    auto hoveredSpy = QSignalSpy{&rectangles, &QAccelPlot::RectangleList::hoveredIndexChanged};
+    auto hoveredSpy = QSignalSpy{&rectangles, &QAccelPlot::RectangleSeries::hoveredIndexChanged};
     const auto hover = [](const QEvent::Type type, const QPointF& position) { return QHoverEvent{type, position, position, position}; };
 
     auto enter = hover(QEvent::HoverEnter, {50.0, 350.0});
@@ -176,7 +176,7 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
 void RectangleHoverTest::hitTestsFollowDataChanges()
 {
     auto axes = AxisPair{};
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     setOverlappingRectangles(rectangles, axes);
     QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
 
@@ -203,7 +203,7 @@ void RectangleHoverTest::floatDataIsHitTested()
 {
     constexpr auto kInf = std::numeric_limits<float>::infinity();
     auto axes = AxisPair{};
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     setOverlappingRectangles(rectangles, axes);
 
     rectangles.setDataF(std::vector<float>{0.0f, 0.0f, 2.0f, 2.0f, 1.0f, 1.0f, 3.0f, 3.0f, 3.5f, -kInf, 3.6f, kInf}, 3);
@@ -222,7 +222,7 @@ void RectangleHoverTest::spansAreHoveredAtAnyHeight()
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     auto axes = AxisPair{};
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     rectangles.setXAxis(&axes.x);
     rectangles.setYAxis(&axes.y);
     rectangles.setPlotRect(kPlotRect);
@@ -241,7 +241,7 @@ void RectangleHoverTest::narrowRectanglesAreHoveredAtMinimumSize()
 {
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     auto axes = AxisPair{};
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     rectangles.setXAxis(&axes.x);
     rectangles.setYAxis(&axes.y);
     rectangles.setPlotRect(kPlotRect);
@@ -278,7 +278,7 @@ void RectangleHoverTest::seriesUnderneathReceiveHoverOutsideRectangles()
     cloud.setPlotRect(kPlotRect);
     cloud.setHoverRadius(5.0);
     cloud.setDataF(std::vector<float>{3.5f, 3.5f}, 1);
-    auto rectangles = QAccelPlot::RectangleList{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
     rectangles.setParentItem(window.contentItem());
     rectangles.setZ(1.0);
     setOverlappingRectangles(rectangles, axes);

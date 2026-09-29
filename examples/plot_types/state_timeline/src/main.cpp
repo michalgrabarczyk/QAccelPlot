@@ -7,7 +7,7 @@
 //
 #include "ExampleUtils.hpp"
 
-#include <QAccelPlot/series/RectangleList.hpp>
+#include <QAccelPlot/series/RectangleSeries.hpp>
 
 #include <QDateTime>
 #include <QDebug>
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     engine.setInitialProperties({{QStringLiteral("timelineStart"), start}, {QStringLiteral("timelineEnd"), end}});
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
     auto* root = engine.rootObjects().value(0);
-    auto* states = root ? root->findChild<QAccelPlot::RectangleList*>(QStringLiteral("states")) : nullptr;
+    auto* states = root ? root->findChild<QAccelPlot::RectangleSeries*>(QStringLiteral("states")) : nullptr;
     if (!states) {
         qCritical() << "Unable to find the state timeline";
         return EXIT_FAILURE;

@@ -42,14 +42,14 @@ PlotView {
 // A red full-height span at x 1..2, a red rectangle with a NaN edge at x 6..8, and a blue
 // full-width band at y 4..5 drawn on top.
 constexpr auto kUnboundedScene = R"(
-    RectangleList {
+    RectangleSeries {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "red"
         Component.onCompleted: setData([{ x1: 1, x2: 2 }, { x1: 6, y1: 6, x2: 8, y2: NaN }])
     }
 
-    RectangleList {
+    RectangleSeries {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "blue"
@@ -60,7 +60,7 @@ constexpr auto kUnboundedScene = R"(
 
 // A red span far narrower than a pixel at x = 5, and a blue rectangle of zero height at y = 2.
 constexpr auto kNarrowScene = R"(
-    RectangleList {
+    RectangleSeries {
         objectName: "narrow"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
@@ -69,7 +69,7 @@ constexpr auto kNarrowScene = R"(
         Component.onCompleted: setData([{ x1: 5, x2: 5.0001 }])
     }
 
-    RectangleList {
+    RectangleSeries {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "blue"
@@ -81,7 +81,7 @@ constexpr auto kNarrowScene = R"(
 
 // Full-height spans in categories 0 and 1, and one without a category.
 constexpr auto kCategoryScene = R"(
-    RectangleList {
+    RectangleSeries {
         objectName: "categorized"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
@@ -98,7 +98,7 @@ constexpr auto kCategoryScene = R"(
 
 // Two touching red rectangles with a 3 px white outline, and a sliver drawn at its 1 px minimum width.
 constexpr auto kBorderScene = R"(
-    RectangleList {
+    RectangleSeries {
         objectName: "outlined"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
@@ -116,7 +116,7 @@ constexpr auto kBorderScene = R"(
 
 // Two red spans that turn yellow while hovered.
 constexpr auto kHoverScene = R"(
-    RectangleList {
+    RectangleSeries {
         objectName: "hoverable"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
@@ -131,7 +131,7 @@ constexpr auto kHoverScene = R"(
 // Their data texture floats 2400 and 10000 lie in rows 0 and 1 of the 8192-wide texture, but
 // in rows 1 and 4 of a 2048-wide one, so a width mismatch between C++ and the shader loses them.
 constexpr auto kWideTextureScene = R"(
-    RectangleList {
+    RectangleSeries {
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "red"
@@ -212,7 +212,7 @@ bool isColor(const QColor& pixel, const QColor& expected)
 
 } // namespace
 
-class RectangleListRenderingTest : public QObject {
+class RectangleSeriesRenderingTest : public QObject {
     Q_OBJECT
 
 private slots:
@@ -224,7 +224,7 @@ private slots:
     void rectanglesBeyondFirstTextureRowsAreDrawn();
 };
 
-void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
+void RectangleSeriesRenderingTest::unboundedEdgesReachThePlotEdges()
 {
     auto scene = SceneWindow{kUnboundedScene};
     if (scene.isSoftware()) {
@@ -274,7 +274,7 @@ void RectangleListRenderingTest::unboundedEdgesReachThePlotEdges()
     QVERIFY(isColor(image.pixelColor((left + right) / 2, top), Qt::black));
 }
 
-void RectangleListRenderingTest::narrowRectanglesKeepMinimumSize()
+void RectangleSeriesRenderingTest::narrowRectanglesKeepMinimumSize()
 {
     auto scene = SceneWindow{kNarrowScene};
     if (scene.isSoftware()) {
@@ -308,7 +308,7 @@ void RectangleListRenderingTest::narrowRectanglesKeepMinimumSize()
     QVERIFY(redPixels <= 1);
 }
 
-void RectangleListRenderingTest::categoriesSelectFillColors()
+void RectangleSeriesRenderingTest::categoriesSelectFillColors()
 {
     auto scene = SceneWindow{kCategoryScene};
     if (scene.isSoftware()) {
@@ -341,7 +341,7 @@ void RectangleListRenderingTest::categoriesSelectFillColors()
     QVERIFY(isColor(image.pixelColor(uncategorized), Qt::yellow));
 }
 
-void RectangleListRenderingTest::borderOutlinesEachRectangle()
+void RectangleSeriesRenderingTest::borderOutlinesEachRectangle()
 {
     auto scene = SceneWindow{kBorderScene};
     if (scene.isSoftware()) {
@@ -379,7 +379,7 @@ void RectangleListRenderingTest::borderOutlinesEachRectangle()
     QVERIFY(isColor(image.pixelColor(leftEdge.x() + 1, leftEdge.y()), Qt::red));
 }
 
-void RectangleListRenderingTest::hoverColorHighlightsHoveredRectangle()
+void RectangleSeriesRenderingTest::hoverColorHighlightsHoveredRectangle()
 {
     auto scene = SceneWindow{kHoverScene};
     if (scene.isSoftware()) {
@@ -416,7 +416,7 @@ void RectangleListRenderingTest::hoverColorHighlightsHoveredRectangle()
     QVERIFY(isColor(image.pixelColor(second), Qt::red));
 }
 
-void RectangleListRenderingTest::rectanglesBeyondFirstTextureRowsAreDrawn()
+void RectangleSeriesRenderingTest::rectanglesBeyondFirstTextureRowsAreDrawn()
 {
     auto scene = SceneWindow{kWideTextureScene};
     if (scene.isSoftware()) {
@@ -438,8 +438,8 @@ int main(int argc, char* argv[])
     // Pixel lookups use logical coordinates, so render one device pixel per logical pixel.
     qputenv("QT_ENABLE_HIGHDPI_SCALING", "0");
     auto app = QGuiApplication{argc, argv};
-    auto test = QAccelPlot::RectangleListRenderingTest{};
+    auto test = QAccelPlot::RectangleSeriesRenderingTest{};
     return QTest::qExec(&test, argc, argv);
 }
 
-#include "tst_rectangle_list_rendering.moc"
+#include "tst_rectangle_series_rendering.moc"

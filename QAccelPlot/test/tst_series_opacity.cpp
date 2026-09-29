@@ -114,10 +114,10 @@ Item {
             Component.onCompleted: setData([Qt.point(4.1, 0.9), Qt.point(4.9, 0.9)])
         }
 
-        RectangleList {
+        RectangleSeries {
             anchors.fill: parent
             opacity: root.seriesOpacity
-            // RectangleList draws only inside a non-empty plotRect, which PlotView normally sets.
+            // RectangleSeries draws only inside a non-empty plotRect, which PlotView normally sets.
             plotRect: Qt.rect(0, 0, width, height)
             xAxis: xAxis
             yAxis: yAxis
@@ -194,7 +194,7 @@ void SeriesOpacityTest::seriesOpacityBlendsWithBackground_data()
     QTest::newRow("LineCurve markers") << QPoint{100, 20};
     QTest::newRow("GradientStroke") << QPoint{140, 20};
     QTest::newRow("GradientFill") << QPoint{180, 28};
-    QTest::newRow("RectangleList") << QPoint{220, 20};
+    QTest::newRow("RectangleSeries") << QPoint{220, 20};
 }
 
 void SeriesOpacityTest::seriesOpacityBlendsWithBackground()

@@ -44,9 +44,9 @@ class RectMaterial;
 /// precision, and at that count the data texture reaches 8192 rows, the size every GPU supports.
 ///
 /// \sa LineCurve, Axis
-class RectangleList : public PlotSeries {
+class RectangleSeries : public PlotSeries {
     Q_OBJECT
-    QML_NAMED_ELEMENT(RectangleList)
+    QML_NAMED_ELEMENT(RectangleSeries)
 
     /// \brief Fill color of rectangles without a category color. Default: \c Colors.dark.seriesPrimary with alpha 50.
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
@@ -68,8 +68,8 @@ class RectangleList : public PlotSeries {
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
 
 public:
-    /// \brief Constructs a RectangleList with the given \a parent.
-    explicit RectangleList(QQuickItem* parent = nullptr);
+    /// \brief Constructs a RectangleSeries with the given \a parent.
+    explicit RectangleSeries(QQuickItem* parent = nullptr);
 
     /// \brief Returns the rectangle fill color.
     QColor color() const;
