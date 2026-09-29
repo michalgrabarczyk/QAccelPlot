@@ -81,7 +81,7 @@ public:
     /// \brief Sets the fill colors indexed by category to \a colors.
     void setCategoryColors(const QList<QColor>& colors);
 
-    /// \brief Returns the grouped outline settings. The object is owned by the list.
+    /// \brief Returns the grouped outline settings. The object is owned by the series.
     RectangleBorder* border() const;
 
     /// \brief Returns the fill color of the hovered rectangle.
@@ -115,10 +115,10 @@ public:
     /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
     void setData(const double* data, int rectCount) override;
 
-    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the list and clears categories. No copy is made.
+    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the series and clears categories. No copy is made.
     void setData(std::vector<double>&& data, int rectCount) override;
 
-    /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
+    /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
@@ -128,26 +128,26 @@ public:
     /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
     void setDataNoRange(std::vector<double>&& data, int rectCount) override;
 
-    /// \brief Like \c setDataNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the list.
+    /// \brief Like \c setDataNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the series.
     void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief High-performance C++ overload: copies \a rectCount × 4 floats (x1, y1, x2, y2) from \a data and clears categories.
     void setDataF(const float* data, int rectCount) override;
 
-    /// \brief High-performance C++ overload: moves \a data (\a rectCount × 4 floats) into the list and clears categories.
+    /// \brief High-performance C++ overload: moves \a data (\a rectCount × 4 floats) into the series and clears categories.
     void setDataF(std::vector<float>&& data, int rectCount) override;
 
-    /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the list.
+    /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw float array into the list's reusable buffer.
+    /// \brief Like \c setDataFNoRange(vector) but copies from a raw float array into the series' reusable buffer.
     void setDataFNoRange(const float* data, int rectCount) override;
     /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
     ///
     /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
     void setDataFNoRange(std::vector<float>&& data, int rectCount) override;
 
-    /// \brief Like \c setDataFNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the list.
+    /// \brief Like \c setDataFNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the series.
     void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
     /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
@@ -178,7 +178,7 @@ public:
     /// \brief Returns \c true when a rectangle lies under item position \a point.
     ///
     /// Hover delivery uses this test, so stacked series underneath still receive hover events
-    /// outside this list's rectangles.
+    /// outside this series rectangles.
     bool contains(const QPointF& point) const override;
 
 signals:
