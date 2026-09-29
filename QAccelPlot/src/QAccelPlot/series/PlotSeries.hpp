@@ -21,14 +21,15 @@
 
 #include <limits>
 #include <optional>
+#include <vector>
 
 namespace QAccelPlot {
 
 /// \brief Common QML item contract for data series hosted by \c PlotView.
 ///
 /// PlotSeries owns the integration shared by every plot type: axis bindings,
-/// plot-area layout, data-range reporting, and legend metadata. Concrete series
-/// remain responsible for their data model, rendering, and hit testing.
+/// plot-area layout, data-range reporting, legend metadata, and a common C++ data-setting API.
+/// Concrete series define their record layout, rendering, and hit testing.
 ///
 /// \sa LineCurve, PointCloud, RectangleSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
@@ -98,6 +99,30 @@ public:
 
     LegendSymbol legendSymbol() const;
     void setLegendSymbol(LegendSymbol symbol);
+
+    /// \brief Replaces the series data with \a count records copied from an interleaved double array.
+    /// Each concrete series defines its record layout (XY pairs or rectangle edges).
+    virtual void setData(const double* data, int count) = 0;
+    /// \brief Replaces the series data by moving an interleaved double buffer.
+    virtual void setData(std::vector<double>&& data, int count) = 0;
+    /// \brief Copies double records without reporting new data ranges to the axes.
+    virtual void setDataNoRange(const double* data, int count) = 0;
+    /// \brief Moves double records without reporting new data ranges to the axes.
+    virtual void setDataNoRange(std::vector<double>&& data, int count) = 0;
+    /// \brief Replaces the series data with \a count records copied from an interleaved float array.
+    virtual void setDataF(const float* data, int count) = 0;
+    /// \brief Replaces the series data by moving an interleaved float buffer.
+    virtual void setDataF(std::vector<float>&& data, int count) = 0;
+    /// \brief Copies float records without reporting new data ranges to the axes.
+    virtual void setDataFNoRange(const float* data, int count) = 0;
+    /// \brief Moves float records without reporting new data ranges to the axes.
+    virtual void setDataFNoRange(std::vector<float>&& data, int count) = 0;
+    /// \brief Queues a moved double buffer for assignment on the series' thread.
+    virtual void postData(std::vector<double>&& data, int count) = 0;
+    /// \brief Queues a moved float buffer for assignment on the series' thread.
+    virtual void postData(std::vector<float>&& data, int count) = 0;
+    /// \brief Removes all records from the series.
+    virtual void clearData() = 0;
 
 signals:
     void nameChanged();
