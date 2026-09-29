@@ -28,6 +28,7 @@ frame.
   strokes; morph and draw transitions
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
+- **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 
 ### Quick start
 
@@ -348,6 +349,10 @@ spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.
 
+`BarSeries` renders bar charts from (position, value) pairs. `barWidth`,
+`barOffset`, and `baselineValue` shape the bars in the shader, and
+`orientation` selects vertical or horizontal bars.
+
 ## Invalid samples and gaps
 
 `LineCurve` applies one invalid-sample contract to rendering, gradient fills,
@@ -491,11 +496,12 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 For a fixed streaming window, set the axis data range once and use
 [`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`LineCurve`, `PointCloud`, and `RectangleSeries` all support `setData()` and
-`setDataNoRange()` for interleaved doubles, `setDataF()` and `setDataFNoRange()`
-for interleaved floats, and `postData()` for either moved vector type. Each
-also accepts a raw array for the four synchronous setters. `PointCloud` can
-add per-point values and `RectangleSeries` can add categories with their vector overloads.
+`LineCurve`, `PointCloud`, `RectangleSeries`, and `BarSeries` all support
+`setData()` and `setDataNoRange()` for interleaved doubles, `setDataF()` and
+`setDataFNoRange()` for interleaved floats, and `postData()` for either moved
+vector type. Each also accepts a raw array for the four synchronous setters.
+`PointCloud` can add per-point values, and `RectangleSeries` and `BarSeries`
+can add categories with their vector overloads.
 
 ## Keep work off the UI thread
 
@@ -526,7 +532,8 @@ answers each move by scanning only the cells within the hover radius.
 [`RectangleSeries.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
 way. Each pointer move then tests the rectangles in the cells around the pointer
 plus every rectangle spanning more than 64 cells, so many long rectangles make
-lookup `O(N)`. When a series is replaced every
+lookup `O(N)`. `BarSeries.hoveredIndex` indexes only bar positions, so tall bars
+don't count as long rectangles. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 
@@ -831,6 +838,7 @@ Each recipe links to a complete runnable example.
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
+| [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/). For choosing a
@@ -1722,6 +1730,134 @@ Complete source:
 
 ---
 
+<!-- source: docs/guide/cookbook/bar-charts.md -->
+
+# Bar charts
+
+Use [`QAccelPlot.BarSeries`][bar-series] for bar charts. Each bar is a
+(position, value) pair. The series uploads two floats per bar and builds the
+bars in the shader, so changing `barWidth`, `barOffset`, or `baselineValue`
+does not re-upload the data.
+
+## Draw bars
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    xAxis: QAccelPlot.Axis { viewportMin: -0.5; viewportMax: 3.5 }
+    yAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
+
+    QAccelPlot.BarSeries {
+        name: "Sales"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        Component.onCompleted: setData([4, 7, 5, 9])
+    }
+}
+```
+
+`setData()` takes numbers, placed at positions 0, 1, 2, …, or objects with
+`position`, `value`, and an optional `category`:
+
+```qml
+setData([{ position: 2020, value: 4 }, { position: 2021, value: 7 }])
+```
+
+| Property | Default | Effect |
+| --- | --- | --- |
+| `barWidth` | 0.8 | Bar width in position-axis data units |
+| `barOffset` | 0 | Shift of every bar along the position axis |
+| `baselineValue` | 0 | Value the bars start from |
+| `minimumWidth` | 1 | Minimum drawn width in pixels |
+| `orientation` | `Qt.Vertical` | `Qt.Horizontal` puts positions on the Y axis |
+
+Values below `baselineValue` extend the bar the other way. Set
+`baselineValue: -Infinity` to start the bars at the plot edge. On a
+logarithmic value axis, a baseline at or below zero also starts at the plot
+edge.
+
+For category labels, use a [`TextTickLabelFormatter`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/axis-formats/) on the
+position axis.
+
+## Group bars
+
+Use one series per group member. Split the group width between them and
+offset each by its index:
+
+```qml
+Repeater {
+    model: ["North", "South", "West"]
+
+    QAccelPlot.BarSeries {
+        required property int index
+        required property string modelData
+
+        name: modelData
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        barWidth: 0.8 / 3
+        barOffset: (index - 1) * barWidth
+        Component.onCompleted: setData(revenue[index])
+    }
+}
+```
+
+## Color bars by category
+
+Give bars a `category` and list the colors in `categoryColors`. Bars without a
+category, or with one outside the list, use `color`.
+
+```qml
+QAccelPlot.BarSeries {
+    categoryColors: ["#4ade80", "#f87171"]
+    Component.onCompleted: setData(profit.map((value, month) => ({
+        position: month,
+        value: value,
+        category: value >= 0 ? 0 : 1
+    })))
+}
+```
+
+`setCategories()` replaces the categories without changing the data. Outlines
+are set with `border.width` and `border.color`.
+
+## Hover
+
+`hoveredIndex` is the bar under the cursor, or -1. `barAt(index)` returns its
+`position`, `value`, and `category`. Set `hoverColor` to highlight it.
+`minimumWidth` also widens the hover area.
+
+## Feed data from C++
+
+Pass a vector of interleaved `(position, value)` pairs to `setData()`:
+
+```cpp
+// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.
+auto data = std::vector<double>{0.0, 4.0, 1.0, 7.0, 2.0, 5.0};
+bars->setData(std::move(data), 3);
+```
+
+`setData()` keeps doubles and uploads them relative to an origin near the
+data, so large positions such as epoch timestamps stay precise.
+
+For the highest throughput, use the float paths (`setDataF()`,
+`setDataFNoRange()`) and `postData()` from a worker thread; see the
+[Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/).
+
+A bar with a NaN or infinite position, or a NaN value, is not drawn. An
+infinite value reaches the plot edge.
+
+Complete source:
+
+- [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart):
+  grouped and horizontal bars, a profit chart colored against a target
+  baseline, and a hover tooltip.
+
+[bar-series]: ../api/classQAccelPlot_1_1BarSeries.md
+
+
+---
+
 <!-- source: docs/guide/cookbook/background-data.md -->
 
 # Background data production
@@ -1800,6 +1936,8 @@ a one-batch handoff with a worker-built vertex cache.
   point cloud's colormap and value range.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
   rectangles in one item: spans, bands, and state timelines.
+- [`BarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BarSeries/) — vertical, horizontal, and
+  grouped bar charts.
 - [`DataAnchor`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1DataAnchor/) — QML overlays at data
   coordinates.
 - [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — mouse

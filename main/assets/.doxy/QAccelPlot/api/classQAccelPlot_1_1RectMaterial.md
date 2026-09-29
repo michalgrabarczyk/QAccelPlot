@@ -24,6 +24,7 @@ _QSGMaterial for rectangle series rendering, extending_ [_**DataTextureMaterial*
 Inherits the following classes: [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 
 
+Inherited by the following classes: [QAccelPlot::BarMaterial](classQAccelPlot_1_1BarMaterial.md)
 
 
 ## Inheritance diagram
@@ -38,6 +39,10 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
+
+  classQAccelPlot_1_1BarMaterial["QAccelPlot::BarMaterial"]
+  classQAccelPlot_1_1RectMaterial --> classQAccelPlot_1_1BarMaterial
+  click classQAccelPlot_1_1BarMaterial "../classQAccelPlot_1_1BarMaterial/" "Open QAccelPlot::BarMaterial"
 
 ```
 

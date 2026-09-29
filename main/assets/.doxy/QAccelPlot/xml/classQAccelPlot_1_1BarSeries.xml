@@ -1,0 +1,2249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1BarSeries" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::BarSeries</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <includes local="no">BarSeries.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::BarSeries::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::BarSeries::orientation</qualifiedname>
+        <read>orientation</read>
+        <write>setOrientation</write>
+        <briefdescription>
+<para>Direction the bars grow in. Default: <computeroutput>Qt.Vertical</computeroutput>, positions on the X axis and values on the Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a2012547ed40ba35ddc226af476675e93" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barWidth</definition>
+        <argsstring></argsstring>
+        <name>barWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::barWidth</qualifiedname>
+        <read>barWidth</read>
+        <write>setBarWidth</write>
+        <briefdescription>
+<para>Bar width in position-axis data units. Default: 0.8. Clamped to at least 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="55" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a6dceb6e0a8ceae14b9529a3006974bdb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barOffset</definition>
+        <argsstring></argsstring>
+        <name>barOffset</name>
+        <qualifiedname>QAccelPlot::BarSeries::barOffset</qualifiedname>
+        <read>barOffset</read>
+        <write>setBarOffset</write>
+        <briefdescription>
+<para>Shift of every bar along the position axis in data units, e.g. for grouped bars. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a5b6b5cb850b2e79d0d223f3483fc0ba7" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::baselineValue</definition>
+        <argsstring></argsstring>
+        <name>baselineValue</name>
+        <qualifiedname>QAccelPlot::BarSeries::baselineValue</qualifiedname>
+        <read>baselineValue</read>
+        <write>setBaselineValue</write>
+        <briefdescription>
+<para>Value the bars start from. Default: 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>-Infinity</computeroutput>, or a non-positive baseline on a logarithmic value axis, starts the bars at the plot edge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a182272a044de10d6c0d7dd1af7bf22f9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::minimumWidth</definition>
+        <argsstring></argsstring>
+        <name>minimumWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::minimumWidth</qualifiedname>
+        <read>minimumWidth</read>
+        <write>setMinimumWidth</write>
+        <briefdescription>
+<para>Minimum drawn bar width in pixels, so bars stay visible when zoomed out. Default: 1. Clamped to at least 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1aa92f945a6369f21179c3f6a1fbc73d0c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BarSeries::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Fill color of bars without a category color. Default: <computeroutput>Colors.dark.seriesPrimary</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a09aa558d5212462b29f6a7931bb662bd" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; QColor &gt;</type>
+        <definition>QList&lt;QColor&gt; QAccelPlot::BarSeries::categoryColors</definition>
+        <argsstring></argsstring>
+        <name>categoryColors</name>
+        <qualifiedname>QAccelPlot::BarSeries::categoryColors</qualifiedname>
+        <read>categoryColors</read>
+        <write>setCategoryColors</write>
+        <briefdescription>
+<para>Fill colors indexed by each bar&apos;s <computeroutput>category</computeroutput>. Default: empty. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="67" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a161177bea65ca27fbe8055abc9f2ceef" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
+        <definition>RectangleBorder* QAccelPlot::BarSeries::border</definition>
+        <argsstring></argsstring>
+        <name>border</name>
+        <qualifiedname>QAccelPlot::BarSeries::border</qualifiedname>
+        <read>border</read>
+        <briefdescription>
+<para>Grouped outline settings, e.g. <computeroutput>border.width</computeroutput> and <computeroutput>border.color</computeroutput>. No outline by default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="69" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1adfb933c4c3acfed2fa348463ffe5a1e5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::hoverColor</definition>
+        <argsstring></argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverColor</qualifiedname>
+        <read>hoverColor</read>
+        <write>setHoverColor</write>
+        <briefdescription>
+<para>Fill color of the bar under the cursor. Default: an invalid color, no highlight. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="71" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1abebbe48f3a0cef5b0e2b82c171046247" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::BarSeries::count</qualifiedname>
+        <read>count</read>
+        <briefdescription>
+<para>Read-only: number of bars currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="73" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BarSeries_1a41496f4cc07d6b782f53b7d63cc525e4" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::hoveredIndex</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoveredIndex</qualifiedname>
+        <read>hoveredIndex</read>
+        <briefdescription>
+<para>Read-only: index of the bar under the cursor, or -1 when none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="75" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1ae62e12bc518aad2cece28ea1a9b51146" prot="private" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::BarSeries::orientation_</definition>
+        <argsstring></argsstring>
+        <name>orientation_</name>
+        <qualifiedname>QAccelPlot::BarSeries::orientation_</qualifiedname>
+        <initializer>{Qt::Vertical}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="264" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a45cbb6a9dee2202cdf2e10ccd3f67cac" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barWidth_</definition>
+        <argsstring></argsstring>
+        <name>barWidth_</name>
+        <qualifiedname>QAccelPlot::BarSeries::barWidth_</qualifiedname>
+        <initializer>{0.8}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="265" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a5598154ccb6d5db8bd86d26f2f4e93a2" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barOffset_</definition>
+        <argsstring></argsstring>
+        <name>barOffset_</name>
+        <qualifiedname>QAccelPlot::BarSeries::barOffset_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="266" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1abf50c4a1930c81bf46840371bfa723b6" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::baselineValue_</definition>
+        <argsstring></argsstring>
+        <name>baselineValue_</name>
+        <qualifiedname>QAccelPlot::BarSeries::baselineValue_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="267" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="267" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a260bdc1e0a37dbf96e05e81358824b14" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::minimumWidth_</definition>
+        <argsstring></argsstring>
+        <name>minimumWidth_</name>
+        <qualifiedname>QAccelPlot::BarSeries::minimumWidth_</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="268" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="268" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1aec3ca2366e2a0c1897b765abc96a3b2b" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::BarSeries::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="269" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a5c6db3b636df3d56938fc40b8d3eaf58" prot="private" static="no" mutable="no">
+        <type>QList&lt; QColor &gt;</type>
+        <definition>QList&lt;QColor&gt; QAccelPlot::BarSeries::categoryColors_</definition>
+        <argsstring></argsstring>
+        <name>categoryColors_</name>
+        <qualifiedname>QAccelPlot::BarSeries::categoryColors_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="270" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a92dd2e9afd21fb9be6e5a155a419a10f" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
+        <definition>RectangleBorder* QAccelPlot::BarSeries::border_</definition>
+        <argsstring></argsstring>
+        <name>border_</name>
+        <qualifiedname>QAccelPlot::BarSeries::border_</qualifiedname>
+        <initializer>{new <ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref>{this}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="271" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="271" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a3ed90cb99cb820f2d9bafc6720d92001" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::hoverColor_</definition>
+        <argsstring></argsstring>
+        <name>hoverColor_</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverColor_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="272" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a146e6150c522b94f1718b8cf18dd2cf2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::hoveredIndex_</definition>
+        <argsstring></argsstring>
+        <name>hoveredIndex_</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoveredIndex_</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="273" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="273" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a78dd73c6e3883f1f86d99b6bb5f8dcf6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::BarSeries::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>QAccelPlot::BarSeries::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="275" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1ae24cfc200decbc1e19b8ee9d36ab9d75" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; QAccelPlot::BarSeries::categories_</definition>
+        <argsstring></argsstring>
+        <name>categories_</name>
+        <qualifiedname>QAccelPlot::BarSeries::categories_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="277" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="277" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a98df38b56faed630d8d9cd097a4b8be1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::BarSeries::renderData_</definition>
+        <argsstring></argsstring>
+        <name>renderData_</name>
+        <qualifiedname>QAccelPlot::BarSeries::renderData_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="279" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a672c6a233031e6e31dd13dbb4d9a28cb" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::renderOriginPosition_</definition>
+        <argsstring></argsstring>
+        <name>renderOriginPosition_</name>
+        <qualifiedname>QAccelPlot::BarSeries::renderOriginPosition_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="280" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="280" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1adeab35c68320e3a3d144ff3c7d1a7f60" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::renderOriginValue_</definition>
+        <argsstring></argsstring>
+        <name>renderOriginValue_</name>
+        <qualifiedname>QAccelPlot::BarSeries::renderOriginValue_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="281" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="281" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a2e20c869cb249eb8fbce51588daf17eb" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::barCount_</definition>
+        <argsstring></argsstring>
+        <name>barCount_</name>
+        <qualifiedname>QAccelPlot::BarSeries::barCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="282" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="282" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1ae8283829f830dfb8a4c35728b84a9abc" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::dataChanged_</definition>
+        <argsstring></argsstring>
+        <name>dataChanged_</name>
+        <qualifiedname>QAccelPlot::BarSeries::dataChanged_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="283" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="283" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a673db9dd469339ff828d0d4e594c71c2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::reportRanges_</definition>
+        <argsstring></argsstring>
+        <name>reportRanges_</name>
+        <qualifiedname>QAccelPlot::BarSeries::reportRanges_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="285" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="285" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1acb65a544d8bb4d9b10cac23c627741e2" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1RectVertexCache" kindref="compound">RectVertexCache</ref></type>
+        <definition>RectVertexCache QAccelPlot::BarSeries::vertexCache_</definition>
+        <argsstring></argsstring>
+        <name>vertexCache_</name>
+        <qualifiedname>QAccelPlot::BarSeries::vertexCache_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="287" column="21" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1a170b8ba59db0a03ad0bc4bfa23564942" prot="private" static="no" mutable="yes">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::BarSeries::hitRects_</definition>
+        <argsstring></argsstring>
+        <name>hitRects_</name>
+        <qualifiedname>QAccelPlot::BarSeries::hitRects_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="289" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1af4f1f26daf31caa0cdcc29985993f8fd" prot="private" static="no" mutable="yes">
+        <type><ref refid="classQAccelPlot_1_1SpatialGrid" kindref="compound">SpatialGrid</ref></type>
+        <definition>SpatialGrid QAccelPlot::BarSeries::spatialGrid_</definition>
+        <argsstring></argsstring>
+        <name>spatialGrid_</name>
+        <qualifiedname>QAccelPlot::BarSeries::spatialGrid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="290" column="25" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BarSeries_1ad68d068fb25e23f4fcf42d46a6de1feb" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::spatialGridValid_</definition>
+        <argsstring></argsstring>
+        <name>spatialGridValid_</name>
+        <qualifiedname>QAccelPlot::BarSeries::spatialGridValid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="291" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="291" bodyend="291"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::BarSeries::BarSeries</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>BarSeries</name>
+        <qualifiedname>QAccelPlot::BarSeries::BarSeries</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="79" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ac5883143367c31cfa9081535ef6b165f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::BarSeries::orientation</definition>
+        <argsstring>() const</argsstring>
+        <name>orientation</name>
+        <qualifiedname>QAccelPlot::BarSeries::orientation</qualifiedname>
+        <briefdescription>
+<para>Returns the direction the bars grow in. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="82" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a0c8b76d3aee1a15139aa21286972c8a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setOrientation</definition>
+        <argsstring>(Qt::Orientation orientation)</argsstring>
+        <name>setOrientation</name>
+        <qualifiedname>QAccelPlot::BarSeries::setOrientation</qualifiedname>
+        <param>
+          <type>Qt::Orientation</type>
+          <declname>orientation</declname>
+        </param>
+        <briefdescription>
+<para>Sets the direction the bars grow in to <emphasis>orientation</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="84" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1af1b98ad3c0e3f4ebac24906d31e78340" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>barWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::barWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the bar width in position-axis data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="87" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aa2baec6f3d6f979a16305d6fca5e36e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setBarWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setBarWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::setBarWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the bar width to <emphasis>width</emphasis> data units. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="89" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aebfad9fd211ec5cc924b90c22284e380" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::barOffset</definition>
+        <argsstring>() const</argsstring>
+        <name>barOffset</name>
+        <qualifiedname>QAccelPlot::BarSeries::barOffset</qualifiedname>
+        <briefdescription>
+<para>Returns the shift of every bar along the position axis in data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="92" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ace6c6b9cb456d03500c627cff532e8dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setBarOffset</definition>
+        <argsstring>(qreal offset)</argsstring>
+        <name>setBarOffset</name>
+        <qualifiedname>QAccelPlot::BarSeries::setBarOffset</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>Sets the shift of every bar along the position axis to <emphasis>offset</emphasis> data units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="94" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a6b6cfafde2e3d0136c830c2697e279cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::baselineValue</definition>
+        <argsstring>() const</argsstring>
+        <name>baselineValue</name>
+        <qualifiedname>QAccelPlot::BarSeries::baselineValue</qualifiedname>
+        <briefdescription>
+<para>Returns the value the bars start from. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="97" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1adefee111db1e4fa48ce8684313e7e58b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setBaselineValue</definition>
+        <argsstring>(qreal baselineValue)</argsstring>
+        <name>setBaselineValue</name>
+        <qualifiedname>QAccelPlot::BarSeries::setBaselineValue</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>baselineValue</declname>
+        </param>
+        <briefdescription>
+<para>Sets the value the bars start from to <emphasis>baselineValue</emphasis>. NaN is ignored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="99" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1abe90b5d7ab18475615a1d82f3d7247a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BarSeries::minimumWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>minimumWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::minimumWidth</qualifiedname>
+        <briefdescription>
+<para>Returns the minimum drawn bar width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="102" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a0f4dc9328a020eb638e1b9c155c455c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setMinimumWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setMinimumWidth</name>
+        <qualifiedname>QAccelPlot::BarSeries::setMinimumWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the minimum drawn bar width to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a1e744289a2698934252dc1c8900ebb5c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BarSeries::color</qualifiedname>
+        <briefdescription>
+<para>Returns the bar fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="107" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1af9805997643ad2f45780839a6c8b0d80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::BarSeries::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="109" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a54f1a9c149f26cbc87b22c8aa664edad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; QColor &gt;</type>
+        <definition>QList&lt; QColor &gt; QAccelPlot::BarSeries::categoryColors</definition>
+        <argsstring>() const</argsstring>
+        <name>categoryColors</name>
+        <qualifiedname>QAccelPlot::BarSeries::categoryColors</qualifiedname>
+        <briefdescription>
+<para>Returns the fill colors indexed by category. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="112" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a5562fc614faa7d3650604fab277abbc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setCategoryColors</definition>
+        <argsstring>(const QList&lt; QColor &gt; &amp;colors)</argsstring>
+        <name>setCategoryColors</name>
+        <qualifiedname>QAccelPlot::BarSeries::setCategoryColors</qualifiedname>
+        <param>
+          <type>const QList&lt; QColor &gt; &amp;</type>
+          <declname>colors</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill colors indexed by category to <emphasis>colors</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="114" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a763c1f78ac85a70b303a0ee600893f06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1RectangleBorder" kindref="compound">RectangleBorder</ref> *</type>
+        <definition>RectangleBorder * QAccelPlot::BarSeries::border</definition>
+        <argsstring>() const</argsstring>
+        <name>border</name>
+        <qualifiedname>QAccelPlot::BarSeries::border</qualifiedname>
+        <briefdescription>
+<para>Returns the grouped outline settings. The object is owned by the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="117" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1af7a8e9ab2e8164c3592b176ac1b2c94a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::hoverColor</definition>
+        <argsstring>() const</argsstring>
+        <name>hoverColor</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverColor</qualifiedname>
+        <briefdescription>
+<para>Returns the fill color of the hovered bar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="120" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a2c62b11276103a0cd84a835d691f6675" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setHoverColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setHoverColor</name>
+        <qualifiedname>QAccelPlot::BarSeries::setHoverColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill color of the hovered bar to <emphasis>color</emphasis>. An invalid color disables the highlight. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a30756ecc5ca38bd0f11de0355c4deea3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::BarSeries::count</qualifiedname>
+        <briefdescription>
+<para>Returns the number of bars currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="125" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a816835e8e1f2341947f2f1671beebead" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::hoveredIndex</definition>
+        <argsstring>() const</argsstring>
+        <name>hoveredIndex</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoveredIndex</qualifiedname>
+        <briefdescription>
+<para>Returns the index of the hovered bar, or -1 if none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="127" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BarSeries::setData</definition>
+        <argsstring>(const QVariantList &amp;bars)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BarSeries::setData</qualifiedname>
+        <param>
+          <type>const QVariantList &amp;</type>
+          <declname>bars</declname>
+        </param>
+        <briefdescription>
+<para>Loads bars from <emphasis>bars</emphasis>, a QML list of numbers or objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A number is the value of a bar at position = its list index. An object has <computeroutput>position</computeroutput>, <computeroutput>value</computeroutput>, and an optional integer <computeroutput>category</computeroutput> that selects the fill color from <computeroutput>categoryColors</computeroutput>. A missing <computeroutput>position</computeroutput> is the list index; a missing <computeroutput>value</computeroutput> is NaN. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="134" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1accbb5447e1ce8cfab17e644f2f948a75" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setData</definition>
+        <argsstring>(const double *data, int barCount) override</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BarSeries::setData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplements>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Loads bars from a C++ raw double array of <emphasis>barCount</emphasis> interleaved (position, value) pairs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="137" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a52ddd70125acc7cd1c1a4d103481944a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BarSeries::setData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Moves <emphasis>data</emphasis> (<emphasis>barCount</emphasis> × 2 doubles: position, value) into the series and clears categories. No copy is made. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="140" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a850995da2f053180fe531fbe1713f1c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BarSeries::setData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Moves <emphasis>data</emphasis> and per-bar <emphasis>categories</emphasis> (empty, or exactly <emphasis>barCount</emphasis>) into the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="143" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a073f3aa3ec9237b4137395d9852b15f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataNoRange</definition>
+        <argsstring>(const double *data, int barCount) override</argsstring>
+        <name>setDataNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a8f063726f9d24fae9651b5dc05fd8442">setDataNoRange</reimplements>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataNoRange(vector)</computeroutput> but copies from a raw interleaved double array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="146" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a7d8e450b71598e7ebc42163a74e5641d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataNoRange</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>setDataNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a287a513d158252ce2a298451965f4ac9">setDataNoRange</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" kindref="member">setData()</ref></computeroutput> but does not report X/Y data ranges to the axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use it for streaming when the axes&apos; <computeroutput>dataMin</computeroutput> / <computeroutput>dataMax</computeroutput> are managed by the application. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="150" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ab9ba843e818399a2f0ba719e049a0fe3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataNoRange</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>setDataNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataNoRange</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>barCount</emphasis>) and also moves per-bar <emphasis>categories</emphasis> into the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="153" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataF</definition>
+        <argsstring>(const float *data, int barCount) override</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataF</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplements>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>High-performance C++ overload: copies <emphasis>barCount</emphasis> × 2 floats (position, value) from <emphasis>data</emphasis> and clears categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="156" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ae703f4c337ea205740d8bcbc3df4ad37" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataF</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>High-performance C++ overload: moves <emphasis>data</emphasis> (<emphasis>barCount</emphasis> × 2 floats) into the series and clears categories. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="159" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ac6b32751ebc951223b081df889843199" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataF</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>barCount</emphasis>) and also moves per-bar <emphasis>categories</emphasis> (empty, or exactly <emphasis>barCount</emphasis>) into the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="162" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a29c7916d3161880ba84541fe5a4c7aaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataFNoRange</definition>
+        <argsstring>(const float *data, int barCount) override</argsstring>
+        <name>setDataFNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataFNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a5c6f39a3bd43cb27a55cb0e5665a0e9b">setDataFNoRange</reimplements>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataFNoRange(vector)</computeroutput> but copies from a raw float array into the series&apos; reusable buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="165" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1af1f32fd1a2b22370d7cc923122580da4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataFNoRange</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>setDataFNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataFNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aad5b9b81793361295dbcb7ba3cd5b8a1">setDataFNoRange</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9" kindref="member">setDataF()</ref></computeroutput> but does not report X/Y data ranges to the axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Use it for streaming when the axes&apos; <computeroutput>dataMin</computeroutput> / <computeroutput>dataMax</computeroutput> are managed by the application. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a9d5649616c8fca6df491ce4a102b8b5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataFNoRange</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>setDataFNoRange</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataFNoRange</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataFNoRange</computeroutput>(<emphasis>data</emphasis>, <emphasis>barCount</emphasis>) and also moves per-bar <emphasis>categories</emphasis> into the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="172" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1abfe015172efc904fc7a717d9d58fb740" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::postData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BarSeries::postData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aac5627fe225c9fdc9546d52ffab259ce">postData</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>barCount</emphasis>) to the item&apos;s thread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="175" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ae2f29dae679cc3b13f9a22fbe50212aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::postData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BarSeries::postData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>categories</emphasis>, <emphasis>barCount</emphasis>) to the item&apos;s thread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="178" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aa5e2b3e943c37d99aafb348c8042d9df" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::postData</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int barCount) override</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BarSeries::postData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a82b5eee111a71c4b078e5e8dc9fa4a57">postData</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>barCount</emphasis>) to the item&apos;s thread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="181" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a7d87a4f60adc6511cde30e4fe9161bd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::postData</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount)</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BarSeries::postData</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>categories</emphasis>, <emphasis>barCount</emphasis>) to the item&apos;s thread. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="184" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BarSeries::clearData</definition>
+        <argsstring>() override</argsstring>
+        <name>clearData</name>
+        <qualifiedname>QAccelPlot::BarSeries::clearData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a86e7a39ea75e41e8719cf53605de9930">clearData</reimplements>
+        <briefdescription>
+<para>Removes all bars. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="187" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a9cb606e0a24dafdceb3200c8aa5d7020" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BarSeries::setCategories</definition>
+        <argsstring>(const QList&lt; int &gt; &amp;categories)</argsstring>
+        <name>setCategories</name>
+        <qualifiedname>QAccelPlot::BarSeries::setCategories</qualifiedname>
+        <param>
+          <type>const QList&lt; int &gt; &amp;</type>
+          <declname>categories</declname>
+        </param>
+        <briefdescription>
+<para>Sets one category per bar. An empty list clears categories; any other size must equal <computeroutput>count</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="190" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a50b913d33661eeca6c7485d2136f9e3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE QVariantMap</type>
+        <definition>Q_INVOKABLE QVariantMap QAccelPlot::BarSeries::barAt</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>barAt</name>
+        <qualifiedname>QAccelPlot::BarSeries::barAt</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns bar <emphasis>index</emphasis> as an object with <computeroutput>position</computeroutput> and <computeroutput>value</computeroutput> properties. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Includes <computeroutput>category</computeroutput> when categories are set. Returns an empty object when <emphasis>index</emphasis> is out of range. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="195" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a3817903f4ad2624e51bd623f29fe862e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::BarSeries::barIndexAt</definition>
+        <argsstring>(const QPointF &amp;position) const</argsstring>
+        <name>barIndexAt</name>
+        <qualifiedname>QAccelPlot::BarSeries::barIndexAt</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Returns the index of the topmost bar under item position <emphasis>position</emphasis>, or -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="198" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a2d621c5b0435cb54b65f68601208f95b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::contains</definition>
+        <argsstring>(const QPointF &amp;point) const override</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::BarSeries::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when a bar lies under item position <emphasis>point</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Hover delivery uses this test, so stacked series underneath still receive hover events outside the bars. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="202" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1ad04297fa776b17d7b5033d9ce6ce2af3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::orientationChanged</definition>
+        <argsstring>()</argsstring>
+        <name>orientationChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::orientationChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the orientation property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="206" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a00cbe22c385822442bb844d143b464bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::barWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>barWidthChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::barWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the barWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="208" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a4256e22e1b71d9691f15eeb21d2cadb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::barOffsetChanged</definition>
+        <argsstring>()</argsstring>
+        <name>barOffsetChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::barOffsetChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the barOffset property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="210" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1acf1f15d2de24433d3f75309d25cc0bc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::baselineValueChanged</definition>
+        <argsstring>()</argsstring>
+        <name>baselineValueChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::baselineValueChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the baselineValue property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="212" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a7a8a18465a75203a16031c3256aa0697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::minimumWidthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>minimumWidthChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::minimumWidthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the minimumWidth property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="214" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1ab3ed4146c06f60dfce6e8f6843f43401" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="216" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1acddc8937b15de064f50add21647c0433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::categoryColorsChanged</definition>
+        <argsstring>()</argsstring>
+        <name>categoryColorsChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::categoryColorsChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the categoryColors property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="218" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a081d50587420ec37880e74e6e60ff106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::hoverColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoverColorChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hoverColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="220" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a45c6603574abe01570bcd84683f83b9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::countChanged</definition>
+        <argsstring>()</argsstring>
+        <name>countChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::countChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the bar count changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="222" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BarSeries_1a1f6e94225f0428888bf55003e9107596" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::hoveredIndexChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoveredIndexChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoveredIndexChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hovered bar index changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="224" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a860127a1dba71202ac873a5e816d1b03" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::BarSeries::updatePaintNode</definition>
+        <argsstring>(QSGNode *oldNode, UpdatePaintNodeData *) override</argsstring>
+        <name>updatePaintNode</name>
+        <qualifiedname>QAccelPlot::BarSeries::updatePaintNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>UpdatePaintNodeData *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="227" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a66aecd184b51fcdb983c10a2f2912be9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::hoverEnterEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverEnterEvent</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverEnterEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="228" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aa2aaf30b77884e671be1f2b131a67edc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::hoverMoveEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverMoveEvent</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverMoveEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="229" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a58f2d2bb5451bec9e68ae71c9f7b3bae" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::hoverLeaveEvent</definition>
+        <argsstring>(QHoverEvent *event) override</argsstring>
+        <name>hoverLeaveEvent</name>
+        <qualifiedname>QAccelPlot::BarSeries::hoverLeaveEvent</qualifiedname>
+        <param>
+          <type>QHoverEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="230" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a5b5f325f5916fac62618e816fa997f2e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::onAxisScaleChanged</definition>
+        <argsstring>() override</argsstring>
+        <name>onAxisScaleChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::onAxisScaleChanged</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e">onAxisScaleChanged</reimplements>
+        <briefdescription>
+<para>Refreshes data ranges and uploaded coordinates when an axis changes scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="232" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a58df012438e1ee23643d7f0dc94a4c21" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::validateRawDataArguments</definition>
+        <argsstring>(const void *data, int barCount) const</argsstring>
+        <name>validateRawDataArguments</name>
+        <qualifiedname>QAccelPlot::BarSeries::validateRawDataArguments</qualifiedname>
+        <param>
+          <type>const void *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="235" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a88f3c905726f34f9e005d0e48db81bab" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::validateDataArguments</definition>
+        <argsstring>(std::size_t valueCount, std::size_t categoryCount, int barCount) const</argsstring>
+        <name>validateDataArguments</name>
+        <qualifiedname>QAccelPlot::BarSeries::validateDataArguments</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>valueCount</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>categoryCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="236" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a8e953a586d7db178100692f66fdca3b9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::applyData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount, bool reportRanges)</argsstring>
+        <name>applyData</name>
+        <qualifiedname>QAccelPlot::BarSeries::applyData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="237" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ade444f2d6926086723cd01304f8cca80" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::applyFloatData</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, std::vector&lt; int &gt; &amp;&amp;categories, int barCount, bool reportRanges)</argsstring>
+        <name>applyFloatData</name>
+        <qualifiedname>QAccelPlot::BarSeries::applyFloatData</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="238" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ad46f8937ee59dea6e9dd64ccd1554b77" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setDataFFromArray</definition>
+        <argsstring>(const float *data, int barCount, bool reportRanges)</argsstring>
+        <name>setDataFFromArray</name>
+        <qualifiedname>QAccelPlot::BarSeries::setDataFFromArray</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="239" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1af2979e58e9b5bbd3425a600143810c41" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::finishDataChange</definition>
+        <argsstring>(std::vector&lt; int &gt; &amp;&amp;categories, int barCount, bool reportRanges)</argsstring>
+        <name>finishDataChange</name>
+        <qualifiedname>QAccelPlot::BarSeries::finishDataChange</qualifiedname>
+        <param>
+          <type>std::vector&lt; int &gt; &amp;&amp;</type>
+          <declname>categories</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>barCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="240" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aecd79de28f9c70c9aa7d5370501a44db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::onGeometryChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onGeometryChanged</name>
+        <qualifiedname>QAccelPlot::BarSeries::onGeometryChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="242" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a319c0fd64cb9b76f908d77ac24b5abc0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::isHorizontal</definition>
+        <argsstring>() const</argsstring>
+        <name>isHorizontal</name>
+        <qualifiedname>QAccelPlot::BarSeries::isHorizontal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="243" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a08a986dd9fe400f3d51785403aabf5f0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::hasPreciseData</definition>
+        <argsstring>() const</argsstring>
+        <name>hasPreciseData</name>
+        <qualifiedname>QAccelPlot::BarSeries::hasPreciseData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="245" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a5e2858f62d71df16751111e30a8014fa" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::BarSeries::position</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::BarSeries::position</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="246" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a025627324c1eba5a9e6871e771272e7c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::BarSeries::value</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::BarSeries::value</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="247" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ae25d406b21746e24e33992f69ead69cc" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::array&lt; double, 4 &gt;</type>
+        <definition>std::array&lt; double, 4 &gt; QAccelPlot::BarSeries::barRect</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>barRect</name>
+        <qualifiedname>QAccelPlot::BarSeries::barRect</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="249" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a133f70d1cddae6e1bce06b52e1ca3775" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::hasCategories</definition>
+        <argsstring>() const</argsstring>
+        <name>hasCategories</name>
+        <qualifiedname>QAccelPlot::BarSeries::hasCategories</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="250" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a6654456525bd5e0b6595cb78f5bd6a1e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BarSeries::barColor</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>barColor</name>
+        <qualifiedname>QAccelPlot::BarSeries::barColor</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="251" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a95c2e050bccb016b0a1fc5b38eebddc1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BarSeries::containsInPixels</definition>
+        <argsstring>(int index, const QPointF &amp;position) const</argsstring>
+        <name>containsInPixels</name>
+        <qualifiedname>QAccelPlot::BarSeries::containsInPixels</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="253" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a3cac581398609e2438dfec724e185afc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::setHoveredIndex</definition>
+        <argsstring>(int index)</argsstring>
+        <name>setHoveredIndex</name>
+        <qualifiedname>QAccelPlot::BarSeries::setHoveredIndex</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="254" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a28284e00725a1beb6c6bf29e3250d184" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::BarSeries::releaseNode</definition>
+        <argsstring>(QSGNode *oldNode) const</argsstring>
+        <name>releaseNode</name>
+        <qualifiedname>QAccelPlot::BarSeries::releaseNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="255" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1aac8f91006065d1d039d9bc56f179b507" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::updateMaterial</definition>
+        <argsstring>(BarMaterial &amp;material) const</argsstring>
+        <name>updateMaterial</name>
+        <qualifiedname>QAccelPlot::BarSeries::updateMaterial</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1BarMaterial" kindref="compound">BarMaterial</ref> &amp;</type>
+          <declname>material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="256" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1ac3d0dbb455ca54bd44f034cd8fb93191" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::ensureSpatialGrid</definition>
+        <argsstring>() const</argsstring>
+        <name>ensureSpatialGrid</name>
+        <qualifiedname>QAccelPlot::BarSeries::ensureSpatialGrid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="257" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a7b4c56117e12087b26fe4a43d8f65497" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::buildVertexCache</definition>
+        <argsstring>()</argsstring>
+        <name>buildVertexCache</name>
+        <qualifiedname>QAccelPlot::BarSeries::buildVertexCache</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="258" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a13217280f2f141b0b7fceb4ef1db1ac3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::updateDataRanges</definition>
+        <argsstring>()</argsstring>
+        <name>updateDataRanges</name>
+        <qualifiedname>QAccelPlot::BarSeries::updateDataRanges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="259" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BarSeries_1a589c339098a4657d3b37b682532fdfb7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BarSeries::rebuildRenderData</definition>
+        <argsstring>(bool logScalePosition, bool logScaleValue)</argsstring>
+        <name>rebuildRenderData</name>
+        <qualifiedname>QAccelPlot::BarSeries::rebuildRenderData</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>logScalePosition</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logScaleValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="262" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A hardware-accelerated QML item that renders a bar chart. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each bar is a (position, value) pair. A vertical bar is centered on <computeroutput>position</computeroutput> along the X axis and spans from <computeroutput>baselineValue</computeroutput> to <computeroutput>value</computeroutput> along the Y axis; <computeroutput>orientation</computeroutput> <computeroutput>Qt.Horizontal</computeroutput> swaps the axes. Bars are uploaded to the GPU as a float data texture of two floats per bar, and <computeroutput>barWidth</computeroutput>, <computeroutput>barOffset</computeroutput>, and <computeroutput>baselineValue</computeroutput> are applied in the shader, so changing them does not re-upload the data. The <computeroutput><ref refid="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the data, so large positions such as epoch timestamps stay precise.</para>
+<para>Bars with a NaN or infinite position, or a NaN value, are not drawn or hovered. An infinite value extends the bar to the plot edge. Values below <computeroutput>baselineValue</computeroutput> extend the bar the other way.</para>
+<para>Each bar can carry a <computeroutput>category</computeroutput>, an index into <computeroutput>categoryColors</computeroutput>. Bars without a category, or with one outside <computeroutput>categoryColors</computeroutput>, use <computeroutput>color</computeroutput>. For grouped bars, use one series per group with a narrower <computeroutput>barWidth</computeroutput> and a different <computeroutput>barOffset</computeroutput>.</para>
+<para><simplesect kind="par"><title>Limits</title><para>Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1RectangleSeries" kindref="compound">RectangleSeries</ref>, <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::BarSeries</label>
+        <link refid="classQAccelPlot_1_1BarSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::BarSeries</label>
+        <link refid="classQAccelPlot_1_1BarSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" line="48" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/BarSeries.hpp" bodystart="48" bodyend="292"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1BarSeries_1a8e953a586d7db178100692f66fdca3b9" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>applyData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ade444f2d6926086723cd01304f8cca80" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>applyFloatData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a50b913d33661eeca6c7485d2136f9e3a" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barAt</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a6654456525bd5e0b6595cb78f5bd6a1e" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barColor</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a2e20c869cb249eb8fbce51588daf17eb" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barCount_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a3817903f4ad2624e51bd623f29fe862e" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barIndexAt</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a6dceb6e0a8ceae14b9529a3006974bdb" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barOffset</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aebfad9fd211ec5cc924b90c22284e380" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barOffset</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5598154ccb6d5db8bd86d26f2f4e93a2" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barOffset_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a4256e22e1b71d9691f15eeb21d2cadb7" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barOffsetChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae25d406b21746e24e33992f69ead69cc" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barRect</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>BarSeries</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a2012547ed40ba35ddc226af476675e93" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barWidth</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af1b98ad3c0e3f4ebac24906d31e78340" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barWidth</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a45cbb6a9dee2202cdf2e10ccd3f67cac" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barWidth_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a00cbe22c385822442bb844d143b464bc" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>barWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5b6b5cb850b2e79d0d223f3483fc0ba7" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>baselineValue</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a6b6cfafde2e3d0136c830c2697e279cb" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>baselineValue</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1abf50c4a1930c81bf46840371bfa723b6" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>baselineValue_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1acf1f15d2de24433d3f75309d25cc0bc6" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>baselineValueChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a161177bea65ca27fbe8055abc9f2ceef" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a763c1f78ac85a70b303a0ee600893f06" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>border</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a92dd2e9afd21fb9be6e5a155a419a10f" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>border_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a7b4c56117e12087b26fe4a43d8f65497" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>buildVertexCache</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae24cfc200decbc1e19b8ee9d36ab9d75" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>categories_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a09aa558d5212462b29f6a7931bb662bd" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>categoryColors</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a54f1a9c149f26cbc87b22c8aa664edad" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>categoryColors</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5c6db3b636df3d56938fc40b8d3eaf58" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>categoryColors_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1acddc8937b15de064f50add21647c0433" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>categoryColorsChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>clearData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>clearDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>clearXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>clearYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aa92f945a6369f21179c3f6a1fbc73d0c" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a1e744289a2698934252dc1c8900ebb5c" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aec3ca2366e2a0c1897b765abc96a3b2b" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ab3ed4146c06f60dfce6e8f6843f43401" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a2d621c5b0435cb54b65f68601208f95b" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a95c2e050bccb016b0a1fc5b38eebddc1" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>containsInPixels</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1abebbe48f3a0cef5b0e2b82c171046247" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a30756ecc5ca38bd0f11de0355c4deea3" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a45c6603574abe01570bcd84683f83b9b" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a78dd73c6e3883f1f86d99b6bb5f8dcf6" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>data_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae8283829f830dfb8a4c35728b84a9abc" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>dataChanged_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ac3d0dbb455ca54bd44f034cd8fb93191" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>ensureSpatialGrid</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>extendXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>extendYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af2979e58e9b5bbd3425a600143810c41" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>finishDataChange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a133f70d1cddae6e1bce06b52e1ca3775" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hasCategories</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a08a986dd9fe400f3d51785403aabf5f0" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hasPreciseData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a170b8ba59db0a03ad0bc4bfa23564942" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hitRects_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1adfb933c4c3acfed2fa348463ffe5a1e5" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af7a8e9ab2e8164c3592b176ac1b2c94a" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverColor</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a3ed90cb99cb820f2d9bafc6720d92001" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverColor_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a081d50587420ec37880e74e6e60ff106" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a41496f4cc07d6b782f53b7d63cc525e4" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a816835e8e1f2341947f2f1671beebead" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a146e6150c522b94f1718b8cf18dd2cf2" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoveredIndex_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a1f6e94225f0428888bf55003e9107596" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoveredIndexChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a66aecd184b51fcdb983c10a2f2912be9" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverEnterEvent</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a58f2d2bb5451bec9e68ae71c9f7b3bae" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverLeaveEvent</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aa2aaf30b77884e671be1f2b131a67edc" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>hoverMoveEvent</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a319c0fd64cb9b76f908d77ac24b5abc0" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>isHorizontal</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>LegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>legendSymbolChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>MarkerShape</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a182272a044de10d6c0d7dd1af7bf22f9" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>minimumWidth</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1abe90b5d7ab18475615a1d82f3d7247a5" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>minimumWidth</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a260bdc1e0a37dbf96e05e81358824b14" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>minimumWidth_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a7a8a18465a75203a16031c3256aa0697" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>minimumWidthChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>onAxisRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5b5f325f5916fac62618e816fa997f2e" prot="protected" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>onAxisScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aecd79de28f9c70c9aa7d5370501a44db" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>onGeometryChanged</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ac5883143367c31cfa9081535ef6b165f" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae62e12bc518aad2cece28ea1a9b51146" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>orientation_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ad04297fa776b17d7b5033d9ce6ce2af3" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>orientationChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5e2858f62d71df16751111e30a8014fa" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>position</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1abfe015172efc904fc7a717d9d58fb740" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae2f29dae679cc3b13f9a22fbe50212aa" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aa5e2b3e943c37d99aafb348c8042d9df" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a7d87a4f60adc6511cde30e4fe9161bd6" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a589c339098a4657d3b37b682532fdfb7" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>rebuildRenderData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a28284e00725a1beb6c6bf29e3250d184" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>releaseNode</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a98df38b56faed630d8d9cd097a4b8be1" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>renderData_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a672c6a233031e6e31dd13dbb4d9a28cb" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>renderOriginPosition_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1adeab35c68320e3a3d144ff3c7d1a7f60" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>renderOriginValue_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a673db9dd469339ff828d0d4e594c71c2" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>reportRanges_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>resolvePlotRect</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ace6c6b9cb456d03500c627cff532e8dc" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setBarOffset</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aa2baec6f3d6f979a16305d6fca5e36e1" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setBarWidth</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1adefee111db1e4fa48ce8684313e7e58b" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setBaselineValue</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a9cb606e0a24dafdceb3200c8aa5d7020" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setCategories</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a5562fc614faa7d3650604fab277abbc2" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setCategoryColors</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af9805997643ad2f45780839a6c8b0d80" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1accbb5447e1ce8cfab17e644f2f948a75" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a52ddd70125acc7cd1c1a4d103481944a" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a850995da2f053180fe531fbe1713f1c4" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ae703f4c337ea205740d8bcbc3df4ad37" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ac6b32751ebc951223b081df889843199" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ad46f8937ee59dea6e9dd64ccd1554b77" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataFFromArray</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a29c7916d3161880ba84541fe5a4c7aaf" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataFNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af1f32fd1a2b22370d7cc923122580da4" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataFNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a9d5649616c8fca6df491ce4a102b8b5f" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataFNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a073f3aa3ec9237b4137395d9852b15f1" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a7d8e450b71598e7ebc42163a74e5641d" prot="public" virt="virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ab9ba843e818399a2f0ba719e049a0fe3" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataNoRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a2c62b11276103a0cd84a835d691f6675" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setHoverColor</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a3cac581398609e2438dfec724e185afc" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setHoveredIndex</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setLegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a0f4dc9328a020eb638e1b9c155c455c3" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setMinimumWidth</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a0c8b76d3aee1a15139aa21286972c8a6" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setOrientation</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>setYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1af4f1f26daf31caa0cdcc29985993f8fd" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>spatialGrid_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1ad68d068fb25e23f4fcf42d46a6de1feb" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>spatialGridValid_</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a13217280f2f141b0b7fceb4ef1db1ac3" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>updateDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1aac8f91006065d1d039d9bc56f179b507" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>updateMaterial</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a860127a1dba71202ac873a5e816d1b03" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>updatePaintNode</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a88f3c905726f34f9e005d0e48db81bab" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>validateDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a58df012438e1ee23643d7f0dc94a4c21" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>validateRawDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1a025627324c1eba5a9e6871e771272e7c" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>value</name></member>
+      <member refid="classQAccelPlot_1_1BarSeries_1acb65a544d8bb4d9b10cac23c627741e2" prot="private" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>vertexCache_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>xDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>xDataRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="protected" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" prot="public" virt="non-virtual"><scope>QAccelPlot::BarSeries</scope><name>yDataRangeChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

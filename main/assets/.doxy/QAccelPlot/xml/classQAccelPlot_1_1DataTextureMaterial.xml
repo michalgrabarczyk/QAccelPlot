@@ -335,6 +335,7 @@
         <argsstring>(const QSGMaterial *other) const</argsstring>
         <name>compareExtra</name>
         <qualifiedname>QAccelPlot::DataTextureMaterial::compareExtra</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarMaterial_1a69a4d646d25a5f2bb6eed58351481d86">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1GradientLineMaterial_1a4ea998d5a0d1b31f79c6366ed9d4ec62">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloudMaterial_1aa96ef790f251fd28099bd81a8bf03643">compareExtra</reimplementedby>
@@ -372,6 +373,12 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="7">
+        <label>QAccelPlot::BarMaterial</label>
+        <link refid="classQAccelPlot_1_1BarMaterial"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>QAccelPlot::DataTextureMaterial</label>
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>

@@ -16,6 +16,14 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## b
+
+* [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**BarSeries**](classQAccelPlot_1_1BarSeries.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+
+
 ## c
 
 * [**ColorBar**](classQAccelPlot_1_1ColorBar.md)

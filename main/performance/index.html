@@ -630,6 +630,8 @@
       
         
       
+        
+      
     
     
     
@@ -867,6 +869,34 @@
     
   
     Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
   
 
     
@@ -1531,11 +1561,12 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 <p>For a fixed streaming window, set the axis data range once and use
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.
-<code>LineCurve</code>, <code>PointCloud</code>, and <code>RectangleSeries</code> all support <code>setData()</code> and
-<code>setDataNoRange()</code> for interleaved doubles, <code>setDataF()</code> and <code>setDataFNoRange()</code>
-for interleaved floats, and <code>postData()</code> for either moved vector type. Each
-also accepts a raw array for the four synchronous setters. <code>PointCloud</code> can
-add per-point values and <code>RectangleSeries</code> can add categories with their vector overloads.</p>
+<code>LineCurve</code>, <code>PointCloud</code>, <code>RectangleSeries</code>, and <code>BarSeries</code> all support
+<code>setData()</code> and <code>setDataNoRange()</code> for interleaved doubles, <code>setDataF()</code> and
+<code>setDataFNoRange()</code> for interleaved floats, and <code>postData()</code> for either moved
+vector type. Each also accepts a raw array for the four synchronous setters.
+<code>PointCloud</code> can add per-point values, and <code>RectangleSeries</code> and <code>BarSeries</code>
+can add categories with their vector overloads.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
 <p>Generate data on a worker thread and hand off only completed buffers, using
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> or a queued call. Never write to a <code>QQuickItem</code> from
@@ -1559,7 +1590,8 @@ answers each move by scanning only the cells within the hover radius.
 <a href="../api/classQAccelPlot_1_1RectangleSeries/#property-hoveredindex-12"><code>RectangleSeries.hoveredIndex</code></a> rebuilds its spatial grid the same
 way. Each pointer move then tests the rectangles in the cells around the pointer
 plus every rectangle spanning more than 64 cells, so many long rectangles make
-lookup <code>O(N)</code>. When a series is replaced every
+lookup <code>O(N)</code>. <code>BarSeries.hoveredIndex</code> indexes only bar positions, so tall bars
+don't count as long rectangles. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>

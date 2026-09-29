@@ -52,6 +52,10 @@ flowchart TB
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1RectMaterial
   click classQAccelPlot_1_1RectMaterial "../classQAccelPlot_1_1RectMaterial/" "Open QAccelPlot::RectMaterial"
 
+  classQAccelPlot_1_1BarMaterial["QAccelPlot::BarMaterial"]
+  classQAccelPlot_1_1RectMaterial --> classQAccelPlot_1_1BarMaterial
+  click classQAccelPlot_1_1BarMaterial "../classQAccelPlot_1_1BarMaterial/" "Open QAccelPlot::BarMaterial"
+
 ```
 
 

@@ -3,6 +3,7 @@
   <compounddef id="classQAccelPlot_1_1PlotSeries" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>QAccelPlot::PlotSeries</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1BarSeries" prot="public" virt="non-virtual">QAccelPlot::BarSeries</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineCurve" prot="public" virt="non-virtual">QAccelPlot::LineCurve</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloud" prot="public" virt="non-virtual">QAccelPlot::PointCloud</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectangleSeries" prot="public" virt="non-virtual">QAccelPlot::RectangleSeries</derivedcompoundref>
@@ -602,6 +603,7 @@
         <argsstring>(const double *data, int count)=0</argsstring>
         <name>setData</name>
         <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1accbb5447e1ce8cfab17e644f2f948a75">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a698070857dc82f76bae2c9e6c190a940">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ac1e62e3f16db5d183271e14b6eba7d00">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a6ecea381d35acd4c882f51007e438298">setData</reimplementedby>
@@ -628,6 +630,7 @@
         <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>setData</name>
         <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a52ddd70125acc7cd1c1a4d103481944a">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a5ceebe1e43de1c0794481d539678e8c3">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a9ef1e0cdeb656e5e2cdde55c63663800">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1ab878d66e5b95f44f0eb8f59e61a2b7e7">setData</reimplementedby>
@@ -654,6 +657,7 @@
         <argsstring>(const double *data, int count)=0</argsstring>
         <name>setDataNoRange</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataNoRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a073f3aa3ec9237b4137395d9852b15f1">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a28fb1c4274be02a54de9acd5c7943507">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a4b710ba2481622ea5ccfe33223b0e998">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a5f02a4d984155df65f6e5e3c0a8a8503">setDataNoRange</reimplementedby>
@@ -680,6 +684,7 @@
         <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>setDataNoRange</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataNoRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a7d8e450b71598e7ebc42163a74e5641d">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1acab4904729565a53224076e5d2787463">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ad6758f8d591d5b2e305f84fde9b27cb2">setDataNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1afa08e848668672957bffb1e4ebbfd429">setDataNoRange</reimplementedby>
@@ -706,6 +711,7 @@
         <argsstring>(const float *data, int count)=0</argsstring>
         <name>setDataF</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1af4639ed97ffa63bbb7c25c2f3495fcd5">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a5fd2d89d97a0919c8bccb229f25d9811">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1aff4c06615c6f260b9849a11dcadc94af">setDataF</reimplementedby>
@@ -732,6 +738,7 @@
         <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>setDataF</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1ae703f4c337ea205740d8bcbc3df4ad37">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ab13afaaddf3058541d9c23eeba63cf9a">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a6e7f373d482a3ca63be0e1213839011e">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a269789e8d250c9ea46d810611feb73dd">setDataF</reimplementedby>
@@ -758,6 +765,7 @@
         <argsstring>(const float *data, int count)=0</argsstring>
         <name>setDataFNoRange</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataFNoRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a29c7916d3161880ba84541fe5a4c7aaf">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1aafb39a63f73e21cc4bc5d3a71a0c6e10">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a3f60d6247ae33d6cc692324ed4a50fc8">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a172d661fe6247a0d0331f474412cc860">setDataFNoRange</reimplementedby>
@@ -784,6 +792,7 @@
         <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>setDataFNoRange</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataFNoRange</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1af1f32fd1a2b22370d7cc923122580da4">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1aeba03d90d5ddbff7cefb4acdd0df93f3">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1afd3caab49bf9217bb17a60ed411c6cb2">setDataFNoRange</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a0b616441fd62fe2c38815a4a852a9183">setDataFNoRange</reimplementedby>
@@ -810,6 +819,7 @@
         <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>postData</name>
         <qualifiedname>QAccelPlot::PlotSeries::postData</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1abfe015172efc904fc7a717d9d58fb740">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a61f6a857cf0d87e0c840079acb8f0968">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a7c46e615fa5b0b69dd3b5ba333d9d32c">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1aee1cd89ef14076203b275de5ccc44216">postData</reimplementedby>
@@ -836,6 +846,7 @@
         <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count)=0</argsstring>
         <name>postData</name>
         <qualifiedname>QAccelPlot::PlotSeries::postData</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1aa5e2b3e943c37d99aafb348c8042d9df">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a84e66becff2847a2a1895f15db9749d9">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a4b6e41d6708954e4dc118a0b3454f6ca">postData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a48fbe8e07099af788558fa71f7bd9ac4">postData</reimplementedby>
@@ -862,6 +873,7 @@
         <argsstring>()=0</argsstring>
         <name>clearData</name>
         <qualifiedname>QAccelPlot::PlotSeries::clearData</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad">clearData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ad6683a1132bd0eaae9a4c7cb7b07ae37">clearData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1aa5205181b8e2333a3ca4e633adb1c160">clearData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a83e7c1afb39f6ddbd7a7e04b3f5b381d">clearData</reimplementedby>
@@ -1191,6 +1203,7 @@
         <argsstring>()</argsstring>
         <name>onAxisScaleChanged</name>
         <qualifiedname>QAccelPlot::PlotSeries::onAxisScaleChanged</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a5b5f325f5916fac62618e816fa997f2e">onAxisScaleChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a81600a34c7dd5c5970431b1a1a3ab2e8">onAxisScaleChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a7c2ecabe80870f75863ba1705b4f82cb">onAxisScaleChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a9258965161abf24d2853375aedf3752d">onAxisScaleChanged</reimplementedby>
@@ -1279,6 +1292,12 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="3">
+        <label>QAccelPlot::BarSeries</label>
+        <link refid="classQAccelPlot_1_1BarSeries"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
         <label>QAccelPlot::LineCurve</label>
         <link refid="classQAccelPlot_1_1LineCurve"/>
         <childnode refid="1" relation="public-inheritance">
@@ -1290,13 +1309,13 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>QAccelPlot::PointCloud</label>
         <link refid="classQAccelPlot_1_1PointCloud"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="6">
         <label>QAccelPlot::RectangleSeries</label>
         <link refid="classQAccelPlot_1_1RectangleSeries"/>
         <childnode refid="1" relation="public-inheritance">

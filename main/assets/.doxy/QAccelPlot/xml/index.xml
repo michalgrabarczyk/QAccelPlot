@@ -245,6 +245,130 @@
     <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kind="variable"><name>subtickValues</name></member>
     <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kind="variable"><name>majorTicks</name></member>
   </compound>
+  <compound refid="classQAccelPlot_1_1BarMaterial" kind="class"><name>QAccelPlot::BarMaterial</name>
+    <member refid="classQAccelPlot_1_1BarMaterial_1a8ceede5339db3e84f3805629b2b529bd" kind="variable"><name>barWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1ac1665b6c3fef246ae264c342729b6c85" kind="variable"><name>barOffset</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1ae78350297198212525029d71a35f890a" kind="variable"><name>baseline</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1a67e221e8b0c735e95905dfdb7d041c33" kind="variable"><name>horizontal</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1a2e8cd8df600845fba83ac90208d61215" kind="function"><name>BarMaterial</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1ac841bd6baca46d3aac94cd25eb40ec12" kind="function"><name>type</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1a613588ce765d5bfa2f6f1c4cda5e6bb5" kind="function"><name>createShader</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1a69a4d646d25a5f2bb6eed58351481d86" kind="function"><name>compareExtra</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1BarSeries" kind="class"><name>QAccelPlot::BarSeries</name>
+    <member refid="classQAccelPlot_1_1BarSeries_1adc6e6e2b190b9cd218abfff9900d04bc" kind="property"><name>orientation</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a2012547ed40ba35ddc226af476675e93" kind="property"><name>barWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a6dceb6e0a8ceae14b9529a3006974bdb" kind="property"><name>barOffset</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5b6b5cb850b2e79d0d223f3483fc0ba7" kind="property"><name>baselineValue</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a182272a044de10d6c0d7dd1af7bf22f9" kind="property"><name>minimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aa92f945a6369f21179c3f6a1fbc73d0c" kind="property"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a09aa558d5212462b29f6a7931bb662bd" kind="property"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a161177bea65ca27fbe8055abc9f2ceef" kind="property"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1adfb933c4c3acfed2fa348463ffe5a1e5" kind="property"><name>hoverColor</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1abebbe48f3a0cef5b0e2b82c171046247" kind="property"><name>count</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a41496f4cc07d6b782f53b7d63cc525e4" kind="property"><name>hoveredIndex</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae62e12bc518aad2cece28ea1a9b51146" kind="variable"><name>orientation_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a45cbb6a9dee2202cdf2e10ccd3f67cac" kind="variable"><name>barWidth_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5598154ccb6d5db8bd86d26f2f4e93a2" kind="variable"><name>barOffset_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1abf50c4a1930c81bf46840371bfa723b6" kind="variable"><name>baselineValue_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a260bdc1e0a37dbf96e05e81358824b14" kind="variable"><name>minimumWidth_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aec3ca2366e2a0c1897b765abc96a3b2b" kind="variable"><name>color_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5c6db3b636df3d56938fc40b8d3eaf58" kind="variable"><name>categoryColors_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a92dd2e9afd21fb9be6e5a155a419a10f" kind="variable"><name>border_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a3ed90cb99cb820f2d9bafc6720d92001" kind="variable"><name>hoverColor_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a146e6150c522b94f1718b8cf18dd2cf2" kind="variable"><name>hoveredIndex_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a78dd73c6e3883f1f86d99b6bb5f8dcf6" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae24cfc200decbc1e19b8ee9d36ab9d75" kind="variable"><name>categories_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a98df38b56faed630d8d9cd097a4b8be1" kind="variable"><name>renderData_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a672c6a233031e6e31dd13dbb4d9a28cb" kind="variable"><name>renderOriginPosition_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1adeab35c68320e3a3d144ff3c7d1a7f60" kind="variable"><name>renderOriginValue_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a2e20c869cb249eb8fbce51588daf17eb" kind="variable"><name>barCount_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae8283829f830dfb8a4c35728b84a9abc" kind="variable"><name>dataChanged_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a673db9dd469339ff828d0d4e594c71c2" kind="variable"><name>reportRanges_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1acb65a544d8bb4d9b10cac23c627741e2" kind="variable"><name>vertexCache_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a170b8ba59db0a03ad0bc4bfa23564942" kind="variable"><name>hitRects_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af4f1f26daf31caa0cdcc29985993f8fd" kind="variable"><name>spatialGrid_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ad68d068fb25e23f4fcf42d46a6de1feb" kind="variable"><name>spatialGridValid_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a41ee066282c1eadd1f6cec4e6d6baa2f" kind="function"><name>BarSeries</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ac5883143367c31cfa9081535ef6b165f" kind="function"><name>orientation</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a0c8b76d3aee1a15139aa21286972c8a6" kind="function"><name>setOrientation</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af1b98ad3c0e3f4ebac24906d31e78340" kind="function"><name>barWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aa2baec6f3d6f979a16305d6fca5e36e1" kind="function"><name>setBarWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aebfad9fd211ec5cc924b90c22284e380" kind="function"><name>barOffset</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ace6c6b9cb456d03500c627cff532e8dc" kind="function"><name>setBarOffset</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a6b6cfafde2e3d0136c830c2697e279cb" kind="function"><name>baselineValue</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1adefee111db1e4fa48ce8684313e7e58b" kind="function"><name>setBaselineValue</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1abe90b5d7ab18475615a1d82f3d7247a5" kind="function"><name>minimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a0f4dc9328a020eb638e1b9c155c455c3" kind="function"><name>setMinimumWidth</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1e744289a2698934252dc1c8900ebb5c" kind="function"><name>color</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af9805997643ad2f45780839a6c8b0d80" kind="function"><name>setColor</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a54f1a9c149f26cbc87b22c8aa664edad" kind="function"><name>categoryColors</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5562fc614faa7d3650604fab277abbc2" kind="function"><name>setCategoryColors</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a763c1f78ac85a70b303a0ee600893f06" kind="function"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af7a8e9ab2e8164c3592b176ac1b2c94a" kind="function"><name>hoverColor</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a2c62b11276103a0cd84a835d691f6675" kind="function"><name>setHoverColor</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a30756ecc5ca38bd0f11de0355c4deea3" kind="function"><name>count</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a816835e8e1f2341947f2f1671beebead" kind="function"><name>hoveredIndex</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a06deb85cc7592812027db6e1287bea85" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1accbb5447e1ce8cfab17e644f2f948a75" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a52ddd70125acc7cd1c1a4d103481944a" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a850995da2f053180fe531fbe1713f1c4" kind="function"><name>setData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a073f3aa3ec9237b4137395d9852b15f1" kind="function"><name>setDataNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a7d8e450b71598e7ebc42163a74e5641d" kind="function"><name>setDataNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ab9ba843e818399a2f0ba719e049a0fe3" kind="function"><name>setDataNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae703f4c337ea205740d8bcbc3df4ad37" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ac6b32751ebc951223b081df889843199" kind="function"><name>setDataF</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a29c7916d3161880ba84541fe5a4c7aaf" kind="function"><name>setDataFNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af1f32fd1a2b22370d7cc923122580da4" kind="function"><name>setDataFNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a9d5649616c8fca6df491ce4a102b8b5f" kind="function"><name>setDataFNoRange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1abfe015172efc904fc7a717d9d58fb740" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae2f29dae679cc3b13f9a22fbe50212aa" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aa5e2b3e943c37d99aafb348c8042d9df" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a7d87a4f60adc6511cde30e4fe9161bd6" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad" kind="function"><name>clearData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a9cb606e0a24dafdceb3200c8aa5d7020" kind="function"><name>setCategories</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a50b913d33661eeca6c7485d2136f9e3a" kind="function"><name>barAt</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a3817903f4ad2624e51bd623f29fe862e" kind="function"><name>barIndexAt</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a2d621c5b0435cb54b65f68601208f95b" kind="function"><name>contains</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ad04297fa776b17d7b5033d9ce6ce2af3" kind="signal"><name>orientationChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a00cbe22c385822442bb844d143b464bc" kind="signal"><name>barWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a4256e22e1b71d9691f15eeb21d2cadb7" kind="signal"><name>barOffsetChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1acf1f15d2de24433d3f75309d25cc0bc6" kind="signal"><name>baselineValueChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a7a8a18465a75203a16031c3256aa0697" kind="signal"><name>minimumWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ab3ed4146c06f60dfce6e8f6843f43401" kind="signal"><name>colorChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1acddc8937b15de064f50add21647c0433" kind="signal"><name>categoryColorsChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a081d50587420ec37880e74e6e60ff106" kind="signal"><name>hoverColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a45c6603574abe01570bcd84683f83b9b" kind="signal"><name>countChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1f6e94225f0428888bf55003e9107596" kind="signal"><name>hoveredIndexChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a860127a1dba71202ac873a5e816d1b03" kind="function"><name>updatePaintNode</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a66aecd184b51fcdb983c10a2f2912be9" kind="function"><name>hoverEnterEvent</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aa2aaf30b77884e671be1f2b131a67edc" kind="function"><name>hoverMoveEvent</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a58f2d2bb5451bec9e68ae71c9f7b3bae" kind="function"><name>hoverLeaveEvent</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5b5f325f5916fac62618e816fa997f2e" kind="function"><name>onAxisScaleChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a58df012438e1ee23643d7f0dc94a4c21" kind="function"><name>validateRawDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a88f3c905726f34f9e005d0e48db81bab" kind="function"><name>validateDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a8e953a586d7db178100692f66fdca3b9" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ade444f2d6926086723cd01304f8cca80" kind="function"><name>applyFloatData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ad46f8937ee59dea6e9dd64ccd1554b77" kind="function"><name>setDataFFromArray</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1af2979e58e9b5bbd3425a600143810c41" kind="function"><name>finishDataChange</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aecd79de28f9c70c9aa7d5370501a44db" kind="function"><name>onGeometryChanged</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a319c0fd64cb9b76f908d77ac24b5abc0" kind="function"><name>isHorizontal</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a08a986dd9fe400f3d51785403aabf5f0" kind="function"><name>hasPreciseData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5e2858f62d71df16751111e30a8014fa" kind="function"><name>position</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a025627324c1eba5a9e6871e771272e7c" kind="function"><name>value</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ae25d406b21746e24e33992f69ead69cc" kind="function"><name>barRect</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a133f70d1cddae6e1bce06b52e1ca3775" kind="function"><name>hasCategories</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a6654456525bd5e0b6595cb78f5bd6a1e" kind="function"><name>barColor</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a95c2e050bccb016b0a1fc5b38eebddc1" kind="function"><name>containsInPixels</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a3cac581398609e2438dfec724e185afc" kind="function"><name>setHoveredIndex</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a28284e00725a1beb6c6bf29e3250d184" kind="function"><name>releaseNode</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aac8f91006065d1d039d9bc56f179b507" kind="function"><name>updateMaterial</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ac3d0dbb455ca54bd44f034cd8fb93191" kind="function"><name>ensureSpatialGrid</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a7b4c56117e12087b26fe4a43d8f65497" kind="function"><name>buildVertexCache</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a13217280f2f141b0b7fceb4ef1db1ac3" kind="function"><name>updateDataRanges</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a589c339098a4657d3b37b682532fdfb7" kind="function"><name>rebuildRenderData</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1ColorBar" kind="class"><name>QAccelPlot::ColorBar</name>
     <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kind="enum"><name>Orientation</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" kind="enumvalue"><name>Horizontal</name></member>
@@ -1911,6 +2035,8 @@
   </compound>
   <compound refid="SolidLine_8hpp" kind="file"><name>SolidLine.hpp</name>
   </compound>
+  <compound refid="BarMaterial_8hpp" kind="file"><name>BarMaterial.hpp</name>
+  </compound>
   <compound refid="DataTextureMaterial_8hpp" kind="file"><name>DataTextureMaterial.hpp</name>
   </compound>
   <compound refid="GradientFillMaterial_8hpp" kind="file"><name>GradientFillMaterial.hpp</name>
@@ -1948,6 +2074,8 @@
   <compound refid="LineCurveLineRenderer_8hpp" kind="file"><name>LineCurveLineRenderer.hpp</name>
   </compound>
   <compound refid="LineCurvePointRenderer_8hpp" kind="file"><name>LineCurvePointRenderer.hpp</name>
+  </compound>
+  <compound refid="BarSeries_8hpp" kind="file"><name>BarSeries.hpp</name>
   </compound>
   <compound refid="RectGeometry_8hpp" kind="file"><name>RectGeometry.hpp</name>
   </compound>
