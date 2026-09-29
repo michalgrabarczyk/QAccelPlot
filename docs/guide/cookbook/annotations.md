@@ -107,8 +107,8 @@ moves bounds and categories in without copying; `postData()` hands them off
 from a worker thread.
 
 RectangleSeries only accepts hover over its rectangles, so series underneath
-still receive hover elsewhere. Hover lookup uses a spatial grid and stays
-constant-time for large collections; see
+still receive hover elsewhere. Hover lookup uses a spatial grid, so it stays
+fast for large collections unless many rectangles are very wide or tall; see
 [Hover interactions](../performance.md#hover-interactions).
 
 ## Build interactive tools

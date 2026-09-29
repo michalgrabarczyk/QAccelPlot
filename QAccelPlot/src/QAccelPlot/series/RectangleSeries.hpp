@@ -30,7 +30,7 @@ class RectMaterial;
 /// data texture, making it suitable for millions of rectangles. The \c setData() overloads keep
 /// doubles and upload them relative to an origin near the data, so large coordinates such as epoch
 /// timestamps stay precise. The \c setDataF() overloads store floats and upload them without conversion.
-/// Hover detection uses an internal \c SpatialGrid for O(1) hit tests.
+/// Hover detection uses an internal \c SpatialGrid; rectangles spanning more than 64 grid cells are tested linearly.
 ///
 /// An infinite edge extends the rectangle to the plot edge, e.g. \c y1 = -Infinity and
 /// \c y2 = +Infinity for a full-height span. Infinite edges don't affect the axes' data ranges.

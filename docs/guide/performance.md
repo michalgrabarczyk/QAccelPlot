@@ -95,7 +95,9 @@ rebuilding geometry; gradient effects may need per-vertex work.
 is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
 answers each move by scanning only the cells within the hover radius.
 [`RectangleSeries.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
-way, then gives `O(1)` lookup per pointer move. When a series is replaced every
+way. Each pointer move then tests the rectangles in the cells around the pointer
+plus every rectangle spanning more than 64 cells, so many long rectangles make
+lookup `O(N)`. When a series is replaced every
 frame while the pointer rests over it, the rebuild repeats per frame; set
 `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 
