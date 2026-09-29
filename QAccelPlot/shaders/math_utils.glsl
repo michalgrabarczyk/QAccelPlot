@@ -26,6 +26,11 @@ bool floatIsFinite(float value) {
     return isFiniteBits(floatBitsToUint(value));
 }
 
+// Returns true when the IEEE 754 bit pattern encodes NaN, tested on the bits like isFiniteBits().
+bool isNaNBits(uint bits) {
+    return (bits & 0x7FFFFFFFu) > 0x7F800000u;
+}
+
 // Clip-space position outside the view volume for geometry that must not be drawn.
 // Placing every vertex of a primitive here produces a zero-area, clipped primitive.
 const vec4 kCulledClipPosition = vec4(-2.0, -2.0, 0.0, 1.0);

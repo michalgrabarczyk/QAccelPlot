@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
+#include "QAccelPlot/series/internal/RectGeometry.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>
@@ -18,7 +19,6 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
-#include <cstring>
 #include <limits>
 #include <utility>
 
@@ -44,28 +44,6 @@ QColor defaultRectangleColor()
     auto color = ColorPalette::dark().seriesPrimary;
     color.setAlpha(50);
     return color;
-}
-
-// Maps an edge to item pixels. Infinite edges, and non-positive edges on a log axis, map to
-// infinity on the matching side, as the shader extends them past the plot edge.
-qreal edgePixel(const double value, const Axis& axis, const qreal length)
-{
-    constexpr auto kInf = std::numeric_limits<qreal>::infinity();
-    const auto belowRange = value == -kInf || (axis.logScale() && value <= 0.0);
-    if (!belowRange && value != kInf) {
-        return axis.coordToPixel(value, length);
-    }
-    const auto pixelsGrowWithData = axis.coordToPixel(axis.viewportMax(), length) >= axis.coordToPixel(axis.viewportMin(), length);
-    return pixelsGrowWithData == belowRange ? -kInf : kInf;
-}
-
-// Returns the pixel span between edges a and b, widened around its center to at least minimumSize.
-std::pair<qreal, qreal> widenedSpan(const qreal a, const qreal b, const qreal minimumSize)
-{
-    const auto low = std::min(a, b);
-    const auto high = std::max(a, b);
-    const auto grow = 0.5 * std::max(minimumSize - (high - low), qreal{0.0});
-    return {low - grow, high + grow};
 }
 
 struct FiniteBounds {
@@ -124,7 +102,7 @@ void RectangleSeries::setColor(const QColor& color)
     }
     color_ = color;
     if (hasCategories()) {
-        vertexCacheValid_ = false;
+        vertexCache_.invalidate();
     }
     emit colorChanged();
     update();
@@ -142,7 +120,7 @@ void RectangleSeries::setCategoryColors(const QList<QColor>& colors)
     }
     categoryColors_ = colors;
     if (hasCategories()) {
-        vertexCacheValid_ = false;
+        vertexCache_.invalidate();
     }
     emit categoryColorsChanged();
     update();
@@ -367,7 +345,7 @@ void RectangleSeries::setCategories(const QList<int>& categories)
         return;
     }
     categories_.assign(categories.cbegin(), categories.cend());
-    vertexCacheValid_ = false;
+    vertexCache_.invalidate();
     update();
 }
 
@@ -473,7 +451,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
     if (rectCount != rectCount_ || hasCategories() || !categories.empty()) {
-        vertexCacheValid_ = false;
+        vertexCache_.invalidate();
     }
     categories_ = std::move(categories);
     rectCount_ = rectCount;
@@ -515,6 +493,8 @@ QColor RectangleSeries::rectangleColor(const int index) const
 
 bool RectangleSeries::containsInPixels(const int index, const QPointF& position) const
 {
+    using Internal::edgePixel;
+    using Internal::widenedSpan;
     const auto [left, right]
         = widenedSpan(edgePixel(coordinate(index, 0), *xAxis(), width()), edgePixel(coordinate(index, 2), *xAxis(), width()), minimumWidth_);
     const auto [top, bottom]
@@ -555,17 +535,16 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
 
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;
-    const auto vertexCount = rectCount_ * 6;
     const auto nodeRecreated = !node;
 
     if (!node) {
-        if (!vertexCacheValid_) {
+        if (!vertexCache_.valid()) {
             buildVertexCache();
         }
 
-        auto* geometry = new QSGGeometry(DataTextureMaterial::attributeSet(), vertexCount);
+        auto* geometry = new QSGGeometry(DataTextureMaterial::attributeSet(), 0);
         geometry->setDrawingMode(QSGGeometry::DrawTriangles);
-        memcpy(geometry->vertexData(), vertexCache_.data(), static_cast<size_t>(vertexCount) * sizeof(RectVertex));
+        vertexCache_.copyTo(*geometry);
 
         material = new RectMaterial;
         node = new QSGGeometryNode;
@@ -578,11 +557,9 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         material = static_cast<RectMaterial*>(node->material());
 
         // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
-        if (!vertexCacheValid_) {
+        if (!vertexCache_.valid()) {
             buildVertexCache();
-            auto* geometry = node->geometry();
-            geometry->allocate(vertexCount);
-            memcpy(geometry->vertexData(), vertexCache_.data(), static_cast<size_t>(vertexCount) * sizeof(RectVertex));
+            vertexCache_.copyTo(*node->geometry());
             node->markDirty(QSGNode::DirtyGeometry);
         }
     }
@@ -718,23 +695,11 @@ void RectangleSeries::updateDataRanges()
 
 void RectangleSeries::buildVertexCache()
 {
-    const auto totalVerts = static_cast<size_t>(rectCount_) * 6;
-    vertexCache_.resize(totalVerts);
-    for (auto i = 0; i < rectCount_; ++i) {
-        const auto vbase = static_cast<size_t>(i) * 6;
-        const auto fid = static_cast<float>(i);
-        const auto rgba = hasCategories() ? rectangleColor(i).toRgb() : QColor{Qt::white};
-        for (auto c = 0; c < 6; ++c) {
-            auto& v = vertexCache_[vbase + static_cast<size_t>(c)];
-            v.id = fid;
-            v.corner = static_cast<float>(c);
-            v.r = static_cast<unsigned char>(rgba.red());
-            v.g = static_cast<unsigned char>(rgba.green());
-            v.b = static_cast<unsigned char>(rgba.blue());
-            v.a = static_cast<unsigned char>(rgba.alpha());
-        }
+    auto colorAt = RectVertexCache::ColorFunction{};
+    if (hasCategories()) {
+        colorAt = [this](const int index) { return rectangleColor(index); };
     }
-    vertexCacheValid_ = true;
+    vertexCache_.rebuild(rectCount_, colorAt);
 }
 
 } // namespace QAccelPlot

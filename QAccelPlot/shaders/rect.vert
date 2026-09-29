@@ -20,7 +20,7 @@ layout(location = 1) out vec4 v_edgeDistance;
 layout(location = 2) out vec4 v_borderColor;
 layout(location = 3) out float v_borderWidth;
 
-// Must match RectUbo in RectMaterial.cpp.
+// Must match RectUbo in materials/internal/RectUniforms.hpp.
 layout(std140, binding = 0) uniform buf {
     mat4 matrix;          //   0-63
     vec4 color;           //  64-79
@@ -43,51 +43,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 
 #include "data_texture.glsl"
 #include "math_utils.glsl"
-
-// Corner UVs for 2-triangle quad (CCW winding):
-//   Triangle 1: (0,0), (1,0), (0,1)
-//   Triangle 2: (1,0), (1,1), (0,1)
-vec2 cornerUV(int c) {
-    // Using step functions to avoid array indexing
-    if (c == 0) return vec2(0.0, 0.0);
-    if (c == 1) return vec2(1.0, 0.0);
-    if (c == 2) return vec2(0.0, 1.0);
-    if (c == 3) return vec2(1.0, 0.0);
-    if (c == 4) return vec2(1.0, 1.0);
-    return vec2(0.0, 1.0); // c == 5
-}
-
-bool isNaNBits(uint bits) {
-    return (bits & 0x7FFFFFFFu) > 0x7F800000u;
-}
-
-// Returns an edge's position as a fraction of the viewport from dMin (0) to dMax (1),
-// clamped to one viewport beyond each side. Infinite edges map straight onto that margin,
-// so they reach past the plot edge even when dMin and dMax are too far from the render
-// origin to differ in single precision.
-float viewportFraction(uint bits, float dMin, float dMax, bool logScale) {
-    if (!isFiniteBits(bits)) {
-        bool towardMin = ((bits & 0x80000000u) != 0u) == (dMax >= dMin);
-        return towardMin ? -1.0 : 2.0;
-    }
-    float value = uintBitsToFloat(bits);
-    if (logScale) {
-        value = safeLog10(value);
-    }
-    return clamp((value - dMin) / (dMax - dMin), -1.0, 2.0);
-}
-
-// Widens the pixel span from a to b around its center to at least minSize, keeping a and b in order.
-vec2 widenedSpan(float a, float b, float minSize) {
-    float grow = 0.5 * max(minSize - abs(b - a), 0.0);
-    float direction = a <= b ? 1.0 : -1.0;
-    return vec2(a - direction * grow, b + direction * grow);
-}
+#include "rect_geometry.glsl"
 
 void main() {
     int index = int(rectId);
-    v_color = index == int(ubuf.hoveredIndex) ? ubuf.hoverColor : mix(ubuf.color, vertexColor, ubuf.useVertexColor);
-    v_color.a *= ubuf.opacity;
+    v_color = rectFillColor(index, vertexColor);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
 
@@ -102,30 +62,9 @@ void main() {
         return;
     }
 
-    bool logX = ubuf.logScaleX > 0.5;
-    bool logY = ubuf.logScaleY > 0.5;
-    vec2 dMin = ubuf.domainMin;
-    vec2 dMax = ubuf.domainMax;
-    if (logX) {
-        dMin.x = safeLog10(dMin.x);
-        dMax.x = safeLog10(dMax.x);
-    }
-    if (logY) {
-        dMin.y = safeLog10(dMin.y);
-        dMax.y = safeLog10(dMax.y);
-    }
-
-    // Edges in item-local pixels, with y growing downward.
-    vec2 size = ubuf.viewportSize;
-    vec2 xs = widenedSpan(viewportFraction(x1Bits, dMin.x, dMax.x, logX) * size.x,
-                          viewportFraction(x2Bits, dMin.x, dMax.x, logX) * size.x, ubuf.minimumSize.x);
-    vec2 ys = widenedSpan((1.0 - viewportFraction(y1Bits, dMin.y, dMax.y, logY)) * size.y,
-                          (1.0 - viewportFraction(y2Bits, dMin.y, dMax.y, logY)) * size.y, ubuf.minimumSize.y);
-
-    vec2 uv = cornerUV(int(corner));
-    vec2 p_local = vec2(uv.x < 0.5 ? xs.x : xs.y, uv.y < 0.5 ? ys.x : ys.y);
-    v_edgeDistance = vec4(p_local.x - min(xs.x, xs.y), max(xs.x, xs.y) - p_local.x,
-                          p_local.y - min(ys.x, ys.y), max(ys.x, ys.y) - p_local.y);
-
+    vec2 xs;
+    vec2 ys;
+    rectPixelSpans(x1Bits, y1Bits, x2Bits, y2Bits, xs, ys);
+    vec2 p_local = rectVertex(xs, ys, int(corner), v_edgeDistance);
     gl_Position = ubuf.matrix * vec4(p_local, 0.0, 1.0);
 }

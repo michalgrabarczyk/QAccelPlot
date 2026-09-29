@@ -80,7 +80,7 @@ QAccelPlot/
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
 │       ├── series/               — LineCurve, PointCloud, RectangleSeries, PlotSeries,
 │       │                           RectangleBorder (border grouped property),
-│       │                           LineCurveVertexCache,
+│       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
