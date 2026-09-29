@@ -50,6 +50,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or appear in `extraAxes`.
 - Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.
+- Axes and color ranges preserve distinct values below machine epsilon, so small
+  data spans map across the plot instead of collapsing to one pixel.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.

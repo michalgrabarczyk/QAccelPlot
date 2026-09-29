@@ -58,10 +58,10 @@ void TestMathUtils::defaultTolerance_data()
     QTest::newRow("adjacent-one") << 1.0 << adjacentOne << true;
     QTest::newRow("four-steps-from-one") << 1.0 << separatedOne << false;
     QTest::newRow("same-near-zero") << 1e-20 << 1e-20 << true;
-    QTest::newRow("zero-and-epsilon") << 0.0 << epsilon << true;
+    QTest::newRow("zero-and-epsilon") << 0.0 << epsilon << false;
     QTest::newRow("distinguishable-near-zero") << 1e-12 << 2e-12 << false;
     QTest::newRow("same-very-small") << 3e-200 << 3e-200 << true;
-    QTest::newRow("absolute-tolerance-near-zero") << 1e-100 << 2e-100 << true;
+    QTest::newRow("distinct-near-zero") << 1e-100 << 2e-100 << false;
     QTest::newRow("same-very-large") << 1e21 << 1e21 << true;
     QTest::newRow("adjacent-very-large") << 1e21 << adjacentLarge << true;
     QTest::newRow("four-steps-from-very-large") << 1e21 << separatedLarge << false;

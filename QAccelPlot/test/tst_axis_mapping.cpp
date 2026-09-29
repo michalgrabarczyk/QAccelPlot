@@ -21,6 +21,7 @@ private slots:
     void linear_horizontal_maxMapsToLength();
     void linear_horizontal_midpointMapsToHalfLength();
     void linear_horizontal_roundTrip();
+    void linear_smallRange_mapsAcrossViewport();
 
     // Linear, Vertical (inverted: viewportMin→length, viewportMax→0)
     void linear_vertical_minMapsToLength();
@@ -33,6 +34,7 @@ private slots:
     void log_zeroMin_returnsZero();
     void log_enablingWithNonPositiveViewport_correctsToPositiveRange();
     void log_enablingWithValidViewport_leavesViewportUnchanged();
+    void log_tinyPositiveViewport_keepsRange();
 
     // Edge cases
     void zeroRange_returnsZero();
@@ -98,6 +100,14 @@ void TestAxisMapping::linear_horizontal_roundTrip()
     const auto pos = axis->coordToPixel(value, length);
     const auto recovered = axis->pixelToCoord(pos, length);
     QVERIFY(qAbs(recovered - value) < 1e-10);
+}
+
+void TestAxisMapping::linear_smallRange_mapsAcrossViewport()
+{
+    const auto axis = makeHorizontalAxis(1e-20, 2e-20);
+
+    QCOMPARE(axis->viewportMin(), 1e-20);
+    QVERIFY(qAbs(axis->coordToPixel(1.5e-20, 400.0) - 200.0) < 1e-10);
 }
 
 // ---------------------------------------------------------------------------
@@ -167,6 +177,16 @@ void TestAxisMapping::log_enablingWithValidViewport_leavesViewportUnchanged()
 
     QCOMPARE(axis->viewportMin(), 1.0);
     QCOMPARE(axis->viewportMax(), 100.0);
+}
+
+void TestAxisMapping::log_tinyPositiveViewport_keepsRange()
+{
+    const auto axis = makeHorizontalAxis(1e-20, 1e-18);
+    axis->setLogScale(true);
+
+    QCOMPARE(axis->viewportMin(), 1e-20);
+    QCOMPARE(axis->viewportMax(), 1e-18);
+    QCOMPARE(axis->coordToPixel(1e-19, 400.0), 200.0);
 }
 
 // ---------------------------------------------------------------------------
