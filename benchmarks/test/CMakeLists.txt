@@ -15,3 +15,13 @@ target_link_libraries(tst_benchmark_workload PRIVATE QAccelPlotBenchmarkCommon)
 target_include_directories(tst_benchmark_workload PRIVATE
     "${CMAKE_SOURCE_DIR}/benchmarks/common"
 )
+
+add_qaccelplot_test(tst_benchmark_runner benchmarks
+    tst_benchmark_runner.cpp
+    "${CMAKE_SOURCE_DIR}/benchmarks/app/BenchmarkRunner.cpp"
+)
+target_link_libraries(tst_benchmark_runner PRIVATE QAccelPlotBenchmarkCommon Qt6::Quick)
+target_include_directories(tst_benchmark_runner PRIVATE
+    "${CMAKE_SOURCE_DIR}/benchmarks/app"
+    "${CMAKE_SOURCE_DIR}/benchmarks/common"
+)

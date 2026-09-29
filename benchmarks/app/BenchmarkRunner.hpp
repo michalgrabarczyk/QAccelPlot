@@ -69,7 +69,8 @@ public:
 
     Q_INVOKABLE void runAll();
     Q_INVOKABLE void runScenario(const QString& name);
-    Q_INVOKABLE void addCustomScenario(const QString& name, const QString& label, const QString& desc, int pointCount, int curveCount, int updateMode, int durationSeconds = 10, int warmupSeconds = 2);
+    Q_INVOKABLE void addCustomScenario(const QString& name, const QString& label, const QString& desc, int pointCount, int curveCount, int updateMode,
+        int durationSeconds = 10, int warmupSeconds = 2);
     Q_INVOKABLE bool exportJson(const QString& path);
     Q_INVOKABLE void stop();
 
@@ -93,6 +94,7 @@ private slots:
     void finishScenario();
 
 private:
+    void queueNextScenario();
     void setupScene(const BenchmarkScenario& scenario);
     void clearCurves();
     void setRunning(bool running);
@@ -119,6 +121,7 @@ private:
     std::vector<BenchmarkScenario> availableScenarios_;
     std::vector<BenchmarkScenario> scenariosToRun_;
     size_t currentScenarioIndex_{0};
+    quint64 runGeneration_{0};
     BenchmarkMetrics metrics_;
     BenchmarkReporter reporter_;
     QElapsedTimer scenarioTimer_;
