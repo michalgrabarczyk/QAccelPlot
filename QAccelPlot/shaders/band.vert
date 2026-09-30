@@ -37,6 +37,11 @@ layout(binding = 1) uniform sampler2D dataSampler;
 // Fetches sample `index` as (x, low, high) and returns whether all three values are valid:
 // finite and strictly positive on log-scale dimensions.
 bool fetchBandSample(int index, out vec3 bandSample) {
+    bandSample = vec3(0.0);
+    // Vertices past the last sample are reserved for appended data and never drawn.
+    if (index >= int(ubuf.sampleCount)) {
+        return false;
+    }
     int base = index * 3;
     uint xBits = fetchFloatBits(base);
     uint lowBits = fetchFloatBits(base + 1);

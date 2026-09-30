@@ -62,7 +62,8 @@ void writeVertices(LineVertex* vertices, const int pointCount, const QColor& col
     const auto b = static_cast<unsigned char>(color.blue());
     const auto a = static_cast<unsigned char>(color.alpha());
     for (auto index = 0; index < pointCount; ++index) {
-        const auto arcLength = arcLengths.empty() ? 0.0f : arcLengths[static_cast<std::size_t>(index)];
+        const auto lengthIndex = std::min(static_cast<std::size_t>(index), arcLengths.size() - 1);
+        const auto arcLength = arcLengths.empty() ? 0.0f : arcLengths[lengthIndex];
         vertices[index * 2] = {static_cast<float>(index), kSidePositive, r, g, b, a, arcLength};
         vertices[index * 2 + 1] = {static_cast<float>(index), kSideNegative, r, g, b, a, arcLength};
     }

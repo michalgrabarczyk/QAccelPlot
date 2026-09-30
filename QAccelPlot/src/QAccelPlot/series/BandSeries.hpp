@@ -159,6 +159,8 @@ private:
         QVector2D domainMax;
         QVector2D viewportSize;
         int drawnSampleCount;
+        // Vertex buffer room, grown in powers of two so that appends rarely rebuild the vertices.
+        int reservedSampleCount;
     };
 
     bool validateRawDataArguments(const void* data, int sampleCount) const;

@@ -80,10 +80,11 @@ LineVertexResult invalidLineVertex(vec2 position, bool previousValid, vec2 previ
 // Computes the miter-joined ribbon vertex on `side` (+1 or -1) of sample `index`.
 // A valid sample next to an invalid neighbor is treated as a line endpoint.
 LineVertexResult computeLineVertex(int index, float side) {
-    vec2 p;
+    vec2 p = vec2(0.0);
     vec2 pr;
     vec2 nx;
-    bool pValid = fetchSample(index, p);
+    // Vertices past the last sample, reserved for appended data, collapse onto the last sample.
+    bool pValid = index < int(ubuf.pointCount) && fetchSample(index, p);
     bool prValid = fetchSample(index - 1, pr);
     bool nxValid = fetchSample(index + 1, nx);
 

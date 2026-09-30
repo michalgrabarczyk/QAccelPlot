@@ -44,6 +44,8 @@ struct BandEdgeRenderParams {
     Axis* xAxis;                              ///< \brief Horizontal axis.
     Axis* yAxis;                              ///< \brief Vertical axis.
     bool dataChanged;                         ///< \brief Whether the samples changed since the last paint.
+    /// \brief Samples the vertex buffer holds room for, at least \c samples.count, so appends rarely resize it.
+    int reservedSampleCount;
 };
 
 /// \brief Internal renderer for the lower or upper edge line of a \c BandSeries.

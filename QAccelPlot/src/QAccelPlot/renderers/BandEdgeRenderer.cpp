@@ -24,7 +24,7 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
 {
     auto* node = oldNode ? oldNode : LineStroke::createNode(0, new BandEdgeMaterial(edge_));
     auto* geometry = node->geometry();
-    const auto vertexCount = params.samples.count * 2;
+    const auto vertexCount = params.reservedSampleCount * 2;
     const auto countChanged = geometry->vertexCount() != vertexCount;
     if (countChanged) {
         geometry->allocate(vertexCount);
@@ -47,8 +47,8 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
         arcLengthScale_.reset();
     }
     if (countChanged || lengthsStale) {
-        LineStroke::writeVertices(
-            static_cast<LineVertex*>(geometry->vertexData()), params.samples.count, params.uniforms.color, dashed ? arcLengths(params) : std::vector<float>{});
+        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.reservedSampleCount, params.uniforms.color,
+            dashed ? arcLengths(params) : std::vector<float>{});
         node->markDirty(QSGNode::DirtyGeometry);
     }
     node->markDirty(QSGNode::DirtyMaterial);

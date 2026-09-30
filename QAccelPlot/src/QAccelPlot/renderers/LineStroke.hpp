@@ -61,7 +61,8 @@ QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
 
 /// \brief Writes two ribbon vertices per sample for \a pointCount samples into \a vertices.
 ///
-/// \a arcLengths holds one cumulative length per sample, or is empty for solid lines.
+/// \a arcLengths holds cumulative lengths of the leading samples, or is empty for solid lines. Samples
+/// past its end, such as vertices reserved for appended data, repeat its last length.
 void writeVertices(LineVertex* vertices, int pointCount, const QColor& color, const std::vector<float>& arcLengths);
 
 /// \brief Copies \a uniforms into \a material.

@@ -104,6 +104,7 @@ private slots:
     void edgeSettingsClampAndNotify();
     void edgeLinesReadTheBandSamples();
     void dashLengthsFollowZoomButNotPan();
+    void appendingKeepsTheVertexBuffers();
     void renderOriginFollowsTheViewport();
     void fewerThanTwoSamplesDrawNothing();
 };
@@ -417,7 +418,8 @@ void BandSeriesDataTest::edgeLinesReadTheBandSamples()
     QVERIFY(root);
     QCOMPARE(root->childCount(), 1);
     QCOMPARE(fixture.fillMaterial()->sampleCount, 3.0f);
-    QCOMPARE(static_cast<QSGGeometryNode*>(root->firstChild())->geometry()->vertexCount(), 6);
+    // Room for 256 samples is reserved, two vertices each.
+    QCOMPARE(static_cast<QSGGeometryNode*>(root->firstChild())->geometry()->vertexCount(), 512);
 
     // The edges sample the fill's data texture instead of uploading their own.
     band.edges()->setWidth(2.0);
@@ -466,6 +468,32 @@ void BandSeriesDataTest::dashLengthsFollowZoomButNotPan()
     fixture.paint();
     QCOMPARE(upperEdgeVertices()[0].arcLength, 0.0f);
     QCOMPARE(upperEdgeVertices()[5].arcLength, 50.0f);
+}
+
+void BandSeriesDataTest::appendingKeepsTheVertexBuffers()
+{
+    auto fixture = BandFixture{};
+    fixture.band.edges()->setWidth(1.0);
+    fixture.band.setData(QList<qreal>{0.0, 1.0}, QList<qreal>{1.0, 1.0}, QList<qreal>{2.0, 2.0});
+    const auto vertexData = [&fixture](const int child) { return static_cast<QSGGeometryNode*>(fixture.node->childAtIndex(child))->geometry()->vertexData(); };
+    fixture.paint();
+
+    // Markers in the fill and edge vertices survive appends within the reserved room.
+    static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge = -1.0f;
+    static_cast<LineVertex*>(vertexData(1))[0].side = -2.0f;
+    for (auto x = 2; x < 256; ++x) {
+        fixture.band.appendData(x, 1.0, 2.0);
+        fixture.paint();
+    }
+    QCOMPARE(fixture.fillMaterial()->sampleCount, 256.0f);
+    QCOMPARE(static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge, -1.0f);
+    QCOMPARE(static_cast<LineVertex*>(vertexData(1))[0].side, -2.0f);
+
+    // Crossing the reserved room doubles it and rebuilds the vertices.
+    fixture.band.appendData(256.0, 1.0, 2.0);
+    fixture.paint();
+    QCOMPARE(static_cast<QSGGeometryNode*>(fixture.node->firstChild())->geometry()->vertexCount(), 1024);
+    QCOMPARE(static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge, 0.0f);
 }
 
 void BandSeriesDataTest::renderOriginFollowsTheViewport()

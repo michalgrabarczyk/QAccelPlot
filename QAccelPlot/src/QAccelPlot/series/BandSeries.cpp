@@ -111,6 +111,19 @@ int sampleCapacity(QQuickWindow* window)
     return static_cast<int>(std::min(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), kStride), kMaxExactVertexId));
 }
 
+// Samples the vertex buffers hold room for: the next power of two, so appending one sample at a
+// time rebuilds the vertices only when the count crosses one. Vertex ids stay exact floats.
+int reservedSampleCount(const int drawnSampleCount)
+{
+    constexpr auto kMinReserved = 256;
+    constexpr auto kMaxExactVertexId = 1 << 24;
+    auto reserved = kMinReserved;
+    while (reserved < drawnSampleCount && reserved < kMaxExactVertexId) {
+        reserved *= 2;
+    }
+    return std::max(reserved, drawnSampleCount);
+}
+
 void warnOnceIfOverCapacity(const int sampleCount, const int capacity)
 {
     static auto warned = false;
@@ -675,19 +688,20 @@ BandSeries::RenderView BandSeries::renderView() const
         QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_)),
         QVector2D(static_cast<float>(rect.width()), static_cast<float>(rect.height())),
         std::min(sampleCount_, capacity),
+        reservedSampleCount(std::min(sampleCount_, capacity)),
     };
 }
 
 void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
 {
     auto* geometry = node->geometry();
-    const auto vertexCount = view.drawnSampleCount * 2;
-    // Vertices hold only sample indices and edge selectors, so only a count change rebuilds them.
-    const auto countChanged = geometry->vertexCount() != vertexCount;
-    if (countChanged) {
+    const auto vertexCount = view.reservedSampleCount * 2;
+    // Vertices hold only sample indices and edge selectors, so only a change of the reserved room
+    // rebuilds them. band.vert hides the vertices past the drawn samples.
+    if (geometry->vertexCount() != vertexCount) {
         geometry->allocate(vertexCount);
         auto* vertices = static_cast<BandMaterial::Vertex*>(geometry->vertexData());
-        for (auto i = int{0}; i < view.drawnSampleCount; ++i) {
+        for (auto i = int{0}; i < view.reservedSampleCount; ++i) {
             vertices[i * 2] = {static_cast<float>(i), 0.0f};
             vertices[i * 2 + 1] = {static_cast<float>(i), 1.0f};
         }
@@ -695,7 +709,7 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
     }
 
     auto* material = static_cast<BandMaterial*>(node->material());
-    if (dataChanged_ || countChanged || !material->sampledTexture()) {
+    if (dataChanged_ || material->sampleCount != static_cast<float>(view.drawnSampleCount) || !material->sampledTexture()) {
         material->uploadTexture(window(), renderData_.data(), view.drawnSampleCount * kStride);
     }
     material->color = color_;
@@ -716,7 +730,7 @@ QSGGeometryNode* BandSeries::paintEdge(
     const auto* style = edges_->lineStyle();
     const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(), count,
         true, 1.0, style ? style->dashParameters() : DashParameters{}};
-    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis(), dataChanged_});
+    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis(), dataChanged_, view.reservedSampleCount});
 }
 
 } // namespace QAccelPlot
