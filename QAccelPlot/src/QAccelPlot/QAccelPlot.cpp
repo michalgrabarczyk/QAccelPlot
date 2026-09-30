@@ -12,6 +12,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/grid/GridNode.hpp"
+#include "QAccelPlot/internal/RectangleZoomOverlay.hpp"
 
 #include <QCoreApplication>
 #include <QHoverEvent>
@@ -62,6 +63,31 @@ qreal verticalRatio(const QPointF& pos, const QRectF& rect)
     return qBound(0.0, 1.0 - (pos.y() - rect.y()) / rect.height(), 1.0);
 }
 
+bool isFiniteRect(const QRectF& rect)
+{
+    return std::isfinite(rect.left()) && std::isfinite(rect.top()) && std::isfinite(rect.right()) && std::isfinite(rect.bottom());
+}
+
+struct RectangleAxisRange {
+    QPointer<Axis> axis;
+    qreal min;
+    qreal max;
+};
+
+std::optional<RectangleAxisRange> rectangleAxisRange(Axis* axis, const QRectF& selection, const QRectF& plotRect)
+{
+    const auto horizontal = axis->orientation() == Axis::Horizontal;
+    const auto length = horizontal ? plotRect.width() : plotRect.height();
+    const auto minPixel = horizontal ? selection.left() - plotRect.left() : selection.bottom() - plotRect.top();
+    const auto maxPixel = horizontal ? selection.right() - plotRect.left() : selection.top() - plotRect.top();
+    const auto min = axis->pixelToCoord(minPixel, length);
+    const auto max = axis->pixelToCoord(maxPixel, length);
+    if (!std::isfinite(min) || !std::isfinite(max) || nearly_equal(min, max) || (axis->logScale() && (min <= 0.0 || max <= 0.0))) {
+        return std::nullopt;
+    }
+    return RectangleAxisRange{axis, min, max};
+}
+
 }
 
 QAccelPlot::QAccelPlot(QQuickItem* parent)
@@ -74,6 +100,11 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     setFocus(true);
     grid_ = new Grid(this);
     border_ = new PlotBorder(this);
+    rectangleZoom_ = new PlotRectangleZoom(this);
+    rectangleZoomOverlay_ = new RectangleZoomOverlay(this, rectangleZoom_);
+    connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
+    connect(this, &QQuickItem::visibleChanged, this, &QAccelPlot::cancelRectangleSelection);
+    connect(this, &QQuickItem::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
     connect(grid_, &Grid::lineWidthChanged, this, &QAccelPlot::update);
     connect(grid_, &Grid::subGridLineWidthChanged, this, &QAccelPlot::update);
     connect(grid_, &Grid::gridColorChanged, this, &QAccelPlot::update);
@@ -138,6 +169,38 @@ bool QAccelPlot::isInsidePlotArea(qreal x, qreal y) const
     return plotRect_.contains(x, y);
 }
 
+bool QAccelPlot::zoomToRect(const QRectF& rect)
+{
+    if (!isFiniteRect(rect) || !isFiniteRect(plotRect_) || plotRect_.isEmpty()) {
+        return false;
+    }
+    const auto selection = rect.normalized().intersected(plotRect_);
+    if (selection.isEmpty() || selection.width() < rectangleZoom_->minimumSize() || selection.height() < rectangleZoom_->minimumSize()) {
+        return false;
+    }
+    auto ranges = QList<RectangleAxisRange>{};
+    for (auto* axis : attachedAxes()) {
+        const auto range = rectangleAxisRange(axis, selection, plotRect_);
+        if (!range) {
+            return false;
+        }
+        ranges.append(*range);
+    }
+    if (ranges.isEmpty()) {
+        return false;
+    }
+    cancelRectangleSelection();
+    for (const auto& range : ranges) {
+        if (range.axis) {
+            range.axis->setViewportMin(range.min);
+            if (range.axis) {
+                range.axis->setViewportMax(range.max);
+            }
+        }
+    }
+    return true;
+}
+
 Axis* QAccelPlot::xAxis() const
 {
     return xAxis_;
@@ -152,6 +215,7 @@ void QAccelPlot::setXAxis(Axis* axis)
         qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
+    cancelRectangleSelection();
     if (xAxis_) {
         disconnectAxis(xAxis_);
     }
@@ -177,6 +241,7 @@ void QAccelPlot::setYAxis(Axis* axis)
         qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
+    cancelRectangleSelection();
     if (yAxis_) {
         disconnectAxis(yAxis_);
     }
@@ -202,6 +267,7 @@ void QAccelPlot::setX2Axis(Axis* axis)
         qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
+    cancelRectangleSelection();
     if (x2Axis_) {
         disconnectAxis(x2Axis_);
     }
@@ -227,6 +293,7 @@ void QAccelPlot::setY2Axis(Axis* axis)
         qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
+    cancelRectangleSelection();
     if (y2Axis_) {
         disconnectAxis(y2Axis_);
     }
@@ -284,16 +351,6 @@ QColor QAccelPlot::axesAreaColor() const
     return axesAreaColor_;
 }
 
-Grid* QAccelPlot::grid() const
-{
-    return grid_;
-}
-
-QList<PlotSeries*> QAccelPlot::series() const
-{
-    return series_;
-}
-
 void QAccelPlot::setAxesAreaColor(const QColor& c)
 {
     if (axesAreaColor_ == c) {
@@ -309,8 +366,27 @@ PlotBorder* QAccelPlot::border() const
     return border_;
 }
 
+PlotRectangleZoom* QAccelPlot::rectangleZoom() const
+{
+    return rectangleZoom_;
+}
+
+Grid* QAccelPlot::grid() const
+{
+    return grid_;
+}
+
+QList<PlotSeries*> QAccelPlot::series() const
+{
+    return series_;
+}
+
 void QAccelPlot::wheelEvent(QWheelEvent* event)
 {
+    if (dragMode_ == DragMode::RectangleZoom) {
+        event->accept();
+        return;
+    }
     if (event->angleDelta().y() == 0) {
         QQuickItem::wheelEvent(event);
         return;
@@ -364,7 +440,17 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     }
     if (event->button() == Qt::LeftButton) {
         setFocus(true);
-        isDragging_ = true;
+        if (rectangleZoom_->enabled() && static_cast<int>(event->modifiers()) == rectangleZoom_->modifiers()) {
+            if (plotRect_.isEmpty() || !plotRect_.contains(event->position())) {
+                event->ignore();
+                return;
+            }
+            dragMode_ = DragMode::RectangleZoom;
+            selectionStart_ = event->position();
+            rectangleZoom_->setSelection(true, QRectF{selectionStart_, selectionStart_});
+        } else {
+            dragMode_ = DragMode::Pan;
+        }
         lastMousePos_ = event->position();
         event->accept();
     } else {
@@ -381,7 +467,7 @@ void QAccelPlot::hoverEnterEvent(QHoverEvent* event)
 void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 {
     pointerPos_ = event->position();
-    if (isDragging_) {
+    if (dragMode_ != DragMode::Idle) {
         QQuickItem::hoverMoveEvent(event);
         return;
     }
@@ -410,7 +496,10 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
     if (mouseMoveEvent_.isAccepted()) {
         return;
     }
-    if (isDragging_) {
+    if (dragMode_ == DragMode::RectangleZoom) {
+        updateRectangleSelection(event->position());
+        event->accept();
+    } else if (dragMode_ == DragMode::Pan) {
         const auto delta = event->position() - lastMousePos_;
         lastMousePos_ = event->position();
 
@@ -438,13 +527,21 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 
 void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 {
-    const auto endedDrag = event->button() == Qt::LeftButton && isDragging_;
-    if (event->button() == Qt::LeftButton) {
-        isDragging_ = false;
-    }
-
+    const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
     mouseReleaseEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mouseReleased(&mouseReleaseEvent_);
+    if (event->button() == Qt::LeftButton) {
+        auto selection = QRectF{};
+        if (!mouseReleaseEvent_.isAccepted() && dragMode_ == DragMode::RectangleZoom) {
+            updateRectangleSelection(event->position());
+            selection = rectangleZoom_->selectionRect();
+        }
+        cancelRectangleSelection();
+        dragMode_ = DragMode::Idle;
+        if (!selection.isEmpty()) {
+            zoomToRect(selection);
+        }
+    }
     if (mouseReleaseEvent_.isAccepted()) {
         return;
     }
@@ -455,8 +552,22 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
     }
 }
 
+void QAccelPlot::mouseUngrabEvent()
+{
+    cancelRectangleSelection();
+    dragMode_ = DragMode::Idle;
+    QQuickItem::mouseUngrabEvent();
+}
+
+void QAccelPlot::focusOutEvent(QFocusEvent* event)
+{
+    cancelRectangleSelection();
+    QQuickItem::focusOutEvent(event);
+}
+
 void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 {
+    cancelRectangleSelection();
     mouseDoubleClickEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mouseDoubleClicked(&mouseDoubleClickEvent_);
     if (mouseDoubleClickEvent_.isAccepted()) {
@@ -472,6 +583,11 @@ void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 
 void QAccelPlot::keyPressEvent(QKeyEvent* event)
 {
+    if (event->key() == Qt::Key_Escape && dragMode_ == DragMode::RectangleZoom) {
+        cancelRectangleSelection();
+        event->accept();
+        return;
+    }
     if (!pointerPos_) {
         QQuickItem::keyPressEvent(event);
         return;
@@ -494,6 +610,7 @@ void QAccelPlot::keyPressEvent(QKeyEvent* event)
 
 void QAccelPlot::geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry)
 {
+    cancelRectangleSelection();
     QQuickItem::geometryChange(newGeometry, oldGeometry);
     layoutAxes();
 }
@@ -597,6 +714,7 @@ void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
         return;
     }
 
+    plot->cancelRectangleSelection();
     axis->setParentItem(plot);
     plot->connectAxisSignals(axis);
     plot->extraAxes_.append(axis);
@@ -627,6 +745,7 @@ void QAccelPlot::clearExtraAxes(QQmlListProperty<Axis>* list)
         return;
     }
 
+    plot->cancelRectangleSelection();
     for (const auto axis : plot->extraAxes_) {
         plot->disconnectAxisSignals(axis);
         axis->setParentItem(nullptr);
@@ -680,6 +799,9 @@ void QAccelPlot::connectAxisSignals(Axis* axis)
     connect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
     connect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
     connect(axis, &Axis::rangeChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
+    connect(axis, &Axis::rangeChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
+    connect(axis, &Axis::logScaleChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
+    connect(axis, &Axis::orientationChanged, this, &QAccelPlot::cancelRectangleSelection, Qt::UniqueConnection);
     connect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
@@ -699,6 +821,9 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
     disconnect(axis, &Axis::dataMinChanged, this, &QAccelPlot::update);
     disconnect(axis, &Axis::dataMaxChanged, this, &QAccelPlot::update);
     disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::update);
+    disconnect(axis, &Axis::rangeChanged, this, &QAccelPlot::cancelRectangleSelection);
+    disconnect(axis, &Axis::logScaleChanged, this, &QAccelPlot::cancelRectangleSelection);
+    disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::cancelRectangleSelection);
     disconnect(axis, &QQuickItem::visibleChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &Axis::layoutSizeChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
@@ -712,6 +837,7 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
 
 void QAccelPlot::axisDestroyed(QObject* object)
 {
+    cancelRectangleSelection();
     auto layoutChanged = false;
     if (xAxis_ == object) {
         xAxis_ = nullptr;
@@ -794,6 +920,40 @@ void QAccelPlot::panAxis(Axis* axis, const qreal delta, const qreal length)
     }
 }
 
+QList<Axis*> QAccelPlot::attachedAxes() const
+{
+    auto axes = QList<Axis*>{};
+    const auto append = [&axes](Axis* axis) {
+        if (axis && !axes.contains(axis)) {
+            axes.append(axis);
+        }
+    };
+    for (auto* axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
+        append(axis);
+    }
+    for (auto* axis : extraAxes_) {
+        append(axis);
+    }
+    return axes;
+}
+
+void QAccelPlot::updateRectangleSelection(const QPointF& pos)
+{
+    if (dragMode_ != DragMode::RectangleZoom || !std::isfinite(pos.x()) || !std::isfinite(pos.y())) {
+        return;
+    }
+    const auto end = QPointF{qBound(plotRect_.left(), pos.x(), plotRect_.right()), qBound(plotRect_.top(), pos.y(), plotRect_.bottom())};
+    rectangleZoom_->setSelection(true, QRectF{selectionStart_, end}.normalized());
+}
+
+void QAccelPlot::cancelRectangleSelection()
+{
+    if (dragMode_ == DragMode::RectangleZoom) {
+        dragMode_ = DragMode::Idle;
+        rectangleZoom_->setSelection(false, {});
+    }
+}
+
 void QAccelPlot::layoutAxes()
 {
     const auto w = width();
@@ -837,6 +997,7 @@ void QAccelPlot::layoutAxes()
 
     const auto newRect = QRectF(plotX, plotY, plotW, plotH);
     if (newRect != plotRect_) {
+        cancelRectangleSelection();
         plotRect_ = newRect;
         for (auto* series : std::as_const(series_)) {
             series->setPlotRect(plotRect_);

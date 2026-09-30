@@ -92,6 +92,8 @@ class ColorPalette : public QObject {
     Q_PROPERTY(QColor toolPoint MEMBER toolPoint CONSTANT)
     Q_PROPERTY(QColor toolRegion MEMBER toolRegion CONSTANT)
     Q_PROPERTY(QColor toolOverlay MEMBER toolOverlay CONSTANT)
+    Q_PROPERTY(QColor rectangleZoomBorder MEMBER rectangleZoomBorder CONSTANT)
+    Q_PROPERTY(QColor rectangleZoomFill MEMBER rectangleZoomFill CONSTANT)
 
     // Performance showcase
     Q_PROPERTY(QColor performanceCurve MEMBER performanceCurve CONSTANT)
@@ -158,6 +160,8 @@ public:
     QColor toolPoint;
     QColor toolRegion;
     QColor toolOverlay;
+    QColor rectangleZoomBorder;
+    QColor rectangleZoomFill;
 
     QColor performanceCurve;
     QColor performanceRectangles;

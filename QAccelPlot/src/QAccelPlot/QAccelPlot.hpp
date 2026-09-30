@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/PlotBorder.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/PlotRectangleZoom.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
@@ -26,6 +27,7 @@
 namespace QAccelPlot {
 
 class GridNode;
+class RectangleZoomOverlay;
 
 /// \brief The main plot canvas QML item — hosts axes, curves, and a grid.
 ///
@@ -70,6 +72,8 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
     /// \brief Decorative frame configuration for the plot area.
     Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    /// \brief Rectangle zoom configuration and selection state.
+    Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     /// \brief Read-only constant: grid configuration object.
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     /// \brief Read-only: all registered plot series.
@@ -91,6 +95,10 @@ public:
     Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
     /// \brief Returns \c true if the item-local point (\a x, \a y) lies inside the plot area.
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
+    /// \brief Zooms all attached axes to an item-local pixel rectangle and returns whether it was applied.
+    /// Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize
+    /// or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled.
+    Q_INVOKABLE bool zoomToRect(const QRectF& rect);
 
     /// \brief Returns the primary horizontal axis.
     Axis* xAxis() const;
@@ -136,6 +144,9 @@ public:
     /// \brief Returns the decorative plot-frame configuration object.
     PlotBorder* border() const;
 
+    /// \brief Returns the rectangle zoom configuration object.
+    PlotRectangleZoom* rectangleZoom() const;
+
     /// \brief Returns the grid configuration object.
     Grid* grid() const;
 
@@ -171,7 +182,7 @@ signals:
     /// Call \c event->accept() to consume the event and suppress built-in handling (rescale all axes).
     void mouseDoubleClicked(::QAccelPlot::PlotMouseEvent* event);
     /// \brief Emitted when the mouse is moved over the plot.
-    /// Call \c event->accept() to consume the event and suppress built-in handling (panning).
+    /// Call \c event->accept() to consume the event and suppress built-in handling (panning or selection updates).
     void mouseMoved(::QAccelPlot::PlotMouseEvent* event);
 
 protected:
@@ -183,6 +194,8 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void focusOutEvent(QFocusEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
     void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override; ///< \brief Qt event override — internal.
@@ -194,22 +207,26 @@ protected:
     Q_INVOKABLE void rescaleAllAxes();
 
 private:
+    enum class DragMode { Idle, Pan, RectangleZoom };
     bool isAxisRegistered(Axis* axis) const;
     static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
     static qsizetype extraAxisCount(QQmlListProperty<Axis>* list);
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
+    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
+    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
     void connectAxisSignals(Axis* axis);
     void disconnectAxisSignals(Axis* axis);
     void axisDestroyed(QObject* object);
     void connectAxis(Axis* axis, Axis::Side side);
     void disconnectAxis(Axis* axis);
-    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
-    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
-    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
     void zoomAxis(Axis* axis, qreal factor, qreal centerRatio);
     void panAxis(Axis* axis, qreal delta, qreal length);
+    QList<Axis*> attachedAxes() const;
+    void updateRectangleSelection(const QPointF& pos);
+    void cancelRectangleSelection();
     void layoutAxes();
     void registerSeries(QQuickItem* item);
 
@@ -219,7 +236,8 @@ private:
     Axis* y2Axis_{nullptr};
     QList<Axis*> extraAxes_;
 
-    bool isDragging_{false};
+    DragMode dragMode_{DragMode::Idle};
+    QPointF selectionStart_;
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
@@ -232,6 +250,8 @@ private:
     QColor plotAreaColor_{ColorPalette::dark().plotArea};
     QColor axesAreaColor_{ColorPalette::dark().axesArea};
     PlotBorder* border_{nullptr};
+    PlotRectangleZoom* rectangleZoom_{nullptr};
+    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};
     QList<PlotSeries*> series_;
