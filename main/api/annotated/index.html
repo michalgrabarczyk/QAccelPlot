@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -726,6 +728,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1183,6 +1213,16 @@
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em>    </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> <em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderParams/"><strong>BandEdgeRenderParams</strong></a> <em>Inputs for</em> <a href="../classQAccelPlot_1_1BandEdgeRenderer/#function-paint"><em><strong>BandEdgeRenderer::paint()</strong></em></a> <em>, assembled while the GUI thread is blocked.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeRenderer/"><strong>BandEdgeRenderer</strong></a> <em>Internal renderer for the lower or upper edge line of a</em> <code>BandSeries</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdges/"><strong>BandEdges</strong></a> <em>Controls the lines a</em> <code>BandSeries</code> <em>draws along its lower and upper edges.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em>    <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><strong>Vertex</strong></a> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><em><strong>Vertex</strong></em></a> <em>layout of the band triangle strip: two vertices per sample.</em>    </li>
+</ul>
+</li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSamples/"><strong>BandSamples</strong></a> <em>Read-only view over interleaved</em> <code>(x, low, high)</code> <em>band samples in float or double precision.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry uniforms.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorBar/"><strong>ColorBar</strong></a> <em>A continuous key that shows how a series'</em> <code>Colormap</code> <em>maps values to colors.</em>    </li>
@@ -1195,7 +1235,8 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DashLine/"><strong>DashLine</strong></a> <em>A line style that renders the curve as a customisable dashed line.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DashParameters/"><strong>DashParameters</strong></a> <em>Plain-data snapshot of dash rendering parameters.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataAnchor/"><strong>DataAnchor</strong></a> <em>A QQuickItem that tracks a data-coordinate rectangle in pixel space.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> <em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <em>One animation of a transition on one host element.</em>     </li>
 </ul>
@@ -1229,6 +1270,10 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>LineCurveVertexCache</strong></a> <em>Owns a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>'s pre-built vertex bytes and the metadata required to use them safely.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    </li>
+<li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1LineStroke/"><strong>LineStroke</strong></a> <em>Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><strong>Uniforms</strong></a> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><em><strong>Uniforms</strong></em></a> <em>of a line material that do not depend on its shader variant.</em>    </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineStyle/"><strong>LineStyle</strong></a> <em>Abstract base class for all line styles.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>MorphTransition</strong></a> <em>An animation transition that smoothly interpolates point positions between two datasets.</em>     </li>
@@ -1264,6 +1309,9 @@
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>DataRange</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>ArcLengthScale</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>RenderView</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>Span</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>Layout</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>

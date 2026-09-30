@@ -24,7 +24,7 @@ _Common QML item contract for data series hosted by_ `PlotView` _._[More...](#de
 Inherits the following classes: QQuickItem
 
 
-Inherited by the following classes: [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
+Inherited by the following classes: [QAccelPlot::BandSeries](classQAccelPlot_1_1BandSeries.md),  [QAccelPlot::BarSeries](classQAccelPlot_1_1BarSeries.md),  [QAccelPlot::LineCurve](classQAccelPlot_1_1LineCurve.md),  [QAccelPlot::PointCloud](classQAccelPlot_1_1PointCloud.md),  [QAccelPlot::RectangleSeries](classQAccelPlot_1_1RectangleSeries.md)
 
 
 ## Inheritance diagram
@@ -35,6 +35,10 @@ flowchart TB
 
   external_base_classQAccelPlot_1_1PlotSeries_1["QQuickItem"]
   external_base_classQAccelPlot_1_1PlotSeries_1 --> classQAccelPlot_1_1PlotSeries
+
+  classQAccelPlot_1_1BandSeries["QAccelPlot::BandSeries"]
+  classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BandSeries
+  click classQAccelPlot_1_1BandSeries "../classQAccelPlot_1_1BandSeries/" "Open QAccelPlot::BandSeries"
 
   classQAccelPlot_1_1BarSeries["QAccelPlot::BarSeries"]
   classQAccelPlot_1_1PlotSeries --> classQAccelPlot_1_1BarSeries

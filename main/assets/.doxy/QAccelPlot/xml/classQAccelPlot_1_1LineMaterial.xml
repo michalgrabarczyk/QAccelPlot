@@ -3,6 +3,7 @@
   <compounddef id="classQAccelPlot_1_1LineMaterial" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::LineMaterial</compoundname>
     <basecompoundref refid="classQAccelPlot_1_1DataTextureMaterial" prot="public" virt="non-virtual">QAccelPlot::DataTextureMaterial</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1BandEdgeMaterial" prot="public" virt="non-virtual">QAccelPlot::BandEdgeMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1GradientLineMaterial" prot="public" virt="non-virtual">QAccelPlot::GradientLineMaterial</derivedcompoundref>
     <includes local="no">LineMaterial.hpp</includes>
     <sectiondef kind="public-attrib">
@@ -185,6 +186,28 @@
         <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="26" column="23"/>
       </memberdef>
     </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineMaterial_1a5c318ed407eb2675171bb6514b96c55b" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialShader *</type>
+        <definition>static QSGMaterialShader * QAccelPlot::LineMaterial::createLineShader</definition>
+        <argsstring>(const QString &amp;vertexShaderFileName)</argsstring>
+        <name>createLineShader</name>
+        <qualifiedname>QAccelPlot::LineMaterial::createLineShader</qualifiedname>
+        <param>
+          <type>const QString &amp;</type>
+          <declname>vertexShaderFileName</declname>
+        </param>
+        <briefdescription>
+<para>Returns the line shader program with vertex stage <emphasis>vertexShaderFileName</emphasis> and the line fragment stage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The vertex stage must declare the same uniform block as <computeroutput>line.vert</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="43" column="30"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="protected-func">
       <memberdef kind="function" id="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -204,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="41" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="45" column="9"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -214,13 +237,19 @@
 <para>Supplies line width, point count, anti-aliasing parameters, and dash pattern data to the line shaders (std140 offsets 104–179 in the UBO; 176–179 holds the inherited item opacity). </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="4">
+        <label>QAccelPlot::BandEdgeMaterial</label>
+        <link refid="classQAccelPlot_1_1BandEdgeMaterial"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="2">
         <label>QAccelPlot::DataTextureMaterial</label>
         <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>QAccelPlot::GradientLineMaterial</label>
         <link refid="classQAccelPlot_1_1GradientLineMaterial"/>
         <childnode refid="1" relation="public-inheritance">
@@ -253,21 +282,22 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" bodystart="18" bodyend="42"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" line="18" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/LineMaterial.hpp" bodystart="18" bodyend="46"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1LineMaterial_1a1867f65e3def75fdd73e77b23cc99c81" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>antialiasingEnabled</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a35761b0f9aec9f4a130b9c945a04a6d1" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>antialiasingFeather</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>attributeSet</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>color</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1aa6f67a4e56ced1d154072f9e76429c14" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>commitTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>commitTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>compare</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd" prot="protected" virt="virtual"><scope>QAccelPlot::LineMaterial</scope><name>compareExtra</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a5c318ed407eb2675171bb6514b96c55b" prot="protected" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>createLineShader</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a481e131cc233943335dfb606cd1f72fd" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>createShader</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a39517de146145fe8cad195ebeb07bd67" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dashOffset</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a080b9d1cb2b2f9db95cfe30bdb78ea0c" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dashPattern</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a78a7f44883b754d72d762f9a72092d5f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dashPatternSize</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a2175712b813b5841033a676d439c0aff" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dashPeriod</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab6e32c10ee331e5e98044e7eb724ec05" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ad9c83ba84140e97631c0e139f18ab5b1" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>dataTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>DataTextureMaterial</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>domainMax</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>domainMin</name></member>
@@ -276,8 +306,9 @@
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>logScaleY</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1a89519e93947810a89f0be04c23bac115" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>pointCount</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a4fa0d843ec56ae5d4e6a541f26752d9b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>sampledTexture</name></member>
       <member refid="classQAccelPlot_1_1LineMaterial_1ad2e33cfca32e32a638eef4215541870a" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>type</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a345e7672ca0bc009f6a2ffe536069163" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>uploadTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>uploadTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>useVertexColor</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>viewportSize</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::LineMaterial</scope><name>writeCommonUniforms</name></member>

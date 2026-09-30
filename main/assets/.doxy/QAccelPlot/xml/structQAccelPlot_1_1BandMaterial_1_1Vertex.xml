@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1BandMaterial_1_1Vertex" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandMaterial::Vertex</compoundname>
+    <includes local="no">BandMaterial.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a9ee095d7a6c9706758b1f3752d5d4e7f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BandMaterial::Vertex::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>QAccelPlot::BandMaterial::Vertex::id</qualifiedname>
+        <briefdescription>
+<para>Sample index in the data texture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" line="24" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a306223b99024ae7c12603687e7ad011c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float QAccelPlot::BandMaterial::Vertex::edge</definition>
+        <argsstring></argsstring>
+        <name>edge</name>
+        <qualifiedname>QAccelPlot::BandMaterial::Vertex::edge</qualifiedname>
+        <briefdescription>
+<para>0 for the lower edge, 1 for the upper edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" line="25" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structQAccelPlot_1_1BandMaterial_1_1Vertex" kindref="compound">Vertex</ref> layout of the band triangle strip: two vertices per sample. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" line="23" column="5" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandMaterial.hpp" bodystart="23" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a306223b99024ae7c12603687e7ad011c" prot="public" virt="non-virtual"><scope>QAccelPlot::BandMaterial::Vertex</scope><name>edge</name></member>
+      <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a9ee095d7a6c9706758b1f3752d5d4e7f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandMaterial::Vertex</scope><name>id</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

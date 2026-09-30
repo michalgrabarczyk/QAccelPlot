@@ -15,7 +15,7 @@
 
 
 
-_Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._ [More...](#detailed-description)
+_Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._[More...](#detailed-description)
 
 * `#include <DataTextureMaterial.hpp>`
 
@@ -24,7 +24,7 @@ _Base QSGMaterial that uploads curve data as a floating-point texture and expose
 Inherits the following classes: QSGMaterial
 
 
-Inherited by the following classes: [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
+Inherited by the following classes: [QAccelPlot::BandMaterial](classQAccelPlot_1_1BandMaterial.md),  [QAccelPlot::LineMaterial](classQAccelPlot_1_1LineMaterial.md),  [QAccelPlot::PointCloudMaterial](classQAccelPlot_1_1PointCloudMaterial.md),  [QAccelPlot::RectMaterial](classQAccelPlot_1_1RectMaterial.md)
 
 
 ## Inheritance diagram
@@ -36,9 +36,17 @@ flowchart TB
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --> classQAccelPlot_1_1DataTextureMaterial
 
+  classQAccelPlot_1_1BandMaterial["QAccelPlot::BandMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1BandMaterial
+  click classQAccelPlot_1_1BandMaterial "../classQAccelPlot_1_1BandMaterial/" "Open QAccelPlot::BandMaterial"
+
   classQAccelPlot_1_1LineMaterial["QAccelPlot::LineMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --> classQAccelPlot_1_1LineMaterial
   click classQAccelPlot_1_1LineMaterial "../classQAccelPlot_1_1LineMaterial/" "Open QAccelPlot::LineMaterial"
+
+  classQAccelPlot_1_1BandEdgeMaterial["QAccelPlot::BandEdgeMaterial"]
+  classQAccelPlot_1_1LineMaterial --> classQAccelPlot_1_1BandEdgeMaterial
+  click classQAccelPlot_1_1BandEdgeMaterial "../classQAccelPlot_1_1BandEdgeMaterial/" "Open QAccelPlot::BandEdgeMaterial"
 
   classQAccelPlot_1_1GradientLineMaterial["QAccelPlot::GradientLineMaterial"]
   classQAccelPlot_1_1LineMaterial --> classQAccelPlot_1_1GradientLineMaterial
@@ -78,7 +86,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |  QColor | [**color**](#variable-color)   = `{Qt::blue}`<br>_Line/fill color uniform._  |
-|  std::unique\_ptr&lt; QSGTexture &gt; | [**dataTexture**](#variable-datatexture)  <br>_Owned data texture bound to the shader sampler._  |
+|  std::shared\_ptr&lt; [**DataTexture**](classQAccelPlot_1_1DataTexture.md) &gt; | [**dataTexture**](#variable-datatexture)  <br>_Data texture sampled by the shader. Materials drawing the same samples may share one._  |
 |  QVector2D | [**domainMax**](#variable-domainmax)   = `{1.0f, 1.0f}`<br>_Maximum data-space coordinate._  |
 |  QVector2D | [**domainMin**](#variable-domainmin)   = `{0.0f, 0.0f}`<br>_Minimum data-space coordinate._  |
 |  float | [**logScaleX**](#variable-logscalex)   = `{0.0f}`<br>_1.0 when the X axis uses log scale (float for std140 UBO compatibility)._  |
@@ -107,7 +115,8 @@ flowchart TB
 | ---: | :--- |
 |   | [**DataTextureMaterial**](#function-datatexturematerial) () <br>_Constructs an empty_ [_**DataTextureMaterial**_](classQAccelPlot_1_1DataTextureMaterial.md) _._ |
 |  int | [**compare**](#function-compare) (const QSGMaterial \* other) override const<br>_Compares shared uniform fields; delegates type-specific fields to_ `compareExtra()` _._ |
-|  void | [**uploadTexture**](#function-uploadtexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible._ |
+|  QSGTexture \* | [**sampledTexture**](#function-sampledtexture) () const<br>_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._ |
+|  void | [**uploadTexture**](#function-uploadtexture) (QQuickWindow \* window, const float \* data, int floatCount) <br>_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._ |
 |   | [**~DataTextureMaterial**](#function-datatexturematerial) () override<br> |
 
 
@@ -116,7 +125,7 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |  const QSGGeometry::AttributeSet & | [**attributeSet**](#function-attributeset) () <br>_Returns the shared vertex attribute set:_ `{float` _id, float param, uchar4 color} (12 bytes)._ |
-|  void | [**commitTexture**](#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, QSGTexture \* dataTexture) <br>_Commits_ _dataTexture_ _to sampler__binding_ _(call from_`updateSampledImage` _)._ |
+|  void | [**commitTexture**](#function-committexture) (QSGMaterialShader::RenderState & state, int binding, QSGTexture \*\* texture, const [**DataTexture**](classQAccelPlot_1_1DataTexture.md) \* data) <br>_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._ |
 |  bool | [**writeCommonUniforms**](#function-writecommonuniforms) (char \* buf, int bufSize, const QMatrix4x4 & matrix, const [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) \* mat) <br>_Writes the shared UBO prefix (transform + color + domain + flags) into_ _buf_ _._ |
 
 
@@ -197,9 +206,9 @@ QColor QAccelPlot::DataTextureMaterial::color;
 
 ### variable dataTexture {#variable-datatexture}
 
-_Owned data texture bound to the shader sampler._ 
+_Data texture sampled by the shader. Materials drawing the same samples may share one._ 
 ```C++
-std::unique_ptr<QSGTexture> QAccelPlot::DataTextureMaterial::dataTexture;
+std::shared_ptr<DataTexture> QAccelPlot::DataTextureMaterial::dataTexture;
 ```
 
 
@@ -334,12 +343,26 @@ int QAccelPlot::DataTextureMaterial::compare (
 
 
 
+### function sampledTexture {#function-sampledtexture}
+
+_Returns the texture the shader samples, or_ `nullptr` _before_`dataTexture` _holds an upload._
+```C++
+QSGTexture * QAccelPlot::DataTextureMaterial::sampledTexture () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function uploadTexture {#function-uploadtexture}
 
-_Uploads_ _floatCount_ _raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible._
+_Uploads_ _floatCount_ _raw floats from__data_ _into_`dataTexture` _, creating it when it is_`nullptr` _._
 ```C++
 void QAccelPlot::DataTextureMaterial::uploadTexture (
-    std::unique_ptr< QSGTexture > & texture,
     QQuickWindow * window,
     const float * data,
     int floatCount
@@ -387,13 +410,13 @@ static const QSGGeometry::AttributeSet & QAccelPlot::DataTextureMaterial::attrib
 
 ### function commitTexture {#function-committexture}
 
-_Commits_ _dataTexture_ _to sampler__binding_ _(call from_`updateSampledImage` _)._
+_Commits the texture of_ _data_ _to sampler__binding_ _(call from_`updateSampledImage` _). Does nothing before an upload._
 ```C++
 static void QAccelPlot::DataTextureMaterial::commitTexture (
     QSGMaterialShader::RenderState & state,
     int binding,
     QSGTexture ** texture,
-    QSGTexture * dataTexture
+    const DataTexture * data
 ) 
 ```
 

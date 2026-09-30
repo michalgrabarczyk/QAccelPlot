@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -722,6 +724,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1477,6 +1507,10 @@
 </tr>
 <tr>
 <td style="text-align: right;">namespace</td>
+<td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1LineStroke/"><strong>LineStroke</strong></a> <br><em>Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">namespace</td>
 <td style="text-align: left;"><a href="../namespaceQAccelPlot_1_1NanGapModeNS/"><strong>NanGapModeNS</strong></a> <br><em>Namespace exposing the</em> <code>NanGapMode</code> <em>enum to QML.</em></td>
 </tr>
 </tbody>
@@ -1509,6 +1543,34 @@
 <tr>
 <td style="text-align: right;">struct</td>
 <td style="text-align: left;"><a href="../structQAccelPlot_1_1AxisTicks/"><strong>AxisTicks</strong></a> <br><em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>BandEdgeMaterial</strong></a> <br><em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1BandEdgeRenderParams/"><strong>BandEdgeRenderParams</strong></a> <br><em>Inputs for</em> <a href="../classQAccelPlot_1_1BandEdgeRenderer/#function-paint"><em><strong>BandEdgeRenderer::paint()</strong></em></a> <em>, assembled while the GUI thread is blocked.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandEdgeRenderer/"><strong>BandEdgeRenderer</strong></a> <br><em>Internal renderer for the lower or upper edge line of a</em> <code>BandSeries</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandEdges/"><strong>BandEdges</strong></a> <br><em>Controls the lines a</em> <code>BandSeries</code> <em>draws along its lower and upper edges.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandMaterial/"><strong>BandMaterial</strong></a> <br><em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">struct</td>
+<td style="text-align: left;"><a href="../structQAccelPlot_1_1BandSamples/"><strong>BandSamples</strong></a> <br><em>Read-only view over interleaved</em> <code>(x, low, high)</code> <em>band samples in float or double precision.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1BandSeries/"><strong>BandSeries</strong></a> <br><em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
@@ -1560,7 +1622,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">class</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <br><em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> <br><em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">class</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <br><em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">class</td>

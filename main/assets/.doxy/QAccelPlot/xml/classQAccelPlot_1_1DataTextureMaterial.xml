@@ -3,6 +3,7 @@
   <compounddef id="classQAccelPlot_1_1DataTextureMaterial" kind="class" language="C++" prot="public">
     <compoundname>QAccelPlot::DataTextureMaterial</compoundname>
     <basecompoundref prot="public" virt="non-virtual">QSGMaterial</basecompoundref>
+    <derivedcompoundref refid="classQAccelPlot_1_1BandMaterial" prot="public" virt="non-virtual">QAccelPlot::BandMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1LineMaterial" prot="public" virt="non-virtual">QAccelPlot::LineMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloudMaterial" prot="public" virt="non-virtual">QAccelPlot::PointCloudMaterial</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectMaterial" prot="public" virt="non-virtual">QAccelPlot::RectMaterial</derivedcompoundref>
@@ -22,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="63" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="63" bodyend="63"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="67" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="67" bodyend="67"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -38,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="64" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="64" bodyend="64"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="68" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="68" bodyend="68"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="65" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="65" bodyend="65"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="69" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="69" bodyend="69"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" static="no" mutable="no">
         <type>QVector2D</type>
@@ -70,7 +71,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="66" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="66" bodyend="66"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="70" column="15" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -86,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="67" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="67" bodyend="67"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="71" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -102,7 +103,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="68" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="68" bodyend="68"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="72" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="72" bodyend="72"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -118,53 +119,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="69" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="69" bodyend="69"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="73" column="11" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="73" bodyend="73"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1ab6e32c10ee331e5e98044e7eb724ec05" prot="public" static="no" mutable="no">
-        <type>std::unique_ptr&lt; QSGTexture &gt;</type>
-        <definition>std::unique_ptr&lt;QSGTexture&gt; QAccelPlot::DataTextureMaterial::dataTexture</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1ad9c83ba84140e97631c0e139f18ab5b1" prot="public" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;DataTexture&gt; QAccelPlot::DataTextureMaterial::dataTexture</definition>
         <argsstring></argsstring>
         <name>dataTexture</name>
         <qualifiedname>QAccelPlot::DataTextureMaterial::dataTexture</qualifiedname>
         <briefdescription>
-<para>Owned data texture bound to the shader sampler. </para>
+<para>Data texture sampled by the shader. Materials drawing the same samples may share one. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="70" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="70" bodyend="-1"/>
-      </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a18698ef2344679d9e164334ef85259cd" prot="private" static="no" mutable="no">
-        <type>QImage</type>
-        <definition>QImage QAccelPlot::DataTextureMaterial::imageBuffer_</definition>
-        <argsstring></argsstring>
-        <name>imageBuffer_</name>
-        <qualifiedname>QAccelPlot::DataTextureMaterial::imageBuffer_</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="73" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="73" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1DataTextureMaterial_1a85835131bfcd72f7d04df53aaccad665" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool QAccelPlot::DataTextureMaterial::warnedAboutTextureSize_</definition>
-        <argsstring></argsstring>
-        <name>warnedAboutTextureSize_</name>
-        <qualifiedname>QAccelPlot::DataTextureMaterial::warnedAboutTextureSize_</qualifiedname>
-        <initializer>{false}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="74" column="10" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="74" bodyend="74"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="75" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="75" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -181,7 +151,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="38" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="39" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -195,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="39" column="5"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="40" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -214,18 +184,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="42" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="43" column="9"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a345e7672ca0bc009f6a2ffe536069163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::DataTextureMaterial::uploadTexture</definition>
-        <argsstring>(std::unique_ptr&lt; QSGTexture &gt; &amp;texture, QQuickWindow *window, const float *data, int floatCount)</argsstring>
+        <argsstring>(QQuickWindow *window, const float *data, int floatCount)</argsstring>
         <name>uploadTexture</name>
         <qualifiedname>QAccelPlot::DataTextureMaterial::uploadTexture</qualifiedname>
-        <param>
-          <type>std::unique_ptr&lt; QSGTexture &gt; &amp;</type>
-          <declname>texture</declname>
-        </param>
         <param>
           <type>QQuickWindow *</type>
           <declname>window</declname>
@@ -239,13 +205,28 @@
           <declname>floatCount</declname>
         </param>
         <briefdescription>
-<para>Uploads <emphasis>floatCount</emphasis> raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible. </para>
+<para>Uploads <emphasis>floatCount</emphasis> raw floats from <emphasis>data</emphasis> into <computeroutput>dataTexture</computeroutput>, creating it when it is <computeroutput>nullptr</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="50" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1a4fa0d843ec56ae5d4e6a541f26752d9b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGTexture *</type>
+        <definition>QSGTexture * QAccelPlot::DataTextureMaterial::sampledTexture</definition>
+        <argsstring>() const</argsstring>
+        <name>sampledTexture</name>
+        <qualifiedname>QAccelPlot::DataTextureMaterial::sampledTexture</qualifiedname>
+        <briefdescription>
+<para>Returns the texture the shader samples, or <computeroutput>nullptr</computeroutput> before <computeroutput>dataTexture</computeroutput> holds an upload. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="60" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -279,12 +260,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="47" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="48" column="17"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1aa6f67a4e56ced1d154072f9e76429c14" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>static void QAccelPlot::DataTextureMaterial::commitTexture</definition>
-        <argsstring>(QSGMaterialShader::RenderState &amp;state, int binding, QSGTexture **texture, QSGTexture *dataTexture)</argsstring>
+        <argsstring>(QSGMaterialShader::RenderState &amp;state, int binding, QSGTexture **texture, const DataTexture *data)</argsstring>
         <name>commitTexture</name>
         <qualifiedname>QAccelPlot::DataTextureMaterial::commitTexture</qualifiedname>
         <param>
@@ -300,17 +281,17 @@
           <declname>texture</declname>
         </param>
         <param>
-          <type>QSGTexture *</type>
-          <declname>dataTexture</declname>
+          <type>const <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> *</type>
+          <declname>data</declname>
         </param>
         <briefdescription>
-<para>Commits <emphasis>dataTexture</emphasis> to sampler <emphasis>binding</emphasis> (call from <computeroutput>updateSampledImage</computeroutput>). </para>
+<para>Commits the texture of <emphasis>data</emphasis> to sampler <emphasis>binding</emphasis> (call from <computeroutput>updateSampledImage</computeroutput>). Does nothing before an upload. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="53" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="54" column="17"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>const QSGGeometry::AttributeSet &amp;</type>
@@ -325,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="56" column="44"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="57" column="44"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -335,6 +316,7 @@
         <argsstring>(const QSGMaterial *other) const</argsstring>
         <name>compareExtra</name>
         <qualifiedname>QAccelPlot::DataTextureMaterial::compareExtra</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BandMaterial_1ae9b9d19eee75b5bc4211dc185d5e8bea">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BarMaterial_1a69a4d646d25a5f2bb6eed58351481d86">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1GradientLineMaterial_1a4ea998d5a0d1b31f79c6366ed9d4ec62">compareExtra</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd">compareExtra</reimplementedby>
@@ -351,11 +333,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="60" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="64" column="17"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
-<para>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms. </para>
+<para>Base QSGMaterial that samples series data from a <computeroutput><ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref></computeroutput> and exposes shared shader uniforms. </para>
     </briefdescription>
     <detaileddescription>
 <para>Subclasses (<computeroutput><ref refid="classQAccelPlot_1_1LineMaterial" kindref="compound">LineMaterial</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1RectMaterial" kindref="compound">RectMaterial</ref></computeroutput>) extend the UBO (Uniform Buffer Object) with type-specific fields. The shared uniform block occupies the first 116 bytes of the std140 UBO: <simplesect kind="par"><title>UBO layout (std140)</title><para><itemizedlist>
@@ -373,10 +355,22 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="7">
+      <node id="5">
+        <label>QAccelPlot::BandEdgeMaterial</label>
+        <link refid="classQAccelPlot_1_1BandEdgeMaterial"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::BandMaterial</label>
+        <link refid="classQAccelPlot_1_1BandMaterial"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
         <label>QAccelPlot::BarMaterial</label>
         <link refid="classQAccelPlot_1_1BarMaterial"/>
-        <childnode refid="6" relation="public-inheritance">
+        <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
       <node id="1">
@@ -385,25 +379,25 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="6">
         <label>QAccelPlot::GradientLineMaterial</label>
         <link refid="classQAccelPlot_1_1GradientLineMaterial"/>
-        <childnode refid="3" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
+      <node id="4">
         <label>QAccelPlot::LineMaterial</label>
         <link refid="classQAccelPlot_1_1LineMaterial"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
+      <node id="7">
         <label>QAccelPlot::PointCloudMaterial</label>
         <link refid="classQAccelPlot_1_1PointCloudMaterial"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="8">
         <label>QAccelPlot::RectMaterial</label>
         <link refid="classQAccelPlot_1_1RectMaterial"/>
         <childnode refid="1" relation="public-inheritance">
@@ -424,24 +418,23 @@
         <label>QSGMaterial</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="35" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="35" bodyend="75"/>
+    <location file="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" line="36" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTextureMaterial.hpp" bodystart="36" bodyend="76"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>attributeSet</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>color</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1aa6f67a4e56ced1d154072f9e76429c14" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>commitTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>commitTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>compare</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a7cd48b95da2721520a594dae33147990" prot="protected" virt="virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>compareExtra</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab6e32c10ee331e5e98044e7eb724ec05" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>dataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ad9c83ba84140e97631c0e139f18ab5b1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>dataTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>DataTextureMaterial</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>domainMax</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>domainMin</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a18698ef2344679d9e164334ef85259cd" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>imageBuffer_</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>logScaleX</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>logScaleY</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a345e7672ca0bc009f6a2ffe536069163" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>uploadTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a4fa0d843ec56ae5d4e6a541f26752d9b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>sampledTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>uploadTexture</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>useVertexColor</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>viewportSize</name></member>
-      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a85835131bfcd72f7d04df53aaccad665" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>warnedAboutTextureSize_</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>writeCommonUniforms</name></member>
       <member refid="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTextureMaterial</scope><name>~DataTextureMaterial</name></member>
     </listofallmembers>

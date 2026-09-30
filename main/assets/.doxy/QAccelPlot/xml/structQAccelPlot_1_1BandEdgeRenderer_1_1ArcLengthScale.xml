@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::BandEdgeRenderer::ArcLengthScale</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a511095658f5b2f4ec723ecf1716d9df4" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandEdgeRenderer::ArcLengthScale::xSpan</definition>
+        <argsstring></argsstring>
+        <name>xSpan</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::xSpan</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="66" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a6cc56c61181a6f92723ceef1b7d62b84" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandEdgeRenderer::ArcLengthScale::ySpan</definition>
+        <argsstring></argsstring>
+        <name>ySpan</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::ySpan</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="67" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a4f1292498f04b805df90e79413e11762" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::BandEdgeRenderer::ArcLengthScale::viewportSize</definition>
+        <argsstring></argsstring>
+        <name>viewportSize</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::viewportSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="68" column="19" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1ae912dea0946b2509e781a51d01f82ff4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandEdgeRenderer::ArcLengthScale::logScaleX</definition>
+        <argsstring></argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::logScaleX</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="69" column="14" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a5efd5bb5cb90e03e04ab524afec6f4f7" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandEdgeRenderer::ArcLengthScale::logScaleY</definition>
+        <argsstring></argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::logScaleY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="70" column="14" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a58f4f5861381bd73ba7d51bba61e7396" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandEdgeRenderer::ArcLengthScale::matches</definition>
+        <argsstring>(const ArcLengthScale &amp;other) const</argsstring>
+        <name>matches</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::ArcLengthScale::matches</qualifiedname>
+        <param>
+          <type>const ArcLengthScale &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="72" column="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="65" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1ae912dea0946b2509e781a51d01f82ff4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>logScaleX</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a5efd5bb5cb90e03e04ab524afec6f4f7" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>logScaleY</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a58f4f5861381bd73ba7d51bba61e7396" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>matches</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a4f1292498f04b805df90e79413e11762" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>viewportSize</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a511095658f5b2f4ec723ecf1716d9df4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>xSpan</name></member>
+      <member refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale_1a6cc56c61181a6f92723ceef1b7d62b84" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer::ArcLengthScale</scope><name>ySpan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

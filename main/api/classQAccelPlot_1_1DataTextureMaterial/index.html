@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -722,6 +724,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1351,6 +1381,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-sampledtexture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function sampledTexture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-uploadtexture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1474,12 +1515,12 @@
 
 <h1 id="class-qaccelplotdatatexturematerial">Class QAccelPlot::DataTextureMaterial<a class="headerlink" href="#class-qaccelplotdatatexturematerial" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>DataTextureMaterial</strong></a></p>
-<p><em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em><a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;DataTextureMaterial.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: QSGMaterial</p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1LineMaterial/">QAccelPlot::LineMaterial</a>,  <a href="../classQAccelPlot_1_1PointCloudMaterial/">QAccelPlot::PointCloudMaterial</a>,  <a href="../classQAccelPlot_1_1RectMaterial/">QAccelPlot::RectMaterial</a></p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1BandMaterial/">QAccelPlot::BandMaterial</a>,  <a href="../classQAccelPlot_1_1LineMaterial/">QAccelPlot::LineMaterial</a>,  <a href="../classQAccelPlot_1_1PointCloudMaterial/">QAccelPlot::PointCloudMaterial</a>,  <a href="../classQAccelPlot_1_1RectMaterial/">QAccelPlot::RectMaterial</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1DataTextureMaterial["QAccelPlot::DataTextureMaterial"]
@@ -1487,9 +1528,17 @@
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --&gt; classQAccelPlot_1_1DataTextureMaterial
 
+  classQAccelPlot_1_1BandMaterial["QAccelPlot::BandMaterial"]
+  classQAccelPlot_1_1DataTextureMaterial --&gt; classQAccelPlot_1_1BandMaterial
+  click classQAccelPlot_1_1BandMaterial "../classQAccelPlot_1_1BandMaterial/" "Open QAccelPlot::BandMaterial"
+
   classQAccelPlot_1_1LineMaterial["QAccelPlot::LineMaterial"]
   classQAccelPlot_1_1DataTextureMaterial --&gt; classQAccelPlot_1_1LineMaterial
   click classQAccelPlot_1_1LineMaterial "../classQAccelPlot_1_1LineMaterial/" "Open QAccelPlot::LineMaterial"
+
+  classQAccelPlot_1_1BandEdgeMaterial["QAccelPlot::BandEdgeMaterial"]
+  classQAccelPlot_1_1LineMaterial --&gt; classQAccelPlot_1_1BandEdgeMaterial
+  click classQAccelPlot_1_1BandEdgeMaterial "../classQAccelPlot_1_1BandEdgeMaterial/" "Open QAccelPlot::BandEdgeMaterial"
 
   classQAccelPlot_1_1GradientLineMaterial["QAccelPlot::GradientLineMaterial"]
   classQAccelPlot_1_1LineMaterial --&gt; classQAccelPlot_1_1GradientLineMaterial
@@ -1521,8 +1570,8 @@
 <td style="text-align: left;"><a href="#variable-color"><strong>color</strong></a>   = <code>{Qt::blue}</code><br><em>Line/fill color uniform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::unique_ptr&lt; QSGTexture &gt;</td>
-<td style="text-align: left;"><a href="#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Owned data texture bound to the shader sampler.</em></td>
+<td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Data texture sampled by the shader. Materials drawing the same samples may share one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QVector2D</td>
@@ -1568,8 +1617,12 @@
 <td style="text-align: left;"><a href="#function-compare"><strong>compare</strong></a> (const QSGMaterial * other) override const<br><em>Compares shared uniform fields; delegates type-specific fields to</em> <code>compareExtra()</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">QSGTexture *</td>
+<td style="text-align: left;"><a href="#function-sampledtexture"><strong>sampledTexture</strong></a> () const<br><em>Returns the texture the shader samples, or</em> <code>nullptr</code> <em>before</em><code>dataTexture</code> <em>holds an upload.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-uploadtexture"><strong>uploadTexture</strong></a> (std::unique_ptr&lt; QSGTexture &gt; &amp; texture, QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible.</em></td>
+<td style="text-align: left;"><a href="#function-uploadtexture"><strong>uploadTexture</strong></a> (QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats from__data</em> <em>into</em><code>dataTexture</code> <em>, creating it when it is</em><code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1592,7 +1645,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, QSGTexture * dataTexture) <br><em>Commits</em> <em>dataTexture</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>).</em></td>
+<td style="text-align: left;"><a href="#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, const <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> * data) <br><em>Commits the texture of</em> <em>data</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>). Does nothing before an upload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1637,8 +1690,8 @@
 <hr>
 
 <h3 id="variable-datatexture">variable dataTexture<a class="headerlink" href="#variable-datatexture" title="Permanent link">&para;</a></h3>
-<p><em>Owned data texture bound to the shader sampler.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">QSGTexture</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">dataTexture</span><span class="p">;</span>
+<p><em>Data texture sampled by the shader. Materials drawing the same samples may share one.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DataTexture</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">dataTexture</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
 
@@ -1692,56 +1745,61 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-sampledtexture">function sampledTexture<a class="headerlink" href="#function-sampledtexture" title="Permanent link">&para;</a></h3>
+<p><em>Returns the texture the shader samples, or</em> <code>nullptr</code> <em>before</em><code>dataTexture</code> <em>holds an upload.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QSGTexture</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">sampledTexture</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-uploadtexture">function uploadTexture<a class="headerlink" href="#function-uploadtexture" title="Permanent link">&para;</a></h3>
-<p><em>Uploads</em> <em>floatCount</em> <em>raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">uploadTexture</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QSGTexture</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">QQuickWindow</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">,</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">floatCount</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Uploads</em> <em>floatCount</em> <em>raw floats from__data</em> <em>into</em><code>dataTexture</code> <em>, creating it when it is</em><code>nullptr</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">uploadTexture</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">QQuickWindow</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">floatCount</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-datatexturematerial">function ~DataTextureMaterial<a class="headerlink" href="#function-datatexturematerial" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::~</span><span class="n">DataTextureMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::~</span><span class="n">DataTextureMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-attributeset">function attributeSet<a class="headerlink" href="#function-attributeset" title="Permanent link">&para;</a></h3>
 <p><em>Returns the shared vertex attribute set:</em> <code>{float</code> <em>id, float param, uchar4 color} (12 bytes).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGGeometry</span><span class="o">::</span><span class="n">AttributeSet</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">attributeSet</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-committexture">function commitTexture<a class="headerlink" href="#function-committexture" title="Permanent link">&para;</a></h3>
-<p><em>Commits</em> <em>dataTexture</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">commitTexture</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">binding</span><span class="p">,</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="n">QSGTexture</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="n">QSGTexture</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dataTexture</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">)</span><span class="w"> </span>
+<p><em>Commits the texture of</em> <em>data</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>). Does nothing before an upload.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">commitTexture</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">binding</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">QSGTexture</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataTexture</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-writecommonuniforms">function writeCommonUniforms<a class="headerlink" href="#function-writecommonuniforms" title="Permanent link">&para;</a></h3>
 <p><em>Writes the shared UBO prefix (transform + color + domain + flags) into</em> <em>buf</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">writeCommonUniforms</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bufSize</span><span class="p">,</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QMatrix4x4</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">matrix</span><span class="p">,</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataTextureMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mat</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">writeCommonUniforms</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bufSize</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QMatrix4x4</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">matrix</span><span class="p">,</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">DataTextureMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mat</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Returns <code>false</code> only if <em>bufSize</em> is too small; always writes all fields otherwise. </p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>
 <p><em>Subclass hook for</em> <code>compare()</code> <em>— called after the shared fields compare equal.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">DataTextureMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 

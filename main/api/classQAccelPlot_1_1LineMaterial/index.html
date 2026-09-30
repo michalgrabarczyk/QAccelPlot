@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -722,6 +724,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1234,6 +1264,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#protected-static-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Static Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detailed-description" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1427,6 +1468,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#protected-static-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Static Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Protected Static Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-createlineshader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function createLineShader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1451,7 +1520,7 @@
 <li><code>#include &lt;LineMaterial.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classQAccelPlot_1_1DataTextureMaterial/">QAccelPlot::DataTextureMaterial</a></p>
-<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1GradientLineMaterial/">QAccelPlot::GradientLineMaterial</a></p>
+<p>Inherited by the following classes: <a href="../classQAccelPlot_1_1BandEdgeMaterial/">QAccelPlot::BandEdgeMaterial</a>,  <a href="../classQAccelPlot_1_1GradientLineMaterial/">QAccelPlot::GradientLineMaterial</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1LineMaterial["QAccelPlot::LineMaterial"]
@@ -1462,6 +1531,10 @@
 
   external_base_classQAccelPlot_1_1DataTextureMaterial_1["QSGMaterial"]
   external_base_classQAccelPlot_1_1DataTextureMaterial_1 --&gt; classQAccelPlot_1_1DataTextureMaterial
+
+  classQAccelPlot_1_1BandEdgeMaterial["QAccelPlot::BandEdgeMaterial"]
+  classQAccelPlot_1_1LineMaterial --&gt; classQAccelPlot_1_1BandEdgeMaterial
+  click classQAccelPlot_1_1BandEdgeMaterial "../classQAccelPlot_1_1BandEdgeMaterial/" "Open QAccelPlot::BandEdgeMaterial"
 
   classQAccelPlot_1_1GradientLineMaterial["QAccelPlot::GradientLineMaterial"]
   classQAccelPlot_1_1LineMaterial --&gt; classQAccelPlot_1_1GradientLineMaterial
@@ -1525,8 +1598,8 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-color"><strong>color</strong></a>   = <code>{Qt::blue}</code><br><em>Line/fill color uniform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::unique_ptr&lt; QSGTexture &gt;</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Owned data texture bound to the shader sampler.</em></td>
+<td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Data texture sampled by the shader. Materials drawing the same samples may share one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QVector2D</td>
@@ -1596,8 +1669,12 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compare"><strong>compare</strong></a> (const QSGMaterial * other) override const<br><em>Compares shared uniform fields; delegates type-specific fields to</em> <code>compareExtra()</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">QSGTexture *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-sampledtexture"><strong>sampledTexture</strong></a> () const<br><em>Returns the texture the shader samples, or</em> <code>nullptr</code> <em>before</em><code>dataTexture</code> <em>holds an upload.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-uploadtexture"><strong>uploadTexture</strong></a> (std::unique_ptr&lt; QSGTexture &gt; &amp; texture, QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-uploadtexture"><strong>uploadTexture</strong></a> (QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats from__data</em> <em>into</em><code>dataTexture</code> <em>, creating it when it is</em><code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1621,7 +1698,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, QSGTexture * dataTexture) <br><em>Commits</em> <em>dataTexture</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>).</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, const <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> * data) <br><em>Commits the texture of</em> <em>data</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>). Does nothing before an upload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -1657,6 +1734,21 @@
 <tr>
 <td style="text-align: right;">virtual int</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><strong>compareExtra</strong></a> (const QSGMaterial * other) const<br><em>Subclass hook for</em> <code>compare()</code> <em>— called after the shared fields compare equal.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-static-functions">Protected Static Functions<a class="headerlink" href="#protected-static-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">QSGMaterialShader *</td>
+<td style="text-align: left;"><a href="#function-createlineshader"><strong>createLineShader</strong></a> (const QString &amp; vertexShaderFileName) <br><em>Returns the line shader program with vertex stage</em> <em>vertexShaderFileName</em> <em>and the line fragment stage.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1738,6 +1830,15 @@
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><em>QAccelPlot::DataTextureMaterial::compareExtra</em></a></p>
+<hr>
+<h2 id="protected-static-functions-documentation">Protected Static Functions Documentation<a class="headerlink" href="#protected-static-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-createlineshader">function createLineShader<a class="headerlink" href="#function-createlineshader" title="Permanent link">&para;</a></h3>
+<p><em>Returns the line shader program with vertex stage</em> <em>vertexShaderFileName</em> <em>and the line fragment stage.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">static</span><span class="w"> </span><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">LineMaterial</span><span class="o">::</span><span class="n">createLineShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vertexShaderFileName</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>The vertex stage must declare the same uniform block as <code>line.vert</code>. </p>
 <hr>
 
 <hr />

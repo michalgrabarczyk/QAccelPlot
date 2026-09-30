@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1LineStroke_1_1Uniforms" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::LineStroke::Uniforms</compoundname>
+    <includes local="no">LineStroke.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a75985df27a35bbb006c5766e8be54725" prot="public" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::LineStroke::Uniforms::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::color</qualifiedname>
+        <briefdescription>
+<para>Line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="43" column="12" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a0b1b10a3afb96f151e0f1f402b51534f" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::LineStroke::Uniforms::lineWidth</definition>
+        <argsstring></argsstring>
+        <name>lineWidth</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::lineWidth</qualifiedname>
+        <briefdescription>
+<para>Line width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="44" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ae26881669b93390d2971ad90f82045bf" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineStroke::Uniforms::domainMin</definition>
+        <argsstring></argsstring>
+        <name>domainMin</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::domainMin</qualifiedname>
+        <briefdescription>
+<para>Minimum data-space coordinate, relative to the render origin. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="45" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a4079b08544b8dd9333faaf0e42c2e7b6" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineStroke::Uniforms::domainMax</definition>
+        <argsstring></argsstring>
+        <name>domainMax</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::domainMax</qualifiedname>
+        <briefdescription>
+<para>Maximum data-space coordinate, relative to the render origin. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="46" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a8081aaa5f9451833683f61134da517b4" prot="public" static="no" mutable="no">
+        <type>QVector2D</type>
+        <definition>QVector2D QAccelPlot::LineStroke::Uniforms::viewportSize</definition>
+        <argsstring></argsstring>
+        <name>viewportSize</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::viewportSize</qualifiedname>
+        <briefdescription>
+<para>Viewport size in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="47" column="15" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aa3634708741e977c81afe300a42067ae" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineStroke::Uniforms::logScaleX</definition>
+        <argsstring></argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::logScaleX</qualifiedname>
+        <briefdescription>
+<para>Whether the X axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="48" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a67618a569271c1a1114d9a7467ca7d9f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineStroke::Uniforms::logScaleY</definition>
+        <argsstring></argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::logScaleY</qualifiedname>
+        <briefdescription>
+<para>Whether the Y axis uses log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="49" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a980507848a332152b4d484313a9ebcc3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::LineStroke::Uniforms::pointCount</definition>
+        <argsstring></argsstring>
+        <name>pointCount</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::pointCount</qualifiedname>
+        <briefdescription>
+<para>Number of samples in the data texture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="50" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ac9f3fceb41adf39badc54c8cadadf565" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::LineStroke::Uniforms::antialiasingEnabled</definition>
+        <argsstring></argsstring>
+        <name>antialiasingEnabled</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::antialiasingEnabled</qualifiedname>
+        <briefdescription>
+<para>Whether GPU-side anti-aliasing is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="51" column="10" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aed9ca5a0c8fdc06ecbb6da4a1512fe45" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::LineStroke::Uniforms::antialiasingFeather</definition>
+        <argsstring></argsstring>
+        <name>antialiasingFeather</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::antialiasingFeather</qualifiedname>
+        <briefdescription>
+<para>Anti-aliasing feather width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="52" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ade8dd6374e894d85efe88760baabce42" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1DashParameters" kindref="compound">DashParameters</ref></type>
+        <definition>DashParameters QAccelPlot::LineStroke::Uniforms::dash</definition>
+        <argsstring></argsstring>
+        <name>dash</name>
+        <qualifiedname>QAccelPlot::LineStroke::Uniforms::dash</qualifiedname>
+        <briefdescription>
+<para>Dash pattern; disabled for solid lines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="53" column="20" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structQAccelPlot_1_1LineStroke_1_1Uniforms" kindref="compound">Uniforms</ref> of a line material that do not depend on its shader variant. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::DashParameters</label>
+        <link refid="structQAccelPlot_1_1DashParameters"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::LineStroke::Uniforms</label>
+        <link refid="structQAccelPlot_1_1LineStroke_1_1Uniforms"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dash</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" line="42" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/LineStroke.hpp" bodystart="42" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ac9f3fceb41adf39badc54c8cadadf565" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>antialiasingEnabled</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aed9ca5a0c8fdc06ecbb6da4a1512fe45" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>antialiasingFeather</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a75985df27a35bbb006c5766e8be54725" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>color</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ade8dd6374e894d85efe88760baabce42" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>dash</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a4079b08544b8dd9333faaf0e42c2e7b6" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>domainMax</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ae26881669b93390d2971ad90f82045bf" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>domainMin</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a0b1b10a3afb96f151e0f1f402b51534f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>lineWidth</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aa3634708741e977c81afe300a42067ae" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>logScaleX</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a67618a569271c1a1114d9a7467ca7d9f" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>logScaleY</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a980507848a332152b4d484313a9ebcc3" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>pointCount</name></member>
+      <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1a8081aaa5f9451833683f61134da517b4" prot="public" virt="non-virtual"><scope>QAccelPlot::LineStroke::Uniforms</scope><name>viewportSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

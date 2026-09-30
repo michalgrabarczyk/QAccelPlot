@@ -17,8 +17,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/materials/DataTexture.hpp"
+
 #include <QColor>
-#include <QImage>
 #include <QMatrix4x4>
 #include <QQuickWindow>
 #include <QSGMaterial>
@@ -38,28 +39,26 @@ public:
 
     static bool writeCommonUniforms(char* buf, int bufSize, const QMatrix4x4& matrix, const DataTextureMaterial* mat);
 
-    void uploadTexture(std::unique_ptr<QSGTexture>& texture, QQuickWindow* window, const float* data, int floatCount);
+    void uploadTexture(QQuickWindow* window, const float* data, int floatCount);
 
-    static void commitTexture(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture, QSGTexture* dataTexture);
+    static void commitTexture(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture, const DataTexture* data);
 
     static const QSGGeometry::AttributeSet& attributeSet();
+
+    QSGTexture* sampledTexture() const;
 
 protected:
     virtual int compareExtra(const QSGMaterial* other) const;
 
 public:
-    QColor color{Qt::blue};                  
-    QVector2D domainMin{0.0f, 0.0f};         
-    QVector2D domainMax{1.0f, 1.0f};         
-    QVector2D viewportSize{800.0f, 600.0f};  
-    float logScaleX{0.0f};                   
-    float logScaleY{0.0f};                   
-    float useVertexColor{0.0f};              
-    std::unique_ptr<QSGTexture> dataTexture; 
-
-private:
-    QImage imageBuffer_;
-    bool warnedAboutTextureSize_{false};
+    QColor color{Qt::blue};                 
+    QVector2D domainMin{0.0f, 0.0f};        
+    QVector2D domainMax{1.0f, 1.0f};        
+    QVector2D viewportSize{800.0f, 600.0f}; 
+    float logScaleX{0.0f};                  
+    float logScaleY{0.0f};                  
+    float useVertexColor{0.0f};             
+    std::shared_ptr<DataTexture> dataTexture;
 };
 
 } // namespace QAccelPlot

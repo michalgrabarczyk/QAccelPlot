@@ -175,6 +175,60 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" line="29" column="11" declfile="QAccelPlot/src/QAccelPlot/series/internal/RectGeometry.hpp" declline="29" declcolumn="11"/>
       </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1aa0d65f61e140a98b727f1649918c3566" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::hoverEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>hoverEnabled</name>
+        <qualifiedname>QAccelPlot::Internal::hoverEnabled</qualifiedname>
+        <briefdescription>
+<para>Returns whether series accept hover events: <computeroutput>false</computeroutput> only when <computeroutput>QACCELPLOT_HOVER_ENABLED</computeroutput> is 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="17" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1ac34e08413bb3b53ff8e1154bf2c494dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::supportsCustomShaderRendering</definition>
+        <argsstring>(const QQuickWindow *window)</argsstring>
+        <name>supportsCustomShaderRendering</name>
+        <qualifiedname>QAccelPlot::Internal::supportsCustomShaderRendering</qualifiedname>
+        <param>
+          <type>const QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when <emphasis>window</emphasis> renders through a hardware scene graph backend that runs custom shaders. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="20" column="6" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="SeriesSupport_8hpp_1aa6ae5dce39f0d0f413c54cf6cf325998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::Internal::maxTextureSize</definition>
+        <argsstring>(QQuickWindow *window)</argsstring>
+        <name>maxTextureSize</name>
+        <qualifiedname>QAccelPlot::Internal::maxTextureSize</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Returns the largest texture width and height, in pixels, that <emphasis>window&apos;s</emphasis> GPU supports. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Falls back to 8192, supported by every target GPU, when the RHI cannot be queried (Qt older than 6.6, or a build without the private Qt API). <computeroutput>QACCELPLOT_MAX_TEXTURE_SIZE</computeroutput> lowers the result, for example to exercise capacity limits in tests. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" line="27" column="5" declfile="QAccelPlot/src/QAccelPlot/series/internal/SeriesSupport.hpp" declline="27" declcolumn="5"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>

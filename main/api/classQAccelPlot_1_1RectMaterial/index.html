@@ -457,6 +457,8 @@
       
         
       
+        
+      
     
     
     
@@ -722,6 +724,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1484,8 +1514,8 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-color"><strong>color</strong></a>   = <code>{Qt::blue}</code><br><em>Line/fill color uniform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::unique_ptr&lt; QSGTexture &gt;</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Owned data texture bound to the shader sampler.</em></td>
+<td style="text-align: right;">std::shared_ptr&lt; <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#variable-datatexture"><strong>dataTexture</strong></a>  <br><em>Data texture sampled by the shader. Materials drawing the same samples may share one.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QVector2D</td>
@@ -1555,8 +1585,12 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compare"><strong>compare</strong></a> (const QSGMaterial * other) override const<br><em>Compares shared uniform fields; delegates type-specific fields to</em> <code>compareExtra()</code> <em>.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">QSGTexture *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-sampledtexture"><strong>sampledTexture</strong></a> () const<br><em>Returns the texture the shader samples, or</em> <code>nullptr</code> <em>before</em><code>dataTexture</code> <em>holds an upload.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-uploadtexture"><strong>uploadTexture</strong></a> (std::unique_ptr&lt; QSGTexture &gt; &amp; texture, QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-uploadtexture"><strong>uploadTexture</strong></a> (QQuickWindow * window, const float * data, int floatCount) <br><em>Uploads</em> <em>floatCount</em> <em>raw floats from__data</em> <em>into</em><code>dataTexture</code> <em>, creating it when it is</em><code>nullptr</code> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -1580,7 +1614,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, QSGTexture * dataTexture) <br><em>Commits</em> <em>dataTexture</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>).</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1DataTextureMaterial/#function-committexture"><strong>commitTexture</strong></a> (QSGMaterialShader::RenderState &amp; state, int binding, QSGTexture ** texture, const <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> * data) <br><em>Commits the texture of</em> <em>data</em> <em>to sampler__binding</em> <em>(call from</em><code>updateSampledImage</code> <em>). Does nothing before an upload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>

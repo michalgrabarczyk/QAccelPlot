@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1DataTexture" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::DataTexture</compoundname>
+    <includes local="no">DataTexture.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTexture_1a01345b67cef3ec5d41aeed8c512cce1a" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; QSGTexture &gt;</type>
+        <definition>std::unique_ptr&lt;QSGTexture&gt; QAccelPlot::DataTexture::texture_</definition>
+        <argsstring></argsstring>
+        <name>texture_</name>
+        <qualifiedname>QAccelPlot::DataTexture::texture_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="39" column="21" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTexture_1aca251400b6640d12ba71bf2ddbbd0ddb" prot="private" static="no" mutable="no">
+        <type>QImage</type>
+        <definition>QImage QAccelPlot::DataTexture::imageBuffer_</definition>
+        <argsstring></argsstring>
+        <name>imageBuffer_</name>
+        <qualifiedname>QAccelPlot::DataTexture::imageBuffer_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="40" column="12" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1DataTexture_1a2ea45adefc2934d8e0488d0d96375b2e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::DataTexture::warnedAboutTextureSize_</definition>
+        <argsstring></argsstring>
+        <name>warnedAboutTextureSize_</name>
+        <qualifiedname>QAccelPlot::DataTexture::warnedAboutTextureSize_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="41" column="10" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" bodystart="41" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTexture_1a928ff1dc3f058b4dc76aa14b6ea31f47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DataTexture::DataTexture</definition>
+        <argsstring>()=default</argsstring>
+        <name>DataTexture</name>
+        <qualifiedname>QAccelPlot::DataTexture::DataTexture</qualifiedname>
+        <briefdescription>
+<para>Constructs an empty data texture; <computeroutput><ref refid="classQAccelPlot_1_1DataTexture_1a40545c6de7b580e759a4d6384045b7c5" kindref="member">texture()</ref></computeroutput> stays <computeroutput>nullptr</computeroutput> until the first upload. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="26" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTexture_1a7b6ff3e399503d5b998fd6d35eaba925" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::DataTexture::DataTexture</definition>
+        <argsstring>(std::unique_ptr&lt; QSGTexture &gt; texture)</argsstring>
+        <name>DataTexture</name>
+        <qualifiedname>QAccelPlot::DataTexture::DataTexture</qualifiedname>
+        <param>
+          <type>std::unique_ptr&lt; QSGTexture &gt;</type>
+          <declname>texture</declname>
+        </param>
+        <briefdescription>
+<para>Wraps the existing <emphasis>texture</emphasis>, for example in tests. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="28" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTexture_1af162df395ddeb281846b4f58b3f697a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::DataTexture::upload</definition>
+        <argsstring>(QQuickWindow *window, const float *data, int floatCount)</argsstring>
+        <name>upload</name>
+        <qualifiedname>QAccelPlot::DataTexture::upload</qualifiedname>
+        <param>
+          <type>QQuickWindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>floatCount</declname>
+        </param>
+        <briefdescription>
+<para>Uploads <emphasis>floatCount</emphasis> raw floats from <emphasis>data</emphasis>, reusing GPU and CPU buffers where possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing when <emphasis>window</emphasis> is <computeroutput>nullptr</computeroutput> or <emphasis>floatCount</emphasis> is not positive. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="33" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1DataTexture_1a40545c6de7b580e759a4d6384045b7c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGTexture *</type>
+        <definition>QSGTexture * QAccelPlot::DataTexture::texture</definition>
+        <argsstring>() const</argsstring>
+        <name>texture</name>
+        <qualifiedname>QAccelPlot::DataTexture::texture</qualifiedname>
+        <briefdescription>
+<para>Returns the texture the shaders sample, or <computeroutput>nullptr</computeroutput> before the first successful upload. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="36" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Materials hold it through a <computeroutput>std::shared_ptr</computeroutput>, so several nodes of one series can sample the same upload. It is created and destroyed on the render thread, like the materials holding it. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/DataTexture.hpp" bodystart="23" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1DataTexture_1a928ff1dc3f058b4dc76aa14b6ea31f47" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>DataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1a7b6ff3e399503d5b998fd6d35eaba925" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>DataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1aca251400b6640d12ba71bf2ddbbd0ddb" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>imageBuffer_</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1a40545c6de7b580e759a4d6384045b7c5" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>texture</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1a01345b67cef3ec5d41aeed8c512cce1a" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>texture_</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1af162df395ddeb281846b4f58b3f697a0" prot="public" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>upload</name></member>
+      <member refid="classQAccelPlot_1_1DataTexture_1a2ea45adefc2934d8e0488d0d96375b2e" prot="private" virt="non-virtual"><scope>QAccelPlot::DataTexture</scope><name>warnedAboutTextureSize_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

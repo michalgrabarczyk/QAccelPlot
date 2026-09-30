@@ -21,6 +21,7 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
+#include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QColor>
@@ -60,16 +61,6 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; 
     const std::vector<char>* vertexCache;           
     const LineStyle* lineStyle;                     
-};
-
-struct LineVertex {
-    float id;        
-    float side;      
-    unsigned char r; 
-    unsigned char g; 
-    unsigned char b; 
-    unsigned char a; 
-    float arcLength; 
 };
 
 struct FillSamples {

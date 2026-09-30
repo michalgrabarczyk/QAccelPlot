@@ -6,12 +6,15 @@
 ## a
 
 * **appendEnvelopeSamples** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
+* **applyUniforms** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
+* **arcLengths** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
 ## c
 
 * **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **countInvalidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
+* **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
 ## d
@@ -38,6 +41,11 @@
 * **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## h
+
+* **hoverEnabled** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+
+
 ## i
 
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
@@ -55,6 +63,7 @@
 ## m
 
 * **Mode** ([**QAccelPlot::GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md), [**QAccelPlot::NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md))
+* **maxTextureSize** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## n
@@ -81,6 +90,7 @@
 ## s
 
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
+* **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 ## u
@@ -89,10 +99,16 @@
 * **unboundedGradientCoordinate** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
+## v
+
+* **vertexAttributes** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
+
+
 ## w
 
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
 
 
 

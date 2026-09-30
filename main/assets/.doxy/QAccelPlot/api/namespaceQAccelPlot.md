@@ -41,6 +41,7 @@
 | namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
 | namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 | namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-sample contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
+| namespace | [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) <br>_Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._  |
 | namespace | [**NanGapModeNS**](namespaceQAccelPlot_1_1NanGapModeNS.md) <br>_Namespace exposing the_ `NanGapMode` _enum to QML._ |
 
 
@@ -53,6 +54,13 @@
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
 | struct | [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) <br>_The visible tick and subtick values, with formatted labels, for one axis viewport._  |
+| class | [**BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) <br>_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _samples._ |
+| struct | [**BandEdgeRenderParams**](structQAccelPlot_1_1BandEdgeRenderParams.md) <br>_Inputs for_ [_**BandEdgeRenderer::paint()**_](classQAccelPlot_1_1BandEdgeRenderer.md#function-paint) _, assembled while the GUI thread is blocked._ |
+| class | [**BandEdgeRenderer**](classQAccelPlot_1_1BandEdgeRenderer.md) <br>_Internal renderer for the lower or upper edge line of a_ `BandSeries` _._ |
+| class | [**BandEdges**](classQAccelPlot_1_1BandEdges.md) <br>_Controls the lines a_ `BandSeries` _draws along its lower and upper edges._ |
+| class | [**BandMaterial**](classQAccelPlot_1_1BandMaterial.md) <br>_QSGMaterial that fills a band between the low and high values of_ `(x, low, high)` _samples._ |
+| struct | [**BandSamples**](structQAccelPlot_1_1BandSamples.md) <br>_Read-only view over interleaved_ `(x, low, high)` _band samples in float or double precision._ |
+| class | [**BandSeries**](classQAccelPlot_1_1BandSeries.md) <br>_A hardware-accelerated QML item that fills the area between a low and a high value at each X._  |
 | class | [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md) <br>_QSGMaterial for bar series rendering, extending_ [_**RectMaterial**_](classQAccelPlot_1_1RectMaterial.md) _with the bar geometry uniforms._ |
 | class | [**BarSeries**](classQAccelPlot_1_1BarSeries.md) <br>_A hardware-accelerated QML item that renders a bar chart._  |
 | class | [**ColorBar**](classQAccelPlot_1_1ColorBar.md) <br>_A continuous key that shows how a series'_ `Colormap` _maps values to colors._ |
@@ -65,7 +73,8 @@
 | class | [**DashLine**](classQAccelPlot_1_1DashLine.md) <br>_A line style that renders the curve as a customisable dashed line._  |
 | struct | [**DashParameters**](structQAccelPlot_1_1DashParameters.md) <br>_Plain-data snapshot of dash rendering parameters._  |
 | class | [**DataAnchor**](classQAccelPlot_1_1DataAnchor.md) <br>_A QQuickItem that tracks a data-coordinate rectangle in pixel space._  |
-| class | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) <br>_Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms._  |
+| class | [**DataTexture**](classQAccelPlot_1_1DataTexture.md) <br>_Series data uploaded to the GPU as an RGBA8888 texture, one float per texel._  |
+| class | [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) <br>_Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._ |
 | class | [**DataTransition**](classQAccelPlot_1_1DataTransition.md) <br>_Abstract base class for animated data transitions on plot elements._  |
 | class | [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) <br>_A tick label formatter that displays tick values as formatted date/time strings._  |
 | class | [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) <br>_An animation transition that reveals the target curve by drawing it point-by-point from start to end._  |

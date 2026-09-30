@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1BandSamples" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandSamples</compoundname>
+    <includes local="no">BandEdgeRenderer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandSamples_1a1794adb2103fcf8232778f2168d83841" prot="public" static="no" mutable="no">
+        <type>const float *</type>
+        <definition>const float* QAccelPlot::BandSamples::floatData</definition>
+        <argsstring></argsstring>
+        <name>floatData</name>
+        <qualifiedname>QAccelPlot::BandSamples::floatData</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Float samples, or <computeroutput>nullptr</computeroutput> when <computeroutput>doubleData</computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="27" column="17" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandSamples_1abcab2db4e9929f3e5dacec0ad8c77d66" prot="public" static="no" mutable="no">
+        <type>const double *</type>
+        <definition>const double* QAccelPlot::BandSamples::doubleData</definition>
+        <argsstring></argsstring>
+        <name>doubleData</name>
+        <qualifiedname>QAccelPlot::BandSamples::doubleData</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Double samples, or <computeroutput>nullptr</computeroutput> when <computeroutput>floatData</computeroutput> is set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="28" column="18" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1BandSamples_1abbd74e53c82b6f03292052290b4a50f9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BandSamples::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::BandSamples::count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of samples. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="29" column="9" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1BandSamples_1a2b8b3071b70e7c4c07b937881551131f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandSamples::value</definition>
+        <argsstring>(const int index, const int component) const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::BandSamples::value</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+<para>Returns value <emphasis>component</emphasis> (0 = x, 1 = low, 2 = high) of sample <emphasis>index</emphasis> without narrowing double data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="32" column="11" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="32" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Read-only view over interleaved <computeroutput>(x, low, high)</computeroutput> band samples in float or double precision. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="26" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="26" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1BandSamples_1abbd74e53c82b6f03292052290b4a50f9" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSamples</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1BandSamples_1abcab2db4e9929f3e5dacec0ad8c77d66" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSamples</scope><name>doubleData</name></member>
+      <member refid="structQAccelPlot_1_1BandSamples_1a1794adb2103fcf8232778f2168d83841" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSamples</scope><name>floatData</name></member>
+      <member refid="structQAccelPlot_1_1BandSamples_1a2b8b3071b70e7c4c07b937881551131f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSamples</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

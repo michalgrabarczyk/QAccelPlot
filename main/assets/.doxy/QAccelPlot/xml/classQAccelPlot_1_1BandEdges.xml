@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1BandEdges" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandEdges</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">BandEdges.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1BandEdges_1aea23385a38dff306b4e1b3bcdf8b1eb2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSqreal</type>
+        <definition>QML_ANONYMOUSqreal QAccelPlot::BandEdges::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::BandEdges::width</qualifiedname>
+        <read>width</read>
+        <write>setWidth</write>
+        <briefdescription>
+<para>Edge line width in pixels, clamped to at least 0. Default: 0, no edge lines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BandEdges_1a0865a3dd7af4197af445406a4285c69a" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandEdges::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BandEdges::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Edge line color. Default: an invalid color, which draws the band&apos;s <computeroutput>color</computeroutput> at full opacity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BandEdges_1ae1295c9c8bd0b5e976d97cef7a9edfa4" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
+        <definition>LineStyle* QAccelPlot::BandEdges::lineStyle</definition>
+        <argsstring></argsstring>
+        <name>lineStyle</name>
+        <qualifiedname>QAccelPlot::BandEdges::lineStyle</qualifiedname>
+        <read>lineStyle</read>
+        <write>setLineStyle</write>
+        <briefdescription>
+<para>Edge line style (<ref refid="classQAccelPlot_1_1SolidLine" kindref="compound">SolidLine</ref>, <ref refid="classQAccelPlot_1_1DashLine" kindref="compound">DashLine</ref>, or <ref refid="classQAccelPlot_1_1NoLine" kindref="compound">NoLine</ref>). Default: <ref refid="classQAccelPlot_1_1SolidLine" kindref="compound">SolidLine</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdges_1ae55b352cdc7b3903283a51fe62bba6df" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandEdges::width_</definition>
+        <argsstring></argsstring>
+        <name>width_</name>
+        <qualifiedname>QAccelPlot::BandEdges::width_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="71" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdges_1ada7892caa26fe57526b67cc9c1b9bf98" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandEdges::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::BandEdges::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="72" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdges_1aa860355db2703c928ca7ac623525756f" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> &gt;</type>
+        <definition>QPointer&lt;LineStyle&gt; QAccelPlot::BandEdges::lineStyle_</definition>
+        <argsstring></argsstring>
+        <name>lineStyle_</name>
+        <qualifiedname>QAccelPlot::BandEdges::lineStyle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="73" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1a96bf1b7aee58c4cf4523ca15922fb265" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::BandEdges::BandEdges</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>BandEdges</name>
+        <qualifiedname>QAccelPlot::BandEdges::BandEdges</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> owned by <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="43" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1af777399ce97458eef4893dc242ffae10" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandEdges::width</definition>
+        <argsstring>() const</argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::BandEdges::width</qualifiedname>
+        <briefdescription>
+<para>Returns the edge line width in pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="46" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1a148cb1321457852f5fa292c9cd8d3d9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::setWidth</definition>
+        <argsstring>(qreal width)</argsstring>
+        <name>setWidth</name>
+        <qualifiedname>QAccelPlot::BandEdges::setWidth</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+<para>Sets the edge line width to <emphasis>width</emphasis> pixels. Negative values are clamped to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="48" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1ac7e70e594e36869a17160bf972fcd026" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandEdges::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BandEdges::color</qualifiedname>
+        <briefdescription>
+<para>Returns the edge line color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="51" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1a8a292287605e2ccfeaf28d54cf707402" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::BandEdges::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the edge line color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="53" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1a3ed2b447eb0beda0c6b2425cd8787b33" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
+        <definition>LineStyle * QAccelPlot::BandEdges::lineStyle</definition>
+        <argsstring>() const</argsstring>
+        <name>lineStyle</name>
+        <qualifiedname>QAccelPlot::BandEdges::lineStyle</qualifiedname>
+        <briefdescription>
+<para>Returns the edge line style, or <computeroutput>nullptr</computeroutput> after the assigned style is destroyed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="56" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1a490ba119368e42297bf2ebdb4f1f5d2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::setLineStyle</definition>
+        <argsstring>(LineStyle *style)</argsstring>
+        <name>setLineStyle</name>
+        <qualifiedname>QAccelPlot::BandEdges::setLineStyle</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1LineStyle" kindref="compound">LineStyle</ref> *</type>
+          <declname>style</declname>
+        </param>
+        <briefdescription>
+<para>Sets the edge line style to <emphasis>style</emphasis>. The style is not owned. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="58" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandEdges_1abbdf3b90485fa8211367226eb7bfb626" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::widthChanged</definition>
+        <argsstring>()</argsstring>
+        <name>widthChanged</name>
+        <qualifiedname>QAccelPlot::BandEdges::widthChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the width property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="62" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandEdges_1af0debe3cd3aba0a87c842f7e56c3edd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::BandEdges::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="64" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandEdges_1a2cb009ede73b408976f2ce4fc747eace" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::lineStyleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>lineStyleChanged</name>
+        <qualifiedname>QAccelPlot::BandEdges::lineStyleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the lineStyle property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="66" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdges_1aa78e5d79e28207ddef5f44c66da34124" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandEdges::onLineStyleDestroyed</definition>
+        <argsstring>()</argsstring>
+        <name>onLineStyleDestroyed</name>
+        <qualifiedname>QAccelPlot::BandEdges::onLineStyleDestroyed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="69" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Controls the lines a <computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput> draws along its lower and upper edges. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Accessible via the <computeroutput>edges</computeroutput> CONSTANT grouped property of <computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>, for example <computeroutput>edges.width: 1</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::BandEdges</label>
+        <link refid="classQAccelPlot_1_1BandEdges"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::BandEdges</label>
+        <link refid="classQAccelPlot_1_1BandEdges"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/BandEdges.hpp" bodystart="30" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1BandEdges_1a96bf1b7aee58c4cf4523ca15922fb265" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>BandEdges</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a0865a3dd7af4197af445406a4285c69a" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1ac7e70e594e36869a17160bf972fcd026" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1ada7892caa26fe57526b67cc9c1b9bf98" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1af0debe3cd3aba0a87c842f7e56c3edd4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1ae1295c9c8bd0b5e976d97cef7a9edfa4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>lineStyle</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a3ed2b447eb0beda0c6b2425cd8787b33" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>lineStyle</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1aa860355db2703c928ca7ac623525756f" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>lineStyle_</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a2cb009ede73b408976f2ce4fc747eace" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>lineStyleChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1aa78e5d79e28207ddef5f44c66da34124" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>onLineStyleDestroyed</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a8a292287605e2ccfeaf28d54cf707402" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a490ba119368e42297bf2ebdb4f1f5d2f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>setLineStyle</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1a148cb1321457852f5fa292c9cd8d3d9f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>setWidth</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1aea23385a38dff306b4e1b3bcdf8b1eb2" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1af777399ce97458eef4893dc242ffae10" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>width</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1ae55b352cdc7b3903283a51fe62bba6df" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>width_</name></member>
+      <member refid="classQAccelPlot_1_1BandEdges_1abbdf3b90485fa8211367226eb7bfb626" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdges</scope><name>widthChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -726,6 +728,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
   
 
     
@@ -1174,6 +1204,8 @@
 <p>This inheritance list is sorted roughly, but not completely, alphabetically:</p>
 <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>QAccelPlot::AxisTickPainter</strong></a> <em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeRenderer/"><strong>QAccelPlot::BandEdgeRenderer</strong></a> <em>Internal renderer for the lower or upper edge line of a</em> <code>BandSeries</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTexture/"><strong>QAccelPlot::DataTexture</strong></a> <em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>QAccelPlot::DataTransition::Run</strong></a> <em>One animation of a transition on one host element.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a> <em>Cached one-dimensional texture used by gradient materials.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
@@ -1186,6 +1218,9 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a> <em>Groups the QPainter context arguments passed into sub-painting helpers.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a> <em>All style inputs required for a single paint call, bundled to reduce parameter count.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTicks/"><strong>QAccelPlot::AxisTicks</strong></a> <em>The visible tick and subtick values, with formatted labels, for one axis viewport.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderParams/"><strong>QAccelPlot::BandEdgeRenderParams</strong></a> <em>Inputs for</em> <a href="../classQAccelPlot_1_1BandEdgeRenderer/#function-paint"><em><strong>BandEdgeRenderer::paint()</strong></em></a> <em>, assembled while the GUI thread is blocked.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><strong>QAccelPlot::BandMaterial::Vertex</strong></a> <a href="../structQAccelPlot_1_1BandMaterial_1_1Vertex/"><em><strong>Vertex</strong></em></a> <em>layout of the band triangle strip: two vertices per sample.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSamples/"><strong>QAccelPlot::BandSamples</strong></a> <em>Read-only view over interleaved</em> <code>(x, low, high)</code> <em>band samples in float or double precision.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveChunk/"><strong>QAccelPlot::CurveChunk</strong></a> <em>Axis-aligned bounding box (AABB) for a contiguous block of curve points, used for hit-test culling.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveDataView/"><strong>QAccelPlot::CurveDataView</strong></a> <em>Read-only view over either interleaved float or double curve coordinates.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a> <em>All inputs required for a</em> <code>contains()</code> <em>hit-test, bundled to reduce parameter count.</em></li>
@@ -1196,6 +1231,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientStopData/"><strong>QAccelPlot::GradientStopData</strong></a> <em>A single color stop within a gradient definition.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>QAccelPlot::Internal::RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><strong>QAccelPlot::LineStroke::Uniforms</strong></a> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><em><strong>Uniforms</strong></em></a> <em>of a line material that do not depend on its shader variant.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineVertex/"><strong>QAccelPlot::LineVertex</strong></a> <em>Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PlotSeries_1_1DataExtent/"><strong>QAccelPlot::PlotSeries::DataExtent</strong></a> <em>Extent of the valid coordinates in one dimension.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointCurveRenderParams/"><strong>QAccelPlot::PointCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/#function-paint"><em><strong>LineCurvePointRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
@@ -1203,6 +1239,9 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SampleRun/"><strong>QAccelPlot::SampleRun</strong></a> <em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>QAccelPlot::BandEdgeRenderer::ArcLengthScale</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>QAccelPlot::BandSeries::RenderView</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>QAccelPlot::BandSeries::Span</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>QAccelPlot::ColorBar::Layout</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
@@ -1216,6 +1255,7 @@
 </li>
 <li><strong>class</strong> <strong>QObject</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTicker/"><strong>QAccelPlot::AxisTicker</strong></a> <em>Controls the visual appearance of ticks, sub-ticks, and tick labels on an</em> <code>Axis</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdges/"><strong>QAccelPlot::BandEdges</strong></a> <em>Controls the lines a</em> <code>BandSeries</code> <em>draws along its lower and upper edges.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1ColorPalette/"><strong>QAccelPlot::ColorPalette</strong></a> <em>A named set of theme colors shared by QML (via the</em> <code>Colors</code> <em>singleton) and C++ defaults.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colormap/"><strong>QAccelPlot::Colormap</strong></a> <em>Maps data values to colors: a color ramp plus the rule that places a value on it.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Colors/"><strong>QAccelPlot::Colors</strong></a> <em>QML singleton exposing</em> <a href="../classQAccelPlot_1_1QAccelPlot/"><em><strong>QAccelPlot</strong></em></a> <em>'s built-in color palettes.</em></li>
@@ -1306,8 +1346,10 @@
 </ul>
 </li>
 <li><strong>class</strong> <strong>QSGMaterial</strong>    <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1318,8 +1360,38 @@
 </li>
 </ul>
 </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry uniforms.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloudMaterial/"><strong>QAccelPlot::PointCloudMaterial</strong></a> <em>QSGMaterial for</em> <code>PointCloud</code> <em>rendering.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectMaterial/"><strong>QAccelPlot::RectMaterial</strong></a> <em>QSGMaterial for rectangle series rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with a rect-count uniform.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarMaterial/"><strong>QAccelPlot::BarMaterial</strong></a> <em>QSGMaterial for bar series rendering, extending</em> <a href="../classQAccelPlot_1_1RectMaterial/"><em><strong>RectMaterial</strong></em></a> <em>with the bar geometry uniforms.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1331,8 +1403,10 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientFillMaterial/"><strong>QAccelPlot::GradientFillMaterial</strong></a> <em>Scene-graph material that evaluates fill gradients per fragment.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1343,8 +1417,10 @@
 </li>
 </ul>
 </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1355,8 +1431,10 @@
 </li>
 </ul>
 </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1368,8 +1446,10 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointMaterial/"><strong>QAccelPlot::PointMaterial</strong></a> <em>QSGMaterial for marker (point) rendering.</em> </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>QAccelPlot::DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandMaterial/"><strong>QAccelPlot::BandMaterial</strong></a> <em>QSGMaterial that fills a band between the low and high values of</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineMaterial/"><strong>QAccelPlot::LineMaterial</strong></a> <em>QSGMaterial for line rendering, extending</em> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><em><strong>DataTextureMaterial</strong></em></a> <em>with line-specific uniforms.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandEdgeMaterial/"><strong>QAccelPlot::BandEdgeMaterial</strong></a> <em>Line material for the lower or upper edge line of a band, reading</em> <code>(x, low, high)</code> <em>samples.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientLineMaterial/"><strong>QAccelPlot::GradientLineMaterial</strong></a> <em>Line material variant that samples a one-dimensional gradient texture.</em> </li>
 </ul>
 </li>
@@ -1384,6 +1464,15 @@
 </li>
 <li><strong>class</strong> <strong>QQuickItem</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
@@ -1392,6 +1481,7 @@
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataAnchor/"><strong>QAccelPlot::DataAnchor</strong></a> <em>A QQuickItem that tracks a data-coordinate rectangle in pixel space.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
@@ -1399,6 +1489,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
@@ -1406,6 +1497,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>
@@ -1414,6 +1506,7 @@
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> <em>The main plot canvas QML item — hosts axes, curves, and a grid.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurve/"><strong>QAccelPlot::LineCurve</strong></a> <em>A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointCloud/"><strong>QAccelPlot::PointCloud</strong></a> <em>A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.</em> </li>

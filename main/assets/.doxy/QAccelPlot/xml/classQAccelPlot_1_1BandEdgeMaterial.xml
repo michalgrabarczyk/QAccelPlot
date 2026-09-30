@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1BandEdgeMaterial" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandEdgeMaterial</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1LineMaterial" prot="public" virt="non-virtual">QAccelPlot::LineMaterial</basecompoundref>
+    <includes local="no">BandEdgeMaterial.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Edge</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::Edge</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7ab75fcdd2d72d9e000beab48622402d93" prot="public">
+          <name>Lower</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7a19de5b94f7b83900d4b296d9fa491aec" prot="public">
+          <name>Upper</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Which value of each sample the edge line draws. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="20" column="5" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdgeMaterial_1a52535146d22f4620d729b1bfcc5d7018" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">Edge</ref></type>
+        <definition>Edge QAccelPlot::BandEdgeMaterial::edge_</definition>
+        <argsstring></argsstring>
+        <name>edge_</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::edge_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="34" column="10" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeMaterial_1ac81626e30e4c2766f26043f6d4cce4f0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::BandEdgeMaterial::BandEdgeMaterial</definition>
+        <argsstring>(Edge edge)</argsstring>
+        <name>BandEdgeMaterial</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::BandEdgeMaterial</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">Edge</ref></type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a material for the <emphasis>edge</emphasis> line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="23" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeMaterial_1aeceee2bb3183bdf1bdac6b35728ae1b6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">Edge</ref></type>
+        <definition>Edge QAccelPlot::BandEdgeMaterial::edge</definition>
+        <argsstring>() const</argsstring>
+        <name>edge</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::edge</qualifiedname>
+        <briefdescription>
+<para>Returns the edge line this material draws. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="26" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeMaterial_1a81ec8570b1c0835b16e414a18ba3b3fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialType *</type>
+        <definition>QSGMaterialType * QAccelPlot::BandEdgeMaterial::type</definition>
+        <argsstring>() const override</argsstring>
+        <name>type</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::type</qualifiedname>
+        <briefdescription>
+<para>Returns the material type of this edge; the two edges use different shaders. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="29" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeMaterial_1a5154e219a6733789b8617519b5369dd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGMaterialShader *</type>
+        <definition>QSGMaterialShader * QAccelPlot::BandEdgeMaterial::createShader</definition>
+        <argsstring>(QSGRendererInterface::RenderMode) const override</argsstring>
+        <name>createShader</name>
+        <qualifiedname>QAccelPlot::BandEdgeMaterial::createShader</qualifiedname>
+        <param>
+          <type>QSGRendererInterface::RenderMode</type>
+        </param>
+        <briefdescription>
+<para>Creates and returns the edge line shader program. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="31" column="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Line material for the lower or upper edge line of a band, reading <computeroutput>(x, low, high)</computeroutput> samples. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Uses the line uniforms and fragment stage; only the vertex stage reads three floats per sample. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::BandEdgeMaterial</label>
+        <link refid="classQAccelPlot_1_1BandEdgeMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::DataTextureMaterial</label>
+        <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineMaterial</label>
+        <link refid="classQAccelPlot_1_1LineMaterial"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QSGMaterial</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::BandEdgeMaterial</label>
+        <link refid="classQAccelPlot_1_1BandEdgeMaterial"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::DataTextureMaterial</label>
+        <link refid="classQAccelPlot_1_1DataTextureMaterial"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::LineMaterial</label>
+        <link refid="classQAccelPlot_1_1LineMaterial"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>QSGMaterial</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" line="17" column="1" bodyfile="QAccelPlot/src/QAccelPlot/materials/BandEdgeMaterial.hpp" bodystart="17" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a1867f65e3def75fdd73e77b23cc99c81" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>antialiasingEnabled</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a35761b0f9aec9f4a130b9c945a04a6d1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>antialiasingFeather</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ac078fe555ea028d1a7aa0d2b3d5d4a25" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>attributeSet</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1ac81626e30e4c2766f26043f6d4cce4f0" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>BandEdgeMaterial</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a121c04af7cb73165e87449c986e03d83" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ab9ea2c6bb472ce5d1f3ed968c4dfb68f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>commitTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2484cf817f49a5f6e3343c8f263e7d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>compare</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a5d1614172bf87baafa3e13c5468ee4fd" prot="protected" virt="virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>compareExtra</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a5c318ed407eb2675171bb6514b96c55b" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>createLineShader</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a5154e219a6733789b8617519b5369dd4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>createShader</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a39517de146145fe8cad195ebeb07bd67" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>dashOffset</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a080b9d1cb2b2f9db95cfe30bdb78ea0c" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>dashPattern</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a78a7f44883b754d72d762f9a72092d5f" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>dashPatternSize</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a2175712b813b5841033a676d439c0aff" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>dashPeriod</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ad9c83ba84140e97631c0e139f18ab5b1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>dataTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a74a19db442fff0944f5a6ac191afc859" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>DataTextureMaterial</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1ae34fecdef9a4b3c338dcf272d81f1eb1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>domainMax</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a21b112871373c779d09d5692744b10d9" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>domainMin</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1aeceee2bb3183bdf1bdac6b35728ae1b6" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>edge</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>Edge</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a52535146d22f4620d729b1bfcc5d7018" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>edge_</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a1cf3366d7811fd1d0240850a2cc94385" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>LineMaterial</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a484a369db7158d03cea94e3c98132059" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>lineWidth</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a478f24d8b6cf0cefb720ea5788f72abe" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a2479ace02cc0526418fbff014b2cefd3" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1LineMaterial_1a89519e93947810a89f0be04c23bac115" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>pointCount</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a4fa0d843ec56ae5d4e6a541f26752d9b" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>sampledTexture</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a81ec8570b1c0835b16e414a18ba3b3fe" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>type</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a98644bbb664529ed4fa2003f1842bac4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>uploadTexture</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1aeca4b9436551afba413a9739957b3b9a" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>useVertexColor</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a33c065d9638eb6faf76732bae044d19e" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>viewportSize</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a3c4115d0b9f08938db44fd529c10f24b" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>writeCommonUniforms</name></member>
+      <member refid="classQAccelPlot_1_1DataTextureMaterial_1a6434926c1121e31da48ecb56b6b427e5" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeMaterial</scope><name>~DataTextureMaterial</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

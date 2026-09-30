@@ -40,6 +40,7 @@ public:
     float dashPattern[8]{}; 
 
 protected:
+    static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     int compareExtra(const QSGMaterial* other) const override;
 };
 

@@ -1,0 +1,1614 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1BandSeries" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandSeries</compoundname>
+    <basecompoundref refid="classQAccelPlot_1_1PlotSeries" prot="public" virt="non-virtual">QAccelPlot::PlotSeries</basecompoundref>
+    <includes local="no">BandSeries.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1BandSeries_1_1RenderView" prot="private">QAccelPlot::BandSeries::RenderView</innerclass>
+    <innerclass refid="structQAccelPlot_1_1BandSeries_1_1Span" prot="private">QAccelPlot::BandSeries::Span</innerclass>
+    <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1BandSeries_1ad154e360c873a23273b0e531138c956f" prot="private" static="no" strong="yes">
+        <type></type>
+        <name>DataType</name>
+        <qualifiedname>QAccelPlot::BandSeries::DataType</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1BandSeries_1ad154e360c873a23273b0e531138c956fad909d38d705ce75386dd86e611a82f5b" prot="private">
+          <name>Double</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1BandSeries_1ad154e360c873a23273b0e531138c956fa22ae0e2b89e5e3d477f988cc36d3272b" prot="private">
+          <name>Float</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="203" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="203" bodyend="203"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1BandSeries_1a3d9da792a29d7d1f641a9bc578eb7592" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandSeries::color</definition>
+        <argsstring></argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BandSeries::color</qualifiedname>
+        <read>color</read>
+        <write>setColor</write>
+        <briefdescription>
+<para>Fill color. Default: <computeroutput>Colors.dark.seriesPrimary</computeroutput> with alpha 64. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BandSeries_1adda2de3bf8a1105952a6095a24b88354" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> *</type>
+        <definition>BandEdges* QAccelPlot::BandSeries::edges</definition>
+        <argsstring></argsstring>
+        <name>edges</name>
+        <qualifiedname>QAccelPlot::BandSeries::edges</qualifiedname>
+        <read>edges</read>
+        <briefdescription>
+<para>Grouped edge line settings, e.g. <computeroutput>edges.width</computeroutput> and <computeroutput>edges.lineStyle</computeroutput>. No edge lines by default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BandSeries_1a2f5d9b903ec25123bcc149658affa2f3" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BandSeries::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::BandSeries::count</qualifiedname>
+        <read>count</read>
+        <briefdescription>
+<para>Read-only: number of samples currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1BandSeries_1a76ccf21e898905ee80a38e3d56b5bf36" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::hovered</definition>
+        <argsstring></argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::BandSeries::hovered</qualifiedname>
+        <read>hovered</read>
+        <briefdescription>
+<para>Read-only: <computeroutput>true</computeroutput> while the mouse cursor is inside the band. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="67" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ab1eebc84171a3e9db4f63757be1a4d0e" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandSeries::color_</definition>
+        <argsstring></argsstring>
+        <name>color_</name>
+        <qualifiedname>QAccelPlot::BandSeries::color_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="205" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ad65655de23663d552d8001bc5e1239ee" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> *</type>
+        <definition>BandEdges* QAccelPlot::BandSeries::edges_</definition>
+        <argsstring></argsstring>
+        <name>edges_</name>
+        <qualifiedname>QAccelPlot::BandSeries::edges_</qualifiedname>
+        <initializer>{new <ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref>{this}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="206" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="206" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1abad5b3fddbca9de784d9e2a94b234f08" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::hovered_</definition>
+        <argsstring></argsstring>
+        <name>hovered_</name>
+        <qualifiedname>QAccelPlot::BandSeries::hovered_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="207" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a55387aa9462bf91305d0c1a07ba034ba" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt;QPointF&gt; QAccelPlot::BandSeries::hoverPosition_</definition>
+        <argsstring></argsstring>
+        <name>hoverPosition_</name>
+        <qualifiedname>QAccelPlot::BandSeries::hoverPosition_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="209" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a11c9dcf8c5a77c9be3810ae92abef5ea" prot="private" static="no" mutable="no">
+        <type>DataType</type>
+        <definition>DataType QAccelPlot::BandSeries::dataType_</definition>
+        <argsstring></argsstring>
+        <name>dataType_</name>
+        <qualifiedname>QAccelPlot::BandSeries::dataType_</qualifiedname>
+        <initializer>{DataType::Double}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="210" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a47aba30f7cf76627d6483710980e2cd9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; QAccelPlot::BandSeries::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>QAccelPlot::BandSeries::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="212" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a2af7ed2eaf6e80df429ded5e70429038" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; QAccelPlot::BandSeries::renderData_</definition>
+        <argsstring></argsstring>
+        <name>renderData_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderData_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="214" column="17" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a63d1cd8c53eae4004429a77d3c1c4d2a" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandSeries::renderOriginX_</definition>
+        <argsstring></argsstring>
+        <name>renderOriginX_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderOriginX_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="215" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="215" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a2546958c9f74f1d006d80f30bf2cafcc" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::BandSeries::renderOriginY_</definition>
+        <argsstring></argsstring>
+        <name>renderOriginY_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderOriginY_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="216" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ad8eef4aaa8555ab799c07ba1e5901bfe" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::renderDataValid_</definition>
+        <argsstring></argsstring>
+        <name>renderDataValid_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderDataValid_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="218" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="218" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1adc517161ddd0631fba23bc34f6c3ddb1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::renderLogScaleX_</definition>
+        <argsstring></argsstring>
+        <name>renderLogScaleX_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderLogScaleX_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="219" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="219" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a12894359fa32a36b642061b2b1f9d2c1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::renderLogScaleY_</definition>
+        <argsstring></argsstring>
+        <name>renderLogScaleY_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderLogScaleY_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="220" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1aa9b4718c3f736abadeee8f92c02f72af" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::renderOriginSettled_</definition>
+        <argsstring></argsstring>
+        <name>renderOriginSettled_</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderOriginSettled_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="222" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="222" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a826092ad1c9d0f7f4b5848e7dfc70010" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::BandSeries::sampleCount_</definition>
+        <argsstring></argsstring>
+        <name>sampleCount_</name>
+        <qualifiedname>QAccelPlot::BandSeries::sampleCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="223" column="9" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="223" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1afd3f621cb600b3ccbf6100d941fcacd5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::dataChanged_</definition>
+        <argsstring></argsstring>
+        <name>dataChanged_</name>
+        <qualifiedname>QAccelPlot::BandSeries::dataChanged_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="224" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1acdc236e583ef48a89d599da6862819cf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::xAscending_</definition>
+        <argsstring></argsstring>
+        <name>xAscending_</name>
+        <qualifiedname>QAccelPlot::BandSeries::xAscending_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="225" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="225" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1ae307f7d62d1e834313a2407aa7edd51d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::autoDataRanges_</definition>
+        <argsstring></argsstring>
+        <name>autoDataRanges_</name>
+        <qualifiedname>QAccelPlot::BandSeries::autoDataRanges_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="228" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="228" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a49226e4f98fc907d5d01468ceab59ad7" prot="private" static="no" mutable="no">
+        <type>QMetaObject::Connection</type>
+        <definition>QMetaObject::Connection QAccelPlot::BandSeries::edgeStyleConnection_</definition>
+        <argsstring></argsstring>
+        <name>edgeStyleConnection_</name>
+        <qualifiedname>QAccelPlot::BandSeries::edgeStyleConnection_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="229" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a142dc099ba3584b48447cbf844dd6afb" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref></type>
+        <definition>BandEdgeRenderer QAccelPlot::BandSeries::lowerEdgeRenderer_</definition>
+        <argsstring></argsstring>
+        <name>lowerEdgeRenderer_</name>
+        <qualifiedname>QAccelPlot::BandSeries::lowerEdgeRenderer_</qualifiedname>
+        <initializer>{BandEdgeMaterial::Edge::Lower}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="230" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="230" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandSeries_1a16a3307ab9fd168e24106277940391af" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref></type>
+        <definition>BandEdgeRenderer QAccelPlot::BandSeries::upperEdgeRenderer_</definition>
+        <argsstring></argsstring>
+        <name>upperEdgeRenderer_</name>
+        <qualifiedname>QAccelPlot::BandSeries::upperEdgeRenderer_</qualifiedname>
+        <initializer>{BandEdgeMaterial::Edge::Upper}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="231" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="231" bodyend="231"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a0ff997f6e6b6b48a6f219a4822c50f33" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::BandSeries::BandSeries</definition>
+        <argsstring>(QQuickItem *parent=nullptr)</argsstring>
+        <name>BandSeries</name>
+        <qualifiedname>QAccelPlot::BandSeries::BandSeries</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref> with the given <emphasis>parent</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="71" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a5029ee1e64f35da828d7aeedfdbd53aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandSeries::color</definition>
+        <argsstring>() const</argsstring>
+        <name>color</name>
+        <qualifiedname>QAccelPlot::BandSeries::color</qualifiedname>
+        <briefdescription>
+<para>Returns the fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="74" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a54137fab272e9f0d0496be1621e765af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setColor</name>
+        <qualifiedname>QAccelPlot::BandSeries::setColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the fill color to <emphasis>color</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ae0e528fee6e8dabd6ba59caed143a035" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> *</type>
+        <definition>BandEdges * QAccelPlot::BandSeries::edges</definition>
+        <argsstring>() const</argsstring>
+        <name>edges</name>
+        <qualifiedname>QAccelPlot::BandSeries::edges</qualifiedname>
+        <briefdescription>
+<para>Returns the grouped edge line settings. The object is owned by the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="79" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a486f4fae31cb3f342fe9a474addb1fb1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::BandSeries::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::BandSeries::count</qualifiedname>
+        <briefdescription>
+<para>Returns the number of samples currently loaded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="82" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a53e512264a5635b1a854583055d43357" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::hovered</definition>
+        <argsstring>() const</argsstring>
+        <name>hovered</name>
+        <qualifiedname>QAccelPlot::BandSeries::hovered</qualifiedname>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> while the cursor is inside the band. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="85" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BandSeries::appendData</definition>
+        <argsstring>(qreal x, qreal low, qreal high)</argsstring>
+        <name>appendData</name>
+        <qualifiedname>QAccelPlot::BandSeries::appendData</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>high</declname>
+        </param>
+        <briefdescription>
+<para>Appends the sample (<emphasis>x</emphasis>, <emphasis>low</emphasis>, <emphasis>high</emphasis>). Triggers a redraw. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="88" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BandSeries::setData</definition>
+        <argsstring>(const QList&lt; qreal &gt; &amp;xs, const QList&lt; qreal &gt; &amp;lows, const QList&lt; qreal &gt; &amp;highs)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BandSeries::setData</qualifiedname>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>lows</declname>
+        </param>
+        <param>
+          <type>const QList&lt; qreal &gt; &amp;</type>
+          <declname>highs</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the samples with <emphasis>xs</emphasis>, <emphasis>lows</emphasis>, and <emphasis>highs</emphasis>. If the sizes differ, the shortest length is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="90" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a31a4e8edb95db554a1a4b3d4701d3f81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setData</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;xs, const std::vector&lt; double &gt; &amp;lows, const std::vector&lt; double &gt; &amp;highs)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BandSeries::setData</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>lows</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>highs</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the samples with <emphasis>xs</emphasis>, <emphasis>lows</emphasis>, and <emphasis>highs</emphasis>. If the sizes differ, the shortest length is used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="92" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a5c7d5d48fd9118f7e74dc97604b92f14" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setData</definition>
+        <argsstring>(const double *data, int sampleCount) override</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BandSeries::setData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplements>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Copies <emphasis>sampleCount</emphasis> interleaved <computeroutput>(x, low, high)</computeroutput> double triples, retaining full precision. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="94" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ac87d491c2995850321e5d3142ee16607" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::BandSeries::setData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Moves <emphasis>data</emphasis> (<emphasis>sampleCount</emphasis> × 3 doubles: x, low, high) into the series. No copy is made. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ae825bada7bd836a583249fd02f992e2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataNoRange</definition>
+        <argsstring>(const double *data, int sampleCount) override</argsstring>
+        <name>setDataNoRange</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a8f063726f9d24fae9651b5dc05fd8442">setDataNoRange</reimplements>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataNoRange(vector)</computeroutput> but copies from a raw interleaved double array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a54df039b7a8b5ae46aee768ae11b06b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataNoRange</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>setDataNoRange</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a287a513d158252ce2a298451965f4ac9">setDataNoRange</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setData(vector)</computeroutput> but does not report X/Y data ranges to the axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="100" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a114ea7f4ccbd77f881aa9c2b17e2c50b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataF</definition>
+        <argsstring>(const float *data, int sampleCount) override</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataF</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplements>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>High-performance C++ overload: copies <emphasis>sampleCount</emphasis> × 3 floats (x, low, high) from <emphasis>data</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a58862e2b4cb3b5ae048bb177f3c3a9f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataF</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>High-performance C++ overload: moves <emphasis>data</emphasis> (<emphasis>sampleCount</emphasis> × 3 floats) into the series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a91c126e40069e450d05da4b16aa49021" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataFNoRange</definition>
+        <argsstring>(const float *data, int sampleCount) override</argsstring>
+        <name>setDataFNoRange</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataFNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a5c6f39a3bd43cb27a55cb0e5665a0e9b">setDataFNoRange</reimplements>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataFNoRange(vector)</computeroutput> but copies from a raw interleaved float array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ac12383a64ded5e0b43452dd625b45684" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setDataFNoRange</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>setDataFNoRange</name>
+        <qualifiedname>QAccelPlot::BandSeries::setDataFNoRange</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aad5b9b81793361295dbcb7ba3cd5b8a1">setDataFNoRange</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setDataF(vector)</computeroutput> but does not report X/Y data ranges to the axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="108" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a90db016505d747fc0a92a21366bcd6be" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::postData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BandSeries::postData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1aac5627fe225c9fdc9546d52ffab259ce">postData</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>sampleCount</emphasis>) to the item&apos;s thread. No copy is made. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="110" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1abbc9b8612977fcc29ab9bf9b620543c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::postData</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int sampleCount) override</argsstring>
+        <name>postData</name>
+        <qualifiedname>QAccelPlot::BandSeries::postData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a82b5eee111a71c4b078e5e8dc9fa4a57">postData</reimplements>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+<para>Thread-safe: queues <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>sampleCount</emphasis>) to the item&apos;s thread. No copy is made. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="112" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a8eeea05a3a47c2baef2e99d2fa7355a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::BandSeries::clearData</definition>
+        <argsstring>() override</argsstring>
+        <name>clearData</name>
+        <qualifiedname>QAccelPlot::BandSeries::clearData</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a86e7a39ea75e41e8719cf53605de9930">clearData</reimplements>
+        <briefdescription>
+<para>Removes all samples. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="114" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a967f4dedc566ec6ad83df050f6e19074" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE QVariantMap</type>
+        <definition>Q_INVOKABLE QVariantMap QAccelPlot::BandSeries::valueAt</definition>
+        <argsstring>(qreal x) const</argsstring>
+        <name>valueAt</name>
+        <qualifiedname>QAccelPlot::BandSeries::valueAt</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Returns the band at data coordinate <emphasis>x</emphasis> as an object with <computeroutput>x</computeroutput>, <computeroutput>low</computeroutput>, and <computeroutput>high</computeroutput> properties. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><computeroutput>low</computeroutput> and <computeroutput>high</computeroutput> are interpolated between the neighboring samples as drawn, with <computeroutput>low</computeroutput> ≤ <computeroutput>high</computeroutput>. At an X shared by several samples they cover all of them. Returns an empty object when <emphasis>x</emphasis> lies outside the samples, next to an invalid sample, or when the X values are not in ascending order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="121" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ace163317a0b6958987975b03cdba4422" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::contains</definition>
+        <argsstring>(const QPointF &amp;point) const override</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::BandSeries::contains</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> when item position <emphasis>point</emphasis> lies inside the band or on an edge line. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Hover delivery uses this test, so stacked series underneath still receive hover events outside the band. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="127" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandSeries_1a4f917e1de66370fdf75f1e4cd77430d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::colorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>colorChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::colorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the color property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="131" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandSeries_1a4d0bfb65d0a77017d025a16173248163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::countChanged</definition>
+        <argsstring>()</argsstring>
+        <name>countChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::countChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the sample count changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="133" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1BandSeries_1a1da551c6ad4df58cf1dea6cdb7c378ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::hoveredChanged</definition>
+        <argsstring>()</argsstring>
+        <name>hoveredChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::hoveredChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the hovered property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="135" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a245ab4687ed8dc2e9010894db070b951" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::onAxisScaleChanged</definition>
+        <argsstring>() override</argsstring>
+        <name>onAxisScaleChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::onAxisScaleChanged</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e">onAxisScaleChanged</reimplements>
+        <briefdescription>
+<para>Refreshes ranges and uploaded coordinates when a bound axis changes between linear and log scale. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="145" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a8c09abc5ec9b899f713a66e6ff279a5c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::onAxisRangeChanged</definition>
+        <argsstring>() override</argsstring>
+        <name>onAxisRangeChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::onAxisRangeChanged</qualifiedname>
+        <reimplements refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9">onAxisRangeChanged</reimplements>
+        <briefdescription>
+<para>Moves the render origin to the new viewport when the float render data would lose precision there. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="147" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aecd9c237d14c851e5485d730e6b871f7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::validateRawDataArguments</definition>
+        <argsstring>(const void *data, int sampleCount) const</argsstring>
+        <name>validateRawDataArguments</name>
+        <qualifiedname>QAccelPlot::BandSeries::validateRawDataArguments</qualifiedname>
+        <param>
+          <type>const void *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="167" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1af0db84abd71c7c0ab18847ae5ffe2caa" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::validateVectorArguments</definition>
+        <argsstring>(std::size_t valueCount, int sampleCount) const</argsstring>
+        <name>validateVectorArguments</name>
+        <qualifiedname>QAccelPlot::BandSeries::validateVectorArguments</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>valueCount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="168" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a9b98c4de5aa9b1e867458c357f333cb7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::copyData</definition>
+        <argsstring>(const double *data, int sampleCount, bool reportRanges)</argsstring>
+        <name>copyData</name>
+        <qualifiedname>QAccelPlot::BandSeries::copyData</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ad024137ccc7cae9ca69e841d219c01c7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::copyFloatData</definition>
+        <argsstring>(const float *data, int sampleCount, bool reportRanges)</argsstring>
+        <name>copyFloatData</name>
+        <qualifiedname>QAccelPlot::BandSeries::copyFloatData</qualifiedname>
+        <param>
+          <type>const float *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="170" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a1c735cf369da20bd9af7fa94362ef4ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::applyInterleavedData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data)</argsstring>
+        <name>applyInterleavedData</name>
+        <qualifiedname>QAccelPlot::BandSeries::applyInterleavedData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="172" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a1da39302ffbb04c8e13ef6810ca6dd6c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::applyData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int sampleCount, bool reportRanges)</argsstring>
+        <name>applyData</name>
+        <qualifiedname>QAccelPlot::BandSeries::applyData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="173" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a24c78e3576ca7f55df33a974dede5f68" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::applyFloatData</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int sampleCount, bool reportRanges)</argsstring>
+        <name>applyFloatData</name>
+        <qualifiedname>QAccelPlot::BandSeries::applyFloatData</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="174" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a3f63821491990926f949f1d9bb6861f5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::finishDataChange</definition>
+        <argsstring>(int sampleCount, bool reportRanges)</argsstring>
+        <name>finishDataChange</name>
+        <qualifiedname>QAccelPlot::BandSeries::finishDataChange</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>sampleCount</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reportRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="175" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa77d301b1d5d80e52a1afb7161c5affb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::promoteFloatDataToDouble</definition>
+        <argsstring>()</argsstring>
+        <name>promoteFloatDataToDouble</name>
+        <qualifiedname>QAccelPlot::BandSeries::promoteFloatDataToDouble</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="176" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa008dc21c139aceaebfe5cd6b8296f77" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::hasPreciseData</definition>
+        <argsstring>() const</argsstring>
+        <name>hasPreciseData</name>
+        <qualifiedname>QAccelPlot::BandSeries::hasPreciseData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="178" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a65679ecfeb587f3c2af33671eff5ddb2" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::BandSeries::value</definition>
+        <argsstring>(int index, int component) const</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::BandSeries::value</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>component</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="180" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a69a11f47ce76a305b559cf85568ec380" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::sampleValid</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>sampleValid</name>
+        <qualifiedname>QAccelPlot::BandSeries::sampleValid</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="181" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a384e407912df6b5faf83455d9135d86a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::logScaleX</definition>
+        <argsstring>() const</argsstring>
+        <name>logScaleX</name>
+        <qualifiedname>QAccelPlot::BandSeries::logScaleX</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="182" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a61a5a8b03366a44370c06bcdb320b5a9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::logScaleY</definition>
+        <argsstring>() const</argsstring>
+        <name>logScaleY</name>
+        <qualifiedname>QAccelPlot::BandSeries::logScaleY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="183" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a393d0228a7f16b345f0ded953549a5ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::updateDataRanges</definition>
+        <argsstring>()</argsstring>
+        <name>updateDataRanges</name>
+        <qualifiedname>QAccelPlot::BandSeries::updateDataRanges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1ae9e33e2f1dbbab8e88612c7bcee6f725" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::updateXAscending</definition>
+        <argsstring>()</argsstring>
+        <name>updateXAscending</name>
+        <qualifiedname>QAccelPlot::BandSeries::updateXAscending</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="186" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1af1eff12b7b2f9ff527df78baf8de8e0f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; Span &gt;</type>
+        <definition>std::optional&lt; Span &gt; QAccelPlot::BandSeries::spanAt</definition>
+        <argsstring>(qreal x) const</argsstring>
+        <name>spanAt</name>
+        <qualifiedname>QAccelPlot::BandSeries::spanAt</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="187" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aca01896bb218e6d9fb343d8c663ad02d" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::BandSeries::edgesVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>edgesVisible</name>
+        <qualifiedname>QAccelPlot::BandSeries::edgesVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="188" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aadcf29035cd7ddd7bb3d65ea334d7275" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::BandSeries::edgeColor</definition>
+        <argsstring>() const</argsstring>
+        <name>edgeColor</name>
+        <qualifiedname>QAccelPlot::BandSeries::edgeColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="189" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa1c6d746f6392c26dbbdfa106e951129" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::setHovered</definition>
+        <argsstring>(bool hovered)</argsstring>
+        <name>setHovered</name>
+        <qualifiedname>QAccelPlot::BandSeries::setHovered</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>hovered</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="190" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aa080b4b3822be01b8414e58a54e8a1c0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::refreshHovered</definition>
+        <argsstring>()</argsstring>
+        <name>refreshHovered</name>
+        <qualifiedname>QAccelPlot::BandSeries::refreshHovered</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="192" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a14444e0fd914f8d9f8f88c73600bea05" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::onEdgeLineStyleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>onEdgeLineStyleChanged</name>
+        <qualifiedname>QAccelPlot::BandSeries::onEdgeLineStyleChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="194" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a402e045979b8a0bd53c24759b0a243c3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::rebuildRenderData</definition>
+        <argsstring>()</argsstring>
+        <name>rebuildRenderData</name>
+        <qualifiedname>QAccelPlot::BandSeries::rebuildRenderData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="196" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1aeba07e6cbba02e7bf5607f58ba0f6646" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RenderView</type>
+        <definition>RenderView QAccelPlot::BandSeries::renderView</definition>
+        <argsstring>() const</argsstring>
+        <name>renderView</name>
+        <qualifiedname>QAccelPlot::BandSeries::renderView</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="197" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1a161b55502bf69378755244a3bc6dfba4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::BandSeries::updateFillNode</definition>
+        <argsstring>(QSGGeometryNode *node, const RenderView &amp;view)</argsstring>
+        <name>updateFillNode</name>
+        <qualifiedname>QAccelPlot::BandSeries::updateFillNode</qualifiedname>
+        <param>
+          <type>QSGGeometryNode *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>const RenderView &amp;</type>
+          <declname>view</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="198" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandSeries_1af219de8d5125f8f747df69cea381fdbd" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode * QAccelPlot::BandSeries::paintEdge</definition>
+        <argsstring>(QSGGeometryNode *oldNode, const BandEdgeRenderer &amp;renderer, const RenderView &amp;view, const std::shared_ptr&lt; DataTexture &gt; &amp;dataTexture) const</argsstring>
+        <name>paintEdge</name>
+        <qualifiedname>QAccelPlot::BandSeries::paintEdge</qualifiedname>
+        <param>
+          <type>QSGGeometryNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1BandEdgeRenderer" kindref="compound">BandEdgeRenderer</ref> &amp;</type>
+          <declname>renderer</declname>
+        </param>
+        <param>
+          <type>const RenderView &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classQAccelPlot_1_1DataTexture" kindref="compound">DataTexture</ref> &gt; &amp;</type>
+          <declname>dataTexture</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="199" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A hardware-accelerated QML item that fills the area between a low and a high value at each X. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Samples are stored as interleaved <computeroutput>(x, low, high)</computeroutput> triples and uploaded to the GPU as a float data texture once per data change; panning and zooming only change shader uniforms. Dashed edge lines are the exception: zooming recomputes their dash positions on the CPU. The <computeroutput><ref refid="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" kindref="member">setData()</ref></computeroutput> overloads keep doubles and upload them relative to an origin near the viewport, so large coordinates such as epoch timestamps stay precise. The <computeroutput><ref refid="classQAccelPlot_1_1BandSeries_1a114ea7f4ccbd77f881aa9c2b17e2c50b" kindref="member">setDataF()</ref></computeroutput> overloads store floats and upload them without conversion.</para>
+<para>Draw a center line with a separate <computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput>. <computeroutput>edges</computeroutput> draws lines along the lower and upper edges of the filled band.</para>
+<para><simplesect kind="par"><title>Samples</title><para>At each sample the band spans from the smaller to the larger of <computeroutput>low</computeroutput> and <computeroutput>high</computeroutput>. X values are expected in ascending order: <computeroutput>hovered</computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1BandSeries_1a967f4dedc566ec6ad83df050f6e19074" kindref="member">valueAt()</ref></computeroutput> work only when they are.</para>
+</simplesect>
+<simplesect kind="par"><title>Invalid samples</title><para>A sample is invalid when <computeroutput>x</computeroutput>, <computeroutput>low</computeroutput>, or <computeroutput>high</computeroutput> is NaN or ±Inf, or is not strictly positive on a log-scale axis. The fill and the edge lines leave a gap at invalid samples. Auto-ranging skips invalid values one by one.</para>
+</simplesect>
+<simplesect kind="par"><title>Limits</title><para>At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum texture size is below 6144. Samples beyond the limit are not drawn, and a warning is logged once.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref>, <ref refid="classQAccelPlot_1_1BandEdges" kindref="compound">BandEdges</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::BandSeries</label>
+        <link refid="classQAccelPlot_1_1BandSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::BandSeries</label>
+        <link refid="classQAccelPlot_1_1BandSeries"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::PlotSeries</label>
+        <link refid="classQAccelPlot_1_1PlotSeries"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" line="56" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/BandSeries.hpp" bodystart="56" bodyend="232"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1BandSeries_1ab84e2a7342e0897019acd04feec3ee07" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>appendData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a1da39302ffbb04c8e13ef6810ca6dd6c" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>applyData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a24c78e3576ca7f55df33a974dede5f68" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>applyFloatData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a1c735cf369da20bd9af7fa94362ef4ec" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>applyInterleavedData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ae307f7d62d1e834313a2407aa7edd51d" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>autoDataRanges_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a0ff997f6e6b6b48a6f219a4822c50f33" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>BandSeries</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a8eeea05a3a47c2baef2e99d2fa7355a3" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>clearData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>clearDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>clearXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>clearYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a3d9da792a29d7d1f641a9bc578eb7592" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a5029ee1e64f35da828d7aeedfdbd53aa" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>color</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ab1eebc84171a3e9db4f63757be1a4d0e" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>color_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a4f917e1de66370fdf75f1e4cd77430d1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>colorChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ace163317a0b6958987975b03cdba4422" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>contains</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a9b98c4de5aa9b1e867458c357f333cb7" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>copyData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ad024137ccc7cae9ca69e841d219c01c7" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>copyFloatData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a2f5d9b903ec25123bcc149658affa2f3" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a486f4fae31cb3f342fe9a474addb1fb1" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>count</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a4d0bfb65d0a77017d025a16173248163" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>countChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a47aba30f7cf76627d6483710980e2cd9" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>data_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1afd3f621cb600b3ccbf6100d941fcacd5" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>dataChanged_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ad154e360c873a23273b0e531138c956f" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>DataType</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a11c9dcf8c5a77c9be3810ae92abef5ea" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>dataType_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aadcf29035cd7ddd7bb3d65ea334d7275" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edgeColor</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1adda2de3bf8a1105952a6095a24b88354" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edges</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ae0e528fee6e8dabd6ba59caed143a035" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edges</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ad65655de23663d552d8001bc5e1239ee" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edges_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a49226e4f98fc907d5d01468ceab59ad7" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edgeStyleConnection_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aca01896bb218e6d9fb343d8c663ad02d" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>edgesVisible</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>extendXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>extendYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a3f63821491990926f949f1d9bb6861f5" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>finishDataChange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aa008dc21c139aceaebfe5cd6b8296f77" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hasPreciseData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a76ccf21e898905ee80a38e3d56b5bf36" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a53e512264a5635b1a854583055d43357" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1abad5b3fddbca9de784d9e2a94b234f08" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hovered_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a1da551c6ad4df58cf1dea6cdb7c378ab" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoveredChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a55387aa9462bf91305d0c1a07ba034ba" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>hoverPosition_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>LegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>legendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>legendSymbolChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a384e407912df6b5faf83455d9135d86a" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>logScaleX</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a61a5a8b03366a44370c06bcdb320b5a9" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>logScaleY</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a142dc099ba3584b48447cbf844dd6afb" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>lowerEdgeRenderer_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a8e155e26d6f57c4bd93f41cd5e2fe619" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>MarkerShape</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a71b82b1a4372d71c848a3a09c59b20b0" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>name</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>nameChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a8c09abc5ec9b899f713a66e6ff279a5c" prot="protected" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>onAxisRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a245ab4687ed8dc2e9010894db070b951" prot="protected" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>onAxisScaleChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a14444e0fd914f8d9f8f88c73600bea05" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>onEdgeLineStyleChanged</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1af219de8d5125f8f747df69cea381fdbd" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>paintEdge</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aef0398b7a4f807870dd88a326c0e7d0d" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>plotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>plotRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a90db016505d747fc0a92a21366bcd6be" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1abbc9b8612977fcc29ab9bf9b620543c8" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>postData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aa77d301b1d5d80e52a1afb7161c5affb" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>promoteFloatDataToDouble</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a402e045979b8a0bd53c24759b0a243c3" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>rebuildRenderData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aa080b4b3822be01b8414e58a54e8a1c0" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>refreshHovered</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a2af7ed2eaf6e80df429ded5e70429038" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderData_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ad8eef4aaa8555ab799c07ba1e5901bfe" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderDataValid_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1adc517161ddd0631fba23bc34f6c3ddb1" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderLogScaleX_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a12894359fa32a36b642061b2b1f9d2c1" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderLogScaleY_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aa9b4718c3f736abadeee8f92c02f72af" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderOriginSettled_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a63d1cd8c53eae4004429a77d3c1c4d2a" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderOriginX_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a2546958c9f74f1d006d80f30bf2cafcc" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderOriginY_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aeba07e6cbba02e7bf5607f58ba0f6646" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>renderView</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>resolvePlotRect</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a826092ad1c9d0f7f4b5848e7dfc70010" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>sampleCount_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a69a11f47ce76a305b559cf85568ec380" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>sampleValid</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a54137fab272e9f0d0496be1621e765af" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setColor</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a6e0c16437a366d139d0710e64a1c24f6" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a31a4e8edb95db554a1a4b3d4701d3f81" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a5c7d5d48fd9118f7e74dc97604b92f14" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ac87d491c2995850321e5d3142ee16607" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a114ea7f4ccbd77f881aa9c2b17e2c50b" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a58862e2b4cb3b5ae048bb177f3c3a9f3" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a91c126e40069e450d05da4b16aa49021" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataFNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ac12383a64ded5e0b43452dd625b45684" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataFNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ae825bada7bd836a583249fd02f992e2a" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataNoRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a54df039b7a8b5ae46aee768ae11b06b8" prot="public" virt="virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataNoRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aa1c6d746f6392c26dbbdfa106e951129" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setHovered</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setLegendSymbol</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setName</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setPlotRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setXDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>setYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1af1eff12b7b2f9ff527df78baf8de8e0f" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>spanAt</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a393d0228a7f16b345f0ded953549a5ad" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>updateDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a161b55502bf69378755244a3bc6dfba4" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>updateFillNode</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1ae9e33e2f1dbbab8e88612c7bcee6f725" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>updateXAscending</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a16a3307ab9fd168e24106277940391af" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>upperEdgeRenderer_</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1aecd9c237d14c851e5485d730e6b871f7" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>validateRawDataArguments</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1af0db84abd71c7c0ab18847ae5ffe2caa" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>validateVectorArguments</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a65679ecfeb587f3c2af33671eff5ddb2" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>value</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1a967f4dedc566ec6ad83df050f6e19074" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>valueAt</name></member>
+      <member refid="classQAccelPlot_1_1BandSeries_1acdc236e583ef48a89d599da6862819cf" prot="private" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xAscending_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>xDataRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="protected" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" prot="public" virt="non-virtual"><scope>QAccelPlot::BandSeries</scope><name>yDataRangeChanged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

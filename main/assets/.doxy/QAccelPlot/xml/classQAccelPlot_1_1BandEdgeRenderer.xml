@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1BandEdgeRenderer" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::BandEdgeRenderer</compoundname>
+    <includes local="no">BandEdgeRenderer.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale" prot="private">QAccelPlot::BandEdgeRenderer::ArcLengthScale</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdgeRenderer_1a2e8f751eb5ab6940b52d18ed6f9a77ac" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">BandEdgeMaterial::Edge</ref></type>
+        <definition>BandEdgeMaterial::Edge QAccelPlot::BandEdgeRenderer::edge_</definition>
+        <argsstring></argsstring>
+        <name>edge_</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::edge_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="78" column="28" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1BandEdgeRenderer_1ae080a313605586aba1b5a7fca5147c34" prot="private" static="no" mutable="yes">
+        <type>std::optional&lt; ArcLengthScale &gt;</type>
+        <definition>std::optional&lt;ArcLengthScale&gt; QAccelPlot::BandEdgeRenderer::arcLengthScale_</definition>
+        <argsstring></argsstring>
+        <name>arcLengthScale_</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::arcLengthScale_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="81" column="27" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeRenderer_1af1d091c596c11d665aad35aaafee8fbc" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::BandEdgeRenderer::BandEdgeRenderer</definition>
+        <argsstring>(BandEdgeMaterial::Edge edge)</argsstring>
+        <name>BandEdgeRenderer</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::BandEdgeRenderer</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kindref="member">BandEdgeMaterial::Edge</ref></type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a renderer for the <emphasis>edge</emphasis> line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="57" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeRenderer_1a05c6418d92157b0ddc4be7edf2a6fb73" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGGeometryNode *</type>
+        <definition>QSGGeometryNode * QAccelPlot::BandEdgeRenderer::paint</definition>
+        <argsstring>(QSGGeometryNode *oldNode, const BandEdgeRenderParams &amp;params) const</argsstring>
+        <name>paint</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::paint</qualifiedname>
+        <param>
+          <type>QSGGeometryNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Updates <emphasis>oldNode</emphasis>, or creates the edge line node when it is <computeroutput>nullptr</computeroutput>, and returns it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="60" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeRenderer_1a6c91ccf1d48fc1110d280e325f8723e4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ArcLengthScale</type>
+        <definition>static ArcLengthScale QAccelPlot::BandEdgeRenderer::arcLengthScale</definition>
+        <argsstring>(const BandEdgeRenderParams &amp;params)</argsstring>
+        <name>arcLengthScale</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::arcLengthScale</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="75" column="27"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1BandEdgeRenderer_1a17f431ec7d1827b7599603e39fa99420" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; QAccelPlot::BandEdgeRenderer::arcLengths</definition>
+        <argsstring>(const BandEdgeRenderParams &amp;params) const</argsstring>
+        <name>arcLengths</name>
+        <qualifiedname>QAccelPlot::BandEdgeRenderer::arcLengths</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1BandEdgeRenderParams" kindref="compound">BandEdgeRenderParams</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="76" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Internal renderer for the lower or upper edge line of a <computeroutput><ref refid="classQAccelPlot_1_1BandSeries" kindref="compound">BandSeries</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Draws one line ribbon node that samples the band&apos;s data texture through a <computeroutput><ref refid="classQAccelPlot_1_1BandEdgeMaterial" kindref="compound">BandEdgeMaterial</ref></computeroutput>. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" line="54" column="1" bodyfile="QAccelPlot/src/QAccelPlot/renderers/BandEdgeRenderer.hpp" bodystart="54" bodyend="82"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1a17f431ec7d1827b7599603e39fa99420" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>arcLengths</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1a6c91ccf1d48fc1110d280e325f8723e4" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>arcLengthScale</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1ae080a313605586aba1b5a7fca5147c34" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>arcLengthScale_</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1af1d091c596c11d665aad35aaafee8fbc" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>BandEdgeRenderer</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1a2e8f751eb5ab6940b52d18ed6f9a77ac" prot="private" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>edge_</name></member>
+      <member refid="classQAccelPlot_1_1BandEdgeRenderer_1a05c6418d92157b0ddc4be7edf2a6fb73" prot="public" virt="non-virtual"><scope>QAccelPlot::BandEdgeRenderer</scope><name>paint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

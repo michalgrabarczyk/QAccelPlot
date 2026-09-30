@@ -5,7 +5,12 @@
 
 ## d
 
-* **DataType** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **DataType** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+
+
+## e
+
+* **Edge** ([**QAccelPlot::BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md))
 
 
 ## l
