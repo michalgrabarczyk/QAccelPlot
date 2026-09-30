@@ -60,6 +60,10 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
             grid.subGridVisible: false
+            // Lists only the series that are shown, so hiding the raw samples removes their entry.
+            legend: QAccelPlot.Legend {
+                series: plot.series.filter(series => series.visible)
+            }
 
             xAxis: ExampleAxis {
                 viewportMin: 0
