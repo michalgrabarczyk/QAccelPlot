@@ -157,8 +157,9 @@ void BenchmarkRunner::runAll()
     results_ = {};
     emit resultsChanged();
 
+    ++runGeneration_;
     setRunning(true);
-    QMetaObject::invokeMethod(this, "runNextScenario", Qt::QueuedConnection);
+    queueNextScenario();
 }
 
 void BenchmarkRunner::runScenario(const QString& name)
@@ -180,8 +181,9 @@ void BenchmarkRunner::runScenario(const QString& name)
     currentScenarioIndex_ = 0;
     results_ = {};
     emit resultsChanged();
+    ++runGeneration_;
     setRunning(true);
-    QMetaObject::invokeMethod(this, "runNextScenario", Qt::QueuedConnection);
+    queueNextScenario();
 }
 
 void BenchmarkRunner::addCustomScenario(
@@ -199,12 +201,14 @@ bool BenchmarkRunner::exportJson(const QString& path)
 
 void BenchmarkRunner::stop()
 {
+    ++runGeneration_;
     scenarioRunning_ = false;
     renderRequested_ = false;
     dataBufferPool_.reset();
     clearCurves();
     setRunning(false);
     setCurrentScenarioName({});
+    setCurrentScenarioLabel({});
     setLiveFps(0.0);
     setLiveFrameTimeMs(0.0);
     setProgress(0.0);
@@ -276,6 +280,9 @@ void BenchmarkRunner::render()
 
 void BenchmarkRunner::runNextScenario()
 {
+    if (!running_) {
+        return;
+    }
     if (currentScenarioIndex_ >= scenariosToRun_.size()) {
         scenarioRunning_ = false;
         renderRequested_ = false;
@@ -290,9 +297,16 @@ void BenchmarkRunner::runNextScenario()
         return;
     }
 
-    const auto& scenario = scenariosToRun_[currentScenarioIndex_];
+    const auto generation = runGeneration_;
+    const auto scenario = scenariosToRun_[currentScenarioIndex_];
     setCurrentScenarioName(scenario.name());
+    if (!running_ || generation != runGeneration_) {
+        return;
+    }
     setCurrentScenarioLabel(scenario.label());
+    if (!running_ || generation != runGeneration_) {
+        return;
+    }
     qDebug() << "BenchmarkRunner: running" << scenario.name();
 
     setupScene(scenario);
@@ -324,13 +338,14 @@ void BenchmarkRunner::updateData()
 
 void BenchmarkRunner::finishScenario()
 {
+    const auto generation = runGeneration_;
     scenarioRunning_ = false;
     // Scene updates may have queued another render while the final frame was
     // being processed. Do not let that stale request block the next scenario's
     // explicit initial render request.
     renderRequested_ = false;
 
-    const auto& scenario = scenariosToRun_[currentScenarioIndex_];
+    const auto scenario = scenariosToRun_[currentScenarioIndex_];
     const auto res = metrics_.results();
     reporter_.addResult(scenario, res);
 
@@ -353,12 +368,28 @@ void BenchmarkRunner::finishScenario()
     results_.append(entry);
     emit resultsChanged();
     emit scenarioCompleted(scenario.name());
+    if (!running_ || generation != runGeneration_) {
+        return;
+    }
 
     currentScenarioIndex_++;
-    QMetaObject::invokeMethod(this, "runNextScenario", Qt::QueuedConnection);
+    queueNextScenario();
 }
 
 // ── private helpers ────────────────────────────────────────────────────────
+
+void BenchmarkRunner::queueNextScenario()
+{
+    const auto generation = runGeneration_;
+    QMetaObject::invokeMethod(
+        this,
+        [this, generation]() {
+            if (generation == runGeneration_) {
+                runNextScenario();
+            }
+        },
+        Qt::QueuedConnection);
+}
 
 void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
 {
