@@ -164,7 +164,7 @@
 | ---: | :--- |
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
-|  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=kNearlyEqualEpsilon) noexcept<br> |
+|  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=0.0) noexcept<br> |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
@@ -336,7 +336,7 @@ inline bool QAccelPlot::nearly_equal (
     double a,
     double b,
     double eps_rel=kNearlyEqualEpsilon,
-    double eps_abs=kNearlyEqualEpsilon
+    double eps_abs=0.0
 ) noexcept
 ```
 

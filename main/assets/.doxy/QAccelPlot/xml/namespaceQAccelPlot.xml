@@ -312,10 +312,10 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="45" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="45" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="MathUtils_8hpp_1af878994e6340c535eed0be9dfa6cf0c3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="MathUtils_8hpp_1a459990042b4307250ccb64794c713e8f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool QAccelPlot::nearly_equal</definition>
-        <argsstring>(double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=kNearlyEqualEpsilon) noexcept</argsstring>
+        <argsstring>(double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=0.0) noexcept</argsstring>
         <name>nearly_equal</name>
         <qualifiedname>QAccelPlot::nearly_equal</qualifiedname>
         <param>
@@ -334,7 +334,7 @@
         <param>
           <type>double</type>
           <declname>eps_abs</declname>
-          <defval>kNearlyEqualEpsilon</defval>
+          <defval>0.0</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -342,7 +342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="33" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="33" bodyend="46"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="32" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="32" bodyend="45"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1ac7d165e0f8ddf211fb2c68747273729f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -368,7 +368,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="52" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="52" bodyend="61"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="51" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="51" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a5904761cbbca38652885b7d0369c7285" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>double</type>
@@ -394,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="64" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="64" bodyend="67"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="63" column="16" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="63" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a6ea9aea4687bdc54130be63eb72fec23" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -416,7 +416,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="78" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="78" bodyend="81"/>
+        <location file="QAccelPlot/src/QAccelPlot/MathUtils.hpp" line="77" column="14" bodyfile="QAccelPlot/src/QAccelPlot/MathUtils.hpp" bodystart="77" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="CurveRendererParams_8hpp_1a3259b2558bbbb60bb5e2994cba4d0b12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>

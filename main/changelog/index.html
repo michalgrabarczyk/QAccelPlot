@@ -1669,6 +1669,8 @@
   or appear in <code>extraAxes</code>.</li>
 <li>Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.</li>
+<li>Axes and color ranges preserve distinct values below machine epsilon, so small
+  data spans map across the plot instead of collapsing to one pixel.</li>
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>

@@ -32,15 +32,14 @@ inline constexpr double kNearlyEqualEpsilon = 2.0 * std::numeric_limits<double>:
 inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 #endif
 
-// Returns true if a and b are nearly equal using a combined relative + absolute
-// tolerance.
+// Returns true if a and b are nearly equal using a relative tolerance and
+// an optional absolute tolerance.
 //
 //  - If a == b exactly (including both infinite with the same sign), returns true.
-//  - The relative test scales with max(1, |a|, |b|) * eps_rel and therefore tracks
-//    a small number of representable steps instead of using a broad tolerance.
-//  - The absolute floor (eps_abs) prevents false negatives when both values are
-//    near zero, where a purely relative test would require unrealistic precision.
-[[nodiscard]] inline bool nearly_equal(double a, double b, double eps_rel = kNearlyEqualEpsilon, double eps_abs = kNearlyEqualEpsilon) noexcept
+//  - The relative test scales with max(|a|, |b|) * eps_rel, preserving distinct
+//    values near zero.
+//  - Pass eps_abs explicitly when an absolute tolerance is needed.
+[[nodiscard]] inline bool nearly_equal(double a, double b, double eps_rel = kNearlyEqualEpsilon, double eps_abs = 0.0) noexcept
 {
     if (a == b) {
         return true;
@@ -51,7 +50,7 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
     }
 
     const auto diff = std::abs(a - b);
-    const auto scale = std::max({1.0, std::abs(a), std::abs(b)});
+    const auto scale = std::max(std::abs(a), std::abs(b));
     return diff <= std::max(eps_abs, scale * eps_rel);
 }
 
