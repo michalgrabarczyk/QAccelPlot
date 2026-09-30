@@ -93,6 +93,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property QColor | [**color**](classQAccelPlot_1_1LineCurve.md#property-color-12)  <br>_Base line color. Default:_ `Colors.dark.seriesPrimary` _._ |
 | property QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](classQAccelPlot_1_1LineCurve.md#property-effects-12)  <br>_List of visual effects (e.g._ [_**GradientFill**_](classQAccelPlot_1_1GradientFill.md) _,_[_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _) applied to this curve._ |
 | property [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](classQAccelPlot_1_1LineCurve.md#property-gaps-12)  <br>_Grouped gap-rendering settings, e.g._ `gaps.nanMode` _._ |
+| property qreal | [**hoverRadius**](classQAccelPlot_1_1LineCurve.md#property-hoverradius-12)  <br>_Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10._  |
 | property bool | [**hovered**](classQAccelPlot_1_1LineCurve.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the curve._ |
 | property [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](classQAccelPlot_1_1LineCurve.md#property-linestyle-12)  <br>_Line style (_ [_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _,_[_**DashLine**_](classQAccelPlot_1_1DashLine.md) _, or_[_**NoLine**_](classQAccelPlot_1_1NoLine.md) _). Default:_[_**SolidLine**_](classQAccelPlot_1_1SolidLine.md) _._ |
 | property qreal | [**lineWidth**](classQAccelPlot_1_1LineCurve.md#property-linewidth-12)  <br>_Line stroke width in pixels. Default: 1._  |
@@ -124,6 +125,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**antialiasingEnabledChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingenabledchanged)  <br>_Emitted when the antialiasingEnabled property changes._  |
 | signal void | [**antialiasingFeatherChanged**](classQAccelPlot_1_1LineCurve.md#signal-antialiasingfeatherchanged)  <br>_Emitted when the antialiasingFeather property changes._  |
 | signal void | [**colorChanged**](classQAccelPlot_1_1LineCurve.md#signal-colorchanged)  <br>_Emitted when the color property changes._  |
+| signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredChanged**](classQAccelPlot_1_1LineCurve.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
 | signal void | [**lineStyleChanged**](classQAccelPlot_1_1LineCurve.md#signal-linestylechanged)  <br>_Emitted when the lineStyle property changes._  |
 | signal void | [**lineWidthChanged**](classQAccelPlot_1_1LineCurve.md#signal-linewidthchanged)  <br>_Emitted when the lineWidth property changes._  |
@@ -161,6 +163,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  QColor | [**color**](#function-color-22) () const<br>_Returns the base line color._  |
 |  QQmlListProperty&lt; [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) &gt; | [**effects**](#function-effects-22) () <br>_Returns the QML list property for attached visual effects._  |
 |  [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) \* | [**gaps**](#function-gaps-22) () const<br>_Returns the grouped gap-rendering settings. The object is owned by the curve._  |
+|  qreal | [**hoverRadius**](#function-hoverradius-22) () const<br>_Returns the line hover pick radius in pixels._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the cursor is currently over the curve._ |
 |  [**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* | [**lineStyle**](#function-linestyle-22) () const<br>_Returns the active line style._  |
 |  qreal | [**lineWidth**](#function-linewidth-22) () const<br>_Returns the line stroke width._  |
@@ -182,6 +185,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataFNoRangeWithCache**](#function-setdatafnorangewithcache-22) (const float \* xyInterleaved, int pointCount, std::vector&lt; char &gt; && vertexCache) <br>_Like_ `setDataFNoRangeWithCache` _but copies from a raw interleaved float array._ |
 | virtual void | [**setDataNoRange**](#function-setdatanorange-12) (const double \* xyInterleaved, int pointCount) override<br>_Like_ `setDataNoRange(vector)` _but copies from a raw interleaved double array._ |
 | virtual void | [**setDataNoRange**](#function-setdatanorange-22) (std::vector&lt; double &gt; && xyInterleaved, int pointCount) override<br>_Like_ `setData(vector)` _but does not report X/Y data ranges to the axes._ |
+|  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the line hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._ |
 |  void | [**setLineStyle**](#function-setlinestyle) ([**LineStyle**](classQAccelPlot_1_1LineStyle.md) \* style) <br>_Sets the line style to_ _style_ _._ |
 |  void | [**setLineWidth**](#function-setlinewidth) (qreal w) <br>_Sets the line stroke width to_ _w_ _pixels._ |
 |  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
@@ -423,6 +427,21 @@ LineCurveGaps* QAccelPlot::LineCurve::gaps;
 
 
 
+### property hoverRadius {#property-hoverradius-12}
+
+_Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10._ 
+```C++
+qreal QAccelPlot::LineCurve::hoverRadius;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property hovered {#property-hovered-12}
 
 _Read-only:_ `true` _while the mouse cursor is over the curve._
@@ -535,6 +554,21 @@ void QAccelPlot::LineCurve::antialiasingFeatherChanged;
 _Emitted when the color property changes._ 
 ```C++
 void QAccelPlot::LineCurve::colorChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoverRadiusChanged {#signal-hoverradiuschanged}
+
+_Emitted when the hoverRadius property changes._ 
+```C++
+void QAccelPlot::LineCurve::hoverRadiusChanged;
 ```
 
 
@@ -724,6 +758,21 @@ QQmlListProperty< LineCurveEffect > QAccelPlot::LineCurve::effects ()
 _Returns the grouped gap-rendering settings. The object is owned by the curve._ 
 ```C++
 LineCurveGaps * QAccelPlot::LineCurve::gaps () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hoverRadius {#function-hoverradius-22}
+
+_Returns the line hover pick radius in pixels._ 
+```C++
+qreal QAccelPlot::LineCurve::hoverRadius () const
 ```
 
 
@@ -1111,6 +1160,23 @@ virtual void QAccelPlot::LineCurve::setDataNoRange (
 
 
 Implements [*QAccelPlot::PlotSeries::setDataNoRange*](classQAccelPlot_1_1PlotSeries.md#function-setdatanorange-22)
+
+
+<hr>
+
+
+
+
+### function setHoverRadius {#function-sethoverradius}
+
+_Sets the line hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0. Marker hit testing is unaffected._
+```C++
+void QAccelPlot::LineCurve::setHoverRadius (
+    qreal radius
+) 
+```
+
+
 
 
 <hr>

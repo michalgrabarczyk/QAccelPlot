@@ -214,8 +214,8 @@
 * **hoveredIndex** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **hoverThreshold** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md))
 * **hasGradientEffect** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **hoverRadius** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **hasValues** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
-* **hoverRadius** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 
 
 ## i
@@ -520,6 +520,7 @@
 * **setAntialiasingEnabled** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **setAntialiasingFeather** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **setDataFNoRangeWithCache** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **setHoverRadius** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **setLineStyle** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **setTransition** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **sourceDataView** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
@@ -532,7 +533,6 @@
 * **setName** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **setXDataRange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * **setYDataRange** ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
-* **setHoverRadius** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **setValues** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **storeInterleaved** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **stride** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))

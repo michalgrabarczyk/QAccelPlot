@@ -178,8 +178,8 @@
 * **hitThreshold** ([**QAccelPlot::CurveHitTestParams**](structQAccelPlot_1_1CurveHitTestParams.md))
 * **hoverThreshold\_** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md))
 * **hoveredIndex** ([**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::RectMaterial**](classQAccelPlot_1_1RectMaterial.md))
+* **hoverRadius\_** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 * **hasValues\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
-* **hoverRadius\_** ([**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
 
 
 ## i

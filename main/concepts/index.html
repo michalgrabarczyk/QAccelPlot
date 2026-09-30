@@ -1410,7 +1410,10 @@ JavaScript callback.</p>
 <p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
 and legend symbol.</p>
 <p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
-stores points as interleaved floats and accepts data from QML or C++ buffers.</p>
+stores points as interleaved floats and accepts data from QML or C++ buffers.
+It reports <code>hovered</code> within <code>hoverRadius</code> pixels of the line or over a marker.
+Set <code>hoverRadius: 0</code> on a line drawn over another series to leave hover to the
+series beneath.</p>
 <p><code>RectangleSeries</code> renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered

@@ -47,6 +47,7 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(LineStyle* lineStyle READ lineStyle WRITE setLineStyle NOTIFY lineStyleChanged)
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
@@ -66,6 +67,9 @@ public:
     void setLineWidth(qreal w);
 
     bool hovered() const;
+
+    qreal hoverRadius() const;
+    void setHoverRadius(qreal radius);
 
     DataTransition* transition() const;
     void setTransition(DataTransition* transition);
@@ -115,6 +119,7 @@ signals:
     void colorChanged();
     void lineWidthChanged();
     void hoveredChanged();
+    void hoverRadiusChanged();
     void transitionChanged();
     void lineStyleChanged();
     void antialiasingEnabledChanged();
@@ -182,6 +187,7 @@ private:
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
+    qreal hoverRadius_{10.0};
     DataType dataType_{DataType::Double};
     std::vector<double> data_;      // precise interleaved x,y pairs used by setData()
     std::vector<float> dataF_;      // interleaved x,y pairs used by the *F APIs
