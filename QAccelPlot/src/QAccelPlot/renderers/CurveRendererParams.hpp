@@ -28,27 +28,21 @@ struct CurveChunk {
 };
 
 /// \brief Read-only view over either interleaved float or double curve coordinates.
-///
-/// Each sample holds \c stride values: X first, and Y at \c yOffset. The defaults describe
-/// <tt>[x0, y0, x1, y1, …]</tt>; a band's lower edge in <tt>[x0, low0, high0, …]</tt> uses
-/// stride 3 and offset 1.
 struct CurveDataView {
     const float* floatData{nullptr};
     const double* doubleData{nullptr};
-    int stride{2};  ///< \brief Number of values per sample.
-    int yOffset{1}; ///< \brief Position of the Y value within a sample.
 
     /// \brief Returns the X coordinate at \a index without narrowing double data.
     qreal x(int index) const
     {
-        const auto offset = static_cast<std::size_t>(index) * static_cast<std::size_t>(stride);
+        const auto offset = static_cast<std::size_t>(index) * 2;
         return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
     }
 
     /// \brief Returns the Y coordinate at \a index without narrowing double data.
     qreal y(int index) const
     {
-        const auto offset = static_cast<std::size_t>(index) * static_cast<std::size_t>(stride) + static_cast<std::size_t>(yOffset);
+        const auto offset = static_cast<std::size_t>(index) * 2 + 1;
         return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
     }
 };

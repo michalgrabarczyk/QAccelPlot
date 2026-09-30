@@ -127,19 +127,6 @@ QSGGeometryNode* createFillNode()
     return node;
 }
 
-// Edge lines never carry gradient effects.
-const GradientColorPayload& noGradientStroke()
-{
-    static const auto payload = GradientColorPayload{};
-    return payload;
-}
-
-const GradientFillPayload& noGradientFill()
-{
-    static const auto payload = GradientFillPayload{};
-    return payload;
-}
-
 } // namespace
 
 BandSeries::BandSeries(QQuickItem* parent)
@@ -373,18 +360,18 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
     auto* fillNode = static_cast<QSGGeometryNode*>(root->firstChild());
     updateFillNode(fillNode, view);
 
-    auto* lowerOld = fillNode->nextSibling();
-    auto* upperOld = lowerOld ? lowerOld->nextSibling() : nullptr;
+    auto* lowerOld = static_cast<QSGGeometryNode*>(fillNode->nextSibling());
+    auto* upperOld = lowerOld ? static_cast<QSGGeometryNode*>(lowerOld->nextSibling()) : nullptr;
     if (edgesVisible()) {
         // The edge lines read the fill's data texture instead of uploading their own copies.
         const auto& dataTexture = static_cast<BandMaterial*>(fillNode->material())->dataTexture;
-        auto* lower = paintEdge(lowerOld, lowerEdgeRenderer_, kLowComponent, view, dataTexture);
-        if (lower != lowerOld) {
-            root->insertChildNodeAfter(lower, fillNode);
+        auto* lower = paintEdge(lowerOld, lowerEdgeRenderer_, view, dataTexture);
+        if (!lowerOld) {
+            root->appendChildNode(lower);
         }
-        auto* upper = paintEdge(upperOld, upperEdgeRenderer_, kHighComponent, view, dataTexture);
-        if (upper != upperOld) {
-            root->insertChildNodeAfter(upper, lower);
+        auto* upper = paintEdge(upperOld, upperEdgeRenderer_, view, dataTexture);
+        if (!upperOld) {
+            root->appendChildNode(upper);
         }
     } else {
         delete lowerOld;
@@ -696,15 +683,14 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
     node->markDirty(QSGNode::DirtyMaterial);
 }
 
-QSGNode* BandSeries::paintEdge(
-    QSGNode* oldNode, const LineCurveLineRenderer& renderer, const int component, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const
+QSGGeometryNode* BandSeries::paintEdge(
+    QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const
 {
-    const auto source
-        = hasPreciseData() ? CurveDataView{nullptr, data_.data(), kStride, component} : CurveDataView{renderData_.data(), nullptr, kStride, component};
-    const auto params = LineCurveRenderParams{window(), renderData_, source, sampleCount_, dataChanged_, edgeColor(), false, edges_->width(), view.domainMin,
-        view.domainMax, view.viewportSize, xAxis(), yAxis(), logScaleX(), logScaleY(), true, 1.0, noGradientStroke(), noGradientFill(), nullptr,
-        edges_->lineStyle(), dataTexture, component == kLowComponent ? LineSampleLayout::BandLow : LineSampleLayout::BandHigh};
-    return renderer.paint(oldNode, params);
+    const auto samples = hasPreciseData() ? BandSamples{nullptr, data_.data(), sampleCount_} : BandSamples{renderData_.data(), nullptr, sampleCount_};
+    const auto* style = edges_->lineStyle();
+    const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(),
+        sampleCount_, true, 1.0, style ? style->dashParameters() : DashParameters{}};
+    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis()});
 }
 
 } // namespace QAccelPlot

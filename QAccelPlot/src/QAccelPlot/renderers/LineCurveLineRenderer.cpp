@@ -8,12 +8,12 @@
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 
 #include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
-#include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/GradientFillMaterial.hpp"
 #include "QAccelPlot/materials/GradientLineMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
+#include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QSGGeometry>
@@ -27,12 +27,6 @@ namespace QAccelPlot {
 
 namespace {
 constexpr int kMaxFillVertices = 60000;
-
-// Opaque-white byte used to initialise per-vertex RGBA when the shader ignores vertex color.
-constexpr auto kMaxColorChannelByte = static_cast<unsigned char>(255);
-// Ribbon side values: each data point generates two vertices extruded to opposite sides of the line.
-constexpr auto kSidePositive = float{1.0f};
-constexpr auto kSideNegative = float{-1.0f};
 
 struct GradientFillVertex {
     float x;
@@ -53,83 +47,9 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
     return unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
 }
 
-// The line material a stroke is drawn with.
-enum class StrokeMaterial { Line, Gradient, BandLow, BandHigh };
-
-StrokeMaterial strokeMaterialFor(const LineCurveRenderParams& params)
+QSGGeometryNode* createLineNode(const int vertexCount, const bool gradientStroke)
 {
-    switch (params.sampleLayout) {
-    case LineSampleLayout::BandLow:
-        return StrokeMaterial::BandLow;
-    case LineSampleLayout::BandHigh:
-        return StrokeMaterial::BandHigh;
-    case LineSampleLayout::XY:
-        break;
-    }
-    return params.gradientPayload.isValid() ? StrokeMaterial::Gradient : StrokeMaterial::Line;
-}
-
-StrokeMaterial strokeMaterialOf(const QSGMaterial* material)
-{
-    if (dynamic_cast<const GradientLineMaterial*>(material)) {
-        return StrokeMaterial::Gradient;
-    }
-    if (const auto* edge = dynamic_cast<const BandEdgeMaterial*>(material)) {
-        return edge->edge() == BandEdgeMaterial::Edge::Lower ? StrokeMaterial::BandLow : StrokeMaterial::BandHigh;
-    }
-    return StrokeMaterial::Line;
-}
-
-QSGMaterial* createStrokeMaterial(const StrokeMaterial kind)
-{
-    switch (kind) {
-    case StrokeMaterial::Gradient:
-        return new GradientLineMaterial;
-    case StrokeMaterial::BandLow:
-        return new BandEdgeMaterial(BandEdgeMaterial::Edge::Lower);
-    case StrokeMaterial::BandHigh:
-        return new BandEdgeMaterial(BandEdgeMaterial::Edge::Upper);
-    case StrokeMaterial::Line:
-        break;
-    }
-    return new LineMaterial;
-}
-
-int floatsPerSample(const LineSampleLayout layout)
-{
-    return layout == LineSampleLayout::XY ? 2 : 3;
-}
-
-QSGGeometryNode* createLineNode(const int vertexCount, const StrokeMaterial strokeMaterial)
-{
-    auto* node = new QSGGeometryNode;
-
-    static constexpr int kAttrLocationId{0};        // layout(location = 0): point index
-    static constexpr int kAttrLocationSide{1};      // layout(location = 1): ribbon side (+1 / -1)
-    static constexpr int kAttrLocationColor{2};     // layout(location = 2): per-vertex RGBA color
-    static constexpr int kAttrLocationArcLength{3}; // layout(location = 3): cumulative arc length
-    static constexpr int kComponentsScalar{1};      // 1 float
-    static constexpr int kComponentsColor{4};       // 4 bytes: RGBA
-    static constexpr int kLineAttributeCount{4};    // total number of vertex attributes
-
-    // Line-specific attribute set: {float id, float side, uchar4 rgba, float arcLength} = 16 bytes.
-    static const QSGGeometry::Attribute attributes[] = {
-        QSGGeometry::Attribute::create(kAttrLocationId, kComponentsScalar, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::create(kAttrLocationSide, kComponentsScalar, QSGGeometry::FloatType),
-        QSGGeometry::Attribute::createWithAttributeType(kAttrLocationColor, kComponentsColor, QSGGeometry::UnsignedByteType, QSGGeometry::ColorAttribute),
-        QSGGeometry::Attribute::create(kAttrLocationArcLength, kComponentsScalar, QSGGeometry::FloatType),
-    };
-    static const QSGGeometry::AttributeSet lineAttrSet = {kLineAttributeCount, static_cast<int>(sizeof(LineVertex)), attributes};
-
-    auto* geometry = new QSGGeometry(lineAttrSet, vertexCount);
-    geometry->setDrawingMode(QSGGeometry::DrawTriangleStrip);
-    node->setGeometry(geometry);
-    node->setFlag(QSGNode::OwnsGeometry);
-
-    node->setMaterial(createStrokeMaterial(strokeMaterial));
-    node->setFlag(QSGNode::OwnsMaterial);
-
-    return node;
+    return LineStroke::createNode(vertexCount, gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : new LineMaterial);
 }
 
 QSGGeometryNode* createFillNode(const int vertexCount)
@@ -205,15 +125,15 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
     }
 }
 
-QSGNode* createLineRootNode(const int strokeVertexCount, const StrokeMaterial strokeMaterial)
+QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke)
 {
     auto* rootNode = new QSGNode;
     rootNode->appendChildNode(createFillNode(0));
-    rootNode->appendChildNode(createLineNode(strokeVertexCount, strokeMaterial));
+    rootNode->appendChildNode(createLineNode(strokeVertexCount, gradientStroke));
     return rootNode;
 }
 
-QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const StrokeMaterial strokeMaterial, bool& recreated)
+QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const bool gradientStroke, bool& recreated)
 {
     const auto isExpectedRoot = [&]() {
         if (!oldNode || oldNode->type() != QSGNode::BasicNodeType || oldNode->childCount() != 2) {
@@ -239,32 +159,17 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
     if (isExpectedRoot) {
         auto* lineNode = static_cast<QSGGeometryNode*>(oldNode->lastChild());
-        recreated = strokeMaterialOf(lineNode->material()) != strokeMaterial;
+        const auto hasGradient = dynamic_cast<const GradientLineMaterial*>(lineNode->material()) != nullptr;
+        recreated = hasGradient != gradientStroke;
         if (recreated) {
-            lineNode->setMaterial(createStrokeMaterial(strokeMaterial));
+            lineNode->setMaterial(gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : static_cast<QSGMaterial*>(new LineMaterial));
         }
         return oldNode;
     }
 
     delete oldNode;
     recreated = true;
-    return createLineRootNode(strokeVertexCount, strokeMaterial);
-}
-
-void assembleVertices(QSGGeometry* geometry, const int pointCount, const QColor& effectiveColor, const std::vector<float>& arcLengths)
-{
-    auto* vertices = static_cast<LineVertex*>(geometry->vertexData());
-
-    // Hoist base color conversion — avoids 4 QColor::xF() calls per vertex in the common no-gradient path.
-    const auto baseR = static_cast<unsigned char>(effectiveColor.red());
-    const auto baseG = static_cast<unsigned char>(effectiveColor.green());
-    const auto baseB = static_cast<unsigned char>(effectiveColor.blue());
-    const auto baseA = static_cast<unsigned char>(effectiveColor.alpha());
-
-    for (int index = 0; index < pointCount; ++index) {
-        vertices[index * 2] = {static_cast<float>(index), kSidePositive, baseR, baseG, baseB, baseA, arcLengths.empty() ? 0.0f : arcLengths[index]};
-        vertices[index * 2 + 1] = {static_cast<float>(index), kSideNegative, baseR, baseG, baseB, baseA, arcLengths.empty() ? 0.0f : arcLengths[index]};
-    }
+    return createLineRootNode(strokeVertexCount, gradientStroke);
 }
 
 } // namespace
@@ -273,16 +178,9 @@ void LineCurveLineRenderer::buildVertexCache([[maybe_unused]] const std::vector<
 {
     const auto byteSize = static_cast<std::size_t>(pointCount) * 2 * sizeof(LineVertex);
     cache.resize(byteSize);
-    auto* vertices = reinterpret_cast<LineVertex*>(cache.data());
-
-    // Writes neutral RGBA — the shader uses the material color uniform (useVertexColor==0)
-    // for non-gradient rendering, so per-vertex color is irrelevant in that path.
-    for (int index = 0; index < pointCount; ++index) {
-        vertices[index * 2]
-            = {static_cast<float>(index), kSidePositive, kMaxColorChannelByte, kMaxColorChannelByte, kMaxColorChannelByte, kMaxColorChannelByte, 0.0f};
-        vertices[index * 2 + 1]
-            = {static_cast<float>(index), kSideNegative, kMaxColorChannelByte, kMaxColorChannelByte, kMaxColorChannelByte, kMaxColorChannelByte, 0.0f};
-    }
+    // Neutral RGBA: the shader uses the material color uniform (useVertexColor == 0) for
+    // non-gradient rendering, so per-vertex color is irrelevant in that path.
+    LineStroke::writeVertices(reinterpret_cast<LineVertex*>(cache.data()), pointCount, Qt::white, {});
 }
 
 bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestParams& params) const
@@ -338,8 +236,9 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
 QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderParams& params) const
 {
     const auto vertexCount = params.pointCount * 2;
+    const auto gradientStroke = params.gradientPayload.isValid();
     auto rootRecreated = false;
-    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, strokeMaterialFor(params), rootRecreated);
+    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, gradientStroke, rootRecreated);
     auto* fillNode = static_cast<QSGGeometryNode*>(rootNode->firstChild());
     auto* node = static_cast<QSGGeometryNode*>(fillNode->nextSibling());
 
@@ -363,10 +262,8 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
     auto* material = static_cast<LineMaterial*>(node->material());
     updateLineMaterial(material, params, effectiveColor, useVertexColor, dashParams);
 
-    if (params.dataTexture) {
-        material->dataTexture = params.dataTexture;
-    } else if (params.dataChanged || rootRecreated) {
-        material->uploadTexture(params.window, params.data.data(), params.pointCount * floatsPerSample(params.sampleLayout));
+    if (params.dataChanged || rootRecreated) {
+        material->uploadTexture(params.window, params.data.data(), params.pointCount * 2);
     }
 
     // The vertex buffer stores {id, side, rgba, arcLength}. For solid lines the
@@ -431,21 +328,10 @@ const FillSamples& LineCurveLineRenderer::fillSamples(const LineCurveRenderParam
 void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const LineCurveRenderParams& params, const QColor& effectiveColor,
     const bool useVertexColor, const DashParameters& dashParams) const
 {
-    material->color = effectiveColor;
-    material->lineWidth = static_cast<float>(params.lineWidth);
-    material->domainMin = params.domainMin;
-    material->domainMax = params.domainMax;
-    material->viewportSize = params.viewportSize;
-    material->logScaleX = params.logScaleX ? 1.0f : 0.0f;
-    material->logScaleY = params.logScaleY ? 1.0f : 0.0f;
+    LineStroke::applyUniforms(*material,
+        LineStroke::Uniforms{effectiveColor, params.lineWidth, params.domainMin, params.domainMax, params.viewportSize, params.logScaleX, params.logScaleY,
+            params.pointCount, params.antialiasingEnabled, params.antialiasingFeather, dashParams});
     material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
-    material->pointCount = static_cast<float>(params.pointCount);
-    material->antialiasingEnabled = params.antialiasingEnabled ? 1.0f : 0.0f;
-    material->antialiasingFeather = static_cast<float>(params.antialiasingFeather);
-    material->dashPeriod = dashParams.period;
-    material->dashOffset = dashParams.offset;
-    material->dashPatternSize = dashParams.enabled ? dashParams.patternSize : 0;
-    std::copy(std::begin(dashParams.pattern), std::end(dashParams.pattern), material->dashPattern);
     if (auto* gradientMaterial = dynamic_cast<GradientLineMaterial*>(material)) {
         gradientMaterial->gradientDirection = params.gradientPayload.direction == GradientDirection::Vertical ? 1.0f : 0.0f;
         gradientMaterial->gradientValueMin = static_cast<float>(params.gradientPayload.gradientValueMin.value_or(0.0));
@@ -459,30 +345,13 @@ std::vector<float> LineCurveLineRenderer::computeArcLengths(const LineCurveRende
     if (!dashParams.enabled || !params.xAxis || !params.yAxis || params.pointCount <= 0) {
         return {};
     }
-    auto arcLengths = std::vector<float>(params.pointCount);
-    auto cumLen = 0.0f;
-    auto prevPx = 0.0f;
-    auto prevPy = 0.0f;
-    auto prevValid = false;
-    for (auto i = 0; i < params.pointCount; ++i) {
-        // Segments touching an invalid sample are not drawn and add no length, so the
-        // dash phase continues seamlessly on the far side of a gap.
-        const auto valid = LineCurveGapFilter::isValidPoint(params.sourceData, i, params.logScaleX, params.logScaleY);
-        if (valid) {
-            const auto px = static_cast<float>(params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()));
-            const auto py = static_cast<float>(params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y()));
-            if (prevValid) {
-                const auto dx = px - prevPx;
-                const auto dy = py - prevPy;
-                cumLen += std::sqrt(dx * dx + dy * dy);
-            }
-            prevPx = px;
-            prevPy = py;
+    return LineStroke::arcLengths(params.pointCount, [&params](const int i) -> std::optional<QPointF> {
+        if (!LineCurveGapFilter::isValidPoint(params.sourceData, i, params.logScaleX, params.logScaleY)) {
+            return std::nullopt;
         }
-        prevValid = valid;
-        arcLengths[i] = cumLen;
-    }
-    return arcLengths;
+        return QPointF{params.xAxis->coordToPixel(params.sourceData.x(i), params.viewportSize.x()),
+            params.yAxis->coordToPixel(params.sourceData.y(i), params.viewportSize.y())};
+    });
 }
 
 void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const LineCurveRenderParams& params, const bool useVertexColor,
@@ -496,7 +365,7 @@ void LineCurveLineRenderer::updateLineVertices(QSGGeometry* geometry, const Line
         std::memcpy(geometry->vertexData(), params.vertexCache->data(), expectedCacheBytes);
     } else {
         // Fallback: assemble on the render thread (dash lines or no cache).
-        assembleVertices(geometry, params.pointCount, effectiveColor, arcLengths);
+        LineStroke::writeVertices(static_cast<LineVertex*>(geometry->vertexData()), params.pointCount, effectiveColor, arcLengths);
     }
 }
 

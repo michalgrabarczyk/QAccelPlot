@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
+#include "QAccelPlot/renderers/BandEdgeRenderer.hpp"
 #include "QAccelPlot/series/BandEdges.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
@@ -179,8 +179,8 @@ private:
     void rebuildRenderData();
     RenderView renderView() const;
     void updateFillNode(QSGGeometryNode* node, const RenderView& view);
-    QSGNode* paintEdge(
-        QSGNode* oldNode, const LineCurveLineRenderer& renderer, int component, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const;
+    QSGGeometryNode* paintEdge(
+        QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const;
 
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
@@ -203,8 +203,8 @@ private:
     // True when the most recent data update computed ranges; the NoRange APIs leave range
     // management to the caller, so scale changes must not overwrite it.
     bool autoDataRanges_{true};
-    LineCurveLineRenderer lowerEdgeRenderer_;
-    LineCurveLineRenderer upperEdgeRenderer_;
+    BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};
+    BandEdgeRenderer upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};
 };
 
 } // namespace QAccelPlot

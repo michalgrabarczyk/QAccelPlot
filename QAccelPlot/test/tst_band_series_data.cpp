@@ -71,8 +71,7 @@ struct BandFixture {
 // Returns the line material of the edge line painted as child \a index of the band's root node.
 LineMaterial* edgeMaterial(QSGNode* root, const int index)
 {
-    auto* edgeRoot = root->childAtIndex(index);
-    return static_cast<LineMaterial*>(static_cast<QSGGeometryNode*>(edgeRoot->lastChild())->material());
+    return static_cast<LineMaterial*>(static_cast<QSGGeometryNode*>(root->childAtIndex(index))->material());
 }
 
 bool hasSpan(const QVariantMap& value, const double low, const double high)

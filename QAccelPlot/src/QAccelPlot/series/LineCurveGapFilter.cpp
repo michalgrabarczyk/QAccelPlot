@@ -29,27 +29,22 @@ bool isValidPair(const double x, const double y, const bool logScaleX, const boo
 // The scans below are specialized on the buffer type so the float/double
 // dispatch in CurveDataView happens once per call instead of once per sample.
 
-template <typename T> int countInvalid(const T* data, const CurveDataView& layout, const int pointCount, const bool logScaleX, const bool logScaleY)
+template <typename T> int countInvalid(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
-    const auto stride = static_cast<std::size_t>(layout.stride);
-    const auto yOffset = static_cast<std::size_t>(layout.yOffset);
     auto invalidCount = int{0};
     for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
-        invalidCount += isValidPair(data[i * stride], data[i * stride + yOffset], logScaleX, logScaleY) ? 0 : 1;
+        invalidCount += isValidPair(data[i * 2], data[i * 2 + 1], logScaleX, logScaleY) ? 0 : 1;
     }
     return invalidCount;
 }
 
-template <typename T>
-std::vector<SampleRun> findRuns(const T* data, const CurveDataView& layout, const int pointCount, const bool logScaleX, const bool logScaleY)
+template <typename T> std::vector<SampleRun> findRuns(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
-    const auto stride = static_cast<std::size_t>(layout.stride);
-    const auto yOffset = static_cast<std::size_t>(layout.yOffset);
     auto runs = std::vector<SampleRun>{};
     auto runStart = int{-1};
     for (auto i = int{0}; i < pointCount; ++i) {
-        const auto offset = static_cast<std::size_t>(i) * stride;
-        const auto valid = isValidPair(data[offset], data[offset + yOffset], logScaleX, logScaleY);
+        const auto offset = static_cast<std::size_t>(i) * 2;
+        const auto valid = isValidPair(data[offset], data[offset + 1], logScaleX, logScaleY);
         if (valid && runStart < 0) {
             runStart = i;
         } else if (!valid && runStart >= 0) {
@@ -72,14 +67,12 @@ bool isValidPoint(const CurveDataView& data, const int index, const bool logScal
 
 int countInvalidPoints(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
-    return data.doubleData ? countInvalid(data.doubleData, data, pointCount, logScaleX, logScaleY)
-                           : countInvalid(data.floatData, data, pointCount, logScaleX, logScaleY);
+    return data.doubleData ? countInvalid(data.doubleData, pointCount, logScaleX, logScaleY) : countInvalid(data.floatData, pointCount, logScaleX, logScaleY);
 }
 
 std::vector<SampleRun> findValidRuns(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
-    return data.doubleData ? findRuns(data.doubleData, data, pointCount, logScaleX, logScaleY)
-                           : findRuns(data.floatData, data, pointCount, logScaleX, logScaleY);
+    return data.doubleData ? findRuns(data.doubleData, pointCount, logScaleX, logScaleY) : findRuns(data.floatData, pointCount, logScaleX, logScaleY);
 }
 
 std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, const int maxSampledPoints)

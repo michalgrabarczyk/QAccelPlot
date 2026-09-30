@@ -11,6 +11,7 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
+#include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QColor>
@@ -19,23 +20,14 @@
 #include <QSGNode>
 #include <QVector2D>
 
-#include <memory>
 #include <vector>
 
 QT_FORWARD_DECLARE_CLASS(QQuickWindow)
 
 namespace QAccelPlot {
 
-class DataTexture;
 struct DashParameters;
 class LineMaterial;
-
-/// \brief Which values of each sample a line draws.
-enum class LineSampleLayout {
-    XY,       ///< \brief <tt>(x, y)</tt> pairs.
-    BandLow,  ///< \brief The low value of <tt>(x, low, high)</tt> triples.
-    BandHigh, ///< \brief The high value of <tt>(x, low, high)</tt> triples.
-};
 
 /// \brief Input parameters for LineCurveLineRenderer::paint(), assembled on the main thread.
 struct LineCurveRenderParams {
@@ -60,24 +52,6 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; ///< \brief Gradient fill parameters.
     const std::vector<char>* vertexCache;           ///< \brief Pre-built vertex buffer, or \c nullptr to build on the render thread.
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
-    /// \brief Data texture already holding \c data, shared with other nodes of the same item.
-    ///
-    /// When \c nullptr, the line uploads \c data into a texture of its own. A renderer must either
-    /// always or never receive one.
-    std::shared_ptr<DataTexture> dataTexture{};
-    /// \brief Layout of \c data and \c sourceData; a band edge layout ignores \c gradientPayload.
-    LineSampleLayout sampleLayout{LineSampleLayout::XY};
-};
-
-/// \brief Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.
-struct LineVertex {
-    float id;        ///< \brief Point index in the data buffer.
-    float side;      ///< \brief Side of the line (-0.5 or +0.5) for screen-space extrusion.
-    unsigned char r; ///< \brief Red channel (used when \c useVertexColor is true).
-    unsigned char g; ///< \brief Green channel (used when \c useVertexColor is true).
-    unsigned char b; ///< \brief Blue channel (used when \c useVertexColor is true).
-    unsigned char a; ///< \brief Alpha channel (used when \c useVertexColor is true).
-    float arcLength; ///< \brief Cumulative screen-space arc length in pixels; 0 for solid lines.
 };
 
 /// \brief Samples of a gradient fill: one group per valid-sample run, broken at gaps.
