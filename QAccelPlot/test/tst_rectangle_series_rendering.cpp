@@ -195,6 +195,16 @@ public:
         return {qRound(plot_->dataToPixelX(x)), qRound(plot_->dataToPixelY(y))};
     }
 
+    int pixelX(const qreal x) const
+    {
+        return qRound(plot_->dataToPixelX(x));
+    }
+
+    int pixelY(const qreal y) const
+    {
+        return qRound(plot_->dataToPixelY(y));
+    }
+
 private:
     QQuickWindow window_;
     QQmlEngine engine_;
@@ -216,6 +226,7 @@ class RectangleSeriesRenderingTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void coordinateHelpersIgnoreOffscreenOtherAxis();
     void unboundedEdgesReachThePlotEdges();
     void narrowRectanglesKeepMinimumSize();
     void categoriesSelectFillColors();
@@ -223,6 +234,24 @@ private slots:
     void hoverColorHighlightsHoveredRectangle();
     void rectanglesBeyondFirstTextureRowsAreDrawn();
 };
+
+void RectangleSeriesRenderingTest::coordinateHelpersIgnoreOffscreenOtherAxis()
+{
+    auto scene = SceneWindow{kUnboundedScene};
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    plot->xAxis()->setViewportMin(1e9);
+    plot->xAxis()->setViewportMax(1e9 + 10.0);
+    QCOMPARE(scene.pixelY(4.5), qRound(plot->dataToPixelY(4.5)));
+
+    plot->xAxis()->setViewportMin(0.0);
+    plot->xAxis()->setViewportMax(10.0);
+    plot->yAxis()->setViewportMin(1e9);
+    plot->yAxis()->setViewportMax(1e9 + 10.0);
+    QCOMPARE(scene.pixelX(4.5), qRound(plot->dataToPixelX(4.5)));
+}
 
 void RectangleSeriesRenderingTest::unboundedEdgesReachThePlotEdges()
 {
@@ -239,8 +268,8 @@ void RectangleSeriesRenderingTest::unboundedEdgesReachThePlotEdges()
     const auto bottom = area.bottom() - 2;
     const auto left = area.left() + 2;
     const auto right = area.right() - 2;
-    const auto pixelX = [&scene](const qreal x) { return scene.pixel(x, 0.0).x(); };
-    const auto pixelY = [&scene](const qreal y) { return scene.pixel(0.0, y).y(); };
+    const auto pixelX = [&scene](const qreal x) { return scene.pixelX(x); };
+    const auto pixelY = [&scene](const qreal y) { return scene.pixelY(y); };
 
     auto image = scene.grab();
     QVERIFY(isColor(image.pixelColor(pixelX(1.5), top), Qt::red));
