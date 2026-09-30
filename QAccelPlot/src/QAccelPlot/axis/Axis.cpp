@@ -363,12 +363,13 @@ void Axis::rescaleToData()
 {
     if (dataMin_ < dataMax_) {
         if (logScale_) {
-            // Clamp viewportMin to a small positive value for log scale
-            setViewportMin(dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue);
+            const auto minimum = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
+            setViewportMin(minimum);
+            setViewportMax(dataMax_ > minimum ? dataMax_ : minimum * kLogScaleRangeFactor);
         } else {
             setViewportMin(dataMin_);
+            setViewportMax(dataMax_);
         }
-        setViewportMax(dataMax_);
         return;
     }
 
