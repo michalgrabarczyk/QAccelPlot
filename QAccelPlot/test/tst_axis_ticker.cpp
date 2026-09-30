@@ -21,6 +21,7 @@ private slots:
     void tickLength_splitsEvenlyAndNotifiesOnce();
     void tickLength_readsSumOfAsymmetricLengths();
     void subtickLength_splitsEvenlyAndNotifiesOnce();
+    void componentLengths_notifyTotalLength();
     void unchangedValues_doNotNotify();
     void invalidTickLabelColor_restoresFallback();
     void assigningDefaultFormatter_isNoOp();
@@ -91,6 +92,28 @@ void TestAxisTicker::subtickLength_splitsEvenlyAndNotifiesOnce()
     QCOMPARE(lengthSpy.count(), 1);
     QCOMPARE(inSpy.count(), 1);
     QCOMPARE(outSpy.count(), 1);
+}
+
+void TestAxisTicker::componentLengths_notifyTotalLength()
+{
+    auto ticker = QAccelPlot::AxisTicker{};
+    auto tickSpy = QSignalSpy{&ticker, &QAccelPlot::AxisTicker::tickLengthChanged};
+    auto subtickSpy = QSignalSpy{&ticker, &QAccelPlot::AxisTicker::subtickLengthChanged};
+
+    ticker.setTickLengthIn(2.0);
+    ticker.setTickLengthOut(3.0);
+    ticker.setSubtickLengthIn(1.0);
+    ticker.setSubtickLengthOut(2.0);
+
+    QCOMPARE(ticker.tickLength(), 5.0);
+    QCOMPARE(ticker.subtickLength(), 3.0);
+    QCOMPARE(tickSpy.count(), 2);
+    QCOMPARE(subtickSpy.count(), 2);
+
+    ticker.setTickLengthIn(2.0);
+    ticker.setSubtickLengthOut(2.0);
+    QCOMPARE(tickSpy.count(), 2);
+    QCOMPARE(subtickSpy.count(), 2);
 }
 
 void TestAxisTicker::unchangedValues_doNotNotify()

@@ -126,6 +126,7 @@ void AxisTicker::setTickLengthIn(qreal length)
         return;
     }
     tickLengthIn_ = length;
+    emit tickLengthChanged();
     emit tickLengthInChanged();
 }
 
@@ -140,6 +141,7 @@ void AxisTicker::setTickLengthOut(qreal length)
         return;
     }
     tickLengthOut_ = length;
+    emit tickLengthChanged();
     emit tickLengthOutChanged();
 }
 
@@ -154,6 +156,7 @@ void AxisTicker::setSubtickLengthIn(qreal length)
         return;
     }
     subtickLengthIn_ = length;
+    emit subtickLengthChanged();
     emit subtickLengthInChanged();
 }
 
@@ -168,6 +171,7 @@ void AxisTicker::setSubtickLengthOut(qreal length)
         return;
     }
     subtickLengthOut_ = length;
+    emit subtickLengthChanged();
     emit subtickLengthOutChanged();
 }
 
