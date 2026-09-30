@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-30 19:03:02</td>
+      <td>2026-09-30 19:17:40</td>
     </tr>
   </table>
 </div>
@@ -70,11 +70,11 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l52">QAccelPlot::RectVertexCache::copyTo(QSGGeometry&amp;) const (line 52)</a></td><td>called 37 times</td><td>92.0%</td></tr>
-    <tr><td><a href="#l37">QAccelPlot::RectVertexCache::invalidate() (line 37)</a></td><td>called 127 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l16">QAccelPlot::RectVertexCache::rebuild(int, std::function&lt;QColor (int)&gt; const&amp;) (line 16)</a></td><td>called 39 times</td><td>95.0%</td></tr>
-    <tr><td><a href="#l42">QAccelPlot::RectVertexCache::valid() const (line 42)</a></td><td>called 63 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l47">QAccelPlot::RectVertexCache::vertexCount() const (line 47)</a></td><td>called 66 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l52">QAccelPlot::RectVertexCache::copyTo(QSGGeometry&amp;) const (line 52)</a></td><td>called 39 times</td><td>92.0%</td></tr>
+    <tr><td><a href="#l37">QAccelPlot::RectVertexCache::invalidate() (line 37)</a></td><td>called 129 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l16">QAccelPlot::RectVertexCache::rebuild(int, std::function&lt;QColor (int)&gt; const&amp;) (line 16)</a></td><td>called 41 times</td><td>95.0%</td></tr>
+    <tr><td><a href="#l42">QAccelPlot::RectVertexCache::valid() const (line 42)</a></td><td>called 65 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l47">QAccelPlot::RectVertexCache::vertexCount() const (line 47)</a></td><td>called 68 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -197,7 +197,7 @@
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">39</td>
+      <td class="linecount coveredLine">41</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">RectVertexCache::rebuild</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rectCount</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ColorFunction</span><span class="o">&amp;</span><span class="w"> </span><span class="n">colorAt</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -218,7 +218,7 @@
       <td class="lineno"><a id="l19" href="#l19">19</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">39</td>
+      <td class="linecount coveredLine">41</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">vertices_</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rectCount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kVerticesPerRect</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -227,26 +227,26 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 3062 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 39 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 3065 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 41 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">3101</td>
+      <td class="linecount coveredLine">3106</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rectCount</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l21" href="#l21">21</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3062</td>
+      <td class="linecount coveredLine">3065</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kVerticesPerRect</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l22" href="#l22">22</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3062</td>
+      <td class="linecount coveredLine">3065</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -256,13 +256,13 @@
           <summary class="linebranchSummary">3/4</summary>
           <div class="linebranchContents">
             <div class="takenBranch">&check; Branch 1 taken 3015 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 47 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 50 times.</div>
             <div class="takenBranch">&check; Branch 4 taken 3015 times.</div>
             <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">3062</td>
+      <td class="linecount partialCoveredLine">3065</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rgba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colorAt</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">colorAt</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">toRgb</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">QColor</span><span class="p">{</span><span class="n">Qt</span><span class="o">::</span><span class="n">white</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
@@ -271,61 +271,61 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 18372 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 3062 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 18390 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 3065 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">21434</td>
+      <td class="linecount coveredLine">21455</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">kVerticesPerRect</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertices_</span><span class="p">[</span><span class="n">base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">)];</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l26" href="#l26">26</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">corner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rgba</span><span class="p">.</span><span class="n">red</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rgba</span><span class="p">.</span><span class="n">green</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rgba</span><span class="p">.</span><span class="n">blue</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">18372</td>
+      <td class="linecount coveredLine">18390</td>
       <td class="src coveredLine"><span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rgba</span><span class="p">.</span><span class="n">alpha</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
@@ -346,14 +346,14 @@
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">39</td>
+      <td class="linecount coveredLine">41</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">valid_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">39</td>
+      <td class="linecount coveredLine">41</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -367,7 +367,7 @@
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">127</td>
+      <td class="linecount coveredLine">129</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">RectVertexCache::invalidate</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -381,14 +381,14 @@
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">127</td>
+      <td class="linecount coveredLine">129</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">valid_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">127</td>
+      <td class="linecount coveredLine">129</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -402,7 +402,7 @@
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">63</td>
+      <td class="linecount coveredLine">65</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">RectVertexCache::valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -416,7 +416,7 @@
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">63</td>
+      <td class="linecount coveredLine">65</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">valid_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -437,7 +437,7 @@
       <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">66</td>
+      <td class="linecount coveredLine">68</td>
       <td class="src coveredLine"><span class="kt">int</span><span class="w"> </span><span class="nf">RectVertexCache::vertexCount</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span></td>
     </tr>
     <tr class="source-line">
@@ -451,7 +451,7 @@
       <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">66</td>
+      <td class="linecount coveredLine">68</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">vertices_</span><span class="p">.</span><span class="n">size</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
@@ -472,7 +472,7 @@
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">37</td>
+      <td class="linecount coveredLine">39</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">RectVertexCache::copyTo</span><span class="p">(</span><span class="n">QSGGeometry</span><span class="o">&amp;</span><span class="w"> </span><span class="n">geometry</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -489,18 +489,18 @@
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
-            <div class="takenBranch">&check; Branch 2 taken 37 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 39 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">37</td>
+      <td class="linecount partialCoveredLine">39</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">Q_ASSERT</span><span class="p">(</span><span class="n">geometry</span><span class="p">.</span><span class="n">sizeOfVertex</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">)));</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">37</td>
+      <td class="linecount coveredLine">39</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">geometry</span><span class="p">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">vertexCount</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
@@ -509,19 +509,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 36 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 38 times.</div>
             <div class="takenBranch">&check; Branch 2 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">37</td>
+      <td class="linecount coveredLine">39</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">vertices_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l57" href="#l57">57</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">36</td>
+      <td class="linecount coveredLine">38</td>
       <td class="src coveredLine"><span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">geometry</span><span class="p">.</span><span class="n">vertexData</span><span class="p">(),</span><span class="w"> </span><span class="n">vertices_</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">vertices_</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
@@ -535,7 +535,7 @@
       <td class="lineno"><a id="l59" href="#l59">59</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">37</td>
+      <td class="linecount coveredLine">39</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
