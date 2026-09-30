@@ -19,6 +19,7 @@
 
 #include <array>
 #include <memory>
+#include <tuple>
 
 namespace QAccelPlot {
 
@@ -149,6 +150,22 @@ constexpr auto kLargeScene = R"(
 }
 )";
 
+// A red band at epoch-millisecond X values, extended with appendData() in the test.
+constexpr auto kAppendScene = R"(
+    BandSeries {
+        objectName: "band"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        Component.onCompleted: {
+            plot.xAxis.viewportMin = 1789032600000;
+            plot.xAxis.viewportMax = 1789032600010;
+            setData([1789032600000, 1789032600005], [2, 2], [4, 4]);
+        }
+    }
+}
+)";
+
 // Nested bands, y 2..8 and 4..6, under a line at y 5, like a forecast with two intervals.
 constexpr auto kStackedHoverScene = R"(
     BandSeries {
@@ -247,6 +264,7 @@ private slots:
     void edgeLinesFollowTheDrawnBoundsAndGaps();
     void logScaleBandIsDrawn();
     void samplesBeyondFirstTextureRowsAreDrawn();
+    void appendedEpochSamplesAreDrawnInPlace();
     void hoverReachesStackedBands();
 };
 
@@ -377,6 +395,33 @@ void BandSeriesRenderingTest::samplesBeyondFirstTextureRowsAreDrawn()
     QVERIFY(isColor(image.pixelColor(scene.pixel(7.5, 7.0)), Qt::red));
     QVERIFY(isColor(image.pixelColor(scene.pixel(7.5, 3.0)), Qt::black));
     QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 7.0)), Qt::black));
+}
+
+void BandSeriesRenderingTest::appendedEpochSamplesAreDrawnInPlace()
+{
+    constexpr auto kEpoch = 1789032600000.0;
+    auto scene = SceneWindow{kAppendScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+    auto* band = plot->findChild<QQuickItem*>(QStringLiteral("band"));
+    QVERIFY(band);
+    const auto pixel = [&scene](const qreal offset, const qreal y) { return scene.pixel(kEpoch + offset, y); };
+    QVERIFY(isColor(scene.grab().pixelColor(pixel(2.5, 3.0)), Qt::red));
+
+    // After the first frame, appends extend the origin-relative render data in place. A step from
+    // y 2..4 to y 6..8 after offset 6 shows whether the appended samples land where they belong.
+    for (const auto [offset, low, high] : {std::tuple{6.0, 6.0, 8.0}, std::tuple{9.0, 6.0, 8.0}}) {
+        QVERIFY(QMetaObject::invokeMethod(band, "appendData", Q_ARG(qreal, kEpoch + offset), Q_ARG(qreal, low), Q_ARG(qreal, high)));
+    }
+    const auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(pixel(2.5, 3.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(pixel(7.5, 7.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(pixel(7.5, 3.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(pixel(9.5, 7.0)), Qt::black));
 }
 
 void BandSeriesRenderingTest::hoverReachesStackedBands()
