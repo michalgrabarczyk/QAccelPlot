@@ -447,6 +447,7 @@ bool BandSeries::validateVectorArguments(const std::size_t valueCount, const int
 
 void BandSeries::applyData(std::vector<double>&& data, const int sampleCount, const bool reportRanges)
 {
+    dataType_ = DataType::Double;
     data_ = std::move(data);
     renderDataValid_ = false;
     finishDataChange(sampleCount, reportRanges);
@@ -454,6 +455,7 @@ void BandSeries::applyData(std::vector<double>&& data, const int sampleCount, co
 
 void BandSeries::applyFloatData(std::vector<float>&& data, const int sampleCount, const bool reportRanges)
 {
+    dataType_ = DataType::Float;
     data_ = std::vector<double>{};
     renderData_ = std::move(data);
     renderOriginX_ = 0.0;
@@ -484,14 +486,14 @@ void BandSeries::promoteFloatDataToDouble()
     if (hasPreciseData()) {
         return;
     }
-    // renderData_ may keep stale values beyond the samples after clearData().
-    data_.assign(renderData_.begin(), renderData_.begin() + static_cast<std::ptrdiff_t>(sampleCount_) * kStride);
+    dataType_ = DataType::Double;
+    data_.assign(renderData_.begin(), renderData_.end());
     renderDataValid_ = false;
 }
 
 bool BandSeries::hasPreciseData() const
 {
-    return !data_.empty();
+    return dataType_ == DataType::Double;
 }
 
 double BandSeries::value(const int index, const int component) const

@@ -183,10 +183,14 @@ private:
     QSGGeometryNode* paintEdge(
         QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const;
 
+    // Which setter family supplied the data: setData() keeps doubles, setDataF() keeps floats.
+    enum class DataType { Double, Float };
+
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
     bool hovered_{false};
-    // Data: 3 doubles per sample (x, low, high), full precision. Empty when setDataF() supplied the data.
+    DataType dataType_{DataType::Double};
+    // Data: 3 doubles per sample (x, low, high), full precision. Empty for DataType::Float.
     std::vector<double> data_;
     // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
     std::vector<float> renderData_;
