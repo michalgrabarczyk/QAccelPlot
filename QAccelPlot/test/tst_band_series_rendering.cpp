@@ -89,6 +89,29 @@ constexpr auto kEdgeScene = R"(
 }
 )";
 
+// White edge lines on two transparent bands. The first band's low and high values cross at x = 5,
+// so its edges follow the drawn bounds at y 2 and 8. The second band has an invalid low at x = 5.
+constexpr auto kEdgeBoundsScene = R"(
+    BandSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "transparent"
+        edges.width: 4
+        edges.color: "white"
+        Component.onCompleted: setData([1, 9], [2, 8], [8, 2])
+    }
+
+    BandSeries {
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "transparent"
+        edges.width: 4
+        edges.color: "white"
+        Component.onCompleted: setData([1, 3, 5, 7, 9], [3, 3, NaN, 3, 3], [6, 6, 6, 6, 6])
+    }
+}
+)";
+
 // A red band from y 10 to 100 on a logarithmic Y axis.
 constexpr auto kLogScene = R"(
     BandSeries {
@@ -221,6 +244,7 @@ private slots:
     void fillSpansFromLowToHigh();
     void invalidSamplesLeaveGaps();
     void edgeLinesFollowBothBounds();
+    void edgeLinesFollowTheDrawnBoundsAndGaps();
     void logScaleBandIsDrawn();
     void samplesBeyondFirstTextureRowsAreDrawn();
     void hoverReachesStackedBands();
@@ -293,6 +317,27 @@ void BandSeriesRenderingTest::edgeLinesFollowBothBounds()
         black += isColor(color, Qt::black) ? 1 : 0;
     }
     QVERIFY2(white > 50 && black > 50, qPrintable(QStringLiteral("%1 white, %2 black").arg(white).arg(black)));
+}
+
+void BandSeriesRenderingTest::edgeLinesFollowTheDrawnBoundsAndGaps()
+{
+    auto scene = SceneWindow{kEdgeBoundsScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    QVERIFY2(scene.plot(), qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    const auto image = scene.grab();
+    // Crossing values: straight edges at the bounds instead of two lines crossing at y = 5.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(4.0, 2.0)), Qt::white));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(4.0, 8.0)), Qt::white));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 5.0)), Qt::black));
+    // An invalid low breaks both edge lines, like the fill.
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.0, 6.0)), Qt::white));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(4.5, 6.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.5, 6.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.0, 6.0)), Qt::white));
 }
 
 void BandSeriesRenderingTest::logScaleBandIsDrawn()

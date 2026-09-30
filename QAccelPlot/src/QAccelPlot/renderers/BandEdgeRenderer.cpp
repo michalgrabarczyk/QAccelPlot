@@ -48,15 +48,18 @@ std::vector<float> BandEdgeRenderer::arcLengths(const BandEdgeRenderParams& para
     if (!params.xAxis || !params.yAxis) {
         return {};
     }
-    const auto component = edge_ == BandEdgeMaterial::Edge::Lower ? 1 : 2;
+    const auto upper = edge_ == BandEdgeMaterial::Edge::Upper;
     const auto& samples = params.samples;
     const auto& uniforms = params.uniforms;
+    // Like band_edge.glsl: the drawn bound of each sample, invalid wherever the fill has a gap.
     return LineStroke::arcLengths(samples.count, [&](const int i) -> std::optional<QPointF> {
         const auto x = samples.value(i, 0);
-        const auto y = samples.value(i, component);
-        if (!isValidSample(x, uniforms.logScaleX) || !isValidSample(y, uniforms.logScaleY)) {
+        const auto low = samples.value(i, 1);
+        const auto high = samples.value(i, 2);
+        if (!isValidSample(x, uniforms.logScaleX) || !isValidSample(low, uniforms.logScaleY) || !isValidSample(high, uniforms.logScaleY)) {
             return std::nullopt;
         }
+        const auto y = upper ? std::max(low, high) : std::min(low, high);
         return QPointF{params.xAxis->coordToPixel(x, uniforms.viewportSize.x()), params.yAxis->coordToPixel(y, uniforms.viewportSize.y())};
     });
 }

@@ -6,7 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 // Vertex stage of the line ribbon shared by line.vert and the band edge shaders.
-// Define LINE_SAMPLE_STRIDE and LINE_Y_COMPONENT before including it to read other
+// Define LINE_SAMPLE_STRIDE and LINE_Y_BITS before including it to read other
 // sample layouts; see line_geometry.glsl.
 
 layout(location = 0) in float id;

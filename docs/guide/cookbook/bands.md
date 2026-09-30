@@ -99,9 +99,8 @@ For float buffers, worker-thread handoff, and skipping range scans, see
 ## Invalid samples
 
 A sample is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
-strictly positive on a logarithmic axis. The fill leaves a gap there. Each edge
-line breaks only where its own value is invalid. Auto-ranging skips invalid
-values one by one.
+strictly positive on a logarithmic axis. The fill and the edge lines leave a
+gap there. Auto-ranging skips invalid values one by one.
 
 ## Hover
 

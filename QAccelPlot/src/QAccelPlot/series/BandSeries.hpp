@@ -35,7 +35,8 @@ namespace QAccelPlot {
 /// such as epoch timestamps stay precise. The \c setDataF() overloads store floats and upload them without
 /// conversion.
 ///
-/// Draw a center line with a separate \c LineCurve. \c edges draws lines along the lower and upper edges.
+/// Draw a center line with a separate \c LineCurve. \c edges draws lines along the lower and upper edges of
+/// the filled band.
 ///
 /// \par Samples
 /// At each sample the band spans from the smaller to the larger of \c low and \c high. X values are
@@ -43,8 +44,8 @@ namespace QAccelPlot {
 ///
 /// \par Invalid samples
 /// A sample is invalid when \c x, \c low, or \c high is NaN or ±Inf, or is not strictly positive on a
-/// log-scale axis. The fill leaves a gap at invalid samples, and each edge line breaks only where its own
-/// value is invalid. Auto-ranging skips invalid values one by one.
+/// log-scale axis. The fill and the edge lines leave a gap at invalid samples. Auto-ranging skips invalid
+/// values one by one.
 ///
 /// \par Limits
 /// Up to 16,777,216 (2^24) samples are drawn correctly. The shader indexes samples in single precision.

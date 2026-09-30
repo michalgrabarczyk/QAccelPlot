@@ -11,14 +11,15 @@
 // antialiasingEnabled and antialiasingFeather members,
 // followed by includes of data_texture.glsl and math_utils.glsl.
 //
-// Samples are read as LINE_SAMPLE_STRIDE floats each, X first and the drawn Y at
-// LINE_Y_COMPONENT. Define both before including this file to read other layouts.
+// Samples are read as LINE_SAMPLE_STRIDE floats each, X first. LINE_Y_BITS(base)
+// returns the bits of the drawn Y for the sample starting at float `base`. Define
+// both before including this file to read other layouts.
 
 #ifndef LINE_SAMPLE_STRIDE
 #define LINE_SAMPLE_STRIDE 2
 #endif
-#ifndef LINE_Y_COMPONENT
-#define LINE_Y_COMPONENT 1
+#ifndef LINE_Y_BITS
+#define LINE_Y_BITS(base) fetchFloatBits((base) + 1)
 #endif
 
 #include "data_mapping.glsl"
@@ -51,7 +52,7 @@ bool fetchSample(int index, out vec2 position) {
     index = clamp(index, 0, int(ubuf.pointCount) - 1);
     int base = index * LINE_SAMPLE_STRIDE;
     uint xBits = fetchFloatBits(base);
-    uint yBits = fetchFloatBits(base + LINE_Y_COMPONENT);
+    uint yBits = LINE_Y_BITS(base);
     position = vec2(uintBitsToFloat(xBits), uintBitsToFloat(yBits));
     if (!isFiniteBits(xBits) || !isFiniteBits(yBits)) {
         return false;
