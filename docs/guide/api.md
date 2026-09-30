@@ -22,6 +22,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   applications use its `Plot` wrapper.
 - [`Axis`](api/classQAccelPlot_1_1Axis.md) — ranges, log scale, ticks, labels,
   and per-axis pan and zoom.
+- [`PlotRectangleZoom`](api/classQAccelPlot_1_1PlotRectangleZoom.md) — gesture
+  configuration, selection styling, and read-only selection state.
 - [`LineCurve`](api/classQAccelPlot_1_1LineCurve.md) — GPU-rendered lines and
   markers, data ingestion, effects, transitions, gaps, and hover.
 - [`PointCloud`](api/classQAccelPlot_1_1PointCloud.md) — large sets of

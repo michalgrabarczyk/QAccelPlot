@@ -130,7 +130,7 @@ Position handles with [`dataToPixelX()`][data-to-pixel-x] and
 [`dataToPixelY()`][data-to-pixel-y]; convert drag positions back with
 [`pixelToDataX()`][pixel-to-data-x] and [`pixelToDataY()`][pixel-to-data-y].
 Call `event.accept()` when a tool handles an event so the gesture does not also
-pan the plot.
+pan the plot or start rectangle zoom.
 
 In a layer positioned at [`plotRect`][plot-rect], add or subtract the plot
 rectangle origin to convert between plot and layer coordinates.

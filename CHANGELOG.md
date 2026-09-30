@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Rectangle zoom via `PlotView.rectangleZoom` and `zoomToRect()`, with theme
+  colors and a Point cloud example.
 - `RectangleSeries`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
   `setData(std::vector<double>&&, int)`, and `postData()`.
 - `RectangleSeries` spans: infinite or omitted edges reach the plot edge.
