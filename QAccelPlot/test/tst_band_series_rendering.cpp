@@ -296,7 +296,7 @@ void BandSeriesRenderingTest::edgeLinesFollowBothBounds()
     QVERIFY2(plot, qPrintable(scene.error()));
     QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
 
-    auto image = scene.grab();
+    const auto image = scene.grab();
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), Qt::white));
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 6.0)), Qt::white));
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 4.0)), Qt::black));
@@ -307,16 +307,24 @@ void BandSeriesRenderingTest::edgeLinesFollowBothBounds()
     QVERIFY(band);
     QVERIFY(dash);
     band->property("edges").value<QObject*>()->setProperty("lineStyle", QVariant::fromValue(dash));
-    image = scene.grab();
-    auto white = 0;
-    auto black = 0;
-    const auto upper = scene.pixel(0.0, 6.0).y();
-    for (auto x = scene.pixel(2.0, 0.0).x(); x < scene.pixel(8.0, 0.0).x(); ++x) {
-        const auto color = image.pixelColor(x, upper);
-        white += isColor(color, Qt::white) ? 1 : 0;
-        black += isColor(color, Qt::black) ? 1 : 0;
-    }
+    // Counts the white and black pixels along the upper edge line.
+    const auto countUpperEdge = [&scene](const QImage& grabbed) {
+        auto counts = std::pair{0, 0};
+        const auto upper = scene.pixel(0.0, 6.0).y();
+        for (auto x = scene.pixel(2.0, 0.0).x(); x < scene.pixel(8.0, 0.0).x(); ++x) {
+            const auto color = grabbed.pixelColor(x, upper);
+            counts.first += isColor(color, Qt::white) ? 1 : 0;
+            counts.second += isColor(color, Qt::black) ? 1 : 0;
+        }
+        return counts;
+    };
+    const auto [white, black] = countUpperEdge(scene.grab());
     QVERIFY2(white > 50 && black > 50, qPrintable(QStringLiteral("%1 white, %2 black").arg(white).arg(black)));
+
+    // Editing the assigned style repaints the edges: long dashes leave few gaps.
+    dash->setProperty("pattern", QVariant::fromValue(QList<qreal>{40, 2}));
+    const auto [longWhite, longBlack] = countUpperEdge(scene.grab());
+    QVERIFY2(longBlack < black / 2, qPrintable(QStringLiteral("%1 white, %2 black").arg(longWhite).arg(longBlack)));
 }
 
 void BandSeriesRenderingTest::edgeLinesFollowTheDrawnBoundsAndGaps()

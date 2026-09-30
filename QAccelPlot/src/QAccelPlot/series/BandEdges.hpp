@@ -62,7 +62,7 @@ signals:
     void widthChanged();
     /// \brief Emitted when the color property changes.
     void colorChanged();
-    /// \brief Emitted when the lineStyle property changes, or a property of the current style changes.
+    /// \brief Emitted when the lineStyle property changes.
     void lineStyleChanged();
 
 private:

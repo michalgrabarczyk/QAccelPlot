@@ -63,7 +63,6 @@ void BandEdges::setLineStyle(LineStyle* style)
     }
     lineStyle_ = style;
     if (lineStyle_) {
-        connect(lineStyle_, &LineStyle::styleChanged, this, &BandEdges::lineStyleChanged);
         connect(lineStyle_, &QObject::destroyed, this, &BandEdges::onLineStyleDestroyed);
     }
     emit lineStyleChanged();

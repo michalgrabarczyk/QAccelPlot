@@ -176,6 +176,8 @@ private:
     bool edgesVisible() const;
     QColor edgeColor() const;
     void setHovered(bool hovered);
+    // Follows edits of the current edge line style, such as a new dash pattern.
+    void onEdgeLineStyleChanged();
     // Rebuilds renderData_ (origin-relative floats) from data_ for the current axes.
     void rebuildRenderData();
     RenderView renderView() const;
@@ -208,6 +210,7 @@ private:
     // True when the most recent data update computed ranges; the NoRange APIs leave range
     // management to the caller, so scale changes must not overwrite it.
     bool autoDataRanges_{true};
+    QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};
     BandEdgeRenderer upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};
 };

@@ -398,10 +398,11 @@ void BandSeriesDataTest::edgeSettingsClampAndNotify()
     auto dash = std::make_unique<DashLine>();
     edges->setLineStyle(dash.get());
     QCOMPARE(styleSpy.count(), 1);
+    // Editing the style leaves the lineStyle property unchanged.
     dash->setPattern({4.0, 2.0});
-    QCOMPARE(styleSpy.count(), 2);
+    QCOMPARE(styleSpy.count(), 1);
     dash.reset();
-    QCOMPARE(styleSpy.count(), 3);
+    QCOMPARE(styleSpy.count(), 2);
     QVERIFY(!edges->lineStyle());
 }
 

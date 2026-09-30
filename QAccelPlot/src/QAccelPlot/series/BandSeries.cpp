@@ -139,7 +139,8 @@ BandSeries::BandSeries(QQuickItem* parent)
     setLegendSymbol(LegendSymbol::Fill);
     connect(edges_, &BandEdges::widthChanged, this, &QQuickItem::update);
     connect(edges_, &BandEdges::colorChanged, this, &QQuickItem::update);
-    connect(edges_, &BandEdges::lineStyleChanged, this, &QQuickItem::update);
+    connect(edges_, &BandEdges::lineStyleChanged, this, &BandSeries::onEdgeLineStyleChanged);
+    onEdgeLineStyleChanged();
 }
 
 QColor BandSeries::color() const
@@ -604,6 +605,15 @@ void BandSeries::setHovered(const bool hovered)
     }
     hovered_ = hovered;
     emit hoveredChanged();
+}
+
+void BandSeries::onEdgeLineStyleChanged()
+{
+    disconnect(edgeStyleConnection_);
+    if (auto* style = edges_->lineStyle()) {
+        edgeStyleConnection_ = connect(style, &LineStyle::styleChanged, this, &QQuickItem::update);
+    }
+    update();
 }
 
 void BandSeries::rebuildRenderData()
