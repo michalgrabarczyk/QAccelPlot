@@ -1667,6 +1667,8 @@
   tick or subtick length.</li>
 <li>An axis already assigned to a plot slot cannot also occupy another axis slot
   or appear in <code>extraAxes</code>.</li>
+<li>Rescaling a logarithmic axis with an entirely non-positive data range keeps
+  its viewport positive and usable.</li>
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
