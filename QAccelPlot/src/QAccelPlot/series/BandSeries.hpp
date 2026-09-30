@@ -138,6 +138,7 @@ protected:
     /// \cond INTERNAL
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void hoverEnterEvent(QHoverEvent* event) override;
+    void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \endcond
     /// \brief Refreshes ranges and uploaded coordinates when a bound axis changes between linear and log scale.
@@ -182,6 +183,8 @@ private:
     bool edgesVisible() const;
     QColor edgeColor() const;
     void setHovered(bool hovered);
+    // Re-tests the last hover position after the data or the axes moved under the cursor.
+    void refreshHovered();
     // Follows edits of the current edge line style, such as a new dash pattern.
     void onEdgeLineStyleChanged();
     // Rebuilds renderData_ (origin-relative floats) from data_ for the current axes.
@@ -197,6 +200,8 @@ private:
     QColor color_;
     BandEdges* edges_{new BandEdges{this}};
     bool hovered_{false};
+    // Cursor position while hover events arrive, in item coordinates.
+    std::optional<QPointF> hoverPosition_;
     DataType dataType_{DataType::Double};
     // Data: 3 doubles per sample (x, low, high), full precision. Empty for DataType::Float.
     std::vector<double> data_;

@@ -101,6 +101,7 @@ private slots:
     void valueAtInterpolatesOnLogScales();
     void valueAtNeedsValidAscendingSamples();
     void containsTestsTheBandUnderTheCursor();
+    void hoveredFollowsChangesUnderARestingCursor();
     void edgeSettingsClampAndNotify();
     void edgeLinesReadTheBandSamples();
     void dashLengthsFollowZoomButNotPan();
@@ -381,6 +382,40 @@ void BandSeriesDataTest::containsTestsTheBandUnderTheCursor()
 
     band.setData(QList<qreal>{10.0, 0.0}, QList<qreal>{2.0, 4.0}, QList<qreal>{6.0, 8.0});
     QVERIFY(!band.contains({50.0, 50.0}));
+}
+
+void BandSeriesDataTest::hoveredFollowsChangesUnderARestingCursor()
+{
+    auto fixture = BandFixture{};
+    auto& band = fixture.band;
+    band.setData(QList<qreal>{0.0, 10.0}, QList<qreal>{4.0, 4.0}, QList<qreal>{6.0, 6.0});
+    const auto hover = [&band](const QEvent::Type type) {
+        const auto position = QPointF{50.0, 50.0};
+        auto event = QHoverEvent{type, position, position, position};
+        QCoreApplication::sendEvent(&band, &event);
+    };
+    auto hoveredSpy = QSignalSpy{&band, &BandSeries::hoveredChanged};
+
+    hover(QEvent::HoverEnter);
+    QVERIFY(band.hovered());
+
+    // The cursor rests at y = 5 while the band moves away and back.
+    band.clearData();
+    QVERIFY(!band.hovered());
+    band.setData(QList<qreal>{0.0, 10.0}, QList<qreal>{4.0, 4.0}, QList<qreal>{6.0, 6.0});
+    QVERIFY(band.hovered());
+    fixture.yAxis.setViewportMin(20.0);
+    fixture.yAxis.setViewportMax(30.0);
+    QVERIFY(!band.hovered());
+    fixture.yAxis.setViewportMin(0.0);
+    fixture.yAxis.setViewportMax(10.0);
+    QVERIFY(band.hovered());
+
+    hover(QEvent::HoverLeave);
+    QVERIFY(!band.hovered());
+    band.setData(QList<qreal>{0.0, 10.0}, QList<qreal>{0.0, 0.0}, QList<qreal>{10.0, 10.0});
+    QVERIFY(!band.hovered());
+    QCOMPARE(hoveredSpy.count(), 6);
 }
 
 void BandSeriesDataTest::edgeSettingsClampAndNotify()

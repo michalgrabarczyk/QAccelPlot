@@ -222,6 +222,7 @@ void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
         renderDataValid_ = false;
     }
     dataChanged_ = true;
+    refreshHovered();
     emit countChanged();
     update();
 }
@@ -406,12 +407,21 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
 
 void BandSeries::hoverEnterEvent(QHoverEvent* event)
 {
+    hoverPosition_ = event->position();
     setHovered(true);
     QQuickItem::hoverEnterEvent(event);
 }
 
+void BandSeries::hoverMoveEvent(QHoverEvent* event)
+{
+    hoverPosition_ = event->position();
+    setHovered(true);
+    QQuickItem::hoverMoveEvent(event);
+}
+
 void BandSeries::hoverLeaveEvent(QHoverEvent* event)
 {
+    hoverPosition_.reset();
     setHovered(false);
     QQuickItem::hoverLeaveEvent(event);
 }
@@ -425,12 +435,14 @@ void BandSeries::onAxisScaleChanged()
     if (hasPreciseData()) {
         renderDataValid_ = false;
     }
+    refreshHovered();
     update();
 }
 
 void BandSeries::onAxisRangeChanged()
 {
     PlotSeries::onAxisRangeChanged();
+    refreshHovered();
     if (!hasPreciseData() || !renderDataValid_) {
         return;
     }
@@ -498,6 +510,7 @@ void BandSeries::finishDataChange(const int sampleCount, const bool reportRanges
     } else {
         autoDataRanges_ = false;
     }
+    refreshHovered();
     if (countDiffers) {
         emit countChanged();
     }
@@ -627,6 +640,11 @@ void BandSeries::setHovered(const bool hovered)
     }
     hovered_ = hovered;
     emit hoveredChanged();
+}
+
+void BandSeries::refreshHovered()
+{
+    setHovered(hoverPosition_ && contains(*hoverPosition_));
 }
 
 void BandSeries::onEdgeLineStyleChanged()
