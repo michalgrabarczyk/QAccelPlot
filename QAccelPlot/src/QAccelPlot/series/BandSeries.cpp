@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/BandMaterial.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
@@ -100,6 +101,23 @@ template <typename List> std::vector<double> interleave(const List& xs, const Li
         data[i * kStride + kHighComponent] = highs[i];
     }
     return data;
+}
+
+// Number of samples the GPU draws: float vertex ids are exact up to 2^24, and the data texture
+// holds a limited number of (x, low, high) triples.
+int sampleCapacity(QQuickWindow* window)
+{
+    constexpr auto kMaxExactVertexId = qint64{1} << 24;
+    return static_cast<int>(std::min(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), kStride), kMaxExactVertexId));
+}
+
+void warnOnceIfOverCapacity(const int sampleCount, const int capacity)
+{
+    static auto warned = false;
+    if (sampleCount > capacity && !warned) {
+        qCWarning(lcQAccelPlot) << "BandSeries has" << sampleCount << "samples but draws at most" << capacity << "; the remaining samples are not drawn.";
+        warned = true;
+    }
 }
 
 QSGGeometryNode* createFillNode()
@@ -345,6 +363,10 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         root->appendChildNode(createFillNode());
     }
     const auto view = renderView();
+    if (view.drawnSampleCount < 2) {
+        delete root;
+        return nullptr;
+    }
     auto* fillNode = static_cast<QSGGeometryNode*>(root->firstChild());
     updateFillNode(fillNode, view);
 
@@ -646,22 +668,26 @@ void BandSeries::rebuildRenderData()
 BandSeries::RenderView BandSeries::renderView() const
 {
     const auto rect = resolvePlotRect();
+    const auto capacity = sampleCapacity(window());
+    warnOnceIfOverCapacity(sampleCount_, capacity);
     return RenderView{
         QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_)),
         QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_)),
         QVector2D(static_cast<float>(rect.width()), static_cast<float>(rect.height())),
+        std::min(sampleCount_, capacity),
     };
 }
 
 void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
 {
     auto* geometry = node->geometry();
-    const auto vertexCount = sampleCount_ * 2;
+    const auto vertexCount = view.drawnSampleCount * 2;
     // Vertices hold only sample indices and edge selectors, so only a count change rebuilds them.
-    if (geometry->vertexCount() != vertexCount) {
+    const auto countChanged = geometry->vertexCount() != vertexCount;
+    if (countChanged) {
         geometry->allocate(vertexCount);
         auto* vertices = static_cast<BandMaterial::Vertex*>(geometry->vertexData());
-        for (auto i = int{0}; i < sampleCount_; ++i) {
+        for (auto i = int{0}; i < view.drawnSampleCount; ++i) {
             vertices[i * 2] = {static_cast<float>(i), 0.0f};
             vertices[i * 2 + 1] = {static_cast<float>(i), 1.0f};
         }
@@ -669,8 +695,8 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
     }
 
     auto* material = static_cast<BandMaterial*>(node->material());
-    if (dataChanged_ || !material->sampledTexture()) {
-        material->uploadTexture(window(), renderData_.data(), sampleCount_ * kStride);
+    if (dataChanged_ || countChanged || !material->sampledTexture()) {
+        material->uploadTexture(window(), renderData_.data(), view.drawnSampleCount * kStride);
     }
     material->color = color_;
     material->domainMin = view.domainMin;
@@ -678,17 +704,18 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view)
     material->viewportSize = view.viewportSize;
     material->logScaleX = logScaleX() ? 1.0f : 0.0f;
     material->logScaleY = logScaleY() ? 1.0f : 0.0f;
-    material->sampleCount = static_cast<float>(sampleCount_);
+    material->sampleCount = static_cast<float>(view.drawnSampleCount);
     node->markDirty(QSGNode::DirtyMaterial);
 }
 
 QSGGeometryNode* BandSeries::paintEdge(
     QSGGeometryNode* oldNode, const BandEdgeRenderer& renderer, const RenderView& view, const std::shared_ptr<DataTexture>& dataTexture) const
 {
-    const auto samples = hasPreciseData() ? BandSamples{nullptr, data_.data(), sampleCount_} : BandSamples{renderData_.data(), nullptr, sampleCount_};
+    const auto count = view.drawnSampleCount;
+    const auto samples = hasPreciseData() ? BandSamples{nullptr, data_.data(), count} : BandSamples{renderData_.data(), nullptr, count};
     const auto* style = edges_->lineStyle();
-    const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(),
-        sampleCount_, true, 1.0, style ? style->dashParameters() : DashParameters{}};
+    const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(), count,
+        true, 1.0, style ? style->dashParameters() : DashParameters{}};
     return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis(), dataChanged_});
 }
 

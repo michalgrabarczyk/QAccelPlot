@@ -119,8 +119,9 @@ QAccelPlot.BandSeries {
 
 ## Limits
 
-Up to 16,777,216 (2^24) samples are drawn correctly; the shader indexes samples
-in single precision.
+At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
+texture size is below 6144. Samples beyond the limit are not drawn, and a
+warning is logged once.
 
 Complete source:
 

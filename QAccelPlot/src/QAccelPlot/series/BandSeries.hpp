@@ -49,7 +49,8 @@ namespace QAccelPlot {
 /// values one by one.
 ///
 /// \par Limits
-/// Up to 16,777,216 (2^24) samples are drawn correctly. The shader indexes samples in single precision.
+/// At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum texture size is below 6144.
+/// Samples beyond the limit are not drawn, and a warning is logged once.
 ///
 /// \sa LineCurve, BandEdges
 class BandSeries : public PlotSeries {
@@ -151,11 +152,13 @@ private:
         qreal high;
     };
 
-    // Viewport uniforms shared by the fill and the edge lines, relative to the render origin.
+    // What the fill and the edge lines draw this frame: viewport uniforms relative to the render
+    // origin, and the number of samples within the GPU capacity.
     struct RenderView {
         QVector2D domainMin;
         QVector2D domainMax;
         QVector2D viewportSize;
+        int drawnSampleCount;
     };
 
     bool validateRawDataArguments(const void* data, int sampleCount) const;
