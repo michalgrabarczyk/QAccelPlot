@@ -30,7 +30,8 @@ namespace QAccelPlot {
 /// \brief A hardware-accelerated QML item that fills the area between a low and a high value at each X.
 ///
 /// Samples are stored as interleaved <tt>(x, low, high)</tt> triples and uploaded to the GPU as a float
-/// data texture once per data change; panning and zooming only change shader uniforms. The \c setData()
+/// data texture once per data change; panning and zooming only change shader uniforms. Dashed edge lines
+/// are the exception: zooming recomputes their dash positions on the CPU. The \c setData()
 /// overloads keep doubles and upload them relative to an origin near the viewport, so large coordinates
 /// such as epoch timestamps stay precise. The \c setDataF() overloads store floats and upload them without
 /// conversion.

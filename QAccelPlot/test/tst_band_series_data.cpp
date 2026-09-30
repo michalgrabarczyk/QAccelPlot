@@ -103,6 +103,7 @@ private slots:
     void containsTestsTheBandUnderTheCursor();
     void edgeSettingsClampAndNotify();
     void edgeLinesReadTheBandSamples();
+    void dashLengthsFollowZoomButNotPan();
     void renderOriginFollowsTheViewport();
     void fewerThanTwoSamplesDrawNothing();
 };
@@ -436,6 +437,35 @@ void BandSeriesDataTest::edgeLinesReadTheBandSamples()
     band.edges()->setWidth(0.0);
     root = fixture.paint();
     QCOMPARE(root->childCount(), 1);
+}
+
+void BandSeriesDataTest::dashLengthsFollowZoomButNotPan()
+{
+    auto fixture = BandFixture{};
+    auto dash = DashLine{};
+    dash.setPattern({4.0, 2.0});
+    fixture.band.edges()->setWidth(1.0);
+    fixture.band.edges()->setLineStyle(&dash);
+    fixture.band.setData(QList<qreal>{0.0, 5.0, 10.0}, QList<qreal>{1.0, 1.0, 1.0}, QList<qreal>{4.0, 4.0, 4.0});
+
+    // The upper edge is a horizontal line across the 100 px wide item.
+    const auto upperEdgeVertices
+        = [&fixture]() { return static_cast<LineVertex*>(static_cast<QSGGeometryNode*>(fixture.node->childAtIndex(2))->geometry()->vertexData()); };
+    fixture.paint();
+    QCOMPARE(upperEdgeVertices()[5].arcLength, 100.0f);
+
+    // Panning keeps the lengths, so the vertex buffer is not rewritten: the marker survives.
+    upperEdgeVertices()[0].arcLength = -1.0f;
+    fixture.xAxis.setViewportMin(1.0);
+    fixture.xAxis.setViewportMax(11.0);
+    fixture.paint();
+    QCOMPARE(upperEdgeVertices()[0].arcLength, -1.0f);
+
+    // Zooming out halves the pixel lengths.
+    fixture.xAxis.setViewportMax(21.0);
+    fixture.paint();
+    QCOMPARE(upperEdgeVertices()[0].arcLength, 0.0f);
+    QCOMPARE(upperEdgeVertices()[5].arcLength, 50.0f);
 }
 
 void BandSeriesDataTest::renderOriginFollowsTheViewport()

@@ -702,7 +702,7 @@ QSGGeometryNode* BandSeries::paintEdge(
     const auto* style = edges_->lineStyle();
     const auto uniforms = LineStroke::Uniforms{edgeColor(), edges_->width(), view.domainMin, view.domainMax, view.viewportSize, logScaleX(), logScaleY(),
         sampleCount_, true, 1.0, style ? style->dashParameters() : DashParameters{}};
-    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis()});
+    return renderer.paint(oldNode, BandEdgeRenderParams{dataTexture, samples, uniforms, xAxis(), yAxis(), dataChanged_});
 }
 
 } // namespace QAccelPlot

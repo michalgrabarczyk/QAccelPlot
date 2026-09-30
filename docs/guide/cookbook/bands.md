@@ -16,7 +16,8 @@ min/max or mean ± σ envelopes. Draw the center line with a separate
 
 Samples live in a GPU data texture, and the vertex buffer holds only sample
 indices. Panning and zooming change shader uniforms only, so a band of millions
-of samples costs nothing on the CPU per frame.
+of samples costs nothing on the CPU per frame. Dashed edge lines are the
+exception: zooming recomputes their dash positions, one pass over the samples.
 
 ## Draw a band around a line
 

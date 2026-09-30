@@ -11,8 +11,10 @@
 #include "QAccelPlot/renderers/LineStroke.hpp"
 
 #include <QSGGeometryNode>
+#include <QVector2D>
 
 #include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -41,6 +43,7 @@ struct BandEdgeRenderParams {
     LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c samples.count.
     Axis* xAxis;                              ///< \brief Horizontal axis.
     Axis* yAxis;                              ///< \brief Vertical axis.
+    bool dataChanged;                         ///< \brief Whether the samples changed since the last paint.
 };
 
 /// \brief Internal renderer for the lower or upper edge line of a \c BandSeries.
@@ -55,9 +58,25 @@ public:
     QSGGeometryNode* paint(QSGGeometryNode* oldNode, const BandEdgeRenderParams& params) const;
 
 private:
+    // The zoom state dash arc lengths depend on. Panning leaves it unchanged; spans are in log
+    // space on log-scale axes.
+    struct ArcLengthScale {
+        qreal xSpan;
+        qreal ySpan;
+        QVector2D viewportSize;
+        bool logScaleX;
+        bool logScaleY;
+
+        bool matches(const ArcLengthScale& other) const;
+    };
+
+    static ArcLengthScale arcLengthScale(const BandEdgeRenderParams& params);
     std::vector<float> arcLengths(const BandEdgeRenderParams& params) const;
 
     BandEdgeMaterial::Edge edge_;
+    // Render-thread state touched only by paint(): the scale of the arc lengths in the vertex
+    // buffer, or nothing when it holds none.
+    mutable std::optional<ArcLengthScale> arcLengthScale_;
 };
 
 } // namespace QAccelPlot

@@ -10,6 +10,9 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 
+#include <algorithm>
+#include <cmath>
+
 namespace QAccelPlot {
 
 BandEdgeRenderer::BandEdgeRenderer(const BandEdgeMaterial::Edge edge)
@@ -33,14 +36,46 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
     material->dataTexture = params.dataTexture;
 
     // Vertices hold only sample indices unless a dash pattern needs screen-space arc lengths.
+    // Those change with the data and the zoom, but not while panning.
     const auto dashed = params.uniforms.dash.enabled;
-    if (countChanged || dashed) {
+    auto lengthsStale = false;
+    if (dashed) {
+        const auto scale = arcLengthScale(params);
+        lengthsStale = params.dataChanged || !arcLengthScale_ || !arcLengthScale_->matches(scale);
+        arcLengthScale_ = scale;
+    } else {
+        arcLengthScale_.reset();
+    }
+    if (countChanged || lengthsStale) {
         LineStroke::writeVertices(
             static_cast<LineVertex*>(geometry->vertexData()), params.samples.count, params.uniforms.color, dashed ? arcLengths(params) : std::vector<float>{});
         node->markDirty(QSGNode::DirtyGeometry);
     }
     node->markDirty(QSGNode::DirtyMaterial);
     return node;
+}
+
+bool BandEdgeRenderer::ArcLengthScale::matches(const ArcLengthScale& other) const
+{
+    const auto close = [](const qreal a, const qreal b) {
+        constexpr auto kRelativeTolerance = 1e-9;
+        return std::abs(a - b) <= kRelativeTolerance * std::max(std::abs(a), std::abs(b));
+    };
+    return close(xSpan, other.xSpan) && close(ySpan, other.ySpan) && viewportSize == other.viewportSize && logScaleX == other.logScaleX
+        && logScaleY == other.logScaleY;
+}
+
+BandEdgeRenderer::ArcLengthScale BandEdgeRenderer::arcLengthScale(const BandEdgeRenderParams& params)
+{
+    const auto span = [](const Axis* axis, const bool logScale) {
+        if (!axis) {
+            return qreal{0.0};
+        }
+        return logScale ? std::log10(axis->viewportMax()) - std::log10(axis->viewportMin()) : axis->viewportMax() - axis->viewportMin();
+    };
+    const auto& uniforms = params.uniforms;
+    return ArcLengthScale{
+        span(params.xAxis, uniforms.logScaleX), span(params.yAxis, uniforms.logScaleY), uniforms.viewportSize, uniforms.logScaleX, uniforms.logScaleY};
 }
 
 std::vector<float> BandEdgeRenderer::arcLengths(const BandEdgeRenderParams& params) const
