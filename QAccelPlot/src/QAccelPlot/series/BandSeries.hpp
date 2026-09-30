@@ -166,6 +166,10 @@ private:
 
     bool validateRawDataArguments(const void* data, int sampleCount) const;
     bool validateVectorArguments(std::size_t valueCount, int sampleCount) const;
+    void copyData(const double* data, int sampleCount, bool reportRanges);
+    void copyFloatData(const float* data, int sampleCount, bool reportRanges);
+    // Applies (x, low, high) triples built from separate lists, reporting ranges.
+    void applyInterleavedData(std::vector<double>&& data);
     void applyData(std::vector<double>&& data, int sampleCount, bool reportRanges);
     void applyFloatData(std::vector<float>&& data, int sampleCount, bool reportRanges);
     void finishDataChange(int sampleCount, bool reportRanges);

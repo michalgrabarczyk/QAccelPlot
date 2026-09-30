@@ -239,86 +239,60 @@ void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
 
 void BandSeries::setData(const QList<qreal>& xs, const QList<qreal>& lows, const QList<qreal>& highs)
 {
-    auto data = interleave(xs, lows, highs);
-    const auto sampleCount = static_cast<int>(data.size() / kStride);
-    applyData(std::move(data), sampleCount, true);
+    applyInterleavedData(interleave(xs, lows, highs));
 }
 
 void BandSeries::setData(const std::vector<double>& xs, const std::vector<double>& lows, const std::vector<double>& highs)
 {
-    auto data = interleave(xs, lows, highs);
-    const auto sampleCount = static_cast<int>(data.size() / kStride);
-    applyData(std::move(data), sampleCount, true);
+    applyInterleavedData(interleave(xs, lows, highs));
 }
 
 void BandSeries::setData(const double* data, const int sampleCount)
 {
-    if (!validateRawDataArguments(data, sampleCount)) {
-        return;
-    }
-    auto buffer = std::vector<double>(data, data + static_cast<std::size_t>(sampleCount) * kStride);
-    applyData(std::move(buffer), sampleCount, true);
+    copyData(data, sampleCount, true);
 }
 
 void BandSeries::setData(std::vector<double>&& data, const int sampleCount)
 {
-    if (!validateVectorArguments(data.size(), sampleCount)) {
-        return;
+    if (validateVectorArguments(data.size(), sampleCount)) {
+        applyData(std::move(data), sampleCount, true);
     }
-    applyData(std::move(data), sampleCount, true);
 }
 
 void BandSeries::setDataNoRange(const double* data, const int sampleCount)
 {
-    if (!validateRawDataArguments(data, sampleCount)) {
-        return;
-    }
-    auto buffer = std::vector<double>(data, data + static_cast<std::size_t>(sampleCount) * kStride);
-    applyData(std::move(buffer), sampleCount, false);
+    copyData(data, sampleCount, false);
 }
 
 void BandSeries::setDataNoRange(std::vector<double>&& data, const int sampleCount)
 {
-    if (!validateVectorArguments(data.size(), sampleCount)) {
-        return;
+    if (validateVectorArguments(data.size(), sampleCount)) {
+        applyData(std::move(data), sampleCount, false);
     }
-    applyData(std::move(data), sampleCount, false);
 }
 
 void BandSeries::setDataF(const float* data, const int sampleCount)
 {
-    if (!validateRawDataArguments(data, sampleCount)) {
-        return;
-    }
-    auto buffer = std::move(renderData_);
-    buffer.assign(data, data + static_cast<std::size_t>(sampleCount) * kStride);
-    applyFloatData(std::move(buffer), sampleCount, true);
+    copyFloatData(data, sampleCount, true);
 }
 
 void BandSeries::setDataF(std::vector<float>&& data, const int sampleCount)
 {
-    if (!validateVectorArguments(data.size(), sampleCount)) {
-        return;
+    if (validateVectorArguments(data.size(), sampleCount)) {
+        applyFloatData(std::move(data), sampleCount, true);
     }
-    applyFloatData(std::move(data), sampleCount, true);
 }
 
 void BandSeries::setDataFNoRange(const float* data, const int sampleCount)
 {
-    if (!validateRawDataArguments(data, sampleCount)) {
-        return;
-    }
-    auto buffer = std::move(renderData_);
-    buffer.assign(data, data + static_cast<std::size_t>(sampleCount) * kStride);
-    applyFloatData(std::move(buffer), sampleCount, false);
+    copyFloatData(data, sampleCount, false);
 }
 
 void BandSeries::setDataFNoRange(std::vector<float>&& data, const int sampleCount)
 {
-    if (!validateVectorArguments(data.size(), sampleCount)) {
-        return;
+    if (validateVectorArguments(data.size(), sampleCount)) {
+        applyFloatData(std::move(data), sampleCount, false);
     }
-    applyFloatData(std::move(data), sampleCount, false);
 }
 
 void BandSeries::postData(std::vector<double>&& data, const int sampleCount)
@@ -488,6 +462,30 @@ bool BandSeries::validateVectorArguments(const std::size_t valueCount, const int
         return false;
     }
     return true;
+}
+
+void BandSeries::copyData(const double* data, const int sampleCount, const bool reportRanges)
+{
+    if (validateRawDataArguments(data, sampleCount)) {
+        applyData(std::vector<double>(data, data + static_cast<std::size_t>(sampleCount) * kStride), sampleCount, reportRanges);
+    }
+}
+
+void BandSeries::copyFloatData(const float* data, const int sampleCount, const bool reportRanges)
+{
+    if (!validateRawDataArguments(data, sampleCount)) {
+        return;
+    }
+    // Reuses the render buffer's allocation.
+    auto buffer = std::move(renderData_);
+    buffer.assign(data, data + static_cast<std::size_t>(sampleCount) * kStride);
+    applyFloatData(std::move(buffer), sampleCount, reportRanges);
+}
+
+void BandSeries::applyInterleavedData(std::vector<double>&& data)
+{
+    const auto sampleCount = static_cast<int>(data.size() / kStride);
+    applyData(std::move(data), sampleCount, true);
 }
 
 void BandSeries::applyData(std::vector<double>&& data, const int sampleCount, const bool reportRanges)
