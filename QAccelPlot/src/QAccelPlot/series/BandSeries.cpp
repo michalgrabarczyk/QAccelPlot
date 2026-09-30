@@ -59,11 +59,18 @@ struct DataExtents {
     qreal yMax{std::numeric_limits<qreal>::lowest()};
 };
 
-// Extents of the valid values in interleaved (x, low, high) data. Each value is judged on its
-// own, so a sample with an invalid low still extends the ranges with its x and high.
-template <typename T> DataExtents computeExtents(const T* data, const int sampleCount, const bool logScaleX, const bool logScaleY)
+struct SampleScan {
+    DataExtents extents;
+    bool xAscending{true};
+};
+
+// One pass over interleaved (x, low, high) data: the extents of the valid values, and whether X
+// ascends. Each value is judged on its own, so a sample with an invalid low still extends the
+// ranges with its x and high.
+template <typename T> SampleScan scanSamples(const T* data, const int sampleCount, const bool logScaleX, const bool logScaleY)
 {
-    auto extents = DataExtents{};
+    auto scan = SampleScan{};
+    auto& extents = scan.extents;
     const auto include = [](const qreal value, const bool logScale, qreal& min, qreal& max) {
         if (isValidSample(value, logScale)) {
             min = std::min(min, value);
@@ -72,11 +79,14 @@ template <typename T> DataExtents computeExtents(const T* data, const int sample
     };
     for (auto i = std::size_t{0}; i < static_cast<std::size_t>(sampleCount); ++i) {
         const auto* sample = data + i * kStride;
+        if (std::isnan(sample[0]) || (i > 0 && sample[0] < sample[-kStride])) {
+            scan.xAscending = false;
+        }
         include(static_cast<qreal>(sample[0]), logScaleX, extents.xMin, extents.xMax);
         include(static_cast<qreal>(sample[kLowComponent]), logScaleY, extents.yMin, extents.yMax);
         include(static_cast<qreal>(sample[kHighComponent]), logScaleY, extents.yMin, extents.yMax);
     }
-    return extents;
+    return scan;
 }
 
 template <typename T> bool isAscending(const T* data, const int sampleCount)
@@ -504,10 +514,10 @@ void BandSeries::finishDataChange(const int sampleCount, const bool reportRanges
     const auto countDiffers = sampleCount_ != sampleCount;
     sampleCount_ = sampleCount;
     dataChanged_ = true;
-    updateXAscending();
     if (reportRanges) {
         updateDataRanges();
     } else {
+        updateXAscending();
         autoDataRanges_ = false;
     }
     refreshHovered();
@@ -556,8 +566,10 @@ bool BandSeries::logScaleY() const
 
 void BandSeries::updateDataRanges()
 {
-    const auto extents = hasPreciseData() ? computeExtents(data_.data(), sampleCount_, logScaleX(), logScaleY())
-                                          : computeExtents(renderData_.data(), sampleCount_, logScaleX(), logScaleY());
+    const auto scan = hasPreciseData() ? scanSamples(data_.data(), sampleCount_, logScaleX(), logScaleY())
+                                       : scanSamples(renderData_.data(), sampleCount_, logScaleX(), logScaleY());
+    const auto& extents = scan.extents;
+    xAscending_ = scan.xAscending;
     autoDataRanges_ = true;
     if (extents.xMin <= extents.xMax) {
         setXDataRange(extents.xMin, extents.xMax);

@@ -177,6 +177,7 @@ private:
     bool sampleValid(int index) const;
     bool logScaleX() const;
     bool logScaleY() const;
+    // Reports the data ranges to the axes and updates xAscending_ in the same pass.
     void updateDataRanges();
     void updateXAscending();
     std::optional<Span> spanAt(qreal x) const;
