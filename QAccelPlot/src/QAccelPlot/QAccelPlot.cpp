@@ -148,6 +148,10 @@ void QAccelPlot::setXAxis(Axis* axis)
     if (xAxis_ == axis) {
         return;
     }
+    if (isAxisRegistered(axis)) {
+        qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
+        return;
+    }
     if (xAxis_) {
         disconnectAxis(xAxis_);
     }
@@ -167,6 +171,10 @@ Axis* QAccelPlot::yAxis() const
 void QAccelPlot::setYAxis(Axis* axis)
 {
     if (yAxis_ == axis) {
+        return;
+    }
+    if (isAxisRegistered(axis)) {
+        qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
     if (yAxis_) {
@@ -190,6 +198,10 @@ void QAccelPlot::setX2Axis(Axis* axis)
     if (x2Axis_ == axis) {
         return;
     }
+    if (isAxisRegistered(axis)) {
+        qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
+        return;
+    }
     if (x2Axis_) {
         disconnectAxis(x2Axis_);
     }
@@ -209,6 +221,10 @@ Axis* QAccelPlot::y2Axis() const
 void QAccelPlot::setY2Axis(Axis* axis)
 {
     if (y2Axis_ == axis) {
+        return;
+    }
+    if (isAxisRegistered(axis)) {
+        qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
     if (y2Axis_) {
@@ -565,15 +581,19 @@ void QAccelPlot::rescaleAllAxes()
     }
 }
 
+bool QAccelPlot::isAxisRegistered(Axis* axis) const
+{
+    return axis && (axis == xAxis_ || axis == yAxis_ || axis == x2Axis_ || axis == y2Axis_ || extraAxes_.contains(axis));
+}
+
 void QAccelPlot::appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis)
 {
     auto* plot = list ? qobject_cast<QAccelPlot*>(list->object) : nullptr;
     if (!plot || !axis) {
         return;
     }
-    // An axis listed twice would otherwise be laid out twice, reserving its space twice.
-    if (plot->extraAxes_.contains(axis)) {
-        qCDebug(lcQAccelPlot) << "extra axis already registered, ignoring duplicate append";
+    if (plot->isAxisRegistered(axis)) {
+        qCWarning(lcQAccelPlot) << "Axis is already registered in this plot";
         return;
     }
 
