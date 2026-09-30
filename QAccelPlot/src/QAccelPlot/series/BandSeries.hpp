@@ -116,7 +116,7 @@ public:
     /// \brief Returns the band at data coordinate \a x as an object with \c x, \c low, and \c high properties.
     ///
     /// \c low and \c high are interpolated between the neighboring samples as drawn, with \c low ≤ \c high.
-    /// Returns an empty object when \a x lies outside the samples, next to an invalid sample, or when
+    /// At an X shared by several samples they cover all of them. Returns an empty object when \a x lies outside the samples, next to an invalid sample, or when
     /// the X values are not in ascending order.
     Q_INVOKABLE QVariantMap valueAt(qreal x) const;
 

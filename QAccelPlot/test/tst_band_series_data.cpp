@@ -350,9 +350,10 @@ void BandSeriesDataTest::valueAtNeedsValidAscendingSamples()
     QVERIFY(band.valueAt(1.5).isEmpty());
     QVERIFY(hasSpan(band.valueAt(2.5), 0.0, 1.0));
 
-    // Equal X values keep the samples ascending.
+    // Equal X values keep the samples ascending, and the vertical step covers both samples.
     band.setData(QList<qreal>{0.0, 1.0, 1.0, 2.0}, QList<qreal>{0.0, 0.0, 2.0, 2.0}, QList<qreal>{1.0, 1.0, 3.0, 3.0});
     QVERIFY(hasSpan(band.valueAt(1.5), 2.0, 3.0));
+    QVERIFY(hasSpan(band.valueAt(1.0), 0.0, 3.0));
 
     band.appendData(1.5, 0.0, 1.0);
     QVERIFY(band.valueAt(1.5).isEmpty());

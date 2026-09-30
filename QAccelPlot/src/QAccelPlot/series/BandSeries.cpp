@@ -600,7 +600,15 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
         return Span{std::min(low, high), std::max(low, high)};
     };
     if (first < sampleCount_ && value(first, 0) == x) {
-        return sampleValid(first) ? std::optional{bounds(first)} : std::nullopt;
+        // Samples sharing this X draw a vertical step; the band there covers all of them.
+        auto span = std::optional<Span>{};
+        for (auto index = first; index < sampleCount_ && value(index, 0) == x; ++index) {
+            if (sampleValid(index)) {
+                const auto sample = bounds(index);
+                span = span ? Span{std::min(span->low, sample.low), std::max(span->high, sample.high)} : sample;
+            }
+        }
+        return span;
     }
     if (first == 0 || first == sampleCount_ || !sampleValid(first - 1) || !sampleValid(first)) {
         return std::nullopt;
