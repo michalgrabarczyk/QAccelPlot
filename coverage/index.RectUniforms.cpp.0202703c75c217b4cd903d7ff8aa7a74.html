@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-09-29 20:31:50</td>
+      <td>2026-09-30 15:21:44</td>
     </tr>
   </table>
 </div>
@@ -70,9 +70,9 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l18">QAccelPlot::Internal::(anonymous namespace)::writeColor(float (&amp;) [4], QColor const&amp;) (line 18)</a></td><td>called 414 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l26">QAccelPlot::Internal::(anonymous namespace)::writeVector(float (&amp;) [2], QVector2D const&amp;) (line 26)</a></td><td>called 552 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l34">QAccelPlot::Internal::writeRectUniforms(QAccelPlot::Internal::RectUbo&amp;, QSGMaterialShader::RenderState const&amp;, QAccelPlot::RectMaterial const&amp;) (line 34)</a></td><td>called 138 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l18">QAccelPlot::Internal::(anonymous namespace)::writeColor(float (&amp;) [4], QColor const&amp;) (line 18)</a></td><td>called 426 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l26">QAccelPlot::Internal::(anonymous namespace)::writeVector(float (&amp;) [2], QVector2D const&amp;) (line 26)</a></td><td>called 568 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l34">QAccelPlot::Internal::writeRectUniforms(QAccelPlot::Internal::RectUbo&amp;, QSGMaterialShader::RenderState const&amp;, QAccelPlot::RectMaterial const&amp;) (line 34)</a></td><td>called 142 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -209,7 +209,7 @@
       <td class="lineno"><a id="l18" href="#l18">18</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">writeColor</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">target</span><span class="p">)[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -223,35 +223,35 @@
       <td class="lineno"><a id="l20" href="#l20">20</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">redF</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l21" href="#l21">21</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">greenF</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l22" href="#l22">22</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">blueF</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l23" href="#l23">23</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">alphaF</span><span class="p">());</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">414</td>
+      <td class="linecount coveredLine">426</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -265,7 +265,7 @@
       <td class="lineno"><a id="l26" href="#l26">26</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">552</td>
+      <td class="linecount coveredLine">568</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">writeVector</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">target</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QVector2D</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vector</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -279,21 +279,21 @@
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">552</td>
+      <td class="linecount coveredLine">568</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">552</td>
+      <td class="linecount coveredLine">568</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">target</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">552</td>
+      <td class="linecount coveredLine">568</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -321,7 +321,7 @@
       <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">writeRectUniforms</span><span class="p">(</span><span class="n">RectUbo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ubo</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterialShader</span><span class="o">::</span><span class="n">RenderState</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">RectMaterial</span><span class="o">&amp;</span><span class="w"> </span><span class="n">material</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -337,96 +337,96 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 138 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 142 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">138</td>
+      <td class="linecount partialCoveredLine">142</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">combinedMatrix</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">.</span><span class="n">constData</span><span class="p">(),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">matrix</span><span class="p">));</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeColor</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">color</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeColor</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">borderColor</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">borderColor</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeColor</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">hoverColor</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">hoverColor</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeVector</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">domainMin</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">domainMin</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeVector</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">domainMax</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">domainMax</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeVector</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">viewportSize</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">viewportSize</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">writeVector</span><span class="p">(</span><span class="n">ubo</span><span class="p">.</span><span class="n">minimumSize</span><span class="p">,</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">minimumSize</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">logScaleX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">logScaleX</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">logScaleY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">logScaleY</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">useVertexColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">useVertexColor</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">rectCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">rectCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -435,33 +435,33 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 138 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 142 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">138</td>
+      <td class="linecount partialCoveredLine">142</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">opacity</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l50" href="#l50">50</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">borderWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">borderWidth</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l51" href="#l51">51</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">ubo</span><span class="p">.</span><span class="n">hoveredIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">hoveredIndex</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">138</td>
+      <td class="linecount coveredLine">142</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
