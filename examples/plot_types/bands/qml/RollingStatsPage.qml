@@ -101,7 +101,8 @@ Item {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 color: root.withAlpha(root.palette.seriesSecondary, 0.35)
-                edges.width: edgesSwitch.checked ? 1 : 0
+                edges.width: edgesSwitch.checked ? 0.75 : 0
+                edges.color: root.withAlpha(Qt.lighter(root.palette.seriesSecondary, 1.25), 0.5)
             }
 
             QAccelPlot.LineCurve {

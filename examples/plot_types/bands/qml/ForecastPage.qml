@@ -16,6 +16,8 @@ Item {
     required property var palette
     readonly property int lastObservedMonth: 36
     readonly property int forecastMonths: 24
+    // A lighter tint of the band color, so the edges read as a quiet outline.
+    readonly property color edgeColor: Qt.lighter(palette.seriesPrimary, 1.35)
 
     function withAlpha(color, alpha) {
         return Qt.rgba(color.r, color.g, color.b, alpha);
@@ -106,8 +108,8 @@ Item {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 color: root.withAlpha(root.palette.seriesPrimary, hovered ? 0.3 : 0.16)
-                edges.width: hovered ? 1.5 : 1
-                edges.color: root.withAlpha(root.palette.seriesPrimary, hovered ? 1 : 0.7)
+                edges.width: hovered ? 1 : 0.75
+                edges.color: root.withAlpha(root.edgeColor, hovered ? 0.8 : 0.45)
                 edges.lineStyle: QAccelPlot.DashLine {
                     pattern: [4, 3]
                 }
@@ -126,7 +128,8 @@ Item {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 color: root.withAlpha(root.palette.seriesPrimary, hovered ? 0.55 : 0.32)
-                edges.width: hovered ? 1 : 0
+                edges.width: hovered ? 0.75 : 0
+                edges.color: root.withAlpha(root.edgeColor, 0.6)
                 Component.onCompleted: root.fillInterval(this, 0.674)
 
                 Behavior on color {
