@@ -12,6 +12,7 @@
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QSGGeometry>
 #include <QSGGeometryNode>
@@ -25,13 +26,6 @@
 namespace QAccelPlot {
 
 namespace {
-
-bool hoverEnabled()
-{
-    auto isInteger = false;
-    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
-    return !isInteger || value != 0;
-}
 
 const std::array<QString, 4>& rectangleKeys()
 {
@@ -83,7 +77,7 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     , color_(defaultRectangleColor())
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(hoverEnabled());
+    setAcceptHoverEvents(Internal::hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);

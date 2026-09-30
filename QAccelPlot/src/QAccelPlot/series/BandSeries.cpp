@@ -11,12 +11,12 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/materials/BandMaterial.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
 #include <QSGGeometryNode>
-#include <QSGRendererInterface>
 
 #include <algorithm>
 #include <cmath>
@@ -32,19 +32,6 @@ namespace {
 constexpr auto kStride = 3;
 constexpr auto kLowComponent = 1;
 constexpr auto kHighComponent = 2;
-
-bool hoverEnabled()
-{
-    auto isInteger = false;
-    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
-    return !isInteger || value != 0;
-}
-
-bool supportsCustomShaderRendering(const QQuickWindow* window)
-{
-    const auto* rendererInterface = window ? window->rendererInterface() : nullptr;
-    return rendererInterface && rendererInterface->graphicsApi() != QSGRendererInterface::Software;
-}
 
 QColor defaultBandColor()
 {
@@ -134,7 +121,7 @@ BandSeries::BandSeries(QQuickItem* parent)
     , color_(defaultBandColor())
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(hoverEnabled());
+    setAcceptHoverEvents(Internal::hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(edges_, &BandEdges::widthChanged, this, &QQuickItem::update);
@@ -335,7 +322,7 @@ bool BandSeries::contains(const QPointF& point) const
 
 QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
 {
-    if (!supportsCustomShaderRendering(window())) {
+    if (!Internal::supportsCustomShaderRendering(window())) {
         static auto warned = false;
         if (!warned) {
             qCWarning(lcQAccelPlot) << "BandSeries custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";

@@ -12,6 +12,7 @@
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
 
 #include <QSGGeometry>
@@ -28,13 +29,6 @@ namespace QAccelPlot {
 namespace {
 
 constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
-
-bool hoverEnabled()
-{
-    auto isInteger = false;
-    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
-    return !isInteger || value != 0;
-}
 
 // Returns \a value as a double, or \a fallback when it is missing, null, or not a number.
 double numberOr(const QVariant& value, const double fallback)
@@ -76,7 +70,7 @@ BarSeries::BarSeries(QQuickItem* parent)
     , color_(ColorPalette::dark().seriesPrimary)
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(hoverEnabled());
+    setAcceptHoverEvents(Internal::hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Fill);
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
