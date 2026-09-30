@@ -343,6 +343,9 @@ and legend symbol.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 stores points as interleaved floats and accepts data from QML or C++ buffers.
+It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
+Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
+series beneath.
 
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
@@ -521,8 +524,9 @@ waits until the UI thread consumes the previous batch. See
 
 `LineCurve` caches a bounding box for every 512 points. A pointer move checks
 the boxes, then tests only segments or markers inside matching boxes:
-`O(N / 512 + K)` for `K` candidates, `O(N)` in the worst case. The boxes are
-built during data handoff, not on the first hover. Hover highlighting and
+`O(N / 512 + K)` for `K` candidates, `O(N)` in the worst case. With
+`hoverRadius: 0`, segments are not tested. The boxes are built during data
+handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.
 

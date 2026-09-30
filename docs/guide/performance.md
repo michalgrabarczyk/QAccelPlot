@@ -87,8 +87,9 @@ waits until the UI thread consumes the previous batch. See
 
 `LineCurve` caches a bounding box for every 512 points. A pointer move checks
 the boxes, then tests only segments or markers inside matching boxes:
-`O(N / 512 + K)` for `K` candidates, `O(N)` in the worst case. The boxes are
-built during data handoff, not on the first hover. Hover highlighting and
+`O(N / 512 + K)` for `K` candidates, `O(N)` in the worst case. With
+`hoverRadius: 0`, segments are not tested. The boxes are built during data
+handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.
 

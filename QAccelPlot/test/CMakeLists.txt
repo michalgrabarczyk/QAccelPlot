@@ -29,6 +29,7 @@ add_qaccelplot_test(tst_gradient_effect_threads core tst_gradient_effect_threads
 add_qaccelplot_test(tst_line_curve_data      core tst_line_curve_data.cpp)
 add_qaccelplot_test(tst_line_curve_gaps      core tst_line_curve_gaps.cpp)
 add_qaccelplot_test(tst_line_curve_rendering core tst_line_curve_rendering.cpp)
+add_qaccelplot_test(tst_line_curve_hover     core tst_line_curve_hover.cpp)
 add_qaccelplot_test(tst_render_origin_precision core tst_render_origin_precision.cpp)
 add_qaccelplot_test(tst_line_curve_transitions core tst_line_curve_transitions.cpp)
 add_qaccelplot_test(tst_material_comparison  core tst_material_comparison.cpp)
@@ -80,3 +81,6 @@ qt_import_qml_plugins(tst_rectangle_series_rendering)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_bar_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_bar_series_rendering)
+# Loads a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_line_curve_hover PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_line_curve_hover)

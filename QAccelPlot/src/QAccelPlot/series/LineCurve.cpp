@@ -246,6 +246,23 @@ bool LineCurve::hovered() const
     return hovered_;
 }
 
+qreal LineCurve::hoverRadius() const
+{
+    return hoverRadius_;
+}
+
+void LineCurve::setHoverRadius(const qreal radius)
+{
+    const auto clamped = std::max(radius, qreal{0.0});
+    if (nearly_equal(hoverRadius_, clamped)) {
+        return;
+    }
+    hoverRadius_ = clamped;
+    emit hoverRadiusChanged();
+    // Marks the item dirty so the window re-delivers hover at the cursor and updates hovered.
+    update();
+}
+
 DataTransition* LineCurve::transition() const
 {
     return transition_;
@@ -770,10 +787,9 @@ bool LineCurve::contains(const QPointF& point) const
         }
     }
 
-    if (lineStyle_ && lineStyle_->showLine()) {
-        constexpr static auto kLineHitRadiusPx = qreal{10.0}; // Hit-test radius in pixels for line-based curves.
+    if (lineStyle_ && lineStyle_->showLine() && hoverRadius_ > 0.0) {
         return lineRenderer_.contains(
-            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, kLineHitRadiusPx, logX, logY});
+            point, CurveHitTestParams{sourceDataView(), renderPointCount(), chunks_, xAxis(), yAxis(), w, h, hoverRadius_, logX, logY});
     }
 
     return false;

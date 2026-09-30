@@ -69,6 +69,8 @@ class LineCurve : public PlotSeries {
     Q_PROPERTY(qreal lineWidth READ lineWidth WRITE setLineWidth NOTIFY lineWidthChanged)
     /// \brief Read-only: \c true while the mouse cursor is over the curve.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
+    /// \brief Pick radius in pixels around the line used for hover detection; 0 disables line hover. Default: 10.
+    Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
     /// \brief Optional data transition animation applied when new data arrives.
     Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Line style (SolidLine, DashLine, or NoLine). Default: SolidLine.
@@ -102,6 +104,12 @@ public:
 
     /// \brief Returns \c true if the cursor is currently over the curve.
     bool hovered() const;
+
+    /// \brief Returns the line hover pick radius in pixels.
+    qreal hoverRadius() const;
+    /// \brief Sets the line hover pick radius to \a radius pixels. Negative values are clamped to 0.
+    /// Marker hit testing is unaffected.
+    void setHoverRadius(qreal radius);
 
     /// \brief Returns the active data transition, or \c nullptr if none.
     DataTransition* transition() const;
@@ -190,6 +198,8 @@ signals:
     void lineWidthChanged();
     /// \brief Emitted when the hovered property changes.
     void hoveredChanged();
+    /// \brief Emitted when the hoverRadius property changes.
+    void hoverRadiusChanged();
     /// \brief Emitted when the transition property changes.
     void transitionChanged();
     /// \brief Emitted when the lineStyle property changes.
@@ -261,6 +271,7 @@ private:
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
+    qreal hoverRadius_{10.0};
     DataType dataType_{DataType::Double};
     std::vector<double> data_;      // precise interleaved x,y pairs used by setData()
     std::vector<float> dataF_;      // interleaved x,y pairs used by the *F APIs
