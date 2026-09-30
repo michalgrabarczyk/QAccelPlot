@@ -37,6 +37,10 @@ public:
     float dashPattern[8]{}; ///< \brief Alternating dash/gap lengths (up to 8 entries).
 
 protected:
+    /// \brief Returns the line shader program with vertex stage \a vertexShaderFileName and the line fragment stage.
+    ///
+    /// The vertex stage must declare the same uniform block as \c line.vert.
+    static QSGMaterialShader* createLineShader(const QString& vertexShaderFileName);
     /// \brief Compares line-specific uniform fields after the base-class comparison succeeds.
     int compareExtra(const QSGMaterial* other) const override;
 };

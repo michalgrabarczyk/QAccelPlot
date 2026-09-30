@@ -347,6 +347,10 @@ It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
 Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
 series beneath.
 
+`BandSeries` fills the area between a low and a high value at each X, such as
+confidence intervals and envelopes. It stores `(x, low, high)` triples and
+can draw lines along both edges.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
@@ -843,6 +847,7 @@ Each recipe links to a complete runnable example.
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
+| [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
 | [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/). For choosing a
@@ -1862,6 +1867,134 @@ Complete source:
 
 ---
 
+<!-- source: docs/guide/cookbook/bands.md -->
+
+# Bands
+
+Use [`QAccelPlot.BandSeries`][band-series] to fill the area between a low and a
+high value at each X: confidence and prediction intervals, tolerance masks, and
+min/max or mean ± σ envelopes. Draw the center line with a separate
+`LineCurve`.
+
+Samples live in a GPU data texture, and the vertex buffer holds only sample
+indices. Panning and zooming change shader uniforms only, so a band of millions
+of samples costs nothing on the CPU per frame.
+
+## Draw a band around a line
+
+```qml
+QAccelPlot.Plot {
+    id: plot
+    xAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
+    yAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
+
+    QAccelPlot.BandSeries {
+        name: "90% interval"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "#4065b5ff"
+        Component.onCompleted: setData([0, 5, 10], [2, 4, 3], [4, 7, 8])
+    }
+
+    QAccelPlot.LineCurve {
+        name: "Forecast"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "#65b5ff"
+        Component.onCompleted: setData([Qt.point(0, 3), Qt.point(5, 5.5), Qt.point(10, 5.5)])
+    }
+}
+```
+
+Declare the band before the line so the line is drawn on top. Nested intervals
+are separate bands, widest first.
+
+At each sample the band spans from the smaller to the larger of `low` and
+`high`, so swapped values still fill correctly.
+
+The default legend shows a `Fill` swatch in the band's `color`.
+
+## Edge lines
+
+Set `edges.width` to draw lines along the lower and upper edges:
+
+```qml
+QAccelPlot.BandSeries {
+    edges.width: 1
+    edges.color: "#b065b5ff"
+    edges.lineStyle: QAccelPlot.DashLine { pattern: [4, 3] }
+}
+```
+
+| Property | Default | Notes |
+| --- | --- | --- |
+| `edges.width` | `0` | No edge lines at 0. |
+| `edges.color` | invalid | Uses the band's `color` at full opacity. |
+| `edges.lineStyle` | `SolidLine` | `DashLine` and `NoLine` also work. |
+
+The edge lines read the band's data texture; the samples are uploaded once.
+
+## Feed data from C++
+
+Samples are interleaved `(x, low, high)` triples. The data API matches
+`LineCurve` with three values per sample:
+
+```cpp
+auto samples = std::vector<double>{};
+samples.reserve(count * 3);
+for (auto i = 0; i < count; ++i) {
+    samples.insert(samples.end(), {x[i], mean[i] - 2 * sigma[i], mean[i] + 2 * sigma[i]});
+}
+band->setData(std::move(samples), count);
+```
+
+For float buffers, worker-thread handoff, and skipping range scans, see
+[Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
+
+- `setData()` keeps doubles and uploads them relative to an origin near the
+  viewport, so epoch timestamps stay precise. `setDataF()` stores floats.
+- `postData()` hands a buffer over from any thread without copying it.
+- `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
+- `appendData(x, low, high)` adds one sample.
+- `NoRange` variants leave the axes' data ranges to you.
+
+## Invalid samples
+
+A sample is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
+strictly positive on a logarithmic axis. The fill leaves a gap there. Each edge
+line breaks only where its own value is invalid. Auto-ranging skips invalid
+values one by one.
+
+## Hover
+
+`hovered` is `true` while the cursor is inside the band or on an edge line.
+Only the topmost series under the cursor is hovered, so nested bands highlight
+one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over a band to leave
+hover to the band:
+
+```qml
+QAccelPlot.BandSeries {
+    color: hovered ? "#8065b5ff" : "#4065b5ff"
+    edges.width: hovered ? 1 : 0
+}
+```
+
+## Limits
+
+Up to 16,777,216 (2^24) samples are drawn correctly; the shader indexes samples
+in single precision.
+
+Complete source:
+
+- [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands):
+  a forecast with nested prediction intervals, and a rolling mean ± 2σ band
+  over 10,000 samples of a simulated sensor.
+
+[band-series]: ../api/classQAccelPlot_1_1BandSeries.md
+
+
+---
+
 <!-- source: docs/guide/cookbook/background-data.md -->
 
 # Background data production
@@ -1938,6 +2071,8 @@ a one-batch handoff with a worker-built vertex cache.
   unconnected points as markers, colored uniformly or by per-point values.
 - [`ColorBar`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1ColorBar/) — continuous key for a
   point cloud's colormap and value range.
+- [`BandSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BandSeries/) — filled area between a
+  low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1RectangleSeries/) — many data-space
   rectangles in one item: spans, bands, and state timelines.
 - [`BarSeries`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1BarSeries/) — vertical, horizontal, and

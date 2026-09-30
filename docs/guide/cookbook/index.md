@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, point clouds, bar charts, and background data production."
+description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, point clouds, bar charts, bands, and background data production."
 ---
 
 <!--
@@ -21,6 +21,7 @@ Each recipe links to a complete runnable example.
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |
 | [Point clouds](point-clouds.md) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Bar charts](bar-charts.md) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
+| [Bands](bands.md) | Confidence intervals and envelopes between a low and a high value, with edge lines |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 
 For method-by-method detail, use the [API reference](../api.md). For choosing a

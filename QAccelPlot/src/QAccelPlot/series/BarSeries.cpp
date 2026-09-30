@@ -457,7 +457,7 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
             const auto logValue = isHorizontal() ? xAxis()->logScale() : yAxis()->logScale();
             rebuildRenderData(logPosition, logValue);
         }
-        material->uploadTexture(material->dataTexture, window, renderData_.data(), barCount_ * 2);
+        material->uploadTexture(window, renderData_.data(), barCount_ * 2);
         dataChanged_ = false;
     }
 

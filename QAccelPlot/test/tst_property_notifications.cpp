@@ -16,6 +16,7 @@
 #include "QAccelPlot/formatters/DateTimeTickLabelFormatter.hpp"
 #include "QAccelPlot/formatters/TextTickLabelFormatter.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
+#include "QAccelPlot/series/BandSeries.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
@@ -46,6 +47,8 @@ const std::map<QString, Factory>& factories()
 {
     static const auto instances = std::map<QString, Factory>{
         {QStringLiteral("Axis"), make<Axis>()},
+        {QStringLiteral("BandEdges"), make<BandEdges>()},
+        {QStringLiteral("BandSeries"), make<BandSeries>()},
         {QStringLiteral("AxisTicker"), make<AxisTicker>()},
         {QStringLiteral("ColorBar"), make<ColorBar>()},
         {QStringLiteral("BarSeries"), make<BarSeries>()},
@@ -139,6 +142,10 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("Grid", "subGridColor", QColor{Qt::blue});
     row("Grid", "gridVisible", false);
     row("Grid", "subGridVisible", false);
+    row("BandEdges", "width", 2.0);
+    row("BandEdges", "color", QColor{Qt::darkRed});
+    row("BandSeries", "color", QColor{Qt::darkCyan});
+
     row("Grid", "gridHorizontalLinesVisible", false);
     row("Grid", "gridVerticalLinesVisible", false);
     row("Grid", "subGridHorizontalLinesVisible", false);

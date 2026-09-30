@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "bands/forecast",
+  "sources": ["qml/ForecastPage.qml"],
+  "description": "A demand forecast drawn with two BandSeries prediction intervals around a dashed forecast line. Judge only content inside the plot; ignore tabs, headings, descriptions, and other surrounding UI.",
+  "expected_image": {
+    "width": 1100,
+    "height": 800,
+    "minimum_file_size_bytes": 30000
+  },
+  "policy": {
+    "blocking_severities": ["high", "medium"],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "One plot fills most of the page. The X axis is titled 'Month' and spans 0 to 60; the Y axis is titled 'Demand (units)'. A legend in the top-right corner lists '90% interval', '50% interval', 'Observed', and 'Forecast'."
+    },
+    {
+      "id": "observed_history",
+      "severity": "high",
+      "expectation": "A solid orange line runs from month 0 to month 36, rising overall with a yearly up-and-down pattern and small irregular steps."
+    },
+    {
+      "id": "prediction_intervals",
+      "severity": "high",
+      "expectation": "From month 36 to month 60, two translucent blue bands start at a point where the orange line ends and widen to the right. The narrower inner band is a lighter, more opaque blue and lies entirely inside the wider, darker outer band. The outer band has thin dashed edge lines along its top and bottom. A dashed light-blue forecast line runs through the middle of both bands."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plot, axis titles, tick labels, and legend text are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, tabs, buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, rotated text, and backend-specific softness are acceptable."
+    },
+    {
+      "id": "rendering_integrity",
+      "severity": "high",
+      "expectation": "The plot is not blank, corrupted, or drawn outside its plot area. The bands have smooth, continuous outlines without spikes, holes, or triangles pointing outside the band."
+    }
+  ]
+}

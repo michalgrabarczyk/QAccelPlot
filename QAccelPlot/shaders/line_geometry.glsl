@@ -10,12 +10,18 @@
 // viewportSize, lineWidth, logScaleX, logScaleY, pointCount,
 // antialiasingEnabled and antialiasingFeather members,
 // followed by includes of data_texture.glsl and math_utils.glsl.
+//
+// Samples are read as LINE_SAMPLE_STRIDE floats each, X first and the drawn Y at
+// LINE_Y_COMPONENT. Define both before including this file to read other layouts.
 
-// Validity weight written to both vertices of an invalid sample. Valid vertices
-// write 1.0. The fragment shader discards fragments whose interpolated weight is
-// negative, which removes every triangle bridging a gap except for a sliver of
-// 1e-6 of the bridged distance next to the valid vertex.
-const float kInvalidVertexWeight = -1.0e6;
+#ifndef LINE_SAMPLE_STRIDE
+#define LINE_SAMPLE_STRIDE 2
+#endif
+#ifndef LINE_Y_COMPONENT
+#define LINE_Y_COMPONENT 1
+#endif
+
+#include "data_mapping.glsl"
 
 struct LineVertexResult {
     vec4 position;     // clip-space position
@@ -43,39 +49,14 @@ float lineRibbonHalfExtent() {
 // Log-scale dimensions are never origin-shifted, so the sign test is exact.
 bool fetchSample(int index, out vec2 position) {
     index = clamp(index, 0, int(ubuf.pointCount) - 1);
-    int base = index * 2; // X float at 2*index, Y float at 2*index+1
+    int base = index * LINE_SAMPLE_STRIDE;
     uint xBits = fetchFloatBits(base);
-    uint yBits = fetchFloatBits(base + 1);
+    uint yBits = fetchFloatBits(base + LINE_Y_COMPONENT);
     position = vec2(uintBitsToFloat(xBits), uintBitsToFloat(yBits));
     if (!isFiniteBits(xBits) || !isFiniteBits(yBits)) {
         return false;
     }
     return (ubuf.logScaleX < 0.5 || position.x > 0.0) && (ubuf.logScaleY < 0.5 || position.y > 0.0);
-}
-
-// Maps a valid data-space position to item-local pixel coordinates.
-// Y is flipped: in Qt, y=0 is top, but in domain y increases upward.
-vec2 dataToLocal(vec2 value) {
-    vec2 dMin = ubuf.domainMin;
-    vec2 dMax = ubuf.domainMax;
-
-    if (ubuf.logScaleX > 0.5) {
-        dMin.x = safeLog10(dMin.x);
-        dMax.x = safeLog10(dMax.x);
-        value.x = safeLog10(value.x);
-    }
-
-    if (ubuf.logScaleY > 0.5) {
-        dMin.y = safeLog10(dMin.y);
-        dMax.y = safeLog10(dMax.y);
-        value.y = safeLog10(value.y);
-    }
-
-    vec2 range = dMax - dMin;
-    return vec2(
-        (value.x - dMin.x) / range.x * ubuf.viewportSize.x,
-        (1.0 - (value.y - dMin.y) / range.y) * ubuf.viewportSize.y
-    );
 }
 
 // Places both ribbon vertices of an invalid sample on the centre of an adjacent

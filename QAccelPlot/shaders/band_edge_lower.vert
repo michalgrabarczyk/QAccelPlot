@@ -8,4 +8,8 @@
 #version 440
 #extension GL_GOOGLE_include_directive : require
 
+// The lower edge line of a BandSeries, reading (x, low, high) samples.
+#define LINE_SAMPLE_STRIDE 3
+#define LINE_Y_COMPONENT 1
+
 #include "line_vertex.glsl"

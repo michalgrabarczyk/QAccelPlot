@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/BarMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/LineMaterial.hpp"
@@ -66,6 +67,7 @@ private slots:
     void identicalLineMaterialsCompareEqual();
     void lineMaterialsCompareCommonUniforms();
     void lineMaterialsCompareTextureIdentity();
+    void bandEdgesUseTheirOwnMaterialTypes();
     void lineMaterialsCompareCompleteDashState();
     void pointMaterialsCompareMappingUniforms();
     void pointMaterialsCompareMarkerStyleUniforms();
@@ -106,11 +108,31 @@ void MaterialComparisonTest::lineMaterialsCompareTextureIdentity()
 {
     auto left = LineMaterial{};
     auto right = LineMaterial{};
-    left.dataTexture = std::make_unique<TestTexture>(1);
-    right.dataTexture = std::make_unique<TestTexture>(2);
+    left.dataTexture = std::make_shared<DataTexture>(std::make_unique<TestTexture>(1));
+    right.dataTexture = std::make_shared<DataTexture>(std::make_unique<TestTexture>(2));
 
     QVERIFY(left.compare(&right) != 0);
     QVERIFY(right.compare(&left) != 0);
+
+    // Materials sharing one data texture sample the same texture.
+    right.dataTexture = left.dataTexture;
+    QCOMPARE(left.compare(&right), 0);
+    QCOMPARE(right.sampledTexture(), left.sampledTexture());
+}
+
+void MaterialComparisonTest::bandEdgesUseTheirOwnMaterialTypes()
+{
+    // The scene graph compares and batches only materials of the same type, and each edge
+    // reads a different sample value in its vertex shader.
+    const auto lowerEdge = BandEdgeMaterial{BandEdgeMaterial::Edge::Lower};
+    const auto otherLowerEdge = BandEdgeMaterial{BandEdgeMaterial::Edge::Lower};
+    const auto upperEdge = BandEdgeMaterial{BandEdgeMaterial::Edge::Upper};
+    const auto curve = LineMaterial{};
+
+    QCOMPARE(lowerEdge.type(), otherLowerEdge.type());
+    QVERIFY(lowerEdge.type() != upperEdge.type());
+    QVERIFY(lowerEdge.type() != curve.type());
+    QVERIFY(upperEdge.type() != curve.type());
 }
 
 void MaterialComparisonTest::lineMaterialsCompareCompleteDashState()
@@ -169,7 +191,13 @@ void MaterialComparisonTest::dataTextureIsDestroyedWithMaterial()
     auto destroyed = false;
     {
         auto material = LineMaterial{};
-        material.dataTexture = std::make_unique<TestTexture>(1, &destroyed);
+        material.dataTexture = std::make_shared<DataTexture>(std::make_unique<TestTexture>(1, &destroyed));
+        {
+            // A shared texture lives until the last material using it is destroyed.
+            auto sharing = LineMaterial{};
+            sharing.dataTexture = material.dataTexture;
+        }
+        QVERIFY(!destroyed);
     }
 
     QVERIFY(destroyed);
@@ -210,8 +238,8 @@ void MaterialComparisonTest::pointCloudMaterialsCompareDataTextureIdentity()
 {
     auto left = PointCloudMaterial{};
     auto right = PointCloudMaterial{};
-    left.dataTexture = std::make_unique<TestTexture>(10);
-    right.dataTexture = std::make_unique<TestTexture>(11);
+    left.dataTexture = std::make_shared<DataTexture>(std::make_unique<TestTexture>(10));
+    right.dataTexture = std::make_shared<DataTexture>(std::make_unique<TestTexture>(11));
 
     QVERIFY(left.compare(&right) != 0);
 }

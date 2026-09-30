@@ -60,6 +60,10 @@ It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
 Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
 series beneath.
 
+`BandSeries` fills the area between a low and a high value at each X, such as
+confidence intervals and envelopes. It stores `(x, low, high)` triples and
+can draw lines along both edges.
+
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered

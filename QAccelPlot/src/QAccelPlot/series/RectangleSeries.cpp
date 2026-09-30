@@ -570,7 +570,7 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
             rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
         }
         const auto numFloats = rectCount_ * 4;
-        material->uploadTexture(material->dataTexture, window, renderData_.data(), numFloats);
+        material->uploadTexture(window, renderData_.data(), numFloats);
         dataChanged_ = false;
     }
 

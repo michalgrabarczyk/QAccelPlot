@@ -23,6 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `LineCurve.hoverRadius`.
 - The `plot_types/bar_chart` example.
 - The `plot_types/state_timeline` example.
+- `BandSeries` with `edges`, `valueAt()`, and `hovered`.
+- The `plot_types/bands` example.
 
 ### Changed
 

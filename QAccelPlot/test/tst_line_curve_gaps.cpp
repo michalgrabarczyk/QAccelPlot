@@ -26,6 +26,7 @@ private slots:
     // Gap filter helpers
     void countInvalidPointsHonorsLogScale();
     void findValidRunsSplitsAtInvalidSamples();
+    void stridedViewsReadTheirOwnYValue();
     void planRunSamplingKeepsSmallCurvesIntact();
     void planRunSamplingDistributesBudget();
     void envelopeSamplesKeepEndpointsAndPeaks();
@@ -128,6 +129,23 @@ void LineCurveGapsTest::findValidRunsSplitsAtInvalidSamples()
     QCOMPARE(runs[2].start, 6);
     QCOMPARE(runs[2].count, 1);
     QVERIFY(LineCurveGapFilter::findValidRuns(CurveDataView{data.data(), nullptr}, 0, false, false).empty());
+}
+
+void LineCurveGapsTest::stridedViewsReadTheirOwnYValue()
+{
+    // (x, low, high) samples: the low edge is invalid at sample 1, the high edge at sample 2.
+    const auto data = std::vector<double>{0.0, 1.0, 5.0, 1.0, kNaN, 6.0, 2.0, 3.0, kInf, 3.0, 4.0, 8.0};
+    const auto lower = CurveDataView{nullptr, data.data(), 3, 1};
+    const auto upper = CurveDataView{nullptr, data.data(), 3, 2};
+
+    QCOMPARE(lower.x(3), 3.0);
+    QCOMPARE(upper.y(3), 8.0);
+    QCOMPARE(LineCurveGapFilter::countInvalidPoints(lower, 4, false, false), 1);
+    QVERIFY(!LineCurveGapFilter::isValidPoint(upper, 2, false, false));
+    const auto runs = LineCurveGapFilter::findValidRuns(upper, 4, false, false);
+    QCOMPARE(runs.size(), std::size_t{2});
+    QCOMPARE(runs[0].count, 2);
+    QCOMPARE(runs[1].start, 3);
 }
 
 void LineCurveGapsTest::planRunSamplingKeepsSmallCurvesIntact()

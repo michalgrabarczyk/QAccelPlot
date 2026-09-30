@@ -7,8 +7,9 @@
 //
 #pragma once
 
+#include "QAccelPlot/materials/DataTexture.hpp"
+
 #include <QColor>
-#include <QImage>
 #include <QMatrix4x4>
 #include <QQuickWindow>
 #include <QSGMaterial>
@@ -19,7 +20,7 @@
 
 namespace QAccelPlot {
 
-/// \brief Base QSGMaterial that uploads curve data as a floating-point texture and exposes shared shader uniforms.
+/// \brief Base QSGMaterial that samples series data from a \c DataTexture and exposes shared shader uniforms.
 ///
 /// Subclasses (\c LineMaterial, \c RectMaterial) extend the UBO (Uniform Buffer Object) with type-specific fields.
 /// The shared uniform block occupies the first 116 bytes of the std140 UBO:
@@ -46,32 +47,32 @@ public:
     /// Returns \c false only if \a bufSize is too small; always writes all fields otherwise.
     static bool writeCommonUniforms(char* buf, int bufSize, const QMatrix4x4& matrix, const DataTextureMaterial* mat);
 
-    /// \brief Uploads \a floatCount raw floats as an RGBA8888 data texture, reusing existing GPU/CPU buffers where possible.
-    void uploadTexture(std::unique_ptr<QSGTexture>& texture, QQuickWindow* window, const float* data, int floatCount);
+    /// \brief Uploads \a floatCount raw floats from \a data into \c dataTexture, creating it when it is \c nullptr.
+    void uploadTexture(QQuickWindow* window, const float* data, int floatCount);
 
-    /// \brief Commits \a dataTexture to sampler \a binding (call from \c updateSampledImage).
-    static void commitTexture(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture, QSGTexture* dataTexture);
+    /// \brief Commits the texture of \a data to sampler \a binding (call from \c updateSampledImage). Does nothing before an upload.
+    static void commitTexture(QSGMaterialShader::RenderState& state, int binding, QSGTexture** texture, const DataTexture* data);
 
     /// \brief Returns the shared vertex attribute set: \c {float id, float param, uchar4 color} (12 bytes).
     static const QSGGeometry::AttributeSet& attributeSet();
+
+    /// \brief Returns the texture the shader samples, or \c nullptr before \c dataTexture holds an upload.
+    QSGTexture* sampledTexture() const;
 
 protected:
     /// \brief Subclass hook for \c compare() — called after the shared fields compare equal.
     virtual int compareExtra(const QSGMaterial* other) const;
 
 public:
-    QColor color{Qt::blue};                  ///< \brief Line/fill color uniform.
-    QVector2D domainMin{0.0f, 0.0f};         ///< \brief Minimum data-space coordinate.
-    QVector2D domainMax{1.0f, 1.0f};         ///< \brief Maximum data-space coordinate.
-    QVector2D viewportSize{800.0f, 600.0f};  ///< \brief Viewport size in pixels.
-    float logScaleX{0.0f};                   ///< \brief 1.0 when the X axis uses log scale (float for std140 UBO compatibility).
-    float logScaleY{0.0f};                   ///< \brief 1.0 when the Y axis uses log scale (float for std140 UBO compatibility).
-    float useVertexColor{0.0f};              ///< \brief 1.0 when per-vertex color overrides \c color (float for std140 UBO compatibility).
-    std::unique_ptr<QSGTexture> dataTexture; ///< \brief Owned data texture bound to the shader sampler.
-
-private:
-    QImage imageBuffer_;
-    bool warnedAboutTextureSize_{false};
+    QColor color{Qt::blue};                 ///< \brief Line/fill color uniform.
+    QVector2D domainMin{0.0f, 0.0f};        ///< \brief Minimum data-space coordinate.
+    QVector2D domainMax{1.0f, 1.0f};        ///< \brief Maximum data-space coordinate.
+    QVector2D viewportSize{800.0f, 600.0f}; ///< \brief Viewport size in pixels.
+    float logScaleX{0.0f};                  ///< \brief 1.0 when the X axis uses log scale (float for std140 UBO compatibility).
+    float logScaleY{0.0f};                  ///< \brief 1.0 when the Y axis uses log scale (float for std140 UBO compatibility).
+    float useVertexColor{0.0f};             ///< \brief 1.0 when per-vertex color overrides \c color (float for std140 UBO compatibility).
+    /// \brief Data texture sampled by the shader. Materials drawing the same samples may share one.
+    std::shared_ptr<DataTexture> dataTexture;
 };
 
 } // namespace QAccelPlot

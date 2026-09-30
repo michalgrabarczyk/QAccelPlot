@@ -43,9 +43,9 @@ static_assert(sizeof(LineUbo) == 180);
 
 class LineShader : public QSGMaterialShader {
 public:
-    LineShader()
+    explicit LineShader(const QString& vertexShaderFileName)
     {
-        setShaderFileName(VertexStage, QString::fromLatin1(":/qaccelplot/shaders/line.vert.qsb"));
+        setShaderFileName(VertexStage, vertexShaderFileName);
         setShaderFileName(FragmentStage, QString::fromLatin1(":/qaccelplot/shaders/line.frag.qsb"));
     }
 
@@ -108,7 +108,12 @@ QSGMaterialType* LineMaterial::type() const
 
 QSGMaterialShader* LineMaterial::createShader(QSGRendererInterface::RenderMode) const
 {
-    return new LineShader;
+    return createLineShader(QString::fromLatin1(":/qaccelplot/shaders/line.vert.qsb"));
+}
+
+QSGMaterialShader* LineMaterial::createLineShader(const QString& vertexShaderFileName)
+{
+    return new LineShader(vertexShaderFileName);
 }
 
 int LineMaterial::compareExtra(const QSGMaterial* other) const

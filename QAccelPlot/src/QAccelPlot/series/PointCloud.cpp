@@ -570,7 +570,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
 
     // A freshly created node owns a new material, so it always needs the data texture.
     if (dataChanged_ || !oldNode || !material->dataTexture) {
-        material->uploadTexture(material->dataTexture, window, data_.data(), renderCount * stride());
+        material->uploadTexture(window, data_.data(), renderCount * stride());
         dataChanged_ = false;
     }
 

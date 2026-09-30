@@ -8,6 +8,7 @@
 #include "QAccelPlot/renderers/LineCurveLineRenderer.hpp"
 
 #include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
+#include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/GradientFillMaterial.hpp"
 #include "QAccelPlot/materials/GradientLineMaterial.hpp"
@@ -52,7 +53,54 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
     return unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
 }
 
-QSGGeometryNode* createLineNode(const int vertexCount, const bool gradientStroke)
+// The line material a stroke is drawn with.
+enum class StrokeMaterial { Line, Gradient, BandLow, BandHigh };
+
+StrokeMaterial strokeMaterialFor(const LineCurveRenderParams& params)
+{
+    switch (params.sampleLayout) {
+    case LineSampleLayout::BandLow:
+        return StrokeMaterial::BandLow;
+    case LineSampleLayout::BandHigh:
+        return StrokeMaterial::BandHigh;
+    case LineSampleLayout::XY:
+        break;
+    }
+    return params.gradientPayload.isValid() ? StrokeMaterial::Gradient : StrokeMaterial::Line;
+}
+
+StrokeMaterial strokeMaterialOf(const QSGMaterial* material)
+{
+    if (dynamic_cast<const GradientLineMaterial*>(material)) {
+        return StrokeMaterial::Gradient;
+    }
+    if (const auto* edge = dynamic_cast<const BandEdgeMaterial*>(material)) {
+        return edge->edge() == BandEdgeMaterial::Edge::Lower ? StrokeMaterial::BandLow : StrokeMaterial::BandHigh;
+    }
+    return StrokeMaterial::Line;
+}
+
+QSGMaterial* createStrokeMaterial(const StrokeMaterial kind)
+{
+    switch (kind) {
+    case StrokeMaterial::Gradient:
+        return new GradientLineMaterial;
+    case StrokeMaterial::BandLow:
+        return new BandEdgeMaterial(BandEdgeMaterial::Edge::Lower);
+    case StrokeMaterial::BandHigh:
+        return new BandEdgeMaterial(BandEdgeMaterial::Edge::Upper);
+    case StrokeMaterial::Line:
+        break;
+    }
+    return new LineMaterial;
+}
+
+int floatsPerSample(const LineSampleLayout layout)
+{
+    return layout == LineSampleLayout::XY ? 2 : 3;
+}
+
+QSGGeometryNode* createLineNode(const int vertexCount, const StrokeMaterial strokeMaterial)
 {
     auto* node = new QSGGeometryNode;
 
@@ -78,7 +126,7 @@ QSGGeometryNode* createLineNode(const int vertexCount, const bool gradientStroke
     node->setGeometry(geometry);
     node->setFlag(QSGNode::OwnsGeometry);
 
-    node->setMaterial(gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : static_cast<QSGMaterial*>(new LineMaterial));
+    node->setMaterial(createStrokeMaterial(strokeMaterial));
     node->setFlag(QSGNode::OwnsMaterial);
 
     return node;
@@ -157,15 +205,15 @@ void assembleFillVertices(QSGGeometry* geometry, const CurveDataView data, const
     }
 }
 
-QSGNode* createLineRootNode(const int strokeVertexCount, const bool gradientStroke)
+QSGNode* createLineRootNode(const int strokeVertexCount, const StrokeMaterial strokeMaterial)
 {
     auto* rootNode = new QSGNode;
     rootNode->appendChildNode(createFillNode(0));
-    rootNode->appendChildNode(createLineNode(strokeVertexCount, gradientStroke));
+    rootNode->appendChildNode(createLineNode(strokeVertexCount, strokeMaterial));
     return rootNode;
 }
 
-QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const bool gradientStroke, bool& recreated)
+QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const StrokeMaterial strokeMaterial, bool& recreated)
 {
     const auto isExpectedRoot = [&]() {
         if (!oldNode || oldNode->type() != QSGNode::BasicNodeType || oldNode->childCount() != 2) {
@@ -191,17 +239,16 @@ QSGNode* ensureLineRootNode(QSGNode* oldNode, const int strokeVertexCount, const
 
     if (isExpectedRoot) {
         auto* lineNode = static_cast<QSGGeometryNode*>(oldNode->lastChild());
-        const auto hasGradient = dynamic_cast<const GradientLineMaterial*>(lineNode->material()) != nullptr;
-        recreated = hasGradient != gradientStroke;
+        recreated = strokeMaterialOf(lineNode->material()) != strokeMaterial;
         if (recreated) {
-            lineNode->setMaterial(gradientStroke ? static_cast<QSGMaterial*>(new GradientLineMaterial) : static_cast<QSGMaterial*>(new LineMaterial));
+            lineNode->setMaterial(createStrokeMaterial(strokeMaterial));
         }
         return oldNode;
     }
 
     delete oldNode;
     recreated = true;
-    return createLineRootNode(strokeVertexCount, gradientStroke);
+    return createLineRootNode(strokeVertexCount, strokeMaterial);
 }
 
 void assembleVertices(QSGGeometry* geometry, const int pointCount, const QColor& effectiveColor, const std::vector<float>& arcLengths)
@@ -291,9 +338,8 @@ bool LineCurveLineRenderer::contains(const QPointF& point, const CurveHitTestPar
 QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderParams& params) const
 {
     const auto vertexCount = params.pointCount * 2;
-    const auto gradientStroke = params.gradientPayload.isValid();
     auto rootRecreated = false;
-    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, gradientStroke, rootRecreated);
+    auto* rootNode = ensureLineRootNode(oldNode, vertexCount, strokeMaterialFor(params), rootRecreated);
     auto* fillNode = static_cast<QSGGeometryNode*>(rootNode->firstChild());
     auto* node = static_cast<QSGGeometryNode*>(fillNode->nextSibling());
 
@@ -317,8 +363,10 @@ QSGNode* LineCurveLineRenderer::paint(QSGNode* oldNode, const LineCurveRenderPar
     auto* material = static_cast<LineMaterial*>(node->material());
     updateLineMaterial(material, params, effectiveColor, useVertexColor, dashParams);
 
-    if (params.dataChanged || rootRecreated) {
-        material->uploadTexture(material->dataTexture, params.window, params.data.data(), params.pointCount * 2);
+    if (params.dataTexture) {
+        material->dataTexture = params.dataTexture;
+    } else if (params.dataChanged || rootRecreated) {
+        material->uploadTexture(params.window, params.data.data(), params.pointCount * floatsPerSample(params.sampleLayout));
     }
 
     // The vertex buffer stores {id, side, rgba, arcLength}. For solid lines the
