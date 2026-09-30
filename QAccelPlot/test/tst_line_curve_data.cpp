@@ -57,6 +57,7 @@ private slots:
     void postedFloatDataFromWorkerThreadIsApplied();
     void hoverEnterAndLeaveToggleHovered();
     void lineAndMarkerCurveContainsLineAndMarkers();
+    void hoverRadiusLimitsLineHitTest();
     void invalidPostedDoubleDataIsRejected();
     void reassignedEffectsSurviveListClear();
     void destroyedEffectIsRemovedFromList();
@@ -590,6 +591,37 @@ void LineCurveDataTest::lineAndMarkerCurveContainsLineAndMarkers()
     QVERIFY(item.contains({10, 50}));
     QVERIFY(item.contains({50, 50}));
     QVERIFY(!item.contains({50, 20}));
+}
+
+void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
+{
+    auto xAxis = Axis{};
+    xAxis.setOrientation(Axis::Horizontal);
+    auto yAxis = Axis{};
+    yAxis.setOrientation(Axis::Vertical);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setPlotRect({0, 0, 100, 100});
+    curve.setData(QList<QPointF>{{0.1, 0.5}, {0.9, 0.5}});
+    const auto& item = static_cast<const QQuickItem&>(curve);
+
+    QCOMPARE(curve.hoverRadius(), 10.0);
+    QVERIFY(item.contains({50, 42}));
+    QVERIFY(!item.contains({50, 38}));
+
+    curve.setHoverRadius(4.0);
+    QVERIFY(item.contains({50, 47}));
+    QVERIFY(!item.contains({50, 45}));
+
+    curve.setHoverRadius(-1.0);
+    QCOMPARE(curve.hoverRadius(), 0.0);
+    QVERIFY(!item.contains({50, 50}));
+    QVERIFY(!item.contains({10, 50}));
+
+    curve.marker()->setShape(LineCurve::MarkerShape::Circle);
+    QVERIFY(item.contains({10, 50}));
+    QVERIFY(!item.contains({50, 50}));
 }
 
 void LineCurveDataTest::invalidPostedDoubleDataIsRejected()

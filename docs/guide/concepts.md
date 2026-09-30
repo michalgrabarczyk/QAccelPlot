@@ -56,6 +56,9 @@ and legend symbol.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
 stores points as interleaved floats and accepts data from QML or C++ buffers.
+It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
+Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
+series beneath.
 
 `RectangleSeries` renders many data-space rectangles in one item, such as event
 spans, bands, and state timelines. Infinite edges reach the plot edge, and a
