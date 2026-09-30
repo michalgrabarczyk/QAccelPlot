@@ -6,6 +6,7 @@
 # See COMMERCIAL-LICENSING.md for contact information.
 #
 add_subdirectory(bar_chart)
+add_subdirectory(bands)
 add_subdirectory(parametric_curves)
 add_subdirectory(point_cloud)
 add_subdirectory(state_timeline)

@@ -11,6 +11,7 @@
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
 #include "QAccelPlot/renderers/CurveRendererParams.hpp"
+#include "QAccelPlot/renderers/LineStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 
 #include <QColor>
@@ -51,17 +52,6 @@ struct LineCurveRenderParams {
     const GradientFillPayload& gradientFillPayload; ///< \brief Gradient fill parameters.
     const std::vector<char>* vertexCache;           ///< \brief Pre-built vertex buffer, or \c nullptr to build on the render thread.
     const LineStyle* lineStyle;                     ///< \brief Active line style (dash pattern etc.).
-};
-
-/// \brief Vertex layout for line geometry, shared with the main thread for pre-built vertex caches.
-struct LineVertex {
-    float id;        ///< \brief Point index in the data buffer.
-    float side;      ///< \brief Side of the line (-0.5 or +0.5) for screen-space extrusion.
-    unsigned char r; ///< \brief Red channel (used when \c useVertexColor is true).
-    unsigned char g; ///< \brief Green channel (used when \c useVertexColor is true).
-    unsigned char b; ///< \brief Blue channel (used when \c useVertexColor is true).
-    unsigned char a; ///< \brief Alpha channel (used when \c useVertexColor is true).
-    float arcLength; ///< \brief Cumulative screen-space arc length in pixels; 0 for solid lines.
 };
 
 /// \brief Samples of a gradient fill: one group per valid-sample run, broken at gaps.

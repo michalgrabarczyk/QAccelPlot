@@ -28,6 +28,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   unconnected points as markers, colored uniformly or by per-point values.
 - [`ColorBar`](api/classQAccelPlot_1_1ColorBar.md) — continuous key for a
   point cloud's colormap and value range.
+- [`BandSeries`](api/classQAccelPlot_1_1BandSeries.md) — filled area between a
+  low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
   rectangles in one item: spans, bands, and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and

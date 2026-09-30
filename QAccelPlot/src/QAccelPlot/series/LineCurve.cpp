@@ -13,12 +13,12 @@
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
 #include <QSGGeometryNode>
-#include <QSGRendererInterface>
 #include <QtMath>
 
 #include <algorithm>
@@ -30,27 +30,6 @@
 namespace QAccelPlot {
 
 namespace {
-
-bool supportsCustomShaderRendering(const QQuickWindow* window)
-{
-    if (!window) {
-        return false;
-    }
-
-    const auto* rendererInterface = window->rendererInterface();
-    if (!rendererInterface) {
-        return false;
-    }
-
-    return rendererInterface->graphicsApi() != QSGRendererInterface::Software;
-}
-
-bool hoverEnabled()
-{
-    auto isInteger = false;
-    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
-    return !isInteger || value != 0;
-}
 
 // Fallback data-range bounds used when no axis is attached to resolve gradient normalization.
 constexpr auto kFallbackDataMin = qreal{0.0};
@@ -189,7 +168,7 @@ LineCurve::LineCurve(QQuickItem* parent)
     : PlotSeries(parent)
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(hoverEnabled());
+    setAcceptHoverEvents(Internal::hoverEnabled());
     connect(gaps_, &LineCurveGaps::nanModeChanged, this, &LineCurve::onNanGapModeChanged);
     connect(marker_, &SeriesMarker::shapeChanged, this, &LineCurve::onMarkerShapeChanged);
     // Size, fill, and outline width are material uniforms, so they need no vertex rebuild.
@@ -611,7 +590,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
 {
     Q_UNUSED(updatePaintNodeData)
 
-    if (!supportsCustomShaderRendering(window())) {
+    if (!Internal::supportsCustomShaderRendering(window())) {
         static bool warned = false;
         if (!warned) {
             qCWarning(lcQAccelPlot) << "LineCurve custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";

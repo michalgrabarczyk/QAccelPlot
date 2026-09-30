@@ -14,20 +14,11 @@
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
 #include <QSGGeometryNode>
-#include <QSGRendererInterface>
-
-// QRhi is semi-public from Qt 6.6, but its header is only on the include path through the
-// private Qt modules, so querying the texture limit needs both.
-#if QACCELPLOT_USE_QT_PRIVATE_API && QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
-#define QACCELPLOT_CAN_QUERY_RHI 1
-#include <rhi/qrhi.h>
-#else
-#define QACCELPLOT_CAN_QUERY_RHI 0
-#endif
 
 #include <algorithm>
 #include <cmath>
@@ -44,58 +35,16 @@ namespace {
 constexpr auto kPositionStride = 2;
 constexpr auto kValueStride = 3;
 constexpr auto kVerticesPerPoint = 6;
-// Texture height assumed when the RHI cannot be queried (Qt < 6.6, or built without the private
-// Qt API); supported by every target GPU.
-constexpr auto kFallbackMaxTextureSize = 8192;
 constexpr auto kMinFeather = qreal{0.0};
 constexpr auto kMaxFeather = qreal{10.0};
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
-
-bool supportsCustomShaderRendering(const QQuickWindow* window)
-{
-    if (!window) {
-        return false;
-    }
-    const auto* rendererInterface = window->rendererInterface();
-    return rendererInterface && rendererInterface->graphicsApi() != QSGRendererInterface::Software;
-}
-
-bool hoverEnabled()
-{
-    auto isInteger = false;
-    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
-    return !isInteger || value != 0;
-}
-
-int gpuMaxTextureSize(QQuickWindow* window)
-{
-#if QACCELPLOT_CAN_QUERY_RHI
-    if (auto* rendererInterface = window->rendererInterface()) {
-        const auto* rhi = static_cast<QRhi*>(rendererInterface->getResource(window, QSGRendererInterface::RhiResource));
-        if (rhi) {
-            return rhi->resourceLimit(QRhi::TextureSizeMax);
-        }
-    }
-#else
-    Q_UNUSED(window)
-#endif
-    return kFallbackMaxTextureSize;
-}
-
-// QACCELPLOT_MAX_TEXTURE_SIZE lowers the assumed limit, e.g. to exercise the capacity cap in tests.
-int maxTextureSize(QQuickWindow* window)
-{
-    static const auto overrideSize = qEnvironmentVariableIntValue("QACCELPLOT_MAX_TEXTURE_SIZE");
-    const auto gpuSize = gpuMaxTextureSize(window);
-    return overrideSize > 0 ? std::min(overrideSize, gpuSize) : gpuSize;
-}
 
 // Number of points of stride floats each that the GPU data texture holds.
 int pointCapacity(QQuickWindow* window, const int stride)
 {
     // QSGGeometry sizes its vertex buffer in int bytes.
     const auto maxGeometryPoints = std::numeric_limits<int>::max() / (kVerticesPerPoint * PointCloudMaterial::attributeSet().stride);
-    return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(maxTextureSize(window), stride), maxGeometryPoints));
+    return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), stride), maxGeometryPoints));
 }
 
 void warnOnceIfOverCapacity(const int pointCount, const int capacity)
@@ -150,7 +99,7 @@ PointCloud::PointCloud(QQuickItem* parent)
     : PlotSeries(parent)
 {
     setFlag(ItemHasContents, true);
-    setAcceptHoverEvents(hoverEnabled());
+    setAcceptHoverEvents(Internal::hoverEnabled());
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Marker);
 
@@ -536,7 +485,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     Q_UNUSED(updatePaintNodeData)
 
     auto* window = this->window();
-    if (!supportsCustomShaderRendering(window)) {
+    if (!Internal::supportsCustomShaderRendering(window)) {
         static auto warned = false;
         if (!warned) {
             qCWarning(lcQAccelPlot) << "PointCloud custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";
@@ -570,7 +519,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
 
     // A freshly created node owns a new material, so it always needs the data texture.
     if (dataChanged_ || !oldNode || !material->dataTexture) {
-        material->uploadTexture(material->dataTexture, window, data_.data(), renderCount * stride());
+        material->uploadTexture(window, data_.data(), renderCount * stride());
         dataChanged_ = false;
     }
 

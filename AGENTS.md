@@ -77,9 +77,11 @@ QAccelPlot/
 │       ├── grid/                 — Grid, GridNode
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
-│       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer
-│       ├── series/               — LineCurve, PointCloud, RectangleSeries, BarSeries, PlotSeries,
+│       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
+│       │                           LineStroke (shared line ribbon helpers)
+│       ├── series/               — LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, PlotSeries,
 │       │                           RectangleBorder (border grouped property),
+│       │                           BandEdges (edges grouped property),
 │       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
