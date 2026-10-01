@@ -699,6 +699,8 @@
     <member refid="classQAccelPlot_1_1ColorPalette_1afb9cc306840f915e87724ba3af481f98" kind="property"><name>toolPoint</name></member>
     <member refid="classQAccelPlot_1_1ColorPalette_1a0bea5f53ca24cc0dcd402d7fe53349b7" kind="property"><name>toolRegion</name></member>
     <member refid="classQAccelPlot_1_1ColorPalette_1aa9b2b1804c122b9a26365537761e46df" kind="property"><name>toolOverlay</name></member>
+    <member refid="classQAccelPlot_1_1ColorPalette_1a1fc6270e8909bd4a0347163d0079c579" kind="property"><name>rectangleZoomBorder</name></member>
+    <member refid="classQAccelPlot_1_1ColorPalette_1a3ef7c18102cd5d9f7b9286638cdc9234" kind="property"><name>rectangleZoomFill</name></member>
     <member refid="classQAccelPlot_1_1ColorPalette_1ac126e30ef677165d8059c76a9033a54b" kind="property"><name>performanceCurve</name></member>
     <member refid="classQAccelPlot_1_1ColorPalette_1aed96484f6e98357aef3af5102f0afb43" kind="property"><name>performanceRectangles</name></member>
     <member refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kind="function"><name>dark</name></member>
@@ -1470,6 +1472,44 @@
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1ab18c886fe3f574609d59f4d92ff113ee" kind="function"><name>setAccepted</name></member>
     <member refid="classQAccelPlot_1_1PlotMouseEvent_1abb9b8fe62c388693b1f758556ef85c67" kind="function"><name>reset</name></member>
   </compound>
+  <compound refid="classQAccelPlot_1_1PlotRectangleZoom" kind="class"><name>QAccelPlot::PlotRectangleZoom</name>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" kind="property"><name>enabled</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" kind="property"><name>modifiers</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" kind="property"><name>minimumSize</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" kind="property"><name>fillColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" kind="property"><name>borderColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" kind="property"><name>active</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" kind="property"><name>selectionRect</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" kind="friend"><name>QAccelPlot</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1af269d2c0d29623a783dff97fa5f1d690" kind="variable"><name>enabled_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a94e3c722eb55777497a7b498690fb1e1" kind="variable"><name>modifiers_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1aeeb6fec076d5bd27f907325be8f2cc8a" kind="variable"><name>minimumSize_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a883efab84da6cb64c65b8163e7c19dd2" kind="variable"><name>fillColor_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ac0b7967a93f5a88daa5c73388ce147c2" kind="variable"><name>borderColor_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1afe3e6ac27ba56b5c8b1a2beaa651cbd3" kind="variable"><name>active_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1acbf12420a9c646b5abff3d0ee7350751" kind="variable"><name>selectionRect_</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab3d1a3096224cc00e528f7a479a65a21" kind="function"><name>PlotRectangleZoom</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a70f1de754853327782e27d39b75b046e" kind="function"><name>enabled</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" kind="function"><name>setEnabled</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9b6fe0113531d644131641f1c95cb698" kind="function"><name>modifiers</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" kind="function"><name>setModifiers</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae9d60343d4a911f89438c44534be34f7" kind="function"><name>minimumSize</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" kind="function"><name>setMinimumSize</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae287c7f7912b613110976dbcafd34872" kind="function"><name>fillColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" kind="function"><name>setFillColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1abf9e436fe2d20b061f019ee146e20dac" kind="function"><name>borderColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a5daba25361e7b1445cf613e8b6867f6b" kind="function"><name>setBorderColor</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a26bf9a53adb7a9b2f6958d273123639c" kind="function"><name>active</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a6322baac1b3c38f9b97228b93a8a351e" kind="function"><name>selectionRect</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae2d931c246ab4a198b5a1ffb0ead7327" kind="signal"><name>enabledChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" kind="signal"><name>modifiersChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" kind="signal"><name>minimumSizeChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab96c698c0acfb84c837f137770a04252" kind="signal"><name>fillColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a03d2b803ea40f0fa84162fec7b87ddb6" kind="signal"><name>borderColorChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a1f5c5864927b4b58c8f0e80ffc22505f" kind="signal"><name>activeChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9eee56ab82c31689e76a968ab580cab1" kind="signal"><name>selectionRectChanged</name></member>
+    <member refid="classQAccelPlot_1_1PlotRectangleZoom_1abc3154d3298ef42cb72df019e2bdb0ca" kind="function"><name>setSelection</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1PlotSeries" kind="class"><name>QAccelPlot::PlotSeries</name>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kind="enum"><name>LegendSymbol</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849ea4803e6b9e63dabf04de980788d6a13c4" kind="enumvalue"><name>Line</name></member>
@@ -1753,6 +1793,10 @@
     <member refid="structQAccelPlot_1_1PointVertex_1ae4cb728945e5e4df9ffffffc658809b9" kind="variable"><name>a</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1QAccelPlot" kind="class"><name>QAccelPlot::QAccelPlot</name>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a79b32fd14a755657b4404b7c053611a1" kind="enum"><name>DragMode</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a79b32fd14a755657b4404b7c053611a1ae599161956d626eda4cb0a5ffb85271c" kind="enumvalue"><name>Idle</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a79b32fd14a755657b4404b7c053611a1af6d4a17b27da35c2d90ce13801f36782" kind="enumvalue"><name>Pan</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a79b32fd14a755657b4404b7c053611a1a117194c9b8ad6a2a44316793e9b856a2" kind="enumvalue"><name>RectangleZoom</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a08bb4bde1c498ad50fdfa8e48d41adf7" kind="property"><name>xAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1af489c97d929d1092be24f0e780c06a83" kind="property"><name>yAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a8fd3ea82835224ee95f3c4ec4bd78ff8" kind="property"><name>x2Axis</name></member>
@@ -1763,6 +1807,7 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a60ed998f9851e84cae2c3096dfef9d4e" kind="property"><name>plotAreaColor</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9666568dd14b7e7d74971fb1f5daa2ba" kind="property"><name>axesAreaColor</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9b8c5a70da4c55fdb8cb432b02a0dedc" kind="property"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a8b5e0ad89728f077977cdbe877493813" kind="property"><name>rectangleZoom</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aee3b8ea78a3ff2dd79e256fb34f5fdcc" kind="property"><name>grid</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a4e47d828812b5d9e14d95a330b97af86" kind="property"><name>series</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a042639652fc89c740494bcc07d9fac89" kind="variable"><name>xAxis_</name></member>
@@ -1770,7 +1815,8 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a36f3ed1e4ecbd3e948454af11d6bf801" kind="variable"><name>x2Axis_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1ad143f943f76b5fe51e2bc1f5d5418322" kind="variable"><name>y2Axis_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1adacf806b00b65a1698596e46f2a5ff72" kind="variable"><name>extraAxes_</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1afa7e69a8860a12950a0a20d0f4761682" kind="variable"><name>isDragging_</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a9ce0d30af7885262e22aa37e7de743ca" kind="variable"><name>dragMode_</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1abb979bc94febb5b1c84bb5c5f855bee5" kind="variable"><name>selectionStart_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a3d26259c01f743c6a58d24ae56fd62e3" kind="variable"><name>lastMousePos_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1af75f5113f4ae187bf9eae986ebdd55ca" kind="variable"><name>pointerPos_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aa995f65b929dc8a46d8908feef47eed1" kind="variable"><name>mousePressEvent_</name></member>
@@ -1782,6 +1828,8 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a825f41f1c376753b4037130db829cb26" kind="variable"><name>plotAreaColor_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a53e9e8137e82e61c66ec23712aa5dc57" kind="variable"><name>axesAreaColor_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a81fdcf2fadb7f60beedfdff116cac735" kind="variable"><name>border_</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1af07b6f88a5b66893aa098c3fd95f5cba" kind="variable"><name>rectangleZoom_</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a627794dc487bd1b7403d08ba366929c0" kind="variable"><name>rectangleZoomOverlay_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a3031aea4af40a0733a0caf407255126f" kind="variable"><name>grid_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1af888af572794bd0d5a287e3b8b8fad45" kind="variable"><name>gridNode_</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9e0722bf5b492a32664206290ac572f7" kind="variable"><name>series_</name></member>
@@ -1792,6 +1840,7 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a484d049dd7188040e0c450bb9590ac0c" kind="function"><name>pixelToDataX</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1abd81402f2c90d2287bb1ca41f1a35e49" kind="function"><name>pixelToDataY</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a4d3dc663c405407222f8e1dcac3294f2" kind="function"><name>isInsidePlotArea</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a74e35cafbbf3445e2d213a27543a4cac" kind="function"><name>zoomToRect</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a0700efddb41845fd85ee085199e56572" kind="function"><name>xAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a04c7d9c183237eefc8d2ce040a1f613d" kind="function"><name>setXAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a63c870858ecfd22c0130f18942b91350" kind="function"><name>yAxis</name></member>
@@ -1809,6 +1858,7 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9800bf3dc56abdfe6f77b55cb96e5354" kind="function"><name>axesAreaColor</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a08980cdb9d0ea669bfae831bcaa6b043" kind="function"><name>setAxesAreaColor</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a6351ba86660dd6dd1bd65ca5d9962b01" kind="function"><name>border</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a862faea069c043a0e8451b93b91f7f9d" kind="function"><name>rectangleZoom</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a55e4559da3179562d56343b6fcc15d5b" kind="function"><name>grid</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1abb5fb379a8cc0ed2b6ab8457e794c2b0" kind="function"><name>series</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a81c80d8ed507b8f4456062fed281e323" kind="signal"><name>xAxisChanged</name></member>
@@ -1826,16 +1876,19 @@
     <member refid="classQAccelPlot_1_1QAccelPlot_1a9a8c97aaaee59da4516d82e9ff7abf65" kind="signal"><name>mouseMoved</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a6ab962feb97d0bfccb268ac54bce8c77" kind="function"><name>rescaleAllAxes</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a0637a54f7cb5fe2b3a9a3c3591bbc5da" kind="function"><name>isAxisRegistered</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a62cee9a7d1a3ab28280216b5e4fa43bc" kind="function"><name>tryForwardKeyEventToAxis</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1afed7a9aafb1c480fed0e8d99f8b21fc6" kind="function"><name>tryZoomAxisAtPosition</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1abb03a853b2785b042d768859765ea19c" kind="function"><name>zoomAxisAtRatio</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a4e5b60afc89b17050b520b54f4f5509b" kind="function"><name>connectAxisSignals</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a0f285eec058f666e11a6033aa39fdf7e" kind="function"><name>disconnectAxisSignals</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1af7b3c5171c5c0f634e44338cf6c64796" kind="function"><name>axisDestroyed</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a8cdef0927cabf4eb960e061099fadc01" kind="function"><name>connectAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a5620a822a75e481ac315796f1dbe316a" kind="function"><name>disconnectAxis</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1afed7a9aafb1c480fed0e8d99f8b21fc6" kind="function"><name>tryZoomAxisAtPosition</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1a62cee9a7d1a3ab28280216b5e4fa43bc" kind="function"><name>tryForwardKeyEventToAxis</name></member>
-    <member refid="classQAccelPlot_1_1QAccelPlot_1abb03a853b2785b042d768859765ea19c" kind="function"><name>zoomAxisAtRatio</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a8a2e19936196466cd9a7dffd2a8f24b6" kind="function"><name>zoomAxis</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1add18589f255ec57b9fe5cb69340ff1f7" kind="function"><name>panAxis</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1afc0e5c562d74f0ed3ddb7e57cc113b91" kind="function"><name>attachedAxes</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a48f7da523fab1fe3a27571d6627efd5e" kind="function"><name>updateRectangleSelection</name></member>
+    <member refid="classQAccelPlot_1_1QAccelPlot_1a68beec6552fb35816d9e825381e50107" kind="function"><name>cancelRectangleSelection</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1aa51ddf9954f678a3f7fe89b60e0451eb" kind="function"><name>layoutAxes</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a27ff9c96189d70f1e50d454455c0bbf5" kind="function"><name>registerSeries</name></member>
     <member refid="classQAccelPlot_1_1QAccelPlot_1a6eb17f11d28d97e352aa275c9435d879" kind="function"><name>appendExtraAxis</name></member>
@@ -1947,6 +2000,12 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1a9034fd5609a2efd6310a29b03d6b02fa" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a6ab947a04e43fc60a4f34bdc63afdfcd" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1adae3142828bb21c43a7590230bd01e5a" kind="function"><name>rebuildRenderData</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1RectangleZoomOverlay" kind="class"><name>QAccelPlot::RectangleZoomOverlay</name>
+    <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a6d3f847b57d0e0f0c9add63f0f3fb7d5" kind="variable"><name>configuration_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a899980db126e2014f06bf4ec00bb04e7" kind="function"><name>RectangleZoomOverlay</name></member>
+    <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a9d89e50a389f9ca54dd55611e5543aef" kind="function"><name>updatePaintNode</name></member>
+    <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a0ccac7ee113f053754af7a4b6dcce841" kind="function"><name>syncSelection</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1RectMaterial" kind="class"><name>QAccelPlot::RectMaterial</name>
     <member refid="classQAccelPlot_1_1RectMaterial_1acbd0c649fb0243d0e145249f895bbbce" kind="variable"><name>rectCount</name></member>
@@ -2230,6 +2289,8 @@
   </compound>
   <compound refid="GridNode_8hpp" kind="file"><name>GridNode.hpp</name>
   </compound>
+  <compound refid="RectangleZoomOverlay_8hpp" kind="file"><name>RectangleZoomOverlay.hpp</name>
+  </compound>
   <compound refid="DashLine_8hpp" kind="file"><name>DashLine.hpp</name>
   </compound>
   <compound refid="LineStyle_8hpp" kind="file"><name>LineStyle.hpp</name>
@@ -2273,6 +2334,8 @@
   <compound refid="PlotBorder_8hpp" kind="file"><name>PlotBorder.hpp</name>
   </compound>
   <compound refid="PlotMouseEvent_8hpp" kind="file"><name>PlotMouseEvent.hpp</name>
+  </compound>
+  <compound refid="PlotRectangleZoom_8hpp" kind="file"><name>PlotRectangleZoom.hpp</name>
   </compound>
   <compound refid="QAccelPlot_8hpp" kind="file"><name>QAccelPlot.hpp</name>
   </compound>
@@ -2341,6 +2404,8 @@
   <compound refid="dir_4eeeb48ede2263d8d479500d459323d3" kind="dir"><name>QAccelPlot/src/QAccelPlot/formatters</name>
   </compound>
   <compound refid="dir_112dd686688a4740e45fb78d5fc35b31" kind="dir"><name>QAccelPlot/src/QAccelPlot/grid</name>
+  </compound>
+  <compound refid="dir_78f1acf6f1aae410b1e370fefb18a5f4" kind="dir"><name>QAccelPlot/src/QAccelPlot/internal</name>
   </compound>
   <compound refid="dir_3c3be61dbf90c69b9ad6cd32d23f3e24" kind="dir"><name>QAccelPlot/src/QAccelPlot/materials/internal</name>
   </compound>

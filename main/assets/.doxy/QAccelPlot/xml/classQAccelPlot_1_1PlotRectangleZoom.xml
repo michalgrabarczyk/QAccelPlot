@@ -1,0 +1,671 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PlotRectangleZoom" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotRectangleZoom</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">PlotRectangleZoom.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSbool</type>
+        <definition>QML_ANONYMOUSbool QAccelPlot::PlotRectangleZoom::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::enabled</qualifiedname>
+        <read>enabled</read>
+        <write>setEnabled</write>
+        <briefdescription>
+<para>Enables rectangle selection with the left mouse button. Default: false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="26" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotRectangleZoom::modifiers</definition>
+        <argsstring></argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers</qualifiedname>
+        <read>modifiers</read>
+        <write>setModifiers</write>
+        <briefdescription>
+<para>Required Qt::KeyboardModifiers for starting selection. Default: Qt::ShiftModifier. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="28" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotRectangleZoom::minimumSize</definition>
+        <argsstring></argsstring>
+        <name>minimumSize</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::minimumSize</qualifiedname>
+        <read>minimumSize</read>
+        <write>setMinimumSize</write>
+        <briefdescription>
+<para>Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="30" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::fillColor</definition>
+        <argsstring></argsstring>
+        <name>fillColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::fillColor</qualifiedname>
+        <read>fillColor</read>
+        <write>setFillColor</write>
+        <briefdescription>
+<para>Selection fill color. Default: Colors.dark.rectangleZoomFill. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="32" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::borderColor</definition>
+        <argsstring></argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::borderColor</qualifiedname>
+        <read>borderColor</read>
+        <write>setBorderColor</write>
+        <briefdescription>
+<para>Selection outline color. Default: Colors.dark.rectangleZoomBorder. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="34" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotRectangleZoom::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::active</qualifiedname>
+        <read>active</read>
+        <briefdescription>
+<para>Whether a rectangle selection is in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="36" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::PlotRectangleZoom::selectionRect</definition>
+        <argsstring></argsstring>
+        <name>selectionRect</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::selectionRect</qualifiedname>
+        <read>selectionRect</read>
+        <briefdescription>
+<para>Selection rectangle in plot item-local logical pixels; empty when inactive. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="38" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class QAccelPlot</definition>
+        <argsstring></argsstring>
+        <name>QAccelPlot</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::QAccelPlot</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="91" column="18" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1af269d2c0d29623a783dff97fa5f1d690" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotRectangleZoom::enabled_</definition>
+        <argsstring></argsstring>
+        <name>enabled_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::enabled_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="94" column="10" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1a94e3c722eb55777497a7b498690fb1e1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotRectangleZoom::modifiers_</definition>
+        <argsstring></argsstring>
+        <name>modifiers_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers_</qualifiedname>
+        <initializer>{Qt::ShiftModifier}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="95" column="9" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1aeeb6fec076d5bd27f907325be8f2cc8a" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotRectangleZoom::minimumSize_</definition>
+        <argsstring></argsstring>
+        <name>minimumSize_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::minimumSize_</qualifiedname>
+        <initializer>{6.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="96" column="11" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1a883efab84da6cb64c65b8163e7c19dd2" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::fillColor_</definition>
+        <argsstring></argsstring>
+        <name>fillColor_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::fillColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().rectangleZoomFill}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="97" column="12" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1ac0b7967a93f5a88daa5c73388ce147c2" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::borderColor_</definition>
+        <argsstring></argsstring>
+        <name>borderColor_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::borderColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().rectangleZoomBorder}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="98" column="12" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1afe3e6ac27ba56b5c8b1a2beaa651cbd3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotRectangleZoom::active_</definition>
+        <argsstring></argsstring>
+        <name>active_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::active_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="99" column="10" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1acbf12420a9c646b5abff3d0ee7350751" prot="private" static="no" mutable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::PlotRectangleZoom::selectionRect_</definition>
+        <argsstring></argsstring>
+        <name>selectionRect_</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::selectionRect_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="100" column="12" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1ab3d1a3096224cc00e528f7a479a65a21" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotRectangleZoom::PlotRectangleZoom</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>PlotRectangleZoom</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::PlotRectangleZoom</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs configuration owned by the given parent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="42" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a70f1de754853327782e27d39b75b046e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotRectangleZoom::enabled</definition>
+        <argsstring>() const</argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::enabled</qualifiedname>
+        <briefdescription>
+<para>Returns whether rectangle selection is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="45" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setEnabled</definition>
+        <argsstring>(bool value)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables rectangle selection; changing this setting cancels an active selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="47" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a9b6fe0113531d644131641f1c95cb698" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotRectangleZoom::modifiers</definition>
+        <argsstring>() const</argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers</qualifiedname>
+        <briefdescription>
+<para>Returns the required keyboard modifiers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="50" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setModifiers</definition>
+        <argsstring>(int value)</argsstring>
+        <name>setModifiers</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setModifiers</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="52" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1ae9d60343d4a911f89438c44534be34f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotRectangleZoom::minimumSize</definition>
+        <argsstring>() const</argsstring>
+        <name>minimumSize</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::minimumSize</qualifiedname>
+        <briefdescription>
+<para>Returns the minimum selection width and height in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="55" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setMinimumSize</definition>
+        <argsstring>(qreal value)</argsstring>
+        <name>setMinimumSize</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setMinimumSize</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the minimum size, clamping negative values to zero and ignoring nonfinite values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="57" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1ae287c7f7912b613110976dbcafd34872" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::fillColor</definition>
+        <argsstring>() const</argsstring>
+        <name>fillColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::fillColor</qualifiedname>
+        <briefdescription>
+<para>Returns the selection fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="60" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setFillColor</definition>
+        <argsstring>(const QColor &amp;value)</argsstring>
+        <name>setFillColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setFillColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the selection fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="62" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1abf9e436fe2d20b061f019ee146e20dac" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::PlotRectangleZoom::borderColor</definition>
+        <argsstring>() const</argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::borderColor</qualifiedname>
+        <briefdescription>
+<para>Returns the selection outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="65" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a5daba25361e7b1445cf613e8b6867f6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setBorderColor</definition>
+        <argsstring>(const QColor &amp;value)</argsstring>
+        <name>setBorderColor</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setBorderColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Sets the color of the one-logical-pixel selection outline. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="67" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a26bf9a53adb7a9b2f6958d273123639c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotRectangleZoom::active</definition>
+        <argsstring>() const</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::active</qualifiedname>
+        <briefdescription>
+<para>Returns whether selection is in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="70" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a6322baac1b3c38f9b97228b93a8a351e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::PlotRectangleZoom::selectionRect</definition>
+        <argsstring>() const</argsstring>
+        <name>selectionRect</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::selectionRect</qualifiedname>
+        <briefdescription>
+<para>Returns the current item-local selection rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="72" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1ae2d931c246ab4a198b5a1ffb0ead7327" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::enabledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>enabledChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::enabledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when enabled changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="76" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::modifiersChanged</definition>
+        <argsstring>()</argsstring>
+        <name>modifiersChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiersChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when modifiers changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="78" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::minimumSizeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>minimumSizeChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::minimumSizeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when minimumSize changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="80" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1ab96c698c0acfb84c837f137770a04252" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::fillColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>fillColorChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::fillColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when fillColor changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="82" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1a03d2b803ea40f0fa84162fec7b87ddb6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::borderColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>borderColorChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::borderColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when borderColor changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="84" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1a1f5c5864927b4b58c8f0e80ffc22505f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::activeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>activeChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::activeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when selection starts or ends. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="86" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotRectangleZoom_1a9eee56ab82c31689e76a968ab580cab1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::selectionRectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>selectionRectChanged</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::selectionRectChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the selection rectangle changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="88" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1abc3154d3298ef42cb72df019e2bdb0ca" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotRectangleZoom::setSelection</definition>
+        <argsstring>(bool active, const QRectF &amp;rect)</argsstring>
+        <name>setSelection</name>
+        <qualifiedname>QAccelPlot::PlotRectangleZoom::setSelection</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>active</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="92" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Rectangle zoom configuration and selection state exposed by PlotView. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::PlotRectangleZoom</label>
+        <link refid="classQAccelPlot_1_1PlotRectangleZoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::PlotRectangleZoom</label>
+        <link refid="classQAccelPlot_1_1PlotRectangleZoom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="22" column="1" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="22" bodyend="101"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a26bf9a53adb7a9b2f6958d273123639c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1afe3e6ac27ba56b5c8b1a2beaa651cbd3" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>active_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a1f5c5864927b4b58c8f0e80ffc22505f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>activeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1abf9e436fe2d20b061f019ee146e20dac" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ac0b7967a93f5a88daa5c73388ce147c2" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>borderColor_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a03d2b803ea40f0fa84162fec7b87ddb6" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>borderColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a70f1de754853327782e27d39b75b046e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1af269d2c0d29623a783dff97fa5f1d690" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>enabled_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae2d931c246ab4a198b5a1ffb0ead7327" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>fillColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae287c7f7912b613110976dbcafd34872" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>fillColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a883efab84da6cb64c65b8163e7c19dd2" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>fillColor_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab96c698c0acfb84c837f137770a04252" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>fillColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSize</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae9d60343d4a911f89438c44534be34f7" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSize</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1aeeb6fec076d5bd27f907325be8f2cc8a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSize_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSizeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9b6fe0113531d644131641f1c95cb698" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a94e3c722eb55777497a7b498690fb1e1" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiersChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab3d1a3096224cc00e528f7a479a65a21" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>PlotRectangleZoom</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>QAccelPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a6322baac1b3c38f9b97228b93a8a351e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1acbf12420a9c646b5abff3d0ee7350751" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRect_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9eee56ab82c31689e76a968ab580cab1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>selectionRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a5daba25361e7b1445cf613e8b6867f6b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setBorderColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setFillColor</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setMinimumSize</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setModifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1abc3154d3298ef42cb72df019e2bdb0ca" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setSelection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -6,6 +6,7 @@
 ## d
 
 * **DataType** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **DragMode** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 
 
 ## e

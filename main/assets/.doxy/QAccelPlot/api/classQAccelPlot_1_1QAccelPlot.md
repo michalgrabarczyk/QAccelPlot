@@ -71,6 +71,7 @@ flowchart TB
 | property qreal | [**padding**](classQAccelPlot_1_1QAccelPlot.md#property-padding-12)  <br>_Uniform padding in pixels between the plot area and the canvas edge. Default: 24._  |
 | property QColor | [**plotAreaColor**](classQAccelPlot_1_1QAccelPlot.md#property-plotareacolor-12)  <br>_Background color of the plot data area. Default:_ `Colors.dark.plotArea` _._ |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1QAccelPlot.md#property-plotrect-12)  <br>_Read-only: plot area rectangle in item-local pixel coordinates._  |
+| property [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](classQAccelPlot_1_1QAccelPlot.md#property-rectanglezoom-12)  <br>_Rectangle zoom configuration and selection state._  |
 | property QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](classQAccelPlot_1_1QAccelPlot.md#property-series-12)  <br>_Read-only: all registered plot series._  |
 | property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**x2Axis**](classQAccelPlot_1_1QAccelPlot.md#property-x2axis-12)  <br>_Optional secondary horizontal axis; assigning it sets its side to_ `Axis.Top` _._ |
 | property [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](classQAccelPlot_1_1QAccelPlot.md#property-xaxis-12)  <br>_Primary horizontal axis; assigning it sets its side to_ `Axis.Bottom` _._ |
@@ -86,7 +87,7 @@ flowchart TB
 | ---: | :--- |
 | signal void | [**axesAreaColorChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-axesareacolorchanged)  <br>_Emitted when the axesAreaColor property changes._  |
 | signal void | [**mouseDoubleClicked**](classQAccelPlot_1_1QAccelPlot.md#signal-mousedoubleclicked) ([**::QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when a mouse button is double-clicked over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (rescale all axes)._ |
-| signal void | [**mouseMoved**](classQAccelPlot_1_1QAccelPlot.md#signal-mousemoved) ([**::QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when the mouse is moved over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (panning)._ |
+| signal void | [**mouseMoved**](classQAccelPlot_1_1QAccelPlot.md#signal-mousemoved) ([**::QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when the mouse is moved over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (panning or selection updates)._ |
 | signal void | [**mousePressed**](classQAccelPlot_1_1QAccelPlot.md#signal-mousepressed) ([**::QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when a mouse button is pressed over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (drag start)._ |
 | signal void | [**mouseReleased**](classQAccelPlot_1_1QAccelPlot.md#signal-mousereleased) ([**::QAccelPlot::PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) \* event) <br>_Emitted when a mouse button is released over the plot. Call_ `event->accept()` _to consume further built-in handling. A left-button release always ends an active drag._ |
 | signal void | [**paddingChanged**](classQAccelPlot_1_1QAccelPlot.md#signal-paddingchanged)  <br>_Emitted when the padding property changes._  |
@@ -118,6 +119,7 @@ flowchart TB
 |  Q\_INVOKABLE qreal | [**pixelToDataY**](#function-pixeltodatay) (qreal pixelY) const<br>_Converts an item-local pixel Y coordinate to a vertical data-space value._  |
 |  QColor | [**plotAreaColor**](#function-plotareacolor-22) () const<br>_Returns the plot area background color._  |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br>_Returns the current plot area rectangle in item-local coordinates._  |
+|  [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](#function-rectanglezoom-22) () const<br>_Returns the rectangle zoom configuration object._  |
 |  QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](#function-series-22) () const<br>_Returns all plot-series children currently registered with this canvas._  |
 |  void | [**setAxesAreaColor**](#function-setaxesareacolor) (const QColor & c) <br>_Sets the axes surround background color to_ _c_ _._ |
 |  void | [**setPadding**](#function-setpadding) (qreal p) <br>_Sets the canvas padding to_ _p_ _pixels._ |
@@ -130,6 +132,7 @@ flowchart TB
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**xAxis**](#function-xaxis-22) () const<br>_Returns the primary horizontal axis._  |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**y2Axis**](#function-y2axis-22) () const<br>_Returns the secondary vertical axis, or_ `nullptr` _if not set._ |
 |  [**Axis**](classQAccelPlot_1_1Axis.md) \* | [**yAxis**](#function-yaxis-22) () const<br>_Returns the primary vertical axis._  |
+|  Q\_INVOKABLE bool | [**zoomToRect**](#function-zoomtorect) (const QRectF & rect) <br>_Zooms all attached axes to an item-local pixel rectangle and returns whether it was applied. Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled._  |
 |   | [**~QAccelPlot**](#function-qaccelplot) () override<br>_Destroys the plot after disconnecting attached axis signals._  |
 
 
@@ -306,6 +309,21 @@ QRectF QAccelPlot::QAccelPlot::plotRect;
 
 
 
+### property rectangleZoom {#property-rectanglezoom-12}
+
+_Rectangle zoom configuration and selection state._ 
+```C++
+PlotRectangleZoom* QAccelPlot::QAccelPlot::rectangleZoom;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property series {#property-series-12}
 
 _Read-only: all registered plot series._ 
@@ -415,7 +433,7 @@ void QAccelPlot::QAccelPlot::mouseDoubleClicked;
 
 ### signal mouseMoved {#signal-mousemoved}
 
-_Emitted when the mouse is moved over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (panning)._
+_Emitted when the mouse is moved over the plot. Call_ `event->accept()` _to consume the event and suppress built-in handling (panning or selection updates)._
 ```C++
 void QAccelPlot::QAccelPlot::mouseMoved;
 ```
@@ -788,6 +806,21 @@ QRectF QAccelPlot::QAccelPlot::plotRect () const
 
 
 
+### function rectangleZoom {#function-rectanglezoom-22}
+
+_Returns the rectangle zoom configuration object._ 
+```C++
+PlotRectangleZoom * QAccelPlot::QAccelPlot::rectangleZoom () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function series {#function-series-22}
 
 _Returns all plot-series children currently registered with this canvas._ 
@@ -972,6 +1005,23 @@ Axis * QAccelPlot::QAccelPlot::y2Axis () const
 _Returns the primary vertical axis._ 
 ```C++
 Axis * QAccelPlot::QAccelPlot::yAxis () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function zoomToRect {#function-zoomtorect}
+
+_Zooms all attached axes to an item-local pixel rectangle and returns whether it was applied. Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled._ 
+```C++
+Q_INVOKABLE bool QAccelPlot::QAccelPlot::zoomToRect (
+    const QRectF & rect
+) 
 ```
 
 

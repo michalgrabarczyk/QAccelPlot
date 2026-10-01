@@ -278,6 +278,8 @@ example when private Qt headers are not installed. See
 - Drag inside the plot area to pan all attached axes.
 - Use the mouse wheel over the plot to zoom all axes around the pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
+- Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
+  See [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/).
 - Double-click the plot to rescale all axes to their data ranges.
 - Double-click an axis to rescale that axis only.
 
@@ -845,6 +847,7 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
+| [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
@@ -1488,7 +1491,7 @@ Position handles with [`dataToPixelX()`][data-to-pixel-x] and
 [`dataToPixelY()`][data-to-pixel-y]; convert drag positions back with
 [`pixelToDataX()`][pixel-to-data-x] and [`pixelToDataY()`][pixel-to-data-y].
 Call `event.accept()` when a tool handles an event so the gesture does not also
-pan the plot.
+pan the plot or start rectangle zoom.
 
 In a layer positioned at [`plotRect`][plot-rect], add or subtract the plot
 rectangle origin to convert between plot and layer coordinates.
@@ -1508,6 +1511,55 @@ Complete sources:
 [rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
 [rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata
 [hovered-index]: ../api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
+
+
+---
+
+<!-- source: docs/guide/cookbook/rectangle-zoom.md -->
+
+# Rectangle zoom
+
+Enable rectangle zoom on `Plot` or `PlotView`:
+
+```qml
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    readonly property color zoomBorderColor: QAccelPlot.Colors.dark.rectangleZoomBorder
+
+    rectangleZoom.enabled: true
+    rectangleZoom.modifiers: Qt.ShiftModifier
+    rectangleZoom.minimumSize: 6
+    rectangleZoom.fillColor: QAccelPlot.Colors.dark.rectangleZoomFill
+    rectangleZoom.borderColor: zoomBorderColor
+}
+```
+
+- Shift + left drag selects a region; release to zoom all attached axes.
+- Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
+- The selection is clipped to the plot area and must be at least 6 logical pixels
+  wide and high; adjust `rectangleZoom.minimumSize` to change this.
+
+Rectangle zoom is disabled by default. `rectangleZoom.modifiers` must match
+exactly at press time; use `Qt.NoModifier` for unmodified dragging.
+
+Bind `fillColor` to the palette's `rectangleZoomFill` and `borderColor` to
+`rectangleZoomBorder`. Both are gray in the dark theme and light gray in the light theme;
+the fill color includes 15% opacity.
+
+For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
+
+```qml
+const applied = plot.zoomToRect(Qt.rect(left, top, width, height))
+```
+
+It works with gestures disabled and supports logarithmic and reversed axes.
+It returns `false` without changing ranges if the selection or target axes are invalid.
+
+Complete source:
+[`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud).
+
+[zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect
 
 
 ---
@@ -2066,6 +2118,8 @@ a one-batch handoff with a worker-built vertex cache.
   applications use its `Plot` wrapper.
 - [`Axis`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1Axis/) — ranges, log scale, ticks, labels,
   and per-axis pan and zoom.
+- [`PlotRectangleZoom`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotRectangleZoom/) — gesture
+  configuration, selection styling, and read-only selection state.
 - [`LineCurve`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/) — GPU-rendered lines and
   markers, data ingestion, effects, transitions, gaps, and hover.
 - [`PointCloud`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PointCloud/) — large sets of

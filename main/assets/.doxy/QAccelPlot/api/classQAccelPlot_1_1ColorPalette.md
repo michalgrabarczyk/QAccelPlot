@@ -88,6 +88,8 @@ flowchart TB
 | property QColor | [**performanceRectangles**](classQAccelPlot_1_1ColorPalette.md#property-performancerectangles)  <br> |
 | property QColor | [**plotArea**](classQAccelPlot_1_1ColorPalette.md#property-plotarea)  <br> |
 | property QColor | [**plotBorder**](classQAccelPlot_1_1ColorPalette.md#property-plotborder)  <br> |
+| property QColor | [**rectangleZoomBorder**](classQAccelPlot_1_1ColorPalette.md#property-rectanglezoomborder)  <br> |
+| property QColor | [**rectangleZoomFill**](classQAccelPlot_1_1ColorPalette.md#property-rectanglezoomfill)  <br> |
 | property QColor | [**seriesCyan**](classQAccelPlot_1_1ColorPalette.md#property-seriescyan)  <br> |
 | property QColor | [**seriesMuted**](classQAccelPlot_1_1ColorPalette.md#property-seriesmuted)  <br> |
 | property QColor | [**seriesPrimary**](classQAccelPlot_1_1ColorPalette.md#property-seriesprimary)  <br> |
@@ -502,6 +504,34 @@ QColor QAccelPlot::ColorPalette::plotArea;
 
 ```C++
 QColor QAccelPlot::ColorPalette::plotBorder;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property rectangleZoomBorder {#property-rectanglezoomborder}
+
+```C++
+QColor QAccelPlot::ColorPalette::rectangleZoomBorder;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property rectangleZoomFill {#property-rectanglezoomfill}
+
+```C++
+QColor QAccelPlot::ColorPalette::rectangleZoomFill;
 ```
 
 

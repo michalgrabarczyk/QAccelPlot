@@ -104,6 +104,7 @@
 | class | [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) <br>_The default tick label formatter — produces numeric labels with automatic decimal precision._  |
 | class | [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) <br>_Decorative frame configuration exposed by_ `PlotView::border` _._ |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
+| class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
 | class | [**PointCloud**](classQAccelPlot_1_1PointCloud.md) <br>_A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._  |
 | class | [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) <br>_QSGMaterial for_ `PointCloud` _rendering._ |
@@ -116,6 +117,7 @@
 | class | [**RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md) <br>_Vertices of a series that draws each rectangle as a quad positioned from a data texture._  |
 | class | [**RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md) <br>_Controls the outline a_ `RectangleSeries` _draws inside each rectangle's edges._ |
 | class | [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
+| class | [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md) <br> |
 | struct | [**SampleRun**](structQAccelPlot_1_1SampleRun.md) <br>_Contiguous range of valid curve samples, used to break fills and hit tests at gaps._  |
 | class | [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) <br>_Controls the markers a series draws at its data points._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |

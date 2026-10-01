@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PlotRectangleZoom_8hpp" kind="file" language="C++">
+    <compoundname>PlotRectangleZoom.hpp</compoundname>
+    <includes refid="ColorPalette_8hpp" local="yes">QAccelPlot/theme/ColorPalette.hpp</includes>
+    <includes local="no">QColor</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QRectF</includes>
+    <includes local="no">QtQml/qqmlregistration.h</includes>
+    <includedby refid="QAccelPlot_8hpp" local="yes">QAccelPlot/src/QAccelPlot/QAccelPlot.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp</label>
+        <link refid="PlotRectangleZoom_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QColor</label>
+      </node>
+      <node id="3">
+        <label>QObject</label>
+      </node>
+      <node id="4">
+        <label>QRectF</label>
+      </node>
+      <node id="5">
+        <label>QtQml/qqmlregistration.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1PlotRectangleZoom" prot="public">QAccelPlot::PlotRectangleZoom</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/theme/ColorPalette.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QColor&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QRectF&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QtQml/qqmlregistration.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">QAccelPlot;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classQAccelPlot_1_1PlotRectangleZoom" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" kindref="member">enabled</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" kindref="member">enabled</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" kindref="member">setEnabled</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae2d931c246ab4a198b5a1ffb0ead7327" kindref="member">enabledChanged</ref>)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" kindref="member">modifiers</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" kindref="member">modifiers</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" kindref="member">setModifiers</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" kindref="member">modifiersChanged</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(qreal<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" kindref="member">minimumSize</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" kindref="member">minimumSize</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" kindref="member">setMinimumSize</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" kindref="member">minimumSizeChanged</ref>)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" kindref="member">fillColor</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" kindref="member">fillColor</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" kindref="member">setFillColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ab96c698c0acfb84c837f137770a04252" kindref="member">fillColorChanged</ref>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QColor<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" kindref="member">borderColor</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" kindref="member">borderColor</ref><sp/>WRITE<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a5daba25361e7b1445cf613e8b6867f6b" kindref="member">setBorderColor</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a03d2b803ea40f0fa84162fec7b87ddb6" kindref="member">borderColorChanged</ref>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" kindref="member">active</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" kindref="member">active</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a1f5c5864927b4b58c8f0e80ffc22505f" kindref="member">activeChanged</ref>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(QRectF<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" kindref="member">selectionRect</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" kindref="member">selectionRect</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a9eee56ab82c31689e76a968ab580cab1" kindref="member">selectionRectChanged</ref>)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref>(QObject*<sp/>parent<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a30c70cd5504387139ce37cf5dd1003cb" kindref="member">enabled</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" kindref="member">setEnabled</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" kindref="member">modifiers</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" kindref="member">setModifiers</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ac8cda5a803b1131ed3dda89bd7757d9c" kindref="member">minimumSize</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" kindref="member">setMinimumSize</ref>(qreal<sp/>value);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a6c599799ac44311862ae2cce4fd044d3" kindref="member">fillColor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" kindref="member">setFillColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae19f685ab0896ac939906f35fbaccff9" kindref="member">borderColor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a5daba25361e7b1445cf613e8b6867f6b" kindref="member">setBorderColor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QColor&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" kindref="member">active</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a021e3310b5a75e7e6772faae07e22181" kindref="member">selectionRect</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae2d931c246ab4a198b5a1ffb0ead7327" kindref="member">enabledChanged</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" kindref="member">modifiersChanged</ref>();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" kindref="member">minimumSizeChanged</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1ab96c698c0acfb84c837f137770a04252" kindref="member">fillColorChanged</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a03d2b803ea40f0fa84162fec7b87ddb6" kindref="member">borderColorChanged</ref>();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a1f5c5864927b4b58c8f0e80ffc22505f" kindref="member">activeChanged</ref>();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a9eee56ab82c31689e76a968ab580cab1" kindref="member">selectionRectChanged</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setSelection(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1PlotRectangleZoom_1a895acb14cc43c63bdce9f853e5be2f26" kindref="member">active</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QRectF&amp;<sp/>rect);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>enabled_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>modifiers_{Qt::ShiftModifier};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>qreal<sp/>minimumSize_{6.0};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>fillColor_{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().rectangleZoomFill};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>QColor<sp/>borderColor_{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().rectangleZoomBorder};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>active_{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>QRectF<sp/>selectionRect_;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp"/>
+  </compounddef>
+</doxygen>

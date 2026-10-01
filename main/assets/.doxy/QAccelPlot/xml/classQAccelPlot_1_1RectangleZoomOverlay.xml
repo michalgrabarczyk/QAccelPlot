@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1RectangleZoomOverlay" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>QAccelPlot::RectangleZoomOverlay</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1RectangleZoomOverlay_1a6d3f847b57d0e0f0c9add63f0f3fb7d5" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref> *</type>
+        <definition>PlotRectangleZoom* QAccelPlot::RectangleZoomOverlay::configuration_</definition>
+        <argsstring></argsstring>
+        <name>configuration_</name>
+        <qualifiedname>QAccelPlot::RectangleZoomOverlay::configuration_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="26" column="23" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a899980db126e2014f06bf4ec00bb04e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::RectangleZoomOverlay::RectangleZoomOverlay</definition>
+        <argsstring>(QQuickItem *parent, PlotRectangleZoom *configuration)</argsstring>
+        <name>RectangleZoomOverlay</name>
+        <qualifiedname>QAccelPlot::RectangleZoomOverlay::RectangleZoomOverlay</qualifiedname>
+        <param>
+          <type>QQuickItem *</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref> *</type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="18" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a9d89e50a389f9ca54dd55611e5543aef" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QSGNode *</type>
+        <definition>QSGNode * QAccelPlot::RectangleZoomOverlay::updatePaintNode</definition>
+        <argsstring>(QSGNode *oldNode, UpdatePaintNodeData *) override</argsstring>
+        <name>updatePaintNode</name>
+        <qualifiedname>QAccelPlot::RectangleZoomOverlay::updatePaintNode</qualifiedname>
+        <param>
+          <type>QSGNode *</type>
+          <declname>oldNode</declname>
+        </param>
+        <param>
+          <type>UpdatePaintNodeData *</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="21" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a0ccac7ee113f053754af7a4b6dcce841" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleZoomOverlay::syncSelection</definition>
+        <argsstring>()</argsstring>
+        <name>syncSelection</name>
+        <qualifiedname>QAccelPlot::RectangleZoomOverlay::syncSelection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="24" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::RectangleZoomOverlay</label>
+        <link refid="classQAccelPlot_1_1RectangleZoomOverlay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::RectangleZoomOverlay</label>
+        <link refid="classQAccelPlot_1_1RectangleZoomOverlay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QQuickItem</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="16" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a6d3f847b57d0e0f0c9add63f0f3fb7d5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>configuration_</name></member>
+      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a899980db126e2014f06bf4ec00bb04e7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>RectangleZoomOverlay</name></member>
+      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a0ccac7ee113f053754af7a4b6dcce841" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>syncSelection</name></member>
+      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a9d89e50a389f9ca54dd55611e5543aef" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>updatePaintNode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -19,6 +19,7 @@
 
 #include "QAccelPlot/PlotBorder.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
+#include "QAccelPlot/PlotRectangleZoom.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
@@ -36,6 +37,7 @@
 namespace QAccelPlot {
 
 class GridNode;
+class RectangleZoomOverlay;
 
 class QAccelPlot : public QQuickItem {
     Q_OBJECT
@@ -52,6 +54,7 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QColor plotAreaColor READ plotAreaColor WRITE setPlotAreaColor NOTIFY plotAreaColorChanged)
     Q_PROPERTY(QColor axesAreaColor READ axesAreaColor WRITE setAxesAreaColor NOTIFY axesAreaColorChanged)
     Q_PROPERTY(PlotBorder* border READ border CONSTANT)
+    Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
 
@@ -64,6 +67,7 @@ public:
     Q_INVOKABLE qreal pixelToDataX(qreal pixelX) const;
     Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
+    Q_INVOKABLE bool zoomToRect(const QRectF& rect);
 
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
@@ -92,6 +96,8 @@ public:
 
     PlotBorder* border() const;
 
+    PlotRectangleZoom* rectangleZoom() const;
+
     Grid* grid() const;
 
     QList<PlotSeries*> series() const;
@@ -119,6 +125,8 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
+    void mouseUngrabEvent() override;
+    void focusOutEvent(QFocusEvent* event) override;
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
     void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override; 
@@ -128,22 +136,26 @@ protected:
     Q_INVOKABLE void rescaleAllAxes();
 
 private:
+    enum class DragMode { Idle, Pan, RectangleZoom };
     bool isAxisRegistered(Axis* axis) const;
     static void appendExtraAxis(QQmlListProperty<Axis>* list, Axis* axis);
     static qsizetype extraAxisCount(QQmlListProperty<Axis>* list);
     static Axis* extraAxis(QQmlListProperty<Axis>* list, qsizetype index);
     static void clearExtraAxes(QQmlListProperty<Axis>* list);
 
+    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
+    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
+    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
     void connectAxisSignals(Axis* axis);
     void disconnectAxisSignals(Axis* axis);
     void axisDestroyed(QObject* object);
     void connectAxis(Axis* axis, Axis::Side side);
     void disconnectAxis(Axis* axis);
-    bool tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, bool zoomingIn);
-    bool tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, QKeyEvent* event);
-    void zoomAxisAtRatio(Axis* axis, qreal ratio, bool zoomingIn);
     void zoomAxis(Axis* axis, qreal factor, qreal centerRatio);
     void panAxis(Axis* axis, qreal delta, qreal length);
+    QList<Axis*> attachedAxes() const;
+    void updateRectangleSelection(const QPointF& pos);
+    void cancelRectangleSelection();
     void layoutAxes();
     void registerSeries(QQuickItem* item);
 
@@ -153,7 +165,8 @@ private:
     Axis* y2Axis_{nullptr};
     QList<Axis*> extraAxes_;
 
-    bool isDragging_{false};
+    DragMode dragMode_{DragMode::Idle};
+    QPointF selectionStart_;
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
@@ -166,6 +179,8 @@ private:
     QColor plotAreaColor_{ColorPalette::dark().plotArea};
     QColor axesAreaColor_{ColorPalette::dark().axesArea};
     PlotBorder* border_{nullptr};
+    PlotRectangleZoom* rectangleZoom_{nullptr};
+    RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};
     QList<PlotSeries*> series_;
