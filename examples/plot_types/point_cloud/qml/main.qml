@@ -32,7 +32,7 @@ Window {
 
         ExampleHeader {
             title: "Point cloud"
-            description: "200,000 points of a Clifford attractor in one PointCloud, colored by the length of the jump that reached each point. Hover a point to read it; pan and zoom to explore."
+            description: "200,000 points colored by jump length. Hover for details. Shift + drag to zoom; wheel zooms; double-click resets."
 
             Label {
                 text: "Marker radius " + markerSizeSlider.value.toFixed(1) + " px"
@@ -68,6 +68,10 @@ Window {
             border.color: colorPalette.plotBorder
             border.width: 2
             legendVisible: false
+
+            rectangleZoom.enabled: true
+            rectangleZoom.fillColor: window.colorPalette.rectangleZoomFill
+            rectangleZoom.borderColor: window.colorPalette.rectangleZoomBorder
 
             xAxis: ExampleAxis {
                 viewportMin: -3.2

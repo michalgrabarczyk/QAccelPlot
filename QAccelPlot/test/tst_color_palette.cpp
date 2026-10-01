@@ -84,6 +84,8 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     const QAccelPlot::QAccelPlot plot;
     QCOMPARE(plot.plotAreaColor(), palette.plotArea);
     QCOMPARE(plot.axesAreaColor(), palette.axesArea);
+    QCOMPARE(plot.rectangleZoom()->fillColor(), palette.rectangleZoomFill);
+    QCOMPARE(plot.rectangleZoom()->borderColor(), palette.rectangleZoomBorder);
     QCOMPARE(plot.grid()->gridColor(), palette.grid);
     QCOMPARE(plot.grid()->subGridColor(), palette.subGrid);
 
