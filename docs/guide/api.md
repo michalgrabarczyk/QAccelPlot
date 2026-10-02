@@ -40,6 +40,14 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
   positions in plot and data coordinates.
+- [`SeriesInspection`](api/classQAccelPlot_1_1SeriesInspection.md) — per-series
+  data queries: nearest samples, brackets, region statistics, and index pages.
+- [`PlotInspector`](api/classQAccelPlot_1_1PlotInspector.md) — cursor state and
+  one model row per series for crosshairs and tooltips.
+- [`SelectionTool`](api/classQAccelPlot_1_1SelectionTool.md) — data-space box
+  and range selection with per-series statistics.
+
+See [Data inspection](cookbook/data-inspection.md) for usage, query contracts, and readiness.
 
 ## Feeding curve data
 

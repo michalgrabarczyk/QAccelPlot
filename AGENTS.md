@@ -75,6 +75,9 @@ QAccelPlot/
 │       ├── formatters/           — DateTimeTickLabelFormatter, NumericTickLabelFormatter,
 │       │                           TextTickLabelFormatter, TickLabelFormatter (base/JS callback)
 │       ├── grid/                 — Grid, GridNode
+│       ├── inspection/           — SeriesInspection (per-series data queries), InspectionResult (query value types),
+│       │                           PlotInspector, SelectionTool, InspectionRowModel,
+│       │                           internal/ (in-place search of ordered data, k-d index, async index cache)
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
@@ -88,7 +91,8 @@ QAccelPlot/
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition
-├── qml/                          — QML helper types (Plot, Legend)
+├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
+│                                   InspectionMarkers, SelectionOverlay)
 ├── shaders/                      — GLSL shaders compiled to .qsb
 ├── test/                         — Unit tests
 └── CMakeLists.txt                — Library build configuration
