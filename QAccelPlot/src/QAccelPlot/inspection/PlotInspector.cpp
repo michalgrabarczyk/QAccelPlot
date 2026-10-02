@@ -84,6 +84,8 @@ PlotInspector::PlotInspector(QObject* parent)
     , position_(kNaN, kNaN)
     , cursorX_(kNaN)
     , cursorY_(kNaN)
+    , pinnedX_(kNaN)
+    , pinnedY_(kNaN)
     , model_(new InspectionRowModel(this))
 {
 }
@@ -240,14 +242,55 @@ void PlotInspector::setExcludedSeries(const QList<PlotSeries*>& series)
     emit excludedSeriesChanged();
 }
 
+bool PlotInspector::followPointer() const
+{
+    return followPointer_;
+}
+
+void PlotInspector::setFollowPointer(const bool follow)
+{
+    if (followPointer_ == follow) {
+        return;
+    }
+    followPointer_ = follow;
+    schedule();
+    emit followPointerChanged();
+}
+
 qreal PlotInspector::cursorX() const
 {
     return cursorX_;
 }
 
+void PlotInspector::setCursorX(const qreal x)
+{
+    if (sameValue(pinnedX_, x)) {
+        return;
+    }
+    pinnedX_ = x;
+    if (!followPointer_) {
+        cursorX_ = x;
+        schedule();
+        emit cursorChanged();
+    }
+}
+
 qreal PlotInspector::cursorY() const
 {
     return cursorY_;
+}
+
+void PlotInspector::setCursorY(const qreal y)
+{
+    if (sameValue(pinnedY_, y)) {
+        return;
+    }
+    pinnedY_ = y;
+    if (!followPointer_) {
+        cursorY_ = y;
+        schedule();
+        emit cursorChanged();
+    }
 }
 
 QString PlotInspector::cursorXText() const
@@ -289,6 +332,8 @@ void PlotInspector::refresh()
     }
     const auto guard = QScopedValueRollback<bool>{refreshing_, true};
     auto state = State{};
+    state.cursorX = followPointer_ ? kNaN : pinnedX_;
+    state.cursorY = followPointer_ ? kNaN : pinnedY_;
     if (const auto cursor = cursorPosition()) {
         if (!inspect(*cursor, state)) {
             // A label formatter changed what was queried; the results are stale.
@@ -304,6 +349,42 @@ void PlotInspector::refresh()
         }
     }
     publish(state);
+}
+
+void PlotInspector::stepCursor(const int steps)
+{
+    if (!plot_ || steps == 0) {
+        return;
+    }
+    const auto direction = steps > 0 ? 1 : -1;
+    for (const auto& row : model_->rows()) {
+        if (!row.series || !row.sample.valid()) {
+            continue;
+        }
+        auto* inspection = row.series->inspection();
+        auto target = row.sample;
+        auto remaining = std::abs(steps);
+        // An interpolated row sits between its index and the next one.
+        auto index = row.sample.index + (row.sample.interpolated && direction < 0 ? 0 : direction);
+        for (; remaining > 0; index += direction) {
+            const auto candidate = inspection->sampleAt(index);
+            if (candidate.valid()) {
+                target = candidate;
+                --remaining;
+            } else if (candidate.status != InspectionStatus::NoMatch) {
+                break;
+            }
+        }
+        const auto pixel = row.series->mapToItem(plot_, target.pixelPosition);
+        if (followPointer_) {
+            followPointer_ = false;
+            emit followPointerChanged();
+        }
+        pinnedX_ = plot_->pixelToDataX(pixel.x());
+        pinnedY_ = plot_->pixelToDataY(pixel.y());
+        refresh();
+        return;
+    }
 }
 
 void PlotInspector::schedule()
@@ -388,10 +469,22 @@ QList<PlotSeries*> PlotInspector::inspectedSeries() const
 
 std::optional<QPointF> PlotInspector::cursorPosition() const
 {
-    if (!enabled_ || !plot_ || !plot_->pointerInside()) {
+    if (!enabled_ || !plot_) {
         return std::nullopt;
     }
-    return plot_->pointerPosition();
+    if (followPointer_) {
+        return plot_->pointerInside() ? std::optional{plot_->pointerPosition()} : std::nullopt;
+    }
+    const auto area = plot_->plotRect();
+    if (!plot_->xAxis() || !std::isfinite(pinnedX_) || area.isEmpty()) {
+        return std::nullopt;
+    }
+    const auto x = area.x() + plot_->xAxis()->coordToPixel(pinnedX_, area.width());
+    if (!std::isfinite(x) || x < area.left() || x > area.right()) {
+        return std::nullopt;
+    }
+    const auto hasY = plot_->yAxis() && std::isfinite(pinnedY_);
+    return QPointF{x, hasY ? area.y() + plot_->yAxis()->coordToPixel(pinnedY_, area.height()) : kNaN};
 }
 
 bool PlotInspector::inspect(const QPointF& cursor, State& state) const
@@ -405,10 +498,14 @@ bool PlotInspector::inspect(const QPointF& cursor, State& state) const
     state.active = true;
     state.position = snappedPosition(queries, cursor);
     const auto area = plot->plotRect();
-    state.cursorX = plot->xAxis() ? plot->pixelToDataX(state.position.x()) : kNaN;
-    state.cursorY = plot->yAxis() ? plot->pixelToDataY(state.position.y()) : kNaN;
-    state.cursorXText = format(plot->xAxis(), state.cursorX, area.width());
-    state.cursorYText = plot ? format(plot->yAxis(), state.cursorY, area.height()) : QString{};
+    const auto dataX = plot->xAxis() ? plot->pixelToDataX(state.position.x()) : kNaN;
+    const auto dataY = std::isfinite(state.position.y()) && plot->yAxis() ? plot->pixelToDataY(state.position.y()) : kNaN;
+    if (followPointer_) {
+        state.cursorX = dataX;
+        state.cursorY = dataY;
+    }
+    state.cursorXText = format(plot->xAxis(), dataX, area.width());
+    state.cursorYText = plot ? format(plot->yAxis(), dataY, area.height()) : QString{};
     for (const auto& query : std::as_const(queries)) {
         state.rows.push_back(query.row);
     }
@@ -417,7 +514,8 @@ bool PlotInspector::inspect(const QPointF& cursor, State& state) const
 
 QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) const
 {
-    const auto byX = mode_ == NearestX;
+    const auto hasY = std::isfinite(cursor.y());
+    const auto byX = mode_ == NearestX || !hasY;
     auto queries = QList<Query>{};
     for (auto* series : inspectedSeries()) {
         auto query = Query{};
@@ -427,7 +525,7 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         query.boundXAxis = series->xAxis();
         query.boundYAxis = series->yAxis();
         query.size = series->size();
-        const auto local = series->mapFromItem(plot_, cursor);
+        const auto local = series->mapFromItem(plot_, QPointF{cursor.x(), hasY ? cursor.y() : plot_->plotRect().center().y()});
         query.row.sample = byX ? sampleByX(*series->inspection(), local.x()) : series->inspection()->nearest(local, radius_);
         if (query.row.sample.valid()) {
             query.row.pixelPosition = series->mapToItem(plot_, query.row.sample.pixelPosition);
@@ -513,7 +611,8 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
     if (!closest) {
         return cursor;
     }
-    return {closest->pixelPosition.x(), mode_ == NearestXY ? closest->pixelPosition.y() : cursor.y()};
+    const auto snapY = mode_ == NearestXY && std::isfinite(cursor.y());
+    return {closest->pixelPosition.x(), snapY ? closest->pixelPosition.y() : cursor.y()};
 }
 
 void PlotInspector::publish(const State& state)

@@ -49,6 +49,7 @@ private slots:
     void matching();
     void summariesAndFilters();
     void notifications();
+    void cursor();
     void snapsToClosest();
     void formatterMutation();
     void touch();
@@ -221,6 +222,63 @@ void TestPlotInspector::notifications()
     QCOMPARE(refreshed.count(), 0);
     inspector.setEnabled(true);
     QTRY_VERIFY(inspector.active());
+}
+
+void TestPlotInspector::cursor()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({1, 1, 3, 2, 5, 9, 7, 4});
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto inspector = PlotInspector{};
+    inspector.setPlot(&rig.plot);
+
+    // Following the pointer publishes its data coordinates; a written cursor waits until following stops.
+    rig.hover(rig.pixel(2.5, 6));
+    inspector.refresh();
+    QVERIFY(std::abs(inspector.cursorX() - 2.5) < 1e-9);
+    QVERIFY(std::abs(inspector.cursorY() - 6.0) < 1e-9);
+    QCOMPARE(inspector.cursorXText(), QStringLiteral("2.500"));
+    inspector.setCursorX(8);
+    QVERIFY(std::abs(inspector.cursorX() - 2.5) < 1e-9);
+    rig.leave();
+    inspector.refresh();
+    QVERIFY(std::isnan(inspector.cursorX()));
+
+    // A cursor set from code needs no pointer; without a Y it has no horizontal position.
+    inspector.setFollowPointer(false);
+    inspector.setCursorX(5.2);
+    inspector.refresh();
+    QVERIFY(inspector.active());
+    QCOMPARE(inspector.position().x(), rig.pixel(5.2, 0).x());
+    QVERIFY(std::isnan(inspector.position().y()));
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 2);
+    QCOMPARE(inspector.cursorYText(), QString{});
+    inspector.setCursorY(4);
+    inspector.refresh();
+    QCOMPARE(inspector.position(), rig.pixel(5.2, 4));
+
+    // Stepping walks the records of the first matching series.
+    inspector.stepCursor(1);
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 3);
+    QVERIFY(std::abs(inspector.cursorX() - 7.0) < 1e-9);
+    inspector.stepCursor(-2);
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 1);
+    inspector.stepCursor(-10);
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 0);
+
+    // Outside the viewport the cursor is inactive but kept.
+    inspector.setCursorX(50);
+    inspector.refresh();
+    QVERIFY(!inspector.active());
+    QCOMPARE(inspector.cursorX(), 50.0);
+
+    // Stepping from a pointer-driven cursor stops following the pointer.
+    inspector.setFollowPointer(true);
+    rig.hover(rig.pixel(3, 2));
+    inspector.refresh();
+    inspector.stepCursor(1);
+    QVERIFY(!inspector.followPointer());
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 2);
 }
 
 void TestPlotInspector::snapsToClosest()
