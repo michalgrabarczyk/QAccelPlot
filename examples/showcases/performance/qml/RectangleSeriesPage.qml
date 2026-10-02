@@ -12,8 +12,8 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    required property QtObject colorPalette
     required property int rectangleCount
+    readonly property color tileColor: "cornflowerblue"
     // Tiles overlap more as the count grows, so each gets fainter and overlap adds up to brightness.
     readonly property real tileOpacity: Math.max(0.015, Math.min(0.7, 100000 / rectangleCount))
 
@@ -41,6 +41,6 @@ QAccelPlot.Plot {
         objectName: "rectangleSeries"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
-        color: Qt.rgba(plot.colorPalette.performanceRectangles.r, plot.colorPalette.performanceRectangles.g, plot.colorPalette.performanceRectangles.b, plot.tileOpacity)
+        color: Qt.rgba(plot.tileColor.r, plot.tileColor.g, plot.tileColor.b, plot.tileOpacity)
     }
 }

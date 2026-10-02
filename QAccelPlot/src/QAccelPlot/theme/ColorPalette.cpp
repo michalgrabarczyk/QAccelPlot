@@ -81,16 +81,8 @@ ColorPalette* ColorPalette::createDark()
     p->annotationRangeFill = QColor("#335bd486");
     p->annotationMarkerOutline = QColor("#f8fafc");
 
-    p->toolRuler = QColor("#e0b85e");
-    p->toolAngle = QColor("#61c3df");
-    p->toolPoint = QColor("#f08398");
-    p->toolRegion = QColor("#69c493");
-    p->toolOverlay = QColor("#335bd6a2");
     p->rectangleZoomBorder = QColor("#808080");
     p->rectangleZoomFill = QColor("#26808080");
-
-    p->performanceCurve = QColor("#54d99a");
-    p->performanceRectangles = QColor("#cc65a9ff");
 
     return p;
 }
@@ -150,16 +142,8 @@ ColorPalette* ColorPalette::createLight()
     p->annotationRangeFill = QColor("#2b087a45");
     p->annotationMarkerOutline = QColor("#ffffff");
 
-    p->toolRuler = QColor("#8a6500");
-    p->toolAngle = QColor("#007589");
-    p->toolPoint = QColor("#b63858");
-    p->toolRegion = QColor("#087a45");
-    p->toolOverlay = QColor("#2b007c59");
     p->rectangleZoomBorder = QColor("#d3d3d3");
     p->rectangleZoomFill = QColor("#26d3d3d3");
-
-    p->performanceCurve = QColor("#007c59");
-    p->performanceRectangles = QColor("#a6006fbb");
 
     return p;
 }

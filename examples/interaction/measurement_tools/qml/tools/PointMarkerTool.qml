@@ -25,7 +25,7 @@ Item {
     property real dataY: 0.0
 
     // Style
-    property color markerColor: palette.toolPoint
+    property color markerColor: "lightcoral"
     property real markerRadius: 7.0
 
     // Pixel positions (updated when data or plot transform changes)
