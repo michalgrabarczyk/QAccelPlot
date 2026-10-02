@@ -201,6 +201,16 @@ bool QAccelPlot::zoomToRect(const QRectF& rect)
     return true;
 }
 
+QPointF QAccelPlot::pointerPosition() const
+{
+    return lastPointerPos_;
+}
+
+bool QAccelPlot::pointerInside() const
+{
+    return pointerPos_ && plotRect_.contains(*pointerPos_);
+}
+
 Axis* QAccelPlot::xAxis() const
 {
     return xAxis_;
@@ -432,7 +442,9 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
 
 void QAccelPlot::mousePressEvent(QMouseEvent* event)
 {
-    pointerPos_ = event->position();
+    touchPointer_ = event->pointingDevice() && event->pointingDevice()->type() == QInputDevice::DeviceType::TouchScreen;
+    touchPressed_ = touchPointer_;
+    setPointer(event->position());
     mousePressEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mousePressed(&mousePressEvent_);
     if (mousePressEvent_.isAccepted()) {
@@ -460,13 +472,18 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
 
 void QAccelPlot::hoverEnterEvent(QHoverEvent* event)
 {
-    pointerPos_ = event->position();
+    // A touch in progress also produces hover events at the finger; a later one comes from the mouse.
+    if (!touchPressed_) {
+        touchPointer_ = false;
+        setPointer(event->position());
+    }
     QQuickItem::hoverEnterEvent(event);
 }
 
 void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 {
-    pointerPos_ = event->position();
+    touchPointer_ = false;
+    setPointer(event->position());
     if (dragMode_ != DragMode::Idle) {
         QQuickItem::hoverMoveEvent(event);
         return;
@@ -484,13 +501,20 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
 
 void QAccelPlot::hoverLeaveEvent(QHoverEvent* event)
 {
-    pointerPos_.reset();
+    // A touch has no hover: the pointer stays where the finger was until the next tap or mouse movement.
+    if (!touchPointer_) {
+        pointerPos_.reset();
+        emit pointerChanged();
+    }
     QQuickItem::hoverLeaveEvent(event);
 }
 
 void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 {
-    pointerPos_ = event->position();
+    // After a touch is released, Qt Quick sends a button-less move to the mouse cursor's old position.
+    if (!touchPointer_ || event->buttons() != Qt::NoButton) {
+        setPointer(event->position());
+    }
     mouseMoveEvent_.reset(static_cast<int>(event->buttons()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
@@ -527,6 +551,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
 
 void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 {
+    touchPressed_ = false;
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
     mouseReleaseEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
     emit mouseReleased(&mouseReleaseEvent_);
@@ -554,8 +579,10 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 
 void QAccelPlot::mouseUngrabEvent()
 {
+    touchPressed_ = false;
     cancelRectangleSelection();
     dragMode_ = DragMode::Idle;
+    emit pointerGrabLost();
     QQuickItem::mouseUngrabEvent();
 }
 
@@ -583,6 +610,9 @@ void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 
 void QAccelPlot::keyPressEvent(QKeyEvent* event)
 {
+    if (event->key() == Qt::Key_Escape) {
+        emit escapePressed();
+    }
     if (event->key() == Qt::Key_Escape && dragMode_ == DragMode::RectangleZoom) {
         cancelRectangleSelection();
         event->accept();
@@ -1073,6 +1103,13 @@ void QAccelPlot::layoutAxes()
             }
         }
     }
+}
+
+void QAccelPlot::setPointer(const QPointF& position)
+{
+    pointerPos_ = position;
+    lastPointerPos_ = position;
+    emit pointerChanged();
 }
 
 void QAccelPlot::registerSeries(QQuickItem* item)

@@ -80,6 +80,13 @@ class QAccelPlot : public QQuickItem {
     /// \brief Read-only: all registered plot series.
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
 
+    /// \brief Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check \c pointerInside.
+    ///
+    /// A touch places the pointer where the finger is and leaves it there after the release.
+    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
+    /// \brief Whether the observed pointer is inside the data area.
+    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
+
 public:
     /// \brief Constructs a PlotView with the given \a parent.
     explicit QAccelPlot(QQuickItem* parent = nullptr);
@@ -100,6 +107,11 @@ public:
     /// Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize
     /// or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled.
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+
+    /// \brief Returns the last observed plot-local pointer position; the origin before the first pointer event.
+    QPointF pointerPosition() const;
+    /// \brief Returns true while the observed pointer is inside plotRect.
+    bool pointerInside() const;
 
     /// \brief Returns the primary horizontal axis.
     Axis* xAxis() const;
@@ -155,6 +167,12 @@ public:
     QList<PlotSeries*> series() const;
 
 signals:
+    /// \brief Emitted when the plot observes pointer motion or pointer exit.
+    void pointerChanged();
+    /// \brief Emitted when Escape is pressed while the plot has focus, so that tools can cancel their gestures.
+    void escapePressed();
+    /// \brief Emitted when the plot loses its mouse grab during a drag.
+    void pointerGrabLost();
     /// \brief Emitted when the xAxis property changes.
     void xAxisChanged();
     /// \brief Emitted when the yAxis property changes.
@@ -229,6 +247,7 @@ private:
     void updateRectangleSelection(const QPointF& pos);
     void cancelRectangleSelection();
     void layoutAxes();
+    void setPointer(const QPointF& position);
     void registerSeries(QQuickItem* item);
 
     Axis* xAxis_{nullptr};
@@ -242,6 +261,10 @@ private:
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
+    QPointF lastPointerPos_;
+    // True while the pointer was last placed by a touch, which keeps it in place after the release.
+    bool touchPointer_{false};
+    bool touchPressed_{false};
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};

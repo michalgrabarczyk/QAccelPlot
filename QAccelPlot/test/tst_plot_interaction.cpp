@@ -18,6 +18,7 @@
 #include <QtTest/QtTest>
 
 #include <cmath>
+#include <memory>
 
 namespace {
 
@@ -31,6 +32,7 @@ public:
     using QAccelPlot::QAccelPlot::mouseMoveEvent;
     using QAccelPlot::QAccelPlot::mousePressEvent;
     using QAccelPlot::QAccelPlot::mouseReleaseEvent;
+    using QAccelPlot::QAccelPlot::mouseUngrabEvent;
     using QAccelPlot::QAccelPlot::wheelEvent;
 };
 
@@ -120,6 +122,10 @@ private slots:
     void axisDoubleClick_emitsSignal();
     void keyPress_isForwardedToAxisUnderPointer();
     void keyPress_followsWindowHoverOverAxes();
+
+    void pointer_followsHoverAndIsKeptAfterLeave();
+    void pointer_staysAtTouchAfterRelease();
+    void escapeAndGrabLoss_areReported();
 
     void plotMouseEvent_resetClearsAcceptance();
 };
@@ -510,6 +516,85 @@ void TestPlotInteraction::keyPress_followsWindowHoverOverAxes()
     QVERIFY(event.isAccepted());
     QVERIFY(yAxis->logScale());
     QVERIFY(!xAxis->logScale());
+}
+
+void TestPlotInteraction::pointer_followsHoverAndIsKeptAfterLeave()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({400.0, 300.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    plot.setYAxis(yAxis);
+    auto changed = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::pointerChanged};
+    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QHoverEvent{type, pos, pos, pos}; };
+    QVERIFY(!plot.pointerInside());
+
+    const auto inside = plot.plotRect().center();
+    auto move = hover(QEvent::HoverMove, inside);
+    plot.hoverMoveEvent(&move);
+    QVERIFY(plot.pointerInside());
+    QCOMPARE(plot.pointerPosition(), inside);
+    QCOMPARE(changed.count(), 1);
+
+    // Over an axis the pointer is tracked, but it is outside the plot area.
+    const auto overAxis = QRectF{yAxis->position(), yAxis->size()}.center();
+    auto axisMove = hover(QEvent::HoverMove, overAxis);
+    plot.hoverMoveEvent(&axisMove);
+    QVERIFY(!plot.pointerInside());
+    QCOMPARE(plot.pointerPosition(), overAxis);
+
+    plot.hoverMoveEvent(&move);
+    auto leave = hover(QEvent::HoverLeave, inside);
+    plot.hoverLeaveEvent(&leave);
+    QVERIFY(!plot.pointerInside());
+    QCOMPARE(plot.pointerPosition(), inside);
+    QCOMPARE(changed.count(), 4);
+}
+
+void TestPlotInteraction::pointer_staysAtTouchAfterRelease()
+{
+    // The window stays hidden: synthetic events are still delivered, and the real mouse cannot interfere.
+    auto window = QQuickWindow{};
+    window.resize(400, 300);
+    auto plot = TestablePlot{};
+    plot.setParentItem(window.contentItem());
+    plot.setSize({400.0, 300.0});
+    plot.setXAxis(new QAccelPlot::Axis{&plot});
+    plot.setYAxis(new QAccelPlot::Axis{&plot});
+    const auto device = std::unique_ptr<QPointingDevice>{QTest::createTouchDevice()};
+    const auto touched = plot.plotRect().center().toPoint();
+
+    // Qt Quick follows a touch release with a mouse move to the mouse cursor's own position.
+    QTest::mouseMove(&window, QPoint{-20, -20});
+    QTest::touchEvent(&window, device.get()).press(0, touched, &window);
+    QTest::touchEvent(&window, device.get()).release(0, touched, &window);
+    QVERIFY(plot.pointerInside());
+    QCOMPARE(plot.pointerPosition().toPoint(), touched);
+
+    // The mouse takes the pointer back as soon as it moves over the plot.
+    QTest::mouseMove(&window, touched + QPoint{40, 0});
+    QCOMPARE(plot.pointerPosition().toPoint(), touched + QPoint(40, 0));
+    QTest::mouseMove(&window, QPoint{-20, -20});
+    QVERIFY(!plot.pointerInside());
+}
+
+void TestPlotInteraction::escapeAndGrabLoss_areReported()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({400.0, 300.0});
+    auto escapes = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::escapePressed};
+    auto grabLosses = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::pointerGrabLost};
+
+    auto other = QKeyEvent{QEvent::KeyPress, Qt::Key_A, Qt::NoModifier, QStringLiteral("a")};
+    plot.keyPressEvent(&other);
+    QCOMPARE(escapes.count(), 0);
+    auto escape = QKeyEvent{QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier};
+    plot.keyPressEvent(&escape);
+    QCOMPARE(escapes.count(), 1);
+
+    plot.mouseUngrabEvent();
+    QCOMPARE(grabLosses.count(), 1);
 }
 
 void TestPlotInteraction::plotMouseEvent_resetClearsAcceptance()
