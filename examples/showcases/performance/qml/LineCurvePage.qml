@@ -12,8 +12,6 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    required property QtObject colorPalette
-
     legendVisible: false
 
     xAxis: ExampleAxis {
@@ -38,7 +36,7 @@ QAccelPlot.Plot {
         objectName: "lineCurve"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
-        color: plot.colorPalette.performanceCurve
+        color: "mediumaquamarine"
         lineWidth: 3
     }
 }

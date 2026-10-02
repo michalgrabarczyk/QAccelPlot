@@ -36,8 +36,8 @@ Item {
     property real y2Data: 0.0
 
     // Style
-    property color bandColor: palette.toolRuler
-    property color handleColor: palette.toolRuler
+    property color bandColor: "goldenrod"
+    property color handleColor: bandColor
     property real bandWidth: 24.0
     property real minTickSpacing: 6.0
     property real handleRadius: 6.0

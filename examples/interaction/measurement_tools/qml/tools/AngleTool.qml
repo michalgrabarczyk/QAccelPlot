@@ -36,8 +36,8 @@ Item {
     property real arm2YData: 1.0
 
     // Style
-    property color lineColor: palette.toolAngle
-    property color handleColor: palette.toolAngle
+    property color lineColor: "skyblue"
+    property color handleColor: lineColor
     property real lineWidth: 2.0
     property real handleRadius: 6.0
     property real arcRadius: 30.0

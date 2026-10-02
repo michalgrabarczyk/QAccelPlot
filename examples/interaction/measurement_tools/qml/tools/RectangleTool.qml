@@ -27,8 +27,8 @@ Item {
     property real y2Data: 1.0
 
     // Style
-    property color borderColor: palette.toolRegion
-    property color fillColor: palette.toolOverlay
+    property color borderColor: "mediumaquamarine"
+    property color fillColor: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
     property real borderWidth: 2.0
     property real handleRadius: 6.0
 

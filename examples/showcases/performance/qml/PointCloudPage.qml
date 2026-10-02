@@ -12,7 +12,6 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plot
 
-    required property QtObject colorPalette
     required property int pointCount
     // Points overlap more as the count grows, so each gets fainter and the arms stay distinct.
     readonly property real pointOpacity: Math.max(0.035, Math.min(0.35, 350000 / pointCount))

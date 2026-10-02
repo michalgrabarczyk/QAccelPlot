@@ -162,15 +162,11 @@ Window {
                     { name: "rectangleSeries", title: "RectangleSeries" }
                 ]
 
-                LineCurvePage {
-                    colorPalette: window.colorPalette
-                }
+                LineCurvePage {}
                 PointCloudPage {
-                    colorPalette: window.colorPalette
                     pointCount: window.pointCloudCount
                 }
                 RectangleSeriesPage {
-                    colorPalette: window.colorPalette
                     rectangleCount: window.rectangleCount
                 }
             }
