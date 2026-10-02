@@ -98,3 +98,6 @@ qt_import_qml_plugins(tst_band_series_rendering)
 add_qaccelplot_test(tst_series_inspection  core tst_series_inspection.cpp)
 add_qaccelplot_test(tst_inspection_row_model core tst_inspection_row_model.cpp)
 add_qaccelplot_test(tst_plot_inspector     core tst_plot_inspector.cpp InspectionPlotRig.cpp)
+# Loads the tooltip component, so it needs the QML module plugin.
+target_link_libraries(tst_plot_inspector PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_plot_inspector)

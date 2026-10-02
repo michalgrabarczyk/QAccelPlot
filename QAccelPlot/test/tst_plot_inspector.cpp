@@ -10,6 +10,8 @@
 #include <QAccelPlot/inspection/PlotInspector.hpp>
 #include <QAccelPlot/series/BarSeries.hpp>
 
+#include <QQmlComponent>
+#include <QQmlEngine>
 #include <QQuickWindow>
 #include <QSignalSpy>
 #include <QtTest>
@@ -40,6 +42,69 @@ protected:
     }
 };
 
+// A shown window with three dense curves, an inspector, and a tooltip whose delegates count their creations.
+// The inspector's cursor is set from code, so the real mouse cannot interfere.
+struct TooltipScene {
+    QQuickWindow window;
+    InspectionPlot* plot{new InspectionPlot{}};
+    Axis x;
+    Axis y;
+    PlotInspector inspector;
+    QQmlEngine engine;
+    std::unique_ptr<QObject> object;
+    QQuickItem* tooltip{nullptr};
+    QString error;
+
+    TooltipScene()
+    {
+        window.resize(800, 400);
+        plot->setParentItem(window.contentItem());
+        plot->setSize({800, 400});
+        x.setViewportMin(0);
+        x.setViewportMax(10);
+        y.setViewportMin(-2);
+        y.setViewportMax(3);
+        plot->setXAxis(&x);
+        plot->setYAxis(&y);
+        for (auto series = 0; series < 3; ++series) {
+            auto* curve = new LineCurve(plot);
+            curve->setName(QStringLiteral("S%1").arg(series));
+            curve->setXAxis(&x);
+            curve->setYAxis(&y);
+            auto data = std::vector<double>{};
+            for (auto i = 0; i < 2000; ++i) {
+                data.push_back(i * 9.8 / 2000);
+                data.push_back(std::sin(i * 0.01 + series));
+            }
+            curve->setData(std::move(data), 2000);
+        }
+        inspector.setPlot(plot);
+        inspector.setFollowPointer(false);
+        auto component = QQmlComponent{&engine};
+        component.setData(R"(
+            import QtQuick
+            import QAccelPlot as QAccelPlot
+            QAccelPlot.InspectionTooltip {
+                id: tip
+                property int created: 0
+                rowDelegate: Text {
+                    required property bool valid
+                    required property string seriesName
+                    required property string yText
+                    visible: valid
+                    text: seriesName + ": " + yText
+                    Component.onCompleted: tip.created++
+                }
+            }
+        )",
+            QUrl{});
+        object.reset(component.createWithInitialProperties({{"inspector", QVariant::fromValue(&inspector)}}));
+        tooltip = qobject_cast<QQuickItem*>(object.get());
+        error = component.errorString();
+        window.show();
+    }
+};
+
 } // namespace
 
 class TestPlotInspector : public QObject {
@@ -53,6 +118,8 @@ private slots:
     void snapsToClosest();
     void formatterMutation();
     void touch();
+    void tooltipReusesDelegates();
+    void tooltipPlacement();
 };
 
 void TestPlotInspector::rows()
@@ -369,6 +436,69 @@ void TestPlotInspector::touch()
     QTRY_COMPARE(inspector.position().toPoint(), point + QPoint(40, 0));
     QTest::mouseMove(&window, QPoint{-20, -20});
     QTRY_VERIFY(!inspector.active());
+}
+
+void TestPlotInspector::tooltipReusesDelegates()
+{
+    auto scene = TooltipScene{};
+    QVERIFY2(scene.tooltip != nullptr, qPrintable(scene.error));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window));
+
+    // Row positions are sampled where the scene graph reads them, with the GUI thread blocked.
+    auto frames = 0;
+    auto overlapping = 0;
+    connect(
+        &scene.window, &QQuickWindow::beforeSynchronizing, this,
+        [&] {
+            auto positions = QList<qreal>{};
+            const auto rows = scene.tooltip->childItems().first()->childItems();
+            for (const auto* row : rows) {
+                if (row->isVisible() && row->height() > 0) {
+                    positions.push_back(row->y());
+                }
+            }
+            if (!scene.tooltip->isVisible() || positions.size() < 2) {
+                return;
+            }
+            ++frames;
+            overlapping += positions.at(0) == positions.at(1) ? 1 : 0;
+        },
+        Qt::DirectConnection);
+
+    scene.inspector.setCursorX(5);
+    QTRY_COMPARE(scene.inspector.validCount(), 3);
+    QTRY_VERIFY(scene.tooltip->isVisible());
+    QTest::qWait(50);
+    QCOMPARE(scene.tooltip->property("created").toInt(), 3);
+    for (auto i = 1; i <= 30; ++i) {
+        scene.inspector.setCursorX(5 + i * 0.01);
+        QTest::qWait(16);
+    }
+    // Delegates are reused and their rows never share a position in a rendered frame.
+    QCOMPARE(scene.tooltip->property("created").toInt(), 3);
+    QVERIFY(frames > 5);
+    QCOMPARE(overlapping, 0);
+}
+
+void TestPlotInspector::tooltipPlacement()
+{
+    auto scene = TooltipScene{};
+    QVERIFY2(scene.tooltip != nullptr, qPrintable(scene.error));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window));
+    scene.inspector.setCursorX(5);
+    QTRY_VERIFY(scene.tooltip->isVisible());
+    QTRY_VERIFY(scene.tooltip->x() > scene.inspector.position().x());
+
+    // Near the right edge the tooltip flips to the other side of the cursor instead of covering it.
+    scene.inspector.setCursorX(9.7);
+    QTRY_VERIFY(scene.tooltip->x() + scene.tooltip->width() < scene.inspector.position().x());
+
+    // Beyond every series' last sample nothing matches and the tooltip hides.
+    scene.inspector.setRadius(2);
+    scene.inspector.setCursorX(9.97);
+    QTRY_COMPARE(scene.inspector.validCount(), 0);
+    QVERIFY(scene.inspector.active());
+    QTRY_VERIFY(!scene.tooltip->isVisible());
 }
 
 QTEST_MAIN(TestPlotInspector)
