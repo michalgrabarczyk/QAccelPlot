@@ -84,8 +84,6 @@ flowchart TB
 | property QColor | [**legendBorder**](classQAccelPlot_1_1ColorPalette.md#property-legendborder)  <br> |
 | property QColor | [**materialAccent**](classQAccelPlot_1_1ColorPalette.md#property-materialaccent)  <br> |
 | property QColor | [**outline**](classQAccelPlot_1_1ColorPalette.md#property-outline)  <br> |
-| property QColor | [**performanceCurve**](classQAccelPlot_1_1ColorPalette.md#property-performancecurve)  <br> |
-| property QColor | [**performanceRectangles**](classQAccelPlot_1_1ColorPalette.md#property-performancerectangles)  <br> |
 | property QColor | [**plotArea**](classQAccelPlot_1_1ColorPalette.md#property-plotarea)  <br> |
 | property QColor | [**plotBorder**](classQAccelPlot_1_1ColorPalette.md#property-plotborder)  <br> |
 | property QColor | [**rectangleZoomBorder**](classQAccelPlot_1_1ColorPalette.md#property-rectanglezoomborder)  <br> |
@@ -108,11 +106,6 @@ flowchart TB
 | property QColor | [**textOnAccent**](classQAccelPlot_1_1ColorPalette.md#property-textonaccent)  <br> |
 | property QColor | [**textSecondary**](classQAccelPlot_1_1ColorPalette.md#property-textsecondary)  <br> |
 | property QColor | [**tick**](classQAccelPlot_1_1ColorPalette.md#property-tick)  <br> |
-| property QColor | [**toolAngle**](classQAccelPlot_1_1ColorPalette.md#property-toolangle)  <br> |
-| property QColor | [**toolOverlay**](classQAccelPlot_1_1ColorPalette.md#property-tooloverlay)  <br> |
-| property QColor | [**toolPoint**](classQAccelPlot_1_1ColorPalette.md#property-toolpoint)  <br> |
-| property QColor | [**toolRegion**](classQAccelPlot_1_1ColorPalette.md#property-toolregion)  <br> |
-| property QColor | [**toolRuler**](classQAccelPlot_1_1ColorPalette.md#property-toolruler)  <br> |
 | property QColor | [**tooltipBackground**](classQAccelPlot_1_1ColorPalette.md#property-tooltipbackground)  <br> |
 | property QColor | [**tooltipText**](classQAccelPlot_1_1ColorPalette.md#property-tooltiptext)  <br> |
 | property QColor | [**transparent**](classQAccelPlot_1_1ColorPalette.md#property-transparent)  <br> |
@@ -458,34 +451,6 @@ QColor QAccelPlot::ColorPalette::outline;
 
 
 
-### property performanceCurve {#property-performancecurve}
-
-```C++
-QColor QAccelPlot::ColorPalette::performanceCurve;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property performanceRectangles {#property-performancerectangles}
-
-```C++
-QColor QAccelPlot::ColorPalette::performanceRectangles;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property plotArea {#property-plotarea}
 
 ```C++
@@ -784,76 +749,6 @@ QColor QAccelPlot::ColorPalette::textSecondary;
 
 ```C++
 QColor QAccelPlot::ColorPalette::tick;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property toolAngle {#property-toolangle}
-
-```C++
-QColor QAccelPlot::ColorPalette::toolAngle;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property toolOverlay {#property-tooloverlay}
-
-```C++
-QColor QAccelPlot::ColorPalette::toolOverlay;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property toolPoint {#property-toolpoint}
-
-```C++
-QColor QAccelPlot::ColorPalette::toolPoint;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property toolRegion {#property-toolregion}
-
-```C++
-QColor QAccelPlot::ColorPalette::toolRegion;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property toolRuler {#property-toolruler}
-
-```C++
-QColor QAccelPlot::ColorPalette::toolRuler;
 ```
 
 
