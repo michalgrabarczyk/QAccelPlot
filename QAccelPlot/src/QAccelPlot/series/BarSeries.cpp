@@ -416,6 +416,27 @@ bool BarSeries::contains(const QPointF& point) const
     return boundingRect().contains(point) && barIndexAt(point) >= 0;
 }
 
+InspectionRecord BarSeries::inspectionRecord(const int index) const
+{
+    auto result = InspectionRecord{};
+    if (index < 0 || index >= barCount_) {
+        result.status = InspectionStatus::InvalidArgument;
+        return result;
+    }
+    result.index = index;
+    result.fields = barAt(index);
+    const auto valid
+        = std::isfinite(result.fields.value(QStringLiteral("position")).toDouble()) && !std::isnan(result.fields.value(QStringLiteral("value")).toDouble());
+    result.status = valid ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    return result;
+}
+
+InspectionRecord BarSeries::inspectionRecordAt(const QPointF& position) const
+{
+    const auto index = barIndexAt(position);
+    return index < 0 ? InspectionRecord{} : inspectionRecord(index);
+}
+
 QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* window = this->window();

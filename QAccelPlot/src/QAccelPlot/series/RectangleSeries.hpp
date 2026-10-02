@@ -200,6 +200,10 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    /// \brief Returns the rectangle at \a index with its edges and category.
+    InspectionRecord inspectionRecord(int index) const override;
+    /// \brief Returns the rectangle drawn at the series-local \a position.
+    InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;

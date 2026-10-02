@@ -5,8 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include <QAccelPlot/series/BandSeries.hpp>
+#include <QAccelPlot/series/BarSeries.hpp>
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/series/PointCloud.hpp>
+#include <QAccelPlot/series/RectangleSeries.hpp>
 #include <QAccelPlot/transitions/MorphTransition.hpp>
 
 #include <QtTest>
@@ -101,6 +104,7 @@ private slots:
     void coincidentPoints();
     void zeroRadiusMapping();
     void appendedRecords();
+    void nativeRecords();
 };
 
 void TestSeriesInspection::precisionAndGaps()
@@ -438,6 +442,46 @@ void TestSeriesInspection::appendedRecords()
     QCOMPARE(inspection->summarizeRange(0, 1).status, InspectionStatus::Preparing);
     QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->summarizeRange(0, 1).count, 3);
+}
+
+void TestSeriesInspection::nativeRecords()
+{
+    auto rectangles = RectangleSeries{};
+    rectangles.setData(std::vector<double>{1, 2, 3, 4}, 1);
+    const auto rect = rectangles.inspection()->recordAt(0);
+    QVERIFY(rect.valid());
+    QCOMPARE(rect.index, 0);
+    QCOMPARE(rect.dataRevision, rectangles.dataRevision());
+    QCOMPARE(rect.fields.value("x1").toDouble(), 1.0);
+    QCOMPARE(rect.fields.value("y2").toDouble(), 4.0);
+    QCOMPARE(rectangles.inspection()->recordAt(1).status, InspectionStatus::InvalidArgument);
+
+    auto bars = BarSeries{};
+    bars.setData(std::vector<double>{1e12 + .125, 7}, 1);
+    QCOMPARE(bars.inspection()->recordAt(0).fields.value("position").toDouble(), 1e12 + .125);
+
+    auto bands = BandSeries{};
+    auto x = Axis{};
+    auto y = Axis{};
+    bind(bands, x, y, {QPointF{0, 0}, QPointF{10, 10}}, {100, 100});
+    bands.setData(std::vector<double>{1, 2, 4, 3, 6, 8}, 2);
+    QCOMPARE(bands.inspection()->recordAt(1).fields.value("low").toDouble(), 6.0);
+    // A band is continuous, so a hit between samples is interpolated and has no source index.
+    const auto hit = bands.inspection()->recordAtPosition({20, 50});
+    QVERIFY(hit.valid());
+    QVERIFY(hit.interpolated);
+    QCOMPARE(hit.index, -1);
+    QCOMPARE(bands.inspection()->recordAtPosition({20, 5}).status, InspectionStatus::NoMatch);
+
+    // Sample queries are reported as unsupported, whatever the arguments or geometry.
+    QVERIFY(!bars.inspection()->supported());
+    QCOMPARE(bars.inspection()->status(), InspectionStatus::Unsupported);
+    QCOMPARE(bars.inspection()->nearest({1, 1}).status, InspectionStatus::Unsupported);
+    QCOMPARE(bands.inspection()->summarizeRange(0, 5).status, InspectionStatus::Unsupported);
+    QCOMPARE(bands.inspection()->sampleAt(0).status, InspectionStatus::Unsupported);
+    // XY series have no native records.
+    auto curve = LineCurve{};
+    QCOMPARE(curve.inspection()->recordAt(0).status, InspectionStatus::Unsupported);
 }
 
 QTEST_MAIN(TestSeriesInspection)

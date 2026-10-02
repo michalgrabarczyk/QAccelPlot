@@ -337,6 +337,34 @@ bool BandSeries::contains(const QPointF& point) const
     return point.y() >= std::min(lowPixel, highPixel) - tolerance && point.y() <= std::max(lowPixel, highPixel) + tolerance;
 }
 
+InspectionRecord BandSeries::inspectionRecord(const int index) const
+{
+    auto result = InspectionRecord{};
+    if (index < 0 || index >= sampleCount_) {
+        result.status = InspectionStatus::InvalidArgument;
+        return result;
+    }
+    result.index = index;
+    result.fields = {{QStringLiteral("x"), value(index, 0)}, {QStringLiteral("low"), value(index, 1)}, {QStringLiteral("high"), value(index, 2)}};
+    result.status = sampleValid(index) ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    return result;
+}
+
+InspectionRecord BandSeries::inspectionRecordAt(const QPointF& position) const
+{
+    auto result = InspectionRecord{};
+    if (!xAxis() || width() <= 0 || !contains(position)) {
+        return result;
+    }
+    // A band is continuous between its samples, so a hit reports interpolated limits rather than a source record.
+    result.fields = valueAt(xAxis()->pixelToCoord(position.x(), width()));
+    if (!result.fields.isEmpty()) {
+        result.interpolated = true;
+        result.status = InspectionStatus::Ready;
+    }
+    return result;
+}
+
 QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*updatePaintNodeData*/)
 {
     if (!Internal::supportsCustomShaderRendering(window())) {

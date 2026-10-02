@@ -225,6 +225,10 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    /// \brief Returns the bar at \a index with its position, value, and category.
+    InspectionRecord inspectionRecord(int index) const override;
+    /// \brief Returns the bar drawn at the series-local \a position.
+    InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;

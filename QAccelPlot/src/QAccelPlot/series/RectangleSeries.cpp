@@ -381,6 +381,27 @@ bool RectangleSeries::contains(const QPointF& point) const
     return boundingRect().contains(point) && rectangleIndexAt(point) >= 0;
 }
 
+InspectionRecord RectangleSeries::inspectionRecord(const int index) const
+{
+    auto result = InspectionRecord{};
+    if (index < 0 || index >= rectCount_) {
+        result.status = InspectionStatus::InvalidArgument;
+        return result;
+    }
+    result.index = index;
+    result.fields = rectangleAt(index);
+    const auto& keys = rectangleKeys();
+    const auto valid = std::none_of(keys.begin(), keys.end(), [&result](const auto& key) { return std::isnan(result.fields.value(key).toDouble()); });
+    result.status = valid ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    return result;
+}
+
+InspectionRecord RectangleSeries::inspectionRecordAt(const QPointF& position) const
+{
+    const auto index = rectangleIndexAt(position);
+    return index < 0 ? InspectionRecord{} : inspectionRecord(index);
+}
+
 bool RectangleSeries::validateRawDataArguments(const void* data, const int rectCount) const
 {
     if (rectCount < 0) {
