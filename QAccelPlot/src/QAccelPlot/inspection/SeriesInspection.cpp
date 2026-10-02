@@ -8,6 +8,7 @@
 #include "QAccelPlot/inspection/SeriesInspection.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/inspection/internal/InspectionCache.hpp"
 #include "QAccelPlot/inspection/internal/SourceInspection.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
@@ -18,6 +19,8 @@ namespace QAccelPlot {
 namespace {
 
 constexpr auto kMaximumPageSize = int{4096};
+// Unordered series up to this size are scanned per query instead of being indexed.
+constexpr auto kScanLimit = int{20000};
 
 std::optional<InspectionBounds> normalizedBounds(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
 {
@@ -47,16 +50,39 @@ InspectionSummary toSummary(const SummaryAccumulator& stats, const quint64 revis
 
 } // namespace
 
-struct SeriesInspection::Private {
+struct SeriesInspection::Private : InspectionCache::Host {
     enum class Order { Unknown, Sorted, Unordered };
-    enum class Backend { Sorted, Scan };
+    enum class Backend { Sorted, Scan, Index };
+
+    explicit Private(SeriesInspection& owner)
+        : owner(owner)
+    {
+    }
+
+    InspectionSource indexSource() const override
+    {
+        return owner.series_.inspectionSource();
+    }
+
+    bool indexSourceAvailable() const override
+    {
+        return owner.series_.inspectionAvailable();
+    }
+
+    void indexReady() override
+    {
+        emit owner.statusChanged();
+    }
 
     Backend backend(const InspectionSource& source)
     {
         if (order == Order::Unknown) {
             order = SourceInspection::isSortedX(source) ? Order::Sorted : Order::Unordered;
         }
-        return order == Order::Sorted ? Backend::Sorted : Backend::Scan;
+        if (order == Order::Sorted) {
+            return Backend::Sorted;
+        }
+        return source.count <= kScanLimit ? Backend::Scan : Backend::Index;
     }
 
     InspectionHit nearestX(const InspectionSource& source, const InspectionMetric& metric, const double pixelX, const double radius)
@@ -65,9 +91,11 @@ struct SeriesInspection::Private {
         case Backend::Sorted:
             return sorted.nearestX(source, metric, pixelX, radius);
         case Backend::Scan:
+            return InspectionScan::nearestX(source, metric, pixelX, radius);
+        case Backend::Index:
             break;
         }
-        return InspectionScan::nearestX(source, metric, pixelX, radius);
+        return cache.index()->nearestX(metric, pixelX, radius);
     }
 
     InspectionHit nearest(const InspectionSource& source, const InspectionMetric& metric, const QPointF& position, const double radius)
@@ -76,9 +104,11 @@ struct SeriesInspection::Private {
         case Backend::Sorted:
             return sorted.nearest(source, metric, position, radius);
         case Backend::Scan:
+            return InspectionScan::nearest(source, metric, position, radius);
+        case Backend::Index:
             break;
         }
-        return InspectionScan::nearest(source, metric, position, radius);
+        return cache.index()->nearest(metric, position, radius);
     }
 
     InspectionNeighbors neighbors(const InspectionSource& source, const double x)
@@ -87,9 +117,11 @@ struct SeriesInspection::Private {
         case Backend::Sorted:
             return sorted.neighbors(source, x);
         case Backend::Scan:
+            return InspectionScan::neighbors(source, x);
+        case Backend::Index:
             break;
         }
-        return InspectionScan::neighbors(source, x);
+        return cache.index()->neighbors(x);
     }
 
     SummaryAccumulator summarize(const InspectionSource& source, const InspectionBounds& bounds)
@@ -98,9 +130,11 @@ struct SeriesInspection::Private {
         case Backend::Sorted:
             return sorted.summarize(source, bounds);
         case Backend::Scan:
+            return InspectionScan::summarize(source, bounds);
+        case Backend::Index:
             break;
         }
-        return InspectionScan::summarize(source, bounds);
+        return cache.index()->summarize(bounds);
     }
 
     void collect(const InspectionSource& source, const InspectionBounds& bounds, const int offset, const int limit, QList<int>& indices)
@@ -110,13 +144,18 @@ struct SeriesInspection::Private {
             sorted.collect(source, bounds, offset, limit, indices);
             return;
         case Backend::Scan:
+            InspectionScan::collect(source, bounds, offset, limit, indices);
+            return;
+        case Backend::Index:
             break;
         }
-        InspectionScan::collect(source, bounds, offset, limit, indices);
+        cache.index()->collect(bounds, offset, limit, indices);
     }
 
+    SeriesInspection& owner;
     Order order{Order::Unknown};
     SourceInspection sorted;
+    InspectionCache cache{*this};
 };
 
 SeriesInspection::~SeriesInspection() = default;
@@ -127,7 +166,13 @@ InspectionStatus SeriesInspection::status() const
     if (!source.supported()) {
         return InspectionStatus::Unsupported;
     }
-    return series_.inspectionAvailable() ? InspectionStatus::Ready : InspectionStatus::Unavailable;
+    if (!series_.inspectionAvailable()) {
+        return InspectionStatus::Unavailable;
+    }
+    if (d_->backend(source) != Private::Backend::Index || d_->cache.index()) {
+        return InspectionStatus::Ready;
+    }
+    return d_->cache.requested() ? InspectionStatus::Preparing : InspectionStatus::Idle;
 }
 
 bool SeriesInspection::supported() const
@@ -142,7 +187,16 @@ int SeriesInspection::maximumPageSize() const
 
 quint64 SeriesInspection::indexBytes() const
 {
-    return static_cast<quint64>(d_->sorted.storageBytes());
+    auto bytes = quint64{d_->sorted.storageBytes()};
+    if (const auto* index = d_->cache.index()) {
+        bytes += index->storageBytes();
+    }
+    return bytes;
+}
+
+void SeriesInspection::prepare()
+{
+    acquire(series_.inspectionSource());
 }
 
 InspectionSample SeriesInspection::sampleAt(const int index) const
@@ -280,7 +334,7 @@ InspectionPage SeriesInspection::indices(
         return result;
     }
     result.total = d_->summarize(source, *bounds).count;
-    result.sourceOrder = true;
+    result.sourceOrder = d_->backend(source) != Private::Backend::Index;
     d_->collect(source, *bounds, offset, result.limit, result.indices);
     result.hasMore = offset + result.indices.size() < result.total;
     result.status = result.total > 0 ? InspectionStatus::Ready : InspectionStatus::NoMatch;
@@ -304,12 +358,13 @@ InspectionRecord SeriesInspection::recordAtPosition(const QPointF& position) con
 SeriesInspection::SeriesInspection(PlotSeries& series)
     : QObject(&series)
     , series_(series)
-    , d_(std::make_unique<Private>())
+    , d_(std::make_unique<Private>(*this))
 {
 }
 
 void SeriesInspection::sourceChanged(const bool appended)
 {
+    d_->cache.invalidate();
     const auto source = series_.inspectionSource();
     if (appended && d_->order == Private::Order::Sorted && source.count > 0) {
         const auto last = source.count - 1;
@@ -329,17 +384,29 @@ void SeriesInspection::sourceChanged(const bool appended)
 
 void SeriesInspection::sourceInvalidated()
 {
+    d_->cache.invalidate();
     d_->order = Private::Order::Unknown;
     d_->sorted.reset();
     emit statusChanged();
 }
 
-InspectionStatus SeriesInspection::acquire(const InspectionSource& source) const
+InspectionStatus SeriesInspection::acquire(const InspectionSource& source)
 {
     if (!source.supported()) {
         return InspectionStatus::Unsupported;
     }
-    return series_.inspectionAvailable() ? InspectionStatus::Ready : InspectionStatus::Unavailable;
+    if (!series_.inspectionAvailable()) {
+        return InspectionStatus::Unavailable;
+    }
+    if (d_->backend(source) != Private::Backend::Index) {
+        return InspectionStatus::Ready;
+    }
+    const auto wasRequested = d_->cache.requested();
+    d_->cache.request();
+    if (!wasRequested) {
+        emit statusChanged();
+    }
+    return d_->cache.index() ? InspectionStatus::Ready : InspectionStatus::Preparing;
 }
 
 std::optional<InspectionMetric> SeriesInspection::metric() const

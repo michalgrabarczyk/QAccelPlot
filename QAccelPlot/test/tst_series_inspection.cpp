@@ -97,6 +97,7 @@ private slots:
     void argumentsAndAxisLifetime();
     void transition();
     void unorderedScan();
+    void unorderedIndex();
     void coincidentPoints();
     void zeroRadiusMapping();
     void appendedRecords();
@@ -324,10 +325,50 @@ void TestSeriesInspection::unorderedScan()
     const auto count = 2000;
     const auto data = randomPoints(count, 42);
     cloud.setData(data.data(), count);
-    // Unordered series are scanned per query.
+    // Small unordered series are scanned per query and never report Preparing.
     QCOMPARE(cloud.inspection()->status(), InspectionStatus::Ready);
     compareAgainstScan(cloud, data, count);
     QVERIFY(cloud.inspection()->indices(-30, 40, -20, 30).sourceOrder);
+}
+
+void TestSeriesInspection::unorderedIndex()
+{
+    auto cloud = PointCloud{};
+    auto x = Axis{};
+    auto y = Axis{};
+    bind(cloud, x, y, {QPointF{-100, -100}, QPointF{100, 100}}, {800, 200});
+    const auto count = 30000;
+    const auto data = randomPoints(count, 43);
+    cloud.setData(data.data(), count);
+    auto* inspection = cloud.inspection();
+    QCOMPARE(inspection->status(), InspectionStatus::Idle);
+    QCOMPARE(inspection->nearestByX(100).status, InspectionStatus::Preparing);
+    QCOMPARE(inspection->status(), InspectionStatus::Preparing);
+    QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
+    // The index stays well below the 44 bytes per point of the first implementation.
+    QVERIFY(inspection->indexBytes() > 0);
+    QVERIFY(inspection->indexBytes() < quint64{40} * count);
+    compareAgainstScan(cloud, data, count);
+
+    // Pages cover every match exactly once, in traversal order.
+    auto collected = QList<int>{};
+    auto page = InspectionPage{};
+    do {
+        page = inspection->indices(-30, 40, -20, 30, static_cast<int>(collected.size()), 1000, cloud.dataRevision());
+        QVERIFY(page.valid());
+        QVERIFY(!page.sourceOrder);
+        collected += page.indices;
+    } while (page.hasMore);
+    QCOMPARE(collected.size(), page.total);
+    std::sort(collected.begin(), collected.end());
+    QVERIFY(std::adjacent_find(collected.cbegin(), collected.cend()) == collected.cend());
+
+    // Replacing the data drops the index; an ordered replacement needs none and builds none.
+    cloud.setData(std::vector<double>{0, 0, 1, 1}, 2);
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    QCOMPARE(inspection->nearestByX(100).index, 0);
+    QTest::qWait(50);
+    QCOMPARE(inspection->indexBytes(), quint64{0});
 }
 
 void TestSeriesInspection::coincidentPoints()
@@ -391,9 +432,11 @@ void TestSeriesInspection::appendedRecords()
     QCOMPARE(after.maximum, 5.0);
     QCOMPARE(after.maximumIndex, count + 99);
     QCOMPARE(inspection->indices(count, kInfinity, -kInfinity, kInfinity).total, 100);
-    // An append that breaks the order falls back to scanning.
+    // An append that breaks the order falls back to an index.
     curve.appendData(0.5, 0);
-    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    QCOMPARE(inspection->status(), InspectionStatus::Idle);
+    QCOMPARE(inspection->summarizeRange(0, 1).status, InspectionStatus::Preparing);
+    QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->summarizeRange(0, 1).count, 3);
 }
 

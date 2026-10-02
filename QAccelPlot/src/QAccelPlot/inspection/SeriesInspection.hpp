@@ -30,14 +30,15 @@ struct InspectionSource;
 ///
 /// \c LineCurve and \c PointCloud answer every query. Series whose X values are finite and
 /// non-decreasing are searched in place, need no preparation, and stay queryable while records
-/// are appended. Unordered series are scanned by every query. Other series types expose native
-/// records through \c recordAt() and \c recordAtPosition() only.
+/// are appended. Unordered series above a small size are indexed on a worker thread first; until
+/// then queries return \c Inspection.Preparing. Other series types expose native records through
+/// \c recordAt() and \c recordAtPosition() only.
 ///
 /// \sa PlotInspector, SelectionTool
 class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    /// \brief Readiness for sample queries: \c Ready, \c Unsupported, or \c Unavailable.
+    /// \brief Readiness for sample queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
     /// \brief Whether the series has XY records that sample queries can search.
     Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
@@ -54,8 +55,10 @@ public:
     /// \brief Returns the largest page returned by \c indices().
     int maximumPageSize() const;
 
-    /// \brief Returns the bytes held by query caches, excluding the series' own data.
+    /// \brief Returns the bytes held by query caches and indexes, excluding the series' own data.
     Q_INVOKABLE quint64 indexBytes() const;
+    /// \brief Starts building a query index when the series needs one; otherwise does nothing.
+    Q_INVOKABLE void prepare();
 
     /// \brief Returns the record at \a index; \c NoMatch with its raw coordinates when the record is invalid.
     Q_INVOKABLE ::QAccelPlot::InspectionSample sampleAt(int index) const;
@@ -82,7 +85,7 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionRecord recordAtPosition(const QPointF& position) const;
 
 signals:
-    /// \brief Emitted when the readiness may have changed, which is after every data change.
+    /// \brief Emitted when the readiness may have changed: after a data change, and when an index is ready.
     void statusChanged();
 
 private:
@@ -92,8 +95,8 @@ private:
     explicit SeriesInspection(PlotSeries& series);
     void sourceChanged(bool appended);
     void sourceInvalidated();
-    // Returns Ready when queries can run now.
-    InspectionStatus acquire(const InspectionSource& source) const;
+    // Returns Ready when queries can run now. An unordered series requests its index and reports Preparing until it is built.
+    InspectionStatus acquire(const InspectionSource& source);
     std::optional<InspectionMetric> metric() const;
     InspectionSample makeSample(const InspectionSource& source, int index, qreal distance) const;
     // Interpolates along the straight on-screen segment, which also follows logarithmic axes.
