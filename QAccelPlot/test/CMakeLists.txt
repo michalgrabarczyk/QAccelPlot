@@ -102,3 +102,7 @@ add_qaccelplot_test(tst_plot_inspector     core tst_plot_inspector.cpp Inspectio
 target_link_libraries(tst_plot_inspector PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_plot_inspector)
 add_qaccelplot_test(tst_selection_tool     core tst_selection_tool.cpp InspectionPlotRig.cpp)
+add_qaccelplot_test(tst_inspection_qml     core tst_inspection_qml.cpp)
+# Loads a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_inspection_qml PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_inspection_qml)
