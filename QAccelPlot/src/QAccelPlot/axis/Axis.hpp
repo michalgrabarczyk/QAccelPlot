@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/axis/AxisMapping.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -196,10 +197,18 @@ public:
     /// \brief Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.
     qreal labelOverflow() const;
 
+    /// \brief Returns a snapshot of the current viewport mapping.
+    AxisMapping mapping() const;
     /// \brief Maps a data-space \a value to a pixel position along an axis of \a length pixels.
-    qreal coordToPixel(qreal value, qreal length) const;
+    Q_INVOKABLE qreal coordToPixel(qreal value, qreal length) const;
     /// \brief Maps a pixel \a pos along an axis of \a length pixels back to a data-space value.
-    qreal pixelToCoord(qreal pos, qreal length) const;
+    Q_INVOKABLE qreal pixelToCoord(qreal pos, qreal length) const;
+    /// \brief Formats \a value for a readout on an axis of \a length pixels.
+    ///
+    /// Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the
+    /// text follows the zoom level instead of the tick spacing. Returns an empty string for a
+    /// nonfinite \a value.
+    Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
 
 public slots:
     /// \brief Replaces the tracked data range.
@@ -273,6 +282,7 @@ private:
     void clearSourceDataRange(const QObject* source, Orientation dimension);
     void recomputeSourceDataRange();
     void setDataRangeValues(qreal min, qreal max);
+    qreal valueResolution(qreal value, qreal length) const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void invalidateTicks();
 

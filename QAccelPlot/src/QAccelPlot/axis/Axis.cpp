@@ -477,36 +477,33 @@ qreal Axis::labelOverflow() const
     return (orientation_ == Horizontal) ? kHorizontalLabelOverflow : kVerticalLabelOverflow;
 }
 
+AxisMapping Axis::mapping() const
+{
+    auto result = AxisMapping{};
+    result.logarithmic = logScale_;
+    result.flipped = orientation_ == Vertical;
+    if (logScale_ && (viewportMin_ <= 0 || viewportMax_ <= 0)) {
+        return result;
+    }
+    result.origin = result.toMapped(viewportMin_);
+    result.span = result.toMapped(viewportMax_) - result.origin;
+    result.valid = std::isfinite(result.origin) && std::isfinite(result.span) && !nearly_equal(result.span, 0.0);
+    return result;
+}
+
 qreal Axis::coordToPixel(const qreal value, const qreal length) const
 {
-    auto ratio = qreal{};
-    if (logScale_) {
-        if (value <= 0 || viewportMin_ <= 0 || viewportMax_ <= 0) {
-            qCDebug(lcQAccelPlot) << "non-positive value or viewport bounds (value=" << value << "viewportMin=" << viewportMin_
-                                  << "viewportMax=" << viewportMax_ << "), returning 0";
-            return 0;
-        }
-        const auto logMin = std::log10(viewportMin_);
-        const auto logMax = std::log10(viewportMax_);
-        const auto logRange = logMax - logMin;
-        if (nearly_equal(logRange, 0.0)) {
-            qCDebug(lcQAccelPlot) << "zero log range (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
-            return 0;
-        }
-        ratio = (std::log10(value) - logMin) / logRange;
-    } else {
-        const auto range = viewportMax_ - viewportMin_;
-        if (nearly_equal(range, 0.0)) {
-            qCDebug(lcQAccelPlot) << "zero range (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
-            return 0;
-        }
-        ratio = (value - viewportMin_) / range;
+    if (logScale_ && (value <= 0 || viewportMin_ <= 0 || viewportMax_ <= 0)) {
+        qCDebug(lcQAccelPlot) << "non-positive value or viewport bounds (value=" << value << "viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_
+                              << "), returning 0";
+        return 0;
     }
-    if (orientation_ == Horizontal) {
-        return ratio * length;
-    } else {
-        return (1.0 - ratio) * length;
+    const auto axisMapping = mapping();
+    if (nearly_equal(axisMapping.span, 0.0)) {
+        qCDebug(lcQAccelPlot) << "zero range (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
+        return 0;
     }
+    return axisMapping.toPixel(value, length);
 }
 
 qreal Axis::pixelToCoord(const qreal pos, const qreal length) const
@@ -515,25 +512,19 @@ qreal Axis::pixelToCoord(const qreal pos, const qreal length) const
         qCDebug(lcQAccelPlot) << "zero length, returning 0";
         return 0;
     }
-    auto ratio = qreal{};
-    if (orientation_ == Horizontal) {
-        ratio = pos / length;
-    } else {
-        ratio = 1.0 - (pos / length);
+    if (logScale_ && (viewportMin_ <= 0 || viewportMax_ <= 0)) {
+        qCDebug(lcQAccelPlot) << "non-positive viewport bounds (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
+        return 0;
     }
-    if (logScale_) {
-        if (viewportMin_ <= 0 || viewportMax_ <= 0) {
-            qCDebug(lcQAccelPlot) << "non-positive viewport bounds (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
-            return 0;
-        }
-        const auto logMin = std::log10(viewportMin_);
-        const auto logMax = std::log10(viewportMax_);
-        const auto logRange = logMax - logMin;
-        return std::pow(10.0, logMin + ratio * logRange);
-    } else {
-        const auto range = viewportMax_ - viewportMin_;
-        return viewportMin_ + ratio * range;
+    return mapping().toCoord(pos, length);
+}
+
+QString Axis::formatValue(const qreal value, const qreal length) const
+{
+    if (!std::isfinite(value)) {
+        return {};
     }
+    return ticker_->tickLabelFormatter()->format(value, valueResolution(value, length));
 }
 
 void Axis::updateDataRange(const qreal min, const qreal max)
@@ -723,6 +714,24 @@ void Axis::updatePolish()
     // Runs on the GUI thread before the scene graph sync. Tick labels are formatted here rather than in
     // paint(), because a formatter's tickLabel JS callback must run on the QML engine's thread.
     ticks_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_);
+}
+
+qreal Axis::valueResolution(const qreal value, const qreal length) const
+{
+    // Assumed axis length when the caller has no geometry yet.
+    constexpr static auto kFallbackLength = qreal{1000.0};
+    const auto pixels = std::isfinite(length) && length > 0.0 ? length : kFallbackLength;
+    const auto axisMapping = mapping();
+    auto perPixel = std::abs(axisMapping.span) / pixels;
+    if (logScale_) {
+        // A logarithmic pixel covers a constant ratio, so the resolution scales with the value.
+        perPixel = std::abs(value) * (std::pow(10.0, perPixel) - 1.0);
+    }
+    if (!axisMapping.valid || !std::isfinite(perPixel) || !(perPixel > 0.0)) {
+        return 0.0;
+    }
+    // One decimal digit finer than a pixel, so neighboring samples in dense data stay distinguishable.
+    return std::pow(10.0, std::floor(std::log10(perPixel)) - 1.0);
 }
 
 void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, const qreal axisY) const

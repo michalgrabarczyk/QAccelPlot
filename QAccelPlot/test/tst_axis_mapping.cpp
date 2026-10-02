@@ -10,6 +10,7 @@
 #include <QtTest/QtTest>
 
 #include <cmath>
+#include <limits>
 #include <memory>
 
 class TestAxisMapping : public QObject {
@@ -48,6 +49,15 @@ private slots:
     void dataRange_updateReplacesRange();
     void viewportRange_acceptsMicrosecondEpochChanges();
     void constructor_sideSetsOrientation();
+
+    // Mapping snapshot
+    void mapping_matchesAxisMapping();
+    void mapping_invalidViewport_isNotValid();
+
+    // Value formatting
+    void formatValue_linear_followsPixelResolution();
+    void formatValue_log_scalesWithValue();
+    void formatValue_nonFinite_isEmpty();
 };
 
 // ---------------------------------------------------------------------------
@@ -281,6 +291,68 @@ void TestAxisMapping::constructor_sideSetsOrientation()
     QCOMPARE(right.orientation(), QAccelPlot::Axis::Vertical);
     QCOMPARE(top.orientation(), QAccelPlot::Axis::Horizontal);
     QCOMPARE(bottom.orientation(), QAccelPlot::Axis::Horizontal);
+}
+
+// ---------------------------------------------------------------------------
+// Mapping snapshot
+// ---------------------------------------------------------------------------
+
+void TestAxisMapping::mapping_matchesAxisMapping()
+{
+    for (const auto logScale : {false, true}) {
+        for (const auto& axis : {makeHorizontalAxis(0.5, 2000.0), makeVerticalAxis(0.5, 2000.0)}) {
+            axis->setLogScale(logScale);
+            const auto mapping = axis->mapping();
+            QVERIFY(mapping.valid);
+            QCOMPARE(mapping.logarithmic, logScale);
+            QCOMPARE(mapping.flipped, axis->orientation() == QAccelPlot::Axis::Vertical);
+            QCOMPARE(mapping.toPixel(37.5, 640.0), axis->coordToPixel(37.5, 640.0));
+            QCOMPARE(mapping.toCoord(123.0, 640.0), axis->pixelToCoord(123.0, 640.0));
+        }
+    }
+}
+
+void TestAxisMapping::mapping_invalidViewport_isNotValid()
+{
+    QVERIFY(!makeHorizontalAxis(5.0, 5.0)->mapping().valid);
+    const auto axis = makeHorizontalAxis(1.0, 10.0);
+    axis->setLogScale(true);
+    QVERIFY(axis->mapping().valid);
+    axis->setViewportMin(-1.0);
+    QVERIFY(!axis->mapping().valid);
+}
+
+// ---------------------------------------------------------------------------
+// Value formatting
+// ---------------------------------------------------------------------------
+
+void TestAxisMapping::formatValue_linear_followsPixelResolution()
+{
+    // Tick labels on this axis have no decimals; a readout resolves a tenth of a pixel.
+    const auto axis = makeHorizontalAxis(0.0, 10.0);
+    QCOMPARE(axis->formatValue(3.14159, 700.0), QStringLiteral("3.142"));
+    QCOMPARE(axis->formatValue(5.123456, 700.0), QStringLiteral("5.123"));
+    axis->setViewportMin(5.12);
+    axis->setViewportMax(5.13);
+    QCOMPARE(axis->formatValue(5.123456, 700.0), QStringLiteral("5.123456"));
+    axis->setViewportMin(0.0);
+    axis->setViewportMax(1e6);
+    QCOMPARE(axis->formatValue(123456.789, 700.0), QStringLiteral("123457"));
+}
+
+void TestAxisMapping::formatValue_log_scalesWithValue()
+{
+    const auto axis = makeHorizontalAxis(0.001, 1000.0);
+    axis->setLogScale(true);
+    QCOMPARE(axis->formatValue(3.7, 600.0), QStringLiteral("3.700"));
+    QCOMPARE(axis->formatValue(123.456, 600.0), QStringLiteral("123.5"));
+}
+
+void TestAxisMapping::formatValue_nonFinite_isEmpty()
+{
+    const auto axis = makeHorizontalAxis(0.0, 10.0);
+    QCOMPARE(axis->formatValue(std::numeric_limits<qreal>::quiet_NaN(), 700.0), QString{});
+    QCOMPARE(axis->formatValue(std::numeric_limits<qreal>::infinity(), 700.0), QString{});
 }
 
 QTEST_MAIN(TestAxisMapping)
