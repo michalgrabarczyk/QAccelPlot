@@ -175,7 +175,7 @@ bool QAccelPlot::zoomToRect(const QRectF& rect)
         return false;
     }
     const auto selection = rect.normalized().intersected(plotRect_);
-    if (selection.isEmpty() || selection.width() < rectangleZoom_->minimumSize() || selection.height() < rectangleZoom_->minimumSize()) {
+    if (selection.isEmpty() || !PlotDragRect::meetsMinimum(selection, rectangleZoom_->minimumSize())) {
         return false;
     }
     auto ranges = QList<RectangleAxisRange>{};
@@ -440,14 +440,14 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     }
     if (event->button() == Qt::LeftButton) {
         setFocus(true);
-        if (rectangleZoom_->enabled() && static_cast<int>(event->modifiers()) == rectangleZoom_->modifiers()) {
+        if (rectangleZoom_->enabled() && PlotDragRect::modifiersMatch(static_cast<int>(event->modifiers()), rectangleZoom_->modifiers())) {
             if (plotRect_.isEmpty() || !plotRect_.contains(event->position())) {
                 event->ignore();
                 return;
             }
             dragMode_ = DragMode::RectangleZoom;
-            selectionStart_ = event->position();
-            rectangleZoom_->setSelection(true, QRectF{selectionStart_, selectionStart_});
+            zoomDrag_.begin(event->position());
+            rectangleZoom_->setSelection(true, zoomDrag_.rect());
         } else {
             dragMode_ = DragMode::Pan;
         }
@@ -942,14 +942,15 @@ void QAccelPlot::updateRectangleSelection(const QPointF& pos)
     if (dragMode_ != DragMode::RectangleZoom || !std::isfinite(pos.x()) || !std::isfinite(pos.y())) {
         return;
     }
-    const auto end = QPointF{qBound(plotRect_.left(), pos.x(), plotRect_.right()), qBound(plotRect_.top(), pos.y(), plotRect_.bottom())};
-    rectangleZoom_->setSelection(true, QRectF{selectionStart_, end}.normalized());
+    zoomDrag_.moveTo(pos, plotRect_);
+    rectangleZoom_->setSelection(true, zoomDrag_.rect());
 }
 
 void QAccelPlot::cancelRectangleSelection()
 {
     if (dragMode_ == DragMode::RectangleZoom) {
         dragMode_ = DragMode::Idle;
+        zoomDrag_.end();
         rectangleZoom_->setSelection(false, {});
     }
 }

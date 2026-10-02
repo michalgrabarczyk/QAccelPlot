@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/PlotRectangleZoom.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
@@ -237,7 +238,7 @@ private:
     QList<Axis*> extraAxes_;
 
     DragMode dragMode_{DragMode::Idle};
-    QPointF selectionStart_;
+    PlotDragRect zoomDrag_;
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
