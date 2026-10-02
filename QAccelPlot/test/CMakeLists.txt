@@ -94,3 +94,5 @@ qt_import_qml_plugins(tst_line_curve_hover)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_band_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_band_series_rendering)
+
+add_qaccelplot_test(tst_series_inspection  core tst_series_inspection.cpp)

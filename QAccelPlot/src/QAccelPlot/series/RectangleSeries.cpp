@@ -340,6 +340,7 @@ void RectangleSeries::setCategories(const QList<int>& categories)
     }
     categories_.assign(categories.cbegin(), categories.cend());
     vertexCache_.invalidate();
+    inspectionDataChanged();
     update();
 }
 
@@ -460,6 +461,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     if (previousCount != rectCount_) {
         emit countChanged();
     }
+    inspectionDataChanged();
     update();
 }
 

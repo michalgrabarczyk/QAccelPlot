@@ -234,6 +234,7 @@ void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
     dataChanged_ = true;
     refreshHovered();
     emit countChanged();
+    inspectionDataChanged();
     update();
 }
 
@@ -522,6 +523,7 @@ void BandSeries::finishDataChange(const int sampleCount, const bool reportRanges
     if (countDiffers) {
         emit countChanged();
     }
+    inspectionDataChanged();
     update();
 }
 

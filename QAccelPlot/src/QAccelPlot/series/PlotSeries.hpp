@@ -8,6 +8,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/inspection/SeriesInspection.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -48,6 +49,11 @@ class PlotSeries : public QQuickItem {
     /// \brief Symbol style requested from the default legend.
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
 
+    /// \brief Revision incremented by every accepted change of the series' records.
+    Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
+    /// \brief Read-only constant: data queries for this series.
+    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+
 public:
     /// \brief Supported default legend symbols.
     ///
@@ -83,6 +89,11 @@ public:
     Q_ENUM(MarkerShape)
 
     explicit PlotSeries(QQuickItem* parent = nullptr);
+
+    /// \brief Returns the current data revision.
+    quint64 dataRevision() const;
+    /// \brief Returns the data queries for this series; created on first use and owned by the series.
+    SeriesInspection* inspection() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -125,6 +136,8 @@ public:
     virtual void clearData() = 0;
 
 signals:
+    /// \brief Emitted when the dataRevision property changes.
+    void dataRevisionChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();
@@ -136,6 +149,25 @@ signals:
     void yDataRangeChanged(qreal min, qreal max);
 
 protected:
+    /// \brief How the records changed in a data update.
+    enum class DataChange {
+        Replaced, ///< \brief Any record may have changed.
+        Appended, ///< \brief One record was added at the end; all others are unchanged.
+    };
+
+    /// \brief Advances the data revision and refreshes the data queries. Call after every accepted record change.
+    void inspectionDataChanged(DataChange change = DataChange::Replaced);
+    /// \brief Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.
+    void invalidateInspection();
+    /// \brief Returns a view of the XY records that sample queries search. The default has none.
+    virtual InspectionSource inspectionSource() const;
+    /// \brief Returns false while the records are ambiguous, such as during a data transition. Default: true.
+    virtual bool inspectionAvailable() const;
+    /// \brief Returns the native record at \a index for series that are not plain XY series. Default: unsupported.
+    virtual InspectionRecord inspectionRecord(int index) const;
+    /// \brief Returns the native record drawn at the series-local \a position. Default: unsupported.
+    virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+
     /// \brief Extent of the valid coordinates in one dimension.
     struct DataExtent {
         qreal min; ///< \brief Smallest valid coordinate.
@@ -178,12 +210,18 @@ protected:
     QRectF resolvePlotRect() const;
 
 private:
+    friend class SeriesInspection;
+
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
 
+    quint64 dataRevision_{0};
+    mutable SeriesInspection* inspection_{nullptr};
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;
+    QMetaObject::Connection xAxisDestroyed_;
+    QMetaObject::Connection yAxisDestroyed_;
     QRectF plotRect_;
     LegendSymbol legendSymbol_{LegendSymbol::Line};
     qreal lastXMin_{std::numeric_limits<qreal>::max()};

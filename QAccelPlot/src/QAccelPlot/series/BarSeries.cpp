@@ -377,6 +377,7 @@ void BarSeries::setCategories(const QList<int>& categories)
     }
     categories_.assign(categories.cbegin(), categories.cend());
     vertexCache_.invalidate();
+    inspectionDataChanged();
     update();
 }
 
@@ -563,6 +564,7 @@ void BarSeries::finishDataChange(std::vector<int>&& categories, const int barCou
     if (previousCount != barCount_) {
         emit countChanged();
     }
+    inspectionDataChanged();
     update();
 }
 

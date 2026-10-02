@@ -179,6 +179,8 @@ public:
 
 protected:
     /// \cond INTERNAL
+    InspectionSource inspectionSource() const override;
+    bool inspectionAvailable() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void itemChange(ItemChange change, const ItemChangeData& value) override;
     void hoverEnterEvent(QHoverEvent* event) override;

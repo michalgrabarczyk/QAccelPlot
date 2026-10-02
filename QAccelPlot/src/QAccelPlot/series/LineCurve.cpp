@@ -12,6 +12,7 @@
 #include "QAccelPlot/effects/GradientCoordinateUtils.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/effects/GradientStroke.hpp"
+#include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
@@ -373,6 +374,7 @@ void LineCurve::appendData(const qreal x, const qreal y)
     rebuildGapConnectData();
 
     invalidateData();
+    inspectionDataChanged(DataChange::Appended);
     update();
 }
 
@@ -487,6 +489,7 @@ void LineCurve::setDataFNoRange(const float* xyInterleaved, const int pointCount
     refreshVertexCacheForDataChange();
     rebuildChunks();
     dataChanged_ = true;
+    inspectionDataChanged();
     update();
 }
 
@@ -524,6 +527,7 @@ void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int po
     installVertexCache(std::move(vertexCache));
     dataChanged_ = true;
     chunksValid_ = false;
+    inspectionDataChanged();
     update();
 }
 
@@ -550,6 +554,7 @@ void LineCurve::setDataFNoRangeWithCache(const float* xyInterleaved, const int p
     installVertexCache(std::move(vertexCache));
     dataChanged_ = true;
     chunksValid_ = false;
+    inspectionDataChanged();
     update();
 }
 
@@ -583,7 +588,27 @@ void LineCurve::clearData()
     chunks_.clear();
     chunksValid_ = true;
     clearDataRanges();
+    inspectionDataChanged();
     update();
+}
+
+InspectionSource LineCurve::inspectionSource() const
+{
+    auto source = InspectionSource{};
+    source.count = pointCount_;
+    source.logX = logScaleX();
+    source.logY = logScaleY();
+    if (dataType_ == DataType::Double) {
+        source.doubles = data_.data();
+    } else {
+        source.floats = dataF_.data();
+    }
+    return source;
+}
+
+bool LineCurve::inspectionAvailable() const
+{
+    return !transitionRun_.pending();
 }
 
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
@@ -1006,6 +1031,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
         rebuildChunks();
 
         dataChanged_ = true;
+        inspectionDataChanged();
         update();
     }
 }
@@ -1021,6 +1047,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         // output argument when it produces data_; changing only the count now would
         // make it refer to a buffer that has not been produced yet.
         invalidateData();
+        inspectionDataChanged();
         update();
         return;
     }
@@ -1035,6 +1062,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     refreshVertexCacheForDataChange();
     rebuildChunks();
     dataChanged_ = true;
+    inspectionDataChanged();
     update();
 }
 
@@ -1370,6 +1398,9 @@ void LineCurve::applyTransitionData()
     rebuildDoubleRenderData(logScaleX(), logScaleY());
     rebuildGapConnectData();
     invalidateData();
+    if (!transitionRun_.pending()) {
+        invalidateInspection();
+    }
     update();
 }
 
