@@ -12,7 +12,7 @@
 
 namespace QAccelPlot {
 
-/// \brief Rectangle dragged out inside the plot area by a mouse gesture, such as rectangle zoom.
+/// \brief Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection.
 class PlotDragRect {
 public:
     /// \brief Starts a drag at \a position.

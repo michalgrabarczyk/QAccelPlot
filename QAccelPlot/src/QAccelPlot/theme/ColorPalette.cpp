@@ -83,6 +83,8 @@ ColorPalette* ColorPalette::createDark()
 
     p->rectangleZoomBorder = QColor("#808080");
     p->rectangleZoomFill = QColor("#26808080");
+    p->selectionBorder = QColor("#63aef7");
+    p->selectionFill = QColor("#3363aef7");
 
     return p;
 }
@@ -144,6 +146,8 @@ ColorPalette* ColorPalette::createLight()
 
     p->rectangleZoomBorder = QColor("#d3d3d3");
     p->rectangleZoomFill = QColor("#26d3d3d3");
+    p->selectionBorder = QColor("#176bb7");
+    p->selectionFill = QColor("#33176bb7");
 
     return p;
 }

@@ -101,3 +101,4 @@ add_qaccelplot_test(tst_plot_inspector     core tst_plot_inspector.cpp Inspectio
 # Loads the tooltip component, so it needs the QML module plugin.
 target_link_libraries(tst_plot_inspector PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_plot_inspector)
+add_qaccelplot_test(tst_selection_tool     core tst_selection_tool.cpp InspectionPlotRig.cpp)

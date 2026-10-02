@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/inspection/SelectionTool.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
@@ -88,6 +89,10 @@ void TestColorPalette::cppDefaultsUseDarkPalette()
     QCOMPARE(plot.rectangleZoom()->borderColor(), palette.rectangleZoomBorder);
     QCOMPARE(plot.grid()->gridColor(), palette.grid);
     QCOMPARE(plot.grid()->subGridColor(), palette.subGrid);
+
+    const QAccelPlot::SelectionTool selection;
+    QCOMPARE(selection.fillColor(), palette.selectionFill);
+    QCOMPARE(selection.borderColor(), palette.selectionBorder);
 
     const QAccelPlot::LineCurve curve;
     QCOMPARE(curve.color(), palette.seriesPrimary);
