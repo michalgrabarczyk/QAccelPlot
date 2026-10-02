@@ -117,6 +117,7 @@ target_include_directories(QAccelPlot
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/effects>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/formatters>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/grid>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/inspection>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/linestyles>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/materials>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/QAccelPlot/renderers>
