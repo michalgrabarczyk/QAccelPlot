@@ -17,16 +17,14 @@ namespace {
 
 constexpr auto kBlockSize = int{512};
 
-enum class Coverage { None, Partial, Full };
-
-// First index whose X is not smaller than x.
-int lowerBound(const InspectionSource& source, const double x)
+// First index whose coordinate along axis is not smaller than value.
+int lowerBound(const InspectionSource& source, const InspectionAxis axis, const double value)
 {
     auto first = 0;
     auto length = source.count;
     while (length > 0) {
         const auto half = length / 2;
-        if (source.x(first + half) < x) {
+        if (source.coordinate(axis, first + half) < value) {
             first += half + 1;
             length -= half + 1;
         } else {
@@ -36,14 +34,14 @@ int lowerBound(const InspectionSource& source, const double x)
     return first;
 }
 
-// First index whose X is greater than x.
-int upperBound(const InspectionSource& source, const double x)
+// First index whose coordinate along axis is greater than value.
+int upperBound(const InspectionSource& source, const InspectionAxis axis, const double value)
 {
     auto first = 0;
     auto length = source.count;
     while (length > 0) {
         const auto half = length / 2;
-        if (x < source.x(first + half)) {
+        if (value < source.coordinate(axis, first + half)) {
             length = half;
         } else {
             first += half + 1;
@@ -102,25 +100,28 @@ void scanCollect(
     }
 }
 
-Coverage coverage(const SummaryAccumulator& stats, const InspectionBounds& bounds)
+// Limits of the bounds along the axis the records are ordered by.
+double lowerLimit(const InspectionBounds& bounds, const InspectionAxis order)
 {
-    if (stats.count == 0 || stats.maximum < bounds.yMin || stats.minimum > bounds.yMax) {
-        return Coverage::None;
-    }
-    return stats.minimum >= bounds.yMin && stats.maximum <= bounds.yMax ? Coverage::Full : Coverage::Partial;
+    return order == InspectionAxis::X ? bounds.xMin : bounds.yMin;
+}
+
+double upperLimit(const InspectionBounds& bounds, const InspectionAxis order)
+{
+    return order == InspectionAxis::X ? bounds.xMax : bounds.yMax;
 }
 
 } // namespace
 
-bool SourceInspection::isSortedX(const InspectionSource& source)
+bool SourceInspection::isSorted(const InspectionSource& source, const InspectionAxis axis)
 {
     auto previous = std::numeric_limits<double>::lowest();
     for (auto i = 0; i < source.count; ++i) {
-        const auto x = source.x(i);
-        if (!isValidSample(x, false) || x < previous) {
+        const auto value = source.coordinate(axis, i);
+        if (!isValidSample(value, false) || value < previous) {
             return false;
         }
-        previous = x;
+        previous = value;
     }
     return true;
 }
@@ -144,29 +145,32 @@ std::size_t SourceInspection::storageBytes() const
     return blocks_.capacity() * sizeof(Block);
 }
 
-InspectionHit SourceInspection::nearestX(const InspectionSource& source, const InspectionMetric& metric, const double pixelX, const double radius) const
+InspectionHit SourceInspection::nearestAlong(
+    const InspectionSource& source, const InspectionMetric& metric, const InspectionAxis order, const double pixel, const double radius) const
 {
     auto best = InspectionHit{-1, radius};
-    const auto pivot = lowerBound(source, metric.coordX(pixelX));
-    const auto left = previousValid(source, pivot - 1);
-    if (left >= 0) {
-        best.consider(left, std::abs(metric.pixelX(source.x(left)) - pixelX));
+    const auto distanceTo = [&](const int index) { return std::abs(metric.pixel(order, source.coordinate(order, index)) - pixel); };
+    const auto pivot = lowerBound(source, order, metric.coord(order, pixel));
+    const auto before = previousValid(source, pivot - 1);
+    if (before >= 0) {
+        best.consider(before, distanceTo(before));
     }
-    auto right = nextValid(source, pivot);
-    if (right >= 0) {
-        // Among samples sharing this X, the highest index is the one drawn last.
-        const auto x = source.x(right);
-        for (auto i = right + 1; i < source.count && source.x(i) == x; ++i) {
+    auto after = nextValid(source, pivot);
+    if (after >= 0) {
+        // Among samples sharing this coordinate, the highest index is the one drawn last.
+        const auto shared = source.coordinate(order, after);
+        for (auto i = after + 1; i < source.count && source.coordinate(order, i) == shared; ++i) {
             if (source.valid(i)) {
-                right = i;
+                after = i;
             }
         }
-        best.consider(right, std::abs(metric.pixelX(x) - pixelX));
+        best.consider(after, distanceTo(after));
     }
     return best;
 }
 
-InspectionHit SourceInspection::nearest(const InspectionSource& source, const InspectionMetric& metric, const QPointF& position, const double radius)
+InspectionHit SourceInspection::nearest(
+    const InspectionSource& source, const InspectionMetric& metric, const InspectionAxis order, const QPointF& position, const double radius)
 {
     auto best = InspectionHit{-1, radius};
     if (source.count <= 0) {
@@ -174,43 +178,42 @@ InspectionHit SourceInspection::nearest(const InspectionSource& source, const In
     }
     syncBlocks(source.count);
     // Blocks are visited outwards from the cursor, so the search stops as soon as a block is
-    // farther away horizontally than the best match.
+    // farther away along the ordered axis than the best match.
     const auto blockCount = static_cast<int>(blocks_.size());
-    auto right = std::min(lowerBound(source, metric.coordX(position.x())), source.count - 1) / kBlockSize;
-    auto left = right - 1;
-    while (left >= 0 || right < blockCount) {
-        if (right < blockCount) {
-            right = visitBlock(source, metric, position, right, best) ? right + 1 : blockCount;
+    const auto cursor = metric.coord(order, order == InspectionAxis::X ? position.x() : position.y());
+    auto after = std::min(lowerBound(source, order, cursor), source.count - 1) / kBlockSize;
+    auto before = after - 1;
+    while (before >= 0 || after < blockCount) {
+        if (after < blockCount) {
+            after = visitBlock(source, metric, order, position, after, best) ? after + 1 : blockCount;
         }
-        if (left >= 0) {
-            left = visitBlock(source, metric, position, left, best) ? left - 1 : -1;
+        if (before >= 0) {
+            before = visitBlock(source, metric, order, position, before, best) ? before - 1 : -1;
         }
     }
     return best;
 }
 
-InspectionNeighbors SourceInspection::neighbors(const InspectionSource& source, const double x) const
+InspectionNeighbors SourceInspection::neighbors(const InspectionSource& source, const InspectionAxis order, const double value) const
 {
-    const auto pivot = upperBound(source, x);
+    const auto pivot = upperBound(source, order, value);
     return {previousValid(source, pivot - 1), nextValid(source, pivot)};
 }
 
-SummaryAccumulator SourceInspection::summarize(const InspectionSource& source, const InspectionBounds& bounds)
+SummaryAccumulator SourceInspection::summarize(const InspectionSource& source, const InspectionAxis order, const InspectionBounds& bounds)
 {
     auto summary = SummaryAccumulator{};
     if (source.count <= 0) {
         return summary;
     }
     syncBlocks(source.count);
-    const auto last = upperBound(source, bounds.xMax);
-    auto index = lowerBound(source, bounds.xMin);
+    const auto last = upperBound(source, order, upperLimit(bounds, order));
+    auto index = lowerBound(source, order, lowerLimit(bounds, order));
     while (index < last) {
-        const auto blockIndex = index / kBlockSize;
-        const auto end = std::min(last, (blockIndex + 1) * kBlockSize);
-        const auto wholeBlock = index % kBlockSize == 0 && (end - index == kBlockSize || end == source.count);
-        const auto covered = wholeBlock ? coverage(block(source, blockIndex).stats, bounds) : Coverage::Partial;
+        const auto end = std::min(last, (index / kBlockSize + 1) * kBlockSize);
+        const auto covered = coverage(source, order, bounds, index, end);
         if (covered == Coverage::Full) {
-            summary.merge(block(source, blockIndex).stats);
+            summary.merge(block(source, index / kBlockSize).stats);
         } else if (covered == Coverage::Partial) {
             scanSummary(source, bounds, index, end, summary);
         }
@@ -219,22 +222,22 @@ SummaryAccumulator SourceInspection::summarize(const InspectionSource& source, c
     return summary;
 }
 
-void SourceInspection::collect(const InspectionSource& source, const InspectionBounds& bounds, int offset, const int limit, QList<int>& indices)
+void SourceInspection::collect(
+    const InspectionSource& source, const InspectionAxis order, const InspectionBounds& bounds, int offset, const int limit, QList<int>& indices)
 {
     if (source.count <= 0) {
         return;
     }
     syncBlocks(source.count);
-    const auto last = upperBound(source, bounds.xMax);
-    auto index = lowerBound(source, bounds.xMin);
+    const auto last = upperBound(source, order, upperLimit(bounds, order));
+    auto index = lowerBound(source, order, lowerLimit(bounds, order));
     while (index < last && indices.size() < limit) {
-        const auto blockIndex = index / kBlockSize;
-        const auto end = std::min(last, (blockIndex + 1) * kBlockSize);
-        const auto wholeBlock = index % kBlockSize == 0 && (end - index == kBlockSize || end == source.count);
-        const auto covered = wholeBlock ? coverage(block(source, blockIndex).stats, bounds) : Coverage::Partial;
-        if (covered == Coverage::Full && offset >= block(source, blockIndex).stats.count) {
+        const auto end = std::min(last, (index / kBlockSize + 1) * kBlockSize);
+        const auto covered = coverage(source, order, bounds, index, end);
+        const auto matches = covered == Coverage::Full ? block(source, index / kBlockSize).stats.count : 0;
+        if (covered == Coverage::Full && offset >= matches) {
             // Every valid sample of the block matches, so the whole block can be skipped.
-            offset -= block(source, blockIndex).stats.count;
+            offset -= matches;
         } else if (covered != Coverage::None) {
             scanCollect(source, bounds, index, end, offset, limit, indices);
         }
@@ -263,28 +266,50 @@ const SourceInspection::Block& SourceInspection::block(const InspectionSource& s
         if (!source.valid(i)) {
             continue;
         }
-        // X is non-decreasing, so the first and last valid samples bound the block.
-        if (result.stats.count == 0) {
-            result.xMin = source.x(i);
-        }
-        result.xMax = source.x(i);
+        const auto x = source.x(i);
+        result.xMin = result.stats.count == 0 ? x : std::min(result.xMin, x);
+        result.xMax = result.stats.count == 0 ? x : std::max(result.xMax, x);
         result.stats.add(source.y(i), i);
     }
     result.computed = true;
     return result;
 }
 
-bool SourceInspection::visitBlock(const InspectionSource& source, const InspectionMetric& metric, const QPointF& position, const int index, InspectionHit& best)
+SourceInspection::Coverage SourceInspection::coverage(
+    const InspectionSource& source, const InspectionAxis order, const InspectionBounds& bounds, const int first, const int end)
+{
+    const auto wholeBlock = first % kBlockSize == 0 && (end - first == kBlockSize || end == source.count);
+    if (!wholeBlock) {
+        return Coverage::Partial;
+    }
+    const auto& candidate = block(source, first / kBlockSize);
+    if (candidate.stats.count == 0) {
+        return Coverage::None;
+    }
+    // The ordered axis is covered by the index range, so only the other axis is compared.
+    const auto ordered = order == InspectionAxis::X;
+    const auto low = ordered ? candidate.stats.minimum : candidate.xMin;
+    const auto high = ordered ? candidate.stats.maximum : candidate.xMax;
+    const auto lowLimit = ordered ? bounds.yMin : bounds.xMin;
+    const auto highLimit = ordered ? bounds.yMax : bounds.xMax;
+    if (high < lowLimit || low > highLimit) {
+        return Coverage::None;
+    }
+    return low >= lowLimit && high <= highLimit ? Coverage::Full : Coverage::Partial;
+}
+
+bool SourceInspection::visitBlock(
+    const InspectionSource& source, const InspectionMetric& metric, const InspectionAxis order, const QPointF& position, const int index, InspectionHit& best)
 {
     const auto& candidate = block(source, index);
     if (candidate.stats.count == 0) {
         return true;
     }
     const auto dx = distanceToInterval(position.x(), metric.pixelX(candidate.xMin), metric.pixelX(candidate.xMax));
-    if (std::abs(dx) > best.distance) {
+    const auto dy = distanceToInterval(position.y(), metric.pixelY(candidate.stats.minimum), metric.pixelY(candidate.stats.maximum));
+    if (std::abs(order == InspectionAxis::X ? dx : dy) > best.distance) {
         return false;
     }
-    const auto dy = distanceToInterval(position.y(), metric.pixelY(candidate.stats.minimum), metric.pixelY(candidate.stats.maximum));
     const auto distance = std::hypot(dx, dy);
     const auto first = index * kBlockSize;
     const auto last = std::min(source.count, first + kBlockSize);
@@ -296,12 +321,12 @@ bool SourceInspection::visitBlock(const InspectionSource& source, const Inspecti
 
 namespace InspectionScan {
 
-InspectionHit nearestX(const InspectionSource& source, const InspectionMetric& metric, const double pixelX, const double radius)
+InspectionHit nearestAlong(const InspectionSource& source, const InspectionMetric& metric, const InspectionAxis axis, const double pixel, const double radius)
 {
     auto best = InspectionHit{-1, radius};
     for (auto i = 0; i < source.count; ++i) {
         if (source.valid(i)) {
-            best.consider(i, std::abs(metric.pixelX(source.x(i)) - pixelX));
+            best.consider(i, std::abs(metric.pixel(axis, source.coordinate(axis, i)) - pixel));
         }
     }
     return best;
@@ -314,17 +339,17 @@ InspectionHit nearest(const InspectionSource& source, const InspectionMetric& me
     return best;
 }
 
-InspectionNeighbors neighbors(const InspectionSource& source, const double x)
+InspectionNeighbors neighbors(const InspectionSource& source, const InspectionAxis axis, const double value)
 {
     auto result = InspectionNeighbors{};
     for (auto i = 0; i < source.count; ++i) {
         if (!source.valid(i)) {
             continue;
         }
-        const auto candidate = source.x(i);
-        if (candidate <= x && (result.left < 0 || candidate >= source.x(result.left))) {
+        const auto candidate = source.coordinate(axis, i);
+        if (candidate <= value && (result.left < 0 || candidate >= source.coordinate(axis, result.left))) {
             result.left = i;
-        } else if (candidate > x && (result.right < 0 || candidate < source.x(result.right))) {
+        } else if (candidate > value && (result.right < 0 || candidate < source.coordinate(axis, result.right))) {
             result.right = i;
         }
     }

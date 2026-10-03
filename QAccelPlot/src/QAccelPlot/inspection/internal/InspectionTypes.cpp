@@ -32,6 +32,11 @@ double InspectionSource::y(const int index) const noexcept
     return doubles ? doubles[i * 2 + 1] : static_cast<double>(floats[i * static_cast<std::size_t>(floatStride) + 1]);
 }
 
+double InspectionSource::coordinate(const InspectionAxis axis, const int index) const noexcept
+{
+    return axis == InspectionAxis::X ? x(index) : y(index);
+}
+
 double InspectionSource::value(const int index) const noexcept
 {
     return values ? static_cast<double>(values[static_cast<std::size_t>(index) * static_cast<std::size_t>(valueStride)])
@@ -53,9 +58,14 @@ double InspectionMetric::pixelY(const double value) const noexcept
     return y.toPixel(value, height);
 }
 
-double InspectionMetric::coordX(const double pixel) const noexcept
+double InspectionMetric::pixel(const InspectionAxis axis, const double value) const noexcept
 {
-    return x.toCoord(pixel, width);
+    return axis == InspectionAxis::X ? pixelX(value) : pixelY(value);
+}
+
+double InspectionMetric::coord(const InspectionAxis axis, const double pixel) const noexcept
+{
+    return axis == InspectionAxis::X ? x.toCoord(pixel, width) : y.toCoord(pixel, height);
 }
 
 bool InspectionBounds::contains(const double x, const double y) const noexcept

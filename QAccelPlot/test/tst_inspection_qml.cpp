@@ -51,11 +51,14 @@ void TestInspectionQml::queriesRowsAndSelection()
                 const inspection = curve.inspection;
                 const sample = inspection.nearestByX(curve.width / 2);
                 const bracket = inspection.bracketByX(curve.width / 4);
+                const byY = inspection.nearestByY(0);
+                const bracketY = inspection.bracketByY(curve.height / 2);
                 const summary = inspection.summarizeRange(-Infinity, Infinity);
                 const page = inspection.indices(-Infinity, Infinity, -Infinity, Infinity, 1, 10);
                 return [inspection.status === QAccelPlot.Inspection.Ready, sample.valid, sample.status === QAccelPlot.Inspection.Ready,
                     sample.index, sample.y, bracket.left.index, bracket.interpolated.y.toFixed(6), summary.count, summary.mean, page.total,
-                    page.indices.length, page.indices[0], root.xAxis.formatValue(sample.x, curve.width)].join("|");
+                    page.indices.length, page.indices[0], root.xAxis.formatValue(sample.x, curve.width), byY.index, bracketY.left.index,
+                    QAccelPlot.PlotInspector.NearestY].join("|");
             }
             function rows() {
                 const row = inspector.model.get(0);
@@ -81,7 +84,7 @@ void TestInspectionQml::queriesRowsAndSelection()
         return result.toString();
     };
     QTRY_VERIFY(curve->width() > 0);
-    QCOMPARE(call("queries"), QStringLiteral("true|true|true|1|6|0|3.000000|3|4|3|2|1|4.000"));
+    QCOMPARE(call("queries"), QStringLiteral("true|true|true|1|6|0|3.000000|3|4|3|2|1|4.000|1|2|1"));
     QTRY_COMPARE(inspector->validCount(), 1);
     QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000"));
     QCOMPARE(call("selection"), QStringLiteral("true|true|2|2"));

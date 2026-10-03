@@ -19,6 +19,7 @@
 namespace QAccelPlot {
 
 class PlotSeries;
+enum class InspectionAxis;
 struct InspectionMetric;
 struct InspectionSource;
 
@@ -28,10 +29,11 @@ struct InspectionSource;
 /// series-local logical pixels; regions are inclusive data-space limits, where an infinite limit
 /// leaves that side unbounded and reversed limits are swapped.
 ///
-/// \c LineCurve and \c PointCloud answer every query. Series whose X values are finite and
+/// \c LineCurve and \c PointCloud answer every query. Series whose X or Y values are finite and
 /// non-decreasing are searched in place, need no preparation, and stay queryable while records
-/// are appended. Unordered series above a small size are indexed on a worker thread first; until
-/// then queries return \c Inspection.Preparing. Other series types expose native records through
+/// are appended; queries along one axis, such as \c nearestByX(), need that order along their own
+/// axis. Other series above a small size are indexed on a worker thread first; until then queries
+/// return \c Inspection.Preparing. Other series types expose native records through
 /// \c recordAt() and \c recordAtPosition() only.
 ///
 /// \sa PlotInspector, SelectionTool
@@ -66,8 +68,12 @@ public:
     Q_INVOKABLE ::QAccelPlot::InspectionSample nearest(const QPointF& position, qreal radius = 10);
     /// \brief Returns the valid sample nearest to \a pixelX horizontally, within \a radius pixels.
     Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
+    /// \brief Returns the valid sample nearest to \a pixelY vertically, within \a radius pixels.
+    Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
     /// \brief Returns the valid samples on either side of \a pixelX and the point between them.
     Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByX(qreal pixelX);
+    /// \brief Returns the valid samples whose Y is on either side of \a pixelY and the point between them.
+    Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByY(qreal pixelY);
     /// \brief Returns Y statistics of the valid samples inside the region.
     Q_INVOKABLE ::QAccelPlot::InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
     /// \brief Returns Y statistics of the valid samples whose X lies in the interval.
@@ -95,12 +101,16 @@ private:
     explicit SeriesInspection(PlotSeries& series);
     void sourceChanged(bool appended);
     void sourceInvalidated();
-    // Returns Ready when queries can run now. An unordered series requests its index and reports Preparing until it is built.
-    InspectionStatus acquire(const InspectionSource& source);
+    // Returns Ready when a query can run now: one along the given axis, or an on-screen or region query otherwise.
+    // A series that is not ordered as the query needs requests its index and reports Preparing until it is built.
+    InspectionStatus acquire(const InspectionSource& source, std::optional<InspectionAxis> along);
     std::optional<InspectionMetric> metric() const;
+    InspectionSample nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
+    InspectionBracket bracketAlong(InspectionAxis axis, qreal pixel);
     InspectionSample makeSample(const InspectionSource& source, int index, qreal distance) const;
     // Interpolates along the straight on-screen segment, which also follows logarithmic axes.
-    InspectionSample interpolate(const InspectionMetric& metric, const InspectionSample& left, const InspectionSample& right, qreal pixelX) const;
+    InspectionSample interpolate(
+        const InspectionMetric& metric, InspectionAxis axis, const InspectionSample& left, const InspectionSample& right, qreal pixel) const;
 
     PlotSeries& series_;
     std::unique_ptr<Private> d_;

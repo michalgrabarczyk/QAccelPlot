@@ -28,13 +28,13 @@ class PlotInspector : public QObject {
     Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Enables queries. A disabled inspector is inactive and does no work. Default: true.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    /// \brief \c NearestX reports each series at the cursor's X; \c NearestXY picks by on-screen distance. Default: NearestX.
+    /// \brief \c NearestX and \c NearestY report each series at the cursor's X or Y; \c NearestXY picks by on-screen distance. Default: NearestX.
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
-    /// \brief Pick distance in logical pixels. In \c NearestX mode it only limits matches beyond a series' first or last sample. Default: 16.
+    /// \brief Pick distance in logical pixels. In \c NearestX and \c NearestY mode it only limits matches beyond a series' extreme samples. Default: 16.
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
     /// \brief Moves the crosshair to the closest matching sample. Default: false.
     Q_PROPERTY(bool snapToSample READ snapToSample WRITE setSnapToSample NOTIFY snapToSampleChanged)
-    /// \brief In \c NearestX mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false.
+    /// \brief In \c NearestX and \c NearestY mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false.
     Q_PROPERTY(bool interpolate READ interpolate WRITE setInterpolate NOTIFY interpolateChanged)
     /// \brief Adds Y statistics of the samples around the cursor to every row. Default: false.
     Q_PROPERTY(bool summaries READ summaries WRITE setSummaries NOTIFY summariesChanged)
@@ -58,7 +58,7 @@ class PlotInspector : public QObject {
     Q_PROPERTY(QString cursorYText READ cursorYText NOTIFY cursorChanged)
     /// \brief True while enabled and the cursor is inside the plot area.
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)
-    /// \brief Crosshair position in plot-local logical pixels; Y is NaN without a cursor Y.
+    /// \brief Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN.
     Q_PROPERTY(QPointF position READ position NOTIFY positionChanged)
     /// \brief Read-only constant: one row per inspected series.
     Q_PROPERTY(::QAccelPlot::InspectionRowModel* model READ model CONSTANT)
@@ -69,6 +69,7 @@ public:
     /// \brief How each series is matched to the cursor.
     enum Mode {
         NearestX, ///< \brief The sample at the cursor's X, for comparing series at one position.
+        NearestY, ///< \brief The sample at the cursor's Y, for series whose independent variable is Y.
         NearestXY ///< \brief The sample closest to the cursor on screen.
     };
     Q_ENUM(Mode)
@@ -96,7 +97,7 @@ public:
     bool snapToSample() const;
     /// \brief Enables or disables crosshair snapping.
     void setSnapToSample(bool enabled);
-    /// \brief Returns whether \c NearestX rows are interpolated between samples.
+    /// \brief Returns whether \c NearestX and \c NearestY rows are interpolated between samples.
     bool interpolate() const;
     /// \brief Enables or disables interpolation between consecutive samples.
     void setInterpolate(bool enabled);
@@ -191,14 +192,16 @@ private:
     void connectSeries(PlotSeries* series);
     bool inspects(PlotSeries* series) const;
     QList<PlotSeries*> inspectedSeries() const;
-    // Returns the cursor in plot-local pixels, or nothing while the inspector is inactive. Y is NaN for a cursor set from code without a Y.
+    // Returns the cursor in plot-local pixels, or nothing while the inspector is inactive. A coordinate that a cursor set from code lacks is NaN.
     std::optional<QPointF> cursorPosition() const;
+    // Returns the mode the cursor allows: without one of its coordinates, series are matched along the other axis.
+    Mode effectiveMode(const QPointF& cursor) const;
     // Fills state with the results at cursor. Returns false when user code run by a label formatter invalidated them.
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
     // Between two samples a series always matches; the radius only limits how far past its ends it still does.
-    InspectionSample sampleByX(SeriesInspection& inspection, qreal pixelX) const;
-    InspectionSummary summarize(PlotSeries& series, const QPointF& local, bool byX) const;
+    InspectionSample sampleAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
+    InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;
     void formatRows(QList<Query>& queries) const;
     bool current(const QList<Query>& queries) const;
     QPointF snappedPosition(const QList<Query>& queries, const QPointF& cursor) const;

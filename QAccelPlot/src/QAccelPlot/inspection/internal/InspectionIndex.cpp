@@ -36,6 +36,7 @@ bool InspectionIndex::build(std::vector<Point>&& points, const bool logX, const 
     points_ = std::move(points);
     nodes_.clear();
     xOrder_.clear();
+    yOrder_.clear();
     if (points_.empty()) {
         return !cancelled.load();
     }
@@ -48,39 +49,33 @@ bool InspectionIndex::build(std::vector<Point>&& points, const bool logX, const 
     if (cancelled.load()) {
         return false;
     }
-    xOrder_.resize(points_.size());
-    std::iota(xOrder_.begin(), xOrder_.end(), 0);
-    std::sort(xOrder_.begin(), xOrder_.end(), [this](const int a, const int b) {
-        const auto& p = points_[static_cast<std::size_t>(a)];
-        const auto& q = points_[static_cast<std::size_t>(b)];
-        return p.x < q.x || (p.x == q.x && p.index < q.index);
-    });
+    sortOrder(InspectionAxis::X, xOrder_);
+    if (cancelled.load()) {
+        return false;
+    }
+    sortOrder(InspectionAxis::Y, yOrder_);
     return !cancelled.load();
 }
 
 std::size_t InspectionIndex::storageBytes() const
 {
-    return sizeof(*this) + points_.capacity() * sizeof(Point) + xOrder_.capacity() * sizeof(int) + nodes_.capacity() * sizeof(Node);
+    return sizeof(*this) + points_.capacity() * sizeof(Point) + (xOrder_.capacity() + yOrder_.capacity()) * sizeof(int) + nodes_.capacity() * sizeof(Node);
 }
 
-InspectionHit InspectionIndex::nearestX(const InspectionMetric& metric, const double pixelX, const double radius) const
+InspectionHit InspectionIndex::nearestAlong(const InspectionMetric& metric, const InspectionAxis axis, const double pixel, const double radius) const
 {
     auto best = InspectionHit{-1, radius};
-    const auto x = metric.coordX(pixelX);
-    const auto it = std::lower_bound(
-        xOrder_.begin(), xOrder_.end(), x, [this](const int i, const double value) { return points_[static_cast<std::size_t>(i)].x < value; });
-    const auto consider = [this, &metric, &best, pixelX](const int i) {
-        const auto& point = points_[static_cast<std::size_t>(i)];
-        best.consider(point.index, std::abs(metric.pixelX(point.x) - pixelX));
-    };
-    if (it != xOrder_.begin()) {
+    const auto& sorted = order(axis);
+    const auto value = metric.coord(axis, pixel);
+    const auto it = std::lower_bound(sorted.begin(), sorted.end(), value, [this, axis](const int i, const double limit) { return key(axis, i) < limit; });
+    const auto consider = [this, &metric, &best, axis, pixel](
+                              const int i) { best.consider(points_[static_cast<std::size_t>(i)].index, std::abs(metric.pixel(axis, key(axis, i)) - pixel)); };
+    if (it != sorted.begin()) {
         consider(*std::prev(it));
     }
-    if (it != xOrder_.end()) {
-        // Among samples sharing this X, the highest index is the one drawn last.
-        const auto sharedX = points_[static_cast<std::size_t>(*it)].x;
-        const auto end
-            = std::upper_bound(it, xOrder_.end(), sharedX, [this](const double value, const int i) { return value < points_[static_cast<std::size_t>(i)].x; });
+    if (it != sorted.end()) {
+        // Among samples sharing this coordinate, the highest index is the one drawn last.
+        const auto end = std::upper_bound(it, sorted.end(), key(axis, *it), [this, axis](const double limit, const int i) { return limit < key(axis, i); });
         consider(*std::prev(end));
     }
     return best;
@@ -119,17 +114,17 @@ InspectionHit InspectionIndex::nearest(const InspectionMetric& metric, const QPo
     return best;
 }
 
-InspectionNeighbors InspectionIndex::neighbors(const double x) const
+InspectionNeighbors InspectionIndex::neighbors(const InspectionAxis axis, const double value) const
 {
-    // xOrder_ sorts equal X by index, so the entries around the pivot are the highest index at or
-    // before x and the lowest index after it.
-    const auto it = std::upper_bound(
-        xOrder_.begin(), xOrder_.end(), x, [this](const double value, const int i) { return value < points_[static_cast<std::size_t>(i)].x; });
+    // Equal coordinates are sorted by index, so the entries around the pivot are the highest index
+    // at or before the value and the lowest index after it.
+    const auto& sorted = order(axis);
+    const auto it = std::upper_bound(sorted.begin(), sorted.end(), value, [this, axis](const double limit, const int i) { return limit < key(axis, i); });
     auto result = InspectionNeighbors{};
-    if (it != xOrder_.begin()) {
+    if (it != sorted.begin()) {
         result.left = points_[static_cast<std::size_t>(*std::prev(it))].index;
     }
-    if (it != xOrder_.end()) {
+    if (it != sorted.end()) {
         result.right = points_[static_cast<std::size_t>(*it)].index;
     }
     return result;
@@ -260,6 +255,28 @@ int InspectionIndex::createNode(const int first, const int last, const std::atom
         });
     }
     return index;
+}
+
+void InspectionIndex::sortOrder(const InspectionAxis axis, std::vector<int>& order) const
+{
+    order.resize(points_.size());
+    std::iota(order.begin(), order.end(), 0);
+    std::sort(order.begin(), order.end(), [this, axis](const int a, const int b) {
+        const auto p = key(axis, a);
+        const auto q = key(axis, b);
+        return p < q || (p == q && points_[static_cast<std::size_t>(a)].index < points_[static_cast<std::size_t>(b)].index);
+    });
+}
+
+const std::vector<int>& InspectionIndex::order(const InspectionAxis axis) const
+{
+    return axis == InspectionAxis::X ? xOrder_ : yOrder_;
+}
+
+double InspectionIndex::key(const InspectionAxis axis, const int position) const
+{
+    const auto& point = points_[static_cast<std::size_t>(position)];
+    return axis == InspectionAxis::X ? point.x : point.y;
 }
 
 double InspectionIndex::distanceToBounds(const InspectionBounds& bounds, const InspectionMetric& metric, const QPointF& position) const

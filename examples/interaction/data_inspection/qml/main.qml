@@ -63,7 +63,7 @@ Window {
 
                 Layout.preferredWidth: 200
                 Material.background: colorPalette.plotArea
-                model: ["Compare by X", "Pick nearest point"]
+                model: ["Compare by X", "Compare by Y", "Pick nearest point"]
             }
 
             Label {
@@ -125,7 +125,7 @@ Window {
                 id: inspector
 
                 plot: plotView
-                mode: queryMode.currentIndex === 0 ? QAccelPlot.PlotInspector.NearestX : QAccelPlot.PlotInspector.NearestXY
+                mode: [QAccelPlot.PlotInspector.NearestX, QAccelPlot.PlotInspector.NearestY, QAccelPlot.PlotInspector.NearestXY][queryMode.currentIndex]
                 summaries: summariesToggle.checked
                 snapToSample: snapping.checked
                 enabled: !selection.selecting

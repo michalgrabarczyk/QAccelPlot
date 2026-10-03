@@ -476,15 +476,24 @@ std::optional<QPointF> PlotInspector::cursorPosition() const
         return plot_->pointerInside() ? std::optional{plot_->pointerPosition()} : std::nullopt;
     }
     const auto area = plot_->plotRect();
-    if (!plot_->xAxis() || !std::isfinite(pinnedX_) || area.isEmpty()) {
-        return std::nullopt;
-    }
-    const auto x = area.x() + plot_->xAxis()->coordToPixel(pinnedX_, area.width());
-    if (!std::isfinite(x) || x < area.left() || x > area.right()) {
-        return std::nullopt;
-    }
+    const auto hasX = plot_->xAxis() && std::isfinite(pinnedX_);
     const auto hasY = plot_->yAxis() && std::isfinite(pinnedY_);
-    return QPointF{x, hasY ? area.y() + plot_->yAxis()->coordToPixel(pinnedY_, area.height()) : kNaN};
+    if (area.isEmpty() || (!hasX && !hasY)) {
+        return std::nullopt;
+    }
+    const auto x = hasX ? area.x() + plot_->xAxis()->coordToPixel(pinnedX_, area.width()) : kNaN;
+    const auto y = hasY ? area.y() + plot_->yAxis()->coordToPixel(pinnedY_, area.height()) : kNaN;
+    // X leads when both are set, so a cursor from code stays active while its X is inside the plot area.
+    const auto inside = hasX ? x >= area.left() && x <= area.right() : y >= area.top() && y <= area.bottom();
+    return inside ? std::optional{QPointF{x, y}} : std::nullopt;
+}
+
+PlotInspector::Mode PlotInspector::effectiveMode(const QPointF& cursor) const
+{
+    if (!std::isfinite(cursor.y())) {
+        return NearestX;
+    }
+    return std::isfinite(cursor.x()) ? mode_ : NearestY;
 }
 
 bool PlotInspector::inspect(const QPointF& cursor, State& state) const
@@ -498,7 +507,7 @@ bool PlotInspector::inspect(const QPointF& cursor, State& state) const
     state.active = true;
     state.position = snappedPosition(queries, cursor);
     const auto area = plot->plotRect();
-    const auto dataX = plot->xAxis() ? plot->pixelToDataX(state.position.x()) : kNaN;
+    const auto dataX = std::isfinite(state.position.x()) && plot->xAxis() ? plot->pixelToDataX(state.position.x()) : kNaN;
     const auto dataY = std::isfinite(state.position.y()) && plot->yAxis() ? plot->pixelToDataY(state.position.y()) : kNaN;
     if (followPointer_) {
         state.cursorX = dataX;
@@ -514,8 +523,9 @@ bool PlotInspector::inspect(const QPointF& cursor, State& state) const
 
 QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) const
 {
-    const auto hasY = std::isfinite(cursor.y());
-    const auto byX = mode_ == NearestX || !hasY;
+    const auto mode = effectiveMode(cursor);
+    const auto center = plot_->plotRect().center();
+    const auto point = QPointF{std::isfinite(cursor.x()) ? cursor.x() : center.x(), std::isfinite(cursor.y()) ? cursor.y() : center.y()};
     auto queries = QList<Query>{};
     for (auto* series : inspectedSeries()) {
         auto query = Query{};
@@ -525,23 +535,25 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         query.boundXAxis = series->xAxis();
         query.boundYAxis = series->yAxis();
         query.size = series->size();
-        const auto local = series->mapFromItem(plot_, QPointF{cursor.x(), hasY ? cursor.y() : plot_->plotRect().center().y()});
-        query.row.sample = byX ? sampleByX(*series->inspection(), local.x()) : series->inspection()->nearest(local, radius_);
+        const auto local = series->mapFromItem(plot_, point);
+        query.row.sample = mode == NearestXY ? series->inspection()->nearest(local, radius_) : sampleAlong(*series->inspection(), mode, local);
         if (query.row.sample.valid()) {
             query.row.pixelPosition = series->mapToItem(plot_, query.row.sample.pixelPosition);
         }
         if (summaries_) {
             query.row.hasSummary = true;
-            query.row.summary = summarize(*series, local, byX);
+            query.row.summary = summarize(*series, local, mode);
         }
         queries.push_back(query);
     }
     return queries;
 }
 
-InspectionSample PlotInspector::sampleByX(SeriesInspection& inspection, const qreal pixelX) const
+InspectionSample PlotInspector::sampleAlong(SeriesInspection& inspection, const Mode mode, const QPointF& local) const
 {
-    const auto bracket = inspection.bracketByX(pixelX);
+    const auto byX = mode == NearestX;
+    const auto pixel = byX ? local.x() : local.y();
+    const auto bracket = byX ? inspection.bracketByX(pixel) : inspection.bracketByY(pixel);
     if (!bracket.valid()) {
         auto result = InspectionSample{};
         result.status = bracket.status;
@@ -551,12 +563,13 @@ InspectionSample PlotInspector::sampleByX(SeriesInspection& inspection, const qr
     if (interpolate_ && bracket.interpolated.valid()) {
         return bracket.interpolated;
     }
-    const auto inside = bracket.left.valid() && bracket.right.valid();
-    return inspection.nearestByX(pixelX, inside ? std::numeric_limits<qreal>::infinity() : radius_);
+    const auto limit = bracket.left.valid() && bracket.right.valid() ? std::numeric_limits<qreal>::infinity() : radius_;
+    return byX ? inspection.nearestByX(pixel, limit) : inspection.nearestByY(pixel, limit);
 }
 
-InspectionSummary PlotInspector::summarize(PlotSeries& series, const QPointF& local, const bool byX) const
+InspectionSummary PlotInspector::summarize(PlotSeries& series, const QPointF& local, const Mode mode) const
 {
+    constexpr static auto kInfinity = std::numeric_limits<qreal>::infinity();
     auto result = InspectionSummary{};
     result.dataRevision = series.dataRevision();
     if (!series.xAxis() || !series.yAxis() || !(series.width() > 0) || !(series.height() > 0)) {
@@ -565,12 +578,12 @@ InspectionSummary PlotInspector::summarize(PlotSeries& series, const QPointF& lo
     }
     const auto x0 = series.xAxis()->pixelToCoord(local.x() - summaryRadius_, series.width());
     const auto x1 = series.xAxis()->pixelToCoord(local.x() + summaryRadius_, series.width());
-    if (byX) {
+    if (mode == NearestX) {
         return series.inspection()->summarizeRange(x0, x1);
     }
     const auto y0 = series.yAxis()->pixelToCoord(local.y() - summaryRadius_, series.height());
     const auto y1 = series.yAxis()->pixelToCoord(local.y() + summaryRadius_, series.height());
-    return series.inspection()->summarize(x0, x1, y0, y1);
+    return mode == NearestY ? series.inspection()->summarize(-kInfinity, kInfinity, y0, y1) : series.inspection()->summarize(x0, x1, y0, y1);
 }
 
 void PlotInspector::formatRows(QList<Query>& queries) const
@@ -611,8 +624,9 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
     if (!closest) {
         return cursor;
     }
-    const auto snapY = mode_ == NearestXY && std::isfinite(cursor.y());
-    return {closest->pixelPosition.x(), snapY ? closest->pixelPosition.y() : cursor.y()};
+    // Only the coordinates the mode matches by are snapped.
+    const auto mode = effectiveMode(cursor);
+    return {mode == NearestY ? cursor.x() : closest->pixelPosition.x(), mode == NearestX ? cursor.y() : closest->pixelPosition.y()};
 }
 
 void PlotInspector::publish(const State& state)

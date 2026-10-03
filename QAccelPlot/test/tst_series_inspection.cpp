@@ -64,6 +64,8 @@ void compareAgainstScan(PointCloud& cloud, const std::vector<double>& data, cons
         auto nearestDistance = 20.0;
         auto nearestX = -1;
         auto nearestXDistance = kInfinity;
+        auto nearestY = -1;
+        auto nearestYDistance = kInfinity;
         auto inside = 0;
         for (auto i = 0; i < count; ++i) {
             const auto pixel = inspection->sampleAt(i).pixelPosition;
@@ -76,12 +78,17 @@ void compareAgainstScan(PointCloud& cloud, const std::vector<double>& data, cons
                 nearestXDistance = std::abs(pixel.x() - position.x());
                 nearestX = i;
             }
+            if (std::abs(pixel.y() - position.y()) <= nearestYDistance) {
+                nearestYDistance = std::abs(pixel.y() - position.y());
+                nearestY = i;
+            }
             const auto x = data[static_cast<std::size_t>(i) * 2];
             const auto y = data[static_cast<std::size_t>(i) * 2 + 1];
             inside += x >= -30 && x <= 40 && y >= -20 && y <= 30 ? 1 : 0;
         }
         QCOMPARE(inspection->nearest(position, 20).index, nearest);
         QCOMPARE(inspection->nearestByX(position.x()).index, nearestX);
+        QCOMPARE(inspection->nearestByY(position.y()).index, nearestY);
         QCOMPARE(inspection->summarize(-30, 40, -20, 30).count, inside);
     }
 }
@@ -104,6 +111,8 @@ private slots:
     void coincidentPoints();
     void zeroRadiusMapping();
     void appendedRecords();
+    void orderedAlongY();
+    void queriesAcrossTheOrder();
     void nativeRecords();
 };
 
@@ -442,6 +451,83 @@ void TestSeriesInspection::appendedRecords()
     QCOMPARE(inspection->summarizeRange(0, 1).status, InspectionStatus::Preparing);
     QTRY_COMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->summarizeRange(0, 1).count, 3);
+}
+
+void TestSeriesInspection::orderedAlongY()
+{
+    // A depth profile: Y is the independent variable and increases, X oscillates.
+    auto curve = LineCurve{};
+    auto x = Axis{};
+    auto y = Axis{};
+    const auto count = 100000;
+    bind(curve, x, y, {QPointF{-2, 0}, QPointF{2, count + 100.0}}, {400, 1000});
+    auto data = std::vector<double>(static_cast<std::size_t>(count) * 2);
+    for (auto i = 0; i < count; ++i) {
+        data[static_cast<std::size_t>(i) * 2] = std::sin(i * 0.01);
+        data[static_cast<std::size_t>(i) * 2 + 1] = i;
+    }
+    curve.setData(std::move(data), count);
+    auto* inspection = curve.inspection();
+    const auto pixelY = [&](const double value) { return y.coordToPixel(value, 1000); };
+
+    // Queries along Y, on-screen queries, and regions are searched in place: no index, no preparation.
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+    QCOMPARE(inspection->nearestByY(pixelY(40000.2)).index, 40000);
+    const auto bracket = inspection->bracketByY(pixelY(40000.5));
+    QCOMPARE(bracket.left.index, 40000);
+    QCOMPARE(bracket.right.index, 40001);
+    QVERIFY(bracket.adjacent);
+    QVERIFY(bracket.interpolated.valid());
+    QVERIFY(std::abs(bracket.interpolated.y() - 40000.5) < 1e-6);
+    QVERIFY(std::abs(bracket.interpolated.x() - (std::sin(400.0) + std::sin(400.01)) / 2) < 1e-6);
+    QVERIFY(!inspection->bracketByY(pixelY(-5)).left.valid());
+    QVERIFY(!inspection->bracketByY(pixelY(count + 5.0)).right.valid());
+    const auto target = inspection->sampleAt(70000).pixelPosition;
+    QCOMPARE(inspection->nearest(target, 0).index, 70000);
+    QCOMPARE(inspection->summarize(-kInfinity, kInfinity, 1000, 1999).count, 1000);
+    QCOMPARE(inspection->summarize(0, kInfinity, 0, 313).count, 314);
+    const auto page = inspection->indices(-kInfinity, kInfinity, 500, 600, 0, 10);
+    QVERIFY(page.sourceOrder);
+    QCOMPARE(page.total, 101);
+    QCOMPARE(page.indices.first(), 500);
+    QVERIFY(inspection->indexBytes() < quint64{1} * count);
+
+    // Appending along Y keeps the series queryable.
+    curve.appendData(0.25, count + 10.0);
+    QCOMPARE(inspection->nearestByY(pixelY(count + 10.0)).index, count);
+    QCOMPARE(inspection->status(), InspectionStatus::Ready);
+}
+
+void TestSeriesInspection::queriesAcrossTheOrder()
+{
+    // Records ordered along X: a query along Y cannot use that order.
+    for (const auto count : {2000, 30000}) {
+        auto cloud = PointCloud{};
+        auto x = Axis{};
+        auto y = Axis{};
+        bind(cloud, x, y, {QPointF{-100, -100}, QPointF{100, 100}}, {800, 200});
+        auto data = randomPoints(count, 44);
+        for (auto i = 0; i < count; ++i) {
+            data[static_cast<std::size_t>(i) * 2] = -100.0 + 200.0 * i / count;
+        }
+        cloud.setData(data.data(), count);
+        auto* inspection = cloud.inspection();
+        // Queries along X and regions stay in place, whatever the size.
+        QCOMPARE(inspection->status(), InspectionStatus::Ready);
+        QVERIFY(inspection->nearestByX(400).valid());
+        QVERIFY(inspection->summarizeRange(-10, 10).valid());
+        // A small series is scanned along Y; a large one is indexed first.
+        if (count > 20000) {
+            QCOMPARE(inspection->nearestByY(100).status, InspectionStatus::Preparing);
+            QCOMPARE(inspection->bracketByY(100).status, InspectionStatus::Preparing);
+            QCOMPARE(inspection->status(), InspectionStatus::Ready);
+            QTRY_VERIFY(inspection->nearestByY(100).valid());
+        }
+        compareAgainstScan(cloud, data, count);
+        const auto bracket = inspection->bracketByY(100);
+        QVERIFY(bracket.left.valid() && bracket.right.valid());
+        QVERIFY(bracket.left.y() <= 0.0 && bracket.right.y() > 0.0);
+    }
 }
 
 void TestSeriesInspection::nativeRecords()

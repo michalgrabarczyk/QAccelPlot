@@ -125,7 +125,7 @@ public:
     bool valid() const;
 };
 
-/// \brief The valid samples on either side of an X position.
+/// \brief The valid samples on either side of a position on one axis.
 struct InspectionBracket {
     Q_GADGET
     QML_ANONYMOUS
@@ -135,9 +135,9 @@ struct InspectionBracket {
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    /// \brief Last valid sample at or before the position; invalid before the first sample.
+    /// \brief Valid sample with the largest coordinate at or below the position; invalid when there is none.
     Q_PROPERTY(::QAccelPlot::InspectionSample left MEMBER left CONSTANT)
-    /// \brief First valid sample after the position; invalid at or after the last sample.
+    /// \brief Valid sample with the smallest coordinate above the position; invalid when there is none.
     Q_PROPERTY(::QAccelPlot::InspectionSample right MEMBER right CONSTANT)
     /// \brief True when both neighbors exist and their source indices are consecutive.
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)

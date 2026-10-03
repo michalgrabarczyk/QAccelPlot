@@ -112,6 +112,7 @@ class TestPlotInspector : public QObject {
 private slots:
     void rows();
     void matching();
+    void matchingByY();
     void summariesAndFilters();
     void notifications();
     void cursor();
@@ -205,6 +206,58 @@ void TestPlotInspector::matching()
     QVERIFY(between.value("interpolated").toBool());
     QVERIFY(std::abs(between.value("sampleX").toDouble() - 5.0) < 1e-9);
     QVERIFY(std::abs(between.value("sampleY").toDouble() - 4.5) < 1e-9);
+}
+
+void TestPlotInspector::matchingByY()
+{
+    // A profile whose independent variable is Y.
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({3, 1, 6, 9});
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto inspector = PlotInspector{};
+    inspector.setPlot(&rig.plot);
+    inspector.setMode(PlotInspector::NearestY);
+    const auto rowAt = [&](const QPointF& point) {
+        rig.hover(point);
+        inspector.refresh();
+        return inspector.model()->get(0);
+    };
+
+    // Between two samples a series matches whatever the horizontal distance; past its ends the radius decides.
+    QCOMPARE(rowAt(rig.pixel(9, 2)).value("sampleIndex").toInt(), 0);
+    QCOMPARE(rowAt(rig.pixel(1, 8)).value("sampleIndex").toInt(), 1);
+    QVERIFY(rowAt(rig.pixel(5, 9.1)).value("valid").toBool());
+    QVERIFY(!rowAt(rig.pixel(5, 9.9)).value("valid").toBool());
+
+    // Interpolation reports the point on the line at the cursor's Y.
+    inspector.setInterpolate(true);
+    const auto between = rowAt(rig.pixel(9, 5));
+    QVERIFY(between.value("interpolated").toBool());
+    QVERIFY(std::abs(between.value("sampleX").toDouble() - 4.5) < 1e-9);
+    QVERIFY(std::abs(between.value("sampleY").toDouble() - 5.0) < 1e-9);
+    inspector.setInterpolate(false);
+
+    // Snapping moves the crosshair's Y only, and summaries cover the band around the cursor.
+    inspector.setSnapToSample(true);
+    inspector.setSummaries(true);
+    inspector.setSummaryRadius(1000);
+    const auto snapped = rowAt(rig.pixel(9, 2));
+    QCOMPARE(inspector.position().x(), rig.pixel(9, 2).x());
+    QCOMPARE(inspector.position().y(), rig.pixel(3, 1).y());
+    QCOMPARE(snapped.value("summaryCount").toInt(), 2);
+
+    // A cursor set from code with only a Y has no vertical line and matches by Y in every mode.
+    inspector.setSnapToSample(false);
+    inspector.setMode(PlotInspector::NearestX);
+    inspector.setFollowPointer(false);
+    inspector.setCursorY(8);
+    inspector.refresh();
+    QVERIFY(inspector.active());
+    QVERIFY(std::isnan(inspector.position().x()));
+    QCOMPARE(inspector.position().y(), rig.pixel(0, 8).y());
+    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 1);
+    QCOMPARE(inspector.cursorXText(), QString{});
+    QCOMPARE(inspector.cursorYText(), QStringLiteral("8.000"));
 }
 
 void TestPlotInspector::summariesAndFilters()

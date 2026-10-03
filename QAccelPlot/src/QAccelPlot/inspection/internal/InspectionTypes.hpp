@@ -15,6 +15,9 @@
 
 namespace QAccelPlot {
 
+/// \brief Data dimension a query measures along, or along which a series' records are ordered.
+enum class InspectionAxis { X, Y };
+
 /// \brief Read-only view over the XY records a series exposes to inspection queries.
 ///
 /// The pointers refer to the series' own buffers and are only valid until its next data change.
@@ -31,6 +34,8 @@ struct InspectionSource {
     [[nodiscard]] bool supported() const noexcept;
     [[nodiscard]] double x(int index) const noexcept;
     [[nodiscard]] double y(int index) const noexcept;
+    /// \brief Returns the coordinate of record \a index along \a axis.
+    [[nodiscard]] double coordinate(InspectionAxis axis, int index) const noexcept;
     [[nodiscard]] double value(int index) const noexcept;
     /// \brief Applies the invalid-sample contract shared with rendering.
     [[nodiscard]] bool valid(int index) const noexcept;
@@ -45,7 +50,10 @@ struct InspectionMetric {
 
     [[nodiscard]] double pixelX(double value) const noexcept;
     [[nodiscard]] double pixelY(double value) const noexcept;
-    [[nodiscard]] double coordX(double pixel) const noexcept;
+    /// \brief Maps a data \a value on \a axis to a series-local pixel.
+    [[nodiscard]] double pixel(InspectionAxis axis, double value) const noexcept;
+    /// \brief Maps a series-local \a pixel on \a axis to a data value.
+    [[nodiscard]] double coord(InspectionAxis axis, double pixel) const noexcept;
 };
 
 /// \brief Inclusive data-space region; infinite limits leave a dimension unbounded.
