@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PlotDragRect" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotDragRect</compoundname>
+    <includes local="no">PlotDragRect.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotDragRect_1a804d6b48ddac4fae6d3e48e40a82cf7e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotDragRect::active_</definition>
+        <argsstring></argsstring>
+        <name>active_</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::active_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="35" column="10" bodyfile="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotDragRect_1ac596d0003d0e41ef5e8153daddff6670" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotDragRect::start_</definition>
+        <argsstring></argsstring>
+        <name>start_</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::start_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="36" column="13" bodyfile="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotDragRect_1a7129ad997e231c3e3fc4339358f23beb" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotDragRect::end_</definition>
+        <argsstring></argsstring>
+        <name>end_</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::end_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="37" column="13" bodyfile="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a8cc48237fc669ff4d8ecac26b69da044" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotDragRect::begin</definition>
+        <argsstring>(const QPointF &amp;position)</argsstring>
+        <name>begin</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::begin</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Starts a drag at <emphasis>position</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="19" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a6e306033feca8a5d850ccedef668ebf9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotDragRect::moveTo</definition>
+        <argsstring>(const QPointF &amp;position, const QRectF &amp;bounds)</argsstring>
+        <name>moveTo</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::moveTo</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Moves the free corner to <emphasis>position</emphasis>, clamped to <emphasis>bounds</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="21" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1af566454a83f94f6e384c35e3e918ea47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotDragRect::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::end</qualifiedname>
+        <briefdescription>
+<para>Ends the drag. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="23" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a49bc64944607a4a15a108009fddcf1f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotDragRect::active</definition>
+        <argsstring>() const</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::active</qualifiedname>
+        <briefdescription>
+<para>Returns true between <computeroutput><ref refid="classQAccelPlot_1_1PlotDragRect_1a8cc48237fc669ff4d8ecac26b69da044" kindref="member">begin()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PlotDragRect_1af566454a83f94f6e384c35e3e918ea47" kindref="member">end()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="25" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1ac704f5b5770fbb41afaa8c68ed71a340" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::PlotDragRect::rect</definition>
+        <argsstring>() const</argsstring>
+        <name>rect</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::rect</qualifiedname>
+        <briefdescription>
+<para>Returns the normalized rectangle between the pressed and the free corner. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="27" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a7ba009c32760eb70fc728f20636e3533" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool QAccelPlot::PlotDragRect::modifiersMatch</definition>
+        <argsstring>(int pressed, int required)</argsstring>
+        <name>modifiersMatch</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::modifiersMatch</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>pressed</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>required</declname>
+        </param>
+        <briefdescription>
+<para>Returns true when the pressed modifiers are exactly the <emphasis>required</emphasis> ones. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="30" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a8ab7dcd956325dc753dd99f517fea7f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool QAccelPlot::PlotDragRect::meetsMinimum</definition>
+        <argsstring>(const QRectF &amp;rect, qreal minimumSize, bool checkWidth=true, bool checkHeight=true)</argsstring>
+        <name>meetsMinimum</name>
+        <qualifiedname>QAccelPlot::PlotDragRect::meetsMinimum</qualifiedname>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>rect</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>minimumSize</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>checkWidth</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>checkHeight</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Returns true when <emphasis>rect</emphasis> is at least <emphasis>minimumSize</emphasis> in every checked dimension. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="32" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/PlotDragRect.hpp" bodystart="16" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a49bc64944607a4a15a108009fddcf1f5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a804d6b48ddac4fae6d3e48e40a82cf7e" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>active_</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a8cc48237fc669ff4d8ecac26b69da044" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>begin</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1af566454a83f94f6e384c35e3e918ea47" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>end</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a7129ad997e231c3e3fc4339358f23beb" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>end_</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a8ab7dcd956325dc753dd99f517fea7f6" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>meetsMinimum</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a7ba009c32760eb70fc728f20636e3533" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>modifiersMatch</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a6e306033feca8a5d850ccedef668ebf9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>moveTo</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1ac704f5b5770fbb41afaa8c68ed71a340" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>rect</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1ac596d0003d0e41ef5e8153daddff6670" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>start_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

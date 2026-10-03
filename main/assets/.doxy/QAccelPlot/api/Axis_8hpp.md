@@ -17,6 +17,7 @@
 
 
 
+* `#include "QAccelPlot/axis/AxisMapping.hpp"`
 * `#include "QAccelPlot/axis/AxisTicker.hpp"`
 * `#include "QAccelPlot/axis/AxisTicks.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`

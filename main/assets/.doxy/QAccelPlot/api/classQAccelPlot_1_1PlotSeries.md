@@ -91,6 +91,8 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property quint64 | [**dataRevision**](classQAccelPlot_1_1PlotSeries.md#property-datarevision-12)  <br>_Revision incremented by every accepted change of the series' records._  |
+| property [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](classQAccelPlot_1_1PlotSeries.md#property-inspection-12)  <br>_Read-only constant: data queries for this series._  |
 | property [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](classQAccelPlot_1_1PlotSeries.md#property-legendsymbol-12)  <br>_Symbol style requested from the default legend._  |
 | property QString | [**name**](classQAccelPlot_1_1PlotSeries.md#property-name-12)  <br>_Identifying name used by the default legend._  |
 | property QRectF | [**plotRect**](classQAccelPlot_1_1PlotSeries.md#property-plotrect-12)  <br>_Plot area in parent-item coordinates, assigned by_ `PlotView` _._ |
@@ -104,6 +106,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**dataRevisionChanged**](classQAccelPlot_1_1PlotSeries.md#signal-datarevisionchanged)  <br>_Emitted when the dataRevision property changes._  |
 | signal void | [**legendSymbolChanged**](classQAccelPlot_1_1PlotSeries.md#signal-legendsymbolchanged)  <br> |
 | signal void | [**nameChanged**](classQAccelPlot_1_1PlotSeries.md#signal-namechanged)  <br> |
 | signal void | [**plotRectChanged**](classQAccelPlot_1_1PlotSeries.md#signal-plotrectchanged)  <br> |
@@ -121,6 +124,8 @@ flowchart TB
 | ---: | :--- |
 |   | [**PlotSeries**](#function-plotseries) (QQuickItem \* parent=nullptr) <br> |
 | virtual void | [**clearData**](#function-cleardata) () = 0<br>_Removes all records from the series._  |
+|  quint64 | [**dataRevision**](#function-datarevision-22) () const<br>_Returns the current data revision._  |
+|  [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) \* | [**inspection**](#function-inspection-22) () const<br>_Returns the data queries for this series; created on first use and owned by the series._  |
 |  [**LegendSymbol**](classQAccelPlot_1_1PlotSeries.md#enum-legendsymbol) | [**legendSymbol**](#function-legendsymbol-22) () const<br> |
 |  QString | [**name**](#function-name-22) () const<br> |
 |  QRectF | [**plotRect**](#function-plotrect-22) () const<br> |
@@ -145,6 +150,11 @@ flowchart TB
 
 
 
+## Protected Types
+
+| Type | Name |
+| ---: | :--- |
+| enum  | [**DataChange**](#enum-datachange)  <br>_How the records changed in a data update._  |
 
 
 
@@ -174,6 +184,12 @@ flowchart TB
 |  void | [**clearYDataRange**](#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
+| virtual bool | [**inspectionAvailable**](#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
+|  void | [**inspectionDataChanged**](#function-inspectiondatachanged) ([**DataChange**](classQAccelPlot_1_1PlotSeries.md#enum-datachange) change=DataChange::Replaced) <br>_Advances the data revision and refreshes the data queries. Call after every accepted record change._  |
+| virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) const<br>_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._ |
+| virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) const<br>_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._ |
+| virtual [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) | [**inspectionSource**](#function-inspectionsource) () const<br>_Returns a view of the XY records that sample queries search. The default has none._  |
+|  void | [**invalidateInspection**](#function-invalidateinspection) () <br>_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._  |
 | virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () <br>_Called when the viewport of a bound axis changes. The default implementation schedules a repaint._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () <br>_Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound._  |
 |  QRectF | [**resolvePlotRect**](#function-resolveplotrect) () const<br>_Returns the plot area to render into:_ `plotRect` _when set, otherwise the item's current size._ |
@@ -267,6 +283,36 @@ Every shape except `Pixel` fits within a square whose half-width is the marker s
 
 
 
+### property dataRevision {#property-datarevision-12}
+
+_Revision incremented by every accepted change of the series' records._ 
+```C++
+quint64 QAccelPlot::PlotSeries::dataRevision;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property inspection {#property-inspection-12}
+
+_Read-only constant: data queries for this series._ 
+```C++
+QAccelPlot::SeriesInspection* QAccelPlot::PlotSeries::inspection;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property legendSymbol {#property-legendsymbol-12}
 
 _Symbol style requested from the default legend._ 
@@ -340,6 +386,21 @@ Axis* QAccelPlot::PlotSeries::yAxis;
 <hr>
 ## Public Signals Documentation
 
+
+
+
+
+### signal dataRevisionChanged {#signal-datarevisionchanged}
+
+_Emitted when the dataRevision property changes._ 
+```C++
+void QAccelPlot::PlotSeries::dataRevisionChanged;
+```
+
+
+
+
+<hr>
 
 
 
@@ -467,6 +528,36 @@ explicit QAccelPlot::PlotSeries::PlotSeries (
 _Removes all records from the series._ 
 ```C++
 virtual void QAccelPlot::PlotSeries::clearData () = 0
+```
+
+
+
+
+<hr>
+
+
+
+
+### function dataRevision {#function-datarevision-22}
+
+_Returns the current data revision._ 
+```C++
+quint64 QAccelPlot::PlotSeries::dataRevision () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspection {#function-inspection-22}
+
+_Returns the data queries for this series; created on first use and owned by the series._ 
+```C++
+SeriesInspection * QAccelPlot::PlotSeries::inspection () const
 ```
 
 
@@ -804,6 +895,26 @@ Axis * QAccelPlot::PlotSeries::yAxis () const
 
 
 <hr>
+## Protected Types Documentation
+
+
+
+
+
+### enum DataChange {#enum-datachange}
+
+_How the records changed in a data update._ 
+```C++
+enum QAccelPlot::PlotSeries::DataChange {
+    Replaced,
+    Appended
+};
+```
+
+
+
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -883,6 +994,102 @@ _Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the ex
 void QAccelPlot::PlotSeries::extendYDataRange (
     qreal y
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionAvailable {#function-inspectionavailable}
+
+_Returns false while the records are ambiguous, such as during a data transition. Default: true._ 
+```C++
+virtual bool QAccelPlot::PlotSeries::inspectionAvailable () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionDataChanged {#function-inspectiondatachanged}
+
+_Advances the data revision and refreshes the data queries. Call after every accepted record change._ 
+```C++
+void QAccelPlot::PlotSeries::inspectionDataChanged (
+    DataChange change=DataChange::Replaced
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionRecord {#function-inspectionrecord}
+
+_Returns the native record at_ _index_ _for series that are not plain XY series. Default: unsupported._
+```C++
+virtual InspectionRecord QAccelPlot::PlotSeries::inspectionRecord (
+    int index
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionRecordAt {#function-inspectionrecordat}
+
+_Returns the native record drawn at the series-local_ _position_ _. Default: unsupported._
+```C++
+virtual InspectionRecord QAccelPlot::PlotSeries::inspectionRecordAt (
+    const QPointF & position
+) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function inspectionSource {#function-inspectionsource}
+
+_Returns a view of the XY records that sample queries search. The default has none._ 
+```C++
+virtual InspectionSource QAccelPlot::PlotSeries::inspectionSource () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function invalidateInspection {#function-invalidateinspection}
+
+_Refreshes the data queries after record validity changed without a data change, such as an axis scale switch._ 
+```C++
+void QAccelPlot::PlotSeries::invalidateInspection () 
 ```
 
 

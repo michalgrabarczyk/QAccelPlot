@@ -88,6 +88,8 @@ flowchart TB
 | property QColor | [**plotBorder**](classQAccelPlot_1_1ColorPalette.md#property-plotborder)  <br> |
 | property QColor | [**rectangleZoomBorder**](classQAccelPlot_1_1ColorPalette.md#property-rectanglezoomborder)  <br> |
 | property QColor | [**rectangleZoomFill**](classQAccelPlot_1_1ColorPalette.md#property-rectanglezoomfill)  <br> |
+| property QColor | [**selectionBorder**](classQAccelPlot_1_1ColorPalette.md#property-selectionborder)  <br> |
+| property QColor | [**selectionFill**](classQAccelPlot_1_1ColorPalette.md#property-selectionfill)  <br> |
 | property QColor | [**seriesCyan**](classQAccelPlot_1_1ColorPalette.md#property-seriescyan)  <br> |
 | property QColor | [**seriesMuted**](classQAccelPlot_1_1ColorPalette.md#property-seriesmuted)  <br> |
 | property QColor | [**seriesPrimary**](classQAccelPlot_1_1ColorPalette.md#property-seriesprimary)  <br> |
@@ -497,6 +499,34 @@ QColor QAccelPlot::ColorPalette::rectangleZoomBorder;
 
 ```C++
 QColor QAccelPlot::ColorPalette::rectangleZoomFill;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property selectionBorder {#property-selectionborder}
+
+```C++
+QColor QAccelPlot::ColorPalette::selectionBorder;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property selectionFill {#property-selectionfill}
+
+```C++
+QColor QAccelPlot::ColorPalette::selectionFill;
 ```
 
 

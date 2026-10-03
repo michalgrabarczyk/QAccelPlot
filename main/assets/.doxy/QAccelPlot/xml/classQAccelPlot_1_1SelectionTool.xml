@@ -1,0 +1,1796 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SelectionTool" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SelectionTool</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">SelectionTool.hpp</includes>
+    <innerclass refid="structQAccelPlot_1_1SelectionTool_1_1Region" prot="private">QAccelPlot::SelectionTool::Region</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Mode</name>
+        <qualifiedname>QAccelPlot::SelectionTool::Mode</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a3498513b91f73b69e8a91a07d73589f3" prot="public">
+          <name>Box</name>
+          <briefdescription>
+<para>The dragged rectangle. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210abd137f0128a26649552b86e6778cc93d" prot="public">
+          <name>XRange</name>
+          <briefdescription>
+<para>The dragged X interval, unbounded in Y. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a4b87170647c3f13bbc4a801fc0390fa6" prot="public">
+          <name>YRange</name>
+          <briefdescription>
+<para>The dragged Y interval, unbounded in X. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Region selected by a gesture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="73" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="73" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a4ae38bb3b21c4d4ea7e1a9c77a438663" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot::QAccelPlot</ref> *</type>
+        <definition>QAccelPlot::QAccelPlot* QAccelPlot::SelectionTool::plot</definition>
+        <argsstring></argsstring>
+        <name>plot</name>
+        <qualifiedname>QAccelPlot::SelectionTool::plot</qualifiedname>
+        <read>plot</read>
+        <write>setPlot</write>
+        <briefdescription>
+<para>Plot receiving the selection gestures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="33" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1acc851b184f120b04d378076eb043d30f" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">QAccelPlot::Axis</ref> *</type>
+        <definition>QAccelPlot::Axis* QAccelPlot::SelectionTool::xAxis</definition>
+        <argsstring></argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xAxis</qualifiedname>
+        <read>xAxis</read>
+        <write>setXAxis</write>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the X limits refer to; unset uses the plot&apos;s primary X axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="35" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a80e34f498bbde1d2f11b22b7c77d5f7c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">QAccelPlot::Axis</ref> *</type>
+        <definition>QAccelPlot::Axis* QAccelPlot::SelectionTool::yAxis</definition>
+        <argsstring></argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yAxis</qualifiedname>
+        <read>yAxis</read>
+        <write>setYAxis</write>
+        <briefdescription>
+<para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> the Y limits refer to; unset uses the plot&apos;s primary Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="37" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1afb3d1b54d907783d6726047b24f5af83" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::SelectionTool::enabled</qualifiedname>
+        <read>enabled</read>
+        <write>setEnabled</write>
+        <briefdescription>
+<para>Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="39" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ad9bc6d4433f3822f98a66b792c1bd488" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::SelectionTool::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>QAccelPlot::SelectionTool::mode</qualifiedname>
+        <read>mode</read>
+        <write>setMode</write>
+        <briefdescription>
+<para>Region a gesture selects: a box, an X range, or a Y range. Default: Box. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a482493a643a7684a5d68cc8c26a366d2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::button</definition>
+        <argsstring></argsstring>
+        <name>button</name>
+        <qualifiedname>QAccelPlot::SelectionTool::button</qualifiedname>
+        <read>button</read>
+        <write>setButton</write>
+        <briefdescription>
+<para>Mouse button that starts a gesture. Default: Qt.LeftButton. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a2dd0d1460e483c16fdc6dd4f6ae4b946" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::modifiers</definition>
+        <argsstring></argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::SelectionTool::modifiers</qualifiedname>
+        <read>modifiers</read>
+        <write>setModifiers</write>
+        <briefdescription>
+<para>Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="45" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ab2a52fce00d063792b21ced9c9ee3823" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::minimumSize</definition>
+        <argsstring></argsstring>
+        <name>minimumSize</name>
+        <qualifiedname>QAccelPlot::SelectionTool::minimumSize</qualifiedname>
+        <read>minimumSize</read>
+        <write>setMinimumSize</write>
+        <briefdescription>
+<para>Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="47" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a20289821ab4b7f9341bd1bcb7f46035c" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::fillColor</definition>
+        <argsstring></argsstring>
+        <name>fillColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::fillColor</qualifiedname>
+        <read>fillColor</read>
+        <write>setFillColor</write>
+        <briefdescription>
+<para>Fill color of the rectangle. Default: <computeroutput>Colors.dark.selectionFill</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="49" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a6de5cb7d1fb1cb5be24fa2154ec5fc48" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::borderColor</definition>
+        <argsstring></argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::borderColor</qualifiedname>
+        <read>borderColor</read>
+        <write>setBorderColor</write>
+        <briefdescription>
+<para>Outline color of the rectangle. Default: <computeroutput>Colors.dark.selectionBorder</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="51" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1abce078e5553681c14a7c92354e539004" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::rectangleVisible</definition>
+        <argsstring></argsstring>
+        <name>rectangleVisible</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rectangleVisible</qualifiedname>
+        <read>rectangleVisible</read>
+        <write>setRectangleVisible</write>
+        <briefdescription>
+<para>Draws the gesture and the selected region. Disable it to draw <computeroutput>pixelRect</computeroutput> yourself. Default: true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="53" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a5359c37b5aa7ca1b9ba8250a52f1bb54" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::selecting</definition>
+        <argsstring></argsstring>
+        <name>selecting</name>
+        <qualifiedname>QAccelPlot::SelectionTool::selecting</qualifiedname>
+        <read>selecting</read>
+        <briefdescription>
+<para>True while a gesture is in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="55" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ac8ed072f4effda73f0bce43ce07ca3ea" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::hasSelection</definition>
+        <argsstring></argsstring>
+        <name>hasSelection</name>
+        <qualifiedname>QAccelPlot::SelectionTool::hasSelection</qualifiedname>
+        <read>hasSelection</read>
+        <briefdescription>
+<para>True while a region is selected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="57" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a2a5bba858d000c6f352043cec6b841a5" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::SelectionTool::pixelRect</definition>
+        <argsstring></argsstring>
+        <name>pixelRect</name>
+        <qualifiedname>QAccelPlot::SelectionTool::pixelRect</qualifiedname>
+        <read>pixelRect</read>
+        <briefdescription>
+<para>Gesture or selected region in plot-local logical pixels; empty without either. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="59" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a8fdc5236a73617ded36fcccb7964ba8d" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::xMin</definition>
+        <argsstring></argsstring>
+        <name>xMin</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xMin</qualifiedname>
+        <read>xMin</read>
+        <briefdescription>
+<para>Lower X limit of the selection; -Infinity when unbounded, NaN without a selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="61" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a56fa3914fdee63f62100594dcb89e22f" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::xMax</definition>
+        <argsstring></argsstring>
+        <name>xMax</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xMax</qualifiedname>
+        <read>xMax</read>
+        <briefdescription>
+<para>Upper X limit of the selection; Infinity when unbounded, NaN without a selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="63" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a988dacb2ee15cece4c1faf17494e8adb" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::yMin</definition>
+        <argsstring></argsstring>
+        <name>yMin</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yMin</qualifiedname>
+        <read>yMin</read>
+        <briefdescription>
+<para>Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ac131c6f8909022bb8ac2137216f78e3d" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::yMax</definition>
+        <argsstring></argsstring>
+        <name>yMax</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yMax</qualifiedname>
+        <read>yMax</read>
+        <briefdescription>
+<para>Upper Y limit of the selection; Infinity when unbounded, NaN without a selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="67" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">QAccelPlot::InspectionRowModel</ref> *</type>
+        <definition>QAccelPlot::InspectionRowModel* QAccelPlot::SelectionTool::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <qualifiedname>QAccelPlot::SelectionTool::model</qualifiedname>
+        <read>model</read>
+        <briefdescription>
+<para>Read-only constant: one row of region statistics per selected series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="69" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a5c4dbcb62d9b482497a4ebc12f88678a" prot="private" static="no" mutable="no">
+        <type>QPointer&lt;<ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> &gt;</type>
+        <definition>QPointer&lt;::QAccelPlot::QAccelPlot&gt; QAccelPlot::SelectionTool::plot_</definition>
+        <argsstring></argsstring>
+        <name>plot_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::plot_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="206" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad40a471038124a3e4d35736c69bbd93f" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
+        <definition>QPointer&lt;Axis&gt; QAccelPlot::SelectionTool::xAxis_</definition>
+        <argsstring></argsstring>
+        <name>xAxis_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xAxis_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="207" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a89fc2147e7d3821d7710eb32b4429228" prot="private" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
+        <definition>QPointer&lt;Axis&gt; QAccelPlot::SelectionTool::yAxis_</definition>
+        <argsstring></argsstring>
+        <name>yAxis_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yAxis_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="208" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ae1d474730d102b2461f56cb8981cc046" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::enabled_</definition>
+        <argsstring></argsstring>
+        <name>enabled_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::enabled_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="209" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="209" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a9a4a9b2931c3d40861d091805813b1e1" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::SelectionTool::mode_</definition>
+        <argsstring></argsstring>
+        <name>mode_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::mode_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a3498513b91f73b69e8a91a07d73589f3" kindref="member">Box</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="210" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ae3c116c9c9ee2994265089147035f845" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::button_</definition>
+        <argsstring></argsstring>
+        <name>button_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::button_</qualifiedname>
+        <initializer>{Qt::LeftButton}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="211" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="211" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac130489459549525a3582648a3391c84" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::modifiers_</definition>
+        <argsstring></argsstring>
+        <name>modifiers_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::modifiers_</qualifiedname>
+        <initializer>{Qt::ShiftModifier}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="212" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="212" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1add6ebc8920d08d7b4e9459b2d1cc68b3" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::minimumSize_</definition>
+        <argsstring></argsstring>
+        <name>minimumSize_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::minimumSize_</qualifiedname>
+        <initializer>{6.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="213" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="213" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1aef368f0c6b48aea6f3074a2540f059f3" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::fillColor_</definition>
+        <argsstring></argsstring>
+        <name>fillColor_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::fillColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().selectionFill}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="214" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="214" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac3b660f6fb7cc7c8c02c885715ad42f9" prot="private" static="no" mutable="no">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::borderColor_</definition>
+        <argsstring></argsstring>
+        <name>borderColor_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::borderColor_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1ColorPalette_1ab932bbb47c7cf2198f0cd6930b53788e" kindref="member">ColorPalette::dark</ref>().selectionBorder}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="215" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="215" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac0fa633d9285d7f13239f79ad234b78a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::rectangleVisible_</definition>
+        <argsstring></argsstring>
+        <name>rectangleVisible_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rectangleVisible_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="216" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a02c29b663509a6b5ddda29def63e2c06" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotDragRect" kindref="compound">PlotDragRect</ref></type>
+        <definition>PlotDragRect QAccelPlot::SelectionTool::drag_</definition>
+        <argsstring></argsstring>
+        <name>drag_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::drag_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="217" column="18" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac278407ceaae4f08e4f71e734928e9b3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::hasSelection_</definition>
+        <argsstring></argsstring>
+        <name>hasSelection_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::hasSelection_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="218" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="218" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1afe8e6730cf0d3339a5fafff1dc79db8e" prot="private" static="no" mutable="no">
+        <type>Region</type>
+        <definition>Region QAccelPlot::SelectionTool::region_</definition>
+        <argsstring></argsstring>
+        <name>region_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::region_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="219" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a0b32d00935b2e05dcefede06dde36dce" prot="private" static="no" mutable="no">
+        <type>quint64</type>
+        <definition>quint64 QAccelPlot::SelectionTool::rowsGeneration_</definition>
+        <argsstring></argsstring>
+        <name>rowsGeneration_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rowsGeneration_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="220" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad6b343d989482400e3f9f17ad4ec57c2" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel* QAccelPlot::SelectionTool::model_</definition>
+        <argsstring></argsstring>
+        <name>model_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::model_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="221" column="24" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1aad9c01b673b7d0216b5813ddd6a0c245" prot="private" static="no" mutable="no">
+        <type>QList&lt; QMetaObject::Connection &gt;</type>
+        <definition>QList&lt;QMetaObject::Connection&gt; QAccelPlot::SelectionTool::connections_</definition>
+        <argsstring></argsstring>
+        <name>connections_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::connections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="222" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a4274068daed152210e8e12393491b060" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1SelectionRectangle" kindref="compound">SelectionRectangle</ref> *</type>
+        <definition>SelectionRectangle* QAccelPlot::SelectionTool::rectangle_</definition>
+        <argsstring></argsstring>
+        <name>rectangle_</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rectangle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="224" column="24" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a6a7eefce6446bf3adb4c163124af5441" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SelectionTool::SelectionTool</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>SelectionTool</name>
+        <qualifiedname>QAccelPlot::SelectionTool::SelectionTool</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a tool without a plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="81" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1388233f5936d16c748a181712cd52df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+        <definition>::QAccelPlot::QAccelPlot * QAccelPlot::SelectionTool::plot</definition>
+        <argsstring>() const</argsstring>
+        <name>plot</name>
+        <qualifiedname>QAccelPlot::SelectionTool::plot</qualifiedname>
+        <briefdescription>
+<para>Returns the attached plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="84" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a99106dbee9ec99c02e49357ebc627508" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setPlot</definition>
+        <argsstring>(::QAccelPlot::QAccelPlot *plot)</argsstring>
+        <name>setPlot</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setPlot</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+          <declname>plot</declname>
+        </param>
+        <briefdescription>
+<para>Attaches to <emphasis>plot</emphasis> and clears the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="86" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a77dfd27eae51f99ccebb1c84da3f8073" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis * QAccelPlot::SelectionTool::xAxis</definition>
+        <argsstring>() const</argsstring>
+        <name>xAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xAxis</qualifiedname>
+        <briefdescription>
+<para>Returns the axis the X limits refer to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="88" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a28f8e946a4918806e20f8c3c77cb1b14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setXAxis</definition>
+        <argsstring>(Axis *axis)</argsstring>
+        <name>setXAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setXAxis</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Sets the X axis and clears the selection; null uses the plot&apos;s primary X axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="90" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a82686d8fa57a7ea198de40dfaaaea895" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+        <definition>Axis * QAccelPlot::SelectionTool::yAxis</definition>
+        <argsstring>() const</argsstring>
+        <name>yAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yAxis</qualifiedname>
+        <briefdescription>
+<para>Returns the axis the Y limits refer to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="92" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ab113f1337c795e0da3e659321f8a0408" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setYAxis</definition>
+        <argsstring>(Axis *axis)</argsstring>
+        <name>setYAxis</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setYAxis</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Sets the Y axis and clears the selection; null uses the plot&apos;s primary Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="94" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a07a752780bbc6b3aa14270de9a8aa832" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::enabled</definition>
+        <argsstring>() const</argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::SelectionTool::enabled</qualifiedname>
+        <briefdescription>
+<para>Returns whether gestures are enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="96" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ae5ad9c004730614d4e9483c5b617830f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables gestures. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="98" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac045d253ad149bc5a0093fd574289c20" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::SelectionTool::mode</definition>
+        <argsstring>() const</argsstring>
+        <name>mode</name>
+        <qualifiedname>QAccelPlot::SelectionTool::mode</qualifiedname>
+        <briefdescription>
+<para>Returns the region a gesture selects. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="100" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1afa44124a282a30d5c1611bbfdaa01692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setMode</definition>
+        <argsstring>(Mode mode)</argsstring>
+        <name>setMode</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setMode</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" kindref="member">Mode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Sets the region a gesture selects and cancels a gesture in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a55d0ba8782f1f42174e97508afbb8758" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::button</definition>
+        <argsstring>() const</argsstring>
+        <name>button</name>
+        <qualifiedname>QAccelPlot::SelectionTool::button</qualifiedname>
+        <briefdescription>
+<para>Returns the mouse button that starts a gesture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="104" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a682c8d6b847be7a2b37efd2bb69f295f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setButton</definition>
+        <argsstring>(int button)</argsstring>
+        <name>setButton</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setButton</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+<para>Sets the mouse button that starts a gesture. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a68386d81298c48e4e921da4ecbec3c43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::SelectionTool::modifiers</definition>
+        <argsstring>() const</argsstring>
+        <name>modifiers</name>
+        <qualifiedname>QAccelPlot::SelectionTool::modifiers</qualifiedname>
+        <briefdescription>
+<para>Returns the required keyboard modifiers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="108" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a73ea5168756a77bdb777e8c6f7517f90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setModifiers</definition>
+        <argsstring>(int modifiers)</argsstring>
+        <name>setModifiers</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setModifiers</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>modifiers</declname>
+        </param>
+        <briefdescription>
+<para>Sets the exact keyboard modifiers required at press time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="110" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1f2ca3022d26b8fca3aebec958a1eb6e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::minimumSize</definition>
+        <argsstring>() const</argsstring>
+        <name>minimumSize</name>
+        <qualifiedname>QAccelPlot::SelectionTool::minimumSize</qualifiedname>
+        <briefdescription>
+<para>Returns the smallest selecting gesture in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="112" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac34edcabbc3d600a08db159eb7a2c3db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setMinimumSize</definition>
+        <argsstring>(qreal size)</argsstring>
+        <name>setMinimumSize</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setMinimumSize</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="114" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a82f52c4fcced2e385a4b28b87d034620" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::fillColor</definition>
+        <argsstring>() const</argsstring>
+        <name>fillColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::fillColor</qualifiedname>
+        <briefdescription>
+<para>Returns the rectangle&apos;s fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="116" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a1c7920926c2465388b1af6622171d420" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setFillColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setFillColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setFillColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the rectangle&apos;s fill color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="118" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a8331c6b34a687260f2addf026c20e20b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QColor</type>
+        <definition>QColor QAccelPlot::SelectionTool::borderColor</definition>
+        <argsstring>() const</argsstring>
+        <name>borderColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::borderColor</qualifiedname>
+        <briefdescription>
+<para>Returns the rectangle&apos;s outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="120" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a92e1cd2d957ca494f9c5b07ae809359a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setBorderColor</definition>
+        <argsstring>(const QColor &amp;color)</argsstring>
+        <name>setBorderColor</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setBorderColor</qualifiedname>
+        <param>
+          <type>const QColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Sets the rectangle&apos;s outline color. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a88ec3ec0a4ac9f9011ea7cbe264f7894" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::rectangleVisible</definition>
+        <argsstring>() const</argsstring>
+        <name>rectangleVisible</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rectangleVisible</qualifiedname>
+        <briefdescription>
+<para>Returns whether the tool draws its rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="124" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1accc2e2ccedb486ad93218a3faa653e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setRectangleVisible</definition>
+        <argsstring>(bool visible)</argsstring>
+        <name>setRectangleVisible</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setRectangleVisible</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>visible</declname>
+        </param>
+        <briefdescription>
+<para>Shows or hides the tool&apos;s rectangle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a093a9de5e67e56fdac22d667cc803d71" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::selecting</definition>
+        <argsstring>() const</argsstring>
+        <name>selecting</name>
+        <qualifiedname>QAccelPlot::SelectionTool::selecting</qualifiedname>
+        <briefdescription>
+<para>Returns true while a gesture is in progress. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="128" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adb4eb5ca47a763ef84018db864fed5ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::hasSelection</definition>
+        <argsstring>() const</argsstring>
+        <name>hasSelection</name>
+        <qualifiedname>QAccelPlot::SelectionTool::hasSelection</qualifiedname>
+        <briefdescription>
+<para>Returns true while a region is selected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a7520d60e1034e7931f82820cbf57a1b0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::SelectionTool::pixelRect</definition>
+        <argsstring>() const</argsstring>
+        <name>pixelRect</name>
+        <qualifiedname>QAccelPlot::SelectionTool::pixelRect</qualifiedname>
+        <briefdescription>
+<para>Returns the gesture or selected region in plot-local logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="132" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a408a13332806a1f9d9feff7df476a3bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::xMin</definition>
+        <argsstring>() const</argsstring>
+        <name>xMin</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xMin</qualifiedname>
+        <briefdescription>
+<para>Returns the lower X limit of the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="134" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aefff4ad27089dfd8623dad3cf8bfcb8f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::xMax</definition>
+        <argsstring>() const</argsstring>
+        <name>xMax</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xMax</qualifiedname>
+        <briefdescription>
+<para>Returns the upper X limit of the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="136" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1acbce441a073ce5cf5b97bd579fb1aa83" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::yMin</definition>
+        <argsstring>() const</argsstring>
+        <name>yMin</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yMin</qualifiedname>
+        <briefdescription>
+<para>Returns the lower Y limit of the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="138" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1affd315317c2cddaf81626717429583b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::SelectionTool::yMax</definition>
+        <argsstring>() const</argsstring>
+        <name>yMax</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yMax</qualifiedname>
+        <briefdescription>
+<para>Returns the upper Y limit of the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="140" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ab63cf648a53671b4e9f589d9bc933c36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel * QAccelPlot::SelectionTool::model</definition>
+        <argsstring>() const</argsstring>
+        <name>model</name>
+        <qualifiedname>QAccelPlot::SelectionTool::model</qualifiedname>
+        <briefdescription>
+<para>Returns the model of per-series region statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="142" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a3aa2a6e56d46ccb8477f2b6efcac3f72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE bool</type>
+        <definition>Q_INVOKABLE bool QAccelPlot::SelectionTool::select</definition>
+        <argsstring>(qreal xMin, qreal xMax, qreal yMin, qreal yMax)</argsstring>
+        <name>select</name>
+        <qualifiedname>QAccelPlot::SelectionTool::select</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>xMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>xMax</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMax</declname>
+        </param>
+        <briefdescription>
+<para>Selects the region with the given limits; returns false when a limit is NaN. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="145" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a8bc1b672c659a59434d03c5477f6ecc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionPage</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SelectionTool::indices</definition>
+        <argsstring>(::QAccelPlot::PlotSeries *series, int offset=0, int limit=4096)</argsstring>
+        <name>indices</name>
+        <qualifiedname>QAccelPlot::SelectionTool::indices</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">::QAccelPlot::PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>limit</declname>
+          <defval>4096</defval>
+        </param>
+        <briefdescription>
+<para>Returns one page of <emphasis>series&apos;</emphasis> source indices inside the selection, against its current data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="147" column="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a0bc4ff93e10ea2926c25ed2b6179945a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::SelectionTool::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>QAccelPlot::SelectionTool::clear</qualifiedname>
+        <briefdescription>
+<para>Cancels a gesture in progress and clears the selection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="149" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a32d29dbb2b31102707903117c0859a49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::plotChanged</definition>
+        <argsstring>()</argsstring>
+        <name>plotChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::plotChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the plot property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="153" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ad8e6b506d7004ecf37aac7ed7b3749b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::xAxisChanged</definition>
+        <argsstring>()</argsstring>
+        <name>xAxisChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::xAxisChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the axis the X limits refer to changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="155" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a5f719b79093a704075e6777edce14082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::yAxisChanged</definition>
+        <argsstring>()</argsstring>
+        <name>yAxisChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::yAxisChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the axis the Y limits refer to changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="157" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1aff3b8988f5bf54c4e39c02b854d55d8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::enabledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>enabledChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::enabledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the enabled property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="159" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a2c89e39a28d9143aa6f48728b8d534bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::modeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>modeChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::modeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the mode property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="161" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1abc56b7a76800775cd1088b912c5d14e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::buttonChanged</definition>
+        <argsstring>()</argsstring>
+        <name>buttonChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::buttonChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the button property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="163" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a668ffc7e330ede5641788259103cc205" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::modifiersChanged</definition>
+        <argsstring>()</argsstring>
+        <name>modifiersChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::modifiersChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the modifiers property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="165" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a73ae9aee2225967fa032bfd5c834b744" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::minimumSizeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>minimumSizeChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::minimumSizeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the minimumSize property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="167" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ac860e3ec00721ef56d21b0adfb29d6c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::fillColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>fillColorChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::fillColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the fillColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a476d72d0797e4d2d46bc4ffda21e28a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::borderColorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>borderColorChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::borderColorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the borderColor property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="171" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a99349dd7b62eedded8c7f9accd305c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::rectangleVisibleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>rectangleVisibleChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::rectangleVisibleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the rectangleVisible property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="173" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a245d06920ebc5186c546cc3b3a75ce31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::selectingChanged</definition>
+        <argsstring>()</argsstring>
+        <name>selectingChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::selectingChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when a gesture starts or ends. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="175" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1ae27245ece20e779f73a2eeb77d67c0c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::selectionChanged</definition>
+        <argsstring>()</argsstring>
+        <name>selectionChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::selectionChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the selected region is set, changed, or cleared. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="177" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1a6ff8070c6f6dabe479a14532932c7d4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::pixelRectChanged</definition>
+        <argsstring>()</argsstring>
+        <name>pixelRectChanged</name>
+        <qualifiedname>QAccelPlot::SelectionTool::pixelRectChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the pixelRect property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="179" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1SelectionTool_1aaa743cac154a81f2ea4a80e1729bb32f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::completed</definition>
+        <argsstring>()</argsstring>
+        <name>completed</name>
+        <qualifiedname>QAccelPlot::SelectionTool::completed</qualifiedname>
+        <briefdescription>
+<para>Emitted when a gesture selected a region. Rows of series that are still preparing follow later. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="181" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ad176023a6d8c0af120901637d11c1d64" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::reconnect</definition>
+        <argsstring>()</argsstring>
+        <name>reconnect</name>
+        <qualifiedname>QAccelPlot::SelectionTool::reconnect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="191" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a13f1b9d232d615cb6de7b58a23ecb8aa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::connectSeries</definition>
+        <argsstring>(PlotSeries *series)</argsstring>
+        <name>connectSeries</name>
+        <qualifiedname>QAccelPlot::SelectionTool::connectSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="192" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac261aabe118f6b1a6f117def7f77b784" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::resetAxes</definition>
+        <argsstring>()</argsstring>
+        <name>resetAxes</name>
+        <qualifiedname>QAccelPlot::SelectionTool::resetAxes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="194" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ad929cdb25c3a78258df83585b7554523" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::press</definition>
+        <argsstring>(PlotMouseEvent *event)</argsstring>
+        <name>press</name>
+        <qualifiedname>QAccelPlot::SelectionTool::press</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="195" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a6a6aa63fb0704d100c856b1d9c37f049" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::move</definition>
+        <argsstring>(PlotMouseEvent *event)</argsstring>
+        <name>move</name>
+        <qualifiedname>QAccelPlot::SelectionTool::move</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="196" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1aa7aa5319a55cf24f0b326dc297deb21c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::release</definition>
+        <argsstring>(PlotMouseEvent *event)</argsstring>
+        <name>release</name>
+        <qualifiedname>QAccelPlot::SelectionTool::release</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotMouseEvent" kindref="compound">PlotMouseEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="197" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adac56b9ed68c65f5b22f128fdf21ade2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::cancelGesture</definition>
+        <argsstring>()</argsstring>
+        <name>cancelGesture</name>
+        <qualifiedname>QAccelPlot::SelectionTool::cancelGesture</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="198" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ad06cc72e6981d2e6462a0f6eaca1635f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::setRegion</definition>
+        <argsstring>(const Region &amp;region)</argsstring>
+        <name>setRegion</name>
+        <qualifiedname>QAccelPlot::SelectionTool::setRegion</qualifiedname>
+        <param>
+          <type>const Region &amp;</type>
+          <declname>region</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="199" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a22e349b58eebae302db2c399fca4fb81" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SelectionTool::refreshRows</definition>
+        <argsstring>()</argsstring>
+        <name>refreshRows</name>
+        <qualifiedname>QAccelPlot::SelectionTool::refreshRows</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="200" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a4a00094d76e606bfc2798a8d3490fd36" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SelectionTool::selects</definition>
+        <argsstring>(const PlotSeries *series) const</argsstring>
+        <name>selects</name>
+        <qualifiedname>QAccelPlot::SelectionTool::selects</qualifiedname>
+        <param>
+          <type>const <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="201" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1afd84561d88e51e898cc515f00393bd03" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::SelectionTool::gestureRect</definition>
+        <argsstring>() const</argsstring>
+        <name>gestureRect</name>
+        <qualifiedname>QAccelPlot::SelectionTool::gestureRect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="202" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1adea9fa78b0b416f17385402ebecca9ca" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QRectF</type>
+        <definition>QRectF QAccelPlot::SelectionTool::regionRect</definition>
+        <argsstring>() const</argsstring>
+        <name>regionRect</name>
+        <qualifiedname>QAccelPlot::SelectionTool::regionRect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="203" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a7e7c1f15a9e002b76719a0d1d1bdd227" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Region</type>
+        <definition>Region QAccelPlot::SelectionTool::regionFromGesture</definition>
+        <argsstring>(const QRectF &amp;pixels) const</argsstring>
+        <name>regionFromGesture</name>
+        <qualifiedname>QAccelPlot::SelectionTool::regionFromGesture</qualifiedname>
+        <param>
+          <type>const QRectF &amp;</type>
+          <declname>pixels</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="204" column="12"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Selects a data-space region by dragging, without changing the plot viewport. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The tool draws the gesture and the selected region in the plot&apos;s overlay, below the overlay&apos;s other children. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>, <ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::SelectionTool</label>
+        <link refid="classQAccelPlot_1_1SelectionTool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SelectionTool</label>
+        <link refid="classQAccelPlot_1_1SelectionTool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="29" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="29" bodyend="225"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a6de5cb7d1fb1cb5be24fa2154ec5fc48" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a8331c6b34a687260f2addf026c20e20b" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac3b660f6fb7cc7c8c02c885715ad42f9" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColor_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a476d72d0797e4d2d46bc4ffda21e28a6" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a3498513b91f73b69e8a91a07d73589f3" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>Box</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a482493a643a7684a5d68cc8c26a366d2" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a55d0ba8782f1f42174e97508afbb8758" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae3c116c9c9ee2994265089147035f845" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1abc56b7a76800775cd1088b912c5d14e1" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>buttonChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1adac56b9ed68c65f5b22f128fdf21ade2" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>cancelGesture</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a0bc4ff93e10ea2926c25ed2b6179945a" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>clear</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aaa743cac154a81f2ea4a80e1729bb32f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>completed</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aad9c01b673b7d0216b5813ddd6a0c245" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>connections_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a13f1b9d232d615cb6de7b58a23ecb8aa" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>connectSeries</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a02c29b663509a6b5ddda29def63e2c06" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>drag_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1afb3d1b54d907783d6726047b24f5af83" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a07a752780bbc6b3aa14270de9a8aa832" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae1d474730d102b2461f56cb8981cc046" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>enabled_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aff3b8988f5bf54c4e39c02b854d55d8d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a20289821ab4b7f9341bd1bcb7f46035c" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>fillColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a82f52c4fcced2e385a4b28b87d034620" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>fillColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aef368f0c6b48aea6f3074a2540f059f3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>fillColor_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac860e3ec00721ef56d21b0adfb29d6c2" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>fillColorChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1afd84561d88e51e898cc515f00393bd03" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>gestureRect</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac8ed072f4effda73f0bce43ce07ca3ea" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1adb4eb5ca47a763ef84018db864fed5ca" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac278407ceaae4f08e4f71e734928e9b3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>hasSelection_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a8bc1b672c659a59434d03c5477f6ecc1" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>indices</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ab2a52fce00d063792b21ced9c9ee3823" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a1f2ca3022d26b8fca3aebec958a1eb6e" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1add6ebc8920d08d7b4e9459b2d1cc68b3" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSize_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a73ae9aee2225967fa032bfd5c834b744" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>minimumSizeChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>Mode</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad9bc6d4433f3822f98a66b792c1bd488" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>mode</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac045d253ad149bc5a0093fd574289c20" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>mode</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a9a4a9b2931c3d40861d091805813b1e1" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>mode_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2c89e39a28d9143aa6f48728b8d534bd" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modeChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ab63cf648a53671b4e9f589d9bc933c36" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad6b343d989482400e3f9f17ad4ec57c2" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2dd0d1460e483c16fdc6dd4f6ae4b946" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a68386d81298c48e4e921da4ecbec3c43" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac130489459549525a3582648a3391c84" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a668ffc7e330ede5641788259103cc205" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiersChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a6a6aa63fb0704d100c856b1d9c37f049" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>move</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2a5bba858d000c6f352043cec6b841a5" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRect</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a7520d60e1034e7931f82820cbf57a1b0" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRect</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a6ff8070c6f6dabe479a14532932c7d4d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRectChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a4ae38bb3b21c4d4ea7e1a9c77a438663" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a1388233f5936d16c748a181712cd52df" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a5c4dbcb62d9b482497a4ebc12f88678a" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plot_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a32d29dbb2b31102707903117c0859a49" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>plotChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad929cdb25c3a78258df83585b7554523" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>press</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad176023a6d8c0af120901637d11c1d64" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>reconnect</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a4274068daed152210e8e12393491b060" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rectangle_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1abce078e5553681c14a7c92354e539004" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rectangleVisible</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a88ec3ec0a4ac9f9011ea7cbe264f7894" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rectangleVisible</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac0fa633d9285d7f13239f79ad234b78a" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rectangleVisible_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a99349dd7b62eedded8c7f9accd305c7d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rectangleVisibleChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a22e349b58eebae302db2c399fca4fb81" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>refreshRows</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1afe8e6730cf0d3339a5fafff1dc79db8e" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>region_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a7e7c1f15a9e002b76719a0d1d1bdd227" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>regionFromGesture</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1adea9fa78b0b416f17385402ebecca9ca" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>regionRect</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aa7aa5319a55cf24f0b326dc297deb21c" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>release</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac261aabe118f6b1a6f117def7f77b784" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>resetAxes</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a0b32d00935b2e05dcefede06dde36dce" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>rowsGeneration_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a3aa2a6e56d46ccb8477f2b6efcac3f72" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>select</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a5359c37b5aa7ca1b9ba8250a52f1bb54" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selecting</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a093a9de5e67e56fdac22d667cc803d71" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selecting</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a245d06920ebc5186c546cc3b3a75ce31" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selectingChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae27245ece20e779f73a2eeb77d67c0c3" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selectionChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a6a7eefce6446bf3adb4c163124af5441" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>SelectionTool</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a4a00094d76e606bfc2798a8d3490fd36" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selects</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a92e1cd2d957ca494f9c5b07ae809359a" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setBorderColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a682c8d6b847be7a2b37efd2bb69f295f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setButton</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ae5ad9c004730614d4e9483c5b617830f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a1c7920926c2465388b1af6622171d420" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setFillColor</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac34edcabbc3d600a08db159eb7a2c3db" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMinimumSize</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1afa44124a282a30d5c1611bbfdaa01692" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMode</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a73ea5168756a77bdb777e8c6f7517f90" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setModifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a99106dbee9ec99c02e49357ebc627508" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setPlot</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1accc2e2ccedb486ad93218a3faa653e38" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRectangleVisible</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad06cc72e6981d2e6462a0f6eaca1635f" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRegion</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a28f8e946a4918806e20f8c3c77cb1b14" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setXAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ab113f1337c795e0da3e659321f8a0408" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setYAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1acc851b184f120b04d378076eb043d30f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a77dfd27eae51f99ccebb1c84da3f8073" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad40a471038124a3e4d35736c69bbd93f" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxis_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad8e6b506d7004ecf37aac7ed7b3749b9" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a56fa3914fdee63f62100594dcb89e22f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMax</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1aefff4ad27089dfd8623dad3cf8bfcb8f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMax</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a8fdc5236a73617ded36fcccb7964ba8d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMin</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a408a13332806a1f9d9feff7df476a3bc" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>xMin</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210abd137f0128a26649552b86e6778cc93d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>XRange</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a80e34f498bbde1d2f11b22b7c77d5f7c" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a82686d8fa57a7ea198de40dfaaaea895" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a89fc2147e7d3821d7710eb32b4429228" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxis_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a5f719b79093a704075e6777edce14082" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yAxisChanged</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac131c6f8909022bb8ac2137216f78e3d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yMax</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1affd315317c2cddaf81626717429583b2" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yMax</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a988dacb2ee15cece4c1faf17494e8adb" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yMin</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1acbce441a073ce5cf5b97bd579fb1aa83" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>yMin</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a4b87170647c3f13bbc4a801fc0390fa6" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>YRange</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

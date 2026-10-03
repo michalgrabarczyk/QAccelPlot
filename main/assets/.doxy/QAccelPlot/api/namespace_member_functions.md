@@ -12,6 +12,7 @@
 
 ## c
 
+* **collect** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **countInvalidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
@@ -21,6 +22,7 @@
 
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **distanceToInterval** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## e
@@ -52,6 +54,9 @@
 
 ## n
 
+* **nearest** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **nearestAlong** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **neighbors** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **nearly\_equal** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
@@ -72,6 +77,7 @@
 
 ## s
 
+* **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 

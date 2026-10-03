@@ -18,6 +18,7 @@
 
 
 * `#include "QAccelPlot/axis/Axis.hpp"`
+* `#include "QAccelPlot/inspection/SeriesInspection.hpp"`
 * `#include <QPointer>`
 * `#include <QQuickItem>`
 * `#include <QRectF>`

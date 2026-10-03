@@ -1,0 +1,45 @@
+
+
+# File PlotDragRect.hpp
+
+[**File List**](files.md) **>** [**QAccelPlot**](dir_84505bf06e96cd50072ae15b96eb466a.md) **>** [**src**](dir_3588d0448386bbe164b4703bb7530415.md) **>** [**QAccelPlot**](dir_0cbea278626d30118177d562182e643b.md) **>** [**PlotDragRect.hpp**](PlotDragRect_8hpp.md)
+
+[Go to the documentation of this file](PlotDragRect_8hpp.md)
+
+
+```C++
+//
+// SPDX-FileCopyrightText: 2026 Michal Grabarczyk
+// SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
+//
+// This file is also available under a separate commercial license.
+// See COMMERCIAL-LICENSING.md for contact information.
+//
+#pragma once
+
+#include <QPointF>
+#include <QRectF>
+
+namespace QAccelPlot {
+
+class PlotDragRect {
+public:
+    void begin(const QPointF& position);
+    void moveTo(const QPointF& position, const QRectF& bounds);
+    void end();
+    [[nodiscard]] bool active() const;
+    [[nodiscard]] QRectF rect() const;
+
+    [[nodiscard]] static bool modifiersMatch(int pressed, int required);
+    [[nodiscard]] static bool meetsMinimum(const QRectF& rect, qreal minimumSize, bool checkWidth = true, bool checkHeight = true);
+
+private:
+    bool active_{false};
+    QPointF start_;
+    QPointF end_;
+};
+
+} // namespace QAccelPlot
+```
+
+

@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classQAccelPlot_1_1RectangleZoomOverlay" kind="class" language="C++" prot="public" final="yes">
     <compoundname>QAccelPlot::RectangleZoomOverlay</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">QQuickItem</basecompoundref>
+    <basecompoundref refid="classQAccelPlot_1_1OutlinedRectangle" prot="public" virt="non-virtual">QAccelPlot::OutlinedRectangle</basecompoundref>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classQAccelPlot_1_1RectangleZoomOverlay_1a6d3f847b57d0e0f0c9add63f0f3fb7d5" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1PlotRectangleZoom" kindref="compound">PlotRectangleZoom</ref> *</type>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="26" column="23" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="26" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="24" column="23" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="24" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -43,29 +43,6 @@
         <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="18" column="5"/>
       </memberdef>
     </sectiondef>
-    <sectiondef kind="protected-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a9d89e50a389f9ca54dd55611e5543aef" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>QSGNode *</type>
-        <definition>QSGNode * QAccelPlot::RectangleZoomOverlay::updatePaintNode</definition>
-        <argsstring>(QSGNode *oldNode, UpdatePaintNodeData *) override</argsstring>
-        <name>updatePaintNode</name>
-        <qualifiedname>QAccelPlot::RectangleZoomOverlay::updatePaintNode</qualifiedname>
-        <param>
-          <type>QSGNode *</type>
-          <declname>oldNode</declname>
-        </param>
-        <param>
-          <type>UpdatePaintNodeData *</type>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="21" column="13"/>
-      </memberdef>
-    </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a0ccac7ee113f053754af7a4b6dcce841" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -79,7 +56,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="24" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="21" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1RectangleZoomOverlay_1a2762c9e2760aa81289a1b75b66658898" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::RectangleZoomOverlay::syncColors</definition>
+        <argsstring>()</argsstring>
+        <name>syncColors</name>
+        <qualifiedname>QAccelPlot::RectangleZoomOverlay::syncColors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="22" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -87,33 +78,48 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>QAccelPlot::OutlinedRectangle</label>
+        <link refid="classQAccelPlot_1_1OutlinedRectangle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>QAccelPlot::RectangleZoomOverlay</label>
         <link refid="classQAccelPlot_1_1RectangleZoomOverlay"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>QQuickItem</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::OutlinedRectangle</label>
+        <link refid="classQAccelPlot_1_1OutlinedRectangle"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>QAccelPlot::RectangleZoomOverlay</label>
         <link refid="classQAccelPlot_1_1RectangleZoomOverlay"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="16" bodyend="27"/>
+    <location file="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/internal/RectangleZoomOverlay.hpp" bodystart="16" bodyend="25"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a6d3f847b57d0e0f0c9add63f0f3fb7d5" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>configuration_</name></member>
+      <member refid="classQAccelPlot_1_1OutlinedRectangle_1ac26651ef04d7ebb67b3f8e6bf6a4fdfc" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>OutlinedRectangle</name></member>
       <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a899980db126e2014f06bf4ec00bb04e7" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>RectangleZoomOverlay</name></member>
+      <member refid="classQAccelPlot_1_1OutlinedRectangle_1ad7fdade03eb551724c934cc917458ff9" prot="public" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>setColors</name></member>
+      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a2762c9e2760aa81289a1b75b66658898" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>syncColors</name></member>
       <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a0ccac7ee113f053754af7a4b6dcce841" prot="private" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>syncSelection</name></member>
-      <member refid="classQAccelPlot_1_1RectangleZoomOverlay_1a9d89e50a389f9ca54dd55611e5543aef" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>updatePaintNode</name></member>
+      <member refid="classQAccelPlot_1_1OutlinedRectangle_1a8aed14e313f8e423867caf28251de3cc" prot="protected" virt="non-virtual"><scope>QAccelPlot::RectangleZoomOverlay</scope><name>updatePaintNode</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

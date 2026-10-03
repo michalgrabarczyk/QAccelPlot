@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionCache_1_1Job" kind="struct" language="C++" prot="private">
+    <compoundname>QAccelPlot::InspectionCache::Job</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionCache_1_1Job_1a554e62c250c02e225fa342c684e3f0ce" prot="public" static="no" mutable="no">
+        <type>std::atomic_bool</type>
+        <definition>std::atomic_bool QAccelPlot::InspectionCache::Job::cancelled</definition>
+        <argsstring></argsstring>
+        <name>cancelled</name>
+        <qualifiedname>QAccelPlot::InspectionCache::Job::cancelled</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="44" column="26" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionCache_1_1Job_1abb466ee9ca24e262ec06f69de6157a75" prot="public" static="no" mutable="no">
+        <type>std::atomic_bool</type>
+        <definition>std::atomic_bool QAccelPlot::InspectionCache::Job::done</definition>
+        <argsstring></argsstring>
+        <name>done</name>
+        <qualifiedname>QAccelPlot::InspectionCache::Job::done</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="45" column="26" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionCache_1_1Job_1ae8133031c4c9df4b9281ba9e68cb38f1" prot="public" static="no" mutable="no">
+        <type>quint64</type>
+        <definition>quint64 QAccelPlot::InspectionCache::Job::generation</definition>
+        <argsstring></argsstring>
+        <name>generation</name>
+        <qualifiedname>QAccelPlot::InspectionCache::Job::generation</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="46" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionCache_1_1Job_1ae356f7db9f2367a305e9ad6107194d6f" prot="public" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1InspectionIndex" kindref="compound">InspectionIndex</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;InspectionIndex&gt; QAccelPlot::InspectionCache::Job::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>QAccelPlot::InspectionCache::Job::index</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="47" column="25" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionCache.hpp" bodystart="43" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionCache_1_1Job_1a554e62c250c02e225fa342c684e3f0ce" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionCache::Job</scope><name>cancelled</name></member>
+      <member refid="structQAccelPlot_1_1InspectionCache_1_1Job_1abb466ee9ca24e262ec06f69de6157a75" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionCache::Job</scope><name>done</name></member>
+      <member refid="structQAccelPlot_1_1InspectionCache_1_1Job_1ae8133031c4c9df4b9281ba9e68cb38f1" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionCache::Job</scope><name>generation</name></member>
+      <member refid="structQAccelPlot_1_1InspectionCache_1_1Job_1ae356f7db9f2367a305e9ad6107194d6f" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionCache::Job</scope><name>index</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

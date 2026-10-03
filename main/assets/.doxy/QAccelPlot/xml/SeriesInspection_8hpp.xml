@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SeriesInspection_8hpp" kind="file" language="C++">
+    <compoundname>SeriesInspection.hpp</compoundname>
+    <includes refid="InspectionResult_8hpp" local="yes">QAccelPlot/inspection/InspectionResult.hpp</includes>
+    <includes local="no">QObject</includes>
+    <includes local="no">QPointF</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">optional</includes>
+    <includedby refid="PlotSeries_8hpp" local="yes">QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp</label>
+        <link refid="SeriesInspection_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+      <node id="3">
+        <label>QPointF</label>
+      </node>
+      <node id="4">
+        <label>limits</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
+      <node id="6">
+        <label>optional</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classQAccelPlot_1_1SeriesInspection" prot="public">QAccelPlot::SeriesInspection</innerclass>
+    <innernamespace refid="namespaceQAccelPlot">QAccelPlot</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2026<sp/>Michal<sp/>Grabarczyk</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-only<sp/>WITH<sp/>Universal-FOSS-exception-1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>is<sp/>also<sp/>available<sp/>under<sp/>a<sp/>separate<sp/>commercial<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>COMMERCIAL-LICENSING.md<sp/>for<sp/>contact<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;QAccelPlot/inspection/InspectionResult.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QObject&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;QPointF&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">QAccelPlot<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PlotSeries;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>InspectionAxis;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">InspectionMetric;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">InspectionSource;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classQAccelPlot_1_1SeriesInspection" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>QObject<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_OBJECT</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>QML_ANONYMOUS</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(<ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">::QAccelPlot::InspectionNS::Status</ref><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" kindref="member">status</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" kindref="member">status</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" kindref="member">statusChanged</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" kindref="member">supported</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" kindref="member">supported</ref><sp/>NOTIFY<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" kindref="member">statusChanged</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_PROPERTY(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" kindref="member">maximumPageSize</ref><sp/>READ<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" kindref="member">maximumPageSize</ref><sp/>CONSTANT)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">~SeriesInspection</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" kindref="member">status</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" kindref="member">supported</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" kindref="member">maximumPageSize</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>quint64<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" kindref="member">indexBytes</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" kindref="member">prepare</ref>();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSample<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a5016b262e467ac289902ac30729c710d" kindref="member">sampleAt</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSample<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1ae8fef95365df8dfc2bdb835dcdca8e9d" kindref="member">nearest</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/>position,<sp/>qreal<sp/>radius<sp/>=<sp/>10);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSample<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" kindref="member">nearestByX</ref>(qreal<sp/>pixelX,<sp/>qreal<sp/>radius<sp/>=<sp/>std::numeric_limits&lt;qreal&gt;::infinity());</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSample<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a294f6e782374b0dd63def5a2e861756b" kindref="member">nearestByY</ref>(qreal<sp/>pixelY,<sp/>qreal<sp/>radius<sp/>=<sp/>std::numeric_limits&lt;qreal&gt;::infinity());</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionBracket<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" kindref="member">bracketByX</ref>(qreal<sp/>pixelX);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionBracket<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1aff3d4ab2fc1115df3328438800c2579e" kindref="member">bracketByY</ref>(qreal<sp/>pixelY);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSummary<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a9714e86d9537a6c125c427f0701c1d66" kindref="member">summarize</ref>(qreal<sp/>xMin,<sp/>qreal<sp/>xMax,<sp/>qreal<sp/>yMin,<sp/>qreal<sp/>yMax);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionSummary<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a0d8b9397539e1f636e34f3bce216568d" kindref="member">summarizeRange</ref>(qreal<sp/>xMin,<sp/>qreal<sp/>xMax);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionPage<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">indices</ref>(</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qreal<sp/>xMin,<sp/>qreal<sp/>xMax,<sp/>qreal<sp/>yMin,<sp/>qreal<sp/>yMax,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>offset<sp/>=<sp/>0,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>limit<sp/>=<sp/>4096,<sp/>quint64<sp/>expectedRevision<sp/>=<sp/>0);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionRecord<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" kindref="member">recordAt</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>Q_INVOKABLE<sp/>::QAccelPlot::InspectionRecord<sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" kindref="member">recordAtPosition</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>QPointF&amp;<sp/>position)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">signals:</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" kindref="member">statusChanged</ref>();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Private;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>(<ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>&amp;<sp/>series);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sourceChanged(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>appended);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sourceInvalidated();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Returns<sp/>Ready<sp/>when<sp/>a<sp/>query<sp/>can<sp/>run<sp/>now:<sp/>one<sp/>along<sp/>the<sp/>given<sp/>axis,<sp/>or<sp/>an<sp/>on-screen<sp/>or<sp/>region<sp/>query<sp/>otherwise.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>series<sp/>that<sp/>is<sp/>not<sp/>ordered<sp/>as<sp/>the<sp/>query<sp/>needs<sp/>requests<sp/>its<sp/>index<sp/>and<sp/>reports<sp/>Preparing<sp/>until<sp/>it<sp/>is<sp/>built.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref><sp/>acquire(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref>&amp;<sp/>source,<sp/>std::optional&lt;InspectionAxis&gt;<sp/>along);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;InspectionMetric&gt;<sp/>metric()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref><sp/>nearestAlong(InspectionAxis<sp/>axis,<sp/>qreal<sp/>pixel,<sp/>qreal<sp/>radius);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1InspectionBracket" kindref="compound">InspectionBracket</ref><sp/>bracketAlong(InspectionAxis<sp/>axis,<sp/>qreal<sp/>pixel);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref><sp/>makeSample(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref>&amp;<sp/>source,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/>qreal<sp/>distance)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Interpolates<sp/>along<sp/>the<sp/>straight<sp/>on-screen<sp/>segment,<sp/>which<sp/>also<sp/>follows<sp/>logarithmic<sp/>axes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref><sp/>interpolate(</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1InspectionMetric" kindref="compound">InspectionMetric</ref>&amp;<sp/>metric,<sp/>InspectionAxis<sp/>axis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref>&amp;<sp/>right,<sp/>qreal<sp/>pixel)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref>&amp;<sp/>series_;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;Private&gt;<sp/>d_;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QAccelPlot</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp"/>
+  </compounddef>
+</doxygen>

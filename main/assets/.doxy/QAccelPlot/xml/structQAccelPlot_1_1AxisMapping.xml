@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1AxisMapping" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::AxisMapping</compoundname>
+    <includes local="no">AxisMapping.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisMapping_1aba537b64d97f21dbed6234a9b62d7f74" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::AxisMapping::origin</definition>
+        <argsstring></argsstring>
+        <name>origin</name>
+        <qualifiedname>QAccelPlot::AxisMapping::origin</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Viewport minimum in mapped space: <computeroutput>log10</computeroutput> on logarithmic axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="17" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisMapping_1ac03253e006a9d6dc34f7ac13489988df" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::AxisMapping::span</definition>
+        <argsstring></argsstring>
+        <name>span</name>
+        <qualifiedname>QAccelPlot::AxisMapping::span</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Viewport extent in mapped space; negative for an inverted viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="18" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisMapping_1afe84db2543a5df23a4e9cd82c1c23bb6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisMapping::logarithmic</definition>
+        <argsstring></argsstring>
+        <name>logarithmic</name>
+        <qualifiedname>QAccelPlot::AxisMapping::logarithmic</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether values are mapped through <computeroutput>log10</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="19" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisMapping_1a7daaf56d1fd1324b05e107e29f2d3f76" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisMapping::flipped</definition>
+        <argsstring></argsstring>
+        <name>flipped</name>
+        <qualifiedname>QAccelPlot::AxisMapping::flipped</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether pixel positions grow against data values, as on vertical axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="20" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisMapping_1a3d8fd5fe78168ed7d9f444ccd61ca713" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::AxisMapping::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::AxisMapping::valid</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>False for a collapsed, nonfinite, or nonpositive logarithmic viewport. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="21" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="21" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1AxisMapping_1af8438c4c2f313f72baba0b76e08bd830" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::AxisMapping::toMapped</definition>
+        <argsstring>(double value) const noexcept</argsstring>
+        <name>toMapped</name>
+        <qualifiedname>QAccelPlot::AxisMapping::toMapped</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>value</emphasis> in mapped space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="24" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1AxisMapping_1a45fd93179ef1aca764cd7718e3e5bad8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::AxisMapping::toPixel</definition>
+        <argsstring>(double value, double length) const noexcept</argsstring>
+        <name>toPixel</name>
+        <qualifiedname>QAccelPlot::AxisMapping::toPixel</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps a data-space <emphasis>value</emphasis> to a pixel position along an axis of <emphasis>length</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="26" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1AxisMapping_1aab608228fc6532ab17ba1039f1d62e0e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::AxisMapping::toCoord</definition>
+        <argsstring>(double pixel, double length) const noexcept</argsstring>
+        <name>toCoord</name>
+        <qualifiedname>QAccelPlot::AxisMapping::toCoord</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>pixel</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Maps a <emphasis>pixel</emphasis> position along an axis of <emphasis>length</emphasis> pixels back to a data-space value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="28" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Snapshot of an axis viewport that maps between data values and pixel positions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Obtained from <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a3e3bc4bd0b8d4ee0342dde118337981a" kindref="member">Axis::mapping()</ref></computeroutput>. It is the single implementation of the axis mapping, shared by <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a62a5083556a2099f19b07964df065c2b" kindref="member">Axis::coordToPixel()</ref></computeroutput>, <computeroutput><ref refid="classQAccelPlot_1_1Axis_1a23e6adca53e163e30d607846d01f7c05" kindref="member">Axis::pixelToCoord()</ref></computeroutput>, and the inspection queries. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" line="16" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisMapping.hpp" bodystart="16" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1AxisMapping_1a7daaf56d1fd1324b05e107e29f2d3f76" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>flipped</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1afe84db2543a5df23a4e9cd82c1c23bb6" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>logarithmic</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1aba537b64d97f21dbed6234a9b62d7f74" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>origin</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1ac03253e006a9d6dc34f7ac13489988df" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>span</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1aab608228fc6532ab17ba1039f1d62e0e" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>toCoord</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1af8438c4c2f313f72baba0b76e08bd830" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>toMapped</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1a45fd93179ef1aca764cd7718e3e5bad8" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>toPixel</name></member>
+      <member refid="structQAccelPlot_1_1AxisMapping_1a3d8fd5fe78168ed7d9f444ccd61ca713" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisMapping</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

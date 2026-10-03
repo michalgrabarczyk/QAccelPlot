@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -670,6 +672,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1228,10 +1258,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#protected-functions" class="md-nav__link">
+  <a href="#public-functions-inherited-from-qaccelplotoutlinedrectangle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Protected Functions
+        Public Functions inherited from QAccelPlot::OutlinedRectangle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protected-functions-inherited-from-qaccelplotoutlinedrectangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Functions inherited from QAccelPlot::OutlinedRectangle
       
     </span>
   </a>
@@ -1266,34 +1307,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#protected-functions-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Protected Functions Documentation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Protected Functions Documentation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#function-updatepaintnode" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        function updatePaintNode
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1313,13 +1326,17 @@
 
 <h1 id="class-qaccelplotrectanglezoomoverlay">Class QAccelPlot::RectangleZoomOverlay<a class="headerlink" href="#class-qaccelplotrectanglezoomoverlay" title="Permanent link">&para;</a></h1>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>RectangleZoomOverlay</strong></a></p>
-<p>Inherits the following classes: QQuickItem</p>
+<p>Inherits the following classes: <a href="../classQAccelPlot_1_1OutlinedRectangle/">QAccelPlot::OutlinedRectangle</a></p>
 <h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TB
   classQAccelPlot_1_1RectangleZoomOverlay["QAccelPlot::RectangleZoomOverlay"]
 
-  external_base_classQAccelPlot_1_1RectangleZoomOverlay_1["QQuickItem"]
-  external_base_classQAccelPlot_1_1RectangleZoomOverlay_1 --&gt; classQAccelPlot_1_1RectangleZoomOverlay
+  classQAccelPlot_1_1OutlinedRectangle["QAccelPlot::OutlinedRectangle"]
+  classQAccelPlot_1_1OutlinedRectangle --&gt; classQAccelPlot_1_1RectangleZoomOverlay
+  click classQAccelPlot_1_1OutlinedRectangle "../classQAccelPlot_1_1OutlinedRectangle/" "Open QAccelPlot::OutlinedRectangle"
+
+  external_base_classQAccelPlot_1_1OutlinedRectangle_1["QQuickItem"]
+  external_base_classQAccelPlot_1_1OutlinedRectangle_1 --&gt; classQAccelPlot_1_1OutlinedRectangle
 </code></pre>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
@@ -1336,7 +1353,28 @@
 </tr>
 </tbody>
 </table>
-<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
+<h2 id="public-functions-inherited-from-qaccelplotoutlinedrectangle">Public Functions inherited from QAccelPlot::OutlinedRectangle<a class="headerlink" href="#public-functions-inherited-from-qaccelplotoutlinedrectangle" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1OutlinedRectangle/">QAccelPlot::OutlinedRectangle</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1OutlinedRectangle/#function-outlinedrectangle"><strong>OutlinedRectangle</strong></a> (QQuickItem * parent=nullptr) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1OutlinedRectangle/#function-setcolors"><strong>setColors</strong></a> (const QColor &amp; fill, const QColor &amp; border) <br><em>Sets the</em> <em>fill</em> <em>and__border</em> <em>colors.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions-inherited-from-qaccelplotoutlinedrectangle">Protected Functions inherited from QAccelPlot::OutlinedRectangle<a class="headerlink" href="#protected-functions-inherited-from-qaccelplotoutlinedrectangle" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1OutlinedRectangle/">QAccelPlot::OutlinedRectangle</a></p>
 <table>
 <thead>
 <tr>
@@ -1347,7 +1385,7 @@
 <tbody>
 <tr>
 <td style="text-align: right;">QSGNode *</td>
-<td style="text-align: left;"><a href="#function-updatepaintnode"><strong>updatePaintNode</strong></a> (QSGNode * oldNode, UpdatePaintNodeData *) override<br></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1OutlinedRectangle/#function-updatepaintnode"><strong>updatePaintNode</strong></a> (QSGNode * oldNode, UpdatePaintNodeData *) override<br></td>
 </tr>
 </tbody>
 </table>
@@ -1357,14 +1395,6 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">QQuickItem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">PlotRectangleZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">configuration</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div>
-<hr>
-<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-updatepaintnode">function updatePaintNode<a class="headerlink" href="#function-updatepaintnode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">RectangleZoomOverlay</span><span class="o">::</span><span class="n">updatePaintNode</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">oldNode</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">UpdatePaintNodeData</span><span class="w"> </span><span class="o">*</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 

@@ -20,7 +20,7 @@
 
 
 
-Inherits the following classes: QQuickItem
+Inherits the following classes: [QAccelPlot::OutlinedRectangle](classQAccelPlot_1_1OutlinedRectangle.md)
 
 
 
@@ -31,10 +31,34 @@ Inherits the following classes: QQuickItem
 flowchart TB
   classQAccelPlot_1_1RectangleZoomOverlay["QAccelPlot::RectangleZoomOverlay"]
 
-  external_base_classQAccelPlot_1_1RectangleZoomOverlay_1["QQuickItem"]
-  external_base_classQAccelPlot_1_1RectangleZoomOverlay_1 --> classQAccelPlot_1_1RectangleZoomOverlay
+  classQAccelPlot_1_1OutlinedRectangle["QAccelPlot::OutlinedRectangle"]
+  classQAccelPlot_1_1OutlinedRectangle --> classQAccelPlot_1_1RectangleZoomOverlay
+  click classQAccelPlot_1_1OutlinedRectangle "../classQAccelPlot_1_1OutlinedRectangle/" "Open QAccelPlot::OutlinedRectangle"
+
+  external_base_classQAccelPlot_1_1OutlinedRectangle_1["QQuickItem"]
+  external_base_classQAccelPlot_1_1OutlinedRectangle_1 --> classQAccelPlot_1_1OutlinedRectangle
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,33 +98,71 @@ flowchart TB
 |   | [**RectangleZoomOverlay**](#function-rectanglezoomoverlay) (QQuickItem \* parent, [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* configuration) <br> |
 
 
+## Public Functions inherited from QAccelPlot::OutlinedRectangle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Protected Functions
+See [QAccelPlot::OutlinedRectangle](classQAccelPlot_1_1OutlinedRectangle.md)
 
 | Type | Name |
 | ---: | :--- |
-|  QSGNode \* | [**updatePaintNode**](#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
+|   | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md#function-outlinedrectangle) (QQuickItem \* parent=nullptr) <br> |
+|  void | [**setColors**](classQAccelPlot_1_1OutlinedRectangle.md#function-setcolors) (const QColor & fill, const QColor & border) <br>_Sets the_ _fill_ _and__border_ _colors._ |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Protected Functions inherited from QAccelPlot::OutlinedRectangle
+
+See [QAccelPlot::OutlinedRectangle](classQAccelPlot_1_1OutlinedRectangle.md)
+
+| Type | Name |
+| ---: | :--- |
+|  QSGNode \* | [**updatePaintNode**](classQAccelPlot_1_1OutlinedRectangle.md#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
+
+
 
 
 
@@ -118,25 +180,6 @@ QAccelPlot::RectangleZoomOverlay::RectangleZoomOverlay (
     QQuickItem * parent,
     PlotRectangleZoom * configuration
 ) 
-```
-
-
-
-
-<hr>
-## Protected Functions Documentation
-
-
-
-
-
-### function updatePaintNode {#function-updatepaintnode}
-
-```C++
-QSGNode * QAccelPlot::RectangleZoomOverlay::updatePaintNode (
-    QSGNode * oldNode,
-    UpdatePaintNodeData *
-) override
 ```
 
 

@@ -465,6 +465,8 @@
       
         
       
+        
+      
     
     
     
@@ -674,6 +676,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1235,6 +1265,7 @@
 <ul>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> <em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisMapping/"><strong>AxisMapping</strong></a> <em>Snapshot of an axis viewport that maps between data values and pixel positions.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTick/"><strong>AxisTick</strong></a> <em>A single major tick: its data-space value and its formatted label.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1AxisTickPainter/"><strong>AxisTickPainter</strong></a> <em>Internal helper that computes and paints tick marks and labels for a single</em> <a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>.</em>    <ul>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>PaintContext</strong></a> <em>Groups the QPainter context arguments passed into sub-painting helpers.</em>     </li>
@@ -1287,6 +1318,28 @@
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientValueSourceNS/"><strong>GradientValueSourceNS</strong></a> <em>Namespace exposing the</em> <code>GradientValueSource</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Grid/"><strong>Grid</strong></a> <em>Configuration object that controls the appearance of the plot grid.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GridNode/"><strong>GridNode</strong></a> <em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionBounds/"><strong>InspectionBounds</strong></a> <em>Inclusive data-space region; infinite limits leave a dimension unbounded.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionBracket/"><strong>InspectionBracket</strong></a> <em>The valid samples on either side of a position on one axis.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache/"><strong>InspectionCache</strong></a> <em>Builds an</em> <code>InspectionIndex</code> <em>on a worker thread from a snapshot of a series' records.</em>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache_1_1Host/"><strong>Host</strong></a> <em>Series-side callbacks; all are invoked on the series' thread.</em>     </li>
+</ul>
+</li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionHit/"><strong>InspectionHit</strong></a> <em>Nearest-sample result: source index and pixel distance, or index -1.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionIndex/"><strong>InspectionIndex</strong></a> <em>Immutable k-d tree over the valid samples of a series, with their order along each axis.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Point/"><strong>Point</strong></a>     </li>
+</ul>
+</li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionMetric/"><strong>InspectionMetric</strong></a> <em>Pixel mapping of a series' plot area, used to measure on-screen distances.</em>     </li>
+<li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1InspectionNS/"><strong>InspectionNS</strong></a> <em>Namespace exposing the inspection</em> <code>Status</code> <em>enum to QML as</em><code>Inspection</code> <em>.</em>    </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionNeighbors/"><strong>InspectionNeighbors</strong></a> <em>Source indices of the valid samples on either side of an X value, or -1.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionPage/"><strong>InspectionPage</strong></a> <em>One page of source indices inside a region.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a> <em>A native record of a series that is not a plain XY series, such as a bar, rectangle, or band.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRow/"><strong>InspectionRow</strong></a> <em>Inspection result of one series, as shown by one row of an</em> <code>InspectionRowModel</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> <em>List model with one stable row per inspected series.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSample/"><strong>InspectionSample</strong></a> <em>One XY source sample returned by an inspection query.</em>     </li>
+<li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1InspectionScan/"><strong>InspectionScan</strong></a> <em>Inspection queries that scan every record; used for small series that are not ordered along the queried axis.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSource/"><strong>InspectionSource</strong></a> <em>Read-only view over the XY records a series exposes to inspection queries.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>InspectionSummary</strong></a> <em>Sample-weighted Y statistics over the valid samples inside a region.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1Internal/"><strong>Internal</strong></a>     <ul>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em>     </li>
 </ul>
@@ -1310,7 +1363,11 @@
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1NanGapModeNS/"><strong>NanGapModeNS</strong></a> <em>Namespace exposing the</em> <code>NanGapMode</code> <em>enum to QML.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NoLine/"><strong>NoLine</strong></a> <em>A line style that suppresses line rendering entirely, leaving only markers visible.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1NumericTickLabelFormatter/"><strong>NumericTickLabelFormatter</strong></a> <em>The default tick label formatter — produces numeric labels with automatic decimal precision.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1OutlinedRectangle/"><strong>OutlinedRectangle</strong></a> <em>Item that fills its bounds and outlines them with a line of one logical pixel.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1OverlayChildren/"><strong>OverlayChildren</strong></a> <em>Objects declared inside an inspection tool in QML.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotBorder/"><strong>PlotBorder</strong></a> <em>Decorative frame configuration exposed by</em> <code>PlotView::border</code> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotDragRect/"><strong>PlotDragRect</strong></a> <em>Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotInspector/"><strong>PlotInspector</strong></a> <em>Inspects every visible XY series of a plot at a cursor and publishes one model row per series.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>PlotMouseEvent</strong></a> <em>Carries mouse event data for the mouse signals.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>PlotRectangleZoom</strong></a> <em>Rectangle zoom configuration and selection state exposed by PlotView.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
@@ -1333,9 +1390,14 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleZoomOverlay/"><strong>RectangleZoomOverlay</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SampleRun/"><strong>SampleRun</strong></a> <em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionRectangle/"><strong>SelectionRectangle</strong></a> <em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em>    </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionTool/"><strong>SelectionTool</strong></a> <em>Selects a data-space region by dragging, without changing the plot viewport.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> <em>Data queries for one series: nearest samples, brackets, region statistics, and index pages.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesMarker/"><strong>SeriesMarker</strong></a> <em>Controls the markers a series draws at its data points.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SolidLine/"><strong>SolidLine</strong></a> <em>The default line style — renders a continuous solid line with no gaps.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SourceInspection/"><strong>SourceInspection</strong></a> <em>Inspection queries that read a series' own buffer whose records are ordered along one axis.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <em>Running sample-weighted Y statistics that can be merged across disjoint sample sets.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     </li>
 </ul>
@@ -1346,9 +1408,13 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>Span</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>Layout</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>Job</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>Node</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>FillSampleCache</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>IndexedPoint</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>Vertex</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SelectionTool_1_1Region/"><strong>Region</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SourceInspection_1_1Block/"><strong>Block</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>ItemBounds</strong></a>     </li>
 </ul>
 

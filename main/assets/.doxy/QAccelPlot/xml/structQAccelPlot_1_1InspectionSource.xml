@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionSource" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionSource</compoundname>
+    <includes local="no">InspectionTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1a475b500bb7ca4008d171d42d7c851c95" prot="public" static="no" mutable="no">
+        <type>const float *</type>
+        <definition>const float* QAccelPlot::InspectionSource::floats</definition>
+        <argsstring></argsstring>
+        <name>floats</name>
+        <qualifiedname>QAccelPlot::InspectionSource::floats</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Interleaved single-precision records; X and Y lead each record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="25" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1aa085297b12aa69a15079ed159201fce8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionSource::floatStride</definition>
+        <argsstring></argsstring>
+        <name>floatStride</name>
+        <qualifiedname>QAccelPlot::InspectionSource::floatStride</qualifiedname>
+        <initializer>{2}</initializer>
+        <briefdescription>
+<para>Floats per record in <computeroutput>floats</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="26" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1a5b998ee3fef7683aa4ba27629f905427" prot="public" static="no" mutable="no">
+        <type>const double *</type>
+        <definition>const double* QAccelPlot::InspectionSource::doubles</definition>
+        <argsstring></argsstring>
+        <name>doubles</name>
+        <qualifiedname>QAccelPlot::InspectionSource::doubles</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Interleaved double-precision XY pairs; takes precedence over <computeroutput>floats</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="27" column="18" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1aecb4ed63ebbaf504a3adef126ef432cb" prot="public" static="no" mutable="no">
+        <type>const float *</type>
+        <definition>const float* QAccelPlot::InspectionSource::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <qualifiedname>QAccelPlot::InspectionSource::values</qualifiedname>
+        <initializer>{nullptr}</initializer>
+        <briefdescription>
+<para>Optional per-record scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="28" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1a756a8d614936046ddf96ee03557167c9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionSource::valueStride</definition>
+        <argsstring></argsstring>
+        <name>valueStride</name>
+        <qualifiedname>QAccelPlot::InspectionSource::valueStride</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+<para>Floats between consecutive scalars in <computeroutput>values</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="29" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1ab95694338376f12b3453705c24f93139" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionSource::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>QAccelPlot::InspectionSource::count</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+<para>Number of records, or -1 when the series has no XY records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="30" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1a1d38efa70a924dd2a726e8cc9a14b551" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSource::logX</definition>
+        <argsstring></argsstring>
+        <name>logX</name>
+        <qualifiedname>QAccelPlot::InspectionSource::logX</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether X is on a logarithmic axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="31" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSource_1ac369e6db426be94eb20d4e0b975ff8bb" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSource::logY</definition>
+        <argsstring></argsstring>
+        <name>logY</name>
+        <qualifiedname>QAccelPlot::InspectionSource::logY</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether Y is on a logarithmic axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="32" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="32" bodyend="32"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1ac8121073d7a2f19c356f2cae9a72d4cf" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSource::supported</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>supported</name>
+        <qualifiedname>QAccelPlot::InspectionSource::supported</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="34" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1afd6cae93bc18cfd8faf1811a8acbdda8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionSource::x</definition>
+        <argsstring>(int index) const noexcept</argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::InspectionSource::x</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="35" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1a4ce7682dd8d09487465c53b3b8b826d6" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionSource::y</definition>
+        <argsstring>(int index) const noexcept</argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::InspectionSource::y</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="36" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1ad4f2053a768f9c20a7b379c5e1deb2fa" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionSource::coordinate</definition>
+        <argsstring>(InspectionAxis axis, int index) const noexcept</argsstring>
+        <name>coordinate</name>
+        <qualifiedname>QAccelPlot::InspectionSource::coordinate</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the coordinate of record <emphasis>index</emphasis> along <emphasis>axis</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="38" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1a54a3a2f68fe0e83c00f2c9a8103e82fd" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionSource::value</definition>
+        <argsstring>(int index) const noexcept</argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::InspectionSource::value</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="39" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSource_1a4007ebb4da1e967442092d149cd328bd" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSource::valid</definition>
+        <argsstring>(int index) const noexcept</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionSource::valid</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Applies the invalid-sample contract shared with rendering. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="41" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Read-only view over the XY records a series exposes to inspection queries. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The pointers refer to the series&apos; own buffers and are only valid until its next data change. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="24" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionSource_1ad4f2053a768f9c20a7b379c5e1deb2fa" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>coordinate</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1ab95694338376f12b3453705c24f93139" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>count</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a5b998ee3fef7683aa4ba27629f905427" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>doubles</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a475b500bb7ca4008d171d42d7c851c95" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>floats</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1aa085297b12aa69a15079ed159201fce8" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>floatStride</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a1d38efa70a924dd2a726e8cc9a14b551" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>logX</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1ac369e6db426be94eb20d4e0b975ff8bb" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>logY</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1ac8121073d7a2f19c356f2cae9a72d4cf" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>supported</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a4007ebb4da1e967442092d149cd328bd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a54a3a2f68fe0e83c00f2c9a8103e82fd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>value</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1aecb4ed63ebbaf504a3adef126ef432cb" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>values</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a756a8d614936046ddf96ee03557167c9" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>valueStride</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1afd6cae93bc18cfd8faf1811a8acbdda8" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSource_1a4ce7682dd8d09487465c53b3b8b826d6" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSource</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

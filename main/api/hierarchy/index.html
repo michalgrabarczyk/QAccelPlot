@@ -465,6 +465,8 @@
       
         
       
+        
+      
     
     
     
@@ -674,6 +676,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1238,12 +1268,18 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTexture/"><strong>QAccelPlot::DataTexture</strong></a> <em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>QAccelPlot::DataTransition::Run</strong></a> <em>One animation of a transition on one host element.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientTexture/"><strong>QAccelPlot::GradientTexture</strong></a> <em>Cached one-dimensional texture used by gradient materials.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache_1_1Host/"><strong>QAccelPlot::InspectionCache::Host</strong></a> <em>Series-side callbacks; all are invoked on the series' thread.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionIndex/"><strong>QAccelPlot::InspectionIndex</strong></a> <em>Immutable k-d tree over the valid samples of a series, with their order along each axis.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/"><strong>QAccelPlot::LineCurveLineRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode line geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurvePointRenderer/"><strong>QAccelPlot::LineCurvePointRenderer</strong></a> <em>Internal renderer responsible for building and updating QSGNode marker geometry for a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveVertexCache/"><strong>QAccelPlot::LineCurveVertexCache</strong></a> <em>Owns a</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>'s pre-built vertex bytes and the metadata required to use them safely.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1OverlayChildren/"><strong>QAccelPlot::OverlayChildren</strong></a> <em>Objects declared inside an inspection tool in QML.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotDragRect/"><strong>QAccelPlot::PlotDragRect</strong></a> <em>Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PointSpatialIndex/"><strong>QAccelPlot::PointSpatialIndex</strong></a> <em>Uniform-grid spatial index for nearest-point queries over large point sets.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectVertexCache/"><strong>QAccelPlot::RectVertexCache</strong></a> <em>Vertices of a series that draws each rectangle as a quad positioned from a data texture.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SourceInspection/"><strong>QAccelPlot::SourceInspection</strong></a> <em>Inspection queries that read a series' own buffer whose records are ordered along one axis.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SpatialGrid/"><strong>QAccelPlot::SpatialGrid</strong></a> <em>Uniform-grid spatial index with bounded per-rectangle storage.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisMapping/"><strong>QAccelPlot::AxisMapping</strong></a> <em>Snapshot of an axis viewport that maps between data values and pixel positions.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTick/"><strong>QAccelPlot::AxisTick</strong></a> <em>A single major tick: its data-space value and its formatted label.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1PaintContext/"><strong>QAccelPlot::AxisTickPainter::PaintContext</strong></a> <em>Groups the QPainter context arguments passed into sub-painting helpers.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1AxisTickPainter_1_1Params/"><strong>QAccelPlot::AxisTickPainter::Params</strong></a> <em>All style inputs required for a single paint call, bundled to reduce parameter count.</em> </li>
@@ -1259,6 +1295,18 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a> <em>Render-thread snapshot of gradient stroke (line-color) parameters.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a> <em>Render-thread snapshot of gradient fill (area-under-curve) parameters.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientStopData/"><strong>QAccelPlot::GradientStopData</strong></a> <em>A single color stop within a gradient definition.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionBounds/"><strong>QAccelPlot::InspectionBounds</strong></a> <em>Inclusive data-space region; infinite limits leave a dimension unbounded.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionBracket/"><strong>QAccelPlot::InspectionBracket</strong></a> <em>The valid samples on either side of a position on one axis.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionHit/"><strong>QAccelPlot::InspectionHit</strong></a> <em>Nearest-sample result: source index and pixel distance, or index -1.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Point/"><strong>QAccelPlot::InspectionIndex::Point</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionMetric/"><strong>QAccelPlot::InspectionMetric</strong></a> <em>Pixel mapping of a series' plot area, used to measure on-screen distances.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionNeighbors/"><strong>QAccelPlot::InspectionNeighbors</strong></a> <em>Source indices of the valid samples on either side of an X value, or -1.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionPage/"><strong>QAccelPlot::InspectionPage</strong></a> <em>One page of source indices inside a region.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>QAccelPlot::InspectionRecord</strong></a> <em>A native record of a series that is not a plain XY series, such as a bar, rectangle, or band.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionRow/"><strong>QAccelPlot::InspectionRow</strong></a> <em>Inspection result of one series, as shown by one row of an</em> <code>InspectionRowModel</code> <em>.</em></li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSample/"><strong>QAccelPlot::InspectionSample</strong></a> <em>One XY source sample returned by an inspection query.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSource/"><strong>QAccelPlot::InspectionSource</strong></a> <em>Read-only view over the XY records a series exposes to inspection queries.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionSummary/"><strong>QAccelPlot::InspectionSummary</strong></a> <em>Sample-weighted Y statistics over the valid samples inside a region.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Internal_1_1RectUbo/"><strong>QAccelPlot::Internal::RectUbo</strong></a> <em>Mirrors the std140 uniform block of rect.vert.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveRenderParams/"><strong>QAccelPlot::LineCurveRenderParams</strong></a> <em>Input parameters for</em> <a href="../classQAccelPlot_1_1LineCurveLineRenderer/#function-paint"><em><strong>LineCurveLineRenderer::paint()</strong></em></a> <em>, assembled on the main thread.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><strong>QAccelPlot::LineStroke::Uniforms</strong></a> <a href="../structQAccelPlot_1_1LineStroke_1_1Uniforms/"><em><strong>Uniforms</strong></em></a> <em>of a line material that do not depend on its shader variant.</em></li>
@@ -1268,15 +1316,20 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>QAccelPlot::PointSpatialIndex::Mapping</strong></a> <em>Coordinate mapping applied before indexing.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointVertex/"><strong>QAccelPlot::PointVertex</strong></a> <em>Vertex layout for point (marker) geometry, shared with the main thread for vertex caches.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SampleRun/"><strong>QAccelPlot::SampleRun</strong></a> <em>Contiguous range of valid curve samples, used to break fills and hit tests at gaps.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>QAccelPlot::SummaryAccumulator</strong></a> <em>Running sample-weighted Y statistics that can be merged across disjoint sample sets.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>QAccelPlot::Axis::DataRange</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>QAccelPlot::BandEdgeRenderer::ArcLengthScale</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>QAccelPlot::BandSeries::RenderView</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>QAccelPlot::BandSeries::Span</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>QAccelPlot::ColorBar::Layout</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>QAccelPlot::InspectionCache::Job</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionIndex_1_1Node/"><strong>QAccelPlot::InspectionIndex::Node</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache/"><strong>QAccelPlot::LineCurveLineRenderer::FillSampleCache</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint/"><strong>QAccelPlot::PointSpatialIndex::IndexedPoint</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1RectVertexCache_1_1Vertex/"><strong>QAccelPlot::RectVertexCache::Vertex</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SelectionTool_1_1Region/"><strong>QAccelPlot::SelectionTool::Region</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1SourceInspection_1_1Block/"><strong>QAccelPlot::SourceInspection::Block</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SpatialGrid_1_1ItemBounds/"><strong>QAccelPlot::SpatialGrid::ItemBounds</strong></a> </li>
 <li><strong>class</strong> <strong>QQuickPaintedItem</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> <em>A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels.</em> </li>
@@ -1322,6 +1375,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1Grid/"><strong>QAccelPlot::Grid</strong></a> <em>Configuration object that controls the appearance of the plot grid.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionCache/"><strong>QAccelPlot::InspectionCache</strong></a> <em>Builds an</em> <code>InspectionIndex</code> <em>on a worker thread from a snapshot of a series' records.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineCurveEffect/"><strong>QAccelPlot::LineCurveEffect</strong></a> <em>Abstract base class for visual effects applied to a</em> <code>LineCurve</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientFill/"><strong>QAccelPlot::GradientFill</strong></a> <em>A</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>effect that fills the area under the curve with a color gradient.</em></li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GradientStroke/"><strong>QAccelPlot::GradientStroke</strong></a> <em>A</em> <a href="../classQAccelPlot_1_1LineCurve/"><em><strong>LineCurve</strong></em></a> <em>effect that replaces the solid line color with a color gradient.</em></li>
@@ -1352,9 +1406,12 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotBorder/"><strong>QAccelPlot::PlotBorder</strong></a> <em>Decorative frame configuration exposed by</em> <code>PlotView::border</code> <em>.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotInspector/"><strong>QAccelPlot::PlotInspector</strong></a> <em>Inspects every visible XY series of a plot at a cursor and publishes one model row per series.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotMouseEvent/"><strong>QAccelPlot::PlotMouseEvent</strong></a> <em>Carries mouse event data for the mouse signals.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotRectangleZoom/"><strong>QAccelPlot::PlotRectangleZoom</strong></a> <em>Rectangle zoom configuration and selection state exposed by PlotView.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleBorder/"><strong>QAccelPlot::RectangleBorder</strong></a> <em>Controls the outline a</em> <code>RectangleSeries</code> <em>draws inside each rectangle's edges.</em></li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionTool/"><strong>QAccelPlot::SelectionTool</strong></a> <em>Selects a data-space region by dragging, without changing the plot viewport.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a> <em>Data queries for one series: nearest samples, brackets, region statistics, and index pages.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1SeriesMarker/"><strong>QAccelPlot::SeriesMarker</strong></a> <em>Controls the markers a series draws at its data points.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1LineStyle/"><strong>QAccelPlot::LineStyle</strong></a> <em>Abstract base class for all line styles.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DashLine/"><strong>QAccelPlot::DashLine</strong></a> <em>A line style that renders the curve as a customisable dashed line.</em> </li>
@@ -1519,6 +1576,10 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1OutlinedRectangle/"><strong>QAccelPlot::OutlinedRectangle</strong></a> <em>Item that fills its bounds and outlines them with a line of one logical pixel.</em>     <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleZoomOverlay/"><strong>QAccelPlot::RectangleZoomOverlay</strong></a> </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1PlotSeries/"><strong>QAccelPlot::PlotSeries</strong></a> <em>Common QML item contract for data series hosted by</em> <code>PlotView</code> <em>.</em>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BandSeries/"><strong>QAccelPlot::BandSeries</strong></a> <em>A hardware-accelerated QML item that fills the area between a low and a high value at each X.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1BarSeries/"><strong>QAccelPlot::BarSeries</strong></a> <em>A hardware-accelerated QML item that renders a bar chart.</em> </li>
@@ -1544,11 +1605,19 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleSeries/"><strong>QAccelPlot::RectangleSeries</strong></a> <em>A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1OutlinedRectangle/"><strong>QAccelPlot::OutlinedRectangle</strong></a> <em>Item that fills its bounds and outlines them with a line of one logical pixel.</em>     <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1RectangleZoomOverlay/"><strong>QAccelPlot::RectangleZoomOverlay</strong></a> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1SelectionRectangle/"><strong>QAccelPlot::SelectionRectangle</strong></a> <em>Draws the gesture or the selected region of a</em> <a href="../classQAccelPlot_1_1SelectionTool/"><em><strong>SelectionTool</strong></em></a> <em>, clipped to the plot area.</em></li>
 </ul>
 </li>
 <li><strong>class</strong> <strong>QSGNode</strong>    <ul>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1GridNode/"><strong>QAccelPlot::GridNode</strong></a> <em>Internal QSGNode responsible for rendering the plot grid into the scene graph.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <strong>QAbstractListModel</strong>    <ul>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a> <em>List model with one stable row per inspected series.</em> </li>
 </ul>
 </li>
 </ul>

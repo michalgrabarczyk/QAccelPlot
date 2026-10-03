@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionBounds" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionBounds</compoundname>
+    <includes local="no">InspectionTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBounds_1af8c8898c895580332af8df7c0c3a35ab" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionBounds::xMin</definition>
+        <argsstring></argsstring>
+        <name>xMin</name>
+        <qualifiedname>QAccelPlot::InspectionBounds::xMin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="61" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBounds_1a4cf179e01c2c306cf2850b14c9ee0a8e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionBounds::xMax</definition>
+        <argsstring></argsstring>
+        <name>xMax</name>
+        <qualifiedname>QAccelPlot::InspectionBounds::xMax</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="62" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBounds_1a718daeda0ac9dcaedd644c0227c63484" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionBounds::yMin</definition>
+        <argsstring></argsstring>
+        <name>yMin</name>
+        <qualifiedname>QAccelPlot::InspectionBounds::yMin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="63" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBounds_1a257e1a055c7272ee3db00836b05f8857" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionBounds::yMax</definition>
+        <argsstring></argsstring>
+        <name>yMax</name>
+        <qualifiedname>QAccelPlot::InspectionBounds::yMax</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="64" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionBounds_1a29b4e7620117ce19185cfa0489f96f2e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionBounds::contains</definition>
+        <argsstring>(double x, double y) const noexcept</argsstring>
+        <name>contains</name>
+        <qualifiedname>QAccelPlot::InspectionBounds::contains</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="66" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inclusive data-space region; infinite limits leave a dimension unbounded. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="60" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="60" bodyend="67"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionBounds_1a29b4e7620117ce19185cfa0489f96f2e" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBounds</scope><name>contains</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBounds_1a4cf179e01c2c306cf2850b14c9ee0a8e" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBounds</scope><name>xMax</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBounds_1af8c8898c895580332af8df7c0c3a35ab" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBounds</scope><name>xMin</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBounds_1a257e1a055c7272ee3db00836b05f8857" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBounds</scope><name>yMax</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBounds_1a718daeda0ac9dcaedd644c0227c63484" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBounds</scope><name>yMin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

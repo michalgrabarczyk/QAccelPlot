@@ -1,0 +1,3018 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide and API documentation for QAccelPlot">
+      
+      
+      
+        <link rel="canonical" href="https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SelectionTool/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Class QAccelPlot::SelectionTool - QAccelPlot Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/palette.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/theme.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "QAccelPlot",
+  "description": "High-performance hardware-accelerated plotting library for Qt Quick using the Qt Scene Graph",
+  "programmingLanguage": ["C++", "QML"],
+  "runtimePlatform": "Qt 6",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "codeRepository": "https://github.com/michalgrabarczyk/QAccelPlot",
+  "url": "https://michalgrabarczyk.github.io/QAccelPlot/",
+  "author": {
+    "@type": "Person",
+    "name": "Michal Grabarczyk"
+  },
+  "softwareVersion": "main",
+  "operatingSystem": "Cross-platform (Windows, Linux, macOS)",
+  "applicationCategory": "DeveloperApplication",
+  "keywords": ["plotting", "Qt Quick", "QML", "Scene Graph", "GPU", "real-time", "data visualization", "C++"]
+}
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-qaccelplotselectiontool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+
+<strong>Development documentation — main branch / unreleased.</strong>
+<a href="https://michalgrabarczyk.github.io/QAccelPlot/">View the latest stable documentation.</a>
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="QAccelPlot Documentation" class="md-header__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QAccelPlot Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class QAccelPlot::SelectionTool
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="QAccelPlot Documentation" class="md-nav__button md-logo" aria-label="QAccelPlot Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    QAccelPlot Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/michalgrabarczyk/QAccelPlot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    michalgrabarczyk/QAccelPlot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts and architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cookbook/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cookbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/basic-plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic static plot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/realtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-time scrolling data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/axis-formats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Axis formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/multiple-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiple axes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/styling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling and transitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/point-clouds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point clouds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/rectangle-zoom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rectangle zoom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bar-charts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/bands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/background-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background data production
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning and releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../namespaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inheritance-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-types-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Types Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Types Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        enum Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-properties-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Properties Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Properties Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#property-bordercolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property borderColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-button-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-enabled-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-fillcolor-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property fillColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-hasselection-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property hasSelection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-minimumsize-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property minimumSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-mode-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-model-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-modifiers-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property modifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-pixelrect-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property pixelRect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-plot-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property plot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-rectanglevisible-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property rectangleVisible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-selecting-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property selecting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-xaxis-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property xAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-xmax-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property xMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-xmin-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property xMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-yaxis-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property yAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-ymax-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property yMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-ymin-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        property yMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-signals-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Signals Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Signals Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signal-bordercolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal borderColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-buttonchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal buttonChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-completed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal completed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-enabledchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal enabledChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-fillcolorchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal fillColorChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-minimumsizechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal minimumSizeChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-modechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal modeChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-modifierschanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal modifiersChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-pixelrectchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal pixelRectChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-plotchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal plotChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-rectanglevisiblechanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal rectangleVisibleChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-selectingchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal selectingChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-selectionchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal selectionChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-xaxischanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal xAxisChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-yaxischanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        signal yAxisChanged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-functions-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Functions Documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public Functions Documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-selectiontool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function SelectionTool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-bordercolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function borderColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-button-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function clear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-enabled-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-fillcolor-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function fillColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-hasselection-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function hasSelection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function indices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-minimumsize-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function minimumSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mode-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-model-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-modifiers-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function modifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-pixelrect-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function pixelRect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-plot-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function plot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-rectanglevisible-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function rectangleVisible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-select" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function select
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-selecting-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function selecting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setbordercolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setBorderColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setButton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setEnabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setfillcolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setFillColor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setminimumsize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setMinimumSize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setMode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setmodifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setModifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setPlot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setrectanglevisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setRectangleVisible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setxaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setXAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setyaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setYAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-xaxis-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function xAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-xmax-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function xMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-xmin-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function xMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-yaxis-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function yAxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-ymax-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function yMax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-ymin-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function yMin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="class-qaccelplotselectiontool">Class QAccelPlot::SelectionTool<a class="headerlink" href="#class-qaccelplotselectiontool" title="Permanent link">&para;</a></h1>
+<p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceQAccelPlot/"><strong>QAccelPlot</strong></a> <strong>&gt;</strong> <a href="./"><strong>SelectionTool</strong></a></p>
+<p><em>Selects a data-space region by dragging, without changing the plot viewport.</em> <a href="#detailed-description">More...</a></p>
+<ul>
+<li><code>#include &lt;SelectionTool.hpp&gt;</code></li>
+</ul>
+<p>Inherits the following classes: QObject</p>
+<h2 id="inheritance-diagram">Inheritance diagram<a class="headerlink" href="#inheritance-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  classQAccelPlot_1_1SelectionTool["QAccelPlot::SelectionTool"]
+
+  external_base_classQAccelPlot_1_1SelectionTool_1["QObject"]
+  external_base_classQAccelPlot_1_1SelectionTool_1 --&gt; classQAccelPlot_1_1SelectionTool
+</code></pre>
+<h2 id="public-types">Public Types<a class="headerlink" href="#public-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="#enum-mode"><strong>Mode</strong></a>  <br><em>Region selected by a gesture.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-properties">Public Properties<a class="headerlink" href="#public-properties" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-bordercolor-12"><strong>borderColor</strong></a>  <br><em>Outline color of the rectangle. Default:</em> <code>Colors.dark.selectionBorder</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="./#property-button-12"><strong>button</strong></a>  <br><em>Mouse button that starts a gesture. Default: Qt.LeftButton.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-enabled-12"><strong>enabled</strong></a>  <br><em>Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QColor</td>
+<td style="text-align: left;"><a href="./#property-fillcolor-12"><strong>fillColor</strong></a>  <br><em>Fill color of the rectangle. Default:</em> <code>Colors.dark.selectionFill</code> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-hasselection-12"><strong>hasSelection</strong></a>  <br><em>True while a region is selected.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-minimumsize-12"><strong>minimumSize</strong></a>  <br><em>Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="./#enum-mode"><strong>Mode</strong></a></td>
+<td style="text-align: left;"><a href="./#property-mode-12"><strong>mode</strong></a>  <br><em>Region a gesture selects: a box, an X range, or a Y range. Default: Box.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>QAccelPlot::InspectionRowModel</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-model-12"><strong>model</strong></a>  <br><em>Read-only constant: one row of region statistics per selected series.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property int</td>
+<td style="text-align: left;"><a href="./#property-modifiers-12"><strong>modifiers</strong></a>  <br><em>Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property QRectF</td>
+<td style="text-align: left;"><a href="./#property-pixelrect-12"><strong>pixelRect</strong></a>  <br><em>Gesture or selected region in plot-local logical pixels; empty without either.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1QAccelPlot/"><strong>QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-plot-12"><strong>plot</strong></a>  <br><em>Plot receiving the selection gestures.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-rectanglevisible-12"><strong>rectangleVisible</strong></a>  <br><em>Draws the gesture and the selected region. Disable it to draw</em> <code>pixelRect</code> <em>yourself. Default: true.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property bool</td>
+<td style="text-align: left;"><a href="./#property-selecting-12"><strong>selecting</strong></a>  <br><em>True while a gesture is in progress.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-xaxis-12"><strong>xAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-xmax-12"><strong>xMax</strong></a>  <br><em>Upper X limit of the selection; Infinity when unbounded, NaN without a selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-xmin-12"><strong>xMin</strong></a>  <br><em>Lower X limit of the selection; -Infinity when unbounded, NaN without a selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1Axis/"><strong>QAccelPlot::Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="./#property-yaxis-12"><strong>yAxis</strong></a>  <br><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-ymax-12"><strong>yMax</strong></a>  <br><em>Upper Y limit of the selection; Infinity when unbounded, NaN without a selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property qreal</td>
+<td style="text-align: left;"><a href="./#property-ymin-12"><strong>yMin</strong></a>  <br><em>Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-signals">Public Signals<a class="headerlink" href="#public-signals" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-bordercolorchanged"><strong>borderColorChanged</strong></a>  <br><em>Emitted when the borderColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-buttonchanged"><strong>buttonChanged</strong></a>  <br><em>Emitted when the button property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-completed"><strong>completed</strong></a>  <br><em>Emitted when a gesture selected a region. Rows of series that are still preparing follow later.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-enabledchanged"><strong>enabledChanged</strong></a>  <br><em>Emitted when the enabled property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-fillcolorchanged"><strong>fillColorChanged</strong></a>  <br><em>Emitted when the fillColor property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-minimumsizechanged"><strong>minimumSizeChanged</strong></a>  <br><em>Emitted when the minimumSize property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-modechanged"><strong>modeChanged</strong></a>  <br><em>Emitted when the mode property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-modifierschanged"><strong>modifiersChanged</strong></a>  <br><em>Emitted when the modifiers property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-pixelrectchanged"><strong>pixelRectChanged</strong></a>  <br><em>Emitted when the pixelRect property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-plotchanged"><strong>plotChanged</strong></a>  <br><em>Emitted when the plot property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-rectanglevisiblechanged"><strong>rectangleVisibleChanged</strong></a>  <br><em>Emitted when the rectangleVisible property changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-selectingchanged"><strong>selectingChanged</strong></a>  <br><em>Emitted when a gesture starts or ends.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-selectionchanged"><strong>selectionChanged</strong></a>  <br><em>Emitted when the selected region is set, changed, or cleared.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-xaxischanged"><strong>xAxisChanged</strong></a>  <br><em>Emitted when the axis the X limits refer to changes.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="./#signal-yaxischanged"><strong>yAxisChanged</strong></a>  <br><em>Emitted when the axis the Y limits refer to changes.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-selectiontool"><strong>SelectionTool</strong></a> (QObject * parent=nullptr) <br><em>Constructs a tool without a plot.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-bordercolor-22"><strong>borderColor</strong></a> () const<br><em>Returns the rectangle's outline color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-button-22"><strong>button</strong></a> () const<br><em>Returns the mouse button that starts a gesture.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE void</td>
+<td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br><em>Cancels a gesture in progress and clears the selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-enabled-22"><strong>enabled</strong></a> () const<br><em>Returns whether gestures are enabled.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QColor</td>
+<td style="text-align: left;"><a href="#function-fillcolor-22"><strong>fillColor</strong></a> () const<br><em>Returns the rectangle's fill color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-hasselection-22"><strong>hasSelection</strong></a> () const<br><em>Returns true while a region is selected.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE::QAccelPlot::InspectionPage</td>
+<td style="text-align: left;"><a href="#function-indices"><strong>indices</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/"><strong>::QAccelPlot::PlotSeries</strong></a> * series, int offset=0, int limit=4096) <br><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-minimumsize-22"><strong>minimumSize</strong></a> () const<br><em>Returns the smallest selecting gesture in logical pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./#enum-mode"><strong>Mode</strong></a></td>
+<td style="text-align: left;"><a href="#function-mode-22"><strong>mode</strong></a> () const<br><em>Returns the region a gesture selects.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-model-22"><strong>model</strong></a> () const<br><em>Returns the model of per-series region statistics.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-modifiers-22"><strong>modifiers</strong></a> () const<br><em>Returns the required keyboard modifiers.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">QRectF</td>
+<td style="text-align: left;"><a href="#function-pixelrect-22"><strong>pixelRect</strong></a> () const<br><em>Returns the gesture or selected region in plot-local logical pixels.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-plot-22"><strong>plot</strong></a> () const<br><em>Returns the attached plot.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-rectanglevisible-22"><strong>rectangleVisible</strong></a> () const<br><em>Returns whether the tool draws its rectangle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE bool</td>
+<td style="text-align: left;"><a href="#function-select"><strong>select</strong></a> (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br><em>Selects the region with the given limits; returns false when a limit is NaN.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">bool</td>
+<td style="text-align: left;"><a href="#function-selecting-22"><strong>selecting</strong></a> () const<br><em>Returns true while a gesture is in progress.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setbordercolor"><strong>setBorderColor</strong></a> (const QColor &amp; color) <br><em>Sets the rectangle's outline color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setbutton"><strong>setButton</strong></a> (int button) <br><em>Sets the mouse button that starts a gesture.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setenabled"><strong>setEnabled</strong></a> (bool enabled) <br><em>Enables or disables gestures.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setfillcolor"><strong>setFillColor</strong></a> (const QColor &amp; color) <br><em>Sets the rectangle's fill color.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setminimumsize"><strong>setMinimumSize</strong></a> (qreal size) <br><em>Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setmode"><strong>setMode</strong></a> (<a href="./#enum-mode"><strong>Mode</strong></a> mode) <br><em>Sets the region a gesture selects and cancels a gesture in progress.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setmodifiers"><strong>setModifiers</strong></a> (int modifiers) <br><em>Sets the exact keyboard modifiers required at press time.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setplot"><strong>setPlot</strong></a> (<a href="../classQAccelPlot_1_1QAccelPlot/"><strong>::QAccelPlot::QAccelPlot</strong></a> * plot) <br><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setrectanglevisible"><strong>setRectangleVisible</strong></a> (bool visible) <br><em>Shows or hides the tool's rectangle.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setxaxis"><strong>setXAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the X axis and clears the selection; null uses the plot's primary X axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setyaxis"><strong>setYAxis</strong></a> (<a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> * axis) <br><em>Sets the Y axis and clears the selection; null uses the plot's primary Y axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-xaxis-22"><strong>xAxis</strong></a> () const<br><em>Returns the axis the X limits refer to.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-xmax-22"><strong>xMax</strong></a> () const<br><em>Returns the upper X limit of the selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-xmin-22"><strong>xMin</strong></a> () const<br><em>Returns the lower X limit of the selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1Axis/"><strong>Axis</strong></a> *</td>
+<td style="text-align: left;"><a href="#function-yaxis-22"><strong>yAxis</strong></a> () const<br><em>Returns the axis the Y limits refer to.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-ymax-22"><strong>yMax</strong></a> () const<br><em>Returns the upper Y limit of the selection.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">qreal</td>
+<td style="text-align: left;"><a href="#function-ymin-22"><strong>yMin</strong></a> () const<br><em>Returns the lower Y limit of the selection.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
+<p>The tool draws the gesture and the selected region in the plot's overlay, below the overlay's other children. The region is kept in data coordinates, so it follows panning and zooming and survives data updates: the model rows are recomputed whenever a series changes. An infinite limit leaves that side of the region unbounded, as a range selection does for its other dimension.</p>
+<p><strong>See also:</strong> <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a>, <a href="../classQAccelPlot_1_1InspectionRowModel/"><strong>InspectionRowModel</strong></a> </p>
+<h2 id="public-types-documentation">Public Types Documentation<a class="headerlink" href="#public-types-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="enum-mode">enum Mode<a class="headerlink" href="#enum-mode" title="Permanent link">&para;</a></h3>
+<p><em>Region selected by a gesture.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">Mode</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">Box</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">XRange</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">YRange</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">};</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-properties-documentation">Public Properties Documentation<a class="headerlink" href="#public-properties-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="property-bordercolor-12">property borderColor<a class="headerlink" href="#property-bordercolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Outline color of the rectangle. Default:</em> <code>Colors.dark.selectionBorder</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">borderColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-button-12">property button<a class="headerlink" href="#property-button-12" title="Permanent link">&para;</a></h3>
+<p><em>Mouse button that starts a gesture. Default: Qt.LeftButton.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">button</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-enabled-12">property enabled<a class="headerlink" href="#property-enabled-12" title="Permanent link">&para;</a></h3>
+<p><em>Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">enabled</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-fillcolor-12">property fillColor<a class="headerlink" href="#property-fillcolor-12" title="Permanent link">&para;</a></h3>
+<p><em>Fill color of the rectangle. Default:</em> <code>Colors.dark.selectionFill</code> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">fillColor</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-hasselection-12">property hasSelection<a class="headerlink" href="#property-hasselection-12" title="Permanent link">&para;</a></h3>
+<p><em>True while a region is selected.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">hasSelection</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-minimumsize-12">property minimumSize<a class="headerlink" href="#property-minimumsize-12" title="Permanent link">&para;</a></h3>
+<p><em>Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">minimumSize</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-mode-12">property mode<a class="headerlink" href="#property-mode-12" title="Permanent link">&para;</a></h3>
+<p><em>Region a gesture selects: a box, an X range, or a Y range. Default: Box.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Mode</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">mode</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-model-12">property model<a class="headerlink" href="#property-model-12" title="Permanent link">&para;</a></h3>
+<p><em>Read-only constant: one row of region statistics per selected series.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionRowModel</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-modifiers-12">property modifiers<a class="headerlink" href="#property-modifiers-12" title="Permanent link">&para;</a></h3>
+<p><em>Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modifiers</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-pixelrect-12">property pixelRect<a class="headerlink" href="#property-pixelrect-12" title="Permanent link">&para;</a></h3>
+<p><em>Gesture or selected region in plot-local logical pixels; empty without either.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRect</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-plot-12">property plot<a class="headerlink" href="#property-plot-12" title="Permanent link">&para;</a></h3>
+<p><em>Plot receiving the selection gestures.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-rectanglevisible-12">property rectangleVisible<a class="headerlink" href="#property-rectanglevisible-12" title="Permanent link">&para;</a></h3>
+<p><em>Draws the gesture and the selected region. Disable it to draw</em> <code>pixelRect</code> <em>yourself. Default: true.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisible</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-selecting-12">property selecting<a class="headerlink" href="#property-selecting-12" title="Permanent link">&para;</a></h3>
+<p><em>True while a gesture is in progress.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-xaxis-12">property xAxis<a class="headerlink" href="#property-xaxis-12" title="Permanent link">&para;</a></h3>
+<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the X limits refer to; unset uses the plot's primary X axis.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-xmax-12">property xMax<a class="headerlink" href="#property-xmax-12" title="Permanent link">&para;</a></h3>
+<p><em>Upper X limit of the selection; Infinity when unbounded, NaN without a selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMax</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-xmin-12">property xMin<a class="headerlink" href="#property-xmin-12" title="Permanent link">&para;</a></h3>
+<p><em>Lower X limit of the selection; -Infinity when unbounded, NaN without a selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMin</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-yaxis-12">property yAxis<a class="headerlink" href="#property-yaxis-12" title="Permanent link">&para;</a></h3>
+<p><a href="../classQAccelPlot_1_1Axis/"><em><strong>Axis</strong></em></a> <em>the Y limits refer to; unset uses the plot's primary Y axis.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-ymax-12">property yMax<a class="headerlink" href="#property-ymax-12" title="Permanent link">&para;</a></h3>
+<p><em>Upper Y limit of the selection; Infinity when unbounded, NaN without a selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMax</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="property-ymin-12">property yMin<a class="headerlink" href="#property-ymin-12" title="Permanent link">&para;</a></h3>
+<p><em>Lower Y limit of the selection; -Infinity when unbounded, NaN without a selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMin</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-signals-documentation">Public Signals Documentation<a class="headerlink" href="#public-signals-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="signal-bordercolorchanged">signal borderColorChanged<a class="headerlink" href="#signal-bordercolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the borderColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">borderColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-buttonchanged">signal buttonChanged<a class="headerlink" href="#signal-buttonchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the button property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">buttonChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-completed">signal completed<a class="headerlink" href="#signal-completed" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when a gesture selected a region. Rows of series that are still preparing follow later.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">completed</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-enabledchanged">signal enabledChanged<a class="headerlink" href="#signal-enabledchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the enabled property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">enabledChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-fillcolorchanged">signal fillColorChanged<a class="headerlink" href="#signal-fillcolorchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the fillColor property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">fillColorChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-minimumsizechanged">signal minimumSizeChanged<a class="headerlink" href="#signal-minimumsizechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the minimumSize property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">minimumSizeChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-modechanged">signal modeChanged<a class="headerlink" href="#signal-modechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the mode property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modeChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-modifierschanged">signal modifiersChanged<a class="headerlink" href="#signal-modifierschanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the modifiers property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modifiersChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-pixelrectchanged">signal pixelRectChanged<a class="headerlink" href="#signal-pixelrectchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the pixelRect property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRectChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-plotchanged">signal plotChanged<a class="headerlink" href="#signal-plotchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the plot property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plotChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-rectanglevisiblechanged">signal rectangleVisibleChanged<a class="headerlink" href="#signal-rectanglevisiblechanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the rectangleVisible property changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisibleChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-selectingchanged">signal selectingChanged<a class="headerlink" href="#signal-selectingchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when a gesture starts or ends.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectingChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-selectionchanged">signal selectionChanged<a class="headerlink" href="#signal-selectionchanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the selected region is set, changed, or cleared.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selectionChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-xaxischanged">signal xAxisChanged<a class="headerlink" href="#signal-xaxischanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the axis the X limits refer to changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxisChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="signal-yaxischanged">signal yAxisChanged<a class="headerlink" href="#signal-yaxischanged" title="Permanent link">&para;</a></h3>
+<p><em>Emitted when the axis the Y limits refer to changes.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxisChanged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
+<h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="function-selectiontool">function SelectionTool<a class="headerlink" href="#function-selectiontool" title="Permanent link">&para;</a></h3>
+<p><em>Constructs a tool without a plot.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">explicit</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">SelectionTool</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="nb">nullptr</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-bordercolor-22">function borderColor<a class="headerlink" href="#function-bordercolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle's outline color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">borderColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-button-22">function button<a class="headerlink" href="#function-button-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the mouse button that starts a gesture.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">button</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-clear">function clear<a class="headerlink" href="#function-clear" title="Permanent link">&para;</a></h3>
+<p><em>Cancels a gesture in progress and clears the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">clear</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-enabled-22">function enabled<a class="headerlink" href="#function-enabled-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether gestures are enabled.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">enabled</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-fillcolor-22">function fillColor<a class="headerlink" href="#function-fillcolor-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the rectangle's fill color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">fillColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-hasselection-22">function hasSelection<a class="headerlink" href="#function-hasselection-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns true while a region is selected.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">hasSelection</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-indices">function indices<a class="headerlink" href="#function-indices" title="Permanent link">&para;</a></h3>
+<p><em>Returns one page of</em> <em>series'</em> <em>source indices inside the selection, against its current data.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">Q_INVOKABLE</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">InspectionPage</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">indices</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">series</span><span class="p">,</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">limit</span><span class="o">=</span><span class="mi">4096</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-minimumsize-22">function minimumSize<a class="headerlink" href="#function-minimumsize-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the smallest selecting gesture in logical pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">minimumSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-mode-22">function mode<a class="headerlink" href="#function-mode-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the region a gesture selects.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">Mode</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">mode</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-model-22">function model<a class="headerlink" href="#function-model-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the model of per-series region statistics.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">InspectionRowModel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">model</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-modifiers-22">function modifiers<a class="headerlink" href="#function-modifiers-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the required keyboard modifiers.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">modifiers</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-pixelrect-22">function pixelRect<a class="headerlink" href="#function-pixelrect-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the gesture or selected region in plot-local logical pixels.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">QRectF</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">pixelRect</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-plot-22">function plot<a class="headerlink" href="#function-plot-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the attached plot.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">plot</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-rectanglevisible-22">function rectangleVisible<a class="headerlink" href="#function-rectanglevisible-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns whether the tool draws its rectangle.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">rectangleVisible</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-select">function select<a class="headerlink" href="#function-select" title="Permanent link">&para;</a></h3>
+<p><em>Selects the region with the given limits; returns false when a limit is NaN.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">select</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMin</span><span class="p">,</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">yMax</span>
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-selecting-22">function selecting<a class="headerlink" href="#function-selecting-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns true while a gesture is in progress.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">selecting</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setbordercolor">function setBorderColor<a class="headerlink" href="#function-setbordercolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the rectangle's outline color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setBorderColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setbutton">function setButton<a class="headerlink" href="#function-setbutton" title="Permanent link">&para;</a></h3>
+<p><em>Sets the mouse button that starts a gesture.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setButton</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">button</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setenabled">function setEnabled<a class="headerlink" href="#function-setenabled" title="Permanent link">&para;</a></h3>
+<p><em>Enables or disables gestures.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setEnabled</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">enabled</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setfillcolor">function setFillColor<a class="headerlink" href="#function-setfillcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the rectangle's fill color.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setFillColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setminimumsize">function setMinimumSize<a class="headerlink" href="#function-setminimumsize" title="Permanent link">&para;</a></h3>
+<p><em>Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMinimumSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setmode">function setMode<a class="headerlink" href="#function-setmode" title="Permanent link">&para;</a></h3>
+<p><em>Sets the region a gesture selects and cancels a gesture in progress.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setMode</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="n">Mode</span><span class="w"> </span><span class="n">mode</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setmodifiers">function setModifiers<a class="headerlink" href="#function-setmodifiers" title="Permanent link">&para;</a></h3>
+<p><em>Sets the exact keyboard modifiers required at press time.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setModifiers</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">modifiers</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setplot">function setPlot<a class="headerlink" href="#function-setplot" title="Permanent link">&para;</a></h3>
+<p><em>Attaches to</em> <em>plot</em> <em>and clears the selection.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setPlot</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="o">::</span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">QAccelPlot</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">plot</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setrectanglevisible">function setRectangleVisible<a class="headerlink" href="#function-setrectanglevisible" title="Permanent link">&para;</a></h3>
+<p><em>Shows or hides the tool's rectangle.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setRectangleVisible</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setxaxis">function setXAxis<a class="headerlink" href="#function-setxaxis" title="Permanent link">&para;</a></h3>
+<p><em>Sets the X axis and clears the selection; null uses the plot's primary X axis.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setXAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setyaxis">function setYAxis<a class="headerlink" href="#function-setyaxis" title="Permanent link">&para;</a></h3>
+<p><em>Sets the Y axis and clears the selection; null uses the plot's primary Y axis.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">setYAxis</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">axis</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-xaxis-22">function xAxis<a class="headerlink" href="#function-xaxis-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis the X limits refer to.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-xmax-22">function xMax<a class="headerlink" href="#function-xmax-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the upper X limit of the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-xmin-22">function xMin<a class="headerlink" href="#function-xmin-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the lower X limit of the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">xMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-yaxis-22">function yAxis<a class="headerlink" href="#function-yaxis-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the axis the Y limits refer to.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="n">Axis</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yAxis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-ymax-22">function yMax<a class="headerlink" href="#function-ymax-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the upper Y limit of the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-ymin-22">function yMin<a class="headerlink" href="#function-ymin-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the lower Y limit of the selection.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">SelectionTool</span><span class="o">::</span><span class="n">yMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Michal Grabarczyk
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/michalgrabarczyk/QAccelPlot" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -17,6 +17,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/axis/AxisMapping.hpp"
 #include "QAccelPlot/axis/AxisTicker.hpp"
 #include "QAccelPlot/axis/AxisTicks.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
@@ -128,8 +129,10 @@ public:
 
     qreal labelOverflow() const;
 
-    qreal coordToPixel(qreal value, qreal length) const;
-    qreal pixelToCoord(qreal pos, qreal length) const;
+    AxisMapping mapping() const;
+    Q_INVOKABLE qreal coordToPixel(qreal value, qreal length) const;
+    Q_INVOKABLE qreal pixelToCoord(qreal pos, qreal length) const;
+    Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
 
 public slots:
     void updateDataRange(qreal min, qreal max);
@@ -179,6 +182,7 @@ private:
     void clearSourceDataRange(const QObject* source, Orientation dimension);
     void recomputeSourceDataRange();
     void setDataRangeValues(qreal min, qreal max);
+    qreal valueResolution(qreal value, qreal length) const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void invalidateTicks();
 

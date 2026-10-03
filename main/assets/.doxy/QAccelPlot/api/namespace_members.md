@@ -12,6 +12,7 @@
 
 ## c
 
+* **collect** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **compactValidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **countInvalidPoints** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **createNode** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
@@ -22,6 +23,7 @@
 * **Direction** ([**QAccelPlot::GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md))
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* **distanceToInterval** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## e
@@ -48,6 +50,8 @@
 
 ## i
 
+* **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **InspectionStatus** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidPoint** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 * **isEmptyChunk** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **isValidSample** ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -69,6 +73,9 @@
 ## n
 
 * **NanGapMode** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **nearest** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **nearestAlong** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
+* **neighbors** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **nearly\_equal** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
@@ -90,6 +97,8 @@
 ## s
 
 * **Source** ([**QAccelPlot::GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md))
+* **Status** ([**QAccelPlot::InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md))
+* **summarize** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **supportsCustomShaderRendering** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 

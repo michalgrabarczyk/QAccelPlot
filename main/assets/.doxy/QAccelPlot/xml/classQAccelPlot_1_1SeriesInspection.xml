@@ -1,0 +1,747 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1SeriesInspection" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::SeriesInspection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">SeriesInspection.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQAccelPlot::InspectionNS::Status</type>
+        <definition>QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::SeriesInspection::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::status</qualifiedname>
+        <read>status</read>
+        <briefdescription>
+<para>Readiness for sample queries: <computeroutput>Ready</computeroutput>, <computeroutput>Idle</computeroutput>, <computeroutput>Preparing</computeroutput>, <computeroutput>Unsupported</computeroutput>, or <computeroutput>Unavailable</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesInspection::supported</definition>
+        <argsstring></argsstring>
+        <name>supported</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::supported</qualifiedname>
+        <read>supported</read>
+        <briefdescription>
+<para>Whether the series has XY records that sample queries can search. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::SeriesInspection::maximumPageSize</definition>
+        <argsstring></argsstring>
+        <name>maximumPageSize</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::maximumPageSize</qualifiedname>
+        <read>maximumPageSize</read>
+        <briefdescription>
+<para>Largest page returned by <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">indices()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classQAccelPlot_1_1SeriesInspection_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class PlotSeries</definition>
+        <argsstring></argsstring>
+        <name>PlotSeries</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::PlotSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="98" column="18" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesInspection_1a3502d0225565f7ff1e2e4bae79a4b8d3" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &amp;</type>
+        <definition>PlotSeries&amp; QAccelPlot::SeriesInspection::series_</definition>
+        <argsstring></argsstring>
+        <name>series_</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::series_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="115" column="16" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SeriesInspection_1a27755e38188fca8332fd52ad1d2dc3d6" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; Private &gt;</type>
+        <definition>std::unique_ptr&lt;Private&gt; QAccelPlot::SeriesInspection::d_</definition>
+        <argsstring></argsstring>
+        <name>d_</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::d_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="116" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ad47942fe19e7b0135374fb523a949042" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SeriesInspection::~SeriesInspection</definition>
+        <argsstring>() override</argsstring>
+        <name>~SeriesInspection</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::~SeriesInspection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="51" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a2633680d73410b55c759c01c80275790" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
+        <definition>InspectionStatus QAccelPlot::SeriesInspection::status</definition>
+        <argsstring>() const</argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::status</qualifiedname>
+        <briefdescription>
+<para>Returns the readiness for sample queries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="54" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a69b04871eeb4414ff833d536a16e9285" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::SeriesInspection::supported</definition>
+        <argsstring>() const</argsstring>
+        <name>supported</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::supported</qualifiedname>
+        <briefdescription>
+<para>Returns whether the series has XY records that sample queries can search. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="56" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::SeriesInspection::maximumPageSize</definition>
+        <argsstring>() const</argsstring>
+        <name>maximumPageSize</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::maximumPageSize</qualifiedname>
+        <briefdescription>
+<para>Returns the largest page returned by <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" kindref="member">indices()</ref></computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="58" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE quint64</type>
+        <definition>Q_INVOKABLE quint64 QAccelPlot::SeriesInspection::indexBytes</definition>
+        <argsstring>() const</argsstring>
+        <name>indexBytes</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::indexBytes</qualifiedname>
+        <briefdescription>
+<para>Returns the bytes held by query caches and indexes, excluding the series&apos; own data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="61" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::SeriesInspection::prepare</definition>
+        <argsstring>()</argsstring>
+        <name>prepare</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::prepare</qualifiedname>
+        <briefdescription>
+<para>Starts building a query index when the series needs one; otherwise does nothing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="63" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a5016b262e467ac289902ac30729c710d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::sampleAt</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>sampleAt</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::sampleAt</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the record at <emphasis>index</emphasis>; <computeroutput>NoMatch</computeroutput> with its raw coordinates when the record is invalid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="66" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ae8fef95365df8dfc2bdb835dcdca8e9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearest</definition>
+        <argsstring>(const QPointF &amp;position, qreal radius=10)</argsstring>
+        <name>nearest</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::nearest</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>Returns the valid sample nearest to <emphasis>position</emphasis> within <emphasis>radius</emphasis> pixels on screen. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="68" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByX</definition>
+        <argsstring>(qreal pixelX, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity())</argsstring>
+        <name>nearestByX</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::nearestByX</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>pixelX</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+          <defval>std::numeric_limits&lt; qreal &gt;::infinity()</defval>
+        </param>
+        <briefdescription>
+<para>Returns the valid sample nearest to <emphasis>pixelX</emphasis> horizontally, within <emphasis>radius</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="70" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a294f6e782374b0dd63def5a2e861756b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSample</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSample QAccelPlot::SeriesInspection::nearestByY</definition>
+        <argsstring>(qreal pixelY, qreal radius=std::numeric_limits&lt; qreal &gt;::infinity())</argsstring>
+        <name>nearestByY</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::nearestByY</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>pixelY</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+          <defval>std::numeric_limits&lt; qreal &gt;::infinity()</defval>
+        </param>
+        <briefdescription>
+<para>Returns the valid sample nearest to <emphasis>pixelY</emphasis> vertically, within <emphasis>radius</emphasis> pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="72" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionBracket</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByX</definition>
+        <argsstring>(qreal pixelX)</argsstring>
+        <name>bracketByX</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::bracketByX</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>pixelX</declname>
+        </param>
+        <briefdescription>
+<para>Returns the valid samples on either side of <emphasis>pixelX</emphasis> and the point between them. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="74" column="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aff3d4ab2fc1115df3328438800c2579e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionBracket</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionBracket QAccelPlot::SeriesInspection::bracketByY</definition>
+        <argsstring>(qreal pixelY)</argsstring>
+        <name>bracketByY</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::bracketByY</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>pixelY</declname>
+        </param>
+        <briefdescription>
+<para>Returns the valid samples whose Y is on either side of <emphasis>pixelY</emphasis> and the point between them. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="76" column="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a9714e86d9537a6c125c427f0701c1d66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSummary</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarize</definition>
+        <argsstring>(qreal xMin, qreal xMax, qreal yMin, qreal yMax)</argsstring>
+        <name>summarize</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::summarize</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>xMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>xMax</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMax</declname>
+        </param>
+        <briefdescription>
+<para>Returns Y statistics of the valid samples inside the region. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="78" column="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a0d8b9397539e1f636e34f3bce216568d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionSummary</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionSummary QAccelPlot::SeriesInspection::summarizeRange</definition>
+        <argsstring>(qreal xMin, qreal xMax)</argsstring>
+        <name>summarizeRange</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::summarizeRange</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>xMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>xMax</declname>
+        </param>
+        <briefdescription>
+<para>Returns Y statistics of the valid samples whose X lies in the interval. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="80" column="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionPage</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionPage QAccelPlot::SeriesInspection::indices</definition>
+        <argsstring>(qreal xMin, qreal xMax, qreal yMin, qreal yMax, int offset=0, int limit=4096, quint64 expectedRevision=0)</argsstring>
+        <name>indices</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::indices</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>xMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>xMax</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMin</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>yMax</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>limit</declname>
+          <defval>4096</defval>
+        </param>
+        <param>
+          <type>quint64</type>
+          <declname>expectedRevision</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Returns up to <emphasis>limit</emphasis> source indices inside the region, skipping the first <emphasis>offset</emphasis> matches. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A nonzero <emphasis>expectedRevision</emphasis> that differs from the series&apos; <computeroutput>dataRevision</computeroutput> returns <computeroutput>Stale</computeroutput>, so pages of one traversal never mix indices of different data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="85" column="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionRecord</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAt</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>recordAt</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::recordAt</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Returns the native record at <emphasis>index</emphasis> of a bar, rectangle, or band series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="89" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE::QAccelPlot::InspectionRecord</type>
+        <definition>Q_INVOKABLE::QAccelPlot::InspectionRecord QAccelPlot::SeriesInspection::recordAtPosition</definition>
+        <argsstring>(const QPointF &amp;position) const</argsstring>
+        <name>recordAtPosition</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::recordAtPosition</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>Returns the native record drawn at the series-local <emphasis>position</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="91" column="48"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesInspection::statusChanged</definition>
+        <argsstring>()</argsstring>
+        <name>statusChanged</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::statusChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the readiness may have changed: after a data change, and when an index is ready. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="95" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a40c2b0b41083e0abbe1e66a62b932125" prot="private" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::SeriesInspection::SeriesInspection</definition>
+        <argsstring>(PlotSeries &amp;series)</argsstring>
+        <name>SeriesInspection</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::SeriesInspection</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &amp;</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="101" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a3ed993068ca01fc4db632c02a812e47c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesInspection::sourceChanged</definition>
+        <argsstring>(bool appended)</argsstring>
+        <name>sourceChanged</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::sourceChanged</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>appended</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1aea3df5618a3a0fc004440c6d91eea717" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::SeriesInspection::sourceInvalidated</definition>
+        <argsstring>()</argsstring>
+        <name>sourceInvalidated</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::sourceInvalidated</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="103" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a301cae784a5ada59788aed89b2fe8b70" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
+        <definition>InspectionStatus QAccelPlot::SeriesInspection::acquire</definition>
+        <argsstring>(const InspectionSource &amp;source, std::optional&lt; InspectionAxis &gt; along)</argsstring>
+        <name>acquire</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::acquire</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; InspectionAxis &gt;</type>
+          <declname>along</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="106" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a08f48877b1b4757776dae82d4581f702" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1InspectionMetric" kindref="compound">InspectionMetric</ref> &gt;</type>
+        <definition>std::optional&lt; InspectionMetric &gt; QAccelPlot::SeriesInspection::metric</definition>
+        <argsstring>() const</argsstring>
+        <name>metric</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::metric</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="107" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a8d304677e5a4188f096e75a594998335" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::SeriesInspection::nearestAlong</definition>
+        <argsstring>(InspectionAxis axis, qreal pixel, qreal radius)</argsstring>
+        <name>nearestAlong</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::nearestAlong</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>pixel</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="108" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1ac46cd1c251b53b13c3d0a50c09d38a60" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionBracket" kindref="compound">InspectionBracket</ref></type>
+        <definition>InspectionBracket QAccelPlot::SeriesInspection::bracketAlong</definition>
+        <argsstring>(InspectionAxis axis, qreal pixel)</argsstring>
+        <name>bracketAlong</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::bracketAlong</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>pixel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="109" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a1af98eae210155d23bcf64ccb21eda73" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::SeriesInspection::makeSample</definition>
+        <argsstring>(const InspectionSource &amp;source, int index, qreal distance) const</argsstring>
+        <name>makeSample</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::makeSample</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="110" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1SeriesInspection_1a7f85c4283e3e8236d3643099c1433992" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::SeriesInspection::interpolate</definition>
+        <argsstring>(const InspectionMetric &amp;metric, InspectionAxis axis, const InspectionSample &amp;left, const InspectionSample &amp;right, qreal pixel) const</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>QAccelPlot::SeriesInspection::interpolate</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionMetric" kindref="compound">InspectionMetric</ref> &amp;</type>
+          <declname>metric</declname>
+        </param>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>pixel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="112" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Data queries for one series: nearest samples, brackets, region statistics, and index pages. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Available as <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kindref="member">PlotSeries::inspection</ref></computeroutput>. Call it on the series&apos; thread. Pixel arguments are series-local logical pixels; regions are inclusive data-space limits, where an infinite limit leaves that side unbounded and reversed limits are swapped.</para>
+<para><computeroutput><ref refid="classQAccelPlot_1_1LineCurve" kindref="compound">LineCurve</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" kindref="member">nearestByX()</ref></computeroutput>, need that order along their own axis. Other series above a small size are indexed on a worker thread first; until then queries return <computeroutput>Inspection.Preparing</computeroutput>. Other series types expose native records through <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" kindref="member">recordAt()</ref></computeroutput> and <computeroutput><ref refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" kindref="member">recordAtPosition()</ref></computeroutput> only.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1PlotInspector" kindref="compound">PlotInspector</ref>, <ref refid="classQAccelPlot_1_1SelectionTool" kindref="compound">SelectionTool</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::SeriesInspection</label>
+        <link refid="classQAccelPlot_1_1SeriesInspection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::SeriesInspection</label>
+        <link refid="classQAccelPlot_1_1SeriesInspection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" line="40" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SeriesInspection.hpp" bodystart="40" bodyend="117"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a301cae784a5ada59788aed89b2fe8b70" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>acquire</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ac46cd1c251b53b13c3d0a50c09d38a60" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>bracketAlong</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a9f93471b27990ff1d42fe2e04b3a0d13" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>bracketByX</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1aff3d4ab2fc1115df3328438800c2579e" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>bracketByY</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a27755e38188fca8332fd52ad1d2dc3d6" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>d_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a3627b72b648d5c43484aa353f4baf175" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>indexBytes</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1abe2a3b291d365904f0b9122c4dd5e513" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>indices</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a7f85c4283e3e8236d3643099c1433992" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a1af98eae210155d23bcf64ccb21eda73" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>makeSample</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a646347feccfa19ab97ac49f4257f4575" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a6884b6ff01c4dbf666ec479d2a94cc64" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>maximumPageSize</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a08f48877b1b4757776dae82d4581f702" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>metric</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ae8fef95365df8dfc2bdb835dcdca8e9d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearest</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a8d304677e5a4188f096e75a594998335" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestAlong</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a2afac8ef920fe3b2ab0b0ff71a78febe" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByX</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a294f6e782374b0dd63def5a2e861756b" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>nearestByY</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1aa9a8749c8792deb1a5bb343ba9166177" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>PlotSeries</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1af733a754d185f80c5943eaf9b44c835d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>prepare</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a6faa4c57048b0385b7d4c9e94398ebd4" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>recordAt</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a10c601af40720ff7e8b2da7e9952c8da" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>recordAtPosition</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a5016b262e467ac289902ac30729c710d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>sampleAt</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a3502d0225565f7ff1e2e4bae79a4b8d3" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>series_</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a40c2b0b41083e0abbe1e66a62b932125" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>SeriesInspection</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a3ed993068ca01fc4db632c02a812e47c" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>sourceChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1aea3df5618a3a0fc004440c6d91eea717" prot="private" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>sourceInvalidated</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ace6210cc03e1617ffe0695d291febf39" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>status</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a2633680d73410b55c759c01c80275790" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>status</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a56f3140510786f904c0527f772d13518" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>statusChanged</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a9714e86d9537a6c125c427f0701c1d66" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>summarize</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a0d8b9397539e1f636e34f3bce216568d" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>summarizeRange</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a91f8e182f992d1e97f1d8521b4089960" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>supported</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1a69b04871eeb4414ff833d536a16e9285" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>supported</name></member>
+      <member refid="classQAccelPlot_1_1SeriesInspection_1ad47942fe19e7b0135374fb523a949042" prot="public" virt="non-virtual"><scope>QAccelPlot::SeriesInspection</scope><name>~SeriesInspection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

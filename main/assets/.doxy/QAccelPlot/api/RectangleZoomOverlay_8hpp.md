@@ -17,7 +17,7 @@
 
 
 
-* `#include <QQuickItem>`
+* `#include "QAccelPlot/internal/OutlinedRectangle.hpp"`
 
 
 

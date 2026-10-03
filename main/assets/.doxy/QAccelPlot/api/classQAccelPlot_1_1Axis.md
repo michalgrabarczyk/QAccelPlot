@@ -135,9 +135,10 @@ flowchart TB
 |  int | [**axisTitlePadding**](#function-axistitlepadding-22) () const<br>_Returns the axis title padding in pixels._  |
 |  QColor | [**baselineColor**](#function-baselinecolor-22) () const<br>_Returns the axis baseline color._  |
 |  qreal | [**baselineWidth**](#function-baselinewidth-22) () const<br>_Returns the axis baseline width in pixels._  |
-|  qreal | [**coordToPixel**](#function-coordtopixel) (qreal value, qreal length) const<br>_Maps a data-space_ _value_ _to a pixel position along an axis of__length_ _pixels._ |
+|  Q\_INVOKABLE qreal | [**coordToPixel**](#function-coordtopixel) (qreal value, qreal length) const<br>_Maps a data-space_ _value_ _to a pixel position along an axis of__length_ _pixels._ |
 |  qreal | [**dataMax**](#function-datamax-22) () const<br>_Returns the maximum data value tracked by bound curves._  |
 |  qreal | [**dataMin**](#function-datamin-22) () const<br>_Returns the minimum data value tracked by bound curves._  |
+|  Q\_INVOKABLE QString | [**formatValue**](#function-formatvalue) (qreal value, qreal length) const<br>_Formats_ _value_ _for a readout on an axis of__length_ _pixels._ |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
 |  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area._  |
@@ -147,9 +148,10 @@ flowchart TB
 |  qreal | [**labelOverflow**](#function-labeloverflow) () const<br>_Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds._  |
 |  qreal | [**layoutSize**](#function-layoutsize-22) () const<br>_Returns the layout thickness in pixels._  |
 |  bool | [**logScale**](#function-logscale-22) () const<br>_Returns_ `true` _when log scale is active._ |
+|  [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) | [**mapping**](#function-mapping) () const<br>_Returns a snapshot of the current viewport mapping._  |
 |  [**Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**orientation**](#function-orientation-22) () const<br>_Returns the axis orientation._  |
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the axis widget (tick marks, labels, label text, background)._  |
-|  qreal | [**pixelToCoord**](#function-pixeltocoord) (qreal pos, qreal length) const<br>_Maps a pixel_ _pos_ _along an axis of__length_ _pixels back to a data-space value._ |
+|  Q\_INVOKABLE qreal | [**pixelToCoord**](#function-pixeltocoord) (qreal pos, qreal length) const<br>_Maps a pixel_ _pos_ _along an axis of__length_ _pixels back to a data-space value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Sets_ `viewportMin` _and_`viewportMax` _to the current_`dataMin` _/_`dataMax` _range._ |
 |  void | [**setAxisLinePadding**](#function-setaxislinepadding) (int padding) <br>_Sets the axis line padding to_ _padding_ _pixels._ |
 |  void | [**setAxisTitlePadding**](#function-setaxistitlepadding) (int padding) <br>_Sets the axis title padding to_ _padding_ _pixels._ |
@@ -977,7 +979,7 @@ qreal QAccelPlot::Axis::baselineWidth () const
 
 _Maps a data-space_ _value_ _to a pixel position along an axis of__length_ _pixels._
 ```C++
-qreal QAccelPlot::Axis::coordToPixel (
+Q_INVOKABLE qreal QAccelPlot::Axis::coordToPixel (
     qreal value,
     qreal length
 ) const
@@ -1015,6 +1017,28 @@ qreal QAccelPlot::Axis::dataMin () const
 
 
 
+
+<hr>
+
+
+
+
+### function formatValue {#function-formatvalue}
+
+_Formats_ _value_ _for a readout on an axis of__length_ _pixels._
+```C++
+Q_INVOKABLE QString QAccelPlot::Axis::formatValue (
+    qreal value,
+    qreal length
+) const
+```
+
+
+
+Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the text follows the zoom level instead of the tick spacing. Returns an empty string for a nonfinite _value_. 
+
+
+        
 
 <hr>
 
@@ -1156,6 +1180,21 @@ bool QAccelPlot::Axis::logScale () const
 
 
 
+### function mapping {#function-mapping}
+
+_Returns a snapshot of the current viewport mapping._ 
+```C++
+AxisMapping QAccelPlot::Axis::mapping () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function orientation {#function-orientation-22}
 
 _Returns the axis orientation._ 
@@ -1196,7 +1235,7 @@ Draws the ticks and labels computed in `updatePolish()`; with the threaded rende
 
 _Maps a pixel_ _pos_ _along an axis of__length_ _pixels back to a data-space value._
 ```C++
-qreal QAccelPlot::Axis::pixelToCoord (
+Q_INVOKABLE qreal QAccelPlot::Axis::pixelToCoord (
     qreal pos,
     qreal length
 ) const

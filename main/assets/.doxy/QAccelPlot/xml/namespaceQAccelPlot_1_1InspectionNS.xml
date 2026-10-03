@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1InspectionNS" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::InspectionNS</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Status</name>
+        <qualifiedname>QAccelPlot::InspectionNS::Status</qualifiedname>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1ae7d31fc0602fb2ede144d18cdffd816b" prot="public">
+          <name>Ready</name>
+          <briefdescription>
+<para>The query ran and matched, or the series can be queried. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1ac8b77721c677e0429241a9250972122d" prot="public">
+          <name>NoMatch</name>
+          <briefdescription>
+<para>The query ran and nothing matched. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1ae599161956d626eda4cb0a5ffb85271c" prot="public">
+          <name>Idle</name>
+          <briefdescription>
+<para>A query index is required and has not been requested. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1aad866f19a13c5386d2ec6df246dcbfac" prot="public">
+          <name>Preparing</name>
+          <briefdescription>
+<para>A query index is being built; retry after <computeroutput>statusChanged</computeroutput>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1ab4080bdf74febf04d578ff105cce9d3f" prot="public">
+          <name>Unsupported</name>
+          <briefdescription>
+<para>The series type does not support this query. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1a453e6aa38d87b28ccae545967c53004f" prot="public">
+          <name>Unavailable</name>
+          <briefdescription>
+<para>The query cannot run now: missing axes, empty geometry, or a pending data transition. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1a253ca7dd096ee0956cccee4d376cab8b" prot="public">
+          <name>InvalidArgument</name>
+          <briefdescription>
+<para>An argument is nonfinite or out of range. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1af1ac273d3c6d8e6489bf332819a2f650" prot="public">
+          <name>Stale</name>
+          <briefdescription>
+<para>The expected data revision no longer matches the series. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Outcome of an inspection query, or readiness of a series for queries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="30" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="30" bodyend="39"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Namespace exposing the inspection <computeroutput>Status</computeroutput> enum to QML as <computeroutput>Inspection</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="25" column="1"/>
+  </compounddef>
+</doxygen>

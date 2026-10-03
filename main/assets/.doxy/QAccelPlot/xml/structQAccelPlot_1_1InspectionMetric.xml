@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionMetric" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionMetric</compoundname>
+    <includes local="no">InspectionTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionMetric_1aab2918c2a52a2e9805b35601ca785dd4" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1AxisMapping" kindref="compound">AxisMapping</ref></type>
+        <definition>AxisMapping QAccelPlot::InspectionMetric::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="46" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionMetric_1a7ca1f43bd8a07d0a3c7e5493c36198e0" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1AxisMapping" kindref="compound">AxisMapping</ref></type>
+        <definition>AxisMapping QAccelPlot::InspectionMetric::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="47" column="17" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionMetric_1a168dd9cc04edfb7a6a64e45523fe8f04" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::width</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="48" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionMetric_1ac7b6f53f030eef50fc5079d4cc30fb50" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::height</definition>
+        <argsstring></argsstring>
+        <name>height</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::height</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="49" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionMetric_1a20d968eac7e5ca8c50df4f9c41d32428" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::pixelX</definition>
+        <argsstring>(double value) const noexcept</argsstring>
+        <name>pixelX</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::pixelX</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="51" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionMetric_1a25824202358c17e4179f6e384b213b5b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::pixelY</definition>
+        <argsstring>(double value) const noexcept</argsstring>
+        <name>pixelY</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::pixelY</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="52" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionMetric_1ad2ab3d4ca83f3cae013570862e5ca2fb" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::pixel</definition>
+        <argsstring>(InspectionAxis axis, double value) const noexcept</argsstring>
+        <name>pixel</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::pixel</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Maps a data <emphasis>value</emphasis> on <emphasis>axis</emphasis> to a series-local pixel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="54" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionMetric_1ad8533c85548dffa74f20a29ec669a694" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionMetric::coord</definition>
+        <argsstring>(InspectionAxis axis, double pixel) const noexcept</argsstring>
+        <name>coord</name>
+        <qualifiedname>QAccelPlot::InspectionMetric::coord</qualifiedname>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pixel</declname>
+        </param>
+        <briefdescription>
+<para>Maps a series-local <emphasis>pixel</emphasis> on <emphasis>axis</emphasis> to a data value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="56" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Pixel mapping of a series&apos; plot area, used to measure on-screen distances. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>QAccelPlot::AxisMapping</label>
+        <link refid="structQAccelPlot_1_1AxisMapping"/>
+      </node>
+      <node id="1">
+        <label>QAccelPlot::InspectionMetric</label>
+        <link refid="structQAccelPlot_1_1InspectionMetric"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="45" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="45" bodyend="57"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1ad8533c85548dffa74f20a29ec669a694" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>coord</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1ac7b6f53f030eef50fc5079d4cc30fb50" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>height</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1ad2ab3d4ca83f3cae013570862e5ca2fb" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>pixel</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1a20d968eac7e5ca8c50df4f9c41d32428" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>pixelX</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1a25824202358c17e4179f6e384b213b5b" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>pixelY</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1a168dd9cc04edfb7a6a64e45523fe8f04" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>width</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1aab2918c2a52a2e9805b35601ca785dd4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1InspectionMetric_1a7ca1f43bd8a07d0a3c7e5493c36198e0" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionMetric</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

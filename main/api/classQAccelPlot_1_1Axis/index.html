@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -670,6 +672,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1924,6 +1954,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-formatvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function formatValue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-hovercolor-22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2016,6 +2057,17 @@
     <span class="md-ellipsis">
       
         function logScale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function mapping
       
     </span>
   </a>
@@ -2702,7 +2754,7 @@
 <td style="text-align: left;"><a href="#function-baselinewidth-22"><strong>baselineWidth</strong></a> () const<br><em>Returns the axis baseline width in pixels.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">qreal</td>
+<td style="text-align: right;">Q_INVOKABLE qreal</td>
 <td style="text-align: left;"><a href="#function-coordtopixel"><strong>coordToPixel</strong></a> (qreal value, qreal length) const<br><em>Maps a data-space</em> <em>value</em> <em>to a pixel position along an axis of__length</em> <em>pixels.</em></td>
 </tr>
 <tr>
@@ -2712,6 +2764,10 @@
 <tr>
 <td style="text-align: right;">qreal</td>
 <td style="text-align: left;"><a href="#function-datamin-22"><strong>dataMin</strong></a> () const<br><em>Returns the minimum data value tracked by bound curves.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">Q_INVOKABLE QString</td>
+<td style="text-align: left;"><a href="#function-formatvalue"><strong>formatValue</strong></a> (qreal value, qreal length) const<br><em>Formats</em> <em>value</em> <em>for a readout on an axis of__length</em> <em>pixels.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">QColor</td>
@@ -2750,6 +2806,10 @@
 <td style="text-align: left;"><a href="#function-logscale-22"><strong>logScale</strong></a> () const<br><em>Returns</em> <code>true</code> <em>when log scale is active.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;"><a href="../structQAccelPlot_1_1AxisMapping/"><strong>AxisMapping</strong></a></td>
+<td style="text-align: left;"><a href="#function-mapping"><strong>mapping</strong></a> () const<br><em>Returns a snapshot of the current viewport mapping.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="./#enum-orientation"><strong>Orientation</strong></a></td>
 <td style="text-align: left;"><a href="#function-orientation-22"><strong>orientation</strong></a> () const<br><em>Returns the axis orientation.</em></td>
 </tr>
@@ -2758,7 +2818,7 @@
 <td style="text-align: left;"><a href="#function-paint"><strong>paint</strong></a> (QPainter * painter) override<br><em>Paints the axis widget (tick marks, labels, label text, background).</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">qreal</td>
+<td style="text-align: right;">Q_INVOKABLE qreal</td>
 <td style="text-align: left;"><a href="#function-pixeltocoord"><strong>pixelToCoord</strong></a> (qreal pos, qreal length) const<br><em>Maps a pixel</em> <em>pos</em> <em>along an axis of__length</em> <em>pixels back to a data-space value.</em></td>
 </tr>
 <tr>
@@ -3207,7 +3267,7 @@
 
 <h3 id="function-coordtopixel">function coordToPixel<a class="headerlink" href="#function-coordtopixel" title="Permanent link">&para;</a></h3>
 <p><em>Maps a data-space</em> <em>value</em> <em>to a pixel position along an axis of__length</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">coordToPixel</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">coordToPixel</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
 <a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
 <a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
@@ -3226,315 +3286,331 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-formatvalue">function formatValue<a class="headerlink" href="#function-formatvalue" title="Permanent link">&para;</a></h3>
+<p><em>Formats</em> <em>value</em> <em>for a readout on an axis of__length</em> <em>pixels.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">formatValue</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<p>Uses the tick label formatter with a precision one decimal digit finer than a pixel, so the text follows the zoom level instead of the tick spacing. Returns an empty string for a nonfinite <em>value</em>. </p>
+<hr>
+
 <h3 id="function-hovercolor-22">function hoverColor<a class="headerlink" href="#function-hovercolor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the hovered tick/label color.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-hovered-22">function hovered<a class="headerlink" href="#function-hovered-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>if the mouse is currently over the axis widget.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hovered</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hovered</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-inwardtickoverlap">function inwardTickOverlap<a class="headerlink" href="#function-inwardtickoverlap" title="Permanent link">&para;</a></h3>
 <p><em>Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">inwardTickOverlap</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">inwardTickOverlap</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-label-22">function label<a class="headerlink" href="#function-label-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis label string.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">label</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">QString</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">label</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-labelcolor-22">function labelColor<a class="headerlink" href="#function-labelcolor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis-label color, or an invalid color when it follows baselineColor.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">QColor</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelColor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-labelfont-22">function labelFont<a class="headerlink" href="#function-labelfont-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis label font.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelFont</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">QFont</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelFont</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-labeloverflow">function labelOverflow<a class="headerlink" href="#function-labeloverflow" title="Permanent link">&para;</a></h3>
 <p><em>Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelOverflow</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">labelOverflow</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-layoutsize-22">function layoutSize<a class="headerlink" href="#function-layoutsize-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the layout thickness in pixels.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">layoutSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">layoutSize</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-logscale-22">function logScale<a class="headerlink" href="#function-logscale-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns</em> <code>true</code> <em>when log scale is active.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">logScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-mapping">function mapping<a class="headerlink" href="#function-mapping" title="Permanent link">&para;</a></h3>
+<p><em>Returns a snapshot of the current viewport mapping.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="n">AxisMapping</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mapping</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-orientation-22">function orientation<a class="headerlink" href="#function-orientation-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis orientation.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">orientation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">Orientation</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">orientation</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-paint">function paint<a class="headerlink" href="#function-paint" title="Permanent link">&para;</a></h3>
 <p><em>Paints the axis widget (tick marks, labels, label text, background).</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">paint</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span>
-<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">paint</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="n">QPainter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">painter</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Draws the ticks and labels computed in <code>updatePolish()</code>; with the threaded render loop this runs on the render thread. </p>
 <hr>
 
 <h3 id="function-pixeltocoord">function pixelToCoord<a class="headerlink" href="#function-pixeltocoord" title="Permanent link">&para;</a></h3>
 <p><em>Maps a pixel</em> <em>pos</em> <em>along an axis of__length</em> <em>pixels back to a data-space value.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">pixelToCoord</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span>
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
-<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">pixelToCoord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span>
+<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-rescaletodata">function rescaleToData<a class="headerlink" href="#function-rescaletodata" title="Permanent link">&para;</a></h3>
 <p><em>Sets</em> <code>viewportMin</code> <em>and</em><code>viewportMax</code> <em>to the current</em><code>dataMin</code> <em>/</em><code>dataMax</code> <em>range.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">rescaleToData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">rescaleToData</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setaxislinepadding">function setAxisLinePadding<a class="headerlink" href="#function-setaxislinepadding" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis line padding to</em> <em>padding</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisLinePadding</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisLinePadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setaxistitlepadding">function setAxisTitlePadding<a class="headerlink" href="#function-setaxistitlepadding" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis title padding to</em> <em>padding</em> <em>pixels.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisTitlePadding</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setAxisTitlePadding</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">padding</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbaselinecolor">function setBaselineColor<a class="headerlink" href="#function-setbaselinecolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis baseline color to</em> <em>c</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
-<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbaselinewidth">function setBaselineWidth<a class="headerlink" href="#function-setbaselinewidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis baseline width to</em> <em>width</em> <em>pixels. Negative values are clamped to zero.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setBaselineWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdatamax">function setDataMax<a class="headerlink" href="#function-setdatamax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the tracked data maximum to</em> <em>m</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
-<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdatamin">function setDataMin<a class="headerlink" href="#function-setdatamin" title="Permanent link">&para;</a></h3>
 <p><em>Sets the tracked data minimum to</em> <em>m</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMin</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
-<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setDataMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-sethovercolor">function setHoverColor<a class="headerlink" href="#function-sethovercolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the hovered color to</em> <em>c</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
-<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setlabel">function setLabel<a class="headerlink" href="#function-setlabel" title="Permanent link">&para;</a></h3>
-<p><em>Sets the axis label to</em> <em>t</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabel</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span>
-<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="p">)</span><span class="w"> </span>
-</code></pre></div></p>
-<hr>
-
-<h3 id="function-setlabelcolor">function setLabelColor<a class="headerlink" href="#function-setlabelcolor" title="Permanent link">&para;</a></h3>
-<p><em>Sets the axis-label color to</em> <em>c</em> <em>. An invalid color restores the baselineColor fallback.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelColor</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
 <a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-setlabel">function setLabel<a class="headerlink" href="#function-setlabel" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis label to</em> <em>t</em> <em>.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabel</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setlabelcolor">function setLabelColor<a class="headerlink" href="#function-setlabelcolor" title="Permanent link">&para;</a></h3>
+<p><em>Sets the axis-label color to</em> <em>c</em> <em>. An invalid color restores the baselineColor fallback.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setlabelfont">function setLabelFont<a class="headerlink" href="#function-setlabelfont" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis label font to</em> <em>f</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelFont</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span>
-<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLabelFont</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QFont</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span>
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setlayoutsize">function setLayoutSize<a class="headerlink" href="#function-setlayoutsize" title="Permanent link">&para;</a></h3>
 <p><em>Sets the layout thickness to</em> <em>size</em> <em>pixels. Negative values are clamped to zero.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLayoutSize</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
-<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLayoutSize</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">size</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setlogscale">function setLogScale<a class="headerlink" href="#function-setlogscale" title="Permanent link">&para;</a></h3>
 <p><em>Sets log-scale mode to</em> <em>on</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLogScale</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span>
-<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setLogScale</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">on</span>
+<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setorientation">function setOrientation<a class="headerlink" href="#function-setorientation" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis orientation to</em> <em>o</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setOrientation</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">    </span><span class="n">Orientation</span><span class="w"> </span><span class="n">o</span>
-<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setOrientation</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="w">    </span><span class="n">Orientation</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setside">function setSide<a class="headerlink" href="#function-setside" title="Permanent link">&para;</a></h3>
 <p><em>Sets the axis side to</em> <em>s</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setSide</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="w">    </span><span class="n">Side</span><span class="w"> </span><span class="n">s</span>
-<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setSide</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="w">    </span><span class="n">Side</span><span class="w"> </span><span class="n">s</span>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setviewportmax">function setViewportMax<a class="headerlink" href="#function-setviewportmax" title="Permanent link">&para;</a></h3>
 <p><em>Sets the upper bound of the visible range to</em> <em>m</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMax</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
-<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMax</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setviewportmin">function setViewportMin<a class="headerlink" href="#function-setviewportmin" title="Permanent link">&para;</a></h3>
 <p><em>Sets the lower bound of the visible range to</em> <em>m</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMin</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
-<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setViewportMin</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">m</span>
+<a id="__codelineno-80-3" name="__codelineno-80-3" href="#__codelineno-80-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setzoomscalefactor">function setZoomScaleFactor<a class="headerlink" href="#function-setzoomscalefactor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the zoom scale factor to</em> <em>factor</em> <em>(clamped to the range (0, 1)).</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setZoomScaleFactor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">factor</span>
-<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">setZoomScaleFactor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">factor</span>
+<a id="__codelineno-81-3" name="__codelineno-81-3" href="#__codelineno-81-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <p>Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming. </p>
 <hr>
 
 <h3 id="function-side-22">function side<a class="headerlink" href="#function-side-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the axis side.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">side</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="n">Side</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">side</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-ticker-22">function ticker<a class="headerlink" href="#function-ticker-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the tick configuration object.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">ticker</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="n">AxisTicker</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">ticker</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-togglelogscale">function toggleLogScale<a class="headerlink" href="#function-togglelogscale" title="Permanent link">&para;</a></h3>
 <p><em>Toggles the log-scale mode on or off.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">toggleLogScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">toggleLogScale</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-viewportmax-22">function viewportMax<a class="headerlink" href="#function-viewportmax-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the upper bound of the visible range.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMax</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-viewportmin-22">function viewportMin<a class="headerlink" href="#function-viewportmin-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the lower bound of the visible range.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="n">qreal</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">viewportMin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-zoomscalefactor-22">function zoomScaleFactor<a class="headerlink" href="#function-zoomscalefactor-22" title="Permanent link">&para;</a></h3>
 <p><em>Returns the zoom scale factor.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-hoverenterevent">function hoverEnterEvent<a class="headerlink" href="#function-hoverenterevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
-<a id="__codelineno-86-3" name="__codelineno-86-3" href="#__codelineno-86-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
-</code></pre></div>
-<hr>
-
-<h3 id="function-hoverleaveevent">function hoverLeaveEvent<a class="headerlink" href="#function-hoverleaveevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
-<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
-</code></pre></div>
-<hr>
-
-<h3 id="function-keypressevent">function keyPressEvent<a class="headerlink" href="#function-keypressevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">keyPressEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a><span class="w">    </span><span class="n">QKeyEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
-<h3 id="function-mousedoubleclickevent">function mouseDoubleClickEvent<a class="headerlink" href="#function-mousedoubleclickevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseDoubleClickEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<h3 id="function-hoverleaveevent">function hoverLeaveEvent<a class="headerlink" href="#function-hoverleaveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
-<h3 id="function-mousemoveevent">function mouseMoveEvent<a class="headerlink" href="#function-mousemoveevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseMoveEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<h3 id="function-keypressevent">function keyPressEvent<a class="headerlink" href="#function-keypressevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">keyPressEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a><span class="w">    </span><span class="n">QKeyEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
-<h3 id="function-mousepressevent">function mousePressEvent<a class="headerlink" href="#function-mousepressevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mousePressEvent</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-mousedoubleclickevent">function mouseDoubleClickEvent<a class="headerlink" href="#function-mousedoubleclickevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseDoubleClickEvent</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
-<h3 id="function-mousereleaseevent">function mouseReleaseEvent<a class="headerlink" href="#function-mousereleaseevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseReleaseEvent</span><span class="w"> </span><span class="p">(</span>
+<h3 id="function-mousemoveevent">function mouseMoveEvent<a class="headerlink" href="#function-mousemoveevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseMoveEvent</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
 <a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
+<h3 id="function-mousepressevent">function mousePressEvent<a class="headerlink" href="#function-mousepressevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mousePressEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
+<h3 id="function-mousereleaseevent">function mouseReleaseEvent<a class="headerlink" href="#function-mousereleaseevent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">mouseReleaseEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a><span class="w">    </span><span class="n">QMouseEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</code></pre></div>
+<hr>
+
 <h3 id="function-updatepolish">function updatePolish<a class="headerlink" href="#function-updatepolish" title="Permanent link">&para;</a></h3>
 <p><em>Recomputes the visible tick values and formats their labels on the GUI thread, ahead of</em> <code>paint()</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">updatePolish</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Axis</span><span class="o">::</span><span class="n">updatePolish</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <hr>
 

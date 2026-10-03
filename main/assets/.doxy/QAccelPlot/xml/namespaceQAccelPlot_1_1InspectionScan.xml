@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceQAccelPlot_1_1InspectionScan" kind="namespace" language="C++">
+    <compoundname>QAccelPlot::InspectionScan</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1InspectionScan_1a593ef0528245ae6379db21cc351fcfb0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
+        <definition>InspectionHit QAccelPlot::InspectionScan::nearestAlong</definition>
+        <argsstring>(const InspectionSource &amp;source, const InspectionMetric &amp;metric, InspectionAxis axis, double pixel, double radius)</argsstring>
+        <name>nearestAlong</name>
+        <qualifiedname>QAccelPlot::InspectionScan::nearestAlong</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionMetric" kindref="compound">InspectionMetric</ref> &amp;</type>
+          <declname>metric</declname>
+        </param>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pixel</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Returns the valid sample nearest to <emphasis>pixel</emphasis> along <emphasis>axis</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="70" column="16" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" declline="70" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1InspectionScan_1abd0f5a1d11cc0e2673cf28895a4bdad2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionHit" kindref="compound">InspectionHit</ref></type>
+        <definition>InspectionHit QAccelPlot::InspectionScan::nearest</definition>
+        <argsstring>(const InspectionSource &amp;source, const InspectionMetric &amp;metric, const QPointF &amp;position, double radius)</argsstring>
+        <name>nearest</name>
+        <qualifiedname>QAccelPlot::InspectionScan::nearest</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionMetric" kindref="compound">InspectionMetric</ref> &amp;</type>
+          <declname>metric</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="71" column="16" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" declline="71" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1InspectionScan_1a4577a18919cbe195d6bfe9d0e4d4f1cc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionNeighbors" kindref="compound">InspectionNeighbors</ref></type>
+        <definition>InspectionNeighbors QAccelPlot::InspectionScan::neighbors</definition>
+        <argsstring>(const InspectionSource &amp;source, InspectionAxis axis, double value)</argsstring>
+        <name>neighbors</name>
+        <qualifiedname>QAccelPlot::InspectionScan::neighbors</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>InspectionAxis</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Returns the valid samples on either side of <emphasis>value</emphasis> on <emphasis>axis</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="73" column="22" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" declline="73" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1InspectionScan_1a74e5efeb9359789310f4dd52473e0b3b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1SummaryAccumulator" kindref="compound">SummaryAccumulator</ref></type>
+        <definition>SummaryAccumulator QAccelPlot::InspectionScan::summarize</definition>
+        <argsstring>(const InspectionSource &amp;source, const InspectionBounds &amp;bounds)</argsstring>
+        <name>summarize</name>
+        <qualifiedname>QAccelPlot::InspectionScan::summarize</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionBounds" kindref="compound">InspectionBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="74" column="21" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" declline="74" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceQAccelPlot_1_1InspectionScan_1a93abefb80294632def0c087966132273" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::InspectionScan::collect</definition>
+        <argsstring>(const InspectionSource &amp;source, const InspectionBounds &amp;bounds, int offset, int limit, QList&lt; int &gt; &amp;indices)</argsstring>
+        <name>collect</name>
+        <qualifiedname>QAccelPlot::InspectionScan::collect</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref> &amp;</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1InspectionBounds" kindref="compound">InspectionBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>limit</declname>
+        </param>
+        <param>
+          <type>QList&lt; int &gt; &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="75" column="6" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" declline="75" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inspection queries that scan every record; used for small series that are not ordered along the queried axis. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/SourceInspection.hpp" line="67" column="1"/>
+  </compounddef>
+</doxygen>

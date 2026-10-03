@@ -30,6 +30,7 @@
 
 | Type | Name |
 | ---: | :--- |
+| file | [**OutlinedRectangle.hpp**](OutlinedRectangle_8hpp.md) <br> |
 | file | [**RectangleZoomOverlay.hpp**](RectangleZoomOverlay_8hpp.md) <br> |
 
 

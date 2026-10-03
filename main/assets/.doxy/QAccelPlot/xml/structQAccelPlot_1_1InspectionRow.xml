@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionRow" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionRow</compoundname>
+    <includes local="no">InspectionRowModel.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1aa4c0cf1c4bb303a450369adcfe68ff18" prot="public" static="no" mutable="no">
+        <type>QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt;</type>
+        <definition>QPointer&lt;PlotSeries&gt; QAccelPlot::InspectionRow::series</definition>
+        <argsstring></argsstring>
+        <name>series</name>
+        <qualifiedname>QAccelPlot::InspectionRow::series</qualifiedname>
+        <briefdescription>
+<para>Series the row describes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="20" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1aa5ade289f23d444723ef5e5f812ce44a" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::InspectionRow::sample</definition>
+        <argsstring></argsstring>
+        <name>sample</name>
+        <qualifiedname>QAccelPlot::InspectionRow::sample</qualifiedname>
+        <briefdescription>
+<para>Sample at the cursor; invalid for selection rows. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="21" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a9ce0fd110b30c5b9303d85810bc4a719" prot="public" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::InspectionRow::pixelPosition</definition>
+        <argsstring></argsstring>
+        <name>pixelPosition</name>
+        <qualifiedname>QAccelPlot::InspectionRow::pixelPosition</qualifiedname>
+        <briefdescription>
+<para>Sample position in plot-local logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="22" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a5fdb7eadbbf34ae2b08e186e908b9918" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::InspectionRow::xText</definition>
+        <argsstring></argsstring>
+        <name>xText</name>
+        <qualifiedname>QAccelPlot::InspectionRow::xText</qualifiedname>
+        <briefdescription>
+<para>Sample X formatted by the series&apos; X axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="23" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1afba61f3055fdf3e4cb46520c22fc0af0" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::InspectionRow::yText</definition>
+        <argsstring></argsstring>
+        <name>yText</name>
+        <qualifiedname>QAccelPlot::InspectionRow::yText</qualifiedname>
+        <briefdescription>
+<para>Sample Y formatted by the series&apos; Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="24" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a1133c67e28da6470fac6eefc5590c7fd" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionRow::hasSummary</definition>
+        <argsstring></argsstring>
+        <name>hasSummary</name>
+        <qualifiedname>QAccelPlot::InspectionRow::hasSummary</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>Whether <computeroutput>summary</computeroutput> was requested. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="25" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1ae47bb9213bef9185320232dbb764ffce" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSummary" kindref="compound">InspectionSummary</ref></type>
+        <definition>InspectionSummary QAccelPlot::InspectionRow::summary</definition>
+        <argsstring></argsstring>
+        <name>summary</name>
+        <qualifiedname>QAccelPlot::InspectionRow::summary</qualifiedname>
+        <briefdescription>
+<para>Region statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="26" column="23" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a2c26a906b0c7edb7037f9a675211fc85" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::InspectionRow::minimumText</definition>
+        <argsstring></argsstring>
+        <name>minimumText</name>
+        <qualifiedname>QAccelPlot::InspectionRow::minimumText</qualifiedname>
+        <briefdescription>
+<para>Summary minimum formatted by the series&apos; Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="27" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a35ae512760900d749e76726f9f03c7b4" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::InspectionRow::maximumText</definition>
+        <argsstring></argsstring>
+        <name>maximumText</name>
+        <qualifiedname>QAccelPlot::InspectionRow::maximumText</qualifiedname>
+        <briefdescription>
+<para>Summary maximum formatted by the series&apos; Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="28" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionRow_1a5b8277c93af005f0f42b9b0659735570" prot="public" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::InspectionRow::meanText</definition>
+        <argsstring></argsstring>
+        <name>meanText</name>
+        <qualifiedname>QAccelPlot::InspectionRow::meanText</qualifiedname>
+        <briefdescription>
+<para>Summary mean formatted by the series&apos; Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="29" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inspection result of one series, as shown by one row of an <computeroutput><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref></computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::InspectionRow</label>
+        <link refid="structQAccelPlot_1_1InspectionRow"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sample</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>summary</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::InspectionSample</label>
+        <link refid="structQAccelPlot_1_1InspectionSample"/>
+      </node>
+      <node id="3">
+        <label>QAccelPlot::InspectionSummary</label>
+        <link refid="structQAccelPlot_1_1InspectionSummary"/>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" line="19" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionRowModel.hpp" bodystart="19" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a1133c67e28da6470fac6eefc5590c7fd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>hasSummary</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a35ae512760900d749e76726f9f03c7b4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>maximumText</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a5b8277c93af005f0f42b9b0659735570" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>meanText</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a2c26a906b0c7edb7037f9a675211fc85" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>minimumText</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a9ce0fd110b30c5b9303d85810bc4a719" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>pixelPosition</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1aa5ade289f23d444723ef5e5f812ce44a" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>sample</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1aa4c0cf1c4bb303a450369adcfe68ff18" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>series</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1ae47bb9213bef9185320232dbb764ffce" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>summary</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1a5fdb7eadbbf34ae2b08e186e908b9918" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>xText</name></member>
+      <member refid="structQAccelPlot_1_1InspectionRow_1afba61f3055fdf3e4cb46520c22fc0af0" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionRow</scope><name>yText</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

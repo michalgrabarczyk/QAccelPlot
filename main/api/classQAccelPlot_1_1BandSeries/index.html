@@ -461,6 +461,8 @@
       
         
       
+        
+      
     
     
     
@@ -670,6 +672,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1294,6 +1324,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#protected-types-inherited-from-qaccelplotplotseries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Types inherited from QAccelPlot::PlotSeries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#protected-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1828,6 +1869,14 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align: right;">property quint64</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-datarevision-12"><strong>dataRevision</strong></a>  <br><em>Revision incremented by every accepted change of the series' records.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">property <a href="../classQAccelPlot_1_1SeriesInspection/"><strong>QAccelPlot::SeriesInspection</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-inspection-12"><strong>inspection</strong></a>  <br><em>Read-only constant: data queries for this series.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;">property <a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#property-legendsymbol-12"><strong>legendSymbol</strong></a>  <br><em>Symbol style requested from the default legend.</em></td>
 </tr>
@@ -1882,6 +1931,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align: right;">signal void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-datarevisionchanged"><strong>dataRevisionChanged</strong></a>  <br><em>Emitted when the dataRevision property changes.</em></td>
+</tr>
 <tr>
 <td style="text-align: right;">signal void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#signal-legendsymbolchanged"><strong>legendSymbolChanged</strong></a>  <br></td>
@@ -2030,6 +2083,14 @@
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-cleardata"><strong>clearData</strong></a> () = 0<br><em>Removes all records from the series.</em></td>
 </tr>
 <tr>
+<td style="text-align: right;">quint64</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-datarevision-22"><strong>dataRevision</strong></a> () const<br><em>Returns the current data revision.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="../classQAccelPlot_1_1SeriesInspection/"><strong>SeriesInspection</strong></a> *</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspection-22"><strong>inspection</strong></a> () const<br><em>Returns the data queries for this series; created on first use and owned by the series.</em></td>
+</tr>
+<tr>
 <td style="text-align: right;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-legendsymbol"><strong>LegendSymbol</strong></a></td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-legendsymbol-22"><strong>legendSymbol</strong></a> () const<br></td>
 </tr>
@@ -2111,6 +2172,22 @@
 </tr>
 </tbody>
 </table>
+<h2 id="protected-types-inherited-from-qaccelplotplotseries">Protected Types inherited from QAccelPlot::PlotSeries<a class="headerlink" href="#protected-types-inherited-from-qaccelplotplotseries" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classQAccelPlot_1_1PlotSeries/">QAccelPlot::PlotSeries</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">enum</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a>  <br><em>How the records changed in a data update.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2159,6 +2236,30 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-extendydatarange"><strong>extendYDataRange</strong></a> (qreal y) <br><em>Widens the reported Y extent to include</em> <em>y</em> <em>. A non-finite__y</em> <em>leaves the extent unchanged.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual bool</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionavailable"><strong>inspectionAvailable</strong></a> () const<br><em>Returns false while the records are ambiguous, such as during a data transition. Default: true.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectiondatachanged"><strong>inspectionDataChanged</strong></a> (<a href="../classQAccelPlot_1_1PlotSeries/#enum-datachange"><strong>DataChange</strong></a> change=DataChange::Replaced) <br><em>Advances the data revision and refreshes the data queries. Call after every accepted record change.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><strong>inspectionRecord</strong></a> (int index) const<br><em>Returns the native record at</em> <em>index</em> <em>for series that are not plain XY series. Default: unsupported.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionRecord/"><strong>InspectionRecord</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><strong>inspectionRecordAt</strong></a> (const QPointF &amp; position) const<br><em>Returns the native record drawn at the series-local</em> <em>position</em> <em>. Default: unsupported.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">virtual <a href="../structQAccelPlot_1_1InspectionSource/"><strong>InspectionSource</strong></a></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionsource"><strong>inspectionSource</strong></a> () const<br><em>Returns a view of the XY records that sample queries search. The default has none.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-invalidateinspection"><strong>invalidateInspection</strong></a> () <br><em>Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>

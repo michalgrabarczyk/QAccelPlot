@@ -124,6 +124,8 @@ signals:
 
 protected:
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
+    InspectionRecord inspectionRecord(int index) const override;
+    InspectionRecord inspectionRecordAt(const QPointF& position) const override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;

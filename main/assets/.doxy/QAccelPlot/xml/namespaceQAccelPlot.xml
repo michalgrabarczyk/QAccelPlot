@@ -3,6 +3,7 @@
   <compounddef id="namespaceQAccelPlot" kind="namespace" language="C++">
     <compoundname>QAccelPlot</compoundname>
     <innerclass refid="classQAccelPlot_1_1Axis" prot="public">QAccelPlot::Axis</innerclass>
+    <innerclass refid="structQAccelPlot_1_1AxisMapping" prot="public">QAccelPlot::AxisMapping</innerclass>
     <innerclass refid="structQAccelPlot_1_1AxisTick" prot="public">QAccelPlot::AxisTick</innerclass>
     <innerclass refid="classQAccelPlot_1_1AxisTicker" prot="public">QAccelPlot::AxisTicker</innerclass>
     <innerclass refid="classQAccelPlot_1_1AxisTickPainter" prot="public">QAccelPlot::AxisTickPainter</innerclass>
@@ -42,6 +43,20 @@
     <innerclass refid="classQAccelPlot_1_1GradientTexture" prot="public">QAccelPlot::GradientTexture</innerclass>
     <innerclass refid="classQAccelPlot_1_1Grid" prot="public">QAccelPlot::Grid</innerclass>
     <innerclass refid="classQAccelPlot_1_1GridNode" prot="public">QAccelPlot::GridNode</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionBounds" prot="public">QAccelPlot::InspectionBounds</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionBracket" prot="public">QAccelPlot::InspectionBracket</innerclass>
+    <innerclass refid="classQAccelPlot_1_1InspectionCache" prot="public">QAccelPlot::InspectionCache</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionHit" prot="public">QAccelPlot::InspectionHit</innerclass>
+    <innerclass refid="classQAccelPlot_1_1InspectionIndex" prot="public">QAccelPlot::InspectionIndex</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionMetric" prot="public">QAccelPlot::InspectionMetric</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionNeighbors" prot="public">QAccelPlot::InspectionNeighbors</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionPage" prot="public">QAccelPlot::InspectionPage</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionRecord" prot="public">QAccelPlot::InspectionRecord</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionRow" prot="public">QAccelPlot::InspectionRow</innerclass>
+    <innerclass refid="classQAccelPlot_1_1InspectionRowModel" prot="public">QAccelPlot::InspectionRowModel</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionSample" prot="public">QAccelPlot::InspectionSample</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionSource" prot="public">QAccelPlot::InspectionSource</innerclass>
+    <innerclass refid="structQAccelPlot_1_1InspectionSummary" prot="public">QAccelPlot::InspectionSummary</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurve" prot="public">QAccelPlot::LineCurve</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurveEffect" prot="public">QAccelPlot::LineCurveEffect</innerclass>
     <innerclass refid="classQAccelPlot_1_1LineCurveGaps" prot="public">QAccelPlot::LineCurveGaps</innerclass>
@@ -55,7 +70,11 @@
     <innerclass refid="classQAccelPlot_1_1MorphTransition" prot="public">QAccelPlot::MorphTransition</innerclass>
     <innerclass refid="classQAccelPlot_1_1NoLine" prot="public">QAccelPlot::NoLine</innerclass>
     <innerclass refid="classQAccelPlot_1_1NumericTickLabelFormatter" prot="public">QAccelPlot::NumericTickLabelFormatter</innerclass>
+    <innerclass refid="classQAccelPlot_1_1OutlinedRectangle" prot="public">QAccelPlot::OutlinedRectangle</innerclass>
+    <innerclass refid="classQAccelPlot_1_1OverlayChildren" prot="public">QAccelPlot::OverlayChildren</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotBorder" prot="public">QAccelPlot::PlotBorder</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PlotDragRect" prot="public">QAccelPlot::PlotDragRect</innerclass>
+    <innerclass refid="classQAccelPlot_1_1PlotInspector" prot="public">QAccelPlot::PlotInspector</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotMouseEvent" prot="public">QAccelPlot::PlotMouseEvent</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotRectangleZoom" prot="public">QAccelPlot::PlotRectangleZoom</innerclass>
     <innerclass refid="classQAccelPlot_1_1PlotSeries" prot="public">QAccelPlot::PlotSeries</innerclass>
@@ -72,18 +91,54 @@
     <innerclass refid="classQAccelPlot_1_1RectMaterial" prot="public">QAccelPlot::RectMaterial</innerclass>
     <innerclass refid="classQAccelPlot_1_1RectVertexCache" prot="public">QAccelPlot::RectVertexCache</innerclass>
     <innerclass refid="structQAccelPlot_1_1SampleRun" prot="public">QAccelPlot::SampleRun</innerclass>
+    <innerclass refid="classQAccelPlot_1_1SelectionRectangle" prot="public">QAccelPlot::SelectionRectangle</innerclass>
+    <innerclass refid="classQAccelPlot_1_1SelectionTool" prot="public">QAccelPlot::SelectionTool</innerclass>
+    <innerclass refid="classQAccelPlot_1_1SeriesInspection" prot="public">QAccelPlot::SeriesInspection</innerclass>
     <innerclass refid="classQAccelPlot_1_1SeriesMarker" prot="public">QAccelPlot::SeriesMarker</innerclass>
     <innerclass refid="classQAccelPlot_1_1SolidLine" prot="public">QAccelPlot::SolidLine</innerclass>
+    <innerclass refid="classQAccelPlot_1_1SourceInspection" prot="public">QAccelPlot::SourceInspection</innerclass>
     <innerclass refid="classQAccelPlot_1_1SpatialGrid" prot="public">QAccelPlot::SpatialGrid</innerclass>
+    <innerclass refid="structQAccelPlot_1_1SummaryAccumulator" prot="public">QAccelPlot::SummaryAccumulator</innerclass>
     <innerclass refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public">QAccelPlot::TextTickLabelFormatter</innerclass>
     <innerclass refid="classQAccelPlot_1_1TickLabelFormatter" prot="public">QAccelPlot::TickLabelFormatter</innerclass>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientDirectionNS">QAccelPlot::GradientDirectionNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientFillBaselineNS">QAccelPlot::GradientFillBaselineNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientValueSourceNS">QAccelPlot::GradientValueSourceNS</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1InspectionNS">QAccelPlot::InspectionNS</innernamespace>
+    <innernamespace refid="namespaceQAccelPlot_1_1InspectionScan">QAccelPlot::InspectionScan</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1Internal">QAccelPlot::Internal</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineCurveGapFilter">QAccelPlot::LineCurveGapFilter</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1LineStroke">QAccelPlot::LineStroke</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1NanGapModeNS">QAccelPlot::NanGapModeNS</innernamespace>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>InspectionAxis</name>
+        <qualifiedname>QAccelPlot::InspectionAxis</qualifiedname>
+        <enumvalue id="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5a02129bb861061d1a052c592e2dc6b383" prot="public">
+          <name>X</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="InspectionTypes_8hpp_1a83dfdbfef906e0b9e3984f0328a3c0a5a57cec4137b614c87cb4e24a3d003a3e0" prot="public">
+          <name>Y</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Data dimension a query measures along, or along which a series&apos; records are ordered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="19" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+    </sectiondef>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1abdfd4e46ff9d7137968ad094b723654a" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirectionNS::Direction</ref></type>
@@ -126,6 +181,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="61" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="InspectionResult_8hpp_1a5f4b24dcd6ebda62dd105e6e3fad0ff8" prot="public" static="no">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionNS::Status</ref></type>
+        <definition>using QAccelPlot::InspectionStatus = typedef InspectionNS::Status</definition>
+        <argsstring></argsstring>
+        <name>InspectionStatus</name>
+        <qualifiedname>QAccelPlot::InspectionStatus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="43" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="LineCurveGaps_8hpp_1a11817d21a4214c355f999476b958e020" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1NanGapModeNS_1a7bc1561c858ec08f1c94fbc418062732" kindref="member">NanGapModeNS::Mode</ref></type>
@@ -313,6 +382,33 @@
         <inbodydescription>
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" line="45" column="13" declfile="QAccelPlot/src/QAccelPlot/effects/GradientUtils.hpp" declline="45" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="InspectionTypes_8hpp_1a6ccace2a35b415b523ac053f7ee704b7" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double QAccelPlot::distanceToInterval</definition>
+        <argsstring>(double position, double a, double b) noexcept</argsstring>
+        <name>distanceToInterval</name>
+        <qualifiedname>QAccelPlot::distanceToInterval</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Returns the signed distance from <emphasis>position</emphasis> to the closed interval between <emphasis>a</emphasis> and <emphasis>b</emphasis>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="100" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="100" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="MathUtils_8hpp_1a459990042b4307250ccb64794c713e8f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>

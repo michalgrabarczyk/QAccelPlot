@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionSample" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionSample</compoundname>
+    <includes local="no">InspectionResult.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1af19e5afe207c5ce5bb15f81e10765298" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQAccelPlot::InspectionNS::Status</type>
+        <definition>QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionSample::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionSample::status</qualifiedname>
+        <briefdescription>
+<para>Query outcome. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="50" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1af8d1b21552ecf87a8f2a2c727b245705" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSample::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionSample::valid</qualifiedname>
+        <read>valid</read>
+        <briefdescription>
+<para>True when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1a80f8e6d20f6679efbd602280f1d95e41" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>quint64</type>
+        <definition>quint64 QAccelPlot::InspectionSample::dataRevision</definition>
+        <argsstring></argsstring>
+        <name>dataRevision</name>
+        <qualifiedname>QAccelPlot::InspectionSample::dataRevision</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Data revision the query ran against. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Data revision. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="54" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1a27ad8c241c278cdfc17a39ade094b6ac" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionSample::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>QAccelPlot::InspectionSample::index</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+<para>Source index, counting invalid records; -1 when nothing matched. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Source index. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1af6e2b2c8e3e3b2a488996618ed2716b9" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::InspectionSample::x</qualifiedname>
+        <read>x</read>
+        <briefdescription>
+<para>Data-space X coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="58" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1aa3a0d6632c73318d23b9e726d98174a2" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::InspectionSample::y</qualifiedname>
+        <read>y</read>
+        <briefdescription>
+<para>Data-space Y coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1a41568eeb8a3ba63afd3babfde1f383ba" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>QAccelPlot::InspectionSample::value</qualifiedname>
+        <initializer>{std::numeric_limits&lt;qreal&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+<para>Optional per-point scalar; NaN when the series has none. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Optional scalar. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="62" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1a5ad79ddf1c89fbbc78288ed0fa02503b" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::InspectionSample::pixelPosition</definition>
+        <argsstring></argsstring>
+        <name>pixelPosition</name>
+        <qualifiedname>QAccelPlot::InspectionSample::pixelPosition</qualifiedname>
+        <initializer>{std::numeric_limits&lt;qreal&gt;::quiet_NaN(), std::numeric_limits&lt;qreal&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+<para>Series-local position in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Series-local pixels. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="64" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1a8782cb57392518cdbd76919b6f0b7db5" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::distance</definition>
+        <argsstring></argsstring>
+        <name>distance</name>
+        <qualifiedname>QAccelPlot::InspectionSample::distance</qualifiedname>
+        <initializer>{std::numeric_limits&lt;qreal&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+<para>Distance from the query position in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pixel distance. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="66" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionSample_1acc00976adc5306d7b9bb26fb49d03d3c" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSample::interpolated</definition>
+        <argsstring></argsstring>
+        <name>interpolated</name>
+        <qualifiedname>QAccelPlot::InspectionSample::interpolated</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>True when the coordinates are interpolated between two samples; index is then the left neighbor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Interpolated point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSample_1aed0b9b586f4994325a1b04723ed3cf45" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
+        <definition>InspectionStatus QAccelPlot::InspectionSample::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionSample::status</qualifiedname>
+        <initializer>{InspectionStatus::NoMatch}</initializer>
+        <briefdescription>
+<para>Query outcome. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="71" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionSample_1a519d0cccdbc7728aac4ef28163219af3" prot="public" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::InspectionSample::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::InspectionSample::position</qualifiedname>
+        <initializer>{std::numeric_limits&lt;qreal&gt;::quiet_NaN(), std::numeric_limits&lt;qreal&gt;::quiet_NaN()}</initializer>
+        <briefdescription>
+<para>Data-space XY. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="74" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="74" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSample_1ad2b0de304c6334d555c3c7c2889ebfbf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionSample::valid</definition>
+        <argsstring>() const</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionSample::valid</qualifiedname>
+        <briefdescription>
+<para>Returns true when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSample_1a66928f31b6d9421388963000a01f9d28" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::x</definition>
+        <argsstring>() const</argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::InspectionSample::x</qualifiedname>
+        <briefdescription>
+<para>Returns the data-space X coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="83" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionSample_1a70b5cae8b1a208ad7a63eaae842f60e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::InspectionSample::y</definition>
+        <argsstring>() const</argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::InspectionSample::y</qualifiedname>
+        <briefdescription>
+<para>Returns the data-space Y coordinate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="85" column="11"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One XY source sample returned by an inspection query. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="46" bodyend="86"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a80f8e6d20f6679efbd602280f1d95e41" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>dataRevision</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a8782cb57392518cdbd76919b6f0b7db5" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>distance</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a27ad8c241c278cdfc17a39ade094b6ac" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>index</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1acc00976adc5306d7b9bb26fb49d03d3c" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>interpolated</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a5ad79ddf1c89fbbc78288ed0fa02503b" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>pixelPosition</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a519d0cccdbc7728aac4ef28163219af3" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>position</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1af19e5afe207c5ce5bb15f81e10765298" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1aed0b9b586f4994325a1b04723ed3cf45" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1af8d1b21552ecf87a8f2a2c727b245705" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1ad2b0de304c6334d555c3c7c2889ebfbf" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a41568eeb8a3ba63afd3babfde1f383ba" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>value</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1af6e2b2c8e3e3b2a488996618ed2716b9" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a66928f31b6d9421388963000a01f9d28" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1aa3a0d6632c73318d23b9e726d98174a2" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>y</name></member>
+      <member refid="structQAccelPlot_1_1InspectionSample_1a70b5cae8b1a208ad7a63eaae842f60e6" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionSample</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

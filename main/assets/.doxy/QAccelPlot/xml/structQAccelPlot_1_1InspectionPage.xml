@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionPage" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionPage</compoundname>
+    <includes local="no">InspectionResult.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1a493ceee477dfe19046380ed9f5a22315" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQAccelPlot::InspectionNS::Status</type>
+        <definition>QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionPage::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionPage::status</qualifiedname>
+        <briefdescription>
+<para>Query outcome; <computeroutput>Ready</computeroutput> also for an empty page of a matching region. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="164" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1adfc2cbd68ca1cdcac252f952f9080a5e" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionPage::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionPage::valid</qualifiedname>
+        <read>valid</read>
+        <briefdescription>
+<para>True when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="166" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1ad7c7e5dd32ba4553ea2517a56bdd47d7" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>quint64</type>
+        <definition>quint64 QAccelPlot::InspectionPage::dataRevision</definition>
+        <argsstring></argsstring>
+        <name>dataRevision</name>
+        <qualifiedname>QAccelPlot::InspectionPage::dataRevision</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Data revision the indices refer to. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Data revision. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="168" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1a73760160ad04402deefd41ae496aa108" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionPage::total</definition>
+        <argsstring></argsstring>
+        <name>total</name>
+        <qualifiedname>QAccelPlot::InspectionPage::total</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of matching samples in the whole region. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Matches in the region. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="170" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1adebdcbc7400e1184e8ad4bdf26f40133" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionPage::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <qualifiedname>QAccelPlot::InspectionPage::offset</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Number of matches skipped before this page. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Skipped matches. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="172" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1adf252997271f7943a38ef80aae83b319" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionPage::limit</definition>
+        <argsstring></argsstring>
+        <name>limit</name>
+        <qualifiedname>QAccelPlot::InspectionPage::limit</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Effective page size after clamping to the maximum. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Effective page size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="174" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1abf4b3c6a67020b1a4aff63aa4a4ccf4b" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionPage::hasMore</definition>
+        <argsstring></argsstring>
+        <name>hasMore</name>
+        <qualifiedname>QAccelPlot::InspectionPage::hasMore</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>True when matches remain after this page. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>More pages follow. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="176" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1a22285ce30cb55c990deda8dec6ab140d" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionPage::sourceOrder</definition>
+        <argsstring></argsstring>
+        <name>sourceOrder</name>
+        <qualifiedname>QAccelPlot::InspectionPage::sourceOrder</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>True when pages are in ascending source order; false for index traversal order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ascending source order. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="178" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionPage_1a194430322187ee6233576ed235cbbab5" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; int &gt;</type>
+        <definition>QList&lt; int &gt; QAccelPlot::InspectionPage::indices</definition>
+        <argsstring></argsstring>
+        <name>indices</name>
+        <qualifiedname>QAccelPlot::InspectionPage::indices</qualifiedname>
+        <briefdescription>
+<para>Matching source indices. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="180" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionPage_1a175984bea491bfe96224b7a24d6bf8a4" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
+        <definition>InspectionStatus QAccelPlot::InspectionPage::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionPage::status</qualifiedname>
+        <initializer>{InspectionStatus::NoMatch}</initializer>
+        <briefdescription>
+<para>Query outcome. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="183" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="183" bodyend="183"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionPage_1a279470544771c4f7af178a4f532fe326" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionPage::valid</definition>
+        <argsstring>() const</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionPage::valid</qualifiedname>
+        <briefdescription>
+<para>Returns true when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="193" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>One page of source indices inside a region. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="160" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="160" bodyend="194"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionPage_1ad7c7e5dd32ba4553ea2517a56bdd47d7" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>dataRevision</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1abf4b3c6a67020b1a4aff63aa4a4ccf4b" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>hasMore</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a194430322187ee6233576ed235cbbab5" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>indices</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1adf252997271f7943a38ef80aae83b319" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>limit</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1adebdcbc7400e1184e8ad4bdf26f40133" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>offset</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a22285ce30cb55c990deda8dec6ab140d" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>sourceOrder</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a493ceee477dfe19046380ed9f5a22315" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a175984bea491bfe96224b7a24d6bf8a4" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a73760160ad04402deefd41ae496aa108" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>total</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1adfc2cbd68ca1cdcac252f952f9080a5e" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1InspectionPage_1a279470544771c4f7af178a4f532fe326" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionPage</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

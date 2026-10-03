@@ -17,21 +17,19 @@
 //
 #pragma once
 
-#include <QQuickItem>
+#include "QAccelPlot/internal/OutlinedRectangle.hpp"
 
 namespace QAccelPlot {
 
 class PlotRectangleZoom;
 
-class RectangleZoomOverlay final : public QQuickItem {
+class RectangleZoomOverlay final : public OutlinedRectangle {
 public:
     RectangleZoomOverlay(QQuickItem* parent, PlotRectangleZoom* configuration);
 
-protected:
-    QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
-
 private:
     void syncSelection();
+    void syncColors();
 
     PlotRectangleZoom* configuration_;
 };

@@ -115,6 +115,7 @@ signals:
     void valueRangeChanged();
 
 protected:
+    InspectionSource inspectionSource() const override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;

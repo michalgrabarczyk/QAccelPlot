@@ -465,6 +465,8 @@
       
         
       
+        
+      
     
     
     
@@ -674,6 +676,34 @@
     
   
     Annotations and tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/data-inspection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data inspection
   
 
     
@@ -1659,6 +1689,15 @@
 <ul>
 <li>Rectangle zoom via <code>PlotView.rectangleZoom</code> and <code>zoomToRect()</code>, with theme
   colors and a Point cloud example.</li>
+<li>Data inspection via <code>PlotInspector</code> and <code>SelectionTool</code>: a crosshair,
+  per-series markers, and a tooltip at the cursor, region selection with
+  statistics, theme colors, and a Data inspection example.</li>
+<li>Sample queries on every series via <code>PlotSeries.inspection</code>: the nearest sample,
+  its neighbors, statistics of a region, and the indices inside it.</li>
+<li><code>PlotView.overlay</code> for items drawn above the series, and the pointer position
+  via <code>pointerPosition</code> and <code>pointerInside</code>.</li>
+<li><code>Axis.formatValue()</code>, which formats a value at the precision of the current
+  zoom.</li>
 <li><code>RectangleSeries</code>: <code>rectangleAt()</code>, <code>rectangleIndexAt()</code>, <code>clearData()</code>,
   <code>setData(std::vector&lt;double&gt;&amp;&amp;, int)</code>, and <code>postData()</code>.</li>
 <li><code>RectangleSeries</code> spans: infinite or omitted edges reach the plot edge.</li>

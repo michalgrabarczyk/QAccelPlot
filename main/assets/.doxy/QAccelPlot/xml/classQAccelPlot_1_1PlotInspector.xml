@@ -1,0 +1,2055 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1PlotInspector" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotInspector</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QObject</basecompoundref>
+    <includes local="no">PlotInspector.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Mode</name>
+        <qualifiedname>QAccelPlot::PlotInspector::Mode</qualifiedname>
+        <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a95e01bf4eb76a2ccd2efe7f5991f87ff" prot="public">
+          <name>NearestX</name>
+          <briefdescription>
+<para>The sample at the cursor&apos;s X, for comparing series at one position. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a8e8b7f724902497bebce58bd81ff67f7" prot="public">
+          <name>NearestY</name>
+          <briefdescription>
+<para>The sample at the cursor&apos;s Y, for series whose independent variable is Y. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a2232f70425314505cf4a4e232b99d278" prot="public">
+          <name>NearestXY</name>
+          <briefdescription>
+<para>The sample closest to the cursor on screen. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How each series is matched to the cursor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="84" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="84" bodyend="88"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt;QObject&gt; QAccelPlot::PlotInspector::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::PlotInspector::data</qualifiedname>
+        <read>data</read>
+        <briefdescription>
+<para>Default property: objects declared inside the inspector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Every object with an <computeroutput>inspector</computeroutput> property receives this inspector. Items among them are stacked in declaration order above the other children of the plot&apos;s overlay. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="40" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a10da6ee8ca871b0ab0ee2edee2478c93" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">QAccelPlot::QAccelPlot</ref> *</type>
+        <definition>QAccelPlot::QAccelPlot* QAccelPlot::PlotInspector::plot</definition>
+        <argsstring></argsstring>
+        <name>plot</name>
+        <qualifiedname>QAccelPlot::PlotInspector::plot</qualifiedname>
+        <read>plot</read>
+        <write>setPlot</write>
+        <briefdescription>
+<para>Plot whose series are inspected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="42" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a7a052b00d2b71ba116449a0ce5439939" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::PlotInspector::enabled</qualifiedname>
+        <read>enabled</read>
+        <write>setEnabled</write>
+        <briefdescription>
+<para>Enables queries. A disabled inspector is inactive and does no work. Default: true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="44" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a74ca2c67ffef70e7e74ae70f8e26cdb2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::PlotInspector::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>QAccelPlot::PlotInspector::mode</qualifiedname>
+        <read>mode</read>
+        <write>setMode</write>
+        <briefdescription>
+<para><computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> report each series at the cursor&apos;s X or Y; <computeroutput>NearestXY</computeroutput> picks by on-screen distance. Default: NearestX. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="46" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1aca228f678477c206c60d14d1568d965e" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::radius</qualifiedname>
+        <read>radius</read>
+        <write>setRadius</write>
+        <briefdescription>
+<para>Pick distance in logical pixels. In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode it only limits matches beyond a series&apos; extreme samples. Default: 16. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="48" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a5c0e1e4c2adce65e553bf3d3438adb39" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::snapToSample</definition>
+        <argsstring></argsstring>
+        <name>snapToSample</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToSample</qualifiedname>
+        <read>snapToSample</read>
+        <write>setSnapToSample</write>
+        <briefdescription>
+<para>Moves the crosshair to the closest matching sample. Default: false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="50" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a820f06747262c054880fadf61aae4349" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::interpolate</definition>
+        <argsstring></argsstring>
+        <name>interpolate</name>
+        <qualifiedname>QAccelPlot::PlotInspector::interpolate</qualifiedname>
+        <read>interpolate</read>
+        <write>setInterpolate</write>
+        <briefdescription>
+<para>In <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> mode, reports the point on the line between two consecutive samples instead of the nearer one. Default: false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="52" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a3abf27e0bb329a867d50af1e34dc2a58" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::summaries</definition>
+        <argsstring></argsstring>
+        <name>summaries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaries</qualifiedname>
+        <read>summaries</read>
+        <write>setSummaries</write>
+        <briefdescription>
+<para>Adds Y statistics of the samples around the cursor to every row. Default: false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="54" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1ad9ff7b4eeeb747259d9f74aa07144005" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::summaryRadius</definition>
+        <argsstring></argsstring>
+        <name>summaryRadius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaryRadius</qualifiedname>
+        <read>summaryRadius</read>
+        <write>setSummaryRadius</write>
+        <briefdescription>
+<para>Half-width of the summary neighborhood in logical pixels. Default: 0.5. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="56" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a912fa63a29d0b149118f49db0c8700ec" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt;PlotSeries*&gt; QAccelPlot::PlotInspector::includedSeries</definition>
+        <argsstring></argsstring>
+        <name>includedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::includedSeries</qualifiedname>
+        <read>includedSeries</read>
+        <write>setIncludedSeries</write>
+        <briefdescription>
+<para>Series to inspect; an empty list inspects every series of the plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="58" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a6ae614b0d58eb442b2b00313a5871bd5" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt;PlotSeries*&gt; QAccelPlot::PlotInspector::excludedSeries</definition>
+        <argsstring></argsstring>
+        <name>excludedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::excludedSeries</qualifiedname>
+        <read>excludedSeries</read>
+        <write>setExcludedSeries</write>
+        <briefdescription>
+<para>Series never inspected, even when listed in <computeroutput>includedSeries</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="60" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a33315202af925b84b3d77e049ce77195" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::followPointer</definition>
+        <argsstring></argsstring>
+        <name>followPointer</name>
+        <qualifiedname>QAccelPlot::PlotInspector::followPointer</qualifiedname>
+        <read>followPointer</read>
+        <write>setFollowPointer</write>
+        <briefdescription>
+<para>Whether the cursor follows the plot&apos;s pointer. When false it stays at <computeroutput>cursorX</computeroutput> and <computeroutput>cursorY</computeroutput>. Default: true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="62" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a798d4b51d6da6c2511abe566f66aa6f9" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorX</definition>
+        <argsstring></argsstring>
+        <name>cursorX</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorX</qualifiedname>
+        <read>cursorX</read>
+        <write>setCursorX</write>
+        <briefdescription>
+<para>Cursor X on the plot&apos;s primary X axis: the pointer&apos;s while <computeroutput>followPointer</computeroutput> is true, NaN when it is outside. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A written value is used while <computeroutput>followPointer</computeroutput> is false. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="66" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a50f31ceca35b4b2e2950407dd96b8392" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorY</definition>
+        <argsstring></argsstring>
+        <name>cursorY</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorY</qualifiedname>
+        <read>cursorY</read>
+        <write>setCursorY</write>
+        <briefdescription>
+<para>Cursor Y on the plot&apos;s primary Y axis; see <computeroutput>cursorX</computeroutput>. NaN leaves the cursor without a Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="68" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a8a75a392898963d6417965bc1e9170d2" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorXText</definition>
+        <argsstring></argsstring>
+        <name>cursorXText</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorXText</qualifiedname>
+        <read>cursorXText</read>
+        <briefdescription>
+<para>Crosshair X formatted by the plot&apos;s primary X axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="70" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a65536cd373fe8fa4a6ab9d8e620eade3" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorYText</definition>
+        <argsstring></argsstring>
+        <name>cursorYText</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorYText</qualifiedname>
+        <read>cursorYText</read>
+        <briefdescription>
+<para>Crosshair Y formatted by the plot&apos;s primary Y axis; empty without a cursor Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="72" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a7eef56474aca5f07dd812f0fd16ccfd3" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::PlotInspector::active</qualifiedname>
+        <read>active</read>
+        <briefdescription>
+<para>True while enabled and the cursor is inside the plot area. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="74" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1aa18a013c11579af97c8fa4748c573eba" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotInspector::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::PlotInspector::position</qualifiedname>
+        <read>position</read>
+        <briefdescription>
+<para>Crosshair position in plot-local logical pixels; a coordinate the cursor lacks is NaN. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="76" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">QAccelPlot::InspectionRowModel</ref> *</type>
+        <definition>QAccelPlot::InspectionRowModel* QAccelPlot::PlotInspector::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <qualifiedname>QAccelPlot::PlotInspector::model</qualifiedname>
+        <read>model</read>
+        <briefdescription>
+<para>Read-only constant: one row per inspected series. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="78" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotInspector_1a37d216deba7f0f9d9ae605117dd3ac35" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotInspector::validCount</definition>
+        <argsstring></argsstring>
+        <name>validCount</name>
+        <qualifiedname>QAccelPlot::PlotInspector::validCount</qualifiedname>
+        <read>validCount</read>
+        <briefdescription>
+<para>Number of rows with a matching sample. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="80" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="80" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a310a99588c1b33bd5ee35c4e269128a6" prot="private" static="no" mutable="no">
+        <type>QPointer&lt;<ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> &gt;</type>
+        <definition>QPointer&lt;::QAccelPlot::QAccelPlot&gt; QAccelPlot::PlotInspector::plot_</definition>
+        <argsstring></argsstring>
+        <name>plot_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::plot_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="229" column="14" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1aaea076e5b3e6e15d8dfef6cbb080fbb0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::enabled_</definition>
+        <argsstring></argsstring>
+        <name>enabled_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::enabled_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="230" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="230" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a5032c0547a13598fcbd5c50d78e79494" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::PlotInspector::mode_</definition>
+        <argsstring></argsstring>
+        <name>mode_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::mode_</qualifiedname>
+        <initializer>{<ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a95e01bf4eb76a2ccd2efe7f5991f87ff" kindref="member">NearestX</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="231" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a1ee0c7dec30f54ebbf15a7901cf9926d" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::radius_</definition>
+        <argsstring></argsstring>
+        <name>radius_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::radius_</qualifiedname>
+        <initializer>{16}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="232" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="232" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a27e001b3ab51136ee0649f710d8725aa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::snapToSample_</definition>
+        <argsstring></argsstring>
+        <name>snapToSample_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToSample_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="233" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="233" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a31c00d4b90aced462b1cf5eb6aab6081" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::interpolate_</definition>
+        <argsstring></argsstring>
+        <name>interpolate_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::interpolate_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="234" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a033dcdc980a1eb309f4361893c657c87" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::summaries_</definition>
+        <argsstring></argsstring>
+        <name>summaries_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaries_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="235" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="235" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a3c3a0a28e89092fa63f70c1d680cb7a6" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::summaryRadius_</definition>
+        <argsstring></argsstring>
+        <name>summaryRadius_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaryRadius_</qualifiedname>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="236" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="236" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1adc11b71832bfeb3c8651485c6f82fb9d" prot="private" static="no" mutable="no">
+        <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt; &gt;</type>
+        <definition>QList&lt;QPointer&lt;PlotSeries&gt; &gt; QAccelPlot::PlotInspector::included_</definition>
+        <argsstring></argsstring>
+        <name>included_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::included_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="237" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a7bdc6cc6eaf551b39560c06120e62f29" prot="private" static="no" mutable="no">
+        <type>QList&lt; QPointer&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &gt; &gt;</type>
+        <definition>QList&lt;QPointer&lt;PlotSeries&gt; &gt; QAccelPlot::PlotInspector::excluded_</definition>
+        <argsstring></argsstring>
+        <name>excluded_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::excluded_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="238" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1aeed79a70a0bd72c1ff10d6c7940ee0fa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::followPointer_</definition>
+        <argsstring></argsstring>
+        <name>followPointer_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::followPointer_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="239" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="239" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ab52c90cf21993976a866d6e8469f3746" prot="private" static="no" mutable="no">
+        <type>QList&lt; QMetaObject::Connection &gt;</type>
+        <definition>QList&lt;QMetaObject::Connection&gt; QAccelPlot::PlotInspector::connections_</definition>
+        <argsstring></argsstring>
+        <name>connections_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::connections_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="240" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ad4fd5d434bae8ea613a679965b428007" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::pending_</definition>
+        <argsstring></argsstring>
+        <name>pending_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::pending_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="241" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="241" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1abb84ece9732c5d490258ada5f2f4278c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::refreshing_</definition>
+        <argsstring></argsstring>
+        <name>refreshing_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::refreshing_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="242" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="242" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1aa71469c6f35da7dac589efff36b687d4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::active_</definition>
+        <argsstring></argsstring>
+        <name>active_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::active_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="243" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="243" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ad8e2716152eadc06e40cde617330c5ab" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotInspector::position_</definition>
+        <argsstring></argsstring>
+        <name>position_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::position_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="244" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a59b350344a2ff5a77df8abe271eef2ca" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorX_</definition>
+        <argsstring></argsstring>
+        <name>cursorX_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorX_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="245" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ae9c3526496a6b25fb6e0c89253551004" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorY_</definition>
+        <argsstring></argsstring>
+        <name>cursorY_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorY_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="246" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a06273c10d050153900bcb7a15dcd24f6" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::pinnedX_</definition>
+        <argsstring></argsstring>
+        <name>pinnedX_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::pinnedX_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="248" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1ad46c27f6446bd717cb965f940e074ac0" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::pinnedY_</definition>
+        <argsstring></argsstring>
+        <name>pinnedY_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::pinnedY_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="249" column="11" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a22d3b039c0b76678a2059f62361d7d99" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorXText_</definition>
+        <argsstring></argsstring>
+        <name>cursorXText_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorXText_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="250" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a29c11b60ed7f43dd3e44a6b6218d6771" prot="private" static="no" mutable="no">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorYText_</definition>
+        <argsstring></argsstring>
+        <name>cursorYText_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorYText_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="251" column="13" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1aa7e7470ce45c6e8cb17046413d1997e9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotInspector::validCount_</definition>
+        <argsstring></argsstring>
+        <name>validCount_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::validCount_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="252" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="252" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1aa6408351ee4276e5360758ba03a6d2f8" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel* QAccelPlot::PlotInspector::model_</definition>
+        <argsstring></argsstring>
+        <name>model_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::model_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="253" column="24" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotInspector_1a476fddc98057b7c96c44f83cfd2dad3c" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classQAccelPlot_1_1OverlayChildren" kindref="compound">OverlayChildren</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;OverlayChildren&gt; QAccelPlot::PlotInspector::children_</definition>
+        <argsstring></argsstring>
+        <name>children_</name>
+        <qualifiedname>QAccelPlot::PlotInspector::children_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="254" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="254" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotInspector::PlotInspector</definition>
+        <argsstring>(QObject *parent=nullptr)</argsstring>
+        <name>PlotInspector</name>
+        <qualifiedname>QAccelPlot::PlotInspector::PlotInspector</qualifiedname>
+        <param>
+          <type>QObject *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Constructs an inspector without a plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="92" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aa43495de1c8964b86c2833327b624267" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotInspector::~PlotInspector</definition>
+        <argsstring>() override</argsstring>
+        <name>~PlotInspector</name>
+        <qualifiedname>QAccelPlot::PlotInspector::~PlotInspector</qualifiedname>
+        <briefdescription>
+<para>Destroys the inspector and the objects declared inside it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="94" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5ca7d78b9df1c21c87d30eca5ea889df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QQmlListProperty&lt; QObject &gt;</type>
+        <definition>QQmlListProperty&lt; QObject &gt; QAccelPlot::PlotInspector::data</definition>
+        <argsstring>()</argsstring>
+        <name>data</name>
+        <qualifiedname>QAccelPlot::PlotInspector::data</qualifiedname>
+        <briefdescription>
+<para>Returns the objects declared inside the inspector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="97" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6a086692e4a225352045f87c2bd645ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+        <definition>::QAccelPlot::QAccelPlot * QAccelPlot::PlotInspector::plot</definition>
+        <argsstring>() const</argsstring>
+        <name>plot</name>
+        <qualifiedname>QAccelPlot::PlotInspector::plot</qualifiedname>
+        <briefdescription>
+<para>Returns the inspected plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="100" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a72cc790c9430a46f1dba380f132f6415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setPlot</definition>
+        <argsstring>(::QAccelPlot::QAccelPlot *plot)</argsstring>
+        <name>setPlot</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setPlot</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1QAccelPlot" kindref="compound">::QAccelPlot::QAccelPlot</ref> *</type>
+          <declname>plot</declname>
+        </param>
+        <briefdescription>
+<para>Sets the inspected plot. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="102" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a2cb2e67f1fc2757831ab4c99a07229a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::enabled</definition>
+        <argsstring>() const</argsstring>
+        <name>enabled</name>
+        <qualifiedname>QAccelPlot::PlotInspector::enabled</qualifiedname>
+        <briefdescription>
+<para>Returns whether queries are enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="104" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a0e0ee6317189e594b7768e036da0d98f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setEnabled</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setEnabled</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setEnabled</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables queries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="106" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aba29c4a796361cfbe320bad840da89f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::PlotInspector::mode</definition>
+        <argsstring>() const</argsstring>
+        <name>mode</name>
+        <qualifiedname>QAccelPlot::PlotInspector::mode</qualifiedname>
+        <briefdescription>
+<para>Returns the matching mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="108" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac0e37a9f3b1e17844f46857a25e77848" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setMode</definition>
+        <argsstring>(Mode mode)</argsstring>
+        <name>setMode</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setMode</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Sets the matching mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="110" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a24ec5fc05234ebabb6614866b28dcd18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::radius</definition>
+        <argsstring>() const</argsstring>
+        <name>radius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::radius</qualifiedname>
+        <briefdescription>
+<para>Returns the pick distance in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="112" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aab2c72559b550c3720f3c0b9dafb6a60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setRadius</definition>
+        <argsstring>(qreal radius)</argsstring>
+        <name>setRadius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setRadius</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Sets the pick distance; negative and NaN values are ignored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="114" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a95484ce41d754411d04ed3e765125d97" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::snapToSample</definition>
+        <argsstring>() const</argsstring>
+        <name>snapToSample</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToSample</qualifiedname>
+        <briefdescription>
+<para>Returns whether the crosshair snaps to the closest matching sample. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="116" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6b28deebd06e4bd46f3961e13a6de095" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setSnapToSample</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setSnapToSample</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setSnapToSample</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables crosshair snapping. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="118" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a95791d7353ce63248f7c05fdce826428" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::interpolate</definition>
+        <argsstring>() const</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>QAccelPlot::PlotInspector::interpolate</qualifiedname>
+        <briefdescription>
+<para>Returns whether <computeroutput>NearestX</computeroutput> and <computeroutput>NearestY</computeroutput> rows are interpolated between samples. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="120" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aa87487520573a6b2e7dfd470fe009491" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setInterpolate</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setInterpolate</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setInterpolate</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables interpolation between consecutive samples. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="122" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a31b1e85907399db61e37255cc3c03866" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::summaries</definition>
+        <argsstring>() const</argsstring>
+        <name>summaries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaries</qualifiedname>
+        <briefdescription>
+<para>Returns whether rows include neighborhood statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="124" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a1720d10a8019f11768413d3268dc2945" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setSummaries</definition>
+        <argsstring>(bool enabled)</argsstring>
+        <name>setSummaries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setSummaries</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables neighborhood statistics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="126" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a80c5371d7f26f92f3740f728767ac2fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::summaryRadius</definition>
+        <argsstring>() const</argsstring>
+        <name>summaryRadius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaryRadius</qualifiedname>
+        <briefdescription>
+<para>Returns the summary half-width in logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="128" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5ce97d829210269172bc07425edea257" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setSummaryRadius</definition>
+        <argsstring>(qreal radius)</argsstring>
+        <name>setSummaryRadius</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setSummaryRadius</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+<para>Sets the summary half-width; negative and nonfinite values are ignored. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="130" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a0a007eb211a35a68a0fc90fedd10079a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt; PlotSeries * &gt; QAccelPlot::PlotInspector::includedSeries</definition>
+        <argsstring>() const</argsstring>
+        <name>includedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::includedSeries</qualifiedname>
+        <briefdescription>
+<para>Returns the series to inspect, without destroyed entries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="132" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ad5e8a5715299054c64fac0d7d8c6d0a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setIncludedSeries</definition>
+        <argsstring>(const QList&lt; PlotSeries * &gt; &amp;series)</argsstring>
+        <name>setIncludedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setIncludedSeries</qualifiedname>
+        <param>
+          <type>const QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt; &amp;</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+<para>Sets the series to inspect. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="134" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5e91455394f079bec9cb668b9679b8fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt; PlotSeries * &gt; QAccelPlot::PlotInspector::excludedSeries</definition>
+        <argsstring>() const</argsstring>
+        <name>excludedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::excludedSeries</qualifiedname>
+        <briefdescription>
+<para>Returns the series never inspected, without destroyed entries. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="136" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a7b26c4874b082e3c1b1726e84bceab3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setExcludedSeries</definition>
+        <argsstring>(const QList&lt; PlotSeries * &gt; &amp;series)</argsstring>
+        <name>setExcludedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setExcludedSeries</qualifiedname>
+        <param>
+          <type>const QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt; &amp;</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+<para>Sets the series never inspected. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="138" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a423a94b6c2f0c95bcce6f7b750eee9bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::followPointer</definition>
+        <argsstring>() const</argsstring>
+        <name>followPointer</name>
+        <qualifiedname>QAccelPlot::PlotInspector::followPointer</qualifiedname>
+        <briefdescription>
+<para>Returns whether the cursor follows the plot&apos;s pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="140" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aeb88fcc58e001bba8b730ce898d55926" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setFollowPointer</definition>
+        <argsstring>(bool follow)</argsstring>
+        <name>setFollowPointer</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setFollowPointer</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>follow</declname>
+        </param>
+        <briefdescription>
+<para>Switches between following the pointer and a cursor set from code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="142" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a55f5d7def2ed6484ba6c4e4c5812205e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorX</definition>
+        <argsstring>() const</argsstring>
+        <name>cursorX</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorX</qualifiedname>
+        <briefdescription>
+<para>Returns the cursor X on the plot&apos;s primary X axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="144" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ae05453859326132780df51c446c3211b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setCursorX</definition>
+        <argsstring>(qreal x)</argsstring>
+        <name>setCursorX</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setCursorX</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Sets the cursor X used while <computeroutput>followPointer</computeroutput> is false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="146" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac442cf9e82c667688bf8c32ebd107eb0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotInspector::cursorY</definition>
+        <argsstring>() const</argsstring>
+        <name>cursorY</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorY</qualifiedname>
+        <briefdescription>
+<para>Returns the cursor Y on the plot&apos;s primary Y axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="148" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aa9aae460acf9e08c3ebb09e56818e06f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::setCursorY</definition>
+        <argsstring>(qreal y)</argsstring>
+        <name>setCursorY</name>
+        <qualifiedname>QAccelPlot::PlotInspector::setCursorY</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Sets the cursor Y used while <computeroutput>followPointer</computeroutput> is false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="150" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a8aa34e55c37c9c036d578df944a55c50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorXText</definition>
+        <argsstring>() const</argsstring>
+        <name>cursorXText</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorXText</qualifiedname>
+        <briefdescription>
+<para>Returns the formatted crosshair X. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="152" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6924af1c50c490e840f80f86f10ed10f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QString</type>
+        <definition>QString QAccelPlot::PlotInspector::cursorYText</definition>
+        <argsstring>() const</argsstring>
+        <name>cursorYText</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorYText</qualifiedname>
+        <briefdescription>
+<para>Returns the formatted crosshair Y. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="154" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac011486642f9be249ffa3de4061f5f1a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::active</definition>
+        <argsstring>() const</argsstring>
+        <name>active</name>
+        <qualifiedname>QAccelPlot::PlotInspector::active</qualifiedname>
+        <briefdescription>
+<para>Returns whether the cursor is inside the plot area. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="156" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a26739c3c50de6c1a29d407e25d2d68df" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotInspector::position</definition>
+        <argsstring>() const</argsstring>
+        <name>position</name>
+        <qualifiedname>QAccelPlot::PlotInspector::position</qualifiedname>
+        <briefdescription>
+<para>Returns the crosshair position in plot-local logical pixels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="158" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ad537a369f42d56da4462adc0d86ac187" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> *</type>
+        <definition>InspectionRowModel * QAccelPlot::PlotInspector::model</definition>
+        <argsstring>() const</argsstring>
+        <name>model</name>
+        <qualifiedname>QAccelPlot::PlotInspector::model</qualifiedname>
+        <briefdescription>
+<para>Returns the row model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="160" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1af83ef18aabeddb8a2e352b740a0e200e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int QAccelPlot::PlotInspector::validCount</definition>
+        <argsstring>() const</argsstring>
+        <name>validCount</name>
+        <qualifiedname>QAccelPlot::PlotInspector::validCount</qualifiedname>
+        <briefdescription>
+<para>Returns the number of rows with a matching sample. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="162" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a9c1a14497e3c9016e8df7af507bdac42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::PlotInspector::refresh</definition>
+        <argsstring>()</argsstring>
+        <name>refresh</name>
+        <qualifiedname>QAccelPlot::PlotInspector::refresh</qualifiedname>
+        <briefdescription>
+<para>Runs the queries now instead of on the next event-loop pass. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="165" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ae6f8f9189e91d700735ef04a354991d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Q_INVOKABLE void</type>
+        <definition>Q_INVOKABLE void QAccelPlot::PlotInspector::stepCursor</definition>
+        <argsstring>(int steps)</argsstring>
+        <name>stepCursor</name>
+        <qualifiedname>QAccelPlot::PlotInspector::stepCursor</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>steps</declname>
+        </param>
+        <briefdescription>
+<para>Moves the cursor <emphasis>steps</emphasis> source records along the first matching series and stops following the pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="167" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="signal">
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1af1d2396c9a3ca7826f7676f66ebc98f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::plotChanged</definition>
+        <argsstring>()</argsstring>
+        <name>plotChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::plotChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the plot property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="171" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a5fc4d39f271bacc087a289e691c213cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::enabledChanged</definition>
+        <argsstring>()</argsstring>
+        <name>enabledChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::enabledChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the enabled property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="173" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a62a946de0085495ff93d94f889157ed5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::modeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>modeChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::modeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the mode property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="175" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a3dee9c138a3584a493074efbd47fb685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::radiusChanged</definition>
+        <argsstring>()</argsstring>
+        <name>radiusChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::radiusChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the radius property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="177" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a9277d72aa7eec2ebe1437ed45bd6b89f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::snapToSampleChanged</definition>
+        <argsstring>()</argsstring>
+        <name>snapToSampleChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snapToSampleChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the snapToSample property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="179" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1af401a66a06653f673d3a7545a6101688" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::interpolateChanged</definition>
+        <argsstring>()</argsstring>
+        <name>interpolateChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::interpolateChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the interpolate property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="181" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a5aa90bb4ac2a3b0ca395c7cf9fa05799" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::summariesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>summariesChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summariesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the summaries property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="183" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a41760dc8f02507badcddb2330e7b86c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::summaryRadiusChanged</definition>
+        <argsstring>()</argsstring>
+        <name>summaryRadiusChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summaryRadiusChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the summaryRadius property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="185" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1aebd8c42b2746484077fe4b1b74858b42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::includedSeriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>includedSeriesChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::includedSeriesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the includedSeries property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a7c98e1d301178ebdba4bed13ea6322ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::excludedSeriesChanged</definition>
+        <argsstring>()</argsstring>
+        <name>excludedSeriesChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::excludedSeriesChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the excludedSeries property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="189" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1aa8cdb155e7a192cbf9a62f24c88e4981" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::followPointerChanged</definition>
+        <argsstring>()</argsstring>
+        <name>followPointerChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::followPointerChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the followPointer property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="191" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1af6bb6cd39684bdf89d02e7eeb51c5fd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::cursorChanged</definition>
+        <argsstring>()</argsstring>
+        <name>cursorChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the cursor coordinates or their texts change. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="193" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1af3ca79c3baa66d072cad0692b8a417d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::activeChanged</definition>
+        <argsstring>()</argsstring>
+        <name>activeChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::activeChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the active property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="195" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1a192f930b5d6fe5cd54a69ae42123c826" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::positionChanged</definition>
+        <argsstring>()</argsstring>
+        <name>positionChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::positionChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the position property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="197" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1ade00dc3f3f3018ea430cb9bb70feb0a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::validCountChanged</definition>
+        <argsstring>()</argsstring>
+        <name>validCountChanged</name>
+        <qualifiedname>QAccelPlot::PlotInspector::validCountChanged</qualifiedname>
+        <briefdescription>
+<para>Emitted when the validCount property changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="199" column="10"/>
+      </memberdef>
+      <memberdef kind="signal" id="classQAccelPlot_1_1PlotInspector_1ad64afbb550411f0271b415bf9dddf3b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::refreshed</definition>
+        <argsstring>()</argsstring>
+        <name>refreshed</name>
+        <qualifiedname>QAccelPlot::PlotInspector::refreshed</qualifiedname>
+        <briefdescription>
+<para>Emitted after every refresh that published results. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="201" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aff93b94cdf0623675a0bd9982d814718" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::schedule</definition>
+        <argsstring>()</argsstring>
+        <name>schedule</name>
+        <qualifiedname>QAccelPlot::PlotInspector::schedule</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="208" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a604ad6dab8af837b767178b13c40b35a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::flush</definition>
+        <argsstring>()</argsstring>
+        <name>flush</name>
+        <qualifiedname>QAccelPlot::PlotInspector::flush</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="209" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a74b707a8e8c3eb0dbd727007cd48c51c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::reconnect</definition>
+        <argsstring>()</argsstring>
+        <name>reconnect</name>
+        <qualifiedname>QAccelPlot::PlotInspector::reconnect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="210" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5b6181fcbe9362813fe6b026f49854a1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::connectSeries</definition>
+        <argsstring>(PlotSeries *series)</argsstring>
+        <name>connectSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::connectSeries</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="211" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ac97bc68344c751f08b488fd324bba290" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::inspects</definition>
+        <argsstring>(PlotSeries *series) const</argsstring>
+        <name>inspects</name>
+        <qualifiedname>QAccelPlot::PlotInspector::inspects</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> *</type>
+          <declname>series</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="212" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a76dd8d43a5d664c448bbc9e8d11c9135" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; <ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> * &gt;</type>
+        <definition>QList&lt; PlotSeries * &gt; QAccelPlot::PlotInspector::inspectedSeries</definition>
+        <argsstring>() const</argsstring>
+        <name>inspectedSeries</name>
+        <qualifiedname>QAccelPlot::PlotInspector::inspectedSeries</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="213" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a8debbd1b11906b53e5a3f2e815b297c8" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; QPointF &gt;</type>
+        <definition>std::optional&lt; QPointF &gt; QAccelPlot::PlotInspector::cursorPosition</definition>
+        <argsstring>() const</argsstring>
+        <name>cursorPosition</name>
+        <qualifiedname>QAccelPlot::PlotInspector::cursorPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="215" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+        <definition>Mode QAccelPlot::PlotInspector::effectiveMode</definition>
+        <argsstring>(const QPointF &amp;cursor) const</argsstring>
+        <name>effectiveMode</name>
+        <qualifiedname>QAccelPlot::PlotInspector::effectiveMode</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>cursor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="217" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aecc195716a3ae7f199d1cf0dab218134" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::inspect</definition>
+        <argsstring>(const QPointF &amp;cursor, State &amp;state) const</argsstring>
+        <name>inspect</name>
+        <qualifiedname>QAccelPlot::PlotInspector::inspect</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>cursor</declname>
+        </param>
+        <param>
+          <type>State &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="219" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1ae5ec2dfb1769bd5a9978c0e56f95e05b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QList&lt; Query &gt;</type>
+        <definition>QList&lt; Query &gt; QAccelPlot::PlotInspector::queryRows</definition>
+        <argsstring>(const QPointF &amp;cursor) const</argsstring>
+        <name>queryRows</name>
+        <qualifiedname>QAccelPlot::PlotInspector::queryRows</qualifiedname>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>cursor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="220" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a5a870ad77693e0319a661c04f8c0c2f0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::PlotInspector::sampleAlong</definition>
+        <argsstring>(SeriesInspection &amp;inspection, Mode mode, const QPointF &amp;local) const</argsstring>
+        <name>sampleAlong</name>
+        <qualifiedname>QAccelPlot::PlotInspector::sampleAlong</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> &amp;</type>
+          <declname>inspection</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>local</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="222" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1abe7cf1db3852689333ad40dcade82770" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1InspectionSummary" kindref="compound">InspectionSummary</ref></type>
+        <definition>InspectionSummary QAccelPlot::PlotInspector::summarize</definition>
+        <argsstring>(PlotSeries &amp;series, const QPointF &amp;local, Mode mode) const</argsstring>
+        <name>summarize</name>
+        <qualifiedname>QAccelPlot::PlotInspector::summarize</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotSeries" kindref="compound">PlotSeries</ref> &amp;</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>local</declname>
+        </param>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" kindref="member">Mode</ref></type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="223" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a6eaa821277ae57419db6dfe380aa5693" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::formatRows</definition>
+        <argsstring>(QList&lt; Query &gt; &amp;queries) const</argsstring>
+        <name>formatRows</name>
+        <qualifiedname>QAccelPlot::PlotInspector::formatRows</qualifiedname>
+        <param>
+          <type>QList&lt; Query &gt; &amp;</type>
+          <declname>queries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="224" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1a583da55cbf5d7ae30610f2a530ebc900" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotInspector::current</definition>
+        <argsstring>(const QList&lt; Query &gt; &amp;queries) const</argsstring>
+        <name>current</name>
+        <qualifiedname>QAccelPlot::PlotInspector::current</qualifiedname>
+        <param>
+          <type>const QList&lt; Query &gt; &amp;</type>
+          <declname>queries</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="225" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aaa0c564f6de501a2528e2d3da1ff80e1" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>QPointF</type>
+        <definition>QPointF QAccelPlot::PlotInspector::snappedPosition</definition>
+        <argsstring>(const QList&lt; Query &gt; &amp;queries, const QPointF &amp;cursor) const</argsstring>
+        <name>snappedPosition</name>
+        <qualifiedname>QAccelPlot::PlotInspector::snappedPosition</qualifiedname>
+        <param>
+          <type>const QList&lt; Query &gt; &amp;</type>
+          <declname>queries</declname>
+        </param>
+        <param>
+          <type>const QPointF &amp;</type>
+          <declname>cursor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="226" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotInspector_1aeb979565f4ca5fcf036c9f81027c4d4a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotInspector::publish</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>publish</name>
+        <qualifiedname>QAccelPlot::PlotInspector::publish</qualifiedname>
+        <param>
+          <type>const State &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="227" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Inspects every visible XY series of a plot at a cursor and publishes one model row per series. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The cursor follows the plot&apos;s pointer by default; set <computeroutput>followPointer</computeroutput> to <computeroutput>false</computeroutput> and write <computeroutput>cursorX</computeroutput> to drive it from code, for example to link the crosshairs of several plots. Results are refreshed at most once per event-loop pass.</para>
+<para>In QML, declare <computeroutput>Crosshair</computeroutput>, <computeroutput>InspectionMarkers</computeroutput>, and <computeroutput>InspectionTooltip</computeroutput> inside the inspector: they receive it as their <computeroutput>inspector</computeroutput> and are stacked in declaration order, the last one on top.</para>
+<para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref>, <ref refid="classQAccelPlot_1_1InspectionRowModel" kindref="compound">InspectionRowModel</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QAccelPlot::PlotInspector</label>
+        <link refid="classQAccelPlot_1_1PlotInspector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::PlotInspector</label>
+        <link refid="classQAccelPlot_1_1PlotInspector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" line="32" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/PlotInspector.hpp" bodystart="32" bodyend="255"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a7eef56474aca5f07dd812f0fd16ccfd3" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac011486642f9be249ffa3de4061f5f1a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>active</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa71469c6f35da7dac589efff36b687d4" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>active_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1af3ca79c3baa66d072cad0692b8a417d2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>activeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a476fddc98057b7c96c44f83cfd2dad3c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>children_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ab52c90cf21993976a866d6e8469f3746" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>connections_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5b6181fcbe9362813fe6b026f49854a1" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>connectSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a583da55cbf5d7ae30610f2a530ebc900" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>current</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1af6bb6cd39684bdf89d02e7eeb51c5fd4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a8debbd1b11906b53e5a3f2e815b297c8" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorPosition</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a798d4b51d6da6c2511abe566f66aa6f9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorX</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a55f5d7def2ed6484ba6c4e4c5812205e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorX</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a59b350344a2ff5a77df8abe271eef2ca" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorX_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a8a75a392898963d6417965bc1e9170d2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorXText</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a8aa34e55c37c9c036d578df944a55c50" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorXText</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a22d3b039c0b76678a2059f62361d7d99" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorXText_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a50f31ceca35b4b2e2950407dd96b8392" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorY</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac442cf9e82c667688bf8c32ebd107eb0" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorY</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ae9c3526496a6b25fb6e0c89253551004" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorY_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a65536cd373fe8fa4a6ab9d8e620eade3" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorYText</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6924af1c50c490e840f80f86f10ed10f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorYText</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a29c11b60ed7f43dd3e44a6b6218d6771" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>cursorYText_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a4041c62417d75270e7a056a68c9dabdf" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5ca7d78b9df1c21c87d30eca5ea889df" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>data</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a3345ef3db8fbe96f1766f6144e3793ab" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>effectiveMode</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a7a052b00d2b71ba116449a0ce5439939" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a2cb2e67f1fc2757831ab4c99a07229a2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aaea076e5b3e6e15d8dfef6cbb080fbb0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabled_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5fc4d39f271bacc087a289e691c213cc" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>enabledChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a7bdc6cc6eaf551b39560c06120e62f29" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>excluded_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6ae614b0d58eb442b2b00313a5871bd5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>excludedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5e91455394f079bec9cb668b9679b8fe" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>excludedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a7c98e1d301178ebdba4bed13ea6322ea" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>excludedSeriesChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a604ad6dab8af837b767178b13c40b35a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>flush</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a33315202af925b84b3d77e049ce77195" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>followPointer</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a423a94b6c2f0c95bcce6f7b750eee9bc" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>followPointer</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aeed79a70a0bd72c1ff10d6c7940ee0fa" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>followPointer_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa8cdb155e7a192cbf9a62f24c88e4981" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>followPointerChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6eaa821277ae57419db6dfe380aa5693" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>formatRows</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1adc11b71832bfeb3c8651485c6f82fb9d" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>included_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a912fa63a29d0b149118f49db0c8700ec" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>includedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a0a007eb211a35a68a0fc90fedd10079a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>includedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aebd8c42b2746484077fe4b1b74858b42" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>includedSeriesChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aecc195716a3ae7f199d1cf0dab218134" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>inspect</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a76dd8d43a5d664c448bbc9e8d11c9135" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>inspectedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac97bc68344c751f08b488fd324bba290" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>inspects</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a820f06747262c054880fadf61aae4349" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a95791d7353ce63248f7c05fdce826428" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolate</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a31c00d4b90aced462b1cf5eb6aab6081" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolate_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1af401a66a06653f673d3a7545a6101688" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>interpolateChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a74ca2c67ffef70e7e74ae70f8e26cdb2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aba29c4a796361cfbe320bad840da89f2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>Mode</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5032c0547a13598fcbd5c50d78e79494" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>mode_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a62a946de0085495ff93d94f889157ed5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>modeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a0bfc971d317ca5e10284c4345b03d147" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad537a369f42d56da4462adc0d86ac187" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa6408351ee4276e5360758ba03a6d2f8" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>model_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a95e01bf4eb76a2ccd2efe7f5991f87ff" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>NearestX</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a2232f70425314505cf4a4e232b99d278" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>NearestXY</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abce6e3e87608cfa715f2e3700a3e55b1a8e8b7f724902497bebce58bd81ff67f7" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>NearestY</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad4fd5d434bae8ea613a679965b428007" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pending_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a06273c10d050153900bcb7a15dcd24f6" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pinnedX_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad46c27f6446bd717cb965f940e074ac0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>pinnedY_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a10da6ee8ca871b0ab0ee2edee2478c93" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6a086692e4a225352045f87c2bd645ea" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a310a99588c1b33bd5ee35c4e269128a6" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plot_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1af1d2396c9a3ca7826f7676f66ebc98f9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>plotChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a0c6f9457f166204f3b22a0e819a47390" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>PlotInspector</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa18a013c11579af97c8fa4748c573eba" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>position</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a26739c3c50de6c1a29d407e25d2d68df" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>position</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad8e2716152eadc06e40cde617330c5ab" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>position_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a192f930b5d6fe5cd54a69ae42123c826" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>positionChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aeb979565f4ca5fcf036c9f81027c4d4a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>publish</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ae5ec2dfb1769bd5a9978c0e56f95e05b" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>queryRows</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aca228f678477c206c60d14d1568d965e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>radius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a24ec5fc05234ebabb6614866b28dcd18" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>radius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a1ee0c7dec30f54ebbf15a7901cf9926d" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>radius_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a3dee9c138a3584a493074efbd47fb685" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>radiusChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a74b707a8e8c3eb0dbd727007cd48c51c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>reconnect</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a9c1a14497e3c9016e8df7af507bdac42" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refresh</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad64afbb550411f0271b415bf9dddf3b2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refreshed</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abb84ece9732c5d490258ada5f2f4278c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>refreshing_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5a870ad77693e0319a661c04f8c0c2f0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>sampleAlong</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aff93b94cdf0623675a0bd9982d814718" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>schedule</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ae05453859326132780df51c446c3211b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setCursorX</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa9aae460acf9e08c3ebb09e56818e06f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setCursorY</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a0e0ee6317189e594b7768e036da0d98f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setEnabled</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a7b26c4874b082e3c1b1726e84bceab3f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setExcludedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aeb88fcc58e001bba8b730ce898d55926" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setFollowPointer</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad5e8a5715299054c64fac0d7d8c6d0a2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setIncludedSeries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa87487520573a6b2e7dfd470fe009491" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setInterpolate</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ac0e37a9f3b1e17844f46857a25e77848" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setMode</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a72cc790c9430a46f1dba380f132f6415" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setPlot</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aab2c72559b550c3720f3c0b9dafb6a60" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setRadius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a6b28deebd06e4bd46f3961e13a6de095" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSnapToSample</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a1720d10a8019f11768413d3268dc2945" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSummaries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5ce97d829210269172bc07425edea257" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>setSummaryRadius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aaa0c564f6de501a2528e2d3da1ff80e1" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snappedPosition</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5c0e1e4c2adce65e553bf3d3438adb39" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a95484ce41d754411d04ed3e765125d97" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a27e001b3ab51136ee0649f710d8725aa" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSample_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a9277d72aa7eec2ebe1437ed45bd6b89f" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>snapToSampleChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ae6f8f9189e91d700735ef04a354991d1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>stepCursor</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a3abf27e0bb329a867d50af1e34dc2a58" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a31b1e85907399db61e37255cc3c03866" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaries</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a033dcdc980a1eb309f4361893c657c87" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaries_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a5aa90bb4ac2a3b0ca395c7cf9fa05799" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summariesChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1abe7cf1db3852689333ad40dcade82770" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summarize</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ad9ff7b4eeeb747259d9f74aa07144005" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaryRadius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a80c5371d7f26f92f3740f728767ac2fe" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaryRadius</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a3c3a0a28e89092fa63f70c1d680cb7a6" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaryRadius_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a41760dc8f02507badcddb2330e7b86c7" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>summaryRadiusChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1a37d216deba7f0f9d9ae605117dd3ac35" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>validCount</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1af83ef18aabeddb8a2e352b740a0e200e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>validCount</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa7e7470ce45c6e8cb17046413d1997e9" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>validCount_</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1ade00dc3f3f3018ea430cb9bb70feb0a9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>validCountChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotInspector_1aa43495de1c8964b86c2833327b624267" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotInspector</scope><name>~PlotInspector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

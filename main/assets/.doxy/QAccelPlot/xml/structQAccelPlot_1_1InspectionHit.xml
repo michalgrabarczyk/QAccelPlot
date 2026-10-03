@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionHit" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionHit</compoundname>
+    <includes local="no">InspectionTypes.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionHit_1ada79273c8e40f51d4230626d1acd89bc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int QAccelPlot::InspectionHit::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>QAccelPlot::InspectionHit::index</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="71" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionHit_1a5ab43d22ff1fcd5c31ee973faea0d766" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double QAccelPlot::InspectionHit::distance</definition>
+        <argsstring></argsstring>
+        <name>distance</name>
+        <qualifiedname>QAccelPlot::InspectionHit::distance</qualifiedname>
+        <initializer>{std::numeric_limits&lt;double&gt;::infinity()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="72" column="12" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionHit_1a68df34f2d6fdccb428029119db2f07b2" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::InspectionHit::consider</definition>
+        <argsstring>(int candidate, double candidateDistance) noexcept</argsstring>
+        <name>consider</name>
+        <qualifiedname>QAccelPlot::InspectionHit::consider</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>candidate</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>candidateDistance</declname>
+        </param>
+        <briefdescription>
+<para>Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="75" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Nearest-sample result: source index and pixel distance, or index -1. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="70" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" bodystart="70" bodyend="76"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionHit_1a68df34f2d6fdccb428029119db2f07b2" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionHit</scope><name>consider</name></member>
+      <member refid="structQAccelPlot_1_1InspectionHit_1a5ab43d22ff1fcd5c31ee973faea0d766" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionHit</scope><name>distance</name></member>
+      <member refid="structQAccelPlot_1_1InspectionHit_1ada79273c8e40f51d4230626d1acd89bc" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionHit</scope><name>index</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1InspectionBracket" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::InspectionBracket</compoundname>
+    <includes local="no">InspectionResult.hpp</includes>
+    <sectiondef kind="property">
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1a7145d5262ba1f116691f251114c2451b" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>QML_ANONYMOUSQAccelPlot::InspectionNS::Status</type>
+        <definition>QML_ANONYMOUSQAccelPlot::InspectionNS::Status QAccelPlot::InspectionBracket::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::status</qualifiedname>
+        <briefdescription>
+<para><computeroutput>Ready</computeroutput> when at least one neighbor exists. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="133" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1a50fc535c3467d89ed4ac12c09548b39e" prot="public" static="no" readable="yes" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionBracket::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::valid</qualifiedname>
+        <read>valid</read>
+        <briefdescription>
+<para>True when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="135" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1abae59c94c08cd0d9587d95771d7dbb14" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>quint64</type>
+        <definition>quint64 QAccelPlot::InspectionBracket::dataRevision</definition>
+        <argsstring></argsstring>
+        <name>dataRevision</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::dataRevision</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+<para>Data revision the query ran against. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Data revision. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="137" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1aeb3af6e67b3a1482c846dd00eea9d142" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">QAccelPlot::InspectionSample</ref></type>
+        <definition>QAccelPlot::InspectionSample QAccelPlot::InspectionBracket::left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::left</qualifiedname>
+        <briefdescription>
+<para>Valid sample with the largest coordinate at or below the position; invalid when there is none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="139" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1abb30a031616f539dc2bd729d7b8a54cd" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">QAccelPlot::InspectionSample</ref></type>
+        <definition>QAccelPlot::InspectionSample QAccelPlot::InspectionBracket::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::right</qualifiedname>
+        <briefdescription>
+<para>Valid sample with the smallest coordinate above the position; invalid when there is none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="141" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1a7ebd1a05d8e7e3bf8bd25fa38c26d087" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionBracket::adjacent</definition>
+        <argsstring></argsstring>
+        <name>adjacent</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::adjacent</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+<para>True when both neighbors exist and their source indices are consecutive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Consecutive source indices. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="143" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="structQAccelPlot_1_1InspectionBracket_1a3d3900c386fbeff6a90f364889ba20a7" prot="public" static="no" readable="no" writable="no" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">QAccelPlot::InspectionSample</ref></type>
+        <definition>QAccelPlot::InspectionSample QAccelPlot::InspectionBracket::interpolated</definition>
+        <argsstring></argsstring>
+        <name>interpolated</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::interpolated</qualifiedname>
+        <briefdescription>
+<para>Point on the straight on-screen segment between adjacent neighbors; invalid otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="145" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="145" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBracket_1a1c8a6d6e86435c338ab89f3f558825c9" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionStatus</ref></type>
+        <definition>InspectionStatus QAccelPlot::InspectionBracket::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::status</qualifiedname>
+        <initializer>{InspectionStatus::NoMatch}</initializer>
+        <briefdescription>
+<para>Query outcome. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="148" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="148" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBracket_1a11153505c67a6e034a41635d067c145d" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::InspectionBracket::left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::left</qualifiedname>
+        <briefdescription>
+<para>Neighbor at or before the position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="150" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBracket_1a99e000112359960659ed6d727baf40f3" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::InspectionBracket::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::right</qualifiedname>
+        <briefdescription>
+<para>Neighbor after the position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="151" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1InspectionBracket_1a073783dc5b21fce55bf44880f6f1edec" prot="public" static="no" mutable="no">
+        <type><ref refid="structQAccelPlot_1_1InspectionSample" kindref="compound">InspectionSample</ref></type>
+        <definition>InspectionSample QAccelPlot::InspectionBracket::interpolated</definition>
+        <argsstring></argsstring>
+        <name>interpolated</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::interpolated</qualifiedname>
+        <briefdescription>
+<para>Interpolated point between adjacent neighbors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="153" column="22" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structQAccelPlot_1_1InspectionBracket_1afab5408a864f1d459b6ecb95358ebead" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::InspectionBracket::valid</definition>
+        <argsstring>() const</argsstring>
+        <name>valid</name>
+        <qualifiedname>QAccelPlot::InspectionBracket::valid</qualifiedname>
+        <briefdescription>
+<para>Returns true when status is <computeroutput>Ready</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="156" column="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The valid samples on either side of a position on one axis. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>QAccelPlot::InspectionBracket</label>
+        <link refid="structQAccelPlot_1_1InspectionBracket"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>interpolated</edgelabel>
+          <edgelabel>left</edgelabel>
+          <edgelabel>right</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>QAccelPlot::InspectionSample</label>
+        <link refid="structQAccelPlot_1_1InspectionSample"/>
+      </node>
+    </collaborationgraph>
+    <location file="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" line="129" column="1" bodyfile="QAccelPlot/src/QAccelPlot/inspection/InspectionResult.hpp" bodystart="129" bodyend="157"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a7ebd1a05d8e7e3bf8bd25fa38c26d087" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>adjacent</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1abae59c94c08cd0d9587d95771d7dbb14" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>dataRevision</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a3d3900c386fbeff6a90f364889ba20a7" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>interpolated</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a073783dc5b21fce55bf44880f6f1edec" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>interpolated</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1aeb3af6e67b3a1482c846dd00eea9d142" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>left</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a11153505c67a6e034a41635d067c145d" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>left</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1abb30a031616f539dc2bd729d7b8a54cd" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>right</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a99e000112359960659ed6d727baf40f3" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>right</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a7145d5262ba1f116691f251114c2451b" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a1c8a6d6e86435c338ab89f3f558825c9" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>status</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1a50fc535c3467d89ed4ac12c09548b39e" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>valid</name></member>
+      <member refid="structQAccelPlot_1_1InspectionBracket_1afab5408a864f1d459b6ecb95358ebead" prot="public" virt="non-virtual"><scope>QAccelPlot::InspectionBracket</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

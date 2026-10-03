@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/PlotBorder.hpp"
+#include "QAccelPlot/PlotDragRect.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/PlotRectangleZoom.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
@@ -57,6 +58,11 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(PlotRectangleZoom* rectangleZoom READ rectangleZoom CONSTANT)
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
+    Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
+
+    
+    Q_PROPERTY(QPointF pointerPosition READ pointerPosition NOTIFY pointerChanged)
+    Q_PROPERTY(bool pointerInside READ pointerInside NOTIFY pointerChanged)
 
 public:
     explicit QAccelPlot(QQuickItem* parent = nullptr);
@@ -68,6 +74,9 @@ public:
     Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+
+    QPointF pointerPosition() const;
+    bool pointerInside() const;
 
     Axis* xAxis() const;
     void setXAxis(Axis* axis);
@@ -102,7 +111,12 @@ public:
 
     QList<PlotSeries*> series() const;
 
+    QQuickItem* overlay() const;
+
 signals:
+    void pointerChanged();
+    void escapePressed();
+    void pointerGrabLost();
     void xAxisChanged();
     void yAxisChanged();
     void x2AxisChanged();
@@ -157,6 +171,7 @@ private:
     void updateRectangleSelection(const QPointF& pos);
     void cancelRectangleSelection();
     void layoutAxes();
+    void setPointer(const QPointF& position);
     void registerSeries(QQuickItem* item);
 
     Axis* xAxis_{nullptr};
@@ -166,10 +181,14 @@ private:
     QList<Axis*> extraAxes_;
 
     DragMode dragMode_{DragMode::Idle};
-    QPointF selectionStart_;
+    PlotDragRect zoomDrag_;
     QPointF lastMousePos_;
     // Last pointer position over the plot; key events go to the axis under it.
     std::optional<QPointF> pointerPos_;
+    QPointF lastPointerPos_;
+    // True while the pointer was last placed by a touch, which keeps it in place after the release.
+    bool touchPointer_{false};
+    bool touchPressed_{false};
     PlotMouseEvent mousePressEvent_{this};
     PlotMouseEvent mouseReleaseEvent_{this};
     PlotMouseEvent mouseDoubleClickEvent_{this};
@@ -181,6 +200,7 @@ private:
     PlotBorder* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
     RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    QQuickItem* overlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};
     QList<PlotSeries*> series_;

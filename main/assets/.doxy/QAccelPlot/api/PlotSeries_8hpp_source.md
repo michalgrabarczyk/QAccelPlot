@@ -18,6 +18,7 @@
 #pragma once
 
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/inspection/SeriesInspection.hpp"
 
 #include <QPointer>
 #include <QQuickItem>
@@ -47,6 +48,10 @@ class PlotSeries : public QQuickItem {
     Q_PROPERTY(QRectF plotRect READ plotRect WRITE setPlotRect NOTIFY plotRectChanged)
     Q_PROPERTY(LegendSymbol legendSymbol READ legendSymbol WRITE setLegendSymbol NOTIFY legendSymbolChanged)
 
+    
+    Q_PROPERTY(quint64 dataRevision READ dataRevision NOTIFY dataRevisionChanged)
+    Q_PROPERTY(::QAccelPlot::SeriesInspection* inspection READ inspection CONSTANT)
+
 public:
     enum class LegendSymbol { Line, Fill, Marker };
     Q_ENUM(LegendSymbol)
@@ -74,6 +79,9 @@ public:
     Q_ENUM(MarkerShape)
 
     explicit PlotSeries(QQuickItem* parent = nullptr);
+
+    quint64 dataRevision() const;
+    SeriesInspection* inspection() const;
 
     QString name() const;
     void setName(const QString& name);
@@ -103,6 +111,7 @@ public:
     virtual void clearData() = 0;
 
 signals:
+    void dataRevisionChanged();
     void nameChanged();
     void xAxisChanged();
     void yAxisChanged();
@@ -112,6 +121,18 @@ signals:
     void yDataRangeChanged(qreal min, qreal max);
 
 protected:
+    enum class DataChange {
+        Replaced, 
+        Appended, 
+    };
+
+    void inspectionDataChanged(DataChange change = DataChange::Replaced);
+    void invalidateInspection();
+    virtual InspectionSource inspectionSource() const;
+    virtual bool inspectionAvailable() const;
+    virtual InspectionRecord inspectionRecord(int index) const;
+    virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
+
     struct DataExtent {
         qreal min; 
         qreal max; 
@@ -132,12 +153,18 @@ protected:
     QRectF resolvePlotRect() const;
 
 private:
+    friend class SeriesInspection;
+
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
 
+    quint64 dataRevision_{0};
+    mutable SeriesInspection* inspection_{nullptr};
     QString name_;
     QPointer<Axis> xAxis_;
     QPointer<Axis> yAxis_;
+    QMetaObject::Connection xAxisDestroyed_;
+    QMetaObject::Connection yAxisDestroyed_;
     QRectF plotRect_;
     LegendSymbol legendSymbol_{LegendSymbol::Line};
     qreal lastXMin_{std::numeric_limits<qreal>::max()};

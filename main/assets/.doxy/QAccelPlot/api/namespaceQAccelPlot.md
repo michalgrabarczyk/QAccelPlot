@@ -39,6 +39,8 @@
 | namespace | [**GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md) <br>_Namespace exposing the_ `GradientDirection` _enum to QML._ |
 | namespace | [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) <br>_Namespace exposing the_ `GradientFillBaseline` _enum to QML._ |
 | namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
+| namespace | [**InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md) <br>_Namespace exposing the inspection_ `Status` _enum to QML as_`Inspection` _._ |
+| namespace | [**InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md) <br>_Inspection queries that scan every record; used for small series that are not ordered along the queried axis._  |
 | namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 | namespace | [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) <br>_Stateless helpers implementing the invalid-sample contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._ |
 | namespace | [**LineStroke**](namespaceQAccelPlot_1_1LineStroke.md) <br>_Building blocks for the line ribbon drawn by the line shaders, shared by the line renderers._  |
@@ -50,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**Axis**](classQAccelPlot_1_1Axis.md) <br>_A visual axis item that maps a data-space range to pixel coordinates and renders tick marks and labels._  |
+| struct | [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) <br>_Snapshot of an axis viewport that maps between data values and pixel positions._  |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
@@ -89,6 +92,20 @@
 | class | [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) <br>_Cached one-dimensional texture used by gradient materials._  |
 | class | [**Grid**](classQAccelPlot_1_1Grid.md) <br>_Configuration object that controls the appearance of the plot grid._  |
 | class | [**GridNode**](classQAccelPlot_1_1GridNode.md) <br>_Internal QSGNode responsible for rendering the plot grid into the scene graph._  |
+| struct | [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) <br>_Inclusive data-space region; infinite limits leave a dimension unbounded._  |
+| struct | [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) <br>_The valid samples on either side of a position on one axis._  |
+| class | [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md) <br>_Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._ |
+| struct | [**InspectionHit**](structQAccelPlot_1_1InspectionHit.md) <br>_Nearest-sample result: source index and pixel distance, or index -1._  |
+| class | [**InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) <br>_Immutable k-d tree over the valid samples of a series, with their order along each axis._  |
+| struct | [**InspectionMetric**](structQAccelPlot_1_1InspectionMetric.md) <br>_Pixel mapping of a series' plot area, used to measure on-screen distances._  |
+| struct | [**InspectionNeighbors**](structQAccelPlot_1_1InspectionNeighbors.md) <br>_Source indices of the valid samples on either side of an X value, or -1._  |
+| struct | [**InspectionPage**](structQAccelPlot_1_1InspectionPage.md) <br>_One page of source indices inside a region._  |
+| struct | [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) <br>_A native record of a series that is not a plain XY series, such as a bar, rectangle, or band._  |
+| struct | [**InspectionRow**](structQAccelPlot_1_1InspectionRow.md) <br>_Inspection result of one series, as shown by one row of an_ `InspectionRowModel` _._ |
+| class | [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) <br>_List model with one stable row per inspected series._  |
+| struct | [**InspectionSample**](structQAccelPlot_1_1InspectionSample.md) <br>_One XY source sample returned by an inspection query._  |
+| struct | [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) <br>_Read-only view over the XY records a series exposes to inspection queries._  |
+| struct | [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) <br>_Sample-weighted Y statistics over the valid samples inside a region._  |
 | class | [**LineCurve**](classQAccelPlot_1_1LineCurve.md) <br>_A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._  |
 | class | [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) <br>_Abstract base class for visual effects applied to a_ `LineCurve` _._ |
 | class | [**LineCurveGaps**](classQAccelPlot_1_1LineCurveGaps.md) <br>_Controls how a_ `LineCurve` _renders gaps in its data._ |
@@ -102,7 +119,11 @@
 | class | [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md) <br>_An animation transition that smoothly interpolates point positions between two datasets._  |
 | class | [**NoLine**](classQAccelPlot_1_1NoLine.md) <br>_A line style that suppresses line rendering entirely, leaving only markers visible._  |
 | class | [**NumericTickLabelFormatter**](classQAccelPlot_1_1NumericTickLabelFormatter.md) <br>_The default tick label formatter — produces numeric labels with automatic decimal precision._  |
+| class | [**OutlinedRectangle**](classQAccelPlot_1_1OutlinedRectangle.md) <br>_Item that fills its bounds and outlines them with a line of one logical pixel._  |
+| class | [**OverlayChildren**](classQAccelPlot_1_1OverlayChildren.md) <br>_Objects declared inside an inspection tool in QML._  |
 | class | [**PlotBorder**](classQAccelPlot_1_1PlotBorder.md) <br>_Decorative frame configuration exposed by_ `PlotView::border` _._ |
+| class | [**PlotDragRect**](classQAccelPlot_1_1PlotDragRect.md) <br>_Rectangle dragged out inside the plot area, shared by rectangle zoom and data selection._  |
+| class | [**PlotInspector**](classQAccelPlot_1_1PlotInspector.md) <br>_Inspects every visible XY series of a plot at a cursor and publishes one model row per series._  |
 | class | [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) <br>_Carries mouse event data for the mouse signals._  |
 | class | [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) <br>_Rectangle zoom configuration and selection state exposed by PlotView._  |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
@@ -119,9 +140,14 @@
 | class | [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md) <br>_A hardware-accelerated QML item that renders a large list of axis-aligned rectangles._  |
 | class | [**RectangleZoomOverlay**](classQAccelPlot_1_1RectangleZoomOverlay.md) <br> |
 | struct | [**SampleRun**](structQAccelPlot_1_1SampleRun.md) <br>_Contiguous range of valid curve samples, used to break fills and hit tests at gaps._  |
+| class | [**SelectionRectangle**](classQAccelPlot_1_1SelectionRectangle.md) <br>_Draws the gesture or the selected region of a_ [_**SelectionTool**_](classQAccelPlot_1_1SelectionTool.md) _, clipped to the plot area._ |
+| class | [**SelectionTool**](classQAccelPlot_1_1SelectionTool.md) <br>_Selects a data-space region by dragging, without changing the plot viewport._  |
+| class | [**SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md) <br>_Data queries for one series: nearest samples, brackets, region statistics, and index pages._  |
 | class | [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) <br>_Controls the markers a series draws at its data points._  |
 | class | [**SolidLine**](classQAccelPlot_1_1SolidLine.md) <br>_The default line style — renders a continuous solid line with no gaps._  |
+| class | [**SourceInspection**](classQAccelPlot_1_1SourceInspection.md) <br>_Inspection queries that read a series' own buffer whose records are ordered along one axis._  |
 | class | [**SpatialGrid**](classQAccelPlot_1_1SpatialGrid.md) <br>_Uniform-grid spatial index with bounded per-rectangle storage._  |
+| struct | [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) <br>_Running sample-weighted Y statistics that can be merged across disjoint sample sets._  |
 | class | [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) <br>_A tick label formatter that maps integer tick indices to a user-supplied list of strings._  |
 | class | [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) <br>_Abstract base class for tick label formatters._  |
 
@@ -133,6 +159,8 @@
 | typedef [**GradientDirectionNS::Direction**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**GradientDirection**](#typedef-gradientdirection)  <br> |
 | typedef [**GradientFillBaselineNS::Mode**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**GradientFillBaseline**](#typedef-gradientfillbaseline)  <br> |
 | typedef [**GradientValueSourceNS::Source**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**GradientValueSource**](#typedef-gradientvaluesource)  <br> |
+| enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
+| typedef [**InspectionNS::Status**](namespaceQAccelPlot_1_1InspectionNS.md#enum-status) | [**InspectionStatus**](#typedef-inspectionstatus)  <br> |
 | typedef [**NanGapModeNS::Mode**](namespaceQAccelPlot_1_1NanGapModeNS.md#enum-mode) | [**NanGapMode**](#typedef-nangapmode)  <br> |
 
 
@@ -164,6 +192,7 @@
 
 | Type | Name |
 | ---: | :--- |
+|  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
 |  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=0.0) noexcept<br> |
@@ -250,6 +279,38 @@ using QAccelPlot::GradientValueSource = typedef GradientValueSourceNS::Source;
 
 
 
+### enum InspectionAxis {#enum-inspectionaxis}
+
+_Data dimension a query measures along, or along which a series' records are ordered._ 
+```C++
+enum QAccelPlot::InspectionAxis {
+    X,
+    Y
+};
+```
+
+
+
+
+<hr>
+
+
+
+
+### typedef InspectionStatus {#typedef-inspectionstatus}
+
+```C++
+using QAccelPlot::InspectionStatus = typedef InspectionNS::Status;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### typedef NanGapMode {#typedef-nangapmode}
 
 ```C++
@@ -293,6 +354,25 @@ constexpr double QAccelPlot::kNearlyEqualEpsilon;
 <hr>
 ## Public Functions Documentation
 
+
+
+
+
+### function distanceToInterval {#function-distancetointerval}
+
+_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._
+```C++
+double QAccelPlot::distanceToInterval (
+    double position,
+    double a,
+    double b
+) noexcept
+```
+
+
+
+
+<hr>
 
 
 

@@ -92,6 +92,8 @@ class ColorPalette : public QObject {
     // Rectangle zoom
     Q_PROPERTY(QColor rectangleZoomBorder MEMBER rectangleZoomBorder CONSTANT)
     Q_PROPERTY(QColor rectangleZoomFill MEMBER rectangleZoomFill CONSTANT)
+    Q_PROPERTY(QColor selectionBorder MEMBER selectionBorder CONSTANT)
+    Q_PROPERTY(QColor selectionFill MEMBER selectionFill CONSTANT)
 
 public:
     static const ColorPalette& dark();
@@ -149,6 +151,8 @@ public:
 
     QColor rectangleZoomBorder;
     QColor rectangleZoomFill;
+    QColor selectionBorder;
+    QColor selectionFill;
 
 private:
     ColorPalette() = default;
