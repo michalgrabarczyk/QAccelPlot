@@ -16,7 +16,6 @@ Rectangle {
     required property var series
     property color textColor: Colors.dark.text
     property font font: Qt.font({
-        family: "Arial",
         pixelSize: 12
     })
     property real symbolWidth: 28
