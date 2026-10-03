@@ -41,18 +41,29 @@ void TestInspectionQml::queriesRowsAndSelection()
             yAxis: QAccelPlot.Axis { viewportMin: 0; viewportMax: 10 }
             QAccelPlot.LineCurve { id: curve; name: "A"; xAxis: root.xAxis; yAxis: root.yAxis }
             QAccelPlot.LineCurve { id: other; xAxis: root.xAxis; yAxis: root.yAxis }
-            QAccelPlot.PlotInspector { id: inspector; plot: root; includedSeries: [curve]; followPointer: false; cursorX: 3 }
-            QAccelPlot.Crosshair { id: crosshair; inspector: inspector; axisLabels: true }
-            QAccelPlot.InspectionMarkers { id: markers; inspector: inspector }
-            QAccelPlot.InspectionTooltip { id: tooltip; inspector: inspector }
+            QAccelPlot.PlotInspector {
+                id: inspector
+                plot: root; includedSeries: [curve]; followPointer: false; cursorX: 3
+                QAccelPlot.Crosshair { id: crosshair; axisLabels: true }
+                QAccelPlot.InspectionMarkers { id: markers }
+                QAccelPlot.InspectionTooltip { id: tooltip }
+            }
             QAccelPlot.SelectionTool { id: tool; plot: root }
-            QAccelPlot.SelectionOverlay { id: selectionOverlay; tool: tool }
-            // The overlay item is above the series and the legend, and holds the components with the tooltip on top.
+            QAccelPlot.SelectionOverlay { tool: tool }
+            // The overlay item is above the series and the legend. Components declared inside the inspector
+            // receive it and stack in declaration order.
             function layers() {
-                const others = [crosshair, markers, selectionOverlay];
+                const order = [crosshair, markers, tooltip].map(item => {
+                    for (let i = 0; i < root.overlay.children.length; ++i) {
+                        if (root.overlay.children[i] === item) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                });
                 return [root.overlay.parent === root, root.overlay.z > curve.z, root.overlay.z > root.legend.z,
-                    root.overlay.width === root.width, root.overlay.height === root.height,
-                    others.concat([tooltip]).every(item => item.parent === root.overlay), others.every(item => item.z < tooltip.z)].join("|");
+                    root.overlay.width === root.width, root.overlay.height === root.height, crosshair.inspector === inspector,
+                    order[0] < order[1] && order[1] < order[2], order[2] === root.overlay.children.length - 1].join("|");
             }
             function queries() {
                 const inspection = curve.inspection;
@@ -95,7 +106,7 @@ void TestInspectionQml::queriesRowsAndSelection()
     QTRY_COMPARE(inspector->validCount(), 1);
     QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000"));
     QCOMPARE(call("selection"), QStringLiteral("true|true|2|2"));
-    QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true"));
+    QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true|true"));
 }
 
 QTEST_MAIN(TestInspectionQml)

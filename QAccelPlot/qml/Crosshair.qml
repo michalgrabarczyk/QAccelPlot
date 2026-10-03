@@ -12,7 +12,8 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property QAccelPlot.PlotInspector inspector
+    // Set automatically for a component declared inside a PlotInspector.
+    property QAccelPlot.PlotInspector inspector
     property color color: QAccelPlot.Colors.dark.hover
     property real lineWidth: 1
     property bool horizontal: true
@@ -25,17 +26,18 @@ Item {
     })
 
     // A cursor set from code may have no Y; the horizontal line is hidden then.
-    readonly property bool hasX: !isNaN(inspector.position.x)
-    readonly property bool hasY: !isNaN(inspector.position.y)
+    readonly property bool hasX: inspector !== null && !isNaN(inspector.position.x)
+    readonly property bool hasY: inspector !== null && !isNaN(inspector.position.y)
     readonly property real cursorX: hasX ? inspector.position.x - x : 0
     readonly property real cursorY: hasY ? inspector.position.y - y : 0
+    readonly property rect area: inspector && inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
 
-    parent: inspector.plot ? inspector.plot.overlay : null
-    visible: inspector.active
-    x: inspector.plot ? inspector.plot.plotRect.x : 0
-    y: inspector.plot ? inspector.plot.plotRect.y : 0
-    width: inspector.plot ? inspector.plot.plotRect.width : 0
-    height: inspector.plot ? inspector.plot.plotRect.height : 0
+    parent: inspector && inspector.plot ? inspector.plot.overlay : null
+    visible: inspector !== null && inspector.active
+    x: area.x
+    y: area.y
+    width: area.width
+    height: area.height
     clip: true
 
     Rectangle {
@@ -67,7 +69,7 @@ Item {
             id: xLabel
 
             anchors.centerIn: parent
-            text: root.inspector.cursorXText
+            text: root.inspector ? root.inspector.cursorXText : ""
             font: root.font
             color: root.labelColor
         }
@@ -85,7 +87,7 @@ Item {
             id: yLabel
 
             anchors.centerIn: parent
-            text: root.inspector.cursorYText
+            text: root.inspector ? root.inspector.cursorYText : ""
             font: root.font
             color: root.labelColor
         }

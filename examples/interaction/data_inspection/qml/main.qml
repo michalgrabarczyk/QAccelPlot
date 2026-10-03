@@ -132,19 +132,15 @@ Window {
                 followPointer: !root.pinnedCursor
                 cursorX: 23.4
                 cursorY: 2.6
-            }
 
-            QAccelPlot.Crosshair {
-                inspector: inspector
-                axisLabels: true
-            }
+                // Stacked in declaration order: the tooltip is drawn on top.
+                QAccelPlot.Crosshair {
+                    axisLabels: true
+                }
 
-            QAccelPlot.InspectionMarkers {
-                inspector: inspector
-            }
+                QAccelPlot.InspectionMarkers {}
 
-            QAccelPlot.InspectionTooltip {
-                inspector: inspector
+                QAccelPlot.InspectionTooltip {}
             }
 
             QAccelPlot.SelectionTool {

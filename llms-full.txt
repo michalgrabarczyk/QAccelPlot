@@ -1575,18 +1575,23 @@ import QAccelPlot as QAccelPlot
 QAccelPlot.Plot {
     id: plotView
     // Bind each series to its axes.
-    QAccelPlot.PlotInspector { id: inspector; plot: plotView }
-    QAccelPlot.Crosshair { inspector: inspector; axisLabels: true }
-    QAccelPlot.InspectionMarkers { inspector: inspector }
-    QAccelPlot.InspectionTooltip { inspector: inspector }
+    QAccelPlot.PlotInspector {
+        plot: plotView
+        QAccelPlot.Crosshair { axisLabels: true }
+        QAccelPlot.InspectionMarkers {}
+        QAccelPlot.InspectionTooltip {}
+    }
     QAccelPlot.SelectionTool { id: selection; plot: plotView }
     QAccelPlot.SelectionOverlay { tool: selection }
 }
 ```
 
-The four visual components parent themselves to `plotView.overlay`, an item above
-the series and the legend; the tooltip is drawn above the other three. Parent
-your own overlays to it instead of choosing a `z` relative to the series.
+- Components declared inside a `PlotInspector` use it and are drawn in
+  declaration order, the last one on top.
+- They are children of `plotView.overlay`, an item above the series and the
+  legend. Parent your own overlays to it instead of choosing a `z` relative to
+  the series.
+- A component declared elsewhere needs `inspector:` set and is not restacked.
 
 Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
 drag selects a region; Escape clears it. Ordinary left dragging still pans.
@@ -1635,7 +1640,6 @@ roles it uses as required properties:
 
 ```qml
 QAccelPlot.InspectionTooltip {
-    inspector: inspector
     rowDelegate: Text {
         required property bool valid
         required property string seriesName

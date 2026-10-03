@@ -12,7 +12,8 @@ import QAccelPlot as QAccelPlot
 Rectangle {
     id: root
 
-    required property QAccelPlot.PlotInspector inspector
+    // Set automatically for a component declared inside a PlotInspector.
+    property QAccelPlot.PlotInspector inspector
     property color textColor: QAccelPlot.Colors.dark.text
     property font font: Qt.font({
         pixelSize: 12
@@ -56,9 +57,9 @@ Rectangle {
         }
     }
 
-    readonly property rect area: inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
-    readonly property real anchorX: isNaN(inspector.position.x) ? area.x + area.width / 2 : inspector.position.x
-    readonly property real anchorY: isNaN(inspector.position.y) ? area.y + area.height / 2 : inspector.position.y
+    readonly property rect area: inspector && inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
+    readonly property real anchorX: !inspector || isNaN(inspector.position.x) ? area.x + area.width / 2 : inspector.position.x
+    readonly property real anchorY: !inspector || isNaN(inspector.position.y) ? area.y + area.height / 2 : inspector.position.y
 
     // Places the tooltip after the cursor, or before it when it would not fit inside the plot area.
     function place(anchor, size, start, length) {
@@ -67,10 +68,8 @@ Rectangle {
         return Math.max(start, Math.min(position, start + length - size));
     }
 
-    parent: inspector.plot ? inspector.plot.overlay : null
-    // Above the other items of the overlay.
-    z: 1
-    visible: inspector.active && inspector.validCount > 0
+    parent: inspector && inspector.plot ? inspector.plot.overlay : null
+    visible: inspector !== null && inspector.active && inspector.validCount > 0
     clip: true
     color: QAccelPlot.Colors.dark.legendBackground
     border.color: QAccelPlot.Colors.dark.legendBorder
@@ -88,7 +87,7 @@ Rectangle {
         spacing: 4
 
         Repeater {
-            model: root.inspector.model
+            model: root.inspector ? root.inspector.model : null
             delegate: root.rowDelegate
         }
     }

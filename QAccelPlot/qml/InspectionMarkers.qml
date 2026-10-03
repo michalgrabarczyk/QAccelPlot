@@ -12,22 +12,24 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property QAccelPlot.PlotInspector inspector
+    // Set automatically for a component declared inside a PlotInspector.
+    property QAccelPlot.PlotInspector inspector
     // Marker diameter in logical pixels.
     property real size: 10
     property color borderColor: QAccelPlot.Colors.dark.plotArea
     property real borderWidth: 1.5
+    readonly property rect area: inspector && inspector.plot ? inspector.plot.plotRect : Qt.rect(0, 0, 0, 0)
 
-    parent: inspector.plot ? inspector.plot.overlay : null
-    visible: inspector.active
-    x: inspector.plot ? inspector.plot.plotRect.x : 0
-    y: inspector.plot ? inspector.plot.plotRect.y : 0
-    width: inspector.plot ? inspector.plot.plotRect.width : 0
-    height: inspector.plot ? inspector.plot.plotRect.height : 0
+    parent: inspector && inspector.plot ? inspector.plot.overlay : null
+    visible: inspector !== null && inspector.active
+    x: area.x
+    y: area.y
+    width: area.width
+    height: area.height
     clip: true
 
     Repeater {
-        model: root.inspector.model
+        model: root.inspector ? root.inspector.model : null
 
         Rectangle {
             required property bool valid

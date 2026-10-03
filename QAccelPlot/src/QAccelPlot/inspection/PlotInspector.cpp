@@ -8,6 +8,7 @@
 #include "QAccelPlot/inspection/PlotInspector.hpp"
 
 #include "QAccelPlot/axis/AxisTicker.hpp"
+#include "QAccelPlot/inspection/internal/OverlayChildren.hpp"
 
 #include <QScopedValueRollback>
 
@@ -87,7 +88,15 @@ PlotInspector::PlotInspector(QObject* parent)
     , pinnedX_(kNaN)
     , pinnedY_(kNaN)
     , model_(new InspectionRowModel(this))
+    , children_(std::make_unique<OverlayChildren>(*this, QVariant::fromValue(this), "inspector"))
 {
+}
+
+PlotInspector::~PlotInspector() = default;
+
+QQmlListProperty<QObject> PlotInspector::data()
+{
+    return children_->list();
 }
 
 ::QAccelPlot::QAccelPlot* PlotInspector::plot() const
@@ -101,6 +110,7 @@ void PlotInspector::setPlot(::QAccelPlot::QAccelPlot* plot)
         return;
     }
     plot_ = plot;
+    children_->setOverlay(plot ? plot->overlay() : nullptr);
     reconnect();
     emit plotChanged();
 }

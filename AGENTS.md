@@ -77,7 +77,8 @@ QAccelPlot/
 │       ├── grid/                 — Grid, GridNode
 │       ├── inspection/           — SeriesInspection (per-series data queries), InspectionResult (query value types),
 │       │                           PlotInspector, SelectionTool, InspectionRowModel,
-│       │                           internal/ (in-place search of ordered data, k-d index, async index cache)
+│       │                           internal/ (in-place search of ordered data, k-d index, async index cache,
+│       │                           objects declared inside a tool)
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,

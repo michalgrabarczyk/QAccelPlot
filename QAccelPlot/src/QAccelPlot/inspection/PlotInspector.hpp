@@ -10,9 +10,14 @@
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/inspection/InspectionRowModel.hpp"
 
+#include <QQmlListProperty>
+
+#include <memory>
 #include <optional>
 
 namespace QAccelPlot {
+
+class OverlayChildren;
 
 /// \brief Inspects every visible XY series of a plot at a cursor and publishes one model row per series.
 ///
@@ -20,10 +25,19 @@ namespace QAccelPlot {
 /// \c cursorX to drive it from code, for example to link the crosshairs of several plots.
 /// Results are refreshed at most once per event-loop pass.
 ///
+/// In QML, declare \c Crosshair, \c InspectionMarkers, and \c InspectionTooltip inside the inspector:
+/// they receive it as their \c inspector and are stacked in declaration order, the last one on top.
+///
 /// \sa SeriesInspection, InspectionRowModel
 class PlotInspector : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotInspector)
+    Q_CLASSINFO("DefaultProperty", "data")
+    /// \brief Default property: objects declared inside the inspector.
+    ///
+    /// Every object with an \c inspector property receives this inspector. Items among them are stacked
+    /// in declaration order above the other children of the plot's overlay.
+    Q_PROPERTY(QQmlListProperty<QObject> data READ data)
     /// \brief Plot whose series are inspected.
     Q_PROPERTY(::QAccelPlot::QAccelPlot* plot READ plot WRITE setPlot NOTIFY plotChanged)
     /// \brief Enables queries. A disabled inspector is inactive and does no work. Default: true.
@@ -76,6 +90,11 @@ public:
 
     /// \brief Constructs an inspector without a plot.
     explicit PlotInspector(QObject* parent = nullptr);
+    /// \brief Destroys the inspector and the objects declared inside it.
+    ~PlotInspector() override;
+
+    /// \brief Returns the objects declared inside the inspector.
+    QQmlListProperty<QObject> data();
 
     /// \brief Returns the inspected plot.
     ::QAccelPlot::QAccelPlot* plot() const;
@@ -232,6 +251,7 @@ private:
     QString cursorYText_;
     int validCount_{0};
     InspectionRowModel* model_;
+    std::unique_ptr<OverlayChildren> children_;
 };
 
 } // namespace QAccelPlot
