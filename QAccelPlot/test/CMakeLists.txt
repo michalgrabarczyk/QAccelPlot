@@ -94,3 +94,15 @@ qt_import_qml_plugins(tst_line_curve_hover)
 # Renders a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_band_series_rendering PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_band_series_rendering)
+
+add_qaccelplot_test(tst_series_inspection  core tst_series_inspection.cpp)
+add_qaccelplot_test(tst_inspection_row_model core tst_inspection_row_model.cpp)
+add_qaccelplot_test(tst_plot_inspector     core tst_plot_inspector.cpp InspectionPlotRig.cpp)
+# Loads the tooltip component, so it needs the QML module plugin.
+target_link_libraries(tst_plot_inspector PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_plot_inspector)
+add_qaccelplot_test(tst_selection_tool     core tst_selection_tool.cpp InspectionPlotRig.cpp)
+add_qaccelplot_test(tst_inspection_qml     core tst_inspection_qml.cpp)
+# Loads a QML scene, so it needs the QML module plugin.
+target_link_libraries(tst_inspection_qml PRIVATE QAccelPlot::QAccelPlot)
+qt_import_qml_plugins(tst_inspection_qml)

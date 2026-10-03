@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "data_inspection/default",
+  "ai_inspection": false,
+  "description": "Two densely sampled noisy signals and a narrow spike inside one plot, inspected by a crosshair that is placed from code. Controls above the plot configure inspection and selection.",
+  "expected_image": {
+    "width": 1100,
+    "height": 700,
+    "minimum_file_size_bytes": 15000
+  },
+  "policy": {
+    "blocking_severities": [
+      "high",
+      "medium"
+    ],
+    "minimum_confidence": 0.8
+  },
+  "checks": [
+    {
+      "id": "overall_layout",
+      "severity": "high",
+      "expectation": "One plot with readable axes and a legend for both signals. Two distinct colored noisy signals span the plot as bands and a narrow spike is visible."
+    },
+    {
+      "id": "inspection_overlay",
+      "severity": "high",
+      "expectation": "A vertical and a horizontal crosshair line cross inside the plot. Each signal has a round marker on the vertical line. A tooltip next to the crosshair lists both signals on separate, non-overlapping rows. Small value badges sit on the crosshair lines at the bottom and left plot edges."
+    },
+    {
+      "id": "text_raster_quality",
+      "severity": "high",
+      "expectation": "Within the plot, tick labels, the tooltip rows, and the crosshair value badges are readable and free of clear raster corruption. Fail only for concrete defects such as square pixel blocks, doubled glyphs, or severe stair-step edges that make plot text materially illegible. Do not compare plot text with headings, toolbar buttons, controls, or any text outside the plot. Normal antialiasing, small fonts, and backend-specific softness are acceptable."
+    }
+  ]
+}

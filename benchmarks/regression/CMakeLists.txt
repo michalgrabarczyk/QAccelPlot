@@ -28,3 +28,8 @@ set_property(TARGET QAccelPlotBenchmarkRegression PROPERTY AUTOMOC ON)
 # We might want to use some QML internally or link to plugins, but for now we just link QAccelPlot directly.
 # qt_import_qml_plugins(QAccelPlotBenchmarkRegression)
 qt_finalize_executable(QAccelPlotBenchmarkRegression)
+
+qt_add_executable(QAccelPlotBenchInspection BenchInspection.cpp)
+target_link_libraries(QAccelPlotBenchInspection PRIVATE QAccelPlot::Core Qt6::Quick)
+
+set_target_properties(QAccelPlotBenchInspection PROPERTIES WIN32_EXECUTABLE FALSE)

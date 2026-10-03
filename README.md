@@ -132,6 +132,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid samples drawn as gaps or connected. |
 | Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
 | Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
+| Interaction | **[Data Inspection](examples/interaction/data_inspection/)** | Crosshair, per-series tooltip, and region selection with statistics over one million samples. |
 
 ---
 

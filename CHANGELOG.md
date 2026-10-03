@@ -10,6 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Rectangle zoom via `PlotView.rectangleZoom` and `zoomToRect()`, with theme
   colors and a Point cloud example.
+- Data inspection via `PlotInspector` and `SelectionTool`: a crosshair,
+  per-series markers, and a tooltip at the cursor, region selection with
+  statistics, theme colors, and a Data inspection example.
+- Sample queries on every series via `PlotSeries.inspection`: the nearest sample,
+  its neighbors, statistics of a region, and the indices inside it.
+- `PlotView.overlay` for items drawn above the series, and the pointer position
+  via `pointerPosition` and `pointerInside`.
+- `Axis.formatValue()`, which formats a value at the precision of the current
+  zoom.
 - `RectangleSeries`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,
   `setData(std::vector<double>&&, int)`, and `postData()`.
 - `RectangleSeries` spans: infinite or omitted edges reach the plot edge.

@@ -7,3 +7,5 @@
 #
 add_subdirectory(annotations)
 add_subdirectory(measurement_tools)
+
+add_subdirectory(data_inspection)

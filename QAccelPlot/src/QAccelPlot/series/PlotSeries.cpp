@@ -8,6 +8,7 @@
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
+#include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -18,6 +19,20 @@ PlotSeries::PlotSeries(QQuickItem* parent)
     : QQuickItem(parent)
 {
     setClip(true);
+}
+
+quint64 PlotSeries::dataRevision() const
+{
+    return dataRevision_;
+}
+
+SeriesInspection* PlotSeries::inspection() const
+{
+    if (!inspection_) {
+        // Parented to the series, so it is destroyed with it.
+        inspection_ = new SeriesInspection(const_cast<PlotSeries&>(*this));
+    }
+    return inspection_;
 }
 
 QString PlotSeries::name() const
@@ -46,16 +61,24 @@ void PlotSeries::setXAxis(Axis* axis)
     }
     if (xAxis_) {
         disconnect(xAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
+        disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         xAxis_->clearSourceDataRange(this, Axis::Horizontal);
     }
+    disconnect(xAxisDestroyed_);
     xAxis_ = axis;
     if (xAxis_) {
         connect(xAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
+        connect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         connect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
+        xAxisDestroyed_ = connect(xAxis_, &QObject::destroyed, this, [this] {
+            invalidateInspection();
+            emit xAxisChanged();
+        });
         reportXDataRangeToAxis();
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
+    invalidateInspection();
     onAxisScaleChanged();
     emit xAxisChanged();
     update();
@@ -73,16 +96,24 @@ void PlotSeries::setYAxis(Axis* axis)
     }
     if (yAxis_) {
         disconnect(yAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
+        disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         yAxis_->clearSourceDataRange(this, Axis::Vertical);
     }
+    disconnect(yAxisDestroyed_);
     yAxis_ = axis;
     if (yAxis_) {
         connect(yAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
+        connect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         connect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
+        yAxisDestroyed_ = connect(yAxis_, &QObject::destroyed, this, [this] {
+            invalidateInspection();
+            emit yAxisChanged();
+        });
         reportYDataRangeToAxis();
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
+    invalidateInspection();
     onAxisScaleChanged();
     emit yAxisChanged();
     update();
@@ -117,6 +148,46 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
     }
     legendSymbol_ = symbol;
     emit legendSymbolChanged();
+}
+
+void PlotSeries::inspectionDataChanged(const DataChange change)
+{
+    ++dataRevision_;
+    if (inspection_) {
+        inspection_->sourceChanged(change == DataChange::Appended);
+    }
+    emit dataRevisionChanged();
+}
+
+void PlotSeries::invalidateInspection()
+{
+    if (inspection_) {
+        inspection_->sourceInvalidated();
+    }
+}
+
+InspectionSource PlotSeries::inspectionSource() const
+{
+    return {};
+}
+
+bool PlotSeries::inspectionAvailable() const
+{
+    return true;
+}
+
+InspectionRecord PlotSeries::inspectionRecord(const int /*index*/) const
+{
+    auto result = InspectionRecord{};
+    result.status = InspectionStatus::Unsupported;
+    return result;
+}
+
+InspectionRecord PlotSeries::inspectionRecordAt(const QPointF& /*position*/) const
+{
+    auto result = InspectionRecord{};
+    result.status = InspectionStatus::Unsupported;
+    return result;
 }
 
 std::optional<PlotSeries::DataExtent> PlotSeries::xDataRange() const

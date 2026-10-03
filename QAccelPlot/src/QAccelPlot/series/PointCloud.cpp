@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
@@ -480,6 +481,25 @@ bool PointCloud::contains(const QPointF& point) const
     return boundingRect().contains(point) && pointIndexAt(point) >= 0;
 }
 
+InspectionSource PointCloud::inspectionSource() const
+{
+    auto source = InspectionSource{};
+    source.count = pointCount_;
+    source.logX = xAxis() && xAxis()->logScale();
+    source.logY = yAxis() && yAxis()->logScale();
+    if (hasPreciseData()) {
+        source.doubles = dataD_.data();
+    } else {
+        source.floats = data_.data();
+        source.floatStride = stride();
+    }
+    if (hasValues_) {
+        source.values = data_.data() + 2;
+        source.valueStride = kValueStride;
+    }
+    return source;
+}
+
 QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
 {
     Q_UNUSED(updatePaintNodeData)
@@ -752,6 +772,7 @@ void PointCloud::finishDataChange(const int previousCount, const bool hadValues,
     if (previousCount != pointCount_ || hadValues != hasValues_) {
         emit countChanged();
     }
+    inspectionDataChanged();
     update();
 }
 
