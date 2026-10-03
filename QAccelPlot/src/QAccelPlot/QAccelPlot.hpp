@@ -79,6 +79,10 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(Grid* grid READ grid CONSTANT)
     /// \brief Read-only: all registered plot series.
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
+    /// \brief Read-only constant: item that fills the plot and is stacked above the series, the zoom rectangle, and the \c Plot legend.
+    ///
+    /// \c Crosshair, \c InspectionMarkers, \c InspectionTooltip, and \c SelectionOverlay parent themselves to it.
+    Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
 
     /// \brief Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check \c pointerInside.
     ///
@@ -165,6 +169,9 @@ public:
 
     /// \brief Returns all plot-series children currently registered with this canvas.
     QList<PlotSeries*> series() const;
+
+    /// \brief Returns the item that holds overlays drawn above the series.
+    QQuickItem* overlay() const;
 
 signals:
     /// \brief Emitted when the plot observes pointer motion or pointer exit.
@@ -276,6 +283,7 @@ private:
     PlotBorder* border_{nullptr};
     PlotRectangleZoom* rectangleZoom_{nullptr};
     RectangleZoomOverlay* rectangleZoomOverlay_{nullptr};
+    QQuickItem* overlay_{nullptr};
     Grid* grid_{nullptr};
     GridNode* gridNode_{nullptr};
     QList<PlotSeries*> series_;

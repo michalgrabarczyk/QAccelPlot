@@ -16,8 +16,7 @@ Item {
     property color color: tool.fillColor
     property color borderColor: tool.borderColor
 
-    parent: tool.plot
-    z: 2
+    parent: tool.plot ? tool.plot.overlay : null
     visible: tool.selecting || tool.hasSelection
     x: tool.plot ? tool.plot.plotRect.x : 0
     y: tool.plot ? tool.plot.plotRect.y : 0

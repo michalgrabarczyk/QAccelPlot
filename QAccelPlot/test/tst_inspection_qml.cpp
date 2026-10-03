@@ -42,11 +42,18 @@ void TestInspectionQml::queriesRowsAndSelection()
             QAccelPlot.LineCurve { id: curve; name: "A"; xAxis: root.xAxis; yAxis: root.yAxis }
             QAccelPlot.LineCurve { id: other; xAxis: root.xAxis; yAxis: root.yAxis }
             QAccelPlot.PlotInspector { id: inspector; plot: root; includedSeries: [curve]; followPointer: false; cursorX: 3 }
-            QAccelPlot.Crosshair { inspector: inspector; axisLabels: true }
-            QAccelPlot.InspectionMarkers { inspector: inspector }
-            QAccelPlot.InspectionTooltip { inspector: inspector }
+            QAccelPlot.Crosshair { id: crosshair; inspector: inspector; axisLabels: true }
+            QAccelPlot.InspectionMarkers { id: markers; inspector: inspector }
+            QAccelPlot.InspectionTooltip { id: tooltip; inspector: inspector }
             QAccelPlot.SelectionTool { id: tool; plot: root }
-            QAccelPlot.SelectionOverlay { tool: tool }
+            QAccelPlot.SelectionOverlay { id: selectionOverlay; tool: tool }
+            // The overlay item is above the series and the legend, and holds the components with the tooltip on top.
+            function layers() {
+                const others = [crosshair, markers, selectionOverlay];
+                return [root.overlay.parent === root, root.overlay.z > curve.z, root.overlay.z > root.legend.z,
+                    root.overlay.width === root.width, root.overlay.height === root.height,
+                    others.concat([tooltip]).every(item => item.parent === root.overlay), others.every(item => item.z < tooltip.z)].join("|");
+            }
             function queries() {
                 const inspection = curve.inspection;
                 const sample = inspection.nearestByX(curve.width / 2);
@@ -88,6 +95,7 @@ void TestInspectionQml::queriesRowsAndSelection()
     QTRY_COMPARE(inspector->validCount(), 1);
     QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000"));
     QCOMPARE(call("selection"), QStringLiteral("true|true|2|2"));
+    QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true"));
 }
 
 QTEST_MAIN(TestInspectionQml)

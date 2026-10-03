@@ -30,8 +30,7 @@ Item {
     readonly property real cursorX: hasX ? inspector.position.x - x : 0
     readonly property real cursorY: hasY ? inspector.position.y - y : 0
 
-    parent: inspector.plot
-    z: 2
+    parent: inspector.plot ? inspector.plot.overlay : null
     visible: inspector.active
     x: inspector.plot ? inspector.plot.plotRect.x : 0
     y: inspector.plot ? inspector.plot.plotRect.y : 0

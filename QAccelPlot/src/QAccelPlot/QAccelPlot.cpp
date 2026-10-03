@@ -36,6 +36,8 @@ constexpr auto kDefaultZoomScaleFactor = qreal{0.9};
 constexpr auto kMinEffectiveZoomFactor = qreal{0.01};
 // Clamped upper bound for the effective zoom factor: prevents the factor from reaching 1.0 (no-op zoom).
 constexpr auto kMaxEffectiveZoomFactor = qreal{0.99};
+// Above the series (0), the zoom rectangle (0.5), and the legend of Plot (1).
+constexpr auto kOverlayZ = qreal{2};
 
 qreal effectiveZoomScaleFactor(const Axis* axis)
 {
@@ -102,6 +104,8 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
     border_ = new PlotBorder(this);
     rectangleZoom_ = new PlotRectangleZoom(this);
     rectangleZoomOverlay_ = new RectangleZoomOverlay(this, rectangleZoom_);
+    overlay_ = new QQuickItem(this);
+    overlay_->setZ(kOverlayZ);
     connect(rectangleZoom_, &PlotRectangleZoom::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
     connect(this, &QQuickItem::visibleChanged, this, &QAccelPlot::cancelRectangleSelection);
     connect(this, &QQuickItem::enabledChanged, this, &QAccelPlot::cancelRectangleSelection);
@@ -391,6 +395,11 @@ QList<PlotSeries*> QAccelPlot::series() const
     return series_;
 }
 
+QQuickItem* QAccelPlot::overlay() const
+{
+    return overlay_;
+}
+
 void QAccelPlot::wheelEvent(QWheelEvent* event)
 {
     if (dragMode_ == DragMode::RectangleZoom) {
@@ -642,6 +651,7 @@ void QAccelPlot::geometryChange(const QRectF& newGeometry, const QRectF& oldGeom
 {
     cancelRectangleSelection();
     QQuickItem::geometryChange(newGeometry, oldGeometry);
+    overlay_->setSize(newGeometry.size());
     layoutAxes();
 }
 

@@ -18,8 +18,7 @@ Item {
     property color borderColor: QAccelPlot.Colors.dark.plotArea
     property real borderWidth: 1.5
 
-    parent: inspector.plot
-    z: 2
+    parent: inspector.plot ? inspector.plot.overlay : null
     visible: inspector.active
     x: inspector.plot ? inspector.plot.plotRect.x : 0
     y: inspector.plot ? inspector.plot.plotRect.y : 0

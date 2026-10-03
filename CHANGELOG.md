@@ -15,8 +15,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   statistics, theme colors, and a Data inspection example.
 - Sample queries on every series via `PlotSeries.inspection`: the nearest sample,
   its neighbors, statistics of a region, and the indices inside it.
-- `PlotView` reports the pointer position via `pointerPosition` and
-  `pointerInside`.
+- `PlotView.overlay` for items drawn above the series, and the pointer position
+  via `pointerPosition` and `pointerInside`.
 - `Axis.formatValue()`, which formats a value at the precision of the current
   zoom.
 - `RectangleSeries`: `rectangleAt()`, `rectangleIndexAt()`, `clearData()`,

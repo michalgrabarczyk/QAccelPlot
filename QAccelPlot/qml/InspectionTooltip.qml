@@ -67,8 +67,9 @@ Rectangle {
         return Math.max(start, Math.min(position, start + length - size));
     }
 
-    parent: inspector.plot
-    z: 3
+    parent: inspector.plot ? inspector.plot.overlay : null
+    // Above the other items of the overlay.
+    z: 1
     visible: inspector.active && inspector.validCount > 0
     clip: true
     color: QAccelPlot.Colors.dark.legendBackground

@@ -24,6 +24,10 @@ QAccelPlot.Plot {
 }
 ```
 
+The four visual components parent themselves to `plotView.overlay`, an item above
+the series and the legend; the tooltip is drawn above the other three. Parent
+your own overlays to it instead of choosing a `z` relative to the series.
+
 Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
 drag selects a region; Escape clears it. Ordinary left dragging still pans.
 
