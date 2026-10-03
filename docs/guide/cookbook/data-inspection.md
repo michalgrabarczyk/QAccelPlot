@@ -21,8 +21,7 @@ QAccelPlot.Plot {
         QAccelPlot.InspectionMarkers {}
         QAccelPlot.InspectionTooltip {}
     }
-    QAccelPlot.SelectionTool { id: selection; plot: plotView }
-    QAccelPlot.SelectionOverlay { tool: selection }
+    QAccelPlot.SelectionTool { plot: plotView }
 }
 ```
 
@@ -31,6 +30,7 @@ QAccelPlot.Plot {
 - They are children of `plotView.overlay`, an item above the series and the
   legend. Parent your own overlays to it instead of choosing a `z` relative to
   the series.
+- `SelectionTool` draws its rectangle in the same overlay, below everything else.
 - A component declared elsewhere needs `inspector:` set and is not restacked.
 
 Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
@@ -201,9 +201,9 @@ exactly and a shorter drag only clears the selection.
 - `selectionChanged` reports a new or cleared region, `completed` a finished
   gesture.
 
-`SelectionOverlay` draws `pixelRect` with the tool's `fillColor` and
-`borderColor`, which default to the palette's `selectionFill` and
-`selectionBorder`.
+The tool draws `pixelRect` with its `fillColor` and `borderColor`, which default
+to the palette's `selectionFill` and `selectionBorder`. Set
+`rectangleVisible: false` to draw `pixelRect` yourself.
 
 Complete source:
 [`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection).

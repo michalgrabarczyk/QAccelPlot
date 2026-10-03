@@ -15,8 +15,12 @@
 
 namespace QAccelPlot {
 
+class SelectionRectangle;
+
 /// \brief Selects a data-space region by dragging, without changing the plot viewport.
 ///
+/// The tool draws the gesture and the selected region in the plot's overlay, below the overlay's
+/// other children.
 /// The region is kept in data coordinates, so it follows panning and zooming and survives data
 /// updates: the model rows are recomputed whenever a series changes. An infinite limit leaves
 /// that side of the region unbounded, as a range selection does for its other dimension.
@@ -41,10 +45,12 @@ class SelectionTool : public QObject {
     Q_PROPERTY(int modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     /// \brief Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6.
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
-    /// \brief Fill color for an overlay. Default: \c Colors.dark.selectionFill.
+    /// \brief Fill color of the rectangle. Default: \c Colors.dark.selectionFill.
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
-    /// \brief Outline color for an overlay. Default: \c Colors.dark.selectionBorder.
+    /// \brief Outline color of the rectangle. Default: \c Colors.dark.selectionBorder.
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
+    /// \brief Draws the gesture and the selected region. Disable it to draw \c pixelRect yourself. Default: true.
+    Q_PROPERTY(bool rectangleVisible READ rectangleVisible WRITE setRectangleVisible NOTIFY rectangleVisibleChanged)
     /// \brief True while a gesture is in progress.
     Q_PROPERTY(bool selecting READ selecting NOTIFY selectingChanged)
     /// \brief True while a region is selected.
@@ -106,14 +112,18 @@ public:
     qreal minimumSize() const;
     /// \brief Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values.
     void setMinimumSize(qreal size);
-    /// \brief Returns the overlay fill color.
+    /// \brief Returns the rectangle's fill color.
     QColor fillColor() const;
-    /// \brief Sets the overlay fill color.
+    /// \brief Sets the rectangle's fill color.
     void setFillColor(const QColor& color);
-    /// \brief Returns the overlay outline color.
+    /// \brief Returns the rectangle's outline color.
     QColor borderColor() const;
-    /// \brief Sets the overlay outline color.
+    /// \brief Sets the rectangle's outline color.
     void setBorderColor(const QColor& color);
+    /// \brief Returns whether the tool draws its rectangle.
+    bool rectangleVisible() const;
+    /// \brief Shows or hides the tool's rectangle.
+    void setRectangleVisible(bool visible);
     /// \brief Returns true while a gesture is in progress.
     bool selecting() const;
     /// \brief Returns true while a region is selected.
@@ -159,6 +169,8 @@ signals:
     void fillColorChanged();
     /// \brief Emitted when the borderColor property changes.
     void borderColorChanged();
+    /// \brief Emitted when the rectangleVisible property changes.
+    void rectangleVisibleChanged();
     /// \brief Emitted when a gesture starts or ends.
     void selectingChanged();
     /// \brief Emitted when the selected region is set, changed, or cleared.
@@ -201,12 +213,15 @@ private:
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
     QColor borderColor_{ColorPalette::dark().selectionBorder};
+    bool rectangleVisible_{true};
     PlotDragRect drag_;
     bool hasSelection_{false};
     Region region_;
     quint64 rowsGeneration_{0};
     InspectionRowModel* model_;
     QList<QMetaObject::Connection> connections_;
+    // Owned as a QObject child.
+    SelectionRectangle* rectangle_;
 };
 
 } // namespace QAccelPlot

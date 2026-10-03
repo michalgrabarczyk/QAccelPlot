@@ -149,10 +149,6 @@ Window {
                 plot: plotView
                 mode: [QAccelPlot.SelectionTool.Box, QAccelPlot.SelectionTool.XRange, QAccelPlot.SelectionTool.YRange][selectionMode.currentIndex]
             }
-
-            QAccelPlot.SelectionOverlay {
-                tool: selection
-            }
         }
 
         RowLayout {

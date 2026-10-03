@@ -78,7 +78,7 @@ QAccelPlot/
 │       ├── inspection/           — SeriesInspection (per-series data queries), InspectionResult (query value types),
 │       │                           PlotInspector, SelectionTool, InspectionRowModel,
 │       │                           internal/ (in-place search of ordered data, k-d index, async index cache,
-│       │                           objects declared inside a tool)
+│       │                           objects declared inside an inspector, selection rectangle)
 │       ├── linestyles/           — SolidLine, DashLine, NoLine
 │       ├── materials/            — QSGMaterial subclasses for GPU rendering
 │       ├── renderers/            — LineCurveLineRenderer, LineCurvePointRenderer, BandEdgeRenderer,
@@ -93,7 +93,7 @@ QAccelPlot/
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition
 ├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
-│                                   InspectionMarkers, SelectionOverlay)
+│                                   InspectionMarkers)
 ├── shaders/                      — GLSL shaders compiled to .qsb
 ├── test/                         — Unit tests
 └── CMakeLists.txt                — Library build configuration

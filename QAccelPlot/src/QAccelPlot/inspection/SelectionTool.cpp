@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/inspection/SelectionTool.hpp"
 
+#include "QAccelPlot/inspection/internal/SelectionRectangle.hpp"
+
 #include <algorithm>
 #include <cmath>
 
@@ -31,6 +33,7 @@ qreal limitToPixel(const Axis* axis, const qreal value, const qreal origin, cons
 SelectionTool::SelectionTool(QObject* parent)
     : QObject(parent)
     , model_(new InspectionRowModel(this))
+    , rectangle_(new SelectionRectangle(*this))
 {
 }
 
@@ -189,6 +192,20 @@ void SelectionTool::setBorderColor(const QColor& color)
     }
     borderColor_ = color;
     emit borderColorChanged();
+}
+
+bool SelectionTool::rectangleVisible() const
+{
+    return rectangleVisible_;
+}
+
+void SelectionTool::setRectangleVisible(const bool visible)
+{
+    if (rectangleVisible_ == visible) {
+        return;
+    }
+    rectangleVisible_ = visible;
+    emit rectangleVisibleChanged();
 }
 
 bool SelectionTool::selecting() const

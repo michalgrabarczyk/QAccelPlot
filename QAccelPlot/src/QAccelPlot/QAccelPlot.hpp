@@ -81,7 +81,7 @@ class QAccelPlot : public QQuickItem {
     Q_PROPERTY(QList<PlotSeries*> series READ series NOTIFY seriesChanged)
     /// \brief Read-only constant: item that fills the plot and is stacked above the series, the zoom rectangle, and the \c Plot legend.
     ///
-    /// \c Crosshair, \c InspectionMarkers, \c InspectionTooltip, and \c SelectionOverlay parent themselves to it.
+    /// \c Crosshair, \c InspectionMarkers, \c InspectionTooltip, and the rectangle of a \c SelectionTool are its children.
     Q_PROPERTY(QQuickItem* overlay READ overlay CONSTANT)
 
     /// \brief Last observed pointer position in plot-local logical pixels. It is kept after the pointer leaves; check \c pointerInside.

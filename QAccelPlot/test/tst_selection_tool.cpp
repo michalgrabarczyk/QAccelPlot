@@ -16,6 +16,7 @@
 
 #include <cmath>
 #include <limits>
+#include <memory>
 
 using namespace QAccelPlot;
 using namespace InspectionTest;
@@ -35,6 +36,7 @@ private slots:
     void ranges();
     void boxAndCode();
     void followsData();
+    void rectangle();
 };
 
 void TestSelectionTool::gesture()
@@ -257,6 +259,50 @@ void TestSelectionTool::followsData()
     QCOMPARE(tool.model()->count(), 1);
     curve->setVisible(false);
     QCOMPARE(tool.model()->count(), 0);
+}
+
+void TestSelectionTool::rectangle()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({5, 5});
+    auto* overlay = rig.plot.overlay();
+    auto other = QQuickItem{overlay};
+    auto tool = std::make_unique<SelectionTool>();
+    tool->setPlot(&rig.plot);
+
+    // The tool's item is the lowest overlay child and is hidden without a selection.
+    QCOMPARE(overlay->childItems().size(), 2);
+    auto* item = overlay->childItems().constFirst();
+    QVERIFY(item != &other);
+    QCOMPARE(item->parent(), tool.get());
+    QVERIFY(!item->isVisible());
+
+    // It covers the plot area, clips to it, and draws the region inside.
+    tool->select(2, 4, 3, 6);
+    QVERIFY(item->isVisible());
+    QVERIFY(item->clip());
+    QCOMPARE(QRectF(item->position(), item->size()), rig.plot.plotRect());
+    auto* drawn = item->childItems().constFirst();
+    QCOMPARE(QRectF(item->position() + drawn->position(), drawn->size()), tool->pixelRect());
+
+    // Panning moves the drawn region with the data.
+    rig.x.setViewportMin(3);
+    rig.x.setViewportMax(13);
+    QCOMPARE(item->position().x() + drawn->position().x(), tool->pixelRect().x());
+    QVERIFY(drawn->position().x() < 0);
+
+    auto visibility = QSignalSpy{tool.get(), &SelectionTool::rectangleVisibleChanged};
+    tool->setRectangleVisible(false);
+    QCOMPARE(visibility.count(), 1);
+    QVERIFY(!item->isVisible());
+    tool->setRectangleVisible(true);
+    QVERIFY(item->isVisible());
+    tool->clear();
+    QVERIFY(!item->isVisible());
+
+    // The item goes away with the tool.
+    tool.reset();
+    QCOMPARE(overlay->childItems(), QList<QQuickItem*>{&other});
 }
 
 QTEST_MAIN(TestSelectionTool)

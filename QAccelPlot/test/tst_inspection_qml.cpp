@@ -49,9 +49,8 @@ void TestInspectionQml::queriesRowsAndSelection()
                 QAccelPlot.InspectionTooltip { id: tooltip }
             }
             QAccelPlot.SelectionTool { id: tool; plot: root }
-            QAccelPlot.SelectionOverlay { tool: tool }
             // The overlay item is above the series and the legend. Components declared inside the inspector
-            // receive it and stack in declaration order.
+            // receive it and stack in declaration order, above the selection tool's rectangle.
             function layers() {
                 const order = [crosshair, markers, tooltip].map(item => {
                     for (let i = 0; i < root.overlay.children.length; ++i) {
@@ -63,7 +62,7 @@ void TestInspectionQml::queriesRowsAndSelection()
                 });
                 return [root.overlay.parent === root, root.overlay.z > curve.z, root.overlay.z > root.legend.z,
                     root.overlay.width === root.width, root.overlay.height === root.height, crosshair.inspector === inspector,
-                    order[0] < order[1] && order[1] < order[2], order[2] === root.overlay.children.length - 1].join("|");
+                    tool.rectangleVisible, root.overlay.children.length].concat(order).join("|");
             }
             function queries() {
                 const inspection = curve.inspection;
@@ -106,7 +105,7 @@ void TestInspectionQml::queriesRowsAndSelection()
     QTRY_COMPARE(inspector->validCount(), 1);
     QCOMPARE(call("rows"), QStringLiteral("1|A|true|1|6.000"));
     QCOMPARE(call("selection"), QStringLiteral("true|true|2|2"));
-    QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true|true"));
+    QCOMPARE(call("layers"), QStringLiteral("true|true|true|true|true|true|true|4|1|2|3"));
 }
 
 QTEST_MAIN(TestInspectionQml)
