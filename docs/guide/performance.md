@@ -109,6 +109,9 @@ frame while the pointer rests over it, the rebuild repeats per frame; set
 - Markers add geometry and fragment work per visible point. Fragment work grows
   with marker size; `LineCurve.Pixel` markers shade one pixel per point and
   suit very dense scatter plots.
+- A `PointCloud` whose `Colormap` leaves `min` or `max` unset scans every value
+  on each data update to resolve the range. Set both when the bounds of
+  streaming values are known.
 - Gradient effects add material and domain work.
 - Transitions update intermediate data while animating.
 - Many series add per-node and per-material overhead at the same total point
