@@ -41,13 +41,13 @@ QAccelPlot.Plot {
         label: "y"
     }
 
-    // A fixed value range spares the clouds a scan of every value per update.
     // Warm core, blue arms, and violet rim; pink marks star-forming regions in the arms.
     QAccelPlot.Colormap {
         id: galaxyColormap
 
-        min: 0
-        max: 1
+        // A fixed value range spares the clouds a scan of every value per update.
+        min: plot.settings.fixedColormapRange ? 0 : NaN
+        max: plot.settings.fixedColormapRange ? 1 : NaN
         stops: [
             GradientStop {
                 position: 0.0
@@ -87,8 +87,11 @@ QAccelPlot.Plot {
             yAxis: plot.yAxis
             // Used when the points carry no values.
             color: plot.seriesColors[index % plot.seriesColors.length]
-            marker.shape: QAccelPlot.PointCloud.Circle
-            marker.size: 2
+            marker.shape: plot.settings.markerShape
+            marker.size: plot.settings.markerSize
+            marker.filled: plot.settings.markerFilled
+            marker.strokeWidth: plot.settings.markerStrokeWidth
+            antialiasingEnabled: plot.settings.antialiasing
             opacity: plot.pointOpacity
             colormap: galaxyColormap
         }

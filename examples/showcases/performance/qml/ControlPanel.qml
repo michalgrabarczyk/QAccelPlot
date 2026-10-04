@@ -127,7 +127,7 @@ ScrollView {
 
         // The active page's own options.
         Loader {
-            sourceComponent: root.window.activePage === "lineCurve" ? lineCurveOptions : null
+            sourceComponent: root.window.activePage === "lineCurve" ? lineCurveOptions : root.window.activePage === "pointCloud" ? pointCloudOptions : null
             Layout.fillWidth: true
         }
 
@@ -136,6 +136,14 @@ ScrollView {
 
             LineCurveOptions {
                 settings: root.window.lineCurveSettings
+            }
+        }
+
+        Component {
+            id: pointCloudOptions
+
+            PointCloudOptions {
+                settings: root.window.pointCloudSettings
             }
         }
 

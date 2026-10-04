@@ -28,6 +28,7 @@ qaccelplot_add_example(Performance
         qml/OptionChoice.qml
         qml/OptionSwitch.qml
         qml/PageSettings.qml
+        qml/PointCloudOptions.qml
         qml/PointCloudPage.qml
         qml/PointCloudSettings.qml
         qml/RectangleSeriesPage.qml

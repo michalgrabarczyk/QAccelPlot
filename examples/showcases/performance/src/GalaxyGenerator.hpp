@@ -16,7 +16,7 @@ namespace QAccelPlotExample {
 
 /// \brief One cloud's share of a PointCloud dataset: interleaved XY pairs.
 struct GalaxyPart : SeriesPart {
-    /// \brief One colormap value per point.
+    /// \brief One colormap value per point; empty when values are off.
     std::vector<float> values;
 };
 
@@ -28,6 +28,10 @@ struct GalaxyBatch {
 /// \brief Settings of a GalaxyGenerator batch.
 struct GalaxyParameters {
     DatasetParameters dataset;
+    /// \brief Whether every point carries a colormap value.
+    bool values{true};
+    /// \brief Share of the points whose X is NaN, spread evenly over the galaxy.
+    float invalidFraction{0.0f};
 };
 
 /// \brief Generates a rotating spiral galaxy for one or more PointClouds.

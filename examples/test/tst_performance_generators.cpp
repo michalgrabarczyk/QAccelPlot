@@ -62,6 +62,8 @@ private slots:
     void sineGapsReplaceTheRequestedShare();
     void galaxyRotatesEachBand();
     void galaxyValuesFollowPoints();
+    void galaxyValuesCanBeOff();
+    void galaxyInvalidatesTheRequestedShare();
     void plasmaTilesAreSquaresOnTheGrid_data();
     void plasmaTilesAreSquaresOnTheGrid();
     void plasmaTileSizeFollowsTheField();
@@ -287,6 +289,41 @@ void PerformanceGeneratorsTest::galaxyValuesFollowPoints()
     const auto values = batch.parts.front().values;
     generator.generate(batch, parametersFor<GalaxyParameters>(pointCount), 9.0);
     QCOMPARE(batch.parts.front().values, values);
+}
+
+void PerformanceGeneratorsTest::galaxyValuesCanBeOff()
+{
+    auto parameters = parametersFor<GalaxyParameters>(5000, 3);
+    parameters.values = false;
+    auto generator = GalaxyGenerator{};
+    auto batch = GalaxyBatch{};
+    generator.generate(batch, parameters, 1.0);
+
+    for (const auto& part : batch.parts) {
+        QVERIFY(part.values.empty());
+        QCOMPARE(part.floats.size(), static_cast<std::size_t>(part.count) * 2);
+    }
+}
+
+void PerformanceGeneratorsTest::galaxyInvalidatesTheRequestedShare()
+{
+    constexpr auto pointCount = 5000;
+    for (const auto seriesCount : {1, 7}) {
+        auto parameters = parametersFor<GalaxyParameters>(pointCount, seriesCount);
+        parameters.invalidFraction = 0.1f;
+        auto generator = GalaxyGenerator{};
+        auto batch = GalaxyBatch{};
+        generator.generate(batch, parameters, 1.0);
+
+        auto invalidPoints = 0;
+        for (const auto& part : batch.parts) {
+            for (auto i = std::size_t{0}; i < static_cast<std::size_t>(part.count); ++i) {
+                QVERIFY(std::isfinite(part.floats[i * 2 + 1]));
+                invalidPoints += std::isnan(part.floats[i * 2]) ? 1 : 0;
+            }
+        }
+        QCOMPARE(invalidPoints, pointCount / 10);
+    }
 }
 
 void PerformanceGeneratorsTest::plasmaTilesAreSquaresOnTheGrid_data()

@@ -13,10 +13,13 @@
 
 namespace QAccelPlotExample {
 
-GalaxyParameters PointCloudFeed::parameters(const PageScene& /*scene*/, const CommonOptions& options)
+GalaxyParameters PointCloudFeed::parameters(const PageScene& scene, const CommonOptions& options)
 {
     auto parameters = GalaxyParameters{};
     parameters.dataset = datasetParameters(options);
+    // The raw-array setters take no values.
+    parameters.values = scene.setting("values").toBool() && options.ingestion != Ingestion::FloatNoRangeCopy;
+    parameters.invalidFraction = scene.setting("invalidFraction").toFloat();
     return parameters;
 }
 
@@ -34,7 +37,6 @@ void PointCloudFeed::apply(QAccelPlot::PointCloud& cloud, GalaxyPart& part, cons
         cloud.setDataF(std::move(part.floats), std::move(part.values), part.count);
         break;
     case Ingestion::FloatNoRangeCopy:
-        // The raw-array setters take no values.
         applyRecords(cloud, part, options.ingestion);
         break;
     case Ingestion::DoubleMove:

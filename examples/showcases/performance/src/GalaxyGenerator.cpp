@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <limits>
 #include <utility>
 
 namespace QAccelPlotExample {
@@ -82,6 +83,18 @@ void rotatePoints(const float* source, float* destination, const int count, cons
     }
 }
 
+// Sets the X of every n-th point of the galaxy to NaN; firstPoint is the galaxy index of the part's first point.
+void invalidatePoints(GalaxyPart& part, const int firstPoint, const float invalidFraction)
+{
+    if (invalidFraction <= 0.0f) {
+        return;
+    }
+    const auto stride = std::max(1, static_cast<int>(std::lround(1.0f / invalidFraction)));
+    for (auto point = (stride - firstPoint % stride) % stride; point < part.count; point += stride) {
+        part.floats[static_cast<std::size_t>(point) * 2] = std::numeric_limits<float>::quiet_NaN();
+    }
+}
+
 } // namespace
 
 void GalaxyGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
@@ -95,8 +108,9 @@ void GalaxyGenerator::generate(Batch& batch, const Parameters& parameters, const
     auto firstPoint = 0;
     for (auto& part : batch.parts) {
         const auto firstValue = baseValues_.begin() + firstPoint;
-        part.values.assign(firstValue, firstValue + part.count);
+        part.values.assign(firstValue, firstValue + (parameters.values ? part.count : 0));
         rotateInto(part, firstPoint, timeSeconds);
+        invalidatePoints(part, firstPoint, parameters.invalidFraction);
         firstPoint += part.count;
     }
     applyPrecision(batch.parts, parameters.dataset);
