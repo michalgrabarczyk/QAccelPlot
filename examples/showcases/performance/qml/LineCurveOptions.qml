@@ -20,27 +20,6 @@ ColumnLayout {
     spacing: 12
 
     OptionChoice {
-        label: "Wave cycles"
-        choices: [
-            {
-                text: "Few",
-                value: 0.25
-            },
-            {
-                text: "Default",
-                value: 1
-            },
-            {
-                text: "Many",
-                value: 8
-            }
-        ]
-        value: root.settings.frequencyScale
-        Layout.fillWidth: true
-        onSelected: value => root.settings.frequencyScale = value
-    }
-
-    OptionChoice {
         label: "NaN gaps"
         choices: [
             {

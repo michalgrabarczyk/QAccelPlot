@@ -173,7 +173,7 @@ costs:
 | Tab | Options |
 | --- | --- |
 | All | Record count, series count (the same records split across 1 to 100 series), ingestion API, hover hit-testing |
-| `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps, wave cycles |
+| `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps |
 | `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, fixed or data-resolved colormap range, invalid points |
 | `RectangleSeries` | Tile size, categories, border width, minimum size, hover highlight |
 

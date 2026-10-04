@@ -9,8 +9,6 @@ import QtQuick
 import QAccelPlot as QAccelPlot
 
 PageSettings {
-    // Multiplies the number of wave cycles across the plot.
-    property real frequencyScale: 1
     // Share of the samples replaced with NaN.
     property real gapFraction: 0
     // Whether the line joins the samples around a gap instead of breaking.

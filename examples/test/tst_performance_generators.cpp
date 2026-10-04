@@ -58,7 +58,6 @@ private slots:
     void sineLookupTracksSine();
     void sineSendsVertexCacheOnlyAfterCountChanges();
     void sineSendsNoVertexCacheWhileItIsOff();
-    void sineFrequencyScalesTheWave();
     void sineGapsReplaceTheRequestedShare();
     void galaxyRotatesEachBand();
     void galaxyValuesFollowPoints();
@@ -200,22 +199,6 @@ void PerformanceGeneratorsTest::sineSendsNoVertexCacheWhileItIsOff()
     parameters.vertexCache = true;
     generator.generate(batch, parameters, 0.0);
     QVERIFY(!batch.parts.front().vertexCache.empty());
-}
-
-void PerformanceGeneratorsTest::sineFrequencyScalesTheWave()
-{
-    constexpr auto pointCount = 2'001;
-    auto parameters = parametersFor<SineWaveParameters>(pointCount);
-    parameters.frequencyScale = 4.0f;
-    auto generator = SineWaveGenerator{};
-    auto batch = SineWaveBatch{};
-    generator.generate(batch, parameters, 0.0);
-
-    const auto& xy = batch.parts.front().floats;
-    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
-        const auto expected = SineWaveGenerator::kAmplitude * std::sin(4.0 * SineWaveGenerator::kAngularFrequency * static_cast<double>(xy[i * 2]));
-        QVERIFY(std::abs(xy[i * 2 + 1] - expected) < 0.01);
-    }
 }
 
 void PerformanceGeneratorsTest::sineGapsReplaceTheRequestedShare()

@@ -30,7 +30,6 @@ SineWaveParameters LineCurveFeed::parameters(const PageScene& scene, const Commo
 {
     auto parameters = SineWaveParameters{};
     parameters.dataset = datasetParameters(options);
-    parameters.frequencyScale = scene.setting("frequencyScale").toFloat();
     parameters.gapFraction = scene.setting("gapFraction").toFloat();
     parameters.vertexCache = takesVertexCache(scene);
     return parameters;

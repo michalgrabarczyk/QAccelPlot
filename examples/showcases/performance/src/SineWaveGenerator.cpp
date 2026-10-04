@@ -45,7 +45,7 @@ void SineWaveGenerator::generate(Batch& batch, const Parameters& parameters, con
     resizeParts(batch.parts, parameters.dataset, 2);
 
     const auto xStep = kDomainWidth / static_cast<float>(std::max(1, pointCount - 1));
-    auto sine = SineLookupCursor{kPhaseVelocity * timeSeconds, static_cast<double>(kAngularFrequency * parameters.frequencyScale * xStep)};
+    auto sine = SineLookupCursor{kPhaseVelocity * timeSeconds, static_cast<double>(kAngularFrequency * xStep)};
     auto index = 0;
     for (auto& part : batch.parts) {
         auto* xy = part.floats.data();

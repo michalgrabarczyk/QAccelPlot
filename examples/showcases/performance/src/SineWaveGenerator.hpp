@@ -29,8 +29,6 @@ struct SineWaveBatch {
 /// \brief Settings of a SineWaveGenerator batch.
 struct SineWaveParameters {
     DatasetParameters dataset;
-    /// \brief Multiplies \c SineWaveGenerator::kAngularFrequency.
-    float frequencyScale{1.0f};
     /// \brief Share of the samples whose Y is NaN, spread over \c SineWaveGenerator::kGapCount runs.
     float gapFraction{0.0f};
     /// \brief Whether prebuilt vertex caches accompany the points. Only a solid line without markers or effects takes one.
