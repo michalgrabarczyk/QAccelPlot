@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 
@@ -425,7 +426,7 @@ void RectangleSeriesRenderingTest::hoverColorHighlightsHoveredRectangle()
     // Deliver hover straight to the item, so the real mouse cannot interfere.
     const auto hover = [rectangles](const QEvent::Type type, const QPoint& windowPosition) {
         const auto position = rectangles->mapFromScene(windowPosition);
-        auto event = QHoverEvent{type, position, position, position};
+        auto event = QAccelPlotTest::hoverEvent(type, position, position);
         QCoreApplication::sendEvent(rectangles, &event);
     };
 

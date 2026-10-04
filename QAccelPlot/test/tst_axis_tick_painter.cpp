@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
@@ -533,13 +534,13 @@ void TestAxisTickPainter::axis_paintsTitleOnEverySide()
     QVERIFY(countPaintedPixels(axis, titleColor) > 0);
     QCOMPARE(countPaintedPixels(axis, hoverColor), 0);
 
-    auto enter = QHoverEvent{QEvent::HoverEnter, QPointF{}, QPointF{}, QPointF{}};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, QPointF{}, QPointF{});
     axis.hoverEnterEvent(&enter);
     QVERIFY(axis.hovered());
     QCOMPARE(countPaintedPixels(axis, titleColor), 0);
     QVERIFY(countPaintedPixels(axis, hoverColor) > 0);
 
-    auto leave = QHoverEvent{QEvent::HoverLeave, QPointF{}, QPointF{}, QPointF{}};
+    auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, QPointF{}, QPointF{});
     axis.hoverLeaveEvent(&leave);
     QVERIFY(!axis.hovered());
     QCOMPARE(hoveredSpy.count(), 2);

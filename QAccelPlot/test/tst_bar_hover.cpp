@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/series/BarSeries.hpp"
 
 #include <QElapsedTimer>
@@ -197,7 +198,7 @@ void BarHoverTest::hoverEventsTrackBarUnderCursor()
     auto spy = QSignalSpy{&bars, &QAccelPlot::BarSeries::hoveredIndexChanged};
 
     const auto hover = [&bars](const QEvent::Type type, const QPointF& position) {
-        auto event = QHoverEvent{type, position, position, position};
+        auto event = QAccelPlotTest::hoverEvent(type, position, position);
         if (type == QEvent::HoverEnter) {
             bars.hoverEnterEvent(&event);
         } else if (type == QEvent::HoverMove) {

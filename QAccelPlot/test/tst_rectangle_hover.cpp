@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
 #include "QAccelPlot/series/RectangleSeries.hpp"
 
@@ -100,7 +101,7 @@ void RectangleHoverTest::nearbyTimestampRectangles()
     for (const auto offset : {0.5, 2.5, 1.5}) {
         const auto position
             = QPointF{xAxis.coordToPixel(baseX + (horizontal ? offset : 0.5), 400), yAxis.coordToPixel(baseY + (horizontal ? 0.5 : offset), 400)};
-        auto event = QHoverEvent{QEvent::HoverMove, position, position};
+        auto event = QAccelPlotTest::hoverEvent(QEvent::HoverMove, position, position);
         rectangles.hoverMoveEvent(&event);
         const auto expectedIndex = offset == 0.5 ? 0 : (offset == 2.5 ? 1 : -1);
         QCOMPARE(rectangles.hoveredIndex(), expectedIndex);
@@ -131,7 +132,7 @@ void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()
     auto rectangles = HoverableRectangles{};
     setOverlappingRectangles(rectangles, axes);
     auto hoveredSpy = QSignalSpy{&rectangles, &QAccelPlot::RectangleSeries::hoveredIndexChanged};
-    const auto hover = [](const QEvent::Type type, const QPointF& position) { return QHoverEvent{type, position, position, position}; };
+    const auto hover = [](const QEvent::Type type, const QPointF& position) { return QAccelPlotTest::hoverEvent(type, position, position); };
 
     auto enter = hover(QEvent::HoverEnter, {50.0, 350.0});
     rectangles.hoverEnterEvent(&enter);
@@ -156,7 +157,7 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
     auto axes = AxisPair{};
     auto rectangles = HoverableRectangles{};
     setOverlappingRectangles(rectangles, axes);
-    auto move = QHoverEvent{QEvent::HoverMove, {250.0, 150.0}, {250.0, 150.0}, {250.0, 150.0}};
+    auto move = QAccelPlotTest::hoverEvent(QEvent::HoverMove, {250.0, 150.0}, {250.0, 150.0});
     rectangles.hoverMoveEvent(&move);
     QCOMPARE(rectangles.hoveredIndex(), 1);
 
@@ -165,7 +166,7 @@ void RectangleHoverTest::removingHoveredRectangleClearsHover()
 
     rectangles.hoverMoveEvent(&move);
     QCOMPARE(rectangles.hoveredIndex(), -1);
-    auto moveToFirst = QHoverEvent{QEvent::HoverMove, {50.0, 350.0}, {50.0, 350.0}, {50.0, 350.0}};
+    auto moveToFirst = QAccelPlotTest::hoverEvent(QEvent::HoverMove, {50.0, 350.0}, {50.0, 350.0});
     rectangles.hoverMoveEvent(&moveToFirst);
     QCOMPARE(rectangles.hoveredIndex(), 0);
 
