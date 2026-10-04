@@ -341,11 +341,18 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 painter.setFont(font);
                 painter.setPen(Qt::white);
                 const auto drawReferenceLabel = [&painter, &label, rotation](const qreal centerX) {
+                    const auto rect = QRectF{-kReferenceLabelWidth / 2.0, -kReferenceLabelHeight / 2.0, kReferenceLabelWidth, kReferenceLabelHeight};
+                    if (rotation == 0.0) {
+                        // Like the painter, draw unrotated labels without a transform. A translated reference starts
+                        // at a negative position, which Qt rounds the other way when it falls halfway between two
+                        // 1/64 px steps; fonts with fractional advances (macOS) then place glyphs differently.
+                        painter.drawText(rect.translated(centerX, kLabelCenterY), Qt::AlignCenter, label);
+                        return;
+                    }
                     painter.save();
                     painter.translate(centerX, kLabelCenterY);
                     painter.rotate(rotation);
-                    painter.drawText(
-                        QRectF{-kReferenceLabelWidth / 2.0, -kReferenceLabelHeight / 2.0, kReferenceLabelWidth, kReferenceLabelHeight}, Qt::AlignCenter, label);
+                    painter.drawText(rect, Qt::AlignCenter, label);
                     painter.restore();
                 };
                 drawReferenceLabel(kFirstTickX);
