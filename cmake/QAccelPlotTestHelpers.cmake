@@ -92,7 +92,9 @@ function(add_qaccelplot_example_visual_scenario target example scenario)
     set_tests_properties(smoke_${_name} PROPERTIES
         ENVIRONMENT "${_visual_test_environment}"
         LABELS "visual-smoke"
-        TIMEOUT 15
+        # A capture takes about 2 s, but software-rendered Windows CI runners
+        # need 15 s or more for the heaviest pages.
+        TIMEOUT 60
         # Qt 6.11+ reports QML properties that shadow a base-type member.
         FAIL_REGULAR_EXPRESSION "qt\\.qml\\.propertyCache"
     )
