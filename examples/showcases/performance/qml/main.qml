@@ -14,9 +14,10 @@ Window {
     id: window
 
     property bool metricsEnabled: true
-    property int lineCurveCount: 1000000
-    property int pointCloudCount: 1000000
-    property int rectangleCount: 100000
+    // Created from components, so resetting a page can replace its settings with a fresh object.
+    property QtObject lineCurveSettings: lineCurveDefaults.createObject(window)
+    property QtObject pointCloudSettings: pointCloudDefaults.createObject(window)
+    property QtObject rectangleSeriesSettings: rectangleSeriesDefaults.createObject(window)
     property int fps: 60
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
@@ -24,40 +25,49 @@ Window {
     readonly property string activePage: pages.currentName
     readonly property int maximumCount: 10000000
     readonly property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
-    readonly property var datasets: ({
-            lineCurve: {
-                noun: "points"
-            },
-            pointCloud: {
-                noun: "points"
-            },
-            rectangleSeries: {
-                noun: "rectangles"
-            }
-        })
-    readonly property var activeDataset: datasets[activePage] || datasets.lineCurve
-    readonly property int activeCount: activePage === "pointCloud" ? pointCloudCount : activePage === "rectangleSeries" ? rectangleCount : lineCurveCount
+    readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : lineCurveSettings
+    readonly property int activeCount: activeSettings.count
     readonly property real throughputMillions: activeCount * updateRate / 1000000
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
 
-    function setActiveCount(count) {
+    function resetActiveSettings() {
+        const previous = activeSettings;
         if (activePage === "pointCloud") {
-            pointCloudCount = count;
+            pointCloudSettings = pointCloudDefaults.createObject(window);
         } else if (activePage === "rectangleSeries") {
-            rectangleCount = count;
+            rectangleSeriesSettings = rectangleSeriesDefaults.createObject(window);
         } else {
-            lineCurveCount = count;
+            lineCurveSettings = lineCurveDefaults.createObject(window);
         }
+        previous.destroy();
     }
 
     width: 1400
     height: 900
     visible: true
-    title: "QAccelPlot Performance Showcase"
+    title: "QAccelPlot Performance Lab"
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
+
+    Component {
+        id: lineCurveDefaults
+
+        LineCurveSettings {}
+    }
+
+    Component {
+        id: pointCloudDefaults
+
+        PointCloudSettings {}
+    }
+
+    Component {
+        id: rectangleSeriesDefaults
+
+        RectangleSeriesSettings {}
+    }
 
     FrameDriver {
         running: true
@@ -70,7 +80,7 @@ Window {
         spacing: 12
 
         ControlPanel {
-            Layout.preferredWidth: 240
+            Layout.preferredWidth: 300
             Layout.fillHeight: true
             window: window
             colorPalette: window.colorPalette
@@ -82,7 +92,7 @@ Window {
             spacing: 10
 
             ExampleHeader {
-                title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeDataset.noun
+                title: window.activeCount.toLocaleString(Qt.locale("en_US"), "f", 0) + " live " + window.activeSettings.noun
                 description: "Display FPS counts frames presented to the screen. Data Update Rate shows how many new datasets are applied to the plot each second."
             }
 
@@ -111,7 +121,7 @@ Window {
                         {
                             label: "THROUGHPUT",
                             value: window.throughputMillions.toFixed(1) + " M",
-                            detail: window.activeDataset.noun + " updated / second"
+                            detail: window.activeSettings.noun + " updated / second"
                         }
                     ]
 
@@ -162,12 +172,14 @@ Window {
                     { name: "rectangleSeries", title: "RectangleSeries" }
                 ]
 
-                LineCurvePage {}
+                LineCurvePage {
+                    settings: window.lineCurveSettings
+                }
                 PointCloudPage {
-                    pointCount: window.pointCloudCount
+                    settings: window.pointCloudSettings
                 }
                 RectangleSeriesPage {
-                    rectangleCount: window.rectangleCount
+                    settings: window.rectangleSeriesSettings
                 }
             }
         }

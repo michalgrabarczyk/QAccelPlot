@@ -19,18 +19,17 @@ namespace QAccelPlotExample {
 /// \brief Runs a dataset generator on a background thread, keeping at most one completed batch pending.
 ///
 /// The worker waits until the pending batch is consumed before generating another, so it never
-/// builds datasets the display cannot show. \a Generator provides a default-constructible
-/// \c Batch type and <tt>void generate(Batch&, int count, double timeSeconds)</tt>.
+/// builds datasets the display cannot show. \a Generator provides default-constructible
+/// \c Batch and \c Parameters types and
+/// <tt>void generate(Batch&, const Parameters&, double timeSeconds)</tt>.
 /// \c start(), \c requestStop(), and \c stop() must be called from one thread.
 template <typename Generator> class GenerationWorker final {
 public:
     using Batch = typename Generator::Batch;
+    using Parameters = typename Generator::Parameters;
 
-    /// \brief Constructs a stopped worker that generates \a count items per batch.
-    explicit GenerationWorker(const int count = 1)
-        : count_(count)
-    {
-    }
+    /// \brief Constructs a stopped worker with default-constructed parameters.
+    GenerationWorker() = default;
 
     ~GenerationWorker()
     {
@@ -91,10 +90,11 @@ public:
         timeSeconds_.store(seconds, std::memory_order_relaxed);
     }
 
-    /// \brief Sets the number of items in subsequent batches; values below 1 are clamped to 1.
-    void setCount(const int count)
+    /// \brief Sets the generator parameters used for subsequent batches.
+    void setParameters(const Parameters& parameters)
     {
-        count_.store(count > 0 ? count : 1, std::memory_order_relaxed);
+        const auto lock = std::lock_guard<std::mutex>{mutex_};
+        parameters_ = parameters;
     }
 
     /// \brief Waits until a completed batch is pending or \a timeout elapses.
@@ -125,7 +125,7 @@ private:
     {
         auto workBatch = Batch{};
         while (running_.load(std::memory_order_relaxed)) {
-            generator_.generate(workBatch, count_.load(std::memory_order_relaxed), timeSeconds_.load(std::memory_order_relaxed));
+            generator_.generate(workBatch, parameters(), timeSeconds_.load(std::memory_order_relaxed));
 
             {
                 const auto lock = std::lock_guard<std::mutex>{mutex_};
@@ -139,6 +139,12 @@ private:
         }
     }
 
+    Parameters parameters()
+    {
+        const auto lock = std::lock_guard<std::mutex>{mutex_};
+        return parameters_;
+    }
+
     Generator generator_;
     std::mutex mutex_;
     std::condition_variable conditionVariable_;
@@ -147,7 +153,7 @@ private:
     bool dataReady_{false};
     std::atomic<bool> running_{false};
     std::atomic<double> timeSeconds_{0.0};
-    std::atomic<int> count_;
+    Parameters parameters_;
 };
 
 } // namespace QAccelPlotExample

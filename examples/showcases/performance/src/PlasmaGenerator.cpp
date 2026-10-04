@@ -43,57 +43,23 @@ float shape(const float waveSum)
 
 } // namespace
 
-void PlasmaGenerator::generate(Batch& batch, const int rectangleCount, const double timeSeconds)
+void PlasmaGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
+    const auto rectangleCount = parameters.dataset.count;
     const auto columns = std::max(1, static_cast<int>(std::ceil(std::sqrt(rectangleCount * kDomainWidth / kDomainHeight))));
     const auto rows = (rectangleCount + columns - 1) / columns;
     const auto pitch = std::min(kDomainWidth / static_cast<float>(columns), kDomainHeight / static_cast<float>(rows));
     const auto originX = (kDomainWidth - static_cast<float>(columns) * pitch + pitch) * 0.5f;
     const auto originY = (kDomainHeight - static_cast<float>(rows) * pitch + pitch) * 0.5f;
+    const auto grid = Grid{columns, rows, rectangleCount, pitch, originX, originY};
 
-    // Each diagonal wave splits into an x part and a y part: sin(a + b) = sin a cos b + cos a sin b.
-    columnTerms_.resize(static_cast<std::size_t>(columns) * kTermsPerLine);
-    for (auto column = 0; column < columns; ++column) {
-        const auto x = static_cast<double>(originX + static_cast<float>(column) * pitch);
-        auto* terms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
-        terms[0] = static_cast<float>(std::sin(kXWave * x + kXSpeed * timeSeconds));
-        terms[1] = static_cast<float>(std::sin(kRisingWave * x + kRisingSpeed * timeSeconds));
-        terms[2] = static_cast<float>(std::cos(kRisingWave * x + kRisingSpeed * timeSeconds));
-        terms[3] = static_cast<float>(std::sin(kFallingWave * x + kFallingSpeed * timeSeconds));
-        terms[4] = static_cast<float>(std::cos(kFallingWave * x + kFallingSpeed * timeSeconds));
+    updateWaveTerms(grid, timeSeconds);
+    resizeParts(batch.parts, parameters.dataset, 4);
+    for (auto& part : batch.parts) {
+        part.categories.resize(parameters.categoryCount > 0 ? static_cast<std::size_t>(part.count) : 0);
     }
-    rowTerms_.resize(static_cast<std::size_t>(rows) * kTermsPerLine);
-    for (auto row = 0; row < rows; ++row) {
-        const auto y = static_cast<double>(originY + static_cast<float>(row) * pitch);
-        auto* terms = rowTerms_.data() + static_cast<std::size_t>(row) * kTermsPerLine;
-        terms[0] = static_cast<float>(std::sin(kYWave * y + kYSpeed * timeSeconds));
-        terms[1] = static_cast<float>(std::sin(kRisingWave * y));
-        terms[2] = static_cast<float>(std::cos(kRisingWave * y));
-        terms[3] = static_cast<float>(std::sin(kFallingWave * y));
-        terms[4] = static_cast<float>(std::cos(kFallingWave * y));
-    }
-
-    batch.rects.resize(static_cast<std::size_t>(rectangleCount) * 4);
-    batch.rectangleCount = rectangleCount;
-    auto* rect = batch.rects.data();
-    auto remaining = rectangleCount;
-    for (auto row = 0; row < rows; ++row) {
-        const auto* yTerms = rowTerms_.data() + static_cast<std::size_t>(row) * kTermsPerLine;
-        const auto y = originY + static_cast<float>(row) * pitch;
-        const auto rowColumns = std::min(columns, remaining);
-        for (auto column = 0; column < rowColumns; ++column) {
-            const auto* xTerms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
-            const auto waveSum = xTerms[0] + yTerms[0] + (xTerms[1] * yTerms[2] + xTerms[2] * yTerms[1]) + (xTerms[3] * yTerms[4] - xTerms[4] * yTerms[3]);
-            const auto halfSide = 0.5f * tileSide(shape(waveSum), pitch);
-            const auto x = originX + static_cast<float>(column) * pitch;
-            rect[0] = x - halfSide;
-            rect[1] = y - halfSide;
-            rect[2] = x + halfSide;
-            rect[3] = y + halfSide;
-            rect += 4;
-        }
-        remaining -= rowColumns;
-    }
+    writeTiles(batch, grid, parameters);
+    applyPrecision(batch.parts, parameters.dataset);
 }
 
 float PlasmaGenerator::valueAt(const float x, const float y, const double timeSeconds)
@@ -106,6 +72,70 @@ float PlasmaGenerator::valueAt(const float x, const float y, const double timeSe
 float PlasmaGenerator::tileSide(const float value, const float pitch)
 {
     return pitch * (kMinimumSide + (kMaximumSide - kMinimumSide) * value) + kCrestBoost * value;
+}
+
+void PlasmaGenerator::updateWaveTerms(const Grid& grid, const double timeSeconds)
+{
+    // Each diagonal wave splits into an x part and a y part: sin(a + b) = sin a cos b + cos a sin b.
+    columnTerms_.resize(static_cast<std::size_t>(grid.columns) * kTermsPerLine);
+    for (auto column = 0; column < grid.columns; ++column) {
+        const auto x = static_cast<double>(grid.originX + static_cast<float>(column) * grid.pitch);
+        auto* terms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
+        terms[0] = static_cast<float>(std::sin(kXWave * x + kXSpeed * timeSeconds));
+        terms[1] = static_cast<float>(std::sin(kRisingWave * x + kRisingSpeed * timeSeconds));
+        terms[2] = static_cast<float>(std::cos(kRisingWave * x + kRisingSpeed * timeSeconds));
+        terms[3] = static_cast<float>(std::sin(kFallingWave * x + kFallingSpeed * timeSeconds));
+        terms[4] = static_cast<float>(std::cos(kFallingWave * x + kFallingSpeed * timeSeconds));
+    }
+    rowTerms_.resize(static_cast<std::size_t>(grid.rows) * kTermsPerLine);
+    for (auto row = 0; row < grid.rows; ++row) {
+        const auto y = static_cast<double>(grid.originY + static_cast<float>(row) * grid.pitch);
+        auto* terms = rowTerms_.data() + static_cast<std::size_t>(row) * kTermsPerLine;
+        terms[0] = static_cast<float>(std::sin(kYWave * y + kYSpeed * timeSeconds));
+        terms[1] = static_cast<float>(std::sin(kRisingWave * y));
+        terms[2] = static_cast<float>(std::cos(kRisingWave * y));
+        terms[3] = static_cast<float>(std::sin(kFallingWave * y));
+        terms[4] = static_cast<float>(std::cos(kFallingWave * y));
+    }
+}
+
+void PlasmaGenerator::writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const
+{
+    const auto categoryCount = parameters.categoryCount;
+    auto part = batch.parts.begin();
+    auto* rect = part->floats.data();
+    auto* category = part->categories.data();
+    auto partRemaining = part->count;
+    auto remaining = grid.tileCount;
+    for (auto row = 0; row < grid.rows; ++row) {
+        const auto* yTerms = rowTerms_.data() + static_cast<std::size_t>(row) * kTermsPerLine;
+        const auto y = grid.originY + static_cast<float>(row) * grid.pitch;
+        const auto rowColumns = std::min(grid.columns, remaining);
+        for (auto column = 0; column < rowColumns; ++column) {
+            // The parts hold tileCount tiles in total, so a next part exists while tiles remain.
+            while (partRemaining == 0) {
+                ++part;
+                rect = part->floats.data();
+                category = part->categories.data();
+                partRemaining = part->count;
+            }
+            const auto* xTerms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
+            const auto waveSum = xTerms[0] + yTerms[0] + (xTerms[1] * yTerms[2] + xTerms[2] * yTerms[1]) + (xTerms[3] * yTerms[4] - xTerms[4] * yTerms[3]);
+            const auto value = shape(waveSum);
+            const auto halfSide = 0.5f * parameters.tileScale * tileSide(value, grid.pitch);
+            const auto x = grid.originX + static_cast<float>(column) * grid.pitch;
+            rect[0] = x - halfSide;
+            rect[1] = y - halfSide;
+            rect[2] = x + halfSide;
+            rect[3] = y + halfSide;
+            rect += 4;
+            if (categoryCount > 0) {
+                *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
+            }
+            --partRemaining;
+        }
+        remaining -= rowColumns;
+    }
 }
 
 } // namespace QAccelPlotExample

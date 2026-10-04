@@ -8,16 +8,31 @@
 qaccelplot_add_example(Performance
     SOURCES
         src/DataDeliveryMetrics.cpp
+        src/DatasetParts.cpp
         src/GalaxyGenerator.cpp
+        src/Ingestion.cpp
+        src/LineCurveFeed.cpp
+        src/PageScene.cpp
         src/PlasmaGenerator.cpp
+        src/PointCloudFeed.cpp
+        src/RectangleSeriesFeed.cpp
         src/ShowcaseController.cpp
         src/SineLookup.cpp
         src/SineWaveGenerator.cpp
         src/main.cpp
     QML_FILES
         qml/ControlPanel.qml
+        qml/LineCurveOptions.qml
         qml/LineCurvePage.qml
+        qml/LineCurveSettings.qml
+        qml/OptionChoice.qml
+        qml/OptionSwitch.qml
+        qml/PageSettings.qml
+        qml/PointCloudOptions.qml
         qml/PointCloudPage.qml
+        qml/PointCloudSettings.qml
+        qml/RectangleSeriesOptions.qml
         qml/RectangleSeriesPage.qml
+        qml/RectangleSeriesSettings.qml
         qml/main.qml
 )

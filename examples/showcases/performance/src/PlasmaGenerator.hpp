@@ -7,14 +7,30 @@
 //
 #pragma once
 
+#include "DatasetParts.hpp"
+
 #include <vector>
 
 namespace QAccelPlotExample {
 
-/// \brief One RectangleSeries dataset.
+/// \brief One series' share of a RectangleSeries dataset: 4 floats per rectangle (x1, y1, x2, y2).
+struct PlasmaPart : SeriesPart {
+    /// \brief One category per rectangle; empty when categories are off.
+    std::vector<int> categories;
+};
+
+/// \brief One RectangleSeries dataset, split into consecutive runs of grid rows.
 struct PlasmaBatch {
-    std::vector<float> rects; // 4 floats per rectangle (x1, y1, x2, y2)
-    int rectangleCount{0};
+    std::vector<PlasmaPart> parts;
+};
+
+/// \brief Settings of a PlasmaGenerator batch.
+struct PlasmaParameters {
+    DatasetParameters dataset;
+    /// \brief Multiplies the side of every tile.
+    float tileScale{1.0f};
+    /// \brief Number of categories the plasma value of a tile is binned into; 0 turns categories off.
+    int categoryCount{0};
 };
 
 /// \brief Generates a grid of square tiles sized by a drifting plasma field.
@@ -27,14 +43,15 @@ struct PlasmaBatch {
 class PlasmaGenerator final {
 public:
     using Batch = PlasmaBatch;
+    using Parameters = PlasmaParameters;
 
     /// \brief X extent of the tile grid, starting at 0.
     static constexpr auto kDomainWidth = 160.0f;
     /// \brief Y extent of the tile grid, starting at 0.
     static constexpr auto kDomainHeight = 100.0f;
 
-    /// \brief Fills \a batch with \a rectangleCount tiles sized for \a timeSeconds.
-    void generate(Batch& batch, int rectangleCount, double timeSeconds);
+    /// \brief Fills \a batch with the tiles described by \a parameters, sized for \a timeSeconds.
+    void generate(Batch& batch, const Parameters& parameters, double timeSeconds);
 
     /// \brief Returns the plasma value, in [0, 1], at (\a x, \a y) and \a timeSeconds.
     static float valueAt(float x, float y, double timeSeconds);
@@ -42,6 +59,18 @@ public:
     static float tileSide(float value, float pitch);
 
 private:
+    struct Grid {
+        int columns;
+        int rows;
+        int tileCount;
+        float pitch;
+        float originX;
+        float originY;
+    };
+
+    void updateWaveTerms(const Grid& grid, double timeSeconds);
+    void writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const;
+
     std::vector<float> columnTerms_; // per column: x wave, sin and cos of both diagonal x phases
     std::vector<float> rowTerms_;    // per row: y wave, sin and cos of both diagonal y phases
 };

@@ -24,14 +24,18 @@ std::atomic<int> generatedBatches{0};
 
 // Records its inputs, so tests can tell which settings produced a batch.
 struct RecordingGenerator {
+    struct Parameters {
+        int count{1};
+    };
+
     struct Batch {
         int count{0};
         double timeSeconds{0.0};
     };
 
-    void generate(Batch& batch, const int count, const double timeSeconds)
+    void generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
     {
-        batch.count = count;
+        batch.count = parameters.count;
         batch.timeSeconds = timeSeconds;
         generatedBatches.fetch_add(1, std::memory_order_relaxed);
     }
@@ -63,7 +67,7 @@ private slots:
 void GenerationWorkerTest::batchesUseCurrentSettings()
 {
     auto worker = Worker{};
-    worker.setCount(123);
+    worker.setParameters({123});
     worker.setTime(4.5);
     worker.start();
 
