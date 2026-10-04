@@ -18,7 +18,51 @@
 #include <QThread>
 #include <QtTest/QtTest>
 
+#include <algorithm>
+#include <cstdlib>
 #include <utility>
+
+namespace {
+
+QString describe(const QRect& rect)
+{
+    return QStringLiteral("(%1, %2) %3x%4").arg(rect.x()).arg(rect.y()).arg(rect.width()).arg(rect.height());
+}
+
+// Tells clipped text (smaller ink bounds) from rasterization differences (equal bounds, small alpha differences).
+QString describeDifference(const QImage& actual, const QImage& expected)
+{
+    auto differing = QRect{};
+    auto actualInk = QRect{};
+    auto expectedInk = QRect{};
+    auto differingPixels = 0;
+    auto largestAlphaDifference = 0;
+    for (auto y = 0; y < actual.height(); ++y) {
+        for (auto x = 0; x < actual.width(); ++x) {
+            const auto pixel = QRect{x, y, 1, 1};
+            const auto actualAlpha = qAlpha(actual.pixel(x, y));
+            const auto expectedAlpha = qAlpha(expected.pixel(x, y));
+            if (actualAlpha > 0) {
+                actualInk |= pixel;
+            }
+            if (expectedAlpha > 0) {
+                expectedInk |= pixel;
+            }
+            if (actual.pixel(x, y) != expected.pixel(x, y)) {
+                ++differingPixels;
+                differing |= pixel;
+                largestAlphaDifference = std::max(largestAlphaDifference, std::abs(actualAlpha - expectedAlpha));
+            }
+        }
+    }
+    return QStringLiteral("%1 pixels differ within %2, alpha by up to %3; ink bounds %4, expected %5")
+        .arg(differingPixels)
+        .arg(describe(differing))
+        .arg(largestAlphaDifference)
+        .arg(describe(actualInk), describe(expectedInk));
+}
+
+} // namespace
 
 class FixedTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
 public:
@@ -308,7 +352,10 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 drawReferenceLabel(kFirstTickX + kTickSpacing);
             }
 
-            QVERIFY2(actual == expected, qPrintable(QStringLiteral("Label '%1' at %2 degrees was clipped").arg(label).arg(rotation)));
+            if (actual != expected) {
+                QFAIL(
+                    qPrintable(QStringLiteral("Label '%1' at %2 degrees was clipped: %3").arg(label).arg(rotation).arg(describeDifference(actual, expected))));
+            }
         }
     }
 }
