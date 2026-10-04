@@ -14,7 +14,10 @@
 namespace QAccelPlotExample {
 
 /// \brief One series' share of a RectangleSeries dataset: 4 floats per rectangle (x1, y1, x2, y2).
-using PlasmaPart = SeriesPart;
+struct PlasmaPart : SeriesPart {
+    /// \brief One category per rectangle; empty when categories are off.
+    std::vector<int> categories;
+};
 
 /// \brief One RectangleSeries dataset, split into consecutive runs of grid rows.
 struct PlasmaBatch {
@@ -24,6 +27,10 @@ struct PlasmaBatch {
 /// \brief Settings of a PlasmaGenerator batch.
 struct PlasmaParameters {
     DatasetParameters dataset;
+    /// \brief Multiplies the side of every tile.
+    float tileScale{1.0f};
+    /// \brief Number of categories the plasma value of a tile is binned into; 0 turns categories off.
+    int categoryCount{0};
 };
 
 /// \brief Generates a grid of square tiles sized by a drifting plasma field.
@@ -62,7 +69,7 @@ private:
     };
 
     void updateWaveTerms(const Grid& grid, double timeSeconds);
-    void writeTiles(Batch& batch, const Grid& grid) const;
+    void writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const;
 
     std::vector<float> columnTerms_; // per column: x wave, sin and cos of both diagonal x phases
     std::vector<float> rowTerms_;    // per row: y wave, sin and cos of both diagonal y phases

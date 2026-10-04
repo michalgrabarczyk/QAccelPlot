@@ -31,6 +31,7 @@ qaccelplot_add_example(Performance
         qml/PointCloudOptions.qml
         qml/PointCloudPage.qml
         qml/PointCloudSettings.qml
+        qml/RectangleSeriesOptions.qml
         qml/RectangleSeriesPage.qml
         qml/RectangleSeriesSettings.qml
         qml/main.qml

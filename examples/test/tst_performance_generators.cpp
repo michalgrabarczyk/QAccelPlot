@@ -68,6 +68,8 @@ private slots:
     void plasmaTilesAreSquaresOnTheGrid();
     void plasmaTileSizeFollowsTheField();
     void plasmaMovesOverTime();
+    void plasmaTileScaleScalesEveryTile();
+    void plasmaCategoriesFollowTheField();
 };
 
 void PerformanceGeneratorsTest::recordsAreSplitEvenly()
@@ -386,6 +388,54 @@ void PerformanceGeneratorsTest::plasmaMovesOverTime()
 {
     constexpr auto rectangleCount = 1000;
     QVERIFY(generatedFloats<PlasmaGenerator>(rectangleCount, 1, 0.0) != generatedFloats<PlasmaGenerator>(rectangleCount, 1, 2.0));
+}
+
+void PerformanceGeneratorsTest::plasmaTileScaleScalesEveryTile()
+{
+    constexpr auto rectangleCount = 1000;
+    const auto unscaled = generatedFloats<PlasmaGenerator>(rectangleCount, 1, 1.5);
+
+    auto parameters = parametersFor<PlasmaParameters>(rectangleCount);
+    parameters.tileScale = 2.0f;
+    auto generator = PlasmaGenerator{};
+    auto batch = PlasmaBatch{};
+    generator.generate(batch, parameters, 1.5);
+
+    const auto& scaled = batch.parts.front().floats;
+    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(rectangleCount); ++i) {
+        const auto width = unscaled[i * 4 + 2] - unscaled[i * 4];
+        QVERIFY(std::abs((scaled[i * 4 + 2] - scaled[i * 4]) - 2.0f * width) <= width * 1e-3f);
+        QVERIFY(std::abs((scaled[i * 4] + scaled[i * 4 + 2]) - (unscaled[i * 4] + unscaled[i * 4 + 2])) <= 1e-3f);
+    }
+}
+
+void PerformanceGeneratorsTest::plasmaCategoriesFollowTheField()
+{
+    constexpr auto rectangleCount = 1000;
+    constexpr auto categoryCount = 4;
+    constexpr auto timeSeconds = 4.2;
+    auto parameters = parametersFor<PlasmaParameters>(rectangleCount, 3);
+    auto generator = PlasmaGenerator{};
+    auto batch = PlasmaBatch{};
+    generator.generate(batch, parameters, timeSeconds);
+    QVERIFY(batch.parts.front().categories.empty());
+
+    parameters.categoryCount = categoryCount;
+    generator.generate(batch, parameters, timeSeconds);
+    auto usedCategories = std::vector<bool>(categoryCount, false);
+    for (const auto& part : batch.parts) {
+        QCOMPARE(part.categories.size(), static_cast<std::size_t>(part.count));
+        for (auto i = std::size_t{0}; i < part.categories.size(); ++i) {
+            const auto* rect = part.floats.data() + i * 4;
+            const auto value = PlasmaGenerator::valueAt((rect[0] + rect[2]) * 0.5f, (rect[1] + rect[3]) * 0.5f, timeSeconds);
+            const auto category = part.categories[i];
+            QVERIFY(category >= 0 && category < categoryCount);
+            // The generator and valueAt() evaluate the field differently, so allow for rounding at a bin edge.
+            QVERIFY(std::abs(value * categoryCount - (static_cast<float>(category) + 0.5f)) <= 0.51f);
+            usedCategories[static_cast<std::size_t>(category)] = true;
+        }
+    }
+    QVERIFY(std::all_of(usedCategories.begin(), usedCategories.end(), [](const bool used) { return used; }));
 }
 
 QTEST_GUILESS_MAIN(PerformanceGeneratorsTest)

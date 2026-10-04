@@ -55,7 +55,10 @@ void PlasmaGenerator::generate(Batch& batch, const Parameters& parameters, const
 
     updateWaveTerms(grid, timeSeconds);
     resizeParts(batch.parts, parameters.dataset, 4);
-    writeTiles(batch, grid);
+    for (auto& part : batch.parts) {
+        part.categories.resize(parameters.categoryCount > 0 ? static_cast<std::size_t>(part.count) : 0);
+    }
+    writeTiles(batch, grid, parameters);
     applyPrecision(batch.parts, parameters.dataset);
 }
 
@@ -96,10 +99,12 @@ void PlasmaGenerator::updateWaveTerms(const Grid& grid, const double timeSeconds
     }
 }
 
-void PlasmaGenerator::writeTiles(Batch& batch, const Grid& grid) const
+void PlasmaGenerator::writeTiles(Batch& batch, const Grid& grid, const Parameters& parameters) const
 {
+    const auto categoryCount = parameters.categoryCount;
     auto part = batch.parts.begin();
     auto* rect = part->floats.data();
+    auto* category = part->categories.data();
     auto partRemaining = part->count;
     auto remaining = grid.tileCount;
     for (auto row = 0; row < grid.rows; ++row) {
@@ -111,17 +116,22 @@ void PlasmaGenerator::writeTiles(Batch& batch, const Grid& grid) const
             while (partRemaining == 0) {
                 ++part;
                 rect = part->floats.data();
+                category = part->categories.data();
                 partRemaining = part->count;
             }
             const auto* xTerms = columnTerms_.data() + static_cast<std::size_t>(column) * kTermsPerLine;
             const auto waveSum = xTerms[0] + yTerms[0] + (xTerms[1] * yTerms[2] + xTerms[2] * yTerms[1]) + (xTerms[3] * yTerms[4] - xTerms[4] * yTerms[3]);
-            const auto halfSide = 0.5f * tileSide(shape(waveSum), grid.pitch);
+            const auto value = shape(waveSum);
+            const auto halfSide = 0.5f * parameters.tileScale * tileSide(value, grid.pitch);
             const auto x = grid.originX + static_cast<float>(column) * grid.pitch;
             rect[0] = x - halfSide;
             rect[1] = y - halfSide;
             rect[2] = x + halfSide;
             rect[3] = y + halfSide;
             rect += 4;
+            if (categoryCount > 0) {
+                *category++ = std::min(categoryCount - 1, static_cast<int>(value * static_cast<float>(categoryCount)));
+            }
             --partRemaining;
         }
         remaining -= rowColumns;
