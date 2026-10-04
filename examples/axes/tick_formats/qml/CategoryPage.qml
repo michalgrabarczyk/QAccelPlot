@@ -11,7 +11,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,7 +19,7 @@ Item {
 
         Label {
             text: "TextTickLabelFormatter maps integer coordinates to names, allowing numeric series data to describe ordered categories."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
@@ -57,7 +57,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesSecondary
+                color: root.colorPalette.seriesSecondary
                 lineWidth: 3
                 marker.shape: QAccelPlot.LineCurve.Diamond
                 marker.size: 8

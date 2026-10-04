@@ -43,13 +43,13 @@ Window {
             ]
 
             DateTimePage {
-                palette: colorPalette
+                colorPalette: window.colorPalette
             }
             LogScalePage {
-                palette: colorPalette
+                colorPalette: window.colorPalette
             }
             CategoryPage {
-                palette: colorPalette
+                colorPalette: window.colorPalette
             }
         }
     }

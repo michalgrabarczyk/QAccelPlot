@@ -42,10 +42,10 @@ Window {
             ]
 
             ForecastPage {
-                palette: root.colorPalette
+                colorPalette: root.colorPalette
             }
             RollingStatsPage {
-                palette: root.colorPalette
+                colorPalette: root.colorPalette
             }
         }
     }

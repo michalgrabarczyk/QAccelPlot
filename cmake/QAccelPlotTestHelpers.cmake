@@ -93,6 +93,8 @@ function(add_qaccelplot_example_visual_scenario target example scenario)
         ENVIRONMENT "${_visual_test_environment}"
         LABELS "visual-smoke"
         TIMEOUT 15
+        # Qt 6.11+ reports QML properties that shadow a base-type member.
+        FAIL_REGULAR_EXPRESSION "qt\\.qml\\.propertyCache"
     )
 
     if(VISUAL_SMOKE_ONLY)

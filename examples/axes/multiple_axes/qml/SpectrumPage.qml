@@ -11,7 +11,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
     property bool synchronizingScales: false
 
     function synchronizeFrequencyFromWavelength() {
@@ -40,14 +40,14 @@ Item {
 
         Label {
             text: "Wavelength and frequency on one spectrum"
-            color: root.palette.text
+            color: root.colorPalette.text
             font.bold: true
             font.pixelSize: 14
         }
 
         Label {
             text: "Both axes label the same screen positions, so they pan in the same visual direction. Their values are inverted: wavelength increases from left to right, while frequency (c / wavelength) decreases. Pan or zoom either axis and the other follows automatically."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
@@ -66,9 +66,9 @@ Item {
                 dataMin: 400
                 dataMax: 700
                 label: "Wavelength (nm)"
-                baselineColor: root.palette.seriesPrimary
+                baselineColor: root.colorPalette.seriesPrimary
                 baselineWidth: 2
-                ticker.tickColor: root.palette.seriesPrimary
+                ticker.tickColor: root.colorPalette.seriesPrimary
             }
 
             yAxis: ExampleAxis {
@@ -94,9 +94,9 @@ Item {
                     orientation: QAccelPlot.Axis.Horizontal
                     side: QAccelPlot.Axis.Bottom
                     label: "Frequency (THz)"
-                    baselineColor: root.palette.seriesCyan
+                    baselineColor: root.colorPalette.seriesCyan
                     baselineWidth: 2
-                    ticker.tickColor: root.palette.seriesCyan
+                    ticker.tickColor: root.colorPalette.seriesCyan
                     ticker.tickCount: 6
                     ticker.tickLabelFormatter: QAccelPlot.NumericTickLabelFormatter {
                         tickLabel: function (wavelength) {
@@ -124,7 +124,7 @@ Item {
                 name: "Emission spectrum"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesPrimary
+                color: root.colorPalette.seriesPrimary
                 lineWidth: 3
                 antialiasingEnabled: true
 

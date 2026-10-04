@@ -14,7 +14,7 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     // The band at the cursor's X, or an empty object outside the band's samples.
     readonly property var cursorBand: hover.hovered ? band.valueAt(plot.pixelToDataX(hover.point.position.x)) : ({})
 
@@ -28,7 +28,7 @@ Item {
 
         Label {
             text: "Ten minutes of a vibration sensor, 10,000 samples, with a 10 s rolling mean and a mean ± 2σ band computed in C++. Pan and zoom to see the detail."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
@@ -50,7 +50,7 @@ Item {
             }
             Label {
                 text: root.cursorBand.low === undefined ? "" : "t = " + root.cursorBand.x.toFixed(2) + " s   mean ± 2σ: " + root.cursorBand.low.toFixed(3) + " to " + root.cursorBand.high.toFixed(3) + " g"
-                color: band.hovered ? root.palette.text : root.palette.textSecondary
+                color: band.hovered ? root.colorPalette.text : root.colorPalette.textSecondary
                 font.family: "monospace"
             }
         }
@@ -91,7 +91,7 @@ Item {
                 hoverRadius: 0
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.withAlpha(root.palette.seriesMuted, 0.35)
+                color: root.withAlpha(root.colorPalette.seriesMuted, 0.35)
             }
 
             QAccelPlot.BandSeries {
@@ -100,9 +100,9 @@ Item {
                 name: "Mean ± 2σ"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.withAlpha(root.palette.seriesSecondary, 0.35)
+                color: root.withAlpha(root.colorPalette.seriesSecondary, 0.35)
                 edges.width: edgesSwitch.checked ? 0.75 : 0
-                edges.color: root.withAlpha(Qt.lighter(root.palette.seriesSecondary, 1.25), 0.5)
+                edges.color: root.withAlpha(Qt.lighter(root.colorPalette.seriesSecondary, 1.25), 0.5)
             }
 
             QAccelPlot.LineCurve {
@@ -111,7 +111,7 @@ Item {
                 hoverRadius: 0
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesSecondary
+                color: root.colorPalette.seriesSecondary
                 lineWidth: 1.5
             }
 

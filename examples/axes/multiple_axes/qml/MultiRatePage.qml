@@ -11,7 +11,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,14 +19,14 @@ Item {
 
         Label {
             text: "Independent time scales in one plot"
-            color: root.palette.text
+            color: root.colorPalette.text
             font.bold: true
             font.pixelSize: 14
         }
 
         Label {
             text: "The settling response uses the primary 0–10 s axis. The damped chirp uses the extra 0–0.5 s axis, yet both curves share the same plot area and amplitude axis."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
@@ -44,9 +44,9 @@ Item {
                 dataMin: 0
                 dataMax: 10
                 label: "Slow channel time (s)"
-                baselineColor: root.palette.seriesPrimary
+                baselineColor: root.colorPalette.seriesPrimary
                 baselineWidth: 2
-                ticker.tickColor: root.palette.seriesPrimary
+                ticker.tickColor: root.colorPalette.seriesPrimary
             }
 
             yAxis: ExampleAxis {
@@ -70,9 +70,9 @@ Item {
                     orientation: QAccelPlot.Axis.Horizontal
                     side: QAccelPlot.Axis.Bottom
                     label: "Fast channel time (s)"
-                    baselineColor: root.palette.seriesSecondary
+                    baselineColor: root.colorPalette.seriesSecondary
                     baselineWidth: 2
-                    ticker.tickColor: root.palette.seriesSecondary
+                    ticker.tickColor: root.colorPalette.seriesSecondary
                     ticker.tickCount: 6
                 }
             ]
@@ -81,7 +81,7 @@ Item {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
                 name: "Slow settling response"
-                color: root.palette.seriesPrimary
+                color: root.colorPalette.seriesPrimary
                 lineWidth: 3
                 antialiasingEnabled: true
 
@@ -100,7 +100,7 @@ Item {
                 xAxis: fastAxis
                 yAxis: plot.yAxis
                 name: "Fast damped chirp"
-                color: root.palette.seriesSecondary
+                color: root.colorPalette.seriesSecondary
                 lineWidth: 3
                 antialiasingEnabled: true
 

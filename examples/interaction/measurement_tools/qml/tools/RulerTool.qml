@@ -22,7 +22,7 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     anchors.fill: parent
     opacity: active ? 1.0 : 0.78
 
@@ -243,14 +243,14 @@ Item {
             height: distLabel.implicitHeight + 4
             radius: height / 2
             antialiasing: true
-            color: root.palette.tooltipBackground
+            color: root.colorPalette.tooltipBackground
             border.color: root.bandColor
             border.width: 1
 
             Text {
                 id: distLabel
                 anchors.centerIn: parent
-                color: root.palette.tooltipText
+                color: root.colorPalette.tooltipText
                 font.pixelSize: 11
                 font.bold: true
                 text: "d = " + root.dataDistance.toFixed(2)
@@ -267,7 +267,7 @@ Item {
         height: root.handleRadius * 2
         radius: root.handleRadius
         color: handle1Area.pressed ? Qt.lighter(root.handleColor, 1.5) : root.handleColor
-        border.color: root.palette.handleBorder
+        border.color: root.colorPalette.handleBorder
         border.width: 2
         visible: root.active
 
@@ -298,7 +298,7 @@ Item {
         height: root.handleRadius * 2
         radius: root.handleRadius
         color: handle2Area.pressed ? Qt.lighter(root.handleColor, 1.5) : root.handleColor
-        border.color: root.palette.handleBorder
+        border.color: root.colorPalette.handleBorder
         border.width: 2
         visible: root.active
 

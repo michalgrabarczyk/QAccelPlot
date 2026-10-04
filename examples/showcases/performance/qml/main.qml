@@ -73,7 +73,7 @@ Window {
             Layout.preferredWidth: 240
             Layout.fillHeight: true
             window: window
-            palette: colorPalette
+            colorPalette: window.colorPalette
         }
 
         ColumnLayout {

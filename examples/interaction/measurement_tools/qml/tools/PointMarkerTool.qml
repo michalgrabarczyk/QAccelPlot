@@ -13,7 +13,7 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     anchors.fill: parent
     opacity: active ? 1.0 : 0.78
 
@@ -99,7 +99,7 @@ Item {
         height: root.markerRadius * 2
         radius: root.markerRadius
         color: markerArea.pressed ? Qt.lighter(root.markerColor, 1.6) : root.markerColor
-        border.color: root.palette.handleBorder
+        border.color: root.colorPalette.handleBorder
         border.width: 2
 
         MouseArea {
@@ -127,14 +127,14 @@ Item {
         width: coordLabel.implicitWidth + 10
         height: coordLabel.implicitHeight + 6
         radius: 3
-        color: root.palette.tooltipBackground
+        color: root.colorPalette.tooltipBackground
 
         Text {
             id: coordLabel
             anchors.centerIn: parent
             font.pixelSize: 11
             font.bold: true
-            color: root.palette.tooltipText
+            color: root.colorPalette.tooltipText
             text: "(" + root.dataX.toFixed(2) + ", " + root.dataY.toFixed(2) + ")"
         }
     }

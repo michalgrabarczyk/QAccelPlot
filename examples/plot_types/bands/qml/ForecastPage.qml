@@ -13,11 +13,11 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     readonly property int lastObservedMonth: 36
     readonly property int forecastMonths: 24
     // A lighter tint of the band color, so the edges read as a quiet outline.
-    readonly property color edgeColor: Qt.lighter(palette.seriesPrimary, 1.35)
+    readonly property color edgeColor: Qt.lighter(colorPalette.seriesPrimary, 1.35)
 
     function withAlpha(color, alpha) {
         return Qt.rgba(color.r, color.g, color.b, alpha);
@@ -73,7 +73,7 @@ Item {
 
         Label {
             text: "Three years of monthly demand and a two-year forecast. Two BandSeries show the 50% and 90% prediction intervals; the outer one has dashed edge lines. Hover a band to highlight it and read its range."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
@@ -107,7 +107,7 @@ Item {
                 name: "90% interval"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.withAlpha(root.palette.seriesPrimary, hovered ? 0.3 : 0.16)
+                color: root.withAlpha(root.colorPalette.seriesPrimary, hovered ? 0.3 : 0.16)
                 edges.width: hovered ? 1 : 0.75
                 edges.color: root.withAlpha(root.edgeColor, hovered ? 0.8 : 0.45)
                 edges.lineStyle: QAccelPlot.DashLine {
@@ -127,7 +127,7 @@ Item {
                 name: "50% interval"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.withAlpha(root.palette.seriesPrimary, hovered ? 0.55 : 0.32)
+                color: root.withAlpha(root.colorPalette.seriesPrimary, hovered ? 0.55 : 0.32)
                 edges.width: hovered ? 0.75 : 0
                 edges.color: root.withAlpha(root.edgeColor, 0.6)
                 Component.onCompleted: root.fillInterval(this, 0.674)
@@ -143,7 +143,7 @@ Item {
                 name: "Observed"
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesSecondary
+                color: root.colorPalette.seriesSecondary
                 lineWidth: 2
                 Component.onCompleted: setData(root.historyPoints())
             }
@@ -155,7 +155,7 @@ Item {
                 hoverRadius: 0
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesPrimary
+                color: root.colorPalette.seriesPrimary
                 lineWidth: 2
                 lineStyle: QAccelPlot.DashLine {
                     pattern: [8, 4]
@@ -181,12 +181,12 @@ Item {
                 width: tooltipText.implicitWidth + 12
                 height: tooltipText.implicitHeight + 8
                 radius: 3
-                color: root.palette.tooltipBackground
+                color: root.colorPalette.tooltipBackground
 
                 Text {
                     id: tooltipText
                     anchors.centerIn: parent
-                    color: root.palette.tooltipText
+                    color: root.colorPalette.tooltipText
                     font.pixelSize: 11
                     text: tooltip.visible ? tooltip.band.name + ", month " + tooltip.month + ": " + tooltip.interval.low.toFixed(1) + " to " + tooltip.interval.high.toFixed(1) : ""
                 }
