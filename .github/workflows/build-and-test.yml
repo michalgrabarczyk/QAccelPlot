@@ -248,6 +248,8 @@ jobs:
         env:
           # Pixel checks expect one logical pixel per physical pixel; test windows fit the hosted desktop.
           QT_SCALE_FACTOR: '1'
+          # On Windows, Qt Test otherwise logs to the debugger and ctest shows no failure output.
+          QT_FORCE_STDERR_LOGGING: '1'
         run: ctest --test-dir build -C Release --output-on-failure -L '^unit-test$'
 
       - name: Upload screenshots and test log

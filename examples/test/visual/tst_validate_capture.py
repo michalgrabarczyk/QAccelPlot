@@ -195,6 +195,7 @@ class CaptureValidationTests(unittest.TestCase):
         unit_test_step = windows_and_macos.split("\n\n", maxsplit=1)[0]
         # The job-wide 0.5 scale factor would halve the pixels the rendering tests inspect.
         self.assertIn("QT_SCALE_FACTOR: '1'", unit_test_step)
+        self.assertIn("QT_FORCE_STDERR_LOGGING: '1'", unit_test_step)
 
     def test_workflow_provides_one_combined_screenshot_download(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
