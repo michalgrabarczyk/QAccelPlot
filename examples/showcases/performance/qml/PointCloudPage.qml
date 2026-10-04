@@ -46,8 +46,8 @@ QAccelPlot.Plot {
         id: galaxyColormap
 
         // A fixed value range spares the clouds a scan of every value per update.
-        min: plot.settings.fixedColormapRange ? 0 : NaN
-        max: plot.settings.fixedColormapRange ? 1 : NaN
+        min: plot.settings.autoColorRange ? NaN : 0
+        max: plot.settings.autoColorRange ? NaN : 1
         stops: [
             GradientStop {
                 position: 0.0

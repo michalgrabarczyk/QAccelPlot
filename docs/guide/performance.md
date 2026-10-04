@@ -174,7 +174,7 @@ costs:
 | --- | --- |
 | All | Record count, series count (the same records split across 1 to 100 series), ingestion API, hover hit-testing |
 | `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps |
-| `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, fixed or data-resolved colormap range, invalid points |
+| `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, automatic color range, invalid points |
 | `RectangleSeries` | Tile size, categories, border width, minimum size, hover highlight |
 
 Display FPS stops at the display refresh rate, so compare options at a record

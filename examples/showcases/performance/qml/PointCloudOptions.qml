@@ -30,11 +30,11 @@ ColumnLayout {
     }
 
     OptionSwitch {
-        label: "Fixed colormap range"
-        checked: root.settings.fixedColormapRange
+        label: "Auto color range"
+        checked: root.settings.autoColorRange
         enabled: root.settings.values && root.valuesAvailable
         Layout.fillWidth: true
-        onToggled: checked => root.settings.fixedColormapRange = checked
+        onToggled: checked => root.settings.autoColorRange = checked
     }
 
     OptionChoice {

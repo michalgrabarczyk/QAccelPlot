@@ -11,8 +11,8 @@ import QAccelPlot as QAccelPlot
 PageSettings {
     // Whether every point carries a colormap value. The raw-copy ingestion carries none.
     property bool values: true
-    // Whether the colormap range is fixed instead of scanned from the values on every update.
-    property bool fixedColormapRange: true
+    // Whether the color range is found by scanning the values on every update instead of being set to 0..1.
+    property bool autoColorRange: false
     // Share of the points whose X is NaN.
     property real invalidFraction: 0
     property int markerShape: QAccelPlot.PointCloud.Circle
