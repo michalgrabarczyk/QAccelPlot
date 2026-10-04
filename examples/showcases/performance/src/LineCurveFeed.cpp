@@ -20,12 +20,17 @@ SineWaveParameters LineCurveFeed::parameters(const PageScene& /*scene*/, const C
     return parameters;
 }
 
-void LineCurveFeed::apply(QAccelPlot::LineCurve& curve, SineWavePart& part, const CommonOptions& /*options*/)
+void LineCurveFeed::apply(QAccelPlot::LineCurve& curve, SineWavePart& part, const CommonOptions& options)
 {
+    // Only the no-range float setters take a prebuilt vertex cache.
     if (part.vertexCache.empty()) {
-        curve.setDataFNoRange(std::move(part.floats), part.count);
-    } else {
+        applyRecords(curve, part, options.ingestion);
+    } else if (options.ingestion == Ingestion::FloatNoRangeMove) {
         curve.setDataFNoRangeWithCache(std::move(part.floats), part.count, std::move(part.vertexCache));
+    } else if (options.ingestion == Ingestion::FloatNoRangeCopy) {
+        curve.setDataFNoRangeWithCache(part.floats.data(), part.count, std::move(part.vertexCache));
+    } else {
+        applyRecords(curve, part, options.ingestion);
     }
 }
 

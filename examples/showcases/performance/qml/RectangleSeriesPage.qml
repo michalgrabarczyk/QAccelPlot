@@ -14,7 +14,7 @@ QAccelPlot.Plot {
     objectName: "rectangleSeriesPlot"
 
     required property QtObject settings
-    readonly property color tileColor: "cornflowerblue"
+    readonly property var seriesColors: ["cornflowerblue", "#ffb454", "#ff6b9d", "mediumaquamarine"]
     // Tiles overlap more as the count grows, so each gets fainter and overlap adds up to brightness.
     readonly property real tileOpacity: Math.max(0.015, Math.min(0.7, 100000 / settings.count))
 
@@ -38,9 +38,17 @@ QAccelPlot.Plot {
         label: "y"
     }
 
-    QAccelPlot.RectangleSeries {
-        xAxis: plot.xAxis
-        yAxis: plot.yAxis
-        color: Qt.rgba(plot.tileColor.r, plot.tileColor.g, plot.tileColor.b, plot.tileOpacity)
+    // The series share the tile grid: each draws a run of its rows.
+    Repeater {
+        model: plot.settings.seriesCount
+
+        delegate: QAccelPlot.RectangleSeries {
+            required property int index
+            readonly property color tileColor: plot.seriesColors[index % plot.seriesColors.length]
+
+            xAxis: plot.xAxis
+            yAxis: plot.yAxis
+            color: Qt.rgba(tileColor.r, tileColor.g, tileColor.b, plot.tileOpacity)
+        }
     }
 }

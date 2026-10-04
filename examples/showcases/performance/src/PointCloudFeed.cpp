@@ -20,9 +20,30 @@ GalaxyParameters PointCloudFeed::parameters(const PageScene& /*scene*/, const Co
     return parameters;
 }
 
-void PointCloudFeed::apply(QAccelPlot::PointCloud& cloud, GalaxyPart& part, const CommonOptions& /*options*/)
+void PointCloudFeed::apply(QAccelPlot::PointCloud& cloud, GalaxyPart& part, const CommonOptions& options)
 {
-    cloud.setDataFNoRange(std::move(part.floats), std::move(part.values), part.count);
+    if (part.count == 0) {
+        cloud.clearData();
+        return;
+    }
+    switch (options.ingestion) {
+    case Ingestion::FloatNoRangeMove:
+        cloud.setDataFNoRange(std::move(part.floats), std::move(part.values), part.count);
+        break;
+    case Ingestion::FloatMove:
+        cloud.setDataF(std::move(part.floats), std::move(part.values), part.count);
+        break;
+    case Ingestion::FloatNoRangeCopy:
+        // The raw-array setters take no values.
+        applyRecords(cloud, part, options.ingestion);
+        break;
+    case Ingestion::DoubleMove:
+        cloud.setData(std::move(part.doubles), std::move(part.values), part.count);
+        break;
+    case Ingestion::FloatPost:
+        cloud.postData(std::move(part.floats), std::move(part.values), part.count);
+        break;
+    }
 }
 
 } // namespace QAccelPlotExample

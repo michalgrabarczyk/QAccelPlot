@@ -15,6 +15,8 @@ QAccelPlot.Plot {
 
     required property QtObject settings
 
+    readonly property var seriesColors: ["mediumaquamarine", "#ffb454", "#ff6b9d", "#7aa2f7"]
+
     legendVisible: false
 
     xAxis: ExampleAxis {
@@ -35,10 +37,17 @@ QAccelPlot.Plot {
         label: "Amplitude"
     }
 
-    QAccelPlot.LineCurve {
-        xAxis: plot.xAxis
-        yAxis: plot.yAxis
-        color: "mediumaquamarine"
-        lineWidth: 3
+    // The curves share the wave: each draws one stretch of it.
+    Repeater {
+        model: plot.settings.seriesCount
+
+        delegate: QAccelPlot.LineCurve {
+            required property int index
+
+            xAxis: plot.xAxis
+            yAxis: plot.yAxis
+            color: plot.seriesColors[index % plot.seriesColors.length]
+            lineWidth: 3
+        }
     }
 }

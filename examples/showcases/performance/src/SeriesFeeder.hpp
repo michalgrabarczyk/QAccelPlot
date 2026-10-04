@@ -36,7 +36,8 @@ public:
 /// \a Feed names the page and its types: \c Generator, \c Series, \c kSettingsProperty,
 /// \c kPlotName, <tt>parameters(const PageScene&, const CommonOptions&)</tt> returning the
 /// generator parameters, and <tt>apply(Series&, Part&, const CommonOptions&)</tt> handing one
-/// part of a batch to a series.
+/// part of a batch to a series. A batch generated for other settings than the current ones,
+/// such as another series count, is dropped.
 template <typename Feed> class SeriesFeeder final : public PageFeeder {
 public:
     /// \brief Looks up the page's plot below \a root.
@@ -66,16 +67,29 @@ public:
             return false;
         }
         const auto series = scene_.template series<typename Feed::Series>();
-        if (series.empty() || series.size() != batch.parts.size()) {
+        if (series.empty() || series.size() != batch.parts.size() || !hasPrecisionFor(batch, options.ingestion)) {
             return false;
         }
         for (auto index = std::size_t{0}; index < series.size(); ++index) {
+            if (series[index]->acceptHoverEvents() != options.hoverEnabled) {
+                series[index]->setAcceptHoverEvents(options.hoverEnabled);
+            }
             Feed::apply(*series[index], batch.parts[index], options);
         }
         return true;
     }
 
 private:
+    static bool hasPrecisionFor(const typename Feed::Generator::Batch& batch, const Ingestion ingestion)
+    {
+        for (const auto& part : batch.parts) {
+            if (!QAccelPlotExample::hasPrecisionFor(part, ingestion)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     void configure(const CommonOptions& options, const double timeSeconds)
     {
         worker_.setParameters(Feed::parameters(scene_, options));

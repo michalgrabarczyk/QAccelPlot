@@ -20,9 +20,9 @@ PlasmaParameters RectangleSeriesFeed::parameters(const PageScene& /*scene*/, con
     return parameters;
 }
 
-void RectangleSeriesFeed::apply(QAccelPlot::RectangleSeries& series, PlasmaPart& part, const CommonOptions& /*options*/)
+void RectangleSeriesFeed::apply(QAccelPlot::RectangleSeries& series, PlasmaPart& part, const CommonOptions& options)
 {
-    series.setDataFNoRange(std::move(part.floats), part.count);
+    applyRecords(series, part, options.ingestion);
 }
 
 } // namespace QAccelPlotExample

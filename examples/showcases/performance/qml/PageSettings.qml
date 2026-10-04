@@ -13,4 +13,10 @@ QtObject {
     property string noun: "points"
     // Total number of records across the series of the page.
     property int count: 1000000
+    // Number of series the records are split across.
+    property int seriesCount: 1
+    // Series API that receives the records; a name known to ingestionFromName() in Ingestion.cpp.
+    property string ingestion: "floatNoRangeMove"
+    // Whether the series take part in hover hit-testing.
+    property bool hoverEnabled: true
 }

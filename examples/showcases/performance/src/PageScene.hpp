@@ -8,6 +8,7 @@
 #pragma once
 
 #include "DatasetParts.hpp"
+#include "Ingestion.hpp"
 
 #include <QAccelPlot/series/PlotSeries.hpp>
 
@@ -27,6 +28,12 @@ namespace QAccelPlotExample {
 struct CommonOptions {
     /// \brief Total number of records across the page's series.
     int count{1};
+    /// \brief Number of series the records are split across.
+    int seriesCount{1};
+    /// \brief Series API that receives the records.
+    Ingestion ingestion{Ingestion::FloatNoRangeMove};
+    /// \brief Whether the series take part in hover hit-testing.
+    bool hoverEnabled{true};
 };
 
 /// \brief Returns the dataset size and layout that \a options ask for.

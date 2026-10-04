@@ -19,6 +19,8 @@ QAccelPlot.Plot {
     // Widens the X range with the plot, so the galaxy stays circular.
     readonly property real xHalfRange: 1.15 * (plotRect.height > 0 ? plotRect.width / plotRect.height : 1)
 
+    readonly property var seriesColors: ["#b9c8ff", "#ffb454", "#ff6b9d", "mediumaquamarine"]
+
     legendVisible: false
 
     xAxis: ExampleAxis {
@@ -39,43 +41,56 @@ QAccelPlot.Plot {
         label: "y"
     }
 
-    QAccelPlot.PointCloud {
-        xAxis: plot.xAxis
-        yAxis: plot.yAxis
-        marker.shape: QAccelPlot.PointCloud.Circle
-        marker.size: 2
-        opacity: plot.pointOpacity
-        // A fixed value range spares the cloud a scan of every value per update.
-        // Warm core, blue arms, and violet rim; pink marks star-forming regions in the arms.
-        colormap: QAccelPlot.Colormap {
-            min: 0
-            max: 1
-            stops: [
-                GradientStop {
-                    position: 0.0
-                    color: "#fff8e7"
-                },
-                GradientStop {
-                    position: 0.12
-                    color: "#ffd27f"
-                },
-                GradientStop {
-                    position: 0.3
-                    color: "#ff8fb1"
-                },
-                GradientStop {
-                    position: 0.45
-                    color: "#b9c8ff"
-                },
-                GradientStop {
-                    position: 0.75
-                    color: "#5b6cff"
-                },
-                GradientStop {
-                    position: 1.0
-                    color: "#3a1f7a"
-                }
-            ]
+    // A fixed value range spares the clouds a scan of every value per update.
+    // Warm core, blue arms, and violet rim; pink marks star-forming regions in the arms.
+    QAccelPlot.Colormap {
+        id: galaxyColormap
+
+        min: 0
+        max: 1
+        stops: [
+            GradientStop {
+                position: 0.0
+                color: "#fff8e7"
+            },
+            GradientStop {
+                position: 0.12
+                color: "#ffd27f"
+            },
+            GradientStop {
+                position: 0.3
+                color: "#ff8fb1"
+            },
+            GradientStop {
+                position: 0.45
+                color: "#b9c8ff"
+            },
+            GradientStop {
+                position: 0.75
+                color: "#5b6cff"
+            },
+            GradientStop {
+                position: 1.0
+                color: "#3a1f7a"
+            }
+        ]
+    }
+
+    // The clouds share the galaxy: each draws one ring of it.
+    Repeater {
+        model: plot.settings.seriesCount
+
+        delegate: QAccelPlot.PointCloud {
+            required property int index
+
+            xAxis: plot.xAxis
+            yAxis: plot.yAxis
+            // Used when the points carry no values.
+            color: plot.seriesColors[index % plot.seriesColors.length]
+            marker.shape: QAccelPlot.PointCloud.Circle
+            marker.size: 2
+            opacity: plot.pointOpacity
+            colormap: galaxyColormap
         }
     }
 }

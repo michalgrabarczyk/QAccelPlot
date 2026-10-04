@@ -10,6 +10,7 @@ qaccelplot_add_example(Performance
         src/DataDeliveryMetrics.cpp
         src/DatasetParts.cpp
         src/GalaxyGenerator.cpp
+        src/Ingestion.cpp
         src/LineCurveFeed.cpp
         src/PageScene.cpp
         src/PlasmaGenerator.cpp
@@ -23,6 +24,8 @@ qaccelplot_add_example(Performance
         qml/ControlPanel.qml
         qml/LineCurvePage.qml
         qml/LineCurveSettings.qml
+        qml/OptionChoice.qml
+        qml/OptionSwitch.qml
         qml/PageSettings.qml
         qml/PointCloudPage.qml
         qml/PointCloudSettings.qml

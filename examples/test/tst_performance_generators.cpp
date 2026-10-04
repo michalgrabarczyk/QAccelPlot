@@ -7,6 +7,7 @@
 //
 #include "DatasetParts.hpp"
 #include "GalaxyGenerator.hpp"
+#include "Ingestion.hpp"
 #include "PlasmaGenerator.hpp"
 #include "SineWaveGenerator.hpp"
 
@@ -52,6 +53,7 @@ private slots:
     void recordsAreSplitEvenly();
     void splitDatasetsMatchTheUnsplitOnes();
     void doublePrecisionMovesRecordsToDoubles();
+    void ingestionNamesSelectThePrecision();
     void sineLookupTracksSine();
     void sineSendsVertexCacheOnlyAfterCountChanges();
     void galaxyRotatesEachBand();
@@ -108,6 +110,31 @@ void PerformanceGeneratorsTest::doublePrecisionMovesRecordsToDoubles()
     const auto& part = batch.parts.front();
     QVERIFY(part.floats.empty());
     QCOMPARE(part.doubles, std::vector<double>(floats.begin(), floats.end()));
+}
+
+void PerformanceGeneratorsTest::ingestionNamesSelectThePrecision()
+{
+    QCOMPARE(ingestionFromName(QStringLiteral("floatNoRangeMove")), Ingestion::FloatNoRangeMove);
+    QCOMPARE(ingestionFromName(QStringLiteral("floatMove")), Ingestion::FloatMove);
+    QCOMPARE(ingestionFromName(QStringLiteral("floatNoRangeCopy")), Ingestion::FloatNoRangeCopy);
+    QCOMPARE(ingestionFromName(QStringLiteral("doubleMove")), Ingestion::DoubleMove);
+    QCOMPARE(ingestionFromName(QStringLiteral("floatPost")), Ingestion::FloatPost);
+    QCOMPARE(ingestionFromName(QStringLiteral("unknown")), Ingestion::FloatNoRangeMove);
+
+    auto parameters = parametersFor<PlasmaParameters>(10);
+    auto generator = PlasmaGenerator{};
+    auto batch = PlasmaBatch{};
+    generator.generate(batch, parameters, 0.0);
+    QVERIFY(hasPrecisionFor(batch.parts.front(), Ingestion::FloatMove));
+    QVERIFY(!hasPrecisionFor(batch.parts.front(), Ingestion::DoubleMove));
+
+    parameters.dataset.doublePrecision = true;
+    generator.generate(batch, parameters, 0.0);
+    QVERIFY(hasPrecisionFor(batch.parts.front(), Ingestion::DoubleMove));
+    QVERIFY(!hasPrecisionFor(batch.parts.front(), Ingestion::FloatPost));
+
+    // An empty part clears its series whatever the ingestion.
+    QVERIFY(hasPrecisionFor(SeriesPart{}, Ingestion::DoubleMove));
 }
 
 void PerformanceGeneratorsTest::sineLookupTracksSine()

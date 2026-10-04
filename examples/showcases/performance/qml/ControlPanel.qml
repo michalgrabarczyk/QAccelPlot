@@ -71,6 +71,60 @@ ScrollView {
             Layout.fillWidth: true
         }
 
+        Label {
+            text: "DATA"
+            color: root.colorPalette.text
+            font.bold: true
+        }
+
+        OptionChoice {
+            label: "Series"
+            choices: [1, 2, 10, 100].map(count => ({
+                        text: count.toString(),
+                        value: count
+                    }))
+            value: root.settings.seriesCount
+            Layout.fillWidth: true
+            onSelected: value => root.settings.seriesCount = value
+        }
+
+        OptionChoice {
+            label: "Ingestion API"
+            stacked: true
+            choices: [
+                {
+                    text: "setDataFNoRange (move)",
+                    value: "floatNoRangeMove"
+                },
+                {
+                    text: "setDataF (move)",
+                    value: "floatMove"
+                },
+                {
+                    text: "setDataFNoRange (raw copy)",
+                    value: "floatNoRangeCopy"
+                },
+                {
+                    text: "setData (doubles, move)",
+                    value: "doubleMove"
+                },
+                {
+                    text: "postData (move)",
+                    value: "floatPost"
+                }
+            ]
+            value: root.settings.ingestion
+            Layout.fillWidth: true
+            onSelected: value => root.settings.ingestion = value
+        }
+
+        OptionSwitch {
+            label: "Hover hit-testing"
+            checked: root.settings.hoverEnabled
+            Layout.fillWidth: true
+            onToggled: checked => root.settings.hoverEnabled = checked
+        }
+
         Button {
             text: "Reset to defaults"
             Layout.fillWidth: true

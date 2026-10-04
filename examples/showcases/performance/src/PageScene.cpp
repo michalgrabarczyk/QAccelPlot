@@ -8,15 +8,31 @@
 #include "PageScene.hpp"
 
 #include <QQuickItem>
+#include <QtGlobal>
 
 #include <algorithm>
 
 namespace QAccelPlotExample {
+namespace {
+
+constexpr auto kMaximumSeriesCount = 100;
+
+// Like the library, keeps hover off for every series when QACCELPLOT_HOVER_ENABLED is 0.
+bool hoverAllowedByEnvironment()
+{
+    auto isInteger = false;
+    const auto value = qEnvironmentVariableIntValue("QACCELPLOT_HOVER_ENABLED", &isInteger);
+    return !isInteger || value != 0;
+}
+
+} // namespace
 
 DatasetParameters datasetParameters(const CommonOptions& options)
 {
     auto dataset = DatasetParameters{};
     dataset.count = options.count;
+    dataset.seriesCount = options.seriesCount;
+    dataset.doublePrecision = usesDoubles(options.ingestion);
     return dataset;
 }
 
@@ -38,6 +54,9 @@ CommonOptions PageScene::commonOptions() const
 {
     auto options = CommonOptions{};
     options.count = std::max(1, setting("count").toInt());
+    options.seriesCount = std::clamp(setting("seriesCount").toInt(), 1, kMaximumSeriesCount);
+    options.ingestion = ingestionFromName(setting("ingestion").toString());
+    options.hoverEnabled = setting("hoverEnabled").toBool() && hoverAllowedByEnvironment();
     return options;
 }
 
