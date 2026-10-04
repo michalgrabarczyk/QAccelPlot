@@ -31,6 +31,7 @@ target_include_directories(tst_generation_worker PRIVATE
 add_qaccelplot_test(tst_performance_generators
     examples
     tst_performance_generators.cpp
+    "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/DatasetParts.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/GalaxyGenerator.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/PlasmaGenerator.cpp"
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src/SineLookup.cpp"

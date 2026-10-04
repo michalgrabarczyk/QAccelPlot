@@ -14,6 +14,7 @@
 #include <QQuickWindow>
 #include <QString>
 
+#include <algorithm>
 #include <utility>
 
 using namespace QAccelPlot;
@@ -21,21 +22,27 @@ using namespace QAccelPlot;
 namespace QAccelPlotExample {
 namespace {
 
+template <typename Worker> void configure(Worker& worker, const int count, const double timeSeconds)
+{
+    auto parameters = typename Worker::Parameters{};
+    parameters.dataset.count = std::max(1, count);
+    worker.setParameters(parameters);
+    worker.setTime(timeSeconds);
+}
+
 template <typename Worker> void setRunning(Worker& worker, const bool running, const int count, const double timeSeconds)
 {
     if (!running) {
         worker.requestStop();
         return;
     }
-    worker.setCount(count);
-    worker.setTime(timeSeconds);
+    configure(worker, count, timeSeconds);
     worker.start();
 }
 
 template <typename Worker> bool takeBatch(Worker& worker, const int count, const double timeSeconds, typename Worker::Batch& batch)
 {
-    worker.setCount(count);
-    worker.setTime(timeSeconds);
+    configure(worker, count, timeSeconds);
     return worker.tryConsume(batch);
 }
 
@@ -142,10 +149,11 @@ void ShowcaseController::updateLineCurve(const double timeSeconds)
     if (!takeBatch(lineCurveWorker_, count(Page::LineCurve), timeSeconds, batch) || !lineCurve_) {
         return;
     }
-    if (batch.vertexCache.empty()) {
-        lineCurve_->setDataFNoRange(std::move(batch.xy), batch.pointCount);
+    auto& part = batch.parts.front();
+    if (part.vertexCache.empty()) {
+        lineCurve_->setDataFNoRange(std::move(part.floats), part.count);
     } else {
-        lineCurve_->setDataFNoRangeWithCache(std::move(batch.xy), batch.pointCount, std::move(batch.vertexCache));
+        lineCurve_->setDataFNoRangeWithCache(std::move(part.floats), part.count, std::move(part.vertexCache));
     }
     dataApplied();
 }
@@ -156,7 +164,8 @@ void ShowcaseController::updatePointCloud(const double timeSeconds)
     if (!takeBatch(pointCloudWorker_, count(Page::PointCloud), timeSeconds, batch) || !pointCloud_) {
         return;
     }
-    pointCloud_->setDataFNoRange(std::move(batch.xy), std::move(batch.values), batch.pointCount);
+    auto& part = batch.parts.front();
+    pointCloud_->setDataFNoRange(std::move(part.floats), std::move(part.values), part.count);
     dataApplied();
 }
 
@@ -166,7 +175,8 @@ void ShowcaseController::updateRectangleSeries(const double timeSeconds)
     if (!takeBatch(rectangleSeriesWorker_, count(Page::RectangleSeries), timeSeconds, batch) || !rectangleSeries_) {
         return;
     }
-    rectangleSeries_->setDataFNoRange(std::move(batch.rects), batch.rectangleCount);
+    auto& part = batch.parts.front();
+    rectangleSeries_->setDataFNoRange(std::move(part.floats), part.count);
     dataApplied();
 }
 

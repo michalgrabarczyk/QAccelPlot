@@ -8,6 +8,7 @@
 qaccelplot_add_example(Performance
     SOURCES
         src/DataDeliveryMetrics.cpp
+        src/DatasetParts.cpp
         src/GalaxyGenerator.cpp
         src/PlasmaGenerator.cpp
         src/ShowcaseController.cpp

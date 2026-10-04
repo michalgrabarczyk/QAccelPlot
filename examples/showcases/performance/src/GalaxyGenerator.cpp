@@ -70,9 +70,10 @@ GalaxyPoint makePoint(Random& random)
     return {static_cast<float>(radius * std::cos(angle)), static_cast<float>(radius * std::sin(angle)), static_cast<float>(value), band};
 }
 
-void rotatePoints(const float* source, float* destination, const int begin, const int end, const float cosine, const float sine)
+// Rotates \a count XY pairs from \a source into \a destination.
+void rotatePoints(const float* source, float* destination, const int count, const float cosine, const float sine)
 {
-    for (auto i = begin; i < end; ++i) {
+    for (auto i = 0; i < count; ++i) {
         const auto offset = static_cast<std::size_t>(i) * 2;
         const auto x = source[offset];
         const auto y = source[offset + 1];
@@ -83,21 +84,22 @@ void rotatePoints(const float* source, float* destination, const int begin, cons
 
 } // namespace
 
-void GalaxyGenerator::generate(Batch& batch, const int pointCount, const double timeSeconds)
+void GalaxyGenerator::generate(Batch& batch, const Parameters& parameters, const double timeSeconds)
 {
+    const auto pointCount = parameters.dataset.count;
     if (pointCount != builtPointCount_) {
         rebuildGalaxy(pointCount);
     }
 
-    batch.xy.resize(static_cast<std::size_t>(pointCount) * 2);
-    batch.values = baseValues_;
-    batch.pointCount = pointCount;
-
-    for (auto band = 0; band < kBandCount; ++band) {
-        const auto angle = bandAngleAt(band, timeSeconds);
-        rotatePoints(basePositions_.data(), batch.xy.data(), bandStarts_[static_cast<std::size_t>(band)], bandStarts_[static_cast<std::size_t>(band) + 1],
-            static_cast<float>(std::cos(angle)), static_cast<float>(std::sin(angle)));
+    resizeParts(batch.parts, parameters.dataset, 2);
+    auto firstPoint = 0;
+    for (auto& part : batch.parts) {
+        const auto firstValue = baseValues_.begin() + firstPoint;
+        part.values.assign(firstValue, firstValue + part.count);
+        rotateInto(part, firstPoint, timeSeconds);
+        firstPoint += part.count;
     }
+    applyPrecision(batch.parts, parameters.dataset);
 }
 
 double GalaxyGenerator::bandAngleAt(const int band, const double timeSeconds)
@@ -141,6 +143,21 @@ void GalaxyGenerator::rebuildGalaxy(const int pointCount)
         baseValues_[index] = point.value;
     }
     builtPointCount_ = pointCount;
+}
+
+void GalaxyGenerator::rotateInto(GalaxyPart& part, const int firstPoint, const double timeSeconds) const
+{
+    const auto endPoint = firstPoint + part.count;
+    for (auto band = 0; band < kBandCount; ++band) {
+        const auto begin = std::max(firstPoint, bandStarts_[static_cast<std::size_t>(band)]);
+        const auto end = std::min(endPoint, bandStarts_[static_cast<std::size_t>(band) + 1]);
+        if (begin >= end) {
+            continue;
+        }
+        const auto angle = bandAngleAt(band, timeSeconds);
+        rotatePoints(basePositions_.data() + static_cast<std::size_t>(begin) * 2, part.floats.data() + static_cast<std::size_t>(begin - firstPoint) * 2,
+            end - begin, static_cast<float>(std::cos(angle)), static_cast<float>(std::sin(angle)));
+    }
 }
 
 } // namespace QAccelPlotExample
