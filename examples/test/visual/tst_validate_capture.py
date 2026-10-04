@@ -77,6 +77,14 @@ def registered_visual_scenarios():
 
 
 class CaptureValidationTests(unittest.TestCase):
+    def setUp(self):
+        # The CI matrix sets these for its real captures; the tests supply their own expectations.
+        environment = mock.patch.dict(os.environ)
+        environment.start()
+        self.addCleanup(environment.stop)
+        for name in ("QACCELPLOT_EXPECTED_GRAPHICS_API", "QACCELPLOT_EXPECTED_QT_VERSION", "QACCELPLOT_OPENGL_ES_VERSION"):
+            os.environ.pop(name, None)
+
     def render_metadata(self, *, requested="opengl", actual="opengl", opengl_es=False, opengl_version=(4, 5)):
         return {
             "version": 5,
