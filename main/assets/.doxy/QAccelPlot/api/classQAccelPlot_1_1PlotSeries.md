@@ -182,6 +182,7 @@ flowchart TB
 |  void | [**clearDataRanges**](#function-cleardataranges) () <br>_Clears cached extents after a series has been emptied._  |
 |  void | [**clearXDataRange**](#function-clearxdatarange) () <br>_Clears the cached X extent, e.g. when no sample has a valid X coordinate._  |
 |  void | [**clearYDataRange**](#function-clearydatarange) () <br>_Clears the cached Y extent, e.g. when no sample has a valid Y coordinate._  |
+|  bool | [**event**](#function-event) (QEvent \* event) override<br>_Withholds hover events from a series beneath another series under the cursor._  |
 |  void | [**extendXDataRange**](#function-extendxdatarange) (qreal x) <br>_Widens the reported X extent to include_ _x_ _._ |
 |  void | [**extendYDataRange**](#function-extendydatarange) (qreal y) <br>_Widens the reported Y extent to include_ _y_ _. A non-finite__y_ _leaves the extent unchanged._ |
 | virtual bool | [**inspectionAvailable**](#function-inspectionavailable) () const<br>_Returns false while the records are ambiguous, such as during a data transition. Default: true._  |
@@ -960,6 +961,27 @@ void QAccelPlot::PlotSeries::clearYDataRange ()
 
 
 
+
+<hr>
+
+
+
+
+### function event {#function-event}
+
+_Withholds hover events from a series beneath another series under the cursor._ 
+```C++
+bool QAccelPlot::PlotSeries::event (
+    QEvent * event
+) override
+```
+
+
+
+Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop at the topmost hovered item anyway; older versions also deliver the event to the series beneath, which then see a hover leave instead. 
+
+
+        
 
 <hr>
 

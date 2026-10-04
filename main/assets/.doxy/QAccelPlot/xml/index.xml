@@ -1937,6 +1937,7 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" kind="property"><name>dataRevision</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2a23af3683416afeea98697c66616cea" kind="property"><name>inspection</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a42b492337423f662f507c45a51d509c3" kind="friend"><name>SeriesInspection</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a24ac110aeb244c93cb67592fd019de22" kind="variable"><name>hoverDelivered_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aedb760180e9085019c482fc3486c5222" kind="variable"><name>dataRevision_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2abb726bf878eed8dad217273f2ebe29" kind="variable"><name>inspection_</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1aca49ac7b8167fada977b2bbe58aaeb58" kind="variable"><name>name_</name></member>
@@ -2001,8 +2002,11 @@
     <member refid="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" kind="function"><name>onAxisRangeChanged</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" kind="function"><name>resolvePlotRect</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" kind="function"><name>event</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a2f5bb085b529a5ab4601ea1afaeb6a42" kind="function"><name>reportXDataRangeToAxis</name></member>
     <member refid="classQAccelPlot_1_1PlotSeries_1a31f621ebbb45eda4bf0bd8587b6da9b5" kind="function"><name>reportYDataRangeToAxis</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a9a82e9b26322b8f6044ef0985d90e95f" kind="function"><name>deliverTopmostHover</name></member>
+    <member refid="classQAccelPlot_1_1PlotSeries_1a3a89bb1a3d1238fa8c5214bda8ba4392" kind="function"><name>coveredBySeriesAbove</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1InspectionIndex_1_1Point" kind="struct"><name>QAccelPlot::InspectionIndex::Point</name>
     <member refid="structQAccelPlot_1_1InspectionIndex_1_1Point_1a0b52bd6e524e81dfdd7a26d551339778" kind="variable"><name>x</name></member>

@@ -151,13 +151,17 @@ protected:
     virtual void onAxisScaleChanged();
     virtual void onAxisRangeChanged();
     QRectF resolvePlotRect() const;
+    bool event(QEvent* event) override;
 
 private:
     friend class SeriesInspection;
 
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
+    void deliverTopmostHover(QHoverEvent* event);
+    bool coveredBySeriesAbove(const QPointF& position) const;
 
+    bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};
     QString name_;
