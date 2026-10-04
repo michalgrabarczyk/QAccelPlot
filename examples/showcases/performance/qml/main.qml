@@ -45,7 +45,7 @@ Window {
     width: 1400
     height: 900
     visible: true
-    title: "QAccelPlot Performance Showcase"
+    title: "QAccelPlot Performance Lab"
     color: colorPalette.window
     Material.theme: Material.Dark
     Material.accent: colorPalette.materialAccent

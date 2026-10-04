@@ -164,8 +164,21 @@ cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
 7. Separate static rendering, live updates, and data-ingestion measurements.
 8. Repeat the test and publish the scenario with the result.
 
-The Performance Showcase streams a `LineCurve`, a `PointCloud`, and a
-`RectangleSeries`, one per tab. Only the visible tab generates data. It reports:
+The Performance Lab
+([`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance))
+streams a `LineCurve`, a `PointCloud`, and a `RectangleSeries`, one per tab.
+Only the visible tab generates data. Change one option at a time to see what it
+costs:
+
+| Tab | Options |
+| --- | --- |
+| All | Record count, series count (the same records split across 1 to 100 series), ingestion API, hover hit-testing |
+| `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps, wave cycles |
+| `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, fixed or data-resolved colormap range, invalid points |
+| `RectangleSeries` | Tile size, categories, border width, minimum size, hover highlight |
+
+Display FPS stops at the display refresh rate, so compare options at a record
+count that keeps it below that rate. The lab reports:
 
 - **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
