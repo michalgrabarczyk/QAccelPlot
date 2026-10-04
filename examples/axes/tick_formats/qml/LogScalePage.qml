@@ -12,7 +12,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
     property bool logarithmic: true
 
     function responseAt(frequency) {
@@ -33,7 +33,7 @@ Item {
 
             Label {
                 text: "A logarithmic frequency axis gives each audio decade equal space. Toggle it to see why a linear scale hides low-frequency detail."
-                color: root.palette.textSecondary
+                color: root.colorPalette.textSecondary
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
@@ -74,7 +74,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesTertiary
+                color: root.colorPalette.seriesTertiary
                 lineWidth: 3
                 antialiasingEnabled: true
 

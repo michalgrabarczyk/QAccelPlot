@@ -14,7 +14,7 @@ import QtQuick.Layouts
 ScrollView {
     id: root
     required property var window
-    required property var palette
+    required property var colorPalette
     readonly property var dataset: window.activeDataset
     clip: true
 
@@ -28,13 +28,13 @@ ScrollView {
 
         Label {
             text: "LIVE DATASET"
-            color: root.palette.text
+            color: root.colorPalette.text
             font.bold: true
         }
 
         Label {
             text: root.dataset.noun.charAt(0).toUpperCase() + root.dataset.noun.slice(1) + " count"
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             Layout.fillWidth: true
         }
 
@@ -66,7 +66,7 @@ ScrollView {
 
         Label {
             text: "Up to " + root.countLabel(root.window.maximumCount) + " " + root.dataset.noun + ". Only the visible tab generates data."
-            color: root.palette.textMuted
+            color: root.colorPalette.textMuted
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }

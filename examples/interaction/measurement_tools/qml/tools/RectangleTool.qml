@@ -13,7 +13,7 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     anchors.fill: parent
     opacity: active ? 1.0 : 0.78
 
@@ -156,14 +156,14 @@ Item {
         width: areaLabel.implicitWidth + 10
         height: areaLabel.implicitHeight + 6
         radius: 3
-        color: root.palette.tooltipBackground
+        color: root.colorPalette.tooltipBackground
 
         Text {
             id: areaLabel
             anchors.centerIn: parent
             font.pixelSize: 11
             font.bold: true
-            color: root.palette.tooltipText
+            color: root.colorPalette.tooltipText
             text: "A = " + root.dataArea.toFixed(2)
         }
     }
@@ -187,7 +187,7 @@ Item {
         height: root.handleRadius * 2
         radius: root.handleRadius
         color: chArea.pressed ? Qt.lighter(root.borderColor, 1.5) : root.borderColor
-        border.color: root.palette.handleBorder
+        border.color: root.colorPalette.handleBorder
         border.width: 2
         visible: root.active
 

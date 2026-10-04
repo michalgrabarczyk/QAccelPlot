@@ -16,7 +16,7 @@ import QAccelPlot as QAccelPlot
 Item {
     id: root
 
-    required property var palette
+    required property var colorPalette
     anchors.fill: parent
     opacity: active ? 1.0 : 0.78
 
@@ -173,7 +173,7 @@ Item {
         ShapePath {
             strokeColor: Qt.rgba(root.lineColor.r, root.lineColor.g, root.lineColor.b, 0.6)
             strokeWidth: 1.5
-            fillColor: root.palette.transparent
+            fillColor: root.colorPalette.transparent
             PathSvg {
                 path: root.arcPathData
             }
@@ -225,12 +225,12 @@ Item {
         width: angleLabel.implicitWidth + 10
         height: angleLabel.implicitHeight + 6
         radius: 3
-        color: root.palette.tooltipBackground
+        color: root.colorPalette.tooltipBackground
 
         Text {
             id: angleLabel
             anchors.centerIn: parent
-            color: root.palette.tooltipText
+            color: root.colorPalette.tooltipText
             font.pixelSize: 11
             font.bold: true
             text: root.angleDegrees.toFixed(1) + "°"
@@ -312,7 +312,7 @@ Item {
         height: root.handleRadius * 2
         radius: root.handleRadius
         color: handleMA.pressed ? Qt.lighter(root.handleColor, 1.5) : root.handleColor
-        border.color: root.palette.handleBorder
+        border.color: root.colorPalette.handleBorder
         border.width: 2
         visible: root.active
 

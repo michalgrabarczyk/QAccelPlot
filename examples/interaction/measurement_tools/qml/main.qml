@@ -249,25 +249,25 @@ Window {
             Component {
                 id: rulerComponent
                 RulerTool {
-                    palette: colorPalette
+                    colorPalette: window.colorPalette
                 }
             }
             Component {
                 id: angleComponent
                 AngleTool {
-                    palette: colorPalette
+                    colorPalette: window.colorPalette
                 }
             }
             Component {
                 id: markerComponent
                 PointMarkerTool {
-                    palette: colorPalette
+                    colorPalette: window.colorPalette
                 }
             }
             Component {
                 id: regionComponent
                 RectangleTool {
-                    palette: colorPalette
+                    colorPalette: window.colorPalette
                 }
             }
 

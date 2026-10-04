@@ -12,7 +12,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
     property int formatIndex: 0
     readonly property var formats: ["hh:mm:ss", "mm:ss", "hh:mm:ss.zzz"]
     readonly property real traceStart: new Date(2026, 8, 10, 9, 30, 0, 0).getTime()
@@ -35,20 +35,20 @@ Item {
 
             Label {
                 text: "Raw X values are milliseconds since the Unix epoch. DateTimeTickLabelFormatter turns them into readable clock labels."
-                color: root.palette.textSecondary
+                color: root.colorPalette.textSecondary
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
 
             Label {
                 text: "Label format"
-                color: root.palette.text
+                color: root.colorPalette.text
             }
             ComboBox {
                 model: ["Hours, minutes, seconds", "Minutes and seconds", "With milliseconds"]
                 currentIndex: root.formatIndex
                 Layout.preferredWidth: 190
-                Material.background: root.palette.plotArea
+                Material.background: root.colorPalette.plotArea
                 onActivated: root.formatIndex = currentIndex
             }
         }
@@ -85,7 +85,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: plot.xAxis
                 yAxis: plot.yAxis
-                color: root.palette.seriesPrimary
+                color: root.colorPalette.seriesPrimary
                 lineWidth: 3
                 antialiasingEnabled: true
 

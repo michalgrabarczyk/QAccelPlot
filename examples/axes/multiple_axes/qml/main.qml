@@ -41,13 +41,13 @@ Window {
             ]
 
             SpectrumPage {
-                palette: colorPalette
+                colorPalette: root.colorPalette
             }
             MultiRatePage {
-                palette: colorPalette
+                colorPalette: root.colorPalette
             }
             EcgPanelsPage {
-                palette: colorPalette
+                colorPalette: root.colorPalette
             }
         }
     }

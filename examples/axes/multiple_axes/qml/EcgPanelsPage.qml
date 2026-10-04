@@ -11,7 +11,7 @@ import QtQuick.Layouts
 import QAccelPlot as QAccelPlot
 Item {
     id: root
-    required property var palette
+    required property var colorPalette
     readonly property int sampleCount: 4000
 
     function ecg(phase) {
@@ -24,14 +24,14 @@ Item {
 
         Label {
             text: "Three panels sharing one time axis"
-            color: root.palette.text
+            color: root.colorPalette.text
             font.bold: true
             font.pixelSize: 14
         }
 
         Label {
             text: "The lower panel owns the time axis. Pan or zoom it to update both ECG leads and the respiration trace together."
-            color: root.palette.textSecondary
+            color: root.colorPalette.textSecondary
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
             Layout.bottomMargin: 4
@@ -58,7 +58,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: respirationPlot.xAxis
                 yAxis: leadOnePlot.yAxis
-                color: root.palette.seriesTertiary
+                color: root.colorPalette.seriesTertiary
                 lineWidth: 2
                 antialiasingEnabled: true
                 Component.onCompleted: {
@@ -93,7 +93,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: respirationPlot.xAxis
                 yAxis: leadTwoPlot.yAxis
-                color: root.palette.seriesRose
+                color: root.colorPalette.seriesRose
                 lineWidth: 2
                 antialiasingEnabled: true
                 Component.onCompleted: {
@@ -137,7 +137,7 @@ Item {
             QAccelPlot.LineCurve {
                 xAxis: respirationPlot.xAxis
                 yAxis: respirationPlot.yAxis
-                color: root.palette.seriesCyan
+                color: root.colorPalette.seriesCyan
                 lineWidth: 2
                 antialiasingEnabled: true
                 Component.onCompleted: {
