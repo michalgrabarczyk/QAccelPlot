@@ -11,11 +11,12 @@ import QAccelPlot as QAccelPlot
 // Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
+    objectName: "rectangleSeriesPlot"
 
-    required property int rectangleCount
+    required property QtObject settings
     readonly property color tileColor: "cornflowerblue"
     // Tiles overlap more as the count grows, so each gets fainter and overlap adds up to brightness.
-    readonly property real tileOpacity: Math.max(0.015, Math.min(0.7, 100000 / rectangleCount))
+    readonly property real tileOpacity: Math.max(0.015, Math.min(0.7, 100000 / settings.count))
 
     legendVisible: false
 
@@ -38,7 +39,6 @@ QAccelPlot.Plot {
     }
 
     QAccelPlot.RectangleSeries {
-        objectName: "rectangleSeries"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: Qt.rgba(plot.tileColor.r, plot.tileColor.g, plot.tileColor.b, plot.tileOpacity)

@@ -11,10 +11,11 @@ import QAccelPlot as QAccelPlot
 // Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
+    objectName: "pointCloudPlot"
 
-    required property int pointCount
+    required property QtObject settings
     // Points overlap more as the count grows, so each gets fainter and the arms stay distinct.
-    readonly property real pointOpacity: Math.max(0.035, Math.min(0.35, 350000 / pointCount))
+    readonly property real pointOpacity: Math.max(0.035, Math.min(0.35, 350000 / settings.count))
     // Widens the X range with the plot, so the galaxy stays circular.
     readonly property real xHalfRange: 1.15 * (plotRect.height > 0 ? plotRect.width / plotRect.height : 1)
 
@@ -39,7 +40,6 @@ QAccelPlot.Plot {
     }
 
     QAccelPlot.PointCloud {
-        objectName: "pointCloud"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         marker.shape: QAccelPlot.PointCloud.Circle

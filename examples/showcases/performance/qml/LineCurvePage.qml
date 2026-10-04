@@ -11,6 +11,9 @@ import QAccelPlot as QAccelPlot
 // Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
+    objectName: "lineCurvePlot"
+
+    required property QtObject settings
 
     legendVisible: false
 
@@ -33,7 +36,6 @@ QAccelPlot.Plot {
     }
 
     QAccelPlot.LineCurve {
-        objectName: "lineCurve"
         xAxis: plot.xAxis
         yAxis: plot.yAxis
         color: "mediumaquamarine"

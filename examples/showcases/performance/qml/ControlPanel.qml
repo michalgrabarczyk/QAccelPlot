@@ -10,12 +10,12 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
-// Count controls for the active page.
+// Controls for the settings of the active page.
 ScrollView {
     id: root
     required property var window
     required property var colorPalette
-    readonly property var dataset: window.activeDataset
+    readonly property QtObject settings: window.activeSettings
     clip: true
 
     function countLabel(count) {
@@ -33,19 +33,19 @@ ScrollView {
         }
 
         Label {
-            text: root.dataset.noun.charAt(0).toUpperCase() + root.dataset.noun.slice(1) + " count"
+            text: root.settings.noun.charAt(0).toUpperCase() + root.settings.noun.slice(1) + " count"
             color: root.colorPalette.textSecondary
             Layout.fillWidth: true
         }
 
         TextField {
-            text: root.window.activeCount.toString()
+            text: root.settings.count.toString()
             validator: IntValidator {
                 bottom: 1
                 top: root.window.maximumCount
             }
             Layout.fillWidth: true
-            onEditingFinished: root.window.setActiveCount(parseInt(text) || 1000)
+            onEditingFinished: root.settings.count = parseInt(text) || 1000
         }
 
         GridLayout {
@@ -59,16 +59,22 @@ ScrollView {
                     required property var modelData
                     text: root.countLabel(modelData)
                     Layout.fillWidth: true
-                    onClicked: root.window.setActiveCount(modelData)
+                    onClicked: root.settings.count = modelData
                 }
             }
         }
 
         Label {
-            text: "Up to " + root.countLabel(root.window.maximumCount) + " " + root.dataset.noun + ". Only the visible tab generates data."
+            text: "Up to " + root.countLabel(root.window.maximumCount) + " " + root.settings.noun + ". Only the visible tab generates data."
             color: root.colorPalette.textMuted
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
+        }
+
+        Button {
+            text: "Reset to defaults"
+            Layout.fillWidth: true
+            onClicked: root.window.resetActiveSettings()
         }
 
         Item {
