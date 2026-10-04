@@ -247,14 +247,15 @@ void TestAxisTickPainter::computeNiceStep_residualAtTwoBoundary()
 
 void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
 {
-    constexpr auto kImageWidth = 300;
-    constexpr auto kImageHeight = 80;
-    constexpr auto kAxisY = qreal{20.0};
-    constexpr auto kLabelCenterY = qreal{30.0};
-    constexpr auto kFirstTickX = qreal{75.0};
-    constexpr auto kTickSpacing = qreal{150.0};
-    constexpr auto kReferenceLabelWidth = qreal{140.0};
-    constexpr auto kReferenceLabelHeight = qreal{20.0};
+    // Static, because MSVC v142 refuses to use a local constexpr inside a lambda without a capture.
+    constexpr static auto kImageWidth = 300;
+    constexpr static auto kImageHeight = 80;
+    constexpr static auto kAxisY = qreal{20.0};
+    constexpr static auto kLabelCenterY = qreal{30.0};
+    constexpr static auto kFirstTickX = qreal{75.0};
+    constexpr static auto kTickSpacing = qreal{150.0};
+    constexpr static auto kReferenceLabelWidth = qreal{140.0};
+    constexpr static auto kReferenceLabelHeight = qreal{20.0};
 
     auto font = QFont{};
     font.setPixelSize(12);
