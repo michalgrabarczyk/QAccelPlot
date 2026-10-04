@@ -8,6 +8,7 @@
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
+#include "WindowPlacement.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -203,6 +204,7 @@ public:
         plot_ = qobject_cast<QAccelPlot*>(root_.get());
         if (plot_) {
             plot_->setParentItem(window_.contentItem());
+            QAccelPlotTest::moveAwayFromCursor(window_);
             window_.show();
         }
     }

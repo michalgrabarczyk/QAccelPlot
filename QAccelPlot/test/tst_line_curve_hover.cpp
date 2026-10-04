@@ -6,6 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/QAccelPlot.hpp"
+#include "WindowPlacement.hpp"
 
 #include <QQmlComponent>
 #include <QQmlEngine>
@@ -67,6 +68,7 @@ void LineCurveHoverTest::zeroHoverRadiusPassesHoverToSeriesBeneath()
     auto* plot = qobject_cast<QAccelPlot*>(root.get());
     QVERIFY2(plot, qPrintable(component.errorString()));
     plot->setParentItem(window.contentItem());
+    QAccelPlotTest::moveAwayFromCursor(window);
     window.show();
     QVERIFY(QTest::qWaitForWindowExposed(&window));
     auto* band = plot->findChild<QQuickItem*>(QStringLiteral("band"));
