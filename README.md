@@ -146,7 +146,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
   CI on `main`.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
-- **[Platform matrix](.github/workflows/platform-matrix.yml)**: unit tests and
+- **[Build and test](.github/workflows/build-and-test.yml)**: unit tests and
   a screenshot of every example on Qt 6.2, 6.8, and 6.11 with OpenGL,
   OpenGL ES, Vulkan, Direct3D 11/12, and Metal.
 

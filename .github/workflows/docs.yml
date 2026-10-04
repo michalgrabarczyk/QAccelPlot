@@ -32,6 +32,7 @@ concurrency:
 
 jobs:
   build-docs:
+    name: Build and publish
     runs-on: ubuntu-latest
 
     steps:

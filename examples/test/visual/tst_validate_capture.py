@@ -33,7 +33,7 @@ from validate_capture import (  # noqa: E402
 
 EXAMPLES_DIR = PROJECT_ROOT / "examples"
 EXAMPLE_TESTS_DIR = VISUAL_DIR.parent
-WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "platform-matrix.yml"
+WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "build-and-test.yml"
 TEST_HELPERS_PATH = PROJECT_ROOT / "cmake" / "QAccelPlotTestHelpers.cmake"
 
 
@@ -168,6 +168,11 @@ class CaptureValidationTests(unittest.TestCase):
         self.assertIn('echo "MESA_GLES_VERSION_OVERRIDE=${{ matrix.platform.opengl_es }}"', workflow)
         # Artifact and job names must keep ES captures apart from desktop OpenGL on the same runner.
         self.assertIn(
+            "name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.os_name }} / ${{ matrix.platform.backend_name }}",
+            workflow,
+        )
+        self.assertEqual(workflow.count("backend_name: OpenGL ES 3\n"), 2)
+        self.assertIn(
             "name: visual-${{ matrix.qt_version }}-${{ matrix.platform.label || matrix.platform.backend }}-${{ matrix.platform.os }}",
             workflow,
         )
@@ -194,7 +199,7 @@ class CaptureValidationTests(unittest.TestCase):
     def test_workflow_provides_one_combined_screenshot_download(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         bundle_job = workflow.split("\n  bundle-screenshots:\n", maxsplit=1)[1]
-        self.assertIn("name: Bundle all visual screenshots", bundle_job)
+        self.assertIn("name: Screenshot bundle", bundle_job)
         self.assertIn("pattern: visual-*", bundle_job)
         self.assertIn("name: all-visual-screenshots", bundle_job)
         self.assertIn('destination="all-visual-screenshots/$artifact_name/screenshots"', bundle_job)
