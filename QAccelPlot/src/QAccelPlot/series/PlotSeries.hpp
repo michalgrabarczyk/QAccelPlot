@@ -208,13 +208,22 @@ protected:
     ///
     /// Safe to call from \c updatePaintNode(); it never modifies the item.
     QRectF resolvePlotRect() const;
+    /// \brief Withholds hover events from a series beneath another series under the cursor.
+    ///
+    /// Series ignore hover events so that the plot receives them too. Qt Quick 6.3 and newer stop
+    /// at the topmost hovered item anyway; older versions also deliver the event to the series
+    /// beneath, which then see a hover leave instead.
+    bool event(QEvent* event) override;
 
 private:
     friend class SeriesInspection;
 
     void reportXDataRangeToAxis() const;
     void reportYDataRangeToAxis() const;
+    void deliverTopmostHover(QHoverEvent* event);
+    bool coveredBySeriesAbove(const QPointF& position) const;
 
+    bool hoverDelivered_{false};
     quint64 dataRevision_{0};
     mutable SeriesInspection* inspection_{nullptr};
     QString name_;

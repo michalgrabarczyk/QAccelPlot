@@ -10,10 +10,20 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/inspection/internal/InspectionTypes.hpp"
 
+#include <QHoverEvent>
+
 #include <algorithm>
 #include <cmath>
+#include <utility>
 
 namespace QAccelPlot {
+
+namespace {
+
+// Qt Quick older than 6.3 also delivers an ignored hover event to the items beneath the hovered one.
+constexpr auto kHoverReachesSeriesBeneath = QT_VERSION < QT_VERSION_CHECK(6, 3, 0);
+
+} // namespace
 
 PlotSeries::PlotSeries(QQuickItem* parent)
     : QQuickItem(parent)
@@ -294,6 +304,22 @@ QRectF PlotSeries::resolvePlotRect() const
     return QRectF(0, 0, width(), height());
 }
 
+bool PlotSeries::event(QEvent* event)
+{
+    if constexpr (kHoverReachesSeriesBeneath) {
+        switch (event->type()) {
+        case QEvent::HoverEnter:
+        case QEvent::HoverMove:
+        case QEvent::HoverLeave:
+            deliverTopmostHover(static_cast<QHoverEvent*>(event));
+            return true;
+        default:
+            break;
+        }
+    }
+    return QQuickItem::event(event);
+}
+
 void PlotSeries::reportXDataRangeToAxis() const
 {
     if (xAxis_ && lastXMin_ <= lastXMax_) {
@@ -306,6 +332,45 @@ void PlotSeries::reportYDataRangeToAxis() const
     if (yAxis_ && lastYMin_ <= lastYMax_) {
         yAxis_->setSourceDataRange(this, Axis::Vertical, lastYMin_, lastYMax_);
     }
+}
+
+void PlotSeries::deliverTopmostHover(QHoverEvent* event)
+{
+    const auto hover = event->type() != QEvent::HoverLeave && !coveredBySeriesAbove(event->position());
+    const auto wasDelivered = std::exchange(hoverDelivered_, hover);
+    if (hover && wasDelivered) {
+        hoverMoveEvent(event);
+    } else if (hover) {
+        hoverEnterEvent(event);
+    } else if (wasDelivered) {
+        hoverLeaveEvent(event);
+    } else {
+        // Ignored like a delivered event, so the series beneath and the plot still receive it.
+        event->ignore();
+    }
+}
+
+bool PlotSeries::coveredBySeriesAbove(const QPointF& position) const
+{
+    const auto* parent = parentItem();
+    if (!parent) {
+        return false;
+    }
+    // Siblings are stacked by z and, for equal z, in child order.
+    auto afterThis = false;
+    const auto siblings = parent->childItems();
+    for (const auto* sibling : siblings) {
+        if (sibling == this) {
+            afterThis = true;
+            continue;
+        }
+        const auto above = sibling->z() > z() || (afterThis && sibling->z() >= z());
+        if (above && qobject_cast<const PlotSeries*>(sibling) && sibling->isVisible() && sibling->acceptHoverEvents()
+            && sibling->contains(mapToItem(sibling, position))) {
+            return true;
+        }
+    }
+    return false;
 }
 
 } // namespace QAccelPlot
