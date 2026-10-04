@@ -1690,6 +1690,9 @@ frame while the pointer rests over it, the rebuild repeats per frame; set
 <li>Markers add geometry and fragment work per visible point. Fragment work grows
   with marker size; <code>LineCurve.Pixel</code> markers shade one pixel per point and
   suit very dense scatter plots.</li>
+<li>A <code>PointCloud</code> whose <code>Colormap</code> leaves <code>min</code> or <code>max</code> unset scans every value
+  on each data update to resolve the range. Set both when the bounds of
+  streaming values are known.</li>
 <li>Gradient effects add material and domain work.</li>
 <li>Transitions update intermediate data while animating.</li>
 <li>Many series add per-node and per-material overhead at the same total point
@@ -1752,8 +1755,39 @@ appear in public headers or ABI. Gradient textures always use the public path.</
 <li>Separate static rendering, live updates, and data-ingestion measurements.</li>
 <li>Repeat the test and publish the scenario with the result.</li>
 </ol>
-<p>The Performance Showcase streams a <code>LineCurve</code>, a <code>PointCloud</code>, and a
-<code>RectangleSeries</code>, one per tab. Only the visible tab generates data. It reports:</p>
+<p>The Performance Lab
+(<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>)
+streams a <code>LineCurve</code>, a <code>PointCloud</code>, and a <code>RectangleSeries</code>, one per tab.
+Only the visible tab generates data. Change one option at a time to see what it
+costs:</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All</td>
+<td>Record count, series count (the same records split across 1 to 100 series), ingestion API, hover hit-testing</td>
+</tr>
+<tr>
+<td><code>LineCurve</code></td>
+<td>Line width and style, markers, gradient effects, antialiasing, NaN gaps</td>
+</tr>
+<tr>
+<td><code>PointCloud</code></td>
+<td>Marker shape, size, and fill, antialiasing, per-point values, automatic color range, invalid points</td>
+</tr>
+<tr>
+<td><code>RectangleSeries</code></td>
+<td>Tile size, categories, border width, minimum size, hover highlight</td>
+</tr>
+</tbody>
+</table>
+<p>Display FPS stops at the display refresh rate, so compare options at a record
+count that keeps it below that rate. The lab reports:</p>
 <ul>
 <li><strong>Display FPS</strong> — frames presented to the screen.</li>
 <li><strong>Data Update Rate</strong> (Hz) — new datasets applied to the plot per second,
