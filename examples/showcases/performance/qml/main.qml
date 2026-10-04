@@ -80,7 +80,7 @@ Window {
         spacing: 12
 
         ControlPanel {
-            Layout.preferredWidth: 280
+            Layout.preferredWidth: 300
             Layout.fillHeight: true
             window: window
             colorPalette: window.colorPalette

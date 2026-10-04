@@ -17,6 +17,13 @@ ScrollView {
     required property var colorPalette
     readonly property QtObject settings: window.activeSettings
     clip: true
+    // The content follows the panel width, so it only scrolls vertically.
+    contentWidth: availableWidth
+    // The vertical scroll bar sits in the padding, in a lane of its own beside the content,
+    // and stays visible while there is something to scroll.
+    rightPadding: ScrollBar.vertical.width + 4
+    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+    ScrollBar.vertical.policy: contentHeight > availableHeight ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
 
     function countLabel(count) {
         return count >= 1000000 ? count / 1000000 + "M" : count / 1000 + "K";
