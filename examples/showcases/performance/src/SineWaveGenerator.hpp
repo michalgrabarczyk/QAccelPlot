@@ -29,6 +29,12 @@ struct SineWaveBatch {
 /// \brief Settings of a SineWaveGenerator batch.
 struct SineWaveParameters {
     DatasetParameters dataset;
+    /// \brief Multiplies \c SineWaveGenerator::kAngularFrequency.
+    float frequencyScale{1.0f};
+    /// \brief Share of the samples whose Y is NaN, spread over \c SineWaveGenerator::kGapCount runs.
+    float gapFraction{0.0f};
+    /// \brief Whether prebuilt vertex caches accompany the points. Only a solid line without markers or effects takes one.
+    bool vertexCache{true};
 };
 
 /// \brief Generates a scrolling sine wave for one or more LineCurves.
@@ -48,12 +54,14 @@ public:
     static constexpr auto kAmplitude = 8.0f;
     /// \brief Phase change per second, in radians.
     static constexpr auto kPhaseVelocity = 1.2;
+    /// \brief Number of evenly spaced runs of NaN samples when gaps are requested.
+    static constexpr auto kGapCount = 20;
 
     /// \brief Fills \a batch with the wave described by \a parameters at \a timeSeconds.
     void generate(Batch& batch, const Parameters& parameters, double timeSeconds);
 
 private:
-    void updateVertexCaches(Batch& batch, const DatasetParameters& dataset);
+    void updateVertexCaches(Batch& batch, const Parameters& parameters);
 
     QAccelPlot::LineCurveLineRenderer lineRenderer_;
     int vertexCachePointCount_{0};

@@ -125,6 +125,20 @@ ScrollView {
             onToggled: checked => root.settings.hoverEnabled = checked
         }
 
+        // The active page's own options.
+        Loader {
+            sourceComponent: root.window.activePage === "lineCurve" ? lineCurveOptions : null
+            Layout.fillWidth: true
+        }
+
+        Component {
+            id: lineCurveOptions
+
+            LineCurveOptions {
+                settings: root.window.lineCurveSettings
+            }
+        }
+
         Button {
             text: "Reset to defaults"
             Layout.fillWidth: true

@@ -22,6 +22,7 @@ qaccelplot_add_example(Performance
         src/main.cpp
     QML_FILES
         qml/ControlPanel.qml
+        qml/LineCurveOptions.qml
         qml/LineCurvePage.qml
         qml/LineCurveSettings.qml
         qml/OptionChoice.qml

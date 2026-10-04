@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <initializer_list>
 #include <vector>
 
 using namespace QAccelPlotExample;
@@ -56,6 +57,9 @@ private slots:
     void ingestionNamesSelectThePrecision();
     void sineLookupTracksSine();
     void sineSendsVertexCacheOnlyAfterCountChanges();
+    void sineSendsNoVertexCacheWhileItIsOff();
+    void sineFrequencyScalesTheWave();
+    void sineGapsReplaceTheRequestedShare();
     void galaxyRotatesEachBand();
     void galaxyValuesFollowPoints();
     void plasmaTilesAreSquaresOnTheGrid_data();
@@ -177,6 +181,64 @@ void PerformanceGeneratorsTest::sineSendsVertexCacheOnlyAfterCountChanges()
     generator.generate(batch, parametersFor<SineWaveParameters>(200, 2), 1.0);
     QVERIFY(!batch.parts.front().vertexCache.empty());
     QVERIFY(!batch.parts.back().vertexCache.empty());
+}
+
+void PerformanceGeneratorsTest::sineSendsNoVertexCacheWhileItIsOff()
+{
+    auto generator = SineWaveGenerator{};
+    auto batch = SineWaveBatch{};
+    auto parameters = parametersFor<SineWaveParameters>(100);
+    parameters.vertexCache = false;
+    generator.generate(batch, parameters, 0.0);
+    QVERIFY(batch.parts.front().vertexCache.empty());
+
+    // Turning the caches back on sends one, although the count is unchanged.
+    parameters.vertexCache = true;
+    generator.generate(batch, parameters, 0.0);
+    QVERIFY(!batch.parts.front().vertexCache.empty());
+}
+
+void PerformanceGeneratorsTest::sineFrequencyScalesTheWave()
+{
+    constexpr auto pointCount = 2'001;
+    auto parameters = parametersFor<SineWaveParameters>(pointCount);
+    parameters.frequencyScale = 4.0f;
+    auto generator = SineWaveGenerator{};
+    auto batch = SineWaveBatch{};
+    generator.generate(batch, parameters, 0.0);
+
+    const auto& xy = batch.parts.front().floats;
+    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
+        const auto expected = SineWaveGenerator::kAmplitude * std::sin(4.0 * SineWaveGenerator::kAngularFrequency * static_cast<double>(xy[i * 2]));
+        QVERIFY(std::abs(xy[i * 2 + 1] - expected) < 0.01);
+    }
+}
+
+void PerformanceGeneratorsTest::sineGapsReplaceTheRequestedShare()
+{
+    constexpr auto pointCount = 10'000;
+    for (const auto seriesCount : {1, 7}) {
+        auto parameters = parametersFor<SineWaveParameters>(pointCount, seriesCount);
+        parameters.gapFraction = 0.1f;
+        auto generator = SineWaveGenerator{};
+        auto batch = SineWaveBatch{};
+        generator.generate(batch, parameters, 0.0);
+
+        auto gapSamples = 0;
+        auto gapRuns = 0;
+        auto inGap = false;
+        for (const auto& part : batch.parts) {
+            for (auto i = std::size_t{0}; i < static_cast<std::size_t>(part.count); ++i) {
+                QVERIFY(std::isfinite(part.floats[i * 2]));
+                const auto isGap = std::isnan(part.floats[i * 2 + 1]);
+                gapSamples += isGap ? 1 : 0;
+                gapRuns += isGap && !inGap ? 1 : 0;
+                inGap = isGap;
+            }
+        }
+        QCOMPARE(gapSamples, pointCount / 10);
+        QCOMPARE(gapRuns, SineWaveGenerator::kGapCount);
+    }
 }
 
 void PerformanceGeneratorsTest::galaxyRotatesEachBand()

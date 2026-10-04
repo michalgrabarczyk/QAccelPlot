@@ -9,14 +9,30 @@
 
 #include <QAccelPlot/series/LineCurve.hpp>
 
+#include <QString>
+
 #include <utility>
 
 namespace QAccelPlotExample {
+namespace {
 
-SineWaveParameters LineCurveFeed::parameters(const PageScene& /*scene*/, const CommonOptions& options)
+// A curve takes a prebuilt vertex cache only for a solid line without markers or gradient effects.
+bool takesVertexCache(const PageScene& scene)
+{
+    return scene.setting("lineStyle").toString() == QLatin1String("solid")
+        && scene.setting("markerShape").toInt() == static_cast<int>(QAccelPlot::PlotSeries::MarkerShape::None)
+        && scene.setting("effect").toString() == QLatin1String("none");
+}
+
+} // namespace
+
+SineWaveParameters LineCurveFeed::parameters(const PageScene& scene, const CommonOptions& options)
 {
     auto parameters = SineWaveParameters{};
     parameters.dataset = datasetParameters(options);
+    parameters.frequencyScale = scene.setting("frequencyScale").toFloat();
+    parameters.gapFraction = scene.setting("gapFraction").toFloat();
+    parameters.vertexCache = takesVertexCache(scene);
     return parameters;
 }
 
