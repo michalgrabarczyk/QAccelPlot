@@ -187,7 +187,9 @@ class CaptureValidationTests(unittest.TestCase):
     def test_workflow_runs_unit_tests_in_the_matrix(self):
         workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
         self.assertRegex(workflow, r"(?m)^  pull_request:\s*$")
-        self.assertIn("--target QAccelPlotExamples ${{ !matrix.platform.opengl_es && 'QAccelPlotTests' || '' }}", workflow)
+        self.assertIn("--target QAccelPlotExamples QAccelPlotTests", workflow)
+        # OpenGL ES jobs run the unit tests too; OpenGlEsRequest.cpp gives the tests an ES context.
+        self.assertNotIn("!matrix.platform.opengl_es", workflow)
         self.assertEqual(workflow.count("-DQACCELPLOT_BUILD_TESTS=ON"), 3)
         self.assertEqual(workflow.count("--output-on-failure -L '^unit-test$'"), 2)
         self.assertIn("xvfb-run -a ctest --test-dir build -C Release --output-on-failure -L '^unit-test$'", workflow)

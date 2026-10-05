@@ -219,12 +219,9 @@ jobs:
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
 
-      # Unit tests do not request an OpenGL ES context, so the ES jobs would repeat desktop OpenGL.
       - name: Build all examples and unit tests
         id: build
-        run: >-
-          cmake --build build --config Release --parallel 4
-          --target QAccelPlotExamples ${{ !matrix.platform.opengl_es && 'QAccelPlotTests' || '' }}
+        run: cmake --build build --config Release --parallel 4 --target QAccelPlotExamples QAccelPlotTests
 
       - name: Capture every example (Linux)
         if: runner.os == 'Linux'
@@ -240,7 +237,7 @@ jobs:
         run: ctest --test-dir build -C Release --output-on-failure -L visual-validation
 
       - name: Run unit tests (Linux)
-        if: ${{ !cancelled() && steps.build.outcome == 'success' && runner.os == 'Linux' && !matrix.platform.opengl_es }}
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && runner.os == 'Linux' }}
         run: xvfb-run -a ctest --test-dir build -C Release --output-on-failure -L '^unit-test$'
 
       - name: Run unit tests (Windows and macOS)

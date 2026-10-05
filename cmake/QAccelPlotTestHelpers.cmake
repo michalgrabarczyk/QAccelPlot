@@ -33,8 +33,12 @@ function(_qaccelplot_register_test name scope)
     endif()
 endfunction()
 
+# Compiled into every library test: requests the OpenGL ES context that
+# QACCELPLOT_OPENGL_ES_VERSION names for the windows the test creates.
+set(_qaccelplot_opengl_es_request "${CMAKE_CURRENT_LIST_DIR}/../QAccelPlot/test/OpenGlEsRequest.cpp")
+
 function(add_qaccelplot_test name scope)
-    qt_add_executable(${name} ${ARGN})
+    qt_add_executable(${name} ${ARGN} "${_qaccelplot_opengl_es_request}")
     target_link_libraries(${name} PRIVATE QAccelPlot Qt6::Test)
     _qaccelplot_register_test(${name} ${scope})
 endfunction()
