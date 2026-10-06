@@ -107,12 +107,12 @@ PointCloud::PointCloud(QQuickItem* parent)
     connect(this, &PlotSeries::xAxisChanged, this, [this]() {
         reconnectAxisSignals();
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     });
     connect(this, &PlotSeries::yAxisChanged, this, [this]() {
         reconnectAxisSignals();
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     });
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &QQuickItem::update);
@@ -451,7 +451,6 @@ int PointCloud::pointIndexAt(const QPointF& position) const
         return -1;
     }
 
-    ensureSpatialIndex();
     const auto logX = xAxis()->logScale();
     const auto logY = yAxis()->logScale();
     auto cursorX = 0.0;
@@ -473,7 +472,13 @@ int PointCloud::pointIndexAt(const QPointF& position) const
     // these differences, but the cursor itself must move into the index's origin-relative space.
     const auto radiusX = std::abs(viewportMaxX - viewportMinX) / width() * hoverRadius_;
     const auto radiusY = std::abs(viewportMaxY - viewportMinY) / height() * hoverRadius_;
-    return spatialIndex_.nearest(cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY);
+    const auto x = cursorX - renderOriginX_;
+    const auto y = cursorY - renderOriginY_;
+    const auto mapping = PointSpatialIndex::Mapping{logX, logY};
+    if (spatialIndexReady(mapping)) {
+        return spatialIndex_.nearest(x, y, radiusX, radiusY);
+    }
+    return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), mapping, x, y, radiusX, radiusY);
 }
 
 bool PointCloud::contains(const QPointF& point) const
@@ -523,7 +528,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     const auto capacity = pointCapacity(window, stride());
     if (capacity != renderCapacity_) {
         renderCapacity_ = capacity;
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     }
     warnOnceIfOverCapacity(pointCount_, capacity);
     const auto renderCount = std::min(pointCount_, capacity);
@@ -728,7 +733,7 @@ void PointCloud::rebuildRenderData()
     }
 
     dataChanged_ = true;
-    spatialIndexValid_ = false;
+    invalidateSpatialIndex();
 }
 
 void PointCloud::onAxisScaleChanged()
@@ -761,7 +766,7 @@ void PointCloud::onAxisRangeChanged()
 void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool reportRanges)
 {
     dataChanged_ = true;
-    spatialIndexValid_ = false;
+    invalidateSpatialIndex();
     if (reportRanges) {
         updateDataRanges();
     }
@@ -852,7 +857,7 @@ void PointCloud::reconnectAxisSignals()
 
     const auto onLogScaleChanged = [this]() {
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
         update();
     };
     for (auto* axis : {xAxis(), yAxis()}) {
@@ -900,14 +905,32 @@ int PointCloud::stride() const
     return hasValues_ ? kValueStride : kPositionStride;
 }
 
-void PointCloud::ensureSpatialIndex() const
+int PointCloud::hoverPointCount() const
 {
-    const auto mapping = PointSpatialIndex::Mapping{xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale()};
+    return std::min(pointCount_, renderCapacity_);
+}
+
+void PointCloud::invalidateSpatialIndex()
+{
+    spatialIndexValid_ = false;
+    scansSinceInvalidation_ = 0;
+}
+
+// Building the index costs as much as many scans of the points, so it only pays off for data
+// that stays. The first queries after a change scan instead, which keeps live data cheap.
+bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) const
+{
+    static constexpr auto kScansBeforeIndexing = 8;
     if (spatialIndexValid_ && spatialIndex_.mapping() == mapping) {
-        return;
+        return true;
     }
-    spatialIndex_.build(data_.data(), std::min(pointCount_, renderCapacity_), stride(), mapping);
+    if (scansSinceInvalidation_ < kScansBeforeIndexing) {
+        ++scansSinceInvalidation_;
+        return false;
+    }
+    spatialIndex_.build(data_.data(), hoverPointCount(), stride(), mapping);
     spatialIndexValid_ = true;
+    return true;
 }
 
 } // namespace QAccelPlot

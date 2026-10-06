@@ -229,7 +229,11 @@ private:
     void refreshColorStops();
     void setHoveredIndex(int index);
     int stride() const;
-    void ensureSpatialIndex() const;
+    /// \brief Returns the number of points that take part in hover: those the data texture holds.
+    int hoverPointCount() const;
+    void invalidateSpatialIndex();
+    /// \brief Returns \c true when the spatial index answers the next query, building it if the data has stayed long enough.
+    bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void rebuildRenderData();
     bool hasPreciseData() const;
@@ -274,6 +278,8 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
+    // Hover queries answered by scanning since the index was last invalidated.
+    mutable int scansSinceInvalidation_{0};
 
     QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;

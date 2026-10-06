@@ -73,6 +73,7 @@ private slots:
     void hoverEventsTrackPointUnderCursor();
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
+    void pointIndexAtKeepsItsAnswersOnceIndexed();
     void propertySettersClampAndNotify();
     void doubleDataKeepsPrecisionForLargeCoordinates();
     void doubleDataSurvivesLogScaleChange();
@@ -490,6 +491,33 @@ void PointCloudDataTest::pointIndexAtUsesLogarithmicMapping()
     QCOMPARE(cloud.pointIndexAt(QPointF(0.0, 200.0)), 1);
     QCOMPARE(cloud.pointIndexAt(QPointF(200.0, 200.0)), 0);
     QCOMPARE(cloud.pointIndexAt(QPointF(100.0, 200.0)), -1);
+}
+
+void PointCloudDataTest::pointIndexAtKeepsItsAnswersOnceIndexed()
+{
+    auto axes = AxisPair{0.0, 100.0};
+    auto cloud = PointCloud{};
+    cloud.setSize({200.0, 100.0});
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    cloud.setHoverRadius(5.0);
+    // Pixel positions: (20, 90), (40, 90), (100, 50), and (100, 50) again.
+    cloud.setDataF(std::vector<float>{10.0f, 10.0f, 20.0f, 10.0f, 50.0f, 50.0f, 50.0f, 50.0f}, 4);
+
+    // The first queries after a data change scan the points; later ones use the spatial index.
+    for (auto query = 0; query < 40; ++query) {
+        QCOMPARE(cloud.pointIndexAt(QPointF(21.0, 91.0)), 0);
+        QCOMPARE(cloud.pointIndexAt(QPointF(37.0, 90.0)), 1);
+        QCOMPARE(cloud.pointIndexAt(QPointF(100.0, 50.0)), 3);
+        QCOMPARE(cloud.pointIndexAt(QPointF(30.0, 90.0)), -1);
+    }
+
+    // New data must not be answered from the index of the old data.
+    cloud.setDataF(std::vector<float>{15.0f, 10.0f}, 1);
+    for (auto query = 0; query < 40; ++query) {
+        QCOMPARE(cloud.pointIndexAt(QPointF(30.0, 90.0)), 0);
+        QCOMPARE(cloud.pointIndexAt(QPointF(100.0, 50.0)), -1);
+    }
 }
 
 void PointCloudDataTest::propertySettersClampAndNotify()
