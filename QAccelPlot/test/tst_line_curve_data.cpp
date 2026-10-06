@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/effects/GradientFill.hpp"
 #include "QAccelPlot/linestyles/SolidLine.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
@@ -564,11 +565,11 @@ void LineCurveDataTest::hoverEnterAndLeaveToggleHovered()
     auto hoveredSpy = QSignalSpy{&curve, &LineCurve::hoveredChanged};
     const auto position = QPointF{5.0, 5.0};
 
-    auto enter = QHoverEvent{QEvent::HoverEnter, position, position, position};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, position, position);
     curve.hoverEnterEvent(&enter);
     QVERIFY(curve.hovered());
 
-    auto leave = QHoverEvent{QEvent::HoverLeave, position, position, position};
+    auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, position, position);
     curve.hoverLeaveEvent(&leave);
     QVERIFY(!curve.hovered());
     QCOMPARE(hoveredSpy.count(), 2);

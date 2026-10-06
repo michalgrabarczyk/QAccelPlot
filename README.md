@@ -146,10 +146,9 @@ Explore runnable applications in the [`examples/`](examples/) directory:
   CI on `main`.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
-- **[Visual acceptance tests](.github/workflows/ai-regression.yml)**: every
-  example rendered on Qt 6.2, 6.8, and 6.11 with OpenGL, OpenGL ES, Vulkan,
-  Direct3D 11/12, and Metal, then checked against per-page visual contracts by
-  AI inspection.
+- **[Build and test](.github/workflows/build-and-test.yml)**: unit tests and
+  a screenshot of every example on Qt 6.2, 6.8, and 6.11 with OpenGL,
+  OpenGL ES, Vulkan, Direct3D 11/12, and Metal.
 
 ---
 
@@ -184,7 +183,6 @@ ctest --test-dir build --output-on-failure
 | :--- | :--- | :--- |
 | `QACCELPLOT_USE_QT_PRIVATE_API` | `ON` if `QuickPrivate` is found | In-place data texture updates; `OFF` uses public Qt API only. See [texture upload modes](docs/guide/performance.md#select-the-texture-upload-mode). |
 | `QACCELPLOT_BUILD_VISUAL_TESTS` | `OFF` | Screenshot and visual validation tests. Requires examples and tests. |
-| `QACCELPLOT_BUILD_AI_VISUAL_TESTS` | `OFF` | Paid AI inspection tests. Requires visual tests. |
 
 ---
 

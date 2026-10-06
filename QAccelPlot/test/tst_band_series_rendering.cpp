@@ -8,6 +8,7 @@
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/linestyles/LineStyle.hpp"
+#include "WindowPlacement.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -203,6 +204,7 @@ public:
         plot_ = qobject_cast<QAccelPlot*>(root_.get());
         if (plot_) {
             plot_->setParentItem(window_.contentItem());
+            QAccelPlotTest::moveAwayFromCursor(window_);
             window_.show();
         }
     }
@@ -399,7 +401,8 @@ void BandSeriesRenderingTest::samplesBeyondFirstTextureRowsAreDrawn()
 
 void BandSeriesRenderingTest::appendedEpochSamplesAreDrawnInPlace()
 {
-    constexpr auto kEpoch = 1789032600000.0;
+    // Static, because MSVC v142 refuses to use a local constexpr inside a lambda without a capture.
+    constexpr static auto kEpoch = 1789032600000.0;
     auto scene = SceneWindow{kAppendScene};
     if (scene.isSoftware()) {
         QSKIP("Custom materials require a hardware scene graph backend");

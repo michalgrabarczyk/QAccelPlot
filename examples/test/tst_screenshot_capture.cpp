@@ -105,6 +105,11 @@ void ScreenshotCaptureTest::capture()
 {
     QFETCH(QString, renderLoop);
     QFETCH(QString, mode);
+#ifdef Q_OS_MACOS
+    if (renderLoop == QStringLiteral("threaded")) {
+        QSKIP("Qt does not support the threaded render loop with OpenGL on macOS");
+    }
+#endif
     auto directory = QTemporaryDir{};
     QVERIFY(directory.isValid());
     const auto path = directory.filePath(QStringLiteral("capture.png"));

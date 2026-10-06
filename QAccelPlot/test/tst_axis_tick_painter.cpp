@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/formatters/TickLabelFormatter.hpp"
 
@@ -17,7 +18,51 @@
 #include <QThread>
 #include <QtTest/QtTest>
 
+#include <algorithm>
+#include <cstdlib>
 #include <utility>
+
+namespace {
+
+QString describe(const QRect& rect)
+{
+    return QStringLiteral("(%1, %2) %3x%4").arg(rect.x()).arg(rect.y()).arg(rect.width()).arg(rect.height());
+}
+
+// Tells clipped text (smaller ink bounds) from rasterization differences (equal bounds, small alpha differences).
+QString describeDifference(const QImage& actual, const QImage& expected)
+{
+    auto differing = QRect{};
+    auto actualInk = QRect{};
+    auto expectedInk = QRect{};
+    auto differingPixels = 0;
+    auto largestAlphaDifference = 0;
+    for (auto y = 0; y < actual.height(); ++y) {
+        for (auto x = 0; x < actual.width(); ++x) {
+            const auto pixel = QRect{x, y, 1, 1};
+            const auto actualAlpha = qAlpha(actual.pixel(x, y));
+            const auto expectedAlpha = qAlpha(expected.pixel(x, y));
+            if (actualAlpha > 0) {
+                actualInk |= pixel;
+            }
+            if (expectedAlpha > 0) {
+                expectedInk |= pixel;
+            }
+            if (actual.pixel(x, y) != expected.pixel(x, y)) {
+                ++differingPixels;
+                differing |= pixel;
+                largestAlphaDifference = std::max(largestAlphaDifference, std::abs(actualAlpha - expectedAlpha));
+            }
+        }
+    }
+    return QStringLiteral("%1 pixels differ within %2, alpha by up to %3; ink bounds %4, expected %5")
+        .arg(differingPixels)
+        .arg(describe(differing))
+        .arg(largestAlphaDifference)
+        .arg(describe(actualInk), describe(expectedInk));
+}
+
+} // namespace
 
 class FixedTickLabelFormatter final : public QAccelPlot::TickLabelFormatter {
 public:
@@ -246,14 +291,15 @@ void TestAxisTickPainter::computeNiceStep_residualAtTwoBoundary()
 
 void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
 {
-    constexpr auto kImageWidth = 300;
-    constexpr auto kImageHeight = 80;
-    constexpr auto kAxisY = qreal{20.0};
-    constexpr auto kLabelCenterY = qreal{30.0};
-    constexpr auto kFirstTickX = qreal{75.0};
-    constexpr auto kTickSpacing = qreal{150.0};
-    constexpr auto kReferenceLabelWidth = qreal{140.0};
-    constexpr auto kReferenceLabelHeight = qreal{20.0};
+    // Static, because MSVC v142 refuses to use a local constexpr inside a lambda without a capture.
+    constexpr static auto kImageWidth = 300;
+    constexpr static auto kImageHeight = 80;
+    constexpr static auto kAxisY = qreal{20.0};
+    constexpr static auto kLabelCenterY = qreal{30.0};
+    constexpr static auto kFirstTickX = qreal{75.0};
+    constexpr static auto kTickSpacing = qreal{150.0};
+    constexpr static auto kReferenceLabelWidth = qreal{140.0};
+    constexpr static auto kReferenceLabelHeight = qreal{20.0};
 
     auto font = QFont{};
     font.setPixelSize(12);
@@ -295,18 +341,28 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 painter.setFont(font);
                 painter.setPen(Qt::white);
                 const auto drawReferenceLabel = [&painter, &label, rotation](const qreal centerX) {
+                    const auto rect = QRectF{-kReferenceLabelWidth / 2.0, -kReferenceLabelHeight / 2.0, kReferenceLabelWidth, kReferenceLabelHeight};
+                    if (rotation == 0.0) {
+                        // Like the painter, draw unrotated labels without a transform. A translated reference starts
+                        // at a negative position, which Qt rounds the other way when it falls halfway between two
+                        // 1/64 px steps; fonts with fractional advances (macOS) then place glyphs differently.
+                        painter.drawText(rect.translated(centerX, kLabelCenterY), Qt::AlignCenter, label);
+                        return;
+                    }
                     painter.save();
                     painter.translate(centerX, kLabelCenterY);
                     painter.rotate(rotation);
-                    painter.drawText(
-                        QRectF{-kReferenceLabelWidth / 2.0, -kReferenceLabelHeight / 2.0, kReferenceLabelWidth, kReferenceLabelHeight}, Qt::AlignCenter, label);
+                    painter.drawText(rect, Qt::AlignCenter, label);
                     painter.restore();
                 };
                 drawReferenceLabel(kFirstTickX);
                 drawReferenceLabel(kFirstTickX + kTickSpacing);
             }
 
-            QVERIFY2(actual == expected, qPrintable(QStringLiteral("Label '%1' at %2 degrees was clipped").arg(label).arg(rotation)));
+            if (actual != expected) {
+                QFAIL(
+                    qPrintable(QStringLiteral("Label '%1' at %2 degrees was clipped: %3").arg(label).arg(rotation).arg(describeDifference(actual, expected))));
+            }
         }
     }
 }
@@ -533,13 +589,13 @@ void TestAxisTickPainter::axis_paintsTitleOnEverySide()
     QVERIFY(countPaintedPixels(axis, titleColor) > 0);
     QCOMPARE(countPaintedPixels(axis, hoverColor), 0);
 
-    auto enter = QHoverEvent{QEvent::HoverEnter, QPointF{}, QPointF{}, QPointF{}};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, QPointF{}, QPointF{});
     axis.hoverEnterEvent(&enter);
     QVERIFY(axis.hovered());
     QCOMPARE(countPaintedPixels(axis, titleColor), 0);
     QVERIFY(countPaintedPixels(axis, hoverColor) > 0);
 
-    auto leave = QHoverEvent{QEvent::HoverLeave, QPointF{}, QPointF{}, QPointF{}};
+    auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, QPointF{}, QPointF{});
     axis.hoverLeaveEvent(&leave);
     QVERIFY(!axis.hovered());
     QCOMPARE(hoveredSpy.count(), 2);

@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
@@ -466,7 +467,7 @@ void TestPlotInteraction::keyPress_isForwardedToAxisUnderPointer()
         plot.keyPressEvent(&event);
         return event.isAccepted();
     };
-    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QHoverEvent{type, pos, pos, pos}; };
+    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QAccelPlotTest::hoverEvent(type, pos, pos); };
 
     // Without a known pointer position no axis is targeted.
     QVERIFY(!pressL());
@@ -527,7 +528,7 @@ void TestPlotInteraction::pointer_followsHoverAndIsKeptAfterLeave()
     plot.setXAxis(xAxis);
     plot.setYAxis(yAxis);
     auto changed = QSignalSpy{&plot, &QAccelPlot::QAccelPlot::pointerChanged};
-    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QHoverEvent{type, pos, pos, pos}; };
+    const auto hover = [](const QEvent::Type type, const QPointF& pos) { return QAccelPlotTest::hoverEvent(type, pos, pos); };
     QVERIFY(!plot.pointerInside());
 
     const auto inside = plot.plotRect().center();

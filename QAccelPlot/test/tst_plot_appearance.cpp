@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
@@ -415,7 +416,7 @@ void TestPlotAppearance::mouseMovedFiresWhileHoveringWithoutButton()
     });
 
     const auto pos = QPointF{40.0, 25.0};
-    auto hover = QHoverEvent{QEvent::HoverMove, pos, pos, QPointF{10.0, 25.0}};
+    auto hover = QAccelPlotTest::hoverEvent(QEvent::HoverMove, pos, QPointF{10.0, 25.0});
     plot.hoverMoveEvent(&hover);
 
     QCOMPARE(movedX, 40.0);
@@ -440,7 +441,7 @@ void TestPlotAppearance::mouseMovedDoesNotFireTwiceWhileDragging()
     const auto movePosition = QPointF{75.0, 50.0};
     auto move = QMouseEvent{QEvent::MouseMove, movePosition, movePosition, movePosition, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
     plot.mouseMoveEvent(&move);
-    auto hover = QHoverEvent{QEvent::HoverMove, movePosition, movePosition, pressPosition};
+    auto hover = QAccelPlotTest::hoverEvent(QEvent::HoverMove, movePosition, pressPosition);
     plot.hoverMoveEvent(&hover);
 
     QCOMPARE(moveCount, 1);

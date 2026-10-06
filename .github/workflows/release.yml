@@ -21,6 +21,7 @@ concurrency:
 
 jobs:
   release:
+    name: Publish
     runs-on: ubuntu-latest
 
     steps:

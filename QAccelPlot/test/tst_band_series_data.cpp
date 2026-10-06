@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/linestyles/DashLine.hpp"
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
@@ -392,7 +393,7 @@ void BandSeriesDataTest::hoveredFollowsChangesUnderARestingCursor()
     band.setData(QList<qreal>{0.0, 10.0}, QList<qreal>{4.0, 4.0}, QList<qreal>{6.0, 6.0});
     const auto hover = [&band](const QEvent::Type type) {
         const auto position = QPointF{50.0, 50.0};
-        auto event = QHoverEvent{type, position, position, position};
+        auto event = QAccelPlotTest::hoverEvent(type, position, position);
         QCoreApplication::sendEvent(&band, &event);
     };
     auto hoveredSpy = QSignalSpy{&band, &BandSeries::hoveredChanged};

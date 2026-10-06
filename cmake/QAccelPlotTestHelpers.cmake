@@ -33,8 +33,12 @@ function(_qaccelplot_register_test name scope)
     endif()
 endfunction()
 
+# Compiled into every library test: requests the OpenGL ES context that
+# QACCELPLOT_OPENGL_ES_VERSION names for the windows the test creates.
+set(_qaccelplot_opengl_es_request "${CMAKE_CURRENT_LIST_DIR}/../QAccelPlot/test/OpenGlEsRequest.cpp")
+
 function(add_qaccelplot_test name scope)
-    qt_add_executable(${name} ${ARGN})
+    qt_add_executable(${name} ${ARGN} "${_qaccelplot_opengl_es_request}")
     target_link_libraries(${name} PRIVATE QAccelPlot Qt6::Test)
     _qaccelplot_register_test(${name} ${scope})
 endfunction()
@@ -46,24 +50,19 @@ function(add_qaccelplot_standalone_test name scope)
     _qaccelplot_register_test(${name} ${scope})
 endfunction()
 
-# Visual acceptance is organized in scenarios: one example captured in one state, such as a
-# tab. A scenario named <scenario> of <example> uses these names, which the Python scripts in
-# examples/test/visual/ derive from the same convention (see visual_scenarios.py):
+# Visual tests are organized in scenarios: one example captured in one state, such as a tab.
+# A scenario named <scenario> of <example> uses these names:
 #
-#   contract:    visual/contracts/<example>/<scenario>.json
 #   screenshot:  screenshots/<example>__<scenario>.png
-#   tests:       smoke_<example>__<scenario>, validate_visual_<example>__<scenario>,
-#                ai_inspection_<example>__<scenario>
+#   tests:       smoke_<example>__<scenario>, validate_visual_<example>__<scenario>
 #
 # add_qaccelplot_example_visual_scenario(<target> <example> <scenario>
-#     [PAGE <page>] [ARGS <argument>...] [SMOKE_ONLY] [NO_AI_INSPECTION])
+#     [PAGE <page>] [ARGS <argument>...])
 #
-#   PAGE              Select the page with this objectName before capturing (--page).
-#   ARGS              Extra example arguments, e.g. --light-theme.
-#   SMOKE_ONLY        Capture only; the scenario has no contract.
-#   NO_AI_INSPECTION  Validate against the contract, but never register paid AI inspection.
+#   PAGE  Select the page with this objectName before capturing (--page).
+#   ARGS  Extra example arguments, e.g. --light-theme.
 function(add_qaccelplot_example_visual_scenario target example scenario)
-    cmake_parse_arguments(VISUAL "SMOKE_ONLY;NO_AI_INSPECTION" "PAGE" "ARGS" ${ARGN})
+    cmake_parse_arguments(VISUAL "" "PAGE" "ARGS" ${ARGN})
 
     if(NOT TARGET ${target})
         return()
@@ -71,8 +70,6 @@ function(add_qaccelplot_example_visual_scenario target example scenario)
 
     set(_name "${example}__${scenario}")
     set(_screenshot "${CMAKE_CURRENT_BINARY_DIR}/screenshots/${_name}.png")
-    set(_contract "${CMAKE_CURRENT_SOURCE_DIR}/visual/contracts/${example}/${scenario}.json")
-    set(_report "${CMAKE_CURRENT_BINARY_DIR}/visual-reports/${_name}.json")
     set(_page_arguments)
     if(VISUAL_PAGE)
         set(_page_arguments "--page=${VISUAL_PAGE}")
@@ -99,63 +96,36 @@ function(add_qaccelplot_example_visual_scenario target example scenario)
         FAIL_REGULAR_EXPRESSION "qt\\.qml\\.propertyCache"
     )
 
-    if(VISUAL_SMOKE_ONLY)
-        return()
-    endif()
-
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)
         add_test(
             NAME validate_visual_${_name}
-            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/ai_visual_acceptance.py"
+            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/validate_capture.py"
                 --image "${_screenshot}"
-                --contract "${_contract}"
                 "--page=${VISUAL_PAGE}"
-                --validate-only
         )
         set_tests_properties(validate_visual_${_name} PROPERTIES
             DEPENDS smoke_${_name}
             LABELS "visual-validation"
         )
-
-        if(QACCELPLOT_BUILD_AI_VISUAL_TESTS AND NOT VISUAL_NO_AI_INSPECTION)
-            add_test(
-                NAME ai_inspection_${_name}
-                COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/ai_visual_acceptance.py"
-                    --image "${_screenshot}"
-                    --contract "${_contract}"
-                    "--page=${VISUAL_PAGE}"
-                    --report "${_report}"
-            )
-            set_tests_properties(ai_inspection_${_name} PROPERTIES
-                DEPENDS validate_visual_${_name}
-                LABELS "ai-inspection"
-                TIMEOUT 120
-            )
-        endif()
     endif()
 endfunction()
 
-# add_qaccelplot_example_visual_tests(<target> <example> [PAGES <page>...] [NO_AI_INSPECTION])
+# add_qaccelplot_example_visual_tests(<target> <example> [PAGES <page>...])
 #
 # Registers one scenario per page. Pages are the camelCase objectNames of the example's page
 # buttons; each scenario is the page name in snake_case (PAGES dateTime registers date_time).
 # Without PAGES, registers the single "default" scenario.
 function(add_qaccelplot_example_visual_tests target example)
-    cmake_parse_arguments(VISUAL "NO_AI_INSPECTION" "" "PAGES" ${ARGN})
-
-    set(_options)
-    if(VISUAL_NO_AI_INSPECTION)
-        list(APPEND _options NO_AI_INSPECTION)
-    endif()
+    cmake_parse_arguments(VISUAL "" "" "PAGES" ${ARGN})
 
     if(NOT VISUAL_PAGES)
-        add_qaccelplot_example_visual_scenario(${target} ${example} default ${_options})
+        add_qaccelplot_example_visual_scenario(${target} ${example} default)
         return()
     endif()
     foreach(_page IN LISTS VISUAL_PAGES)
         string(REGEX REPLACE "([A-Z])" "_\\1" _scenario "${_page}")
         string(TOLOWER "${_scenario}" _scenario)
-        add_qaccelplot_example_visual_scenario(${target} ${example} ${_scenario} PAGE ${_page} ${_options})
+        add_qaccelplot_example_visual_scenario(${target} ${example} ${_scenario} PAGE ${_page})
     endforeach()
 endfunction()

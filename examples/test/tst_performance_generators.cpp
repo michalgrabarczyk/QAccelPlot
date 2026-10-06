@@ -23,6 +23,18 @@ using namespace QAccelPlotExample;
 
 namespace {
 
+constexpr auto kSplitTolerance = 1e-5f;
+
+// Compares within a small relative tolerance. A compiler may fuse a multiply-add in a loop's vector
+// body but not in its scalar remainder, as GCC does on ARM64, so the same record can differ in the
+// last bit depending on where a split places it.
+bool nearlyEqual(const std::vector<float>& actual, const std::vector<float>& expected)
+{
+    return actual.size() == expected.size() && std::equal(actual.begin(), actual.end(), expected.begin(), [](const float a, const float e) {
+        return (std::isnan(a) && std::isnan(e)) || std::abs(a - e) <= kSplitTolerance * std::max({1.0f, std::abs(a), std::abs(e)});
+    });
+}
+
 template <typename Parameters> Parameters parametersFor(const int count, const int seriesCount = 1)
 {
     auto parameters = Parameters{};
@@ -87,9 +99,9 @@ void PerformanceGeneratorsTest::splitDatasetsMatchTheUnsplitOnes()
     constexpr auto count = 1'003;
     constexpr auto timeSeconds = 2.5;
     for (const auto seriesCount : {2, 7, 100}) {
-        QCOMPARE(generatedFloats<SineWaveGenerator>(count, seriesCount, timeSeconds), generatedFloats<SineWaveGenerator>(count, 1, timeSeconds));
-        QCOMPARE(generatedFloats<GalaxyGenerator>(count, seriesCount, timeSeconds), generatedFloats<GalaxyGenerator>(count, 1, timeSeconds));
-        QCOMPARE(generatedFloats<PlasmaGenerator>(count, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(count, 1, timeSeconds));
+        QVERIFY(nearlyEqual(generatedFloats<SineWaveGenerator>(count, seriesCount, timeSeconds), generatedFloats<SineWaveGenerator>(count, 1, timeSeconds)));
+        QVERIFY(nearlyEqual(generatedFloats<GalaxyGenerator>(count, seriesCount, timeSeconds), generatedFloats<GalaxyGenerator>(count, 1, timeSeconds)));
+        QVERIFY(nearlyEqual(generatedFloats<PlasmaGenerator>(count, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(count, 1, timeSeconds)));
     }
 
     auto generator = GalaxyGenerator{};

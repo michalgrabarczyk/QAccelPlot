@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
@@ -420,7 +421,7 @@ void PointCloudDataTest::hoverEventsTrackPointUnderCursor()
     // Pixel positions: (20, 90), (100, 50).
     cloud.setDataF(std::vector<float>{10.0f, 10.0f, 50.0f, 50.0f}, 2);
     auto hoveredSpy = QSignalSpy{&cloud, &PointCloud::hoveredIndexChanged};
-    const auto hover = [](const QEvent::Type type, const QPointF& position) { return QHoverEvent{type, position, position, position}; };
+    const auto hover = [](const QEvent::Type type, const QPointF& position) { return QAccelPlotTest::hoverEvent(type, position, position); };
 
     auto enter = hover(QEvent::HoverEnter, {21.0, 90.0});
     cloud.hoverEnterEvent(&enter);

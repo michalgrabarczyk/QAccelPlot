@@ -11,6 +11,7 @@
 #
 include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
+add_qaccelplot_test(tst_graphics_context     core tst_graphics_context.cpp)
 add_qaccelplot_test(tst_axis_tick_painter    core tst_axis_tick_painter.cpp)
 add_qaccelplot_test(tst_grid_node            core tst_grid_node.cpp)
 add_qaccelplot_test(tst_spatial_grid         core tst_spatial_grid.cpp)

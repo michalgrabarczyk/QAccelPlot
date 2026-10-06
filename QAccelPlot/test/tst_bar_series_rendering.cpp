@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/QAccelPlot.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 
@@ -332,7 +333,7 @@ void BarSeriesRenderingTest::borderAndHoverColorApplyToBars()
 
     const auto hover = [bars](const QEvent::Type type, const QPoint& windowPosition) {
         const auto position = bars->mapFromScene(windowPosition);
-        auto event = QHoverEvent{type, position, position, position};
+        auto event = QAccelPlotTest::hoverEvent(type, position, position);
         QCoreApplication::sendEvent(bars, &event);
     };
     hover(QEvent::HoverEnter, second);

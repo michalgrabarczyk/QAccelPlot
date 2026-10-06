@@ -5,7 +5,7 @@
 # This file is also available under a separate commercial license.
 # See COMMERCIAL-LICENSING.md for contact information.
 #
-# Example component unit tests and visual acceptance tests.
+# Example component unit tests and visual tests.
 #
 include("${CMAKE_SOURCE_DIR}/cmake/QAccelPlotTestHelpers.cmake")
 
@@ -51,9 +51,9 @@ target_include_directories(tst_data_delivery_metrics PRIVATE
     "${CMAKE_SOURCE_DIR}/examples/showcases/performance/src"
 )
 
-# ── Visual acceptance (smoke + optional AI inspection) ────────────────────────
+# ── Visual tests (screenshot capture + validation) ────────────────────────────
 if(QACCELPLOT_BUILD_VISUAL_TESTS)
-    # Scenario names and contracts are described in cmake/QAccelPlotTestHelpers.cmake.
+    # Scenario names are described in cmake/QAccelPlotTestHelpers.cmake.
     add_qaccelplot_example_visual_tests(QAccelPlotExampleQuickstart             quickstart)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMultipleAxes           multiple_axes PAGES dualScale multiRate sharedTime)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleTickFormats            tick_formats PAGES dateTime logarithmic categories)
@@ -61,14 +61,14 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMissingData            missing_data)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleAnnotations            annotations)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMeasurementTools       measurement_tools)
-    add_qaccelplot_example_visual_tests(QAccelPlotExampleDataInspection data_inspection NO_AI_INSPECTION)
+    add_qaccelplot_example_visual_tests(QAccelPlotExampleDataInspection         data_inspection)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePointCloud             point_cloud)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleParametricCurves       parametric_curves)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleStateTimeline          state_timeline)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleBarChart               bar_chart)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleBands                  bands PAGES forecast rollingStats)
     add_qaccelplot_example_visual_tests(QAccelPlotExamplePerformance            performance PAGES lineCurve pointCloud rectangleSeries)
-    add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar NO_AI_INSPECTION)
+    add_qaccelplot_example_visual_tests(QAccelPlotExamplePulsar                 pulsar)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleLineStyles             line_styles)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleMarkers                markers)
     add_qaccelplot_example_visual_tests(QAccelPlotExampleGradients              gradients)
@@ -77,22 +77,17 @@ if(QACCELPLOT_BUILD_VISUAL_TESTS)
 
     add_qaccelplot_example_visual_scenario(QAccelPlotExampleTheming theming light
         ARGS --light-theme
-        SMOKE_ONLY
     )
 endif()
 
 find_package(Python3 COMPONENTS Interpreter QUIET)
 if(Python3_Interpreter_FOUND)
     add_test(
-        NAME tst_ai_visual_acceptance
-        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_acceptance.py"
+        NAME tst_validate_capture
+        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_validate_capture.py"
     )
-    add_test(
-        NAME tst_ai_visual_cost_controls
-        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/visual/tst_ai_visual_cost_controls.py"
-    )
-    # Offline checks of the visual tooling: no screenshots, no API calls.
-    set_tests_properties(tst_ai_visual_acceptance tst_ai_visual_cost_controls PROPERTIES
+    # Offline checks of the visual tooling: no screenshots are captured.
+    set_tests_properties(tst_validate_capture PROPERTIES
         LABELS "unit-test;unit-test-examples"
     )
 endif()
