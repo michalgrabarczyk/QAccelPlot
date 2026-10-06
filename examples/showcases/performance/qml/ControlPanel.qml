@@ -134,7 +134,7 @@ ScrollView {
 
         // The active page's own options.
         Loader {
-            sourceComponent: root.window.activePage === "pointCloud" ? pointCloudOptions : root.window.activePage === "rectangleSeries" ? rectangleSeriesOptions : lineCurveOptions
+            sourceComponent: root.window.activePage === "pointCloud" ? pointCloudOptions : root.window.activePage === "rectangleSeries" ? rectangleSeriesOptions : root.window.activePage === "barSeries" ? barSeriesOptions : lineCurveOptions
             Layout.fillWidth: true
         }
 
@@ -159,6 +159,14 @@ ScrollView {
 
             RectangleSeriesOptions {
                 settings: root.window.rectangleSeriesSettings
+            }
+        }
+
+        Component {
+            id: barSeriesOptions
+
+            BarSeriesOptions {
+                settings: root.window.barSeriesSettings
             }
         }
 

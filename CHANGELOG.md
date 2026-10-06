@@ -49,8 +49,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Moved `RectangleSeries.hpp` to `QAccelPlot/series/`.
 - Replaced `RectangleSeries::setData(const float*, int)` with `setDataF(const float*, int)`.
 - `PointCloud` uses half the GPU vertex memory per point.
-- The `showcases/performance` example has `LineCurve`, `PointCloud`, and `RectangleSeries` tabs,
-  each with options for series count, ingestion API, hover, and rendering.
+- The `showcases/performance` example has `LineCurve`, `PointCloud`, `RectangleSeries`, and
+  `BarSeries` tabs, each with options for series count, ingestion API, hover, and rendering.
 
 ### Fixed
 

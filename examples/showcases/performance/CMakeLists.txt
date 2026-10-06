@@ -7,10 +7,12 @@
 #
 qaccelplot_add_example(Performance
     SOURCES
+        src/BarSeriesFeed.cpp
         src/DataDeliveryMetrics.cpp
         src/DatasetParts.cpp
         src/GalaxyGenerator.cpp
         src/Ingestion.cpp
+        src/InterferenceGenerator.cpp
         src/LineCurveFeed.cpp
         src/PageScene.cpp
         src/PlasmaGenerator.cpp
@@ -21,6 +23,9 @@ qaccelplot_add_example(Performance
         src/SineWaveGenerator.cpp
         src/main.cpp
     QML_FILES
+        qml/BarSeriesOptions.qml
+        qml/BarSeriesPage.qml
+        qml/BarSeriesSettings.qml
         qml/ControlPanel.qml
         qml/LineCurveOptions.qml
         qml/LineCurvePage.qml

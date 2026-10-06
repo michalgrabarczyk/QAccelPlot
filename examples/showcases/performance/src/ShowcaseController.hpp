@@ -28,7 +28,7 @@ namespace QAccelPlotExample {
 class ShowcaseController final : public QObject {
 public:
     /// \brief Showcase pages, each fed by its own feeder.
-    enum class Page { LineCurve, PointCloud, RectangleSeries };
+    enum class Page { LineCurve, PointCloud, RectangleSeries, BarSeries };
 
     /// \brief Connects to \a window's frames and looks up the pages below \a root.
     ///
@@ -44,7 +44,7 @@ private:
 
     QObject* root_;
     std::shared_ptr<DataDeliveryMetrics> deliveryMetrics_;
-    std::array<std::unique_ptr<PageFeeder>, 3> feeders_;
+    std::array<std::unique_ptr<PageFeeder>, 4> feeders_;
     std::optional<Page> activePage_;
     QElapsedTimer elapsed_;
     bool screenshotMode_;
