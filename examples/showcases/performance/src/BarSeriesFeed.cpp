@@ -5,25 +5,24 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "RectangleSeriesFeed.hpp"
+#include "BarSeriesFeed.hpp"
 
-#include <QAccelPlot/series/RectangleSeries.hpp>
+#include <QAccelPlot/series/BarSeries.hpp>
 
 #include <algorithm>
 
 namespace QAccelPlotExample {
 
-PlasmaParameters RectangleSeriesFeed::parameters(const PageScene& scene, const CommonOptions& options)
+InterferenceParameters BarSeriesFeed::parameters(const PageScene& scene, const CommonOptions& options)
 {
-    auto parameters = PlasmaParameters{};
+    auto parameters = InterferenceParameters{};
     parameters.dataset = datasetParameters(options);
-    parameters.tileScale = scene.setting("tileScale").toFloat();
     // The raw-array setters take no categories.
     parameters.categoryCount = options.ingestion == Ingestion::FloatNoRangeCopy ? 0 : std::max(0, scene.setting("categoryCount").toInt());
     return parameters;
 }
 
-void RectangleSeriesFeed::apply(QAccelPlot::RectangleSeries& series, PlasmaPart& part, const CommonOptions& options)
+void BarSeriesFeed::apply(QAccelPlot::BarSeries& series, InterferencePart& part, const CommonOptions& options)
 {
     applyCategorizedRecords(series, part, options.ingestion);
 }

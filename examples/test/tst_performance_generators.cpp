@@ -8,6 +8,7 @@
 #include "DatasetParts.hpp"
 #include "GalaxyGenerator.hpp"
 #include "Ingestion.hpp"
+#include "InterferenceGenerator.hpp"
 #include "PlasmaGenerator.hpp"
 #include "SineWaveGenerator.hpp"
 
@@ -81,6 +82,10 @@ private slots:
     void plasmaMovesOverTime();
     void plasmaTileScaleScalesEveryTile();
     void plasmaCategoriesFollowTheField();
+    void interferenceBarsSitAtTheirIndices();
+    void interferenceValuesFollowTheWaves();
+    void interferenceMovesOverTime();
+    void interferenceCategoriesFollowTheValues();
 };
 
 void PerformanceGeneratorsTest::recordsAreSplitEvenly()
@@ -102,6 +107,8 @@ void PerformanceGeneratorsTest::splitDatasetsMatchTheUnsplitOnes()
         QVERIFY(nearlyEqual(generatedFloats<SineWaveGenerator>(count, seriesCount, timeSeconds), generatedFloats<SineWaveGenerator>(count, 1, timeSeconds)));
         QVERIFY(nearlyEqual(generatedFloats<GalaxyGenerator>(count, seriesCount, timeSeconds), generatedFloats<GalaxyGenerator>(count, 1, timeSeconds)));
         QVERIFY(nearlyEqual(generatedFloats<PlasmaGenerator>(count, seriesCount, timeSeconds), generatedFloats<PlasmaGenerator>(count, 1, timeSeconds)));
+        QVERIFY(nearlyEqual(
+            generatedFloats<InterferenceGenerator>(count, seriesCount, timeSeconds), generatedFloats<InterferenceGenerator>(count, 1, timeSeconds)));
     }
 
     auto generator = GalaxyGenerator{};
@@ -427,6 +434,74 @@ void PerformanceGeneratorsTest::plasmaCategoriesFollowTheField()
             QVERIFY(category >= 0 && category < categoryCount);
             // The generator and valueAt() evaluate the field differently, so allow for rounding at a bin edge.
             QVERIFY(std::abs(value * categoryCount - (static_cast<float>(category) + 0.5f)) <= 0.51f);
+            usedCategories[static_cast<std::size_t>(category)] = true;
+        }
+    }
+    QVERIFY(std::all_of(usedCategories.begin(), usedCategories.end(), [](const bool used) { return used; }));
+}
+
+void PerformanceGeneratorsTest::interferenceBarsSitAtTheirIndices()
+{
+    constexpr auto barCount = 1'003;
+    auto generator = InterferenceGenerator{};
+    auto batch = InterferenceBatch{};
+    generator.generate(batch, parametersFor<InterferenceParameters>(barCount, 7), 2.5);
+
+    auto index = 0;
+    for (const auto& part : batch.parts) {
+        QCOMPARE(part.floats.size(), static_cast<std::size_t>(part.count) * 2);
+        for (auto i = std::size_t{0}; i < static_cast<std::size_t>(part.count); ++i, ++index) {
+            QCOMPARE(part.floats[i * 2], static_cast<float>(index));
+        }
+    }
+    QCOMPARE(index, barCount);
+}
+
+void PerformanceGeneratorsTest::interferenceValuesFollowTheWaves()
+{
+    constexpr auto barCount = 10'001;
+    constexpr auto timeSeconds = 1.234;
+    // Three sine lookups, each within 0.0002 of the sine before its amplitude scales it down.
+    constexpr auto tolerance = 0.0005f;
+    const auto bars = generatedFloats<InterferenceGenerator>(barCount, 1, timeSeconds);
+
+    auto lowest = 1.0f;
+    auto highest = 0.0f;
+    for (auto index = 0; index < barCount; ++index) {
+        const auto value = bars[static_cast<std::size_t>(index) * 2 + 1];
+        QVERIFY(std::abs(value - InterferenceGenerator::valueAt(index, barCount, timeSeconds)) <= tolerance);
+        lowest = std::min(lowest, value);
+        highest = std::max(highest, value);
+    }
+    QVERIFY(lowest >= InterferenceGenerator::kMinimumValue - tolerance);
+    QVERIFY(highest <= InterferenceGenerator::kMaximumValue + tolerance);
+    QVERIFY(highest - lowest > 0.5f);
+}
+
+void PerformanceGeneratorsTest::interferenceMovesOverTime()
+{
+    constexpr auto barCount = 1000;
+    QVERIFY(generatedFloats<InterferenceGenerator>(barCount, 1, 0.0) != generatedFloats<InterferenceGenerator>(barCount, 1, 2.0));
+}
+
+void PerformanceGeneratorsTest::interferenceCategoriesFollowTheValues()
+{
+    constexpr auto barCount = 1000;
+    constexpr auto categoryCount = 4;
+    auto parameters = parametersFor<InterferenceParameters>(barCount, 3);
+    auto generator = InterferenceGenerator{};
+    auto batch = InterferenceBatch{};
+    generator.generate(batch, parameters, 4.2);
+    QVERIFY(batch.parts.front().categories.empty());
+
+    parameters.categoryCount = categoryCount;
+    generator.generate(batch, parameters, 4.2);
+    auto usedCategories = std::vector<bool>(categoryCount, false);
+    for (const auto& part : batch.parts) {
+        QCOMPARE(part.categories.size(), static_cast<std::size_t>(part.count));
+        for (auto i = std::size_t{0}; i < part.categories.size(); ++i) {
+            const auto category = part.categories[i];
+            QCOMPARE(category, std::min(categoryCount - 1, static_cast<int>(part.floats[i * 2 + 1] * categoryCount)));
             usedCategories[static_cast<std::size_t>(category)] = true;
         }
     }

@@ -51,8 +51,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PointCloud` uses half the GPU vertex memory per point.
 - `PointCloud` and `RectangleSeries` hover scans live data instead of rebuilding
   its spatial index after every data update.
-- The `showcases/performance` example has `LineCurve`, `PointCloud`, and `RectangleSeries` tabs,
-  each with options for series count, ingestion API, hover, and rendering.
+- The `showcases/performance` example has `LineCurve`, `PointCloud`, `RectangleSeries`, and
+  `BarSeries` tabs, each with options for series count, ingestion API, hover, and rendering.
 
 ### Fixed
 

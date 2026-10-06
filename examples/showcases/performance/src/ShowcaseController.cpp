@@ -7,10 +7,12 @@
 //
 #include "ShowcaseController.hpp"
 
+#include "BarSeriesFeed.hpp"
 #include "LineCurveFeed.hpp"
 #include "PointCloudFeed.hpp"
 #include "RectangleSeriesFeed.hpp"
 
+#include <QAccelPlot/series/BarSeries.hpp>
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/series/PointCloud.hpp>
 #include <QAccelPlot/series/RectangleSeries.hpp>
@@ -28,7 +30,7 @@ ShowcaseController::ShowcaseController(QQuickWindow* window, QObject* root, std:
     , root_(root)
     , deliveryMetrics_(std::move(deliveryMetrics))
     , feeders_{std::make_unique<SeriesFeeder<LineCurveFeed>>(root), std::make_unique<SeriesFeeder<PointCloudFeed>>(root),
-          std::make_unique<SeriesFeeder<RectangleSeriesFeed>>(root)}
+          std::make_unique<SeriesFeeder<RectangleSeriesFeed>>(root), std::make_unique<SeriesFeeder<BarSeriesFeed>>(root)}
     , screenshotMode_(screenshotMode)
 {
     elapsed_.start();
@@ -61,6 +63,9 @@ std::optional<ShowcaseController::Page> ShowcaseController::requestedPage() cons
     }
     if (name == QLatin1String("rectangleSeries")) {
         return Page::RectangleSeries;
+    }
+    if (name == QLatin1String("barSeries")) {
+        return Page::BarSeries;
     }
     return std::nullopt;
 }

@@ -175,9 +175,9 @@ cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
 
 The Performance Lab
 ([`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance))
-streams a `LineCurve`, a `PointCloud`, and a `RectangleSeries`, one per tab.
-Only the visible tab generates data. Change one option at a time to see what it
-costs:
+streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, and a `BarSeries`,
+one per tab. Only the visible tab generates data. Change one option at a time
+to see what it costs:
 
 | Tab | Options |
 | --- | --- |
@@ -185,6 +185,7 @@ costs:
 | `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps |
 | `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, automatic color range, invalid points |
 | `RectangleSeries` | Tile size, categories, border width, minimum size, hover highlight |
+| `BarSeries` | Categories, bar width, border width, minimum width, hover highlight |
 
 Display FPS stops at the display refresh rate, so compare options at a record
 count that keeps it below that rate. The lab reports:
@@ -195,7 +196,7 @@ count that keeps it below that rate. The lab reports:
   data looks.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
-- **Throughput** — points or rectangles updated per second.
+- **Throughput** — points, rectangles, or bars updated per second.
 
 ### What the included benchmarks measure
 

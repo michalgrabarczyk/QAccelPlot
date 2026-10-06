@@ -11,6 +11,8 @@
 
 #include <QString>
 
+#include <utility>
+
 namespace QAccelPlot {
 class PlotSeries;
 } // namespace QAccelPlot
@@ -37,5 +39,34 @@ bool hasPrecisionFor(const SeriesPart& part, Ingestion ingestion);
 
 /// \brief Hands the records of \a part to \a series through \a ingestion. An empty part clears the series.
 void applyRecords(QAccelPlot::PlotSeries& series, SeriesPart& part, Ingestion ingestion);
+
+/// \brief Like \c applyRecords() and also hands the categories of \a part to \a series.
+///
+/// \a Series has the category overloads of the vector setters, and \a Part derives from
+/// \c SeriesPart and adds a \c categories vector. The raw-array setters take no categories.
+template <typename Series, typename Part> void applyCategorizedRecords(Series& series, Part& part, const Ingestion ingestion)
+{
+    if (part.count == 0 || part.categories.empty()) {
+        applyRecords(series, part, ingestion);
+        return;
+    }
+    switch (ingestion) {
+    case Ingestion::FloatNoRangeMove:
+        series.setDataFNoRange(std::move(part.floats), std::move(part.categories), part.count);
+        break;
+    case Ingestion::FloatMove:
+        series.setDataF(std::move(part.floats), std::move(part.categories), part.count);
+        break;
+    case Ingestion::FloatNoRangeCopy:
+        applyRecords(series, part, ingestion);
+        break;
+    case Ingestion::DoubleMove:
+        series.setData(std::move(part.doubles), std::move(part.categories), part.count);
+        break;
+    case Ingestion::FloatPost:
+        series.postData(std::move(part.floats), std::move(part.categories), part.count);
+        break;
+    }
+}
 
 } // namespace QAccelPlotExample

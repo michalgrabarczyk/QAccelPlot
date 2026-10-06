@@ -18,6 +18,7 @@ Window {
     property QtObject lineCurveSettings: lineCurveDefaults.createObject(window)
     property QtObject pointCloudSettings: pointCloudDefaults.createObject(window)
     property QtObject rectangleSeriesSettings: rectangleSeriesDefaults.createObject(window)
+    property QtObject barSeriesSettings: barSeriesDefaults.createObject(window)
     property int fps: 60
     property real averageFrameTimeMs: 16.7
     property int updateRate: 60
@@ -25,7 +26,7 @@ Window {
     readonly property string activePage: pages.currentName
     readonly property int maximumCount: 10000000
     readonly property var countPresets: [1000, 10000, 100000, 300000, 500000, 1000000, 2000000, 5000000, 10000000]
-    readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : lineCurveSettings
+    readonly property QtObject activeSettings: activePage === "pointCloud" ? pointCloudSettings : activePage === "rectangleSeries" ? rectangleSeriesSettings : activePage === "barSeries" ? barSeriesSettings : lineCurveSettings
     readonly property int activeCount: activeSettings.count
     readonly property real throughputMillions: activeCount * updateRate / 1000000
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
@@ -36,6 +37,8 @@ Window {
             pointCloudSettings = pointCloudDefaults.createObject(window);
         } else if (activePage === "rectangleSeries") {
             rectangleSeriesSettings = rectangleSeriesDefaults.createObject(window);
+        } else if (activePage === "barSeries") {
+            barSeriesSettings = barSeriesDefaults.createObject(window);
         } else {
             lineCurveSettings = lineCurveDefaults.createObject(window);
         }
@@ -67,6 +70,12 @@ Window {
         id: rectangleSeriesDefaults
 
         RectangleSeriesSettings {}
+    }
+
+    Component {
+        id: barSeriesDefaults
+
+        BarSeriesSettings {}
     }
 
     FrameDriver {
@@ -169,7 +178,8 @@ Window {
                 tabs: [
                     { name: "lineCurve", title: "LineCurve" },
                     { name: "pointCloud", title: "PointCloud" },
-                    { name: "rectangleSeries", title: "RectangleSeries" }
+                    { name: "rectangleSeries", title: "RectangleSeries" },
+                    { name: "barSeries", title: "BarSeries" }
                 ]
 
                 LineCurvePage {
@@ -180,6 +190,9 @@ Window {
                 }
                 RectangleSeriesPage {
                     settings: window.rectangleSeriesSettings
+                }
+                BarSeriesPage {
+                    settings: window.barSeriesSettings
                 }
             }
         }
