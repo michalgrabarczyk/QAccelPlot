@@ -227,7 +227,8 @@ private:
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void updateMaterial(RectMaterial& material) const;
-    void ensureSpatialGrid() const;
+    // Returns true when the spatial grid answers the next query, building it if the data has stayed long enough.
+    bool spatialGridReady() const;
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
@@ -254,9 +255,11 @@ private:
     bool dataChanged_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
-    // Built on the first hit test after a data change, so streaming without hover skips it.
+    // Built once the same data has answered several hit tests, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};
+    // Hit tests answered by scanning since the grid was last invalidated.
+    mutable int scansSinceInvalidation_{0};
 };
 
 } // namespace QAccelPlot

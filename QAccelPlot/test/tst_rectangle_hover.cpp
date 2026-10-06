@@ -59,6 +59,7 @@ private slots:
     void nearbyTimestampRectangles_data();
     void nearbyTimestampRectangles();
     void rectangleIndexAtReturnsTopmostRectangle();
+    void rectangleIndexAtKeepsItsAnswersOnceIndexed();
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
     void hitTestsFollowDataChanges();
@@ -124,6 +125,29 @@ void RectangleHoverTest::rectangleIndexAtReturnsTopmostRectangle()
     QVERIFY(rectangles.contains({50.0, 350.0}));
     QVERIFY(!rectangles.contains({350.0, 50.0}));
     QVERIFY(!rectangles.contains({50.0, 450.0}));
+}
+
+void RectangleHoverTest::rectangleIndexAtKeepsItsAnswersOnceIndexed()
+{
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
+    setOverlappingRectangles(rectangles, axes);
+
+    // The first hit tests after a data change scan the rectangles; later ones use the spatial grid.
+    for (auto query = 0; query < 40; ++query) {
+        QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
+        QCOMPARE(rectangles.rectangleIndexAt({150.0, 250.0}), 1);
+        QCOMPARE(rectangles.rectangleIndexAt({250.0, 150.0}), 1);
+        QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), -1);
+    }
+
+    // New data must not be answered from the grid of the old data.
+    rectangles.clearData();
+    for (auto query = 0; query < 40; ++query) {
+        QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
+    }
+    setOverlappingRectangles(rectangles, axes);
+    QCOMPARE(rectangles.rectangleIndexAt({150.0, 250.0}), 1);
 }
 
 void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()

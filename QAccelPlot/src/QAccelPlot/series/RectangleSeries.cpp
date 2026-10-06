@@ -371,9 +371,16 @@ int RectangleSeries::rectangleIndexAt(const QPointF& position) const
     const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
     const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
     const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
-    ensureSpatialGrid();
-    return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
-        [this, &position](const int index) { return containsInPixels(index, position); });
+    const auto minX = std::min(x1, x2);
+    const auto minY = std::min(y1, y2);
+    const auto maxX = std::max(x1, x2);
+    const auto maxY = std::max(y1, y2);
+    const auto accept = [this, &position](const int index) { return containsInPixels(index, position); };
+    if (spatialGridReady()) {
+        return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
+    }
+    return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
+                            : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
 }
 
 bool RectangleSeries::contains(const QPointF& point) const
@@ -473,6 +480,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     rectCount_ = rectCount;
     dataChanged_ = true;
     spatialGridValid_ = false;
+    scansSinceInvalidation_ = 0;
     if (reportRanges) {
         updateDataRanges();
     }
@@ -641,10 +649,17 @@ void RectangleSeries::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-void RectangleSeries::ensureSpatialGrid() const
+// Building the grid costs as much as many scans of the rectangles, so it only pays off for data
+// that stays. The first queries after a change scan instead, which keeps live data cheap.
+bool RectangleSeries::spatialGridReady() const
 {
+    static constexpr auto kScansBeforeIndexing = 8;
     if (spatialGridValid_) {
-        return;
+        return true;
+    }
+    if (scansSinceInvalidation_ < kScansBeforeIndexing) {
+        ++scansSinceInvalidation_;
+        return false;
     }
     if (hasPreciseData()) {
         spatialGrid_.build(data_.data(), rectCount_);
@@ -652,6 +667,7 @@ void RectangleSeries::ensureSpatialGrid() const
         spatialGrid_.buildF(renderData_.data(), rectCount_);
     }
     spatialGridValid_ = true;
+    return true;
 }
 
 void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScaleY)

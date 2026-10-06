@@ -81,6 +81,18 @@ int SpatialGrid::queryTopmost(const double minX, const double minY, const double
     return best;
 }
 
+int SpatialGrid::scanTopmost(const double* data, const int itemCount, const double minX, const double minY, const double maxX, const double maxY,
+    const std::function<bool(int)>& accept, const int valuesPerItem)
+{
+    return scanTopmostFrom(data, itemCount, valuesPerItem, ItemBounds{minX, minY, maxX, maxY}, accept);
+}
+
+int SpatialGrid::scanTopmostF(const float* data, const int itemCount, const double minX, const double minY, const double maxX, const double maxY,
+    const std::function<bool(int)>& accept, const int valuesPerItem)
+{
+    return scanTopmostFrom(data, itemCount, valuesPerItem, ItemBounds{minX, minY, maxX, maxY}, accept);
+}
+
 bool SpatialGrid::ItemBounds::contains(const double x, const double y) const
 {
     return x >= minX && x <= maxX && y >= minY && y <= maxY;
@@ -99,6 +111,32 @@ bool SpatialGrid::ItemBounds::isValid() const
 int SpatialGrid::cellIndex(const double value, const double min, const double cellSize, const int count)
 {
     return static_cast<int>(std::clamp((value - min) / cellSize, 0.0, static_cast<double>(count - 1)));
+}
+
+template <typename T>
+int SpatialGrid::scanTopmostFrom(const T* data, const int itemCount, const int valuesPerItem, const ItemBounds& box, const std::function<bool(int)>& accept)
+{
+    if (!data || itemCount <= 0 || !box.isValid()) {
+        return -1;
+    }
+    for (auto i = itemCount - 1; i >= 0; --i) {
+        const auto* item = data + static_cast<ptrdiff_t>(i) * valuesPerItem;
+        // Combined without short-circuiting: each comparison alone fails for about half the
+        // rectangles and would mispredict.
+        const auto overlaps = (std::min(item[0], item[2]) <= box.maxX) & (std::max(item[0], item[2]) >= box.minX) & (std::min(item[1], item[3]) <= box.maxY)
+            & (std::max(item[1], item[3]) >= box.minY);
+        if (!overlaps) {
+            continue;
+        }
+        // std::min/max can drop a NaN operand, so invalid items are rejected explicitly.
+        if (std::isnan(item[0]) || std::isnan(item[1]) || std::isnan(item[2]) || std::isnan(item[3])) {
+            continue;
+        }
+        if (accept(i)) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 template <typename T> void SpatialGrid::buildFrom(const T* data, const int itemCount, const int valuesPerItem)
