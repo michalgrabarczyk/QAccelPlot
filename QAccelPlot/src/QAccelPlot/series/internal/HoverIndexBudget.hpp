@@ -7,8 +7,6 @@
 //
 #pragma once
 
-#include <QtGlobal>
-
 #include <chrono>
 #include <utility>
 
@@ -22,8 +20,11 @@ namespace QAccelPlot::Internal {
 /// within about twice the cheaper choice, whether the data changes every frame or never.
 class HoverIndexBudget {
 public:
-    /// \brief Creates a budget that assumes \a assumedBuildNanosecondsPerRecord until a build has been timed.
-    explicit HoverIndexBudget(double assumedBuildNanosecondsPerRecord);
+    /// \brief Cost of indexing one record. Fractional, because a timed build rarely costs whole nanoseconds per record.
+    using CostPerRecord = std::chrono::duration<double, std::nano>;
+
+    /// \brief Creates a budget that assumes \a assumedBuildCostPerRecord until a build has been timed.
+    explicit HoverIndexBudget(CostPerRecord assumedBuildCostPerRecord);
 
     /// \brief Forgets the scans paid so far. Call when the index stops matching the data.
     void reset();
@@ -54,8 +55,8 @@ public:
     }
 
 private:
-    double buildNanosecondsPerRecord_;
-    qint64 scanNanoseconds_{0};
+    CostPerRecord buildCostPerRecord_;
+    std::chrono::nanoseconds scanCost_{0};
 };
 
 } // namespace QAccelPlot::Internal

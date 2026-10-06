@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <limits>
 #include <utility>
@@ -29,7 +30,7 @@ namespace QAccelPlot {
 namespace {
 
 // Cost of indexing one rectangle, measured on a desktop CPU and assumed until a build has been timed.
-constexpr auto kAssumedIndexNanosecondsPerRectangle = 400.0;
+constexpr auto kAssumedIndexCostPerRectangle = std::chrono::nanoseconds{400};
 
 const std::array<QString, 4>& rectangleKeys()
 {
@@ -79,7 +80,7 @@ template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCou
 RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(parent)
     , color_(defaultRectangleColor())
-    , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexNanosecondsPerRectangle))
+    , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());

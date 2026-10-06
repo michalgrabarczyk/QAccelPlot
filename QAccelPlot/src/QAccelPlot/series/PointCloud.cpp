@@ -23,6 +23,7 @@
 #include <QSGGeometryNode>
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <cstring>
 #include <limits>
@@ -32,7 +33,7 @@ namespace QAccelPlot {
 namespace {
 
 // Cost of indexing one point, measured on a desktop CPU and assumed until a build has been timed.
-constexpr auto kAssumedIndexNanosecondsPerPoint = 15.0;
+constexpr auto kAssumedIndexCostPerPoint = std::chrono::nanoseconds{15};
 
 // The shape integers come from PlotSeries::MarkerShape, shared with LineCurve markers and the
 // point_shapes.glsl shader include, which selects a shape by the value minus one.
@@ -102,7 +103,7 @@ bool isDrawableCoordinate(const qreal value, const bool logarithmic)
 
 PointCloud::PointCloud(QQuickItem* parent)
     : PlotSeries(parent)
-    , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexNanosecondsPerPoint))
+    , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());

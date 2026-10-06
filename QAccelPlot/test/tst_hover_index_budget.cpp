@@ -33,7 +33,7 @@ private slots:
 void HoverIndexBudgetTest::buildIsDueOnceScansCostAsMuch()
 {
     // Indexing 100 records is assumed to cost 1000 ns.
-    auto budget = HoverIndexBudget{10.0};
+    auto budget = HoverIndexBudget{nanoseconds{10}};
     QVERIFY(!budget.buildDue(100));
 
     budget.addScan(nanoseconds{400});
@@ -46,18 +46,18 @@ void HoverIndexBudgetTest::buildIsDueOnceScansCostAsMuch()
 
 void HoverIndexBudgetTest::buildCostGrowsWithTheRecordCount()
 {
-    auto budget = HoverIndexBudget{10.0};
+    auto budget = HoverIndexBudget{nanoseconds{10}};
     budget.addScan(nanoseconds{1000});
 
     QVERIFY(budget.buildDue(100));
     QVERIFY(!budget.buildDue(101));
     // Nothing to index, so nothing to wait for.
-    QVERIFY(HoverIndexBudget{10.0}.buildDue(0));
+    QVERIFY(HoverIndexBudget{nanoseconds{10}}.buildDue(0));
 }
 
 void HoverIndexBudgetTest::resetForgetsTheScans()
 {
-    auto budget = HoverIndexBudget{10.0};
+    auto budget = HoverIndexBudget{nanoseconds{10}};
     budget.addScan(nanoseconds{5000});
     QVERIFY(budget.buildDue(100));
 
@@ -67,7 +67,7 @@ void HoverIndexBudgetTest::resetForgetsTheScans()
 
 void HoverIndexBudgetTest::untimeableScansStillLeadToABuild()
 {
-    auto budget = HoverIndexBudget{1.0};
+    auto budget = HoverIndexBudget{nanoseconds{1}};
     for (auto scan = 0; scan < 99; ++scan) {
         budget.addScan(nanoseconds{0});
     }
@@ -78,7 +78,7 @@ void HoverIndexBudgetTest::untimeableScansStillLeadToABuild()
 
 void HoverIndexBudgetTest::timedBuildReplacesTheAssumedCost()
 {
-    auto budget = HoverIndexBudget{10.0};
+    auto budget = HoverIndexBudget{nanoseconds{10}};
     // 2 ns per record instead of the assumed 10.
     budget.addBuild(nanoseconds{200'000}, 100'000);
     budget.reset();
@@ -91,7 +91,7 @@ void HoverIndexBudgetTest::timedBuildReplacesTheAssumedCost()
 
 void HoverIndexBudgetTest::buildsOfFewRecordsAreNotLearnedFrom()
 {
-    auto budget = HoverIndexBudget{10.0};
+    auto budget = HoverIndexBudget{nanoseconds{10}};
     // A fixed overhead of 50 µs on 10 records would suggest 5000 ns per record.
     budget.addBuild(nanoseconds{50'000}, 10);
 
@@ -101,7 +101,7 @@ void HoverIndexBudgetTest::buildsOfFewRecordsAreNotLearnedFrom()
 
 void HoverIndexBudgetTest::timeScanReturnsTheResultAndCountsTheScan()
 {
-    auto budget = HoverIndexBudget{1.0};
+    auto budget = HoverIndexBudget{nanoseconds{1}};
     QVERIFY(!budget.buildDue(1));
 
     QCOMPARE(budget.timeScan([] { return 42; }), 42);
@@ -110,7 +110,7 @@ void HoverIndexBudgetTest::timeScanReturnsTheResultAndCountsTheScan()
 
 void HoverIndexBudgetTest::timeBuildRunsTheBuild()
 {
-    auto budget = HoverIndexBudget{1.0};
+    auto budget = HoverIndexBudget{nanoseconds{1}};
     auto built = false;
     budget.timeBuild(100, [&built] { built = true; });
     QVERIFY(built);
