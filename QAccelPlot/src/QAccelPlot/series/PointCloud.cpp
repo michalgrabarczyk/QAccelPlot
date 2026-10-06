@@ -15,6 +15,7 @@
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
@@ -22,6 +23,7 @@
 #include <QSGGeometryNode>
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <cstring>
 #include <limits>
@@ -29,6 +31,9 @@
 namespace QAccelPlot {
 
 namespace {
+
+// Cost of indexing one point, measured on a desktop CPU and assumed until a build has been timed.
+constexpr auto kAssumedIndexCostPerPoint = std::chrono::nanoseconds{15};
 
 // The shape integers come from PlotSeries::MarkerShape, shared with LineCurve markers and the
 // point_shapes.glsl shader include, which selects a shape by the value minus one.
@@ -98,6 +103,7 @@ bool isDrawableCoordinate(const qreal value, const bool logarithmic)
 
 PointCloud::PointCloud(QQuickItem* parent)
     : PlotSeries(parent)
+    , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());
@@ -107,17 +113,19 @@ PointCloud::PointCloud(QQuickItem* parent)
     connect(this, &PlotSeries::xAxisChanged, this, [this]() {
         reconnectAxisSignals();
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     });
     connect(this, &PlotSeries::yAxisChanged, this, [this]() {
         reconnectAxisSignals();
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     });
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &QQuickItem::update);
     }
 }
+
+PointCloud::~PointCloud() = default;
 
 QColor PointCloud::color() const
 {
@@ -451,7 +459,6 @@ int PointCloud::pointIndexAt(const QPointF& position) const
         return -1;
     }
 
-    ensureSpatialIndex();
     const auto logX = xAxis()->logScale();
     const auto logY = yAxis()->logScale();
     auto cursorX = 0.0;
@@ -473,7 +480,12 @@ int PointCloud::pointIndexAt(const QPointF& position) const
     // these differences, but the cursor itself must move into the index's origin-relative space.
     const auto radiusX = std::abs(viewportMaxX - viewportMinX) / width() * hoverRadius_;
     const auto radiusY = std::abs(viewportMaxY - viewportMinY) / height() * hoverRadius_;
-    return spatialIndex_.nearest(cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY);
+    const auto query = HoverQuery{cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY, {logX, logY}};
+    if (!(lastHoverQuery_ == query)) {
+        lastHoverIndex_ = nearestPoint(query);
+        lastHoverQuery_ = query;
+    }
+    return lastHoverIndex_;
 }
 
 bool PointCloud::contains(const QPointF& point) const
@@ -523,7 +535,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     const auto capacity = pointCapacity(window, stride());
     if (capacity != renderCapacity_) {
         renderCapacity_ = capacity;
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
     }
     warnOnceIfOverCapacity(pointCount_, capacity);
     const auto renderCount = std::min(pointCount_, capacity);
@@ -728,7 +740,7 @@ void PointCloud::rebuildRenderData()
     }
 
     dataChanged_ = true;
-    spatialIndexValid_ = false;
+    invalidateSpatialIndex();
 }
 
 void PointCloud::onAxisScaleChanged()
@@ -761,7 +773,7 @@ void PointCloud::onAxisRangeChanged()
 void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool reportRanges)
 {
     dataChanged_ = true;
-    spatialIndexValid_ = false;
+    invalidateSpatialIndex();
     if (reportRanges) {
         updateDataRanges();
     }
@@ -852,7 +864,7 @@ void PointCloud::reconnectAxisSignals()
 
     const auto onLogScaleChanged = [this]() {
         updateDataRanges();
-        spatialIndexValid_ = false;
+        invalidateSpatialIndex();
         update();
     };
     for (auto* axis : {xAxis(), yAxis()}) {
@@ -900,14 +912,45 @@ int PointCloud::stride() const
     return hasValues_ ? kValueStride : kPositionStride;
 }
 
-void PointCloud::ensureSpatialIndex() const
+int PointCloud::hoverPointCount() const
 {
-    const auto mapping = PointSpatialIndex::Mapping{xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale()};
+    return std::min(pointCount_, renderCapacity_);
+}
+
+void PointCloud::invalidateSpatialIndex()
+{
+    spatialIndexValid_ = false;
+    spatialIndexBudget_->reset();
+    lastHoverQuery_.reset();
+}
+
+bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) const
+{
     if (spatialIndexValid_ && spatialIndex_.mapping() == mapping) {
-        return;
+        return true;
     }
-    spatialIndex_.build(data_.data(), std::min(pointCount_, renderCapacity_), stride(), mapping);
+    const auto count = hoverPointCount();
+    if (!spatialIndexBudget_->buildDue(count)) {
+        return false;
+    }
+    spatialIndexBudget_->timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
     spatialIndexValid_ = true;
+    return true;
+}
+
+bool PointCloud::HoverQuery::operator==(const HoverQuery& other) const
+{
+    return x == other.x && y == other.y && radiusX == other.radiusX && radiusY == other.radiusY && mapping == other.mapping;
+}
+
+int PointCloud::nearestPoint(const HoverQuery& query) const
+{
+    if (spatialIndexReady(query.mapping)) {
+        return spatialIndex_.nearest(query.x, query.y, query.radiusX, query.radiusY);
+    }
+    return spatialIndexBudget_->timeScan([&] {
+        return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), query.mapping, query.x, query.y, query.radiusX, query.radiusY);
+    });
 }
 
 } // namespace QAccelPlot

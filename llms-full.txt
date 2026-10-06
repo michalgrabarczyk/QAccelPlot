@@ -536,16 +536,22 @@ handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.
 
-`QAccelPlot.PointCloud.hoveredIndex` uses a uniform grid of point indices that
-is rebuilt lazily on the first pointer move after a data change (`O(N)`), then
-answers each move by scanning only the cells within the hover radius.
-[`RectangleSeries.hoveredIndex`][hovered-index] rebuilds its spatial grid the same
-way. Each pointer move then tests the rectangles in the cells around the pointer
-plus every rectangle spanning more than 64 cells, so many long rectangles make
-lookup `O(N)`. `BarSeries.hoveredIndex` indexes only bar positions, so tall bars
-don't count as long rectangles. When a series is replaced every
-frame while the pointer rests over it, the rebuild repeats per frame; set
-`QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+`QAccelPlot.PointCloud.hoveredIndex` and
+[`RectangleSeries.hoveredIndex`][hovered-index] answer the first pointer moves
+after a data change by testing every record: `O(N)`, roughly 1–2 ms per million
+records on a desktop CPU. Once those scans have cost as much as building a
+spatial index, the index is built (`O(N)`) and later moves test only the records
+near the pointer. Data replaced every frame never pays for an index; it costs
+one scan per frame while the pointer moves.
+
+With the index, a `PointCloud` move tests the points in the grid cells within
+the hover radius. A `RectangleSeries` move tests the rectangles in the cells
+around the pointer plus every rectangle spanning more than 64 cells, so many
+long rectangles make lookup `O(N)`.
+
+`BarSeries.hoveredIndex` indexes only bar positions, so tall bars don't count as
+long rectangles. It rebuilds its grid on the first pointer move after every data
+change. Set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
 
 ### Other rendering costs
 

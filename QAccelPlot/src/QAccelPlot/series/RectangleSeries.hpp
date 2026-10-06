@@ -19,10 +19,18 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QPointF>
+#include <QSizeF>
+
+#include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
 
+namespace Internal {
+class HoverIndexBudget;
+}
 class RectMaterial;
 
 /// \brief A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.
@@ -71,6 +79,8 @@ class RectangleSeries : public PlotSeries {
 public:
     /// \brief Constructs a RectangleSeries with the given \a parent.
     explicit RectangleSeries(QQuickItem* parent = nullptr);
+    /// \brief Destroys the rectangle series.
+    ~RectangleSeries() override;
 
     /// \brief Returns the rectangle fill color.
     QColor color() const;
@@ -227,7 +237,27 @@ private:
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void updateMaterial(RectMaterial& material) const;
-    void ensureSpatialGrid() const;
+    // Returns true when the spatial grid answers the next query, building it once scanning has cost as much.
+    bool spatialGridReady() const;
+
+    // Everything a hit test reads besides the rectangles, so equal inputs give an equal answer.
+    struct HitTestInputs {
+        QPointF position;
+        QSizeF itemSize;
+        QSizeF minimumSize;
+        // The axis mappings, pinned down by each axis' scale and the coordinates at its two ends.
+        double xAtLeft;
+        double xAtRight;
+        double yAtTop;
+        double yAtBottom;
+        bool logScaleX;
+        bool logScaleY;
+
+        bool operator==(const HitTestInputs& other) const;
+    };
+
+    HitTestInputs hitTestInputs(const QPointF& position) const;
+    int topmostRectangleAt(const QPointF& position) const;
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
@@ -254,9 +284,14 @@ private:
     bool dataChanged_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
-    // Built on the first hit test after a data change, so streaming without hover skips it.
+    // Built once scanning the same data has cost as much as the build, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};
+    std::unique_ptr<Internal::HoverIndexBudget> spatialGridBudget_;
+    // The last hit test and its answer. Qt tests contains() several times per hover event before
+    // the handler asks again, each time at the same position.
+    mutable std::optional<HitTestInputs> lastHitTest_;
+    mutable int lastHitIndex_{-1};
 };
 
 } // namespace QAccelPlot

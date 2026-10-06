@@ -35,6 +35,16 @@ public:
     /// Lets callers apply a precise hit test, e.g. in pixel space, to the few candidates near a point.
     int queryTopmost(double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept) const;
 
+    /// \brief Returns what \c queryTopmost() returns on a grid built from the same rectangles, without building one.
+    ///
+    /// Tests rectangles from the last to the first, so a call costs up to one pass over \a data. That
+    /// is cheaper than a rebuild while the data is replaced after only a few queries.
+    static int scanTopmost(
+        const double* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept, int valuesPerItem = 4);
+    /// \brief Scans single-precision \a data, like \c scanTopmost().
+    static int scanTopmostF(
+        const float* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept, int valuesPerItem = 4);
+
 private:
     struct ItemBounds {
         double minX;
@@ -50,6 +60,8 @@ private:
     // Cell coordinate of \a value, clamped to [0, count - 1] so infinite values map to the edge cells.
     static int cellIndex(double value, double min, double cellSize, int count);
 
+    template <typename T>
+    static int scanTopmostFrom(const T* data, int itemCount, int valuesPerItem, const ItemBounds& box, const std::function<bool(int)>& accept);
     template <typename T> void buildFrom(const T* data, int itemCount, int valuesPerItem);
     template <typename T> void computeDataBounds(const T* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);

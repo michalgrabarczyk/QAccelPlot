@@ -9,8 +9,11 @@
 
 #include <QtTest/QtTest>
 
+#include <algorithm>
 #include <array>
+#include <functional>
 #include <limits>
+#include <random>
 #include <vector>
 
 class TestSpatialGrid : public QObject {
@@ -42,6 +45,10 @@ private slots:
 
     // Box queries
     void queryTopmost_returnsHighestAcceptedOverlap();
+
+    // Scans without a grid
+    void scanTopmost_matchesQueryTopmost();
+    void scanTopmost_ignoresInvalidArguments();
 };
 
 namespace {
@@ -304,6 +311,65 @@ void TestSpatialGrid::queryTopmost_returnsHighestAcceptedOverlap()
     QCOMPARE(grid.queryTopmost(0.9, 0.5, 1.2, 0.5, rejectLarge), 0);
     QCOMPARE(grid.queryTopmost(1.1, 0.5, 1.2, 0.5, rejectLarge), -1);
     QCOMPARE(grid.queryTopmost(200.0, 200.0, 300.0, 300.0, acceptAll), -1);
+}
+
+void TestSpatialGrid::scanTopmost_matchesQueryTopmost()
+{
+    constexpr auto itemCount = 3000;
+    auto engine = std::mt19937{5u};
+    auto position = std::uniform_real_distribution<double>{0.0, 100.0};
+    auto size = std::uniform_real_distribution<double>{0.0, 3.0};
+    auto data = std::vector<double>{};
+    for (auto i = 0; i < itemCount; ++i) {
+        const auto x = position(engine);
+        const auto y = position(engine);
+        // Every other rectangle is inverted, which both paths must normalize.
+        const auto width = (i % 2 == 0 ? 1.0 : -1.0) * size(engine);
+        data.insert(data.end(), {x, y, x + width, y + size(engine)});
+    }
+    // A rectangle too large for the cells, unbounded edges, and invalid rectangles.
+    std::copy_n(std::array<double, 4>{10.0, 10.0, 90.0, 90.0}.begin(), 4, data.begin() + 4 * 100);
+    std::copy_n(std::array<double, 4>{40.0, -kInf, 41.0, kInf}.begin(), 4, data.begin() + 4 * 200);
+    std::copy_n(std::array<double, 4>{-kInf, 70.0, 20.0, 71.0}.begin(), 4, data.begin() + 4 * 300);
+    data[4 * 2990 + 2] = kNaN;
+    data[4 * 2995] = kNaN;
+    const auto floats = std::vector<float>(data.begin(), data.end());
+
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), itemCount);
+    auto gridF = QAccelPlot::SpatialGrid{};
+    gridF.buildF(floats.data(), itemCount);
+    const auto acceptAll = [](int) { return true; };
+    const auto acceptEven = [](const int index) { return index % 2 == 0; };
+
+    auto hits = 0;
+    for (auto query = 0; query < 3000; ++query) {
+        const auto minX = position(engine) * 1.2 - 10.0;
+        const auto minY = position(engine) * 1.2 - 10.0;
+        // Some boxes are single points, like a hit test without a minimum size.
+        const auto maxX = minX + (query % 3 == 0 ? 0.0 : size(engine));
+        const auto maxY = minY + (query % 3 == 0 ? 0.0 : size(engine));
+        for (const auto& accept : {std::function<bool(int)>{acceptAll}, std::function<bool(int)>{acceptEven}}) {
+            const auto expected = grid.queryTopmost(minX, minY, maxX, maxY, accept);
+            QCOMPARE(QAccelPlot::SpatialGrid::scanTopmost(data.data(), itemCount, minX, minY, maxX, maxY, accept), expected);
+            QCOMPARE(QAccelPlot::SpatialGrid::scanTopmostF(floats.data(), itemCount, minX, minY, maxX, maxY, accept),
+                gridF.queryTopmost(minX, minY, maxX, maxY, accept));
+            hits += expected >= 0 ? 1 : 0;
+        }
+    }
+    QVERIFY(hits > 1000);
+}
+
+void TestSpatialGrid::scanTopmost_ignoresInvalidArguments()
+{
+    // The second rectangle has a NaN edge that std::min/max would otherwise drop.
+    const auto data = std::array<double, 8>{0.0, 0.0, 1.0, 1.0, 0.0, 0.0, kNaN, 1.0};
+    const auto acceptAll = [](int) { return true; };
+
+    QCOMPARE(QAccelPlot::SpatialGrid::scanTopmost(data.data(), 2, 0.5, 0.5, 0.5, 0.5, acceptAll), 0);
+    QCOMPARE(QAccelPlot::SpatialGrid::scanTopmost(nullptr, 2, 0.5, 0.5, 0.5, 0.5, acceptAll), -1);
+    QCOMPARE(QAccelPlot::SpatialGrid::scanTopmost(data.data(), 0, 0.5, 0.5, 0.5, 0.5, acceptAll), -1);
+    QCOMPARE(QAccelPlot::SpatialGrid::scanTopmost(data.data(), 2, kNaN, 0.5, 0.5, 0.5, acceptAll), -1);
 }
 
 QTEST_GUILESS_MAIN(TestSpatialGrid)

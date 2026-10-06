@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
@@ -19,6 +20,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <limits>
 #include <utility>
@@ -26,6 +28,9 @@
 namespace QAccelPlot {
 
 namespace {
+
+// Cost of indexing one rectangle, measured on a desktop CPU and assumed until a build has been timed.
+constexpr auto kAssumedIndexCostPerRectangle = std::chrono::nanoseconds{400};
 
 const std::array<QString, 4>& rectangleKeys()
 {
@@ -75,6 +80,7 @@ template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCou
 RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(parent)
     , color_(defaultRectangleColor())
+    , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());
@@ -83,6 +89,8 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
     connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
 }
+
+RectangleSeries::~RectangleSeries() = default;
 
 QColor RectangleSeries::color() const
 {
@@ -365,15 +373,12 @@ int RectangleSeries::rectangleIndexAt(const QPointF& position) const
     if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
     }
-    // A rectangle widened to contain the cursor has its center, and so part of itself, within half
-    // the minimum size of it. That box in data space bounds the candidates for the pixel test.
-    const auto x1 = xAxis()->pixelToCoord(position.x() - 0.5 * minimumWidth_, width());
-    const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
-    const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
-    const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
-    ensureSpatialGrid();
-    return spatialGrid_.queryTopmost(std::min(x1, x2), std::min(y1, y2), std::max(x1, x2), std::max(y1, y2),
-        [this, &position](const int index) { return containsInPixels(index, position); });
+    const auto inputs = hitTestInputs(position);
+    if (!(lastHitTest_ == inputs)) {
+        lastHitIndex_ = topmostRectangleAt(position);
+        lastHitTest_ = inputs;
+    }
+    return lastHitIndex_;
 }
 
 bool RectangleSeries::contains(const QPointF& point) const
@@ -473,6 +478,8 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     rectCount_ = rectCount;
     dataChanged_ = true;
     spatialGridValid_ = false;
+    spatialGridBudget_->reset();
+    lastHitTest_.reset();
     if (reportRanges) {
         updateDataRanges();
     }
@@ -641,17 +648,57 @@ void RectangleSeries::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-void RectangleSeries::ensureSpatialGrid() const
+bool RectangleSeries::spatialGridReady() const
 {
     if (spatialGridValid_) {
-        return;
+        return true;
     }
-    if (hasPreciseData()) {
-        spatialGrid_.build(data_.data(), rectCount_);
-    } else {
-        spatialGrid_.buildF(renderData_.data(), rectCount_);
+    if (!spatialGridBudget_->buildDue(rectCount_)) {
+        return false;
     }
+    spatialGridBudget_->timeBuild(rectCount_, [&] {
+        if (hasPreciseData()) {
+            spatialGrid_.build(data_.data(), rectCount_);
+        } else {
+            spatialGrid_.buildF(renderData_.data(), rectCount_);
+        }
+    });
     spatialGridValid_ = true;
+    return true;
+}
+
+bool RectangleSeries::HitTestInputs::operator==(const HitTestInputs& other) const
+{
+    return position == other.position && itemSize == other.itemSize && minimumSize == other.minimumSize && xAtLeft == other.xAtLeft
+        && xAtRight == other.xAtRight && yAtTop == other.yAtTop && yAtBottom == other.yAtBottom && logScaleX == other.logScaleX && logScaleY == other.logScaleY;
+}
+
+RectangleSeries::HitTestInputs RectangleSeries::hitTestInputs(const QPointF& position) const
+{
+    return {position, {width(), height()}, {minimumWidth_, minimumHeight_}, xAxis()->pixelToCoord(0.0, width()), xAxis()->pixelToCoord(width(), width()),
+        yAxis()->pixelToCoord(0.0, height()), yAxis()->pixelToCoord(height(), height()), xAxis()->logScale(), yAxis()->logScale()};
+}
+
+int RectangleSeries::topmostRectangleAt(const QPointF& position) const
+{
+    // A rectangle widened to contain the cursor has its center, and so part of itself, within half
+    // the minimum size of it. That box in data space bounds the candidates for the pixel test.
+    const auto x1 = xAxis()->pixelToCoord(position.x() - 0.5 * minimumWidth_, width());
+    const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
+    const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
+    const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
+    const auto minX = std::min(x1, x2);
+    const auto minY = std::min(y1, y2);
+    const auto maxX = std::max(x1, x2);
+    const auto maxY = std::max(y1, y2);
+    const auto accept = [this, &position](const int index) { return containsInPixels(index, position); };
+    if (spatialGridReady()) {
+        return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
+    }
+    return spatialGridBudget_->timeScan([&] {
+        return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
+                                : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
+    });
 }
 
 void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScaleY)

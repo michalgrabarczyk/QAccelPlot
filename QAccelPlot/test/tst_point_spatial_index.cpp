@@ -51,6 +51,9 @@ private slots:
     void anisotropicRadiusUsesNormalizedDistance();
     void strideSkipsExtraComponents();
     void nonPositiveRadiusReturnsMinusOne();
+    void scanMatchesIndex();
+    void scanMatchesIndexOnLogarithmicAxes();
+    void scanIgnoresInvalidArguments();
 };
 
 void PointSpatialIndexTest::emptyIndexReturnsMinusOne()
@@ -182,6 +185,94 @@ void PointSpatialIndexTest::nonPositiveRadiusReturnsMinusOne()
 
     QCOMPARE(index.nearest(0.0, 0.0, 0.0, 1.0), -1);
     QCOMPARE(index.nearest(0.0, 0.0, 1.0, -1.0), -1);
+}
+
+void PointSpatialIndexTest::scanMatchesIndex()
+{
+    constexpr auto pointCount = 10000;
+    constexpr auto stride = 3;
+    auto engine = std::mt19937{7u};
+    auto coordinate = std::uniform_real_distribution<float>{-50.0f, 50.0f};
+    auto data = std::vector<float>(pointCount * stride);
+    for (auto& value : data) {
+        value = coordinate(engine);
+    }
+    // Duplicates exercise the tie rule; non-finite points must be skipped by both paths.
+    for (auto i = std::size_t{0}; i < 200; ++i) {
+        data[(i + 200) * stride] = data[i * stride];
+        data[(i + 200) * stride + 1] = data[i * stride + 1];
+    }
+    data[400 * stride] = std::numeric_limits<float>::quiet_NaN();
+    data[401 * stride + 1] = std::numeric_limits<float>::infinity();
+    data[402 * stride] = -std::numeric_limits<float>::infinity();
+
+    auto index = PointSpatialIndex{};
+    index.build(data.data(), pointCount, stride);
+
+    auto hits = 0;
+    for (auto query = 0; query < 4000; ++query) {
+        // Half of the queries sit exactly on a point, which also lands duplicates at distance zero.
+        const auto onPoint = static_cast<std::size_t>(query % 1000) * stride;
+        const auto x = query % 2 == 0 ? static_cast<double>(data[onPoint]) : static_cast<double>(coordinate(engine)) * 1.1;
+        const auto y = query % 2 == 0 ? static_cast<double>(data[onPoint + 1]) : static_cast<double>(coordinate(engine)) * 1.1;
+        const auto radiusX = 0.05 + std::abs(coordinate(engine)) * 0.05;
+        const auto radiusY = 0.05 + std::abs(coordinate(engine)) * 0.05;
+        const auto expected = index.nearest(x, y, radiusX, radiusY);
+        QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), pointCount, stride, {}, x, y, radiusX, radiusY), expected);
+        hits += expected >= 0 ? 1 : 0;
+    }
+    QVERIFY(hits > 1000);
+}
+
+void PointSpatialIndexTest::scanMatchesIndexOnLogarithmicAxes()
+{
+    constexpr auto pointCount = 5000;
+    auto engine = std::mt19937{11u};
+    auto exponent = std::uniform_real_distribution<float>{-6.0f, 6.0f};
+    auto data = std::vector<float>(pointCount * 2);
+    for (auto& value : data) {
+        value = std::pow(10.0f, exponent(engine));
+    }
+    // Not drawable on a logarithmic axis.
+    data[0] = 0.0f;
+    data[3] = -5.0f;
+    data[4] = std::numeric_limits<float>::quiet_NaN();
+
+    for (const auto mapping : {PointSpatialIndex::Mapping{true, true}, PointSpatialIndex::Mapping{true, false}, PointSpatialIndex::Mapping{false, true}}) {
+        auto index = PointSpatialIndex{};
+        index.build(data.data(), pointCount, 2, mapping);
+
+        auto hits = 0;
+        for (auto query = 0; query < 3000; ++query) {
+            const auto onPoint = static_cast<std::size_t>(10 + query) * 2;
+            auto x = 0.0;
+            auto y = 0.0;
+            QVERIFY(PointSpatialIndex::mapCoordinate(data[onPoint], mapping.logX, x));
+            QVERIFY(PointSpatialIndex::mapCoordinate(data[onPoint + 1], mapping.logY, y));
+            // A linear dimension spans twelve decades, so its radius scales with the value.
+            const auto radiusX = mapping.logX ? 0.02 : 0.02 * std::abs(x);
+            const auto radiusY = mapping.logY ? 0.02 : 0.02 * std::abs(y);
+            // Offsets up to and just past the radius probe the boundary of the ellipse.
+            const auto offset = 1.2 * (query % 7) / 6.0;
+            const auto expected = index.nearest(x + offset * radiusX, y, radiusX, radiusY);
+            QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), pointCount, 2, mapping, x + offset * radiusX, y, radiusX, radiusY), expected);
+            hits += expected >= 0 ? 1 : 0;
+        }
+        QVERIFY(hits > 1000);
+    }
+}
+
+void PointSpatialIndexTest::scanIgnoresInvalidArguments()
+{
+    const auto data = std::array<float, 2>{0.0f, 0.0f};
+    constexpr auto nan = std::numeric_limits<double>::quiet_NaN();
+
+    QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), 1, 2, {}, 0.0, 0.0, 1.0, 1.0), 0);
+    QCOMPARE(PointSpatialIndex::nearestByScan(nullptr, 1, 2, {}, 0.0, 0.0, 1.0, 1.0), -1);
+    QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), 0, 2, {}, 0.0, 0.0, 1.0, 1.0), -1);
+    QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), 1, 1, {}, 0.0, 0.0, 1.0, 1.0), -1);
+    QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), 1, 2, {}, 0.0, 0.0, 0.0, 1.0), -1);
+    QCOMPARE(PointSpatialIndex::nearestByScan(data.data(), 1, 2, {}, nan, 0.0, 1.0, 1.0), -1);
 }
 
 } // namespace QAccelPlot
