@@ -10,7 +10,6 @@
 #include <QAccelPlot/series/RectangleSeries.hpp>
 
 #include <algorithm>
-#include <utility>
 
 namespace QAccelPlotExample {
 
@@ -26,27 +25,7 @@ PlasmaParameters RectangleSeriesFeed::parameters(const PageScene& scene, const C
 
 void RectangleSeriesFeed::apply(QAccelPlot::RectangleSeries& series, PlasmaPart& part, const CommonOptions& options)
 {
-    if (part.count == 0 || part.categories.empty()) {
-        applyRecords(series, part, options.ingestion);
-        return;
-    }
-    switch (options.ingestion) {
-    case Ingestion::FloatNoRangeMove:
-        series.setDataFNoRange(std::move(part.floats), std::move(part.categories), part.count);
-        break;
-    case Ingestion::FloatMove:
-        series.setDataF(std::move(part.floats), std::move(part.categories), part.count);
-        break;
-    case Ingestion::FloatNoRangeCopy:
-        applyRecords(series, part, options.ingestion);
-        break;
-    case Ingestion::DoubleMove:
-        series.setData(std::move(part.doubles), std::move(part.categories), part.count);
-        break;
-    case Ingestion::FloatPost:
-        series.postData(std::move(part.floats), std::move(part.categories), part.count);
-        break;
-    }
+    applyCategorizedRecords(series, part, options.ingestion);
 }
 
 } // namespace QAccelPlotExample
