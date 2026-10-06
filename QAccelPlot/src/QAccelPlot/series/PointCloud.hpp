@@ -21,9 +21,15 @@
 #include <QPointer>
 
 #include <limits>
+#include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
+
+namespace Internal {
+class HoverIndexBudget;
+}
 
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
@@ -83,6 +89,8 @@ class PointCloud : public PlotSeries {
 public:
     /// \brief Constructs a PointCloud with the given \a parent.
     explicit PointCloud(QQuickItem* parent = nullptr);
+    /// \brief Destroys the point cloud.
+    ~PointCloud() override;
 
     /// \brief Returns the uniform marker color.
     QColor color() const;
@@ -229,7 +237,24 @@ private:
     void refreshColorStops();
     void setHoveredIndex(int index);
     int stride() const;
-    void ensureSpatialIndex() const;
+    /// \brief Returns the number of points that take part in hover: those the data texture holds.
+    int hoverPointCount() const;
+    void invalidateSpatialIndex();
+    /// \brief Returns \c true when the spatial index answers the next query, building it once scanning has cost as much.
+    bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
+
+    /// \brief A hover query in the spatial index's coordinates. With the data, it decides the answer.
+    struct HoverQuery {
+        double x;
+        double y;
+        double radiusX;
+        double radiusY;
+        PointSpatialIndex::Mapping mapping;
+
+        bool operator==(const HoverQuery& other) const;
+    };
+
+    int nearestPoint(const HoverQuery& query) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void rebuildRenderData();
     bool hasPreciseData() const;
@@ -274,6 +299,11 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
+    std::unique_ptr<Internal::HoverIndexBudget> spatialIndexBudget_;
+    // The last hover query and its answer. Qt tests contains() several times per hover event
+    // before the handler asks again, each time at the same position.
+    mutable std::optional<HoverQuery> lastHoverQuery_;
+    mutable int lastHoverIndex_{-1};
 
     QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;

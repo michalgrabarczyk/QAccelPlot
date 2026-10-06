@@ -20,6 +20,30 @@ constexpr auto kTargetPointsPerCell = 4.0;
 constexpr auto kMaxGridDimension = 4096;
 // Extent used when all points share one coordinate, so the grid never has zero size.
 constexpr auto kMinimumExtent = 1e-6;
+
+// Closed range of source values, used to reject most points of a scan with plain comparisons.
+struct SourceRange {
+    float min;
+    float max;
+};
+
+// Returns a range holding every source value whose mapped coordinate lies within \a radius of
+// \a center. It errs on the wide side, so rounding never drops a point the exact test accepts.
+SourceRange sourceRange(const double center, const double radius, const bool logarithmic)
+{
+    auto low = center - radius;
+    auto high = center + radius;
+    if (logarithmic) {
+        // The exact test rounds log10(value) to float, which can move a value across the bound.
+        const auto slack = (std::abs(low) + std::abs(high) + 1.0) * static_cast<double>(std::numeric_limits<float>::epsilon());
+        low = std::pow(10.0, low - slack);
+        high = std::pow(10.0, high + slack);
+    }
+    constexpr auto kInfinity = std::numeric_limits<float>::infinity();
+    constexpr auto kLimit = static_cast<double>(std::numeric_limits<float>::max());
+    return {std::nextafter(static_cast<float>(std::clamp(low, -kLimit, kLimit)), -kInfinity),
+        std::nextafter(static_cast<float>(std::clamp(high, -kLimit, kLimit)), kInfinity)};
+}
 } // namespace
 
 bool PointSpatialIndex::Mapping::operator==(const Mapping& other) const
@@ -101,6 +125,43 @@ int PointSpatialIndex::nearest(const double x, const double y, const double radi
                     bestIndex = point.sourceIndex;
                 }
             }
+        }
+    }
+    return bestIndex;
+}
+
+int PointSpatialIndex::nearestByScan(const float* data, const int pointCount, const int stride, const Mapping mapping, const double x, const double y,
+    const double radiusX, const double radiusY)
+{
+    if (!data || pointCount <= 0 || stride < 2 || !(radiusX > 0.0) || !(radiusY > 0.0) || !std::isfinite(x) || !std::isfinite(y)) {
+        return -1;
+    }
+
+    const auto rangeX = sourceRange(x, radiusX, mapping.logX);
+    const auto rangeY = sourceRange(y, radiusY, mapping.logY);
+    auto bestIndex = -1;
+    auto bestDistance = 1.0;
+    const auto* point = data;
+    for (auto index = 0; index < pointCount; ++index, point += stride) {
+        // Combined without short-circuiting: each comparison alone fails for about half the
+        // points and would mispredict. NaN fails the test.
+        const auto inRange = (point[0] >= rangeX.min) & (point[0] <= rangeX.max) & (point[1] >= rangeY.min) & (point[1] <= rangeY.max);
+        if (!inRange) {
+            continue;
+        }
+        auto mappedX = 0.0;
+        auto mappedY = 0.0;
+        if (!mapCoordinate(point[0], mapping.logX, mappedX) || !mapCoordinate(point[1], mapping.logY, mappedY)) {
+            continue;
+        }
+        // Rounded to float like the indexed coordinates, so both paths measure the same distance.
+        const auto dx = (static_cast<double>(static_cast<float>(mappedX)) - x) / radiusX;
+        const auto dy = (static_cast<double>(static_cast<float>(mappedY)) - y) / radiusY;
+        const auto distance = dx * dx + dy * dy;
+        // Points come in ascending order, so accepting an equal distance lets the highest index win.
+        if (distance <= bestDistance) {
+            bestDistance = distance;
+            bestIndex = index;
         }
     }
     return bestIndex;

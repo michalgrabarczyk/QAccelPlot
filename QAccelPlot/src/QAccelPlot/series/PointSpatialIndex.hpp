@@ -61,6 +61,12 @@ public:
     /// on screen. Ties resolve to the highest index, the point drawn last.
     int nearest(double x, double y, double radiusX, double radiusY) const;
 
+    /// \brief Returns what \c nearest() returns on an index built from the same points, without building one.
+    ///
+    /// Tests every point, so a call costs one pass over \a data. That is cheaper than a rebuild
+    /// while the data is replaced after only a few queries.
+    static int nearestByScan(const float* data, int pointCount, int stride, Mapping mapping, double x, double y, double radiusX, double radiusY);
+
     /// \brief Maps \a value for indexing. Returns \c false when the value cannot be indexed.
     static bool mapCoordinate(double value, bool logarithmic, double& mapped);
 
