@@ -89,7 +89,8 @@ QAccelPlot/
 │       │                           LineCurveVertexCache, RectVertexCache,
 │       │                           LineCurveGaps (gaps grouped property),
 │       │                           LineCurveGapFilter (invalid-sample contract),
-│       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
+│       │                           SpatialGrid, PointSpatialIndex (hover hit testing),
+│       │                           HoverIndexBudget (when a hover index is worth building)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
 │       └── transitions/          — DataTransition, DrawTransition, MorphTransition
 ├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,

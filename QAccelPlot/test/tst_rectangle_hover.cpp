@@ -133,8 +133,9 @@ void RectangleHoverTest::rectangleIndexAtKeepsItsAnswersOnceIndexed()
     auto rectangles = QAccelPlot::RectangleSeries{};
     setOverlappingRectangles(rectangles, axes);
 
-    // The first hit tests after a data change scan the rectangles; later ones use the spatial grid.
-    for (auto query = 0; query < 40; ++query) {
+    // Hit tests scan the rectangles until that has cost as much as building the spatial grid,
+    // which for two rectangles takes at most 800 scans.
+    for (auto query = 0; query < 250; ++query) {
         QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
         QCOMPARE(rectangles.rectangleIndexAt({150.0, 250.0}), 1);
         QCOMPARE(rectangles.rectangleIndexAt({250.0, 150.0}), 1);

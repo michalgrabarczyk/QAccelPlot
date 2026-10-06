@@ -379,8 +379,10 @@ int RectangleSeries::rectangleIndexAt(const QPointF& position) const
     if (spatialGridReady()) {
         return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
     }
-    return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
-                            : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
+    return spatialGridBudget_.timeScan([&] {
+        return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
+                                : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
+    });
 }
 
 bool RectangleSeries::contains(const QPointF& point) const
@@ -480,7 +482,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     rectCount_ = rectCount;
     dataChanged_ = true;
     spatialGridValid_ = false;
-    scansSinceInvalidation_ = 0;
+    spatialGridBudget_.reset();
     if (reportRanges) {
         updateDataRanges();
     }
@@ -649,23 +651,21 @@ void RectangleSeries::updateMaterial(RectMaterial& material) const
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
 }
 
-// Building the grid costs as much as many scans of the rectangles, so it only pays off for data
-// that stays. The first queries after a change scan instead, which keeps live data cheap.
 bool RectangleSeries::spatialGridReady() const
 {
-    static constexpr auto kScansBeforeIndexing = 8;
     if (spatialGridValid_) {
         return true;
     }
-    if (scansSinceInvalidation_ < kScansBeforeIndexing) {
-        ++scansSinceInvalidation_;
+    if (!spatialGridBudget_.buildDue(rectCount_)) {
         return false;
     }
-    if (hasPreciseData()) {
-        spatialGrid_.build(data_.data(), rectCount_);
-    } else {
-        spatialGrid_.buildF(renderData_.data(), rectCount_);
-    }
+    spatialGridBudget_.timeBuild(rectCount_, [&] {
+        if (hasPreciseData()) {
+            spatialGrid_.build(data_.data(), rectCount_);
+        } else {
+            spatialGrid_.buildF(renderData_.data(), rectCount_);
+        }
+    });
     spatialGridValid_ = true;
     return true;
 }

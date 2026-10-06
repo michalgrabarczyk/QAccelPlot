@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
+#include "QAccelPlot/series/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
@@ -232,7 +233,7 @@ private:
     /// \brief Returns the number of points that take part in hover: those the data texture holds.
     int hoverPointCount() const;
     void invalidateSpatialIndex();
-    /// \brief Returns \c true when the spatial index answers the next query, building it if the data has stayed long enough.
+    /// \brief Returns \c true when the spatial index answers the next query, building it once scanning has cost as much.
     bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void rebuildRenderData();
@@ -278,8 +279,8 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
-    // Hover queries answered by scanning since the index was last invalidated.
-    mutable int scansSinceInvalidation_{0};
+    // Assumed cost of indexing one point, in nanoseconds, until a build has been timed.
+    mutable HoverIndexBudget spatialIndexBudget_{15.0};
 
     QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;

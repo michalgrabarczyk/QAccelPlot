@@ -7,6 +7,7 @@
 //
 #pragma once
 
+#include "QAccelPlot/series/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
@@ -227,7 +228,7 @@ private:
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     void updateMaterial(RectMaterial& material) const;
-    // Returns true when the spatial grid answers the next query, building it if the data has stayed long enough.
+    // Returns true when the spatial grid answers the next query, building it once scanning has cost as much.
     bool spatialGridReady() const;
     void buildVertexCache();
     void updateDataRanges();
@@ -255,11 +256,11 @@ private:
     bool dataChanged_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
-    // Built once the same data has answered several hit tests, so streaming skips it.
+    // Built once scanning the same data has cost as much as the build, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};
-    // Hit tests answered by scanning since the grid was last invalidated.
-    mutable int scansSinceInvalidation_{0};
+    // Assumed cost of indexing one rectangle, in nanoseconds, until a build has been timed.
+    mutable HoverIndexBudget spatialGridBudget_{400.0};
 };
 
 } // namespace QAccelPlot

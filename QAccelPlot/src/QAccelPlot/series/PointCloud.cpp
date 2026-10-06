@@ -478,7 +478,8 @@ int PointCloud::pointIndexAt(const QPointF& position) const
     if (spatialIndexReady(mapping)) {
         return spatialIndex_.nearest(x, y, radiusX, radiusY);
     }
-    return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), mapping, x, y, radiusX, radiusY);
+    return spatialIndexBudget_.timeScan(
+        [&] { return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), mapping, x, y, radiusX, radiusY); });
 }
 
 bool PointCloud::contains(const QPointF& point) const
@@ -913,22 +914,19 @@ int PointCloud::hoverPointCount() const
 void PointCloud::invalidateSpatialIndex()
 {
     spatialIndexValid_ = false;
-    scansSinceInvalidation_ = 0;
+    spatialIndexBudget_.reset();
 }
 
-// Building the index costs as much as many scans of the points, so it only pays off for data
-// that stays. The first queries after a change scan instead, which keeps live data cheap.
 bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) const
 {
-    static constexpr auto kScansBeforeIndexing = 8;
     if (spatialIndexValid_ && spatialIndex_.mapping() == mapping) {
         return true;
     }
-    if (scansSinceInvalidation_ < kScansBeforeIndexing) {
-        ++scansSinceInvalidation_;
+    const auto count = hoverPointCount();
+    if (!spatialIndexBudget_.buildDue(count)) {
         return false;
     }
-    spatialIndex_.build(data_.data(), hoverPointCount(), stride(), mapping);
+    spatialIndexBudget_.timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
     spatialIndexValid_ = true;
     return true;
 }

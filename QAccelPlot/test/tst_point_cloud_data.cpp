@@ -504,7 +504,8 @@ void PointCloudDataTest::pointIndexAtKeepsItsAnswersOnceIndexed()
     // Pixel positions: (20, 90), (40, 90), (100, 50), and (100, 50) again.
     cloud.setDataF(std::vector<float>{10.0f, 10.0f, 20.0f, 10.0f, 50.0f, 50.0f, 50.0f, 50.0f}, 4);
 
-    // The first queries after a data change scan the points; later ones use the spatial index.
+    // Queries scan the points until that has cost as much as building the spatial index, which
+    // for four points takes at most 60 scans.
     for (auto query = 0; query < 40; ++query) {
         QCOMPARE(cloud.pointIndexAt(QPointF(21.0, 91.0)), 0);
         QCOMPARE(cloud.pointIndexAt(QPointF(37.0, 90.0)), 1);
