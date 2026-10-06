@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-06 20:02:18</td>
+      <td>2026-10-06 21:05:48</td>
     </tr>
   </table>
 </div>
@@ -71,9 +71,9 @@
       <th>Block coverage</th>
     </tr>
     <tr><td><a href="#l20">QAccelPlot::Internal::HoverIndexBudget::HoverIndexBudget(std::chrono::duration&lt;double, std::ratio&lt;1l, 1000000000l&gt; &gt;) (line 20)</a></td><td>called 149 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l40">QAccelPlot::Internal::HoverIndexBudget::addBuild(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;, int) (line 40)</a></td><td>called 25 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l35">QAccelPlot::Internal::HoverIndexBudget::addScan(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;) (line 35)</a></td><td>called 155 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l30">QAccelPlot::Internal::HoverIndexBudget::buildDue(int) const (line 30)</a></td><td>called 84 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l40">QAccelPlot::Internal::HoverIndexBudget::addBuild(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;, int) (line 40)</a></td><td>called 27 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l35">QAccelPlot::Internal::HoverIndexBudget::addScan(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;) (line 35)</a></td><td>called 150 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l30">QAccelPlot::Internal::HoverIndexBudget::buildDue(int) const (line 30)</a></td><td>called 81 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l25">QAccelPlot::Internal::HoverIndexBudget::reset() (line 25)</a></td><td>called 378 times</td><td>100.0%</td></tr>
   </table>
 </details>
@@ -295,7 +295,7 @@
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">84</td>
+      <td class="linecount coveredLine">81</td>
       <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">HoverIndexBudget::buildDue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recordCount</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -311,14 +311,14 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/4</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 84 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 81 times.</div>
             <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
-            <div class="takenBranch">&check; Branch 4 taken 84 times.</div>
+            <div class="takenBranch">&check; Branch 4 taken 81 times.</div>
             <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">84</td>
+      <td class="linecount partialCoveredLine">81</td>
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">scanCost_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">buildCostPerRecord_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">recordCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -339,7 +339,7 @@
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">155</td>
+      <td class="linecount coveredLine">150</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">HoverIndexBudget::addScan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="w"> </span><span class="n">duration</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -353,14 +353,14 @@
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">155</td>
+      <td class="linecount coveredLine">150</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">scanCost_</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="n">kShortestDuration</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">155</td>
+      <td class="linecount coveredLine">150</td>
       <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
@@ -374,7 +374,7 @@
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">25</td>
+      <td class="linecount coveredLine">27</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">HoverIndexBudget::addBuild</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="w"> </span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recordCount</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -390,19 +390,19 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 24 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 26 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">25</td>
+      <td class="linecount coveredLine">27</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">recordCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">kMinimumRecordsToLearnFrom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">24</td>
+      <td class="linecount coveredLine">26</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
