@@ -5,11 +5,11 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/series/HoverIndexBudget.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 
 #include <algorithm>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 namespace {
 constexpr auto kMinimumRecordsToLearnFrom = 10'000;
@@ -44,4 +44,4 @@ void HoverIndexBudget::addBuild(const std::chrono::nanoseconds duration, const i
     buildNanosecondsPerRecord_ = static_cast<double>(std::max<qint64>(duration.count(), 1)) / static_cast<double>(recordCount);
 }
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

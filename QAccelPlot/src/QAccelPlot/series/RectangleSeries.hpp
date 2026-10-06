@@ -7,7 +7,6 @@
 //
 #pragma once
 
-#include "QAccelPlot/series/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
@@ -23,11 +22,15 @@
 #include <QPointF>
 #include <QSizeF>
 
+#include <memory>
 #include <optional>
 #include <vector>
 
 namespace QAccelPlot {
 
+namespace Internal {
+class HoverIndexBudget;
+}
 class RectMaterial;
 
 /// \brief A hardware-accelerated QML item that renders a large list of axis-aligned rectangles.
@@ -76,6 +79,8 @@ class RectangleSeries : public PlotSeries {
 public:
     /// \brief Constructs a RectangleSeries with the given \a parent.
     explicit RectangleSeries(QQuickItem* parent = nullptr);
+    /// \brief Destroys the rectangle series.
+    ~RectangleSeries() override;
 
     /// \brief Returns the rectangle fill color.
     QColor color() const;
@@ -282,8 +287,7 @@ private:
     // Built once scanning the same data has cost as much as the build, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};
-    // Assumed cost of indexing one rectangle, in nanoseconds, until a build has been timed.
-    mutable HoverIndexBudget spatialGridBudget_{400.0};
+    std::unique_ptr<Internal::HoverIndexBudget> spatialGridBudget_;
     // The last hit test and its answer. Qt tests contains() several times per hover event before
     // the handler asks again, each time at the same position.
     mutable std::optional<HitTestInputs> lastHitTest_;

@@ -12,7 +12,7 @@
 #include <chrono>
 #include <utility>
 
-namespace QAccelPlot {
+namespace QAccelPlot::Internal {
 
 /// \brief Decides when queried data is worth a hover index.
 ///
@@ -58,4 +58,4 @@ private:
     qint64 scanNanoseconds_{0};
 };
 
-} // namespace QAccelPlot
+} // namespace QAccelPlot::Internal

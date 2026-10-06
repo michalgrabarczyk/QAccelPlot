@@ -9,7 +9,6 @@
 
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/effects/GradientColorTypes.hpp"
-#include "QAccelPlot/series/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
@@ -22,10 +21,15 @@
 #include <QPointer>
 
 #include <limits>
+#include <memory>
 #include <optional>
 #include <vector>
 
 namespace QAccelPlot {
+
+namespace Internal {
+class HoverIndexBudget;
+}
 
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
@@ -85,6 +89,8 @@ class PointCloud : public PlotSeries {
 public:
     /// \brief Constructs a PointCloud with the given \a parent.
     explicit PointCloud(QQuickItem* parent = nullptr);
+    /// \brief Destroys the point cloud.
+    ~PointCloud() override;
 
     /// \brief Returns the uniform marker color.
     QColor color() const;
@@ -293,8 +299,7 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
-    // Assumed cost of indexing one point, in nanoseconds, until a build has been timed.
-    mutable HoverIndexBudget spatialIndexBudget_{15.0};
+    std::unique_ptr<Internal::HoverIndexBudget> spatialIndexBudget_;
     // The last hover query and its answer. Qt tests contains() several times per hover event
     // before the handler asks again, each time at the same position.
     mutable std::optional<HoverQuery> lastHoverQuery_;

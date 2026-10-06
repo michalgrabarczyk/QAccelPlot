@@ -11,6 +11,7 @@
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/DataTextureMaterial.hpp"
 #include "QAccelPlot/materials/RectMaterial.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/RectGeometry.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
@@ -26,6 +27,9 @@
 namespace QAccelPlot {
 
 namespace {
+
+// Cost of indexing one rectangle, measured on a desktop CPU and assumed until a build has been timed.
+constexpr auto kAssumedIndexNanosecondsPerRectangle = 400.0;
 
 const std::array<QString, 4>& rectangleKeys()
 {
@@ -75,6 +79,7 @@ template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCou
 RectangleSeries::RectangleSeries(QQuickItem* parent)
     : PlotSeries(parent)
     , color_(defaultRectangleColor())
+    , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexNanosecondsPerRectangle))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());
@@ -83,6 +88,8 @@ RectangleSeries::RectangleSeries(QQuickItem* parent)
     connect(border_, &RectangleBorder::widthChanged, this, &QQuickItem::update);
     connect(border_, &RectangleBorder::colorChanged, this, &QQuickItem::update);
 }
+
+RectangleSeries::~RectangleSeries() = default;
 
 QColor RectangleSeries::color() const
 {
@@ -470,7 +477,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     rectCount_ = rectCount;
     dataChanged_ = true;
     spatialGridValid_ = false;
-    spatialGridBudget_.reset();
+    spatialGridBudget_->reset();
     lastHitTest_.reset();
     if (reportRanges) {
         updateDataRanges();
@@ -645,10 +652,10 @@ bool RectangleSeries::spatialGridReady() const
     if (spatialGridValid_) {
         return true;
     }
-    if (!spatialGridBudget_.buildDue(rectCount_)) {
+    if (!spatialGridBudget_->buildDue(rectCount_)) {
         return false;
     }
-    spatialGridBudget_.timeBuild(rectCount_, [&] {
+    spatialGridBudget_->timeBuild(rectCount_, [&] {
         if (hasPreciseData()) {
             spatialGrid_.build(data_.data(), rectCount_);
         } else {
@@ -687,7 +694,7 @@ int RectangleSeries::topmostRectangleAt(const QPointF& position) const
     if (spatialGridReady()) {
         return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
     }
-    return spatialGridBudget_.timeScan([&] {
+    return spatialGridBudget_->timeScan([&] {
         return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
                                 : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
     });

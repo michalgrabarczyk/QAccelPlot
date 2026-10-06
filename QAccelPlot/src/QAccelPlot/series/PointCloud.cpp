@@ -15,6 +15,7 @@
 #include "QAccelPlot/materials/PointCloudMaterial.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QHoverEvent>
@@ -29,6 +30,9 @@
 namespace QAccelPlot {
 
 namespace {
+
+// Cost of indexing one point, measured on a desktop CPU and assumed until a build has been timed.
+constexpr auto kAssumedIndexNanosecondsPerPoint = 15.0;
 
 // The shape integers come from PlotSeries::MarkerShape, shared with LineCurve markers and the
 // point_shapes.glsl shader include, which selects a shape by the value minus one.
@@ -98,6 +102,7 @@ bool isDrawableCoordinate(const qreal value, const bool logarithmic)
 
 PointCloud::PointCloud(QQuickItem* parent)
     : PlotSeries(parent)
+    , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexNanosecondsPerPoint))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());
@@ -118,6 +123,8 @@ PointCloud::PointCloud(QQuickItem* parent)
         connect(marker_, signal, this, &QQuickItem::update);
     }
 }
+
+PointCloud::~PointCloud() = default;
 
 QColor PointCloud::color() const
 {
@@ -912,7 +919,7 @@ int PointCloud::hoverPointCount() const
 void PointCloud::invalidateSpatialIndex()
 {
     spatialIndexValid_ = false;
-    spatialIndexBudget_.reset();
+    spatialIndexBudget_->reset();
     lastHoverQuery_.reset();
 }
 
@@ -922,10 +929,10 @@ bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) con
         return true;
     }
     const auto count = hoverPointCount();
-    if (!spatialIndexBudget_.buildDue(count)) {
+    if (!spatialIndexBudget_->buildDue(count)) {
         return false;
     }
-    spatialIndexBudget_.timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
+    spatialIndexBudget_->timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
     spatialIndexValid_ = true;
     return true;
 }
@@ -940,7 +947,7 @@ int PointCloud::nearestPoint(const HoverQuery& query) const
     if (spatialIndexReady(query.mapping)) {
         return spatialIndex_.nearest(query.x, query.y, query.radiusX, query.radiusY);
     }
-    return spatialIndexBudget_.timeScan([&] {
+    return spatialIndexBudget_->timeScan([&] {
         return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), query.mapping, query.x, query.y, query.radiusX, query.radiusY);
     });
 }

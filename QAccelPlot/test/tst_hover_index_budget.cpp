@@ -5,7 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
-#include "QAccelPlot/series/HoverIndexBudget.hpp"
+#include "QAccelPlot/series/internal/HoverIndexBudget.hpp"
 
 #include <QtTest/QtTest>
 
@@ -13,6 +13,7 @@
 
 namespace QAccelPlot {
 
+using Internal::HoverIndexBudget;
 using std::chrono::nanoseconds;
 
 class HoverIndexBudgetTest : public QObject {
