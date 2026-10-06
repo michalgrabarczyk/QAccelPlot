@@ -42,6 +42,8 @@ public:
 
     int nearest(double x, double y, double radiusX, double radiusY) const;
 
+    static int nearestByScan(const float* data, int pointCount, int stride, Mapping mapping, double x, double y, double radiusX, double radiusY);
+
     static bool mapCoordinate(double value, bool logarithmic, double& mapped);
 
 private:

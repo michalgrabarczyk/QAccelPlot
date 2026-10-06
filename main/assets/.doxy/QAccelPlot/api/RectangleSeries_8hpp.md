@@ -23,6 +23,10 @@
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
+* `#include <QPointF>`
+* `#include <QSizeF>`
+* `#include <memory>`
+* `#include <optional>`
 * `#include <vector>`
 
 
@@ -44,6 +48,7 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes

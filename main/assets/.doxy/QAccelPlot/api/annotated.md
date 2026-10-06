@@ -72,6 +72,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._     
     * **struct** [**InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Sample-weighted Y statistics over the valid samples inside a region._     
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
+        * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
     * **class** [**LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._     
     * **class** [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
@@ -132,8 +133,10 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     
 * **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
+* **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
 * **struct** [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)     
+* **struct** [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)     
 * **struct** [**Region**](structQAccelPlot_1_1SelectionTool_1_1Region.md)     
 * **struct** [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)     
 * **struct** [**ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md)     

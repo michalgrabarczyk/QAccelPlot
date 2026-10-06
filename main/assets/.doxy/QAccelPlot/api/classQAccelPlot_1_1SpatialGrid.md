@@ -67,6 +67,12 @@ _Uniform-grid spatial index with bounded per-rectangle storage._ [More...](#deta
 |  int | [**queryTopmost**](#function-querytopmost) (double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; & accept) const<br>_Returns the highest index among rectangles overlapping the box for which_ _accept_ _returns true, or -1._ |
 
 
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  int | [**scanTopmost**](#function-scantopmost) (const double \* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; & accept, int valuesPerItem=4) <br>_Returns what_ `queryTopmost()` _returns on a grid built from the same rectangles, without building one._ |
+|  int | [**scanTopmostF**](#function-scantopmostf) (const float \* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function&lt; bool(int)&gt; & accept, int valuesPerItem=4) <br>_Scans single-precision_ _data_ _, like_`scanTopmost()` _._ |
 
 
 
@@ -194,6 +200,60 @@ Lets callers apply a precise hit test, e.g. in pixel space, to the few candidate
 
 
         
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+
+### function scanTopmost {#function-scantopmost}
+
+_Returns what_ `queryTopmost()` _returns on a grid built from the same rectangles, without building one._
+```C++
+static int QAccelPlot::SpatialGrid::scanTopmost (
+    const double * data,
+    int itemCount,
+    double minX,
+    double minY,
+    double maxX,
+    double maxY,
+    const std::function< bool(int)> & accept,
+    int valuesPerItem=4
+) 
+```
+
+
+
+Tests rectangles from the last to the first, so a call costs up to one pass over _data_. That is cheaper than a rebuild while the data is replaced after only a few queries. 
+
+
+        
+
+<hr>
+
+
+
+
+### function scanTopmostF {#function-scantopmostf}
+
+_Scans single-precision_ _data_ _, like_`scanTopmost()` _._
+```C++
+static int QAccelPlot::SpatialGrid::scanTopmostF (
+    const float * data,
+    int itemCount,
+    double minX,
+    double minY,
+    double maxX,
+    double maxY,
+    const std::function< bool(int)> & accept,
+    int valuesPerItem=4
+) 
+```
+
+
+
 
 <hr>
 

@@ -1396,6 +1396,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#function-nearestbyscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function nearestByScan
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1491,6 +1502,10 @@
 <td style="text-align: right;">bool</td>
 <td style="text-align: left;"><a href="#function-mapcoordinate"><strong>mapCoordinate</strong></a> (double value, bool logarithmic, double &amp; mapped) <br><em>Maps</em> <em>value</em> <em>for indexing. Returns</em><code>false</code> <em>when the value cannot be indexed.</em></td>
 </tr>
+<tr>
+<td style="text-align: right;">int</td>
+<td style="text-align: left;"><a href="#function-nearestbyscan"><strong>nearestByScan</strong></a> (const float * data, int pointCount, int stride, <a href="../structQAccelPlot_1_1PointSpatialIndex_1_1Mapping/"><strong>Mapping</strong></a> mapping, double x, double y, double radiusX, double radiusY) <br><em>Returns what</em> <code>nearest()</code> <em>returns on an index built from the same points, without building one.</em></td>
+</tr>
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
@@ -1564,6 +1579,22 @@
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mapped</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
+<hr>
+
+<h3 id="function-nearestbyscan">function nearestByScan<a class="headerlink" href="#function-nearestbyscan" title="Permanent link">&para;</a></h3>
+<p><em>Returns what</em> <code>nearest()</code> <em>returns on an index built from the same points, without building one.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PointSpatialIndex</span><span class="o">::</span><span class="n">nearestByScan</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">stride</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">Mapping</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radiusX</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">radiusY</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<p>Tests every point, so a call costs one pass over <em>data</em>. That is cheaper than a rebuild while the data is replaced after only a few queries. </p>
 <hr>
 
 <hr />

@@ -29,6 +29,8 @@
 * `#include <QPointF>`
 * `#include <QPointer>`
 * `#include <limits>`
+* `#include <memory>`
+* `#include <optional>`
 * `#include <vector>`
 
 
@@ -50,6 +52,7 @@
 | Type | Name |
 | ---: | :--- |
 | namespace | [**QAccelPlot**](namespaceQAccelPlot.md) <br> |
+| namespace | [**Internal**](namespaceQAccelPlot_1_1Internal.md) <br> |
 
 
 ## Classes

@@ -117,8 +117,12 @@
 
 ## h
 
+* [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)
 * [**Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md)
 ([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))
+* [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
+* [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md)
 
 
 ## i

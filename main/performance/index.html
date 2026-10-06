@@ -1675,16 +1675,20 @@ the boxes, then tests only segments or markers inside matching boxes:
 handoff, not on the first hover. Hover highlighting and
 changes to solid-curve color or line width update shader uniforms without
 rebuilding geometry; gradient effects may need per-vertex work.</p>
-<p><code>QAccelPlot.PointCloud.hoveredIndex</code> uses a uniform grid of point indices that
-is rebuilt lazily on the first pointer move after a data change (<code>O(N)</code>), then
-answers each move by scanning only the cells within the hover radius.
-<a href="../api/classQAccelPlot_1_1RectangleSeries/#property-hoveredindex-12"><code>RectangleSeries.hoveredIndex</code></a> rebuilds its spatial grid the same
-way. Each pointer move then tests the rectangles in the cells around the pointer
-plus every rectangle spanning more than 64 cells, so many long rectangles make
-lookup <code>O(N)</code>. <code>BarSeries.hoveredIndex</code> indexes only bar positions, so tall bars
-don't count as long rectangles. When a series is replaced every
-frame while the pointer rests over it, the rebuild repeats per frame; set
-<code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
+<p><code>QAccelPlot.PointCloud.hoveredIndex</code> and
+<a href="../api/classQAccelPlot_1_1RectangleSeries/#property-hoveredindex-12"><code>RectangleSeries.hoveredIndex</code></a> answer the first pointer moves
+after a data change by testing every record: <code>O(N)</code>, roughly 1–2 ms per million
+records on a desktop CPU. Once those scans have cost as much as building a
+spatial index, the index is built (<code>O(N)</code>) and later moves test only the records
+near the pointer. Data replaced every frame never pays for an index; it costs
+one scan per frame while the pointer moves.</p>
+<p>With the index, a <code>PointCloud</code> move tests the points in the grid cells within
+the hover radius. A <code>RectangleSeries</code> move tests the rectangles in the cells
+around the pointer plus every rectangle spanning more than 64 cells, so many
+long rectangles make lookup <code>O(N)</code>.</p>
+<p><code>BarSeries.hoveredIndex</code> indexes only bar positions, so tall bars don't count as
+long rectangles. It rebuilds its grid on the first pointer move after every data
+change. Set <code>QACCELPLOT_HOVER_ENABLED=0</code> for streaming-only views.</p>
 <h3 id="other-rendering-costs">Other rendering costs<a class="headerlink" href="#other-rendering-costs" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Markers add geometry and fragment work per visible point. Fragment work grows

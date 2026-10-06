@@ -190,6 +190,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setHoverColor**](#function-sethovercolor) (const QColor & color) <br>_Sets the fill color of the hovered rectangle to_ _color_ _. An invalid color disables the highlight._ |
 |  void | [**setMinimumHeight**](#function-setminimumheight) (qreal height) <br>_Sets the minimum drawn height to_ _height_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setMinimumWidth**](#function-setminimumwidth) (qreal width) <br>_Sets the minimum drawn width to_ _width_ _pixels. Negative values are clamped to 0._ |
+|   | [**~RectangleSeries**](#function-rectangleseries) () override<br>_Destroys the rectangle series._  |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -1234,6 +1235,21 @@ _Sets the minimum drawn width to_ _width_ _pixels. Negative values are clamped t
 void QAccelPlot::RectangleSeries::setMinimumWidth (
     qreal width
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ~RectangleSeries {#function-rectangleseries}
+
+_Destroys the rectangle series._ 
+```C++
+QAccelPlot::RectangleSeries::~RectangleSeries () override
 ```
 
 

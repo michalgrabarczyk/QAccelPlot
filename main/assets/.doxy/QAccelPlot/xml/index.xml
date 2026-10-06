@@ -1144,11 +1144,43 @@
     <member refid="classQAccelPlot_1_1GridNode_1a8f3379579bde6537cf9f8efc9a7e1fc6" kind="function"><name>update</name></member>
     <member refid="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" kind="function"><name>collectAxisGridLines</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs" kind="struct"><name>QAccelPlot::RectangleSeries::HitTestInputs</name>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1ab9ea807585e8e5f08e16e24832866d7d" kind="variable"><name>position</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a328302d1ca19c862e83401ae5fbb77a2" kind="variable"><name>itemSize</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a50d14963617427c2fad2d4781423d9fc" kind="variable"><name>minimumSize</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1add84f16d3e754a06fa3891d3b1453b35" kind="variable"><name>xAtLeft</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a27a2140f75cd94844adf296ed9f8be8b" kind="variable"><name>xAtRight</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1acdad4118a6a72d664826d5abadce9c1e" kind="variable"><name>yAtTop</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a7ed711f9db03e8a083f6bb8887e758df" kind="variable"><name>yAtBottom</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1afe3e56003a14971851b642f4995d2307" kind="variable"><name>logScaleX</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a1db6f4af4b92c742904df19c2960bce9" kind="variable"><name>logScaleY</name></member>
+    <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1a92c3d2e1a13aeddea537cf8579143c2d" kind="function"><name>operator==</name></member>
+  </compound>
   <compound refid="classQAccelPlot_1_1InspectionCache_1_1Host" kind="class"><name>QAccelPlot::InspectionCache::Host</name>
     <member refid="classQAccelPlot_1_1InspectionCache_1_1Host_1aae385b0975d6050a04ad7c0965e44829" kind="function"><name>~Host</name></member>
     <member refid="classQAccelPlot_1_1InspectionCache_1_1Host_1a3f347a8322af785187e433e868b8b9ff" kind="function"><name>indexSource</name></member>
     <member refid="classQAccelPlot_1_1InspectionCache_1_1Host_1acf9a92690f17e877e3d4a4c71aa923ed" kind="function"><name>indexSourceAvailable</name></member>
     <member refid="classQAccelPlot_1_1InspectionCache_1_1Host_1a840fe40e6db1a55479179f11e6285ffc" kind="function"><name>indexReady</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kind="class"><name>QAccelPlot::Internal::HoverIndexBudget</name>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kind="typedef"><name>CostPerRecord</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a137be07a63036cc9819044cc0cfb5269" kind="variable"><name>buildCostPerRecord_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aad1a4193e056daf5004be5b0df61f637" kind="variable"><name>scanCost_</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a30c27b2df10b997807d5028c125c60fe" kind="function"><name>HoverIndexBudget</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a64d542990bb3b563d9bf8c7bb43e5d9d" kind="function"><name>reset</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a6fad11b566bf5ddfa6aa9b9d5669969a" kind="function"><name>buildDue</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aaa9078e9146a9c1e816678d5c3041924" kind="function"><name>addScan</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a3a42c034a00e9ef849a4b44720792206" kind="function"><name>addBuild</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a17107907b90e65ca869a40d3a0bd5ed6" kind="function"><name>timeScan</name></member>
+    <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aef31a1d5f9c151b4624080c77793b9ff" kind="function"><name>timeBuild</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery" kind="struct"><name>QAccelPlot::PointCloud::HoverQuery</name>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1ae3d8826aa7db7f727e75f6c195e69cfc" kind="variable"><name>x</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1a0ff7ae48c1620efbd44327bb15e9447f" kind="variable"><name>y</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1a15f66333331d743d71d318e5e658236d" kind="variable"><name>radiusX</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1afd1c36b21f3aade0adb997c789566636" kind="variable"><name>radiusY</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1afe8b06447ffe15a729cda771244e6821" kind="variable"><name>mapping</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1HoverQuery_1af9293f30db57af1bf58b1cc26703b19a" kind="function"><name>operator==</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint" kind="struct"><name>QAccelPlot::PointSpatialIndex::IndexedPoint</name>
     <member refid="structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint_1a44a4d40b52a0eee13bba0d81d8128d8d" kind="variable"><name>x</name></member>
@@ -2049,9 +2081,13 @@
     <member refid="classQAccelPlot_1_1PointCloud_1ac0247ee0aab8c9713237b9d37b49de5d" kind="variable"><name>renderCapacity_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a42499fdd03596b6179c6605b18429408" kind="variable"><name>spatialIndex_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a1c81fe4e4bbacf7ef2a726bd877a1595" kind="variable"><name>spatialIndexValid_</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1aea57bda0aacc8688a186a31dc7cc9e86" kind="variable"><name>spatialIndexBudget_</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1ad1049b66d981e9ad4f5191843148e964" kind="variable"><name>lastHoverQuery_</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a3e818cfa638e1233cdc795f6b33acf7d" kind="variable"><name>lastHoverIndex_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a144e1c9d05682612520cb83edf3e28e1" kind="variable"><name>axisConnections_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a6d3af89aae3be71935349eba6db55bc9" kind="variable"><name>gradientConnections_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a793519b1f099be36410a87f91df0422d" kind="function"><name>PointCloud</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a4293493391e4cb4f67401982c3c684e7" kind="function"><name>~PointCloud</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a94ff119e27df5d9b1e7c3b56c4da07ea" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a25bbd2b145c6eb1bd9bd4e79bf6dce25" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a2df04fe4b70283212f6934c8d961a9a2" kind="function"><name>marker</name></member>
@@ -2114,7 +2150,10 @@
     <member refid="classQAccelPlot_1_1PointCloud_1ae47b2d7196615267e346c11f2448b222" kind="function"><name>refreshColorStops</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a92742d9da9e925e2dc7394dc39356db9" kind="function"><name>setHoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a2d2451da60acf6a49860865b781889eb" kind="function"><name>stride</name></member>
-    <member refid="classQAccelPlot_1_1PointCloud_1a67d9e5f211cc9690d3fdf12989b5491c" kind="function"><name>ensureSpatialIndex</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1ad1aed60e9356e823c4dc5b4626c1b3db" kind="function"><name>hoverPointCount</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1aa597feebf4c17132f12964685f18d025" kind="function"><name>invalidateSpatialIndex</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a7c8e358f879c91160d85c3a4e065262f" kind="function"><name>spatialIndexReady</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a4c23e0924b73e64c794dafdd40424a95" kind="function"><name>nearestPoint</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a8983cc9636325068f68e0c331d99cfd6" kind="function"><name>applyDoubleData</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1abc6324b3bad2f9e5169b0cf97411f867" kind="function"><name>rebuildRenderData</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1aaab0ff4313a2df1c8d627d1385671432" kind="function"><name>hasPreciseData</name></member>
@@ -2196,6 +2235,7 @@
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1ac718df26ffb058ffff583d361c67e109" kind="function"><name>validPointCount</name></member>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1a3eed295b7f3335c311baac4aa2a56432" kind="function"><name>mapping</name></member>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1acdff94e8eb4e3c69f5b2e42df0063848" kind="function"><name>nearest</name></member>
+    <member refid="classQAccelPlot_1_1PointSpatialIndex_1a8afe0ea64d112a0f0516194d27c2cf11" kind="function"><name>nearestByScan</name></member>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1a3786a88dd5a30ff7c16ed05c054bb970" kind="function"><name>mapCoordinate</name></member>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1add4e63042226790d12cd1e1f30ca7533" kind="function"><name>collectValidPoints</name></member>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1a670891ac54b2fccd4cd9e3f2758ead1a" kind="function"><name>computeGridDimensions</name></member>
@@ -2370,7 +2410,11 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1ae1d9e7f48009de6f311f7994deba5b9e" kind="variable"><name>vertexCache_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1af5049bf1e5303db95d91a4d7102eca30" kind="variable"><name>spatialGrid_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1ab33e61712236103b639574e9cbb75a56" kind="variable"><name>spatialGridValid_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a9d1513e0e69be70e06162416d065567c" kind="variable"><name>spatialGridBudget_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a47cbe3fb4e57f5c4b644da430e691c27" kind="variable"><name>lastHitTest_</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a643356bf61702f41000427e42a644f00" kind="variable"><name>lastHitIndex_</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a35ba4802c433a7fa70bd8dec44a848e0" kind="function"><name>RectangleSeries</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a013b09032bb1aa5ecd60fa712d4fde64" kind="function"><name>~RectangleSeries</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a4a2e622708a8a4a1a2be3e8e1001c271" kind="function"><name>color</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3fb2f93716829bf358063859eb333861" kind="function"><name>setColor</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a3bc5c4302a62a46875b97c63b2055a11" kind="function"><name>categoryColors</name></member>
@@ -2433,7 +2477,9 @@
     <member refid="classQAccelPlot_1_1RectangleSeries_1a121a8e144786b7e5b23c2aa7e1262c16" kind="function"><name>containsInPixels</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a897665d9d5bb4cb2470bb0e81e5d4cde" kind="function"><name>setHoveredIndex</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a56742eac0536ed57893cca217ab5c070" kind="function"><name>updateMaterial</name></member>
-    <member refid="classQAccelPlot_1_1RectangleSeries_1a2d08970dfca76af0efacdd793423fedb" kind="function"><name>ensureSpatialGrid</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1afd5c66773fa350ec0304d34ff9bec371" kind="function"><name>spatialGridReady</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a6ddfc8899f6f8cc58b108a1ca6203993" kind="function"><name>hitTestInputs</name></member>
+    <member refid="classQAccelPlot_1_1RectangleSeries_1a38a89f4c0abbb540a660d8690ca3d1bf" kind="function"><name>topmostRectangleAt</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a9034fd5609a2efd6310a29b03d6b02fa" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1a6ab947a04e43fc60a4f34bdc63afdfcd" kind="function"><name>updateDataRanges</name></member>
     <member refid="classQAccelPlot_1_1RectangleSeries_1adae3142828bb21c43a7590230bd01e5a" kind="function"><name>rebuildRenderData</name></member>
@@ -2741,7 +2787,10 @@
     <member refid="classQAccelPlot_1_1SpatialGrid_1a613af4b9c771c3d3e769ff74a61a1163" kind="function"><name>buildF</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a1cdf1a17c095ec0bee15fc40c6c6c6a3" kind="function"><name>query</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1af683677f7495b953097d21851e426927" kind="function"><name>queryTopmost</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a12dd47ff7066e63e19d959dc2e729a3f" kind="function"><name>scanTopmost</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1aa0869b3e7b2dd8e72d2e9c6a2981cffc" kind="function"><name>scanTopmostF</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a980818e0aae0f97816152dca0484dfe0" kind="function"><name>cellIndex</name></member>
+    <member refid="classQAccelPlot_1_1SpatialGrid_1a57ff86030c727ab47be233acbc361216" kind="function"><name>scanTopmostFrom</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a6c31509f0f06652acc4dda66056d0407" kind="function"><name>buildFrom</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1a46dc1b8021cca551fe16a48f0c5feaaa" kind="function"><name>computeDataBounds</name></member>
     <member refid="classQAccelPlot_1_1SpatialGrid_1aeef90a6cd0b480e9e6e74e99f486b5d8" kind="function"><name>computeGridDimensions</name></member>
@@ -3029,6 +3078,8 @@
   <compound refid="BandSeries_8hpp" kind="file"><name>BandSeries.hpp</name>
   </compound>
   <compound refid="BarSeries_8hpp" kind="file"><name>BarSeries.hpp</name>
+  </compound>
+  <compound refid="HoverIndexBudget_8hpp" kind="file"><name>HoverIndexBudget.hpp</name>
   </compound>
   <compound refid="RectGeometry_8hpp" kind="file"><name>RectGeometry.hpp</name>
   </compound>

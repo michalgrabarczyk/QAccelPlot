@@ -1728,6 +1728,8 @@
 <li>Moved <code>RectangleSeries.hpp</code> to <code>QAccelPlot/series/</code>.</li>
 <li>Replaced <code>RectangleSeries::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
 <li><code>PointCloud</code> uses half the GPU vertex memory per point.</li>
+<li><code>PointCloud</code> and <code>RectangleSeries</code> hover scans live data instead of rebuilding
+  its spatial index after every data update.</li>
 <li>The <code>showcases/performance</code> example has <code>LineCurve</code>, <code>PointCloud</code>, and <code>RectangleSeries</code> tabs,
   each with options for series count, ingestion API, hover, and rendering.</li>
 </ul>

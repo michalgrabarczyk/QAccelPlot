@@ -29,6 +29,11 @@ public:
     int query(double x, double y) const;
     int queryTopmost(double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept) const;
 
+    static int scanTopmost(
+        const double* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept, int valuesPerItem = 4);
+    static int scanTopmostF(
+        const float* data, int itemCount, double minX, double minY, double maxX, double maxY, const std::function<bool(int)>& accept, int valuesPerItem = 4);
+
 private:
     struct ItemBounds {
         double minX;
@@ -44,6 +49,8 @@ private:
     // Cell coordinate of \a value, clamped to [0, count - 1] so infinite values map to the edge cells.
     static int cellIndex(double value, double min, double cellSize, int count);
 
+    template <typename T>
+    static int scanTopmostFrom(const T* data, int itemCount, int valuesPerItem, const ItemBounds& box, const std::function<bool(int)>& accept);
     template <typename T> void buildFrom(const T* data, int itemCount, int valuesPerItem);
     template <typename T> void computeDataBounds(const T* data, int itemCount, int valuesPerItem);
     void computeGridDimensions(int itemCount);

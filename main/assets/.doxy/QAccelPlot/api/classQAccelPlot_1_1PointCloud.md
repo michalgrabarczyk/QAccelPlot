@@ -198,6 +198,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0._ |
 |  Q\_INVOKABLE void | [**setValues**](#function-setvalues) (const QList&lt; qreal &gt; & values) <br>_Sets one value per point. An empty list clears values; any other size must equal_ `count` _._ |
 |  Q\_INVOKABLE qreal | [**valueAt**](#function-valueat) (int index) const<br>_Returns the value of point_ _index_ _, or NaN when out of range or no values are stored._ |
+|   | [**~PointCloud**](#function-pointcloud) () override<br>_Destroys the point cloud._  |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -1352,6 +1353,21 @@ _Returns the value of point_ _index_ _, or NaN when out of range or no values ar
 Q_INVOKABLE qreal QAccelPlot::PointCloud::valueAt (
     int index
 ) const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ~PointCloud {#function-pointcloud}
+
+_Destroys the point cloud._ 
+```C++
+QAccelPlot::PointCloud::~PointCloud () override
 ```
 
 

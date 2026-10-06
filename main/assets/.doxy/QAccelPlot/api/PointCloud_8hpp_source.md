@@ -31,9 +31,15 @@
 #include <QPointer>
 
 #include <limits>
+#include <memory>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
+
+namespace Internal {
+class HoverIndexBudget;
+}
 
 class PointCloud : public PlotSeries {
     Q_OBJECT
@@ -54,6 +60,7 @@ class PointCloud : public PlotSeries {
 
 public:
     explicit PointCloud(QQuickItem* parent = nullptr);
+    ~PointCloud() override;
 
     QColor color() const;
     void setColor(const QColor& color);
@@ -140,7 +147,21 @@ private:
     void refreshColorStops();
     void setHoveredIndex(int index);
     int stride() const;
-    void ensureSpatialIndex() const;
+    int hoverPointCount() const;
+    void invalidateSpatialIndex();
+    bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
+
+    struct HoverQuery {
+        double x;
+        double y;
+        double radiusX;
+        double radiusY;
+        PointSpatialIndex::Mapping mapping;
+
+        bool operator==(const HoverQuery& other) const;
+    };
+
+    int nearestPoint(const HoverQuery& query) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void rebuildRenderData();
     bool hasPreciseData() const;
@@ -185,6 +206,11 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
+    std::unique_ptr<Internal::HoverIndexBudget> spatialIndexBudget_;
+    // The last hover query and its answer. Qt tests contains() several times per hover event
+    // before the handler asks again, each time at the same position.
+    mutable std::optional<HoverQuery> lastHoverQuery_;
+    mutable int lastHoverIndex_{-1};
 
     QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;

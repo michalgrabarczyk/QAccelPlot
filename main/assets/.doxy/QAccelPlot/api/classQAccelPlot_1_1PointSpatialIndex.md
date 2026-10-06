@@ -80,6 +80,7 @@ _Uniform-grid spatial index for nearest-point queries over large point sets._ [M
 | Type | Name |
 | ---: | :--- |
 |  bool | [**mapCoordinate**](#function-mapcoordinate) (double value, bool logarithmic, double & mapped) <br>_Maps_ _value_ _for indexing. Returns_`false` _when the value cannot be indexed._ |
+|  int | [**nearestByScan**](#function-nearestbyscan) (const float \* data, int pointCount, int stride, [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) mapping, double x, double y, double radiusX, double radiusY) <br>_Returns what_ `nearest()` _returns on an index built from the same points, without building one._ |
 
 
 
@@ -270,6 +271,34 @@ static bool QAccelPlot::PointSpatialIndex::mapCoordinate (
 
 
 
+
+<hr>
+
+
+
+
+### function nearestByScan {#function-nearestbyscan}
+
+_Returns what_ `nearest()` _returns on an index built from the same points, without building one._
+```C++
+static int QAccelPlot::PointSpatialIndex::nearestByScan (
+    const float * data,
+    int pointCount,
+    int stride,
+    Mapping mapping,
+    double x,
+    double y,
+    double radiusX,
+    double radiusY
+) 
+```
+
+
+
+Tests every point, so a call costs one pass over _data_. That is cheaper than a rebuild while the data is replaced after only a few queries. 
+
+
+        
 
 <hr>
 

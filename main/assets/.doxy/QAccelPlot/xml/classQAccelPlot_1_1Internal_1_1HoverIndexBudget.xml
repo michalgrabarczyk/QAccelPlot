@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" kind="class" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::HoverIndexBudget</compoundname>
+    <includes local="no">HoverIndexBudget.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" prot="public" static="no">
+        <type>std::chrono::duration&lt; double, std::nano &gt;</type>
+        <definition>using QAccelPlot::Internal::HoverIndexBudget::CostPerRecord =  std::chrono::duration&lt;double, std::nano&gt;</definition>
+        <argsstring></argsstring>
+        <name>CostPerRecord</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::CostPerRecord</qualifiedname>
+        <briefdescription>
+<para>Cost of indexing one record. Fractional, because a timed build rarely costs whole nanoseconds per record. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="24" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a137be07a63036cc9819044cc0cfb5269" prot="private" static="no" mutable="no">
+        <type><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kindref="member">CostPerRecord</ref></type>
+        <definition>CostPerRecord QAccelPlot::Internal::HoverIndexBudget::buildCostPerRecord_</definition>
+        <argsstring></argsstring>
+        <name>buildCostPerRecord_</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::buildCostPerRecord_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="58" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aad1a4193e056daf5004be5b0df61f637" prot="private" static="no" mutable="no">
+        <type>std::chrono::nanoseconds</type>
+        <definition>std::chrono::nanoseconds QAccelPlot::Internal::HoverIndexBudget::scanCost_</definition>
+        <argsstring></argsstring>
+        <name>scanCost_</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::scanCost_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="59" column="30" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="59" bodyend="59"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a30c27b2df10b997807d5028c125c60fe" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::Internal::HoverIndexBudget::HoverIndexBudget</definition>
+        <argsstring>(CostPerRecord assumedBuildCostPerRecord)</argsstring>
+        <name>HoverIndexBudget</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::HoverIndexBudget</qualifiedname>
+        <param>
+          <type><ref refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" kindref="member">CostPerRecord</ref></type>
+          <declname>assumedBuildCostPerRecord</declname>
+        </param>
+        <briefdescription>
+<para>Creates a budget that assumes <emphasis>assumedBuildCostPerRecord</emphasis> until a build has been timed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="27" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a64d542990bb3b563d9bf8c7bb43e5d9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::HoverIndexBudget::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::reset</qualifiedname>
+        <briefdescription>
+<para>Forgets the scans paid so far. Call when the index stops matching the data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="30" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a6fad11b566bf5ddfa6aa9b9d5669969a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool QAccelPlot::Internal::HoverIndexBudget::buildDue</definition>
+        <argsstring>(int recordCount) const</argsstring>
+        <name>buildDue</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::buildDue</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>recordCount</declname>
+        </param>
+        <briefdescription>
+<para>Returns <computeroutput>true</computeroutput> once the scans have cost as much as indexing <emphasis>recordCount</emphasis> records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="32" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aaa9078e9146a9c1e816678d5c3041924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::HoverIndexBudget::addScan</definition>
+        <argsstring>(std::chrono::nanoseconds duration)</argsstring>
+        <name>addScan</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::addScan</qualifiedname>
+        <param>
+          <type>std::chrono::nanoseconds</type>
+          <declname>duration</declname>
+        </param>
+        <briefdescription>
+<para>Adds the cost of one scan. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="34" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a3a42c034a00e9ef849a4b44720792206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::HoverIndexBudget::addBuild</definition>
+        <argsstring>(std::chrono::nanoseconds duration, int recordCount)</argsstring>
+        <name>addBuild</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::addBuild</qualifiedname>
+        <param>
+          <type>std::chrono::nanoseconds</type>
+          <declname>duration</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>recordCount</declname>
+        </param>
+        <briefdescription>
+<para>Replaces the assumed build cost with that of a build of <emphasis>recordCount</emphasis> records. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds of few records are ignored: their fixed overhead would overstate the cost per record. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="38" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a17107907b90e65ca869a40d3a0bd5ed6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scan</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto QAccelPlot::Internal::HoverIndexBudget::timeScan</definition>
+        <argsstring>(Scan &amp;&amp;scan)</argsstring>
+        <name>timeScan</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::timeScan</qualifiedname>
+        <param>
+          <type>Scan &amp;&amp;</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+<para>Runs <emphasis>scan</emphasis>, adds its duration, and returns its result. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="41" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="41" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aef31a1d5f9c151b4624080c77793b9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Build</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void QAccelPlot::Internal::HoverIndexBudget::timeBuild</definition>
+        <argsstring>(const int recordCount, Build &amp;&amp;build)</argsstring>
+        <name>timeBuild</name>
+        <qualifiedname>QAccelPlot::Internal::HoverIndexBudget::timeBuild</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>recordCount</declname>
+        </param>
+        <param>
+          <type>Build &amp;&amp;</type>
+          <declname>build</declname>
+        </param>
+        <briefdescription>
+<para>Runs <emphasis>build</emphasis> and records its duration as the cost of indexing <emphasis>recordCount</emphasis> records. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="50" column="22" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="50" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Decides when queried data is worth a hover index. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A scan answers a query on any data at the cost of a pass over it. An index answers almost for free, but must be rebuilt after every data change. Queries therefore scan until the scans since the last data change have cost as much as a build would. That keeps the total within about twice the cheaper choice, whether the data changes every frame or never. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" line="21" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/internal/HoverIndexBudget.hpp" bodystart="21" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a3a42c034a00e9ef849a4b44720792206" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>addBuild</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aaa9078e9146a9c1e816678d5c3041924" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>addScan</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a137be07a63036cc9819044cc0cfb5269" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>buildCostPerRecord_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a6fad11b566bf5ddfa6aa9b9d5669969a" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>buildDue</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1ab99e36b32a1a70f1eacb8540fbb7fe6b" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>CostPerRecord</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a30c27b2df10b997807d5028c125c60fe" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>HoverIndexBudget</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a64d542990bb3b563d9bf8c7bb43e5d9d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>reset</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aad1a4193e056daf5004be5b0df61f637" prot="private" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>scanCost_</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1aef31a1d5f9c151b4624080c77793b9ff" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>timeBuild</name></member>
+      <member refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget_1a17107907b90e65ca869a40d3a0bd5ed6" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::HoverIndexBudget</scope><name>timeScan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
