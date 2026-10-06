@@ -74,6 +74,7 @@ private slots:
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
     void pointIndexAtKeepsItsAnswersOnceIndexed();
+    void pointIndexAtFollowsChangesAtTheSamePosition();
     void propertySettersClampAndNotify();
     void doubleDataKeepsPrecisionForLargeCoordinates();
     void doubleDataSurvivesLogScaleChange();
@@ -519,6 +520,51 @@ void PointCloudDataTest::pointIndexAtKeepsItsAnswersOnceIndexed()
         QCOMPARE(cloud.pointIndexAt(QPointF(30.0, 90.0)), 0);
         QCOMPARE(cloud.pointIndexAt(QPointF(100.0, 50.0)), -1);
     }
+}
+
+// The last answer is reused for an equal query, so anything that can change it must be noticed.
+void PointCloudDataTest::pointIndexAtFollowsChangesAtTheSamePosition()
+{
+    auto axes = AxisPair{0.0, 100.0};
+    auto cloud = PointCloud{};
+    cloud.setSize({200.0, 100.0});
+    cloud.setXAxis(&axes.x);
+    cloud.setYAxis(&axes.y);
+    cloud.setHoverRadius(5.0);
+    // Pixel position (20, 90), three pixels left of the queried position.
+    cloud.setDataF(std::vector<float>{10.0f, 10.0f}, 1);
+    const auto position = QPointF(23.0, 90.0);
+    QCOMPARE(cloud.pointIndexAt(position), 0);
+
+    cloud.setHoverRadius(2.0);
+    QCOMPARE(cloud.pointIndexAt(position), -1);
+    cloud.setHoverRadius(5.0);
+    QCOMPARE(cloud.pointIndexAt(position), 0);
+
+    // Zooming in moves the point to pixel x = 40.
+    axes.x.setViewportMax(50.0);
+    QCOMPARE(cloud.pointIndexAt(position), -1);
+    axes.x.setViewportMax(100.0);
+    QCOMPARE(cloud.pointIndexAt(position), 0);
+
+    // A wider item also moves it to pixel x = 40.
+    cloud.setSize({400.0, 100.0});
+    QCOMPARE(cloud.pointIndexAt(position), -1);
+    cloud.setSize({200.0, 100.0});
+    QCOMPARE(cloud.pointIndexAt(position), 0);
+
+    // A logarithmic axis cannot show a viewport that starts at zero.
+    axes.x.setLogScale(true);
+    QCOMPARE(cloud.pointIndexAt(position), -1);
+    axes.x.setLogScale(false);
+    QCOMPARE(cloud.pointIndexAt(position), 0);
+
+    cloud.setDataF(std::vector<float>{50.0f, 50.0f}, 1);
+    QCOMPARE(cloud.pointIndexAt(position), -1);
+    cloud.setDataF(std::vector<float>{50.0f, 50.0f, 11.5f, 10.0f}, 2);
+    QCOMPARE(cloud.pointIndexAt(position), 1);
+    cloud.clearData();
+    QCOMPARE(cloud.pointIndexAt(position), -1);
 }
 
 void PointCloudDataTest::propertySettersClampAndNotify()

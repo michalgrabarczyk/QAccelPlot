@@ -472,14 +472,12 @@ int PointCloud::pointIndexAt(const QPointF& position) const
     // these differences, but the cursor itself must move into the index's origin-relative space.
     const auto radiusX = std::abs(viewportMaxX - viewportMinX) / width() * hoverRadius_;
     const auto radiusY = std::abs(viewportMaxY - viewportMinY) / height() * hoverRadius_;
-    const auto x = cursorX - renderOriginX_;
-    const auto y = cursorY - renderOriginY_;
-    const auto mapping = PointSpatialIndex::Mapping{logX, logY};
-    if (spatialIndexReady(mapping)) {
-        return spatialIndex_.nearest(x, y, radiusX, radiusY);
+    const auto query = HoverQuery{cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY, {logX, logY}};
+    if (!(lastHoverQuery_ == query)) {
+        lastHoverIndex_ = nearestPoint(query);
+        lastHoverQuery_ = query;
     }
-    return spatialIndexBudget_.timeScan(
-        [&] { return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), mapping, x, y, radiusX, radiusY); });
+    return lastHoverIndex_;
 }
 
 bool PointCloud::contains(const QPointF& point) const
@@ -915,6 +913,7 @@ void PointCloud::invalidateSpatialIndex()
 {
     spatialIndexValid_ = false;
     spatialIndexBudget_.reset();
+    lastHoverQuery_.reset();
 }
 
 bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) const
@@ -929,6 +928,21 @@ bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) con
     spatialIndexBudget_.timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
     spatialIndexValid_ = true;
     return true;
+}
+
+bool PointCloud::HoverQuery::operator==(const HoverQuery& other) const
+{
+    return x == other.x && y == other.y && radiusX == other.radiusX && radiusY == other.radiusY && mapping == other.mapping;
+}
+
+int PointCloud::nearestPoint(const HoverQuery& query) const
+{
+    if (spatialIndexReady(query.mapping)) {
+        return spatialIndex_.nearest(query.x, query.y, query.radiusX, query.radiusY);
+    }
+    return spatialIndexBudget_.timeScan([&] {
+        return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), query.mapping, query.x, query.y, query.radiusX, query.radiusY);
+    });
 }
 
 } // namespace QAccelPlot

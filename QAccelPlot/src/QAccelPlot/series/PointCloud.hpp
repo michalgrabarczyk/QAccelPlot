@@ -22,6 +22,7 @@
 #include <QPointer>
 
 #include <limits>
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -235,6 +236,19 @@ private:
     void invalidateSpatialIndex();
     /// \brief Returns \c true when the spatial index answers the next query, building it once scanning has cost as much.
     bool spatialIndexReady(PointSpatialIndex::Mapping mapping) const;
+
+    /// \brief A hover query in the spatial index's coordinates. With the data, it decides the answer.
+    struct HoverQuery {
+        double x;
+        double y;
+        double radiusX;
+        double radiusY;
+        PointSpatialIndex::Mapping mapping;
+
+        bool operator==(const HoverQuery& other) const;
+    };
+
+    int nearestPoint(const HoverQuery& query) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
     void rebuildRenderData();
     bool hasPreciseData() const;
@@ -281,6 +295,10 @@ private:
     mutable bool spatialIndexValid_{false};
     // Assumed cost of indexing one point, in nanoseconds, until a build has been timed.
     mutable HoverIndexBudget spatialIndexBudget_{15.0};
+    // The last hover query and its answer. Qt tests contains() several times per hover event
+    // before the handler asks again, each time at the same position.
+    mutable std::optional<HoverQuery> lastHoverQuery_;
+    mutable int lastHoverIndex_{-1};
 
     QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;

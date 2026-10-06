@@ -60,6 +60,7 @@ private slots:
     void nearbyTimestampRectangles();
     void rectangleIndexAtReturnsTopmostRectangle();
     void rectangleIndexAtKeepsItsAnswersOnceIndexed();
+    void rectangleIndexAtFollowsChangesAtTheSamePosition();
     void hoverEventsTrackRectangleUnderCursor();
     void removingHoveredRectangleClearsHover();
     void hitTestsFollowDataChanges();
@@ -149,6 +150,57 @@ void RectangleHoverTest::rectangleIndexAtKeepsItsAnswersOnceIndexed()
     }
     setOverlappingRectangles(rectangles, axes);
     QCOMPARE(rectangles.rectangleIndexAt({150.0, 250.0}), 1);
+}
+
+// The last answer is reused for an equal hit test, so anything that can change it must be noticed.
+void RectangleHoverTest::rectangleIndexAtFollowsChangesAtTheSamePosition()
+{
+    auto axes = AxisPair{};
+    auto rectangles = QAccelPlot::RectangleSeries{};
+    setOverlappingRectangles(rectangles, axes);
+    // Data (0.5, 0.5), inside rectangle 0 only.
+    const auto position = QPointF{50.0, 350.0};
+    QCOMPARE(rectangles.rectangleIndexAt(position), 0);
+
+    // Panning puts data x = -3 under the position.
+    axes.x.setViewportMin(-4.0);
+    QCOMPARE(rectangles.rectangleIndexAt(position), -1);
+    axes.x.setViewportMin(0.0);
+    QCOMPARE(rectangles.rectangleIndexAt(position), 0);
+
+    // With the viewport starting at 0.25, this pixel shows data y = 2.59 on a linear axis,
+    // above rectangle 0, and y = 1.41 on a logarithmic one.
+    const auto upper = QPointF{50.0, 150.0};
+    axes.y.setViewportMin(0.25);
+    QCOMPARE(rectangles.rectangleIndexAt(upper), -1);
+    axes.y.setLogScale(true);
+    QCOMPARE(rectangles.rectangleIndexAt(upper), 0);
+    axes.y.setLogScale(false);
+    QCOMPARE(rectangles.rectangleIndexAt(upper), -1);
+    axes.y.setViewportMin(0.0);
+    QCOMPARE(rectangles.rectangleIndexAt(position), 0);
+
+    // In a plot twice as tall the position shows data y = 2.25, above rectangle 0.
+    rectangles.setPlotRect({0.0, 0.0, 400.0, 800.0});
+    QCOMPARE(rectangles.rectangleIndexAt(position), -1);
+    rectangles.setPlotRect(kPlotRect);
+    QCOMPARE(rectangles.rectangleIndexAt(position), 0);
+
+    // A rectangle one pixel wide at x = 100..101, four pixels left of the position.
+    const auto thin = std::array<double, 4>{1.0, 0.0, 1.01, 4.0};
+    rectangles.setData(thin.data(), 1);
+    const auto beside = QPointF{105.0, 200.0};
+    QCOMPARE(rectangles.rectangleIndexAt(beside), -1);
+    rectangles.setMinimumWidth(10.0);
+    QCOMPARE(rectangles.rectangleIndexAt(beside), 0);
+    rectangles.setMinimumWidth(1.0);
+    QCOMPARE(rectangles.rectangleIndexAt(beside), -1);
+
+    const auto wide = std::array<double, 4>{1.0, 0.0, 1.1, 4.0};
+    rectangles.setData(wide.data(), 1);
+    QCOMPARE(rectangles.rectangleIndexAt(beside), 0);
+    rectangles.clearData();
+    QCOMPARE(rectangles.rectangleIndexAt(beside), -1);
 }
 
 void RectangleHoverTest::hoverEventsTrackRectangleUnderCursor()

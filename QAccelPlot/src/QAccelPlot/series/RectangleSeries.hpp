@@ -20,6 +20,10 @@
 #include <QtQml/qqmlregistration.h>
 #endif
 
+#include <QPointF>
+#include <QSizeF>
+
+#include <optional>
 #include <vector>
 
 namespace QAccelPlot {
@@ -230,6 +234,25 @@ private:
     void updateMaterial(RectMaterial& material) const;
     // Returns true when the spatial grid answers the next query, building it once scanning has cost as much.
     bool spatialGridReady() const;
+
+    // Everything a hit test reads besides the rectangles, so equal inputs give an equal answer.
+    struct HitTestInputs {
+        QPointF position;
+        QSizeF itemSize;
+        QSizeF minimumSize;
+        // The axis mappings, pinned down by each axis' scale and the coordinates at its two ends.
+        double xAtLeft;
+        double xAtRight;
+        double yAtTop;
+        double yAtBottom;
+        bool logScaleX;
+        bool logScaleY;
+
+        bool operator==(const HitTestInputs& other) const;
+    };
+
+    HitTestInputs hitTestInputs(const QPointF& position) const;
+    int topmostRectangleAt(const QPointF& position) const;
     void buildVertexCache();
     void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
@@ -261,6 +284,10 @@ private:
     mutable bool spatialGridValid_{false};
     // Assumed cost of indexing one rectangle, in nanoseconds, until a build has been timed.
     mutable HoverIndexBudget spatialGridBudget_{400.0};
+    // The last hit test and its answer. Qt tests contains() several times per hover event before
+    // the handler asks again, each time at the same position.
+    mutable std::optional<HitTestInputs> lastHitTest_;
+    mutable int lastHitIndex_{-1};
 };
 
 } // namespace QAccelPlot

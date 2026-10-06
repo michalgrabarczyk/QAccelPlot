@@ -365,24 +365,12 @@ int RectangleSeries::rectangleIndexAt(const QPointF& position) const
     if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
     }
-    // A rectangle widened to contain the cursor has its center, and so part of itself, within half
-    // the minimum size of it. That box in data space bounds the candidates for the pixel test.
-    const auto x1 = xAxis()->pixelToCoord(position.x() - 0.5 * minimumWidth_, width());
-    const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
-    const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
-    const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
-    const auto minX = std::min(x1, x2);
-    const auto minY = std::min(y1, y2);
-    const auto maxX = std::max(x1, x2);
-    const auto maxY = std::max(y1, y2);
-    const auto accept = [this, &position](const int index) { return containsInPixels(index, position); };
-    if (spatialGridReady()) {
-        return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
+    const auto inputs = hitTestInputs(position);
+    if (!(lastHitTest_ == inputs)) {
+        lastHitIndex_ = topmostRectangleAt(position);
+        lastHitTest_ = inputs;
     }
-    return spatialGridBudget_.timeScan([&] {
-        return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
-                                : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
-    });
+    return lastHitIndex_;
 }
 
 bool RectangleSeries::contains(const QPointF& point) const
@@ -483,6 +471,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     dataChanged_ = true;
     spatialGridValid_ = false;
     spatialGridBudget_.reset();
+    lastHitTest_.reset();
     if (reportRanges) {
         updateDataRanges();
     }
@@ -668,6 +657,40 @@ bool RectangleSeries::spatialGridReady() const
     });
     spatialGridValid_ = true;
     return true;
+}
+
+bool RectangleSeries::HitTestInputs::operator==(const HitTestInputs& other) const
+{
+    return position == other.position && itemSize == other.itemSize && minimumSize == other.minimumSize && xAtLeft == other.xAtLeft
+        && xAtRight == other.xAtRight && yAtTop == other.yAtTop && yAtBottom == other.yAtBottom && logScaleX == other.logScaleX && logScaleY == other.logScaleY;
+}
+
+RectangleSeries::HitTestInputs RectangleSeries::hitTestInputs(const QPointF& position) const
+{
+    return {position, {width(), height()}, {minimumWidth_, minimumHeight_}, xAxis()->pixelToCoord(0.0, width()), xAxis()->pixelToCoord(width(), width()),
+        yAxis()->pixelToCoord(0.0, height()), yAxis()->pixelToCoord(height(), height()), xAxis()->logScale(), yAxis()->logScale()};
+}
+
+int RectangleSeries::topmostRectangleAt(const QPointF& position) const
+{
+    // A rectangle widened to contain the cursor has its center, and so part of itself, within half
+    // the minimum size of it. That box in data space bounds the candidates for the pixel test.
+    const auto x1 = xAxis()->pixelToCoord(position.x() - 0.5 * minimumWidth_, width());
+    const auto x2 = xAxis()->pixelToCoord(position.x() + 0.5 * minimumWidth_, width());
+    const auto y1 = yAxis()->pixelToCoord(position.y() - 0.5 * minimumHeight_, height());
+    const auto y2 = yAxis()->pixelToCoord(position.y() + 0.5 * minimumHeight_, height());
+    const auto minX = std::min(x1, x2);
+    const auto minY = std::min(y1, y2);
+    const auto maxX = std::max(x1, x2);
+    const auto maxY = std::max(y1, y2);
+    const auto accept = [this, &position](const int index) { return containsInPixels(index, position); };
+    if (spatialGridReady()) {
+        return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
+    }
+    return spatialGridBudget_.timeScan([&] {
+        return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
+                                : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
+    });
 }
 
 void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScaleY)
