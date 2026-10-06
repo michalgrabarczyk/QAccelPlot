@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <th scope="row">File:</th>
-      <td>series/RectangleBorder.cpp</td>
+      <td>series/internal/HoverIndexBudget.cpp</td>
     </tr>
     <tr>
       <th scope="row">Date:</th>
@@ -40,9 +40,9 @@
     </tr>
     <tr>
       <th scope="row">Lines:</th>
-      <td>17</td>
-      <td>18</td>
-      <td class="coverage-high">94.4%</td>
+      <td>15</td>
+      <td>15</td>
+      <td class="coverage-high">100.0%</td>
     </tr>
     <tr>
       <th scope="row">Functions:</th>
@@ -52,9 +52,9 @@
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>3</td>
-      <td>4</td>
-      <td class="coverage-medium">75.0%</td>
+      <td>7</td>
+      <td>12</td>
+      <td class="coverage-low">58.3%</td>
     </tr>
   </table>
 </div>
@@ -70,11 +70,11 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l15">QAccelPlot::RectangleBorder::RectangleBorder(QObject*) (line 15)</a></td><td>called 118 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l35">QAccelPlot::RectangleBorder::color() const (line 35)</a></td><td>called 68 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l40">QAccelPlot::RectangleBorder::setColor(QColor const&amp;) (line 40)</a></td><td>called 3 times</td><td>80.0%</td></tr>
-    <tr><td><a href="#l25">QAccelPlot::RectangleBorder::setWidth(double) (line 25)</a></td><td>called 6 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l20">QAccelPlot::RectangleBorder::width() const (line 20)</a></td><td>called 69 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l20">QAccelPlot::Internal::HoverIndexBudget::HoverIndexBudget(std::chrono::duration&lt;double, std::ratio&lt;1l, 1000000000l&gt; &gt;) (line 20)</a></td><td>called 149 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l40">QAccelPlot::Internal::HoverIndexBudget::addBuild(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;, int) (line 40)</a></td><td>called 25 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l35">QAccelPlot::Internal::HoverIndexBudget::addScan(std::chrono::duration&lt;long, std::ratio&lt;1l, 1000000000l&gt; &gt;) (line 35)</a></td><td>called 155 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l30">QAccelPlot::Internal::HoverIndexBudget::buildDue(int) const (line 30)</a></td><td>called 84 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l25">QAccelPlot::Internal::HoverIndexBudget::reset() (line 25)</a></td><td>called 378 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -142,77 +142,77 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/series/RectangleBorder.hpp"</span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/series/internal/HoverIndexBudget.hpp"</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l9" href="#l9">9</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">"QAccelPlot/MathUtils.hpp"</span></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l10" href="#l10">10</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l11" href="#l11">11</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l12" href="#l12">12</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="o">::</span><span class="nn">Internal</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l13" href="#l13">13</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l15" href="#l15">15</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">118</td>
-      <td class="src coveredLine"><span class="n">RectangleBorder</span><span class="o">::</span><span class="n">RectangleBorder</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">kMinimumRecordsToLearnFrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10'000</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">118</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">QObject</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="c1">// The least a scan or a build counts for, so a clock too coarse to time one still makes progress.</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l17" href="#l17">17</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">{</span></td>
+      <td class="src "><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">kShortestDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l18" href="#l18">18</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">118</td>
-      <td class="src coveredLine"><span class="p">}</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l19" href="#l19">19</a></td>
@@ -225,29 +225,29 @@
       <td class="lineno"><a id="l20" href="#l20">20</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">69</td>
-      <td class="src coveredLine"><span class="n">qreal</span><span class="w"> </span><span class="nf">RectangleBorder::width</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="linecount coveredLine">149</td>
+      <td class="src coveredLine"><span class="n">HoverIndexBudget</span><span class="o">::</span><span class="n">HoverIndexBudget</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CostPerRecord</span><span class="w"> </span><span class="n">assumedBuildCostPerRecord</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l21" href="#l21">21</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">149</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">buildCostPerRecord_</span><span class="p">(</span><span class="n">assumedBuildCostPerRecord</span><span class="p">)</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l22" href="#l22">22</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l22" href="#l22">22</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount coveredLine">69</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">width_</span><span class="p">;</span></td>
-    </tr>
-    <tr class="source-line">
       <td class="lineno"><a id="l23" href="#l23">23</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="linecount coveredLine">149</td>
+      <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l24" href="#l24">24</a></td>
@@ -260,8 +260,8 @@
       <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">RectangleBorder::setWidth</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span><span class="p">)</span></td>
+      <td class="linecount coveredLine">378</td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">HoverIndexBudget::reset</span><span class="p">()</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l26" href="#l26">26</a></td>
@@ -274,50 +274,52 @@
       <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">clamped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">qreal</span><span class="p">{</span><span class="mf">0.0</span><span class="p">});</span></td>
+      <td class="linecount coveredLine">378</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">scanCost_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
-        <details class="linebranchDetails">
-          <summary class="linebranchSummary">2/2</summary>
-          <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
-            <div class="takenBranch">&check; Branch 2 taken 5 times.</div>
-          </div>
-        </details>
       </td>
-      <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">width_</span><span class="p">,</span><span class="w"> </span><span class="n">clamped</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="linecount coveredLine">378</td>
+      <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">1</td>
-      <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
+      <td class="linecount "></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="w">    </span><span class="p">}</span></td>
+      <td class="linecount coveredLine">84</td>
+      <td class="src coveredLine"><span class="kt">bool</span><span class="w"> </span><span class="nf">HoverIndexBudget::buildDue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recordCount</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">5</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">width_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clamped</span><span class="p">;</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">2/4</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 1 taken 84 times.</div>
+            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+            <div class="takenBranch">&check; Branch 4 taken 84 times.</div>
+            <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+          </div>
+        </details>
       </td>
-      <td class="linecount coveredLine">5</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">widthChanged</span><span class="p">();</span></td>
+      <td class="linecount partialCoveredLine">84</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">scanCost_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">buildCostPerRecord_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">recordCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l33" href="#l33">33</a></td>
@@ -337,8 +339,8 @@
       <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">68</td>
-      <td class="src coveredLine"><span class="n">QColor</span><span class="w"> </span><span class="nf">RectangleBorder::color</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="linecount coveredLine">155</td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">HoverIndexBudget::addScan</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="w"> </span><span class="n">duration</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l36" href="#l36">36</a></td>
@@ -351,15 +353,15 @@
       <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">68</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">color_</span><span class="p">;</span></td>
+      <td class="linecount coveredLine">155</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">scanCost_</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="n">kShortestDuration</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount "></td>
-      <td class="src "><span class="p">}</span></td>
+      <td class="linecount coveredLine">155</td>
+      <td class="src coveredLine"><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l39" href="#l39">39</a></td>
@@ -372,8 +374,8 @@
       <td class="lineno"><a id="l40" href="#l40">40</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">RectangleBorder::setColor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span><span class="p">)</span></td>
+      <td class="linecount coveredLine">25</td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">HoverIndexBudget::addBuild</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">nanoseconds</span><span class="w"> </span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recordCount</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l41" href="#l41">41</a></td>
@@ -386,22 +388,22 @@
       <td class="lineno"><a id="l42" href="#l42">42</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
-          <summary class="linebranchSummary">1/2</summary>
+          <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
-            <div class="takenBranch">&check; Branch 2 taken 3 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 24 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">3</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">color_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="linecount coveredLine">25</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">recordCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">kMinimumRecordsToLearnFrom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l43" href="#l43">43</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount uncoveredLine">&cross;</td>
-      <td class="src uncoveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
+      <td class="linecount coveredLine">24</td>
+      <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l44" href="#l44">44</a></td>
@@ -413,40 +415,44 @@
     <tr class="source-line">
       <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">3/6</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 1 taken 1 times.</div>
+            <div class="notTakenBranch">&cross; Branch 2 not taken.</div>
+            <div class="takenBranch">&check; Branch 4 taken 1 times.</div>
+            <div class="notTakenBranch">&cross; Branch 5 not taken.</div>
+            <div class="takenBranch">&check; Branch 7 taken 1 times.</div>
+            <div class="notTakenBranch">&cross; Branch 8 not taken.</div>
+          </div>
+        </details>
       </td>
-      <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">color_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">;</span></td>
+      <td class="linecount partialCoveredLine">1</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="n">buildCostPerRecord_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CostPerRecord</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span><span class="w"> </span><span class="n">kShortestDuration</span><span class="p">)}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">recordCount</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
-      <td class="linebranch">
-      </td>
-      <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">colorChanged</span><span class="p">();</span></td>
-    </tr>
-    <tr class="source-line">
-      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l48" href="#l48">48</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l49" href="#l49">49</a></td>
+      <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span></td>
+      <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot::Internal</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l50" href="#l50">50</a></td>
+      <td class="lineno"><a id="l49" href="#l49">49</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
