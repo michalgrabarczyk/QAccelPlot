@@ -1761,9 +1761,9 @@ appear in public headers or ABI. Gradient textures always use the public path.</
 </ol>
 <p>The Performance Lab
 (<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance"><code>examples/showcases/performance</code></a>)
-streams a <code>LineCurve</code>, a <code>PointCloud</code>, and a <code>RectangleSeries</code>, one per tab.
-Only the visible tab generates data. Change one option at a time to see what it
-costs:</p>
+streams a <code>LineCurve</code>, a <code>PointCloud</code>, a <code>RectangleSeries</code>, and a <code>BarSeries</code>,
+one per tab. Only the visible tab generates data. Change one option at a time
+to see what it costs:</p>
 <table>
 <thead>
 <tr>
@@ -1788,6 +1788,10 @@ costs:</p>
 <td><code>RectangleSeries</code></td>
 <td>Tile size, categories, border width, minimum size, hover highlight</td>
 </tr>
+<tr>
+<td><code>BarSeries</code></td>
+<td>Categories, bar width, border width, minimum width, hover highlight</td>
+</tr>
 </tbody>
 </table>
 <p>Display FPS stops at the display refresh rate, so compare options at a record
@@ -1799,7 +1803,7 @@ count that keeps it below that rate. The lab reports:</p>
   data looks.</li>
 <li><strong>Peak update gap</strong> — the longest interval between two dataset applications
   in the last reporting period.</li>
-<li><strong>Throughput</strong> — points or rectangles updated per second.</li>
+<li><strong>Throughput</strong> — points, rectangles, or bars updated per second.</li>
 </ul>
 <h3 id="what-the-included-benchmarks-measure">What the included benchmarks measure<a class="headerlink" href="#what-the-included-benchmarks-measure" title="Permanent link">&para;</a></h3>
 <ul>
