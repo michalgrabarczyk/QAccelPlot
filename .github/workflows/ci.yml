@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        compiler: [gcc]
+        compiler: [gcc, clang]
         qt_private_api: ['ON', 'OFF']
         include:
           - compiler: gcc
@@ -33,7 +33,6 @@ jobs:
           # Clang against libstdc++, which the aqt gcc_64 Qt binaries require.
           # Warnings are reported but not fatal until the build is warning-clean.
           - compiler: clang
-            qt_private_api: 'ON'
             cxx: clang++-18
             cxx_flags: -Wall -Wextra
 

@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.os_name }} / ${{ matrix.platform.backend_name }}
+    name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.os_name }} / ${{ matrix.platform.backend_name }}${{ matrix.platform.compiler == 'clang' && ' / Clang' || '' }}
     runs-on: ${{ matrix.platform.os }}
     strategy:
       fail-fast: false
@@ -32,6 +32,23 @@ jobs:
           - os: ubuntu-24.04
             backend: vulkan
             # GitHub-hosted runners have no GPU. This keeps the Vulkan RHI but selects Mesa lavapipe.
+            prefer_software_device: '1'
+            force_mesa_software: '0'
+            os_name: Linux
+            backend_name: Vulkan
+          # Every Linux run is repeated with Clang against libstdc++, which the aqt Qt binaries
+          # require. The Clang runs build everything and run the unit tests; the GCC runs
+          # capture the examples.
+          - os: ubuntu-24.04
+            backend: opengl
+            compiler: clang
+            prefer_software_device: '0'
+            force_mesa_software: '1'
+            os_name: Linux
+            backend_name: OpenGL
+          - os: ubuntu-24.04
+            backend: vulkan
+            compiler: clang
             prefer_software_device: '1'
             force_mesa_software: '0'
             os_name: Linux
@@ -83,6 +100,28 @@ jobs:
             platform:
               os: ubuntu-24.04-arm
               backend: opengl
+              label: opengles3
+              opengl_es: '3.0'
+              prefer_software_device: '0'
+              force_mesa_software: '1'
+              os_name: Linux ARM64
+              backend_name: OpenGL ES 3
+          - qt_version: '6.8.3'
+            platform:
+              os: ubuntu-24.04
+              backend: opengl
+              compiler: clang
+              label: opengles3
+              opengl_es: '3.0'
+              prefer_software_device: '0'
+              force_mesa_software: '1'
+              os_name: Linux
+              backend_name: OpenGL ES 3
+          - qt_version: '6.8.3'
+            platform:
+              os: ubuntu-24.04-arm
+              backend: opengl
+              compiler: clang
               label: opengles3
               opengl_es: '3.0'
               prefer_software_device: '0'
@@ -188,6 +227,11 @@ jobs:
         if: runner.os == 'Linux' && matrix.platform.backend == 'vulkan'
         run: vulkaninfo --summary
 
+      # The pinned Ubuntu 24.04 images preinstall Clang 18.
+      - name: Select Clang
+        if: matrix.platform.compiler == 'clang'
+        run: echo "CXX=clang++-18" >> "$GITHUB_ENV"
+
       - name: Configure CMake (Linux and macOS)
         if: runner.os != 'Windows'
         run: >-
@@ -224,7 +268,7 @@ jobs:
         run: cmake --build build --config Release --parallel 4 --target QAccelPlotExamples QAccelPlotTests
 
       - name: Capture every example (Linux)
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && matrix.platform.compiler != 'clang'
         run: xvfb-run -a ctest --test-dir build -C Release --output-on-failure -L visual-smoke
 
       - name: Capture every example (Windows and macOS)
@@ -234,6 +278,7 @@ jobs:
       # Proves each capture used the requested backend and Qt version. Unit tests skip their
       # rendering checks on a software fallback, so this is what keeps a fallback from passing.
       - name: Validate every screenshot
+        if: matrix.platform.compiler != 'clang'
         run: ctest --test-dir build -C Release --output-on-failure -L visual-validation
 
       - name: Run unit tests (Linux)
@@ -250,7 +295,7 @@ jobs:
         run: ctest --test-dir build -C Release --output-on-failure -L '^unit-test$'
 
       - name: Upload screenshots and test log
-        if: always()
+        if: always() && matrix.platform.compiler != 'clang'
         id: upload-visual-artifacts
         uses: actions/upload-artifact@v7
         with:
