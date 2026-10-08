@@ -108,3 +108,5 @@ add_qaccelplot_test(tst_inspection_qml     core tst_inspection_qml.cpp)
 # Loads a QML scene, so it needs the QML module plugin.
 target_link_libraries(tst_inspection_qml PRIVATE QAccelPlot::QAccelPlot)
 qt_import_qml_plugins(tst_inspection_qml)
+
+add_qaccelplot_test(tst_histogram          core tst_histogram.cpp)
