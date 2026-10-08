@@ -117,6 +117,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Showcases | **[Performance](examples/showcases/performance/)** | Performance lab: stream up to 10M points, rectangles, or bars per tab and compare the cost of series count, ingestion API, and rendering options. |
 | Start | **[Quickstart](examples/quickstart/)** | Minimal plot setup. |
 | Plot types | **[Bar Chart](examples/plot_types/bar_chart/)** | Grouped monthly revenue with a horizontal toggle, and profit bars colored against a target baseline. |
+| Plot types | **[Histogram](examples/plot_types/histogram/)** | Sensor noise in equal bins, and request latencies in logarithmic bins or as density in one bin per axis tick. |
 | Plot types | **[Bands](examples/plot_types/bands/)** | Forecast with nested prediction intervals, and a rolling mean ± 2σ band over a simulated sensor signal. |
 | Plot types | **[Parametric Curves](examples/plot_types/parametric_curves/)** | Spiral, Lissajous figure, spirograph, and Van der Pol phase portrait: curves that loop and cross themselves. |
 | Plot types | **[Point Cloud](examples/plot_types/point_cloud/)** | 200K-point scatter colored by value through a Colormap preset, with a hover tooltip and rectangle zoom. |
