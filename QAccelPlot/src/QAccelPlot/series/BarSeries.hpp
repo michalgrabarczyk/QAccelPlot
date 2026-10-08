@@ -37,6 +37,11 @@ class BarMaterial;
 /// Bars with a NaN or infinite position, or a NaN value, are not drawn or hovered. An infinite
 /// value extends the bar to the plot edge. Values below \c baselineValue extend the bar the other way.
 ///
+/// A ranged bar is a (from, to, value) triple that spans from \c from to \c to along the position
+/// axis, e.g. a histogram bin. \c barWidth and \c barOffset do not apply to ranged bars. A ranged bar
+/// with a NaN edge is not drawn, and an infinite edge extends it to the plot edge. A series holds
+/// either ranged bars or (position, value) bars.
+///
 /// Each bar can carry a \c category, an index into \c categoryColors. Bars without a category, or
 /// with one outside \c categoryColors, use \c color. For grouped bars, use one series per group
 /// with a narrower \c barWidth and a different \c barOffset.
@@ -131,6 +136,9 @@ public:
     /// A number is the value of a bar at position = its list index. An object has \c position,
     /// \c value, and an optional integer \c category that selects the fill color from
     /// \c categoryColors. A missing \c position is the list index; a missing \c value is NaN.
+    ///
+    /// When any object has \c from or \c to, all bars are ranged: each object has \c from, \c to,
+    /// \c value, and an optional \c category, and a missing \c from or \c to is NaN.
     Q_INVOKABLE void setData(const QVariantList& bars);
 
     /// \brief Loads bars from a C++ raw double array of \a barCount interleaved (position, value) pairs.
@@ -183,13 +191,20 @@ public:
     /// \brief Thread-safe: queues \c setDataF(\a data, \a categories, \a barCount) to the item's thread.
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
+    /// \brief Moves ranged bars into the series: \a data holds \a barCount × 3 doubles (from, to, value). Clears categories.
+    void setRangedData(std::vector<double>&& data, int barCount);
+    /// \brief Like \c setRangedData(\a data, \a barCount) and also moves per-bar \a categories (empty, or exactly \a barCount) into the series.
+    void setRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
+    /// \brief Thread-safe: queues \c setRangedData(\a data, \a barCount) to the item's thread.
+    void postRangedData(std::vector<double>&& data, int barCount);
+
     /// \brief Removes all bars.
     Q_INVOKABLE void clearData() override;
 
     /// \brief Sets one category per bar. An empty list clears categories; any other size must equal \c count.
     Q_INVOKABLE void setCategories(const QList<int>& categories);
 
-    /// \brief Returns bar \a index as an object with \c position and \c value properties.
+    /// \brief Returns bar \a index as an object with \c position and \c value, or \c from, \c to, and \c value for a ranged bar.
     ///
     /// Includes \c category when categories are set. Returns an empty object when \a index is out of range.
     Q_INVOKABLE QVariantMap barAt(int index) const;
@@ -237,8 +252,9 @@ protected:
 
 private:
     bool validateRawDataArguments(const void* data, int barCount) const;
-    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount) const;
+    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
+    void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
     void setDataFFromArray(const float* data, int barCount, bool reportRanges);
     void finishDataChange(std::vector<int>&& categories, int barCount, bool reportRanges);
@@ -247,8 +263,13 @@ private:
     bool isHorizontal() const;
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
-    double position(int index) const;
+    // Number of values per bar: (position, value), or (from, to, value) for ranged bars.
+    int valuesPerBar() const;
+    // Returns value \a offset of bar \a index, counted within the bar.
+    double component(int index, int offset) const;
     double value(int index) const;
+    // Returns the extent of bar \a index along the position axis, both NaN when the bar has none.
+    std::array<double, 2> positionSpan(int index) const;
     // Returns bar \a index as data-space edges (x1, y1, x2, y2), all NaN when the bar is not drawn.
     std::array<double, 4> barRect(int index) const;
     bool hasCategories() const;
@@ -261,6 +282,7 @@ private:
     void ensureSpatialGrid() const;
     void buildVertexCache();
     void updateDataRanges();
+    void reportDataRanges(qreal positionMin, qreal positionMax, qreal valueMin, qreal valueMax, bool hasValues);
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_,
     // so the GPU upload stays accurate for large positions without double-precision textures.
     void rebuildRenderData(bool logScalePosition, bool logScaleValue);
@@ -275,8 +297,10 @@ private:
     RectangleBorder* border_{new RectangleBorder{this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
-    // Data: 2 doubles per bar (position, value), full precision. Empty when setDataF() supplied the data.
+    // Data: valuesPerBar() doubles per bar, full precision. Empty when setDataF() supplied the data.
     std::vector<double> data_;
+    // True when each bar is (from, to, value) instead of (position, value).
+    bool ranged_{false};
     // One category per bar, or empty when no bar has one.
     std::vector<int> categories_;
     // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.

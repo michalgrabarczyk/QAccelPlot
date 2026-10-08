@@ -70,6 +70,12 @@ private slots:
     void propertiesClampAndNotify();
     void epochPositionsAreUploadedRelativeToAnOrigin();
     void geometryIsPassedToTheMaterial();
+    void variantListObjectsWithFromAndToAreRanged();
+    void rangedDataIsAppliedAndValidated();
+    void postedRangedDataIsAppliedFromWorkerThread();
+    void rangedBarsReportTheirEdgesAsRange();
+    void rangedBarsOnALogPositionAxisSkipNonPositiveEdges();
+    void rangedBarsAreUploadedAsTriples();
 };
 
 void BarSeriesDataTest::defaultsMatchDocumentation()
@@ -444,6 +450,133 @@ void BarSeriesDataTest::geometryIsPassedToTheMaterial()
     node.reset(bars.updatePaintNode(node.release(), nullptr));
     QCOMPARE(material->horizontal, 0.0f);
     QCOMPARE(material->minimumSize, QVector2D(3.0f, 0.0f));
+}
+
+void BarSeriesDataTest::variantListObjectsWithFromAndToAreRanged()
+{
+    auto bars = BarSeries{};
+    bars.setData(QVariantList{
+        QVariantMap{{QStringLiteral("from"), 0.0}, {QStringLiteral("to"), 1.0}, {QStringLiteral("value"), 3.0}},
+        QVariantMap{{QStringLiteral("from"), 1.0}, {QStringLiteral("to"), 4.0}, {QStringLiteral("value"), 5.0}, {QStringLiteral("category"), 1}},
+        bar(7.0, 2.0),
+    });
+    QCOMPARE(bars.count(), 3);
+    const auto ranged = bars.barAt(1);
+    QCOMPARE(ranged.value(QStringLiteral("from")).toDouble(), 1.0);
+    QCOMPARE(ranged.value(QStringLiteral("to")).toDouble(), 4.0);
+    QCOMPARE(ranged.value(QStringLiteral("value")).toDouble(), 5.0);
+    QCOMPARE(ranged.value(QStringLiteral("category")).toInt(), 1);
+    QVERIFY(!ranged.contains(QStringLiteral("position")));
+    // In a ranged list, a bar without from and to has no extent.
+    QVERIFY(std::isnan(bars.barAt(2).value(QStringLiteral("from")).toDouble()));
+    QCOMPARE(bars.barAt(2).value(QStringLiteral("value")).toDouble(), 2.0);
+
+    bars.setData(QVariantList{3.0});
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("position")).toDouble(), 0.0);
+    QVERIFY(!bars.barAt(0).contains(QStringLiteral("from")));
+}
+
+void BarSeriesDataTest::rangedDataIsAppliedAndValidated()
+{
+    auto bars = BarSeries{};
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0, 1.0, 4.0, 5.0}, std::vector<int>{0, 1}, 2);
+    QCOMPARE(bars.count(), 2);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("to")).toDouble(), 4.0);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 1);
+
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received 4 values for 2 bars; expected 6"));
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0, 5.0}, 2);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received 1 categories for 2 bars"));
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0, 1.0, 4.0, 5.0}, std::vector<int>{0}, 2);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("to")).toDouble(), 4.0);
+
+    // Position data replaces the ranged bars, from the double and the float setters.
+    bars.setData(std::vector<double>{7.0, 8.0}, 1);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("position")).toDouble(), 7.0);
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0}, 1);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("to")).toDouble(), 1.0);
+    bars.setDataF(std::vector<float>{7.0f, 8.0f}, 1);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("position")).toDouble(), 7.0);
+    QCOMPARE(bars.barAt(0).value(QStringLiteral("value")).toDouble(), 8.0);
+}
+
+void BarSeriesDataTest::postedRangedDataIsAppliedFromWorkerThread()
+{
+    auto bars = BarSeries{};
+    auto worker = std::thread{[&bars]() { bars.postRangedData(std::vector<double>{0.0, 1.0, 3.0, 1.0, 4.0, 5.0}, 2); }};
+    worker.join();
+
+    QCOMPARE(bars.count(), 0);
+    QTRY_COMPARE(bars.count(), 2);
+    QCOMPARE(bars.barAt(1).value(QStringLiteral("to")).toDouble(), 4.0);
+}
+
+void BarSeriesDataTest::rangedBarsReportTheirEdgesAsRange()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto bars = BarSeries{};
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    // The width and offset of position bars do not widen or move ranged bars.
+    bars.setBarWidth(2.0);
+    bars.setBarOffset(1.0);
+    // The bar with a NaN edge is not drawn. The infinite edge reaches the plot edge and has no place in the range.
+    bars.setRangedData(std::vector<double>{2.0, 3.0, 3.0, 3.0, 6.0, 5.0, kNaN, 9.0, 8.0, 7.0, kInf, 4.0}, 4);
+
+    QCOMPARE(xAxis.dataMin(), 2.0);
+    QCOMPARE(xAxis.dataMax(), 7.0);
+    QCOMPARE(yAxis.dataMin(), 0.0);
+    QCOMPARE(yAxis.dataMax(), 5.0);
+
+    bars.setOrientation(Qt::Horizontal);
+    QCOMPARE(yAxis.dataMin(), 2.0);
+    QCOMPARE(yAxis.dataMax(), 7.0);
+    QCOMPARE(xAxis.dataMin(), 0.0);
+    QCOMPARE(xAxis.dataMax(), 5.0);
+}
+
+void BarSeriesDataTest::rangedBarsOnALogPositionAxisSkipNonPositiveEdges()
+{
+    auto xAxis = Axis{};
+    xAxis.setViewportMin(1.0);
+    xAxis.setViewportMax(1000.0);
+    xAxis.setLogScale(true);
+    auto bars = BarSeries{};
+    bars.setXAxis(&xAxis);
+    bars.setRangedData(std::vector<double>{0.0, 1.0, 3.0, 1.0, 10.0, 5.0, 10.0, 100.0, 2.0}, 3);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 100.0);
+}
+
+void BarSeriesDataTest::rangedBarsAreUploadedAsTriples()
+{
+    constexpr auto epoch = 1'789'032'600'000.0;
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setViewportMin(epoch);
+    xAxis.setViewportMax(epoch + 10.0);
+    auto window = QQuickWindow{};
+    auto bars = RenderableBars{};
+    bars.setParentItem(window.contentItem());
+    bars.setXAxis(&xAxis);
+    bars.setYAxis(&yAxis);
+    bars.setPlotRect({0, 0, 100, 100});
+    bars.setRangedData(std::vector<double>{epoch + 1.0, epoch + 3.0, 5.0, epoch + 3.0, epoch + 4.0, 6.0}, 2);
+
+    auto node = std::unique_ptr<QSGNode>{bars.updatePaintNode(nullptr, nullptr)};
+    QVERIFY(node);
+    const auto* geometryNode = static_cast<QSGGeometryNode*>(node.get());
+    const auto* material = static_cast<BarMaterial*>(geometryNode->material());
+    QCOMPARE(geometryNode->geometry()->vertexCount(), 12);
+    QCOMPARE(material->ranged, 1.0f);
+    // The edges are uploaded relative to the first one.
+    QCOMPARE(material->domainMin.x(), -1.0f);
+    QCOMPARE(material->domainMax.x(), 9.0f);
+
+    bars.setData(std::vector<double>{epoch + 1.0, 5.0}, 1);
+    node.reset(bars.updatePaintNode(node.release(), nullptr));
+    QCOMPARE(material->ranged, 0.0f);
 }
 
 } // namespace QAccelPlot

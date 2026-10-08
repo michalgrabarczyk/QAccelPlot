@@ -41,6 +41,16 @@ double numberOr(const QVariant& value, const double fallback)
     return ok ? number : fallback;
 }
 
+// True for a bar object that gives its own extent along the position axis.
+bool isRangedBar(const QVariant& bar)
+{
+    if (bar.metaType().id() != QMetaType::QVariantMap) {
+        return false;
+    }
+    const auto map = bar.toMap();
+    return map.contains(QStringLiteral("from")) || map.contains(QStringLiteral("to"));
+}
+
 // A coordinate the axis can place: finite, and positive on a log axis.
 bool isPlaceable(const double coordinate, const bool logScale)
 {
@@ -226,25 +236,24 @@ int BarSeries::hoveredIndex() const
 
 void BarSeries::setData(const QVariantList& bars)
 {
-    const auto positionKey = QStringLiteral("position");
-    const auto valueKey = QStringLiteral("value");
-    const auto categoryKey = QStringLiteral("category");
-    auto data = std::vector<double>(static_cast<size_t>(bars.size()) * 2);
+    const auto ranged = std::any_of(bars.cbegin(), bars.cend(), isRangedBar);
+    const auto stride = ranged ? size_t{3} : size_t{2};
+    auto data = std::vector<double>(static_cast<size_t>(bars.size()) * stride);
     auto categories = std::vector<int>(static_cast<size_t>(bars.size()), -1);
     auto anyCategory = false;
     for (qsizetype i = 0; i < bars.size(); ++i) {
         const auto& bar = bars[i];
-        const auto base = static_cast<size_t>(i) * 2;
-        const auto index = static_cast<double>(i);
-        if (bar.metaType().id() != QMetaType::QVariantMap) {
-            data[base] = index;
-            data[base + 1] = numberOr(bar, kNaN);
-            continue;
+        auto* values = data.data() + static_cast<size_t>(i) * stride;
+        const auto isObject = bar.metaType().id() == QMetaType::QVariantMap;
+        const auto map = isObject ? bar.toMap() : QVariantMap{};
+        if (ranged) {
+            values[0] = numberOr(map.value(QStringLiteral("from")), kNaN);
+            values[1] = numberOr(map.value(QStringLiteral("to")), kNaN);
+        } else {
+            values[0] = numberOr(map.value(QStringLiteral("position")), static_cast<double>(i));
         }
-        const auto map = bar.toMap();
-        data[base] = numberOr(map.value(positionKey), index);
-        data[base + 1] = numberOr(map.value(valueKey), kNaN);
-        const auto category = map.value(categoryKey);
+        values[stride - 1] = numberOr(isObject ? map.value(QStringLiteral("value")) : bar, kNaN);
+        const auto category = map.value(QStringLiteral("category"));
         if (category.isValid() && !category.isNull()) {
             categories[static_cast<size_t>(i)] = category.toInt();
             anyCategory = true;
@@ -253,7 +262,11 @@ void BarSeries::setData(const QVariantList& bars)
     if (!anyCategory) {
         categories.clear();
     }
-    applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()), true);
+    if (ranged) {
+        applyRangedData(std::move(data), std::move(categories), static_cast<int>(bars.size()));
+    } else {
+        applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()), true);
+    }
 }
 
 void BarSeries::setData(const double* data, const int barCount)
@@ -364,6 +377,24 @@ void BarSeries::postData(std::vector<float>&& data, std::vector<int>&& categorie
         Qt::QueuedConnection);
 }
 
+void BarSeries::setRangedData(std::vector<double>&& data, const int barCount)
+{
+    setRangedData(std::move(data), {}, barCount);
+}
+
+void BarSeries::setRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
+{
+    if (!validateDataArguments(data.size(), categories.size(), barCount, 3)) {
+        return;
+    }
+    applyRangedData(std::move(data), std::move(categories), barCount);
+}
+
+void BarSeries::postRangedData(std::vector<double>&& data, const int barCount)
+{
+    QMetaObject::invokeMethod(this, [this, bars = std::move(data), barCount]() mutable { setRangedData(std::move(bars), barCount); }, Qt::QueuedConnection);
+}
+
 void BarSeries::clearData()
 {
     applyData({}, {}, 0, true);
@@ -386,7 +417,13 @@ QVariantMap BarSeries::barAt(const int index) const
     if (index < 0 || index >= barCount_) {
         return {};
     }
-    auto bar = QVariantMap{{QStringLiteral("position"), position(index)}, {QStringLiteral("value"), value(index)}};
+    auto bar = QVariantMap{{QStringLiteral("value"), value(index)}};
+    if (ranged_) {
+        bar.insert(QStringLiteral("from"), component(index, 0));
+        bar.insert(QStringLiteral("to"), component(index, 1));
+    } else {
+        bar.insert(QStringLiteral("position"), component(index, 0));
+    }
     if (hasCategories()) {
         bar.insert(QStringLiteral("category"), categories_[static_cast<size_t>(index)]);
     }
@@ -425,9 +462,7 @@ InspectionRecord BarSeries::inspectionRecord(const int index) const
     }
     result.index = index;
     result.fields = barAt(index);
-    const auto valid
-        = std::isfinite(result.fields.value(QStringLiteral("position")).toDouble()) && !std::isnan(result.fields.value(QStringLiteral("value")).toDouble());
-    result.status = valid ? InspectionStatus::Ready : InspectionStatus::NoMatch;
+    result.status = std::isnan(barRect(index)[0]) ? InspectionStatus::NoMatch : InspectionStatus::Ready;
     return result;
 }
 
@@ -473,7 +508,7 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
             const auto logValue = isHorizontal() ? xAxis()->logScale() : yAxis()->logScale();
             rebuildRenderData(logPosition, logValue);
         }
-        material->uploadTexture(window, renderData_.data(), barCount_ * 2);
+        material->uploadTexture(window, renderData_.data(), barCount_ * valuesPerBar());
         dataChanged_ = false;
     }
 
@@ -523,13 +558,13 @@ bool BarSeries::validateRawDataArguments(const void* data, const int barCount) c
     return true;
 }
 
-bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int barCount) const
+bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int barCount, const int barValueCount) const
 {
     if (barCount < 0) {
         qCWarning(lcQAccelPlot) << "BarSeries data bar count cannot be negative:" << barCount;
         return false;
     }
-    const auto expectedValueCount = static_cast<std::size_t>(barCount) * 2;
+    const auto expectedValueCount = static_cast<std::size_t>(barCount) * static_cast<std::size_t>(barValueCount);
     if (valueCount != expectedValueCount) {
         qCWarning(lcQAccelPlot) << "BarSeries received" << valueCount << "values for" << barCount << "bars; expected" << expectedValueCount;
         return false;
@@ -544,12 +579,21 @@ bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::s
 void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount, const bool reportRanges)
 {
     data_ = std::move(data);
+    ranged_ = false;
     finishDataChange(std::move(categories), barCount, reportRanges);
+}
+
+void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
+{
+    data_ = std::move(data);
+    ranged_ = true;
+    finishDataChange(std::move(categories), barCount, true);
 }
 
 void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount, const bool reportRanges)
 {
     data_ = std::vector<double>{};
+    ranged_ = false;
     renderData_ = std::move(data);
     renderOriginPosition_ = 0.0;
     renderOriginValue_ = 0.0;
@@ -606,32 +650,47 @@ bool BarSeries::hasPreciseData() const
     return !data_.empty();
 }
 
-double BarSeries::position(const int index) const
+int BarSeries::valuesPerBar() const
 {
-    const auto offset = static_cast<size_t>(index) * 2;
-    return hasPreciseData() ? data_[offset] : static_cast<double>(renderData_[offset]);
+    return ranged_ ? 3 : 2;
+}
+
+double BarSeries::component(const int index, const int offset) const
+{
+    const auto position = static_cast<size_t>(index) * static_cast<size_t>(valuesPerBar()) + static_cast<size_t>(offset);
+    return hasPreciseData() ? data_[position] : static_cast<double>(renderData_[position]);
 }
 
 double BarSeries::value(const int index) const
 {
-    const auto offset = static_cast<size_t>(index) * 2 + 1;
-    return hasPreciseData() ? data_[offset] : static_cast<double>(renderData_[offset]);
+    return component(index, valuesPerBar() - 1);
+}
+
+std::array<double, 2> BarSeries::positionSpan(const int index) const
+{
+    if (ranged_) {
+        const auto from = component(index, 0);
+        const auto to = component(index, 1);
+        return std::isnan(from) || std::isnan(to) ? std::array<double, 2>{kNaN, kNaN} : std::array<double, 2>{from, to};
+    }
+    const auto center = component(index, 0) + barOffset_;
+    if (!std::isfinite(center)) {
+        return {kNaN, kNaN};
+    }
+    return {center - 0.5 * barWidth_, center + 0.5 * barWidth_};
 }
 
 std::array<double, 4> BarSeries::barRect(const int index) const
 {
-    const auto barPosition = position(index);
+    const auto span = positionSpan(index);
     const auto barValue = value(index);
-    if (!std::isfinite(barPosition) || std::isnan(barValue)) {
+    if (std::isnan(span[0]) || std::isnan(barValue)) {
         return {kNaN, kNaN, kNaN, kNaN};
     }
-    const auto center = barPosition + barOffset_;
-    const auto start = center - 0.5 * barWidth_;
-    const auto end = center + 0.5 * barWidth_;
     if (isHorizontal()) {
-        return {baselineValue_, start, barValue, end};
+        return {baselineValue_, span[0], barValue, span[1]};
     }
-    return {start, baselineValue_, end, barValue};
+    return {span[0], baselineValue_, span[1], barValue};
 }
 
 bool BarSeries::hasCategories() const
@@ -704,6 +763,7 @@ void BarSeries::updateMaterial(BarMaterial& material) const
     material.barOffset = static_cast<float>(barOffset_);
     material.baseline = static_cast<float>(baselineValue_ - renderOriginValue_);
     material.horizontal = horizontal ? 1.0f : 0.0f;
+    material.ranged = ranged_ ? 1.0f : 0.0f;
 }
 
 void BarSeries::ensureSpatialGrid() const
@@ -748,16 +808,25 @@ void BarSeries::updateDataRanges()
     const auto logPosition = positionAxis && positionAxis->logScale();
     const auto logValue = valueAxis && valueAxis->logScale();
 
+    // A ranged bar contributes its two edges, any other bar its position.
     auto positions = Extent{};
     auto values = Extent{};
     for (auto i = 0; i < barCount_; ++i) {
-        const auto barPosition = position(i);
+        const auto first = component(i, 0);
+        const auto last = ranged_ ? component(i, 1) : first;
         const auto barValue = value(i);
-        if (!isPlaceable(barPosition, logPosition) || std::isnan(barValue)) {
+        if (std::isnan(first) || std::isnan(last) || std::isnan(barValue)) {
             continue;
         }
-        positions.include(barPosition);
-        if (isPlaceable(barValue, logValue)) {
+        const auto firstPlaced = isPlaceable(first, logPosition);
+        const auto lastPlaced = isPlaceable(last, logPosition);
+        if (firstPlaced) {
+            positions.include(first);
+        }
+        if (lastPlaced) {
+            positions.include(last);
+        }
+        if ((firstPlaced || lastPlaced) && isPlaceable(barValue, logValue)) {
             values.include(barValue);
         }
     }
@@ -769,22 +838,29 @@ void BarSeries::updateDataRanges()
         values.include(baselineValue_);
     }
 
-    // Widen by half a bar so the outer bars are fully in view, unless that leaves a log axis' domain.
-    auto positionMin = positions.min + barOffset_ - 0.5 * barWidth_;
-    const auto positionMax = positions.max + barOffset_ + 0.5 * barWidth_;
-    if (!isPlaceable(positionMin, logPosition)) {
-        positionMin = positions.min;
+    auto positionMin = positions.min;
+    auto positionMax = positions.max;
+    if (!ranged_) {
+        // Widen by half a bar so the outer bars are fully in view, unless that leaves a log axis' domain.
+        const auto widenedMin = positions.min + barOffset_ - 0.5 * barWidth_;
+        positionMin = isPlaceable(widenedMin, logPosition) ? widenedMin : positions.min;
+        positionMax = positions.max + barOffset_ + 0.5 * barWidth_;
     }
+    reportDataRanges(positionMin, positionMax, values.min, values.max, !values.isEmpty());
+}
+
+void BarSeries::reportDataRanges(const qreal positionMin, const qreal positionMax, const qreal valueMin, const qreal valueMax, const bool hasValues)
+{
     if (isHorizontal()) {
         setYDataRange(positionMin, positionMax);
     } else {
         setXDataRange(positionMin, positionMax);
     }
-    if (!values.isEmpty()) {
+    if (hasValues) {
         if (isHorizontal()) {
-            setXDataRange(values.min, values.max);
+            setXDataRange(valueMin, valueMax);
         } else {
-            setYDataRange(values.min, values.max);
+            setYDataRange(valueMin, valueMax);
         }
     } else if (isHorizontal()) {
         clearXDataRange();
@@ -799,24 +875,30 @@ void BarSeries::rebuildRenderData(const bool logScalePosition, const bool logSca
     // log-scale axis, matching RectangleSeries.
     renderOriginPosition_ = 0.0;
     renderOriginValue_ = 0.0;
+    // The value is the last component of a bar; the ones before it lie on the position axis.
+    const auto stride = static_cast<size_t>(valuesPerBar());
+    const auto valueOffset = stride - 1;
     auto foundPositionOrigin = logScalePosition;
     auto foundValueOrigin = logScaleValue;
-    for (auto i = 0; i < barCount_ && !(foundPositionOrigin && foundValueOrigin); ++i) {
-        if (!foundPositionOrigin && std::isfinite(position(i))) {
-            renderOriginPosition_ = position(i);
-            foundPositionOrigin = true;
+    for (auto base = size_t{0}; base < data_.size() && !(foundPositionOrigin && foundValueOrigin); base += stride) {
+        for (auto offset = size_t{0}; offset < valueOffset && !foundPositionOrigin; ++offset) {
+            if (std::isfinite(data_[base + offset])) {
+                renderOriginPosition_ = data_[base + offset];
+                foundPositionOrigin = true;
+            }
         }
-        if (!foundValueOrigin && std::isfinite(value(i))) {
-            renderOriginValue_ = value(i);
+        if (!foundValueOrigin && std::isfinite(data_[base + valueOffset])) {
+            renderOriginValue_ = data_[base + valueOffset];
             foundValueOrigin = true;
         }
     }
 
     renderData_.resize(data_.size());
-    for (auto i = 0; i < barCount_; ++i) {
-        const auto base = static_cast<size_t>(i) * 2;
-        renderData_[base] = static_cast<float>(data_[base] - renderOriginPosition_);
-        renderData_[base + 1] = static_cast<float>(data_[base + 1] - renderOriginValue_);
+    for (auto base = size_t{0}; base < data_.size(); base += stride) {
+        for (auto offset = size_t{0}; offset < valueOffset; ++offset) {
+            renderData_[base + offset] = static_cast<float>(data_[base + offset] - renderOriginPosition_);
+        }
+        renderData_[base + valueOffset] = static_cast<float>(data_[base + valueOffset] - renderOriginValue_);
     }
 }
 

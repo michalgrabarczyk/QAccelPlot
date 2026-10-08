@@ -67,6 +67,7 @@ private slots:
     void unboundedBaselineAndInvalidBars();
     void tallBarsKeepLookupsLocal();
     void hoverEventsTrackBarUnderCursor();
+    void rangedBarsAreHitWithinTheirOwnExtent();
 };
 
 void BarHoverTest::barIndexAtFindsBarsBetweenBaselineAndValue()
@@ -221,6 +222,32 @@ void BarHoverTest::hoverEventsTrackBarUnderCursor()
     hover(QEvent::HoverMove, axes.pixel(3.0, 2.5));
     bars.setData(std::vector<double>{1.0, 2.0}, 1);
     QCOMPARE(bars.hoveredIndex(), -1);
+}
+
+void BarHoverTest::rangedBarsAreHitWithinTheirOwnExtent()
+{
+    auto axes = AxisPair{};
+    auto bars = QAccelPlot::BarSeries{};
+    bars.setXAxis(&axes.x);
+    bars.setYAxis(&axes.y);
+    bars.setPlotRect({0.0, 0.0, 400.0, 400.0});
+    // The width and offset of position bars do not apply.
+    bars.setBarWidth(3.0);
+    bars.setBarOffset(2.0);
+    // Bar 0 spans x 0.5..1 and y 0..2; bar 1 spans x 1..3.5 and y 0..3.
+    bars.setRangedData(std::vector<double>{0.5, 1.0, 2.0, 1.0, 3.5, 3.0}, 2);
+
+    QCOMPARE(bars.barIndexAt(axes.pixel(0.75, 1.0)), 0);
+    QCOMPARE(bars.barIndexAt(axes.pixel(0.25, 1.0)), -1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(0.75, 2.5)), -1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(3.0, 2.5)), 1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(3.0, 3.5)), -1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(3.75, 1.0)), -1);
+
+    bars.setOrientation(Qt::Horizontal);
+    QCOMPARE(bars.barIndexAt(axes.pixel(2.5, 3.0)), 1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(2.5, 0.75)), -1);
+    QCOMPARE(bars.barIndexAt(axes.pixel(1.5, 0.75)), 0);
 }
 
 QTEST_MAIN(BarHoverTest)

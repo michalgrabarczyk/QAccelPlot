@@ -115,6 +115,21 @@ constexpr auto kBorderAndHoverScene = R"(
 }
 )";
 
+// Red ranged bars over x 1..2 (up to 6) and x 2..7 (up to 3), and one without an end that is not drawn.
+// The width and offset of position bars do not apply to them.
+constexpr auto kRangedScene = R"(
+    BarSeries {
+        objectName: "ranged"
+        xAxis: plot.xAxis
+        yAxis: plot.yAxis
+        color: "red"
+        barWidth: 4
+        barOffset: 3
+        Component.onCompleted: setData([{ from: 1, to: 2, value: 6 }, { from: 2, to: 7, value: 3 }, { from: 8, value: 9 }])
+    }
+}
+)";
+
 // Shows a PlotView built from kScenePrefix and \a sceneBody in a 400 × 300 window.
 class SceneWindow {
 public:
@@ -188,6 +203,7 @@ private slots:
     void horizontalBarsGrowAlongX();
     void narrowBarsKeepMinimumWidthAndCategoriesSelectColors();
     void borderAndHoverColorApplyToBars();
+    void rangedBarsSpanTheirOwnExtent();
 };
 
 void BarSeriesRenderingTest::verticalBarsSpanFromBaselineToValue()
@@ -341,6 +357,36 @@ void BarSeriesRenderingTest::borderAndHoverColorApplyToBars()
     image = scene.grab();
     QVERIFY(isColor(image.pixelColor(first), Qt::red));
     QVERIFY(isColor(image.pixelColor(second), Qt::yellow));
+}
+
+void BarSeriesRenderingTest::rangedBarsSpanTheirOwnExtent()
+{
+    auto scene = SceneWindow{kRangedScene};
+    if (scene.isSoftware()) {
+        QSKIP("Custom materials require a hardware scene graph backend");
+    }
+    auto* plot = scene.plot();
+    QVERIFY2(plot, qPrintable(scene.error()));
+    QVERIFY(QTest::qWaitForWindowExposed(&scene.window()));
+
+    auto image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(1.5, 5.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(0.5, 5.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 5.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 2.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(6.5, 2.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(7.5, 2.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(8.5, 5.0)), Qt::black));
+
+    // On a logarithmic position axis the edges follow the scale.
+    plot->xAxis()->setViewportMin(1.0);
+    plot->xAxis()->setViewportMax(100.0);
+    plot->xAxis()->setLogScale(true);
+    image = scene.grab();
+    QVERIFY(isColor(image.pixelColor(scene.pixel(1.5, 5.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(2.5, 5.0)), Qt::black));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 2.0)), Qt::red));
+    QVERIFY(isColor(image.pixelColor(scene.pixel(10.0, 2.0)), Qt::black));
 }
 
 } // namespace QAccelPlot
