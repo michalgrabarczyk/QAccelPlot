@@ -463,6 +463,8 @@
       
         
       
+        
+      
     
     
     
@@ -784,6 +786,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
   
 
     
@@ -1423,6 +1453,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#variable-ranged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        variable ranged
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1569,6 +1610,10 @@
 <tr>
 <td style="text-align: right;">float</td>
 <td style="text-align: left;"><a href="#variable-horizontal"><strong>horizontal</strong></a>   = <code>{0.0f}</code><br><em>1.0 when positions lie on the Y axis (float for std140 UBO compatibility).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">float</td>
+<td style="text-align: left;"><a href="#variable-ranged"><strong>ranged</strong></a>   = <code>{0.0f}</code><br><em>1.0 when each bar holds its own extent along the position axis.</em></td>
 </tr>
 </tbody>
 </table>
@@ -1803,7 +1848,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>The data texture holds (position, value) pairs; the shader turns each into a rectangle. </p>
+<p>The data texture holds (position, value) pairs, or (from, to, value) triples when <code>ranged</code> is set; the shader turns each into a rectangle. </p>
 <h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-baroffset">variable barOffset<a class="headerlink" href="#variable-baroffset" title="Permanent link">&para;</a></h3>
 <p><em>Shift of every bar along the position axis in data units.</em> 
@@ -1828,32 +1873,38 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">horizontal</span><span class="p">;</span>
 </code></pre></div></p>
 <hr>
+
+<h3 id="variable-ranged">variable ranged<a class="headerlink" href="#variable-ranged" title="Permanent link">&para;</a></h3>
+<p><em>1.0 when each bar holds its own extent along the position axis.</em> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">ranged</span><span class="p">;</span>
+</code></pre></div></p>
+<hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-barmaterial">function BarMaterial<a class="headerlink" href="#function-barmaterial" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>BarMaterial</strong></em></a> <em>with default uniform values.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">BarMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">BarMaterial</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-createshader">function createShader<a class="headerlink" href="#function-createshader" title="Permanent link">&para;</a></h3>
 <p><em>Creates and returns the bar shader program.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QSGMaterialShader</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">createShader</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">QSGRendererInterface</span><span class="o">::</span><span class="n">RenderMode</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-type">function type<a class="headerlink" href="#function-type" title="Permanent link">&para;</a></h3>
 <p><em>Returns the unique material type identifier for this class.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">QSGMaterialType</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">type</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-compareextra">function compareExtra<a class="headerlink" href="#function-compareextra" title="Permanent link">&para;</a></h3>
 <p><em>Compares the bar-specific uniforms after the rectangle uniforms compare equal.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarMaterial</span><span class="o">::</span><span class="n">compareExtra</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QSGMaterial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">other</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1DataTextureMaterial/#function-compareextra"><em>QAccelPlot::DataTextureMaterial::compareExtra</em></a></p>
 <hr>

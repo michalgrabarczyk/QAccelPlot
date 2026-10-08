@@ -413,6 +413,7 @@
     <member refid="classQAccelPlot_1_1BarMaterial_1ac1665b6c3fef246ae264c342729b6c85" kind="variable"><name>barOffset</name></member>
     <member refid="classQAccelPlot_1_1BarMaterial_1ae78350297198212525029d71a35f890a" kind="variable"><name>baseline</name></member>
     <member refid="classQAccelPlot_1_1BarMaterial_1a67e221e8b0c735e95905dfdb7d041c33" kind="variable"><name>horizontal</name></member>
+    <member refid="classQAccelPlot_1_1BarMaterial_1aebde3872c93695ff6b9b14658ae45639" kind="variable"><name>ranged</name></member>
     <member refid="classQAccelPlot_1_1BarMaterial_1a2e8cd8df600845fba83ac90208d61215" kind="function"><name>BarMaterial</name></member>
     <member refid="classQAccelPlot_1_1BarMaterial_1ac841bd6baca46d3aac94cd25eb40ec12" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1BarMaterial_1a613588ce765d5bfa2f6f1c4cda5e6bb5" kind="function"><name>createShader</name></member>
@@ -441,6 +442,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a3ed90cb99cb820f2d9bafc6720d92001" kind="variable"><name>hoverColor_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a146e6150c522b94f1718b8cf18dd2cf2" kind="variable"><name>hoveredIndex_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a78dd73c6e3883f1f86d99b6bb5f8dcf6" kind="variable"><name>data_</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a14b0ff886d01b80fb7a26ce6aaadb88c" kind="variable"><name>ranged_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ae24cfc200decbc1e19b8ee9d36ab9d75" kind="variable"><name>categories_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a98df38b56faed630d8d9cd097a4b8be1" kind="variable"><name>renderData_</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a672c6a233031e6e31dd13dbb4d9a28cb" kind="variable"><name>renderOriginPosition_</name></member>
@@ -489,6 +491,9 @@
     <member refid="classQAccelPlot_1_1BarSeries_1ae2f29dae679cc3b13f9a22fbe50212aa" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1aa5e2b3e943c37d99aafb348c8042d9df" kind="function"><name>postData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a7d87a4f60adc6511cde30e4fe9161bd6" kind="function"><name>postData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1635826f800ddc65da095e03a72c1e20" kind="function"><name>setRangedData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a0463fed8c1c0ba5cbecac108018d03c2" kind="function"><name>setRangedData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a1d918989e80e29b968f4680f811f419a" kind="function"><name>postRangedData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a1128846c139b4bf98785326558985dad" kind="function"><name>clearData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a9cb606e0a24dafdceb3200c8aa5d7020" kind="function"><name>setCategories</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a50b913d33661eeca6c7485d2136f9e3a" kind="function"><name>barAt</name></member>
@@ -512,16 +517,19 @@
     <member refid="classQAccelPlot_1_1BarSeries_1a58f2d2bb5451bec9e68ae71c9f7b3bae" kind="function"><name>hoverLeaveEvent</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a5b5f325f5916fac62618e816fa997f2e" kind="function"><name>onAxisScaleChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a58df012438e1ee23643d7f0dc94a4c21" kind="function"><name>validateRawDataArguments</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a88f3c905726f34f9e005d0e48db81bab" kind="function"><name>validateDataArguments</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a7627491b0ee8668dc126d41553333831" kind="function"><name>validateDataArguments</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a8e953a586d7db178100692f66fdca3b9" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1aae35132f25f37da22852a21ca35edb2d" kind="function"><name>applyRangedData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ade444f2d6926086723cd01304f8cca80" kind="function"><name>applyFloatData</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ad46f8937ee59dea6e9dd64ccd1554b77" kind="function"><name>setDataFFromArray</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1af2979e58e9b5bbd3425a600143810c41" kind="function"><name>finishDataChange</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1aecd79de28f9c70c9aa7d5370501a44db" kind="function"><name>onGeometryChanged</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a319c0fd64cb9b76f908d77ac24b5abc0" kind="function"><name>isHorizontal</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a08a986dd9fe400f3d51785403aabf5f0" kind="function"><name>hasPreciseData</name></member>
-    <member refid="classQAccelPlot_1_1BarSeries_1a5e2858f62d71df16751111e30a8014fa" kind="function"><name>position</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a53afa58ab0482ef2fd29b0b599fecfaa" kind="function"><name>valuesPerBar</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1ad8d17e509e6ad8ee017e091448604635" kind="function"><name>component</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a025627324c1eba5a9e6871e771272e7c" kind="function"><name>value</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a5ff2b6cc1189c653bffa5b43b3acb8d3" kind="function"><name>positionSpan</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1ae25d406b21746e24e33992f69ead69cc" kind="function"><name>barRect</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a133f70d1cddae6e1bce06b52e1ca3775" kind="function"><name>hasCategories</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a6654456525bd5e0b6595cb78f5bd6a1e" kind="function"><name>barColor</name></member>
@@ -532,6 +540,7 @@
     <member refid="classQAccelPlot_1_1BarSeries_1ac3d0dbb455ca54bd44f034cd8fb93191" kind="function"><name>ensureSpatialGrid</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a7b4c56117e12087b26fe4a43d8f65497" kind="function"><name>buildVertexCache</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a13217280f2f141b0b7fceb4ef1db1ac3" kind="function"><name>updateDataRanges</name></member>
+    <member refid="classQAccelPlot_1_1BarSeries_1a144226c7dc7a423562c0e762ce303f3f" kind="function"><name>reportDataRanges</name></member>
     <member refid="classQAccelPlot_1_1BarSeries_1a589c339098a4657d3b37b682532fdfb7" kind="function"><name>rebuildRenderData</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1SourceInspection_1_1Block" kind="struct"><name>QAccelPlot::SourceInspection::Block</name>
@@ -1143,6 +1152,51 @@
     <member refid="classQAccelPlot_1_1GridNode_1a70a9d0fd82e11be8335c53b66e0eeeee" kind="function"><name>GridNode</name></member>
     <member refid="classQAccelPlot_1_1GridNode_1a8f3379579bde6537cf9f8efc9a7e1fc6" kind="function"><name>update</name></member>
     <member refid="classQAccelPlot_1_1GridNode_1a3fb5247927287a82e3de24681b403bd9" kind="function"><name>collectAxisGridLines</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1Histogram" kind="class"><name>QAccelPlot::Histogram</name>
+    <member refid="classQAccelPlot_1_1Histogram_1a276a2637290fccee45da5d42bdc64c8b" kind="property"><name>binCount</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ae06f993fc1b581283a0d36ac583e1d8b" kind="property"><name>edges</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a3305c45638521cb08061d0f004440e8c" kind="property"><name>values</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a469f2e79970eed48de08d404b7cab7be" kind="property"><name>total</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a1389eeaf28741090000e595d2bbf2897" kind="property"><name>uniform</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a5eaba082587bbf8cc2aa035c14f8d810" kind="property"><name>binWidth</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a44913896286f6e09c8074c1e789b428b" kind="variable"><name>edges_</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a933117526b4af9184bfadf659043a21b" kind="variable"><name>values_</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a3db15b9fe1838f637b9357437dae1bea" kind="variable"><name>total_</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1adc232aeadb12173b0f15fe92e7f7f7b6" kind="variable"><name>uniform_</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ae5e141e27d437bcf384ce3b1b48e94b7" kind="variable"><name>density_</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ae8d360e2feef940b010358bee6a7f8df" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a09bf6a6375bed21ec4d1a3421664e23b" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ac264a7c00b747d1cdc271f8255fd67ca" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a361a3ae31cfa806488de8cf001814ad1" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1afe7975869b3ac2a2a2ce61363980f7c1" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ad842a0aeee9feeb386adbf167c7385ad" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ad795ba1054f2dc9eab2229de0b730158" kind="function"><name>fromCounts</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1adeb5f9a99a18848f55df2b9087fe221e" kind="function"><name>linearEdges</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a0f9d4420b7a79480a2c3951933750d41" kind="function"><name>logEdges</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1adc5f1a39edc89a93498d081542ef064b" kind="function"><name>decadeEdges</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1aeacb15616b87e6b814d8f684579476e3" kind="function"><name>binCount</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a21431c5fde5914215fedce0eeb58fa48" kind="function"><name>edges</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ad3b69022ebca953214ad8127b1a60904" kind="function"><name>values</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a8ed27c0df9b425d119ce33cdfac54746" kind="function"><name>total</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ac468433607f9a45f3aff2520b11320a1" kind="function"><name>isUniform</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a9f2c69059493a31bc018435b080bf23f" kind="function"><name>binWidth</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ab07a03cf8d32c71cc963d2eba6de816e" kind="function"><name>density</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a24cd758a77adbcb5e025fba2eb2f952a" kind="function"><name>barData</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a70756f424261ec1d0498d9661ed7d313" kind="function"><name>bars</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1aa7b5a1b0127027b76e4323f7bd95b51a" kind="function"><name>spanning</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1ab01b427fcf8a74a6189836ef0bbb60bd" kind="function"><name>binned</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1a358fc1be11f36b1e0cab99b5e793a55f" kind="function"><name>edgeList</name></member>
+    <member refid="classQAccelPlot_1_1Histogram_1acd84c7ff591d3256a51c1cff1dfe4e8f" kind="function"><name>valueList</name></member>
+  </compound>
+  <compound refid="classQAccelPlot_1_1HistogramFactory" kind="class"><name>QAccelPlot::HistogramFactory</name>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1a727bbf01130568698054f48d3cf91527" kind="function"><name>HistogramFactory</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1aa997cccc7277501b97d4cd54254cc01b" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1a705d4e2708d32b4dfb8f14aa9b0ca1ed" kind="function"><name>fromSamples</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1ab2b21a7abc6ec18ba54146bf6228151f" kind="function"><name>fromCounts</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1a281f31fc3b2f3e7edc547460305a86dd" kind="function"><name>linearEdges</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1ae9db28b007187cd7587c287a14b62f33" kind="function"><name>logEdges</name></member>
+    <member refid="classQAccelPlot_1_1HistogramFactory_1acb444c03b1607b05e3cedb2adb54ae90" kind="function"><name>decadeEdges</name></member>
   </compound>
   <compound refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs" kind="struct"><name>QAccelPlot::RectangleSeries::HitTestInputs</name>
     <member refid="structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs_1ab9ea807585e8e5f08e16e24832866d7d" kind="variable"><name>position</name></member>
@@ -2959,6 +3013,10 @@
   </compound>
   <compound refid="ColorBar_8hpp" kind="file"><name>ColorBar.hpp</name>
   </compound>
+  <compound refid="Histogram_8hpp" kind="file"><name>Histogram.hpp</name>
+  </compound>
+  <compound refid="HistogramFactory_8hpp" kind="file"><name>HistogramFactory.hpp</name>
+  </compound>
   <compound refid="Colormap_8hpp" kind="file"><name>Colormap.hpp</name>
   </compound>
   <compound refid="GradientColorTypes_8hpp" kind="file"><name>GradientColorTypes.hpp</name>
@@ -3122,6 +3180,8 @@
   <compound refid="dir_e8bec8340f9666b044480da91801ccc6" kind="dir"><name>QAccelPlot/src/QAccelPlot/annotations</name>
   </compound>
   <compound refid="dir_4047c0a16b95170c37806a99233d1784" kind="dir"><name>QAccelPlot/src/QAccelPlot/axis</name>
+  </compound>
+  <compound refid="dir_d2fb866f403cfee1d904f16ed73cc0a7" kind="dir"><name>QAccelPlot/src/QAccelPlot/data</name>
   </compound>
   <compound refid="dir_2cb1ffa6338b0172fd78b92843e0e53d" kind="dir"><name>QAccelPlot/src/QAccelPlot/effects</name>
   </compound>

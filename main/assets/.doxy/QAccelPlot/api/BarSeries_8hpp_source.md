@@ -116,6 +116,10 @@ public:
 
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
+    void setRangedData(std::vector<double>&& data, int barCount);
+    void setRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
+    void postRangedData(std::vector<double>&& data, int barCount);
+
     Q_INVOKABLE void clearData() override;
 
     Q_INVOKABLE void setCategories(const QList<int>& categories);
@@ -148,8 +152,9 @@ protected:
 
 private:
     bool validateRawDataArguments(const void* data, int barCount) const;
-    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount) const;
+    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
+    void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
     void setDataFFromArray(const float* data, int barCount, bool reportRanges);
     void finishDataChange(std::vector<int>&& categories, int barCount, bool reportRanges);
@@ -158,8 +163,13 @@ private:
     bool isHorizontal() const;
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
-    double position(int index) const;
+    // Number of values per bar: (position, value), or (from, to, value) for ranged bars.
+    int valuesPerBar() const;
+    // Returns value \a offset of bar \a index, counted within the bar.
+    double component(int index, int offset) const;
     double value(int index) const;
+    // Returns the extent of bar \a index along the position axis, both NaN when the bar has none.
+    std::array<double, 2> positionSpan(int index) const;
     // Returns bar \a index as data-space edges (x1, y1, x2, y2), all NaN when the bar is not drawn.
     std::array<double, 4> barRect(int index) const;
     bool hasCategories() const;
@@ -172,6 +182,7 @@ private:
     void ensureSpatialGrid() const;
     void buildVertexCache();
     void updateDataRanges();
+    void reportDataRanges(qreal positionMin, qreal positionMax, qreal valueMin, qreal valueMax, bool hasValues);
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_,
     // so the GPU upload stays accurate for large positions without double-precision textures.
     void rebuildRenderData(bool logScalePosition, bool logScaleValue);
@@ -186,8 +197,10 @@ private:
     RectangleBorder* border_{new RectangleBorder{this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
-    // Data: 2 doubles per bar (position, value), full precision. Empty when setDataF() supplied the data.
+    // Data: valuesPerBar() doubles per bar, full precision. Empty when setDataF() supplied the data.
     std::vector<double> data_;
+    // True when each bar is (from, to, value) instead of (position, value).
+    bool ranged_{false};
     // One category per bar, or empty when no bar has one.
     std::vector<int> categories_;
     // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.

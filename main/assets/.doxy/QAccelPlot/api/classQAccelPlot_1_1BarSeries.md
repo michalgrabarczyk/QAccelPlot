@@ -161,7 +161,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**BarSeries**](#function-barseries) (QQuickItem \* parent=nullptr) <br>_Constructs a_ [_**BarSeries**_](classQAccelPlot_1_1BarSeries.md) _with the given__parent_ _._ |
-|  Q\_INVOKABLE QVariantMap | [**barAt**](#function-barat) (int index) const<br>_Returns bar_ _index_ _as an object with_`position` _and_`value` _properties._ |
+|  Q\_INVOKABLE QVariantMap | [**barAt**](#function-barat) (int index) const<br>_Returns bar_ _index_ _as an object with_`position` _and_`value` _, or_`from` _,_`to` _, and_`value` _for a ranged bar._ |
 |  int | [**barIndexAt**](#function-barindexat) (const QPointF & position) const<br>_Returns the index of the topmost bar under item position_ _position_ _, or -1._ |
 |  qreal | [**barOffset**](#function-baroffset-22) () const<br>_Returns the shift of every bar along the position axis in data units._  |
 |  qreal | [**barWidth**](#function-barwidth-22) () const<br>_Returns the bar width in position-axis data units._  |
@@ -180,6 +180,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**postData**](#function-postdata-24) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int barCount) <br>_Thread-safe: queues_ `setData` _(__data_ _,__categories_ _,__barCount_ _) to the item's thread._ |
 | virtual void | [**postData**](#function-postdata-34) (std::vector&lt; float &gt; && data, int barCount) override<br>_Thread-safe: queues_ `setDataF` _(__data_ _,__barCount_ _) to the item's thread._ |
 |  void | [**postData**](#function-postdata-44) (std::vector&lt; float &gt; && data, std::vector&lt; int &gt; && categories, int barCount) <br>_Thread-safe: queues_ `setDataF` _(__data_ _,__categories_ _,__barCount_ _) to the item's thread._ |
+|  void | [**postRangedData**](#function-postrangeddata) (std::vector&lt; double &gt; && data, int barCount) <br>_Thread-safe: queues_ `setRangedData` _(__data_ _,__barCount_ _) to the item's thread._ |
 |  void | [**setBarOffset**](#function-setbaroffset) (qreal offset) <br>_Sets the shift of every bar along the position axis to_ _offset_ _data units._ |
 |  void | [**setBarWidth**](#function-setbarwidth) (qreal width) <br>_Sets the bar width to_ _width_ _data units. Negative values are clamped to 0._ |
 |  void | [**setBaselineValue**](#function-setbaselinevalue) (qreal baselineValue) <br>_Sets the value the bars start from to_ _baselineValue_ _. NaN is ignored._ |
@@ -202,6 +203,8 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setHoverColor**](#function-sethovercolor) (const QColor & color) <br>_Sets the fill color of the hovered bar to_ _color_ _. An invalid color disables the highlight._ |
 |  void | [**setMinimumWidth**](#function-setminimumwidth) (qreal width) <br>_Sets the minimum drawn bar width to_ _width_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setOrientation**](#function-setorientation) (Qt::Orientation orientation) <br>_Sets the direction the bars grow in to_ _orientation_ _._ |
+|  void | [**setRangedData**](#function-setrangeddata-12) (std::vector&lt; double &gt; && data, int barCount) <br>_Moves ranged bars into the series:_ _data_ _holds__barCount_ _× 3 doubles (from, to, value). Clears categories._ |
+|  void | [**setRangedData**](#function-setrangeddata-22) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int barCount) <br>_Like_ `setRangedData` _(__data_ _,__barCount_ _) and also moves per-bar__categories_ _(empty, or exactly__barCount_ _) into the series._ |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -339,6 +342,9 @@ Each bar is a (position, value) pair. A vertical bar is centered on `position` a
 
 
 Bars with a NaN or infinite position, or a NaN value, are not drawn or hovered. An infinite value extends the bar to the plot edge. Values below `baselineValue` extend the bar the other way.
+
+
+A ranged bar is a (from, to, value) triple that spans from `from` to `to` along the position axis, e.g. a histogram bin. `barWidth` and `barOffset` do not apply to ranged bars. A ranged bar with a NaN edge is not drawn, and an infinite edge extends it to the plot edge. A series holds either ranged bars or (position, value) bars.
 
 
 Each bar can carry a `category`, an index into `categoryColors`. Bars without a category, or with one outside `categoryColors`, use `color`. For grouped bars, use one series per group with a narrower `barWidth` and a different `barOffset`.
@@ -707,7 +713,7 @@ explicit QAccelPlot::BarSeries::BarSeries (
 
 ### function barAt {#function-barat}
 
-_Returns bar_ _index_ _as an object with_`position` _and_`value` _properties._
+_Returns bar_ _index_ _as an object with_`position` _and_`value` _, or_`from` _,_`to` _, and_`value` _for a ranged bar._
 ```C++
 Q_INVOKABLE QVariantMap QAccelPlot::BarSeries::barAt (
     int index
@@ -1024,6 +1030,24 @@ void QAccelPlot::BarSeries::postData (
 
 
 
+### function postRangedData {#function-postrangeddata}
+
+_Thread-safe: queues_ `setRangedData` _(__data_ _,__barCount_ _) to the item's thread._
+```C++
+void QAccelPlot::BarSeries::postRangedData (
+    std::vector< double > && data,
+    int barCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setBarOffset {#function-setbaroffset}
 
 _Sets the shift of every bar along the position axis to_ _offset_ _data units._
@@ -1137,7 +1161,10 @@ Q_INVOKABLE void QAccelPlot::BarSeries::setData (
 
 
 
-A number is the value of a bar at position = its list index. An object has `position`, `value`, and an optional integer `category` that selects the fill color from `categoryColors`. A missing `position` is the list index; a missing `value` is NaN. 
+A number is the value of a bar at position = its list index. An object has `position`, `value`, and an optional integer `category` that selects the fill color from `categoryColors`. A missing `position` is the list index; a missing `value` is NaN.
+
+
+When any object has `from` or `to`, all bars are ranged: each object has `from`, `to`, `value`, and an optional `category`, and a missing `from` or `to` is NaN. 
 
 
         
@@ -1431,6 +1458,43 @@ _Sets the direction the bars grow in to_ _orientation_ _._
 ```C++
 void QAccelPlot::BarSeries::setOrientation (
     Qt::Orientation orientation
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setRangedData {#function-setrangeddata-12}
+
+_Moves ranged bars into the series:_ _data_ _holds__barCount_ _× 3 doubles (from, to, value). Clears categories._
+```C++
+void QAccelPlot::BarSeries::setRangedData (
+    std::vector< double > && data,
+    int barCount
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setRangedData {#function-setrangeddata-22}
+
+_Like_ `setRangedData` _(__data_ _,__barCount_ _) and also moves per-bar__categories_ _(empty, or exactly__barCount_ _) into the series._
+```C++
+void QAccelPlot::BarSeries::setRangedData (
+    std::vector< double > && data,
+    std::vector< int > && categories,
+    int barCount
 ) 
 ```
 

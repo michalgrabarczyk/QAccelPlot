@@ -463,6 +463,8 @@
       
         
       
+        
+      
     
     
     
@@ -784,6 +786,34 @@
     
   
     Bar charts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/histograms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Histograms
   
 
     
@@ -1865,6 +1895,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#function-postrangeddata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function postRangedData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#function-setbaroffset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2100,6 +2141,28 @@
     <span class="md-ellipsis">
       
         function setOrientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setrangeddata-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setRangedData
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-setrangeddata-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        function setRangedData
       
     </span>
   </a>
@@ -2465,7 +2528,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE QVariantMap</td>
-<td style="text-align: left;"><a href="#function-barat"><strong>barAt</strong></a> (int index) const<br><em>Returns bar</em> <em>index</em> <em>as an object with</em><code>position</code> <em>and</em><code>value</code> <em>properties.</em></td>
+<td style="text-align: left;"><a href="#function-barat"><strong>barAt</strong></a> (int index) const<br><em>Returns bar</em> <em>index</em> <em>as an object with</em><code>position</code> <em>and</em><code>value</code> <em>, or</em><code>from</code> <em>,</em><code>to</code> <em>, and</em><code>value</code> <em>for a ranged bar.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">int</td>
@@ -2538,6 +2601,10 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-postdata-44"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int barCount) <br><em>Thread-safe: queues</em> <code>setDataF</code> <em>(__data</em> <em>,__categories</em> <em>,__barCount</em> <em>) to the item's thread.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-postrangeddata"><strong>postRangedData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int barCount) <br><em>Thread-safe: queues</em> <code>setRangedData</code> <em>(__data</em> <em>,__barCount</em> <em>) to the item's thread.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2626,6 +2693,14 @@
 <tr>
 <td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-setorientation"><strong>setOrientation</strong></a> (Qt::Orientation orientation) <br><em>Sets the direction the bars grow in to</em> <em>orientation</em> <em>.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setrangeddata-12"><strong>setRangedData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int barCount) <br><em>Moves ranged bars into the series:</em> <em>data</em> <em>holds__barCount</em> <em>× 3 doubles (from, to, value). Clears categories.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-setrangeddata-22"><strong>setRangedData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, std::vector&lt; int &gt; &amp;&amp; categories, int barCount) <br><em>Like</em> <code>setRangedData</code> <em>(__data</em> <em>,__barCount</em> <em>) and also moves per-bar__categories</em> <em>(empty, or exactly__barCount</em> <em>) into the series.</em></td>
 </tr>
 </tbody>
 </table>
@@ -2887,6 +2962,7 @@
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>Each bar is a (position, value) pair. A vertical bar is centered on <code>position</code> along the X axis and spans from <code>baselineValue</code> to <code>value</code> along the Y axis; <code>orientation</code> <code>Qt.Horizontal</code> swaps the axes. Bars are uploaded to the GPU as a float data texture of two floats per bar, and <code>barWidth</code>, <code>barOffset</code>, and <code>baselineValue</code> are applied in the shader, so changing them does not re-upload the data. The <code>setData()</code> overloads keep doubles and upload them relative to an origin near the data, so large positions such as epoch timestamps stay precise.</p>
 <p>Bars with a NaN or infinite position, or a NaN value, are not drawn or hovered. An infinite value extends the bar to the plot edge. Values below <code>baselineValue</code> extend the bar the other way.</p>
+<p>A ranged bar is a (from, to, value) triple that spans from <code>from</code> to <code>to</code> along the position axis, e.g. a histogram bin. <code>barWidth</code> and <code>barOffset</code> do not apply to ranged bars. A ranged bar with a NaN edge is not drawn, and an infinite edge extends it to the plot edge. A series holds either ranged bars or (position, value) bars.</p>
 <p>Each bar can carry a <code>category</code>, an index into <code>categoryColors</code>. Bars without a category, or with one outside <code>categoryColors</code>, use <code>color</code>. For grouped bars, use one series per group with a narrower <code>barWidth</code> and a different <code>barOffset</code>.</p>
 <p>**
 **</p>
@@ -3029,7 +3105,7 @@
 <hr>
 
 <h3 id="function-barat">function barAt<a class="headerlink" href="#function-barat" title="Permanent link">&para;</a></h3>
-<p><em>Returns bar</em> <em>index</em> <em>as an object with</em><code>position</code> <em>and</em><code>value</code> <em>properties.</em>
+<p><em>Returns bar</em> <em>index</em> <em>as an object with</em><code>position</code> <em>and</em><code>value</code> <em>, or</em><code>from</code> <em>,</em><code>to</code> <em>, and</em><code>value</code> <em>for a ranged bar.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="n">QVariantMap</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">barAt</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
@@ -3167,139 +3243,149 @@
 </code></pre></div></p>
 <hr>
 
+<h3 id="function-postrangeddata">function postRangedData<a class="headerlink" href="#function-postrangeddata" title="Permanent link">&para;</a></h3>
+<p><em>Thread-safe: queues</em> <code>setRangedData</code> <em>(__data</em> <em>,__barCount</em> <em>) to the item's thread.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">postRangedData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
 <h3 id="function-setbaroffset">function setBarOffset<a class="headerlink" href="#function-setbaroffset" title="Permanent link">&para;</a></h3>
 <p><em>Sets the shift of every bar along the position axis to</em> <em>offset</em> <em>data units.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBarOffset</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">offset</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBarOffset</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">offset</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbarwidth">function setBarWidth<a class="headerlink" href="#function-setbarwidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the bar width to</em> <em>width</em> <em>data units. Negative values are clamped to 0.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBarWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBarWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setbaselinevalue">function setBaselineValue<a class="headerlink" href="#function-setbaselinevalue" title="Permanent link">&para;</a></h3>
 <p><em>Sets the value the bars start from to</em> <em>baselineValue</em> <em>. NaN is ignored.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBaselineValue</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">baselineValue</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setBaselineValue</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">baselineValue</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setcategories">function setCategories<a class="headerlink" href="#function-setcategories" title="Permanent link">&para;</a></h3>
 <p><em>Sets one category per bar. An empty list clears categories; any other size must equal</em> <code>count</code> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setCategories</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">categories</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setCategories</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">categories</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setcategorycolors">function setCategoryColors<a class="headerlink" href="#function-setcategorycolors" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fill colors indexed by category to</em> <em>colors</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setCategoryColors</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">colors</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setCategoryColors</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">colors</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setcolor">function setColor<a class="headerlink" href="#function-setcolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fill color to</em> <em>color</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdata-14">function setData<a class="headerlink" href="#function-setdata-14" title="Permanent link">&para;</a></h3>
 <p><em>Loads bars from</em> <em>bars</em> <em>, a QML list of numbers or objects.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bars</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QVariantList</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bars</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
-<p>A number is the value of a bar at position = its list index. An object has <code>position</code>, <code>value</code>, and an optional integer <code>category</code> that selects the fill color from <code>categoryColors</code>. A missing <code>position</code> is the list index; a missing <code>value</code> is NaN. </p>
+<p>A number is the value of a bar at position = its list index. An object has <code>position</code>, <code>value</code>, and an optional integer <code>category</code> that selects the fill color from <code>categoryColors</code>. A missing <code>position</code> is the list index; a missing <code>value</code> is NaN.</p>
+<p>When any object has <code>from</code> or <code>to</code>, all bars are ranged: each object has <code>from</code>, <code>to</code>, <code>value</code>, and an optional <code>category</code>, and a missing <code>from</code> or <code>to</code> is NaN. </p>
 <hr>
 
 <h3 id="function-setdata-24">function setData<a class="headerlink" href="#function-setdata-24" title="Permanent link">&para;</a></h3>
 <p><em>Loads bars from a C++ raw double array of</em> <em>barCount</em> <em>interleaved (position, value) pairs.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-12"><em>QAccelPlot::PlotSeries::setData</em></a></p>
 <hr>
 
 <h3 id="function-setdata-34">function setData<a class="headerlink" href="#function-setdata-34" title="Permanent link">&para;</a></h3>
 <p><em>Moves</em> <em>data</em> <em>(__barCount</em> <em>× 2 doubles: position, value) into the series and clears categories. No copy is made.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-22"><em>QAccelPlot::PlotSeries::setData</em></a></p>
 <hr>
 
 <h3 id="function-setdata-44">function setData<a class="headerlink" href="#function-setdata-44" title="Permanent link">&para;</a></h3>
 <p><em>Moves</em> <em>data</em> <em>and per-bar__categories</em> <em>(empty, or exactly__barCount</em> <em>) into the series.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
-<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdataf-13">function setDataF<a class="headerlink" href="#function-setdataf-13" title="Permanent link">&para;</a></h3>
 <p><em>High-performance C++ overload: copies</em> <em>barCount</em> <em>× 2 floats (position, value) from__data</em> <em>and clears categories.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-12"><em>QAccelPlot::PlotSeries::setDataF</em></a></p>
 <hr>
 
 <h3 id="function-setdataf-23">function setDataF<a class="headerlink" href="#function-setdataf-23" title="Permanent link">&para;</a></h3>
 <p><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__barCount</em> <em>× 2 floats) into the series and clears categories.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-22"><em>QAccelPlot::PlotSeries::setDataF</em></a></p>
 <hr>
 
 <h3 id="function-setdataf-33">function setDataF<a class="headerlink" href="#function-setdataf-33" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__barCount</em> <em>) and also moves per-bar__categories</em> <em>(empty, or exactly__barCount</em> <em>) into the series.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
-<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdatafnorange-13">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-13" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataFNoRange(vector)</code> <em>but copies from a raw float array into the series' reusable buffer.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-12"><em>QAccelPlot::PlotSeries::setDataFNoRange</em></a></p>
 <hr>
 
 <h3 id="function-setdatafnorange-23">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-23" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataF()</code> <em>but does not report X/Y data ranges to the axes.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Use it for streaming when the axes' <code>dataMin</code> / <code>dataMax</code> are managed by the application. </p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatafnorange-22"><em>QAccelPlot::PlotSeries::setDataFNoRange</em></a></p>
@@ -3307,30 +3393,30 @@
 
 <h3 id="function-setdatafnorange-33">function setDataFNoRange<a class="headerlink" href="#function-setdatafnorange-33" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataFNoRange</code> <em>(__data</em> <em>,__barCount</em> <em>) and also moves per-bar__categories</em> <em>into the series.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
-<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataFNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setdatanorange-13">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-13" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataNoRange(vector)</code> <em>but copies from a raw interleaved double array.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-12"><em>QAccelPlot::PlotSeries::setDataNoRange</em></a></p>
 <hr>
 
 <h3 id="function-setdatanorange-23">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-23" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setData()</code> <em>but does not report X/Y data ranges to the axes.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Use it for streaming when the axes' <code>dataMin</code> / <code>dataMax</code> are managed by the application. </p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-setdatanorange-22"><em>QAccelPlot::PlotSeries::setDataNoRange</em></a></p>
@@ -3338,89 +3424,108 @@
 
 <h3 id="function-setdatanorange-33">function setDataNoRange<a class="headerlink" href="#function-setdatanorange-33" title="Permanent link">&para;</a></h3>
 <p><em>Like</em> <code>setDataNoRange</code> <em>(__data</em> <em>,__barCount</em> <em>) and also moves per-bar__categories</em> <em>into the series.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
-<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
-<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
-<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setDataNoRange</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-sethovercolor">function setHoverColor<a class="headerlink" href="#function-sethovercolor" title="Permanent link">&para;</a></h3>
 <p><em>Sets the fill color of the hovered bar to</em> <em>color</em> <em>. An invalid color disables the highlight.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
-<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setHoverColor</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QColor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">color</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setminimumwidth">function setMinimumWidth<a class="headerlink" href="#function-setminimumwidth" title="Permanent link">&para;</a></h3>
 <p><em>Sets the minimum drawn bar width to</em> <em>width</em> <em>pixels. Negative values are clamped to 0.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setMinimumWidth</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setMinimumWidth</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">width</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 
 <h3 id="function-setorientation">function setOrientation<a class="headerlink" href="#function-setorientation" title="Permanent link">&para;</a></h3>
 <p><em>Sets the direction the bars grow in to</em> <em>orientation</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setOrientation</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">orientation</span>
-<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setOrientation</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">orientation</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setrangeddata-12">function setRangedData<a class="headerlink" href="#function-setrangeddata-12" title="Permanent link">&para;</a></h3>
+<p><em>Moves ranged bars into the series:</em> <em>data</em> <em>holds__barCount</em> <em>× 3 doubles (from, to, value). Clears categories.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setRangedData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="p">)</span><span class="w"> </span>
+</code></pre></div></p>
+<hr>
+
+<h3 id="function-setrangeddata-22">function setRangedData<a class="headerlink" href="#function-setrangeddata-22" title="Permanent link">&para;</a></h3>
+<p><em>Like</em> <code>setRangedData</code> <em>(__data</em> <em>,__barCount</em> <em>) and also moves per-bar__categories</em> <em>(empty, or exactly__barCount</em> <em>) into the series.</em>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">setRangedData</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">categories</span><span class="p">,</span>
+<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">barCount</span>
+<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="p">)</span><span class="w"> </span>
 </code></pre></div></p>
 <hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-hoverenterevent">function hoverEnterEvent<a class="headerlink" href="#function-hoverenterevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverEnterEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-hoverleaveevent">function hoverLeaveEvent<a class="headerlink" href="#function-hoverleaveevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverLeaveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-hovermoveevent">function hoverMoveEvent<a class="headerlink" href="#function-hovermoveevent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverMoveEvent</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
-<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">hoverMoveEvent</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">    </span><span class="n">QHoverEvent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 
 <h3 id="function-inspectionrecord">function inspectionRecord<a class="headerlink" href="#function-inspectionrecord" title="Permanent link">&para;</a></h3>
 <p><em>Returns the bar at</em> <em>index</em> <em>with its position, value, and category.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
-<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">inspectionRecord</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecord"><em>QAccelPlot::PlotSeries::inspectionRecord</em></a></p>
 <hr>
 
 <h3 id="function-inspectionrecordat">function inspectionRecordAt<a class="headerlink" href="#function-inspectionrecordat" title="Permanent link">&para;</a></h3>
 <p><em>Returns the bar drawn at the series-local</em> <em>position</em> <em>.</em>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
-<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">InspectionRecord</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">inspectionRecordAt</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QPointF</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-inspectionrecordat"><em>QAccelPlot::PlotSeries::inspectionRecordAt</em></a></p>
 <hr>
 
 <h3 id="function-onaxisscalechanged">function onAxisScaleChanged<a class="headerlink" href="#function-onaxisscalechanged" title="Permanent link">&para;</a></h3>
 <p><em>Refreshes data ranges and uploaded coordinates when an axis changes scale.</em> 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">onAxisScaleChanged</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div></p>
 <p>Implements <a href="../classQAccelPlot_1_1PlotSeries/#function-onaxisscalechanged"><em>QAccelPlot::PlotSeries::onAxisScaleChanged</em></a></p>
 <hr>
 
 <h3 id="function-updatepaintnode">function updatePaintNode<a class="headerlink" href="#function-updatepaintnode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">updatePaintNode</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">oldNode</span><span class="p">,</span>
-<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="w">    </span><span class="n">UpdatePaintNodeData</span><span class="w"> </span><span class="o">*</span>
-<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BarSeries</span><span class="o">::</span><span class="n">updatePaintNode</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">    </span><span class="n">QSGNode</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">oldNode</span><span class="p">,</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">    </span><span class="n">UpdatePaintNodeData</span><span class="w"> </span><span class="o">*</span>
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span>
 </code></pre></div>
 <hr>
 

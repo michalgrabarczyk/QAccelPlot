@@ -32,6 +32,7 @@ public:
     float barOffset{0.0f};  
     float baseline{0.0f};   
     float horizontal{0.0f}; 
+    float ranged{0.0f};     
 
 protected:
     int compareExtra(const QSGMaterial* other) const override;

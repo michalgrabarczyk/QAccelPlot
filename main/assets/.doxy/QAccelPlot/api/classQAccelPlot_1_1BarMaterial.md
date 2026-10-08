@@ -76,6 +76,7 @@ flowchart TB
 |  float | [**barWidth**](#variable-barwidth)   = `{0.8f}`<br>_Bar width in position-axis data units._  |
 |  float | [**baseline**](#variable-baseline)   = `{0.0f}`<br>_Value the bars start from, relative to the value-axis render origin._  |
 |  float | [**horizontal**](#variable-horizontal)   = `{0.0f}`<br>_1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._  |
+|  float | [**ranged**](#variable-ranged)   = `{0.0f}`<br>_1.0 when each bar holds its own extent along the position axis._  |
 
 
 ## Public Attributes inherited from QAccelPlot::RectMaterial
@@ -292,7 +293,7 @@ See [QAccelPlot::DataTextureMaterial](classQAccelPlot_1_1DataTextureMaterial.md)
 ## Detailed Description
 
 
-The data texture holds (position, value) pairs; the shader turns each into a rectangle. 
+The data texture holds (position, value) pairs, or (from, to, value) triples when `ranged` is set; the shader turns each into a rectangle. 
 
 
     
@@ -352,6 +353,21 @@ float QAccelPlot::BarMaterial::baseline;
 _1.0 when positions lie on the Y axis (float for std140 UBO compatibility)._ 
 ```C++
 float QAccelPlot::BarMaterial::horizontal;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable ranged {#variable-ranged}
+
+_1.0 when each bar holds its own extent along the position axis._ 
+```C++
+float QAccelPlot::BarMaterial::ranged;
 ```
 
 

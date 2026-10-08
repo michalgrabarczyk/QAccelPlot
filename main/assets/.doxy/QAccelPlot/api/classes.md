@@ -117,6 +117,10 @@
 
 ## h
 
+* [**Histogram**](classQAccelPlot_1_1Histogram.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)
 * [**Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md)
 ([**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md))

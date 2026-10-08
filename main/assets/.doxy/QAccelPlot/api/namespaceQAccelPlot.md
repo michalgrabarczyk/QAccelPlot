@@ -92,6 +92,8 @@
 | class | [**GradientTexture**](classQAccelPlot_1_1GradientTexture.md) <br>_Cached one-dimensional texture used by gradient materials._  |
 | class | [**Grid**](classQAccelPlot_1_1Grid.md) <br>_Configuration object that controls the appearance of the plot grid._  |
 | class | [**GridNode**](classQAccelPlot_1_1GridNode.md) <br>_Internal QSGNode responsible for rendering the plot grid into the scene graph._  |
+| class | [**Histogram**](classQAccelPlot_1_1Histogram.md) <br>_Samples counted into bins, convertible to_ `BarSeries` _data._ |
+| class | [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) <br>_QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._ |
 | struct | [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) <br>_Inclusive data-space region; infinite limits leave a dimension unbounded._  |
 | struct | [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) <br>_The valid samples on either side of a position on one axis._  |
 | class | [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md) <br>_Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._ |

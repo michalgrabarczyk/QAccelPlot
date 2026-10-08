@@ -9,6 +9,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**QAccelPlot::DataTexture**](classQAccelPlot_1_1DataTexture.md) _Series data uploaded to the GPU as an RGBA8888 texture, one float per texel._ 
 * **class** [**QAccelPlot::DataTransition::Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._ 
 * **class** [**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md) _Cached one-dimensional texture used by gradient materials._ 
+* **class** [**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._
 * **class** [**QAccelPlot::InspectionCache::Host**](classQAccelPlot_1_1InspectionCache_1_1Host.md) _Series-side callbacks; all are invoked on the series' thread._ 
 * **class** [**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md) _Immutable k-d tree over the valid samples of a series, with their order along each axis._ 
 * **class** [**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._ 
@@ -105,6 +106,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
         * **class** [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._
         * **class** [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that replaces the solid line color with a color gradient._
     * **class** [**QAccelPlot::Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._ 
+    * **class** [**QAccelPlot::HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._
     * **class** [**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._
     * **class** [**QAccelPlot::LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
         * **class** [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._

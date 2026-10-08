@@ -53,6 +53,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) _Namespace exposing the_ `GradientValueSource` _enum to QML._    
     * **class** [**Grid**](classQAccelPlot_1_1Grid.md) _Configuration object that controls the appearance of the plot grid._     
     * **class** [**GridNode**](classQAccelPlot_1_1GridNode.md) _Internal QSGNode responsible for rendering the plot grid into the scene graph._     
+    * **class** [**Histogram**](classQAccelPlot_1_1Histogram.md) _Samples counted into bins, convertible to_ `BarSeries` _data._    
+    * **class** [**HistogramFactory**](classQAccelPlot_1_1HistogramFactory.md) _QML singleton_ `Histogram` _that creates_[_**Histogram**_](classQAccelPlot_1_1Histogram.md) _values from JavaScript arrays._    
     * **struct** [**InspectionBounds**](structQAccelPlot_1_1InspectionBounds.md) _Inclusive data-space region; infinite limits leave a dimension unbounded._     
     * **struct** [**InspectionBracket**](structQAccelPlot_1_1InspectionBracket.md) _The valid samples on either side of a position on one axis._     
     * **class** [**InspectionCache**](classQAccelPlot_1_1InspectionCache.md) _Builds an_ `InspectionIndex` _on a worker thread from a snapshot of a series' records._    
