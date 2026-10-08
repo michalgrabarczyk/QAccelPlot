@@ -39,6 +39,7 @@ layout(std140, binding = 0) uniform buf {
     float barOffset;      // 176-179: position-axis data units
     float baseline;       // 180-183: value-axis data units, may be -Inf
     float horizontal;     // 184-187: 1 when positions lie on the Y axis
+    float ranged;         // 188-191: 1 when a bar is (from, to, value) instead of (position, value)
 } ubuf;
 
 layout(binding = 1) uniform sampler2D dataSampler;
@@ -47,24 +48,39 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "rect_geometry.glsl"
 
+// Reads the extent of bar `index` along the position axis and its value, as float bit patterns.
+// Returns false when the bar is not drawn.
+bool readBar(int index, out uint startBits, out uint endBits, out uint valueBits) {
+    if (ubuf.ranged > 0.5) {
+        int base = index * 3;
+        startBits = fetchFloatBits(base);
+        endBits = fetchFloatBits(base + 1);
+        valueBits = fetchFloatBits(base + 2);
+        return !isNaNBits(startBits) && !isNaNBits(endBits) && !isNaNBits(valueBits);
+    }
+    int base = index * 2;
+    uint positionBits = fetchFloatBits(base);
+    valueBits = fetchFloatBits(base + 1);
+    float center = uintBitsToFloat(positionBits) + ubuf.barOffset;
+    startBits = floatBitsToUint(center - 0.5 * ubuf.barWidth);
+    endBits = floatBitsToUint(center + 0.5 * ubuf.barWidth);
+    return isFiniteBits(positionBits) && !isNaNBits(valueBits);
+}
+
 void main() {
     int index = int(barId);
     v_color = rectFillColor(index, vertexColor);
     v_borderColor = vec4(ubuf.borderColor.rgb, ubuf.borderColor.a * ubuf.opacity);
     v_borderWidth = ubuf.borderWidth;
 
-    int base = index * 2;
-    uint positionBits = fetchFloatBits(base);
-    uint valueBits = fetchFloatBits(base + 1);
-    if (!isFiniteBits(positionBits) || isNaNBits(valueBits)) {
+    uint startBits;
+    uint endBits;
+    uint valueBits;
+    if (!readBar(index, startBits, endBits, valueBits)) {
         gl_Position = kCulledClipPosition;
         v_edgeDistance = vec4(0.0);
         return;
     }
-
-    float center = uintBitsToFloat(positionBits) + ubuf.barOffset;
-    uint startBits = floatBitsToUint(center - 0.5 * ubuf.barWidth);
-    uint endBits = floatBitsToUint(center + 0.5 * ubuf.barWidth);
     uint baselineBits = floatBitsToUint(ubuf.baseline);
 
     vec2 xs;

@@ -26,9 +26,10 @@ struct BarUbo {
     float barOffset;        // 176–179
     float baseline;         // 180–183
     float horizontal;       // 184–187
+    float ranged;           // 188–191
 };
 
-static_assert(sizeof(BarUbo) == 188);
+static_assert(sizeof(BarUbo) == 192);
 
 class BarShader : public QSGMaterialShader {
 public:
@@ -53,6 +54,7 @@ public:
         ubo.barOffset = mat->barOffset;
         ubo.baseline = mat->baseline;
         ubo.horizontal = mat->horizontal;
+        ubo.ranged = mat->ranged;
         memcpy(buf->data(), &ubo, sizeof(ubo));
         return true;
     }
@@ -88,8 +90,8 @@ int BarMaterial::compareExtra(const QSGMaterial* other) const
         return rectResult;
     }
     const auto* m = static_cast<const BarMaterial*>(other);
-    const auto mine = std::array<float, 4>{barWidth, barOffset, baseline, horizontal};
-    const auto theirs = std::array<float, 4>{m->barWidth, m->barOffset, m->baseline, m->horizontal};
+    const auto mine = std::array<float, 5>{barWidth, barOffset, baseline, horizontal, ranged};
+    const auto theirs = std::array<float, 5>{m->barWidth, m->barOffset, m->baseline, m->horizontal, m->ranged};
     for (size_t i = 0; i < mine.size(); ++i) {
         if (mine[i] != theirs[i]) {
             return mine[i] < theirs[i] ? -1 : 1;

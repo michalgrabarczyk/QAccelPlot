@@ -13,7 +13,8 @@ namespace QAccelPlot {
 
 /// \brief QSGMaterial for bar series rendering, extending RectMaterial with the bar geometry uniforms.
 ///
-/// The data texture holds (position, value) pairs; the shader turns each into a rectangle.
+/// The data texture holds (position, value) pairs, or (from, to, value) triples when \c ranged is set;
+/// the shader turns each into a rectangle.
 class BarMaterial : public RectMaterial {
 public:
     /// \brief Constructs a BarMaterial with default uniform values.
@@ -28,6 +29,7 @@ public:
     float barOffset{0.0f};  ///< \brief Shift of every bar along the position axis in data units.
     float baseline{0.0f};   ///< \brief Value the bars start from, relative to the value-axis render origin.
     float horizontal{0.0f}; ///< \brief 1.0 when positions lie on the Y axis (float for std140 UBO compatibility).
+    float ranged{0.0f};     ///< \brief 1.0 when each bar holds its own extent along the position axis.
 
 protected:
     /// \brief Compares the bar-specific uniforms after the rectangle uniforms compare equal.

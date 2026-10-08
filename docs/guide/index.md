@@ -28,6 +28,8 @@ frame.
 - **Layout** — secondary and extra axes, data-anchored QML overlays, and
   `RectangleSeries` for event spans and state timelines
 - **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
+- **Histograms** — `Histogram` counts samples into equal or uneven bins, as
+  counts or density
 
 ### Quick start
 

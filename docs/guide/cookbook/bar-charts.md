@@ -77,6 +77,19 @@ Repeater {
 }
 ```
 
+## Give bars their own extent
+
+A ranged bar spans from `from` to `to` along the position axis instead of
+being centered on a position:
+
+```qml
+setData([{ from: 0, to: 1, value: 4 }, { from: 1, to: 5, value: 7 }])
+```
+
+`barWidth` and `barOffset` do not apply to ranged bars. A series holds either
+ranged bars or position bars: when any object has `from` or `to`, all of them
+are ranged. [Histograms](histograms.md) are drawn this way.
+
 ## Color bars by category
 
 Give bars a `category` and list the colors in `categoryColors`. Bars without a
@@ -99,7 +112,8 @@ are set with `border.width` and `border.color`.
 ## Hover
 
 `hoveredIndex` is the bar under the cursor, or -1. `barAt(index)` returns its
-`position`, `value`, and `category`. Set `hoverColor` to highlight it.
+`position`, `value`, and `category`; a ranged bar has `from` and `to` instead
+of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 
 ## Feed data from C++
@@ -114,6 +128,9 @@ bars->setData(std::move(data), 3);
 
 `setData()` keeps doubles and uploads them relative to an origin near the
 data, so large positions such as epoch timestamps stay precise.
+
+Ranged bars are interleaved `(from, to, value)` triples passed to
+`setRangedData()`, or to `postRangedData()` from a worker thread.
 
 For the highest throughput, use the float paths (`setDataF()`,
 `setDataFNoRange()`) and `postData()` from a worker thread; see the
