@@ -171,11 +171,24 @@ class CaptureValidationTests(unittest.TestCase):
             "name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.os_name }} / ${{ matrix.platform.backend_name }}",
             workflow,
         )
-        self.assertEqual(workflow.count("backend_name: OpenGL ES 3\n"), 2)
+        # Each ES entry is repeated for Clang.
+        self.assertEqual(workflow.count("backend_name: OpenGL ES 3\n"), 4)
         self.assertIn(
             "name: visual-${{ matrix.qt_version }}-${{ matrix.platform.label || matrix.platform.backend }}-${{ matrix.platform.os }}",
             workflow,
         )
+
+    def test_workflow_repeats_linux_jobs_with_clang_without_capturing(self):
+        workflow = WORKFLOW_PATH.read_text(encoding="utf-8")
+        # Two matrix platforms and two OpenGL ES entries, all on Linux.
+        clang_platforms = re.findall(r"os: (\S+)\n\s+backend: \w+\n\s+compiler: clang\n", workflow)
+        self.assertEqual(sorted(clang_platforms), ["ubuntu-24.04"] * 3 + ["ubuntu-24.04-arm"])
+        self.assertEqual(workflow.count("compiler: clang\n"), 4)
+        self.assertIn('echo "CXX=clang++-18" >> "$GITHUB_ENV"', workflow)
+        self.assertIn("${{ matrix.platform.compiler == 'clang' && ' / Clang' || '' }}", workflow)
+        # Clang jobs upload nothing, so their artifacts cannot overwrite the GCC captures.
+        self.assertIn("if: runner.os == 'Linux' && matrix.platform.compiler != 'clang'", workflow)
+        self.assertIn("if: always() && matrix.platform.compiler != 'clang'", workflow)
 
     def test_screenshot_tests_disable_hover(self):
         test_helpers = TEST_HELPERS_PATH.read_text(encoding="utf-8")
