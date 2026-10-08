@@ -71,7 +71,8 @@ rectangle index.
 
 `BarSeries` renders bar charts from (position, value) pairs. `barWidth`,
 `barOffset`, and `baselineValue` shape the bars in the shader, and
-`orientation` selects vertical or horizontal bars.
+`orientation` selects vertical or horizontal bars. Ranged bars carry their
+own extent as (from, to, value), e.g. the bins of a histogram.
 
 ## Invalid samples and gaps
 

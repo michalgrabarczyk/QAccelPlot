@@ -35,7 +35,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
   rectangles in one item: spans, bands, and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and
-  grouped bar charts.
+  grouped bar charts, and ranged bars such as histogram bins.
+- [`Histogram`](api/classQAccelPlot_1_1Histogram.md) — samples counted into
+  bins, as data for a `BarSeries`.
 - [`DataAnchor`](api/classQAccelPlot_1_1DataAnchor.md) — QML overlays at data
   coordinates.
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse

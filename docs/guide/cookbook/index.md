@@ -23,6 +23,7 @@ Each recipe links to a complete runnable example.
 | [Data inspection](data-inspection.md) | Crosshair, tooltip, nearest-sample queries, region statistics, and selection |
 | [Point clouds](point-clouds.md) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Bar charts](bar-charts.md) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
+| [Histograms](histograms.md) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](bands.md) | Confidence intervals and envelopes between a low and a high value, with edge lines |
 | [Background data production](background-data.md) | Safe high-throughput worker-to-UI handoff |
 
