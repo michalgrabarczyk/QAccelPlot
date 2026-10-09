@@ -10,6 +10,7 @@
 #include "QAccelPlot/PlotMouseEvent.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/axis/internal/RangeGesture.hpp"
 #include "QAccelPlot/grid/Grid.hpp"
 #include "QAccelPlot/grid/GridNode.hpp"
 #include "QAccelPlot/internal/RectangleZoomOverlay.hpp"
@@ -30,30 +31,8 @@ namespace QAccelPlot {
 
 namespace {
 
-// Zoom scale factor applied when no axis is configured (a sensible 10% zoom per step).
-constexpr auto kDefaultZoomScaleFactor = qreal{0.9};
-// Clamped lower bound for the effective zoom factor: prevents a zero or negative viewport range.
-constexpr auto kMinEffectiveZoomFactor = qreal{0.01};
-// Clamped upper bound for the effective zoom factor: prevents the factor from reaching 1.0 (no-op zoom).
-constexpr auto kMaxEffectiveZoomFactor = qreal{0.99};
 // Above the series (0), the zoom rectangle (0.5), and the legend of Plot (1).
 constexpr auto kOverlayZ = qreal{2};
-
-qreal effectiveZoomScaleFactor(const Axis* axis)
-{
-    if (!axis) {
-        return kDefaultZoomScaleFactor;
-    }
-
-    const auto factor = axis->zoomScaleFactor();
-    if (factor <= 0.0) {
-        return kMinEffectiveZoomFactor;
-    }
-    if (factor >= 1.0) {
-        return kMaxEffectiveZoomFactor;
-    }
-    return static_cast<qreal>(factor);
-}
 
 qreal horizontalRatio(const QPointF& pos, const QRectF& rect)
 {
@@ -826,9 +805,7 @@ void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const bool zoomi
     if (!axis) {
         return;
     }
-    const auto zoomInFactor = effectiveZoomScaleFactor(axis);
-    const auto factor = zoomingIn ? zoomInFactor : (1.0 / zoomInFactor);
-    zoomAxis(axis, factor, ratio);
+    zoomAxis(axis, Internal::wheelZoomFactor(axis->zoomScaleFactor(), zoomingIn), ratio);
 }
 
 void QAccelPlot::connectAxisSignals(Axis* axis)
@@ -924,21 +901,9 @@ void QAccelPlot::zoomAxis(Axis* axis, const qreal factor, const qreal centerRati
     if (!axis) {
         return;
     }
-    if (axis->logScale() && axis->viewportMin() > 0.0 && axis->viewportMax() > 0.0) {
-        const auto logMin = std::log10(axis->viewportMin());
-        const auto logMax = std::log10(axis->viewportMax());
-        const auto logRange = logMax - logMin;
-        const auto logCenter = logMin + logRange * centerRatio;
-        const auto newLogRange = logRange * factor;
-        axis->setViewportMin(std::pow(10.0, logCenter - newLogRange * centerRatio));
-        axis->setViewportMax(std::pow(10.0, logCenter + newLogRange * (1.0 - centerRatio)));
-    } else {
-        const auto range = axis->viewportMax() - axis->viewportMin();
-        const auto center = axis->viewportMin() + range * centerRatio;
-        const auto newRange = range * factor;
-        axis->setViewportMin(center - newRange * centerRatio);
-        axis->setViewportMax(center + newRange * (1.0 - centerRatio));
-    }
+    const auto range = Internal::zoomedRange({axis->viewportMin(), axis->viewportMax()}, factor, centerRatio, axis->logScale());
+    axis->setViewportMin(range.min);
+    axis->setViewportMax(range.max);
 }
 
 void QAccelPlot::panAxis(Axis* axis, const qreal delta, const qreal length)
@@ -946,18 +911,9 @@ void QAccelPlot::panAxis(Axis* axis, const qreal delta, const qreal length)
     if (!axis || length == 0) {
         return;
     }
-    if (axis->logScale() && axis->viewportMin() > 0.0 && axis->viewportMax() > 0.0) {
-        const auto logMin = std::log10(axis->viewportMin());
-        const auto logMax = std::log10(axis->viewportMax());
-        const auto logShift = (delta / length) * (logMax - logMin);
-        axis->setViewportMin(std::pow(10.0, logMin + logShift));
-        axis->setViewportMax(std::pow(10.0, logMax + logShift));
-    } else {
-        const auto range = axis->viewportMax() - axis->viewportMin();
-        const auto shift = (delta / length) * range;
-        axis->setViewportMin(axis->viewportMin() + shift);
-        axis->setViewportMax(axis->viewportMax() + shift);
-    }
+    const auto range = Internal::pannedRange({axis->viewportMin(), axis->viewportMax()}, delta / length, axis->logScale());
+    axis->setViewportMin(range.min);
+    axis->setViewportMax(range.max);
 }
 
 QList<Axis*> QAccelPlot::attachedAxes() const

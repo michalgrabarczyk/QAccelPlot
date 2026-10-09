@@ -70,7 +70,8 @@ QAccelPlot/
 │       ├── MathUtils.hpp         — Math utilities
 │       ├── QAccelPlotLogging.*   — Qt logging category
 │       ├── annotations/          — DataAnchor (attach QML items to data coords)
-│       ├── axis/                 — Axis, AxisTicker, AxisTickPainter, ColorBar
+│       ├── axis/                 — Axis, AxisTicker, AxisTickPainter, ColorBar,
+│       │                           internal/ (pan and zoom range math)
 │       ├── data/                 — Histogram (binning samples into BarSeries data),
 │       │                           HistogramFactory (QML Histogram singleton)
 │       ├── effects/              — GradientFill, GradientStroke, LineCurveEffect
