@@ -11,6 +11,7 @@
 #include "QAccelPlot/series/RectVertexCache.hpp"
 #include "QAccelPlot/series/RectangleBorder.hpp"
 #include "QAccelPlot/series/SpatialGrid.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #if __has_include(<QtQmlIntegration/qqmlintegration.h>)
 #include <QtQmlIntegration/qqmlintegration.h>
@@ -19,11 +20,13 @@
 #endif
 
 #include <array>
+#include <memory>
 #include <vector>
 
 namespace QAccelPlot {
 
 class BarMaterial;
+class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders a bar chart.
 ///
@@ -46,10 +49,19 @@ class BarMaterial;
 /// with one outside \c categoryColors, use \c color. For grouped bars, use one series per group
 /// with a narrower \c barWidth and a different \c barOffset.
 ///
+/// \par Transitions
+/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates.
+/// With \c MorphTransition, bars move to their new position and value, new bars grow from
+/// \c baselineValue, and removed bars shrink to it. Bars that change between ranged and
+/// (position, value) all grow in. \c count, \c barAt(), the data ranges, hover, and inspection use
+/// the new data from the start of the animation. While a transition is enabled, the \c setDataF()
+/// overloads store doubles. \c clearData(), and replacing, clearing, or cancelling \c transition,
+/// skip to the new data.
+///
 /// \par Limits
 /// Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.
 ///
-/// \sa RectangleSeries, Axis
+/// \sa RectangleSeries, Axis, MorphTransition, DrawTransition
 class BarSeries : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(BarSeries)
@@ -74,6 +86,8 @@ class BarSeries : public PlotSeries {
     Q_PROPERTY(RectangleBorder* border READ border CONSTANT)
     /// \brief Fill color of the bar under the cursor. Default: an invalid color, no highlight.
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setHoverColor NOTIFY hoverColorChanged)
+    /// \brief Optional data transition animation applied when new data arrives.
+    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Read-only: number of bars currently loaded.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: index of the bar under the cursor, or -1 when none.
@@ -82,6 +96,8 @@ class BarSeries : public PlotSeries {
 public:
     /// \brief Constructs a BarSeries with the given \a parent.
     explicit BarSeries(QQuickItem* parent = nullptr);
+    /// \brief Destroys the series, ending its animation on the assigned transition.
+    ~BarSeries() override;
 
     /// \brief Returns the direction the bars grow in.
     Qt::Orientation orientation() const;
@@ -125,6 +141,11 @@ public:
     QColor hoverColor() const;
     /// \brief Sets the fill color of the hovered bar to \a color. An invalid color disables the highlight.
     void setHoverColor(const QColor& color);
+
+    /// \brief Returns the active data transition, or \c nullptr if none.
+    DataTransition* transition() const;
+    /// \brief Sets the data transition to \a transition.
+    void setTransition(DataTransition* transition);
 
     /// \brief Returns the number of bars currently loaded.
     int count() const;
@@ -216,6 +237,8 @@ signals:
     void categoryColorsChanged();
     /// \brief Emitted when the hoverColor property changes.
     void hoverColorChanged();
+    /// \brief Emitted when the transition property changes.
+    void transitionChanged();
     /// \brief Emitted when the bar count changes.
     void countChanged();
     /// \brief Emitted when the hovered bar index changes.
@@ -235,18 +258,48 @@ protected:
     DataRanges computeDataRanges() const override;
 
 private:
+    // A set of bars: count bars of stride values each, with one category per bar or none.
+    struct Bars {
+        std::vector<double> values;
+        std::vector<int> categories;
+        int count{0};
+        int stride{2};
+    };
+
     bool validateRawDataArguments(const void* data, int barCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
+    // Replaces the bars, animating from the drawn ones when \a animate is set.
+    void applyBars(std::vector<double>&& data, bool ranged, std::vector<int>&& categories, int barCount, bool animate);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
+    // Replaces the bars with float data, without a transition.
+    void applyFloatBars(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
     void setDataFFromArray(const float* data, int barCount);
-    void finishDataChange(std::vector<int>&& categories, int barCount);
+    // Stores the categories and the count of new bars without notifying. Returns the previous count.
+    int storeBars(std::vector<int>&& categories, int barCount);
+    void notifyDataChanged(int previousCount);
+    // True while transitionBars_ is drawn instead of the data.
+    bool animating() const;
+    // Returns the bars drawn now: the transition bars, or the data.
+    Bars drawnBars() const;
+    int drawnBarCount() const;
+    const std::vector<int>& drawnCategories() const;
+    // Returns one category per transition bar: those of the data, then those of \a previous for the bars
+    // that shrink away. Empty when no bar has a category.
+    std::vector<int> transitionCategories(const std::vector<int>& previous, int transitionBarCount) const;
+    // Animates from \a drawn to the data. A bar without a counterpart grows from, or shrinks to, the baseline.
+    void startTransition(Bars&& drawn);
+    void advanceTransition();
+    // Drops the transition bars, so the data is drawn.
+    void endTransition();
     // Invalidates what depends on the bar geometry after a barWidth, barOffset, baselineValue, or orientation change.
     void onGeometryChanged();
     bool isHorizontal() const;
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
+    // True when renderData_ is rebuilt from doubles: the data, or the transition bars.
+    bool rendersDoubles() const;
     // Number of values per bar: (position, value), or (from, to, value) for ranged bars.
     int valuesPerBar() const;
     // Returns value \a offset of bar \a index, counted within the bar.
@@ -265,8 +318,8 @@ private:
     void updateMaterial(BarMaterial& material) const;
     void ensureSpatialGrid() const;
     void buildVertexCache();
-    // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_,
-    // so the GPU upload stays accurate for large positions without double-precision textures.
+    // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_ or
+    // transition bars, so the GPU upload stays accurate for large positions without double-precision textures.
     void rebuildRenderData(bool logScalePosition, bool logScaleValue);
 
     Qt::Orientation orientation_{Qt::Vertical};
@@ -279,6 +332,10 @@ private:
     RectangleBorder* border_{new RectangleBorder{this}};
     QColor hoverColor_;
     int hoveredIndex_{-1};
+    std::unique_ptr<TransitionRunner> transition_;
+    // Bars drawn instead of the data while a transition runs, in the layout of the data: the new
+    // bars, then the removed ones that shrink away. Empty otherwise.
+    Bars transitionBars_;
     // Data: valuesPerBar() doubles per bar, full precision. Empty when setDataF() supplied the data.
     std::vector<double> data_;
     // True when each bar is (from, to, value) instead of (position, value).
