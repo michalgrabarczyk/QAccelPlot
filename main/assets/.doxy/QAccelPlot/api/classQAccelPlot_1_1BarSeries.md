@@ -99,6 +99,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property int | [**hoveredIndex**](classQAccelPlot_1_1BarSeries.md#property-hoveredindex-12)  <br>_Read-only: index of the bar under the cursor, or -1 when none._  |
 | property qreal | [**minimumWidth**](classQAccelPlot_1_1BarSeries.md#property-minimumwidth-12)  <br>_Minimum drawn bar width in pixels, so bars stay visible when zoomed out. Default: 1. Clamped to at least 0._  |
 | property Qt::Orientation | [**orientation**](classQAccelPlot_1_1BarSeries.md#property-orientation-12)  <br>_Direction the bars grow in. Default:_ `Qt.Vertical` _, positions on the X axis and values on the Y axis._ |
+| property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1BarSeries.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -134,6 +135,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1BarSeries.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered bar index changes._  |
 | signal void | [**minimumWidthChanged**](classQAccelPlot_1_1BarSeries.md#signal-minimumwidthchanged)  <br>_Emitted when the minimumWidth property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1BarSeries.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
+| signal void | [**transitionChanged**](classQAccelPlot_1_1BarSeries.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
 
 
 ## Public Signals inherited from QAccelPlot::PlotSeries
@@ -205,6 +207,9 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setOrientation**](#function-setorientation) (Qt::Orientation orientation) <br>_Sets the direction the bars grow in to_ _orientation_ _._ |
 |  void | [**setRangedData**](#function-setrangeddata-12) (std::vector&lt; double &gt; && data, int barCount) <br>_Moves ranged bars into the series:_ _data_ _holds__barCount_ _× 3 doubles (from, to, value). Clears categories._ |
 |  void | [**setRangedData**](#function-setrangeddata-22) (std::vector&lt; double &gt; && data, std::vector&lt; int &gt; && categories, int barCount) <br>_Like_ `setRangedData` _(__data_ _,__barCount_ _) and also moves per-bar__categories_ _(empty, or exactly__barCount_ _) into the series._ |
+|  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
+|  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
+|   | [**~BarSeries**](#function-barseries) () override<br>_Destroys the series, ending its animation on the assigned transition._  |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -353,12 +358,20 @@ Each bar can carry a `category`, an index into `categoryColors`. Bars without a 
 **
 **
 
+Assign a `MorphTransition` or `DrawTransition` to `transition` to animate data updates. With `MorphTransition`, bars move to their new position and value, new bars grow from `baselineValue`, and removed bars shrink to it. Bars that change between ranged and (position, value) all grow in. `count`, `barAt()`, the data ranges, hover, and inspection use the new data from the start of the animation. While a transition is enabled, the `setDataF()` overloads store doubles. `clearData()`, and replacing, clearing, or cancelling `transition`, skip to the new data.
+
+
+
+
+**
+**
+
 Up to 16,777,216 (2^24) bars are drawn correctly, as the shader indexes bars in single precision.
 
 
 
 
-**See also:** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**Axis**](classQAccelPlot_1_1Axis.md) 
+**See also:** [**RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
 
 
 
@@ -534,6 +547,21 @@ Qt::Orientation QAccelPlot::BarSeries::orientation;
 
 
 <hr>
+
+
+
+
+### property transition {#property-transition-12}
+
+_Optional data transition animation applied when new data arrives._ 
+```C++
+DataTransition* QAccelPlot::BarSeries::transition;
+```
+
+
+
+
+<hr>
 ## Public Signals Documentation
 
 
@@ -680,6 +708,21 @@ void QAccelPlot::BarSeries::minimumWidthChanged;
 _Emitted when the orientation property changes._ 
 ```C++
 void QAccelPlot::BarSeries::orientationChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal transitionChanged {#signal-transitionchanged}
+
+_Emitted when the transition property changes._ 
+```C++
+void QAccelPlot::BarSeries::transitionChanged;
 ```
 
 
@@ -1524,6 +1567,53 @@ void QAccelPlot::BarSeries::setRangedData (
     std::vector< int > && categories,
     int barCount
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setTransition {#function-settransition}
+
+_Sets the data transition to_ _transition_ _._
+```C++
+void QAccelPlot::BarSeries::setTransition (
+    DataTransition * transition
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function transition {#function-transition-22}
+
+_Returns the active data transition, or_ `nullptr` _if none._
+```C++
+DataTransition * QAccelPlot::BarSeries::transition () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function ~BarSeries {#function-barseries}
+
+_Destroys the series, ending its animation on the assigned transition._ 
+```C++
+QAccelPlot::BarSeries::~BarSeries () override
 ```
 
 

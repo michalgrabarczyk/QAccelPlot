@@ -21,8 +21,10 @@
 * `#include "QAccelPlot/series/RectVertexCache.hpp"`
 * `#include "QAccelPlot/series/RectangleBorder.hpp"`
 * `#include "QAccelPlot/series/SpatialGrid.hpp"`
+* `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QtQml/qqmlregistration.h>`
 * `#include <array>`
+* `#include <memory>`
 * `#include <vector>`
 
 

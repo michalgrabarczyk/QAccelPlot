@@ -1762,6 +1762,7 @@
 <li><code>RectVertexCache</code>.</li>
 <li><code>BarSeries</code>: <code>orientation</code>, <code>barWidth</code>, <code>barOffset</code>, <code>baselineValue</code>, <code>barAt()</code>, and <code>barIndexAt()</code>.</li>
 <li><code>BarSeries</code> ranged bars with their own <code>from</code> and <code>to</code>, via <code>setData()</code> and <code>setRangedData()</code>.</li>
+<li><code>BarSeries.transition</code>: <code>MorphTransition</code> and <code>DrawTransition</code> animate bar updates.</li>
 <li><code>LineCurve.hoverRadius</code>.</li>
 <li>The <code>plot_types/bar_chart</code> example.</li>
 <li>The <code>plot_types/state_timeline</code> example.</li>
@@ -1784,6 +1785,9 @@
   <code>LineCurveEffect::refresh()</code> re-reads inputs that change without a notification.</li>
 <li><code>DataTransition::start()</code> and <code>advance()</code> take a <code>DataTransition::Run</code> that holds
   one element's animation state.</li>
+<li><code>DataTransition::interpolate()</code> takes <code>DataTransition::Dataset</code> arguments, and
+  <code>start()</code> a <code>stride</code> for points of more than two values.</li>
+<li><code>DrawTransition</code> starts from one point instead of two.</li>
 <li>Moved <code>RectangleSeries.hpp</code> to <code>QAccelPlot/series/</code>.</li>
 <li>Replaced <code>RectangleSeries::setData(const float*, int)</code> with <code>setDataF(const float*, int)</code>.</li>
 <li><code>PointCloud</code> uses half the GPU vertex memory per point.</li>

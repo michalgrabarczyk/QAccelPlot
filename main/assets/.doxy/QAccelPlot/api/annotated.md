@@ -36,9 +36,10 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**DataTexture**](classQAccelPlot_1_1DataTexture.md) _Series data uploaded to the GPU as an RGBA8888 texture, one float per texel._     
     * **class** [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md) _Base QSGMaterial that samples series data from a_ `DataTexture` _and exposes shared shader uniforms._    
     * **class** [**DataTransition**](classQAccelPlot_1_1DataTransition.md) _Abstract base class for animated data transitions on plot elements._     
+        * **struct** [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) _Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._    
         * **class** [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) _One animation of a transition on one host element._     
     * **class** [**DateTimeTickLabelFormatter**](classQAccelPlot_1_1DateTimeTickLabelFormatter.md) _A tick label formatter that displays tick values as formatted date/time strings._     
-    * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target curve by drawing it point-by-point from start to end._     
+    * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target data point by point from start to end._     
     * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Samples of a gradient fill: one group per valid-sample run, broken at gaps._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
     * **namespace** [**GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md) _Namespace exposing the_ `GradientDirection` _enum to QML._    
@@ -128,11 +129,13 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **struct** [**SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) _Running sample-weighted Y statistics that can be merged across disjoint sample sets._     
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
+    * **class** [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md) _Runs the_ `DataTransition` _assigned to one item, such as a custom series._    
 * **struct** [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)     
 * **struct** [**DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md)     
 * **struct** [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)     
 * **struct** [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)     
 * **struct** [**Span**](structQAccelPlot_1_1BandSeries_1_1Span.md)     
+* **struct** [**Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md)     
 * **struct** [**Layout**](structQAccelPlot_1_1ColorBar_1_1Layout.md)     
 * **struct** [**GridLineCollectionParams**](structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams.md)     
 * **struct** [**Job**](structQAccelPlot_1_1InspectionCache_1_1Job.md)     

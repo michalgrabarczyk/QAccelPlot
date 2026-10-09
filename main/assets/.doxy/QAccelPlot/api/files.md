@@ -112,5 +112,6 @@ Here is a list of all files with brief descriptions:
                 * **file** [**DataTransition.hpp**](DataTransition_8hpp.md)     
                 * **file** [**DrawTransition.hpp**](DrawTransition_8hpp.md)     
                 * **file** [**MorphTransition.hpp**](MorphTransition_8hpp.md)     
+                * **file** [**TransitionRunner.hpp**](TransitionRunner_8hpp.md)     
             * **file** [**QAccelPlotLogging.hpp**](QAccelPlotLogging_8hpp.md)     
 

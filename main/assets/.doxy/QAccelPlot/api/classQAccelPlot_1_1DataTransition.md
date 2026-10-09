@@ -59,6 +59,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| struct | [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) <br>_Data a transition animates:_ `count` _items of_`stride` _values each, e.g. XY points with a stride of 2._ |
 | class | [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) <br>_One animation of a transition on one host element._  |
 
 
@@ -112,7 +113,7 @@ flowchart TB
 |  void | [**setDuration**](#function-setduration) (int duration) <br>_Sets the animation duration to_ _duration_ _milliseconds._ |
 |  void | [**setEasing**](#function-seteasing) (const QEasingCurve & easing) <br>_Sets the easing curve to_ _easing_ _._ |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Sets the enabled state to_ _enabled_ _._ |
-|  void | [**start**](#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount) <br>_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._ |
+|  void | [**start**](#function-start) ([**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) & run, const std::vector&lt; double &gt; & currentData, int currentPointCount, std::vector&lt; double &gt; && newData, int newPointCount, int stride=2) <br>_Starts_ _run_ _from__currentData_ _to__newData_ _, restarting it if it is already active._ |
 |   | [**~DataTransition**](#function-datatransition) () override<br>_Destroys the transition. Its runs stay pending, so their hosts can still show the target data._  |
 
 
@@ -142,7 +143,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const std::vector&lt; double &gt; & fromData, int fromPointCount, const std::vector&lt; double &gt; & toData, int toPointCount, std::vector&lt; double &gt; & outData, int & outPointCount) = 0<br>_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._ |
+| virtual void | [**interpolate**](#function-interpolate) (double easedProgress, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & from, const [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & to, [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md) & out) = 0<br>_Subclass entry point — writes the dataset between_ _from_ _and__to_ _at__easedProgress_ _into__out_ _._ |
 
 
 
@@ -158,7 +159,7 @@ One transition can be assigned to several elements. Each element keeps its own `
 
 
 
-**See also:** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md) 
+**See also:** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md) 
 
 
 
@@ -479,7 +480,8 @@ void QAccelPlot::DataTransition::start (
     const std::vector< double > & currentData,
     int currentPointCount,
     std::vector< double > && newData,
-    int newPointCount
+    int newPointCount,
+    int stride=2
 ) 
 ```
 
@@ -491,10 +493,11 @@ void QAccelPlot::DataTransition::start (
 
 
 * `run` [**Run**](classQAccelPlot_1_1DataTransition_1_1Run.md) of the host element; ended first if another transition advances it. 
-* `currentData` Current XY double buffer (copied as the _from_ state). 
+* `currentData` Current double buffer (copied as the _from_ state). 
 * `currentPointCount` Number of points in _currentData_. 
-* `newData` Target XY double buffer (moved as the _to_ state). 
+* `newData` Target double buffer (moved as the _to_ state). 
 * `newPointCount` Number of points in _newData_. 
+* `stride` Number of values per point in both buffers. Default: 2, XY points. 
 
 
 
@@ -525,21 +528,22 @@ QAccelPlot::DataTransition::~DataTransition () override
 
 ### function interpolate {#function-interpolate}
 
-_Subclass entry point — computes the interpolated dataset at_ _easedProgress_ _(0–1)._
+_Subclass entry point — writes the dataset between_ _from_ _and__to_ _at__easedProgress_ _into__out_ _._
 ```C++
 virtual void QAccelPlot::DataTransition::interpolate (
     double easedProgress,
-    const std::vector< double > & fromData,
-    int fromPointCount,
-    const std::vector< double > & toData,
-    int toPointCount,
-    std::vector< double > & outData,
-    int & outPointCount
+    const Dataset & from,
+    const Dataset & to,
+    Dataset & out
 ) = 0
 ```
 
 
 
+_easedProgress_ runs from 0 to 1 and leaves that range with an overshooting easing curve. _from_ and _to_ share one stride, which _out_ already has; set its `values` and `count`. 
+
+
+        
 
 <hr>
 

@@ -32,6 +32,7 @@
 * `#include <QPointer>`
 * `#include <QQmlListProperty>`
 * `#include <QQuickItem>`
+* `#include <memory>`
 * `#include <utility>`
 * `#include <vector>`
 

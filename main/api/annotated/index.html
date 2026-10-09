@@ -1329,11 +1329,12 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTexture/"><strong>DataTexture</strong></a> <em>Series data uploaded to the GPU as an RGBA8888 texture, one float per texel.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTextureMaterial/"><strong>DataTextureMaterial</strong></a> <em>Base QSGMaterial that samples series data from a</em> <code>DataTexture</code> <em>and exposes shared shader uniforms.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>Dataset</strong></a> <em>Data a transition animates:</em> <code>count</code> <em>items of</em><code>stride</code> <em>values each, e.g. XY points with a stride of 2.</em>    </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition_1_1Run/"><strong>Run</strong></a> <em>One animation of a transition on one host element.</em>     </li>
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DateTimeTickLabelFormatter/"><strong>DateTimeTickLabelFormatter</strong></a> <em>A tick label formatter that displays tick values as formatted date/time strings.</em>     </li>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <em>An animation transition that reveals the target curve by drawing it point-by-point from start to end.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>DrawTransition</strong></a> <em>An animation transition that reveals the target data point by point from start to end.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1FillSamples/"><strong>FillSamples</strong></a> <em>Samples of a gradient fill: one group per valid-sample run, broken at gaps.</em>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>GradientColorPayload</strong></a> <em>Render-thread snapshot of gradient stroke (line-color) parameters.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceQAccelPlot_1_1GradientDirectionNS/"><strong>GradientDirectionNS</strong></a> <em>Namespace exposing the</em> <code>GradientDirection</code> <em>enum to QML.</em>    </li>
@@ -1435,6 +1436,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1SummaryAccumulator/"><strong>SummaryAccumulator</strong></a> <em>Running sample-weighted Y statistics that can be merged across disjoint sample sets.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em>     </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TickLabelFormatter/"><strong>TickLabelFormatter</strong></a> <em>Abstract base class for tick label formatters.</em>     </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>TransitionRunner</strong></a> <em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em>    </li>
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1Axis_1_1DataRange/"><strong>DataRange</strong></a>     </li>
@@ -1442,6 +1444,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>ArcLengthScale</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>RenderView</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>Span</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BarSeries_1_1Bars/"><strong>Bars</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>Layout</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>GridLineCollectionParams</strong></a>     </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>Job</strong></a>     </li>

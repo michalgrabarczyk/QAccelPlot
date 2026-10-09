@@ -1323,6 +1323,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveDataView/"><strong>QAccelPlot::CurveDataView</strong></a> <em>Read-only view over either interleaved float or double curve coordinates.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1CurveHitTestParams/"><strong>QAccelPlot::CurveHitTestParams</strong></a> <em>All inputs required for a</em> <code>contains()</code> <em>hit-test, bundled to reduce parameter count.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1DashParameters/"><strong>QAccelPlot::DashParameters</strong></a> <em>Plain-data snapshot of dash rendering parameters.</em> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1DataTransition_1_1Dataset/"><strong>QAccelPlot::DataTransition::Dataset</strong></a> <em>Data a transition animates:</em> <code>count</code> <em>items of</em><code>stride</code> <em>values each, e.g. XY points with a stride of 2.</em></li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1FillSamples/"><strong>QAccelPlot::FillSamples</strong></a> <em>Samples of a gradient fill: one group per valid-sample run, broken at gaps.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientColorPayload/"><strong>QAccelPlot::GradientColorPayload</strong></a> <em>Render-thread snapshot of gradient stroke (line-color) parameters.</em> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GradientFillPayload/"><strong>QAccelPlot::GradientFillPayload</strong></a> <em>Render-thread snapshot of gradient fill (area-under-curve) parameters.</em> </li>
@@ -1356,6 +1357,7 @@
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale/"><strong>QAccelPlot::BandEdgeRenderer::ArcLengthScale</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1RenderView/"><strong>QAccelPlot::BandSeries::RenderView</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1BandSeries_1_1Span/"><strong>QAccelPlot::BandSeries::Span</strong></a> </li>
+<li><strong>struct</strong> <a href="../structQAccelPlot_1_1BarSeries_1_1Bars/"><strong>QAccelPlot::BarSeries::Bars</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1ColorBar_1_1Layout/"><strong>QAccelPlot::ColorBar::Layout</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1GridNode_1_1GridLineCollectionParams/"><strong>QAccelPlot::GridNode::GridLineCollectionParams</strong></a> </li>
 <li><strong>struct</strong> <a href="../structQAccelPlot_1_1InspectionCache_1_1Job/"><strong>QAccelPlot::InspectionCache::Job</strong></a> </li>
@@ -1386,7 +1388,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target curve by drawing it point-by-point from start to end.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target data point by point from start to end.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>QAccelPlot::MorphTransition</strong></a> <em>An animation transition that smoothly interpolates point positions between two datasets.</em> </li>
 </ul>
 </li>
@@ -1397,7 +1399,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target curve by drawing it point-by-point from start to end.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target data point by point from start to end.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>QAccelPlot::MorphTransition</strong></a> <em>An animation transition that smoothly interpolates point positions between two datasets.</em> </li>
 </ul>
 </li>
@@ -1427,7 +1429,7 @@
 </ul>
 </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1DataTransition/"><strong>QAccelPlot::DataTransition</strong></a> <em>Abstract base class for animated data transitions on plot elements.</em>     <ul>
-<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target curve by drawing it point-by-point from start to end.</em> </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1DrawTransition/"><strong>QAccelPlot::DrawTransition</strong></a> <em>An animation transition that reveals the target data point by point from start to end.</em> </li>
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1MorphTransition/"><strong>QAccelPlot::MorphTransition</strong></a> <em>An animation transition that smoothly interpolates point positions between two datasets.</em> </li>
 </ul>
 </li>
@@ -1469,6 +1471,7 @@
 <li><strong>class</strong> <a href="../classQAccelPlot_1_1TextTickLabelFormatter/"><strong>QAccelPlot::TextTickLabelFormatter</strong></a> <em>A tick label formatter that maps integer tick indices to a user-supplied list of strings.</em> </li>
 </ul>
 </li>
+<li><strong>class</strong> <a href="../classQAccelPlot_1_1TransitionRunner/"><strong>QAccelPlot::TransitionRunner</strong></a> <em>Runs the</em> <code>DataTransition</code> <em>assigned to one item, such as a custom series.</em></li>
 </ul>
 </li>
 <li><strong>class</strong> <strong>QSGMaterial</strong>    <ul>

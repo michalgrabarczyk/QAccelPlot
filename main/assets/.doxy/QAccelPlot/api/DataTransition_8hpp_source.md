@@ -37,6 +37,12 @@ class DataTransition : public QObject {
     Q_PROPERTY(bool running READ running NOTIFY runningChanged)
 
 public:
+    struct Dataset {
+        std::vector<double> values;
+        int count{0};
+        int stride{2};
+    };
+
     class Run {
     public:
         Run() = default;
@@ -60,10 +66,8 @@ public:
 
         DataTransition* transition_{nullptr};
         bool pending_{false};
-        std::vector<double> fromData_;
-        std::vector<double> toData_;
-        int fromPointCount_{0};
-        int toPointCount_{0};
+        Dataset from_;
+        Dataset to_;
         QElapsedTimer timer_;
     };
 
@@ -81,7 +85,7 @@ public:
 
     bool running() const;
 
-    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
+    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, int stride = 2);
 
     void cancel();
 
@@ -94,9 +98,7 @@ signals:
     void runningChanged();
 
 protected:
-    virtual void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount)
-        = 0;
+    virtual void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) = 0;
 
 private:
     void removeRun(Run* run);

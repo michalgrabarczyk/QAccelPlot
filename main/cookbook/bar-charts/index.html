@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, and C++ data paths.">
+        <meta name="description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, and C++ data paths.">
+<meta property="og:description" content="Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths.">
 
 <script type="application/ld+json">
 {
@@ -901,6 +901,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#animate-data-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animate data changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#feed-data-from-c" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1442,6 +1453,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#animate-data-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animate data changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#feed-data-from-c" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1585,11 +1607,31 @@ are set with <code>border.width</code> and <code>border.color</code>.</p>
 <code>position</code>, <code>value</code>, and <code>category</code>; a ranged bar has <code>from</code> and <code>to</code> instead
 of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 <code>minimumWidth</code> also widens the hover area.</p>
+<h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
+<p>Assign a <code>QAccelPlot.MorphTransition</code> or a <code>QAccelPlot.DrawTransition</code> to
+<code>transition</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">transition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        <span class="k">duration:</span> <span class="mi">500</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>MorphTransition</code> moves each bar to its new position and value. New bars
+  grow from <code>baselineValue</code>, and removed bars shrink to it.</li>
+<li><code>DrawTransition</code> shows the new bars one after another.</li>
+<li><code>count</code>, <code>barAt()</code>, the data ranges, hover, and inspection use the new data
+  from the start of the animation.</li>
+<li><code>clearData()</code>, and replacing, clearing, or cancelling <code>transition</code>, show the
+  new data at once.</li>
+<li>While a transition is enabled, the float paths store doubles.</li>
+</ul>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Pass a vector of interleaved <code>(position, value)</code> pairs to <code>setData()</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </code></pre></div>
 <p><code>setData()</code> keeps doubles and uploads them relative to an origin near the
 data, so large positions such as epoch timestamps stay precise.</p>
@@ -1604,7 +1646,7 @@ infinite value reaches the plot edge.</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart"><code>examples/plot_types/bar_chart</code></a>:
   grouped and horizontal bars, a profit chart colored against a target
-  baseline, and a hover tooltip.</li>
+  baseline, a hover tooltip, and animated updates.</li>
 </ul>
 
 

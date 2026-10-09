@@ -29,8 +29,7 @@ public:
     explicit DrawTransition(QObject* parent = nullptr);
 
 protected:
-    void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount) override;
+    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

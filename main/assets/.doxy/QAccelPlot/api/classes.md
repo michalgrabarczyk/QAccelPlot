@@ -37,6 +37,7 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**BarMaterial**](classQAccelPlot_1_1BarMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md)
 * [**BarSeries**](classQAccelPlot_1_1BarSeries.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**Block**](structQAccelPlot_1_1SourceInspection_1_1Block.md)
@@ -76,6 +77,8 @@
 * [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md)
 ([**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md))
 * [**DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md)
+* [**Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md)
+([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md))
 * [**DataTexture**](classQAccelPlot_1_1DataTexture.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md)
@@ -311,6 +314,8 @@
 * [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
