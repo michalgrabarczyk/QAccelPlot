@@ -34,6 +34,7 @@ jobs:
   build-docs:
     name: Build and publish
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v6
@@ -75,8 +76,7 @@ jobs:
 
       - name: Install documentation tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
+          bash .github/scripts/apt_install.sh doxygen graphviz
           python -m pip install -r docs/requirements.txt
 
       - name: Build documentation

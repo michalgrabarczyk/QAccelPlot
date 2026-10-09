@@ -15,6 +15,7 @@ jobs:
   build-and-test:
     name: Qt ${{ matrix.qt_version }} / ${{ matrix.platform.os_name }} / ${{ matrix.platform.backend_name }}${{ matrix.platform.compiler == 'clang' && ' / Clang' || '' }}
     runs-on: ${{ matrix.platform.os }}
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -207,7 +208,7 @@ jobs:
 
       - name: Install Linux runtime dependencies
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install --yes cmake ninja-build xvfb libgl1-mesa-dri libegl1 libegl-mesa0 libgles2 libxcb-cursor0 libxkbcommon-x11-0
+        run: bash .github/scripts/apt_install.sh cmake ninja-build xvfb libgl1-mesa-dri libegl1 libegl-mesa0 libgles2 libxcb-cursor0 libxkbcommon-x11-0
 
       - name: Request OpenGL ES
         if: matrix.platform.opengl_es
@@ -221,7 +222,7 @@ jobs:
 
       - name: Install Vulkan runtime
         if: runner.os == 'Linux' && matrix.platform.backend == 'vulkan'
-        run: sudo apt-get install --yes libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools
+        run: bash .github/scripts/apt_install.sh libvulkan1 libvulkan-dev mesa-vulkan-drivers vulkan-tools
 
       - name: Inspect Vulkan runtime
         if: runner.os == 'Linux' && matrix.platform.backend == 'vulkan'
@@ -319,6 +320,7 @@ jobs:
     # Jobs upload their screenshots even when a later step fails.
     if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     permissions:
       contents: read
     steps:

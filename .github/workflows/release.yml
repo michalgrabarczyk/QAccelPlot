@@ -23,6 +23,7 @@ jobs:
   release:
     name: Publish
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v6
@@ -60,8 +61,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0 doxygen graphviz
+          bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0 doxygen graphviz
           python -m pip install -r docs/requirements.txt
 
       - name: Install Qt

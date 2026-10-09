@@ -22,6 +22,7 @@ jobs:
     name: ${{ matrix.compiler }} / Qt private API ${{ matrix.qt_private_api }}
     # Pinned so the preinstalled Clang version stays fixed.
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -40,9 +41,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4.3.1
@@ -79,14 +78,13 @@ jobs:
   coverage:
     name: C++ coverage
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v6
 
       - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4.3.1
@@ -149,6 +147,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: coverage
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     permissions:
       contents: write
     concurrency:
