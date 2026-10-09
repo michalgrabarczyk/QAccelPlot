@@ -110,8 +110,6 @@ Window {
             xAxis: QAccelPlot.Axis {
                 viewportMin: 200
                 viewportMax: 800
-                dataMin: 0
-                dataMax: 1000
                 baselineWidth: 1
                 labelColor: colorPalette.axisLabel
                 hoverColor: colorPalette.axisLine
@@ -124,8 +122,6 @@ Window {
                 visible: false
                 viewportMin: 0.0
                 viewportMax: 530.0
-                dataMin: 0.0
-                dataMax: 560.0
                 axisTitlePadding: 40
                 layoutSize: 60
             }

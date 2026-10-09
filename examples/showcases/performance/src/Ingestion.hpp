@@ -21,14 +21,13 @@ namespace QAccelPlotExample {
 
 /// \brief Series API that receives the generated records.
 enum class Ingestion {
-    FloatNoRangeMove, ///< \brief <tt>setDataFNoRange(std::vector<float>&&, int)</tt>.
-    FloatMove,        ///< \brief <tt>setDataF(std::vector<float>&&, int)</tt>, with a range scan.
-    FloatNoRangeCopy, ///< \brief <tt>setDataFNoRange(const float*, int)</tt>.
-    DoubleMove,       ///< \brief <tt>setData(std::vector<double>&&, int)</tt>, with a range scan.
-    FloatPost,        ///< \brief <tt>postData(std::vector<float>&&, int)</tt>.
+    FloatMove,  ///< \brief <tt>setDataF(std::vector<float>&&, int)</tt>.
+    FloatCopy,  ///< \brief <tt>setDataF(const float*, int)</tt>.
+    DoubleMove, ///< \brief <tt>setData(std::vector<double>&&, int)</tt>.
+    FloatPost,  ///< \brief <tt>postData(std::vector<float>&&, int)</tt>.
 };
 
-/// \brief Returns the ingestion named \a name in the QML settings, or \c FloatNoRangeMove for an unknown name.
+/// \brief Returns the ingestion named \a name in the QML settings, or \c FloatMove for an unknown name.
 Ingestion ingestionFromName(const QString& name);
 
 /// \brief Returns \c true when \a ingestion takes double records.
@@ -51,13 +50,10 @@ template <typename Series, typename Part> void applyCategorizedRecords(Series& s
         return;
     }
     switch (ingestion) {
-    case Ingestion::FloatNoRangeMove:
-        series.setDataFNoRange(std::move(part.floats), std::move(part.categories), part.count);
-        break;
     case Ingestion::FloatMove:
         series.setDataF(std::move(part.floats), std::move(part.categories), part.count);
         break;
-    case Ingestion::FloatNoRangeCopy:
+    case Ingestion::FloatCopy:
         applyRecords(series, part, ingestion);
         break;
     case Ingestion::DoubleMove:

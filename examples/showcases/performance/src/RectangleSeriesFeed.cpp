@@ -19,7 +19,7 @@ PlasmaParameters RectangleSeriesFeed::parameters(const PageScene& scene, const C
     parameters.dataset = datasetParameters(options);
     parameters.tileScale = scene.setting("tileScale").toFloat();
     // The raw-array setters take no categories.
-    parameters.categoryCount = options.ingestion == Ingestion::FloatNoRangeCopy ? 0 : std::max(0, scene.setting("categoryCount").toInt());
+    parameters.categoryCount = options.ingestion == Ingestion::FloatCopy ? 0 : std::max(0, scene.setting("categoryCount").toInt());
     return parameters;
 }
 

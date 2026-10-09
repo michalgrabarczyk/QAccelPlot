@@ -151,22 +151,17 @@ public:
     /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
     /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
     void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
-    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
-    /// \brief Like \c setData(vector) but does not report X/Y data ranges to the axes.
-    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief High-performance C++ overload: sets data from a raw interleaved float array of \a pointCount XY pairs.
+    /// \brief High-performance C++ overload: copies a raw interleaved float array of \a pointCount XY pairs into the
+    /// curve's reusable buffer.
     void setDataF(const float* xyInterleaved, int pointCount) override;
     /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
     void setDataF(std::vector<float>&& data, int pointCount) override;
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
-    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataF(vector) but skips emitting \c xDataRangeChanged / \c yDataRangeChanged.
-    void setDataFNoRange(std::vector<float>&& data, int pointCount) override;
-    /// \brief Like \c setDataFNoRange but also accepts a pre-built \a vertexCache, bypassing main-thread rebuild.
-    void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
-    /// \brief Like \c setDataFNoRangeWithCache but copies from a raw interleaved float array.
-    void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
+    /// \brief Like \c setDataF(vector) but also accepts a pre-built \a vertexCache, bypassing main-thread rebuild.
+    void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
+    /// \brief Like \c setDataFWithCache(vector) but copies from a raw interleaved float array.
+    void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     /// \brief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
     /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
     /// is made. This call is thread-safe.
@@ -190,6 +185,7 @@ protected:
     bool contains(const QPointF& point) const override;
     /// \brief Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     /// \brief Moves the render origin to the new viewport when the float render data would lose precision there.
     void onAxisRangeChanged() override;
 
@@ -231,10 +227,6 @@ private:
 
     enum class DataType { Float, Double };
 
-    void updateDataRanges(const std::vector<float>& buf, int count);
-    void updateDataRanges(const std::vector<double>& buf, int count);
-    void applyDataExtents(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    void recomputeDataRanges();
     bool logScaleX() const;
     bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
@@ -295,9 +287,6 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
-    // True when the most recent data update computed ranges; the NoRange APIs leave
-    // range management to the caller, so log-scale changes must not overwrite it.
-    bool autoDataRanges_{true};
     // NanGapMode::Connect copies with invalid samples removed. Only populated when
     // Connect mode is on and the data contains invalid samples.
     bool gapConnectCompacted_{false};
@@ -323,8 +312,6 @@ private:
     // from the const contains() path.
     mutable std::vector<CurveChunk> chunks_;
     mutable bool chunksValid_{false};
-
-    // Cached ranges — suppress duplicate xDataRangeChanged/yDataRangeChanged signals.
 };
 
 } // namespace QAccelPlot

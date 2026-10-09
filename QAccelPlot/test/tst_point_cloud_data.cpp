@@ -60,16 +60,15 @@ private slots:
     void countChangedTracksCountAndValuePresence();
     void dataRangesSkipNonFinitePoints();
     void dataRangesFollowLogarithmicAxes();
-    void noRangeUpdateDoesNotReportRanges();
-    void noRangeDataSurvivesAxisChanges();
+    void dataBoundsReplaceTheRangeScan();
     void valueRangeResolvesDataAndFixedSources();
     void setValuesExpandsAndClearsInPlace();
     void accessorsReturnNaNOutOfRange();
     void clearDataResetsState();
     void postDataIsAppliedFromWorkerThread();
     void postedDoubleDataIsApplied();
-    void doubleNoRangeDataDoesNotReportRanges();
-    void noRangeOverloadsAcceptPositionsWithoutValues();
+    void doubleVectorDataKeepsValues();
+    void overloadsAcceptPositionsWithoutValues();
     void hoverEventsTrackPointUnderCursor();
     void pointIndexAtFindsNearestPointWithinRadius();
     void pointIndexAtUsesLogarithmicMapping();
@@ -173,16 +172,16 @@ void PointCloudDataTest::dataRangesSkipNonFinitePoints()
     auto cloud = PointCloud{};
     cloud.setXAxis(&axes.x);
     cloud.setYAxis(&axes.y);
-    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&cloud, &PlotSeries::yDataRangeChanged};
 
     cloud.setDataF(std::vector<float>{kNaN, 100.0f, -2.0f, 4.0f, 5.0f, kInf, 3.0f, -1.0f}, 4);
 
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(xRangeSpy.last().at(0).toReal(), -2.0);
-    QCOMPARE(xRangeSpy.last().at(1).toReal(), 3.0);
-    QCOMPARE(yRangeSpy.last().at(0).toReal(), -1.0);
-    QCOMPARE(yRangeSpy.last().at(1).toReal(), 4.0);
+    const auto xRange = cloud.xDataRange();
+    const auto yRange = cloud.yDataRange();
+    QVERIFY(xRange && yRange);
+    QCOMPARE(xRange->min, -2.0);
+    QCOMPARE(xRange->max, 3.0);
+    QCOMPARE(yRange->min, -1.0);
+    QCOMPARE(yRange->max, 4.0);
     // Invalid points keep their indices.
     QVERIFY(std::isnan(cloud.pointAt(0).x()));
     QCOMPARE(cloud.count(), 4);
@@ -196,60 +195,36 @@ void PointCloudDataTest::dataRangesFollowLogarithmicAxes()
     cloud.setYAxis(&axes.y);
     cloud.setDataF(std::vector<float>{-5.0f, 10.0f, 0.0f, 20.0f, 2.0f, 30.0f, 400.0f, 0.5f}, 4);
 
-    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
     axes.x.setLogScale(true);
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(xRangeSpy.last().at(0).toReal(), 2.0);
-    QCOMPARE(xRangeSpy.last().at(1).toReal(), 400.0);
+    QCOMPARE(cloud.xDataRange()->min, 2.0);
+    QCOMPARE(cloud.xDataRange()->max, 400.0);
+    QCOMPARE(cloud.yDataRange()->min, 0.5);
+    QCOMPARE(cloud.yDataRange()->max, 30.0);
 
-    auto yRangeSpy = QSignalSpy{&cloud, &PlotSeries::yDataRangeChanged};
     axes.x.setLogScale(false);
-    QCOMPARE(xRangeSpy.last().at(0).toReal(), -5.0);
-    QCOMPARE(yRangeSpy.count(), 0);
+    QCOMPARE(cloud.xDataRange()->min, -5.0);
+    QCOMPARE(cloud.yDataRange()->min, 0.5);
+    QCOMPARE(cloud.yDataRange()->max, 30.0);
 }
 
-void PointCloudDataTest::noRangeUpdateDoesNotReportRanges()
+void PointCloudDataTest::dataBoundsReplaceTheRangeScan()
 {
     auto axes = AxisPair{0.0, 10.0};
     auto cloud = PointCloud{};
     cloud.setXAxis(&axes.x);
     cloud.setYAxis(&axes.y);
-    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
 
-    cloud.setDataFNoRange(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, {}, 2);
-    QCOMPARE(xRangeSpy.count(), 0);
+    cloud.setDataF(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, 2, PlotSeries::DataBounds{-100.0, 100.0, -50.0, 50.0});
     QCOMPARE(cloud.count(), 2);
-}
-
-void PointCloudDataTest::noRangeDataSurvivesAxisChanges()
-{
-    auto axes = AxisPair{0.0, 10.0};
-    auto cloud = PointCloud{};
-    cloud.setXAxis(&axes.x);
-    cloud.setYAxis(&axes.y);
-    cloud.setDataFNoRange(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, {}, 2);
-    axes.x.setDataMin(-100.0);
-    axes.x.setDataMax(100.0);
-    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&cloud, &PlotSeries::yDataRangeChanged};
-
-    axes.y.setLogScale(true);
-    auto otherY = Axis{};
-    otherY.setOrientation(Axis::Vertical);
-    cloud.setYAxis(&otherY);
-
-    // The application maintains the ranges of no-range data.
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(yRangeSpy.count(), 0);
     QCOMPARE(axes.x.dataMin(), -100.0);
     QCOMPARE(axes.x.dataMax(), 100.0);
+    QCOMPARE(axes.y.dataMin(), -50.0);
+    QCOMPARE(axes.y.dataMax(), 50.0);
 
-    // A ranged update reports again, and so do later axis changes.
-    cloud.setDataF(std::vector<float>{1.0f, 1.0f, 9.0f, 9.0f}, 2);
-    QCOMPARE(xRangeSpy.count(), 1);
-    axes.x.setLogScale(true);
-    cloud.setDataF(std::vector<float>{-1.0f, 1.0f, 9.0f, 9.0f}, 2);
-    QCOMPARE(xRangeSpy.last().at(0).toReal(), 9.0);
+    // The bounds described linear data; after a scale change the points are scanned.
+    axes.y.setLogScale(true);
+    QCOMPARE(axes.x.dataMin(), 1.0);
+    QCOMPARE(axes.x.dataMax(), 9.0);
 }
 
 void PointCloudDataTest::valueRangeResolvesDataAndFixedSources()
@@ -366,23 +341,22 @@ void PointCloudDataTest::postedDoubleDataIsApplied()
     QCOMPARE(cloud.pointAt(2), QPointF(9.0, 10.0));
 }
 
-void PointCloudDataTest::doubleNoRangeDataDoesNotReportRanges()
+void PointCloudDataTest::doubleVectorDataKeepsValues()
 {
     auto axes = AxisPair{0.0, 100.0};
     auto cloud = PointCloud{};
     cloud.setXAxis(&axes.x);
     cloud.setYAxis(&axes.y);
-    auto xRangeSpy = QSignalSpy{&cloud, &PointCloud::xDataRangeChanged};
 
-    cloud.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{0.5f, 1.5f}, 2);
+    cloud.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{0.5f, 1.5f}, 2);
 
     QCOMPARE(cloud.count(), 2);
     QVERIFY(cloud.hasValues());
     QCOMPARE(cloud.valueAt(1), 1.5);
-    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(axes.x.dataMax(), 3.0);
 }
 
-void PointCloudDataTest::noRangeOverloadsAcceptPositionsWithoutValues()
+void PointCloudDataTest::overloadsAcceptPositionsWithoutValues()
 {
     constexpr auto epoch = double{1'789'032'600'000.0};
     auto xAxis = Axis{};
@@ -391,24 +365,23 @@ void PointCloudDataTest::noRangeOverloadsAcceptPositionsWithoutValues()
     const auto precise = std::vector<double>{epoch, 1.0, epoch + 0.5, 2.0};
     cloud.setData(precise.data(), 2);
     QCOMPARE(xAxis.dataMax(), epoch + 0.5);
-    auto xRangeSpy = QSignalSpy{&cloud, &PlotSeries::xDataRangeChanged};
 
-    cloud.setDataNoRange(std::vector<double>{epoch + 1.0, 3.0}, 1);
+    cloud.setData(std::vector<double>{epoch + 1.0, 3.0}, 1);
     QCOMPARE(cloud.pointAt(0).x(), epoch + 1.0);
-    cloud.setDataNoRange(precise.data(), 2);
+    cloud.setData(precise.data(), 2);
     QCOMPARE(cloud.pointAt(1).x(), epoch + 0.5);
 
-    cloud.setDataFNoRange(std::vector<float>{3.0f, 4.0f}, 1);
+    cloud.setDataF(std::vector<float>{3.0f, 4.0f}, 1);
     const auto raw = std::vector<float>{5.0f, 6.0f};
-    cloud.setDataFNoRange(raw.data(), 1);
+    cloud.setDataF(raw.data(), 1);
     QCOMPARE(cloud.pointAt(0), QPointF(5.0, 6.0));
     QVERIFY(!cloud.hasValues());
-    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMax(), 5.0);
 
-    cloud.setDataFNoRange(static_cast<const float*>(nullptr), 0);
+    cloud.setDataF(static_cast<const float*>(nullptr), 0);
     QCOMPARE(cloud.count(), 0);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received a null data pointer.*"));
-    cloud.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    cloud.setData(static_cast<const double*>(nullptr), 1);
     QCOMPARE(cloud.count(), 0);
 }
 

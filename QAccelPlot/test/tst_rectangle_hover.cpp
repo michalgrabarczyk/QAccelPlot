@@ -263,7 +263,7 @@ void RectangleHoverTest::hitTestsFollowDataChanges()
     QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
     QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), 0);
 
-    rectangles.setDataNoRange(std::vector<double>{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0}, {}, 3);
+    rectangles.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 2.0, 3.0, 3.0}, {}, 3);
     QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), 0);
     QCOMPARE(rectangles.rectangleIndexAt({250.0, 150.0}), 2);
     QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), -1);
@@ -291,7 +291,7 @@ void RectangleHoverTest::floatDataIsHitTested()
     QCOMPARE(rectangles.rectangleIndexAt({380.0, 10.0}), -1);
 
     const auto raw = std::array<float, 4>{3.0f, 3.0f, 4.0f, 4.0f};
-    rectangles.setDataFNoRange(raw.data(), 1);
+    rectangles.setDataF(raw.data(), 1);
     QCOMPARE(rectangles.rectangleIndexAt({50.0, 350.0}), -1);
     QCOMPARE(rectangles.rectangleIndexAt({350.0, 50.0}), 0);
 }

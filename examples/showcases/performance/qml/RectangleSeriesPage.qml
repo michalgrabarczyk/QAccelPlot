@@ -8,7 +8,6 @@
 import QtQuick
 import QAccelPlot as QAccelPlot
 
-// Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
     objectName: "rectangleSeriesPlot"
@@ -31,16 +30,12 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 160
-        dataMin: 0
-        dataMax: 160
         label: "x"
     }
 
     yAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 100
-        dataMin: 0
-        dataMax: 100
         axisTitlePadding: 40
         layoutSize: 60
         label: "y"

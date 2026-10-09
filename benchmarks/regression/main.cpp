@@ -258,7 +258,7 @@ private slots:
         for (size_t i = 0; i < series_.size(); ++i) {
             const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), 0);
             if (auto* curve = qobject_cast<QAccelPlot::LineCurve*>(series_[i])) {
-                curve->setDataFNoRangeWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
+                curve->setDataFWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
             } else {
                 setPointCloudData(static_cast<QAccelPlot::PointCloud*>(series_[i]), dataPtr);
             }
@@ -278,9 +278,9 @@ private slots:
 
     void setPointCloudData(QAccelPlot::PointCloud* cloud, const float* dataPtr)
     {
-        // Copying from an existing buffer mirrors LineCurve::setDataFNoRange(const float*, int).
+        // Copying from an existing buffer mirrors LineCurve::setDataF(const float*, int).
         auto xy = std::vector<float>(dataPtr, dataPtr + static_cast<std::size_t>(currentPointCount_) * 2);
-        cloud->setDataFNoRange(std::move(xy), std::vector<float>(pointValues_), currentPointCount_);
+        cloud->setDataF(std::move(xy), std::vector<float>(pointValues_), currentPointCount_);
     }
 
     void updateData()
@@ -292,7 +292,7 @@ private slots:
         for (size_t i = 0; i < series_.size(); ++i) {
             const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), currentFrameIndex_);
             if (auto* curve = qobject_cast<QAccelPlot::LineCurve*>(series_[i])) {
-                curve->setDataFNoRange(dataPtr, currentPointCount_);
+                curve->setDataF(dataPtr, currentPointCount_);
             } else {
                 setPointCloudData(static_cast<QAccelPlot::PointCloud*>(series_[i]), dataPtr);
             }

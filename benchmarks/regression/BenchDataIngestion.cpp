@@ -117,7 +117,7 @@ void runDataIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScena
     auto dataCopy = std::vector<float>{};
 
     // Copying the source buffer simulates new data arriving and is excluded from timing.
-    runTimedLoop(reporter, scenario, [&]() { dataCopy = data; }, [&]() { curve.setDataFNoRange(std::move(dataCopy), pointCount); });
+    runTimedLoop(reporter, scenario, [&]() { dataCopy = data; }, [&]() { curve.setDataF(std::move(dataCopy), pointCount); });
 }
 
 void runVertexCacheBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
@@ -149,7 +149,7 @@ void runPointCloudIngestionBenchmark(BenchmarkReporter& reporter, const Benchmar
             dataCopy = data;
             valuesCopy = values;
         },
-        [&]() { cloud.setDataFNoRange(std::move(dataCopy), std::move(valuesCopy), pointCount); });
+        [&]() { cloud.setDataF(std::move(dataCopy), std::move(valuesCopy), pointCount); });
 }
 
 void runPointCloudHoverIndexBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)

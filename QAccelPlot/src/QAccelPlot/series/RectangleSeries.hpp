@@ -132,16 +132,6 @@ public:
     /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
-    void setDataNoRange(const double* data, int rectCount) override;
-    /// \brief Like \c setData() but does not report X/Y data ranges to the axes.
-    ///
-    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataNoRange(std::vector<double>&& data, int rectCount) override;
-
-    /// \brief Like \c setDataNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the series.
-    void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
-
     /// \brief High-performance C++ overload: copies \a rectCount × 4 floats (x1, y1, x2, y2) from \a data and clears categories.
     void setDataF(const float* data, int rectCount) override;
 
@@ -151,15 +141,8 @@ public:
     /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw float array into the series' reusable buffer.
-    void setDataFNoRange(const float* data, int rectCount) override;
-    /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
-    ///
-    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataFNoRange(std::vector<float>&& data, int rectCount) override;
-
-    /// \brief Like \c setDataFNoRange(\a data, \a rectCount) and also moves per-rectangle \a categories into the series.
-    void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
 
     /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
     void postData(std::vector<double>&& data, int rectCount) override;
@@ -219,14 +202,15 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \brief Invalidates uploaded coordinates when an axis changes scale.
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
-    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
-    void setDataFFromArray(const float* data, int rectCount, bool reportRanges);
-    void finishDataChange(std::vector<int>&& categories, int rectCount, bool reportRanges);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+    void setDataFFromArray(const float* data, int rectCount);
+    void finishDataChange(std::vector<int>&& categories, int rectCount);
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
     // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
@@ -259,7 +243,6 @@ private:
     HitTestInputs hitTestInputs(const QPointF& position) const;
     int topmostRectangleAt(const QPointF& position) const;
     void buildVertexCache();
-    void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
     // data_, so the GPU upload stays accurate for large coordinates
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.

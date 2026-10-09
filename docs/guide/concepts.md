@@ -31,8 +31,12 @@ An `Axis` has two related ranges:
   attached series.
 
 Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
-sets the viewport to fit the data range. A series reports its extent to the
+sets the viewport to fit the data range, and [`autoRescale`][auto-rescale]
+does so on every data update. A series reports its extent to the
 axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
+The extent is computed when it is read, so data updates do not scan the
+records unless something asks for the range; see
+[Data ranges are computed on demand](performance.md#data-ranges-are-computed-on-demand).
 
 | Plot property | Side |
 | --- | --- |
@@ -112,7 +116,6 @@ In both modes:
   immediately, and a sample that becomes valid jumps to its target instead of
   animating from `NaN`.
 - **Hover** never reports a hit on an invalid sample or across a break.
-- The `NoRange` data APIs still render gaps; they only skip range calculation.
 
 ## Composition and overlays
 
@@ -142,6 +145,7 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
 [plot-x-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-xaxis-12

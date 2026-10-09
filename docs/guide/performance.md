@@ -20,37 +20,49 @@ numbers, see the [performance comparison](performance-comparison.md).
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Range scan; buffer ownership is moved immediately and coordinates remain doubles |
-| `setDataNoRange(std::vector<double>&&, count)` | Double coordinates with axis ranges maintained separately | Skips the range scan and signals; coordinates remain doubles |
-| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
-| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
-| [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
-| [`setDataFNoRange(const float*, count)`][set-data-f-no-range-copy] | Existing interleaved memory remains caller-owned and axis ranges are maintained separately | One reusable-buffer copy; skips the range scan and signals |
-| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff, followed by the normal range scan |
-| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)`, followed by the normal range scan |
+| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
+| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory remains caller-owned | One copy into a reusable buffer |
+| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Buffer ownership is moved immediately |
+| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff |
+| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
-C++ data sets. Switch to [`setDataFNoRange()`][set-data-f-no-range] only when
-the range scan is measurable and you maintain accurate
-[`dataMin`][data-min]/[`dataMax`][data-max] values yourself.
+C++ data sets.
 
 Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
 coordinates, or small differences at a large offset. These paths keep doubles
 and rebase the GPU buffer so nearby values stay distinct. The `F` APIs store
 floats; use them only when float precision is sufficient.
 
-!!! caution "No-range updates change the contract"
-
-    `setDataNoRange()` and [`setDataFNoRange()`][set-data-f-no-range] do not report new extents to
-    attached axes. If the data can leave the declared range, update the axes
-    yourself or periodically use a range-calculating path. Otherwise rescaling
-    and clipping behavior will be incorrect.
-
-[`setDataFNoRangeWithCache()`][set-data-f-no-range-with-cache] also accepts a
+[`setDataFWithCache()`][set-data-f-with-cache] also accepts a
 prebuilt vertex cache, so vertex assembly can move off the UI and render
 threads. It ties application code to renderer details; use it only when
 measurements justify it. The cache must match the current point count and
 renderer layout, otherwise it is rejected and normal vertex assembly runs.
+
+## Data ranges are computed on demand
+
+No setter scans the data for its range. After an update, a series scans its
+records the first time something reads the range:
+
+| Reader | Scans |
+| --- | --- |
+| [`rescaleToData()`][rescale-to-data], `rescaleAllAxes()`, a double-click | Once per call |
+| An axis with [`autoRescale`][auto-rescale] | On every data update |
+| [`dataMin`][data-min] / [`dataMax`][data-max], or a binding to them | On every data update that is followed by a read |
+| A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
+
+[`appendData()`][append-data] widens a computed range without a rescan.
+
+To skip the scan when the extents are already known, pass them with the data:
+
+```cpp
+const auto bounds = QAccelPlot::PlotSeries::DataBounds{xMin, xMax, yMin, yMax};
+curve->setDataF(std::move(points), pointCount, bounds);
+```
+
+The bounds describe that update only. A change that affects which values are
+valid, such as switching an axis to a logarithmic scale, discards them.
 
 ## Build buffers efficiently
 
@@ -59,13 +71,11 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 - Move the completed vector instead of copying it.
 - Publish no faster than the display presents frames.
 
-For a fixed streaming window, set the axis data range once and use
-[`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
+For a fixed streaming window, pass the window's bounds with each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`LineCurve`, `PointCloud`, `RectangleSeries`, and `BarSeries` all support
-`setData()` and `setDataNoRange()` for interleaved doubles, `setDataF()` and
-`setDataFNoRange()` for interleaved floats, and `postData()` for either moved
-vector type. Each also accepts a raw array for the four synchronous setters.
+Every series supports `setData()` for interleaved doubles, `setDataF()` for
+interleaved floats, and `postData()` for either moved vector type. The
+synchronous setters also accept a raw array, and data bounds.
 `PointCloud` can add per-point values, and `RectangleSeries` and `BarSeries`
 can add categories with their vector overloads.
 
@@ -229,13 +239,12 @@ Scenarios are defined in
 [set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
 [set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
 [set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
-[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
-[set-data-f-no-range-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-22
-[set-data-f-no-range-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorangewithcache-12
+[set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
+[append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
+[rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
 [hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
-[rectangle-series-set-data-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatanorange
-[rectangle-series-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatafnorange
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

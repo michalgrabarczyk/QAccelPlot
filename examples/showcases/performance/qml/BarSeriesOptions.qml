@@ -17,7 +17,7 @@ ColumnLayout {
 
     required property QtObject settings
     // The raw-array setters take no categories.
-    readonly property bool categoriesAvailable: settings.ingestion !== "floatNoRangeCopy"
+    readonly property bool categoriesAvailable: settings.ingestion !== "floatCopy"
 
     spacing: 12
 

@@ -171,8 +171,7 @@ cloud->postData(std::move(xy), std::move(values), pointCount);
 
 Post a frame only after the window has presented the previous one, for
 example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
-up when rendering falls behind. Use `setDataFNoRange()` when the application
-manages `dataMin` and `dataMax` on the axes itself.
+up when rendering falls behind.
 
 ## Invalid points and logarithmic axes
 

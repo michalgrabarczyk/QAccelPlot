@@ -18,7 +18,7 @@ InterferenceParameters BarSeriesFeed::parameters(const PageScene& scene, const C
     auto parameters = InterferenceParameters{};
     parameters.dataset = datasetParameters(options);
     // The raw-array setters take no categories.
-    parameters.categoryCount = options.ingestion == Ingestion::FloatNoRangeCopy ? 0 : std::max(0, scene.setting("categoryCount").toInt());
+    parameters.categoryCount = options.ingestion == Ingestion::FloatCopy ? 0 : std::max(0, scene.setting("categoryCount").toInt());
     return parameters;
 }
 

@@ -140,12 +140,11 @@ void PerformanceGeneratorsTest::doublePrecisionMovesRecordsToDoubles()
 
 void PerformanceGeneratorsTest::ingestionNamesSelectThePrecision()
 {
-    QCOMPARE(ingestionFromName(QStringLiteral("floatNoRangeMove")), Ingestion::FloatNoRangeMove);
     QCOMPARE(ingestionFromName(QStringLiteral("floatMove")), Ingestion::FloatMove);
-    QCOMPARE(ingestionFromName(QStringLiteral("floatNoRangeCopy")), Ingestion::FloatNoRangeCopy);
+    QCOMPARE(ingestionFromName(QStringLiteral("floatCopy")), Ingestion::FloatCopy);
     QCOMPARE(ingestionFromName(QStringLiteral("doubleMove")), Ingestion::DoubleMove);
     QCOMPARE(ingestionFromName(QStringLiteral("floatPost")), Ingestion::FloatPost);
-    QCOMPARE(ingestionFromName(QStringLiteral("unknown")), Ingestion::FloatNoRangeMove);
+    QCOMPARE(ingestionFromName(QStringLiteral("unknown")), Ingestion::FloatMove);
 
     auto parameters = parametersFor<PlasmaParameters>(10);
     auto generator = PlasmaGenerator{};

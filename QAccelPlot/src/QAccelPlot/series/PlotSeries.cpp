@@ -23,12 +23,30 @@ namespace {
 // Qt Quick older than 6.3 also delivers an ignored hover event to the items beneath the hovered one.
 constexpr auto kHoverReachesSeriesBeneath = QT_VERSION < QT_VERSION_CHECK(6, 3, 0);
 
+std::optional<PlotSeries::DataExtent> validExtent(const std::optional<PlotSeries::DataExtent>& extent)
+{
+    if (extent && std::isfinite(extent->min) && std::isfinite(extent->max) && extent->min <= extent->max) {
+        return extent;
+    }
+    return std::nullopt;
+}
+
 } // namespace
 
 PlotSeries::PlotSeries(QQuickItem* parent)
     : QQuickItem(parent)
 {
     setClip(true);
+}
+
+PlotSeries::~PlotSeries()
+{
+    if (xAxis_) {
+        xAxis_->removeDataRangeSource(this, Axis::Horizontal);
+    }
+    if (yAxis_) {
+        yAxis_->removeDataRangeSource(this, Axis::Vertical);
+    }
 }
 
 quint64 PlotSeries::dataRevision() const
@@ -73,7 +91,7 @@ void PlotSeries::setXAxis(Axis* axis)
         disconnect(xAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
-        xAxis_->clearSourceDataRange(this, Axis::Horizontal);
+        xAxis_->removeDataRangeSource(this, Axis::Horizontal);
     }
     disconnect(xAxisDestroyed_);
     xAxis_ = axis;
@@ -85,11 +103,13 @@ void PlotSeries::setXAxis(Axis* axis)
             invalidateInspection();
             emit xAxisChanged();
         });
-        reportXDataRangeToAxis();
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
     invalidateInspection();
     onAxisScaleChanged();
+    if (xAxis_) {
+        xAxis_->addDataRangeSource(this, Axis::Horizontal);
+    }
     emit xAxisChanged();
     update();
 }
@@ -108,7 +128,7 @@ void PlotSeries::setYAxis(Axis* axis)
         disconnect(yAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
-        yAxis_->clearSourceDataRange(this, Axis::Vertical);
+        yAxis_->removeDataRangeSource(this, Axis::Vertical);
     }
     disconnect(yAxisDestroyed_);
     yAxis_ = axis;
@@ -120,11 +140,13 @@ void PlotSeries::setYAxis(Axis* axis)
             invalidateInspection();
             emit yAxisChanged();
         });
-        reportYDataRangeToAxis();
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
     invalidateInspection();
     onAxisScaleChanged();
+    if (yAxis_) {
+        yAxis_->addDataRangeSource(this, Axis::Vertical);
+    }
     emit yAxisChanged();
     update();
 }
@@ -158,6 +180,46 @@ void PlotSeries::setLegendSymbol(const LegendSymbol symbol)
     }
     legendSymbol_ = symbol;
     emit legendSymbolChanged();
+}
+
+void PlotSeries::setData(const double* data, const int count, const DataBounds& bounds)
+{
+    updateBounds_ = bounds;
+    setData(data, count);
+    updateBounds_.reset();
+}
+
+void PlotSeries::setData(std::vector<double>&& data, const int count, const DataBounds& bounds)
+{
+    updateBounds_ = bounds;
+    setData(std::move(data), count);
+    updateBounds_.reset();
+}
+
+void PlotSeries::setDataF(const float* data, const int count, const DataBounds& bounds)
+{
+    updateBounds_ = bounds;
+    setDataF(data, count);
+    updateBounds_.reset();
+}
+
+void PlotSeries::setDataF(std::vector<float>&& data, const int count, const DataBounds& bounds)
+{
+    updateBounds_ = bounds;
+    setDataF(std::move(data), count);
+    updateBounds_.reset();
+}
+
+std::optional<PlotSeries::DataExtent> PlotSeries::xDataRange() const
+{
+    ensureDataRanges();
+    return xDataExtent_;
+}
+
+std::optional<PlotSeries::DataExtent> PlotSeries::yDataRange() const
+{
+    ensureDataRanges();
+    return yDataExtent_;
 }
 
 void PlotSeries::inspectionDataChanged(const DataChange change)
@@ -200,90 +262,54 @@ InspectionRecord PlotSeries::inspectionRecordAt(const QPointF& /*position*/) con
     return result;
 }
 
-std::optional<PlotSeries::DataExtent> PlotSeries::xDataRange() const
+PlotSeries::DataRanges PlotSeries::computeDataRanges() const
 {
-    if (lastXMin_ > lastXMax_) {
-        return std::nullopt;
-    }
-    return DataExtent{lastXMin_, lastXMax_};
+    return {};
 }
 
-std::optional<PlotSeries::DataExtent> PlotSeries::yDataRange() const
+void PlotSeries::invalidateDataRanges()
 {
-    if (lastYMin_ > lastYMax_) {
-        return std::nullopt;
+    if (updateBounds_) {
+        xDataExtent_ = validExtent(DataExtent{updateBounds_->xMin, updateBounds_->xMax});
+        yDataExtent_ = validExtent(DataExtent{updateBounds_->yMin, updateBounds_->yMax});
+        dataRangesStale_ = false;
+    } else {
+        dataRangesStale_ = true;
     }
-    return DataExtent{lastYMin_, lastYMax_};
-}
-
-void PlotSeries::setDataRanges(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
-{
-    setXDataRange(xMin, xMax);
-    setYDataRange(yMin, yMax);
-}
-
-void PlotSeries::setXDataRange(const qreal min, const qreal max)
-{
-    if (!std::isfinite(min) || !std::isfinite(max)) {
-        return;
-    }
-    if (!nearly_equal(min, lastXMin_) || !nearly_equal(max, lastXMax_)) {
-        lastXMin_ = min;
-        lastXMax_ = max;
-        reportXDataRangeToAxis();
-        emit xDataRangeChanged(min, max);
-    }
-}
-
-void PlotSeries::setYDataRange(const qreal min, const qreal max)
-{
-    if (!std::isfinite(min) || !std::isfinite(max)) {
-        return;
-    }
-    if (!nearly_equal(min, lastYMin_) || !nearly_equal(max, lastYMax_)) {
-        lastYMin_ = min;
-        lastYMax_ = max;
-        reportYDataRangeToAxis();
-        emit yDataRangeChanged(min, max);
-    }
+    reportDataRangesChanged();
 }
 
 void PlotSeries::extendXDataRange(const qreal x)
 {
-    if (std::isfinite(x)) {
-        setXDataRange(std::min(lastXMin_, x), std::max(lastXMax_, x));
+    if (!std::isfinite(x)) {
+        return;
+    }
+    // Stale extents stay stale: the next reader scans the records, including this one.
+    if (!dataRangesStale_) {
+        if (xDataExtent_ && x >= xDataExtent_->min && x <= xDataExtent_->max) {
+            return;
+        }
+        xDataExtent_ = xDataExtent_ ? DataExtent{std::min(xDataExtent_->min, x), std::max(xDataExtent_->max, x)} : DataExtent{x, x};
+    }
+    if (xAxis_) {
+        xAxis_->invalidateDataRange();
     }
 }
 
 void PlotSeries::extendYDataRange(const qreal y)
 {
-    if (std::isfinite(y)) {
-        setYDataRange(std::min(lastYMin_, y), std::max(lastYMax_, y));
+    if (!std::isfinite(y)) {
+        return;
     }
-}
-
-void PlotSeries::clearDataRanges()
-{
-    clearXDataRange();
-    clearYDataRange();
-}
-
-void PlotSeries::clearXDataRange()
-{
-    if (xAxis_) {
-        xAxis_->clearSourceDataRange(this, Axis::Horizontal);
+    if (!dataRangesStale_) {
+        if (yDataExtent_ && y >= yDataExtent_->min && y <= yDataExtent_->max) {
+            return;
+        }
+        yDataExtent_ = yDataExtent_ ? DataExtent{std::min(yDataExtent_->min, y), std::max(yDataExtent_->max, y)} : DataExtent{y, y};
     }
-    lastXMin_ = std::numeric_limits<qreal>::max();
-    lastXMax_ = std::numeric_limits<qreal>::lowest();
-}
-
-void PlotSeries::clearYDataRange()
-{
     if (yAxis_) {
-        yAxis_->clearSourceDataRange(this, Axis::Vertical);
+        yAxis_->invalidateDataRange();
     }
-    lastYMin_ = std::numeric_limits<qreal>::max();
-    lastYMax_ = std::numeric_limits<qreal>::lowest();
 }
 
 void PlotSeries::onAxisScaleChanged()
@@ -320,17 +346,23 @@ bool PlotSeries::event(QEvent* event)
     return QQuickItem::event(event);
 }
 
-void PlotSeries::reportXDataRangeToAxis() const
+void PlotSeries::ensureDataRanges() const
 {
-    if (xAxis_ && lastXMin_ <= lastXMax_) {
-        xAxis_->setSourceDataRange(this, Axis::Horizontal, lastXMin_, lastXMax_);
+    if (!std::exchange(dataRangesStale_, false)) {
+        return;
     }
+    const auto extents = computeDataRanges();
+    xDataExtent_ = validExtent(extents.x);
+    yDataExtent_ = validExtent(extents.y);
 }
 
-void PlotSeries::reportYDataRangeToAxis() const
+void PlotSeries::reportDataRangesChanged() const
 {
-    if (yAxis_ && lastYMin_ <= lastYMax_) {
-        yAxis_->setSourceDataRange(this, Axis::Vertical, lastYMin_, lastYMax_);
+    if (xAxis_) {
+        xAxis_->invalidateDataRange();
+    }
+    if (yAxis_) {
+        yAxis_->invalidateDataRange();
     }
 }
 

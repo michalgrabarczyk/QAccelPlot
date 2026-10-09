@@ -92,9 +92,9 @@ graphics API family.
   update model as Qt Graphs.
 - The curve uses `lineWidth: 1` with all other settings left at their defaults.
 - The harness pre-generates native interleaved `float` XY buffers and updates
-  `LineCurve` with `setDataFNoRange(const float *, int)`. This avoids the
-  `QList<QPointF>` conversion, allocation, and automatic range scan while still
+  `LineCurve` with `setDataF(const float *, int)`. This avoids the
+  `QList<QPointF>` conversion and allocation while still
   timing the complete copy into QAccelPlot on every frame.
 - A solid-line vertex cache is installed once before warmup with
-  `setDataFNoRangeWithCache` and reused every frame, because the point count
+  `setDataFWithCache` and reused every frame, because the point count
   and vertex layout do not change. Cache preparation is outside timing.

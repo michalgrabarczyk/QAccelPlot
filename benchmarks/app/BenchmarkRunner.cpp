@@ -331,7 +331,7 @@ void BenchmarkRunner::updateData()
     ++currentFrameIndex_;
     for (size_t i = 0; i < curves_.size(); ++i) {
         const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), currentFrameIndex_);
-        curves_[i]->setDataFNoRange(dataPtr, currentPointCount_);
+        curves_[i]->setDataF(dataPtr, currentPointCount_);
     }
     requestRender();
 }
@@ -414,7 +414,7 @@ void BenchmarkRunner::setupScene(const BenchmarkScenario& scenario)
     dataBufferPool_ = std::make_unique<ExistingDataBufferPool>(currentPointCount_, scenario.curveCount(), sourceBufferCount(currentUpdateMode_));
     for (size_t i = 0; i < curves_.size(); ++i) {
         const auto* dataPtr = dataBufferPool_->curveBufferData(static_cast<int>(i), 0);
-        curves_[i]->setDataFNoRangeWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
+        curves_[i]->setDataFWithCache(dataPtr, currentPointCount_, std::vector<char>(dataBufferPool_->vertexCache()));
     }
     dataBufferPool_->discardVertexCache();
 }

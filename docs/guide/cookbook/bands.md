@@ -87,7 +87,7 @@ for (auto i = 0; i < count; ++i) {
 band->setData(std::move(samples), count);
 ```
 
-For float buffers, worker-thread handoff, and skipping range scans, see
+For float buffers, worker-thread handoff, and data bounds, see
 [Select the data path](../performance.md#select-the-data-path).
 
 - `setData()` keeps doubles and uploads them relative to an origin near the
@@ -95,7 +95,6 @@ For float buffers, worker-thread handoff, and skipping range scans, see
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
 - `appendData(x, low, high)` adds one sample.
-- `NoRange` variants leave the axes' data ranges to you.
 
 ## Invalid samples
 

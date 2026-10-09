@@ -216,7 +216,7 @@ void RectangleSeries::setData(const QVariantList& rects)
     if (!anyCategory) {
         categories.clear();
     }
-    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()), true);
+    applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
 }
 
 void RectangleSeries::setData(const double* data, const int rectCount)
@@ -228,7 +228,7 @@ void RectangleSeries::setData(const double* data, const int rectCount)
     if (rectCount > 0) {
         buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
     }
-    applyData(std::move(buffer), {}, rectCount, true);
+    applyData(std::move(buffer), {}, rectCount);
 }
 
 void RectangleSeries::setData(std::vector<double>&& data, const int rectCount)
@@ -241,37 +241,12 @@ void RectangleSeries::setData(std::vector<double>&& data, std::vector<int>&& cat
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
     }
-    applyData(std::move(data), std::move(categories), rectCount, true);
-}
-
-void RectangleSeries::setDataNoRange(const double* data, const int rectCount)
-{
-    if (!validateRawDataArguments(data, rectCount)) {
-        return;
-    }
-    auto buffer = std::vector<double>{};
-    if (rectCount > 0) {
-        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
-    }
-    setDataNoRange(std::move(buffer), rectCount);
-}
-
-void RectangleSeries::setDataNoRange(std::vector<double>&& data, const int rectCount)
-{
-    setDataNoRange(std::move(data), {}, rectCount);
-}
-
-void RectangleSeries::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
-{
-    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
-        return;
-    }
-    applyData(std::move(data), std::move(categories), rectCount, false);
+    applyData(std::move(data), std::move(categories), rectCount);
 }
 
 void RectangleSeries::setDataF(const float* data, const int rectCount)
 {
-    setDataFFromArray(data, rectCount, true);
+    setDataFFromArray(data, rectCount);
 }
 
 void RectangleSeries::setDataF(std::vector<float>&& data, const int rectCount)
@@ -284,25 +259,7 @@ void RectangleSeries::setDataF(std::vector<float>&& data, std::vector<int>&& cat
     if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
         return;
     }
-    applyFloatData(std::move(data), std::move(categories), rectCount, true);
-}
-
-void RectangleSeries::setDataFNoRange(const float* data, const int rectCount)
-{
-    setDataFFromArray(data, rectCount, false);
-}
-
-void RectangleSeries::setDataFNoRange(std::vector<float>&& data, const int rectCount)
-{
-    setDataFNoRange(std::move(data), {}, rectCount);
-}
-
-void RectangleSeries::setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
-{
-    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
-        return;
-    }
-    applyFloatData(std::move(data), std::move(categories), rectCount, false);
+    applyFloatData(std::move(data), std::move(categories), rectCount);
 }
 
 void RectangleSeries::postData(std::vector<double>&& data, const int rectCount)
@@ -337,7 +294,7 @@ void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& cat
 
 void RectangleSeries::clearData()
 {
-    applyData({}, {}, 0, true);
+    applyData({}, {}, 0);
 }
 
 void RectangleSeries::setCategories(const QList<int>& categories)
@@ -438,22 +395,22 @@ bool RectangleSeries::validateDataArguments(const std::size_t valueCount, const 
     return true;
 }
 
-void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
     data_ = std::move(data);
-    finishDataChange(std::move(categories), rectCount, reportRanges);
+    finishDataChange(std::move(categories), rectCount);
 }
 
-void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
     data_ = std::vector<double>{};
     renderData_ = std::move(data);
     renderOriginX_ = 0.0;
     renderOriginY_ = 0.0;
-    finishDataChange(std::move(categories), rectCount, reportRanges);
+    finishDataChange(std::move(categories), rectCount);
 }
 
-void RectangleSeries::setDataFFromArray(const float* data, const int rectCount, const bool reportRanges)
+void RectangleSeries::setDataFFromArray(const float* data, const int rectCount)
 {
     if (!validateRawDataArguments(data, rectCount)) {
         return;
@@ -464,10 +421,10 @@ void RectangleSeries::setDataFFromArray(const float* data, const int rectCount, 
     } else {
         buffer.clear();
     }
-    applyFloatData(std::move(buffer), {}, rectCount, reportRanges);
+    applyFloatData(std::move(buffer), {}, rectCount);
 }
 
-void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int rectCount, const bool reportRanges)
+void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int rectCount)
 {
     const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
@@ -480,9 +437,7 @@ void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int 
     spatialGridValid_ = false;
     spatialGridBudget_->reset();
     lastHitTest_.reset();
-    if (reportRanges) {
-        updateDataRanges();
-    }
+    invalidateDataRanges();
     if (hoveredIndex_ >= rectCount_) {
         setHoveredIndex(-1);
     }
@@ -742,19 +697,11 @@ void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScal
     }
 }
 
-void RectangleSeries::updateDataRanges()
+PlotSeries::DataRanges RectangleSeries::computeDataRanges() const
 {
     const auto bounds = hasPreciseData() ? finiteBounds(data_.data(), rectCount_) : finiteBounds(renderData_.data(), rectCount_);
-    if (bounds.xMin <= bounds.xMax) {
-        setXDataRange(bounds.xMin, bounds.xMax);
-    } else {
-        clearXDataRange();
-    }
-    if (bounds.yMin <= bounds.yMax) {
-        setYDataRange(bounds.yMin, bounds.yMax);
-    } else {
-        clearYDataRange();
-    }
+    // A dimension without a finite edge has min > max, which the base class treats as unset.
+    return {DataExtent{bounds.xMin, bounds.xMax}, DataExtent{bounds.yMin, bounds.yMax}};
 }
 
 void RectangleSeries::buildVertexCache()

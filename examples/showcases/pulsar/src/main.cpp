@@ -36,21 +36,20 @@ struct PerformanceMetrics {
     std::atomic<std::uint64_t> previousFrameNanoseconds{0};
 };
 
+// The window all ridges stay inside. Passed with each update, so rescaling fits it without scanning the ridges.
+constexpr auto kRidgeBounds = QAccelPlot::PlotSeries::DataBounds{0.0, 1000.0, 0.0, 560.0};
+
 std::uint64_t steadyNanoseconds()
 {
     const auto now = std::chrono::steady_clock::now().time_since_epoch();
     return static_cast<std::uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(now).count());
 }
 
-void applyBatch(const std::vector<QAccelPlot::LineCurve*>& ridges, QObject* root, const QAccelPlotExample::PulsarBatch& batch, const bool initial)
+void applyBatch(const std::vector<QAccelPlot::LineCurve*>& ridges, QObject* root, const QAccelPlotExample::PulsarBatch& batch)
 {
     for (std::size_t i = 0; i < ridges.size(); ++i) {
         if (i < batch.ridges.size()) {
-            if (initial) {
-                ridges[i]->setDataF(batch.ridges[i].data(), batch.pointsPerRidge);
-            } else {
-                ridges[i]->setDataFNoRange(batch.ridges[i].data(), batch.pointsPerRidge);
-            }
+            ridges[i]->setDataF(batch.ridges[i].data(), batch.pointsPerRidge, kRidgeBounds);
         }
     }
 
@@ -74,7 +73,7 @@ void setupRenderingLoop(QGuiApplication& app, QQuickWindow* window, const std::v
         if (!worker.tryConsume(batch)) {
             return;
         }
-        applyBatch(ridges, root, batch, false);
+        applyBatch(ridges, root, batch);
         metrics.appliedBatches.fetch_add(1, std::memory_order_relaxed);
     });
 
@@ -167,7 +166,7 @@ int main(int argc, char* argv[])
     if (screenshotMode) {
         const auto phase = requestedPhase(app.arguments());
         const auto batch = QAccelPlotExample::PulsarWorker::computeBatchForPhase(phase);
-        applyBatch(ridges, root, batch, true);
+        applyBatch(ridges, root, batch);
         root->setProperty("fps", 60);
         root->setProperty("updateRate", 60);
         QAccelPlotExample::setupScreenshotHandler(app, engine, 100);
@@ -180,7 +179,7 @@ int main(int argc, char* argv[])
 
     // Initial batch at phase 0
     const auto initialBatch = QAccelPlotExample::PulsarWorker::computeBatchForPhase(0.0);
-    applyBatch(ridges, root, initialBatch, true);
+    applyBatch(ridges, root, initialBatch);
 
     setupRenderingLoop(app, window, ridges, root, worker, metrics, screenshotMode);
     setupMetrics(app, window, root, metrics, !screenshotMode);

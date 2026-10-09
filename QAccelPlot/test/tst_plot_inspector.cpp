@@ -273,7 +273,7 @@ void TestPlotInspector::summariesAndFilters()
     // Summaries cover the samples around the cursor and follow data changes.
     inspector.setSummaries(true);
     inspector.setSummaryRadius(1000);
-    curve->setDataNoRange(std::vector<double>{1, 8, 9, 2}, 2);
+    curve->setData(std::vector<double>{1, 8, 9, 2}, 2);
     QTRY_COMPARE(model->get(0).value("summaryCount").toInt(), 2);
     const auto row = model->get(0);
     QVERIFY(row.value("hasSummary").toBool());
@@ -436,7 +436,7 @@ void TestPlotInspector::formatterMutation()
     QTest::qWait(20);
     // The formatter changes the data, deletes a series, and re-enters the inspector mid-refresh.
     formatter.action = [&] {
-        curve->setDataNoRange(std::vector<double>{5, 8}, 1);
+        curve->setData(std::vector<double>{5, 8}, 1);
         delete victim;
         inspector.refresh();
     };

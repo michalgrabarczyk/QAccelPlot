@@ -265,7 +265,7 @@ void BarSeries::setData(const QVariantList& bars)
     if (ranged) {
         applyRangedData(std::move(data), std::move(categories), static_cast<int>(bars.size()));
     } else {
-        applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()), true);
+        applyData(std::move(data), std::move(categories), static_cast<int>(bars.size()));
     }
 }
 
@@ -274,7 +274,7 @@ void BarSeries::setData(const double* data, const int barCount)
     if (!validateRawDataArguments(data, barCount)) {
         return;
     }
-    applyData(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), {}, barCount, true);
+    applyData(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), {}, barCount);
 }
 
 void BarSeries::setData(std::vector<double>&& data, const int barCount)
@@ -287,33 +287,12 @@ void BarSeries::setData(std::vector<double>&& data, std::vector<int>&& categorie
     if (!validateDataArguments(data.size(), categories.size(), barCount)) {
         return;
     }
-    applyData(std::move(data), std::move(categories), barCount, true);
-}
-
-void BarSeries::setDataNoRange(const double* data, const int barCount)
-{
-    if (!validateRawDataArguments(data, barCount)) {
-        return;
-    }
-    applyData(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), {}, barCount, false);
-}
-
-void BarSeries::setDataNoRange(std::vector<double>&& data, const int barCount)
-{
-    setDataNoRange(std::move(data), {}, barCount);
-}
-
-void BarSeries::setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
-{
-    if (!validateDataArguments(data.size(), categories.size(), barCount)) {
-        return;
-    }
-    applyData(std::move(data), std::move(categories), barCount, false);
+    applyData(std::move(data), std::move(categories), barCount);
 }
 
 void BarSeries::setDataF(const float* data, const int barCount)
 {
-    setDataFFromArray(data, barCount, true);
+    setDataFFromArray(data, barCount);
 }
 
 void BarSeries::setDataF(std::vector<float>&& data, const int barCount)
@@ -326,25 +305,7 @@ void BarSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categorie
     if (!validateDataArguments(data.size(), categories.size(), barCount)) {
         return;
     }
-    applyFloatData(std::move(data), std::move(categories), barCount, true);
-}
-
-void BarSeries::setDataFNoRange(const float* data, const int barCount)
-{
-    setDataFFromArray(data, barCount, false);
-}
-
-void BarSeries::setDataFNoRange(std::vector<float>&& data, const int barCount)
-{
-    setDataFNoRange(std::move(data), {}, barCount);
-}
-
-void BarSeries::setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
-{
-    if (!validateDataArguments(data.size(), categories.size(), barCount)) {
-        return;
-    }
-    applyFloatData(std::move(data), std::move(categories), barCount, false);
+    applyFloatData(std::move(data), std::move(categories), barCount);
 }
 
 void BarSeries::postData(std::vector<double>&& data, const int barCount)
@@ -397,7 +358,7 @@ void BarSeries::postRangedData(std::vector<double>&& data, const int barCount)
 
 void BarSeries::clearData()
 {
-    applyData({}, {}, 0, true);
+    applyData({}, {}, 0);
 }
 
 void BarSeries::setCategories(const QList<int>& categories)
@@ -541,7 +502,7 @@ void BarSeries::onAxisScaleChanged()
     if (hasPreciseData()) {
         dataChanged_ = true;
     }
-    updateDataRanges();
+    invalidateDataRanges();
     update();
 }
 
@@ -576,41 +537,41 @@ bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::s
     return true;
 }
 
-void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount, const bool reportRanges)
+void BarSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     data_ = std::move(data);
     ranged_ = false;
-    finishDataChange(std::move(categories), barCount, reportRanges);
+    finishDataChange(std::move(categories), barCount);
 }
 
 void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     data_ = std::move(data);
     ranged_ = true;
-    finishDataChange(std::move(categories), barCount, true);
+    finishDataChange(std::move(categories), barCount);
 }
 
-void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount, const bool reportRanges)
+void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
 {
     data_ = std::vector<double>{};
     ranged_ = false;
     renderData_ = std::move(data);
     renderOriginPosition_ = 0.0;
     renderOriginValue_ = 0.0;
-    finishDataChange(std::move(categories), barCount, reportRanges);
+    finishDataChange(std::move(categories), barCount);
 }
 
-void BarSeries::setDataFFromArray(const float* data, const int barCount, const bool reportRanges)
+void BarSeries::setDataFFromArray(const float* data, const int barCount)
 {
     if (!validateRawDataArguments(data, barCount)) {
         return;
     }
     auto buffer = std::move(renderData_);
     buffer.assign(data, data + static_cast<size_t>(barCount) * 2);
-    applyFloatData(std::move(buffer), {}, barCount, reportRanges);
+    applyFloatData(std::move(buffer), {}, barCount);
 }
 
-void BarSeries::finishDataChange(std::vector<int>&& categories, const int barCount, const bool reportRanges)
+void BarSeries::finishDataChange(std::vector<int>&& categories, const int barCount)
 {
     const auto previousCount = barCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
@@ -621,8 +582,7 @@ void BarSeries::finishDataChange(std::vector<int>&& categories, const int barCou
     barCount_ = barCount;
     dataChanged_ = true;
     spatialGridValid_ = false;
-    reportRanges_ = reportRanges;
-    updateDataRanges();
+    invalidateDataRanges();
     if (hoveredIndex_ >= barCount_) {
         setHoveredIndex(-1);
     }
@@ -636,7 +596,7 @@ void BarSeries::finishDataChange(std::vector<int>&& categories, const int barCou
 void BarSeries::onGeometryChanged()
 {
     spatialGridValid_ = false;
-    updateDataRanges();
+    invalidateDataRanges();
     update();
 }
 
@@ -798,13 +758,10 @@ void BarSeries::buildVertexCache()
     vertexCache_.rebuild(barCount_, colorAt);
 }
 
-void BarSeries::updateDataRanges()
+PlotSeries::DataRanges BarSeries::computeDataRanges() const
 {
-    if (!reportRanges_) {
-        return;
-    }
-    auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
-    auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
+    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
+    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
     const auto logPosition = positionAxis && positionAxis->logScale();
     const auto logValue = valueAxis && valueAxis->logScale();
 
@@ -831,8 +788,7 @@ void BarSeries::updateDataRanges()
         }
     }
     if (positions.isEmpty()) {
-        clearDataRanges();
-        return;
+        return {};
     }
     if (isPlaceable(baselineValue_, logValue)) {
         values.include(baselineValue_);
@@ -846,27 +802,9 @@ void BarSeries::updateDataRanges()
         positionMin = isPlaceable(widenedMin, logPosition) ? widenedMin : positions.min;
         positionMax = positions.max + barOffset_ + 0.5 * barWidth_;
     }
-    reportDataRanges(positionMin, positionMax, values.min, values.max, !values.isEmpty());
-}
-
-void BarSeries::reportDataRanges(const qreal positionMin, const qreal positionMax, const qreal valueMin, const qreal valueMax, const bool hasValues)
-{
-    if (isHorizontal()) {
-        setYDataRange(positionMin, positionMax);
-    } else {
-        setXDataRange(positionMin, positionMax);
-    }
-    if (hasValues) {
-        if (isHorizontal()) {
-            setXDataRange(valueMin, valueMax);
-        } else {
-            setYDataRange(valueMin, valueMax);
-        }
-    } else if (isHorizontal()) {
-        clearXDataRange();
-    } else {
-        clearYDataRange();
-    }
+    const auto positionExtent = std::optional<DataExtent>{DataExtent{positionMin, positionMax}};
+    const auto valueExtent = values.isEmpty() ? std::optional<DataExtent>{} : DataExtent{values.min, values.max};
+    return isHorizontal() ? DataRanges{valueExtent, positionExtent} : DataRanges{positionExtent, valueExtent};
 }
 
 void BarSeries::rebuildRenderData(const bool logScalePosition, const bool logScaleValue)

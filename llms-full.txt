@@ -18,8 +18,8 @@ frame.
 
 - **Throughput** — about 8M points replaced and drawn per frame at 60 FPS on the
   [reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/), without downsampling
-- **Data paths** — QML points, double vectors, moved `float` buffers, no-range
-  updates, and worker-thread `postData()`
+- **Data paths** — QML points, double vectors, moved `float` buffers, and
+  worker-thread `postData()`
 - **Interaction** — pan, cursor-centered and per-axis zoom, rescale, hover hit
   testing, and plot mouse events for custom tools
 - **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
@@ -322,8 +322,12 @@ An `Axis` has two related ranges:
   attached series.
 
 Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
-sets the viewport to fit the data range. A series reports its extent to the
+sets the viewport to fit the data range, and [`autoRescale`][auto-rescale]
+does so on every data update. A series reports its extent to the
 axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
+The extent is computed when it is read, so data updates do not scan the
+records unless something asks for the range; see
+[Data ranges are computed on demand](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand).
 
 | Plot property | Side |
 | --- | --- |
@@ -403,7 +407,6 @@ In both modes:
   immediately, and a sample that becomes valid jumps to its target instead of
   animating from `NaN`.
 - **Hover** never reports a hit on an invalid sample or across a break.
-- The `NoRange` data APIs still render gaps; they only skip range calculation.
 
 ## Composition and overlays
 
@@ -433,6 +436,7 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
 [plot-x-axis]: api/classQAccelPlot_1_1QAccelPlot.md#property-xaxis-12
@@ -466,37 +470,49 @@ numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAc
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Range scan; buffer ownership is moved immediately and coordinates remain doubles |
-| `setDataNoRange(std::vector<double>&&, count)` | Double coordinates with axis ranges maintained separately | Skips the range scan and signals; coordinates remain doubles |
-| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory cannot be transferred | One copy plus a range scan |
-| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Range scan; buffer ownership is moved immediately |
-| [`setDataFNoRange(std::vector<float>&&, count)`][set-data-f-no-range] | Axis data ranges are fixed or maintained separately | Skips the range scan and signals |
-| [`setDataFNoRange(const float*, count)`][set-data-f-no-range-copy] | Existing interleaved memory remains caller-owned and axis ranges are maintained separately | One reusable-buffer copy; skips the range scan and signals |
-| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff, followed by the normal range scan |
-| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)`, followed by the normal range scan |
+| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
+| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory remains caller-owned | One copy into a reusable buffer |
+| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Buffer ownership is moved immediately |
+| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff |
+| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
-C++ data sets. Switch to [`setDataFNoRange()`][set-data-f-no-range] only when
-the range scan is measurable and you maintain accurate
-[`dataMin`][data-min]/[`dataMax`][data-max] values yourself.
+C++ data sets.
 
 Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
 coordinates, or small differences at a large offset. These paths keep doubles
 and rebase the GPU buffer so nearby values stay distinct. The `F` APIs store
 floats; use them only when float precision is sufficient.
 
-!!! caution "No-range updates change the contract"
-
-    `setDataNoRange()` and [`setDataFNoRange()`][set-data-f-no-range] do not report new extents to
-    attached axes. If the data can leave the declared range, update the axes
-    yourself or periodically use a range-calculating path. Otherwise rescaling
-    and clipping behavior will be incorrect.
-
-[`setDataFNoRangeWithCache()`][set-data-f-no-range-with-cache] also accepts a
+[`setDataFWithCache()`][set-data-f-with-cache] also accepts a
 prebuilt vertex cache, so vertex assembly can move off the UI and render
 threads. It ties application code to renderer details; use it only when
 measurements justify it. The cache must match the current point count and
 renderer layout, otherwise it is rejected and normal vertex assembly runs.
+
+## Data ranges are computed on demand
+
+No setter scans the data for its range. After an update, a series scans its
+records the first time something reads the range:
+
+| Reader | Scans |
+| --- | --- |
+| [`rescaleToData()`][rescale-to-data], `rescaleAllAxes()`, a double-click | Once per call |
+| An axis with [`autoRescale`][auto-rescale] | On every data update |
+| [`dataMin`][data-min] / [`dataMax`][data-max], or a binding to them | On every data update that is followed by a read |
+| A `LineCurve` gradient with a `DataRange` bound | On every data update of that curve |
+
+[`appendData()`][append-data] widens a computed range without a rescan.
+
+To skip the scan when the extents are already known, pass them with the data:
+
+```cpp
+const auto bounds = QAccelPlot::PlotSeries::DataBounds{xMin, xMax, yMin, yMax};
+curve->setDataF(std::move(points), pointCount, bounds);
+```
+
+The bounds describe that update only. A change that affects which values are
+valid, such as switching an axis to a logarithmic scale, discards them.
 
 ## Build buffers efficiently
 
@@ -505,13 +521,11 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.
 - Move the completed vector instead of copying it.
 - Publish no faster than the display presents frames.
 
-For a fixed streaming window, set the axis data range once and use
-[`setDataFNoRange()`][set-data-f-no-range] for each frame, as in the
+For a fixed streaming window, pass the window's bounds with each frame, as in the
 [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-`LineCurve`, `PointCloud`, `RectangleSeries`, and `BarSeries` all support
-`setData()` and `setDataNoRange()` for interleaved doubles, `setDataF()` and
-`setDataFNoRange()` for interleaved floats, and `postData()` for either moved
-vector type. Each also accepts a raw array for the four synchronous setters.
+Every series supports `setData()` for interleaved doubles, `setDataF()` for
+interleaved floats, and `postData()` for either moved vector type. The
+synchronous setters also accept a raw array, and data bounds.
 `PointCloud` can add per-point values, and `RectangleSeries` and `BarSeries`
 can add categories with their vector overloads.
 
@@ -675,13 +689,12 @@ Scenarios are defined in
 [set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
 [set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
 [set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
-[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
-[set-data-f-no-range-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-22
-[set-data-f-no-range-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorangewithcache-12
+[set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
+[append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
+[rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
 [hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
-[rectangle-series-set-data-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatanorange
-[rectangle-series-set-data-f-no-range]: api/classQAccelPlot_1_1RectangleSeries.md#function-setdatafnorange
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
@@ -715,7 +728,7 @@ Measure your workload with the included
 
 Move an interleaved float buffer with
 [`setDataF(std::vector<float>&&, int)`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdataf-22).
-If axis data ranges are fixed, `setDataFNoRange()` also skips the range scan.
+Data updates do not scan for the data range; it is computed when read.
 See [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
 
 ## When should I use `postData()` instead of `setDataF()`?
@@ -812,13 +825,16 @@ Check these conditions:
 On the software backend, QAccelPlot logs a warning that curve rendering is
 unavailable.
 
-## Rescale does not show all new data
+## Rescale does not fit the data
 
-[`setDataFNoRange()`][set-data-f-no-range] skips data-range calculation. Set
-accurate [`dataMin`][data-min] and [`dataMax`][data-max] on the axes, or update
-through [`setDataF()`][set-data-f] before calling
-[`rescaleToData()`][rescale-to-data] or [`rescaleAllAxes()`][rescale-all-axes].
-Every series attached to an axis contributes to its data range.
+Data passed with `DataBounds` is not scanned: a rescale fits the given bounds,
+so they must cover the data. Every series attached to an axis contributes to
+its data range.
+
+## Pan and zoom snap back
+
+An axis with [`autoRescale`][auto-rescale] refits its viewport on every
+data update. Set `autoRescale` to `false` while the user navigates.
 
 ## A real-time plot stutters
 
@@ -848,12 +864,7 @@ Report through [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/is
 
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
-[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
-[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
-[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[set-data-f]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
-[rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
-[rescale-all-axes]: api/classQAccelPlot_1_1QAccelPlot.md#function-rescaleallaxes
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped
 
 
@@ -964,9 +975,9 @@ Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAc
 
 # Real-time scrolling data
 
-Keep the axis range fixed and replace the visible buffer once per frame.
+Keep the viewport fixed and replace the visible buffer once per frame.
 
-## Declare stable ranges
+## Declare a stable viewport
 
 ```qml
 import QtQuick
@@ -978,16 +989,12 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: -20
         viewportMax: 0
-        dataMin: -20
-        dataMax: 0
         label: "Time before present (s)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: -2.5
         viewportMax: 2.5
-        dataMin: -2.5
-        dataMax: 2.5
         label: "Acceleration (g)"
     }
 
@@ -1002,19 +1009,45 @@ QAccelPlot.Plot {
 
 ## Update every frame
 
-Pass each new buffer to [`setDataFNoRange()`][set-data-f-no-range], which skips
-the range scan:
+Pass each new buffer to [`setDataF()`][set-data-f]. No data update scans the
+buffer for its range; that happens only when something reads the range, such
+as a double-click rescale:
 
 ```cpp
-curve->setDataFNoRange(std::move(points), pointCount);
+curve->setDataF(std::move(points), pointCount);
 ```
 
-Before using the no-range path, declare the axis data ranges or call
-[`setDataF()`][set-data-f] once. If the signal can leave those bounds, update
-the ranges yourself.
+A rescale then fits the samples of that frame. To fit the nominal window
+instead, and skip the scan, pass its bounds with the data:
+
+```cpp
+constexpr auto bounds = QAccelPlot::PlotSeries::DataBounds{-20.0, 0.0, -2.5, 2.5};
+curve->setDataF(std::move(points), pointCount, bounds);
+```
 
 If buffer generation is expensive, move it to a worker thread; see
 [Background data production](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/background-data/).
+
+## Follow the data range
+
+To fit an axis to the data instead of fixing its viewport, set
+[`autoRescale`][auto-rescale]. The viewport is refitted on every data update,
+including each [`appendData()`][append-data] call:
+
+```qml
+yAxis: QAccelPlot.Axis {
+    autoRescale: true
+}
+```
+
+- The fit is exact, as with [`rescaleToData()`][rescale-to-data].
+- A panned or zoomed viewport is replaced on the next update. Set
+  `autoRescale` to `false` while the user navigates.
+- Appending only extends the data range. Replace the buffer with
+  [`setDataF()`][set-data-f] to let the range shrink.
+- Each update scans the data for its range. Appending widens the range
+  without a scan, and data passed with bounds is not scanned.
+- When the last series on the axis is cleared, the viewport is kept.
 
 ## Show dropouts as gaps
 
@@ -1036,8 +1069,10 @@ Complete sources:
 - [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 - [`examples/data/missing_data`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/missing_data)
 
-[set-data-f-no-range]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[auto-rescale]: ../api/classQAccelPlot_1_1Axis.md#property-autorescale-12
+[append-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-appenddata
+[rescale-to-data]: ../api/classQAccelPlot_1_1Axis.md#function-rescaletodata
 
 
 ---
@@ -1964,8 +1999,7 @@ cloud->postData(std::move(xy), std::move(values), pointCount);
 
 Post a frame only after the window has presented the previous one, for
 example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
-up when rendering falls behind. Use `setDataFNoRange()` when the application
-manages `dataMin` and `dataMax` on the axes itself.
+up when rendering falls behind.
 
 ## Invalid points and logarithmic axes
 
@@ -2152,8 +2186,8 @@ data, so large positions such as epoch timestamps stay precise.
 Ranged bars are interleaved `(from, to, value)` triples passed to
 `setRangedData()`, or to `postRangedData()` from a worker thread.
 
-For the highest throughput, use the float paths (`setDataF()`,
-`setDataFNoRange()`) and `postData()` from a worker thread; see the
+For the highest throughput, use `setDataF()`, or `postData()` from a worker
+thread; see the
 [Performance guide](https://michalgrabarczyk.github.io/QAccelPlot/performance/).
 
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An
@@ -2351,7 +2385,7 @@ for (auto i = 0; i < count; ++i) {
 band->setData(std::move(samples), count);
 ```
 
-For float buffers, worker-thread handoff, and skipping range scans, see
+For float buffers, worker-thread handoff, and data bounds, see
 [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
 
 - `setData()` keeps doubles and uploads them relative to an origin near the
@@ -2359,7 +2393,6 @@ For float buffers, worker-thread handoff, and skipping range scans, see
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
 - `appendData(x, low, high)` adds one sample.
-- `NoRange` variants leave the axes' data ranges to you.
 
 ## Invalid samples
 
@@ -2430,13 +2463,14 @@ and skips frames that could never be displayed.
 ```cpp
 DataBatch batch;
 if (worker.tryConsume(batch)) {
-    curve->setDataFNoRange(std::move(batch.points), batch.pointCount);
+    curve->setDataF(std::move(batch.points), batch.pointCount);
 }
 ```
 
-Use the no-range form only when the axes already hold valid data bounds. If the
-range changes, set the new bounds on the UI thread or use
-[`postData()`][post-data] / [`setDataF()`][set-data-f] to calculate them.
+The data range is scanned on the UI thread, and only when something reads it;
+see [Data ranges are computed on demand](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand).
+If the worker already knows the extents, add them to the batch and pass them
+as `DataBounds` to skip that scan.
 
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.
@@ -2504,7 +2538,7 @@ See [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/dat
   curve's thread.
 - [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata) —
   completed buffers from a worker thread.
-- `setDataFNoRange()` — only when you maintain axis data ranges yourself.
+- `PlotSeries::DataBounds` — passed with the data when its extents are already known.
 - `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.
   See [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
 

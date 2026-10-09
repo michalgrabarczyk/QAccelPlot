@@ -8,7 +8,6 @@
 import QtQuick
 import QAccelPlot as QAccelPlot
 
-// Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
     objectName: "barSeriesPlot"
@@ -32,16 +31,12 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: -0.5
         viewportMax: plot.settings.count - 0.5
-        dataMin: -0.5
-        dataMax: plot.settings.count - 0.5
         label: "Bar"
     }
 
     yAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 1
-        dataMin: 0
-        dataMax: 1
         axisTitlePadding: 40
         layoutSize: 60
         label: "Value"

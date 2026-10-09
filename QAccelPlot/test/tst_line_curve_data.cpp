@@ -51,7 +51,7 @@ private slots:
     void pointListDataPreservesModernEpochPrecision();
     void separateDoubleDataPreservesModernEpochPrecision();
     void interleavedDoubleDataPreservesModernEpochPrecision();
-    void doubleNoRangeOverloadsSkipRangesAndPreservePrecision();
+    void dataBoundsReplaceTheRangeScan();
     void invalidInterleavedDoubleDataIsRejected();
     void postedDoubleDataPreservesModernEpochPrecision();
     void postedDoubleDataFromWorkerThreadIsApplied();
@@ -180,42 +180,34 @@ void LineCurveDataTest::invalidRawArgumentsAreRejected()
 {
     auto curve = LineCurve{};
     auto data = makeData(2);
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
     curve.setDataF(data.data(), 2);
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(dataSpy.count(), 1);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received a null data pointer.*"));
     curve.setDataF(nullptr, 2);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve data point count cannot be negative.*"));
     curve.setDataF(data.data(), -1);
 
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(dataSpy.count(), 1);
 }
 
 void LineCurveDataTest::invalidVectorArgumentsAreRejected()
 {
     auto curve = LineCurve{};
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     curve.setDataF(makeData(2), 2);
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(dataSpy.count(), 1);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received .* floats for 3 points.*"));
     curve.setDataF(makeData(2), 3);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received .* floats for 3 points.*"));
-    curve.setDataFNoRange(makeData(2), 3);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received .* floats for 3 points.*"));
-    curve.setDataFNoRangeWithCache(makeData(2), 3, {});
+    curve.setDataFWithCache(makeData(2), 3, {});
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve data point count cannot be negative.*"));
     curve.setDataF(makeData(2), -1);
 
-    QCOMPARE(xRangeSpy.count(), 1);
-    QCOMPARE(yRangeSpy.count(), 1);
+    QCOMPARE(dataSpy.count(), 1);
 }
 
 void LineCurveDataTest::rawUpdateHonorsTransition()
@@ -226,11 +218,11 @@ void LineCurveDataTest::rawUpdateHonorsTransition()
     curve.setTransition(&transition);
 
     auto first = makeData(2);
-    curve.setDataFNoRange(first.data(), 2);
+    curve.setDataF(first.data(), 2);
     transition.setEnabled(true);
 
     auto second = makeData(3, 8.0f);
-    curve.setDataFNoRange(second.data(), 3);
+    curve.setDataF(second.data(), 3);
 
     QVERIFY(transition.running());
 }
@@ -241,12 +233,12 @@ void LineCurveDataTest::cachedUpdatesHonorTransition()
     auto transition = MorphTransition{&curve};
     curve.setTransition(&transition);
 
-    curve.setDataFNoRangeWithCache(makeData(2), 2, {});
+    curve.setDataFWithCache(makeData(2), 2, {});
     QVERIFY(transition.running());
 
     transition.cancel();
     auto raw = makeData(3, 8.0f);
-    curve.setDataFNoRangeWithCache(raw.data(), 3, {});
+    curve.setDataFWithCache(raw.data(), 3, {});
     QVERIFY(transition.running());
 }
 
@@ -255,16 +247,16 @@ void LineCurveDataTest::mismatchedVertexCacheIsIgnored()
     auto xAxis = Axis{};
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 3 bytes; expected \\d+"));
-    curve.setDataFNoRangeWithCache(makeData(4), 4, std::vector<char>(3));
-    auto raw = makeData(4);
+    curve.setDataFWithCache(makeData(4), 4, std::vector<char>(3));
+    QCOMPARE(xAxis.dataMax(), 3.0);
+    auto raw = makeData(5);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("Ignoring vertex cache with 5 bytes; expected \\d+"));
-    curve.setDataFNoRangeWithCache(raw.data(), 4, std::vector<char>(5));
+    curve.setDataFWithCache(raw.data(), 5, std::vector<char>(5));
 
-    // No-range updates leave range bookkeeping to the caller.
-    QCOMPARE(xRangeSpy.count(), 0);
+    // The data is accepted without the cache.
+    QCOMPARE(xAxis.dataMax(), 4.0);
 }
 
 void LineCurveDataTest::destroyedTransitionClearsReference()
@@ -340,12 +332,12 @@ void LineCurveDataTest::disablingTransitionMidRunCancelsIt()
     curve.setTransition(&transition);
 
     auto first = makeData(2);
-    curve.setDataFNoRange(first.data(), 2);
+    curve.setDataF(first.data(), 2);
     QVERIFY(transition.running());
 
     transition.setEnabled(false);
     auto second = makeData(3, 8.0f);
-    curve.setDataFNoRange(second.data(), 3);
+    curve.setDataF(second.data(), 3);
 
     QVERIFY(!transition.running());
 }
@@ -357,7 +349,7 @@ void LineCurveDataTest::appendDataCancelsRunningTransition()
     curve.setTransition(&transition);
 
     auto first = makeData(2);
-    curve.setDataFNoRange(first.data(), 2);
+    curve.setDataF(first.data(), 2);
     QVERIFY(transition.running());
 
     curve.appendData(5.0, 6.0);
@@ -471,42 +463,62 @@ void LineCurveDataTest::interleavedDoubleDataPreservesModernEpochPrecision()
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
 }
 
-void LineCurveDataTest::doubleNoRangeOverloadsSkipRangesAndPreservePrecision()
+void LineCurveDataTest::dataBoundsReplaceTheRangeScan()
 {
     constexpr auto epoch = double{1'789'032'600'000.0};
     auto xAxis = Axis{};
+    auto yAxis = Axis{};
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
-    curve.setData(std::vector<double>{1.0, 0.0, 2.0, 1.0}, 2);
-    auto xRangeSpy = QSignalSpy{&curve, &PlotSeries::xDataRangeChanged};
+    curve.setYAxis(&yAxis);
 
-    curve.setDataNoRange(std::vector<double>{epoch, 0.0, epoch + 0.5, 1.0}, 2);
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMax(), 2.0);
+    curve.setData(std::vector<double>{epoch, 0.0, epoch + 0.5, 1.0}, 2, PlotSeries::DataBounds{0.0, 10.0, -1.0, 1.0});
+    QCOMPARE(xAxis.dataMin(), 0.0);
+    QCOMPARE(xAxis.dataMax(), 10.0);
+    QCOMPARE(yAxis.dataMin(), -1.0);
+    QCOMPARE(yAxis.dataMax(), 1.0);
 
+    // An update without bounds is scanned again.
     const auto raw = std::vector<double>{epoch + 1.0, 0.0, epoch + 1.5, 1.0};
-    curve.setDataNoRange(raw.data(), 2);
-    QCOMPARE(xRangeSpy.count(), 0);
     curve.setData(raw.data(), 2);
     QCOMPARE(xAxis.dataMin(), epoch + 1.0);
     QCOMPARE(xAxis.dataMax(), epoch + 1.5);
 
-    curve.setDataNoRange(static_cast<const double*>(nullptr), 0);
+    curve.setData(raw.data(), 2, PlotSeries::DataBounds{-4.0, 4.0, -2.0, 2.0});
+    QCOMPARE(xAxis.dataMin(), -4.0);
+    QCOMPARE(yAxis.dataMax(), 2.0);
+
+    const auto floats = makeData(3);
+    curve.setDataF(floats.data(), 3, PlotSeries::DataBounds{-8.0, 8.0, -6.0, 6.0});
+    QCOMPARE(xAxis.dataMax(), 8.0);
+    QCOMPARE(yAxis.dataMin(), -6.0);
+
+    curve.setDataF(makeData(3), 3, PlotSeries::DataBounds{-9.0, 9.0, -7.0, 7.0});
+    QCOMPARE(xAxis.dataMin(), -9.0);
+    QCOMPARE(yAxis.dataMax(), 7.0);
+
+    // A dimension whose bounds are not finite or not ordered reports no extent.
+    curve.setDataF(makeData(3), 3, PlotSeries::DataBounds{std::numeric_limits<qreal>::quiet_NaN(), 9.0, 5.0, -5.0});
+    QVERIFY(!curve.xDataRange());
+    QVERIFY(!curve.yDataRange());
+
+    // Rejected data does not install its bounds.
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received a null data pointer.*"));
-    curve.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    curve.setData(static_cast<const double*>(nullptr), 1, PlotSeries::DataBounds{0.0, 1.0, 0.0, 1.0});
+    QVERIFY(!curve.xDataRange());
 }
 
 void LineCurveDataTest::invalidInterleavedDoubleDataIsRejected()
 {
     auto curve = LineCurve{};
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received 4 doubles for 3 points.*"));
     curve.setData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 3);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve data point count cannot be negative.*"));
     curve.setData(std::vector<double>{}, -1);
 
-    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(dataSpy.count(), 0);
 }
 
 void LineCurveDataTest::postedDoubleDataPreservesModernEpochPrecision()
@@ -515,12 +527,12 @@ void LineCurveDataTest::postedDoubleDataPreservesModernEpochPrecision()
     auto xAxis = Axis{};
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     curve.postData(std::vector<double>{epochMilliseconds, 10.0, epochMilliseconds + 0.5, 20.0, epochMilliseconds + 1.0, 30.0}, 3);
-    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(dataSpy.count(), 0);
 
-    QTRY_COMPARE(xRangeSpy.count(), 1);
+    QTRY_COMPARE(dataSpy.count(), 1);
     QCOMPARE(xAxis.dataMin(), epochMilliseconds);
     QCOMPARE(xAxis.dataMax(), epochMilliseconds + 1.0);
 }
@@ -530,14 +542,14 @@ void LineCurveDataTest::postedDoubleDataFromWorkerThreadIsApplied()
     auto yAxis = Axis{};
     auto curve = LineCurve{};
     curve.setYAxis(&yAxis);
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     auto* worker = QThread::create([&curve]() { curve.postData(std::vector<double>{0.0, -2.5, 1.0, 7.25}, 2); });
     worker->start();
     QVERIFY(worker->wait());
     delete worker;
 
-    QTRY_COMPARE(yRangeSpy.count(), 1);
+    QTRY_COMPARE(dataSpy.count(), 1);
     QCOMPARE(yAxis.dataMin(), -2.5);
     QCOMPARE(yAxis.dataMax(), 7.25);
 }
@@ -547,14 +559,14 @@ void LineCurveDataTest::postedFloatDataFromWorkerThreadIsApplied()
     auto yAxis = Axis{};
     auto curve = LineCurve{};
     curve.setYAxis(&yAxis);
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     auto* worker = QThread::create([&curve]() { curve.postData(std::vector<float>{0.0f, -1.5f, 1.0f, 4.5f}, 2); });
     worker->start();
     QVERIFY(worker->wait());
     delete worker;
 
-    QTRY_COMPARE(yRangeSpy.count(), 1);
+    QTRY_COMPARE(dataSpy.count(), 1);
     QCOMPARE(yAxis.dataMin(), -1.5);
     QCOMPARE(yAxis.dataMax(), 4.5);
 }
@@ -628,7 +640,7 @@ void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
 void LineCurveDataTest::invalidPostedDoubleDataIsRejected()
 {
     auto curve = LineCurve{};
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
+    auto dataSpy = QSignalSpy{&curve, &PlotSeries::dataRevisionChanged};
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("LineCurve received 4 doubles for 3 points.*"));
     curve.postData(std::vector<double>{0.0, 0.0, 1.0, 1.0}, 3);
@@ -636,7 +648,7 @@ void LineCurveDataTest::invalidPostedDoubleDataIsRejected()
     curve.postData(std::vector<double>{}, -1);
     QCoreApplication::processEvents();
 
-    QCOMPARE(xRangeSpy.count(), 0);
+    QCOMPARE(dataSpy.count(), 0);
 }
 
 void LineCurveDataTest::reassignedEffectsSurviveListClear()

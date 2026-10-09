@@ -65,8 +65,8 @@ private slots:
     void invalidBarsAreExcludedFromRanges();
     void horizontalBarsSwapTheAxes();
     void logValueAxisExcludesNonPositiveValues();
-    void noRangeDataDoesNotReportRanges();
-    void rawDoubleNoRangeSkipsRanges();
+    void dataBoundsReplaceTheRangeScan();
+    void rawDoubleDataIsCopiedAndNullIsRejected();
     void propertiesClampAndNotify();
     void epochPositionsAreUploadedRelativeToAnOrigin();
     void geometryIsPassedToTheMaterial();
@@ -326,50 +326,51 @@ void BarSeriesDataTest::logValueAxisExcludesNonPositiveValues()
     QCOMPARE(yAxis.dataMin(), -5.0);
 }
 
-void BarSeriesDataTest::noRangeDataDoesNotReportRanges()
+void BarSeriesDataTest::dataBoundsReplaceTheRangeScan()
 {
     auto xAxis = Axis{};
     auto yAxis = Axis{};
     auto bars = BarSeries{};
     bars.setXAxis(&xAxis);
     bars.setYAxis(&yAxis);
-    auto xRangeSpy = QSignalSpy{&bars, &BarSeries::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&bars, &BarSeries::yDataRangeChanged};
 
-    bars.setDataNoRange(std::vector<double>{1.0, 2.0}, 1);
-    bars.setBarWidth(2.0);
-    bars.setBaselineValue(-1.0);
-    bars.setOrientation(Qt::Horizontal);
-    yAxis.setLogScale(true);
-    bars.setDataFNoRange(std::vector<float>{3.0f, 4.0f}, 1);
-
+    bars.setData(std::vector<double>{1.0, 2.0}, 1, PlotSeries::DataBounds{-10.0, 10.0, -20.0, 20.0});
     QCOMPARE(bars.count(), 1);
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(yRangeSpy.count(), 0);
+    QCOMPARE(xAxis.dataMin(), -10.0);
+    QCOMPARE(xAxis.dataMax(), 10.0);
+    QCOMPARE(yAxis.dataMin(), -20.0);
+    QCOMPARE(yAxis.dataMax(), 20.0);
 
-    bars.setDataF(std::vector<float>{3.0f, 4.0f}, 1);
-    QVERIFY(xRangeSpy.count() > 0);
+    // The bounds described the bars as they were drawn; a geometry change scans them again.
+    bars.setBarWidth(2.0);
+    QCOMPARE(xAxis.dataMin(), 0.0);
+    QCOMPARE(xAxis.dataMax(), 2.0);
+    QCOMPARE(yAxis.dataMin(), 0.0);
+    QCOMPARE(yAxis.dataMax(), 2.0);
+
+    bars.setDataF(std::vector<float>{3.0f, 4.0f}, 1, PlotSeries::DataBounds{-1.0, 1.0, -2.0, 2.0});
+    QCOMPARE(xAxis.dataMax(), 1.0);
+    QCOMPARE(yAxis.dataMin(), -2.0);
 }
 
-void BarSeriesDataTest::rawDoubleNoRangeSkipsRanges()
+void BarSeriesDataTest::rawDoubleDataIsCopiedAndNullIsRejected()
 {
     auto xAxis = Axis{};
     auto bars = BarSeries{};
     bars.setXAxis(&xAxis);
     bars.setBarWidth(0.0);
     bars.setData(std::vector<double>{3.0, 4.0}, 1);
-    auto xRangeSpy = QSignalSpy{&bars, &PlotSeries::xDataRangeChanged};
+    QCOMPARE(xAxis.dataMax(), 3.0);
     const auto raw = std::array<double, 2>{10.0, 20.0};
 
-    bars.setDataNoRange(raw.data(), 1);
+    bars.setData(raw.data(), 1);
     QCOMPARE(bars.barAt(0).value(QStringLiteral("position")).toDouble(), 10.0);
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(xAxis.dataMax(), 10.0);
 
-    bars.setDataNoRange(static_cast<const double*>(nullptr), 0);
+    bars.setData(static_cast<const double*>(nullptr), 0);
     QCOMPARE(bars.count(), 0);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received a null data pointer.*"));
-    bars.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    bars.setData(static_cast<const double*>(nullptr), 1);
     QCOMPARE(bars.count(), 0);
 }
 

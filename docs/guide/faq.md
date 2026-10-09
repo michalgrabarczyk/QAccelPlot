@@ -31,7 +31,7 @@ Measure your workload with the included
 
 Move an interleaved float buffer with
 [`setDataF(std::vector<float>&&, int)`](api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22).
-If axis data ranges are fixed, `setDataFNoRange()` also skips the range scan.
+Data updates do not scan for the data range; it is computed when read.
 See [Select the data path](performance.md#select-the-data-path).
 
 ## When should I use `postData()` instead of `setDataF()`?

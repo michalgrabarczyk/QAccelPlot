@@ -254,15 +254,15 @@ void TestAxisMapping::log_mapFromPosition_roundTrip()
 void TestAxisMapping::dataRange_updateReplacesRange()
 {
     auto positiveAxis = QAccelPlot::Axis{};
-    positiveAxis.updateDataRange(10.0, 20.0);
+    positiveAxis.setDataRange(10.0, 20.0);
     QCOMPARE(positiveAxis.dataMin(), 10.0);
     QCOMPARE(positiveAxis.dataMax(), 20.0);
-    positiveAxis.updateDataRange(12.0, 18.0);
+    positiveAxis.setDataRange(12.0, 18.0);
     QCOMPARE(positiveAxis.dataMin(), 12.0);
     QCOMPARE(positiveAxis.dataMax(), 18.0);
 
     auto negativeAxis = QAccelPlot::Axis{};
-    negativeAxis.updateDataRange(-20.0, -10.0);
+    negativeAxis.setDataRange(-20.0, -10.0);
     QCOMPARE(negativeAxis.dataMin(), -20.0);
     QCOMPARE(negativeAxis.dataMax(), -10.0);
 }

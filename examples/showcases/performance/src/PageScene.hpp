@@ -31,7 +31,7 @@ struct CommonOptions {
     /// \brief Number of series the records are split across.
     int seriesCount{1};
     /// \brief Series API that receives the records.
-    Ingestion ingestion{Ingestion::FloatNoRangeMove};
+    Ingestion ingestion{Ingestion::FloatMove};
     /// \brief Whether the series take part in hover hit-testing.
     bool hoverEnabled{true};
 };

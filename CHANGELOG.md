@@ -26,8 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleSeries` categories: `category`, `categoryColors`, and `setCategories()`.
 - `RectangleSeries.border.width` and `border.color`.
 - `RectangleSeries.hoverColor`.
-- `RectangleSeries`: `setDataNoRange()`, `setDataF()`, `setDataFNoRange()`, and float
-  `postData()` overloads.
+- `RectangleSeries`: `setDataF()` and float `postData()` overloads.
 - `SpatialGrid::buildF()`.
 - `RectVertexCache`.
 - `BarSeries`: `orientation`, `barWidth`, `barOffset`, `baselineValue`, `barAt()`, and `barIndexAt()`.
@@ -39,6 +38,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - The `plot_types/bands` example.
 - Histograms via `Histogram`: equal or uneven bins, counts or density, as data
   for a `BarSeries`, with a Histogram example.
+- `Axis.autoRescale`, which fits the viewport to the data range on every data
+  update.
+- `PlotSeries::DataBounds` overloads of `setData()` and `setDataF()`, which take
+  the data extents instead of scanning for them.
+- `PlotSeries::xDataRange()` and `yDataRange()` are public.
 
 ### Changed
 
@@ -56,6 +60,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   its spatial index after every data update.
 - The `showcases/performance` example has `LineCurve`, `PointCloud`, `RectangleSeries`, and
   `BarSeries` tabs, each with options for series count, ingestion API, hover, and rendering.
+- `Axis::rescaleToData()` emits `rangeChanged()` once instead of once per bound.
+- Data ranges are computed on demand. Data setters no longer scan for the range;
+  a series scans when `Axis.dataMin` / `dataMax`, `rescaleToData()`, an axis with
+  `autoRescale`, or a `DataRange` gradient reads it.
+- `Axis.dataMinChanged()` and `dataMaxChanged()` also announce a data update whose
+  range has not been computed yet.
+- Renamed `LineCurve::setDataFNoRangeWithCache()` to `setDataFWithCache()`.
+- Renamed `Axis::updateDataRange()` to `setDataRange()`.
+
+### Removed
+
+- The `setDataNoRange()` and `setDataFNoRange()` setters. Use `setData()` and
+  `setDataF()`, which no longer scan. To keep a range the application maintains,
+  pass it as `PlotSeries::DataBounds` instead of setting `Axis.dataMin` / `dataMax`.
+- `PlotSeries::xDataRangeChanged()` and `yDataRangeChanged()`. Read `xDataRange()`
+  and `yDataRange()`, or connect to `Axis.dataMinChanged()` / `dataMaxChanged()`.
 
 ### Fixed
 
@@ -72,7 +92,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
-- `PointCloud` no longer reports data ranges on axis changes after `setDataFNoRange()` or `setDataNoRange()`.
 - `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.
 - `PointCloud` no longer hovers points beyond the GPU texture capacity, which are not drawn.
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.

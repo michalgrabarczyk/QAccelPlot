@@ -59,8 +59,6 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: -20
                 viewportMax: 0
-                dataMin: -20
-                dataMax: 0
                 label: "Time before present (s)"
                 ticker.tickCount: 6
             }
@@ -68,8 +66,6 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 2.5
-                dataMin: -2.5
-                dataMax: 2.5
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"

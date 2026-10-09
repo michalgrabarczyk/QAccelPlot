@@ -320,8 +320,8 @@ void TestPlotInteraction::doubleClick_rescalesAxesToData()
     extraAxes.append(&extraAxes, extraAxis);
     setViewport(xAxis, 0.0, 100.0);
     setViewport(extraAxis, 0.0, 100.0);
-    xAxis->updateDataRange(5.0, 25.0);
-    extraAxis->updateDataRange(-3.0, 3.0);
+    xAxis->setDataRange(5.0, 25.0);
+    extraAxis->setDataRange(-3.0, 3.0);
 
     const auto pos = plot.plotRect().center();
     auto doubleClick = mouseEvent(QEvent::MouseButtonDblClick, pos, Qt::LeftButton, Qt::LeftButton);
@@ -340,7 +340,7 @@ void TestPlotInteraction::acceptedDoubleClickDoesNotRescale()
     auto* xAxis = new QAccelPlot::Axis{&plot};
     plot.setXAxis(xAxis);
     setViewport(xAxis, 0.0, 100.0);
-    xAxis->updateDataRange(5.0, 25.0);
+    xAxis->setDataRange(5.0, 25.0);
     connect(&plot, &QAccelPlot::QAccelPlot::mouseDoubleClicked, [](QAccelPlot::PlotMouseEvent* event) { event->accept(); });
 
     const auto pos = plot.plotRect().center();

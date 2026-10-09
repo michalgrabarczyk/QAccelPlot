@@ -14,7 +14,7 @@
 
 #include <QColor>
 #include <QFont>
-#include <QHash>
+#include <QList>
 #include <QQuickPaintedItem>
 
 namespace QAccelPlot {
@@ -37,9 +37,13 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal viewportMin READ viewportMin WRITE setViewportMin NOTIFY viewportMinChanged)
     /// \brief Upper bound of the visible range. Default: 1.
     Q_PROPERTY(qreal viewportMax READ viewportMax WRITE setViewportMax NOTIFY viewportMaxChanged)
-    /// \brief Minimum data value seen by the curves bound to this axis. Default: 0.
+    /// \brief Minimum data value of the series bound to this axis. Default: 0.
+    ///
+    /// Computed from the series when read after a data update, which scans their records unless they were
+    /// given data bounds. A value set here is used until a bound series with data changes its records.
+    /// \c dataMinChanged() also announces a data update whose new minimum has not been computed yet.
     Q_PROPERTY(qreal dataMin READ dataMin WRITE setDataMin NOTIFY dataMinChanged)
-    /// \brief Maximum data value seen by the curves bound to this axis. Default: 1.
+    /// \brief Maximum data value of the series bound to this axis. Default: 1. Computed like \c dataMin.
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
     /// \brief Axis orientation: \c Axis.Horizontal or \c Axis.Vertical.
     Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
@@ -75,6 +79,13 @@ class Axis : public QQuickPaintedItem {
     /// On a zoom-in step the range is multiplied by this value; on zoom-out by its reciprocal.
     /// Decrease the factor (e.g. 0.5) to zoom faster; increase it toward 1.0 (e.g. 0.95) to zoom more slowly.
     Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    /// \brief Whether the viewport follows the data range. Default: \c false.
+    ///
+    /// While \c true, every data update of a bound series sets the viewport as \c rescaleToData() does, replacing
+    /// a viewport set by panning, zooming, or \c viewportMin / \c viewportMax. Each update scans the series'
+    /// records unless they were given data bounds. The viewport is kept when the last series on the axis clears
+    /// its data.
+    Q_PROPERTY(bool autoRescale READ autoRescale WRITE setAutoRescale NOTIFY autoRescaleChanged)
 
 public:
     /// \brief Orientation of an axis.
@@ -98,15 +109,20 @@ public:
     /// \brief Sets the upper bound of the visible range to \a m.
     void setViewportMax(qreal m);
 
-    /// \brief Returns the minimum data value tracked by bound curves.
+    /// \brief Returns the minimum data value of the bound series, computing it if their data changed.
     qreal dataMin() const;
-    /// \brief Sets the tracked data minimum to \a m.
+    /// \brief Sets the data minimum to \a m until a bound series with data changes its records.
     void setDataMin(qreal m);
 
-    /// \brief Returns the maximum data value tracked by bound curves.
+    /// \brief Returns the maximum data value of the bound series, computing it if their data changed.
     qreal dataMax() const;
-    /// \brief Sets the tracked data maximum to \a m.
+    /// \brief Sets the data maximum to \a m until a bound series with data changes its records.
     void setDataMax(qreal m);
+
+    /// \brief Sets the data range to [\a min, \a max] until a bound series with data changes its records.
+    ///
+    /// Unlike \c setDataMin() and \c setDataMax(), this never computes the range from the series.
+    Q_INVOKABLE void setDataRange(qreal min, qreal max);
 
     /// \brief Returns the axis orientation.
     Orientation orientation() const;
@@ -180,10 +196,17 @@ public:
     /// Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming.
     void setZoomScaleFactor(double factor);
 
+    /// \brief Returns \c true when the viewport follows the data range.
+    bool autoRescale() const;
+    /// \brief Sets whether the viewport follows the data range to \a on. Enabling it rescales to the current data range.
+    void setAutoRescale(bool on);
+
     /// \brief Toggles the log-scale mode on or off.
     Q_INVOKABLE void toggleLogScale();
 
     /// \brief Sets \c viewportMin and \c viewportMax to the current \c dataMin / \c dataMax range.
+    ///
+    /// Emits \c rangeChanged() once.
     Q_INVOKABLE void rescaleToData();
 
     /// \brief Paints the axis widget (tick marks, labels, label text, background).
@@ -209,12 +232,6 @@ public:
     /// text follows the zoom level instead of the tick spacing. Returns an empty string for a
     /// nonfinite \a value.
     Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
-
-public slots:
-    /// \brief Replaces the tracked data range.
-    /// \param min New minimum data value.
-    /// \param max New maximum data value.
-    void updateDataRange(qreal min, qreal max);
 
 signals:
     /// \brief Emitted when the viewportMin property changes.
@@ -256,6 +273,8 @@ signals:
     void logScaleChanged();
     /// \brief Emitted when the zoomScaleFactor property changes.
     void zoomScaleFactorChanged();
+    /// \brief Emitted when the autoRescale property changes.
+    void autoRescaleChanged();
     /// \brief Emitted when the user double-clicks the axis widget.
     void doubleClicked();
 
@@ -269,6 +288,7 @@ protected:
     void keyPressEvent(QKeyEvent* event) override;
     /// \brief Recomputes the visible tick values and formats their labels on the GUI thread, ahead of \c paint().
     void updatePolish() override;
+    void componentComplete() override;
 
 private:
     friend class PlotSeries;
@@ -278,21 +298,33 @@ private:
         qreal max;
     };
 
-    void setSourceDataRange(const QObject* source, Orientation dimension, qreal min, qreal max);
-    void clearSourceDataRange(const QObject* source, Orientation dimension);
-    void recomputeSourceDataRange();
+    struct DataRangeSource {
+        const PlotSeries* series;
+        Orientation dimension;
+    };
+
+    void addDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void removeDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void invalidateDataRange();
+    void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
+    DataRange dataFitRange() const;
+    void setViewportRange(qreal min, qreal max);
+    void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void invalidateTicks();
 
     qreal viewportMin_{0.0};
     qreal viewportMax_{1.0};
-    qreal dataMin_{0.0};
-    qreal dataMax_{1.0};
-    QHash<const QObject*, DataRange> horizontalDataRanges_;
-    QHash<const QObject*, DataRange> verticalDataRanges_;
-    QHash<const QObject*, QMetaObject::Connection> rangeSourceConnections_;
+    // The data range is a cache of the series' extents, refreshed by const readers.
+    mutable qreal dataMin_{0.0};
+    mutable qreal dataMax_{1.0};
+    // True while a series changed its records since the data range was last computed.
+    mutable bool dataRangeStale_{false};
+    // True when the data range came from the series rather than from the application.
+    mutable bool dataRangeFromSeries_{false};
+    QList<DataRangeSource> dataRangeSources_;
     QString label_;
     QFont labelFont_;
     bool hovered_{false};
@@ -307,6 +339,7 @@ private:
     qreal layoutSize_{50.0};
     bool logScale_{false};
     double zoomScaleFactor_{0.9};
+    bool autoRescale_{false};
     bool extendWidgetForLabels_{true};
     bool clampEdgeLabels_{true};
     Orientation orientation_{Horizontal};

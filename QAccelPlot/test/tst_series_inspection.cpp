@@ -201,7 +201,7 @@ void TestSeriesInspection::replacementAndScale()
     auto revisions = QSignalSpy{&cloud, &PlotSeries::dataRevisionChanged};
     cloud.setDataF(std::vector<float>{-1, 2, 1, 3}, 2);
     const auto oldRevision = cloud.dataRevision();
-    cloud.setDataFNoRange(std::vector<float>{-1, 8, 1, 9}, 2);
+    cloud.setDataF(std::vector<float>{-1, 8, 1, 9}, 2);
     QVERIFY(cloud.dataRevision() > oldRevision);
     QCOMPARE(revisions.count(), 2);
     auto* inspection = cloud.inspection();
