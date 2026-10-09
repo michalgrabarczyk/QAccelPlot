@@ -29,7 +29,7 @@ struct PointCloudData {
     std::vector<float> values;
 };
 
-// Iterates the Clifford attractor. Each point's value is the length of the jump that reached it.
+// Iterates the Clifford attractor. Each point's value is its distance from the previous point.
 PointCloudData cliffordAttractor(const int pointCount)
 {
     constexpr auto a = -1.7f;
