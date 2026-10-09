@@ -17,6 +17,7 @@
 #include <QFont>
 #include <QList>
 #include <QMetaObject>
+#include <QPointF>
 #include <QPointer>
 #include <QQuickPaintedItem>
 
@@ -47,7 +48,13 @@ namespace QAccelPlot {
 /// \endcode
 ///
 /// The implicit size fits the strip, ticks, tick labels, and \c label, with a length of 160 pixels
-/// along the ramp. Tick labels at the ends are kept inside the item.
+/// along the ramp. A vertical bar gives its tick labels the fixed \c tickLabelWidth and clips wider
+/// ones. Tick labels at the ends are kept inside the item.
+///
+/// With \c interactive set, a left drag along the ramp pans the colormap's value range, the mouse
+/// wheel zooms it around the value under the cursor, and a double-click calls \c rescaleToData().
+/// The gestures write \c Colormap::min and \c Colormap::max, so every series sharing the colormap
+/// follows. A QML binding on either bound overrides them when it is next evaluated.
 ///
 /// \sa PointCloud, Colormap, AxisTicker
 class ColorBar : public QQuickPaintedItem {
@@ -72,6 +79,21 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
     /// \brief Width in pixels of the outline around the strip. 0 draws no outline. Default: 1.
     Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
+    /// \brief Width in pixels reserved for the tick labels of a vertical bar. Default: 16.
+    ///
+    /// The width is fixed, so the implicit width and the title stay in place while the labels
+    /// change. Labels wider than it are clipped. Ignored by horizontal bars.
+    Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
+    /// \brief Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default: \c false.
+    ///
+    /// While \c false, the bar leaves mouse and wheel events to the items below it.
+    Q_PROPERTY(bool interactive READ interactive WRITE setInteractive NOTIFY interactiveChanged)
+    /// \brief Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9.
+    ///
+    /// On a zoom-out step the range is multiplied by the reciprocal. Used only while \c interactive is set.
+    Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    /// \brief Read-only: \c true while the mouse cursor is over the bar. Reported only while \c interactive is set.
+    Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     /// \brief Read-only constant: tick appearance, count, and label formatter.
     ///
     /// Defaults differ from \c Axis: \c tickLengthIn 0, \c tickLengthOut 4, \c subtickLengthIn 0,
@@ -134,14 +156,39 @@ public:
     /// \brief Sets the strip outline width to \a width pixels. Negative values are clamped to 0.
     void setBorderWidth(qreal width);
 
+    /// \brief Returns the width reserved for tick labels in pixels.
+    qreal tickLabelWidth() const;
+    /// \brief Sets the width reserved for tick labels to \a width pixels. Negative values are clamped to 0.
+    void setTickLabelWidth(qreal width);
+
+    /// \brief Returns whether the gestures that change the colormap's value range are enabled.
+    bool interactive() const;
+    /// \brief Sets whether the gestures that change the colormap's value range are enabled to \a interactive.
+    void setInteractive(bool interactive);
+
+    /// \brief Returns the zoom scale factor.
+    double zoomScaleFactor() const;
+    /// \brief Sets the zoom scale factor to \a factor (clamped to the range (0, 1)).
+    void setZoomScaleFactor(double factor);
+
+    /// \brief Returns \c true while the mouse cursor is over an interactive bar.
+    bool hovered() const;
+
     /// \brief Returns the tick configuration object. The object is owned by the color bar.
     AxisTicker* ticker() const;
+
+    /// \brief Unsets the colormap's \c min and \c max, so the range is resolved from the data again.
+    Q_INVOKABLE void rescaleToData();
 
     /// \brief Maps \a value to a pixel position along a strip of \a length pixels.
     ///
     /// Horizontal bars measure from the left edge, vertical bars from the top edge. Uses the range and
     /// normalization captured at the last polish, so it matches what \c paint() draws.
     qreal valueToPixel(qreal value, qreal length) const;
+    /// \brief Maps a \a pixel position along a strip of \a length pixels back to a value.
+    ///
+    /// The inverse of \c valueToPixel(). Returns the range minimum when \a length is 0.
+    qreal pixelToValue(qreal pixel, qreal length) const;
 
     /// \brief Paints the strip, ticks, tick labels, and title computed in \c updatePolish().
     void paint(QPainter* painter) override;
@@ -165,8 +212,32 @@ signals:
     void borderColorChanged();
     /// \brief Emitted when the borderWidth property changes.
     void borderWidthChanged();
+    /// \brief Emitted when the tickLabelWidth property changes.
+    void tickLabelWidthChanged();
+    /// \brief Emitted when the interactive property changes.
+    void interactiveChanged();
+    /// \brief Emitted when the zoomScaleFactor property changes.
+    void zoomScaleFactorChanged();
+    /// \brief Emitted when the hovered property changes.
+    void hoveredChanged();
 
 protected:
+    /// \brief Marks the bar as hovered.
+    void hoverEnterEvent(QHoverEvent* event) override;
+    /// \brief Clears the hovered state.
+    void hoverLeaveEvent(QHoverEvent* event) override;
+    /// \brief Starts panning the value range on a left-button press while \c interactive is set.
+    void mousePressEvent(QMouseEvent* event) override;
+    /// \brief Pans the value range by the distance dragged along the ramp.
+    void mouseMoveEvent(QMouseEvent* event) override;
+    /// \brief Ends panning on a left-button release.
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    /// \brief Calls \c rescaleToData() on a left-button double-click while \c interactive is set.
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
+    /// \brief Ends panning when the mouse grab is lost.
+    void mouseUngrabEvent() override;
+    /// \brief Zooms the value range around the value under the cursor while \c interactive is set.
+    void wheelEvent(QWheelEvent* event) override;
     /// \brief Captures the colormap, formats tick labels, and lays out the bar on the GUI thread, ahead of \c paint().
     void updatePolish() override;
     /// \brief Schedules a new layout when the item is resized.
@@ -177,9 +248,16 @@ private:
         QRectF strip;
         QRectF tickArea;
         QRectF title;
+        // Area that the tick marks and labels of a vertical bar may paint in.
+        QRectF tickClip;
         qreal endInset{0.0};
     };
 
+    void setHovered(bool hovered);
+    Colormap* seriesColormap() const;
+    qreal stripLength() const;
+    void panRange(qreal fraction);
+    void zoomRange(qreal factor, qreal anchorRatio);
     void reconnectSeries();
     void reconnectColormap();
     void invalidate();
@@ -206,7 +284,13 @@ private:
     qreal barThickness_{12.0};
     QColor borderColor_{ColorPalette::dark().axisLine};
     qreal borderWidth_{1.0};
+    qreal tickLabelWidth_{16.0};
+    bool interactive_{false};
+    double zoomScaleFactor_{0.9};
+    bool hovered_{false};
     AxisTicker* ticker_;
+    bool isDragging_{false};
+    QPointF lastMousePos_;
 
     // Captured on the GUI thread in updatePolish() and read by paint(), which may run on the render thread.
     std::vector<GradientStopData> stops_;
@@ -214,7 +298,6 @@ private:
     qreal valueMax_{1.0};
     bool logScale_{false};
     AxisTicks ticks_;
-    qreal maxTickLabelWidth_{0.0};
     Layout layout_;
 };
 
