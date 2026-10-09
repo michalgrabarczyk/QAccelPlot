@@ -53,6 +53,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `LineCurveEffect::refresh()` re-reads inputs that change without a notification.
 - `DataTransition::start()` and `advance()` take a `DataTransition::Run` that holds
   one element's animation state.
+- `DataTransition::interpolate()` takes `DataTransition::Dataset` arguments, and
+  `start()` a `stride` for points of more than two values.
+- `DrawTransition` starts from one point instead of two.
 - Moved `RectangleSeries.hpp` to `QAccelPlot/series/`.
 - Replaced `RectangleSeries::setData(const float*, int)` with `setDataF(const float*, int)`.
 - `PointCloud` uses half the GPU vertex memory per point.

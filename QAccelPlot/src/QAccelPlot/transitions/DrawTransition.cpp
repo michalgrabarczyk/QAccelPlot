@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 
 namespace QAccelPlot {
 
@@ -17,20 +18,10 @@ DrawTransition::DrawTransition(QObject* parent)
 {
 }
 
-void DrawTransition::interpolate(const double easedProgress, const std::vector<double>& /*fromData*/, const int /*fromPointCount*/,
-    const std::vector<double>& toData, const int toPointCount, std::vector<double>& outData, int& outPointCount)
+void DrawTransition::interpolate(const double easedProgress, const Dataset& /*from*/, const Dataset& to, Dataset& out)
 {
-    if (toPointCount <= 0) {
-        outData.clear();
-        outPointCount = 0;
-        return;
-    }
-
-    const auto visibleCount = std::min(toPointCount, std::max(2, static_cast<int>(std::ceil(toPointCount * easedProgress))));
-    outPointCount = visibleCount;
-    outData.resize(visibleCount * 2);
-
-    std::copy_n(toData.begin(), visibleCount * 2, outData.begin());
+    out.count = std::clamp(static_cast<int>(std::ceil(to.count * easedProgress)), std::min(to.count, 1), to.count);
+    out.values.assign(to.values.begin(), to.values.begin() + static_cast<std::ptrdiff_t>(out.count) * to.stride);
 }
 
 } // namespace QAccelPlot

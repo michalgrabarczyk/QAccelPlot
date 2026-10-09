@@ -27,7 +27,7 @@ namespace QAccelPlot {
 /// One transition can be assigned to several elements. Each element keeps its own \c Run with the
 /// data it animates between, so the elements animate independently.
 ///
-/// \sa DrawTransition, MorphTransition, LineCurve
+/// \sa DrawTransition, MorphTransition, LineCurve, BarSeries
 class DataTransition : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
@@ -42,6 +42,16 @@ class DataTransition : public QObject {
     Q_PROPERTY(bool running READ running NOTIFY runningChanged)
 
 public:
+    /// \brief Data a transition animates: \c count items of \c stride values each, e.g. XY points with a stride of 2.
+    struct Dataset {
+        /// \brief The values, item after item.
+        std::vector<double> values;
+        /// \brief Number of items in \c values.
+        int count{0};
+        /// \brief Number of values per item.
+        int stride{2};
+    };
+
     /// \brief One animation of a transition on one host element.
     ///
     /// Holds the data the host animates from and to. A run is \e active while the transition
@@ -81,10 +91,8 @@ public:
 
         DataTransition* transition_{nullptr};
         bool pending_{false};
-        std::vector<double> fromData_;
-        std::vector<double> toData_;
-        int fromPointCount_{0};
-        int toPointCount_{0};
+        Dataset from_;
+        Dataset to_;
         QElapsedTimer timer_;
     };
 
@@ -113,11 +121,12 @@ public:
 
     /// \brief Starts \a run from \a currentData to \a newData, restarting it if it is already active.
     /// \param run Run of the host element; ended first if another transition advances it.
-    /// \param currentData Current XY double buffer (copied as the \e from state).
+    /// \param currentData Current double buffer (copied as the \e from state).
     /// \param currentPointCount Number of points in \a currentData.
-    /// \param newData Target XY double buffer (moved as the \e to state).
+    /// \param newData Target double buffer (moved as the \e to state).
     /// \param newPointCount Number of points in \a newData.
-    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount);
+    /// \param stride Number of values per point in both buffers. Default: 2, XY points.
+    void start(Run& run, const std::vector<double>& currentData, int currentPointCount, std::vector<double>&& newData, int newPointCount, int stride = 2);
 
     /// \brief Ends every active run immediately.
     ///
@@ -141,10 +150,11 @@ signals:
     void runningChanged();
 
 protected:
-    /// \brief Subclass entry point — computes the interpolated dataset at \a easedProgress (0–1).
-    virtual void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount)
-        = 0;
+    /// \brief Subclass entry point — writes the dataset between \a from and \a to at \a easedProgress into \a out.
+    ///
+    /// \a easedProgress runs from 0 to 1 and leaves that range with an overshooting easing curve.
+    /// \a from and \a to share one stride, which \a out already has; set its \c values and \c count.
+    virtual void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) = 0;
 
 private:
     void removeRun(Run* run);

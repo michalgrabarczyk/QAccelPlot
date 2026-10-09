@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 
 namespace QAccelPlot {
 
@@ -27,36 +28,25 @@ double MorphTransition::interpolateCoordinate(const double from, const double to
     return from + easedProgress * (to - from);
 }
 
-void MorphTransition::interpolate(const double easedProgress, const std::vector<double>& fromData, const int fromPointCount, const std::vector<double>& toData,
-    const int toPointCount, std::vector<double>& outData, int& outPointCount)
+void MorphTransition::interpolate(const double easedProgress, const Dataset& from, const Dataset& to, Dataset& out)
 {
-    if (toPointCount <= 0) {
-        outPointCount = 0;
-        outData.clear();
+    if (to.count <= 0 || from.count <= 0) {
+        out.count = std::max(to.count, 0);
+        out.values.assign(to.values.begin(), to.values.begin() + static_cast<std::ptrdiff_t>(out.count) * to.stride);
         return;
     }
 
-    if (fromPointCount <= 0) {
-        outPointCount = toPointCount;
-        outData.assign(toData.begin(), toData.end());
-        return;
-    }
+    const auto stride = static_cast<std::size_t>(to.stride);
+    out.count = std::max(from.count, to.count);
+    out.values.resize(static_cast<std::size_t>(out.count) * stride);
 
-    const auto maxCount = std::max(fromPointCount, toPointCount);
-    outPointCount = maxCount;
-    outData.resize(maxCount * 2);
-
-    for (int i = 0; i < maxCount; ++i) {
-        const auto fromIdx = std::min(i, fromPointCount - 1);
-        const auto toIdx = std::min(i, toPointCount - 1);
-
-        const auto fx = fromData[fromIdx * 2];
-        const auto fy = fromData[fromIdx * 2 + 1];
-        const auto tx = toData[toIdx * 2];
-        const auto ty = toData[toIdx * 2 + 1];
-
-        outData[i * 2] = interpolateCoordinate(fx, tx, easedProgress);
-        outData[i * 2 + 1] = interpolateCoordinate(fy, ty, easedProgress);
+    for (auto i = 0; i < out.count; ++i) {
+        const auto* fromPoint = from.values.data() + static_cast<std::size_t>(std::min(i, from.count - 1)) * stride;
+        const auto* toPoint = to.values.data() + static_cast<std::size_t>(std::min(i, to.count - 1)) * stride;
+        auto* outPoint = out.values.data() + static_cast<std::size_t>(i) * stride;
+        for (auto value = std::size_t{0}; value < stride; ++value) {
+            outPoint[value] = interpolateCoordinate(fromPoint[value], toPoint[value], easedProgress);
+        }
     }
 }
 
