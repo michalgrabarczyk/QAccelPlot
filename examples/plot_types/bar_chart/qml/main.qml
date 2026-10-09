@@ -18,16 +18,23 @@ Window {
     readonly property var monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     readonly property var regionNames: ["North", "South", "West"]
     readonly property var regionColors: [colorPalette.seriesPrimary, colorPalette.seriesSecondary, colorPalette.seriesTertiary]
-    // Monthly revenue in thousands of dollars, one list per region.
-    readonly property var revenue: [
-        [62, 58, 71, 80, 86, 95, 102, 98, 88, 79, 90, 118],
-        [45, 49, 55, 61, 66, 72, 75, 77, 70, 64, 69, 84],
-        [30, 34, 41, 47, 58, 69, 81, 85, 72, 55, 48, 60]
-    ]
-    // Monthly profit in thousands of dollars.
-    readonly property var profit: [12, 8, -4, 15, 20, -9, 5, 18, -2, 10, 25, 31]
+    readonly property var yearNames: ["2024", "2025"]
+    property int year: 0
+    // Monthly revenue in thousands of dollars: per year, one list per region.
+    readonly property var revenue: [[
+            [62, 58, 71, 80, 86, 95, 102, 98, 88, 79, 90, 118],
+            [45, 49, 55, 61, 66, 72, 75, 77, 70, 64, 69, 84],
+            [30, 34, 41, 47, 58, 69, 81, 85, 72, 55, 48, 60]
+        ], [
+            [70, 74, 69, 92, 105, 111, 96, 120, 131, 117, 108, 142],
+            [52, 47, 60, 58, 73, 80, 91, 86, 78, 83, 95, 101],
+            [41, 39, 52, 66, 61, 74, 70, 93, 99, 80, 67, 76]
+        ]]
+    // Monthly profit in thousands of dollars, one list per year.
+    readonly property var profit: [[12, 8, -4, 15, 20, -9, 5, 18, -2, 10, 25, 31], [9, 14, 6, -7, 22, 17, -11, 3, 28, 13, -5, 24]]
     readonly property bool horizontal: horizontalCheck.checked
     readonly property real groupWidth: groupWidthSlider.value
+    readonly property var barTransition: [morphTransition, drawTransition, null][transitionBox.currentIndex]
 
     width: 1200
     height: 800
@@ -38,13 +45,30 @@ Window {
     Material.accent: colorPalette.materialAccent
     Material.foreground: colorPalette.text
 
-    // Colors each profit bar by whether it meets the target.
+    // The category of a profit bar tells whether it meets the target.
+    function profitCategory(value) {
+        return value >= targetSlider.value ? 0 : 1;
+    }
+
     function updateProfitBars() {
-        profitBars.setData(profit.map((value, month) => ({
+        profitBars.setData(profit[year].map((value, month) => ({
                         position: month,
                         value: value,
-                        category: value >= targetSlider.value ? 0 : 1
+                        category: profitCategory(value)
                     })));
+    }
+
+    onYearChanged: updateProfitBars()
+
+    QAccelPlot.MorphTransition {
+        id: morphTransition
+        duration: 600
+        easing.type: Easing.InOutCubic
+    }
+
+    QAccelPlot.DrawTransition {
+        id: drawTransition
+        duration: 600
     }
 
     QAccelPlot.TextTickLabelFormatter {
@@ -63,7 +87,20 @@ Window {
 
         ExampleHeader {
             title: "Bar chart"
-            description: "Grouped monthly revenue in three BarSeries that share a position axis through barWidth and barOffset, and monthly profit colored by whether it meets a target set as baselineValue. Hover a profit bar to read it."
+            description: "Grouped revenue bars and profit bars colored against a target. Switch the year to animate them; hover a profit bar to read it."
+
+            Button {
+                text: "Show " + window.yearNames[1 - window.year]
+                Material.background: colorPalette.plotArea
+                onClicked: window.year = 1 - window.year
+            }
+
+            ComboBox {
+                id: transitionBox
+                model: ["Morph", "Draw", "No transition"]
+                Layout.preferredWidth: 150
+                Material.background: colorPalette.plotArea
+            }
 
             CheckBox {
                 id: horizontalCheck
@@ -107,7 +144,8 @@ Window {
                 stepSize: 1
                 value: 0
                 Layout.preferredWidth: 120
-                onValueChanged: window.updateProfitBars()
+                // The bars keep their values, so only their categories are replaced.
+                onValueChanged: profitBars.setCategories(window.profit[window.year].map(window.profitCategory))
             }
         }
 
@@ -145,10 +183,13 @@ Window {
                 model: window.regionNames
 
                 QAccelPlot.BarSeries {
+                    id: regionBars
+
                     required property int index
                     required property string modelData
 
                     name: modelData
+                    transition: window.barTransition
                     xAxis: revenuePlot.xAxis
                     yAxis: revenuePlot.yAxis
                     orientation: window.horizontal ? Qt.Horizontal : Qt.Vertical
@@ -158,7 +199,15 @@ Window {
                     border.width: outlineCheck.checked ? 1 : 0
                     border.color: colorPalette.plotArea
 
-                    Component.onCompleted: setData(window.revenue[index])
+                    Component.onCompleted: setData(window.revenue[window.year][index])
+
+                    Connections {
+                        target: window
+
+                        function onYearChanged() {
+                            regionBars.setData(window.revenue[window.year][regionBars.index]);
+                        }
+                    }
                 }
             }
         }
@@ -199,6 +248,7 @@ Window {
                 yAxis: profitPlot.yAxis
                 baselineValue: targetSlider.value
                 categoryColors: [colorPalette.statusGood, colorPalette.statusError]
+                transition: window.barTransition
                 hoverColor: colorPalette.text
                 border.width: outlineCheck.checked ? 1 : 0
                 border.color: colorPalette.plotArea

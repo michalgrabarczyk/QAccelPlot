@@ -1,5 +1,5 @@
 ---
-description: "Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, and C++ data paths."
+description: "Draw bar charts in QAccelPlot with BarSeries: vertical and horizontal bars, grouped bars, custom baselines, colors by category, hover, animated updates, and C++ data paths."
 ---
 
 <!--
@@ -116,6 +116,29 @@ are set with `border.width` and `border.color`.
 of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 
+## Animate data changes
+
+Assign a `QAccelPlot.MorphTransition` or a `QAccelPlot.DrawTransition` to
+`transition`:
+
+```qml
+QAccelPlot.BarSeries {
+    transition: QAccelPlot.MorphTransition {
+        duration: 500
+        easing.type: Easing.InOutCubic
+    }
+}
+```
+
+- `MorphTransition` moves each bar to its new position and value. New bars
+  grow from `baselineValue`, and removed bars shrink to it.
+- `DrawTransition` shows the new bars one after another.
+- `count`, `barAt()`, the data ranges, hover, and inspection use the new data
+  from the start of the animation.
+- `clearData()`, and replacing, clearing, or cancelling `transition`, show the
+  new data at once.
+- While a transition is enabled, the float paths store doubles.
+
 ## Feed data from C++
 
 Pass a vector of interleaved `(position, value)` pairs to `setData()`:
@@ -143,6 +166,6 @@ Complete source:
 
 - [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart):
   grouped and horizontal bars, a profit chart colored against a target
-  baseline, and a hover tooltip.
+  baseline, a hover tooltip, and animated updates.
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md

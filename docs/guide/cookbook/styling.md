@@ -147,6 +147,9 @@ Several curves can share one transition; each animates to its own data.
 Replacing or clearing `transition`, or calling `appendData()`, during an
 animation shows the new data at once.
 
+`BarSeries` takes the same transitions; see
+[Animate data changes](bar-charts.md#animate-data-changes).
+
 Transitions add work on every animated frame. Disable them for continuous
 high-rate updates.
 

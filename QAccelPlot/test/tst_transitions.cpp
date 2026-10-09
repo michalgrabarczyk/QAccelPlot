@@ -20,27 +20,22 @@
 // avoiding dependence on the real-time QElapsedTimer inside advance().
 // ---------------------------------------------------------------------------
 
-class TestMorphTransition : public QAccelPlot::MorphTransition {
+template <typename Transition> class Exposed : public Transition {
 public:
-    using QAccelPlot::MorphTransition::MorphTransition;
+    using Dataset = QAccelPlot::DataTransition::Dataset;
 
-    void callInterpolate(
-        double progress, const std::vector<double>& from, int fromCount, const std::vector<double>& to, int toCount, std::vector<double>& out, int& outCount)
+    void callInterpolate(double progress, const std::vector<double>& from, int fromCount, const std::vector<double>& to, int toCount, std::vector<double>& out,
+        int& outCount, int stride = 2)
     {
-        interpolate(progress, from, fromCount, to, toCount, out, outCount);
+        auto frame = Dataset{std::move(out), outCount, stride};
+        this->interpolate(progress, Dataset{from, fromCount, stride}, Dataset{to, toCount, stride}, frame);
+        out = std::move(frame.values);
+        outCount = frame.count;
     }
 };
 
-class TestDrawTransition : public QAccelPlot::DrawTransition {
-public:
-    using QAccelPlot::DrawTransition::DrawTransition;
-
-    void callInterpolate(
-        double progress, const std::vector<double>& from, int fromCount, const std::vector<double>& to, int toCount, std::vector<double>& out, int& outCount)
-    {
-        interpolate(progress, from, fromCount, to, toCount, out, outCount);
-    }
-};
+using TestMorphTransition = Exposed<QAccelPlot::MorphTransition>;
+using TestDrawTransition = Exposed<QAccelPlot::DrawTransition>;
 
 // ---------------------------------------------------------------------------
 
@@ -56,12 +51,14 @@ private slots:
     void morph_shrinkingPointCount();
     void morph_emptyFrom_outputEqualsTo();
     void morph_emptyTo_outputIsEmpty();
+    void morph_threeValuesPerPoint();
 
     // DrawTransition
     void draw_progress_data();
     void draw_progress();
     void draw_emptyTo_outputIsEmpty();
     void draw_singlePointTo_outputIsSinglePoint();
+    void draw_threeValuesPerPoint();
 
     // DataTransition state
     void transition_startSetsRunning();
@@ -75,9 +72,11 @@ private slots:
     // Corner cases
     void morph_identicalFromAndTo_outputUnchanged();
     void morph_singlePointBothSides();
-    void draw_minimumToPointCount_alwaysTwo();
+    void draw_keepsAtLeastOnePoint_data();
+    void draw_keepsAtLeastOnePoint();
     void transition_advance_whenNotRunning_returnsFalse();
     void transition_advance_interpolatesUntilDurationElapses();
+    void transition_advance_keepsTheStride();
 
     // Invalid samples
     void morph_invalidTarget_appearsImmediately();
@@ -198,6 +197,21 @@ void TestTransitions::morph_emptyTo_outputIsEmpty()
     QVERIFY(out.empty());
 }
 
+void TestTransitions::morph_threeValuesPerPoint()
+{
+    // Two points of three values each morph into three: the extra point starts from the last one.
+    auto t = TestMorphTransition{};
+    const auto from = std::vector<double>{0.0, 1.0, 2.0, 10.0, 11.0, 12.0};
+    const auto to = std::vector<double>{2.0, 3.0, 4.0, 20.0, 21.0, 22.0, 30.0, 31.0, 32.0};
+    auto out = std::vector<double>{};
+    auto outCount = int{};
+
+    t.callInterpolate(0.5, from, 2, to, 3, out, outCount, 3);
+
+    QCOMPARE(outCount, 3);
+    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0, 15.0, 16.0, 17.0, 20.0, 21.0, 22.0}));
+}
+
 // ---------------------------------------------------------------------------
 // DrawTransition tests
 // ---------------------------------------------------------------------------
@@ -207,7 +221,7 @@ void TestTransitions::draw_progress_data()
     QTest::addColumn<double>("progress");
     QTest::addColumn<int>("expectedPointCount");
 
-    QTest::newRow("start-keeps-minimum") << 0.0 << 2;
+    QTest::newRow("start-keeps-one-point") << 0.0 << 1;
     QTest::newRow("half") << 0.5 << 2;
     QTest::newRow("three-quarters") << 0.75 << 3;
     QTest::newRow("end") << 1.0 << 4;
@@ -255,6 +269,19 @@ void TestTransitions::draw_singlePointTo_outputIsSinglePoint()
 
     QCOMPARE(outCount, 1);
     QCOMPARE(out, to);
+}
+
+void TestTransitions::draw_threeValuesPerPoint()
+{
+    auto t = TestDrawTransition{};
+    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0};
+    auto out = std::vector<double>{};
+    auto outCount = int{};
+
+    t.callInterpolate(0.5, {}, 0, to, 4, out, outCount, 3);
+
+    QCOMPARE(outCount, 2);
+    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0}));
 }
 
 // ---------------------------------------------------------------------------
@@ -414,22 +441,31 @@ void TestTransitions::morph_singlePointBothSides()
     QCOMPARE(out[1], 10.0f);
 }
 
-void TestTransitions::draw_minimumToPointCount_alwaysTwo()
+void TestTransitions::draw_keepsAtLeastOnePoint_data()
 {
+    QTest::addColumn<double>("progress");
+    QTest::addColumn<int>("expectedPointCount");
+
+    QTest::newRow("start") << 0.0 << 1;
+    // Easing curves such as InBack and OutElastic leave the 0-1 range.
+    QTest::newRow("undershoot") << -0.2 << 1;
+    QTest::newRow("overshoot") << 1.3 << 3;
+}
+
+void TestTransitions::draw_keepsAtLeastOnePoint()
+{
+    QFETCH(double, progress);
+    QFETCH(int, expectedPointCount);
+
     auto t = TestDrawTransition{};
-    // toPointCount==2 is the minimum meaningful dataset. At progress=0,
-    // ceil(2*0)=0 but viewportMax(2,0)=2 ensures both points are always copied.
-    const auto to = std::vector<double>{1.0f, 2.0f, 3.0f, 4.0f};
+    const auto to = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
     auto out = std::vector<double>{};
     auto outCount = int{};
 
-    t.callInterpolate(0.0f, {}, 0, to, 2, out, outCount);
+    t.callInterpolate(progress, {}, 0, to, 3, out, outCount);
 
-    QCOMPARE(outCount, 2);
-    QCOMPARE(out[0], to[0]);
-    QCOMPARE(out[1], to[1]);
-    QCOMPARE(out[2], to[2]);
-    QCOMPARE(out[3], to[3]);
+    QCOMPARE(outCount, expectedPointCount);
+    QCOMPARE(out, std::vector<double>(to.begin(), to.begin() + expectedPointCount * 2));
 }
 
 void TestTransitions::transition_advance_whenNotRunning_returnsFalse()
@@ -469,6 +505,21 @@ void TestTransitions::transition_advance_interpolatesUntilDurationElapses()
     QCOMPARE(runningSpy.count(), 1);
     QCOMPARE(outCount, 1);
     QCOMPARE(out, (std::vector<double>{10.0, 20.0}));
+}
+
+void TestTransitions::transition_advance_keepsTheStride()
+{
+    auto t = QAccelPlot::DrawTransition{};
+    auto run = QAccelPlot::DataTransition::Run{};
+    t.setDuration(10'000);
+    t.start(run, {}, 0, {1.0, 2.0, 3.0, 4.0, 5.0, 6.0}, 2, 3);
+
+    auto out = std::vector<double>{};
+    auto outCount = 0;
+    QVERIFY(t.advance(run, out, outCount));
+
+    QCOMPARE(outCount, 1);
+    QCOMPARE(out, (std::vector<double>{1.0, 2.0, 3.0}));
 }
 
 // ---------------------------------------------------------------------------

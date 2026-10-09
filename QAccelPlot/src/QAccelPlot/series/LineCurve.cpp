@@ -16,6 +16,7 @@
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 #include "QAccelPlot/transitions/DataTransition.hpp"
+#include "QAccelPlot/transitions/TransitionRunner.hpp"
 
 #include <QHoverEvent>
 #include <QQuickWindow>
@@ -170,6 +171,7 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
 
 LineCurve::LineCurve(QQuickItem* parent)
     : PlotSeries(parent)
+    , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
     setAcceptHoverEvents(Internal::hoverEnabled());
@@ -182,16 +184,12 @@ LineCurve::LineCurve(QQuickItem* parent)
     // A parent already in a window adds the curve to it from the QQuickItem constructor, where the
     // ItemSceneChange does not reach this class's itemChange().
     connectAnimationTicks(window());
+    connect(transition_.get(), &TransitionRunner::frameDue, this, &LineCurve::advanceTransition);
+    connect(transition_.get(), &TransitionRunner::interrupted, this, &LineCurve::finishTransition);
+    connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
 }
 
-LineCurve::~LineCurve()
-{
-    // Ending the run emits runningChanged, which must not reach this partly destroyed curve.
-    if (transition_) {
-        disconnect(transition_, nullptr, this, nullptr);
-    }
-    transitionRun_.cancel();
-}
+LineCurve::~LineCurve() = default;
 
 QColor LineCurve::color() const
 {
@@ -248,25 +246,14 @@ void LineCurve::setHoverRadius(const qreal radius)
 
 DataTransition* LineCurve::transition() const
 {
-    return transition_;
+    return transition_->transition();
 }
 
 void LineCurve::setTransition(DataTransition* transition)
 {
-    if (transition_ == transition) {
-        return;
+    if (transition_->setTransition(transition)) {
+        emit transitionChanged();
     }
-    finishTransition();
-    if (transition_) {
-        disconnect(transition_, &QObject::destroyed, this, &LineCurve::onTransitionDestroyed);
-        disconnect(transition_, &DataTransition::runningChanged, this, &LineCurve::onTransitionRunningChanged);
-    }
-    transition_ = transition;
-    if (transition_) {
-        connect(transition_, &QObject::destroyed, this, &LineCurve::onTransitionDestroyed);
-        connect(transition_, &DataTransition::runningChanged, this, &LineCurve::onTransitionRunningChanged);
-    }
-    emit transitionChanged();
 }
 
 LineStyle* LineCurve::lineStyle() const
@@ -424,7 +411,7 @@ void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
         return;
     }
 
-    if (transition_ && transition_->enabled()) {
+    if (transition_->enabled()) {
         auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
         if (pointCount > 0) {
             std::memcpy(newData.data(), xyInterleaved, newData.size() * sizeof(float));
@@ -458,7 +445,7 @@ void LineCurve::setDataFWithCache(std::vector<float>&& data, const int pointCoun
     if (!validateVectorDataArguments(data, pointCount)) {
         return;
     }
-    if (transition_ && transition_->enabled()) {
+    if (transition_->enabled()) {
         applyNewData(std::move(data), pointCount);
         return;
     }
@@ -488,7 +475,7 @@ void LineCurve::setDataFWithCache(const float* xyInterleaved, const int pointCou
         return;
     }
 
-    if (transition_ && transition_->enabled()) {
+    if (transition_->enabled()) {
         auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
         if (pointCount > 0) {
             std::memcpy(newData.data(), xyInterleaved, newData.size() * sizeof(float));
@@ -559,7 +546,7 @@ InspectionSource LineCurve::inspectionSource() const
 
 bool LineCurve::inspectionAvailable() const
 {
-    return !transitionRun_.pending();
+    return !transition_->pending();
 }
 
 QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData)
@@ -767,8 +754,8 @@ PlotSeries::DataRanges LineCurve::computeDataRanges() const
     const auto logY = logScaleY();
     const auto extents = [this, logX, logY] {
         // A running transition ends at its target, so the axes fit the target from the start.
-        if (transitionRun_.pending()) {
-            return computeDataExtents(transitionRun_.targetData(), transitionRun_.targetPointCount(), logX, logY);
+        if (transition_->pending()) {
+            return computeDataExtents(transition_->targetData(), transition_->targetPointCount(), logX, logY);
         }
         if (dataType_ == DataType::Double) {
             return computeDataExtents(data_, pointCount_, logX, logY);
@@ -798,17 +785,8 @@ void LineCurve::onAxisRangeChanged()
 
 void LineCurve::onTransitionDestroyed()
 {
-    finishTransition();
     emit transitionChanged();
     update();
-}
-
-void LineCurve::onTransitionRunningChanged()
-{
-    // DataTransition::cancel() ends every run but leaves its data pending for the host.
-    if (!transitionRun_.active()) {
-        finishTransition();
-    }
 }
 
 void LineCurve::onLineStyleChanged()
@@ -935,7 +913,7 @@ bool LineCurve::logScaleY() const
 
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)
 {
-    if (transition_ && transition_->enabled()) {
+    if (transition_->enabled()) {
         auto preciseData = std::vector<double>(newData.begin(), newData.end());
         applyNewData(std::move(preciseData), newPointCount);
     } else {
@@ -965,10 +943,10 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
 
 void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
 {
-    if (transition_ && transition_->enabled()) {
+    if (transition_->enabled()) {
         promoteFloatDataToDouble();
         dataType_ = DataType::Double;
-        transition_->start(transitionRun_, data_, pointCount_, std::move(newData), newPointCount);
+        transition_->start(data_, pointCount_, std::move(newData), newPointCount);
 
         // Do not update pointCount_ here. transition_->advance() updates it through its
         // output argument when it produces data_; changing only the count now would
@@ -1211,7 +1189,7 @@ void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 
 void LineCurve::rebuildVertexCache()
 {
-    if (hasGradientEffect() || transitionRun_.active() || renderPointCount() == 0) {
+    if (hasGradientEffect() || transition_->active() || renderPointCount() == 0) {
         vertexCache_.invalidate();
         return;
     }
@@ -1270,12 +1248,12 @@ void LineCurve::invalidateData()
 
 void LineCurve::cancelRunningTransition()
 {
-    transitionRun_.cancel();
+    transition_->cancel();
 }
 
 void LineCurve::finishTransition()
 {
-    if (transitionRun_.finish(data_, pointCount_)) {
+    if (transition_->finish(data_, pointCount_)) {
         applyTransitionData();
     }
 }
@@ -1287,12 +1265,10 @@ void LineCurve::connectAnimationTicks(QQuickWindow* window)
     }
     if (animationTickWindow_) {
         disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-        disconnect(animationTickWindow_, &QQuickWindow::afterAnimating, this, &LineCurve::advanceTransition);
     }
     animationTickWindow_ = window;
     if (window) {
         connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::refreshEffects);
-        connect(window, &QQuickWindow::afterAnimating, this, &LineCurve::advanceTransition);
     }
 }
 
@@ -1307,18 +1283,8 @@ void LineCurve::refreshEffects()
 
 void LineCurve::advanceTransition()
 {
-    if (!transition_ || !transitionRun_.active()) {
-        return;
-    }
-    // afterAnimating is emitted on the GUI thread before the scene graph syncs, so runningChanged
-    // reaches QML there, and this frame renders the new step.
-    transition_->advance(transitionRun_, data_, pointCount_);
+    transition_->advance(data_, pointCount_);
     applyTransitionData();
-    // The item is still dirty from this frame, so update() alone does not schedule the next one.
-    // A runningChanged handler may have started a new run, so the run is checked again here.
-    if (transitionRun_.active() && animationTickWindow_) {
-        animationTickWindow_->update();
-    }
 }
 
 void LineCurve::applyTransitionData()
@@ -1327,7 +1293,7 @@ void LineCurve::applyTransitionData()
     rebuildDoubleRenderData(logScaleX(), logScaleY());
     rebuildGapConnectData();
     invalidateData();
-    if (!transitionRun_.pending()) {
+    if (!transition_->pending()) {
         invalidateInspection();
     }
     update();

@@ -14,7 +14,8 @@ namespace QAccelPlot {
 /// \brief An animation transition that smoothly interpolates point positions between two datasets.
 ///
 /// Each point is linearly blended from its old position to its new position.
-/// When the point counts differ, the shorter dataset is resampled to match.
+/// When the point counts differ, the extra points start from, or end on, the last point of the
+/// shorter dataset. \c BarSeries grows and shrinks such bars at its baseline instead.
 /// Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately,
 /// and a valid target coordinate replaces an invalid source coordinate without animation.
 ///
@@ -31,9 +32,8 @@ public:
     static double interpolateCoordinate(double from, double to, double easedProgress);
 
 protected:
-    /// \brief Interpolates point positions between the two datasets at \a easedProgress (0–1).
-    void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount) override;
+    /// \brief Interpolates every value of every point between \a from and \a to at \a easedProgress.
+    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

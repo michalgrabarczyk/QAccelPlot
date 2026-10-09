@@ -24,10 +24,13 @@
 #include <QQmlListProperty>
 #include <QQuickItem>
 
+#include <memory>
 #include <utility>
 #include <vector>
 
 namespace QAccelPlot {
+
+class TransitionRunner;
 
 /// \brief A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects.
 ///
@@ -209,7 +212,6 @@ signals:
 
 private:
     void onTransitionDestroyed();
-    void onTransitionRunningChanged();
     void onLineStyleChanged();
     void onLineStyleDestroyed();
     void onNanGapModeChanged();
@@ -256,7 +258,7 @@ private:
     void cancelRunningTransition();
     // Shows the target data of a transition that stopped before its end.
     void finishTransition();
-    // Effects refresh and transitions advance on the GUI thread once per frame, from QQuickWindow::afterAnimating.
+    // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
     void refreshEffects();
     void advanceTransition();
@@ -277,9 +279,8 @@ private:
     bool renderOriginXSettled_{false};
     bool renderOriginYSettled_{false};
     int pointCount_{0};
-    QPointer<DataTransition> transition_;
-    // While it is pending, data_ holds an animation frame and the run holds the data set by the caller.
-    DataTransition::Run transitionRun_;
+    // While its run is pending, data_ holds an animation frame and the run holds the data set by the caller.
+    std::unique_ptr<TransitionRunner> transition_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     bool antialiasingEnabled_{true};

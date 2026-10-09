@@ -29,12 +29,12 @@ bool DataTransition::Run::pending() const
 
 const std::vector<double>& DataTransition::Run::targetData() const
 {
-    return toData_;
+    return to_.values;
 }
 
 int DataTransition::Run::targetPointCount() const
 {
-    return toPointCount_;
+    return to_.count;
 }
 
 bool DataTransition::Run::finish(std::vector<double>& outData, int& outPointCount)
@@ -42,8 +42,8 @@ bool DataTransition::Run::finish(std::vector<double>& outData, int& outPointCoun
     if (!pending_) {
         return false;
     }
-    outData = std::move(toData_);
-    outPointCount = toPointCount_;
+    outData = std::move(to_.values);
+    outPointCount = to_.count;
     cancel();
     return true;
 }
@@ -52,10 +52,10 @@ void DataTransition::Run::cancel()
 {
     // Cleared before detaching, so runningChanged handlers see the run as ended.
     pending_ = false;
-    fromData_.clear();
-    toData_.clear();
-    fromPointCount_ = 0;
-    toPointCount_ = 0;
+    from_.values.clear();
+    to_.values.clear();
+    from_.count = 0;
+    to_.count = 0;
     detach();
 }
 
@@ -126,18 +126,21 @@ bool DataTransition::running() const
 }
 
 void DataTransition::start(
-    Run& run, const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount)
+    Run& run, const std::vector<double>& currentData, const int currentPointCount, std::vector<double>&& newData, const int newPointCount, const int stride)
 {
+    Q_ASSERT(stride > 0);
     if (run.transition_ != this) {
         run.detach();
         run.transition_ = this;
         runs_.append(&run);
     }
     run.pending_ = true;
-    run.fromData_ = currentData;
-    run.fromPointCount_ = currentPointCount;
-    run.toData_ = std::move(newData);
-    run.toPointCount_ = newPointCount;
+    run.from_.values = currentData;
+    run.from_.count = currentPointCount;
+    run.from_.stride = stride;
+    run.to_.values = std::move(newData);
+    run.to_.count = newPointCount;
+    run.to_.stride = stride;
     run.timer_.start();
     setRunning(true);
 }
@@ -165,7 +168,11 @@ bool DataTransition::advance(Run& run, std::vector<double>& outData, int& outPoi
         return false;
     }
 
-    interpolate(easing_.valueForProgress(progress), run.fromData_, run.fromPointCount_, run.toData_, run.toPointCount_, outData, outPointCount);
+    // The frame borrows the caller's buffer, so its capacity is reused from frame to frame.
+    auto frame = Dataset{std::move(outData), outPointCount, run.to_.stride};
+    interpolate(easing_.valueForProgress(progress), run.from_, run.to_, frame);
+    outData = std::move(frame.values);
+    outPointCount = frame.count;
     return true;
 }
 

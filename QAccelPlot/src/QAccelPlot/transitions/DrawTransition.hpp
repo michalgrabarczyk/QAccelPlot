@@ -11,9 +11,10 @@
 
 namespace QAccelPlot {
 
-/// \brief An animation transition that reveals the target curve by drawing it point-by-point from start to end.
+/// \brief An animation transition that reveals the target data point by point from start to end.
 ///
-/// Assign to \c LineCurve::transition to animate data updates with a progressive draw-in effect.
+/// Assign to \c LineCurve::transition to draw the new curve in, or to \c BarSeries::transition to
+/// show the new bars one after another.
 ///
 /// \sa MorphTransition, DataTransition
 class DrawTransition : public DataTransition {
@@ -25,9 +26,8 @@ public:
     explicit DrawTransition(QObject* parent = nullptr);
 
 protected:
-    /// \brief Advances the transition by progressively revealing the target curve up to \a easedProgress (0–1).
-    void interpolate(double easedProgress, const std::vector<double>& fromData, int fromPointCount, const std::vector<double>& toData, int toPointCount,
-        std::vector<double>& outData, int& outPointCount) override;
+    /// \brief Writes the first points of \a to into \a out: their share is \a easedProgress, and at least one is kept.
+    void interpolate(double easedProgress, const Dataset& from, const Dataset& to, Dataset& out) override;
 };
 
 } // namespace QAccelPlot

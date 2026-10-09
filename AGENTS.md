@@ -93,7 +93,8 @@ QAccelPlot/
 │       │                           LineCurveGapFilter (invalid-sample contract),
 │       │                           SpatialGrid, PointSpatialIndex (hover hit testing)
 │       ├── theme/                — ColorPalette (light/dark palette values), Colors QML singleton
-│       └── transitions/          — DataTransition, DrawTransition, MorphTransition
+│       └── transitions/          — DataTransition, DrawTransition, MorphTransition,
+│                                   TransitionRunner (drives a transition for one item)
 ├── qml/                          — QML helper types (Plot, Legend, Crosshair, InspectionTooltip,
 │                                   InspectionMarkers)
 ├── shaders/                      — GLSL shaders compiled to .qsb
