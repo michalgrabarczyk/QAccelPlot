@@ -221,9 +221,12 @@ GitHub Release has been created.
 - **Buffer ownership**: `setDataF(std::vector<float>&&, int)` moves the buffer
   immediately and must be called on the curve's thread (normally the UI
   thread). For worker threads, use `postData()` which queues the handoff.
-- **No-range APIs**: `setDataFNoRange()` skips data-range calculation. If you
-  use it, you must maintain accurate `dataMin`/`dataMax` values on the axes
-  yourself, or rescaling will be incorrect.
+- **Data ranges**: Data setters do not scan for the data range. A series
+  computes it when something reads it (`rescaleToData()`, an axis with
+  `autoRescale`, `dataMin`/`dataMax`, a `DataRange` gradient). A series must
+  call `invalidateDataRanges()` after every change that affects its extents.
+  Data passed with `PlotSeries::DataBounds` is never scanned, so the bounds
+  must cover the data.
 - **Static QML module**: Applications link the umbrella
   `QAccelPlot::QAccelPlot` target and call `qt_import_qml_plugins()` before
   `qt_finalize_executable()`. C++-only tools can link `QAccelPlot::Core`.

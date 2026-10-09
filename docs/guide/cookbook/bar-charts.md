@@ -132,8 +132,8 @@ data, so large positions such as epoch timestamps stay precise.
 Ranged bars are interleaved `(from, to, value)` triples passed to
 `setRangedData()`, or to `postRangedData()` from a worker thread.
 
-For the highest throughput, use the float paths (`setDataF()`,
-`setDataFNoRange()`) and `postData()` from a worker thread; see the
+For the highest throughput, use `setDataF()`, or `postData()` from a worker
+thread; see the
 [Performance guide](../performance.md).
 
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An

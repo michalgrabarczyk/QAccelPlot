@@ -59,18 +59,11 @@ struct DataExtents {
     qreal yMax{std::numeric_limits<qreal>::lowest()};
 };
 
-struct SampleScan {
-    DataExtents extents;
-    bool xAscending{true};
-};
-
-// One pass over interleaved (x, low, high) data: the extents of the valid values, and whether X
-// ascends. Each value is judged on its own, so a sample with an invalid low still extends the
-// ranges with its x and high.
-template <typename T> SampleScan scanSamples(const T* data, const int sampleCount, const bool logScaleX, const bool logScaleY)
+// The extents of the valid values in interleaved (x, low, high) data. Each value is judged on its
+// own, so a sample with an invalid low still extends the ranges with its x and high.
+template <typename T> DataExtents scanExtents(const T* data, const int sampleCount, const bool logScaleX, const bool logScaleY)
 {
-    auto scan = SampleScan{};
-    auto& extents = scan.extents;
+    auto extents = DataExtents{};
     const auto include = [](const qreal value, const bool logScale, qreal& min, qreal& max) {
         if (isValidSample(value, logScale)) {
             min = std::min(min, value);
@@ -79,14 +72,11 @@ template <typename T> SampleScan scanSamples(const T* data, const int sampleCoun
     };
     for (auto i = std::size_t{0}; i < static_cast<std::size_t>(sampleCount); ++i) {
         const auto* sample = data + i * kStride;
-        if (std::isnan(sample[0]) || (i > 0 && sample[0] < sample[-kStride])) {
-            scan.xAscending = false;
-        }
         include(static_cast<qreal>(sample[0]), logScaleX, extents.xMin, extents.xMax);
         include(static_cast<qreal>(sample[kLowComponent]), logScaleY, extents.yMin, extents.yMax);
         include(static_cast<qreal>(sample[kHighComponent]), logScaleY, extents.yMin, extents.yMax);
     }
-    return scan;
+    return extents;
 }
 
 template <typename T> bool isAscending(const T* data, const int sampleCount)
@@ -211,17 +201,12 @@ void BandSeries::appendData(const qreal x, const qreal low, const qreal high)
     ++sampleCount_;
     xAscending_ = ascending;
 
-    if (!autoDataRanges_) {
-        // The ranges may be stale after a NoRange update; rescan once.
-        updateDataRanges();
-    } else {
-        if (isValidSample(x, logScaleX())) {
-            extendXDataRange(x);
-        }
-        for (const auto y : {low, high}) {
-            if (isValidSample(y, logScaleY())) {
-                extendYDataRange(y);
-            }
+    if (isValidSample(x, logScaleX())) {
+        extendXDataRange(x);
+    }
+    for (const auto y : {low, high}) {
+        if (isValidSample(y, logScaleY())) {
+            extendYDataRange(y);
         }
     }
     if (canExtendRenderData) {
@@ -250,49 +235,25 @@ void BandSeries::setData(const std::vector<double>& xs, const std::vector<double
 
 void BandSeries::setData(const double* data, const int sampleCount)
 {
-    copyData(data, sampleCount, true);
+    copyData(data, sampleCount);
 }
 
 void BandSeries::setData(std::vector<double>&& data, const int sampleCount)
 {
     if (validateVectorArguments(data.size(), sampleCount)) {
-        applyData(std::move(data), sampleCount, true);
-    }
-}
-
-void BandSeries::setDataNoRange(const double* data, const int sampleCount)
-{
-    copyData(data, sampleCount, false);
-}
-
-void BandSeries::setDataNoRange(std::vector<double>&& data, const int sampleCount)
-{
-    if (validateVectorArguments(data.size(), sampleCount)) {
-        applyData(std::move(data), sampleCount, false);
+        applyData(std::move(data), sampleCount);
     }
 }
 
 void BandSeries::setDataF(const float* data, const int sampleCount)
 {
-    copyFloatData(data, sampleCount, true);
+    copyFloatData(data, sampleCount);
 }
 
 void BandSeries::setDataF(std::vector<float>&& data, const int sampleCount)
 {
     if (validateVectorArguments(data.size(), sampleCount)) {
-        applyFloatData(std::move(data), sampleCount, true);
-    }
-}
-
-void BandSeries::setDataFNoRange(const float* data, const int sampleCount)
-{
-    copyFloatData(data, sampleCount, false);
-}
-
-void BandSeries::setDataFNoRange(std::vector<float>&& data, const int sampleCount)
-{
-    if (validateVectorArguments(data.size(), sampleCount)) {
-        applyFloatData(std::move(data), sampleCount, false);
+        applyFloatData(std::move(data), sampleCount);
     }
 }
 
@@ -310,7 +271,7 @@ void BandSeries::postData(std::vector<float>&& data, const int sampleCount)
 
 void BandSeries::clearData()
 {
-    applyData({}, 0, true);
+    applyData({}, 0);
 }
 
 QVariantMap BandSeries::valueAt(const qreal x) const
@@ -441,9 +402,8 @@ void BandSeries::hoverLeaveEvent(QHoverEvent* event)
 
 void BandSeries::onAxisScaleChanged()
 {
-    if (autoDataRanges_) {
-        updateDataRanges();
-    }
+    // Log scale changes which values are valid.
+    invalidateDataRanges();
     // Only origin-shifted double data depends on the scale; float data is uploaded as is.
     if (hasPreciseData()) {
         renderDataValid_ = false;
@@ -493,14 +453,14 @@ bool BandSeries::validateVectorArguments(const std::size_t valueCount, const int
     return true;
 }
 
-void BandSeries::copyData(const double* data, const int sampleCount, const bool reportRanges)
+void BandSeries::copyData(const double* data, const int sampleCount)
 {
     if (validateRawDataArguments(data, sampleCount)) {
-        applyData(std::vector<double>(data, data + static_cast<std::size_t>(sampleCount) * kStride), sampleCount, reportRanges);
+        applyData(std::vector<double>(data, data + static_cast<std::size_t>(sampleCount) * kStride), sampleCount);
     }
 }
 
-void BandSeries::copyFloatData(const float* data, const int sampleCount, const bool reportRanges)
+void BandSeries::copyFloatData(const float* data, const int sampleCount)
 {
     if (!validateRawDataArguments(data, sampleCount)) {
         return;
@@ -508,24 +468,24 @@ void BandSeries::copyFloatData(const float* data, const int sampleCount, const b
     // Reuses the render buffer's allocation.
     auto buffer = std::move(renderData_);
     buffer.assign(data, data + static_cast<std::size_t>(sampleCount) * kStride);
-    applyFloatData(std::move(buffer), sampleCount, reportRanges);
+    applyFloatData(std::move(buffer), sampleCount);
 }
 
 void BandSeries::applyInterleavedData(std::vector<double>&& data)
 {
     const auto sampleCount = static_cast<int>(data.size() / kStride);
-    applyData(std::move(data), sampleCount, true);
+    applyData(std::move(data), sampleCount);
 }
 
-void BandSeries::applyData(std::vector<double>&& data, const int sampleCount, const bool reportRanges)
+void BandSeries::applyData(std::vector<double>&& data, const int sampleCount)
 {
     dataType_ = DataType::Double;
     data_ = std::move(data);
     renderDataValid_ = false;
-    finishDataChange(sampleCount, reportRanges);
+    finishDataChange(sampleCount);
 }
 
-void BandSeries::applyFloatData(std::vector<float>&& data, const int sampleCount, const bool reportRanges)
+void BandSeries::applyFloatData(std::vector<float>&& data, const int sampleCount)
 {
     dataType_ = DataType::Float;
     data_ = std::vector<double>{};
@@ -533,20 +493,16 @@ void BandSeries::applyFloatData(std::vector<float>&& data, const int sampleCount
     renderOriginX_ = 0.0;
     renderOriginY_ = 0.0;
     renderDataValid_ = true;
-    finishDataChange(sampleCount, reportRanges);
+    finishDataChange(sampleCount);
 }
 
-void BandSeries::finishDataChange(const int sampleCount, const bool reportRanges)
+void BandSeries::finishDataChange(const int sampleCount)
 {
     const auto countDiffers = sampleCount_ != sampleCount;
     sampleCount_ = sampleCount;
     dataChanged_ = true;
-    if (reportRanges) {
-        updateDataRanges();
-    } else {
-        updateXAscending();
-        autoDataRanges_ = false;
-    }
+    updateXAscending();
+    invalidateDataRanges();
     refreshHovered();
     if (countDiffers) {
         emit countChanged();
@@ -592,23 +548,12 @@ bool BandSeries::logScaleY() const
     return yAxis() && yAxis()->logScale();
 }
 
-void BandSeries::updateDataRanges()
+PlotSeries::DataRanges BandSeries::computeDataRanges() const
 {
-    const auto scan = hasPreciseData() ? scanSamples(data_.data(), sampleCount_, logScaleX(), logScaleY())
-                                       : scanSamples(renderData_.data(), sampleCount_, logScaleX(), logScaleY());
-    const auto& extents = scan.extents;
-    xAscending_ = scan.xAscending;
-    autoDataRanges_ = true;
-    if (extents.xMin <= extents.xMax) {
-        setXDataRange(extents.xMin, extents.xMax);
-    } else {
-        clearXDataRange();
-    }
-    if (extents.yMin <= extents.yMax) {
-        setYDataRange(extents.yMin, extents.yMax);
-    } else {
-        clearYDataRange();
-    }
+    const auto extents = hasPreciseData() ? scanExtents(data_.data(), sampleCount_, logScaleX(), logScaleY())
+                                          : scanExtents(renderData_.data(), sampleCount_, logScaleX(), logScaleY());
+    // A dimension without a valid value has min > max, which the base class treats as unset.
+    return {DataExtent{extents.xMin, extents.xMax}, DataExtent{extents.yMin, extents.yMax}};
 }
 
 void BandSeries::updateXAscending()

@@ -94,18 +94,12 @@ public:
     void setData(const double* data, int sampleCount) override;
     /// \brief Moves \a data (\a sampleCount × 3 doubles: x, low, high) into the series. No copy is made.
     void setData(std::vector<double>&& data, int sampleCount) override;
-    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
-    void setDataNoRange(const double* data, int sampleCount) override;
-    /// \brief Like \c setData(vector) but does not report X/Y data ranges to the axes.
-    void setDataNoRange(std::vector<double>&& data, int sampleCount) override;
     /// \brief High-performance C++ overload: copies \a sampleCount × 3 floats (x, low, high) from \a data.
     void setDataF(const float* data, int sampleCount) override;
     /// \brief High-performance C++ overload: moves \a data (\a sampleCount × 3 floats) into the series.
     void setDataF(std::vector<float>&& data, int sampleCount) override;
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
-    void setDataFNoRange(const float* data, int sampleCount) override;
-    /// \brief Like \c setDataF(vector) but does not report X/Y data ranges to the axes.
-    void setDataFNoRange(std::vector<float>&& data, int sampleCount) override;
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
     /// \brief Thread-safe: queues \c setData(\a data, \a sampleCount) to the item's thread. No copy is made.
     void postData(std::vector<double>&& data, int sampleCount) override;
     /// \brief Thread-safe: queues \c setDataF(\a data, \a sampleCount) to the item's thread. No copy is made.
@@ -145,6 +139,7 @@ protected:
     /// \endcond
     /// \brief Refreshes ranges and uploaded coordinates when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     /// \brief Moves the render origin to the new viewport when the float render data would lose precision there.
     void onAxisRangeChanged() override;
 
@@ -168,13 +163,13 @@ private:
 
     bool validateRawDataArguments(const void* data, int sampleCount) const;
     bool validateVectorArguments(std::size_t valueCount, int sampleCount) const;
-    void copyData(const double* data, int sampleCount, bool reportRanges);
-    void copyFloatData(const float* data, int sampleCount, bool reportRanges);
-    // Applies (x, low, high) triples built from separate lists, reporting ranges.
+    void copyData(const double* data, int sampleCount);
+    void copyFloatData(const float* data, int sampleCount);
+    // Applies (x, low, high) triples built from separate lists.
     void applyInterleavedData(std::vector<double>&& data);
-    void applyData(std::vector<double>&& data, int sampleCount, bool reportRanges);
-    void applyFloatData(std::vector<float>&& data, int sampleCount, bool reportRanges);
-    void finishDataChange(int sampleCount, bool reportRanges);
+    void applyData(std::vector<double>&& data, int sampleCount);
+    void applyFloatData(std::vector<float>&& data, int sampleCount);
+    void finishDataChange(int sampleCount);
     void promoteFloatDataToDouble();
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
@@ -183,8 +178,6 @@ private:
     bool sampleValid(int index) const;
     bool logScaleX() const;
     bool logScaleY() const;
-    // Reports the data ranges to the axes and updates xAscending_ in the same pass.
-    void updateDataRanges();
     void updateXAscending();
     std::optional<Span> spanAt(qreal x) const;
     bool edgesVisible() const;
@@ -225,9 +218,6 @@ private:
     int sampleCount_{0};
     bool dataChanged_{true};
     bool xAscending_{true};
-    // True when the most recent data update computed ranges; the NoRange APIs leave range
-    // management to the caller, so scale changes must not overwrite it.
-    bool autoDataRanges_{true};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};
     BandEdgeRenderer upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};

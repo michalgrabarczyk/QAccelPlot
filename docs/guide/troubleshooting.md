@@ -53,13 +53,16 @@ Check these conditions:
 On the software backend, QAccelPlot logs a warning that curve rendering is
 unavailable.
 
-## Rescale does not show all new data
+## Rescale does not fit the data
 
-[`setDataFNoRange()`][set-data-f-no-range] skips data-range calculation. Set
-accurate [`dataMin`][data-min] and [`dataMax`][data-max] on the axes, or update
-through [`setDataF()`][set-data-f] before calling
-[`rescaleToData()`][rescale-to-data] or [`rescaleAllAxes()`][rescale-all-axes].
-Every series attached to an axis contributes to its data range.
+Data passed with `DataBounds` is not scanned: a rescale fits the given bounds,
+so they must cover the data. Every series attached to an axis contributes to
+its data range.
+
+## Pan and zoom snap back
+
+An axis with [`autoRescale`][auto-rescale] refits its viewport on every
+data update. Set `autoRescale` to `false` while the user navigates.
 
 ## A real-time plot stutters
 
@@ -89,10 +92,5 @@ Report through [GitHub Issues](https://github.com/michalgrabarczyk/QAccelPlot/is
 
 [series-x-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-xaxis-12
 [series-y-axis]: api/classQAccelPlot_1_1PlotSeries.md#property-yaxis-12
-[set-data-f-no-range]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafnorange-12
-[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
-[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[set-data-f]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
-[rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
-[rescale-all-axes]: api/classQAccelPlot_1_1QAccelPlot.md#function-rescaleallaxes
+[auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

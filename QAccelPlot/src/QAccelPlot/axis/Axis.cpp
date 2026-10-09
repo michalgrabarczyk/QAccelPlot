@@ -9,9 +9,11 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <algorithm>
 #include <limits>
+#include <utility>
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -34,6 +36,9 @@ constexpr auto kFlatLinearRangeFraction = 0.1;
 // Half-range used to synthesize a linear viewport when the value is exactly zero, where a
 // magnitude-relative range would degenerate to zero width.
 constexpr auto kFlatLinearZeroHalfRange = 1.0;
+// Data range of an axis whose series have no data.
+constexpr auto kFallbackDataMin = 0.0;
+constexpr auto kFallbackDataMax = 1.0;
 constexpr auto kHorizontalLabelOverflow = 25.0;
 constexpr auto kVerticalLabelOverflow = 10.0;
 
@@ -108,30 +113,43 @@ void Axis::setViewportMax(const qreal m)
 
 qreal Axis::dataMin() const
 {
+    ensureDataRange();
     return dataMin_;
 }
 
 void Axis::setDataMin(const qreal m)
 {
+    ensureDataRange();
     if (nearly_equal(dataMin_, m)) {
         return;
     }
     dataMin_ = m;
     emit dataMinChanged();
+    autoRescaleToData();
 }
 
 qreal Axis::dataMax() const
 {
+    ensureDataRange();
     return dataMax_;
 }
 
 void Axis::setDataMax(const qreal m)
 {
+    ensureDataRange();
     if (nearly_equal(dataMax_, m)) {
         return;
     }
     dataMax_ = m;
     emit dataMaxChanged();
+    autoRescaleToData();
+}
+
+void Axis::setDataRange(const qreal min, const qreal max)
+{
+    dataRangeStale_ = false;
+    setDataRangeValues(min, max);
+    autoRescaleToData();
 }
 
 Axis::Orientation Axis::orientation() const
@@ -354,6 +372,21 @@ void Axis::setZoomScaleFactor(const double factor)
     emit zoomScaleFactorChanged();
 }
 
+bool Axis::autoRescale() const
+{
+    return autoRescale_;
+}
+
+void Axis::setAutoRescale(const bool on)
+{
+    if (autoRescale_ == on) {
+        return;
+    }
+    autoRescale_ = on;
+    emit autoRescaleChanged();
+    autoRescaleToData();
+}
+
 void Axis::toggleLogScale()
 {
     setLogScale(!logScale_);
@@ -361,29 +394,9 @@ void Axis::toggleLogScale()
 
 void Axis::rescaleToData()
 {
-    if (dataMin_ < dataMax_) {
-        if (logScale_) {
-            const auto minimum = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
-            setViewportMin(minimum);
-            setViewportMax(dataMax_ > minimum ? dataMax_ : minimum * kLogScaleRangeFactor);
-        } else {
-            setViewportMin(dataMin_);
-            setViewportMax(dataMax_);
-        }
-        return;
-    }
-
-    // Flat data (a constant series or a single point): dataMin_ == dataMax_ would
-    // otherwise make this a no-op. Synthesize a small range around the value instead.
-    if (logScale_) {
-        const auto center = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
-        setViewportMin(center / kLogScaleRangeFactor);
-        setViewportMax(center * kLogScaleRangeFactor);
-    } else {
-        const auto half = dataMin_ != 0.0 ? std::abs(dataMin_) * kFlatLinearRangeFraction : kFlatLinearZeroHalfRange;
-        setViewportMin(dataMin_ - half);
-        setViewportMax(dataMin_ + half);
-    }
+    ensureDataRange();
+    const auto range = dataFitRange();
+    setViewportRange(range.min, range.max);
 }
 
 void Axis::paint(QPainter* painter)
@@ -527,66 +540,74 @@ QString Axis::formatValue(const qreal value, const qreal length) const
     return ticker_->tickLabelFormatter()->format(value, valueResolution(value, length));
 }
 
-void Axis::updateDataRange(const qreal min, const qreal max)
+void Axis::addDataRangeSource(const PlotSeries* series, const Orientation dimension)
 {
-    setDataRangeValues(min, max);
+    dataRangeSources_.append(DataRangeSource{series, dimension});
+    invalidateDataRange();
 }
 
-void Axis::setSourceDataRange(const QObject* source, const Orientation dimension, const qreal min, const qreal max)
+void Axis::removeDataRangeSource(const PlotSeries* series, const Orientation dimension)
 {
-    if (!source) {
+    const auto removed
+        = dataRangeSources_.removeIf([series, dimension](const DataRangeSource& source) { return source.series == series && source.dimension == dimension; });
+    if (removed > 0) {
+        invalidateDataRange();
+    }
+}
+
+void Axis::invalidateDataRange()
+{
+    if (!autoRescale_) {
+        if (!std::exchange(dataRangeStale_, true)) {
+            // The new range is not computed until it is read, so this only announces that it may differ.
+            emit dataMinChanged();
+            emit dataMaxChanged();
+        }
         return;
     }
 
-    auto& ranges = dimension == Horizontal ? horizontalDataRanges_ : verticalDataRanges_;
-    ranges.insert(source, DataRange{min, max});
-
-    if (!rangeSourceConnections_.contains(source)) {
-        const auto connection = connect(source, &QObject::destroyed, this, [this, source]() {
-            horizontalDataRanges_.remove(source);
-            verticalDataRanges_.remove(source);
-            rangeSourceConnections_.remove(source);
-            recomputeSourceDataRange();
-        });
-        rangeSourceConnections_.insert(source, connection);
+    const auto previousMin = dataMin_;
+    const auto previousMax = dataMax_;
+    dataRangeStale_ = true;
+    ensureDataRange();
+    if (!nearly_equal(previousMin, dataMin_)) {
+        emit dataMinChanged();
     }
-
-    recomputeSourceDataRange();
+    if (!nearly_equal(previousMax, dataMax_)) {
+        emit dataMaxChanged();
+    }
+    // An axis whose series were all cleared keeps its viewport instead of jumping to the fallback range.
+    if (dataRangeFromSeries_) {
+        rescaleToData();
+    }
 }
 
-void Axis::clearSourceDataRange(const QObject* source, const Orientation dimension)
+void Axis::ensureDataRange() const
 {
-    auto& ranges = dimension == Horizontal ? horizontalDataRanges_ : verticalDataRanges_;
-    // A source that never reported a range must not replace an application-set data range.
-    if (!ranges.remove(source)) {
-        return;
-    }
-
-    if (!horizontalDataRanges_.contains(source) && !verticalDataRanges_.contains(source)) {
-        disconnect(rangeSourceConnections_.take(source));
-    }
-
-    recomputeSourceDataRange();
-}
-
-void Axis::recomputeSourceDataRange()
-{
-    if (horizontalDataRanges_.isEmpty() && verticalDataRanges_.isEmpty()) {
-        setDataRangeValues(0.0, 1.0);
+    if (!std::exchange(dataRangeStale_, false)) {
         return;
     }
 
     auto min = std::numeric_limits<qreal>::max();
     auto max = std::numeric_limits<qreal>::lowest();
-    const auto includeRanges = [&min, &max](const auto& ranges) {
-        for (const auto& range : ranges) {
-            min = std::min(min, range.min);
-            max = std::max(max, range.max);
+    for (const auto& source : dataRangeSources_) {
+        const auto extent = source.dimension == Horizontal ? source.series->xDataRange() : source.series->yDataRange();
+        if (extent) {
+            min = std::min(min, extent->min);
+            max = std::max(max, extent->max);
         }
-    };
-    includeRanges(horizontalDataRanges_);
-    includeRanges(verticalDataRanges_);
-    setDataRangeValues(min, max);
+    }
+
+    const auto hasSeriesRange = min <= max;
+    if (hasSeriesRange) {
+        dataMin_ = min;
+        dataMax_ = max;
+    } else if (dataRangeFromSeries_) {
+        // A series that never had data must not replace an application-set data range.
+        dataMin_ = kFallbackDataMin;
+        dataMax_ = kFallbackDataMax;
+    }
+    dataRangeFromSeries_ = hasSeriesRange;
 }
 
 void Axis::setDataRangeValues(const qreal min, const qreal max)
@@ -600,6 +621,52 @@ void Axis::setDataRangeValues(const qreal min, const qreal max)
     }
     if (maxChanged) {
         emit dataMaxChanged();
+    }
+}
+
+Axis::DataRange Axis::dataFitRange() const
+{
+    if (dataMin_ < dataMax_) {
+        if (logScale_) {
+            const auto minimum = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
+            return {minimum, dataMax_ > minimum ? dataMax_ : minimum * kLogScaleRangeFactor};
+        }
+        return {dataMin_, dataMax_};
+    }
+
+    // Flat data (a constant series or a single point): dataMin_ == dataMax_ would
+    // otherwise give a zero-width viewport. Synthesize a small range around the value instead.
+    if (logScale_) {
+        const auto center = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
+        return {center / kLogScaleRangeFactor, center * kLogScaleRangeFactor};
+    }
+    const auto half = dataMin_ != 0.0 ? std::abs(dataMin_) * kFlatLinearRangeFraction : kFlatLinearZeroHalfRange;
+    return {dataMin_ - half, dataMin_ + half};
+}
+
+void Axis::setViewportRange(const qreal min, const qreal max)
+{
+    const auto minChanged = !nearly_equal(viewportMin_, min);
+    const auto maxChanged = !nearly_equal(viewportMax_, max);
+    if (!minChanged && !maxChanged) {
+        return;
+    }
+    viewportMin_ = min;
+    viewportMax_ = max;
+    if (minChanged) {
+        emit viewportMinChanged();
+    }
+    if (maxChanged) {
+        emit viewportMaxChanged();
+    }
+    emit rangeChanged();
+    invalidateTicks();
+}
+
+void Axis::autoRescaleToData()
+{
+    if (autoRescale_) {
+        rescaleToData();
     }
 }
 
@@ -714,6 +781,13 @@ void Axis::updatePolish()
     // Runs on the GUI thread before the scene graph sync. Tick labels are formatted here rather than in
     // paint(), because a formatter's tickLabel JS callback must run on the QML engine's thread.
     ticks_ = AxisTickPainter::computeTicks(viewportMin_, viewportMax_, logScale_, ticker_);
+}
+
+void Axis::componentComplete()
+{
+    QQuickPaintedItem::componentComplete();
+    // QML assigns autoRescale and the declared ranges in no guaranteed order; fit once all are set.
+    autoRescaleToData();
 }
 
 qreal Axis::valueResolution(const qreal value, const qreal length) const

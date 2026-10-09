@@ -93,7 +93,7 @@ void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
 
     const auto threePoints = std::vector<float>{0.0f, 0.1f, 0.5f, 0.9f, 1.0f, 0.2f};
     const auto threePointCache = reversedCache(threePoints, 3);
-    curve.setDataFNoRangeWithCache(std::vector<float>(threePoints), 3, std::vector<char>(threePointCache));
+    curve.setDataFWithCache(std::vector<float>(threePoints), 3, std::vector<char>(threePointCache));
     auto node = std::unique_ptr<QSGNode>{curve.updatePaintNode(nullptr, nullptr)};
     QVERIFY(node);
     QVERIFY(lineVerticesMatch(node.get(), threePointCache));
@@ -101,7 +101,7 @@ void LineCurveRenderingTest::prebuiltVertexCacheIsUploaded()
     // Line vertices depend only on the point count, so a new count re-uploads the cache.
     const auto fourPoints = std::vector<float>{0.0f, 0.1f, 0.3f, 0.9f, 0.6f, 0.2f, 1.0f, 0.5f};
     const auto fourPointCache = reversedCache(fourPoints, 4);
-    curve.setDataFNoRangeWithCache(fourPoints.data(), 4, std::vector<char>(fourPointCache));
+    curve.setDataFWithCache(fourPoints.data(), 4, std::vector<char>(fourPointCache));
     node.reset(curve.updatePaintNode(node.release(), nullptr));
     QVERIFY(lineVerticesMatch(node.get(), fourPointCache));
 }

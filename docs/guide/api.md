@@ -58,7 +58,7 @@ See [Data inspection](cookbook/data-inspection.md) for usage, query contracts, a
   curve's thread.
 - [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata) —
   completed buffers from a worker thread.
-- `setDataFNoRange()` — only when you maintain axis data ranges yourself.
+- `PlotSeries::DataBounds` — passed with the data when its extents are already known.
 - `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.
   See [Invalid samples and gaps](concepts.md#invalid-samples-and-gaps).
 

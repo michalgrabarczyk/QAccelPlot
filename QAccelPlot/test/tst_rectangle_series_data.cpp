@@ -38,9 +38,9 @@ private slots:
     void movedDataIsApplied();
     void movedDataWithWrongSizeIsRejected();
     void noRangeDataDoesNotReportRanges();
-    void rawDoubleNoRangeSkipsRanges();
+    void rawDoubleDataIsCopiedAndNullIsRejected();
     void floatDataIsApplied();
-    void floatNoRangeDataDoesNotReportRanges();
+    void dataBoundsReplaceTheRangeScan();
     void floatDataIsUploadedWithoutOrigin();
     void postedFloatDataIsAppliedFromWorkerThread();
     void postedDataIsAppliedFromWorkerThread();
@@ -186,20 +186,16 @@ void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
     auto node = std::unique_ptr<QSGNode>{rectangles.updatePaintNode(nullptr, nullptr)};
     QVERIFY(node);
-    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::yDataRangeChanged};
 
-    rectangles.setDataNoRange(std::vector<double>{10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0}, std::vector<int>{1, 0}, 2);
+    rectangles.setData(std::vector<double>{10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0}, std::vector<int>{1, 0}, 2);
 
     QCOMPARE(rectangles.count(), 2);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 50.0);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 0);
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(yRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMin(), 1.0);
-    QCOMPARE(xAxis.dataMax(), 3.0);
-    QCOMPARE(yAxis.dataMin(), 2.0);
-    QCOMPARE(yAxis.dataMax(), 4.0);
+    QCOMPARE(xAxis.dataMin(), 10.0);
+    QCOMPARE(xAxis.dataMax(), 70.0);
+    QCOMPARE(yAxis.dataMin(), 20.0);
+    QCOMPARE(yAxis.dataMax(), 80.0);
 
     node.reset(rectangles.updatePaintNode(node.release(), nullptr));
     const auto* material = static_cast<RectMaterial*>(static_cast<QSGGeometryNode*>(node.get())->material());
@@ -207,34 +203,32 @@ void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
     QCOMPARE(material->useVertexColor, 1.0f);
 
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 coordinates for 1 rectangles; expected 4"));
-    rectangles.setDataNoRange(std::vector<double>{1.0, 2.0, 3.0}, {}, 1);
+    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0}, {}, 1);
     QCOMPARE(rectangles.count(), 2);
 
-    rectangles.setDataNoRange(std::vector<double>{90.0, 91.0, 92.0, 93.0}, 1);
+    rectangles.setData(std::vector<double>{90.0, 91.0, 92.0, 93.0}, 1);
     QCOMPARE(rectangles.count(), 1);
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(xAxis.dataMax(), 92.0);
 }
 
-void RectangleSeriesDataTest::rawDoubleNoRangeSkipsRanges()
+void RectangleSeriesDataTest::rawDoubleDataIsCopiedAndNullIsRejected()
 {
     auto xAxis = Axis{};
     auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
-    auto xRangeSpy = QSignalSpy{&rectangles, &PlotSeries::xDataRangeChanged};
+    QCOMPARE(xAxis.dataMax(), 3.0);
     const auto raw = std::array<double, 4>{10.0, 20.0, 30.0, 40.0};
 
-    rectangles.setDataNoRange(raw.data(), 1);
+    rectangles.setData(raw.data(), 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(xAxis.dataMax(), 30.0);
 
-    rectangles.setDataNoRange(static_cast<const double*>(nullptr), 0);
+    rectangles.setData(static_cast<const double*>(nullptr), 0);
     QCOMPARE(rectangles.count(), 0);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer.*"));
-    rectangles.setDataNoRange(static_cast<const double*>(nullptr), 1);
+    rectangles.setData(static_cast<const double*>(nullptr), 1);
     QCOMPARE(rectangles.count(), 0);
 }
 
@@ -279,30 +273,33 @@ void RectangleSeriesDataTest::floatDataIsApplied()
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 100.0);
 }
 
-void RectangleSeriesDataTest::floatNoRangeDataDoesNotReportRanges()
+void RectangleSeriesDataTest::dataBoundsReplaceTheRangeScan()
 {
     auto xAxis = Axis{};
     auto rectangles = RectangleSeries{};
     rectangles.setXAxis(&xAxis);
     rectangles.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, 1);
-    auto xRangeSpy = QSignalSpy{&rectangles, &RectangleSeries::xDataRangeChanged};
+    QCOMPARE(xAxis.dataMax(), 3.0);
 
-    rectangles.setDataFNoRange(std::vector<float>{10.0f, 20.0f, 30.0f, 40.0f}, 1);
+    rectangles.setDataF(std::vector<float>{10.0f, 20.0f, 30.0f, 40.0f}, 1, PlotSeries::DataBounds{0.0, 100.0, 0.0, 100.0});
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
+    QCOMPARE(xAxis.dataMin(), 0.0);
+    QCOMPARE(xAxis.dataMax(), 100.0);
 
-    rectangles.setDataFNoRange(std::vector<float>{50.0f, 60.0f, 70.0f, 80.0f, 90.0f, 91.0f, 92.0f, 93.0f}, std::vector<int>{0, 1}, 2);
+    // An update without bounds is scanned again.
+    rectangles.setDataF(std::vector<float>{50.0f, 60.0f, 70.0f, 80.0f, 90.0f, 91.0f, 92.0f, 93.0f}, std::vector<int>{0, 1}, 2);
     QCOMPARE(rectangles.count(), 2);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 1);
+    QCOMPARE(xAxis.dataMin(), 50.0);
+    QCOMPARE(xAxis.dataMax(), 92.0);
 
     const auto raw = std::array<float, 4>{-5.0f, -6.0f, -7.0f, -8.0f};
-    rectangles.setDataFNoRange(raw.data(), 1);
+    rectangles.setDataF(raw.data(), 1, PlotSeries::DataBounds{-10.0, 10.0, -10.0, 10.0});
     QCOMPARE(rectangles.count(), 1);
     QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), -8.0);
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
-
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(xAxis.dataMin(), 1.0);
-    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(xAxis.dataMin(), -10.0);
+    QCOMPARE(xAxis.dataMax(), 10.0);
 }
 
 void RectangleSeriesDataTest::floatDataIsUploadedWithoutOrigin()

@@ -112,12 +112,12 @@ PointCloud::PointCloud(QQuickItem* parent)
 
     connect(this, &PlotSeries::xAxisChanged, this, [this]() {
         reconnectAxisSignals();
-        updateDataRanges();
+        invalidateDataRanges();
         invalidateSpatialIndex();
     });
     connect(this, &PlotSeries::yAxisChanged, this, [this]() {
         reconnectAxisSignals();
-        updateDataRanges();
+        invalidateDataRanges();
         invalidateSpatialIndex();
     });
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
@@ -245,7 +245,7 @@ void PointCloud::setData(const QList<QPointF>& points)
         xy[static_cast<std::size_t>(index) * 2 + 1] = points[index].y();
     }
     // QPointF is double precision, so keep it: applyDoubleData() origin-shifts the upload.
-    applyDoubleData(std::move(xy), {}, pointCount, true);
+    applyDoubleData(std::move(xy), {}, pointCount);
 }
 
 void PointCloud::setValues(const QList<qreal>& values)
@@ -340,32 +340,7 @@ void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>
     if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
         return;
     }
-    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, true);
-}
-
-void PointCloud::setDataNoRange(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<double>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    setDataNoRange(std::move(xy), pointCount);
-}
-
-void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    setDataNoRange(std::move(xyInterleaved), {}, pointCount);
-}
-
-void PointCloud::setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
-{
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
-        return;
-    }
-    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount, false);
+    applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount);
 }
 
 void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
@@ -377,7 +352,7 @@ void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
     if (pointCount > 0) {
         xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
     }
-    applyData(std::move(xy), {}, pointCount, true);
+    applyData(std::move(xy), {}, pointCount);
 }
 
 void PointCloud::setDataF(std::vector<float>&& xyInterleaved, const int pointCount)
@@ -390,32 +365,7 @@ void PointCloud::setDataF(std::vector<float>&& xyInterleaved, std::vector<float>
     if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
         return;
     }
-    applyData(std::move(xyInterleaved), std::move(values), pointCount, true);
-}
-
-void PointCloud::setDataFNoRange(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<float>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    setDataFNoRange(std::move(xy), pointCount);
-}
-
-void PointCloud::setDataFNoRange(std::vector<float>&& xyInterleaved, const int pointCount)
-{
-    setDataFNoRange(std::move(xyInterleaved), {}, pointCount);
-}
-
-void PointCloud::setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
-{
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
-        return;
-    }
-    applyData(std::move(xyInterleaved), std::move(values), pointCount, false);
+    applyData(std::move(xyInterleaved), std::move(values), pointCount);
 }
 
 void PointCloud::postData(std::vector<double>&& xyInterleaved, const int pointCount)
@@ -450,7 +400,7 @@ void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>
 
 void PointCloud::clearData()
 {
-    applyData({}, {}, 0, true);
+    applyData({}, {}, 0);
 }
 
 int PointCloud::pointIndexAt(const QPointF& position) const
@@ -639,13 +589,12 @@ bool PointCloud::validateRawDataArguments(const void* xyInterleaved, const int p
     return true;
 }
 
-void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount, const bool reportRanges)
+void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
     const auto previousCount = pointCount_;
     const auto hadValues = hasValues_;
-    autoDataRanges_ = reportRanges;
     storeInterleaved(std::move(xyInterleaved), values, pointCount);
-    finishDataChange(previousCount, hadValues, reportRanges);
+    finishDataChange(previousCount, hadValues, true);
 }
 
 void PointCloud::storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, const int pointCount)
@@ -676,18 +625,17 @@ bool PointCloud::hasPreciseData() const
     return !dataD_.empty();
 }
 
-void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount, const bool reportRanges)
+void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
     const auto previousCount = pointCount_;
     const auto hadValues = hasValues_;
 
-    autoDataRanges_ = reportRanges;
     dataD_ = std::move(xyInterleaved);
     pointCount_ = pointCount;
     hasValues_ = !values.empty();
     valuesF_ = std::move(values);
     rebuildRenderData();
-    finishDataChange(previousCount, hadValues, reportRanges);
+    finishDataChange(previousCount, hadValues, true);
 }
 
 // Builds the single-precision upload buffer from dataD_, subtracting a per-dimension origin so
@@ -770,12 +718,12 @@ void PointCloud::onAxisRangeChanged()
     }
 }
 
-void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool reportRanges)
+void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool positionsChanged)
 {
     dataChanged_ = true;
     invalidateSpatialIndex();
-    if (reportRanges) {
-        updateDataRanges();
+    if (positionsChanged) {
+        invalidateDataRanges();
     }
     updateValueRange();
     if (hoveredIndex_ >= pointCount_) {
@@ -788,11 +736,8 @@ void PointCloud::finishDataChange(const int previousCount, const bool hadValues,
     update();
 }
 
-void PointCloud::updateDataRanges()
+PlotSeries::DataRanges PointCloud::computeDataRanges() const
 {
-    if (!autoDataRanges_) {
-        return;
-    }
     const auto logX = xAxis() && xAxis()->logScale();
     const auto logY = yAxis() && yAxis()->logScale();
     const auto pointStride = static_cast<std::size_t>(stride());
@@ -819,10 +764,9 @@ void PointCloud::updateDataRanges()
     }
 
     if (!anyValid) {
-        clearDataRanges();
-        return;
+        return {};
     }
-    setDataRanges(xMin, xMax, yMin, yMax);
+    return {DataExtent{xMin, xMax}, DataExtent{yMin, yMax}};
 }
 
 void PointCloud::updateValueRange()
@@ -863,7 +807,7 @@ void PointCloud::reconnectAxisSignals()
     axisConnections_.clear();
 
     const auto onLogScaleChanged = [this]() {
-        updateDataRanges();
+        invalidateDataRanges();
         invalidateSpatialIndex();
         update();
     };

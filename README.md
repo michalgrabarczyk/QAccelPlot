@@ -26,7 +26,7 @@ level-of-detail (LOD) reduction.
 
 - **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, Direct3D 11/12, Vulkan, and Metal.
 - **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
-- **Fast data paths**: Move interleaved `float` buffers into a curve, skip range scans, or hand buffers off from worker threads with `postData()`.
+- **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
 - **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
 - **Invalid samples**: `NaN`, `±Inf`, and non-positive log-axis values render as gaps or are connected across.
 

@@ -18,7 +18,7 @@ GalaxyParameters PointCloudFeed::parameters(const PageScene& scene, const Common
     auto parameters = GalaxyParameters{};
     parameters.dataset = datasetParameters(options);
     // The raw-array setters take no values.
-    parameters.values = scene.setting("values").toBool() && options.ingestion != Ingestion::FloatNoRangeCopy;
+    parameters.values = scene.setting("values").toBool() && options.ingestion != Ingestion::FloatCopy;
     parameters.invalidFraction = scene.setting("invalidFraction").toFloat();
     return parameters;
 }
@@ -30,13 +30,10 @@ void PointCloudFeed::apply(QAccelPlot::PointCloud& cloud, GalaxyPart& part, cons
         return;
     }
     switch (options.ingestion) {
-    case Ingestion::FloatNoRangeMove:
-        cloud.setDataFNoRange(std::move(part.floats), std::move(part.values), part.count);
-        break;
     case Ingestion::FloatMove:
         cloud.setDataF(std::move(part.floats), std::move(part.values), part.count);
         break;
-    case Ingestion::FloatNoRangeCopy:
+    case Ingestion::FloatCopy:
         applyRecords(cloud, part, options.ingestion);
         break;
     case Ingestion::DoubleMove:

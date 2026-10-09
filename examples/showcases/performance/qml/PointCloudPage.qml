@@ -8,7 +8,6 @@
 import QtQuick
 import QAccelPlot as QAccelPlot
 
-// Filled from C++ with setDataFNoRange(), so the axes keep the data range set here.
 QAccelPlot.Plot {
     id: plot
     objectName: "pointCloudPlot"
@@ -26,16 +25,12 @@ QAccelPlot.Plot {
     xAxis: ExampleAxis {
         viewportMin: -plot.xHalfRange
         viewportMax: plot.xHalfRange
-        dataMin: -plot.xHalfRange
-        dataMax: plot.xHalfRange
         label: "x"
     }
 
     yAxis: ExampleAxis {
         viewportMin: -1.15
         viewportMax: 1.15
-        dataMin: -1.15
-        dataMax: 1.15
         axisTitlePadding: 40
         layoutSize: 60
         label: "y"

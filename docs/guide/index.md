@@ -17,8 +17,8 @@ frame.
 
 - **Throughput** — about 8M points replaced and drawn per frame at 60 FPS on the
   [reference system](performance-comparison.md), without downsampling
-- **Data paths** — QML points, double vectors, moved `float` buffers, no-range
-  updates, and worker-thread `postData()`
+- **Data paths** — QML points, double vectors, moved `float` buffers, and
+  worker-thread `postData()`
 - **Interaction** — pan, cursor-centered and per-axis zoom, rescale, hover hit
   testing, and plot mouse events for custom tools
 - **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or

@@ -24,39 +24,30 @@ namespace {
 
 class TestPlotSeries final : public PlotSeries {
 public:
+    using PlotSeries::DataRanges;
+    using PlotSeries::invalidateDataRanges;
     using PlotSeries::PlotSeries;
-    using PlotSeries::setDataRanges;
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
 
     void setData(const double*, int) override
     {
+        invalidateDataRanges();
     }
 
     void setData(std::vector<double>&&, int) override
     {
-    }
-
-    void setDataNoRange(const double*, int) override
-    {
-    }
-
-    void setDataNoRange(std::vector<double>&&, int) override
-    {
+        invalidateDataRanges();
     }
 
     void setDataF(const float*, int) override
     {
+        invalidateDataRanges();
     }
 
     void setDataF(std::vector<float>&&, int) override
     {
-    }
-
-    void setDataFNoRange(const float*, int) override
-    {
-    }
-
-    void setDataFNoRange(std::vector<float>&&, int) override
-    {
+        invalidateDataRanges();
     }
 
     void postData(std::vector<double>&&, int) override
@@ -71,9 +62,18 @@ public:
     {
     }
 
+    // What a scan of the records finds, and how often they were scanned.
+    DataRanges ranges;
+    mutable int scanCount{0};
     int scaleChangeCount{0};
 
 protected:
+    DataRanges computeDataRanges() const override
+    {
+        ++scanCount;
+        return ranges;
+    }
+
     void onAxisScaleChanged() override
     {
         ++scaleChangeCount;
@@ -108,8 +108,13 @@ class PlotSeriesDataRangesTest : public QObject {
 
 private slots:
     void commonDataApiDispatchesThroughBase();
-    void nonFiniteXDoesNotBlockFiniteYUpdate();
-    void nonFiniteYDoesNotBlockFiniteXUpdate();
+    void nonFiniteXDoesNotBlockFiniteYRange();
+    void nonFiniteYDoesNotBlockFiniteXRange();
+    void dataRangesAreScannedOnlyWhenRead();
+    void rescaleToDataScansOnce();
+    void autoRescaleAxisScansOnEveryUpdate();
+    void dataBoundsSkipTheScan();
+    void staleDataRangeIsAnnouncedOncePerRead();
     void replacingDestroyedLogAxisReportsScaleChange();
     void emptyPointCloudKeepsApplicationDataRange();
     void emptyRectangleSeriesKeepsApplicationDataRange();
@@ -117,6 +122,10 @@ private slots:
     void clearedEmptyLineCurveKeepsApplicationDataRange();
     void rescaleAfterEmptySeriesUsesApplicationDataRange();
     void clearingReportedRangeUpdatesAxis();
+    void autoRescaleFollowsEachAppendedPoint();
+    void autoRescaleFollowsReplacedData();
+    void autoRescaleKeepsViewportWhenLastSeriesClears();
+    void autoRescaleFitsRemainingSeriesWhenOneClears();
 };
 
 void PlotSeriesDataRangesTest::commonDataApiDispatchesThroughBase()
@@ -155,28 +164,143 @@ void PlotSeriesDataRangesTest::commonDataApiDispatchesThroughBase()
     QCOMPARE(bars.count(), 0);
 }
 
-void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYUpdate()
+void PlotSeriesDataRangesTest::nonFiniteXDoesNotBlockFiniteYRange()
 {
     auto series = TestPlotSeries{};
-    auto xSpy = QSignalSpy{&series, &PlotSeries::xDataRangeChanged};
-    auto ySpy = QSignalSpy{&series, &PlotSeries::yDataRangeChanged};
+    const auto infinity = std::numeric_limits<qreal>::infinity();
+    series.ranges = {PlotSeries::DataExtent{infinity, infinity}, PlotSeries::DataExtent{1.0, 2.0}};
+    series.invalidateDataRanges();
 
-    series.setDataRanges(std::numeric_limits<qreal>::infinity(), std::numeric_limits<qreal>::infinity(), 1.0, 2.0);
-
-    QCOMPARE(xSpy.count(), 0);
-    QCOMPARE(ySpy.count(), 1);
+    QVERIFY(!series.xDataRange());
+    QVERIFY(series.yDataRange());
+    QCOMPARE(series.yDataRange()->max, 2.0);
 }
 
-void PlotSeriesDataRangesTest::nonFiniteYDoesNotBlockFiniteXUpdate()
+void PlotSeriesDataRangesTest::nonFiniteYDoesNotBlockFiniteXRange()
 {
     auto series = TestPlotSeries{};
-    auto xSpy = QSignalSpy{&series, &PlotSeries::xDataRangeChanged};
-    auto ySpy = QSignalSpy{&series, &PlotSeries::yDataRangeChanged};
+    const auto nan = std::numeric_limits<qreal>::quiet_NaN();
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{nan, nan}};
+    series.invalidateDataRanges();
 
-    series.setDataRanges(1.0, 2.0, std::numeric_limits<qreal>::quiet_NaN(), std::numeric_limits<qreal>::quiet_NaN());
+    QVERIFY(series.xDataRange());
+    QCOMPARE(series.xDataRange()->min, 1.0);
+    QVERIFY(!series.yDataRange());
+}
 
-    QCOMPARE(xSpy.count(), 1);
-    QCOMPARE(ySpy.count(), 0);
+void PlotSeriesDataRangesTest::dataRangesAreScannedOnlyWhenRead()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto series = TestPlotSeries{};
+    series.setXAxis(&xAxis);
+    series.setYAxis(&yAxis);
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{3.0, 4.0}};
+
+    series.setDataF(std::vector<float>{}, 0);
+    series.setDataF(std::vector<float>{}, 0);
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(series.scanCount, 0);
+
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(yAxis.dataMax(), 4.0);
+    QCOMPARE(xAxis.dataMax(), 2.0);
+    QCOMPARE(series.scanCount, 1);
+
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(series.scanCount, 1);
+    QVERIFY(series.xDataRange());
+    QCOMPARE(series.scanCount, 2);
+}
+
+void PlotSeriesDataRangesTest::rescaleToDataScansOnce()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    auto series = TestPlotSeries{};
+    series.setXAxis(&xAxis);
+    series.setYAxis(&yAxis);
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{3.0, 4.0}};
+    series.setDataF(std::vector<float>{}, 0);
+
+    xAxis.rescaleToData();
+    yAxis.rescaleToData();
+
+    QCOMPARE(series.scanCount, 1);
+    QCOMPARE(xAxis.viewportMin(), 1.0);
+    QCOMPARE(xAxis.viewportMax(), 2.0);
+    QCOMPARE(yAxis.viewportMin(), 3.0);
+    QCOMPARE(yAxis.viewportMax(), 4.0);
+}
+
+void PlotSeriesDataRangesTest::autoRescaleAxisScansOnEveryUpdate()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto series = TestPlotSeries{};
+    series.setXAxis(&xAxis);
+    series.setYAxis(&yAxis);
+    const auto scansAfterBinding = series.scanCount;
+
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{3.0, 4.0}};
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(series.scanCount, scansAfterBinding + 1);
+    QCOMPARE(yAxis.viewportMax(), 4.0);
+
+    series.ranges.y = PlotSeries::DataExtent{3.0, 9.0};
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(series.scanCount, scansAfterBinding + 2);
+    QCOMPARE(yAxis.viewportMax(), 9.0);
+    // The axis without auto-rescale did not ask.
+    QCOMPARE(xAxis.viewportMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::dataBoundsSkipTheScan()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto series = TestPlotSeries{};
+    series.setXAxis(&xAxis);
+    series.setYAxis(&yAxis);
+    const auto scansAfterBinding = series.scanCount;
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{3.0, 4.0}};
+
+    series.setDataF(std::vector<float>{}, 0, PlotSeries::DataBounds{-10.0, 10.0, -20.0, 20.0});
+
+    QCOMPARE(yAxis.viewportMin(), -20.0);
+    QCOMPARE(yAxis.viewportMax(), 20.0);
+    QCOMPARE(xAxis.dataMin(), -10.0);
+    QCOMPARE(xAxis.dataMax(), 10.0);
+    QCOMPARE(series.scanCount, scansAfterBinding);
+
+    // The bounds belong to that update only.
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(yAxis.viewportMax(), 4.0);
+    QCOMPARE(series.scanCount, scansAfterBinding + 1);
+}
+
+void PlotSeriesDataRangesTest::staleDataRangeIsAnnouncedOncePerRead()
+{
+    auto xAxis = Axis{};
+    auto series = TestPlotSeries{};
+    series.setXAxis(&xAxis);
+    series.ranges = {PlotSeries::DataExtent{1.0, 2.0}, PlotSeries::DataExtent{3.0, 4.0}};
+    QCOMPARE(xAxis.dataMax(), 1.0);
+    auto maxSpy = QSignalSpy{&xAxis, &Axis::dataMaxChanged};
+
+    series.setDataF(std::vector<float>{}, 0);
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(maxSpy.count(), 1);
+    QCOMPARE(series.scanCount, 0);
+
+    // Reading the range emits nothing, so a binding to it does not loop.
+    QCOMPARE(xAxis.dataMax(), 2.0);
+    QCOMPARE(maxSpy.count(), 1);
+
+    series.setDataF(std::vector<float>{}, 0);
+    QCOMPARE(maxSpy.count(), 2);
 }
 
 void PlotSeriesDataRangesTest::replacingDestroyedLogAxisReportsScaleChange()
@@ -202,9 +326,6 @@ void PlotSeriesDataRangesTest::emptyPointCloudKeepsApplicationDataRange()
     auto cloud = PointCloud{};
     cloud.setXAxis(&axes.x);
     cloud.setYAxis(&axes.y);
-    axes.verifyAppRange();
-
-    cloud.setDataFNoRange({0.0F, 0.0F, 1.0F, 1.0F}, {}, 2);
     axes.verifyAppRange();
 }
 
@@ -276,6 +397,92 @@ void PlotSeriesDataRangesTest::clearingReportedRangeUpdatesAxis()
     reporter.clearData();
     QCOMPARE(axes.x.dataMin(), 0.0);
     QCOMPARE(axes.x.dataMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::autoRescaleFollowsEachAppendedPoint()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    xAxis.setAutoRescale(true);
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+
+    curve.appendData(10.0, 3.0);
+    curve.appendData(11.0, 5.0);
+    QCOMPARE(xAxis.viewportMin(), 10.0);
+    QCOMPARE(xAxis.viewportMax(), 11.0);
+    QCOMPARE(yAxis.viewportMin(), 3.0);
+    QCOMPARE(yAxis.viewportMax(), 5.0);
+
+    curve.appendData(12.0, -4.0);
+    QCOMPARE(xAxis.viewportMin(), 10.0);
+    QCOMPARE(xAxis.viewportMax(), 12.0);
+    QCOMPARE(yAxis.viewportMin(), -4.0);
+    QCOMPARE(yAxis.viewportMax(), 5.0);
+}
+
+void PlotSeriesDataRangesTest::autoRescaleFollowsReplacedData()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+
+    curve.setDataF(std::vector<float>{0.0F, -8.0F, 1.0F, 8.0F}, 2);
+    QCOMPARE(yAxis.viewportMin(), -8.0);
+    QCOMPARE(yAxis.viewportMax(), 8.0);
+
+    curve.setDataF(std::vector<float>{1.0F, 2.0F, 2.0F, 4.0F}, 2);
+    QCOMPARE(yAxis.viewportMin(), 2.0);
+    QCOMPARE(yAxis.viewportMax(), 4.0);
+    QCOMPARE(xAxis.viewportMin(), 0.0);
+    QCOMPARE(xAxis.viewportMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::autoRescaleKeepsViewportWhenLastSeriesClears()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto curve = LineCurve{};
+    curve.setXAxis(&xAxis);
+    curve.setYAxis(&yAxis);
+    curve.setData(QList<QPointF>{{0.0, 20.0}, {1.0, 30.0}});
+
+    curve.clearData();
+    QCOMPARE(yAxis.viewportMin(), 20.0);
+    QCOMPARE(yAxis.viewportMax(), 30.0);
+
+    // The cleared axis reports the 0..1 fallback range; new data matching it must still be fitted.
+    curve.setData(QList<QPointF>{{0.0, 0.0}, {1.0, 1.0}});
+    QCOMPARE(yAxis.viewportMin(), 0.0);
+    QCOMPARE(yAxis.viewportMax(), 1.0);
+}
+
+void PlotSeriesDataRangesTest::autoRescaleFitsRemainingSeriesWhenOneClears()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setAutoRescale(true);
+    auto wide = LineCurve{};
+    wide.setXAxis(&xAxis);
+    wide.setYAxis(&yAxis);
+    auto narrow = LineCurve{};
+    narrow.setXAxis(&xAxis);
+    narrow.setYAxis(&yAxis);
+    wide.setData(QList<QPointF>{{0.0, -50.0}, {1.0, 50.0}});
+    narrow.setData(QList<QPointF>{{0.0, 1.0}, {1.0, 2.0}});
+    QCOMPARE(yAxis.viewportMin(), -50.0);
+    QCOMPARE(yAxis.viewportMax(), 50.0);
+
+    wide.clearData();
+
+    QCOMPARE(yAxis.viewportMin(), 1.0);
+    QCOMPARE(yAxis.viewportMax(), 2.0);
 }
 
 } // namespace QAccelPlot

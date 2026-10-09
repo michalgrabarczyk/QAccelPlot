@@ -41,10 +41,10 @@ private slots:
     void infinityDoesNotFreezeRanges();
     void allInvalidDataClearsRanges();
     void logScaleExcludesNonPositiveValues();
-    void noRangeDataIsNotRescannedOnLogScaleChange();
+    void logScaleChangeRescansDataGivenBounds();
     void replacingDestroyedLogAxisRescansRanges();
     void appendDataExcludesInvalidCoordinates();
-    void appendDataAfterNoRangeDataRescans();
+    void appendDataAfterReplacedDataReportsAllSamples();
 
     // gaps.nanMode and hit testing
     void nanGapModeDefaultsToBreakAndNotifies();
@@ -304,13 +304,11 @@ void LineCurveGapsTest::allInvalidDataClearsRanges()
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
     curve.setDataF(std::vector<float>{10.0f, 20.0f, 11.0f, 21.0f}, 2);
-    auto xRangeSpy = QSignalSpy{&curve, &LineCurve::xDataRangeChanged};
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
 
     curve.setDataF(std::vector<float>{kNaN, kNaN, kInf, -kInf}, 2);
 
-    QCOMPARE(xRangeSpy.count(), 0);
-    QCOMPARE(yRangeSpy.count(), 0);
+    QVERIFY(!curve.xDataRange());
+    QVERIFY(!curve.yDataRange());
     QCOMPARE(xAxis.dataMin(), 0.0);
     QCOMPARE(xAxis.dataMax(), 1.0);
     QCOMPARE(yAxis.dataMin(), 0.0);
@@ -336,18 +334,20 @@ void LineCurveGapsTest::logScaleExcludesNonPositiveValues()
     QCOMPARE(yAxis.dataMin(), 10.0);
 }
 
-void LineCurveGapsTest::noRangeDataIsNotRescannedOnLogScaleChange()
+void LineCurveGapsTest::logScaleChangeRescansDataGivenBounds()
 {
     auto yAxis = Axis{};
     auto curve = LineCurve{};
     curve.setYAxis(&yAxis);
-    auto yRangeSpy = QSignalSpy{&curve, &LineCurve::yDataRangeChanged};
 
-    curve.setDataFNoRange(std::vector<float>{0.0f, -1.0f, 1.0f, 10.0f}, 2);
+    curve.setDataF(std::vector<float>{0.0f, -1.0f, 1.0f, 10.0f}, 2, PlotSeries::DataBounds{0.0, 1.0, -5.0, 20.0});
+    QCOMPARE(yAxis.dataMin(), -5.0);
+    QCOMPARE(yAxis.dataMax(), 20.0);
+
+    // The bounds described linear data; a logarithmic axis accepts only the positive sample.
     yAxis.setLogScale(true);
-    yAxis.setLogScale(false);
-
-    QCOMPARE(yRangeSpy.count(), 0);
+    QCOMPARE(yAxis.dataMin(), 10.0);
+    QCOMPARE(yAxis.dataMax(), 10.0);
 }
 
 void LineCurveGapsTest::replacingDestroyedLogAxisRescansRanges()
@@ -394,14 +394,14 @@ void LineCurveGapsTest::appendDataExcludesInvalidCoordinates()
     QCOMPARE(yAxis.dataMax(), 100.0);
 }
 
-void LineCurveGapsTest::appendDataAfterNoRangeDataRescans()
+void LineCurveGapsTest::appendDataAfterReplacedDataReportsAllSamples()
 {
     auto yAxis = Axis{};
     auto curve = LineCurve{};
     curve.setYAxis(&yAxis);
     curve.setDataF(std::vector<float>{0.0f, 50.0f}, 1);
 
-    curve.setDataFNoRange(std::vector<float>{0.0f, 2.0f, 1.0f, 4.0f}, 2);
+    curve.setDataF(std::vector<float>{0.0f, 2.0f, 1.0f, 4.0f}, 2);
     curve.appendData(2.0, 3.0);
 
     QCOMPARE(yAxis.dataMin(), 2.0);

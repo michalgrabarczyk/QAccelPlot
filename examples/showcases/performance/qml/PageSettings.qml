@@ -16,7 +16,7 @@ QtObject {
     // Number of series the records are split across.
     property int seriesCount: 1
     // Series API that receives the records; a name known to ingestionFromName() in Ingestion.cpp.
-    property string ingestion: "floatNoRangeMove"
+    property string ingestion: "floatMove"
     // Whether the series take part in hover hit-testing.
     property bool hoverEnabled: true
 }

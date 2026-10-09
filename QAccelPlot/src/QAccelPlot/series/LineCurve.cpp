@@ -158,8 +158,11 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
     }
 
     auto payload = gradientEffect->payload();
-    const auto [min, max] = rangeFn(payload.direction);
-    resolveGradientValueRange(payload, min, max);
+    // Reading the data range can scan the records, so it is skipped when both bounds are fixed.
+    if (!payload.gradientValueMin.has_value() || !payload.gradientValueMax.has_value()) {
+        const auto [min, max] = rangeFn(payload.direction);
+        resolveGradientValueRange(payload, min, max);
+    }
     return payload;
 }
 
@@ -353,17 +356,12 @@ void LineCurve::appendData(const qreal x, const qreal y)
     data_.push_back(static_cast<double>(y));
     pointCount_++;
 
-    if (!autoDataRanges_) {
-        // The cached extents may be stale after a NoRange ingestion; rescan once.
-        updateDataRanges(data_, pointCount_);
-    } else {
-        // Each coordinate is judged on its own, matching updateDataRanges().
-        if (isValidSample(x, logX)) {
-            extendXDataRange(x);
-        }
-        if (isValidSample(y, logY)) {
-            extendYDataRange(y);
-        }
+    // Each coordinate is judged on its own, matching computeDataRanges().
+    if (isValidSample(x, logX)) {
+        extendXDataRange(x);
+    }
+    if (isValidSample(y, logY)) {
+        extendYDataRange(y);
     }
     if (canExtendRenderData) {
         renderData_.push_back(static_cast<float>(x - renderOriginX_));
@@ -386,7 +384,6 @@ void LineCurve::setData(const QList<QPointF>& data)
         newData[static_cast<std::size_t>(i) * 2] = static_cast<double>(data[i].x());
         newData[static_cast<std::size_t>(i) * 2 + 1] = static_cast<double>(data[i].y());
     }
-    updateDataRanges(newData, newCount);
     applyNewData(std::move(newData), newCount);
 }
 
@@ -398,7 +395,6 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
         newData[static_cast<std::size_t>(i) * 2] = xs[static_cast<std::size_t>(i)];
         newData[static_cast<std::size_t>(i) * 2 + 1] = ys[static_cast<std::size_t>(i)];
     }
-    updateDataRanges(newData, newCount);
     applyNewData(std::move(newData), newCount);
 }
 
@@ -419,28 +415,6 @@ void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCoun
     if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
         return;
     }
-    updateDataRanges(xyInterleaved, pointCount);
-    applyNewData(std::move(xyInterleaved), pointCount);
-}
-
-void LineCurve::setDataNoRange(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto data = std::vector<double>{};
-    if (pointCount > 0) {
-        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
-    }
-    setDataNoRange(std::move(data), pointCount);
-}
-
-void LineCurve::setDataNoRange(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    autoDataRanges_ = false;
     applyNewData(std::move(xyInterleaved), pointCount);
 }
 
@@ -449,29 +423,6 @@ void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
         return;
     }
-    auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
-    if (pointCount > 0) {
-        std::memcpy(newData.data(), xyInterleaved, newData.size() * sizeof(float));
-    }
-    updateDataRanges(newData, pointCount);
-    applyNewData(std::move(newData), pointCount);
-}
-
-void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
-{
-    if (!validateVectorDataArguments(data, pointCount)) {
-        return;
-    }
-    updateDataRanges(data, pointCount);
-    applyNewData(std::move(data), pointCount);
-}
-
-void LineCurve::setDataFNoRange(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    autoDataRanges_ = false;
 
     if (transition_ && transition_->enabled()) {
         auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
@@ -489,25 +440,24 @@ void LineCurve::setDataFNoRange(const float* xyInterleaved, const int pointCount
     refreshVertexCacheForDataChange();
     rebuildChunks();
     dataChanged_ = true;
+    invalidateDataRanges();
     inspectionDataChanged();
     update();
 }
 
-void LineCurve::setDataFNoRange(std::vector<float>&& data, const int pointCount)
+void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
 {
     if (!validateVectorDataArguments(data, pointCount)) {
         return;
     }
-    autoDataRanges_ = false;
     applyNewData(std::move(data), pointCount);
 }
 
-void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
+void LineCurve::setDataFWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
 {
     if (!validateVectorDataArguments(data, pointCount)) {
         return;
     }
-    autoDataRanges_ = false;
     if (transition_ && transition_->enabled()) {
         applyNewData(std::move(data), pointCount);
         return;
@@ -527,16 +477,16 @@ void LineCurve::setDataFNoRangeWithCache(std::vector<float>&& data, const int po
     installVertexCache(std::move(vertexCache));
     dataChanged_ = true;
     chunksValid_ = false;
+    invalidateDataRanges();
     inspectionDataChanged();
     update();
 }
 
-void LineCurve::setDataFNoRangeWithCache(const float* xyInterleaved, const int pointCount, std::vector<char>&& vertexCache)
+void LineCurve::setDataFWithCache(const float* xyInterleaved, const int pointCount, std::vector<char>&& vertexCache)
 {
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
         return;
     }
-    autoDataRanges_ = false;
 
     if (transition_ && transition_->enabled()) {
         auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
@@ -554,6 +504,7 @@ void LineCurve::setDataFNoRangeWithCache(const float* xyInterleaved, const int p
     installVertexCache(std::move(vertexCache));
     dataChanged_ = true;
     chunksValid_ = false;
+    invalidateDataRanges();
     inspectionDataChanged();
     update();
 }
@@ -587,7 +538,7 @@ void LineCurve::clearData()
     invalidateVertices();
     chunks_.clear();
     chunksValid_ = true;
-    clearDataRanges();
+    invalidateDataRanges();
     inspectionDataChanged();
     update();
 }
@@ -801,14 +752,31 @@ bool LineCurve::contains(const QPointF& point) const
 
 void LineCurve::onAxisScaleChanged()
 {
-    if (autoDataRanges_) {
-        recomputeDataRanges();
-    }
+    // Log scale changes which samples are valid.
+    invalidateDataRanges();
     rebuildDoubleRenderData(logScaleX(), logScaleY());
     rebuildGapConnectData();
     invalidateData();
     refreshVertexCacheForDataChange();
     update();
+}
+
+PlotSeries::DataRanges LineCurve::computeDataRanges() const
+{
+    const auto logX = logScaleX();
+    const auto logY = logScaleY();
+    const auto extents = [this, logX, logY] {
+        // A running transition ends at its target, so the axes fit the target from the start.
+        if (transitionRun_.pending()) {
+            return computeDataExtents(transitionRun_.targetData(), transitionRun_.targetPointCount(), logX, logY);
+        }
+        if (dataType_ == DataType::Double) {
+            return computeDataExtents(data_, pointCount_, logX, logY);
+        }
+        return computeDataExtents(dataF_, pointCount_, logX, logY);
+    }();
+    // A dimension without a valid coordinate has min > max, which the base class treats as unset.
+    return {DataExtent{extents.xMin, extents.xMax}, DataExtent{extents.yMin, extents.yMax}};
 }
 
 void LineCurve::onAxisRangeChanged()
@@ -948,53 +916,11 @@ GradientFillPayload LineCurve::resolveGradientFillPayload() const
 std::pair<qreal, qreal> LineCurve::gradientDataRange(const GradientDirection direction) const
 {
     const auto horizontal = direction == GradientDirection::Horizontal;
-    // The no-range APIs leave the extents to the application, which keeps them on the axes.
-    if (autoDataRanges_) {
-        if (const auto range = horizontal ? xDataRange() : yDataRange()) {
-            return {range->min, range->max};
-        }
+    if (const auto range = horizontal ? xDataRange() : yDataRange()) {
+        return {range->min, range->max};
     }
     const auto* axis = horizontal ? xAxis() : yAxis();
     return axis ? std::pair{axis->dataMin(), axis->dataMax()} : std::pair{kFallbackDataMin, kFallbackDataMax};
-}
-
-void LineCurve::updateDataRanges(const std::vector<float>& buf, const int count)
-{
-    const auto extents = computeDataExtents(buf, count, logScaleX(), logScaleY());
-    applyDataExtents(extents.xMin, extents.xMax, extents.yMin, extents.yMax);
-}
-
-void LineCurve::updateDataRanges(const std::vector<double>& buf, const int count)
-{
-    const auto extents = computeDataExtents(buf, count, logScaleX(), logScaleY());
-    applyDataExtents(extents.xMin, extents.xMax, extents.yMin, extents.yMax);
-}
-
-void LineCurve::applyDataExtents(const qreal xMin, const qreal xMax, const qreal yMin, const qreal yMax)
-{
-    autoDataRanges_ = true;
-    // An empty dimension (min > max) has no valid coordinate and is cleared.
-    if (xMin <= xMax) {
-        setXDataRange(xMin, xMax);
-    } else {
-        clearXDataRange();
-    }
-    if (yMin <= yMax) {
-        setYDataRange(yMin, yMax);
-    } else {
-        clearYDataRange();
-    }
-}
-
-void LineCurve::recomputeDataRanges()
-{
-    if (transitionRun_.pending()) {
-        updateDataRanges(transitionRun_.targetData(), transitionRun_.targetPointCount());
-    } else if (dataType_ == DataType::Double) {
-        updateDataRanges(data_, pointCount_);
-    } else {
-        updateDataRanges(dataF_, pointCount_);
-    }
 }
 
 bool LineCurve::logScaleX() const
@@ -1031,6 +957,7 @@ void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCou
         rebuildChunks();
 
         dataChanged_ = true;
+        invalidateDataRanges();
         inspectionDataChanged();
         update();
     }
@@ -1047,6 +974,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
         // output argument when it produces data_; changing only the count now would
         // make it refer to a buffer that has not been produced yet.
         invalidateData();
+        invalidateDataRanges();
         inspectionDataChanged();
         update();
         return;
@@ -1062,6 +990,7 @@ void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCo
     refreshVertexCacheForDataChange();
     rebuildChunks();
     dataChanged_ = true;
+    invalidateDataRanges();
     inspectionDataChanged();
     update();
 }

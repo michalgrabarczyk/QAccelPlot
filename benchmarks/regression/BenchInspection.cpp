@@ -160,10 +160,10 @@ QJsonObject replaceStream(const int count)
         data[static_cast<std::size_t>(i) * 2 + 1] = std::sin(static_cast<float>(i) * 0.01f);
     }
     auto* inspection = curve.inspection();
-    const auto replaceOnly = timings([&](const int /*i*/) { curve.setDataFNoRange(data.data(), count); });
+    const auto replaceOnly = timings([&](const int /*i*/) { curve.setDataF(data.data(), count); });
     auto readyFrames = 0;
     const auto replaceAndInspect = timings([&](const int i) {
-        curve.setDataFNoRange(data.data(), count);
+        curve.setDataF(data.data(), count);
         readyFrames += inspection->nearestByX(i).valid() ? 1 : 0;
         inspection->summarizeRange(i * count / 1000.0, (i + 1) * count / 1000.0);
     });

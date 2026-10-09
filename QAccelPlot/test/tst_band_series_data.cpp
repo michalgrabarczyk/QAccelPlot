@@ -91,7 +91,7 @@ private slots:
     void listsUseTheShortestLength();
     void rangesCoverLowAndHighValues();
     void invalidValuesAreSkippedInRanges();
-    void noRangeDataDoesNotReportRanges();
+    void dataBoundsReplaceTheRangeScan();
     void floatDataIsApplied();
     void rawDoubleDataPreservesModernEpochPrecision();
     void appendDataExtendsSamplesAndRanges();
@@ -180,29 +180,37 @@ void BandSeriesDataTest::invalidValuesAreSkippedInRanges()
     QCOMPARE(xAxis.dataMax(), 3.0);
 }
 
-void BandSeriesDataTest::noRangeDataDoesNotReportRanges()
+void BandSeriesDataTest::dataBoundsReplaceTheRangeScan()
 {
     auto xAxis = Axis{};
     auto band = BandSeries{};
     band.setXAxis(&xAxis);
     band.setData(std::vector<double>{1.0, 0.0, 1.0, 3.0, 0.0, 1.0}, 2);
-    auto xRangeSpy = QSignalSpy{&band, &PlotSeries::xDataRangeChanged};
-
-    band.setDataNoRange(std::vector<double>{10.0, 0.0, 1.0, 30.0, 0.0, 1.0}, 2);
-    const auto raw = std::array<double, 3>{50.0, 0.0, 1.0};
-    band.setDataNoRange(raw.data(), 1);
-    band.setDataFNoRange(std::vector<float>{60.0f, 0.0f, 1.0f}, 1);
-    const auto rawFloat = std::array<float, 3>{70.0f, 0.0f, 1.0f};
-    band.setDataFNoRange(rawFloat.data(), 1);
-    QCOMPARE(band.count(), 1);
-    QVERIFY(hasSpan(band.valueAt(70.0), 0.0, 1.0));
-    QCOMPARE(xRangeSpy.count(), 0);
     QCOMPARE(xAxis.dataMax(), 3.0);
 
-    // The first append after a NoRange update reports ranges for all samples.
+    band.setData(std::vector<double>{10.0, 0.0, 1.0, 30.0, 0.0, 1.0}, 2, PlotSeries::DataBounds{0.0, 100.0, 0.0, 1.0});
+    QCOMPARE(xAxis.dataMin(), 0.0);
+    QCOMPARE(xAxis.dataMax(), 100.0);
+    const auto raw = std::array<double, 3>{50.0, 0.0, 1.0};
+    band.setData(raw.data(), 1, PlotSeries::DataBounds{0.0, 200.0, 0.0, 1.0});
+    QCOMPARE(xAxis.dataMax(), 200.0);
+    band.setDataF(std::vector<float>{60.0f, 0.0f, 1.0f}, 1, PlotSeries::DataBounds{0.0, 300.0, 0.0, 1.0});
+    QCOMPARE(xAxis.dataMax(), 300.0);
+    const auto rawFloat = std::array<float, 3>{70.0f, 0.0f, 1.0f};
+    band.setDataF(rawFloat.data(), 1, PlotSeries::DataBounds{0.0, 75.0, 0.0, 1.0});
+    QCOMPARE(band.count(), 1);
+    QVERIFY(hasSpan(band.valueAt(70.0), 0.0, 1.0));
+    QCOMPARE(xAxis.dataMax(), 75.0);
+
+    // An append widens the given bounds.
     band.appendData(80.0, 0.0, 1.0);
-    QCOMPARE(xAxis.dataMin(), 70.0);
+    QCOMPARE(xAxis.dataMin(), 0.0);
     QCOMPARE(xAxis.dataMax(), 80.0);
+
+    // An update without bounds is scanned again.
+    band.setDataF(rawFloat.data(), 1);
+    QCOMPARE(xAxis.dataMin(), 70.0);
+    QCOMPARE(xAxis.dataMax(), 70.0);
 }
 
 void BandSeriesDataTest::floatDataIsApplied()

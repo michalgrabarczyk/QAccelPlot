@@ -100,16 +100,12 @@ ScrollView {
             stacked: true
             choices: [
                 {
-                    text: "setDataFNoRange (move)",
-                    value: "floatNoRangeMove"
-                },
-                {
                     text: "setDataF (move)",
                     value: "floatMove"
                 },
                 {
-                    text: "setDataFNoRange (raw copy)",
-                    value: "floatNoRangeCopy"
+                    text: "setDataF (raw copy)",
+                    value: "floatCopy"
                 },
                 {
                     text: "setData (doubles, move)",

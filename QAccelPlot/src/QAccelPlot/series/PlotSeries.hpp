@@ -88,7 +88,25 @@ public:
     };
     Q_ENUM(MarkerShape)
 
+    /// \brief Extent of the valid coordinates in one dimension.
+    struct DataExtent {
+        qreal min; ///< \brief Smallest valid coordinate.
+        qreal max; ///< \brief Largest valid coordinate.
+    };
+
+    /// \brief Extents of a data update that the caller already knows.
+    ///
+    /// Passed with the data, they are reported to the axes in place of a scan over the records.
+    /// A dimension whose bounds are not finite or not ordered reports no extent.
+    struct DataBounds {
+        qreal xMin; ///< \brief Smallest value on the horizontal axis.
+        qreal xMax; ///< \brief Largest value on the horizontal axis.
+        qreal yMin; ///< \brief Smallest value on the vertical axis.
+        qreal yMax; ///< \brief Largest value on the vertical axis.
+    };
+
     explicit PlotSeries(QQuickItem* parent = nullptr);
+    ~PlotSeries() override;
 
     /// \brief Returns the current data revision.
     quint64 dataRevision() const;
@@ -116,24 +134,31 @@ public:
     virtual void setData(const double* data, int count) = 0;
     /// \brief Replaces the series data by moving an interleaved double buffer.
     virtual void setData(std::vector<double>&& data, int count) = 0;
-    /// \brief Copies double records without reporting new data ranges to the axes.
-    virtual void setDataNoRange(const double* data, int count) = 0;
-    /// \brief Moves double records without reporting new data ranges to the axes.
-    virtual void setDataNoRange(std::vector<double>&& data, int count) = 0;
     /// \brief Replaces the series data with \a count records copied from an interleaved float array.
     virtual void setDataF(const float* data, int count) = 0;
     /// \brief Replaces the series data by moving an interleaved float buffer.
     virtual void setDataF(std::vector<float>&& data, int count) = 0;
-    /// \brief Copies float records without reporting new data ranges to the axes.
-    virtual void setDataFNoRange(const float* data, int count) = 0;
-    /// \brief Moves float records without reporting new data ranges to the axes.
-    virtual void setDataFNoRange(std::vector<float>&& data, int count) = 0;
+    /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
+    void setData(const double* data, int count, const DataBounds& bounds);
+    /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
+    void setData(std::vector<double>&& data, int count, const DataBounds& bounds);
+    /// \brief Like \c setDataF(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
+    void setDataF(const float* data, int count, const DataBounds& bounds);
+    /// \brief Like \c setDataF(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
+    void setDataF(std::vector<float>&& data, int count, const DataBounds& bounds);
     /// \brief Queues a moved double buffer for assignment on the series' thread.
     virtual void postData(std::vector<double>&& data, int count) = 0;
     /// \brief Queues a moved float buffer for assignment on the series' thread.
     virtual void postData(std::vector<float>&& data, int count) = 0;
     /// \brief Removes all records from the series.
     virtual void clearData() = 0;
+
+    /// \brief Returns the extent this series reports to its horizontal axis, or \c std::nullopt when it has none.
+    ///
+    /// The first read after a data update scans the records, unless the update came with \c DataBounds.
+    std::optional<DataExtent> xDataRange() const;
+    /// \brief Returns the extent this series reports to its vertical axis, or \c std::nullopt when it has none.
+    std::optional<DataExtent> yDataRange() const;
 
 signals:
     /// \brief Emitted when the dataRevision property changes.
@@ -143,10 +168,6 @@ signals:
     void yAxisChanged();
     void plotRectChanged();
     void legendSymbolChanged();
-    /// \brief Emitted when the X data extent of this series changes.
-    void xDataRangeChanged(qreal min, qreal max);
-    /// \brief Emitted when the Y data extent of this series changes.
-    void yDataRangeChanged(qreal min, qreal max);
 
 protected:
     /// \brief How the records changed in a data update.
@@ -168,35 +189,30 @@ protected:
     /// \brief Returns the native record drawn at the series-local \a position. Default: unsupported.
     virtual InspectionRecord inspectionRecordAt(const QPointF& position) const;
 
-    /// \brief Extent of the valid coordinates in one dimension.
-    struct DataExtent {
-        qreal min; ///< \brief Smallest valid coordinate.
-        qreal max; ///< \brief Largest valid coordinate.
+    /// \brief Extents of a series in both dimensions.
+    ///
+    /// A dimension without a valid coordinate is unset; an extent that is not finite or not ordered counts as unset.
+    struct DataRanges {
+        std::optional<DataExtent> x; ///< \brief Extent reported to the horizontal axis.
+        std::optional<DataExtent> y; ///< \brief Extent reported to the vertical axis.
     };
 
-    /// \brief Returns this series' X data range, or \c std::nullopt when it has none.
-    std::optional<DataExtent> xDataRange() const;
-    /// \brief Returns this series' Y data range, or \c std::nullopt when it has none.
-    std::optional<DataExtent> yDataRange() const;
-    /// \brief Reports this series' data extents to its bound axes.
-    void setDataRanges(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    /// \brief Reports this series' X data extent to its bound horizontal axis. Non-finite extents are ignored.
-    void setXDataRange(qreal min, qreal max);
-    /// \brief Reports this series' Y data extent to its bound vertical axis. Non-finite extents are ignored.
-    void setYDataRange(qreal min, qreal max);
-    /// \brief Widens the reported X extent to include \a x.
+    /// \brief Scans the records for their extents. The default implementation has none.
     ///
-    /// Lets an append-style ingestion path update the range in O(1) instead of rescanning
-    /// the whole buffer. A non-finite \a x leaves the extent unchanged.
+    /// Called when a data range is read after \c invalidateDataRanges(), so a series that nothing asks
+    /// for its range never scans.
+    virtual DataRanges computeDataRanges() const;
+    /// \brief Discards the cached extents and notifies the bound axes.
+    ///
+    /// Call after every change of the records, or of anything else \c computeDataRanges() depends on.
+    void invalidateDataRanges();
+    /// \brief Widens the X extent to include \a x and notifies the bound axes.
+    ///
+    /// Lets an append-style ingestion path keep computed extents current in O(1) instead of
+    /// rescanning the whole buffer. A non-finite \a x leaves the extent unchanged.
     void extendXDataRange(qreal x);
-    /// \brief Widens the reported Y extent to include \a y. A non-finite \a y leaves the extent unchanged.
+    /// \brief Widens the Y extent to include \a y. A non-finite \a y leaves the extent unchanged.
     void extendYDataRange(qreal y);
-    /// \brief Clears cached extents after a series has been emptied.
-    void clearDataRanges();
-    /// \brief Clears the cached X extent, e.g. when no sample has a valid X coordinate.
-    void clearXDataRange();
-    /// \brief Clears the cached Y extent, e.g. when no sample has a valid Y coordinate.
-    void clearYDataRange();
     /// \brief Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.
     ///
     /// Log scale changes which samples are valid, so series that apply the invalid-sample contract
@@ -218,8 +234,8 @@ protected:
 private:
     friend class SeriesInspection;
 
-    void reportXDataRangeToAxis() const;
-    void reportYDataRangeToAxis() const;
+    void ensureDataRanges() const;
+    void reportDataRangesChanged() const;
     void deliverTopmostHover(QHoverEvent* event);
     bool coveredBySeriesAbove(const QPointF& position) const;
 
@@ -233,10 +249,12 @@ private:
     QMetaObject::Connection yAxisDestroyed_;
     QRectF plotRect_;
     LegendSymbol legendSymbol_{LegendSymbol::Line};
-    qreal lastXMin_{std::numeric_limits<qreal>::max()};
-    qreal lastXMax_{std::numeric_limits<qreal>::lowest()};
-    qreal lastYMin_{std::numeric_limits<qreal>::max()};
-    qreal lastYMax_{std::numeric_limits<qreal>::lowest()};
+    // The extents are a cache of a scan over the records, refreshed by const readers.
+    mutable std::optional<DataExtent> xDataExtent_;
+    mutable std::optional<DataExtent> yDataExtent_;
+    mutable bool dataRangesStale_{false};
+    // Bounds given with the data update in progress; they replace its scan.
+    std::optional<DataBounds> updateBounds_;
 };
 
 } // namespace QAccelPlot

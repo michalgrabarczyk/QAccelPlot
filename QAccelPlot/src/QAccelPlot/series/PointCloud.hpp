@@ -150,26 +150,14 @@ public:
     void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Like \c setDataNoRange(vector) but copies from a raw interleaved double array.
-    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
-    /// \brief Like the double \c setData() but does not report X/Y data ranges to the axes.
-    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataNoRange() and also moves per-point \a values into the cloud.
-    void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
     void setDataF(const float* xyInterleaved, int pointCount) override;
     /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
     void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
     /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Like \c setDataFNoRange(vector) but copies from a raw interleaved float array.
-    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataF() but does not report X/Y data ranges to the axes.
-    ///
-    /// Use it for streaming when the axes' \c dataMin / \c dataMax are managed by the application.
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount) override;
-    /// \brief Like \c setDataFNoRange() and also moves per-point \a values into the cloud.
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a pointCount) to the item's thread.
     void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
@@ -219,6 +207,7 @@ protected:
 protected:
     /// \brief Rebuilds the origin-relative upload buffer, because log dimensions are not shifted.
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     /// \brief Moves the render origin to the new viewport when the float upload buffer would lose precision there.
     void onAxisRangeChanged() override;
 
@@ -227,10 +216,9 @@ private:
 
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
     bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
-    void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
+    void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
-    void finishDataChange(int previousCount, bool hadValues, bool reportRanges);
-    void updateDataRanges();
+    void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
     void updateValueRange();
     void reconnectAxisSignals();
     void reconnectColormapSignals();
@@ -255,7 +243,7 @@ private:
     };
 
     int nearestPoint(const HoverQuery& query) const;
-    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
+    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void rebuildRenderData();
     bool hasPreciseData() const;
 
@@ -290,8 +278,6 @@ private:
 
     // True when the data texture must be re-uploaded on the next paint.
     bool dataChanged_{true};
-    // False after a no-range update: the application maintains the axis data ranges.
-    bool autoDataRanges_{true};
 
     // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
     // neither drawn nor hovered.

@@ -37,13 +37,14 @@ and skips frames that could never be displayed.
 ```cpp
 DataBatch batch;
 if (worker.tryConsume(batch)) {
-    curve->setDataFNoRange(std::move(batch.points), batch.pointCount);
+    curve->setDataF(std::move(batch.points), batch.pointCount);
 }
 ```
 
-Use the no-range form only when the axes already hold valid data bounds. If the
-range changes, set the new bounds on the UI thread or use
-[`postData()`][post-data] / [`setDataF()`][set-data-f] to calculate them.
+The data range is scanned on the UI thread, and only when something reads it;
+see [Data ranges are computed on demand](../performance.md#data-ranges-are-computed-on-demand).
+If the worker already knows the extents, add them to the batch and pass them
+as `DataBounds` to skip that scan.
 
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.

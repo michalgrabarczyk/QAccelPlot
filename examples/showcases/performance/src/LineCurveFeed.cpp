@@ -37,13 +37,13 @@ SineWaveParameters LineCurveFeed::parameters(const PageScene& scene, const Commo
 
 void LineCurveFeed::apply(QAccelPlot::LineCurve& curve, SineWavePart& part, const CommonOptions& options)
 {
-    // Only the no-range float setters take a prebuilt vertex cache.
+    // Only the float setters take a prebuilt vertex cache.
     if (part.vertexCache.empty()) {
         applyRecords(curve, part, options.ingestion);
-    } else if (options.ingestion == Ingestion::FloatNoRangeMove) {
-        curve.setDataFNoRangeWithCache(std::move(part.floats), part.count, std::move(part.vertexCache));
-    } else if (options.ingestion == Ingestion::FloatNoRangeCopy) {
-        curve.setDataFNoRangeWithCache(part.floats.data(), part.count, std::move(part.vertexCache));
+    } else if (options.ingestion == Ingestion::FloatMove) {
+        curve.setDataFWithCache(std::move(part.floats), part.count, std::move(part.vertexCache));
+    } else if (options.ingestion == Ingestion::FloatCopy) {
+        curve.setDataFWithCache(part.floats.data(), part.count, std::move(part.vertexCache));
     } else {
         applyRecords(curve, part, options.ingestion);
     }

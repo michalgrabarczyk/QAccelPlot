@@ -482,7 +482,7 @@ void TestRectangleZoom::wheelDuringSelectionIsConsumed()
 void TestRectangleZoom::doubleClickCancelsAndRescales()
 {
     auto f = Fixture{};
-    f.x->updateDataRange(20, 40);
+    f.x->setDataRange(20, 40);
     press(f, f.point(0.25, 0.25));
     auto e = QMouseEvent{QEvent::MouseButtonDblClick, f.point(0.5, 0.5), f.point(0.5, 0.5), Qt::LeftButton, Qt::LeftButton, Qt::ShiftModifier};
     f.plot.mouseDoubleClickEvent(&e);

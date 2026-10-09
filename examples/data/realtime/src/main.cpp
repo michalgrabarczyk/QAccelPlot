@@ -24,6 +24,8 @@ constexpr double windowDuration = 20.0;
 constexpr double samplesPerSecond = 200.0;
 constexpr int sampleCount = static_cast<int>(windowDuration * samplesPerSecond) + 1;
 constexpr double pi = 3.14159265358979323846;
+// The scrolling window and the sensor's range. Passed with each update, so rescaling fits them without scanning the samples.
+constexpr auto vibrationBounds = QAccelPlot::PlotSeries::DataBounds{-windowDuration, 0.0, -2.5, 2.5};
 
 double vibrationAt(const double time)
 {
@@ -69,19 +71,19 @@ int main(int argc, char* argv[])
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
     const auto realtimeEnabled = !app.arguments().contains(QStringLiteral("--screenshot"));
-    engine.setInitialProperties({ { QStringLiteral("realtimeEnabled"), realtimeEnabled } });
+    engine.setInitialProperties({{QStringLiteral("realtimeEnabled"), realtimeEnabled}});
     engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
     auto* root = engine.rootObjects().value(0);
     auto* curve = root ? root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("vibrationCurve")) : nullptr;
 
     if (curve) {
-        curve->setDataF(rollingVibrationData(0.0), sampleCount);
+        curve->setDataF(rollingVibrationData(0.0), sampleCount, vibrationBounds);
     }
 
     const auto updateCurve = [root, curve]() {
         if (curve) {
             const auto currentTime = root->property("animationElapsedSeconds").toDouble();
-            curve->setDataFNoRange(rollingVibrationData(currentTime), sampleCount);
+            curve->setDataF(rollingVibrationData(currentTime), sampleCount, vibrationBounds);
         }
     };
 
