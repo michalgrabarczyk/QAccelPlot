@@ -104,6 +104,7 @@ flowchart TB
 |  void | [**setMin**](#function-setmin) (qreal value) <br>_Sets the fixed lower bound to_ _value_ _. NaN resolves it from the data._ |
 |  void | [**setNorm**](#function-setnorm) ([**Normalization**](classQAccelPlot_1_1Colormap.md#enum-normalization) norm) <br>_Sets the normalization to_ _norm_ _._ |
 |  void | [**setPreset**](#function-setpreset) ([**Preset**](classQAccelPlot_1_1Colormap.md#enum-preset) preset) <br>_Sets the built-in ramp to_ _preset_ _._ |
+|  Q\_INVOKABLE void | [**setRange**](#function-setrange) (qreal min, qreal max) <br>_Sets both bounds to_ _min_ _and__max_ _with a single_`colormapChanged()` _. NaN unsets a bound._ |
 |  void | [**setReversed**](#function-setreversed) (bool reversed) <br>_Sets whether the ramp is reversed to_ _reversed_ _._ |
 |  QQmlListProperty&lt; QObject &gt; | [**stops**](#function-stops-22) () <br>_Returns the custom ramp stops, empty when the preset supplies the ramp._  |
 
@@ -479,6 +480,24 @@ _Sets the built-in ramp to_ _preset_ _._
 ```C++
 void QAccelPlot::Colormap::setPreset (
     Preset preset
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setRange {#function-setrange}
+
+_Sets both bounds to_ _min_ _and__max_ _with a single_`colormapChanged()` _. NaN unsets a bound._
+```C++
+Q_INVOKABLE void QAccelPlot::Colormap::setRange (
+    qreal min,
+    qreal max
 ) 
 ```
 

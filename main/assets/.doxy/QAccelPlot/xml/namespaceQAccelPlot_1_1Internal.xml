@@ -4,6 +4,7 @@
     <compoundname>QAccelPlot::Internal</compoundname>
     <innerclass refid="classQAccelPlot_1_1Internal_1_1HoverIndexBudget" prot="public">QAccelPlot::Internal::HoverIndexBudget</innerclass>
     <innerclass refid="structQAccelPlot_1_1Internal_1_1RectUbo" prot="public">QAccelPlot::Internal::RectUbo</innerclass>
+    <innerclass refid="structQAccelPlot_1_1Internal_1_1ValueRange" prot="public">QAccelPlot::Internal::ValueRange</innerclass>
     <sectiondef kind="var">
       <memberdef kind="variable" id="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr int</type>
@@ -24,6 +25,90 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
+      <memberdef kind="function" id="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref></type>
+        <definition>ValueRange QAccelPlot::Internal::pannedRange</definition>
+        <argsstring>(const ValueRange &amp;range, qreal fraction, bool logarithmic)</argsstring>
+        <name>pannedRange</name>
+        <qualifiedname>QAccelPlot::Internal::pannedRange</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>fraction</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logarithmic</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>range</emphasis> shifted by <emphasis>fraction</emphasis> of its extent; a positive <emphasis>fraction</emphasis> raises both bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>With <emphasis>logarithmic</emphasis> set, the shift is applied in <computeroutput>log10</computeroutput> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="24" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref></type>
+        <definition>ValueRange QAccelPlot::Internal::zoomedRange</definition>
+        <argsstring>(const ValueRange &amp;range, qreal factor, qreal anchorRatio, bool logarithmic)</argsstring>
+        <name>zoomedRange</name>
+        <qualifiedname>QAccelPlot::Internal::zoomedRange</qualifiedname>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>factor</declname>
+        </param>
+        <param>
+          <type>qreal</type>
+          <declname>anchorRatio</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>logarithmic</declname>
+        </param>
+        <briefdescription>
+<para>Returns <emphasis>range</emphasis> with its extent multiplied by <emphasis>factor</emphasis>, keeping the value at <emphasis>anchorRatio</emphasis> in place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><emphasis>anchorRatio</emphasis> is a position inside the range: 0 at <computeroutput>min</computeroutput> and 1 at <computeroutput>max</computeroutput>. With <emphasis>logarithmic</emphasis> set, the extent is measured in <computeroutput>log10</computeroutput> space. A range that is not positive is zoomed linearly instead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="31" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="31" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="RangeGesture_8hpp_1a8ed54085a791bb22144445ef05224b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::wheelZoomFactor</definition>
+        <argsstring>(qreal zoomScaleFactor, bool zoomingIn)</argsstring>
+        <name>wheelZoomFactor</name>
+        <qualifiedname>QAccelPlot::Internal::wheelZoomFactor</qualifiedname>
+        <param>
+          <type>qreal</type>
+          <declname>zoomScaleFactor</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>zoomingIn</declname>
+        </param>
+        <briefdescription>
+<para>Returns the extent multiplier of one mouse-wheel step for a <emphasis>zoomScaleFactor</emphasis> in (0, 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="38" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="38" declcolumn="8"/>
+      </memberdef>
       <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr int</type>
         <definition>constexpr int QAccelPlot::Internal::dataTextureHeight</definition>
@@ -235,6 +320,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp" line="12" column="1"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="12" column="1"/>
   </compounddef>
 </doxygen>

@@ -77,6 +77,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**Internal**](namespaceQAccelPlot_1_1Internal.md)     
         * **class** [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) _Decides when queried data is worth a hover index._     
         * **struct** [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._     
+        * **struct** [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._     
     * **class** [**LineCurve**](classQAccelPlot_1_1LineCurve.md) _A hardware-accelerated QML item that renders a 2D line curve with optional markers, dashing, and gradient effects._     
     * **class** [**LineCurveEffect**](classQAccelPlot_1_1LineCurveEffect.md) _Abstract base class for visual effects applied to a_ `LineCurve` _._    
     * **namespace** [**LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md) _Stateless helpers implementing the invalid-sample contract shared by_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _subsystems._    

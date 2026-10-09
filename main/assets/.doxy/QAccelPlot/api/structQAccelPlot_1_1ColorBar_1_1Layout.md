@@ -47,6 +47,7 @@
 |  qreal | [**endInset**](#variable-endinset)   = `{0.0}`<br> |
 |  QRectF | [**strip**](#variable-strip)  <br> |
 |  QRectF | [**tickArea**](#variable-tickarea)  <br> |
+|  QRectF | [**tickClip**](#variable-tickclip)  <br> |
 |  QRectF | [**title**](#variable-title)  <br> |
 
 
@@ -130,6 +131,20 @@ QRectF QAccelPlot::ColorBar::Layout::strip;
 
 ```C++
 QRectF QAccelPlot::ColorBar::Layout::tickArea;
+```
+
+
+
+
+<hr>
+
+
+
+
+### variable tickClip {#variable-tickclip}
+
+```C++
+QRectF QAccelPlot::ColorBar::Layout::tickClip;
 ```
 
 

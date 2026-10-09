@@ -40,6 +40,7 @@
 | ---: | :--- |
 | class | [**HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md) <br>_Decides when queried data is worth a hover index._  |
 | struct | [**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) <br>_Mirrors the std140 uniform block of rect.vert._  |
+| struct | [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) <br>_Bounds of an axis viewport or a colormap value range._  |
 
 
 
@@ -76,10 +77,13 @@
 |  qreal | [**edgePixel**](#function-edgepixel) (double value, const [**Axis**](classQAccelPlot_1_1Axis.md) & axis, qreal length) <br>_Maps rectangle edge_ _value_ _on__axis_ _to item pixels along an item side__length_ _pixels long._ |
 |  bool | [**hoverEnabled**](#function-hoverenabled) () <br>_Returns whether series accept hover events:_ `false` _only when_`QACCELPLOT_HOVER_ENABLED` _is 0._ |
 |  int | [**maxTextureSize**](#function-maxtexturesize) (QQuickWindow \* window) <br>_Returns the largest texture width and height, in pixels, that_ _window's_ _GPU supports._ |
+|  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**pannedRange**](#function-pannedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal fraction, bool logarithmic) <br>_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._ |
 |  bool | [**supportsCustomShaderRendering**](#function-supportscustomshaderrendering) (const QQuickWindow \* window) <br>_Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._ |
 |  void | [**uploadDataTexture**](#function-uploaddatatexture) (std::unique\_ptr&lt; QSGTexture &gt; & texture, QQuickWindow \* window, const QImage & image) <br>_Uploads an image to the live-data texture using the configured Qt API path._  |
+|  qreal | [**wheelZoomFactor**](#function-wheelzoomfactor) (qreal zoomScaleFactor, bool zoomingIn) <br>_Returns the extent multiplier of one mouse-wheel step for a_ _zoomScaleFactor_ _in (0, 1)._ |
 |  std::pair&lt; qreal, qreal &gt; | [**widenedSpan**](#function-widenedspan) (qreal a, qreal b, qreal minimumSize) <br>_Returns the pixel span between edges_ _a_ _and__b_ _, widened around its center to at least__minimumSize_ _._ |
 |  void | [**writeRectUniforms**](#function-writerectuniforms) ([**RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) & ubo, const QSGMaterialShader::RenderState & state, const [**RectMaterial**](classQAccelPlot_1_1RectMaterial.md) & material) <br>_Fills_ _ubo_ _from__material_ _and the matrix and opacity of the render__state_ _._ |
+|  [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) | [**zoomedRange**](#function-zoomedrange) (const [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) & range, qreal factor, qreal anchorRatio, bool logarithmic) <br>_Returns_ _range_ _with its extent multiplied by__factor_ _, keeping the value at__anchorRatio_ _in place._ |
 
 
 
@@ -229,6 +233,29 @@ Falls back to 8192, supported by every target GPU, when the RHI cannot be querie
 
 
 
+### function pannedRange {#function-pannedrange}
+
+_Returns_ _range_ _shifted by__fraction_ _of its extent; a positive__fraction_ _raises both bounds._
+```C++
+ValueRange QAccelPlot::Internal::pannedRange (
+    const ValueRange & range,
+    qreal fraction,
+    bool logarithmic
+) 
+```
+
+
+
+With _logarithmic_ set, the shift is applied in `log10` space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. 
+
+
+        
+
+<hr>
+
+
+
+
 ### function supportsCustomShaderRendering {#function-supportscustomshaderrendering}
 
 _Returns_ `true` _when__window_ _renders through a hardware scene graph backend that runs custom shaders._
@@ -259,6 +286,28 @@ void QAccelPlot::Internal::uploadDataTexture (
 
 
 
+
+<hr>
+
+
+
+
+### function wheelZoomFactor {#function-wheelzoomfactor}
+
+_Returns the extent multiplier of one mouse-wheel step for a_ _zoomScaleFactor_ _in (0, 1)._
+```C++
+qreal QAccelPlot::Internal::wheelZoomFactor (
+    qreal zoomScaleFactor,
+    bool zoomingIn
+) 
+```
+
+
+
+Zooming in multiplies the extent by the factor and zooming out by its reciprocal. A factor of 0 or below counts as 0.01 and a factor of 1 or above as 0.99, so a step always zooms and never collapses the range. 
+
+
+        
 
 <hr>
 
@@ -304,6 +353,30 @@ void QAccelPlot::Internal::writeRectUniforms (
 
 <hr>
 
+
+
+
+### function zoomedRange {#function-zoomedrange}
+
+_Returns_ _range_ _with its extent multiplied by__factor_ _, keeping the value at__anchorRatio_ _in place._
+```C++
+ValueRange QAccelPlot::Internal::zoomedRange (
+    const ValueRange & range,
+    qreal factor,
+    qreal anchorRatio,
+    bool logarithmic
+) 
+```
+
+
+
+_anchorRatio_ is a position inside the range: 0 at `min` and 1 at `max`. With _logarithmic_ set, the extent is measured in `log10` space. A range that is not positive is zoomed linearly instead. 
+
+
+        
+
+<hr>
+
 ------------------------------
-The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/materials/internal/DataTextureLayout.hpp`
+The documentation for this class was generated from the following file `QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp`
 

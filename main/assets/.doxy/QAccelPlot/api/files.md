@@ -22,6 +22,8 @@ Here is a list of all files with brief descriptions:
                 * **file** [**AxisTicker.hpp**](AxisTicker_8hpp.md)     
                 * **file** [**AxisTicks.hpp**](AxisTicks_8hpp.md)     
                 * **file** [**ColorBar.hpp**](ColorBar_8hpp.md)     
+                * **dir** [**internal**](dir_3acc16ec162842b49991cd4d9cea8fc4.md)     
+                    * **file** [**RangeGesture.hpp**](RangeGesture_8hpp.md)     
             * **dir** [**data**](dir_d2fb866f403cfee1d904f16ed73cc0a7.md)     
                 * **file** [**Histogram.hpp**](Histogram_8hpp.md)     
                 * **file** [**HistogramFactory.hpp**](HistogramFactory_8hpp.md)     

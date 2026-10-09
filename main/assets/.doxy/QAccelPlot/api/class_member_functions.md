@@ -288,9 +288,9 @@
 ## h
 
 * **hoverColor** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
-* **hoverEnterEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
-* **hoverLeaveEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
-* **hovered** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
+* **hoverEnterEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
+* **hoverLeaveEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
+* **hovered** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **hasPreciseData** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **hasCategories** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **hoverMoveEvent** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
@@ -314,6 +314,7 @@
 * **inspectionRecord** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **inspectionRecordAt** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **isHorizontal** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
+* **interactive** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **invalidate** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::InspectionCache**](classQAccelPlot_1_1InspectionCache.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md), [**QAccelPlot::RectVertexCache**](classQAccelPlot_1_1RectVertexCache.md))
 * **interpolate** ([**QAccelPlot::DataTransition**](classQAccelPlot_1_1DataTransition.md), [**QAccelPlot::DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**QAccelPlot::MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **isValid** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::SpatialGrid::ItemBounds**](structQAccelPlot_1_1SpatialGrid_1_1ItemBounds.md))
@@ -390,11 +391,12 @@
 ## m
 
 * **mapping** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md))
-* **mouseDoubleClickEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **mouseMoveEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **mousePressEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **mouseReleaseEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **mouseDoubleClickEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **mouseMoveEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **mousePressEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **mouseReleaseEvent** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **minimumWidth** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
+* **mouseUngrabEvent** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **max** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **min** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **matches** ([**QAccelPlot::GradientTexture**](classQAccelPlot_1_1GradientTexture.md), [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md))
@@ -478,6 +480,8 @@
 * **postRangedData** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **paintStrip** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **paintTitle** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **panRange** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **pixelToValue** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **preset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **pattern** ([**QAccelPlot::DashLine**](classQAccelPlot_1_1DashLine.md))
 * **plotRect** ([**QAccelPlot::DataAnchor**](classQAccelPlot_1_1DataAnchor.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
@@ -523,7 +527,7 @@
 ## r
 
 * **removeDataRangeSource** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **rescaleToData** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **rescaleToData** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **rebuildRenderData** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **refreshHovered** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
 * **renderView** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
@@ -611,7 +615,7 @@
 * **setViewportMax** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **setViewportMin** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **setViewportRange** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **setZoomScaleFactor** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **setZoomScaleFactor** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **side** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **setSubtickColor** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **setSubtickCount** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
@@ -642,7 +646,7 @@
 * **sampleValid** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
 * **setData** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **setDataF** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
-* **setHovered** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
+* **setHovered** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **spanAt** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
 * **setBarOffset** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **setBarWidth** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
@@ -657,15 +661,20 @@
 * **startTransition** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **storeBars** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **series** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
+* **seriesColormap** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setBarThickness** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setBorderColor** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md), [**QAccelPlot::SelectionTool**](classQAccelPlot_1_1SelectionTool.md))
 * **setBorderWidth** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **setInteractive** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setLabelPadding** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setSeries** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **setTickLabelWidth** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **stripLength** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **setMax** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setMin** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setNorm** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setPreset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
+* **setRange** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **setReversed** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **stopAt** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
 * **stopCount** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
@@ -824,6 +833,7 @@
 * **transitionCategories** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md))
 * **tickLabelHeight** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **tickLabelThickness** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **tickLabelWidth** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **titleOffset** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **titleThickness** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **texture** ([**QAccelPlot::DataTexture**](classQAccelPlot_1_1DataTexture.md))
@@ -888,6 +898,7 @@
 ## w
 
 * **width** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md))
+* **wheelEvent** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **writeCommonUniforms** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 
 
@@ -913,7 +924,8 @@
 
 ## z
 
-* **zoomScaleFactor** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **zoomScaleFactor** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **zoomRange** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **zoomAxis** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **zoomAxisAtRatio** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **zoomToRect** ([**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))

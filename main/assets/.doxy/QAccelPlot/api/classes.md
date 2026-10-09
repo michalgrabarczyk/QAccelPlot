@@ -327,6 +327,8 @@
 
 ## v
 
+* [**ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md)
+([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * [**Vertex**](structQAccelPlot_1_1BandMaterial_1_1Vertex.md)
 ([**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md))
 * [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)

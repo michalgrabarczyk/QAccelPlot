@@ -600,6 +600,10 @@
     <member refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" kind="property"><name>barThickness</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aac1050e296222c4ea98b0f786d78460b" kind="property"><name>borderColor</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a29f08cad5d4869e84ff18a415f008677" kind="property"><name>borderWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a4f2c021e8bc038938fa3340a5df30e95" kind="property"><name>tickLabelWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a28d74014a67df127c98aa98e60cbc200" kind="property"><name>interactive</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a6fcb3d97d4e9ab0a621daa5bf5e8f316" kind="property"><name>zoomScaleFactor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a0637686ece6f3ee55963db8a97157c98" kind="property"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" kind="property"><name>ticker</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aa3cc2b192eab576fd9f4107af254d7c8" kind="variable"><name>series_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" kind="variable"><name>seriesConnections_</name></member>
@@ -612,13 +616,18 @@
     <member refid="classQAccelPlot_1_1ColorBar_1a38e0cb089ebfa2e2ddbe644ae761a2b2" kind="variable"><name>barThickness_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a4054fa31f2bb8ef74af0a1601ea55bbf" kind="variable"><name>borderColor_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ac6552988ce6dad168cccc3cab10569eb" kind="variable"><name>borderWidth_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a4eef2723e6e98d4d989a4fbcee3f0d5f" kind="variable"><name>tickLabelWidth_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aa1ffca7407baf6247f1f77459272d169" kind="variable"><name>interactive_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a4848fd8f93003f52c139ae0458971e77" kind="variable"><name>zoomScaleFactor_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a85196a08c2272db5169637879d79bbe9" kind="variable"><name>hovered_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a3561709a783fe4657dab2b1cf828cf5a" kind="variable"><name>ticker_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aa14bda6c7191e2db2780fdfdb3abdc0c" kind="variable"><name>isDragging_</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a149695d834563b15373be3dd3a67abe1" kind="variable"><name>lastMousePos_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" kind="variable"><name>stops_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" kind="variable"><name>valueMin_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" kind="variable"><name>valueMax_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1af1423dbdf8e66a3dd125a06fb629dc63" kind="variable"><name>logScale_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aad2f54b099b14dc09b9c02212ee8195b" kind="variable"><name>ticks_</name></member>
-    <member refid="classQAccelPlot_1_1ColorBar_1a4872eadee025fa57ed379f096e395540" kind="variable"><name>maxTickLabelWidth_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a2352959ad1605f096f4b90dd4980f03d" kind="variable"><name>layout_</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a8c9cbcd87aa5c6af687ce0073f2c7c41" kind="function"><name>ColorBar</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" kind="function"><name>series</name></member>
@@ -639,8 +648,17 @@
     <member refid="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" kind="function"><name>setBorderColor</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ad480aaac27702f143143e8fc20255fcd" kind="function"><name>borderWidth</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" kind="function"><name>setBorderWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a123e6a16196a46835aabdcc29c6a500b" kind="function"><name>tickLabelWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aadc3f3dcec1597f8ea38741cc590e2f4" kind="function"><name>setTickLabelWidth</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ab7d8d4d7d3ad610d6e6295cc2672805b" kind="function"><name>interactive</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a8ccc926cf1b1b78c0230e0653f1f858a" kind="function"><name>setInteractive</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a9f8c2bda63ab9965d387cc19a91c09e3" kind="function"><name>zoomScaleFactor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aadc2ba19f6a5654e20ee0790d16abee7" kind="function"><name>setZoomScaleFactor</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a83980c7db46b5fbe319c191b1af3c8e3" kind="function"><name>hovered</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" kind="function"><name>ticker</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a80193407bf04596dd3b781fc3fad68aa" kind="function"><name>rescaleToData</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" kind="function"><name>valueToPixel</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a52244701cf67fb95a7b0d294ca803dca" kind="function"><name>pixelToValue</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" kind="function"><name>paint</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aa1eab00f9284e5a770fb38ee60904117" kind="signal"><name>seriesChanged</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" kind="signal"><name>orientationChanged</name></member>
@@ -651,8 +669,25 @@
     <member refid="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" kind="signal"><name>barThicknessChanged</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" kind="signal"><name>borderColorChanged</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" kind="signal"><name>borderWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ab763ba56c7da41b3c7e6551a01a8ea23" kind="signal"><name>tickLabelWidthChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1afaf1c1d3beda2766da6bd791eff05768" kind="signal"><name>interactiveChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1afededb0b917ee1f0e1c4be0eba3ce380" kind="signal"><name>zoomScaleFactorChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a942d9b015bcce214e9a6fad48f059507" kind="signal"><name>hoveredChanged</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a2c43693d6ce0947fc7462b7c1c2197e5" kind="function"><name>hoverEnterEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1af1ca4b9d71a6c35ac61f358061965738" kind="function"><name>hoverLeaveEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a81bb71bb1f34a209cc2b971b8c95d3c5" kind="function"><name>mousePressEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a9c83fea582b2d950093fee82eaebfa04" kind="function"><name>mouseMoveEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aa002bb76995a6a17cd170e2155a2d13d" kind="function"><name>mouseReleaseEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1ac4577069a1d7fb6700da973d64745c5a" kind="function"><name>mouseDoubleClickEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a55585db197cf34f9047f019a4091df66" kind="function"><name>mouseUngrabEvent</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a7ef1f76708ef12805ad0e99230802b34" kind="function"><name>wheelEvent</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" kind="function"><name>updatePolish</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" kind="function"><name>geometryChange</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1accdadfc26233d1f112d51411bb93beea" kind="function"><name>setHovered</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aaaf7c90d5b0266062633961a3e912a07" kind="function"><name>seriesColormap</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aaafc57769832cba4d6d23be7e2907d08" kind="function"><name>stripLength</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1aed6b64f14b1b709b3ef560078a148afe" kind="function"><name>panRange</name></member>
+    <member refid="classQAccelPlot_1_1ColorBar_1a30e47724579ee8a511f463669c90f36e" kind="function"><name>zoomRange</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" kind="function"><name>reconnectSeries</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" kind="function"><name>reconnectColormap</name></member>
     <member refid="classQAccelPlot_1_1ColorBar_1a5cf931d18d5d44de566fe6f3fe41252d" kind="function"><name>invalidate</name></member>
@@ -702,6 +737,7 @@
     <member refid="classQAccelPlot_1_1Colormap_1a702b39ccd52aec3bb8401322bb1b1a63" kind="function"><name>setMin</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1aea67b4ee565f06e135b66baa5b24e362" kind="function"><name>max</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1ae53b320946a7e35ce557f83ac41ee5a6" kind="function"><name>setMax</name></member>
+    <member refid="classQAccelPlot_1_1Colormap_1a447e9e6f49975b27dbef202df100f4fe" kind="function"><name>setRange</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a5e77b0cf78b0b25bfb67b828cd4677dd" kind="function"><name>norm</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a5245bc760745e8d16b1d883d5602cba8" kind="function"><name>setNorm</name></member>
     <member refid="classQAccelPlot_1_1Colormap_1a9aefa3bd8e5a7fca6e52ce493a4652e2" kind="function"><name>resolvedStops</name></member>
@@ -1520,6 +1556,7 @@
     <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a3251f25c5b71f4cfead675e955eb7263" kind="variable"><name>strip</name></member>
     <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a4f7bb2d24aa34c7f6cb19782b15961ab" kind="variable"><name>tickArea</name></member>
     <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a74398e2db31982974a2e35405e9fb2de" kind="variable"><name>title</name></member>
+    <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1aefbe3c4a253b4373777af59390854449" kind="variable"><name>tickClip</name></member>
     <member refid="structQAccelPlot_1_1ColorBar_1_1Layout_1a70e16cf58be02709954857bac91a8829" kind="variable"><name>endInset</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1LineCurve" kind="class"><name>QAccelPlot::LineCurve</name>
@@ -2976,6 +3013,10 @@
     <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1aed9ca5a0c8fdc06ecbb6da4a1512fe45" kind="variable"><name>antialiasingFeather</name></member>
     <member refid="structQAccelPlot_1_1LineStroke_1_1Uniforms_1ade8dd6374e894d85efe88760baabce42" kind="variable"><name>dash</name></member>
   </compound>
+  <compound refid="structQAccelPlot_1_1Internal_1_1ValueRange" kind="struct"><name>QAccelPlot::Internal::ValueRange</name>
+    <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a9f8e5b0289cb8f681b6cc22b7eae893d" kind="variable"><name>min</name></member>
+    <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a3eed5cece7c984ad289f63a1b74ecfc7" kind="variable"><name>max</name></member>
+  </compound>
   <compound refid="structQAccelPlot_1_1BandMaterial_1_1Vertex" kind="struct"><name>QAccelPlot::BandMaterial::Vertex</name>
     <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a9ee095d7a6c9706758b1f3752d5d4e7f" kind="variable"><name>id</name></member>
     <member refid="structQAccelPlot_1_1BandMaterial_1_1Vertex_1a306223b99024ae7c12603687e7ad011c" kind="variable"><name>edge</name></member>
@@ -3046,6 +3087,9 @@
   </compound>
   <compound refid="namespaceQAccelPlot_1_1Internal" kind="namespace"><name>QAccelPlot::Internal</name>
     <member refid="DataTextureLayout_8hpp_1a6b4094e09b5bc41bc01b37bb87b2e9bd" kind="variable"><name>kDataTextureWidth</name></member>
+    <member refid="RangeGesture_8hpp_1a390751056142cf5002a19cd6b5dd9741" kind="function"><name>pannedRange</name></member>
+    <member refid="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" kind="function"><name>zoomedRange</name></member>
+    <member refid="RangeGesture_8hpp_1a8ed54085a791bb22144445ef05224b30" kind="function"><name>wheelZoomFactor</name></member>
     <member refid="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" kind="function"><name>dataTextureHeight</name></member>
     <member refid="DataTextureLayout_8hpp_1a05b5caf9207764121231f1e6a2660b03" kind="function"><name>dataTextureItemCapacity</name></member>
     <member refid="DataTextureUpload_8hpp_1a34c4e72c0d34cdd9856c3cf49319b322" kind="function"><name>uploadDataTexture</name></member>
@@ -3090,6 +3134,8 @@
   <compound refid="AxisTicks_8hpp" kind="file"><name>AxisTicks.hpp</name>
   </compound>
   <compound refid="ColorBar_8hpp" kind="file"><name>ColorBar.hpp</name>
+  </compound>
+  <compound refid="RangeGesture_8hpp" kind="file"><name>RangeGesture.hpp</name>
   </compound>
   <compound refid="Histogram_8hpp" kind="file"><name>Histogram.hpp</name>
   </compound>
@@ -3270,6 +3316,8 @@
   <compound refid="dir_112dd686688a4740e45fb78d5fc35b31" kind="dir"><name>QAccelPlot/src/QAccelPlot/grid</name>
   </compound>
   <compound refid="dir_7c3af00b227ed418fdf47d7cd69e8a77" kind="dir"><name>QAccelPlot/src/QAccelPlot/inspection</name>
+  </compound>
+  <compound refid="dir_3acc16ec162842b49991cd4d9cea8fc4" kind="dir"><name>QAccelPlot/src/QAccelPlot/axis/internal</name>
   </compound>
   <compound refid="dir_4814785cc4b3fb9ee4963645259310b2" kind="dir"><name>QAccelPlot/src/QAccelPlot/inspection/internal</name>
   </compound>

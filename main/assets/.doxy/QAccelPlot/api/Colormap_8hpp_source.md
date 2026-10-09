@@ -74,6 +74,8 @@ public:
     qreal max() const;
     void setMax(qreal value);
 
+    Q_INVOKABLE void setRange(qreal min, qreal max);
+
     Normalization norm() const;
     void setNorm(Normalization norm);
 

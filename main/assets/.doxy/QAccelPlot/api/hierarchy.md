@@ -52,6 +52,7 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md) _Read-only view over the XY records a series exposes to inspection queries._ 
 * **struct** [**QAccelPlot::InspectionSummary**](structQAccelPlot_1_1InspectionSummary.md) _Sample-weighted Y statistics over the valid samples inside a region._ 
 * **struct** [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md) _Mirrors the std140 uniform block of rect.vert._ 
+* **struct** [**QAccelPlot::Internal::ValueRange**](structQAccelPlot_1_1Internal_1_1ValueRange.md) _Bounds of an axis viewport or a colormap value range._ 
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) [_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._
 * **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 

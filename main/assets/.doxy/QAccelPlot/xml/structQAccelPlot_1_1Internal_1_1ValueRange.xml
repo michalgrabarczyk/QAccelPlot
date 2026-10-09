@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1Internal_1_1ValueRange" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::Internal::ValueRange</compoundname>
+    <includes local="no">RangeGesture.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ValueRange_1a9f8e5b0289cb8f681b6cc22b7eae893d" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::ValueRange::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <qualifiedname>QAccelPlot::Internal::ValueRange::min</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+<para>Lower bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="16" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1Internal_1_1ValueRange_1a3eed5cece7c984ad289f63a1b74ecfc7" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::Internal::ValueRange::max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <qualifiedname>QAccelPlot::Internal::ValueRange::max</qualifiedname>
+        <initializer>{1.0}</initializer>
+        <briefdescription>
+<para>Upper bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="17" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" bodystart="17" bodyend="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Bounds of an axis viewport or a colormap value range. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="15" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" bodystart="15" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a3eed5cece7c984ad289f63a1b74ecfc7" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ValueRange</scope><name>max</name></member>
+      <member refid="structQAccelPlot_1_1Internal_1_1ValueRange_1a9f8e5b0289cb8f681b6cc22b7eae893d" prot="public" virt="non-virtual"><scope>QAccelPlot::Internal::ValueRange</scope><name>min</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

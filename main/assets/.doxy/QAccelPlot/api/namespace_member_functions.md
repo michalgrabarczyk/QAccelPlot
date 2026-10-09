@@ -62,6 +62,7 @@
 
 ## p
 
+* **pannedRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **planRunSampling** ([**QAccelPlot::LineCurveGapFilter**](namespaceQAccelPlot_1_1LineCurveGapFilter.md))
 
 
@@ -94,9 +95,15 @@
 
 ## w
 
+* **wheelZoomFactor** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **widenedSpan** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeRectUniforms** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **writeVertices** ([**QAccelPlot::LineStroke**](namespaceQAccelPlot_1_1LineStroke.md))
+
+
+## z
+
+* **zoomedRange** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 
 
 

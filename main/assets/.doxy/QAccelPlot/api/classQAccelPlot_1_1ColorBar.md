@@ -72,13 +72,17 @@ flowchart TB
 | property qreal | [**barThickness**](classQAccelPlot_1_1ColorBar.md#property-barthickness-12)  <br>_Thickness in pixels of the color strip across the ramp direction. Default: 12._  |
 | property QColor | [**borderColor**](classQAccelPlot_1_1ColorBar.md#property-bordercolor-12)  <br>_Color of the outline around the strip. Default:_ `Colors.dark.axisLine` _._ |
 | property qreal | [**borderWidth**](classQAccelPlot_1_1ColorBar.md#property-borderwidth-12)  <br>_Width in pixels of the outline around the strip. 0 draws no outline. Default: 1._  |
+| property bool | [**hovered**](classQAccelPlot_1_1ColorBar.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the bar. Reported only while_`interactive` _is set._ |
+| property bool | [**interactive**](classQAccelPlot_1_1ColorBar.md#property-interactive-12)  <br>_Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default:_ `false` _._ |
 | property QString | [**label**](classQAccelPlot_1_1ColorBar.md#property-label-12)  <br>_Optional title drawn beside the tick labels. Default: empty._  |
 | property QColor | [**labelColor**](classQAccelPlot_1_1ColorBar.md#property-labelcolor-12)  <br>_Color of the title. Default:_ `Colors.dark.axisLine` _._ |
 | property QFont | [**labelFont**](classQAccelPlot_1_1ColorBar.md#property-labelfont-12)  <br>_Font of the title. Default: application default font._  |
 | property qreal | [**labelPadding**](classQAccelPlot_1_1ColorBar.md#property-labelpadding-12)  <br>_Gap in pixels between the tick labels and the title. Default: 6._  |
 | property [**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `ColorBar.Vertical` _or_`ColorBar.Horizontal` _. Default:_`Vertical` _._ |
 | property [**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
+| property qreal | [**tickLabelWidth**](classQAccelPlot_1_1ColorBar.md#property-ticklabelwidth-12)  <br>_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._  |
 | property [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](classQAccelPlot_1_1ColorBar.md#property-ticker-12)  <br>_Read-only constant: tick appearance, count, and label formatter._  |
+| property double | [**zoomScaleFactor**](classQAccelPlot_1_1ColorBar.md#property-zoomscalefactor-12)  <br>_Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
 
 
 
@@ -90,12 +94,16 @@ flowchart TB
 | signal void | [**barThicknessChanged**](classQAccelPlot_1_1ColorBar.md#signal-barthicknesschanged)  <br>_Emitted when the barThickness property changes._  |
 | signal void | [**borderColorChanged**](classQAccelPlot_1_1ColorBar.md#signal-bordercolorchanged)  <br>_Emitted when the borderColor property changes._  |
 | signal void | [**borderWidthChanged**](classQAccelPlot_1_1ColorBar.md#signal-borderwidthchanged)  <br>_Emitted when the borderWidth property changes._  |
+| signal void | [**hoveredChanged**](classQAccelPlot_1_1ColorBar.md#signal-hoveredchanged)  <br>_Emitted when the hovered property changes._  |
+| signal void | [**interactiveChanged**](classQAccelPlot_1_1ColorBar.md#signal-interactivechanged)  <br>_Emitted when the interactive property changes._  |
 | signal void | [**labelChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelchanged)  <br>_Emitted when the label property changes._  |
 | signal void | [**labelColorChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelcolorchanged)  <br>_Emitted when the labelColor property changes._  |
 | signal void | [**labelFontChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelfontchanged)  <br>_Emitted when the labelFont property changes._  |
 | signal void | [**labelPaddingChanged**](classQAccelPlot_1_1ColorBar.md#signal-labelpaddingchanged)  <br>_Emitted when the labelPadding property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1ColorBar.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
 | signal void | [**seriesChanged**](classQAccelPlot_1_1ColorBar.md#signal-serieschanged)  <br>_Emitted when the series property changes._  |
+| signal void | [**tickLabelWidthChanged**](classQAccelPlot_1_1ColorBar.md#signal-ticklabelwidthchanged)  <br>_Emitted when the tickLabelWidth property changes._  |
+| signal void | [**zoomScaleFactorChanged**](classQAccelPlot_1_1ColorBar.md#signal-zoomscalefactorchanged)  <br>_Emitted when the zoomScaleFactor property changes._  |
 
 
 
@@ -108,24 +116,33 @@ flowchart TB
 |  qreal | [**barThickness**](#function-barthickness-22) () const<br>_Returns the strip thickness in pixels._  |
 |  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the strip outline color._  |
 |  qreal | [**borderWidth**](#function-borderwidth-22) () const<br>_Returns the strip outline width in pixels._  |
+|  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _while the mouse cursor is over an interactive bar._ |
+|  bool | [**interactive**](#function-interactive-22) () const<br>_Returns whether the gestures that change the colormap's value range are enabled._  |
 |  QString | [**label**](#function-label-22) () const<br>_Returns the title._  |
 |  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the title color._  |
 |  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the title font._  |
 |  qreal | [**labelPadding**](#function-labelpadding-22) () const<br>_Returns the gap between the tick labels and the title in pixels._  |
 |  [**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) | [**orientation**](#function-orientation-22) () const<br>_Returns the ramp direction._  |
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._ |
+|  qreal | [**pixelToValue**](#function-pixeltovalue) (qreal pixel, qreal length) const<br>_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._ |
+|  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._ |
 |  [**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* | [**series**](#function-series-22) () const<br>_Returns the series whose colormap is shown, or_ `nullptr` _._ |
 |  void | [**setBarThickness**](#function-setbarthickness) (qreal thickness) <br>_Sets the strip thickness to_ _thickness_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the strip outline color to_ _color_ _._ |
 |  void | [**setBorderWidth**](#function-setborderwidth) (qreal width) <br>_Sets the strip outline width to_ _width_ _pixels. Negative values are clamped to 0._ |
+|  void | [**setInteractive**](#function-setinteractive) (bool interactive) <br>_Sets whether the gestures that change the colormap's value range are enabled to_ _interactive_ _._ |
 |  void | [**setLabel**](#function-setlabel) (const QString & label) <br>_Sets the title to_ _label_ _._ |
 |  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _._ |
 |  void | [**setLabelFont**](#function-setlabelfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
 |  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the gap between the tick labels and the title to_ _padding_ _pixels. Negative values are clamped to 0._ |
 |  void | [**setOrientation**](#function-setorientation) ([**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) orientation) <br>_Sets the ramp direction to_ _orientation_ _._ |
 |  void | [**setSeries**](#function-setseries) ([**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* series) <br>_Sets the series whose colormap is shown to_ _series_ _._ |
+|  void | [**setTickLabelWidth**](#function-setticklabelwidth) (qreal width) <br>_Sets the width reserved for tick labels to_ _width_ _pixels. Negative values are clamped to 0._ |
+|  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (double factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
+|  qreal | [**tickLabelWidth**](#function-ticklabelwidth-22) () const<br>_Returns the width reserved for tick labels in pixels._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object. The object is owned by the color bar._  |
 |  qreal | [**valueToPixel**](#function-valuetopixel) (qreal value, qreal length) const<br>_Maps_ _value_ _to a pixel position along a strip of__length_ _pixels._ |
+|  double | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
 
 
 
@@ -155,7 +172,15 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |  void | [**geometryChange**](#function-geometrychange) (const QRectF & newGeometry, const QRectF & oldGeometry) override<br>_Schedules a new layout when the item is resized._  |
+|  void | [**hoverEnterEvent**](#function-hoverenterevent) (QHoverEvent \* event) override<br>_Marks the bar as hovered._  |
+|  void | [**hoverLeaveEvent**](#function-hoverleaveevent) (QHoverEvent \* event) override<br>_Clears the hovered state._  |
+|  void | [**mouseDoubleClickEvent**](#function-mousedoubleclickevent) (QMouseEvent \* event) override<br>_Calls_ `rescaleToData()` _on a left-button double-click while_`interactive` _is set._ |
+|  void | [**mouseMoveEvent**](#function-mousemoveevent) (QMouseEvent \* event) override<br>_Pans the value range by the distance dragged along the ramp._  |
+|  void | [**mousePressEvent**](#function-mousepressevent) (QMouseEvent \* event) override<br>_Starts panning the value range on a left-button press while_ `interactive` _is set._ |
+|  void | [**mouseReleaseEvent**](#function-mousereleaseevent) (QMouseEvent \* event) override<br>_Ends panning on a left-button release._  |
+|  void | [**mouseUngrabEvent**](#function-mouseungrabevent) () override<br>_Ends panning when the mouse grab is lost._  |
 |  void | [**updatePolish**](#function-updatepolish) () override<br>_Captures the colormap, formats tick labels, and lays out the bar on the GUI thread, ahead of_ `paint()` _._ |
+|  void | [**wheelEvent**](#function-wheelevent) (QWheelEvent \* event) override<br>_Zooms the value range around the value under the cursor while_ `interactive` _is set._ |
 
 
 
@@ -181,7 +206,10 @@ QAccelPlot.ColorBar {
 
 
 
-The implicit size fits the strip, ticks, tick labels, and `label`, with a length of 160 pixels along the ramp. Tick labels at the ends are kept inside the item.
+The implicit size fits the strip, ticks, tick labels, and `label`, with a length of 160 pixels along the ramp. A vertical bar gives its tick labels the fixed `tickLabelWidth` and clips wider ones. Tick labels at the ends are kept inside the item.
+
+
+With `interactive` set, a left drag along the ramp pans the colormap's value range, the mouse wheel zooms it around the value under the cursor, and a double-click calls `rescaleToData()`. The gestures write `Colormap::min` and `Colormap::max`, so every series sharing the colormap follows. A QML binding on either bound overrides them when it is next evaluated.
 
 
 
@@ -256,6 +284,40 @@ qreal QAccelPlot::ColorBar::borderWidth;
 
 
 
+
+<hr>
+
+
+
+
+### property hovered {#property-hovered-12}
+
+_Read-only:_ `true` _while the mouse cursor is over the bar. Reported only while_`interactive` _is set._
+```C++
+bool QAccelPlot::ColorBar::hovered;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property interactive {#property-interactive-12}
+
+_Whether dragging, the mouse wheel, and double-clicking change the colormap's value range. Default:_ `false` _._
+```C++
+bool QAccelPlot::ColorBar::interactive;
+```
+
+
+
+While `false`, the bar leaves mouse and wheel events to the items below it. 
+
+
+        
 
 <hr>
 
@@ -352,6 +414,25 @@ PointCloud* QAccelPlot::ColorBar::series;
 
 
 
+### property tickLabelWidth {#property-ticklabelwidth-12}
+
+_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._ 
+```C++
+qreal QAccelPlot::ColorBar::tickLabelWidth;
+```
+
+
+
+The width is fixed, so the implicit width and the title stay in place while the labels change. Labels wider than it are clipped. Ignored by horizontal bars. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property ticker {#property-ticker-12}
 
 _Read-only constant: tick appearance, count, and label formatter._ 
@@ -362,6 +443,25 @@ AxisTicker* QAccelPlot::ColorBar::ticker;
 
 
 Defaults differ from `Axis :` `tickLengthIn` 0, `tickLengthOut` 4, `subtickLengthIn` 0, `subtickLengthOut` 2, `subtickCount` 0, and `tickWidth` 1. 
+
+
+        
+
+<hr>
+
+
+
+
+### property zoomScaleFactor {#property-zoomscalefactor-12}
+
+_Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._ 
+```C++
+double QAccelPlot::ColorBar::zoomScaleFactor;
+```
+
+
+
+On a zoom-out step the range is multiplied by the reciprocal. Used only while `interactive` is set. 
 
 
         
@@ -408,6 +508,36 @@ void QAccelPlot::ColorBar::borderColorChanged;
 _Emitted when the borderWidth property changes._ 
 ```C++
 void QAccelPlot::ColorBar::borderWidthChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal hoveredChanged {#signal-hoveredchanged}
+
+_Emitted when the hovered property changes._ 
+```C++
+void QAccelPlot::ColorBar::hoveredChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal interactiveChanged {#signal-interactivechanged}
+
+_Emitted when the interactive property changes._ 
+```C++
+void QAccelPlot::ColorBar::interactiveChanged;
 ```
 
 
@@ -504,6 +634,36 @@ void QAccelPlot::ColorBar::seriesChanged;
 
 
 <hr>
+
+
+
+
+### signal tickLabelWidthChanged {#signal-ticklabelwidthchanged}
+
+_Emitted when the tickLabelWidth property changes._ 
+```C++
+void QAccelPlot::ColorBar::tickLabelWidthChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal zoomScaleFactorChanged {#signal-zoomscalefactorchanged}
+
+_Emitted when the zoomScaleFactor property changes._ 
+```C++
+void QAccelPlot::ColorBar::zoomScaleFactorChanged;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -562,6 +722,36 @@ QColor QAccelPlot::ColorBar::borderColor () const
 _Returns the strip outline width in pixels._ 
 ```C++
 qreal QAccelPlot::ColorBar::borderWidth () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hovered {#function-hovered-22}
+
+_Returns_ `true` _while the mouse cursor is over an interactive bar._
+```C++
+bool QAccelPlot::ColorBar::hovered () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function interactive {#function-interactive-22}
+
+_Returns whether the gestures that change the colormap's value range are enabled._ 
+```C++
+bool QAccelPlot::ColorBar::interactive () const
 ```
 
 
@@ -664,6 +854,43 @@ void QAccelPlot::ColorBar::paint (
 
 
 
+### function pixelToValue {#function-pixeltovalue}
+
+_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._
+```C++
+qreal QAccelPlot::ColorBar::pixelToValue (
+    qreal pixel,
+    qreal length
+) const
+```
+
+
+
+The inverse of `valueToPixel()`. Returns the range minimum when _length_ is 0. 
+
+
+        
+
+<hr>
+
+
+
+
+### function rescaleToData {#function-rescaletodata}
+
+_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._
+```C++
+Q_INVOKABLE void QAccelPlot::ColorBar::rescaleToData () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function series {#function-series-22}
 
 _Returns the series whose colormap is shown, or_ `nullptr` _._
@@ -719,6 +946,23 @@ _Sets the strip outline width to_ _width_ _pixels. Negative values are clamped t
 ```C++
 void QAccelPlot::ColorBar::setBorderWidth (
     qreal width
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setInteractive {#function-setinteractive}
+
+_Sets whether the gestures that change the colormap's value range are enabled to_ _interactive_ _._
+```C++
+void QAccelPlot::ColorBar::setInteractive (
+    bool interactive
 ) 
 ```
 
@@ -832,6 +1076,55 @@ void QAccelPlot::ColorBar::setSeries (
 
 
 
+### function setTickLabelWidth {#function-setticklabelwidth}
+
+_Sets the width reserved for tick labels to_ _width_ _pixels. Negative values are clamped to 0._
+```C++
+void QAccelPlot::ColorBar::setTickLabelWidth (
+    qreal width
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setZoomScaleFactor {#function-setzoomscalefactor}
+
+_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._
+```C++
+void QAccelPlot::ColorBar::setZoomScaleFactor (
+    double factor
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function tickLabelWidth {#function-ticklabelwidth-22}
+
+_Returns the width reserved for tick labels in pixels._ 
+```C++
+qreal QAccelPlot::ColorBar::tickLabelWidth () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function ticker {#function-ticker-22}
 
 _Returns the tick configuration object. The object is owned by the color bar._ 
@@ -865,6 +1158,21 @@ Horizontal bars measure from the left edge, vertical bars from the top edge. Use
         
 
 <hr>
+
+
+
+
+### function zoomScaleFactor {#function-zoomscalefactor-22}
+
+_Returns the zoom scale factor._ 
+```C++
+double QAccelPlot::ColorBar::zoomScaleFactor () const
+```
+
+
+
+
+<hr>
 ## Protected Functions Documentation
 
 
@@ -889,11 +1197,145 @@ void QAccelPlot::ColorBar::geometryChange (
 
 
 
+### function hoverEnterEvent {#function-hoverenterevent}
+
+_Marks the bar as hovered._ 
+```C++
+void QAccelPlot::ColorBar::hoverEnterEvent (
+    QHoverEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function hoverLeaveEvent {#function-hoverleaveevent}
+
+_Clears the hovered state._ 
+```C++
+void QAccelPlot::ColorBar::hoverLeaveEvent (
+    QHoverEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function mouseDoubleClickEvent {#function-mousedoubleclickevent}
+
+_Calls_ `rescaleToData()` _on a left-button double-click while_`interactive` _is set._
+```C++
+void QAccelPlot::ColorBar::mouseDoubleClickEvent (
+    QMouseEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function mouseMoveEvent {#function-mousemoveevent}
+
+_Pans the value range by the distance dragged along the ramp._ 
+```C++
+void QAccelPlot::ColorBar::mouseMoveEvent (
+    QMouseEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function mousePressEvent {#function-mousepressevent}
+
+_Starts panning the value range on a left-button press while_ `interactive` _is set._
+```C++
+void QAccelPlot::ColorBar::mousePressEvent (
+    QMouseEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function mouseReleaseEvent {#function-mousereleaseevent}
+
+_Ends panning on a left-button release._ 
+```C++
+void QAccelPlot::ColorBar::mouseReleaseEvent (
+    QMouseEvent * event
+) override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function mouseUngrabEvent {#function-mouseungrabevent}
+
+_Ends panning when the mouse grab is lost._ 
+```C++
+void QAccelPlot::ColorBar::mouseUngrabEvent () override
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function updatePolish {#function-updatepolish}
 
 _Captures the colormap, formats tick labels, and lays out the bar on the GUI thread, ahead of_ `paint()` _._
 ```C++
 void QAccelPlot::ColorBar::updatePolish () override
+```
+
+
+
+
+<hr>
+
+
+
+
+### function wheelEvent {#function-wheelevent}
+
+_Zooms the value range around the value under the cursor while_ `interactive` _is set._
+```C++
+void QAccelPlot::ColorBar::wheelEvent (
+    QWheelEvent * event
+) override
 ```
 
 

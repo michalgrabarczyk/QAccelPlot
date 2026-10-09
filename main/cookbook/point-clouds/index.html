@@ -1564,7 +1564,8 @@ are not in the data.</p>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
 </code></pre></div>
 <p><code>min</code> and <code>max</code> bound the value range. Leave either unset and it is resolved from the data, so one
-colormap can be shared between series that resolve different ranges. Set <code>norm</code> to
+colormap can be shared between series that resolve different ranges.
+<code>setRange(min, max)</code> sets both with one update. Set <code>norm</code> to
 <code>Colormap.Log</code> when the values span decades, such as counts or intensities; values at or below
 zero are then left unmapped and drawn with <code>color</code>.</p>
 <p>A colormap has no geometry. Unlike <code>GradientFill</code> and <code>GradientStroke</code>, which paint a gradient
@@ -1613,9 +1614,21 @@ when the colormap, its range, or the assigned colormap changes:</p>
 <li>The implicit size fits the strip, ticks, labels, and <code>label</code>, with a length
   of 160 pixels. Set <code>height</code> on a vertical bar, or <code>width</code> on a horizontal
   one, to change the length.</li>
+<li>The tick labels of a vertical bar get the fixed <code>tickLabelWidth</code>, 16 pixels
+  by default, so the bar and its <code>label</code> stay in place while the labels change.
+  Wider labels are clipped; raise it for longer labels.</li>
 <li>Ticks follow <code>norm</code>: a <code>Log</code> colormap gets one major tick per decade.
   <code>ticker</code> sets tick count, colors, fonts, and label formatters, as on
   <code>Axis.ticker</code>.</li>
+<li><code>interactive: true</code> lets the user change the range on the bar. A left drag
+  pans it, the wheel zooms around the value under the cursor, and a
+  double-click, like <code>rescaleToData()</code>, resolves it from the data again. An
+  interactive bar keeps these events from the plot below it. It reports
+  <code>hovered</code>, for example to highlight it with
+  <code>borderColor: hovered ? "white" : "gray"</code>.</li>
+<li>The gestures set the colormap's <code>min</code> and <code>max</code>, so every series sharing the
+  colormap follows. Leave both unbound: a binding overrides the gesture when it
+  is next evaluated.</li>
 <li>Nothing is drawn while the series has no colormap.</li>
 </ul>
 <h2 id="stream-point-data">Stream point data<a class="headerlink" href="#stream-point-data" title="Permanent link">&para;</a></h2>
