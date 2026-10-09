@@ -21,14 +21,13 @@ jobs:
   clang-tidy:
     name: clang-tidy
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v6
 
       - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes clang-19 clang-tidy-19 cmake ninja-build libgl1-mesa-dev libxkbcommon-dev
+        run: bash .github/scripts/apt_install.sh clang-19 clang-tidy-19 cmake ninja-build libgl1-mesa-dev libxkbcommon-dev
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4.3.1
