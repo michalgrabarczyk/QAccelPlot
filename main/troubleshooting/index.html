@@ -1077,10 +1077,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rescale-does-not-show-all-new-data" class="md-nav__link">
+  <a href="#rescale-does-not-fit-the-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rescale does not show all new data
+        Rescale does not fit the data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pan-and-zoom-snap-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pan and zoom snap back
       
     </span>
   </a>
@@ -1418,10 +1429,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rescale-does-not-show-all-new-data" class="md-nav__link">
+  <a href="#rescale-does-not-fit-the-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rescale does not show all new data
+        Rescale does not fit the data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pan-and-zoom-snap-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pan and zoom snap back
       
     </span>
   </a>
@@ -1507,12 +1529,13 @@ place, which is slower for large data sets updated every frame.</p>
 </ol>
 <p>On the software backend, QAccelPlot logs a warning that curve rendering is
 unavailable.</p>
-<h2 id="rescale-does-not-show-all-new-data">Rescale does not show all new data<a class="headerlink" href="#rescale-does-not-show-all-new-data" title="Permanent link">&para;</a></h2>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> skips data-range calculation. Set
-accurate <a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a> and <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> on the axes, or update
-through <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> before calling
-<a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a> or <a href="../api/classQAccelPlot_1_1QAccelPlot/#function-rescaleallaxes"><code>rescaleAllAxes()</code></a>.
-Every series attached to an axis contributes to its data range.</p>
+<h2 id="rescale-does-not-fit-the-data">Rescale does not fit the data<a class="headerlink" href="#rescale-does-not-fit-the-data" title="Permanent link">&para;</a></h2>
+<p>Data passed with <code>DataBounds</code> is not scanned: a rescale fits the given bounds,
+so they must cover the data. Every series attached to an axis contributes to
+its data range.</p>
+<h2 id="pan-and-zoom-snap-back">Pan and zoom snap back<a class="headerlink" href="#pan-and-zoom-snap-back" title="Permanent link">&para;</a></h2>
+<p>An axis with <a href="../api/classQAccelPlot_1_1Axis/#property-autorescale-12"><code>autoRescale</code></a> refits its viewport on every
+data update. Set <code>autoRescale</code> to <code>false</code> while the user navigates.</p>
 <h2 id="a-real-time-plot-stutters">A real-time plot stutters<a class="headerlink" href="#a-real-time-plot-stutters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Run the data producer off the UI thread.</li>

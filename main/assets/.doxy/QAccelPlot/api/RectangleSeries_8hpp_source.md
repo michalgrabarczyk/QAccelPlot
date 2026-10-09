@@ -89,21 +89,14 @@ public:
 
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataNoRange(const double* data, int rectCount) override;
-    void setDataNoRange(std::vector<double>&& data, int rectCount) override;
-
-    void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
-
     void setDataF(const float* data, int rectCount) override;
 
     void setDataF(std::vector<float>&& data, int rectCount) override;
 
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    void setDataFNoRange(const float* data, int rectCount) override;
-    void setDataFNoRange(std::vector<float>&& data, int rectCount) override;
-
-    void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
 
     void postData(std::vector<double>&& data, int rectCount) override;
 
@@ -139,14 +132,15 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
 
 private:
     bool validateRawDataArguments(const void* data, int rectCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
-    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount, bool reportRanges);
-    void setDataFFromArray(const float* data, int rectCount, bool reportRanges);
-    void finishDataChange(std::vector<int>&& categories, int rectCount, bool reportRanges);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
+    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
+    void setDataFFromArray(const float* data, int rectCount);
+    void finishDataChange(std::vector<int>&& categories, int rectCount);
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
     // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
@@ -179,7 +173,6 @@ private:
     HitTestInputs hitTestInputs(const QPointF& position) const;
     int topmostRectangleAt(const QPointF& position) const;
     void buildVertexCache();
-    void updateDataRanges();
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
     // data_, so the GPU upload stays accurate for large coordinates
     // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.

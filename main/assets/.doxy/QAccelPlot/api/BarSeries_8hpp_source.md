@@ -92,21 +92,14 @@ public:
 
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
 
-    void setDataNoRange(const double* data, int barCount) override;
-    void setDataNoRange(std::vector<double>&& data, int barCount) override;
-
-    void setDataNoRange(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-
     void setDataF(const float* data, int barCount) override;
 
     void setDataF(std::vector<float>&& data, int barCount) override;
 
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
 
-    void setDataFNoRange(const float* data, int barCount) override;
-    void setDataFNoRange(std::vector<float>&& data, int barCount) override;
-
-    void setDataFNoRange(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
 
     void postData(std::vector<double>&& data, int barCount) override;
 
@@ -149,15 +142,16 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
 
 private:
     bool validateRawDataArguments(const void* data, int barCount) const;
     bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int barCount, int barValueCount = 2) const;
-    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
+    void applyData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
     void applyRangedData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount, bool reportRanges);
-    void setDataFFromArray(const float* data, int barCount, bool reportRanges);
-    void finishDataChange(std::vector<int>&& categories, int barCount, bool reportRanges);
+    void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
+    void setDataFFromArray(const float* data, int barCount);
+    void finishDataChange(std::vector<int>&& categories, int barCount);
     // Invalidates what depends on the bar geometry after a barWidth, barOffset, baselineValue, or orientation change.
     void onGeometryChanged();
     bool isHorizontal() const;
@@ -181,8 +175,6 @@ private:
     void updateMaterial(BarMaterial& material) const;
     void ensureSpatialGrid() const;
     void buildVertexCache();
-    void updateDataRanges();
-    void reportDataRanges(qreal positionMin, qreal positionMax, qreal valueMin, qreal valueMax, bool hasValues);
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_,
     // so the GPU upload stays accurate for large positions without double-precision textures.
     void rebuildRenderData(bool logScalePosition, bool logScaleValue);
@@ -209,8 +201,6 @@ private:
     qreal renderOriginValue_{0.0};
     int barCount_{0};
     bool dataChanged_{false};
-    // False after the NoRange overloads, so property changes don't overwrite application-managed ranges.
-    bool reportRanges_{true};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.

@@ -54,13 +54,16 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md) _Input parameters for_ [_**LineCurveLineRenderer::paint()**_](classQAccelPlot_1_1LineCurveLineRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) [_**Uniforms**_](structQAccelPlot_1_1LineStroke_1_1Uniforms.md) _of a line material that do not depend on its shader variant._
 * **struct** [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md) _Vertex layout for line geometry, shared with the main thread for pre-built vertex caches._ 
+* **struct** [**QAccelPlot::PlotSeries::DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) _Extents of a data update that the caller already knows._ 
 * **struct** [**QAccelPlot::PlotSeries::DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) _Extent of the valid coordinates in one dimension._ 
+* **struct** [**QAccelPlot::PlotSeries::DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._ 
 * **struct** [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._
 * **struct** [**QAccelPlot::PointSpatialIndex::Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) _Coordinate mapping applied before indexing._ 
 * **struct** [**QAccelPlot::PointVertex**](structQAccelPlot_1_1PointVertex.md) _Vertex layout for point (marker) geometry, shared with the main thread for vertex caches._ 
 * **struct** [**QAccelPlot::SampleRun**](structQAccelPlot_1_1SampleRun.md) _Contiguous range of valid curve samples, used to break fills and hit tests at gaps._ 
 * **struct** [**QAccelPlot::SummaryAccumulator**](structQAccelPlot_1_1SummaryAccumulator.md) _Running sample-weighted Y statistics that can be merged across disjoint sample sets._ 
 * **struct** [**QAccelPlot::Axis::DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md) 
+* **struct** [**QAccelPlot::Axis::DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md) 
 * **struct** [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md) 
 * **struct** [**QAccelPlot::BandSeries::RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md) 
 * **struct** [**QAccelPlot::BandSeries::Span**](structQAccelPlot_1_1BandSeries_1_1Span.md) 

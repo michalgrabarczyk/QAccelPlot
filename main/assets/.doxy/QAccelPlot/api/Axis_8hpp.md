@@ -23,7 +23,7 @@
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
 * `#include <QColor>`
 * `#include <QFont>`
-* `#include <QHash>`
+* `#include <QList>`
 * `#include <QQuickPaintedItem>`
 
 

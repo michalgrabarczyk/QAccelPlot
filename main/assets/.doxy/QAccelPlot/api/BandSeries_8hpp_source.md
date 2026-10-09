@@ -64,12 +64,10 @@ public:
     void setData(const std::vector<double>& xs, const std::vector<double>& lows, const std::vector<double>& highs);
     void setData(const double* data, int sampleCount) override;
     void setData(std::vector<double>&& data, int sampleCount) override;
-    void setDataNoRange(const double* data, int sampleCount) override;
-    void setDataNoRange(std::vector<double>&& data, int sampleCount) override;
     void setDataF(const float* data, int sampleCount) override;
     void setDataF(std::vector<float>&& data, int sampleCount) override;
-    void setDataFNoRange(const float* data, int sampleCount) override;
-    void setDataFNoRange(std::vector<float>&& data, int sampleCount) override;
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
     void postData(std::vector<double>&& data, int sampleCount) override;
     void postData(std::vector<float>&& data, int sampleCount) override;
     Q_INVOKABLE void clearData() override;
@@ -91,6 +89,7 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     void onAxisRangeChanged() override;
 
 private:
@@ -113,13 +112,13 @@ private:
 
     bool validateRawDataArguments(const void* data, int sampleCount) const;
     bool validateVectorArguments(std::size_t valueCount, int sampleCount) const;
-    void copyData(const double* data, int sampleCount, bool reportRanges);
-    void copyFloatData(const float* data, int sampleCount, bool reportRanges);
-    // Applies (x, low, high) triples built from separate lists, reporting ranges.
+    void copyData(const double* data, int sampleCount);
+    void copyFloatData(const float* data, int sampleCount);
+    // Applies (x, low, high) triples built from separate lists.
     void applyInterleavedData(std::vector<double>&& data);
-    void applyData(std::vector<double>&& data, int sampleCount, bool reportRanges);
-    void applyFloatData(std::vector<float>&& data, int sampleCount, bool reportRanges);
-    void finishDataChange(int sampleCount, bool reportRanges);
+    void applyData(std::vector<double>&& data, int sampleCount);
+    void applyFloatData(std::vector<float>&& data, int sampleCount);
+    void finishDataChange(int sampleCount);
     void promoteFloatDataToDouble();
     // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
     bool hasPreciseData() const;
@@ -128,8 +127,6 @@ private:
     bool sampleValid(int index) const;
     bool logScaleX() const;
     bool logScaleY() const;
-    // Reports the data ranges to the axes and updates xAscending_ in the same pass.
-    void updateDataRanges();
     void updateXAscending();
     std::optional<Span> spanAt(qreal x) const;
     bool edgesVisible() const;
@@ -170,9 +167,6 @@ private:
     int sampleCount_{0};
     bool dataChanged_{true};
     bool xAscending_{true};
-    // True when the most recent data update computed ranges; the NoRange APIs leave range
-    // management to the caller, so scale changes must not overwrite it.
-    bool autoDataRanges_{true};
     QMetaObject::Connection edgeStyleConnection_;
     BandEdgeRenderer lowerEdgeRenderer_{BandEdgeMaterial::Edge::Lower};
     BandEdgeRenderer upperEdgeRenderer_{BandEdgeMaterial::Edge::Upper};

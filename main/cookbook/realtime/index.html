@@ -622,10 +622,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#declare-stable-ranges" class="md-nav__link">
+  <a href="#declare-a-stable-viewport" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declare stable ranges
+        Declare a stable viewport
       
     </span>
   </a>
@@ -637,6 +637,17 @@
     <span class="md-ellipsis">
       
         Update every frame
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#follow-the-data-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow the data range
       
     </span>
   </a>
@@ -1354,10 +1365,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#declare-stable-ranges" class="md-nav__link">
+  <a href="#declare-a-stable-viewport" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declare stable ranges
+        Declare a stable viewport
       
     </span>
   </a>
@@ -1369,6 +1380,17 @@
     <span class="md-ellipsis">
       
         Update every frame
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#follow-the-data-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Follow the data range
       
     </span>
   </a>
@@ -1409,8 +1431,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="real-time-scrolling-data">Real-time scrolling data<a class="headerlink" href="#real-time-scrolling-data" title="Permanent link">&para;</a></h1>
-<p>Keep the axis range fixed and replace the visible buffer once per frame.</p>
-<h2 id="declare-stable-ranges">Declare stable ranges<a class="headerlink" href="#declare-stable-ranges" title="Permanent link">&para;</a></h2>
+<p>Keep the viewport fixed and replace the visible buffer once per frame.</p>
+<h2 id="declare-a-stable-viewport">Declare a stable viewport<a class="headerlink" href="#declare-a-stable-viewport" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QtQuick</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">import</span> <span class="nx">QAccelPlot</span> <span class="nx">as</span> <span class="nx">QAccelPlot</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -1420,43 +1442,60 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">xAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">viewportMin:</span> <span class="o">-</span><span class="mi">20</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">viewportMax:</span> <span class="mi">0</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">dataMin:</span> <span class="o">-</span><span class="mi">20</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">dataMax:</span> <span class="mi">0</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">label:</span> <span class="s2">"Time before present (s)"</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">}</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">viewportMin:</span> <span class="o">-</span><span class="mf">2.5</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">viewportMax:</span> <span class="mf">2.5</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="k">dataMin:</span> <span class="o">-</span><span class="mf">2.5</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">dataMax:</span> <span class="mf">2.5</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="k">label:</span> <span class="s2">"Acceleration (g)"</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="p">}</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="k">objectName:</span> <span class="s2">"vibrationCurve"</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">lineWidth:</span> <span class="mf">2.5</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="p">}</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="k">label:</span> <span class="s2">"Time before present (s)"</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">viewportMin:</span> <span class="o">-</span><span class="mf">2.5</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">viewportMax:</span> <span class="mf">2.5</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">label:</span> <span class="s2">"Acceleration (g)"</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">LineCurve</span> <span class="p">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="k">objectName:</span> <span class="s2">"vibrationCurve"</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="k">lineWidth:</span> <span class="mf">2.5</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="p">}</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="update-every-frame">Update every frame<a class="headerlink" href="#update-every-frame" title="Permanent link">&para;</a></h2>
-<p>Pass each new buffer to <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a>, which skips
-the range scan:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataFNoRange</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
+<p>Pass each new buffer to <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a>. No data update scans the
+buffer for its range; that happens only when something reads the range, such
+as a double-click rescale:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
-<p>Before using the no-range path, declare the axis data ranges or call
-<a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> once. If the signal can leave those bounds, update
-the ranges yourself.</p>
+<p>A rescale then fits the samples of that frame. To fit the nominal window
+instead, and skip the scan, pass its bounds with the data:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">DataBounds</span><span class="p">{</span><span class="mf">-20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">};</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span><span class="w"> </span><span class="n">bounds</span><span class="p">);</span>
+</code></pre></div>
 <p>If buffer generation is expensive, move it to a worker thread; see
 <a href="../background-data/">Background data production</a>.</p>
+<h2 id="follow-the-data-range">Follow the data range<a class="headerlink" href="#follow-the-data-range" title="Permanent link">&para;</a></h2>
+<p>To fit an axis to the data instead of fixing its viewport, set
+<a href="../../api/classQAccelPlot_1_1Axis/#property-autorescale-12"><code>autoRescale</code></a>. The viewport is refitted on every data update,
+including each <a href="../../api/classQAccelPlot_1_1LineCurve/#function-appenddata"><code>appendData()</code></a> call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">yAxis:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Axis</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">autoRescale:</span> <span class="kc">true</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>The fit is exact, as with <a href="../../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a>.</li>
+<li>A panned or zoomed viewport is replaced on the next update. Set
+  <code>autoRescale</code> to <code>false</code> while the user navigates.</li>
+<li>Appending only extends the data range. Replace the buffer with
+  <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> to let the range shrink.</li>
+<li>Each update scans the data for its range. Appending widens the range
+  without a scan, and data passed with bounds is not scanned.</li>
+<li>When the last series on the axis is cleared, the viewport is kept.</li>
+</ul>
 <h2 id="show-dropouts-as-gaps">Show dropouts as gaps<a class="headerlink" href="#show-dropouts-as-gaps" title="Permanent link">&para;</a></h2>
 <p>Write <code>NaN</code> for lost or invalid samples instead of repeating or dropping them.
 The curve breaks there, and the gap is excluded from auto-ranging and hover:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">valid</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">valid</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">packet</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">points</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 </code></pre></div>
 <p>To draw across dropouts instead, set
 <code>gaps.nanMode: QAccelPlot.NanGapMode.Connect</code>. See

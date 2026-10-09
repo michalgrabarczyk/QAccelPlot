@@ -1615,11 +1615,11 @@ graphics API family.</p>
   update model as Qt Graphs.</li>
 <li>The curve uses <code>lineWidth: 1</code> with all other settings left at their defaults.</li>
 <li>The harness pre-generates native interleaved <code>float</code> XY buffers and updates
-  <code>LineCurve</code> with <code>setDataFNoRange(const float *, int)</code>. This avoids the
-  <code>QList&lt;QPointF&gt;</code> conversion, allocation, and automatic range scan while still
+  <code>LineCurve</code> with <code>setDataF(const float *, int)</code>. This avoids the
+  <code>QList&lt;QPointF&gt;</code> conversion and allocation while still
   timing the complete copy into QAccelPlot on every frame.</li>
 <li>A solid-line vertex cache is installed once before warmup with
-  <code>setDataFNoRangeWithCache</code> and reused every frame, because the point count
+  <code>setDataFWithCache</code> and reused every frame, because the point count
   and vertex layout do not change. Cache preparation is outside timing.</li>
 </ul>
 

@@ -1595,8 +1595,8 @@ of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 data, so large positions such as epoch timestamps stay precise.</p>
 <p>Ranged bars are interleaved <code>(from, to, value)</code> triples passed to
 <code>setRangedData()</code>, or to <code>postRangedData()</code> from a worker thread.</p>
-<p>For the highest throughput, use the float paths (<code>setDataF()</code>,
-<code>setDataFNoRange()</code>) and <code>postData()</code> from a worker thread; see the
+<p>For the highest throughput, use <code>setDataF()</code>, or <code>postData()</code> from a worker
+thread; see the
 <a href="../../performance/">Performance guide</a>.</p>
 <p>A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.</p>

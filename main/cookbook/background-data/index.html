@@ -1407,12 +1407,13 @@ frame, the UI thread moves the pending batch into the curve. This bounds memory
 and skips frames that could never be displayed.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">DataBatch</span><span class="w"> </span><span class="n">batch</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">worker</span><span class="p">.</span><span class="n">tryConsume</span><span class="p">(</span><span class="n">batch</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataFNoRange</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">batch</span><span class="p">.</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">batch</span><span class="p">.</span><span class="n">pointCount</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">batch</span><span class="p">.</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">batch</span><span class="p">.</span><span class="n">pointCount</span><span class="p">);</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
 </code></pre></div>
-<p>Use the no-range form only when the axes already hold valid data bounds. If the
-range changes, set the new bounds on the UI thread or use
-<a href="../../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> / <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> to calculate them.</p>
+<p>The data range is scanned on the UI thread, and only when something reads it;
+see <a href="../../performance/#data-ranges-are-computed-on-demand">Data ranges are computed on demand</a>.
+If the worker already knows the extents, add them to the batch and pass them
+as <code>DataBounds</code> to skip that scan.</p>
 <p>The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.</p>
 <p>Complete source:

@@ -94,14 +94,12 @@ public:
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
     void setData(const double* xyInterleaved, int pointCount) override;
     void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
-    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
     void setDataF(const float* xyInterleaved, int pointCount) override;
     void setDataF(std::vector<float>&& data, int pointCount) override;
-    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
-    void setDataFNoRange(std::vector<float>&& data, int pointCount) override;
-    void setDataFNoRangeWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
-    void setDataFNoRangeWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
+    void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
+    void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
     void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
     Q_INVOKABLE void clearData() override;
@@ -115,6 +113,7 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     bool contains(const QPointF& point) const override;
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     void onAxisRangeChanged() override;
 
 signals:
@@ -147,10 +146,6 @@ private:
 
     enum class DataType { Float, Double };
 
-    void updateDataRanges(const std::vector<float>& buf, int count);
-    void updateDataRanges(const std::vector<double>& buf, int count);
-    void applyDataExtents(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    void recomputeDataRanges();
     bool logScaleX() const;
     bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
@@ -211,9 +206,6 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
-    // True when the most recent data update computed ranges; the NoRange APIs leave
-    // range management to the caller, so log-scale changes must not overwrite it.
-    bool autoDataRanges_{true};
     // NanGapMode::Connect copies with invalid samples removed. Only populated when
     // Connect mode is on and the data contains invalid samples.
     bool gapConnectCompacted_{false};
@@ -239,8 +231,6 @@ private:
     // from the const contains() path.
     mutable std::vector<CurveChunk> chunks_;
     mutable bool chunksValid_{false};
-
-    // Cached ranges — suppress duplicate xDataRangeChanged/yDataRangeChanged signals.
 };
 
 } // namespace QAccelPlot

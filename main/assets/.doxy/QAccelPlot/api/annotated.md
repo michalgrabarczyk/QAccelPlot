@@ -101,7 +101,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**PlotMouseEvent**](classQAccelPlot_1_1PlotMouseEvent.md) _Carries mouse event data for the mouse signals._     
     * **class** [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) _Rectangle zoom configuration and selection state exposed by PlotView._     
     * **class** [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) _Common QML item contract for data series hosted by_ `PlotView` _._    
+        * **struct** [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) _Extents of a data update that the caller already knows._     
         * **struct** [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) _Extent of the valid coordinates in one dimension._     
+        * **struct** [**DataRanges**](structQAccelPlot_1_1PlotSeries_1_1DataRanges.md) _Extents of a series in both dimensions._     
     * **class** [**PointCloud**](classQAccelPlot_1_1PointCloud.md) _A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers._     
     * **class** [**PointCloudMaterial**](classQAccelPlot_1_1PointCloudMaterial.md) _QSGMaterial for_ `PointCloud` _rendering._    
     * **struct** [**PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md) _Input parameters for_ [_**LineCurvePointRenderer::paint()**_](classQAccelPlot_1_1LineCurvePointRenderer.md#function-paint) _, assembled on the main thread._    
@@ -127,6 +129,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**TextTickLabelFormatter**](classQAccelPlot_1_1TextTickLabelFormatter.md) _A tick label formatter that maps integer tick indices to a user-supplied list of strings._     
     * **class** [**TickLabelFormatter**](classQAccelPlot_1_1TickLabelFormatter.md) _Abstract base class for tick label formatters._     
 * **struct** [**DataRange**](structQAccelPlot_1_1Axis_1_1DataRange.md)     
+* **struct** [**DataRangeSource**](structQAccelPlot_1_1Axis_1_1DataRangeSource.md)     
 * **struct** [**ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md)     
 * **struct** [**RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md)     
 * **struct** [**Span**](structQAccelPlot_1_1BandSeries_1_1Span.md)     

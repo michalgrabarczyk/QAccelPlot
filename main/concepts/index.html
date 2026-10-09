@@ -1489,8 +1489,12 @@ place clipped overlays and custom tools.</p>
   attached series.</li>
 </ul>
 <p>Panning and zooming change the viewport. <a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a>
-sets the viewport to fit the data range. A series reports its extent to the
-axes set in its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.</p>
+sets the viewport to fit the data range, and <a href="../api/classQAccelPlot_1_1Axis/#property-autorescale-12"><code>autoRescale</code></a>
+does so on every data update. A series reports its extent to the
+axes set in its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.
+The extent is computed when it is read, so data updates do not scan the
+records unless something asks for the range; see
+<a href="../performance/#data-ranges-are-computed-on-demand">Data ranges are computed on demand</a>.</p>
 <table>
 <thead>
 <tr>
@@ -1589,7 +1593,6 @@ and non-positive log-axis values.</p>
   immediately, and a sample that becomes valid jumps to its target instead of
   animating from <code>NaN</code>.</li>
 <li><strong>Hover</strong> never reports a hit on an invalid sample or across a break.</li>
-<li>The <code>NoRange</code> data APIs still render gaps; they only skip range calculation.</li>
 </ul>
 <h2 id="composition-and-overlays">Composition and overlays<a class="headerlink" href="#composition-and-overlays" title="Permanent link">&para;</a></h2>
 <p>Ordinary QML items can be placed above the grid and series. <code>DataAnchor</code> maps

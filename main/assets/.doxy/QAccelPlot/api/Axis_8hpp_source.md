@@ -24,7 +24,7 @@
 
 #include <QColor>
 #include <QFont>
-#include <QHash>
+#include <QList>
 #include <QQuickPaintedItem>
 
 namespace QAccelPlot {
@@ -53,6 +53,7 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
     Q_PROPERTY(bool logScale READ logScale WRITE setLogScale NOTIFY logScaleChanged)
     Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(bool autoRescale READ autoRescale WRITE setAutoRescale NOTIFY autoRescaleChanged)
 
 public:
     enum Orientation { Horizontal, Vertical };
@@ -76,6 +77,8 @@ public:
 
     qreal dataMax() const;
     void setDataMax(qreal m);
+
+    Q_INVOKABLE void setDataRange(qreal min, qreal max);
 
     Orientation orientation() const;
     void setOrientation(Orientation o);
@@ -119,6 +122,9 @@ public:
     double zoomScaleFactor() const;
     void setZoomScaleFactor(double factor);
 
+    bool autoRescale() const;
+    void setAutoRescale(bool on);
+
     Q_INVOKABLE void toggleLogScale();
 
     Q_INVOKABLE void rescaleToData();
@@ -133,9 +139,6 @@ public:
     Q_INVOKABLE qreal coordToPixel(qreal value, qreal length) const;
     Q_INVOKABLE qreal pixelToCoord(qreal pos, qreal length) const;
     Q_INVOKABLE QString formatValue(qreal value, qreal length) const;
-
-public slots:
-    void updateDataRange(qreal min, qreal max);
 
 signals:
     void viewportMinChanged();
@@ -158,6 +161,7 @@ signals:
     void layoutSizeChanged();
     void logScaleChanged();
     void zoomScaleFactorChanged();
+    void autoRescaleChanged();
     void doubleClicked();
 
 protected:
@@ -169,6 +173,7 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent* event) override;
     void keyPressEvent(QKeyEvent* event) override;
     void updatePolish() override;
+    void componentComplete() override;
 
 private:
     friend class PlotSeries;
@@ -178,21 +183,33 @@ private:
         qreal max;
     };
 
-    void setSourceDataRange(const QObject* source, Orientation dimension, qreal min, qreal max);
-    void clearSourceDataRange(const QObject* source, Orientation dimension);
-    void recomputeSourceDataRange();
+    struct DataRangeSource {
+        const PlotSeries* series;
+        Orientation dimension;
+    };
+
+    void addDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void removeDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void invalidateDataRange();
+    void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
+    DataRange dataFitRange() const;
+    void setViewportRange(qreal min, qreal max);
+    void autoRescaleToData();
     qreal valueResolution(qreal value, qreal length) const;
     void paintLabel(QPainter* painter, const QRectF& r, qreal axisX, qreal axisY) const;
     void invalidateTicks();
 
     qreal viewportMin_{0.0};
     qreal viewportMax_{1.0};
-    qreal dataMin_{0.0};
-    qreal dataMax_{1.0};
-    QHash<const QObject*, DataRange> horizontalDataRanges_;
-    QHash<const QObject*, DataRange> verticalDataRanges_;
-    QHash<const QObject*, QMetaObject::Connection> rangeSourceConnections_;
+    // The data range is a cache of the series' extents, refreshed by const readers.
+    mutable qreal dataMin_{0.0};
+    mutable qreal dataMax_{1.0};
+    // True while a series changed its records since the data range was last computed.
+    mutable bool dataRangeStale_{false};
+    // True when the data range came from the series rather than from the application.
+    mutable bool dataRangeFromSeries_{false};
+    QList<DataRangeSource> dataRangeSources_;
     QString label_;
     QFont labelFont_;
     bool hovered_{false};
@@ -207,6 +224,7 @@ private:
     qreal layoutSize_{50.0};
     bool logScale_{false};
     double zoomScaleFactor_{0.9};
+    bool autoRescale_{false};
     bool extendWidgetForLabels_{true};
     bool clampEdgeLabels_{true};
     Orientation orientation_{Horizontal};

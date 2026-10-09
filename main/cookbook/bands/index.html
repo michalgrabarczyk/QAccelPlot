@@ -1556,7 +1556,7 @@ are separate bands, widest first.</p>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">band</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">samples</span><span class="p">),</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
 </code></pre></div>
-<p>For float buffers, worker-thread handoff, and skipping range scans, see
+<p>For float buffers, worker-thread handoff, and data bounds, see
 <a href="../../performance/#select-the-data-path">Select the data path</a>.</p>
 <ul>
 <li><code>setData()</code> keeps doubles and uploads them relative to an origin near the
@@ -1564,7 +1564,6 @@ are separate bands, widest first.</p>
 <li><code>postData()</code> hands a buffer over from any thread without copying it.</li>
 <li><code>setData(xs, lows, highs)</code> takes three separate arrays, from QML or C++.</li>
 <li><code>appendData(x, low, high)</code> adds one sample.</li>
-<li><code>NoRange</code> variants leave the axes' data ranges to you.</li>
 </ul>
 <h2 id="invalid-samples">Invalid samples<a class="headerlink" href="#invalid-samples" title="Permanent link">&para;</a></h2>
 <p>A sample is invalid when <code>x</code>, <code>low</code>, or <code>high</code> is <code>NaN</code> or <code>±Inf</code>, or is not

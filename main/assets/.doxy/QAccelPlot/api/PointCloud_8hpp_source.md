@@ -93,15 +93,11 @@ public:
     void setData(const double* xyInterleaved, int pointCount) override;
     void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void setDataNoRange(const double* xyInterleaved, int pointCount) override;
-    void setDataNoRange(std::vector<double>&& xyInterleaved, int pointCount) override;
-    void setDataNoRange(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void setDataF(const float* xyInterleaved, int pointCount) override;
     void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
     void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void setDataFNoRange(const float* xyInterleaved, int pointCount) override;
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, int pointCount) override;
-    void setDataFNoRange(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
     void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
@@ -130,6 +126,7 @@ protected:
 
 protected:
     void onAxisScaleChanged() override;
+    DataRanges computeDataRanges() const override;
     void onAxisRangeChanged() override;
 
 private:
@@ -137,10 +134,9 @@ private:
 
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
     bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
-    void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
+    void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
-    void finishDataChange(int previousCount, bool hadValues, bool reportRanges);
-    void updateDataRanges();
+    void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
     void updateValueRange();
     void reconnectAxisSignals();
     void reconnectColormapSignals();
@@ -162,7 +158,7 @@ private:
     };
 
     int nearestPoint(const HoverQuery& query) const;
-    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount, bool reportRanges);
+    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void rebuildRenderData();
     bool hasPreciseData() const;
 
@@ -197,8 +193,6 @@ private:
 
     // True when the data texture must be re-uploaded on the next paint.
     bool dataChanged_{true};
-    // False after a no-range update: the application maintains the axis data ranges.
-    bool autoDataRanges_{true};
 
     // Points the GPU data texture holds, recorded during the last sync. Points beyond it are
     // neither drawn nor hovered.

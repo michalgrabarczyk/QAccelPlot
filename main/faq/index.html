@@ -1602,7 +1602,7 @@ Measure your workload with the included
 <h2 id="what-is-the-fastest-way-to-supply-data">What is the fastest way to supply data?<a class="headerlink" href="#what-is-the-fastest-way-to-supply-data" title="Permanent link">&para;</a></h2>
 <p>Move an interleaved float buffer with
 <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, int)</code></a>.
-If axis data ranges are fixed, <code>setDataFNoRange()</code> also skips the range scan.
+Data updates do not scan for the data range; it is computed when read.
 See <a href="../performance/#select-the-data-path">Select the data path</a>.</p>
 <h2 id="when-should-i-use-postdata-instead-of-setdataf">When should I use <code>postData()</code> instead of <code>setDataF()</code>?<a class="headerlink" href="#when-should-i-use-postdata-instead-of-setdataf" title="Permanent link">&para;</a></h2>
 <p>Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> from

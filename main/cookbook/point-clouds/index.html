@@ -1626,8 +1626,7 @@ worker thread can produce complete frames without copying them again:</p>
 </code></pre></div>
 <p>Post a frame only after the window has presented the previous one, for
 example by counting <code>QQuickWindow::frameSwapped</code>, so queued frames cannot pile
-up when rendering falls behind. Use <code>setDataFNoRange()</code> when the application
-manages <code>dataMin</code> and <code>dataMax</code> on the axes itself.</p>
+up when rendering falls behind.</p>
 <h2 id="invalid-points-and-logarithmic-axes">Invalid points and logarithmic axes<a class="headerlink" href="#invalid-points-and-logarithmic-axes" title="Permanent link">&para;</a></h2>
 <p>Non-finite coordinates are kept in storage, so indices stay stable, but they
 are not drawn, not picked, and do not contribute to axis data ranges. On a

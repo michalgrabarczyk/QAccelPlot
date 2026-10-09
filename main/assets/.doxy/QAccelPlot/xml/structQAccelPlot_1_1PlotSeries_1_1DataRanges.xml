@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1PlotSeries_1_1DataRanges" kind="struct" language="C++" prot="protected">
+    <compoundname>QAccelPlot::PlotSeries::DataRanges</compoundname>
+    <includes local="no">PlotSeries.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataRanges_1a3499bf283e00b2100dd11c9c53764e4b" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt;DataExtent&gt; QAccelPlot::PlotSeries::DataRanges::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataRanges::x</qualifiedname>
+        <briefdescription>
+<para>Extent reported to the horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="196" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataRanges_1adcc55a5d49ce41d3362ac08fef3724d6" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt;DataExtent&gt; QAccelPlot::PlotSeries::DataRanges::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataRanges::y</qualifiedname>
+        <briefdescription>
+<para>Extent reported to the vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="197" column="23" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="197" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Extents of a series in both dimensions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A dimension without a valid coordinate is unset; an extent that is not finite or not ordered counts as unset. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="195" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="195" bodyend="198"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges_1a3499bf283e00b2100dd11c9c53764e4b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataRanges</scope><name>x</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges_1adcc55a5d49ce41d3362ac08fef3724d6" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataRanges</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

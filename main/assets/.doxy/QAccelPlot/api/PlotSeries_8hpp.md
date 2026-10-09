@@ -54,6 +54,8 @@
 | Type | Name |
 | ---: | :--- |
 | class | [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) <br>_Common QML item contract for data series hosted by_ `PlotView` _._ |
+| struct | [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) <br>_Extents of a data update that the caller already knows._  |
+| struct | [**DataExtent**](structQAccelPlot_1_1PlotSeries_1_1DataExtent.md) <br>_Extent of the valid coordinates in one dimension._  |
 
 
 

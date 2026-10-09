@@ -9,7 +9,9 @@
     <derivedcompoundref refid="classQAccelPlot_1_1PointCloud" prot="public" virt="non-virtual">QAccelPlot::PointCloud</derivedcompoundref>
     <derivedcompoundref refid="classQAccelPlot_1_1RectangleSeries" prot="public" virt="non-virtual">QAccelPlot::RectangleSeries</derivedcompoundref>
     <includes local="no">PlotSeries.hpp</includes>
-    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" prot="protected">QAccelPlot::PlotSeries::DataExtent</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" prot="public">QAccelPlot::PlotSeries::DataBounds</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" prot="public">QAccelPlot::PlotSeries::DataExtent</innerclass>
+    <innerclass refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges" prot="protected">QAccelPlot::PlotSeries::DataRanges</innerclass>
     <sectiondef kind="public-type">
       <memberdef kind="enum" id="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" static="no" strong="yes">
         <type></type>
@@ -225,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="153" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="153" bodyend="156"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="174" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="174" bodyend="177"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="property">
@@ -363,7 +365,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="219" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="219" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="235" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="235" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -380,7 +382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="226" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="226" bodyend="226"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="242" column="10" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="242" bodyend="242"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1aedb760180e9085019c482fc3486c5222" prot="private" static="no" mutable="no">
         <type>quint64</type>
@@ -395,7 +397,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="227" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="227" bodyend="227"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="243" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="243" bodyend="243"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a2abb726bf878eed8dad217273f2ebe29" prot="private" static="no" mutable="yes">
         <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
@@ -410,7 +412,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="228" column="30" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="228" bodyend="228"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="244" column="30" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="244" bodyend="244"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1aca49ac7b8167fada977b2bbe58aaeb58" prot="private" static="no" mutable="no">
         <type>QString</type>
@@ -424,7 +426,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="229" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="229" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="245" column="13" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a845cf03b7ea58ce4632a19cb380d4a62" prot="private" static="no" mutable="no">
         <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
@@ -438,7 +440,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="230" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="230" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="246" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="246" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a12c7f3c4fb047f59cf70f41d809ffa20" prot="private" static="no" mutable="no">
         <type>QPointer&lt; <ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> &gt;</type>
@@ -452,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="231" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="231" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="247" column="14" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="247" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a8e635149ed1d1a783cb00978fcb8bd0e" prot="private" static="no" mutable="no">
         <type>QMetaObject::Connection</type>
@@ -466,7 +468,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="232" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="232" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="248" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="248" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a383e7e93067f877d00e4118ce20b2755" prot="private" static="no" mutable="no">
         <type>QMetaObject::Connection</type>
@@ -480,7 +482,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="233" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="233" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="249" column="29" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="249" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a000b52122e1fc1844519347d88710916" prot="private" static="no" mutable="no">
         <type>QRectF</type>
@@ -494,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="234" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="234" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="250" column="12" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a498c2a769ae03b7ab19cbb277e429396" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref></type>
@@ -509,67 +511,64 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="235" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="235" bodyend="235"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="251" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="251" bodyend="251"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a0b4af44f9696f6157663199e81354229" prot="private" static="no" mutable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::PlotSeries::lastXMin_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a39a700cff8adfdb1e77564168bef8a8c" prot="private" static="no" mutable="yes">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt;DataExtent&gt; QAccelPlot::PlotSeries::xDataExtent_</definition>
         <argsstring></argsstring>
-        <name>lastXMin_</name>
-        <qualifiedname>QAccelPlot::PlotSeries::lastXMin_</qualifiedname>
-        <initializer>{std::numeric_limits&lt;qreal&gt;::max()}</initializer>
+        <name>xDataExtent_</name>
+        <qualifiedname>QAccelPlot::PlotSeries::xDataExtent_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="236" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="236" bodyend="236"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="253" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="253" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1af7b6e13db98f5010abd2ba9f25eb0442" prot="private" static="no" mutable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::PlotSeries::lastXMax_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a36f5e2c7d8a169a6bcd7f12f43dece54" prot="private" static="no" mutable="yes">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt;DataExtent&gt; QAccelPlot::PlotSeries::yDataExtent_</definition>
         <argsstring></argsstring>
-        <name>lastXMax_</name>
-        <qualifiedname>QAccelPlot::PlotSeries::lastXMax_</qualifiedname>
-        <initializer>{std::numeric_limits&lt;qreal&gt;::lowest()}</initializer>
+        <name>yDataExtent_</name>
+        <qualifiedname>QAccelPlot::PlotSeries::yDataExtent_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="237" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="237" bodyend="237"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="254" column="27" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="254" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a7c9635f0ccadc8ddf24a02bbb9da6a5b" prot="private" static="no" mutable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::PlotSeries::lastYMin_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a2aa6db085fd5dcb44b847c8f0aa9186c" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool QAccelPlot::PlotSeries::dataRangesStale_</definition>
         <argsstring></argsstring>
-        <name>lastYMin_</name>
-        <qualifiedname>QAccelPlot::PlotSeries::lastYMin_</qualifiedname>
-        <initializer>{std::numeric_limits&lt;qreal&gt;::max()}</initializer>
+        <name>dataRangesStale_</name>
+        <qualifiedname>QAccelPlot::PlotSeries::dataRangesStale_</qualifiedname>
+        <initializer>{false}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="238" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="238" bodyend="238"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="255" column="18" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="255" bodyend="255"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a00890a2da85100917b5da548568bec2b" prot="private" static="no" mutable="no">
-        <type>qreal</type>
-        <definition>qreal QAccelPlot::PlotSeries::lastYMax_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotSeries_1a48ff4e43727d573fefeeea78195ddad6" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &gt;</type>
+        <definition>std::optional&lt;DataBounds&gt; QAccelPlot::PlotSeries::updateBounds_</definition>
         <argsstring></argsstring>
-        <name>lastYMax_</name>
-        <qualifiedname>QAccelPlot::PlotSeries::lastYMax_</qualifiedname>
-        <initializer>{std::numeric_limits&lt;qreal&gt;::lowest()}</initializer>
+        <name>updateBounds_</name>
+        <qualifiedname>QAccelPlot::PlotSeries::updateBounds_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="239" column="11" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="239" bodyend="239"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="257" column="19" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="257" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -590,7 +589,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="91" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="108" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1aa42c9fdd09671734e0a752cad366a304" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>QAccelPlot::PlotSeries::~PlotSeries</definition>
+        <argsstring>() override</argsstring>
+        <name>~PlotSeries</name>
+        <qualifiedname>QAccelPlot::PlotSeries::~PlotSeries</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="109" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a711dd6e106d9bf300932f06a499d0ead" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>quint64</type>
@@ -605,7 +618,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="94" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="112" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a00a3d60288b86fd54569387281355060" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1SeriesInspection" kindref="compound">SeriesInspection</ref> *</type>
@@ -620,7 +633,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="96" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="114" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1abfa3199d6097eb55cf17697eff2be090" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QString</type>
@@ -634,7 +647,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="98" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="116" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -652,7 +665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="99" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="117" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
@@ -666,7 +679,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="101" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="119" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -684,7 +697,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="102" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> *</type>
@@ -698,7 +711,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="104" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="122" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -716,7 +729,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="105" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="123" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1abf3aa64b08afe4f5d2a1728d035665b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QRectF</type>
@@ -730,7 +743,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="107" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="125" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -749,7 +762,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="109" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="127" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" kindref="member">LegendSymbol</ref></type>
@@ -763,7 +776,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="111" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="129" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -781,7 +794,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="112" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="130" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ae800cdece66d1fb4ef3a5614367d9123" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -790,6 +803,11 @@
         <name>setData</name>
         <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BarSeries_1accbb5447e1ce8cfab17e644f2f948a75">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1ae800cdece66d1fb4ef3a5614367d9123">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a698070857dc82f76bae2c9e6c190a940">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a5c7d5d48fd9118f7e74dc97604b92f14">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ac1e62e3f16db5d183271e14b6eba7d00">setData</reimplementedby>
@@ -809,7 +827,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="116" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="134" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a07df438535e3c17d585f5d0a674e0b87" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -818,6 +836,11 @@
         <name>setData</name>
         <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a52ddd70125acc7cd1c1a4d103481944a">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a07df438535e3c17d585f5d0a674e0b87">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a5ceebe1e43de1c0794481d539678e8c3">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BandSeries_1ac87d491c2995850321e5d3142ee16607">setData</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a9ef1e0cdeb656e5e2cdde55c63663800">setData</reimplementedby>
@@ -837,63 +860,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="118" column="18"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a8f063726f9d24fae9651b5dc05fd8442" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>void</type>
-        <definition>virtual void QAccelPlot::PlotSeries::setDataNoRange</definition>
-        <argsstring>(const double *data, int count)=0</argsstring>
-        <name>setDataNoRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setDataNoRange</qualifiedname>
-        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a073f3aa3ec9237b4137395d9852b15f1">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a28fb1c4274be02a54de9acd5c7943507">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1ae825bada7bd836a583249fd02f992e2a">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a4b710ba2481622ea5ccfe33223b0e998">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a5f02a4d984155df65f6e5e3c0a8a8503">setDataNoRange</reimplementedby>
-        <param>
-          <type>const double *</type>
-          <declname>data</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>count</declname>
-        </param>
-        <briefdescription>
-<para>Copies double records without reporting new data ranges to the axes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="120" column="18"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a287a513d158252ce2a298451965f4ac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
-        <type>void</type>
-        <definition>virtual void QAccelPlot::PlotSeries::setDataNoRange</definition>
-        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count)=0</argsstring>
-        <name>setDataNoRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setDataNoRange</qualifiedname>
-        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a7d8e450b71598e7ebc42163a74e5641d">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1acab4904729565a53224076e5d2787463">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a54df039b7a8b5ae46aee768ae11b06b8">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ad6758f8d591d5b2e305f84fde9b27cb2">setDataNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1afa08e848668672957bffb1e4ebbfd429">setDataNoRange</reimplementedby>
-        <param>
-          <type>std::vector&lt; double &gt; &amp;&amp;</type>
-          <declname>data</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>count</declname>
-        </param>
-        <briefdescription>
-<para>Moves double records without reporting new data ranges to the axes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="122" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="136" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a1b852674113d4bd3f28e5d5af723a357" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -902,6 +869,11 @@
         <name>setDataF</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a49f920de4cb74ccc5e655c1cfd4744c9">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a1b852674113d4bd3f28e5d5af723a357">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1af4639ed97ffa63bbb7c25c2f3495fcd5">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a114ea7f4ccbd77f881aa9c2b17e2c50b">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a5fd2d89d97a0919c8bccb229f25d9811">setDataF</reimplementedby>
@@ -921,7 +893,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="124" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="138" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -930,6 +902,11 @@
         <name>setDataF</name>
         <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BarSeries_1ae703f4c337ea205740d8bcbc3df4ad37">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ab13afaaddf3058541d9c23eeba63cf9a">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a6e7f373d482a3ca63be0e1213839011e">setDataF</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a58862e2b4cb3b5ae048bb177f3c3a9f3">setDataF</reimplementedby>
@@ -949,19 +926,68 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="126" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="140" column="18"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a5c6f39a3bd43cb27a55cb0e5665a0e9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>virtual void QAccelPlot::PlotSeries::setDataFNoRange</definition>
-        <argsstring>(const float *data, int count)=0</argsstring>
-        <name>setDataFNoRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setDataFNoRange</qualifiedname>
-        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a29c7916d3161880ba84541fe5a4c7aaf">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1aafb39a63f73e21cc4bc5d3a71a0c6e10">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a91c126e40069e450d05da4b16aa49021">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1a3f60d6247ae33d6cc692324ed4a50fc8">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a172d661fe6247a0d0331f474412cc860">setDataFNoRange</reimplementedby>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(const double *data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="142" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setData</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;&amp;data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setData</name>
+        <qualifiedname>QAccelPlot::PlotSeries::setData</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;&amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+<para>Like <computeroutput>setData</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="144" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(const float *data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
         <param>
           <type>const float *</type>
           <declname>data</declname>
@@ -970,26 +996,25 @@
           <type>int</type>
           <declname>count</declname>
         </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
         <briefdescription>
-<para>Copies float records without reporting new data ranges to the axes. </para>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="128" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="146" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1aad5b9b81793361295dbcb7ba3cd5b8a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>virtual void QAccelPlot::PlotSeries::setDataFNoRange</definition>
-        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count)=0</argsstring>
-        <name>setDataFNoRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setDataFNoRange</qualifiedname>
-        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1af1f32fd1a2b22370d7cc923122580da4">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1aeba03d90d5ddbff7cefb4acdd0df93f3">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1afd3caab49bf9217bb17a60ed411c6cb2">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1ac12383a64ded5e0b43452dd625b45684">setDataFNoRange</reimplementedby>
-        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a0b616441fd62fe2c38815a4a852a9183">setDataFNoRange</reimplementedby>
+        <definition>void QAccelPlot::PlotSeries::setDataF</definition>
+        <argsstring>(std::vector&lt; float &gt; &amp;&amp;data, int count, const DataBounds &amp;bounds)</argsstring>
+        <name>setDataF</name>
+        <qualifiedname>QAccelPlot::PlotSeries::setDataF</qualifiedname>
         <param>
           <type>std::vector&lt; float &gt; &amp;&amp;</type>
           <declname>data</declname>
@@ -998,14 +1023,18 @@
           <type>int</type>
           <declname>count</declname>
         </param>
+        <param>
+          <type>const <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref> &amp;</type>
+          <declname>bounds</declname>
+        </param>
         <briefdescription>
-<para>Moves float records without reporting new data ranges to the axes. </para>
+<para>Like <computeroutput>setDataF</computeroutput>(<emphasis>data</emphasis>, <emphasis>count</emphasis>), with the data extents given as <emphasis>bounds</emphasis> instead of scanned for. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="130" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="148" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1aac5627fe225c9fdc9546d52ffab259ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -1033,7 +1062,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="132" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="150" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a82b5eee111a71c4b078e5e8dc9fa4a57" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -1061,7 +1090,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="134" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="152" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a86e7a39ea75e41e8719cf53605de9930" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -1081,7 +1110,38 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="136" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="154" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt; DataExtent &gt; QAccelPlot::PlotSeries::xDataRange</definition>
+        <argsstring>() const</argsstring>
+        <name>xDataRange</name>
+        <qualifiedname>QAccelPlot::PlotSeries::xDataRange</qualifiedname>
+        <briefdescription>
+<para>Returns the extent this series reports to its horizontal axis, or <computeroutput>std::nullopt</computeroutput> when it has none. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The first read after a data update scans the records, unless the update came with <computeroutput><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kindref="compound">DataBounds</ref></computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="159" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
+        <definition>std::optional&lt; DataExtent &gt; QAccelPlot::PlotSeries::yDataRange</definition>
+        <argsstring>() const</argsstring>
+        <name>yDataRange</name>
+        <qualifiedname>QAccelPlot::PlotSeries::yDataRange</qualifiedname>
+        <briefdescription>
+<para>Returns the extent this series reports to its vertical axis, or <computeroutput>std::nullopt</computeroutput> when it has none. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="161" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1098,7 +1158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="140" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="165" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1acd842870d90a7ece81859be06effe0a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1112,7 +1172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="141" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="166" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1126,7 +1186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="142" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="167" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1140,7 +1200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="143" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="168" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1a9d58451724a7e0b06d7f04aeba101856" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1154,7 +1214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="144" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="169" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1a2b88cb6eac8d12cf02b6daf37460150e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1168,53 +1228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="145" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::xDataRangeChanged</definition>
-        <argsstring>(qreal min, qreal max)</argsstring>
-        <name>xDataRangeChanged</name>
-        <qualifiedname>QAccelPlot::PlotSeries::xDataRangeChanged</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>min</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>max</declname>
-        </param>
-        <briefdescription>
-<para>Emitted when the X data extent of this series changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="147" column="10"/>
-      </memberdef>
-      <memberdef kind="signal" id="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::yDataRangeChanged</definition>
-        <argsstring>(qreal min, qreal max)</argsstring>
-        <name>yDataRangeChanged</name>
-        <qualifiedname>QAccelPlot::PlotSeries::yDataRangeChanged</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>min</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>max</declname>
-        </param>
-        <briefdescription>
-<para>Emitted when the Y data extent of this series changes. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="149" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="170" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1236,7 +1250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="159" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="180" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1251,7 +1265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="161" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="182" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionSource" kindref="compound">InspectionSource</ref></type>
@@ -1266,7 +1280,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="163" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="184" column="30"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a32638eb7718d210d95fa70351696441d" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -1281,7 +1295,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="165" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="186" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -1302,7 +1316,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="167" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="188" column="30"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type><ref refid="structQAccelPlot_1_1InspectionRecord" kindref="compound">InspectionRecord</ref></type>
@@ -1323,114 +1337,44 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="169" column="30"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="190" column="30"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
-        <definition>std::optional&lt; DataExtent &gt; QAccelPlot::PlotSeries::xDataRange</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structQAccelPlot_1_1PlotSeries_1_1DataRanges" kindref="compound">DataRanges</ref></type>
+        <definition>virtual DataRanges QAccelPlot::PlotSeries::computeDataRanges</definition>
         <argsstring>() const</argsstring>
-        <name>xDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::xDataRange</qualifiedname>
+        <name>computeDataRanges</name>
+        <qualifiedname>QAccelPlot::PlotSeries::computeDataRanges</qualifiedname>
+        <reimplementedby refid="classQAccelPlot_1_1BandSeries_1ac8ff2f6dda1a8401e20f0a55669c6d2d">computeDataRanges</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1a735bbac8ac544d6cf2ba582ccf376bcb">computeDataRanges</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ab299422728ee49b497c8b06226cc5f89">computeDataRanges</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a7c5123bf9edd9b33d9bab30761f2c75f">computeDataRanges</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1ab2d357e343b5d432ff5b472782407a3c">computeDataRanges</reimplementedby>
         <briefdescription>
-<para>Returns this series&apos; X data range, or <computeroutput>std::nullopt</computeroutput> when it has none. </para>
+<para>Scans the records for their extents. The default implementation has none. </para>
         </briefdescription>
         <detaileddescription>
+<para>Called when a data range is read after <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" kindref="member">invalidateDataRanges()</ref></computeroutput>, so a series that nothing asks for its range never scans. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="178" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="204" column="24"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::optional&lt; <ref refid="structQAccelPlot_1_1PlotSeries_1_1DataExtent" kindref="compound">DataExtent</ref> &gt;</type>
-        <definition>std::optional&lt; DataExtent &gt; QAccelPlot::PlotSeries::yDataRange</definition>
-        <argsstring>() const</argsstring>
-        <name>yDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::yDataRange</qualifiedname>
-        <briefdescription>
-<para>Returns this series&apos; Y data range, or <computeroutput>std::nullopt</computeroutput> when it has none. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="180" column="19"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::setDataRanges</definition>
-        <argsstring>(qreal xMin, qreal xMax, qreal yMin, qreal yMax)</argsstring>
-        <name>setDataRanges</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setDataRanges</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>xMin</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>xMax</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>yMin</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>yMax</declname>
-        </param>
+        <definition>void QAccelPlot::PlotSeries::invalidateDataRanges</definition>
+        <argsstring>()</argsstring>
+        <name>invalidateDataRanges</name>
+        <qualifiedname>QAccelPlot::PlotSeries::invalidateDataRanges</qualifiedname>
         <briefdescription>
-<para>Reports this series&apos; data extents to its bound axes. </para>
+<para>Discards the cached extents and notifies the bound axes. </para>
         </briefdescription>
         <detaileddescription>
+<para>Call after every change of the records, or of anything else <computeroutput><ref refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" kindref="member">computeDataRanges()</ref></computeroutput> depends on. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="182" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::setXDataRange</definition>
-        <argsstring>(qreal min, qreal max)</argsstring>
-        <name>setXDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setXDataRange</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>min</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>max</declname>
-        </param>
-        <briefdescription>
-<para>Reports this series&apos; X data extent to its bound horizontal axis. Non-finite extents are ignored. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="184" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::setYDataRange</definition>
-        <argsstring>(qreal min, qreal max)</argsstring>
-        <name>setYDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::setYDataRange</qualifiedname>
-        <param>
-          <type>qreal</type>
-          <declname>min</declname>
-        </param>
-        <param>
-          <type>qreal</type>
-          <declname>max</declname>
-        </param>
-        <briefdescription>
-<para>Reports this series&apos; Y data extent to its bound vertical axis. Non-finite extents are ignored. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="186" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="208" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1443,14 +1387,14 @@
           <declname>x</declname>
         </param>
         <briefdescription>
-<para>Widens the reported X extent to include <emphasis>x</emphasis>. </para>
+<para>Widens the X extent to include <emphasis>x</emphasis> and notifies the bound axes. </para>
         </briefdescription>
         <detaileddescription>
-<para>Lets an append-style ingestion path update the range in O(1) instead of rescanning the whole buffer. A non-finite <emphasis>x</emphasis> leaves the extent unchanged. </para>
+<para>Lets an append-style ingestion path keep computed extents current in O(1) instead of rescanning the whole buffer. A non-finite <emphasis>x</emphasis> leaves the extent unchanged. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="191" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="213" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1463,58 +1407,13 @@
           <declname>y</declname>
         </param>
         <briefdescription>
-<para>Widens the reported Y extent to include <emphasis>y</emphasis>. A non-finite <emphasis>y</emphasis> leaves the extent unchanged. </para>
+<para>Widens the Y extent to include <emphasis>y</emphasis>. A non-finite <emphasis>y</emphasis> leaves the extent unchanged. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="193" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::clearDataRanges</definition>
-        <argsstring>()</argsstring>
-        <name>clearDataRanges</name>
-        <qualifiedname>QAccelPlot::PlotSeries::clearDataRanges</qualifiedname>
-        <briefdescription>
-<para>Clears cached extents after a series has been emptied. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="195" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::clearXDataRange</definition>
-        <argsstring>()</argsstring>
-        <name>clearXDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::clearXDataRange</qualifiedname>
-        <briefdescription>
-<para>Clears the cached X extent, e.g. when no sample has a valid X coordinate. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="197" column="10"/>
-      </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::clearYDataRange</definition>
-        <argsstring>()</argsstring>
-        <name>clearYDataRange</name>
-        <qualifiedname>QAccelPlot::PlotSeries::clearYDataRange</qualifiedname>
-        <briefdescription>
-<para>Clears the cached Y extent, e.g. when no sample has a valid Y coordinate. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="199" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="215" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a151516370fa311775c91c9cd7992e25e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1535,7 +1434,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="204" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="220" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a0d37e4fd843acbd10bd9c5d0bf2300c9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -1553,7 +1452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="206" column="18"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="222" column="18"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QRectF</type>
@@ -1569,7 +1468,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="210" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="226" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1589,37 +1488,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="216" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="232" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a2f5bb085b529a5ab4601ea1afaeb6a42" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a98b33eb8d81c81a7625675e16ed3b3a0" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::reportXDataRangeToAxis</definition>
+        <definition>void QAccelPlot::PlotSeries::ensureDataRanges</definition>
         <argsstring>() const</argsstring>
-        <name>reportXDataRangeToAxis</name>
-        <qualifiedname>QAccelPlot::PlotSeries::reportXDataRangeToAxis</qualifiedname>
+        <name>ensureDataRanges</name>
+        <qualifiedname>QAccelPlot::PlotSeries::ensureDataRanges</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="221" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="237" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a31f621ebbb45eda4bf0bd8587b6da9b5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1ae57bb388d3cc698a18e47bb963681309" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void QAccelPlot::PlotSeries::reportYDataRangeToAxis</definition>
+        <definition>void QAccelPlot::PlotSeries::reportDataRangesChanged</definition>
         <argsstring>() const</argsstring>
-        <name>reportYDataRangeToAxis</name>
-        <qualifiedname>QAccelPlot::PlotSeries::reportYDataRangeToAxis</qualifiedname>
+        <name>reportDataRangesChanged</name>
+        <qualifiedname>QAccelPlot::PlotSeries::reportDataRangesChanged</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="222" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="238" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a9a82e9b26322b8f6044ef0985d90e95f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1637,7 +1536,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="223" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="239" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1PlotSeries_1a3a89bb1a3d1238fa8c5214bda8ba4392" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1655,7 +1554,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="224" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="240" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1719,19 +1618,19 @@
         <label>QQuickItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="36" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="36" bodyend="240"/>
+    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="36" column="1" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="36" bodyend="258"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1PlotSeries_1a86e7a39ea75e41e8719cf53605de9930" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>clearData</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a91a6a4bbcd200359aa9cb1eec7538c9f" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>clearDataRanges</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a2c474932f1e4b97d817b5ccefd928595" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>clearXDataRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a1d5f85274f70ca3dcbd4e72b03f8fdb2" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>clearYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5fcaa8127513e48c7c67443782811a1e" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>computeDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a3a89bb1a3d1238fa8c5214bda8ba4392" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>coveredBySeriesAbove</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a7f2b4290f315a7c3d22b7982763b8bc8" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>DataChange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a2aa6db085fd5dcb44b847c8f0aa9186c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>dataRangesStale_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a74c197e04386613b694bd8a63963c479" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>dataRevision</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a711dd6e106d9bf300932f06a499d0ead" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>dataRevision</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aedb760180e9085019c482fc3486c5222" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>dataRevision_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae08fae615331785b023882afef1a4fa1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>dataRevisionChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9a82e9b26322b8f6044ef0985d90e95f" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>deliverTopmostHover</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a98b33eb8d81c81a7625675e16ed3b3a0" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>ensureDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a9c39c6af8c52c7efd9b75935c4d69110" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>event</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ab4c3a9f96024e2929e8122ac37cb69d3" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>extendXDataRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a8b6aac884387c8f8471b1eaab5557872" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>extendYDataRange</name></member>
@@ -1744,11 +1643,8 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1a9f822a232d100806927a0a34f0ca1a5e" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionRecord</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a56c10df5cbc0648557caa5d40153ace8" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionRecordAt</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae2ba190d0642e569bf6a300bbf2573e5" prot="protected" virt="virtual"><scope>QAccelPlot::PlotSeries</scope><name>inspectionSource</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a6d479055f9c3acfd2be5befa8cf6d1a8" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>invalidateDataRanges</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a5d56c6f054d6dba8b905f0cb49e188d7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>invalidateInspection</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1af7b6e13db98f5010abd2ba9f25eb0442" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>lastXMax_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a0b4af44f9696f6157663199e81354229" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>lastXMin_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a00890a2da85100917b5da548568bec2b" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>lastYMax_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a7c9635f0ccadc8ddf24a02bbb9da6a5b" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>lastYMin_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ada3d9fd14934647c0f31870184f5eff5" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a37f1fe5cb9f339d593147cd47b75d180" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>legendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ac80c23b053c467df30433d91f4a3849e" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>LegendSymbol</name></member>
@@ -1768,40 +1664,38 @@
       <member refid="classQAccelPlot_1_1PlotSeries_1aea1937eafb72c04be5befad4d37e3aac" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>PlotSeries</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aac5627fe225c9fdc9546d52ffab259ce" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>postData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a82b5eee111a71c4b078e5e8dc9fa4a57" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>postData</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a2f5bb085b529a5ab4601ea1afaeb6a42" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>reportXDataRangeToAxis</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a31f621ebbb45eda4bf0bd8587b6da9b5" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>reportYDataRangeToAxis</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ae57bb388d3cc698a18e47bb963681309" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>reportDataRangesChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a956e8eb1ca7398b6b5f8022225d6edf7" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>resolvePlotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a42b492337423f662f507c45a51d509c3" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>SeriesInspection</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae800cdece66d1fb4ef3a5614367d9123" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a07df438535e3c17d585f5d0a674e0b87" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a683165ce25c4f4a2f0cf3a36852c3721" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setData</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ad10aa7307918305c127eb0b98c962484" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setData</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a1b852674113d4bd3f28e5d5af723a357" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1aecb4c9e789b95f0518f8a0668f1cfb6f" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataF</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a5c6f39a3bd43cb27a55cb0e5665a0e9b" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataFNoRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1aad5b9b81793361295dbcb7ba3cd5b8a1" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataFNoRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a8f063726f9d24fae9651b5dc05fd8442" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataNoRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a287a513d158252ce2a298451965f4ac9" prot="public" virt="pure-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataNoRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1aa37cf9756aa4526ee9793afbd83c1095" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataRanges</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1ab0d977683b1b06807842ade3c6011a3a" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataF</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a795dc3374e83da98b6a471bb55f51fbd" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setDataF</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a75695e62b548ccf79a1fe9c1f477a502" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setLegendSymbol</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a239ef82d18c15985a337307cbc7872b4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setName</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a812c27ea194ec2f2c4bedde2cafb93f8" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setPlotRect</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1acf14fd9c979717d73a9ab75bf3b763d4" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setXAxis</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a2b7927115a60c41240cb977e458bc547" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setXDataRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a871398840ba7045c168c79a78d564416" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setYAxis</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ab34f143af92c2fb9c0c9d92b6424081d" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>setYDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a48ff4e43727d573fefeeea78195ddad6" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>updateBounds_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a250150d8eaea44c2608375839747b2b2" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1afb85ad640494dbeaa616493a1bd4b966" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a845cf03b7ea58ce4632a19cb380d4a62" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xAxis_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ad43d8ab3035bab188de0a76ec2920267" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xAxisChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a8e635149ed1d1a783cb00978fcb8bd0e" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xAxisDestroyed_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xDataRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1ae24934ea3559b5c36acc89c25c335749" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xDataRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a39a700cff8adfdb1e77564168bef8a8c" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xDataExtent_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a07181531fadaf89fd7140283ac91a563" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>xDataRange</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1ae021f84424e1ea4ad44576961ac7d402" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a63d01fc1b2581de3c4332aaf8fa90833" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yAxis</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a12c7f3c4fb047f59cf70f41d809ffa20" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yAxis_</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a860a8fdde757aaa1295cd2347f606685" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yAxisChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotSeries_1a383e7e93067f877d00e4118ce20b2755" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yAxisDestroyed_</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="protected" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yDataRange</name></member>
-      <member refid="classQAccelPlot_1_1PlotSeries_1aba1d99f137181a58b231d0c3c787f2ef" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yDataRangeChanged</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a36f5e2c7d8a169a6bcd7f12f43dece54" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yDataExtent_</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1a5d37db52b29132cab6e57ba335e30beb" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>yDataRange</name></member>
+      <member refid="classQAccelPlot_1_1PlotSeries_1aa42c9fdd09671734e0a752cad366a304" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries</scope><name>~PlotSeries</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

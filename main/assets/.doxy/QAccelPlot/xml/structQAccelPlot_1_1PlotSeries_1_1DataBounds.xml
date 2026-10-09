@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structQAccelPlot_1_1PlotSeries_1_1DataBounds" kind="struct" language="C++" prot="public">
+    <compoundname>QAccelPlot::PlotSeries::DataBounds</compoundname>
+    <includes local="no">PlotSeries.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1ac3944fc650a6529181f41a694322a0a1" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotSeries::DataBounds::xMin</definition>
+        <argsstring></argsstring>
+        <name>xMin</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataBounds::xMin</qualifiedname>
+        <briefdescription>
+<para>Smallest value on the horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="102" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1a7b7e3d5aac131af2d44ae8735a7faf1b" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotSeries::DataBounds::xMax</definition>
+        <argsstring></argsstring>
+        <name>xMax</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataBounds::xMax</qualifiedname>
+        <briefdescription>
+<para>Largest value on the horizontal axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="103" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1abbabbd392e5973083716260089771dd6" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotSeries::DataBounds::yMin</definition>
+        <argsstring></argsstring>
+        <name>yMin</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataBounds::yMin</qualifiedname>
+        <briefdescription>
+<para>Smallest value on the vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="104" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1a84fe85dea7498162621241056b82b5e1" prot="public" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::PlotSeries::DataBounds::yMax</definition>
+        <argsstring></argsstring>
+        <name>yMax</name>
+        <qualifiedname>QAccelPlot::PlotSeries::DataBounds::yMax</qualifiedname>
+        <briefdescription>
+<para>Largest value on the vertical axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="105" column="15" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Extents of a data update that the caller already knows. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Passed with the data, they are reported to the axes in place of a scan over the records. A dimension whose bounds are not finite or not ordered reports no extent. </para>
+    </detaileddescription>
+    <location file="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" line="101" column="5" bodyfile="QAccelPlot/src/QAccelPlot/series/PlotSeries.hpp" bodystart="101" bodyend="106"/>
+    <listofallmembers>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1a7b7e3d5aac131af2d44ae8735a7faf1b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataBounds</scope><name>xMax</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1ac3944fc650a6529181f41a694322a0a1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataBounds</scope><name>xMin</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1a84fe85dea7498162621241056b82b5e1" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataBounds</scope><name>yMax</name></member>
+      <member refid="structQAccelPlot_1_1PlotSeries_1_1DataBounds_1abbabbd392e5973083716260089771dd6" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotSeries::DataBounds</scope><name>yMin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

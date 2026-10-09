@@ -456,6 +456,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#data-ranges-are-computed-on-demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ranges are computed on demand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-buffers-efficiently" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1452,6 +1463,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#data-ranges-are-computed-on-demand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ranges are computed on demand
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-buffers-efficiently" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1612,65 +1634,77 @@ numbers, see the <a href="../performance-comparison/">performance comparison</a>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-22"><code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
 <td>Existing C++ data is already interleaved as doubles, e.g. epoch timestamps</td>
-<td>Range scan; buffer ownership is moved immediately and coordinates remain doubles</td>
-</tr>
-<tr>
-<td><code>setDataNoRange(std::vector&lt;double&gt;&amp;&amp;, count)</code></td>
-<td>Double coordinates with axis ranges maintained separately</td>
-<td>Skips the range scan and signals; coordinates remain doubles</td>
+<td>Buffer ownership is moved immediately; coordinates remain doubles</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-12"><code>setDataF(const float*, count)</code></a></td>
-<td>Existing interleaved memory cannot be transferred</td>
-<td>One copy plus a range scan</td>
+<td>Existing interleaved memory remains caller-owned</td>
+<td>One copy into a reusable buffer</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>The caller is on the curve's thread, normally the UI thread</td>
-<td>Range scan; buffer ownership is moved immediately</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
-<td>Axis data ranges are fixed or maintained separately</td>
-<td>Skips the range scan and signals</td>
-</tr>
-<tr>
-<td><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-22"><code>setDataFNoRange(const float*, count)</code></a></td>
-<td>Existing interleaved memory remains caller-owned and axis ranges are maintained separately</td>
-<td>One reusable-buffer copy; skips the range scan and signals</td>
+<td>Buffer ownership is moved immediately</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;float&gt;&amp;&amp;, count)</code></a></td>
 <td>A worker thread owns the completed buffer</td>
-<td>Queues the same moved-buffer handoff, followed by the normal range scan</td>
+<td>Queues the same moved-buffer handoff</td>
 </tr>
 <tr>
 <td><a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData(std::vector&lt;double&gt;&amp;&amp;, count)</code></a></td>
 <td>A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps</td>
-<td>Queues the same moved-buffer handoff as <code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code>, followed by the normal range scan</td>
+<td>Queues the same moved-buffer handoff as <code>setData(std::vector&lt;double&gt;&amp;&amp;, count)</code></td>
 </tr>
 </tbody>
 </table>
 <p>Start with <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code></a> for large
-C++ data sets. Switch to <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> only when
-the range scan is measurable and you maintain accurate
-<a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a>/<a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a> values yourself.</p>
+C++ data sets.</p>
 <p>Use a <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdata-12"><code>setData()</code></a> overload for Unix-epoch timestamps, large
 coordinates, or small differences at a large offset. These paths keep doubles
 and rebase the GPU buffer so nearby values stay distinct. The <code>F</code> APIs store
 floats; use them only when float precision is sufficient.</p>
-<div class="admonition caution">
-<p class="admonition-title">No-range updates change the contract</p>
-<p><code>setDataNoRange()</code> and <a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> do not report new extents to
-attached axes. If the data can leave the declared range, update the axes
-yourself or periodically use a range-calculating path. Otherwise rescaling
-and clipping behavior will be incorrect.</p>
-</div>
-<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorangewithcache-12"><code>setDataFNoRangeWithCache()</code></a> also accepts a
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafwithcache-12"><code>setDataFWithCache()</code></a> also accepts a
 prebuilt vertex cache, so vertex assembly can move off the UI and render
 threads. It ties application code to renderer details; use it only when
 measurements justify it. The cache must match the current point count and
 renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
+<h2 id="data-ranges-are-computed-on-demand">Data ranges are computed on demand<a class="headerlink" href="#data-ranges-are-computed-on-demand" title="Permanent link">&para;</a></h2>
+<p>No setter scans the data for its range. After an update, a series scans its
+records the first time something reads the range:</p>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th>Scans</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1Axis/#function-rescaletodata"><code>rescaleToData()</code></a>, <code>rescaleAllAxes()</code>, a double-click</td>
+<td>Once per call</td>
+</tr>
+<tr>
+<td>An axis with <a href="../api/classQAccelPlot_1_1Axis/#property-autorescale-12"><code>autoRescale</code></a></td>
+<td>On every data update</td>
+</tr>
+<tr>
+<td><a href="../api/classQAccelPlot_1_1Axis/#property-datamin-12"><code>dataMin</code></a> / <a href="../api/classQAccelPlot_1_1Axis/#property-datamax-12"><code>dataMax</code></a>, or a binding to them</td>
+<td>On every data update that is followed by a read</td>
+</tr>
+<tr>
+<td>A <code>LineCurve</code> gradient with a <code>DataRange</code> bound</td>
+<td>On every data update of that curve</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../api/classQAccelPlot_1_1LineCurve/#function-appenddata"><code>appendData()</code></a> widens a computed range without a rescan.</p>
+<p>To skip the scan when the extents are already known, pass them with the data:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">DataBounds</span><span class="p">{</span><span class="n">xMin</span><span class="p">,</span><span class="w"> </span><span class="n">xMax</span><span class="p">,</span><span class="w"> </span><span class="n">yMin</span><span class="p">,</span><span class="w"> </span><span class="n">yMax</span><span class="p">};</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span><span class="w"> </span><span class="n">bounds</span><span class="p">);</span>
+</code></pre></div>
+<p>The bounds describe that update only. A change that affects which values are
+valid, such as switching an axis to a logarithmic scale, discards them.</p>
 <h2 id="build-buffers-efficiently">Build buffers efficiently<a class="headerlink" href="#build-buffers-efficiently" title="Permanent link">&para;</a></h2>
 <ul>
 <li>For the <code>F</code> paths, store points as interleaved floats: <code>[x0, y0, x1, y1, ...]</code>.</li>
@@ -1678,13 +1712,11 @@ renderer layout, otherwise it is rejected and normal vertex assembly runs.</p>
 <li>Move the completed vector instead of copying it.</li>
 <li>Publish no faster than the display presents frames.</li>
 </ul>
-<p>For a fixed streaming window, set the axis data range once and use
-<a href="../api/classQAccelPlot_1_1LineCurve/#function-setdatafnorange-12"><code>setDataFNoRange()</code></a> for each frame, as in the
+<p>For a fixed streaming window, pass the window's bounds with each frame, as in the
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime"><code>realtime</code> example</a>.
-<code>LineCurve</code>, <code>PointCloud</code>, <code>RectangleSeries</code>, and <code>BarSeries</code> all support
-<code>setData()</code> and <code>setDataNoRange()</code> for interleaved doubles, <code>setDataF()</code> and
-<code>setDataFNoRange()</code> for interleaved floats, and <code>postData()</code> for either moved
-vector type. Each also accepts a raw array for the four synchronous setters.
+Every series supports <code>setData()</code> for interleaved doubles, <code>setDataF()</code> for
+interleaved floats, and <code>postData()</code> for either moved vector type. The
+synchronous setters also accept a raw array, and data bounds.
 <code>PointCloud</code> can add per-point values, and <code>RectangleSeries</code> and <code>BarSeries</code>
 can add categories with their vector overloads.</p>
 <h2 id="keep-work-off-the-ui-thread">Keep work off the UI thread<a class="headerlink" href="#keep-work-off-the-ui-thread" title="Permanent link">&para;</a></h2>
@@ -1768,12 +1800,12 @@ on <code>QACCELPLOT_USE_QT_PRIVATE_API</code>:</p>
 appear in public headers or ABI. Gradient textures always use the public path.</p>
 <p>Benchmark both modes with your workload. The included live scenarios cover 1M,
 2M, 5M, and 10M points:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-private<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>ON
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-public<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-private<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>ON
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build-public<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
 </code></pre></div>
 <h2 id="benchmarking-tips">Benchmarking tips<a class="headerlink" href="#benchmarking-tips" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1850,11 +1882,11 @@ count that keeps it below that rate. The lab reports:</p>
   rendering.</li>
 </ul>
 <p>Build the included benchmarks with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-DQACCELPLOT_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-DQACCELPLOT_BUILD_TESTS<span class="o">=</span>OFF
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-DQACCELPLOT_BUILD_BENCHMARKS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-DQACCELPLOT_BUILD_EXAMPLES<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>-DQACCELPLOT_BUILD_TESTS<span class="o">=</span>OFF
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
 </code></pre></div>
 <p>Scenarios are defined in
 <a href="https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp"><code>benchmarks/common/BenchmarkScenario.cpp</code></a>.</p>

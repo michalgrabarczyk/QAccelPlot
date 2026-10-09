@@ -62,11 +62,6 @@ flowchart TB
 
 
 
-## Public Slots
-
-| Type | Name |
-| ---: | :--- |
-| slot void | [**updateDataRange**](classQAccelPlot_1_1Axis.md#slot-updatedatarange) (qreal min, qreal max) <br>_Replaces the tracked data range._  |
 
 
 
@@ -75,12 +70,13 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| property bool | [**autoRescale**](classQAccelPlot_1_1Axis.md#property-autorescale-12)  <br>_Whether the viewport follows the data range. Default:_ `false` _._ |
 | property int | [**axisLinePadding**](classQAccelPlot_1_1Axis.md#property-axislinepadding-12)  <br>_Pixels of padding between the plot area edge and the axis baseline. Default: 0._  |
 | property int | [**axisTitlePadding**](classQAccelPlot_1_1Axis.md#property-axistitlepadding-12)  <br>_Pixels of padding between the axis line and the title text. Default: 30._  |
 | property QColor | [**baselineColor**](classQAccelPlot_1_1Axis.md#property-baselinecolor-12)  <br>_Color of the axis baseline. Default:_ `Colors.dark.axisLine` _._ |
 | property qreal | [**baselineWidth**](classQAccelPlot_1_1Axis.md#property-baselinewidth-12)  <br>_Width in pixels of the axis baseline. Default: 2._  |
-| property qreal | [**dataMax**](classQAccelPlot_1_1Axis.md#property-datamax-12)  <br>_Maximum data value seen by the curves bound to this axis. Default: 1._  |
-| property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value seen by the curves bound to this axis. Default: 0._  |
+| property qreal | [**dataMax**](classQAccelPlot_1_1Axis.md#property-datamax-12)  <br>_Maximum data value of the series bound to this axis. Default: 1. Computed like_ `dataMin` _._ |
+| property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value of the series bound to this axis. Default: 0._  |
 | property QColor | [**hoverColor**](classQAccelPlot_1_1Axis.md#property-hovercolor-12)  <br>_Tick and label color applied when the axis is hovered. Default:_ `Colors.dark.hover` _._ |
 | property bool | [**hovered**](classQAccelPlot_1_1Axis.md#property-hovered-12)  <br>_Read-only:_ `true` _while the mouse cursor is over the axis widget._ |
 | property QString | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Optional axis label displayed alongside the axis line._  |
@@ -102,6 +98,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+| signal void | [**autoRescaleChanged**](classQAccelPlot_1_1Axis.md#signal-autorescalechanged)  <br>_Emitted when the autoRescale property changes._  |
 | signal void | [**axisLinePaddingChanged**](classQAccelPlot_1_1Axis.md#signal-axislinepaddingchanged)  <br>_Emitted when the axisLinePadding property changes._  |
 | signal void | [**axisTitlePaddingChanged**](classQAccelPlot_1_1Axis.md#signal-axistitlepaddingchanged)  <br>_Emitted when the axisTitlePadding property changes._  |
 | signal void | [**baselineColorChanged**](classQAccelPlot_1_1Axis.md#signal-baselinecolorchanged)  <br>_Emitted when the baselineColor property changes._  |
@@ -131,13 +128,14 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 |   | [**Axis**](#function-axis) (QQuickItem \* parent=nullptr, [**Side**](classQAccelPlot_1_1Axis.md#enum-side) side=Bottom) <br>_Constructs an_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _with the given__parent_ _and initial__side_ _._ |
+|  bool | [**autoRescale**](#function-autorescale-22) () const<br>_Returns_ `true` _when the viewport follows the data range._ |
 |  int | [**axisLinePadding**](#function-axislinepadding-22) () const<br>_Returns the axis line padding in pixels._  |
 |  int | [**axisTitlePadding**](#function-axistitlepadding-22) () const<br>_Returns the axis title padding in pixels._  |
 |  QColor | [**baselineColor**](#function-baselinecolor-22) () const<br>_Returns the axis baseline color._  |
 |  qreal | [**baselineWidth**](#function-baselinewidth-22) () const<br>_Returns the axis baseline width in pixels._  |
 |  Q\_INVOKABLE qreal | [**coordToPixel**](#function-coordtopixel) (qreal value, qreal length) const<br>_Maps a data-space_ _value_ _to a pixel position along an axis of__length_ _pixels._ |
-|  qreal | [**dataMax**](#function-datamax-22) () const<br>_Returns the maximum data value tracked by bound curves._  |
-|  qreal | [**dataMin**](#function-datamin-22) () const<br>_Returns the minimum data value tracked by bound curves._  |
+|  qreal | [**dataMax**](#function-datamax-22) () const<br>_Returns the maximum data value of the bound series, computing it if their data changed._  |
+|  qreal | [**dataMin**](#function-datamin-22) () const<br>_Returns the minimum data value of the bound series, computing it if their data changed._  |
 |  Q\_INVOKABLE QString | [**formatValue**](#function-formatvalue) (qreal value, qreal length) const<br>_Formats_ _value_ _for a readout on an axis of__length_ _pixels._ |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
@@ -153,12 +151,14 @@ flowchart TB
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the axis widget (tick marks, labels, label text, background)._  |
 |  Q\_INVOKABLE qreal | [**pixelToCoord**](#function-pixeltocoord) (qreal pos, qreal length) const<br>_Maps a pixel_ _pos_ _along an axis of__length_ _pixels back to a data-space value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Sets_ `viewportMin` _and_`viewportMax` _to the current_`dataMin` _/_`dataMax` _range._ |
+|  void | [**setAutoRescale**](#function-setautorescale) (bool on) <br>_Sets whether the viewport follows the data range to_ _on_ _. Enabling it rescales to the current data range._ |
 |  void | [**setAxisLinePadding**](#function-setaxislinepadding) (int padding) <br>_Sets the axis line padding to_ _padding_ _pixels._ |
 |  void | [**setAxisTitlePadding**](#function-setaxistitlepadding) (int padding) <br>_Sets the axis title padding to_ _padding_ _pixels._ |
 |  void | [**setBaselineColor**](#function-setbaselinecolor) (const QColor & c) <br>_Sets the axis baseline color to_ _c_ _._ |
 |  void | [**setBaselineWidth**](#function-setbaselinewidth) (qreal width) <br>_Sets the axis baseline width to_ _width_ _pixels. Negative values are clamped to zero._ |
-|  void | [**setDataMax**](#function-setdatamax) (qreal m) <br>_Sets the tracked data maximum to_ _m_ _._ |
-|  void | [**setDataMin**](#function-setdatamin) (qreal m) <br>_Sets the tracked data minimum to_ _m_ _._ |
+|  void | [**setDataMax**](#function-setdatamax) (qreal m) <br>_Sets the data maximum to_ _m_ _until a bound series with data changes its records._ |
+|  void | [**setDataMin**](#function-setdatamin) (qreal m) <br>_Sets the data minimum to_ _m_ _until a bound series with data changes its records._ |
+|  Q\_INVOKABLE void | [**setDataRange**](#function-setdatarange) (qreal min, qreal max) <br>_Sets the data range to [_ _min_ _,__max_ _] until a bound series with data changes its records._ |
 |  void | [**setHoverColor**](#function-sethovercolor) (const QColor & c) <br>_Sets the hovered color to_ _c_ _._ |
 |  void | [**setLabel**](#function-setlabel) (const QString & t) <br>_Sets the axis label to_ _t_ _._ |
 |  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & c) <br>_Sets the axis-label color to_ _c_ _. An invalid color restores the baselineColor fallback._ |
@@ -204,6 +204,7 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
+|  void | [**componentComplete**](#function-componentcomplete) () override<br> |
 |  void | [**hoverEnterEvent**](#function-hoverenterevent) (QHoverEvent \* event) override<br> |
 |  void | [**hoverLeaveEvent**](#function-hoverleaveevent) (QHoverEvent \* event) override<br> |
 |  void | [**keyPressEvent**](#function-keypressevent) (QKeyEvent \* event) override<br> |
@@ -275,6 +276,25 @@ enum QAccelPlot::Axis::Side {
 
 
 
+### property autoRescale {#property-autorescale-12}
+
+_Whether the viewport follows the data range. Default:_ `false` _._
+```C++
+bool QAccelPlot::Axis::autoRescale;
+```
+
+
+
+While `true`, every data update of a bound series sets the viewport as `rescaleToData()` does, replacing a viewport set by panning, zooming, or `viewportMin` / `viewportMax`. Each update scans the series' records unless they were given data bounds. The viewport is kept when the last series on the axis clears its data. 
+
+
+        
+
+<hr>
+
+
+
+
 ### property axisLinePadding {#property-axislinepadding-12}
 
 _Pixels of padding between the plot area edge and the axis baseline. Default: 0._ 
@@ -337,7 +357,7 @@ qreal QAccelPlot::Axis::baselineWidth;
 
 ### property dataMax {#property-datamax-12}
 
-_Maximum data value seen by the curves bound to this axis. Default: 1._ 
+_Maximum data value of the series bound to this axis. Default: 1. Computed like_ `dataMin` _._
 ```C++
 qreal QAccelPlot::Axis::dataMax;
 ```
@@ -352,13 +372,17 @@ qreal QAccelPlot::Axis::dataMax;
 
 ### property dataMin {#property-datamin-12}
 
-_Minimum data value seen by the curves bound to this axis. Default: 0._ 
+_Minimum data value of the series bound to this axis. Default: 0._ 
 ```C++
 qreal QAccelPlot::Axis::dataMin;
 ```
 
 
 
+Computed from the series when read after a data update, which scans their records unless they were given data bounds. A value set here is used until a bound series with data changes its records. `dataMinChanged()` also announces a data update whose new minimum has not been computed yet. 
+
+
+        
 
 <hr>
 
@@ -560,37 +584,23 @@ On a zoom-in step the range is multiplied by this value; on zoom-out by its reci
         
 
 <hr>
-## Public Slots Documentation
+## Public Signals Documentation
 
 
 
 
 
-### slot updateDataRange {#slot-updatedatarange}
+### signal autoRescaleChanged {#signal-autorescalechanged}
 
-_Replaces the tracked data range._ 
+_Emitted when the autoRescale property changes._ 
 ```C++
-void QAccelPlot::Axis::updateDataRange;
+void QAccelPlot::Axis::autoRescaleChanged;
 ```
 
 
 
 
-
-**Parameters:**
-
-
-* `min` New minimum data value. 
-* `max` New maximum data value. 
-
-
-
-
-        
-
 <hr>
-## Public Signals Documentation
-
 
 
 
@@ -915,6 +925,21 @@ explicit QAccelPlot::Axis::Axis (
 
 
 
+### function autoRescale {#function-autorescale-22}
+
+_Returns_ `true` _when the viewport follows the data range._
+```C++
+bool QAccelPlot::Axis::autoRescale () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function axisLinePadding {#function-axislinepadding-22}
 
 _Returns the axis line padding in pixels._ 
@@ -995,7 +1020,7 @@ Q_INVOKABLE qreal QAccelPlot::Axis::coordToPixel (
 
 ### function dataMax {#function-datamax-22}
 
-_Returns the maximum data value tracked by bound curves._ 
+_Returns the maximum data value of the bound series, computing it if their data changed._ 
 ```C++
 qreal QAccelPlot::Axis::dataMax () const
 ```
@@ -1010,7 +1035,7 @@ qreal QAccelPlot::Axis::dataMax () const
 
 ### function dataMin {#function-datamin-22}
 
-_Returns the minimum data value tracked by bound curves._ 
+_Returns the minimum data value of the bound series, computing it if their data changed._ 
 ```C++
 qreal QAccelPlot::Axis::dataMin () const
 ```
@@ -1258,6 +1283,27 @@ Q_INVOKABLE void QAccelPlot::Axis::rescaleToData ()
 
 
 
+Emits `rangeChanged()` once. 
+
+
+        
+
+<hr>
+
+
+
+
+### function setAutoRescale {#function-setautorescale}
+
+_Sets whether the viewport follows the data range to_ _on_ _. Enabling it rescales to the current data range._
+```C++
+void QAccelPlot::Axis::setAutoRescale (
+    bool on
+) 
+```
+
+
+
 
 <hr>
 
@@ -1334,7 +1380,7 @@ void QAccelPlot::Axis::setBaselineWidth (
 
 ### function setDataMax {#function-setdatamax}
 
-_Sets the tracked data maximum to_ _m_ _._
+_Sets the data maximum to_ _m_ _until a bound series with data changes its records._
 ```C++
 void QAccelPlot::Axis::setDataMax (
     qreal m
@@ -1351,7 +1397,7 @@ void QAccelPlot::Axis::setDataMax (
 
 ### function setDataMin {#function-setdatamin}
 
-_Sets the tracked data minimum to_ _m_ _._
+_Sets the data minimum to_ _m_ _until a bound series with data changes its records._
 ```C++
 void QAccelPlot::Axis::setDataMin (
     qreal m
@@ -1360,6 +1406,28 @@ void QAccelPlot::Axis::setDataMin (
 
 
 
+
+<hr>
+
+
+
+
+### function setDataRange {#function-setdatarange}
+
+_Sets the data range to [_ _min_ _,__max_ _] until a bound series with data changes its records._
+```C++
+Q_INVOKABLE void QAccelPlot::Axis::setDataRange (
+    qreal min,
+    qreal max
+) 
+```
+
+
+
+Unlike `setDataMin()` and `setDataMax()`, this never computes the range from the series. 
+
+
+        
 
 <hr>
 
@@ -1645,6 +1713,20 @@ double QAccelPlot::Axis::zoomScaleFactor () const
 <hr>
 ## Protected Functions Documentation
 
+
+
+
+
+### function componentComplete {#function-componentcomplete}
+
+```C++
+void QAccelPlot::Axis::componentComplete () override
+```
+
+
+
+
+<hr>
 
 
 

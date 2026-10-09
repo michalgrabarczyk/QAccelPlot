@@ -995,6 +995,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1045,7 +1056,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1540,6 +1551,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fixed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1590,7 +1612,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
+  <a href="#removed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Removed
@@ -1735,8 +1757,7 @@
 <li><code>RectangleSeries</code> categories: <code>category</code>, <code>categoryColors</code>, and <code>setCategories()</code>.</li>
 <li><code>RectangleSeries.border.width</code> and <code>border.color</code>.</li>
 <li><code>RectangleSeries.hoverColor</code>.</li>
-<li><code>RectangleSeries</code>: <code>setDataNoRange()</code>, <code>setDataF()</code>, <code>setDataFNoRange()</code>, and float
-  <code>postData()</code> overloads.</li>
+<li><code>RectangleSeries</code>: <code>setDataF()</code> and float <code>postData()</code> overloads.</li>
 <li><code>SpatialGrid::buildF()</code>.</li>
 <li><code>RectVertexCache</code>.</li>
 <li><code>BarSeries</code>: <code>orientation</code>, <code>barWidth</code>, <code>barOffset</code>, <code>baselineValue</code>, <code>barAt()</code>, and <code>barIndexAt()</code>.</li>
@@ -1748,6 +1769,11 @@
 <li>The <code>plot_types/bands</code> example.</li>
 <li>Histograms via <code>Histogram</code>: equal or uneven bins, counts or density, as data
   for a <code>BarSeries</code>, with a Histogram example.</li>
+<li><code>Axis.autoRescale</code>, which fits the viewport to the data range on every data
+  update.</li>
+<li><code>PlotSeries::DataBounds</code> overloads of <code>setData()</code> and <code>setDataF()</code>, which take
+  the data extents instead of scanning for them.</li>
+<li><code>PlotSeries::xDataRange()</code> and <code>yDataRange()</code> are public.</li>
 </ul>
 <h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1765,6 +1791,22 @@
   its spatial index after every data update.</li>
 <li>The <code>showcases/performance</code> example has <code>LineCurve</code>, <code>PointCloud</code>, <code>RectangleSeries</code>, and
   <code>BarSeries</code> tabs, each with options for series count, ingestion API, hover, and rendering.</li>
+<li><code>Axis::rescaleToData()</code> emits <code>rangeChanged()</code> once instead of once per bound.</li>
+<li>Data ranges are computed on demand. Data setters no longer scan for the range;
+  a series scans when <code>Axis.dataMin</code> / <code>dataMax</code>, <code>rescaleToData()</code>, an axis with
+  <code>autoRescale</code>, or a <code>DataRange</code> gradient reads it.</li>
+<li><code>Axis.dataMinChanged()</code> and <code>dataMaxChanged()</code> also announce a data update whose
+  range has not been computed yet.</li>
+<li>Renamed <code>LineCurve::setDataFNoRangeWithCache()</code> to <code>setDataFWithCache()</code>.</li>
+<li>Renamed <code>Axis::updateDataRange()</code> to <code>setDataRange()</code>.</li>
+</ul>
+<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <code>setDataNoRange()</code> and <code>setDataFNoRange()</code> setters. Use <code>setData()</code> and
+  <code>setDataF()</code>, which no longer scan. To keep a range the application maintains,
+  pass it as <code>PlotSeries::DataBounds</code> instead of setting <code>Axis.dataMin</code> / <code>dataMax</code>.</li>
+<li><code>PlotSeries::xDataRangeChanged()</code> and <code>yDataRangeChanged()</code>. Read <code>xDataRange()</code>
+  and <code>yDataRange()</code>, or connect to <code>Axis.dataMinChanged()</code> / <code>dataMaxChanged()</code>.</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1781,7 +1823,6 @@
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
-<li><code>PointCloud</code> no longer reports data ranges on axis changes after <code>setDataFNoRange()</code> or <code>setDataNoRange()</code>.</li>
 <li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
 <li><code>PointCloud</code> no longer hovers points beyond the GPU texture capacity, which are not drawn.</li>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
@@ -1862,7 +1903,7 @@
   <code>styling/transitions</code>, <code>styling/theming</code> (dark and light palettes), and
   <code>data/missing_data</code> (invalid samples and gaps).</li>
 </ul>
-<h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<h3 id="removed_1">Removed<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>LogTickLabelFormatter</code>. The default <code>NumericTickLabelFormatter</code> now labels
   logarithmic axes with the same superscript powers of ten.</li>
