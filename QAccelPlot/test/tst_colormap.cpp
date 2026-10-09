@@ -15,6 +15,9 @@
 #include <QQmlProperty>
 #include <QtTest/QtTest>
 
+#include <cmath>
+#include <limits>
+
 namespace QAccelPlot {
 
 namespace {
@@ -64,6 +67,7 @@ private slots:
     void reversedFlipsPresetRamp();
     void qmlReversedFlipsCustomStops();
     void boundsAreUnsetUntilAssigned();
+    void setRangeNotifiesOnce();
     void qmlStopsOverridePreset();
     void qmlGradientIsAccepted();
     void gradientFillFollowsColormap();
@@ -198,6 +202,33 @@ void ColormapTest::boundsAreUnsetUntilAssigned()
     // Setting the same value again must not re-notify.
     colormap.setMin(-2.0);
     QCOMPARE(spy.count(), 1);
+}
+
+void ColormapTest::setRangeNotifiesOnce()
+{
+    auto colormap = Colormap{};
+    auto spy = QSignalSpy{&colormap, &Colormap::colormapChanged};
+
+    colormap.setRange(2.0, 8.0);
+    QCOMPARE(colormap.min(), 2.0);
+    QCOMPARE(colormap.max(), 8.0);
+    QCOMPARE(spy.count(), 1);
+
+    colormap.setRange(2.0, 8.0);
+    QCOMPARE(spy.count(), 1);
+
+    colormap.setRange(2.0, 9.0);
+    QCOMPARE(colormap.max(), 9.0);
+    QCOMPARE(spy.count(), 2);
+
+    // NaN unsets a bound, and unsetting an unset bound is not a change.
+    const auto unset = std::numeric_limits<qreal>::quiet_NaN();
+    colormap.setRange(unset, unset);
+    QVERIFY(std::isnan(colormap.min()));
+    QVERIFY(std::isnan(colormap.max()));
+    QCOMPARE(spy.count(), 3);
+    colormap.setRange(unset, unset);
+    QCOMPARE(spy.count(), 3);
 }
 
 void ColormapTest::qmlStopsOverridePreset()

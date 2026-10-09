@@ -98,6 +98,9 @@ public:
     /// \brief Sets the fixed upper bound to \a value. NaN resolves it from the data.
     void setMax(qreal value);
 
+    /// \brief Sets both bounds to \a min and \a max with a single \c colormapChanged(). NaN unsets a bound.
+    Q_INVOKABLE void setRange(qreal min, qreal max);
+
     /// \brief Returns the normalization.
     Normalization norm() const;
     /// \brief Sets the normalization to \a norm.
