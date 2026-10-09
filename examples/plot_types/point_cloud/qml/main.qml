@@ -32,7 +32,7 @@ Window {
 
         ExampleHeader {
             title: "Point cloud"
-            description: "200,000 points colored by jump length. Hover for details. Shift + drag to zoom; wheel zooms; double-click resets."
+            description: "200,000 points of a Clifford attractor, colored by step length: the distance from the previous point. Hover for details. Shift + drag to zoom; wheel zooms; double-click resets. Drag or wheel the color bar to change its range."
 
             Label {
                 text: "Marker radius " + markerSizeSlider.value.toFixed(1) + " px"
@@ -115,21 +115,23 @@ Window {
                     anchors.right: parent.right
                     anchors.top: parent.top
                     anchors.margins: 10
-                    width: jumpBar.width + 20
-                    height: jumpBar.height + 16
+                    width: stepBar.width + 20
+                    height: stepBar.height + 16
                     radius: 4
                     color: colorPalette.legendBackground
                     border.color: colorPalette.legendBorder
 
                     QAccelPlot.ColorBar {
-                        id: jumpBar
+                        id: stepBar
                         x: 10
                         y: 8
-                        height: 130
+                        height: 260
+                        barThickness: 24
                         series: cloud
-                        label: "Jump length"
+                        interactive: true
+                        label: "Step length"
                         labelColor: colorPalette.axisLabel
-                        borderColor: colorPalette.axisLine
+                        borderColor: hovered ? colorPalette.hover : colorPalette.axisLine
                         ticker.tickColor: colorPalette.tick
                         ticker.tickLabelColor: colorPalette.axisTickLabel
                         ticker.tickCount: 8
@@ -173,7 +175,7 @@ Window {
                             anchors.centerIn: parent
                             color: colorPalette.tooltipText
                             font.pixelSize: 11
-                            text: "#" + cloud.hoveredIndex + "  (" + hoverAnchor.hovered.x.toFixed(3) + ", " + hoverAnchor.hovered.y.toFixed(3) + ")  jump " + cloud.valueAt(cloud.hoveredIndex).toFixed(3)
+                            text: "#" + cloud.hoveredIndex + "  (" + hoverAnchor.hovered.x.toFixed(3) + ", " + hoverAnchor.hovered.y.toFixed(3) + ")  step " + cloud.valueAt(cloud.hoveredIndex).toFixed(3)
                         }
                     }
                 }

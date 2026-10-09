@@ -9,6 +9,7 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/axis/internal/RangeGesture.hpp"
 #include "QAccelPlot/series/PlotSeries.hpp"
 
 #include <algorithm>
@@ -709,37 +710,12 @@ void Axis::mouseMoveEvent(QMouseEvent* event)
             return;
         }
 
-        if (logScale_ && viewportMin_ > 0.0 && viewportMax_ > 0.0) {
-            const auto logMin = std::log10(viewportMin_);
-            const auto logMax = std::log10(viewportMax_);
-            auto logShift = qreal{};
-            if (orientation_ == Horizontal) {
-                logShift = -(delta.x() / dataLength) * (logMax - logMin);
-            } else {
-                logShift = (delta.y() / dataLength) * (logMax - logMin);
-            }
-            if (logShift != 0) {
-                setViewportMin(std::pow(10.0, logMin + logShift));
-                setViewportMax(std::pow(10.0, logMax + logShift));
-            }
-        } else {
-            const auto range = viewportMax_ - viewportMin_;
-            if (nearly_equal(range, 0.0)) {
-                return;
-            }
-            auto shift = qreal{};
-            if (orientation_ == Horizontal) {
-                // Drag right -> shift view left (values decrease)
-                shift = -(delta.x() / dataLength) * range;
-            } else {
-                // Drag down -> shift view up (values increase as Y is inverted)
-                shift = (delta.y() / dataLength) * range;
-            }
-            if (shift != 0) {
-                setViewportMin(viewportMin_ + shift);
-                setViewportMax(viewportMax_ + shift);
-            }
-        }
+        // The content follows the cursor. Dragging right brings lower values into view. Dragging down
+        // brings higher ones, because values grow upward while pixel y grows downward.
+        const auto fraction = (orientation_ == Horizontal) ? -delta.x() / dataLength : delta.y() / dataLength;
+        const auto range = Internal::pannedRange({viewportMin_, viewportMax_}, fraction, logScale_);
+        setViewportMin(range.min);
+        setViewportMax(range.max);
         event->accept();
     } else {
         QQuickPaintedItem::mouseMoveEvent(event);

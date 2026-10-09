@@ -108,6 +108,9 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("ColorBar", "barThickness", 20.0);
     row("ColorBar", "borderColor", QColor{Qt::magenta});
     row("ColorBar", "borderWidth", 2.0);
+    row("ColorBar", "tickLabelWidth", 30.0);
+    row("ColorBar", "interactive", true);
+    row("ColorBar", "zoomScaleFactor", 0.5);
 
     row("Colormap", "norm", QVariant::fromValue(Colormap::Normalization::Log));
 

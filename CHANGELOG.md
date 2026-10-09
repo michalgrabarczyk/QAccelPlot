@@ -44,6 +44,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `PlotSeries::DataBounds` overloads of `setData()` and `setDataF()`, which take
   the data extents instead of scanning for them.
 - `PlotSeries::xDataRange()` and `yDataRange()` are public.
+- `ColorBar.interactive`: dragging pans the colormap range, the wheel zooms it,
+  and a double-click or `rescaleToData()` resolves it from the data again.
+  `hovered` reports the cursor over it.
 
 ### Changed
 

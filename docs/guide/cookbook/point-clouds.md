@@ -95,7 +95,8 @@ QAccelPlot.PointCloud {
 ```
 
 `min` and `max` bound the value range. Leave either unset and it is resolved from the data, so one
-colormap can be shared between series that resolve different ranges. Set `norm` to
+colormap can be shared between series that resolve different ranges.
+`setRange(min, max)` sets both with one update. Set `norm` to
 `Colormap.Log` when the values span decades, such as counts or intensities; values at or below
 zero are then left unmapped and drawn with `color`.
 
@@ -154,9 +155,21 @@ QAccelPlot.Plot {
 - The implicit size fits the strip, ticks, labels, and `label`, with a length
   of 160 pixels. Set `height` on a vertical bar, or `width` on a horizontal
   one, to change the length.
+- The tick labels of a vertical bar get the fixed `tickLabelWidth`, 16 pixels
+  by default, so the bar and its `label` stay in place while the labels change.
+  Wider labels are clipped; raise it for longer labels.
 - Ticks follow `norm`: a `Log` colormap gets one major tick per decade.
   `ticker` sets tick count, colors, fonts, and label formatters, as on
   `Axis.ticker`.
+- `interactive: true` lets the user change the range on the bar. A left drag
+  pans it, the wheel zooms around the value under the cursor, and a
+  double-click, like `rescaleToData()`, resolves it from the data again. An
+  interactive bar keeps these events from the plot below it. It reports
+  `hovered`, for example to highlight it with
+  `borderColor: hovered ? "white" : "gray"`.
+- The gestures set the colormap's `min` and `max`, so every series sharing the
+  colormap follows. Leave both unbound: a binding overrides the gesture when it
+  is next evaluated.
 - Nothing is drawn while the series has no colormap.
 
 ## Stream point data

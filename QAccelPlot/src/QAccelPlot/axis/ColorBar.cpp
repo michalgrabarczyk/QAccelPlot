@@ -10,15 +10,21 @@
 #include "QAccelPlot/MathUtils.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
+#include "QAccelPlot/axis/internal/RangeGesture.hpp"
+#include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
 #include <QFontMetricsF>
+#include <QHoverEvent>
 #include <QLinearGradient>
+#include <QMouseEvent>
 #include <QPainter>
 #include <QPen>
+#include <QWheelEvent>
 
 #include <algorithm>
 #include <cmath>
 #include <initializer_list>
+#include <limits>
 
 namespace QAccelPlot {
 
@@ -28,6 +34,14 @@ constexpr auto kDefaultLength = qreal{160.0};
 // Stops sharing a position would collapse in QGradient, which keeps only the last color set at a
 // position. Separating them by this much keeps a hard edge in the ramp.
 constexpr auto kHardEdgeOffset = qreal{1e-6};
+constexpr auto kUnset = std::numeric_limits<qreal>::quiet_NaN();
+constexpr auto kFloatMax = static_cast<qreal>(std::numeric_limits<float>::max());
+// Smallest positive normalized float. A logarithmic range must not start below it, or its
+// minimum reaches the shader as zero.
+constexpr auto kSmallestPositiveFloat = static_cast<qreal>(std::numeric_limits<float>::min());
+// Narrowest range a gesture may produce, relative to its larger bound. Below it, single-precision
+// values no longer resolve into distinct colors.
+constexpr auto kMinRelativeExtent = qreal{1e-6};
 
 qreal rampPosition(const qreal value, const qreal minimum, const qreal maximum, const bool logScale)
 {
@@ -41,6 +55,37 @@ qreal rampPosition(const qreal value, const qreal minimum, const qreal maximum, 
     }
     const auto range = maximum - minimum;
     return nearly_equal(range, 0.0) ? 0.0 : (value - minimum) / range;
+}
+
+Internal::ValueRange resolvedRange(const PointCloud& series)
+{
+    return {series.dataValueMin(), series.dataValueMax()};
+}
+
+bool mapsThroughLog(const Colormap& colormap, const Internal::ValueRange& range)
+{
+    return colormap.norm() == Colormap::Normalization::Log && range.min > 0.0 && range.max > 0.0;
+}
+
+// The series hands its range to the shader in single precision.
+bool isRepresentable(const Internal::ValueRange& range, const bool logSpace)
+{
+    // False for NaN and infinity as well.
+    const auto fitsFloat = [](const qreal value) { return std::abs(value) <= kFloatMax; };
+    if (!fitsFloat(range.min) || !fitsFloat(range.max)) {
+        return false;
+    }
+    if (logSpace && range.min < kSmallestPositiveFloat) {
+        return false;
+    }
+    return range.max - range.min > kMinRelativeExtent * std::max(std::abs(range.min), std::abs(range.max));
+}
+
+void applyRange(Colormap& colormap, const Internal::ValueRange& range, const bool logSpace)
+{
+    if (isRepresentable(range, logSpace)) {
+        colormap.setRange(range.min, range.max);
+    }
 }
 
 } // namespace
@@ -206,15 +251,92 @@ void ColorBar::setBorderWidth(const qreal width)
     invalidate();
 }
 
+qreal ColorBar::tickLabelWidth() const
+{
+    return tickLabelWidth_;
+}
+
+void ColorBar::setTickLabelWidth(const qreal width)
+{
+    const auto clampedWidth = std::max(qreal{0.0}, width);
+    if (nearly_equal(tickLabelWidth_, clampedWidth)) {
+        return;
+    }
+    tickLabelWidth_ = clampedWidth;
+    emit tickLabelWidthChanged();
+    invalidate();
+}
+
+bool ColorBar::interactive() const
+{
+    return interactive_;
+}
+
+void ColorBar::setInteractive(const bool interactive)
+{
+    if (interactive_ == interactive) {
+        return;
+    }
+    interactive_ = interactive;
+    setAcceptedMouseButtons(interactive_ ? Qt::LeftButton : Qt::NoButton);
+    setAcceptHoverEvents(interactive_ && Internal::hoverEnabled());
+    if (!interactive_) {
+        // No release or hover-leave event follows.
+        isDragging_ = false;
+        setHovered(false);
+    }
+    emit interactiveChanged();
+}
+
+double ColorBar::zoomScaleFactor() const
+{
+    return zoomScaleFactor_;
+}
+
+void ColorBar::setZoomScaleFactor(const double factor)
+{
+    const auto clampedFactor = std::clamp(factor, 0.0, 1.0);
+    if (nearly_equal(zoomScaleFactor_, clampedFactor)) {
+        return;
+    }
+    zoomScaleFactor_ = clampedFactor;
+    emit zoomScaleFactorChanged();
+}
+
+bool ColorBar::hovered() const
+{
+    return hovered_;
+}
+
 AxisTicker* ColorBar::ticker() const
 {
     return ticker_;
+}
+
+void ColorBar::rescaleToData()
+{
+    if (auto* const colormap = seriesColormap()) {
+        colormap->setRange(kUnset, kUnset);
+    }
 }
 
 qreal ColorBar::valueToPixel(const qreal value, const qreal length) const
 {
     const auto position = rampPosition(value, valueMin_, valueMax_, logScale_);
     return orientation_ == Horizontal ? position * length : (1.0 - position) * length;
+}
+
+qreal ColorBar::pixelToValue(const qreal pixel, const qreal length) const
+{
+    if (nearly_equal(length, 0.0)) {
+        return valueMin_;
+    }
+    const auto position = orientation_ == Horizontal ? pixel / length : 1.0 - pixel / length;
+    if (logScale_) {
+        const auto logMin = std::log10(valueMin_);
+        return std::pow(10.0, logMin + position * (std::log10(valueMax_) - logMin));
+    }
+    return valueMin_ + position * (valueMax_ - valueMin_);
 }
 
 void ColorBar::paint(QPainter* painter)
@@ -227,19 +349,93 @@ void ColorBar::paint(QPainter* painter)
     paintTitle(painter);
 }
 
+void ColorBar::hoverEnterEvent(QHoverEvent* event)
+{
+    setHovered(true);
+    QQuickPaintedItem::hoverEnterEvent(event);
+}
+
+void ColorBar::hoverLeaveEvent(QHoverEvent* event)
+{
+    setHovered(false);
+    QQuickPaintedItem::hoverLeaveEvent(event);
+}
+
+void ColorBar::mousePressEvent(QMouseEvent* event)
+{
+    if (!interactive_ || event->button() != Qt::LeftButton || !seriesColormap()) {
+        QQuickPaintedItem::mousePressEvent(event);
+        return;
+    }
+    isDragging_ = true;
+    lastMousePos_ = event->position();
+    event->accept();
+}
+
+void ColorBar::mouseMoveEvent(QMouseEvent* event)
+{
+    if (!isDragging_) {
+        QQuickPaintedItem::mouseMoveEvent(event);
+        return;
+    }
+    const auto delta = event->position() - lastMousePos_;
+    lastMousePos_ = event->position();
+
+    const auto length = stripLength();
+    if (length > 0.0) {
+        // The colors follow the cursor. Dragging right brings lower values into view. Dragging down
+        // brings higher ones, because the minimum is at the bottom.
+        panRange(orientation_ == Horizontal ? -delta.x() / length : delta.y() / length);
+    }
+    event->accept();
+}
+
+void ColorBar::mouseReleaseEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton && isDragging_) {
+        isDragging_ = false;
+        event->accept();
+    } else {
+        QQuickPaintedItem::mouseReleaseEvent(event);
+    }
+}
+
+void ColorBar::mouseDoubleClickEvent(QMouseEvent* event)
+{
+    if (!interactive_ || event->button() != Qt::LeftButton || !seriesColormap()) {
+        QQuickPaintedItem::mouseDoubleClickEvent(event);
+        return;
+    }
+    rescaleToData();
+    event->accept();
+}
+
+void ColorBar::mouseUngrabEvent()
+{
+    isDragging_ = false;
+    QQuickPaintedItem::mouseUngrabEvent();
+}
+
+void ColorBar::wheelEvent(QWheelEvent* event)
+{
+    const auto steps = event->angleDelta().y();
+    const auto& strip = layout_.strip;
+    if (!interactive_ || steps == 0 || strip.isEmpty() || !seriesColormap()) {
+        QQuickPaintedItem::wheelEvent(event);
+        return;
+    }
+    const auto position = event->position();
+    const auto anchorRatio = orientation_ == Horizontal ? (position.x() - strip.left()) / strip.width() : (strip.bottom() - position.y()) / strip.height();
+    zoomRange(Internal::wheelZoomFactor(zoomScaleFactor_, steps > 0), std::clamp(anchorRatio, 0.0, 1.0));
+    event->accept();
+}
+
 void ColorBar::updatePolish()
 {
     // Tick labels are formatted here rather than in paint(), because a formatter's tickLabel JS
     // callback must run on the QML engine's thread.
     captureColormap();
     ticks_ = stops_.empty() ? AxisTicks{} : AxisTickPainter::computeTicks(valueMin_, valueMax_, logScale_, ticker_);
-
-    const auto metrics = QFontMetricsF{ticker_->tickLabelFont()};
-    maxTickLabelWidth_ = 0.0;
-    for (const auto& tick : ticks_.majorTicks) {
-        maxTickLabelWidth_ = std::max(maxTickLabelWidth_, AxisTickPainter::tickLabelSize(metrics, tick.label).width());
-    }
-
     updateImplicitSize();
     layout_ = computeLayout();
     update();
@@ -250,6 +446,43 @@ void ColorBar::geometryChange(const QRectF& newGeometry, const QRectF& oldGeomet
     QQuickPaintedItem::geometryChange(newGeometry, oldGeometry);
     if (newGeometry.size() != oldGeometry.size()) {
         polish();
+    }
+}
+
+void ColorBar::setHovered(const bool hovered)
+{
+    if (hovered_ == hovered) {
+        return;
+    }
+    hovered_ = hovered;
+    emit hoveredChanged();
+}
+
+Colormap* ColorBar::seriesColormap() const
+{
+    return series_ ? series_->colormap() : nullptr;
+}
+
+qreal ColorBar::stripLength() const
+{
+    return orientation_ == Vertical ? layout_.strip.height() : layout_.strip.width();
+}
+
+void ColorBar::panRange(const qreal fraction)
+{
+    if (auto* const colormap = seriesColormap()) {
+        const auto range = resolvedRange(*series_);
+        const auto logSpace = mapsThroughLog(*colormap, range);
+        applyRange(*colormap, Internal::pannedRange(range, fraction, logSpace), logSpace);
+    }
+}
+
+void ColorBar::zoomRange(const qreal factor, const qreal anchorRatio)
+{
+    if (auto* const colormap = seriesColormap()) {
+        const auto range = resolvedRange(*series_);
+        const auto logSpace = mapsThroughLog(*colormap, range);
+        applyRange(*colormap, Internal::zoomedRange(range, factor, anchorRatio, logSpace), logSpace);
     }
 }
 
@@ -278,8 +511,7 @@ void ColorBar::reconnectSeries()
 void ColorBar::reconnectColormap()
 {
     disconnect(colormapConnection_);
-    auto* const colormap = series_ ? series_->colormap() : nullptr;
-    if (colormap) {
+    if (auto* const colormap = seriesColormap()) {
         colormapConnection_ = connect(colormap, &Colormap::colormapChanged, this, &ColorBar::invalidate);
     }
 }
@@ -292,7 +524,7 @@ void ColorBar::invalidate()
 
 void ColorBar::captureColormap()
 {
-    const auto* const colormap = series_ ? series_->colormap() : nullptr;
+    const auto* const colormap = seriesColormap();
     if (!colormap) {
         stops_.clear();
         valueMin_ = 0.0;
@@ -327,6 +559,7 @@ ColorBar::Layout ColorBar::computeLayout() const
         layout.strip = QRectF{0.0, layout.endInset, barThickness_, length};
         layout.tickArea = QRectF{0.0, layout.endInset, width(), length};
         layout.title = QRectF{titleOffset(), layout.endInset, titleThickness(), length};
+        layout.tickClip = QRectF{0.0, 0.0, titleOffset() - labelPadding_, height()};
     } else {
         const auto length = std::max(qreal{0.0}, width() - 2.0 * layout.endInset);
         layout.strip = QRectF{layout.endInset, 0.0, length, barThickness_};
@@ -352,7 +585,7 @@ qreal ColorBar::tickLabelHeight() const
 
 qreal ColorBar::tickLabelThickness() const
 {
-    return orientation_ == Vertical ? maxTickLabelWidth_ : tickLabelHeight();
+    return orientation_ == Vertical ? tickLabelWidth_ : tickLabelHeight();
 }
 
 qreal ColorBar::titleThickness() const
@@ -397,6 +630,10 @@ void ColorBar::paintStrip(QPainter* painter) const
 
 void ColorBar::paintTicks(QPainter* painter) const
 {
+    painter->save();
+    if (orientation_ == Vertical) {
+        painter->setClipRect(layout_.tickClip, Qt::IntersectClip);
+    }
     auto pen = QPen{ticker_->tickColor()};
     pen.setWidthF(ticker_->tickWidth());
     painter->setPen(pen);
@@ -412,6 +649,7 @@ void ColorBar::paintTicks(QPainter* painter) const
 
     AxisTickPainter::paintTicks(painter, layout_.tickArea, layout_.strip.right(), layout_.strip.bottom(), params, ticks_,
         [this](const auto value, const auto length) { return valueToPixel(value, length); });
+    painter->restore();
 }
 
 void ColorBar::paintTitle(QPainter* painter) const

@@ -24,6 +24,12 @@ namespace {
 
 constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 
+bool sameBound(const qreal current, const qreal value)
+{
+    // Both NaN means unset either way, and NaN never compares equal to itself.
+    return nearly_equal(current, value) || (std::isnan(current) && std::isnan(value));
+}
+
 // 32 control points sampled at even spacing from the matplotlib ramps of the same name. Linear
 // interpolation between them stays within about one CIELAB unit of the originals.
 using RampSamples = std::vector<const char*>;
@@ -167,12 +173,7 @@ qreal Colormap::min() const
 
 void Colormap::setMin(const qreal value)
 {
-    // Both NaN means unset either way, and NaN never compares equal to itself.
-    if (nearly_equal(min_, value) || (std::isnan(min_) && std::isnan(value))) {
-        return;
-    }
-    min_ = value;
-    emit colormapChanged();
+    setRange(value, max_);
 }
 
 qreal Colormap::max() const
@@ -182,10 +183,16 @@ qreal Colormap::max() const
 
 void Colormap::setMax(const qreal value)
 {
-    if (nearly_equal(max_, value) || (std::isnan(max_) && std::isnan(value))) {
+    setRange(min_, value);
+}
+
+void Colormap::setRange(const qreal min, const qreal max)
+{
+    if (sameBound(min_, min) && sameBound(max_, max)) {
         return;
     }
-    max_ = value;
+    min_ = min;
+    max_ = max;
     emit colormapChanged();
 }
 
