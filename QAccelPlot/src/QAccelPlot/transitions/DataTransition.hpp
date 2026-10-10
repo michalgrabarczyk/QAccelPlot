@@ -27,7 +27,7 @@ namespace QAccelPlot {
 /// One transition can be assigned to several elements. Each element keeps its own \c Run with the
 /// data it animates between, so the elements animate independently.
 ///
-/// \sa DrawTransition, MorphTransition, LineCurve, BarSeries
+/// \sa DrawTransition, MorphTransition, LineCurve, BarSeries, PointCloud
 class DataTransition : public QObject {
     Q_OBJECT
     QML_ANONYMOUS

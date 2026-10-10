@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `BarSeries`: `orientation`, `barWidth`, `barOffset`, `baselineValue`, `barAt()`, and `barIndexAt()`.
 - `BarSeries` ranged bars with their own `from` and `to`, via `setData()` and `setRangedData()`.
 - `BarSeries.transition`: `MorphTransition` and `DrawTransition` animate bar updates.
+- `PointCloud.transition`: `MorphTransition` and `DrawTransition` animate point updates.
 - `LineCurve.hoverRadius`.
 - The `plot_types/bar_chart` example.
 - The `plot_types/state_timeline` example.

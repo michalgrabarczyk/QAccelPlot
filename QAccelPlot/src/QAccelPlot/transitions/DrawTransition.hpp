@@ -13,8 +13,8 @@ namespace QAccelPlot {
 
 /// \brief An animation transition that reveals the target data point by point from start to end.
 ///
-/// Assign to \c LineCurve::transition to draw the new curve in, or to \c BarSeries::transition to
-/// show the new bars one after another.
+/// Assign to \c LineCurve::transition to draw the new curve in, or to \c BarSeries::transition or
+/// \c PointCloud::transition to show the new bars or points one after another.
 ///
 /// \sa MorphTransition, DataTransition
 class DrawTransition : public DataTransition {
