@@ -176,7 +176,7 @@ ApplicationWindow {
                 // Divider
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 1
+                    Layout.preferredHeight: 1
                     color: root.borderColor
                     Layout.bottomMargin: 16
                 }
@@ -230,8 +230,8 @@ ApplicationWindow {
 
                             // Active indicator dot
                             Rectangle {
-                                width: 6
-                                height: 6
+                                Layout.preferredWidth: 6
+                                Layout.preferredHeight: 6
                                 radius: 3
                                 color: root.accent
                                 opacity: benchmarkRunner.currentScenarioName === scenarioDelegate.modelData.name ? 1.0 : 0.0
@@ -316,7 +316,7 @@ ApplicationWindow {
             // ── Top bar ──────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 52
+                Layout.preferredHeight: 52
                 color: root.bgSurface
 
                 Rectangle {
@@ -351,8 +351,8 @@ ApplicationWindow {
                         id: progressBarContainer
 
                         visible: benchmarkRunner.running
-                        width: 160
-                        height: 4
+                        Layout.preferredWidth: 160
+                        Layout.preferredHeight: 4
                         radius: 2
                         color: root.bgCard
                         Layout.rightMargin: 16
@@ -376,7 +376,7 @@ ApplicationWindow {
             // ── Live dashboard ────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 200
+                Layout.preferredHeight: 200
                 color: root.bgBase
 
                 RowLayout {
@@ -554,7 +554,7 @@ ApplicationWindow {
             // Divider
             Rectangle {
                 Layout.fillWidth: true
-                height: 1
+                Layout.preferredHeight: 1
                 color: root.borderColor
             }
 
@@ -584,7 +584,7 @@ ApplicationWindow {
                     // Header row
                     Rectangle {
                         Layout.fillWidth: true
-                        height: 32
+                        Layout.preferredHeight: 32
                         radius: root.radiusSm
                         color: root.bgCard
                         border.color: root.borderColor
@@ -812,7 +812,7 @@ ApplicationWindow {
             // ── System info bar ───────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 36
+                Layout.preferredHeight: 36
                 color: root.bgSurface
 
                 Rectangle {
