@@ -186,6 +186,37 @@ Post a frame only after the window has presented the previous one, for
 example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
 up when rendering falls behind.
 
+## Animate data changes
+
+Assign a `QAccelPlot.MorphTransition` or a `QAccelPlot.DrawTransition` to
+`transition`:
+
+```qml
+QAccelPlot.PointCloud {
+    transition: QAccelPlot.MorphTransition {
+        duration: 500
+        easing.type: Easing.InOutCubic
+    }
+}
+```
+
+- `MorphTransition` moves each point to the new position of the same index.
+  Values change with it when the old and the new points both have them, so
+  the colors blend through the colormap.
+- `DrawTransition` shows the new points one after another.
+- New points appear, and removed points disappear, at once.
+- `count`, `pointAt()`, `valueAt()`, the data and value ranges, and inspection
+  use the new data from the start of the animation. Hover picks the points as
+  drawn.
+- `setValues()` animates too. Called after `setData()`, it keeps that
+  animation, with the points in their new colors.
+- `clearData()`, and replacing, clearing, or cancelling `transition`, show the
+  new data at once.
+- While a transition is enabled, the float paths store doubles.
+
+Every animated frame interpolates and uploads all points. Disable the
+transition for continuous high-rate updates.
+
 ## Invalid points and logarithmic axes
 
 Non-finite coordinates are kept in storage, so indices stay stable, but they
@@ -235,7 +266,8 @@ stacked series underneath still receive hover events elsewhere.
 Complete source:
 
 - [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud):
-  one value-colored cloud with a color bar and a hover tooltip.
+  one value-colored cloud with a color bar, a hover tooltip, and morph and
+  draw transitions between datasets.
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
 [colormap]: ../api/classQAccelPlot_1_1Colormap.md
