@@ -99,6 +99,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | property qreal | [**hoverRadius**](classQAccelPlot_1_1PointCloud.md#property-hoverradius-12)  <br>_Pick radius in pixels used for hover detection. Default: 6._  |
 | property int | [**hoveredIndex**](classQAccelPlot_1_1PointCloud.md#property-hoveredindex-12)  <br>_Read-only: index of the point under the cursor, or -1 when none._  |
 | property [**SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md) \* | [**marker**](classQAccelPlot_1_1PointCloud.md#property-marker-12)  <br>_Grouped marker settings, e.g._ `marker.shape` _and_`marker.size` _._`marker.shape` _defaults to_`Circle` _and does not accept_`None` _, because a cloud always draws markers;_`marker.size` _defaults to 3._ |
+| property [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](classQAccelPlot_1_1PointCloud.md#property-transition-12)  <br>_Optional data transition animation applied when new data arrives._  |
 
 
 ## Public Properties inherited from QAccelPlot::PlotSeries
@@ -131,6 +132,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 | signal void | [**countChanged**](classQAccelPlot_1_1PointCloud.md#signal-countchanged)  <br>_Emitted when the number of points or the presence of values changes._  |
 | signal void | [**hoverRadiusChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoverradiuschanged)  <br>_Emitted when the hoverRadius property changes._  |
 | signal void | [**hoveredIndexChanged**](classQAccelPlot_1_1PointCloud.md#signal-hoveredindexchanged)  <br>_Emitted when the hovered point changes._  |
+| signal void | [**transitionChanged**](classQAccelPlot_1_1PointCloud.md#signal-transitionchanged)  <br>_Emitted when the transition property changes._  |
 | signal void | [**valueRangeChanged**](classQAccelPlot_1_1PointCloud.md#signal-valuerangechanged)  <br>_Emitted when_ `dataValueMin` _or_`dataValueMax` _changes._ |
 
 
@@ -196,9 +198,11 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**setDataF**](#function-setdataf-67) (const float \* data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setDataF**](#function-setdataf-77) (std::vector&lt; float &gt; && data, int count, const [**DataBounds**](structQAccelPlot_1_1PlotSeries_1_1DataBounds.md) & bounds) <br>_Like_ `setDataF` _(__data_ _,__count_ _), with the data extents given as__bounds_ _instead of scanned for._ |
 |  void | [**setHoverRadius**](#function-sethoverradius) (qreal radius) <br>_Sets the hover pick radius to_ _radius_ _pixels. Negative values are clamped to 0._ |
+|  void | [**setTransition**](#function-settransition) ([**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* transition) <br>_Sets the data transition to_ _transition_ _._ |
 |  Q\_INVOKABLE void | [**setValues**](#function-setvalues) (const QList&lt; qreal &gt; & values) <br>_Sets one value per point. An empty list clears values; any other size must equal_ `count` _._ |
+|  [**DataTransition**](classQAccelPlot_1_1DataTransition.md) \* | [**transition**](#function-transition-22) () const<br>_Returns the active data transition, or_ `nullptr` _if none._ |
 |  Q\_INVOKABLE qreal | [**valueAt**](#function-valueat) (int index) const<br>_Returns the value of point_ _index_ _, or NaN when out of range or no values are stored._ |
-|   | [**~PointCloud**](#function-pointcloud) () override<br>_Destroys the point cloud._  |
+|   | [**~PointCloud**](#function-pointcloud) () override<br>_Destroys the point cloud, ending its animation on the assigned transition._  |
 
 
 ## Public Functions inherited from QAccelPlot::PlotSeries
@@ -344,12 +348,20 @@ Non-finite coordinates, and non-positive coordinates on a logarithmic axis, are 
 **
 **
 
+Assign a `MorphTransition` or `DrawTransition` to `transition` to animate data updates. With `MorphTransition`, points move to their new position, and their values, when the old and the new points both have them, change with them. New points appear, and removed points disappear, at once. `count`, `pointAt()`, `valueAt()`, the data and value ranges, and inspection use the new data from the start of the animation, while hover picks the points as drawn. While a transition is enabled, `setValues()` animates as well and the `setDataF()` overloads store doubles. `clearData()`, and replacing, clearing, or cancelling `transition`, skip to the new data.
+
+
+
+
+**
+**
+
 Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum texture size: about 22 million points with values, or 33 million without, for an 8192-pixel limit, and twice that for 16384. Points beyond it are not drawn or hovered, and a warning is logged once.
 
 
 
 
-**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md) 
+**See also:** [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**Axis**](classQAccelPlot_1_1Axis.md), [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md), [**ColorBar**](classQAccelPlot_1_1ColorBar.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) 
 
 
 
@@ -521,6 +533,21 @@ SeriesMarker* QAccelPlot::PointCloud::marker;
 
 
 <hr>
+
+
+
+
+### property transition {#property-transition-12}
+
+_Optional data transition animation applied when new data arrives._ 
+```C++
+DataTransition* QAccelPlot::PointCloud::transition;
+```
+
+
+
+
+<hr>
 ## Public Signals Documentation
 
 
@@ -622,6 +649,21 @@ void QAccelPlot::PointCloud::hoverRadiusChanged;
 _Emitted when the hovered point changes._ 
 ```C++
 void QAccelPlot::PointCloud::hoveredIndexChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal transitionChanged {#signal-transitionchanged}
+
+_Emitted when the transition property changes._ 
+```C++
+void QAccelPlot::PointCloud::transitionChanged;
 ```
 
 
@@ -1361,6 +1403,23 @@ void QAccelPlot::PointCloud::setHoverRadius (
 
 
 
+### function setTransition {#function-settransition}
+
+_Sets the data transition to_ _transition_ _._
+```C++
+void QAccelPlot::PointCloud::setTransition (
+    DataTransition * transition
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setValues {#function-setvalues}
 
 _Sets one value per point. An empty list clears values; any other size must equal_ `count` _._
@@ -1368,6 +1427,21 @@ _Sets one value per point. An empty list clears values; any other size must equa
 Q_INVOKABLE void QAccelPlot::PointCloud::setValues (
     const QList< qreal > & values
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function transition {#function-transition-22}
+
+_Returns the active data transition, or_ `nullptr` _if none._
+```C++
+DataTransition * QAccelPlot::PointCloud::transition () const
 ```
 
 
@@ -1397,7 +1471,7 @@ Q_INVOKABLE qreal QAccelPlot::PointCloud::valueAt (
 
 ### function ~PointCloud {#function-pointcloud}
 
-_Destroys the point cloud._ 
+_Destroys the point cloud, ending its animation on the assigned transition._ 
 ```C++
 QAccelPlot::PointCloud::~PointCloud () override
 ```

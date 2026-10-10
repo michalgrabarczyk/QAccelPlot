@@ -23,6 +23,7 @@
 * `#include "QAccelPlot/series/PointSpatialIndex.hpp"`
 * `#include "QAccelPlot/series/SeriesMarker.hpp"`
 * `#include "QAccelPlot/theme/ColorPalette.hpp"`
+* `#include "QAccelPlot/transitions/DataTransition.hpp"`
 * `#include <QColor>`
 * `#include <QList>`
 * `#include <QMetaObject>`

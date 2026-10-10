@@ -206,7 +206,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 ## Detailed Description
 
 
-Assign to `LineCurve::transition` to draw the new curve in, or to `BarSeries::transition` to show the new bars one after another.
+Assign to `LineCurve::transition` to draw the new curve in, or to `BarSeries::transition` or `PointCloud::transition` to show the new bars or points one after another.
 
 
 

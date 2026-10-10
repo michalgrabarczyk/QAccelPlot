@@ -143,6 +143,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **struct** [**Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md)     
 * **struct** [**FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md)     
 * **struct** [**HoverQuery**](structQAccelPlot_1_1PointCloud_1_1HoverQuery.md) _A hover query in the spatial index's coordinates. With the data, it decides the answer._     
+* **struct** [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md) _Points of_ `stride` _doubles each: (x, y), or (x, y, value)._    
 * **struct** [**IndexedPoint**](structQAccelPlot_1_1PointSpatialIndex_1_1IndexedPoint.md)     
 * **struct** [**Vertex**](structQAccelPlot_1_1RectVertexCache_1_1Vertex.md)     
 * **struct** [**HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md)     

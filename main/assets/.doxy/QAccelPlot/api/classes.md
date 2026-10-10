@@ -254,6 +254,7 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointMaterial**](classQAccelPlot_1_1PointMaterial.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**Points**](structQAccelPlot_1_1PointCloud_1_1Points.md)
 * [**PointSpatialIndex**](classQAccelPlot_1_1PointSpatialIndex.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**PointVertex**](structQAccelPlot_1_1PointVertex.md)

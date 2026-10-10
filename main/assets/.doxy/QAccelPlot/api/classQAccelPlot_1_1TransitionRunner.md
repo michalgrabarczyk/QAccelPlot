@@ -123,7 +123,7 @@ flowchart TB
 ## Detailed Description
 
 
-Holds the item's `DataTransition::Run` and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from `QQuickWindow::afterAnimating`, before the scene graph syncs, so `DataTransition::runningChanged` reaches QML there and the frame renders the new step. `LineCurve` and `BarSeries` animate through it.
+Holds the item's `DataTransition::Run` and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from `QQuickWindow::afterAnimating`, before the scene graph syncs, so `DataTransition::runningChanged` reaches QML there and the frame renders the new step. `LineCurve`, `BarSeries`, and `PointCloud` animate through it.
 
 
 

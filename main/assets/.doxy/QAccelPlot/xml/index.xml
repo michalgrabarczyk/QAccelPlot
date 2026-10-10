@@ -2193,6 +2193,7 @@
     <member refid="classQAccelPlot_1_1PointCloud_1ae8726b59f4672c8601e6f59c08a39652" kind="property"><name>antialiasingEnabled</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a43d84ec0c8708d1e226f7d83b82442a2" kind="property"><name>antialiasingFeather</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a71013f526034acdab00b8c204f046660" kind="property"><name>hoverRadius</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a690e8beca8e9d8164d0a21afcb8b467c" kind="property"><name>transition</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a1679b819be7bac2de0b0574f6a7b25bf" kind="property"><name>count</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1ab8989dd9a7dd06f89a359a66b4f4ebff" kind="property"><name>hasValues</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1af34bcbc6a6bbb24fb56116ccbdeeb9be" kind="property"><name>hoveredIndex</name></member>
@@ -2206,6 +2207,8 @@
     <member refid="classQAccelPlot_1_1PointCloud_1aa0f835b2844f13994753d6a5490be044" kind="variable"><name>antialiasingFeather_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a0b42684ec23bb720e245c2e225e6d643" kind="variable"><name>hoverRadius_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1ae675afc6f71e938d1b857f62b9705d0b" kind="variable"><name>hoveredIndex_</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a88fdaeb6803ae6065e81b8efb0d251dc" kind="variable"><name>transition_</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a01136bb598c6d486495f6710b4a8af34" kind="variable"><name>transitionPoints_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1ad313a401e725f9eec61cf1c3702d19f9" kind="variable"><name>dataD_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a1ae9d573203d959d772c1dce994104db" kind="variable"><name>valuesF_</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a07d9505831087f1049c67543dd2a28e3" kind="variable"><name>renderOriginX_</name></member>
@@ -2239,6 +2242,8 @@
     <member refid="classQAccelPlot_1_1PointCloud_1ae3e8aabe9cb1fcfa3a80c71f602061a5" kind="function"><name>setAntialiasingFeather</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a4927f09bf1cbdb981d546ca05568730e" kind="function"><name>hoverRadius</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1aa5297e28f99a3278cac34ea8babead06" kind="function"><name>setHoverRadius</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1aaf2b6db466037cd8b2f2f00a48bcd044" kind="function"><name>transition</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a3800e081dda31276d163404f0190ab8a" kind="function"><name>setTransition</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a7ae691f4d303db6336e0300060c62fa9" kind="function"><name>count</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a08ede2666d5ef51c06995bb9eadc20a5" kind="function"><name>hasValues</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a44b5e55fc5d478c652dbc4979d62d163" kind="function"><name>hoveredIndex</name></member>
@@ -2274,6 +2279,7 @@
     <member refid="classQAccelPlot_1_1PointCloud_1a73d3f93967024265ab07949f42cb45c0" kind="signal"><name>antialiasingEnabledChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a540a55d471b9b1a858d90d5d1eccfbd2" kind="signal"><name>antialiasingFeatherChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1aea50d23675849a6aa3025f8026488769" kind="signal"><name>hoverRadiusChanged</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1adb00c7dac2cb5bfb42b99dd44f14af35" kind="signal"><name>transitionChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a4b0aa9917e895b57b5da4495a360e1ad" kind="signal"><name>countChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a76242f92d2aedf45d9226a8057b57644" kind="signal"><name>hoveredIndexChanged</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a132c6c6fca3d5a891d799c4a7f469aff" kind="signal"><name>valueRangeChanged</name></member>
@@ -2284,7 +2290,9 @@
     <member refid="classQAccelPlot_1_1PointCloud_1a2e433c5260f5e820fd78b14717d58063" kind="function"><name>validateDataArguments</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1aca5b8c230ed7fb618e57736cdbcaaab7" kind="function"><name>validateRawDataArguments</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a2fe50df8d683c596c10fdf82caf35907" kind="function"><name>applyData</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a9955c16e68d4e4dce85063404d6008b3" kind="function"><name>applyFloatData</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a31c459d3284f6868475de3842c685c77" kind="function"><name>storeInterleaved</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a238a613000588b1febc53c0efb5c4d54" kind="function"><name>storeValues</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a00b98e62844013bc5b987794298742d5" kind="function"><name>finishDataChange</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1ad4b2df9ff64115aff2bd99d3df720915" kind="function"><name>updateValueRange</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a74212697bbd7f066bc76739570859743" kind="function"><name>reconnectAxisSignals</name></member>
@@ -2297,8 +2305,19 @@
     <member refid="classQAccelPlot_1_1PointCloud_1a7c8e358f879c91160d85c3a4e065262f" kind="function"><name>spatialIndexReady</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1a4c23e0924b73e64c794dafdd40424a95" kind="function"><name>nearestPoint</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1af0757e9834af259d929231d6d7495a2d" kind="function"><name>applyDoubleData</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1abebd6016af661da2b17af8d18e8e3724" kind="function"><name>animateValues</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1abc6324b3bad2f9e5169b0cf97411f867" kind="function"><name>rebuildRenderData</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1ae25db338028ef5ad0a1f0669d5464544" kind="function"><name>updateRenderOrigin</name></member>
     <member refid="classQAccelPlot_1_1PointCloud_1aaab0ff4313a2df1c8d627d1385671432" kind="function"><name>hasPreciseData</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1abae0cc7589d753fbe548625ea87fd779" kind="function"><name>promotePositionsToDoubles</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a31b28fba825aac285081c124692ff4a8" kind="function"><name>storedValue</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a249341c8502c6b43e6dfa1f1b0dc5f10" kind="function"><name>interleavedData</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1aedadb05241a459c85c4d36ac43c392fb" kind="function"><name>animating</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a1ea83c3d9a4c723074c88acba0ca9d49" kind="function"><name>drawnPoints</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a60b2601d43310b5f7308afff0b72ed8b" kind="function"><name>startTransition</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1af138fcfdfd37fc45106a7be4b7dd28cd" kind="function"><name>advanceTransition</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a0444634c59f1e2b8653e6ac8df408ea7" kind="function"><name>endTransition</name></member>
+    <member refid="classQAccelPlot_1_1PointCloud_1a666c617e1b03b9473066098808a78d7d" kind="function"><name>discardTransition</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1PointCloudMaterial" kind="class"><name>QAccelPlot::PointCloudMaterial</name>
     <member refid="classQAccelPlot_1_1PointCloudMaterial_1a624a5f681a3d101f9e77abd15ca00d31" kind="variable"><name>markerSize</name></member>
@@ -2358,6 +2377,11 @@
     <member refid="classQAccelPlot_1_1PointMaterial_1a4dfda0309d4ef4b39364303cf3ff82f9" kind="function"><name>type</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1a8d943d45e2a1b82a023bdb2bc8602977" kind="function"><name>createShader</name></member>
     <member refid="classQAccelPlot_1_1PointMaterial_1aa3274999becc64e72aec901ff6ba903f" kind="function"><name>compare</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1PointCloud_1_1Points" kind="struct"><name>QAccelPlot::PointCloud::Points</name>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1Points_1ad713cbba3efd6db98bb7e22b96824bdb" kind="variable"><name>values</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1Points_1abc24ccb3fb8c8bfd918a1913cceab78b" kind="variable"><name>count</name></member>
+    <member refid="structQAccelPlot_1_1PointCloud_1_1Points_1a47186af273e4c999091e80027bde1af7" kind="variable"><name>stride</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1PointSpatialIndex" kind="class"><name>QAccelPlot::PointSpatialIndex</name>
     <member refid="classQAccelPlot_1_1PointSpatialIndex_1a2319e779b46c166ec0f9a6263037620a" kind="variable"><name>mapping_</name></member>

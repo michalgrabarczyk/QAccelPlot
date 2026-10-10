@@ -211,7 +211,7 @@ See [QAccelPlot::DataTransition](classQAccelPlot_1_1DataTransition.md)
 ## Detailed Description
 
 
-Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. `BarSeries` grows and shrinks such bars at its baseline instead. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.
+Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. `BarSeries` grows and shrinks such bars at its baseline instead, and `PointCloud` shows or removes such points at once. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.
 
 
 

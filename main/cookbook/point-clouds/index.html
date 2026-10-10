@@ -834,6 +834,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#animate-data-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animate data changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#invalid-points-and-logarithmic-axes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1442,6 +1453,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#animate-data-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animate data changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#invalid-points-and-logarithmic-axes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1640,6 +1662,33 @@ worker thread can produce complete frames without copying them again:</p>
 <p>Post a frame only after the window has presented the previous one, for
 example by counting <code>QQuickWindow::frameSwapped</code>, so queued frames cannot pile
 up when rendering falls behind.</p>
+<h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
+<p>Assign a <code>QAccelPlot.MorphTransition</code> or a <code>QAccelPlot.DrawTransition</code> to
+<code>transition</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PointCloud</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">transition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="k">duration:</span> <span class="mi">500</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">}</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>MorphTransition</code> moves each point to the new position of the same index.
+  Values change with it when the old and the new points both have them, so
+  the colors blend through the colormap.</li>
+<li><code>DrawTransition</code> shows the new points one after another.</li>
+<li>New points appear, and removed points disappear, at once.</li>
+<li><code>count</code>, <code>pointAt()</code>, <code>valueAt()</code>, the data and value ranges, and inspection
+  use the new data from the start of the animation. Hover picks the points as
+  drawn.</li>
+<li><code>setValues()</code> animates too. Called after <code>setData()</code>, it keeps that
+  animation, with the points in their new colors.</li>
+<li><code>clearData()</code>, and replacing, clearing, or cancelling <code>transition</code>, show the
+  new data at once.</li>
+<li>While a transition is enabled, the float paths store doubles.</li>
+</ul>
+<p>Every animated frame interpolates and uploads all points. Disable the
+transition for continuous high-rate updates.</p>
 <h2 id="invalid-points-and-logarithmic-axes">Invalid points and logarithmic axes<a class="headerlink" href="#invalid-points-and-logarithmic-axes" title="Permanent link">&para;</a></h2>
 <p>Non-finite coordinates are kept in storage, so indices stay stable, but they
 are not drawn, not picked, and do not contribute to axis data ranges. On a
@@ -1649,19 +1698,19 @@ need to filter them before handing data to the series.</p>
 <p><code>hoveredIndex</code> is the index of the valid point nearest to the pointer within
 <code>hoverRadius</code> pixels, or <code>-1</code>. Combine it with <code>pointAt()</code>, <code>valueAt()</code>, and a
 <code>QAccelPlot.DataAnchor</code> to show a tooltip:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DataAnchor</span> <span class="p">{</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">point</span> <span class="k">hovered:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">pointAt</span><span class="p">(</span><span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">visible:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">plotRect:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">dataX1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">dataY1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="k">dataX2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">dataY2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="nx">Text</span> <span class="p">{</span> <span class="k">text:</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="p">}</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">DataAnchor</span> <span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">point</span> <span class="k">hovered:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">pointAt</span><span class="p">(</span><span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span><span class="p">)</span> <span class="o">:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="k">visible:</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">xAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">xAxis</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">yAxis:</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">yAxis</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="k">plotRect:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">overlay</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="k">dataX1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="k">dataY1:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">dataX2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">x</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="k">dataY2:</span> <span class="nx">hovered</span><span class="p">.</span><span class="nx">y</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="nx">Text</span> <span class="p">{</span> <span class="k">text:</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">samples</span><span class="p">.</span><span class="nx">hoveredIndex</span> <span class="p">}</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">}</span>
 </code></pre></div>
 <p>The lookup uses a spatial index that is rebuilt on the first pointer move after
 a data change. Only positions near a point count as inside the series, so
@@ -1682,7 +1731,8 @@ stacked series underneath still receive hover events elsewhere.</p>
 <p>Complete source:</p>
 <ul>
 <li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a>:
-  one value-colored cloud with a color bar and a hover tooltip.</li>
+  one value-colored cloud with a color bar, a hover tooltip, and morph and
+  draw transitions between datasets.</li>
 </ul>
 
 

@@ -1637,7 +1637,7 @@
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>Holds the item's <code>DataTransition::Run</code> and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <code>QQuickWindow::afterAnimating</code>, before the scene graph syncs, so <code>DataTransition::runningChanged</code> reaches QML there and the frame renders the new step. <code>LineCurve</code> and <code>BarSeries</code> animate through it.</p>
+<p>Holds the item's <code>DataTransition::Run</code> and asks for a frame once per rendered frame while it is active. The request comes on the GUI thread from <code>QQuickWindow::afterAnimating</code>, before the scene graph syncs, so <code>DataTransition::runningChanged</code> reaches QML there and the frame renders the new step. <code>LineCurve</code>, <code>BarSeries</code>, and <code>PointCloud</code> animate through it.</p>
 <p>**
 **</p>
 <ul>

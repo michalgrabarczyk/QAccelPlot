@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="29" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="30" column="14"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -52,7 +52,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="32" column="19"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="33" column="19"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -86,14 +86,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="36" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="37" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
 <para>An animation transition that smoothly interpolates point positions between two datasets. </para>
     </briefdescription>
     <detaileddescription>
-<para>Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput> grows and shrinks such bars at its baseline instead. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.</para>
+<para>Each point is linearly blended from its old position to its new position. When the point counts differ, the extra points start from, or end on, the last point of the shorter dataset. <computeroutput><ref refid="classQAccelPlot_1_1BarSeries" kindref="compound">BarSeries</ref></computeroutput> grows and shrinks such bars at its baseline instead, and <computeroutput><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref></computeroutput> shows or removes such points at once. Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately, and a valid target coordinate replaces an invalid source coordinate without animation.</para>
 <para><simplesect kind="see"><para><ref refid="classQAccelPlot_1_1DrawTransition" kindref="compound">DrawTransition</ref>, <ref refid="classQAccelPlot_1_1DataTransition" kindref="compound">DataTransition</ref> </para>
 </simplesect>
 </para>
@@ -132,7 +132,7 @@
         <label>QObject</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="23" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" bodystart="23" bodyend="37"/>
+    <location file="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" line="24" column="1" bodyfile="QAccelPlot/src/QAccelPlot/transitions/MorphTransition.hpp" bodystart="24" bodyend="38"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1DataTransition_1a7ebc5e33c7d4e524e50eccd2457fb8d7" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>advance</name></member>
       <member refid="classQAccelPlot_1_1DataTransition_1a4c514985f26ad17a66d219fa7b57f557" prot="public" virt="non-virtual"><scope>QAccelPlot::MorphTransition</scope><name>cancel</name></member>

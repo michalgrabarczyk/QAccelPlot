@@ -159,7 +159,7 @@ One transition can be assigned to several elements. Each element keeps its own `
 
 
 
-**See also:** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md) 
+**See also:** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md), [**MorphTransition**](classQAccelPlot_1_1MorphTransition.md), [**LineCurve**](classQAccelPlot_1_1LineCurve.md), [**BarSeries**](classQAccelPlot_1_1BarSeries.md), [**PointCloud**](classQAccelPlot_1_1PointCloud.md) 
 
 
 

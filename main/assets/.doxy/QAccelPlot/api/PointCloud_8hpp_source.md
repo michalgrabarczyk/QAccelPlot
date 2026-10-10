@@ -23,6 +23,7 @@
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QColor>
 #include <QList>
@@ -41,6 +42,8 @@ namespace Internal {
 class HoverIndexBudget;
 }
 
+class TransitionRunner;
+
 class PointCloud : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
@@ -52,6 +55,7 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(bool antialiasingEnabled READ antialiasingEnabled WRITE setAntialiasingEnabled NOTIFY antialiasingEnabledChanged)
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
+    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(bool hasValues READ hasValues NOTIFY countChanged)
     Q_PROPERTY(int hoveredIndex READ hoveredIndex NOTIFY hoveredIndexChanged)
@@ -78,6 +82,9 @@ public:
 
     qreal hoverRadius() const;
     void setHoverRadius(qreal radius);
+
+    DataTransition* transition() const;
+    void setTransition(DataTransition* transition);
 
     int count() const;
     bool hasValues() const;
@@ -113,6 +120,7 @@ signals:
     void antialiasingEnabledChanged();
     void antialiasingFeatherChanged();
     void hoverRadiusChanged();
+    void transitionChanged();
     void countChanged();
     void hoveredIndexChanged();
     void valueRangeChanged();
@@ -132,10 +140,18 @@ protected:
 private:
     Q_SLOT void onColormapUpdated();
 
+    struct Points {
+        std::vector<double> values;
+        int count{0};
+        int stride{2};
+    };
+
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
     bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
+    void storeValues(const std::vector<float>& values);
     void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
     void updateValueRange();
     void reconnectAxisSignals();
@@ -159,8 +175,19 @@ private:
 
     int nearestPoint(const HoverQuery& query) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    void animateValues(std::vector<float>&& values);
     void rebuildRenderData();
+    void updateRenderOrigin(const std::vector<double>& points, std::size_t pointStride);
     bool hasPreciseData() const;
+    void promotePositionsToDoubles();
+    float storedValue(std::size_t index) const;
+    std::vector<double> interleavedData() const;
+    bool animating() const;
+    Points drawnPoints() const;
+    void startTransition(Points&& drawn);
+    void advanceTransition();
+    void endTransition();
+    void discardTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
@@ -170,9 +197,14 @@ private:
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
+    std::unique_ptr<TransitionRunner> transition_;
+    // Points drawn instead of the data while a transition runs: stride() doubles for each point
+    // of the data. Empty otherwise.
+    std::vector<double> transitionPoints_;
 
-    // Precise interleaved (x, y) pairs, populated only by the double setData() overloads.
-    // Empty when the float *F APIs supplied the data, which is already single precision.
+    // Precise interleaved (x, y) pairs, populated by the double setData() overloads and by every
+    // data update while a transition is enabled. Empty when the float *F APIs supplied the data,
+    // which is already single precision.
     std::vector<double> dataD_;
     // Per-point values kept alongside dataD_, so the upload buffer can be rebuilt when an
     // axis switches scale without the caller resupplying them.
@@ -184,7 +216,10 @@ private:
     bool renderLogScaleX_{false};
     bool renderLogScaleY_{false};
 
-    // Interleaved storage: (x, y) per point, or (x, y, value) when hasValues_ is true.
+    // The points as drawn: (x, y) per point, or (x, y, value) when hasValues_ is true. This buffer
+    // is uploaded to the GPU, and hover hit tests search it.
+    // It holds the float data itself, or dataD_ relative to the render origin, or, during an
+    // animation, the transition points relative to the render origin.
     std::vector<float> data_;
     int pointCount_{0};
     bool hasValues_{false};
