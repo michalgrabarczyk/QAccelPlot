@@ -13,9 +13,13 @@
 #include <QDebug>
 #include <QGuiApplication>
 #include <QLocale>
+#include <QObject>
 #include <QQmlApplicationEngine>
+#include <QVariant>
 
+#include <array>
 #include <cmath>
+#include <cstddef>
 #include <cstdlib>
 #include <utility>
 #include <vector>
@@ -29,13 +33,25 @@ struct PointCloudData {
     std::vector<float> values;
 };
 
+struct CliffordParameters {
+    float a;
+    float b;
+    float c;
+    float d;
+};
+
+// An attractor spans |x| <= 1 + |c| and |y| <= 1 + |d|, so these fit the axes of main.qml.
+constexpr auto kAttractors = std::array<CliffordParameters, 4>{{
+    {-1.7f, 1.8f, -1.9f, -0.4f},
+    {2.0f, 1.2f, -2.0f, 0.5f},
+    {1.9f, 1.9f, 1.9f, 0.5f},
+    {1.3f, 1.7f, 2.0f, 0.45f},
+}};
+
 // Iterates the Clifford attractor. Each point's value is its distance from the previous point.
-PointCloudData cliffordAttractor(const int pointCount)
+PointCloudData cliffordAttractor(const CliffordParameters& parameters, const int pointCount)
 {
-    constexpr auto a = -1.7f;
-    constexpr auto b = 1.8f;
-    constexpr auto c = -1.9f;
-    constexpr auto d = -0.4f;
+    const auto [a, b, c, d] = parameters;
 
     auto data = PointCloudData{};
     data.xy.reserve(static_cast<std::size_t>(pointCount) * 2);
@@ -53,6 +69,35 @@ PointCloudData cliffordAttractor(const int pointCount)
     }
     return data;
 }
+
+// Shows the attractors in the cloud, one after another.
+class AttractorSource : public QObject {
+    Q_OBJECT
+
+public:
+    explicit AttractorSource(QAccelPlot::PointCloud* cloud)
+        : cloud_(cloud)
+    {
+        show();
+    }
+
+    // Shows the next attractor, animated by the cloud's transition. A morph moves every point to the point of the same index.
+    Q_INVOKABLE void next()
+    {
+        index_ = (index_ + 1) % kAttractors.size();
+        show();
+    }
+
+private:
+    void show()
+    {
+        auto data = cliffordAttractor(kAttractors[index_], kPointCount);
+        cloud_->setDataF(std::move(data.xy), std::move(data.values), kPointCount);
+    }
+
+    QAccelPlot::PointCloud* cloud_;
+    std::size_t index_{0};
+};
 
 } // namespace
 
@@ -73,9 +118,11 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    auto data = cliffordAttractor(kPointCount);
-    cloud->setDataF(std::move(data.xy), std::move(data.values), kPointCount);
+    auto attractors = AttractorSource{cloud};
+    root->setProperty("attractors", QVariant::fromValue<QObject*>(&attractors));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();
 }
+
+#include "main.moc"

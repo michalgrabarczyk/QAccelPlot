@@ -15,6 +15,13 @@ Window {
     id: window
 
     readonly property QtObject colorPalette: QAccelPlot.Colors.dark
+    // Set from C++: supplies the attractors.
+    property QtObject attractors
+
+    function animateToNextAttractor(transition) {
+        cloud.transition = transition;
+        attractors.next();
+    }
 
     width: 1200
     height: 800
@@ -32,7 +39,18 @@ Window {
 
         ExampleHeader {
             title: "Point cloud"
-            description: "200,000 points of a Clifford attractor, colored by step length: the distance from the previous point. Hover for details. Shift + drag to zoom; wheel zooms; double-click resets. Drag or wheel the color bar to change its range."
+            description: "200,000 points of a Clifford attractor, colored by the distance from the previous point. Click Morph to move them to another attractor, or Draw to show its points one after another. Hover a point to read it, Shift + drag to zoom, and drag or wheel the color bar to change its range."
+
+            Button {
+                text: "Morph"
+                enabled: window.attractors !== null
+                onClicked: window.animateToNextAttractor(morphTransition)
+            }
+            Button {
+                text: "Draw"
+                enabled: window.attractors !== null
+                onClicked: window.animateToNextAttractor(drawTransition)
+            }
 
             Label {
                 text: "Marker radius " + markerSizeSlider.value.toFixed(1) + " px"
@@ -101,6 +119,19 @@ Window {
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma
                 }
+                transition: morphTransition
+            }
+
+            QAccelPlot.MorphTransition {
+                id: morphTransition
+                duration: 1200
+                easing.type: Easing.InOutCubic
+            }
+
+            QAccelPlot.DrawTransition {
+                id: drawTransition
+                duration: 2000
+                easing.type: Easing.InCubic
             }
 
             Item {
