@@ -75,6 +75,101 @@ jobs:
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
           -L '^unit-test$'
 
+  # Installs the library, then builds and runs QAccelPlot/test/consumer twice: against the
+  # installed package, and against the checkout through add_subdirectory.
+  package:
+    name: Package / Qt ${{ matrix.qt_version }} / ${{ matrix.os_name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The install rules collect Qt's helper targets, which differ between Qt versions.
+          - qt_version: '6.2.4'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.8.3'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.11.2'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.8.3'
+            os: windows-2025
+            os_name: Windows
+            generator: -G "Visual Studio 18 2026" -A x64
+          - qt_version: '6.8.3'
+            os: macos-15
+            os_name: macOS
+            generator: -G Ninja
+    env:
+      # Hosted runners have no GPU: Mesa llvmpipe renders on Linux, the WARP adapter on Windows.
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      QSG_RHI_PREFER_SOFTWARE_RENDERER: ${{ startsWith(matrix.os, 'windows-') && '1' || '0' }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: ${{ matrix.qt_version }}
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure the library
+        run: >-
+          cmake -S . -B build/library ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_TESTS=OFF
+          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_INSTALL=ON
+
+      - name: Build the library
+        run: cmake --build build/library --config Release --parallel 4
+
+      - name: Install the library
+        run: cmake --install build/library --config Release --prefix "${{ github.workspace }}/build/prefix"
+
+      - name: Configure the consumer of the installed package
+        run: >-
+          cmake -S QAccelPlot/test/consumer -B build/consumer-package ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          "-DCMAKE_PREFIX_PATH=${{ github.workspace }}/build/prefix"
+
+      - name: Build the consumer of the installed package
+        run: cmake --build build/consumer-package --config Release --parallel 4
+
+      - name: Run the consumer of the installed package
+        run: ${{ runner.os == 'Linux' && 'xvfb-run -a' || '' }} ctest --test-dir build/consumer-package -C Release --output-on-failure
+
+      - name: Configure the consumer of the checkout
+        run: >-
+          cmake -S QAccelPlot/test/consumer -B build/consumer-subdirectory ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_CONSUMER_ADD_SUBDIRECTORY=ON
+
+      - name: Build the consumer of the checkout
+        run: cmake --build build/consumer-subdirectory --config Release --parallel 4
+
+      - name: Run the consumer of the checkout
+        run: ${{ runner.os == 'Linux' && 'xvfb-run -a' || '' }} ctest --test-dir build/consumer-subdirectory -C Release --output-on-failure
+
   coverage:
     name: C++ coverage
     runs-on: ubuntu-24.04
