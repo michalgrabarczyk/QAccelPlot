@@ -60,17 +60,16 @@ jobs:
           "-DCMAKE_CXX_FLAGS=${{ matrix.cxx_flags }}"
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_EXAMPLES=ON
-          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
           -DQACCELPLOT_INSTALL=ON
           -DQACCELPLOT_FORCE_ASSERTS=ON
           -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
 
-      - name: Build library, examples, and unit tests
-        run: >-
-          cmake --build build --config Release --parallel 2 --target
-          QAccelPlotExamples
-          QAccelPlotTests
+      # The benchmarks have no aggregate target, so this builds everything.
+      - name: Build library, examples, benchmarks, and unit tests
+        run: cmake --build build --config Release --parallel 2
 
+      # The unit-test label includes the tests of the benchmark infrastructure.
       - name: Run unit tests
         run: >-
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
