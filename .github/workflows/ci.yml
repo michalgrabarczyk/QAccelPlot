@@ -170,6 +170,56 @@ jobs:
       - name: Run the consumer of the checkout
         run: ${{ runner.os == 'Linux' && 'xvfb-run -a' || '' }} ctest --test-dir build/consumer-subdirectory -C Release --output-on-failure
 
+  # The Qt binaries are not instrumented, so this checks QAccelPlot, the tests, and the Qt
+  # templates they instantiate. ThreadSanitizer is left out for that reason: it cannot see the
+  # locks inside Qt, and reports every handoff between threads as a race.
+  sanitizers:
+    name: ASan and UBSan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      # LeakSanitizer is off: it also reports allocations that fontconfig, Mesa, and Qt never free.
+      ASAN_OPTIONS: detect_leaks=0
+      UBSAN_OPTIONS: print_stacktrace=1
+      ASAN_SYMBOLIZER_PATH: /usr/bin/llvm-symbolizer-18
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # llvm-18 provides the symbolizer for the preinstalled Clang 18.
+      - name: Install system dependencies
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0 llvm-18
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      # _GLIBCXX_ASSERTIONS adds bounds checks to std::vector, which ASan misses inside the capacity.
+      - name: Configure sanitizer build
+        run: >-
+          cmake -S . -B build-sanitizers -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DCMAKE_CXX_COMPILER=clang++-18
+          "-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS"
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
+          -DQACCELPLOT_INSTALL=OFF
+          -DQACCELPLOT_FORCE_ASSERTS=ON
+
+      - name: Build unit tests
+        run: cmake --build build-sanitizers --parallel 4 --target QAccelPlotTests
+
+      - name: Run unit tests
+        run: >-
+          xvfb-run -a ctest --test-dir build-sanitizers --output-on-failure
+          -L '^unit-test$'
+
   coverage:
     name: C++ coverage
     runs-on: ubuntu-24.04
