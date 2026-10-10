@@ -28,8 +28,7 @@ std::vector<float> dailyTemperatureData()
 
     for (int sample = 0; sample < sampleCount; ++sample) {
         const auto hour = 24.0 * sample / (sampleCount - 1);
-        const auto temperature = 21.5 + 4.0 * std::sin(2.0 * pi * (hour - 8.0) / 24.0)
-            + 0.35 * std::sin(2.0 * pi * hour / 3.0);
+        const auto temperature = 21.5 + 4.0 * std::sin(2.0 * pi * (hour - 8.0) / 24.0) + 0.35 * std::sin(2.0 * pi * hour / 3.0);
         points.push_back(static_cast<float>(hour));
         points.push_back(static_cast<float>(temperature));
     }
