@@ -13,6 +13,7 @@
 #include "QAccelPlot/series/PointSpatialIndex.hpp"
 #include "QAccelPlot/series/SeriesMarker.hpp"
 #include "QAccelPlot/theme/ColorPalette.hpp"
+#include "QAccelPlot/transitions/DataTransition.hpp"
 
 #include <QColor>
 #include <QList>
@@ -31,6 +32,8 @@ namespace Internal {
 class HoverIndexBudget;
 }
 
+class TransitionRunner;
+
 /// \brief A hardware-accelerated QML item that renders large sets of unconnected 2D points as markers.
 ///
 /// Every point is drawn as a GPU billboard with one of the marker shapes shared with \c LineCurve.
@@ -47,13 +50,23 @@ class HoverIndexBudget;
 /// so indices stay stable, but they are not drawn, not hit-tested, and do not contribute to data ranges.
 /// A point with a non-finite value is drawn with the uniform \c color.
 ///
+/// \par Transitions
+/// Assign a \c MorphTransition or \c DrawTransition to \c transition to animate data updates.
+/// With \c MorphTransition, points move to their new position, and their values, when the old and
+/// the new points both have them, change with them. New points appear, and removed points
+/// disappear, at once. \c count, \c pointAt(), \c valueAt(), the data and value ranges, and
+/// inspection use the new data from the start of the animation, while hover picks the points as
+/// drawn. While a transition is enabled, \c setValues() animates as well and the \c setDataF()
+/// overloads store doubles. \c clearData(), and replacing, clearing, or cancelling \c transition,
+/// skip to the new data.
+///
 /// \par Limits
 /// Coordinates are single precision. The number of renderable points is bounded by the GPU's maximum
 /// texture size: about 22 million points with values, or 33 million without, for an 8192-pixel
 /// limit, and twice that for 16384. Points beyond it are not drawn or hovered, and a warning is logged
 /// once.
 ///
-/// \sa LineCurve, Axis, PlotSeries, ColorBar
+/// \sa LineCurve, Axis, PlotSeries, ColorBar, MorphTransition, DrawTransition
 class PointCloud : public PlotSeries {
     Q_OBJECT
     QML_NAMED_ELEMENT(PointCloud)
@@ -73,6 +86,8 @@ class PointCloud : public PlotSeries {
     Q_PROPERTY(qreal antialiasingFeather READ antialiasingFeather WRITE setAntialiasingFeather NOTIFY antialiasingFeatherChanged)
     /// \brief Pick radius in pixels used for hover detection. Default: 6.
     Q_PROPERTY(qreal hoverRadius READ hoverRadius WRITE setHoverRadius NOTIFY hoverRadiusChanged)
+    /// \brief Optional data transition animation applied when new data arrives.
+    Q_PROPERTY(DataTransition* transition READ transition WRITE setTransition NOTIFY transitionChanged)
     /// \brief Read-only: number of points currently stored, including invalid ones.
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     /// \brief Read-only: \c true when per-point values are stored.
@@ -89,7 +104,7 @@ class PointCloud : public PlotSeries {
 public:
     /// \brief Constructs a PointCloud with the given \a parent.
     explicit PointCloud(QQuickItem* parent = nullptr);
-    /// \brief Destroys the point cloud.
+    /// \brief Destroys the point cloud, ending its animation on the assigned transition.
     ~PointCloud() override;
 
     /// \brief Returns the uniform marker color.
@@ -119,6 +134,11 @@ public:
     qreal hoverRadius() const;
     /// \brief Sets the hover pick radius to \a radius pixels. Negative values are clamped to 0.
     void setHoverRadius(qreal radius);
+
+    /// \brief Returns the active data transition, or \c nullptr if none.
+    DataTransition* transition() const;
+    /// \brief Sets the data transition to \a transition.
+    void setTransition(DataTransition* transition);
 
     /// \brief Returns the number of stored points.
     int count() const;
@@ -188,6 +208,8 @@ signals:
     void antialiasingFeatherChanged();
     /// \brief Emitted when the hoverRadius property changes.
     void hoverRadiusChanged();
+    /// \brief Emitted when the transition property changes.
+    void transitionChanged();
     /// \brief Emitted when the number of points or the presence of values changes.
     void countChanged();
     /// \brief Emitted when the hovered point changes.
@@ -214,10 +236,21 @@ protected:
 private:
     Q_SLOT void onColormapUpdated();
 
+    /// \brief Points of \c stride doubles each: (x, y), or (x, y, value).
+    struct Points {
+        std::vector<double> values;
+        int count{0};
+        int stride{2};
+    };
+
     bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
     bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Replaces the points with float data, without a transition.
+    void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
+    /// \brief Writes \a values, empty for none, into the upload buffer in place.
+    void storeValues(const std::vector<float>& values);
     void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
     void updateValueRange();
     void reconnectAxisSignals();
@@ -244,8 +277,36 @@ private:
 
     int nearestPoint(const HoverQuery& query) const;
     void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Replaces the values, animating from the drawn points.
+    void animateValues(std::vector<float>&& values);
+    /// \brief Builds the single-precision upload buffer from \c dataD_ and \c valuesF_, or from the transition points during an animation.
+    ///
+    /// Subtracts a per-dimension origin, so coordinates far from zero keep their resolution.
     void rebuildRenderData();
+    /// \brief Sets the render origin of each dimension from \a points, of \a pointStride doubles each.
+    ///
+    /// The origin is the first finite coordinate, or the viewport center when that is far from the
+    /// viewport, matching \c LineCurve. A logarithmic dimension is never shifted: the vertex shader
+    /// takes log10 of the uploaded value, which a shift would invalidate.
+    void updateRenderOrigin(const std::vector<double>& points, std::size_t pointStride);
     bool hasPreciseData() const;
+    /// \brief Stores the positions as doubles, which transitions animate.
+    void promotePositionsToDoubles();
+    /// \brief Returns the value of point \a index, which must have one.
+    float storedValue(std::size_t index) const;
+    /// \brief Returns the data as \c stride() doubles per point.
+    std::vector<double> interleavedData() const;
+    /// \brief Returns \c true while \c transitionPoints_ is drawn instead of the data.
+    bool animating() const;
+    /// \brief Returns the points drawn now: the transition points, or the data.
+    Points drawnPoints() const;
+    /// \brief Animates from \a drawn to the data. A point without a counterpart starts at its new position.
+    void startTransition(Points&& drawn);
+    void advanceTransition();
+    /// \brief Shows the data instead of the transition points.
+    void endTransition();
+    /// \brief Ends the run and drops the transition points, without redrawing.
+    void discardTransition();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::Circle, 3.0, SeriesMarker::NoneShape::Rejected, this}};
@@ -255,9 +316,14 @@ private:
     qreal antialiasingFeather_{1.0};
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
+    std::unique_ptr<TransitionRunner> transition_;
+    // Points drawn instead of the data while a transition runs: stride() doubles for each point
+    // of the data. Empty otherwise.
+    std::vector<double> transitionPoints_;
 
-    // Precise interleaved (x, y) pairs, populated only by the double setData() overloads.
-    // Empty when the float *F APIs supplied the data, which is already single precision.
+    // Precise interleaved (x, y) pairs, populated by the double setData() overloads and by every
+    // data update while a transition is enabled. Empty when the float *F APIs supplied the data,
+    // which is already single precision.
     std::vector<double> dataD_;
     // Per-point values kept alongside dataD_, so the upload buffer can be rebuilt when an
     // axis switches scale without the caller resupplying them.
@@ -269,7 +335,10 @@ private:
     bool renderLogScaleX_{false};
     bool renderLogScaleY_{false};
 
-    // Interleaved storage: (x, y) per point, or (x, y, value) when hasValues_ is true.
+    // The points as drawn: (x, y) per point, or (x, y, value) when hasValues_ is true. This buffer
+    // is uploaded to the GPU, and hover hit tests search it.
+    // It holds the float data itself, or dataD_ relative to the render origin, or, during an
+    // animation, the transition points relative to the render origin.
     std::vector<float> data_;
     int pointCount_{0};
     bool hasValues_{false};

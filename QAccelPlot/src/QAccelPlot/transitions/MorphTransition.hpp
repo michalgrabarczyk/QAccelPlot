@@ -15,7 +15,8 @@ namespace QAccelPlot {
 ///
 /// Each point is linearly blended from its old position to its new position.
 /// When the point counts differ, the extra points start from, or end on, the last point of the
-/// shorter dataset. \c BarSeries grows and shrinks such bars at its baseline instead.
+/// shorter dataset. \c BarSeries grows and shrinks such bars at its baseline instead, and
+/// \c PointCloud shows or removes such points at once.
 /// Non-finite coordinates are never interpolated: an invalid target coordinate is applied immediately,
 /// and a valid target coordinate replaces an invalid source coordinate without animation.
 ///
