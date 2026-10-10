@@ -104,6 +104,12 @@ QAccelPlot::QAccelPlot(QQuickItem* parent)
 
 QAccelPlot::~QAccelPlot()
 {
+    // Release the children while this is still a plot. ~QQuickItem would do it later, when the
+    // observers of seriesChanged() and of the children can no longer use their pointers to it.
+    for (auto children = childItems(); !children.isEmpty(); children = childItems()) {
+        children.constFirst()->setParentItem(nullptr);
+    }
+
     for (auto* axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
         if (axis) {
             disconnectAxisSignals(axis);
