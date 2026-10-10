@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     if (auto* root = engine.rootObjects().value(0)) {
         if (auto* curve = root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("temperatureCurve"))) {
             curve->setDataF(dailyTemperatureData(), 97);

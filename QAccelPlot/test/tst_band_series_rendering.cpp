@@ -417,7 +417,7 @@ void BandSeriesRenderingTest::appendedEpochSamplesAreDrawnInPlace()
 
     // After the first frame, appends extend the origin-relative render data in place. A step from
     // y 2..4 to y 6..8 after offset 6 shows whether the appended samples land where they belong.
-    for (const auto [offset, low, high] : {std::tuple{6.0, 6.0, 8.0}, std::tuple{9.0, 6.0, 8.0}}) {
+    for (const auto& [offset, low, high] : {std::tuple{6.0, 6.0, 8.0}, std::tuple{9.0, 6.0, 8.0}}) {
         QVERIFY(QMetaObject::invokeMethod(band, "appendData", Q_ARG(qreal, kEpoch + offset), Q_ARG(qreal, low), Q_ARG(qreal, high)));
     }
     const auto image = scene.grab();

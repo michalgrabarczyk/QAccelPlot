@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
         },
         Qt::QueuedConnection);
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
 
     return app.exec();
 }

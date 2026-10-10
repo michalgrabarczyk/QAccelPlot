@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
     const auto start = static_cast<double>(QDateTime{QDate{2026, 3, 2}, QTime{0, 0}}.toMSecsSinceEpoch());
     const auto end = start + kDayCount * 24 * 60 * kMinuteMs;
     engine.setInitialProperties({{QStringLiteral("timelineStart"), start}, {QStringLiteral("timelineEnd"), end}});
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
     auto* states = root ? root->findChild<QAccelPlot::RectangleSeries*>(QStringLiteral("states")) : nullptr;
     if (!states) {

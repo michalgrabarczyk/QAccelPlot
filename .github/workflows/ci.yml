@@ -32,10 +32,8 @@ jobs:
           - compiler: gcc
             cxx: g++
           # Clang against libstdc++, which the aqt gcc_64 Qt binaries require.
-          # Warnings are reported but not fatal until the build is warning-clean.
           - compiler: clang
             cxx: clang++-18
-            cxx_flags: -Wall -Wextra
 
     steps:
       - uses: actions/checkout@v6
@@ -57,12 +55,12 @@ jobs:
           cmake -S . -B build -G Ninja
           -DCMAKE_BUILD_TYPE=Release
           -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
-          "-DCMAKE_CXX_FLAGS=${{ matrix.cxx_flags }}"
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_EXAMPLES=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=ON
           -DQACCELPLOT_INSTALL=ON
           -DQACCELPLOT_FORCE_ASSERTS=ON
+          -DQACCELPLOT_WARNINGS_AS_ERRORS=ON
           -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
 
       # The benchmarks have no aggregate target, so this builds everything.

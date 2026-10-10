@@ -471,7 +471,7 @@ void BandSeriesDataTest::edgeLinesReadTheBandSamples()
     root = fixture.paint();
     QCOMPARE(root->childCount(), 3);
     QVERIFY(fixture.fillMaterial()->dataTexture);
-    for (const auto [child, edge] : {std::pair{1, BandEdgeMaterial::Edge::Lower}, std::pair{2, BandEdgeMaterial::Edge::Upper}}) {
+    for (const auto& [child, edge] : {std::pair{1, BandEdgeMaterial::Edge::Lower}, std::pair{2, BandEdgeMaterial::Edge::Upper}}) {
         const auto* material = dynamic_cast<const BandEdgeMaterial*>(edgeMaterial(root, child));
         QVERIFY(material);
         QCOMPARE(material->dataTexture, fixture.fillMaterial()->dataTexture);

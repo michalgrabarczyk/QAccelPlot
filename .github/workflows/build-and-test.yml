@@ -258,6 +258,8 @@ jobs:
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
 
+      # Qt 6.8 is the one version built with MSVC warnings as errors, so that a deprecation in a
+      # newer Qt does not fail the build.
       - name: Configure CMake (Windows, Qt 6.8+)
         if: runner.os == 'Windows' && matrix.qt_version != '6.2.4'
         run: >-
@@ -265,6 +267,7 @@ jobs:
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
           -DQACCELPLOT_FORCE_ASSERTS=ON
+          -DQACCELPLOT_WARNINGS_AS_ERRORS=${{ matrix.qt_version == '6.8.3' && 'ON' || 'OFF' }}
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF

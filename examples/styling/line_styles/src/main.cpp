@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();
 }

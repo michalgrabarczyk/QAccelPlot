@@ -141,7 +141,7 @@ int main(int argc, char* argv[])
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
     const auto screenshotMode = app.arguments().contains(QStringLiteral("--screenshot"));
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
 
     auto* root = engine.rootObjects().value(0);
     auto* window = qobject_cast<QQuickWindow*>(root);
