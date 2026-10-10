@@ -62,6 +62,7 @@ jobs:
           -DQACCELPLOT_BUILD_EXAMPLES=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_INSTALL=ON
+          -DQACCELPLOT_FORCE_ASSERTS=ON
           -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
 
       - name: Build library, examples, and unit tests

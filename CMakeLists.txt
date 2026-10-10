@@ -31,6 +31,7 @@ option(QACCELPLOT_DEPLOY_EXAMPLES "Deploy Qt runtime files beside Windows exampl
 option(QACCELPLOT_BUILD_TESTS "Build QAccelPlot unit tests" ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_BUILD_BENCHMARKS "Build QAccelPlot benchmarks" ${_QACCELPLOT_DEFAULT})
 option(QACCELPLOT_BUILD_VISUAL_TESTS "Register screenshot and visual validation tests" OFF)
+option(QACCELPLOT_FORCE_ASSERTS "Keep Q_ASSERT active in every build type" OFF)
 
 if(QACCELPLOT_BUILD_VISUAL_TESTS AND NOT QACCELPLOT_BUILD_TESTS)
     message(FATAL_ERROR
@@ -62,6 +63,10 @@ if(MSVC)
 else()
     string(APPEND CMAKE_CXX_FLAGS_DEBUG   " -O0 -g")
     string(APPEND CMAKE_CXX_FLAGS_RELEASE " -O3")
+endif()
+
+if(QACCELPLOT_FORCE_ASSERTS)
+    add_compile_definitions(QT_FORCE_ASSERTS)
 endif()
 
 # ---------------------------------------------------------------------------
