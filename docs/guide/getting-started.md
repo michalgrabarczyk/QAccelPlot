@@ -24,7 +24,7 @@ my-plot-app/
 Create `CMakeLists.txt`:
 
 ```cmake
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.16)
 
 project(MyPlotApp VERSION 1.0 LANGUAGES CXX)
 
