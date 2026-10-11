@@ -144,8 +144,8 @@ QAccelPlot.LineCurve {
 ```
 
 Several curves can share one transition; each animates to its own data.
-Replacing or clearing `transition`, or calling `appendData()`, during an
-animation shows the new data at once.
+Replacing, clearing, or cancelling `transition`, or calling `appendData()`,
+during an animation shows the new data at once.
 
 `BarSeries` and `PointCloud` take the same transitions; see
 [bar charts](bar-charts.md#animate-data-changes) and

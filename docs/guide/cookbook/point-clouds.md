@@ -187,17 +187,8 @@ Post no faster than frames are presented; see
 
 ## Animate data changes
 
-Assign a `QAccelPlot.MorphTransition` or a `QAccelPlot.DrawTransition` to
-`transition`:
-
-```qml
-QAccelPlot.PointCloud {
-    transition: QAccelPlot.MorphTransition {
-        duration: 500
-        easing.type: Easing.InOutCubic
-    }
-}
-```
+Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+[`LineCurve`](styling.md#animated-data-changes).
 
 - `MorphTransition` moves each point to the new position of the same index.
   Values change with it when the old and the new points both have them, so
@@ -209,12 +200,8 @@ QAccelPlot.PointCloud {
   drawn.
 - `setValues()` animates too. Called after `setData()`, it keeps that
   animation, with the points in their new colors.
-- `clearData()`, and replacing, clearing, or cancelling `transition`, show the
-  new data at once.
+- `clearData()` shows the new data at once.
 - While a transition is enabled, the float paths store doubles.
-
-Every animated frame interpolates and uploads all points. Disable the
-transition for continuous high-rate updates.
 
 ## Invalid points and logarithmic axes
 

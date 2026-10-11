@@ -118,25 +118,15 @@ of `position`. Set `hoverColor` to highlight it.
 
 ## Animate data changes
 
-Assign a `QAccelPlot.MorphTransition` or a `QAccelPlot.DrawTransition` to
-`transition`:
-
-```qml
-QAccelPlot.BarSeries {
-    transition: QAccelPlot.MorphTransition {
-        duration: 500
-        easing.type: Easing.InOutCubic
-    }
-}
-```
+Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+[`LineCurve`](styling.md#animated-data-changes).
 
 - `MorphTransition` moves each bar to its new position and value. New bars
   grow from `baselineValue`, and removed bars shrink to it.
 - `DrawTransition` shows the new bars one after another.
 - `count`, `barAt()`, the data ranges, hover, and inspection use the new data
   from the start of the animation.
-- `clearData()`, and replacing, clearing, or cancelling `transition`, show the
-  new data at once.
+- `clearData()` shows the new data at once.
 - While a transition is enabled, the float paths store doubles.
 
 ## Feed data from C++
