@@ -31,7 +31,9 @@ QAccelPlot.Plot {
   wide and high; adjust `rectangleZoom.minimumSize` to change this.
 
 Rectangle zoom is disabled by default. `rectangleZoom.modifiers` must match
-exactly at press time; use `Qt.NoModifier` for unmodified dragging.
+exactly at press time; use `Qt.NoModifier` for unmodified dragging. A
+[`SelectionTool`](data-inspection.md#selection) uses the same gesture by default
+and takes it when both are enabled; change `modifiers` on one of them.
 
 Bind `fillColor` to the palette's `rectangleZoomFill` and `borderColor` to
 `rectangleZoomBorder`. Both are gray in the dark theme and light gray in the light theme;

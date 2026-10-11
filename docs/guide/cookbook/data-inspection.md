@@ -36,6 +36,9 @@ QAccelPlot.Plot {
 Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
 drag selects a region; Escape clears it. Ordinary left dragging still pans.
 
+[Rectangle zoom](rectangle-zoom.md) uses the same gesture by default. When both
+are enabled, `SelectionTool` takes it; change `modifiers` on one of them.
+
 ## Inspector
 
 `PlotInspector` queries every visible `LineCurve` and `PointCloud` of the plot
