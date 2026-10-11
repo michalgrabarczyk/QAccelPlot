@@ -143,7 +143,7 @@ still schedules a redraw.
 ## Use a hardware backend
 
 Curves require a hardware Qt Quick Scene Graph backend: OpenGL, OpenGL ES,
-Direct3D, Vulkan, or Metal. The software backend skips curve rendering and
+Direct3D 11/12, Vulkan, or Metal. The software backend skips curve rendering and
 emits a warning. When a curve is blank or slow, check `QSG_RHI_BACKEND`,
 `QT_QUICK_BACKEND`, remote-desktop sessions, and GPU drivers.
 

@@ -24,7 +24,7 @@ level-of-detail (LOD) reduction.
 
 ## ⚡ Highlights
 
-- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, Direct3D 11/12, Vulkan, and Metal.
+- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, and Metal.
 - **Series types**: Line curves, point clouds, bars, histograms, bands, and rectangle spans.
 - **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
 - **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
@@ -163,7 +163,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 - **Qt 6.2 or newer** with `Core`, `Gui`, `Quick`, and `ShaderTools`
 - Optional: the matching `QuickPrivate` component for faster live-data texture
   updates
-- A hardware Qt Quick Scene Graph backend (OpenGL, Direct3D 11/12, Vulkan, or Metal)
+- A hardware Qt Quick Scene Graph backend (OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, or Metal)
 
 QAccelPlot builds as a static library.
 
