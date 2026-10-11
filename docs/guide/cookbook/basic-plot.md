@@ -31,10 +31,6 @@ QAccelPlot.Plot {
         label: "Temperature (°C)"
     }
 
-    legend: QAccelPlot.Legend {
-        series: plot.series
-    }
-
     QAccelPlot.LineCurve {
         name: "Measured"
         xAxis: plot.xAxis
@@ -60,13 +56,11 @@ QAccelPlot.Plot {
 }
 ```
 
-[`Plot.series`][plot-series] updates as series are added or removed; binding
-it to `Legend.series` keeps legend entries in sync.
+`Plot` shows a legend entry for every series. Set `legendVisible: false` to
+hide it, or assign `legend` to replace it.
 
 QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
 [Select the data path](../performance.md#select-the-data-path).
 
 Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)
-
-[plot-series]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-series-12
