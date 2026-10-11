@@ -140,12 +140,9 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 
 ## 🧪 Testing
 
-- **[Unit tests](.github/workflows/ci.yml)**: plotting behavior, data
-  handling, axes, formatting, styling, interaction, and transitions, built
-  with GCC and Clang.
-- **[Code coverage](https://michalgrabarczyk.github.io/QAccelPlot/coverage/)**:
-  percentage of library C++ source lines exercised by unit tests, updated by
-  CI on `main`.
+- **[Unit tests](.github/workflows/ci.yml)** with GCC and Clang, and
+  **[code coverage](https://michalgrabarczyk.github.io/QAccelPlot/coverage/)**
+  of the library sources.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
 - **[Build and test](.github/workflows/build-and-test.yml)**: unit tests and
