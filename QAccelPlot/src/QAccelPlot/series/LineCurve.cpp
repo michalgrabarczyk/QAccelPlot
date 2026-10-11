@@ -1022,6 +1022,7 @@ void LineCurve::promoteFloatDataToDouble()
     dataF_.clear();
     dataType_ = DataType::Double;
     rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
+    rebuildGapConnectData();
 }
 
 void LineCurve::rebuildDoubleRenderData(const bool logScaleX, const bool logScaleY)

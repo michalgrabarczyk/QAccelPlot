@@ -8,6 +8,7 @@
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/LineCurveGapFilter.hpp"
+#include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QtTest/QtTest>
 
@@ -52,6 +53,7 @@ private slots:
     void connectModeHitTestBridgesGap();
     void connectModeBridgesDoubleData();
     void connectModeBridgesAppendedData();
+    void connectModeBridgesFloatDataWhenATransitionStarts();
     void markerHitTestSkipsInvalidSamples();
     void emptyChunksAreSkipped();
 };
@@ -469,6 +471,22 @@ void LineCurveGapsTest::connectModeBridgesAppendedData()
 
     fixture.curve.gaps()->setNanMode(NanGapMode::Break);
     QVERIFY(!fixture.hits({250.0, 50.0}));
+}
+
+void LineCurveGapsTest::connectModeBridgesFloatDataWhenATransitionStarts()
+{
+    auto fixture = HitTestFixture{};
+    fixture.curve.gaps()->setNanMode(NanGapMode::Connect);
+    fixture.curve.setDataF(gappedLine(), 5);
+
+    // A transition animates doubles, so starting one converts the float data it starts from.
+    auto transition = MorphTransition{};
+    fixture.curve.setTransition(&transition);
+    fixture.curve.setData(std::vector<double>{0.0, 1.0, 1.0, 1.0, 2.0, 1.0, 3.0, 1.0, 4.0, 1.0}, 5);
+
+    // Without a frame the curve still shows the data it starts from, with the gap bridged.
+    QVERIFY(fixture.hits({200.0, 50.0}));
+    QVERIFY(!fixture.hits({200.0, 90.0}));
 }
 
 void LineCurveGapsTest::markerHitTestSkipsInvalidSamples()
