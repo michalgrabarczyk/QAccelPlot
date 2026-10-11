@@ -151,10 +151,6 @@ thread; see the
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.
 
-Complete source:
-
-- [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart):
-  grouped and horizontal bars, a profit chart colored against a target
-  baseline, a hover tooltip, and animated updates.
+Complete source: [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart)
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md

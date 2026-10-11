@@ -152,8 +152,7 @@ must match exactly and a shorter drag only clears the selection.
   finished gesture.
 - Set `rectangleVisible: false` to draw `pixelRect` yourself.
 
-Complete source:
-[`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection).
+Complete source: [`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection)
 
 [plot-inspector]: ../api/classQAccelPlot_1_1PlotInspector.md
 [row-model]: ../api/classQAccelPlot_1_1InspectionRowModel.md

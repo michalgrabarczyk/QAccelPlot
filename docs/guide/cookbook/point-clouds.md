@@ -204,11 +204,7 @@ underneath still receive hover events elsewhere. For the lookup cost, see
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
   points are not drawn, and a warning is logged once.
 
-Complete source:
-
-- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud):
-  one value-colored cloud with a color bar, a hover tooltip, and morph and
-  draw transitions between datasets.
+Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
 [colormap]: ../api/classQAccelPlot_1_1Colormap.md

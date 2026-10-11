@@ -119,10 +119,6 @@ At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
 texture size is below 6144. Samples beyond the limit are not drawn, and a
 warning is logged once.
 
-Complete source:
-
-- [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands):
-  a forecast with nested prediction intervals, and a rolling mean ± 2σ band
-  over 10,000 samples of a simulated sensor.
+Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)
 
 [band-series]: ../api/classQAccelPlot_1_1BandSeries.md

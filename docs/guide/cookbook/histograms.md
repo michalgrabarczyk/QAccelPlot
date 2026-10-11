@@ -93,10 +93,6 @@ a worker thread can build the histogram and pass its data to
 `postRangedData()`.
 `Histogram::fromCounts(edges, counts)` wraps data that is already binned.
 
-Complete source:
-
-- [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram):
-  equal and logarithmic bins, with a bin count slider and a switch to density
-  bins on the axis ticks.
+Complete source: [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram)
 
 [histogram]: ../api/classQAccelPlot_1_1Histogram.md

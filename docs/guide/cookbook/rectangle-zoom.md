@@ -40,7 +40,6 @@ const applied = plot.zoomToRect(Qt.rect(left, top, width, height))
 It works with gestures disabled and supports logarithmic and reversed axes.
 It returns `false` without changing ranges if the selection or target axes are invalid.
 
-Complete source:
-[`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud).
+Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect

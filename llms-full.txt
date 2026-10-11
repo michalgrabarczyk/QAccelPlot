@@ -1668,8 +1668,7 @@ must match exactly and a shorter drag only clears the selection.
   finished gesture.
 - Set `rectangleVisible: false` to draw `pixelRect` yourself.
 
-Complete source:
-[`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection).
+Complete source: [`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection)
 
 [plot-inspector]: ../api/classQAccelPlot_1_1PlotInspector.md
 [row-model]: ../api/classQAccelPlot_1_1InspectionRowModel.md
@@ -1878,11 +1877,7 @@ underneath still receive hover events elsewhere. For the lookup cost, see
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
   points are not drawn, and a warning is logged once.
 
-Complete source:
-
-- [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud):
-  one value-colored cloud with a color bar, a hover tooltip, and morph and
-  draw transitions between datasets.
+Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
 [colormap]: ../api/classQAccelPlot_1_1Colormap.md
@@ -1926,8 +1921,7 @@ const applied = plot.zoomToRect(Qt.rect(left, top, width, height))
 It works with gestures disabled and supports logarithmic and reversed axes.
 It returns `false` without changing ranges if the selection or target axes are invalid.
 
-Complete source:
-[`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud).
+Complete source: [`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud)
 
 [zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect
 
@@ -2080,11 +2074,7 @@ thread; see the
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.
 
-Complete source:
-
-- [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart):
-  grouped and horizontal bars, a profit chart colored against a target
-  baseline, a hover tooltip, and animated updates.
+Complete source: [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart)
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md
 
@@ -2179,11 +2169,7 @@ a worker thread can build the histogram and pass its data to
 `postRangedData()`.
 `Histogram::fromCounts(edges, counts)` wraps data that is already binned.
 
-Complete source:
-
-- [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram):
-  equal and logarithmic bins, with a bin count slider and a switch to density
-  bins on the axis ticks.
+Complete source: [`examples/plot_types/histogram`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/histogram)
 
 [histogram]: ../api/classQAccelPlot_1_1Histogram.md
 
@@ -2304,11 +2290,7 @@ At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
 texture size is below 6144. Samples beyond the limit are not drawn, and a
 warning is logged once.
 
-Complete source:
-
-- [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands):
-  a forecast with nested prediction intervals, and a rolling mean ± 2σ band
-  over 10,000 samples of a simulated sensor.
+Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)
 
 [band-series]: ../api/classQAccelPlot_1_1BandSeries.md
 
@@ -2359,9 +2341,7 @@ thread.
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.
 
-Complete source:
-[`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance),
-a one-batch handoff with a worker-built vertex cache.
+Complete source: [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 
 [post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
 [set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
