@@ -54,8 +54,8 @@ optional; see
 ## What graphics backends does QAccelPlot support?
 
 OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, and Metal. The software backend
-cannot run the curve shaders; if a curve is blank, check that
-`QSG_RHI_BACKEND` and `QT_QUICK_BACKEND` are not set to `software`.
+cannot run the curve shaders; see
+[The axes appear but the curve is blank](troubleshooting.md#the-axes-appear-but-the-curve-is-blank).
 
 ## Does QAccelPlot work with Qt Widgets?
 
@@ -69,7 +69,3 @@ Only through `QQuickWidget`. There is no `QWidget`-based API.
   [qaccelplot@gmail.com](mailto:qaccelplot@gmail.com).
 
 See [LICENSING.md](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/LICENSING.md).
-
-## Why is my curve blank?
-
-See [The axes appear but the curve is blank](troubleshooting.md#the-axes-appear-but-the-curve-is-blank).

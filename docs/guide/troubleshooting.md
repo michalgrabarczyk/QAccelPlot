@@ -47,11 +47,9 @@ Check these conditions:
 2. At least two points exist when a line is enabled, or one point when only a
    marker is enabled.
 3. The viewport includes the point coordinates.
-4. The Qt Quick renderer is not using the software backend.
+4. The Qt Quick renderer is not using the software backend: QAccelPlot logs a
+   warning when it is. Check `QSG_RHI_BACKEND` and `QT_QUICK_BACKEND`.
 5. The data buffer contains exactly two floats per declared point.
-
-On the software backend, QAccelPlot logs a warning that curve rendering is
-unavailable.
 
 ## Rescale does not fit the data
 
