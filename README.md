@@ -229,14 +229,5 @@ QAccelPlot is available under a **dual-licensing model**:
 
 📧 For commercial licensing inquiries, contact: **[qaccelplot@gmail.com](mailto:qaccelplot@gmail.com)**
 
-| Intended Use Case | Open-Source (GPLv3 + FOSS Exception) | Commercial License |
-| :--- | :--- | :--- |
-| **GPLv3 Application** | ✅ Permitted under GPLv3 | Not required |
-| **Qualifying FOSS (MIT, BSD, Apache, LGPL, etc.)** | ✅ Permitted under Universal FOSS Exception | Not required |
-| **Commercial FOSS Product (Charging fee for FOSS)** | ✅ Permitted (Charging does not make software proprietary) | Not required |
-| **Proprietary / Closed-Source Distributed Product** | ❌ Not permitted | ✅ **Required** |
-| **Private / Internal Enterprise Use (No distribution)** | ✅ Permitted under GPLv3 terms | Not required |
-| **Server-Side / SaaS Use (No client distribution)** | ✅ Permitted (GPLv3 has no AGPL network-copyleft clause) | Not required |
-
-For licensing details and links to the full license texts, see
+For common situations and links to the full license texts, see
 [LICENSING.md](LICENSING.md).
