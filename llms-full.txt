@@ -327,9 +327,8 @@ Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
 sets the viewport to fit the data range, and [`autoRescale`][auto-rescale]
 does so on every data update. A series reports its extent to the
 axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
-The extent is computed when it is read, so data updates do not scan the
-records unless something asks for the range; see
-[Data ranges are computed on demand](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand).
+The extent is
+[computed on demand](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand).
 
 | Plot property | Side |
 | --- | --- |
@@ -738,7 +737,6 @@ Measure your workload with the included
 
 Move an interleaved float buffer with
 [`setDataF(std::vector<float>&&, int)`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdataf-26).
-Data updates do not scan for the data range; it is computed when read.
 See [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
 
 ## When should I use `postData()` instead of `setDataF()`?
@@ -1009,16 +1007,15 @@ QAccelPlot.Plot {
 
 ## Update every frame
 
-Pass each new buffer to [`setDataF()`][set-data-f]. No data update scans the
-buffer for its range; that happens only when something reads the range, such
-as a double-click rescale:
+Pass each new buffer to [`setDataF()`][set-data-f]:
 
 ```cpp
 curve->setDataF(std::move(points), pointCount);
 ```
 
-A rescale then fits the samples of that frame. To fit the nominal window
-instead, and skip the scan, pass its bounds with the data:
+A rescale fits the samples of the current frame. To fit the nominal window
+instead, pass its bounds with the data. This also skips the
+[range scan](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand):
 
 ```cpp
 constexpr auto bounds = QAccelPlot::PlotSeries::DataBounds{-20.0, 0.0, -2.5, 2.5};
@@ -1045,8 +1042,8 @@ yAxis: QAccelPlot.Axis {
   `autoRescale` to `false` while the user navigates.
 - Appending only extends the data range. Replace the buffer with
   [`setDataF()`][set-data-f] to let the range shrink.
-- Each update scans the data for its range. Appending widens the range
-  without a scan, and data passed with bounds is not scanned.
+- Each update scans the data for its range, unless it appends or passes
+  bounds.
 - When the last series on the axis is cleared, the viewport is kept.
 
 ## Show dropouts as gaps
@@ -2542,10 +2539,10 @@ if (worker.tryConsume(batch)) {
 }
 ```
 
-The data range is scanned on the UI thread, and only when something reads it;
-see [Data ranges are computed on demand](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand).
 If the worker already knows the extents, add them to the batch and pass them
-as `DataBounds` to skip that scan.
+as `DataBounds` to skip the
+[range scan](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand) on the UI
+thread.
 
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.

@@ -34,9 +34,8 @@ Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
 sets the viewport to fit the data range, and [`autoRescale`][auto-rescale]
 does so on every data update. A series reports its extent to the
 axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
-The extent is computed when it is read, so data updates do not scan the
-records unless something asks for the range; see
-[Data ranges are computed on demand](performance.md#data-ranges-are-computed-on-demand).
+The extent is
+[computed on demand](performance.md#data-ranges-are-computed-on-demand).
 
 | Plot property | Side |
 | --- | --- |
