@@ -47,11 +47,9 @@ thread and hand it off through `postData()` or a queued call. See
 
 ## Which Qt versions are supported?
 
-Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools. When the matching
-`QuickPrivate` component is available, QAccelPlot uses it for in-place data
-texture updates, which is faster for large data sets updated every frame.
-`-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` builds against public Qt API only. No
-private Qt types appear in public headers or ABI.
+Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools. `QuickPrivate` is
+optional; see
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## What graphics backends does QAccelPlot support?
 

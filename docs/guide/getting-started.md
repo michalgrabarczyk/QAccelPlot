@@ -190,9 +190,8 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 ```
 
-If `QuickPrivate` is found, QAccelPlot uses it for faster live updates. Add
-`-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` to build against public Qt API only, for
-example when private Qt headers are not installed. See
+Add `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` when private Qt headers are not
+installed; see
 [texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## Default interaction

@@ -36,8 +36,8 @@ To build without it:
 cmake -S . -B build -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
 ```
 
-This mode recreates the data texture on each update instead of updating it in
-place, which is slower for large data sets updated every frame.
+This is slower for large data sets updated every frame; see
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## The axes appear but the curve is blank
 

@@ -69,6 +69,5 @@ GitHub Releases provide source `.zip` and `.tar.gz` archives only; build
 QAccelPlot from source with your application.
 
 A build with `QACCELPLOT_USE_QT_PRIVATE_API=ON` depends on a Qt private API and
-must use the same Qt version and toolchain as the application. No private type
-appears in QAccelPlot's public ABI. Rebuild QAccelPlot whenever the Qt version
-or compiler changes, in either mode.
+must use the same Qt version and toolchain as the application. Rebuild
+QAccelPlot whenever the Qt version or compiler changes, in either mode.

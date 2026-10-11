@@ -75,9 +75,9 @@ Each recipe links to a complete, runnable
 - Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools
 - A hardware Qt Quick Scene Graph backend
 
-When the matching `QuickPrivate` component is available, it is used for
-in-place data texture updates. `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` forces a
-public-Qt-only build. QAccelPlot builds as a static library.
+QAccelPlot builds as a static library. Qt's `QuickPrivate` component is
+optional; see
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## Licensing
 

@@ -157,8 +157,8 @@ on `QACCELPLOT_USE_QT_PRIVATE_API`:
 | `ON` (default when `Qt6::QuickPrivate` is found) | `QSGPlainTexture::setImage()` replaces the texture contents in place | Large data sets updated every frame |
 | `OFF` | `QQuickWindow::createTextureFromImage()` recreates the texture | Private Qt dependencies are unacceptable for packaging |
 
-The private call is confined to one internal source file; no private Qt types
-appear in public headers or ABI. Gradient textures always use the public path.
+No private Qt types appear in public headers or ABI. Gradient textures always
+use the public path.
 
 Benchmark both modes with your workload. The included live scenarios cover 1M,
 2M, 5M, and 10M points:
