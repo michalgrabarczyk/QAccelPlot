@@ -511,6 +511,16 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         delete oldNode;
         return nullptr;
     }
+    if (!Internal::supportsCustomShaderRendering(window)) {
+        static auto warned = false;
+        if (!warned) {
+            qCWarning(lcQAccelPlot)
+                << "RectangleSeries custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";
+            warned = true;
+        }
+        delete oldNode;
+        return nullptr;
+    }
 
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;

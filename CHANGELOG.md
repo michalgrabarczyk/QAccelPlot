@@ -139,6 +139,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
 - `RectangleSeries` no longer blocks hover for series underneath it.
+- `RectangleSeries` and `BarSeries` skip drawing on the software backend, like the
+  other series, instead of corrupting memory when their data changes.
 - Attaching an empty series no longer resets an axis's `dataMin` and `dataMax` to 0 and 1.
 - `RectangleSeries` and `PointCloud` render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).
