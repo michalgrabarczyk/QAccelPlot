@@ -20,11 +20,11 @@ numbers, see the [performance comparison](performance-comparison.md).
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
+| [`setData(std::vector<double>&&, count)`][set-data-moved] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory remains caller-owned | One copy into a reusable buffer |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Buffer ownership is moved immediately |
 | [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff |
-| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
+| [`postData(std::vector<double>&&, count)`][post-data-double] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets.
@@ -235,15 +235,17 @@ cmake --build build --config Release
 Scenarios are defined in
 [`benchmarks/common/BenchmarkScenario.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp).
 
-[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
-[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
-[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-18
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28
+[set-data-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-48
+[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-16
+[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
 [append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
 [auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[post-data-double]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-12
 [hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12

@@ -103,7 +103,7 @@ Complete sources:
 - [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 - [`examples/data/missing_data`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/missing_data)
 
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [auto-rescale]: ../api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [append-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: ../api/classQAccelPlot_1_1Axis.md#function-rescaletodata

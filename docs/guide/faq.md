@@ -30,13 +30,13 @@ Measure your workload with the included
 ## What is the fastest way to supply data?
 
 Move an interleaved float buffer with
-[`setDataF(std::vector<float>&&, int)`](api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22).
+[`setDataF(std::vector<float>&&, int)`](api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26).
 Data updates do not scan for the data range; it is computed when read.
 See [Select the data path](performance.md#select-the-data-path).
 
 ## When should I use `postData()` instead of `setDataF()`?
 
-Use [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata) from
+Use [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) from
 a worker thread; it queues the buffer transfer to the curve's thread.
 `setDataF()` must be called on the curve's thread, normally the UI thread.
 

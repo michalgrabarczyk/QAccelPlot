@@ -215,4 +215,4 @@ See [Troubleshooting](troubleshooting.md) for common setup issues.
 [viewport-max]: api/classQAccelPlot_1_1Axis.md#property-viewportmax-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28

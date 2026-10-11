@@ -56,7 +56,7 @@ See [Data inspection](cookbook/data-inspection.md) for usage, query contracts, a
 - `setData()` — QML data or double-precision C++ containers.
 - `setDataF(std::vector<float>&&, count)` — large interleaved buffers on the
   curve's thread.
-- [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata) —
+- [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) —
   completed buffers from a worker thread.
 - `PlotSeries::DataBounds` — passed with the data when its extents are already known.
 - `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.

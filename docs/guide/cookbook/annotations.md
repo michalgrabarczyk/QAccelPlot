@@ -148,5 +148,5 @@ Complete sources:
 [pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [data-anchor]: ../api/classQAccelPlot_1_1DataAnchor.md
 [rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
-[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata
+[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata-18
 [hovered-index]: ../api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12

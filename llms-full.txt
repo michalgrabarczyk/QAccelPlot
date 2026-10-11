@@ -291,7 +291,7 @@ See [Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshoot
 [viewport-max]: api/classQAccelPlot_1_1Axis.md#property-viewportmax-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28
 
 
 ---
@@ -449,7 +449,7 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [pixel-to-data-x]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
 [pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
 [line-curve]: api/classQAccelPlot_1_1LineCurve.md
 
 
@@ -470,11 +470,11 @@ numbers, see the [performance comparison](https://michalgrabarczyk.github.io/QAc
 | --- | --- | --- |
 | [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
 | [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
+| [`setData(std::vector<double>&&, count)`][set-data-moved] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
 | [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory remains caller-owned | One copy into a reusable buffer |
 | [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Buffer ownership is moved immediately |
 | [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff |
-| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
+| [`postData(std::vector<double>&&, count)`][post-data-double] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets.
@@ -685,15 +685,17 @@ cmake --build build --config Release
 Scenarios are defined in
 [`benchmarks/common/BenchmarkScenario.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp).
 
-[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
-[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
-[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-18
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28
+[set-data-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-48
+[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-16
+[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
 [append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
 [auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[post-data-double]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-12
 [hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
@@ -727,13 +729,13 @@ Measure your workload with the included
 ## What is the fastest way to supply data?
 
 Move an interleaved float buffer with
-[`setDataF(std::vector<float>&&, int)`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdataf-22).
+[`setDataF(std::vector<float>&&, int)`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdataf-26).
 Data updates do not scan for the data range; it is computed when read.
 See [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
 
 ## When should I use `postData()` instead of `setDataF()`?
 
-Use [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata) from
+Use [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata-22) from
 a worker thread; it queues the buffer transfer to the curve's thread.
 `setDataF()` must be called on the curve's thread, normally the UI thread.
 
@@ -960,7 +962,7 @@ QAccelPlot.Plot {
 [`Plot.series`][plot-series] updates as series are added or removed; binding
 it to `Legend.series` keeps legend entries in sync.
 
-QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdata-12)
+QML [`setData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
 [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).
 
@@ -1069,7 +1071,7 @@ Complete sources:
 - [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 - [`examples/data/missing_data`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/missing_data)
 
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [auto-rescale]: ../api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [append-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: ../api/classQAccelPlot_1_1Axis.md#function-rescaletodata
@@ -1576,7 +1578,7 @@ Complete sources:
 [pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [data-anchor]: ../api/classQAccelPlot_1_1DataAnchor.md
 [rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
-[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata
+[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata-18
 [hovered-index]: ../api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
 
 
@@ -2551,8 +2553,8 @@ Complete source:
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance),
 a one-batch handoff with a worker-built vertex cache.
 
-[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 
 
 ---
@@ -2608,7 +2610,7 @@ See [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/dat
 - `setData()` — QML data or double-precision C++ containers.
 - `setDataF(std::vector<float>&&, count)` — large interleaved buffers on the
   curve's thread.
-- [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata) —
+- [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata-22) —
   completed buffers from a worker thread.
 - `PlotSeries::DataBounds` — passed with the data when its extents are already known.
 - `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.

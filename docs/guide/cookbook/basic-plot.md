@@ -67,7 +67,7 @@ QAccelPlot.Plot {
 [`Plot.series`][plot-series] updates as series are added or removed; binding
 it to `Legend.series` keeps legend entries in sync.
 
-QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-12)
+QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
 [Select the data path](../performance.md#select-the-data-path).
 

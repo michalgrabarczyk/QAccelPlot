@@ -53,5 +53,5 @@ Complete source:
 [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance),
 a one-batch handoff with a worker-built vertex cache.
 
-[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26

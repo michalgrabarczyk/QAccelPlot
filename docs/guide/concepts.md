@@ -158,5 +158,5 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [pixel-to-data-x]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
 [pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
 [line-curve]: api/classQAccelPlot_1_1LineCurve.md
