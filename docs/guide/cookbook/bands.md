@@ -14,10 +14,9 @@ high value at each X: confidence and prediction intervals, tolerance masks, and
 min/max or mean ± σ envelopes. Draw the center line with a separate
 `LineCurve`.
 
-Samples live in a GPU data texture, and the vertex buffer holds only sample
-indices. Panning and zooming change shader uniforms only, so a band of millions
-of samples costs nothing on the CPU per frame. Dashed edge lines are the
-exception: zooming recomputes their dash positions, one pass over the samples.
+Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
+edge lines are the exception: zooming recomputes their dash positions in one
+pass over the samples.
 
 ## Draw a band around a line
 
@@ -70,8 +69,6 @@ QAccelPlot.BandSeries {
 | `edges.width` | `0` | No edge lines at 0. |
 | `edges.color` | invalid | Uses the band's `color` at full opacity. |
 | `edges.lineStyle` | `SolidLine` | `DashLine` and `NoLine` also work. |
-
-The edge lines read the band's data texture; the samples are uploaded once.
 
 ## Feed data from C++
 

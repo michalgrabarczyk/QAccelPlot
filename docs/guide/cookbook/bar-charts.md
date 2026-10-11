@@ -10,8 +10,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 # Bar charts
 
 Use [`QAccelPlot.BarSeries`][bar-series] for bar charts. Each bar is a
-(position, value) pair. The series uploads two floats per bar and builds the
-bars in the shader, so changing `barWidth`, `barOffset`, or `baselineValue`
+(position, value) pair. Changing `barWidth`, `barOffset`, or `baselineValue`
 does not re-upload the data.
 
 ## Draw bars
