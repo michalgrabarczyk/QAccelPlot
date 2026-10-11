@@ -87,14 +87,11 @@ graphics API family.
 
 ## QAccelPlot Configuration
 
-- QAccelPlot uses the OpenGL Qt Quick RHI backend and the same offscreen
-  texture size, timing loop, sine-wave definition, and alternating two-buffer
-  update model as Qt Graphs.
+- QAccelPlot uses the same backend, offscreen texture, and timing loop as
+  Qt Graphs.
 - The curve uses `lineWidth: 1` with all other settings left at their defaults.
-- The harness pre-generates native interleaved `float` XY buffers and updates
-  `LineCurve` with `setDataF(const float *, int)`. This avoids the
-  `QList<QPointF>` conversion and allocation while still
-  timing the complete copy into QAccelPlot on every frame.
+- `LineCurve` is updated with `setDataF(const float *, int)`, so the complete
+  copy into QAccelPlot is timed on every frame.
 - A solid-line vertex cache is installed once before warmup with
   `setDataFWithCache` and reused every frame, because the point count
   and vertex layout do not change. Cache preparation is outside timing.
