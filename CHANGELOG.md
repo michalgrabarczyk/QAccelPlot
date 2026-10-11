@@ -122,6 +122,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.
 - `PointCloud` no longer hovers points beyond the GPU texture capacity, which are not drawn.
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
+- `Colormap` ignores null entries in `stops` instead of crashing.
 - A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.
 - `LineCurve` transitions now advance on the GUI thread, so `DataTransition.running`

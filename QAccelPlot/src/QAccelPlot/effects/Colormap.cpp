@@ -125,6 +125,9 @@ QQmlListProperty<QObject> Colormap::stops()
 
 void Colormap::appendStop(QQmlListProperty<QObject>* list, QObject* stop)
 {
+    if (!stop) {
+        return;
+    }
     auto* self = static_cast<Colormap*>(list->data);
     self->stopObjects_.append(stop);
     self->connectStop(stop);
