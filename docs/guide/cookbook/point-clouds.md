@@ -246,9 +246,9 @@ QAccelPlot.DataAnchor {
 }
 ```
 
-The lookup uses a spatial index that is rebuilt on the first pointer move after
-a data change. Only positions near a point count as inside the series, so
-stacked series underneath still receive hover events elsewhere.
+Only positions near a point count as inside the series, so stacked series
+underneath still receive hover events elsewhere. For the lookup cost, see
+[Hover interactions](../performance.md#hover-interactions).
 
 ## Limits
 
