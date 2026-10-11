@@ -34,9 +34,8 @@ Starting with version 1.0, QAccelPlot follows Semantic Versioning:
 
 ## Changelog
 
-`CHANGELOG.md` is the source of release notes. Changes collect under
-`[Unreleased]` and move to a dated version section on release; GitHub Release
-notes are taken from that section.
+The changelog has one dated section per release. Changes not yet released are
+under `[Unreleased]`.
 
 ## Pinning a dependency
 
