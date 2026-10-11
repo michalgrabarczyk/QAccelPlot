@@ -127,6 +127,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `RectangleSeries` and `PointCloud` render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).
 - On Qt 6.2, only the topmost series under the cursor is hovered.
+- A destroyed series leaves `PlotView.series`, and a destroyed `PlotView` releases
+  its children, before their own members are gone, so handlers of `seriesChanged`
+  no longer see a half-destroyed plot or series.
 
 ## [0.3.0] — 2026-09-25
 

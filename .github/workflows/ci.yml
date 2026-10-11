@@ -32,10 +32,8 @@ jobs:
           - compiler: gcc
             cxx: g++
           # Clang against libstdc++, which the aqt gcc_64 Qt binaries require.
-          # Warnings are reported but not fatal until the build is warning-clean.
           - compiler: clang
             cxx: clang++-18
-            cxx_flags: -Wall -Wextra
 
     steps:
       - uses: actions/checkout@v6
@@ -57,23 +55,193 @@ jobs:
           cmake -S . -B build -G Ninja
           -DCMAKE_BUILD_TYPE=Release
           -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
-          "-DCMAKE_CXX_FLAGS=${{ matrix.cxx_flags }}"
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_EXAMPLES=ON
-          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
           -DQACCELPLOT_INSTALL=ON
+          -DQACCELPLOT_FORCE_ASSERTS=ON
+          -DQACCELPLOT_WARNINGS_AS_ERRORS=ON
           -DQACCELPLOT_USE_QT_PRIVATE_API=${{ matrix.qt_private_api }}
 
-      - name: Build library, examples, and unit tests
-        run: >-
-          cmake --build build --config Release --parallel 2 --target
-          QAccelPlotExamples
-          QAccelPlotTests
+      # The benchmarks have no aggregate target, so this builds everything.
+      - name: Build library, examples, benchmarks, and unit tests
+        run: cmake --build build --config Release --parallel 2
 
+      # The unit-test label includes the tests of the benchmark infrastructure.
       - name: Run unit tests
         run: >-
           xvfb-run -a ctest --test-dir build -C Release --output-on-failure
           -L '^unit-test$'
+
+  # Installs the library, then builds and runs QAccelPlot/test/consumer twice: against the
+  # installed package, and against the checkout through add_subdirectory.
+  package:
+    name: Package / Qt ${{ matrix.qt_version }} / ${{ matrix.os_name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The install rules collect Qt's helper targets, which differ between Qt versions.
+          - qt_version: '6.2.4'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.8.3'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.11.2'
+            os: ubuntu-24.04
+            os_name: Linux
+            generator: -G Ninja
+          - qt_version: '6.8.3'
+            os: windows-2025
+            os_name: Windows
+            generator: -G "Visual Studio 18 2026" -A x64
+          - qt_version: '6.8.3'
+            os: macos-15
+            os_name: macOS
+            generator: -G Ninja
+    env:
+      # Hosted runners have no GPU: Mesa llvmpipe renders on Linux, the WARP adapter on Windows.
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      QSG_RHI_PREFER_SOFTWARE_RENDERER: ${{ startsWith(matrix.os, 'windows-') && '1' || '0' }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: ${{ matrix.qt_version }}
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure the library
+        run: >-
+          cmake -S . -B build/library ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_TESTS=OFF
+          -DQACCELPLOT_BUILD_EXAMPLES=OFF
+          -DQACCELPLOT_BUILD_BENCHMARKS=OFF
+          -DQACCELPLOT_INSTALL=ON
+
+      - name: Build the library
+        run: cmake --build build/library --config Release --parallel 4
+
+      - name: Install the library
+        run: cmake --install build/library --config Release --prefix "${{ github.workspace }}/build/prefix"
+
+      - name: Configure the consumer of the installed package
+        run: >-
+          cmake -S QAccelPlot/test/consumer -B build/consumer-package ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          "-DCMAKE_PREFIX_PATH=${{ github.workspace }}/build/prefix"
+
+      - name: Build the consumer of the installed package
+        run: cmake --build build/consumer-package --config Release --parallel 4
+
+      - name: Run the consumer of the installed package
+        run: ${{ runner.os == 'Linux' && 'xvfb-run -a' || '' }} ctest --test-dir build/consumer-package -C Release --output-on-failure
+
+      - name: Configure the consumer of the checkout
+        run: >-
+          cmake -S QAccelPlot/test/consumer -B build/consumer-subdirectory ${{ matrix.generator }}
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_CONSUMER_ADD_SUBDIRECTORY=ON
+
+      - name: Build the consumer of the checkout
+        run: cmake --build build/consumer-subdirectory --config Release --parallel 4
+
+      - name: Run the consumer of the checkout
+        run: ${{ runner.os == 'Linux' && 'xvfb-run -a' || '' }} ctest --test-dir build/consumer-subdirectory -C Release --output-on-failure
+
+  # The Qt binaries are not instrumented, so this checks QAccelPlot, the tests, and the Qt
+  # templates they instantiate. ThreadSanitizer is left out for that reason: it cannot see the
+  # locks inside Qt, and reports every handoff between threads as a race.
+  sanitizers:
+    name: ASan and UBSan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      # LeakSanitizer is off: it also reports allocations that fontconfig, Mesa, and Qt never free.
+      ASAN_OPTIONS: detect_leaks=0
+      UBSAN_OPTIONS: print_stacktrace=1
+      ASAN_SYMBOLIZER_PATH: /usr/bin/llvm-symbolizer-18
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # llvm-18 provides the symbolizer for the preinstalled Clang 18.
+      - name: Install system dependencies
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build xvfb libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0 llvm-18
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      # _GLIBCXX_ASSERTIONS adds bounds checks to std::vector, which ASan misses inside the capacity.
+      - name: Configure sanitizer build
+        run: >-
+          cmake -S . -B build-sanitizers -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DCMAKE_CXX_COMPILER=clang++-18
+          "-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS"
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
+          -DQACCELPLOT_INSTALL=OFF
+          -DQACCELPLOT_FORCE_ASSERTS=ON
+
+      - name: Build unit tests
+        run: cmake --build build-sanitizers --parallel 4 --target QAccelPlotTests
+
+      - name: Run unit tests
+        run: >-
+          xvfb-run -a ctest --test-dir build-sanitizers --output-on-failure
+          -L '^unit-test$'
+
+  # The Docs workflow builds and publishes the site on pushes to main. This job builds it the
+  # same way for a pull request, without publishing.
+  docs:
+    name: Documentation
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+          cache: pip
+          cache-dependency-path: docs/requirements.txt
+
+      - name: Install documentation tools
+        run: |
+          bash .github/scripts/apt_install.sh doxygen graphviz
+          python -m pip install -r docs/requirements.txt
+
+      - name: Build documentation
+        run: bash scripts/build-docs.sh
 
   coverage:
     name: C++ coverage

@@ -18,6 +18,53 @@ permissions:
   contents: read
 
 jobs:
+  clang-format:
+    name: clang-format
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install clang-format
+        run: bash .github/scripts/apt_install.sh clang-format-19
+
+      # The file-count check guards against the pattern silently matching nothing.
+      - name: Check formatting
+        shell: bash
+        run: |
+          git ls-files '*.cpp' '*.hpp' > sources.txt
+          echo "Checking $(wc -l < sources.txt) files"
+          test -s sources.txt
+          xargs clang-format-19 --dry-run --Werror < sources.txt
+
+  # .qmllint.ini selects the categories; the ones that need the QAccelPlot types are off.
+  qmllint:
+    name: qmllint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      # The file-count check guards against the pattern silently matching nothing.
+      - name: Run qmllint
+        shell: bash
+        run: |
+          git ls-files '*.qml' > qml-files.txt
+          echo "Checking $(wc -l < qml-files.txt) files"
+          test -s qml-files.txt
+          xargs qmllint < qml-files.txt
+
   clang-tidy:
     name: clang-tidy
     runs-on: ubuntu-24.04

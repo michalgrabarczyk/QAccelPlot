@@ -27,6 +27,8 @@ private slots:
     void seriesConstructedWithPlotParentAreRegistered();
     void seriesConstructedWithPlotParentFollowPlotResize();
     void seriesRemovedBeforeRegistrationAreIgnored();
+    void destroyedSeriesLeavesPlotWhileStillSeries();
+    void destroyedPlotReleasesSeriesWhileStillPlot();
     void plotRectIsNeverAssignedOnRenderThread();
 };
 
@@ -74,6 +76,37 @@ void PlotSeriesRegistrationTest::seriesRemovedBeforeRegistrationAreIgnored()
 
     QVERIFY(plot.series().isEmpty());
     delete moved;
+}
+
+// An observer of seriesChanged() holds pointers to the series, typically a QPointer<PlotSeries>,
+// which it may only use while the object is still a PlotSeries.
+void PlotSeriesRegistrationTest::destroyedSeriesLeavesPlotWhileStillSeries()
+{
+    auto plot = PlotView{};
+    auto* curve = new QAccelPlot::LineCurve(&plot);
+    QTRY_VERIFY(plot.series().contains(curve));
+    auto* object = static_cast<QObject*>(curve);
+    auto wasSeries = false;
+    connect(&plot, &PlotView::seriesChanged, this, [&] { wasSeries = qobject_cast<QAccelPlot::PlotSeries*>(object) != nullptr; });
+
+    delete curve;
+
+    QVERIFY(wasSeries);
+    QVERIFY(plot.series().isEmpty());
+}
+
+void PlotSeriesRegistrationTest::destroyedPlotReleasesSeriesWhileStillPlot()
+{
+    auto plot = std::make_unique<PlotView>();
+    auto* curve = new QAccelPlot::LineCurve(plot.get());
+    QTRY_VERIFY(plot->series().contains(curve));
+    auto* object = static_cast<QObject*>(plot.get());
+    auto wasPlot = false;
+    connect(curve, &QQuickItem::parentChanged, this, [&] { wasPlot = qobject_cast<PlotView*>(object) != nullptr; });
+
+    plot.reset();
+
+    QVERIFY(wasPlot);
 }
 
 void PlotSeriesRegistrationTest::plotRectIsNeverAssignedOnRenderThread()

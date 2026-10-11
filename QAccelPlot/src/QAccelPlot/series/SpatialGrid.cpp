@@ -122,10 +122,10 @@ int SpatialGrid::scanTopmostFrom(const T* data, const int itemCount, const int v
     for (auto i = itemCount - 1; i >= 0; --i) {
         const auto* item = data + static_cast<ptrdiff_t>(i) * valuesPerItem;
         // Combined without short-circuiting: each comparison alone fails for about half the
-        // rectangles and would mispredict.
-        const auto overlaps = (std::min(item[0], item[2]) <= box.maxX) & (std::max(item[0], item[2]) >= box.minX) & (std::min(item[1], item[3]) <= box.maxY)
-            & (std::max(item[1], item[3]) >= box.minY);
-        if (!overlaps) {
+        // rectangles and would mispredict. The casts tell Clang that the bitwise operators are intended.
+        const auto overlaps = static_cast<int>(std::min(item[0], item[2]) <= box.maxX) & static_cast<int>(std::max(item[0], item[2]) >= box.minX)
+            & static_cast<int>(std::min(item[1], item[3]) <= box.maxY) & static_cast<int>(std::max(item[1], item[3]) >= box.minY);
+        if (overlaps == 0) {
             continue;
         }
         // std::min/max can drop a NaN operand, so invalid items are rejected explicitly.

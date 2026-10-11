@@ -7,6 +7,8 @@
 //
 #include "InspectionPlotRig.hpp"
 
+#include "HoverEvents.hpp"
+
 #include <QHoverEvent>
 #include <QMouseEvent>
 
@@ -44,13 +46,13 @@ QPointF PlotRig::pixel(const qreal dataX, const qreal dataY) const
 
 void PlotRig::hover(const QPointF& point)
 {
-    auto event = QHoverEvent{QEvent::HoverMove, point, point, Qt::NoModifier};
+    auto event = QAccelPlotTest::hoverEvent(QEvent::HoverMove, point, point);
     plot.hoverMoveEvent(&event);
 }
 
 void PlotRig::leave()
 {
-    auto event = QHoverEvent{QEvent::HoverLeave, {}, {}, Qt::NoModifier};
+    auto event = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, {}, {});
     plot.hoverLeaveEvent(&event);
 }
 

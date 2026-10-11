@@ -41,6 +41,10 @@ PlotSeries::PlotSeries(QQuickItem* parent)
 
 PlotSeries::~PlotSeries()
 {
+    // Leave the plot while this is still a PlotSeries. ~QQuickItem would do it later, when the
+    // observers of QAccelPlot::seriesChanged() can no longer use their pointers to this series.
+    setParentItem(nullptr);
+
     if (xAxis_) {
         xAxis_->removeDataRangeSource(this, Axis::Horizontal);
     }

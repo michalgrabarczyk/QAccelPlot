@@ -184,6 +184,8 @@ ctest --test-dir build --output-on-failure
 | :--- | :--- | :--- |
 | `QACCELPLOT_USE_QT_PRIVATE_API` | `ON` if `QuickPrivate` is found | In-place data texture updates; `OFF` uses public Qt API only. See [texture upload modes](docs/guide/performance.md#select-the-texture-upload-mode). |
 | `QACCELPLOT_BUILD_VISUAL_TESTS` | `OFF` | Screenshot and visual validation tests. Requires examples and tests. |
+| `QACCELPLOT_FORCE_ASSERTS` | `OFF` | Keeps `Q_ASSERT` active in Release builds. CI turns it on. |
+| `QACCELPLOT_WARNINGS_AS_ERRORS` | `OFF` | Builds with `-Wall -Wextra -Werror`, or `/W4 /WX` on MSVC. CI turns it on for one job per compiler. |
 
 ---
 

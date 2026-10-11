@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
     engine.setInitialProperties({{QStringLiteral("isDark"), !app.arguments().contains(QStringLiteral("--light-theme"))}});
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
 
     QAccelPlotExample::setupScreenshotHandler(app, engine);
     return app.exec();

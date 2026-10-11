@@ -8,6 +8,8 @@
 name: Build and test
 
 on:
+  push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -129,13 +131,25 @@ jobs:
               force_mesa_software: '1'
               os_name: Linux ARM64
               backend_name: OpenGL ES 3
+          # Every other run forces the basic render loop. This one renders on a separate thread,
+          # which is the Qt default on Windows.
+          - qt_version: '6.8.3'
+            platform:
+              os: windows-2025
+              backend: d3d11
+              label: d3d11-threaded
+              render_loop: threaded
+              prefer_software_device: '1'
+              force_mesa_software: '0'
+              os_name: Windows
+              backend_name: Direct3D 11 / threaded render loop
     env:
       QSG_RHI_BACKEND: ${{ matrix.platform.backend }}
       QACCELPLOT_EXPECTED_GRAPHICS_API: ${{ matrix.platform.backend }}
       QACCELPLOT_EXPECTED_QT_VERSION: ${{ matrix.qt_version }}
       QSG_RHI_PREFER_SOFTWARE_RENDERER: ${{ matrix.platform.prefer_software_device }}
       LIBGL_ALWAYS_SOFTWARE: ${{ matrix.platform.force_mesa_software }}
-      QSG_RENDER_LOOP: basic
+      QSG_RENDER_LOOP: ${{ matrix.platform.render_loop || 'basic' }}
       # Hosted Windows and macOS desktops expose only about 1024px of logical
       # width. This keeps windows visible; screenshots are rendered separately
       # into full-resolution offscreen targets by the example capture helper.
@@ -240,6 +254,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
+          -DQACCELPLOT_FORCE_ASSERTS=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
@@ -250,16 +265,21 @@ jobs:
           cmake -S . -B build -G "Visual Studio 18 2026" -A x64 -T v142
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
+          -DQACCELPLOT_FORCE_ASSERTS=ON
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF
 
+      # Qt 6.8 is the one version built with MSVC warnings as errors, so that a deprecation in a
+      # newer Qt does not fail the build.
       - name: Configure CMake (Windows, Qt 6.8+)
         if: runner.os == 'Windows' && matrix.qt_version != '6.2.4'
         run: >-
           cmake -S . -B build -G "Visual Studio 18 2026" -A x64
           -DQACCELPLOT_BUILD_TESTS=ON
           -DQACCELPLOT_BUILD_VISUAL_TESTS=ON
+          -DQACCELPLOT_FORCE_ASSERTS=ON
+          -DQACCELPLOT_WARNINGS_AS_ERRORS=${{ matrix.qt_version == '6.8.3' && 'ON' || 'OFF' }}
           -DQACCELPLOT_BUILD_BENCHMARKS=OFF
           -DQACCELPLOT_DEPLOY_EXAMPLES=OFF
           -DQACCELPLOT_INSTALL=OFF

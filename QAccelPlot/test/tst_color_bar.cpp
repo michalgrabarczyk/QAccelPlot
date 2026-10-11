@@ -5,6 +5,7 @@
 // This file is also available under a separate commercial license.
 // See COMMERCIAL-LICENSING.md for contact information.
 //
+#include "HoverEvents.hpp"
 #include "QAccelPlot/axis/Axis.hpp"
 #include "QAccelPlot/axis/AxisTickPainter.hpp"
 #include "QAccelPlot/axis/ColorBar.hpp"
@@ -556,12 +557,12 @@ void ColorBarTest::hoverIsReportedWhileInteractive()
     QVERIFY(scene.bar.acceptHoverEvents());
 
     auto spy = QSignalSpy{&scene.bar, &ColorBar::hoveredChanged};
-    auto enter = QHoverEvent{QEvent::HoverEnter, QPointF{6.0, 100.0}, QPointF{6.0, 100.0}, Qt::NoModifier};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, QPointF{6.0, 100.0}, QPointF{6.0, 100.0});
     scene.bar.hoverEnterEvent(&enter);
     QVERIFY(scene.bar.hovered());
     QCOMPARE(spy.count(), 1);
 
-    auto leave = QHoverEvent{QEvent::HoverLeave, {}, {}, Qt::NoModifier};
+    auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, {}, {});
     scene.bar.hoverLeaveEvent(&leave);
     QVERIFY(!scene.bar.hovered());
     QCOMPARE(spy.count(), 2);
@@ -587,11 +588,11 @@ void ColorBarTest::qmlBorderColorFollowsHovered()
     QVERIFY(bar);
     QCOMPARE(bar->borderColor(), QColor{"#ff0000"});
 
-    auto enter = QHoverEvent{QEvent::HoverEnter, QPointF{6.0, 100.0}, QPointF{6.0, 100.0}, Qt::NoModifier};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, QPointF{6.0, 100.0}, QPointF{6.0, 100.0});
     QCoreApplication::sendEvent(bar, &enter);
     QCOMPARE(bar->borderColor(), QColor{"#00ff00"});
 
-    auto leave = QHoverEvent{QEvent::HoverLeave, {}, {}, Qt::NoModifier};
+    auto leave = QAccelPlotTest::hoverEvent(QEvent::HoverLeave, {}, {});
     QCoreApplication::sendEvent(bar, &leave);
     QCOMPARE(bar->borderColor(), QColor{"#ff0000"});
 }
@@ -599,7 +600,7 @@ void ColorBarTest::qmlBorderColorFollowsHovered()
 void ColorBarTest::leavingInteractiveModeClearsHover()
 {
     auto scene = InteractiveScene{ColorBar::Vertical};
-    auto enter = QHoverEvent{QEvent::HoverEnter, scene.center(), scene.center(), Qt::NoModifier};
+    auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, scene.center(), scene.center());
     scene.bar.hoverEnterEvent(&enter);
     QVERIFY(scene.bar.hovered());
 

@@ -401,11 +401,12 @@ void setupScreenshotHandler(QGuiApplication& app, QQmlApplicationEngine& engine,
         // Qt 6.3 it treats targetSize as device-independent and multiplies it
         // by QQuickWindow::effectiveDevicePixelRatio(). Match those documented
         // implementations directly so every capture is a single render pass.
+        // MSVC folds the constant into the lambda below and reports the variable as unreferenced.
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
-        constexpr bool grabTargetScaledByDevicePixelRatio = false;
+        [[maybe_unused]] constexpr bool grabTargetScaledByDevicePixelRatio = false;
         const auto offscreenTargetSize = logicalWindowSize;
 #else
-        constexpr bool grabTargetScaledByDevicePixelRatio = true;
+        [[maybe_unused]] constexpr bool grabTargetScaledByDevicePixelRatio = true;
         const QSize offscreenTargetSize(qRound(logicalWindowSize.width() / effectiveDevicePixelRatio),
             qRound(logicalWindowSize.height() / effectiveDevicePixelRatio));
 #endif

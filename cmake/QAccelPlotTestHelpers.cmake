@@ -17,16 +17,36 @@ if(WIN32)
     string(REPLACE ";" "\\;" _qaccelplot_windows_path_environment "${_qaccelplot_windows_path_environment}")
 endif()
 
+# Qt warnings that no test or example should print. A test that expects one of them declares it
+# with QTest::ignoreMessage(), which keeps it out of the output.
+set(_qaccelplot_unexpected_warnings
+    # QML errors, such as a TypeError or an unassignable value, name their .qml file and line.
+    "\\.qml:[0-9]+"
+    "(Type|Reference)Error:"
+    "Binding loop detected"
+    # Qt 6.11+ reports QML properties that shadow a base-type member.
+    "qt\\.qml\\.propertyCache"
+    # A signal or slot that does not exist.
+    "QObject::(connect|disconnect)"
+    # A QObject used from a thread it does not live in.
+    "(in|by) a different thread"
+    "from another thread"
+)
+
 function(_qaccelplot_register_test name scope)
     add_test(NAME ${name} COMMAND ${name})
     set_tests_properties(${name} PROPERTIES
         LABELS "unit-test;unit-test-${scope}"
     )
+    set_property(TEST ${name} PROPERTY FAIL_REGULAR_EXPRESSION ${_qaccelplot_unexpected_warnings})
+    # On Windows, Qt Test otherwise logs to the debugger and ctest sees no warning to match.
+    set(_test_environment "QT_FORCE_STDERR_LOGGING=1")
     if(WIN32)
-        set_tests_properties(${name} PROPERTIES
-            ENVIRONMENT "${_qaccelplot_windows_path_environment}"
-        )
+        list(PREPEND _test_environment "${_qaccelplot_windows_path_environment}")
     endif()
+    set_tests_properties(${name} PROPERTIES
+        ENVIRONMENT "${_test_environment}"
+    )
 
     if(TARGET QAccelPlotTests)
         add_dependencies(QAccelPlotTests ${name})
@@ -92,9 +112,8 @@ function(add_qaccelplot_example_visual_scenario target example scenario)
         # A capture takes about 2 s, but software-rendered Windows CI runners
         # need 15 s or more for the heaviest pages.
         TIMEOUT 60
-        # Qt 6.11+ reports QML properties that shadow a base-type member.
-        FAIL_REGULAR_EXPRESSION "qt\\.qml\\.propertyCache"
     )
+    set_property(TEST smoke_${_name} PROPERTY FAIL_REGULAR_EXPRESSION ${_qaccelplot_unexpected_warnings})
 
     find_package(Python3 COMPONENTS Interpreter QUIET)
     if(Python3_Interpreter_FOUND)

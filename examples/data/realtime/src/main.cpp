@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 
     const auto realtimeEnabled = !app.arguments().contains(QStringLiteral("--screenshot"));
     engine.setInitialProperties({{QStringLiteral("realtimeEnabled"), realtimeEnabled}});
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
     auto* curve = root ? root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("vibrationCurve")) : nullptr;
 

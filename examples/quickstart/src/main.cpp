@@ -28,8 +28,7 @@ std::vector<float> dailyTemperatureData()
 
     for (int sample = 0; sample < sampleCount; ++sample) {
         const auto hour = 24.0 * sample / (sampleCount - 1);
-        const auto temperature = 21.5 + 4.0 * std::sin(2.0 * pi * (hour - 8.0) / 24.0)
-            + 0.35 * std::sin(2.0 * pi * hour / 3.0);
+        const auto temperature = 21.5 + 4.0 * std::sin(2.0 * pi * (hour - 8.0) / 24.0) + 0.35 * std::sin(2.0 * pi * hour / 3.0);
         points.push_back(static_cast<float>(hour));
         points.push_back(static_cast<float>(temperature));
     }
@@ -48,7 +47,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     if (auto* root = engine.rootObjects().value(0)) {
         if (auto* curve = root->findChild<QAccelPlot::LineCurve*>(QStringLiteral("temperatureCurve"))) {
             curve->setDataF(dailyTemperatureData(), 97);

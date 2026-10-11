@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
     QAccelPlotExample::setupEngineFailureHandler(app, engine);
 
-    engine.load(QUrl(u"qrc:/app/qml/main.qml"_qs));
+    engine.load(QUrl(QStringLiteral("qrc:/app/qml/main.qml")));
     auto* root = engine.rootObjects().value(0);
     auto* cloud = root ? root->findChild<QAccelPlot::PointCloud*>(QStringLiteral("cloud")) : nullptr;
     if (!cloud) {

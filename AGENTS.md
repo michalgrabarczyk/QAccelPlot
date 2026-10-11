@@ -138,6 +138,7 @@ QAccelPlot/
 - Always use braces `{ }` after `if`, `for`, and `while` bodies, even for
   single-statement bodies.
 - Always run `clang-format` after making changes to `.cpp` or `.hpp` files.
+  The Static analysis CI workflow checks them with clang-format 19.
 - Library sources must pass `clang-tidy` with the repository `.clang-tidy`
   (enforced by the Static analysis CI workflow).
 
