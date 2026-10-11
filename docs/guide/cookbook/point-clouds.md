@@ -174,17 +174,16 @@ QAccelPlot.Plot {
 
 ## Stream point data
 
-`postData()` is thread-safe. It moves the buffers into a queued call, so a
-worker thread can produce complete frames without copying them again:
+From a worker thread, hand over complete frames with `postData()`, which
+moves the buffers:
 
 ```cpp
 // Worker thread
 cloud->postData(std::move(xy), std::move(values), pointCount);
 ```
 
-Post a frame only after the window has presented the previous one, for
-example by counting `QQuickWindow::frameSwapped`, so queued frames cannot pile
-up when rendering falls behind.
+Post no faster than frames are presented; see
+[Background data production](background-data.md).
 
 ## Animate data changes
 

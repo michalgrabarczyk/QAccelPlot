@@ -33,17 +33,12 @@ Move an interleaved float buffer with
 [`setDataF(std::vector<float>&&, int)`](api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26).
 See [Select the data path](performance.md#select-the-data-path).
 
-## When should I use `postData()` instead of `setDataF()`?
-
-Use [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) from
-a worker thread; it queues the buffer transfer to the curve's thread.
-`setDataF()` must be called on the curve's thread, normally the UI thread.
-
 ## Is QAccelPlot thread-safe?
 
-No. Access QML objects and properties on the UI thread. Produce data on any
-thread and hand it off through `postData()` or a queued call. See
-[Background data production](cookbook/background-data.md).
+No. Access QML objects and properties, including `setDataF()`, on the UI
+thread. Produce data on any thread and hand it off through
+[`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) or a
+queued call. See [Background data production](cookbook/background-data.md).
 
 ## Which Qt versions are supported?
 

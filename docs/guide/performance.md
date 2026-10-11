@@ -83,13 +83,8 @@ can add categories with their vector overloads.
 
 Generate data on a worker thread and hand off only completed buffers, using
 [`postData()`][post-data] or a queued call. Never write to a `QQuickItem` from
-the worker.
-
-If producers are faster than the display, keep at most one pending batch or a
-bounded queue. The
-[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/GenerationWorker.hpp)
-waits until the UI thread consumes the previous batch. See
-[Background data production](cookbook/background-data.md).
+the worker. If producers are faster than the display, keep at most one pending
+batch; see [Background data production](cookbook/background-data.md).
 
 ## Optional rendering costs
 
