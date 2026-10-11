@@ -204,10 +204,9 @@ ctest --test-dir build --output-on-failure
 
 Planned before 1.0:
 
-- Bar charts.
 - Heatmaps.
 - SVG and PNG export.
-- Box zoom and per-axis pan and zoom limits.
+- Per-axis pan and zoom limits.
 - Touch panning and pinch zoom.
 
 ---
