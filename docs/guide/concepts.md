@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together."
+description: "QAccelPlot architecture explained — how Plot, PlotView, axes, series, DataAnchor, and the Qt Scene Graph rendering pipeline work together."
 ---
 
 <!--
@@ -63,6 +63,9 @@ accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
 Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
 series beneath.
+
+`PointCloud` renders unconnected points as markers, colored uniformly or by a
+per-point value through a `Colormap`. It reports the hovered point index.
 
 `BandSeries` fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores `(x, low, high)` triples and

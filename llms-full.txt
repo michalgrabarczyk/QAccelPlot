@@ -20,17 +20,22 @@ frame.
   [reference system](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/), without downsampling
 - **Data paths** — QML points, double vectors, moved `float` buffers, and
   worker-thread `postData()`
-- **Interaction** — pan, cursor-centered and per-axis zoom, rescale, hover hit
-  testing, and plot mouse events for custom tools
+- **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
+  hover hit testing, and plot mouse events for custom tools
+- **Inspection** — crosshair, tooltip, nearest-sample queries, and region
+  selection with statistics
 - **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions
-- **Layout** — secondary and extra axes, data-anchored QML overlays, and
-  `RectangleSeries` for event spans and state timelines
+- **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
+  by value, with a `ColorBar`
 - **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
+- **Bands** — `BandSeries` for confidence intervals and envelopes
+- **Layout** — secondary and extra axes, data-anchored QML overlays, and
+  `RectangleSeries` for event spans and state timelines
 
 ### Quick start
 
@@ -54,8 +59,11 @@ See [Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-star
 - **[Getting started](https://michalgrabarczyk.github.io/QAccelPlot/getting-started/)** — CMake integration and a first plot.
 - **[Concepts](https://michalgrabarczyk.github.io/QAccelPlot/concepts/)** — Axes, series, gaps, overlays, and threading.
 - **[Performance](https://michalgrabarczyk.github.io/QAccelPlot/performance/)** — Data paths, worker handoff, and benchmarking.
+- **[Performance comparison](https://michalgrabarczyk.github.io/QAccelPlot/performance-comparison/)** — Benchmark setup and results.
 - **[Cookbook](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/)** — Recipes for common tasks.
 - **[FAQ](https://michalgrabarczyk.github.io/QAccelPlot/faq/)** — Licensing, threading, and compatibility.
+- **[Troubleshooting](https://michalgrabarczyk.github.io/QAccelPlot/troubleshooting/)** — Blank curves, build errors, and stutter.
+- **[Versioning](https://michalgrabarczyk.github.io/QAccelPlot/versioning/)** — Release numbers, pinning, and documentation versions.
 - **[API reference](https://michalgrabarczyk.github.io/QAccelPlot/api/)** — Types, properties, methods, signals, and enums.
 
 Each recipe links to a complete, runnable
@@ -348,6 +356,9 @@ accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
 Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
 series beneath.
+
+`PointCloud` renders unconnected points as markers, colored uniformly or by a
+per-point value through a `Colormap`. It reports the hovered point index.
 
 `BandSeries` fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
