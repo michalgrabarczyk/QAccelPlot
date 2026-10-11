@@ -1890,35 +1890,27 @@ Complete source:
 
 # Rectangle zoom
 
-Enable rectangle zoom on `Plot` or `PlotView`:
+Rectangle zoom is disabled by default. Enable it on `Plot` or `PlotView`:
 
 ```qml
 import QAccelPlot as QAccelPlot
 
 QAccelPlot.Plot {
-    readonly property color zoomBorderColor: QAccelPlot.Colors.dark.rectangleZoomBorder
-
     rectangleZoom.enabled: true
-    rectangleZoom.modifiers: Qt.ShiftModifier
-    rectangleZoom.minimumSize: 6
-    rectangleZoom.fillColor: QAccelPlot.Colors.dark.rectangleZoomFill
-    rectangleZoom.borderColor: zoomBorderColor
 }
 ```
 
 - Shift + left drag selects a region; release to zoom all attached axes.
 - Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
-- The selection is clipped to the plot area and must be at least 6 logical pixels
-  wide and high; adjust `rectangleZoom.minimumSize` to change this.
-
-Rectangle zoom is disabled by default. `rectangleZoom.modifiers` must match
-exactly at press time; use `Qt.NoModifier` for unmodified dragging. A
-[`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses the same gesture by default
-and takes it when both are enabled; change `modifiers` on one of them.
-
-Bind `fillColor` to the palette's `rectangleZoomFill` and `borderColor` to
-`rectangleZoomBorder`. Both are gray in the dark theme and light gray in the light theme;
-the fill color includes 15% opacity.
+- The selection is clipped to the plot area and must be at least
+  `rectangleZoom.minimumSize` logical pixels wide and high, 6 by default.
+- `rectangleZoom.modifiers` must match exactly at press time; use
+  `Qt.NoModifier` for unmodified dragging. A
+  [`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses the same gesture by
+  default and takes it when both are enabled; change `modifiers` on one of them.
+- `rectangleZoom.fillColor` and `borderColor` default to the dark palette's
+  `rectangleZoomFill` and `rectangleZoomBorder`. Bind them to `Colors.light`
+  for a light theme.
 
 For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
 
