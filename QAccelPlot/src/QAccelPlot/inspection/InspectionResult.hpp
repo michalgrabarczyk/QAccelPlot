@@ -176,7 +176,7 @@ struct InspectionPage {
     Q_PROPERTY(bool hasMore MEMBER hasMore CONSTANT)
     /// \brief True when pages are in ascending source order; false for index traversal order.
     Q_PROPERTY(bool sourceOrder MEMBER sourceOrder CONSTANT)
-    /// \brief Matching source indices.
+    /// \brief Matching source indices. In QML, \c Array.from(page.indices) gives a JavaScript array.
     Q_PROPERTY(QList<int> indices MEMBER indices CONSTANT)
 
 public:

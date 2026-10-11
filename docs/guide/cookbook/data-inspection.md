@@ -9,6 +9,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 # Data inspection
 
+`PlotInspector` shows a crosshair, a marker on every series, and a tooltip at
+the cursor. `SelectionTool` selects a region and reports its statistics.
+
 ```qml
 import QAccelPlot as QAccelPlot
 
@@ -26,23 +29,21 @@ QAccelPlot.Plot {
 ```
 
 - Components declared inside a `PlotInspector` use it and are drawn in
-  declaration order, the last one on top.
+  declaration order, the last one on top. A component declared elsewhere needs
+  `inspector:` set and is not restacked.
 - They are children of `plotView.overlay`, an item above the series and the
   legend. Parent your own overlays to it instead of choosing a `z` relative to
   the series.
-- `SelectionTool` draws its rectangle in the same overlay, below everything else.
-- A component declared elsewhere needs `inspector:` set and is not restacked.
-
-Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
-drag selects a region; Escape clears it. Ordinary left dragging still pans.
+- Shift + left drag selects a region; Escape clears it. Ordinary left dragging
+  still pans.
 
 [Rectangle zoom](rectangle-zoom.md) uses the same gesture by default. When both
 are enabled, `SelectionTool` takes it; change `modifiers` on one of them.
 
 ## Inspector
 
-`PlotInspector` queries every visible `LineCurve` and `PointCloud` of the plot
-at the cursor. Other series types have no row.
+[`PlotInspector`][plot-inspector] queries every visible `LineCurve` and
+`PointCloud` of the plot at the cursor. Other series types have no row.
 
 | Property | Effect |
 | --- | --- |
@@ -50,36 +51,17 @@ at the cursor. Other series types have no row.
 | `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme samples; between two samples a series always matches. |
 | `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive samples. |
 | `snapToSample` | Move the crosshair to the closest matching sample. |
-| `summaries`, `summaryRadius` | Add the count and Y statistics of the samples within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many samples. `NearestY` covers the horizontal band around the cursor. |
+| `summaries`, `summaryRadius` | Add the count and Y statistics of the samples within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many samples. |
 | `includedSeries`, `excludedSeries` | Restrict the inspected series. |
 
-Results:
+The inspector reports `active`, the crosshair `position`, `cursorX` and
+`cursorY` with their formatted texts, `validCount`, and `model`.
 
-- `active` — the cursor is inside the plot area.
-- `position` — crosshair position in plot-local pixels. A coordinate the cursor
-  lacks is NaN.
-- `cursorX`, `cursorY`, `cursorXText`, `cursorYText` — crosshair position on the
-  plot's primary axes.
-- `validCount` — number of series with a match.
-- `model` — one row per inspected series.
+### Tooltip rows
 
-### Rows
-
-`inspector.model` is a list model. Rows are created when the set of inspected
-series changes and updated in place as the cursor moves, so delegates are reused.
-
-| Role | Value |
-| --- | --- |
-| `series`, `seriesName`, `seriesColor` | The series, its name, and its `color`. |
-| `valid`, `sampleStatus` | Whether a sample matched, and why not. |
-| `sampleIndex`, `sampleX`, `sampleY`, `sampleValue` | The source index and values. `sampleValue` is the `PointCloud` scalar. |
-| `xText`, `yText` | Values formatted by the series' axes. |
-| `pixelPosition`, `distance`, `interpolated` | Plot-local sample position, pixel distance from the cursor, and whether the point is interpolated. |
-| `hasSummary`, `summaryCount`, `minimum`, `maximum`, `mean`, `standardDeviation`, `minimumIndex`, `maximumIndex` | Neighborhood statistics. |
-| `minimumText`, `maximumText`, `meanText` | Statistics formatted by the series' Y axis. |
-
-Replace `InspectionTooltip.rowDelegate` to change a tooltip row. Declare the
-roles it uses as required properties:
+`inspector.model` has one row per inspected series, updated in place as the
+cursor moves. Replace `InspectionTooltip.rowDelegate` to change a tooltip row,
+and declare the roles it uses as required properties:
 
 ```qml
 QAccelPlot.InspectionTooltip {
@@ -93,8 +75,8 @@ QAccelPlot.InspectionTooltip {
 }
 ```
 
-Texts use `Axis.formatValue(value, length)`: the axis' tick formatter with a
-precision one digit finer than a pixel, so they follow the zoom level.
+[`InspectionRowModel`][row-model] lists the roles. Text roles such as `yText`
+use the axis' tick formatter at a precision that follows the zoom level.
 
 ### Cursor from code
 
@@ -110,48 +92,31 @@ QAccelPlot.PlotInspector { plot: bottomPlot; followPointer: false; cursorX: top.
 `stepCursor(n)` moves the cursor `n` source records along the first matching
 series and stops following the pointer; use it for keyboard navigation.
 
-A touch places the cursor at the touched point and leaves it there after the
-release.
-
 ## Queries
 
 Every series exposes its queries as `series.inspection`. Call them on the series'
 thread. Pixel arguments are series-local logical pixels: map a plot-local
 position with `series.mapFromItem(plot, position)`.
 
-| Method | Result |
-| --- | --- |
-| `sampleAt(index)` | The record at a source index. |
-| `nearest(position, radius)` | Nearest valid sample by screen distance. |
-| `nearestByX(pixelX, radius)` | Nearest valid sample by horizontal distance. |
-| `bracketByX(pixelX)` | The valid samples on either side, whether they are consecutive, and the point between them. |
-| `nearestByY(pixelY, radius)`, `bracketByY(pixelY)` | The same along Y. |
-| `summarize(xMin, xMax, yMin, yMax)` | Y statistics inside a region. |
-| `summarizeRange(xMin, xMax)` | Y statistics over an X interval. |
-| `indices(xMin, xMax, yMin, yMax, offset, limit)` | One page of source indices inside a region. |
-| `recordAt(index)`, `recordAtPosition(position)` | Native record of a bar, rectangle, or band series. |
-
-- Results are value objects with a `status` and a `valid` flag. Compare `status`
-  with `QAccelPlot.Inspection.Ready`, `NoMatch`, `Idle`, `Preparing`,
-  `Unsupported`, `Unavailable`, `InvalidArgument`, or `Stale`.
-- Regions are inclusive. Reversed limits are swapped. `Infinity` leaves a side
-  unbounded.
-- Indices refer to the supplied records, including invalid ones. Invalid samples
-  (NaN, infinite, or non-positive on a logarithmic axis) never match.
-- Equal distances resolve to the highest index.
-- Statistics are sample-weighted, not time-weighted, and use original Y values.
-- Queries cover all stored samples, also outside the viewport. They do not test
-  line segments, except for the interpolated point of `bracketByX()` and
-  `bracketByY()`.
-- `bracketByX()` and `bracketByY()`: `left` is the sample with the largest
-  coordinate at or below the position, `right` the one with the smallest
-  coordinate above it. Either is invalid beyond the extremes of the data.
-
 ```qml
 const sample = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
 if (sample.valid)
     console.log(sample.index, sample.x, sample.y)
 ```
+
+| Query | Methods |
+| --- | --- |
+| A record by index | `sampleAt()` |
+| Nearest valid sample | `nearest()`, `nearestByX()`, `nearestByY()` |
+| Samples on either side and the point between them | `bracketByX()`, `bracketByY()` |
+| Y statistics of a region or an X interval | `summarize()`, `summarizeRange()` |
+| Source indices inside a region, in pages | `indices()` |
+| Native record of a bar, rectangle, or band series | `recordAt()`, `recordAtPosition()` |
+
+Results carry a `status` and a `valid` flag. Compare `status` with
+`QAccelPlot.Inspection.Ready`, `NoMatch`, `Preparing`, or another status.
+[`SeriesInspection`][series-inspection] specifies regions, tie-breaking, and
+paging.
 
 ### Readiness
 
@@ -162,51 +127,35 @@ if (sample.valid)
 | Unordered, more records | Indexed on a worker thread. Queries return `Preparing` until `inspection.status` is `Ready`; `statusChanged` announces it. |
 
 - `nearestByX()`, `bracketByX()`, and their Y counterparts need the order along
-  their own axis. Data ordered along the other axis only counts as unordered for
-  them; `status` and `prepare()` refer to queries that take any order.
-- The index takes memory on top of the series' own data: about 40 MB per
-  million valid samples. `inspection.indexBytes()` reports the actual size.
-- Requesting an index copies the series' buffer once on the UI thread; the rest
-  of the build runs on the worker.
-- Any data change discards the index; the next query requests a new one. A
-  stream that replaces unordered data faster than it can be indexed never
-  becomes `Ready`.
-- `prepare()` starts indexing before the first query. `status` is `Idle` until
-  an index is requested.
-- Inspection is `Unavailable` while a `LineCurve` data transition is pending and
-  for pixel queries without axes or size.
-
-### Pages and revisions
-
-`dataRevision` advances on every accepted data change. `indices()` returns
-`total`, `hasMore`, the effective `limit` (at most `maximumPageSize`), and the
-`dataRevision` it used. Pass that revision as the last argument of the next call
-to get `Stale` instead of indices of newer data. `sourceOrder` is false for
-indexed series, whose pages follow the index instead of ascending source order.
-In QML, `indices` is a list; `Array.from(page.indices)` gives a JavaScript array.
+  their own axis.
+- `prepare()` starts indexing before the first query.
+- Any data change discards the index. A stream that replaces unordered data
+  faster than it can be indexed never becomes `Ready`.
+- The index takes about 40 MB per million valid samples;
+  `inspection.indexBytes()` reports the actual size.
 
 ## Selection
 
-`SelectionTool` selects a `Box`, an `XRange`, or a `YRange`. `button`,
-`modifiers`, and `minimumSize` configure the gesture; the modifiers must match
-exactly and a shorter drag only clears the selection.
+[`SelectionTool`][selection-tool] selects a `Box`, an `XRange`, or a `YRange`.
+`button`, `modifiers`, and `minimumSize` configure the gesture; the modifiers
+must match exactly and a shorter drag only clears the selection.
 
 - The region is `xMin`, `xMax`, `yMin`, `yMax` in the coordinates of `xAxis` and
   `yAxis`, which default to the plot's primary axes. A range selection is
   unbounded in its other dimension.
 - Visible XY series bound to the axis of every bounded dimension are selected,
   so an X range also covers series on a secondary Y axis.
-- `model` has one row per selected series with the summary roles listed above.
-- The region is kept when data changes: rows are recomputed and
-  `indices(series, offset, limit)` runs against the current data.
-- `select(xMin, xMax, yMin, yMax)` sets the region from code. `clear()` and
-  Escape remove it. Changing the plot or the selection axes clears it.
-- `selectionChanged` reports a new or cleared region, `completed` a finished
-  gesture.
-
-The tool draws `pixelRect` with its `fillColor` and `borderColor`, which default
-to the palette's `selectionFill` and `selectionBorder`. Set
-`rectangleVisible: false` to draw `pixelRect` yourself.
+- `model` has one row of statistics per selected series, recomputed when data
+  changes. `indices(series, offset, limit)` pages through the selected samples.
+- `select(xMin, xMax, yMin, yMax)` sets the region from code; `clear()` removes
+  it. `selectionChanged` reports a new or cleared region, `completed` a
+  finished gesture.
+- Set `rectangleVisible: false` to draw `pixelRect` yourself.
 
 Complete source:
 [`examples/interaction/data_inspection`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection).
+
+[plot-inspector]: ../api/classQAccelPlot_1_1PlotInspector.md
+[row-model]: ../api/classQAccelPlot_1_1InspectionRowModel.md
+[series-inspection]: ../api/classQAccelPlot_1_1SeriesInspection.md
+[selection-tool]: ../api/classQAccelPlot_1_1SelectionTool.md

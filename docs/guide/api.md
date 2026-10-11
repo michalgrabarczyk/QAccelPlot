@@ -49,7 +49,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`SelectionTool`](api/classQAccelPlot_1_1SelectionTool.md) — data-space box
   and range selection with per-series statistics.
 
-See [Data inspection](cookbook/data-inspection.md) for usage, query contracts, and readiness.
+See [Data inspection](cookbook/data-inspection.md) for usage and readiness.
 
 ## Feeding curve data
 
