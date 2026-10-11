@@ -145,24 +145,6 @@ target_link_libraries(MyPlotApp PRIVATE
 
 qt_import_qml_plugins(MyPlotApp)
 qt_finalize_executable(MyPlotApp)
-
-# Windows has no build RPATH, so deploy Qt for direct Explorer launches.
-if(WIN32)
-    find_program(MY_PLOT_APP_WINDEPLOYQT
-        NAMES windeployqt
-        HINTS "${Qt6_DIR}/../../../bin"
-        REQUIRED
-    )
-
-    add_custom_command(TARGET MyPlotApp POST_BUILD
-        COMMAND "${MY_PLOT_APP_WINDEPLOYQT}"
-            --qmldir "${CMAKE_CURRENT_SOURCE_DIR}/qml"
-            --no-translations
-            "$<TARGET_FILE:MyPlotApp>"
-        COMMENT "Deploying the Qt runtime beside MyPlotApp"
-        VERBATIM
-    )
-endif()
 ```
 
 - `QAccelPlot::QAccelPlot` links the library and its static QML plugin.
@@ -170,6 +152,30 @@ endif()
 - `ShaderTools` compiles the curve shaders at build time.
 - As a subproject, QAccelPlot's examples, tests, benchmarks, and install rules
   default to off.
+
+??? note "Windows: launching from Explorer"
+
+    Windows has no build RPATH. To start the application outside the IDE,
+    deploy the Qt runtime beside it by appending:
+
+    ```cmake
+    if(WIN32)
+        find_program(MY_PLOT_APP_WINDEPLOYQT
+            NAMES windeployqt
+            HINTS "${Qt6_DIR}/../../../bin"
+            REQUIRED
+        )
+
+        add_custom_command(TARGET MyPlotApp POST_BUILD
+            COMMAND "${MY_PLOT_APP_WINDEPLOYQT}"
+                --qmldir "${CMAKE_CURRENT_SOURCE_DIR}/qml"
+                --no-translations
+                "$<TARGET_FILE:MyPlotApp>"
+            COMMENT "Deploying the Qt runtime beside MyPlotApp"
+            VERBATIM
+        )
+    endif()
+    ```
 
 To use a local checkout, replace the `FetchContent` block with:
 
