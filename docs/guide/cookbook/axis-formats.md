@@ -56,8 +56,6 @@ Enable a base-10 logarithmic mapping:
 xAxis: QAccelPlot.Axis {
     viewportMin: 20
     viewportMax: 20000
-    dataMin: 20
-    dataMax: 20000
     logScale: true
 }
 ```
