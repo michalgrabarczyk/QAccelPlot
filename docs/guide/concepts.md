@@ -83,7 +83,10 @@ own extent as (from, to, value), e.g. the bins of a histogram.
 ## Invalid samples and gaps
 
 `LineCurve` applies one invalid-sample contract to rendering, gradient fills,
-dash patterns, transitions, auto-ranging, and hover hit testing.
+dash patterns, transitions, auto-ranging, and hover hit testing. For the other
+series, see [bands](cookbook/bands.md#invalid-samples),
+[point clouds](cookbook/point-clouds.md#invalid-points), and
+[bars](cookbook/bar-charts.md#invalid-bars).
 
 A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
