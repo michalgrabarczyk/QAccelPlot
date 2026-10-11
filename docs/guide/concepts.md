@@ -72,7 +72,7 @@ confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.
 
 `RectangleSeries` renders many data-space rectangles in one item, such as event
-spans, bands, and state timelines. Infinite edges reach the plot edge, and a
+spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.
 

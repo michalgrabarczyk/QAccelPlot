@@ -33,7 +33,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`BandSeries`](api/classQAccelPlot_1_1BandSeries.md) — filled area between a
   low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
-  rectangles in one item: spans, bands, and state timelines.
+  rectangles in one item: spans and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and
   grouped bar charts, and ranged bars such as histogram bins.
 - [`Histogram`](api/classQAccelPlot_1_1Histogram.md) — samples counted into
