@@ -7,7 +7,7 @@ SPDX-FileCopyrightText: 2026 Michal Grabarczyk
 SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
-# Performance comparison methodology
+# Performance comparison
 
 ![Performance comparison](assets/performance_comparison.svg)
 
@@ -20,7 +20,7 @@ Find the maximum number of points each library sustains at a median of at least
 QAccelPlot, QCustomPlot, and Qt Graphs are built against Qt 6.11.2 and run in
 sequence on the same machine.
 
-## Hardware & OS
+## Hardware and OS
 
 | Item | Value |
 | --- | --- |
@@ -36,7 +36,7 @@ documented native OpenGL acceleration path because it does not render through
 Qt Quick's RHI. These are different rendering architectures using the same
 graphics API family.
 
-## Library Versions
+## Library versions
 
 | Library | Version |
 | --- | --- |
@@ -45,7 +45,7 @@ graphics API family.
 | Qt Graphs | Qt 6.11.2 |
 | Qt baseline | 6.11.2 |
 
-## Test Setup
+## Test setup
 
 - One plot containing one line curve is rendered at 800 × 600.
 - Two complete sine-wave buffers are generated before warmup. They contain the
@@ -64,7 +64,7 @@ graphics API family.
   points. A binary search then finds the largest passing count to 1,000-point
   resolution within 10K–12M.
 
-## QCustomPlot Configuration
+## QCustomPlot configuration
 
 - OpenGL acceleration is enabled with `setOpenGl(true, 0)`.
 - The curve uses a cosmetic pen with an effective width of 1 pixel.
@@ -75,7 +75,7 @@ graphics API family.
   replot. The two split key/value buffers are prepared during warmup, outside
   the measurement window.
 
-## Qt Graphs Configuration
+## Qt Graphs configuration
 
 - `GraphsView` contains one `LineSeries` and two fixed `ValueAxis` objects.
 - The line width is 1; other series settings remain at their defaults.
@@ -85,7 +85,7 @@ graphics API family.
 - Rendering is redirected to an 800 × 600 QRhi texture and driven explicitly
   with `QQuickRenderControl`.
 
-## QAccelPlot Configuration
+## QAccelPlot configuration
 
 - QAccelPlot uses the same backend, offscreen texture, and timing loop as
   Qt Graphs.
