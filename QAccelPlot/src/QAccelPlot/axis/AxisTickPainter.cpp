@@ -225,7 +225,7 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const AxisTick& tick, c
 {
     const auto labelSize = tickLabelSize(QFontMetricsF{ctx.painter->font(), ctx.painter->device()}, tick.label);
 
-    if (params.orientation == Axis::Horizontal) {
+    if (params.orientation == Qt::Horizontal) {
         const auto x = ctx.rect.x() + mapToPosition(tick.value, ctx.rect.width());
         const auto center = QPointF{x, ctx.axisY};
         auto labelRect = QRectF{};
@@ -283,7 +283,7 @@ void AxisTickPainter::paintTick(const PaintContext& ctx, const AxisTick& tick, c
 
 void AxisTickPainter::paintSubtick(const PaintContext& ctx, const qreal value, const Params& params, const MapToPosition& mapToPosition)
 {
-    if (params.orientation == Axis::Horizontal) {
+    if (params.orientation == Qt::Horizontal) {
         const auto x = ctx.rect.x() + mapToPosition(value, ctx.rect.width());
         const auto center = QPointF{x, ctx.axisY};
         if (params.side == Axis::Bottom) {

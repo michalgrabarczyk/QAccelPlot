@@ -597,7 +597,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     const auto gradientFillPayload = resolveGradientFillPayload();
     auto renderGradientPayload = gradientPayload;
     if (dataType_ == DataType::Double && renderGradientPayload.isValid()) {
-        const auto origin = renderGradientPayload.direction == GradientDirection::Horizontal ? renderOriginX_ : renderOriginY_;
+        const auto origin = renderGradientPayload.direction == Qt::Horizontal ? renderOriginX_ : renderOriginY_;
         if (renderGradientPayload.gradientValueMin.has_value()) {
             renderGradientPayload.gradientValueMin = *renderGradientPayload.gradientValueMin - origin;
         }
@@ -882,18 +882,18 @@ bool LineCurve::hasGradientEffect() const
 GradientColorPayload LineCurve::resolveGradientColorPayload() const
 {
     return resolveGradientPayload<GradientStroke, GradientColorPayload>(
-        effects_, [this](const GradientDirection direction) { return gradientDataRange(direction); });
+        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
 GradientFillPayload LineCurve::resolveGradientFillPayload() const
 {
     return resolveGradientPayload<GradientFill, GradientFillPayload>(
-        effects_, [this](const GradientDirection direction) { return gradientDataRange(direction); });
+        effects_, [this](const Qt::Orientation direction) { return gradientDataRange(direction); });
 }
 
-std::pair<qreal, qreal> LineCurve::gradientDataRange(const GradientDirection direction) const
+std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direction) const
 {
-    const auto horizontal = direction == GradientDirection::Horizontal;
+    const auto horizontal = direction == Qt::Horizontal;
     if (const auto range = horizontal ? xDataRange() : yDataRange()) {
         return {range->min, range->max};
     }

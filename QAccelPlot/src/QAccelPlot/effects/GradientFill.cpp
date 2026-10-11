@@ -26,12 +26,12 @@ GradientFill::GradientFill(QObject* parent)
     updatePayload();
 }
 
-GradientDirection GradientFill::direction() const
+Qt::Orientation GradientFill::direction() const
 {
     return direction_;
 }
 
-void GradientFill::setDirection(GradientDirection direction)
+void GradientFill::setDirection(Qt::Orientation direction)
 {
     if (direction_ == direction) {
         return;

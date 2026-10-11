@@ -135,7 +135,7 @@ private:
 // 100 x 100 px plot showing data in [0, 1] x [0, 1]; the curve runs along pixel row 50.
 constexpr auto kSize = 100;
 
-std::unique_ptr<Axis> makeAxis(const Axis::Orientation orientation)
+std::unique_ptr<Axis> makeAxis(const Qt::Orientation orientation)
 {
     auto axis = std::make_unique<Axis>();
     axis->setOrientation(orientation);
@@ -191,8 +191,8 @@ public:
     }
 
     QQuickWindow window;
-    std::unique_ptr<Axis> xAxis = makeAxis(Axis::Horizontal);
-    std::unique_ptr<Axis> yAxis = makeAxis(Axis::Vertical);
+    std::unique_ptr<Axis> xAxis = makeAxis(Qt::Horizontal);
+    std::unique_ptr<Axis> yAxis = makeAxis(Qt::Vertical);
     ReadLog log;
     ProbeGradient strokeGradient{Qt::red, log};
     ProbeGradient fillGradient{Qt::blue, log};

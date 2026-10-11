@@ -128,19 +128,19 @@ void TestPlotAppearance::namedAxesAssignSidesAutomatically()
     plot.setY2Axis(y2Axis);
 
     QCOMPARE(xAxis->side(), QAccelPlot::Axis::Bottom);
-    QCOMPARE(xAxis->orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(xAxis->orientation(), Qt::Horizontal);
     QCOMPARE(yAxis->side(), QAccelPlot::Axis::Left);
-    QCOMPARE(yAxis->orientation(), QAccelPlot::Axis::Vertical);
+    QCOMPARE(yAxis->orientation(), Qt::Vertical);
     QCOMPARE(x2Axis->side(), QAccelPlot::Axis::Top);
-    QCOMPARE(x2Axis->orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(x2Axis->orientation(), Qt::Horizontal);
     QCOMPARE(y2Axis->side(), QAccelPlot::Axis::Right);
-    QCOMPARE(y2Axis->orientation(), QAccelPlot::Axis::Vertical);
+    QCOMPARE(y2Axis->orientation(), Qt::Vertical);
 
     auto* extraAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Top};
     auto extraAxes = plot.extraAxes();
     extraAxes.append(&extraAxes, extraAxis);
     QCOMPARE(extraAxis->side(), QAccelPlot::Axis::Top);
-    QCOMPARE(extraAxis->orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(extraAxis->orientation(), Qt::Horizontal);
 }
 
 void TestPlotAppearance::customAxisLayoutSizesUpdatePlotRect()
@@ -472,7 +472,7 @@ void TestPlotAppearance::labelOverflowChangeTriggersRelayout()
     plot.setXAxis(xAxis);
     const auto widthBefore = xAxis->width();
 
-    xAxis->setOrientation(QAccelPlot::Axis::Vertical);
+    xAxis->setOrientation(Qt::Vertical);
 
     QCOMPARE(xAxis->width(), widthBefore - 30.0);
 }

@@ -26,12 +26,12 @@ GradientStroke::GradientStroke(QObject* parent)
     updatePayload();
 }
 
-GradientDirection GradientStroke::direction() const
+Qt::Orientation GradientStroke::direction() const
 {
     return direction_;
 }
 
-void GradientStroke::setDirection(GradientDirection direction)
+void GradientStroke::setDirection(Qt::Orientation direction)
 {
     if (direction_ == direction) {
         return;

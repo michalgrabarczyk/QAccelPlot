@@ -38,7 +38,7 @@ float normalizedGradientFillValue(const GradientFillPayload& gradientPayload, co
 {
     const auto valueMin = gradientPayload.gradientValueMin.value_or(0.0);
     const auto valueMax = gradientPayload.gradientValueMax.value_or(1.0);
-    const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
+    const auto value = (gradientPayload.direction == Qt::Horizontal) ? dataX : dataY;
     // Keep the coordinate unbounded while the GPU interpolates it across the fill.
     // Clamping here would stretch the complete palette between the baseline and
     // curve whenever an endpoint lies outside the configured gradient range.
@@ -333,7 +333,7 @@ void LineCurveLineRenderer::updateLineMaterial(LineMaterial* material, const Lin
             params.pointCount, params.antialiasingEnabled, params.antialiasingFeather, dashParams});
     material->useVertexColor = useVertexColor ? 1.0f : 0.0f;
     if (auto* gradientMaterial = dynamic_cast<GradientLineMaterial*>(material)) {
-        gradientMaterial->gradientDirection = params.gradientPayload.direction == GradientDirection::Vertical ? 1.0f : 0.0f;
+        gradientMaterial->gradientDirection = params.gradientPayload.direction == Qt::Vertical ? 1.0f : 0.0f;
         gradientMaterial->gradientValueMin = static_cast<float>(params.gradientPayload.gradientValueMin.value_or(0.0));
         gradientMaterial->gradientValueMax = static_cast<float>(params.gradientPayload.gradientValueMax.value_or(1.0));
         gradientMaterial->gradientTexture.upload(params.window, params.gradientPayload.stops);

@@ -172,7 +172,7 @@ Window {
                     lineWidth: 3
                     effects: [
                         QAccelPlot.GradientFill {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
                             baseline: window.baselineIndex === 0 ? QAccelPlot.GradientFillBaseline.AxisMinimum : QAccelPlot.GradientFillBaseline.Value
                             baselineValue: 0
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
@@ -183,7 +183,7 @@ Window {
                             colormap: activeColormap
                         },
                         QAccelPlot.GradientStroke {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
                             gradientValueMin: window.directionIndex === 0 ? -4 : -6
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
@@ -230,7 +230,7 @@ Window {
                     opacity: window.gradientOpacity
                     effects: [
                         QAccelPlot.GradientStroke {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
                             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
                             gradientValueMin: window.directionIndex === 0 ? 20 : 0
                             gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed

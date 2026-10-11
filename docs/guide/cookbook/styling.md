@@ -92,7 +92,7 @@ Effects are attached through the curve's [`effects`][effects] property:
 QAccelPlot.LineCurve {
     effects: [
         QAccelPlot.GradientFill {
-            direction: QAccelPlot.GradientDirection.Vertical
+            direction: Qt.Vertical
             baseline: QAccelPlot.GradientFillBaseline.Value
             baselineValue: 0
             gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed

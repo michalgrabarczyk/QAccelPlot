@@ -100,7 +100,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("AxisTicker", "subtickColor", QColor{Qt::darkRed});
     row("AxisTicker", "subtickWidth", 3.0);
 
-    row("ColorBar", "orientation", QVariant::fromValue(ColorBar::Horizontal));
+    row("ColorBar", "orientation", QVariant::fromValue(Qt::Horizontal));
     row("ColorBar", "label", QStringLiteral("Intensity"));
     row("ColorBar", "labelFont", QFont{QStringLiteral("Arial"), 17});
     row("ColorBar", "labelColor", QColor{Qt::cyan});
@@ -122,7 +122,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
 
     row("DateTimeTickLabelFormatter", "dateTimeFormat", QStringLiteral("yyyy"));
 
-    row("GradientFill", "direction", QVariant::fromValue(GradientDirection::Vertical));
+    row("GradientFill", "direction", QVariant::fromValue(Qt::Vertical));
     row("GradientFill", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
     row("GradientFill", "gradientValueMin", -2.0);
     row("GradientFill", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
@@ -132,7 +132,7 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("GradientFill", "opacity", 0.8);
     row("GradientFill", "enabled", false);
 
-    row("GradientStroke", "direction", QVariant::fromValue(GradientDirection::Vertical));
+    row("GradientStroke", "direction", QVariant::fromValue(Qt::Vertical));
     row("GradientStroke", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
     row("GradientStroke", "gradientValueMin", -2.0);
     row("GradientStroke", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));

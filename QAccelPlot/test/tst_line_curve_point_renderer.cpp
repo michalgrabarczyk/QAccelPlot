@@ -24,7 +24,7 @@ void LineCurvePointRendererTest::verticalGradientMatchesLineAndFillOrientation()
 {
     auto gradientPayload = GradientColorPayload{};
     gradientPayload.enabled = true;
-    gradientPayload.direction = GradientDirection::Vertical;
+    gradientPayload.direction = Qt::Vertical;
     gradientPayload.stops = {{0.0f, QColor(Qt::red)}, {1.0f, QColor(Qt::blue)}};
     gradientPayload.gradientValueMin = 0.0;
     gradientPayload.gradientValueMax = 10.0;

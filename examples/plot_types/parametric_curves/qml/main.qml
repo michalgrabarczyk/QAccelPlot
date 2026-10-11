@@ -403,7 +403,7 @@ Window {
                         lineWidth: hovered ? 4 : 2
                         effects: [
                             QAccelPlot.GradientStroke {
-                                direction: QAccelPlot.GradientDirection.Vertical
+                                direction: Qt.Vertical
                                 gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
                                 gradientValueMin: -1
                                 gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
@@ -471,7 +471,7 @@ Window {
                         lineWidth: hovered ? 3 : 1.5
                         effects: [
                             QAccelPlot.GradientStroke {
-                                direction: QAccelPlot.GradientDirection.Vertical
+                                direction: Qt.Vertical
                                 gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
                                 gradientValueMin: -spirographPlot.curveSpan
                                 gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed

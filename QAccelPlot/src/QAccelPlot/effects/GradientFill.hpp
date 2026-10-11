@@ -29,8 +29,8 @@ class GradientFill : public LineCurveEffect {
     Q_OBJECT
     QML_NAMED_ELEMENT(GradientFill)
 
-    /// \brief Axis along which the gradient color varies (Horizontal or Vertical).
-    Q_PROPERTY(GradientDirection direction READ direction WRITE setDirection NOTIFY directionChanged)
+    /// \brief Axis along which the gradient color varies: \c Qt.Horizontal for X values, \c Qt.Vertical for Y values. Default: \c Qt.Horizontal.
+    Q_PROPERTY(Qt::Orientation direction READ direction WRITE setDirection NOTIFY directionChanged)
     /// \brief A Qt \c Gradient (or compatible) object supplying the color stops.
     Q_PROPERTY(QObject* gradient READ gradient WRITE setGradient NOTIFY gradientChanged)
     /// \brief Colormap supplying the color stops. Overrides \c gradient when set.
@@ -61,9 +61,9 @@ public:
     explicit GradientFill(QObject* parent = nullptr);
 
     /// \brief Returns the gradient direction.
-    GradientDirection direction() const;
+    Qt::Orientation direction() const;
     /// \brief Sets the gradient direction to \a direction.
-    void setDirection(GradientDirection direction);
+    void setDirection(Qt::Orientation direction);
 
     /// \brief Returns the Qt Gradient object supplying color stops.
     QObject* gradient() const;
@@ -150,7 +150,7 @@ private:
     void reconnectColormapSignals();
     void disconnectColormapSignals();
 
-    GradientDirection direction_{GradientDirection::Horizontal};
+    Qt::Orientation direction_{Qt::Horizontal};
     QObject* gradient_{nullptr};
     QVector<QMetaObject::Connection> gradientConnections_;
     Colormap* colormap_{nullptr};

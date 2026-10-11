@@ -225,7 +225,7 @@ private:
     bool hasGradientEffect() const;
     GradientColorPayload resolveGradientColorPayload() const;
     GradientFillPayload resolveGradientFillPayload() const;
-    std::pair<qreal, qreal> gradientDataRange(GradientDirection direction) const;
+    std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
 
     enum class DataType { Float, Double };
 

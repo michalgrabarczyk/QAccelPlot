@@ -153,12 +153,12 @@ void Axis::setDataRange(const qreal min, const qreal max)
     autoRescaleToData();
 }
 
-Axis::Orientation Axis::orientation() const
+Qt::Orientation Axis::orientation() const
 {
     return orientation_;
 }
 
-void Axis::setOrientation(Orientation o)
+void Axis::setOrientation(const Qt::Orientation o)
 {
     if (orientation_ == o) {
         return;
@@ -210,9 +210,9 @@ void Axis::setSide(Side s)
     }
     side_ = s;
     if (s == Left || s == Right) {
-        setOrientation(Vertical);
+        setOrientation(Qt::Vertical);
     } else {
-        setOrientation(Horizontal);
+        setOrientation(Qt::Horizontal);
     }
     emit sideChanged();
     update();
@@ -408,7 +408,7 @@ void Axis::paint(QPainter* painter)
     // Data rect: area corresponding to data/ticks (excluding label overflow margins)
     const auto labelOverflowBothEnds = 2.0 * labelOv;
     auto dataRect = r;
-    if (orientation_ == Horizontal) {
+    if (orientation_ == Qt::Horizontal) {
         dataRect = QRectF(labelOv, r.y(), r.width() - labelOverflowBothEnds, r.height());
     } else {
         dataRect = QRectF(r.x(), labelOv, r.width(), r.height() - labelOverflowBothEnds);
@@ -422,7 +422,7 @@ void Axis::paint(QPainter* painter)
     // Fill only the axis area, not the overlap or label overflow regions
     auto bgRect = dataRect;
     if (overlap > 0) {
-        if (orientation_ == Horizontal) {
+        if (orientation_ == Qt::Horizontal) {
             if (side_ == Bottom) {
                 bgRect.setTop(bgRect.top() + overlap);
             } else {
@@ -440,7 +440,7 @@ void Axis::paint(QPainter* painter)
     // Determine axis position based on side with padding inward
     auto axisX = qreal{0};
     auto axisY = qreal{0};
-    if (orientation_ == Horizontal) {
+    if (orientation_ == Qt::Horizontal) {
         axisY = (side_ == Bottom) ? pad : dataRect.height() - pad;
     } else {
         axisX = (side_ == Right) ? pad : dataRect.width() - pad;
@@ -451,8 +451,8 @@ void Axis::paint(QPainter* painter)
     painter->setPen(axisPen);
 
     // Draw baseline — only across data area
-    const auto start = (orientation_ == Horizontal) ? QPointF{dataRect.x(), axisY} : QPointF{axisX, dataRect.y()};
-    const auto end = (orientation_ == Horizontal) ? QPointF{dataRect.x() + dataRect.width(), axisY} : QPointF{axisX, dataRect.y() + dataRect.height()};
+    const auto start = (orientation_ == Qt::Horizontal) ? QPointF{dataRect.x(), axisY} : QPointF{axisX, dataRect.y()};
+    const auto end = (orientation_ == Qt::Horizontal) ? QPointF{dataRect.x() + dataRect.width(), axisY} : QPointF{axisX, dataRect.y() + dataRect.height()};
     painter->drawLine(start, end);
 
     auto tickPen = QPen(hovered_ ? hoverColor_ : ticker_->tickColor());
@@ -488,14 +488,14 @@ qreal Axis::labelOverflow() const
     if (!extendWidgetForLabels_) {
         return 0.0;
     }
-    return (orientation_ == Horizontal) ? kHorizontalLabelOverflow : kVerticalLabelOverflow;
+    return (orientation_ == Qt::Horizontal) ? kHorizontalLabelOverflow : kVerticalLabelOverflow;
 }
 
 AxisMapping Axis::mapping() const
 {
     auto result = AxisMapping{};
     result.logarithmic = logScale_;
-    result.flipped = orientation_ == Vertical;
+    result.flipped = orientation_ == Qt::Vertical;
     if (logScale_ && (viewportMin_ <= 0 || viewportMax_ <= 0)) {
         return result;
     }
@@ -541,13 +541,13 @@ QString Axis::formatValue(const qreal value, const qreal length) const
     return ticker_->tickLabelFormatter()->format(value, valueResolution(value, length));
 }
 
-void Axis::addDataRangeSource(const PlotSeries* series, const Orientation dimension)
+void Axis::addDataRangeSource(const PlotSeries* series, const Qt::Orientation dimension)
 {
     dataRangeSources_.append(DataRangeSource{series, dimension});
     invalidateDataRange();
 }
 
-void Axis::removeDataRangeSource(const PlotSeries* series, const Orientation dimension)
+void Axis::removeDataRangeSource(const PlotSeries* series, const Qt::Orientation dimension)
 {
     const auto removed
         = dataRangeSources_.removeIf([series, dimension](const DataRangeSource& source) { return source.series == series && source.dimension == dimension; });
@@ -592,7 +592,7 @@ void Axis::ensureDataRange() const
     auto min = std::numeric_limits<qreal>::max();
     auto max = std::numeric_limits<qreal>::lowest();
     for (const auto& source : dataRangeSources_) {
-        const auto extent = source.dimension == Horizontal ? source.series->xDataRange() : source.series->yDataRange();
+        const auto extent = source.dimension == Qt::Horizontal ? source.series->xDataRange() : source.series->yDataRange();
         if (extent) {
             min = std::min(min, extent->min);
             max = std::max(max, extent->max);
@@ -705,14 +705,14 @@ void Axis::mouseMoveEvent(QMouseEvent* event)
         const auto delta = event->position() - lastMousePos_;
         lastMousePos_ = event->position();
 
-        const auto dataLength = (orientation_ == Horizontal) ? width() - 2.0 * labelOverflow() : height() - 2.0 * labelOverflow();
+        const auto dataLength = (orientation_ == Qt::Horizontal) ? width() - 2.0 * labelOverflow() : height() - 2.0 * labelOverflow();
         if (nearly_equal(dataLength, 0.0)) {
             return;
         }
 
         // The content follows the cursor. Dragging right brings lower values into view. Dragging down
         // brings higher ones, because values grow upward while pixel y grows downward.
-        const auto fraction = (orientation_ == Horizontal) ? -delta.x() / dataLength : delta.y() / dataLength;
+        const auto fraction = (orientation_ == Qt::Horizontal) ? -delta.x() / dataLength : delta.y() / dataLength;
         const auto range = Internal::pannedRange({viewportMin_, viewportMax_}, fraction, logScale_);
         setViewportMin(range.min);
         setViewportMax(range.max);
@@ -793,7 +793,7 @@ void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, con
     painter->setFont(labelFont_);
     const auto labelColor = labelColor_.isValid() ? labelColor_ : baselineColor_;
     painter->setPen(hovered_ ? hoverColor_ : labelColor);
-    if (orientation_ == Horizontal) {
+    if (orientation_ == Qt::Horizontal) {
         if (side_ == Bottom) {
             const auto titleRect = QRectF(r.x(), axisY + axisTitlePadding_, r.width(), r.height() - (axisY + axisTitlePadding_));
             painter->drawText(titleRect, Qt::AlignTop | Qt::AlignHCenter, label_);

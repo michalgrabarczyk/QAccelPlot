@@ -66,7 +66,7 @@ struct Probe {
     QColor color;
 };
 
-std::unique_ptr<Axis> makeAxis(const Axis::Orientation orientation)
+std::unique_ptr<Axis> makeAxis(const Qt::Orientation orientation)
 {
     auto axis = std::make_unique<Axis>();
     axis->setOrientation(orientation);
@@ -127,8 +127,8 @@ void BarSeriesTransitionsTest::init()
     }
     scene_.window->setColor(Qt::black);
     scene_.window->resize(kSize, kSize);
-    scene_.xAxis = makeAxis(Axis::Horizontal);
-    scene_.yAxis = makeAxis(Axis::Vertical);
+    scene_.xAxis = makeAxis(Qt::Horizontal);
+    scene_.yAxis = makeAxis(Qt::Vertical);
     scene_.bars = addBars(Qt::red);
     scene_.window->show();
     QVERIFY(QTest::qWaitForWindowExposed(scene_.window.get()));

@@ -70,8 +70,8 @@ struct HitTestFixture {
 
     HitTestFixture()
     {
-        xAxis.setOrientation(Axis::Horizontal);
-        yAxis.setOrientation(Axis::Vertical);
+        xAxis.setOrientation(Qt::Horizontal);
+        yAxis.setOrientation(Qt::Vertical);
         xAxis.setViewportMin(0.0);
         xAxis.setViewportMax(10.0);
         yAxis.setViewportMin(0.0);

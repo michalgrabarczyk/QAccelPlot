@@ -45,8 +45,8 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMin READ dataMin WRITE setDataMin NOTIFY dataMinChanged)
     /// \brief Maximum data value of the series bound to this axis. Default: 1. Computed like \c dataMin.
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
-    /// \brief Axis orientation: \c Axis.Horizontal or \c Axis.Vertical.
-    Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    /// \brief Axis orientation: \c Qt.Horizontal or \c Qt.Vertical.
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     /// \brief Optional axis label displayed alongside the axis line.
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     /// \brief Font used to render the axis label text. Default: application default font.
@@ -88,10 +88,6 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(bool autoRescale READ autoRescale WRITE setAutoRescale NOTIFY autoRescaleChanged)
 
 public:
-    /// \brief Orientation of an axis.
-    enum Orientation { Horizontal, Vertical };
-    Q_ENUM(Orientation)
-
     /// \brief Side of the plot on which the axis is positioned.
     enum Side { Left, Top, Right, Bottom };
     Q_ENUM(Side)
@@ -125,9 +121,9 @@ public:
     Q_INVOKABLE void setDataRange(qreal min, qreal max);
 
     /// \brief Returns the axis orientation.
-    Orientation orientation() const;
+    Qt::Orientation orientation() const;
     /// \brief Sets the axis orientation to \a o.
-    void setOrientation(Orientation o);
+    void setOrientation(Qt::Orientation o);
 
     /// \brief Returns the axis label string.
     QString label() const;
@@ -300,11 +296,11 @@ private:
 
     struct DataRangeSource {
         const PlotSeries* series;
-        Orientation dimension;
+        Qt::Orientation dimension;
     };
 
-    void addDataRangeSource(const PlotSeries* series, Orientation dimension);
-    void removeDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void addDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
+    void removeDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
     void invalidateDataRange();
     void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
@@ -342,7 +338,7 @@ private:
     bool autoRescale_{false};
     bool extendWidgetForLabels_{true};
     bool clampEdgeLabels_{true};
-    Orientation orientation_{Horizontal};
+    Qt::Orientation orientation_{Qt::Horizontal};
     Side side_{Bottom};
     AxisTicker* ticker_;
     AxisTicks ticks_;

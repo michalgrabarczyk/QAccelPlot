@@ -57,7 +57,7 @@ struct RectangleAxisRange {
 
 std::optional<RectangleAxisRange> rectangleAxisRange(Axis* axis, const QRectF& selection, const QRectF& plotRect)
 {
-    const auto horizontal = axis->orientation() == Axis::Horizontal;
+    const auto horizontal = axis->orientation() == Qt::Horizontal;
     const auto length = horizontal ? plotRect.width() : plotRect.height();
     const auto minPixel = horizontal ? selection.left() - plotRect.left() : selection.bottom() - plotRect.top();
     const auto maxPixel = horizontal ? selection.right() - plotRect.left() : selection.top() - plotRect.top();
@@ -424,7 +424,7 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
         zoomAxisAtRatio(yAxis_, yRatio, zoomingIn);
         zoomAxisAtRatio(y2Axis_, yRatio, zoomingIn);
         for (const auto axis : extraAxes_) {
-            const auto ratio = (axis->orientation() == Axis::Horizontal) ? xRatio : yRatio;
+            const auto ratio = (axis->orientation() == Qt::Horizontal) ? xRatio : yRatio;
             zoomAxisAtRatio(axis, ratio, zoomingIn);
         }
         event->accept();
@@ -531,7 +531,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
         panAxis(y2Axis_, delta.y(), ph);
 
         for (const auto axis : extraAxes_) {
-            if (axis->orientation() == Axis::Horizontal) {
+            if (axis->orientation() == Qt::Horizontal) {
                 panAxis(axis, -delta.x(), pw);
             } else {
                 panAxis(axis, delta.y(), ph);
@@ -801,7 +801,7 @@ bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const boo
     if (!rect.contains(pos)) {
         return false;
     }
-    const auto ratio = (axis->orientation() == Axis::Horizontal) ? horizontalRatio(pos, rect) : verticalRatio(pos, rect);
+    const auto ratio = (axis->orientation() == Qt::Horizontal) ? horizontalRatio(pos, rect) : verticalRatio(pos, rect);
     zoomAxisAtRatio(axis, ratio, zoomingIn);
     return true;
 }
@@ -972,7 +972,7 @@ void QAccelPlot::layoutAxes()
         if (!axis->isVisible()) {
             continue;
         }
-        if (axis->orientation() == Axis::Horizontal) {
+        if (axis->orientation() == Qt::Horizontal) {
             if (axis->side() == Axis::Top) {
                 extraTopHeight += axis->layoutSize() + axis->inwardTickOverlap();
             } else {
@@ -1055,7 +1055,7 @@ void QAccelPlot::layoutAxes()
         }
         const auto ov = axis->inwardTickOverlap();
         const auto lOv = axis->labelOverflow();
-        if (axis->orientation() == Axis::Horizontal) {
+        if (axis->orientation() == Qt::Horizontal) {
             axis->setSize(QSizeF(plotW + 2.0 * lOv, axis->layoutSize() + ov));
             if (axis->side() == Axis::Top) {
                 axis->setPosition(QPointF(plotX - lOv, currentTop));

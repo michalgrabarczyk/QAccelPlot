@@ -611,8 +611,8 @@ void PointCloudDataTest::doubleDataSurvivesLogScaleChange()
 {
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
-    yAxis.setOrientation(Axis::Vertical);
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
 
     auto cloud = PointCloud{};
     cloud.setXAxis(&xAxis);

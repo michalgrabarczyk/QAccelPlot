@@ -86,7 +86,7 @@ QAccelPlot.Plot {
     extraAxes: [
         QAccelPlot.Axis {
             id: fastAxis
-            orientation: QAccelPlot.Axis.Horizontal
+            orientation: Qt.Horizontal
             side: QAccelPlot.Axis.Bottom
             viewportMin: 0
             viewportMax: 0.5

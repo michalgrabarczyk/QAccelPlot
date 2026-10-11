@@ -76,6 +76,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   range has not been computed yet.
 - Renamed `LineCurve::setDataFNoRangeWithCache()` to `setDataFWithCache()`.
 - Renamed `Axis::updateDataRange()` to `setDataRange()`.
+- `Axis.orientation`, `ColorBar.orientation`, and the `direction` of `GradientFill`
+  and `GradientStroke` take `Qt.Horizontal` / `Qt.Vertical`. This replaces
+  `Axis.Orientation`, `ColorBar.Orientation`, and `GradientDirection`.
 
 ### Removed
 

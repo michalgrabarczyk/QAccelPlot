@@ -62,7 +62,7 @@ PlotView {
                 }
             },
             GradientFill {
-                direction: GradientDirection.Vertical
+                direction: Qt.Vertical
                 gradientValueMinSource: GradientValueSource.Fixed
                 gradientValueMin: 0
                 gradientValueMaxSource: GradientValueSource.Fixed

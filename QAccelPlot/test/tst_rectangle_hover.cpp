@@ -85,8 +85,8 @@ void RectangleHoverTest::nearbyTimestampRectangles()
     const auto baseY = horizontal ? 0.0 : epoch;
     auto xAxis = QAccelPlot::Axis{};
     auto yAxis = QAccelPlot::Axis{};
-    xAxis.setOrientation(QAccelPlot::Axis::Horizontal);
-    yAxis.setOrientation(QAccelPlot::Axis::Vertical);
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
     xAxis.setViewportMin(baseX);
     xAxis.setViewportMax(baseX + 4);
     yAxis.setViewportMin(baseY);

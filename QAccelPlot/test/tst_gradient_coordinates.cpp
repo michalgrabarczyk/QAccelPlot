@@ -24,9 +24,9 @@ void TestGradientCoordinates::verticalCoordinate_remainsUnboundedUntilFragmentSa
     constexpr auto minimum = -4.0f;
     constexpr auto maximum = 1.0f;
 
-    QCOMPARE(QAccelPlot::unboundedGradientCoordinate(QAccelPlot::GradientDirection::Vertical, minimum, minimum, maximum), 1.0f);
-    QCOMPARE(QAccelPlot::unboundedGradientCoordinate(QAccelPlot::GradientDirection::Vertical, maximum, minimum, maximum), 0.0f);
-    QVERIFY(QAccelPlot::unboundedGradientCoordinate(QAccelPlot::GradientDirection::Vertical, 5.2f, minimum, maximum) < 0.0f);
+    QCOMPARE(QAccelPlot::unboundedGradientCoordinate(Qt::Vertical, minimum, minimum, maximum), 1.0f);
+    QCOMPARE(QAccelPlot::unboundedGradientCoordinate(Qt::Vertical, maximum, minimum, maximum), 0.0f);
+    QVERIFY(QAccelPlot::unboundedGradientCoordinate(Qt::Vertical, 5.2f, minimum, maximum) < 0.0f);
 }
 
 void TestGradientCoordinates::verticalCoordinate_interpolationReachesMaximumAtConfiguredValue()
@@ -35,8 +35,8 @@ void TestGradientCoordinates::verticalCoordinate_interpolationReachesMaximumAtCo
     constexpr auto curve = 5.2f;
     constexpr auto maximum = 1.0f;
 
-    const auto baselineCoordinate = QAccelPlot::unboundedGradientCoordinate(QAccelPlot::GradientDirection::Vertical, baseline, baseline, maximum);
-    const auto curveCoordinate = QAccelPlot::unboundedGradientCoordinate(QAccelPlot::GradientDirection::Vertical, curve, baseline, maximum);
+    const auto baselineCoordinate = QAccelPlot::unboundedGradientCoordinate(Qt::Vertical, baseline, baseline, maximum);
+    const auto curveCoordinate = QAccelPlot::unboundedGradientCoordinate(Qt::Vertical, curve, baseline, maximum);
     const auto interpolation = (maximum - baseline) / (curve - baseline);
     const auto coordinateAtMaximum = baselineCoordinate + interpolation * (curveCoordinate - baselineCoordinate);
 

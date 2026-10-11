@@ -287,10 +287,10 @@ void TestAxisMapping::constructor_sideSetsOrientation()
     const auto top = QAccelPlot::Axis{nullptr, QAccelPlot::Axis::Top};
     const auto bottom = QAccelPlot::Axis{nullptr, QAccelPlot::Axis::Bottom};
 
-    QCOMPARE(left.orientation(), QAccelPlot::Axis::Vertical);
-    QCOMPARE(right.orientation(), QAccelPlot::Axis::Vertical);
-    QCOMPARE(top.orientation(), QAccelPlot::Axis::Horizontal);
-    QCOMPARE(bottom.orientation(), QAccelPlot::Axis::Horizontal);
+    QCOMPARE(left.orientation(), Qt::Vertical);
+    QCOMPARE(right.orientation(), Qt::Vertical);
+    QCOMPARE(top.orientation(), Qt::Horizontal);
+    QCOMPARE(bottom.orientation(), Qt::Horizontal);
 }
 
 // ---------------------------------------------------------------------------
@@ -305,7 +305,7 @@ void TestAxisMapping::mapping_matchesAxisMapping()
             const auto mapping = axis->mapping();
             QVERIFY(mapping.valid);
             QCOMPARE(mapping.logarithmic, logScale);
-            QCOMPARE(mapping.flipped, axis->orientation() == QAccelPlot::Axis::Vertical);
+            QCOMPARE(mapping.flipped, axis->orientation() == Qt::Vertical);
             QCOMPARE(mapping.toPixel(37.5, 640.0), axis->coordToPixel(37.5, 640.0));
             QCOMPARE(mapping.toCoord(123.0, 640.0), axis->pixelToCoord(123.0, 640.0));
         }

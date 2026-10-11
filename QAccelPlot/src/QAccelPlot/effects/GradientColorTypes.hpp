@@ -15,21 +15,6 @@
 
 namespace QAccelPlot {
 
-/// \brief Namespace exposing the \c GradientDirection enum to QML.
-namespace GradientDirectionNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientDirection)
-
-/// \brief Determines the axis along which a gradient color is applied.
-enum class Direction {
-    Horizontal, ///< \brief Gradient varies along the X (data-value) axis.
-    Vertical,   ///< \brief Gradient varies along the Y (data-value) axis.
-};
-Q_ENUM_NS(Direction)
-} // namespace GradientDirectionNS
-
-using GradientDirection = GradientDirectionNS::Direction;
-
 /// \brief Namespace exposing the \c GradientFillBaseline enum to QML.
 namespace GradientFillBaselineNS {
 Q_NAMESPACE
@@ -89,9 +74,9 @@ struct GradientColorPayload {
         return enabled && stops.size() >= 2;
     }
 
-    bool enabled{false};                                        ///< \brief \c true when gradient stroke is active.
-    GradientDirection direction{GradientDirection::Horizontal}; ///< \brief Gradient direction.
-    std::vector<GradientStopData> stops;                        ///< \brief Color stops in position order.
+    bool enabled{false};                       ///< \brief \c true when gradient stroke is active.
+    Qt::Orientation direction{Qt::Horizontal}; ///< \brief Gradient direction.
+    std::vector<GradientStopData> stops;       ///< \brief Color stops in position order.
     /// \brief Fixed min for gradient normalisation; \c std::nullopt = derived from data range.
     std::optional<qreal> gradientValueMin;
     /// \brief Fixed max for gradient normalisation; \c std::nullopt = derived from data range.
@@ -109,9 +94,9 @@ struct GradientFillPayload {
         return enabled && opacity > 0.0f && stops.size() >= 2;
     }
 
-    bool enabled{false};                                        ///< \brief \c true when gradient fill is active.
-    GradientDirection direction{GradientDirection::Horizontal}; ///< \brief Gradient direction.
-    std::vector<GradientStopData> stops;                        ///< \brief Color stops in position order.
+    bool enabled{false};                       ///< \brief \c true when gradient fill is active.
+    Qt::Orientation direction{Qt::Horizontal}; ///< \brief Gradient direction.
+    std::vector<GradientStopData> stops;       ///< \brief Color stops in position order.
     /// \brief Fixed min for gradient normalisation; \c std::nullopt = derived from data range.
     std::optional<qreal> gradientValueMin;
     /// \brief Fixed max for gradient normalisation; \c std::nullopt = derived from data range.

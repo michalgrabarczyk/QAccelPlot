@@ -63,8 +63,8 @@ class ColorBar : public QQuickPaintedItem {
 
     /// \brief Series whose colormap and resolved value range are shown. Default: null.
     Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
-    /// \brief Direction of the ramp: \c ColorBar.Vertical or \c ColorBar.Horizontal. Default: \c Vertical.
-    Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    /// \brief Direction of the ramp: \c Qt.Vertical or \c Qt.Horizontal. Default: \c Qt.Vertical.
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     /// \brief Optional title drawn beside the tick labels. Default: empty.
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     /// \brief Font of the title. Default: application default font.
@@ -101,13 +101,6 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
 
 public:
-    /// \brief Direction of the color ramp.
-    enum Orientation {
-        Horizontal, ///< \brief Minimum on the left, ticks below.
-        Vertical    ///< \brief Minimum at the bottom, ticks on the right.
-    };
-    Q_ENUM(Orientation)
-
     /// \brief Constructs a ColorBar with the given \a parent.
     explicit ColorBar(QQuickItem* parent = nullptr);
 
@@ -117,9 +110,9 @@ public:
     void setSeries(PointCloud* series);
 
     /// \brief Returns the ramp direction.
-    Orientation orientation() const;
+    Qt::Orientation orientation() const;
     /// \brief Sets the ramp direction to \a orientation.
-    void setOrientation(Orientation orientation);
+    void setOrientation(Qt::Orientation orientation);
 
     /// \brief Returns the title.
     QString label() const;
@@ -276,7 +269,7 @@ private:
     QPointer<PointCloud> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
-    Orientation orientation_{Vertical};
+    Qt::Orientation orientation_{Qt::Vertical};
     QString label_;
     QFont labelFont_;
     QColor labelColor_{ColorPalette::dark().axisLine};

@@ -326,7 +326,7 @@ void TestAxisTickPainter::paintTicks_timeLabelsMatchUnclippedReference()
                 auto painter = QPainter{&actual};
                 painter.setPen(Qt::transparent);
                 auto params = QAccelPlot::AxisTickPainter::Params{};
-                params.orientation = QAccelPlot::Axis::Horizontal;
+                params.orientation = Qt::Horizontal;
                 params.side = QAccelPlot::Axis::Bottom;
                 params.ticker = &ticker;
                 const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.0, 1.0, false, &ticker);
@@ -394,7 +394,7 @@ void TestAxisTickPainter::paintTicks_verticalLabelsUseAvailableWidth()
         auto painter = QPainter{&actual};
         painter.setPen(Qt::transparent);
         auto params = QAccelPlot::AxisTickPainter::Params{};
-        params.orientation = QAccelPlot::Axis::Vertical;
+        params.orientation = Qt::Vertical;
         params.side = QAccelPlot::Axis::Left;
         params.ticker = &ticker;
         const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(0.25, 0.75, false, &ticker);
@@ -578,7 +578,7 @@ void TestAxisTickPainter::axis_paintsTitleOnEverySide()
     const auto titleColor = QColor{Qt::red};
     const auto hoverColor = QColor{Qt::blue};
     auto axis = HoverableAxis{nullptr, side};
-    axis.setSize(axis.orientation() == QAccelPlot::Axis::Horizontal ? QSizeF{200, 80} : QSizeF{80, 200});
+    axis.setSize(axis.orientation() == Qt::Horizontal ? QSizeF{200, 80} : QSizeF{80, 200});
     axis.ticker()->setTickCount(0);
     axis.setBaselineColor(Qt::green);
     axis.setLabel(QStringLiteral("Title"));

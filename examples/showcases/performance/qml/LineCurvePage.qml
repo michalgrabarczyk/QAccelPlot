@@ -67,7 +67,7 @@ QAccelPlot.Plot {
             // Fixed value ranges spare the effects a scan of the data per update.
             QAccelPlot.GradientStroke {
                 id: gradientStroke
-                direction: QAccelPlot.GradientDirection.Vertical
+                direction: Qt.Vertical
                 gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
                 gradientValueMin: -8
                 gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
@@ -79,7 +79,7 @@ QAccelPlot.Plot {
 
             QAccelPlot.GradientFill {
                 id: gradientFill
-                direction: QAccelPlot.GradientDirection.Vertical
+                direction: Qt.Vertical
                 baseline: QAccelPlot.GradientFillBaseline.Value
                 baselineValue: 0
                 gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed

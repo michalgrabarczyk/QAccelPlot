@@ -590,9 +590,9 @@ void LineCurveDataTest::hoverEnterAndLeaveToggleHovered()
 void LineCurveDataTest::lineAndMarkerCurveContainsLineAndMarkers()
 {
     auto xAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = Axis{};
-    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);
@@ -609,9 +609,9 @@ void LineCurveDataTest::lineAndMarkerCurveContainsLineAndMarkers()
 void LineCurveDataTest::hoverRadiusLimitsLineHitTest()
 {
     auto xAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = Axis{};
-    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
     auto curve = LineCurve{};
     curve.setXAxis(&xAxis);
     curve.setYAxis(&yAxis);

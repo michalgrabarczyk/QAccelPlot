@@ -87,7 +87,7 @@ Item {
                     viewportMax: 700
                     dataMin: 400
                     dataMax: 700
-                    orientation: QAccelPlot.Axis.Horizontal
+                    orientation: Qt.Horizontal
                     side: QAccelPlot.Axis.Bottom
                     label: "Frequency (THz)"
                     baselineColor: root.colorPalette.seriesCyan
