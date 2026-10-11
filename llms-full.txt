@@ -894,9 +894,9 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
-| [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/) | Crosshair, tooltip, nearest-sample queries, region statistics, and selection |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
+| [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/histograms/) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/) | Confidence intervals and envelopes between a low and a high value, with edge lines |
@@ -1580,57 +1580,6 @@ Complete sources:
 
 ---
 
-<!-- source: docs/guide/cookbook/rectangle-zoom.md -->
-
-# Rectangle zoom
-
-Enable rectangle zoom on `Plot` or `PlotView`:
-
-```qml
-import QAccelPlot as QAccelPlot
-
-QAccelPlot.Plot {
-    readonly property color zoomBorderColor: QAccelPlot.Colors.dark.rectangleZoomBorder
-
-    rectangleZoom.enabled: true
-    rectangleZoom.modifiers: Qt.ShiftModifier
-    rectangleZoom.minimumSize: 6
-    rectangleZoom.fillColor: QAccelPlot.Colors.dark.rectangleZoomFill
-    rectangleZoom.borderColor: zoomBorderColor
-}
-```
-
-- Shift + left drag selects a region; release to zoom all attached axes.
-- Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
-- The selection is clipped to the plot area and must be at least 6 logical pixels
-  wide and high; adjust `rectangleZoom.minimumSize` to change this.
-
-Rectangle zoom is disabled by default. `rectangleZoom.modifiers` must match
-exactly at press time; use `Qt.NoModifier` for unmodified dragging. A
-[`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses the same gesture by default
-and takes it when both are enabled; change `modifiers` on one of them.
-
-Bind `fillColor` to the palette's `rectangleZoomFill` and `borderColor` to
-`rectangleZoomBorder`. Both are gray in the dark theme and light gray in the light theme;
-the fill color includes 15% opacity.
-
-For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
-
-```qml
-const applied = plot.zoomToRect(Qt.rect(left, top, width, height))
-```
-
-It works with gestures disabled and supports logarithmic and reversed axes.
-It returns `false` without changing ranges if the selection or target axes are invalid.
-
-Complete source:
-[`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud).
-
-[zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect
-
-
----
-
 <!-- source: docs/guide/cookbook/data-inspection.md -->
 
 # Data inspection
@@ -2107,6 +2056,57 @@ Complete source:
 [point-cloud]: ../api/classQAccelPlot_1_1PointCloud.md
 [colormap]: ../api/classQAccelPlot_1_1Colormap.md
 [color-bar]: ../api/classQAccelPlot_1_1ColorBar.md
+
+
+---
+
+<!-- source: docs/guide/cookbook/rectangle-zoom.md -->
+
+# Rectangle zoom
+
+Enable rectangle zoom on `Plot` or `PlotView`:
+
+```qml
+import QAccelPlot as QAccelPlot
+
+QAccelPlot.Plot {
+    readonly property color zoomBorderColor: QAccelPlot.Colors.dark.rectangleZoomBorder
+
+    rectangleZoom.enabled: true
+    rectangleZoom.modifiers: Qt.ShiftModifier
+    rectangleZoom.minimumSize: 6
+    rectangleZoom.fillColor: QAccelPlot.Colors.dark.rectangleZoomFill
+    rectangleZoom.borderColor: zoomBorderColor
+}
+```
+
+- Shift + left drag selects a region; release to zoom all attached axes.
+- Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
+- The selection is clipped to the plot area and must be at least 6 logical pixels
+  wide and high; adjust `rectangleZoom.minimumSize` to change this.
+
+Rectangle zoom is disabled by default. `rectangleZoom.modifiers` must match
+exactly at press time; use `Qt.NoModifier` for unmodified dragging. A
+[`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses the same gesture by default
+and takes it when both are enabled; change `modifiers` on one of them.
+
+Bind `fillColor` to the palette's `rectangleZoomFill` and `borderColor` to
+`rectangleZoomBorder`. Both are gray in the dark theme and light gray in the light theme;
+the fill color includes 15% opacity.
+
+For a custom tool, call [`zoomToRect()`][zoom-to-rect] with item-local pixels:
+
+```qml
+const applied = plot.zoomToRect(Qt.rect(left, top, width, height))
+```
+
+It works with gestures disabled and supports logarithmic and reversed axes.
+It returns `false` without changing ranges if the selection or target axes are invalid.
+
+Complete source:
+[`examples/plot_types/point_cloud`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud).
+
+[zoom-to-rect]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-zoomtorect
 
 
 ---
