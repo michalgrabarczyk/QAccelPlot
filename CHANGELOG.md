@@ -114,6 +114,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Axes and color ranges preserve distinct values below machine epsilon, so small
   data spans map across the plot instead of collapsing to one pixel.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
+- Hovering a `RectangleSeries` or `BarSeries` whose records share one coordinate
+  far from zero, such as a zero-width rectangle at a nanosecond timestamp, no
+  longer crashes.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
 - `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.

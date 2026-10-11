@@ -31,6 +31,8 @@ private slots:
     // Corner cases
     void build_invertedRect_isNormalized();
     void build_zeroAreaRect_isQueryable();
+    void build_zeroWidthRectsFarFromZero_areQueryable();
+    void build_extentBeyondDoubleRange_isQueryable();
     void query_overlappingRects_returnsLastInserted();
     void query_skipsTopCandidateThatDoesNotContainPoint();
     void build_nullData_returnsMinusOne();
@@ -358,6 +360,38 @@ void TestSpatialGrid::scanTopmost_matchesQueryTopmost()
         }
     }
     QVERIFY(hits > 1000);
+}
+
+void TestSpatialGrid::build_zeroWidthRectsFarFromZero_areQueryable()
+{
+    // Far from zero, adding 1 to a coordinate leaves it unchanged, so the extent stays empty.
+    constexpr auto kFar = 1.0e17;
+    const auto single = std::array<double, 4>{kFar, 0.0, kFar, 1.0};
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(single.data(), 1);
+    QCOMPARE(grid.query(kFar, 0.5), 0);
+    QCOMPARE(grid.query(kFar, 2.0), -1);
+
+    constexpr auto kItemCount = 400;
+    auto stacked = std::vector<double>{};
+    for (auto i = 0; i < kItemCount; ++i) {
+        stacked.insert(stacked.end(), {kFar, static_cast<double>(i), kFar, static_cast<double>(i) + 0.5});
+    }
+    grid.build(stacked.data(), kItemCount);
+    QCOMPARE(grid.query(kFar, 100.25), 100);
+    QCOMPARE(grid.query(kFar, 100.75), -1);
+}
+
+void TestSpatialGrid::build_extentBeyondDoubleRange_isQueryable()
+{
+    // The finite edges are farther apart than a double can express, next to an unbounded edge.
+    constexpr auto kHuge = 1.5e308;
+    const auto data = std::array<double, 8>{-kHuge, 0.0, kHuge, 1.0, 0.0, 2.0, kInf, 3.0};
+    auto grid = QAccelPlot::SpatialGrid{};
+    grid.build(data.data(), 2);
+    QCOMPARE(grid.query(0.0, 0.5), 0);
+    QCOMPARE(grid.query(kHuge, 2.5), 1);
+    QCOMPARE(grid.query(-kHuge, 2.5), -1);
 }
 
 void TestSpatialGrid::scanTopmost_ignoresInvalidArguments()
