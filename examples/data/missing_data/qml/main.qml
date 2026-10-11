@@ -118,7 +118,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Pressure (bar)"
                 }
@@ -149,7 +149,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Pressure (bar)"
                 }
@@ -186,7 +186,7 @@ Window {
                     viewportMin: 0.01
                     viewportMax: 100
                     logScale: true
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Amplitude (log)"
                 }

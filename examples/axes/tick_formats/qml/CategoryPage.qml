@@ -45,7 +45,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 55
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Electricity use (kWh)"
             }

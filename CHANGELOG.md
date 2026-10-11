@@ -82,6 +82,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Renamed `GradientFill` and `GradientStroke` properties: `gradientValueMin` →
   `valueMin`, `gradientValueMax` → `valueMax`, `gradientValueMinSource` →
   `valueMinSource`, and `gradientValueMaxSource` → `valueMaxSource`.
+- Renamed `Axis.axisTitlePadding` to `labelPadding` and `Axis.axisLinePadding` to
+  `baselinePadding`.
 
 ### Removed
 

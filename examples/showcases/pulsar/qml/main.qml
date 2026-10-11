@@ -122,7 +122,7 @@ Window {
                 visible: false
                 viewportMin: 0.0
                 viewportMax: 530.0
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
             }
 

@@ -114,7 +114,7 @@ Window {
                     viewportMin: 0
                     viewportMax: 1.1 * window.largest(window.noiseHistogram.values) || 1
                     layoutSize: 70
-                    axisTitlePadding: 50
+                    labelPadding: 50
                     label: "Count"
                 }
 
@@ -154,7 +154,7 @@ Window {
                     viewportMin: 0
                     viewportMax: 1.1 * window.largest(window.latencyHistogram.values) || 1
                     layoutSize: 70
-                    axisTitlePadding: 50
+                    labelPadding: 50
                     label: window.tickBins ? "Density (1/ms)" : "Count"
                 }
 

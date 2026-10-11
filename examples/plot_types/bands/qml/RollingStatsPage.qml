@@ -74,7 +74,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 4
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"
             }

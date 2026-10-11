@@ -47,7 +47,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: 1.2
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Lead I (mV)"
                 ticker.tickCount: 4
@@ -80,7 +80,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -0.7
                 viewportMax: 1.5
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Lead II (mV)"
                 ticker.tickCount: 4
@@ -120,7 +120,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -1
                 viewportMax: 1
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Respiration"
                 ticker.tickCount: 4

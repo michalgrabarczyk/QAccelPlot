@@ -160,7 +160,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: -4
                     viewportMax: 6
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Net grid power (kW)"
                 }
@@ -217,7 +217,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: 20
                     viewportMax: 30
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Battery temperature (°C)"
                 }

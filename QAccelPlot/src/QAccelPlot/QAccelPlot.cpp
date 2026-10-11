@@ -830,7 +830,7 @@ void QAccelPlot::connectAxisSignals(Axis* axis)
     connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::axisLinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
@@ -852,7 +852,7 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
     disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
     disconnect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update);
     disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::axisLinePaddingChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes);

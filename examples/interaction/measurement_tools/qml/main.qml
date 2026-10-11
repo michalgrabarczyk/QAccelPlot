@@ -228,7 +228,7 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 80
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Elevation (m)"
                 baselineWidth: 2

@@ -118,7 +118,7 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -0.5
                 viewportMax: window.machineNames.length - 0.5
-                axisTitlePadding: 60
+                labelPadding: 60
                 layoutSize: 80
                 label: "Machine"
                 ticker.tickCount: window.machineNames.length

@@ -120,7 +120,7 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -1.2
                 viewportMax: 1.2
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Value"
             }

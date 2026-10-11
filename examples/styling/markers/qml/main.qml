@@ -195,7 +195,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: -5
                     viewportMax: 5
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Y"
                 }
@@ -245,7 +245,7 @@ Window {
                     viewportMin: -0.6
                     viewportMax: window.shapes.length - 0.4
                     layoutSize: 118
-                    axisTitlePadding: 100
+                    labelPadding: 100
                     label: "Shape"
                     // One tick per shape: range / tickCount must stay at or below 1.
                     ticker.tickCount: window.shapes.length + 1

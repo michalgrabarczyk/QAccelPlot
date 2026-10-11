@@ -44,7 +44,7 @@ Window {
     component OffsetAxis: ExampleAxis {
         viewportMin: -0.1
         viewportMax: 4.1
-        axisTitlePadding: 40
+        labelPadding: 40
         layoutSize: 60
     }
 

@@ -73,7 +73,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 95
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Response time (ms)"
             }

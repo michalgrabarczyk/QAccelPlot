@@ -27,7 +27,7 @@ QAccelPlot.Plot {
     yAxis: ExampleAxis {
         viewportMin: -10
         viewportMax: 10
-        axisTitlePadding: 40
+        labelPadding: 40
         layoutSize: 60
         label: "Amplitude"
     }

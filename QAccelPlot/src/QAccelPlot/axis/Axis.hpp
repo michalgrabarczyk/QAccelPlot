@@ -64,10 +64,10 @@ class Axis : public QQuickPaintedItem {
     /// \brief Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis,
     /// and y2Axis; set explicitly for an axis placed in extraAxes.
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
-    /// \brief Pixels of padding between the axis line and the title text. Default: 30.
-    Q_PROPERTY(int axisTitlePadding READ axisTitlePadding WRITE setAxisTitlePadding NOTIFY axisTitlePaddingChanged)
-    /// \brief Pixels of padding between the plot area edge and the axis baseline. Default: 0.
-    Q_PROPERTY(int axisLinePadding READ axisLinePadding WRITE setAxisLinePadding NOTIFY axisLinePaddingChanged)
+    /// \brief Pixels of padding between the baseline and the axis label. Default: 30.
+    Q_PROPERTY(int labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    /// \brief Pixels of padding between the plot area edge and the baseline. Default: 0.
+    Q_PROPERTY(int baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
     /// \brief Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.
     Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
     /// \brief Read-only constant: tick appearance configuration object.
@@ -163,15 +163,15 @@ public:
     /// \brief Sets the hovered color to \a c.
     void setHoverColor(const QColor& c);
 
-    /// \brief Returns the axis title padding in pixels.
-    int axisTitlePadding() const;
-    /// \brief Sets the axis title padding to \a padding pixels.
-    void setAxisTitlePadding(int padding);
+    /// \brief Returns the padding between the baseline and the axis label in pixels.
+    int labelPadding() const;
+    /// \brief Sets the padding between the baseline and the axis label to \a padding pixels.
+    void setLabelPadding(int padding);
 
-    /// \brief Returns the axis line padding in pixels.
-    int axisLinePadding() const;
-    /// \brief Sets the axis line padding to \a padding pixels.
-    void setAxisLinePadding(int padding);
+    /// \brief Returns the padding between the plot area edge and the baseline in pixels.
+    int baselinePadding() const;
+    /// \brief Sets the padding between the plot area edge and the baseline to \a padding pixels.
+    void setBaselinePadding(int padding);
 
     /// \brief Returns the layout thickness in pixels.
     qreal layoutSize() const;
@@ -210,7 +210,7 @@ public:
     /// Draws the ticks and labels computed in \c updatePolish(); with the threaded render loop this runs on the render thread.
     void paint(QPainter* painter) override;
 
-    /// \brief Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.
+    /// \brief Returns the inward tick overlap beyond \c baselinePadding, used by PlotView to size the plot area.
     qreal inwardTickOverlap() const;
 
     /// \brief Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.
@@ -259,10 +259,10 @@ signals:
     void hoverColorChanged();
     /// \brief Emitted when the side property changes.
     void sideChanged();
-    /// \brief Emitted when the axisTitlePadding property changes.
-    void axisTitlePaddingChanged();
-    /// \brief Emitted when the axisLinePadding property changes.
-    void axisLinePaddingChanged();
+    /// \brief Emitted when the labelPadding property changes.
+    void labelPaddingChanged();
+    /// \brief Emitted when the baselinePadding property changes.
+    void baselinePaddingChanged();
     /// \brief Emitted when the layoutSize property changes.
     void layoutSizeChanged();
     /// \brief Emitted when the logScale property changes.
@@ -330,8 +330,8 @@ private:
     QColor labelColor_;
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};
-    int axisTitlePadding_{30};
-    int axisLinePadding_{0};
+    int labelPadding_{30};
+    int baselinePadding_{0};
     qreal layoutSize_{50.0};
     bool logScale_{false};
     double zoomScaleFactor_{0.9};

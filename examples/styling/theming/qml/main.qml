@@ -85,7 +85,7 @@ Window {
             yAxis: ThemedAxis {
                 viewportMin: -5
                 viewportMax: 30
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"
             }

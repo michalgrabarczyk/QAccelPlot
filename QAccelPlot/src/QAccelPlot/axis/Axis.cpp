@@ -284,33 +284,33 @@ void Axis::setHoverColor(const QColor& c)
     update();
 }
 
-int Axis::axisTitlePadding() const
+int Axis::labelPadding() const
 {
-    return axisTitlePadding_;
+    return labelPadding_;
 }
 
-void Axis::setAxisTitlePadding(const int padding)
+void Axis::setLabelPadding(const int padding)
 {
-    if (axisTitlePadding_ == padding) {
+    if (labelPadding_ == padding) {
         return;
     }
-    axisTitlePadding_ = padding;
-    emit axisTitlePaddingChanged();
+    labelPadding_ = padding;
+    emit labelPaddingChanged();
     update();
 }
 
-int Axis::axisLinePadding() const
+int Axis::baselinePadding() const
 {
-    return axisLinePadding_;
+    return baselinePadding_;
 }
 
-void Axis::setAxisLinePadding(const int padding)
+void Axis::setBaselinePadding(const int padding)
 {
-    if (axisLinePadding_ == padding) {
+    if (baselinePadding_ == padding) {
         return;
     }
-    axisLinePadding_ = padding;
-    emit axisLinePaddingChanged();
+    baselinePadding_ = padding;
+    emit baselinePaddingChanged();
     update();
 }
 
@@ -416,8 +416,8 @@ void Axis::paint(QPainter* painter)
 
     // Ensure the axis line is far enough from the item edge to show inward ticks
     const auto maxIn = std::max(static_cast<qreal>(ticker_->tickLengthIn()), static_cast<qreal>(ticker_->subtickLengthIn()));
-    const auto pad = std::max(static_cast<qreal>(axisLinePadding_), maxIn);
-    const auto overlap = pad - static_cast<qreal>(axisLinePadding_);
+    const auto pad = std::max(static_cast<qreal>(baselinePadding_), maxIn);
+    const auto overlap = pad - static_cast<qreal>(baselinePadding_);
 
     // Fill only the axis area, not the overlap or label overflow regions
     auto bgRect = dataRect;
@@ -480,7 +480,7 @@ void Axis::paint(QPainter* painter)
 qreal Axis::inwardTickOverlap() const
 {
     const auto maxIn = std::max(static_cast<qreal>(ticker_->tickLengthIn()), static_cast<qreal>(ticker_->subtickLengthIn()));
-    return std::max(0.0, maxIn - static_cast<qreal>(axisLinePadding_));
+    return std::max(0.0, maxIn - static_cast<qreal>(baselinePadding_));
 }
 
 qreal Axis::labelOverflow() const
@@ -795,10 +795,10 @@ void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, con
     painter->setPen(hovered_ ? hoverColor_ : labelColor);
     if (orientation_ == Qt::Horizontal) {
         if (side_ == Bottom) {
-            const auto titleRect = QRectF(r.x(), axisY + axisTitlePadding_, r.width(), r.height() - (axisY + axisTitlePadding_));
+            const auto titleRect = QRectF(r.x(), axisY + labelPadding_, r.width(), r.height() - (axisY + labelPadding_));
             painter->drawText(titleRect, Qt::AlignTop | Qt::AlignHCenter, label_);
         } else { // Top
-            const auto titleRect = QRectF(r.x(), r.y(), r.width(), axisY - axisTitlePadding_);
+            const auto titleRect = QRectF(r.x(), r.y(), r.width(), axisY - labelPadding_);
             painter->drawText(titleRect, Qt::AlignBottom | Qt::AlignHCenter, label_);
         }
     } else {
@@ -807,14 +807,14 @@ void Axis::paintLabel(QPainter* painter, const QRectF& r, const qreal axisX, con
         const auto titleLineHalfHeight = titleLineHeight / 2.0;
         if (side_ == Left) {
             painter->save();
-            painter->translate(axisX - axisTitlePadding_ - titleLineHalfHeight, r.y() + r.height() / 2);
+            painter->translate(axisX - labelPadding_ - titleLineHalfHeight, r.y() + r.height() / 2);
             painter->rotate(-90);
             const auto titleRect = QRectF(-r.height() / 2, -titleLineHalfHeight, r.height(), titleLineHeight);
             painter->drawText(titleRect, Qt::AlignCenter, label_);
             painter->restore();
         } else { // Right
             painter->save();
-            painter->translate(axisX + axisTitlePadding_ + titleLineHalfHeight, r.y() + r.height() / 2);
+            painter->translate(axisX + labelPadding_ + titleLineHalfHeight, r.y() + r.height() / 2);
             painter->rotate(90);
             const auto titleRect = QRectF(-r.height() / 2, -titleLineHalfHeight, r.height(), titleLineHeight);
             painter->drawText(titleRect, Qt::AlignCenter, label_);

@@ -50,7 +50,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -1.8
                 viewportMax: 1.8
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Amplitude"
                 baselineWidth: 2

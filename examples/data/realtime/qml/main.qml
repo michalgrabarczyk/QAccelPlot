@@ -66,7 +66,7 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 2.5
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"
             }
