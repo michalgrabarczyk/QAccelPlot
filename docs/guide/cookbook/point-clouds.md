@@ -10,14 +10,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 # Point clouds
 
 Use [`QAccelPlot.PointCloud`][point-cloud] for scatter data whose points are
-not connected: sensor returns, clustering results, particle positions, or
-detector events. Every point is drawn as a GPU marker, and the series scales
-to hundreds of thousands of points updated every frame.
-
-A `LineCurve` with `NoLine` and markers can draw small scatter plots, but it
-builds marker geometry on the CPU for every data change. `PointCloud` uploads
-positions as a data texture instead, so a cloud of constant size costs one
-texture upload per update.
+not connected. It draws each point as a GPU marker and scales to hundreds of
+thousands of points updated every frame. A `LineCurve` with `NoLine` and
+markers suits small scatter plots only.
 
 ## Draw a scatter plot
 
@@ -62,17 +57,11 @@ QAccelPlot.PointCloud {
 }
 ```
 
-A colormap is a color ramp plus the rule that places a value on it. Assigning one is what turns
-on value coloring: without it, or without per-point values, every point uses `color`.
+Without a colormap, or without per-point values, every point uses `color`.
 
-The built-in ramps are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Grayscale`, and `Rainbow`.
-Prefer the perceptually uniform ones over `Rainbow`, whose uneven lightness invents boundaries that
-are not in the data.
-
-Set `reversed: true` to run a ramp from its last color to its first. For example, a reversed
-`Inferno` or `Magma` fades low values into a light background.
-
-For a custom ramp, list the stops instead:
+The presets are `Viridis`, `Plasma`, `Inferno`, `Magma`, `Grayscale`, and
+`Rainbow`; `reversed: true` runs a ramp from its last color to its first. For
+a custom ramp, pass the stops of a `Gradient`, whose orientation is ignored:
 
 ```qml
 Gradient {
@@ -86,16 +75,11 @@ QAccelPlot.PointCloud {
 }
 ```
 
-`min` and `max` bound the value range. Leave either unset and it is resolved from the data, so one
-colormap can be shared between series that resolve different ranges.
-`setRange(min, max)` sets both with one update. Set `norm` to
-`Colormap.Log` when the values span decades, such as counts or intensities; values at or below
-zero are then left unmapped and drawn with `color`.
-
-A colormap has no geometry. Unlike `GradientFill` and `GradientStroke`, which paint a gradient
-across the plot and so have a `direction`, a colormap is a one-dimensional ramp indexed by each
-point's value, not by its position on screen. That is why there is no orientation here and no
-radial form: only the stop colors are taken from the `Gradient` above.
+`min` and `max` bound the value range. An unset bound is resolved from the
+data, so series sharing one colormap can resolve different ranges.
+`setRange(min, max)` sets both with one update. Set `norm` to `Colormap.Log`
+when the values span decades; values at or below zero are then drawn with
+`color`.
 
 From QML, call `setValues()` after `setData()` with one value per point. From
 C++, pass values together with the positions:
@@ -104,19 +88,16 @@ C++, pass values together with the positions:
 cloud->setDataF(std::move(xyInterleaved), std::move(values), pointCount);
 ```
 
-`setData()` takes the same shape with a `std::vector<double>` of positions when
-the coordinates need double precision. Values stay single precision either way,
-because they only index the colormap.
+`setData()` takes the same arguments with a `std::vector<double>` of positions.
+Values are single precision either way.
 
-The resolved bounds, from `min` and `max` or from the finite values in the
-data, are exposed as `dataValueMin` and `dataValueMax`. Points with a
-non-finite value fall back to `color`.
+`dataValueMin` and `dataValueMax` expose the resolved bounds. Points with a
+non-finite value use `color`.
 
 ## Show a color bar
 
-[`QAccelPlot.ColorBar`][color-bar] is the key for a value-colored cloud. It
-draws the series' colormap with ticks for the resolved value range, and redraws
-when the colormap, its range, or the assigned colormap changes:
+[`QAccelPlot.ColorBar`][color-bar] draws the series' colormap with ticks for
+the resolved value range:
 
 ```qml
 QAccelPlot.Plot {
@@ -138,31 +119,17 @@ QAccelPlot.Plot {
 }
 ```
 
-- The bar is an ordinary item. Position it with `x`, `y`, or anchors; it does
-  not reserve layout space. The default legend sits at the top right of the
-  plot area, so place the bar elsewhere or move the legend.
-- A vertical bar, the default, has its minimum at the bottom and its ticks and
-  `label` on the right. `orientation: QAccelPlot.ColorBar.Horizontal` puts the
-  minimum on the left and the ticks and `label` below.
-- The implicit size fits the strip, ticks, labels, and `label`, with a length
-  of 160 pixels. Set `height` on a vertical bar, or `width` on a horizontal
-  one, to change the length.
-- The tick labels of a vertical bar get the fixed `tickLabelWidth`, 16 pixels
-  by default, so the bar and its `label` stay in place while the labels change.
-  Wider labels are clipped; raise it for longer labels.
-- Ticks follow `norm`: a `Log` colormap gets one major tick per decade.
-  `ticker` sets tick count, colors, fonts, and label formatters, as on
-  `Axis.ticker`.
-- `interactive: true` lets the user change the range on the bar. A left drag
-  pans it, the wheel zooms around the value under the cursor, and a
-  double-click, like `rescaleToData()`, resolves it from the data again. An
-  interactive bar keeps these events from the plot below it. It reports
-  `hovered`, for example to highlight it with
-  `borderColor: hovered ? "white" : "gray"`.
-- The gestures set the colormap's `min` and `max`, so every series sharing the
-  colormap follows. Leave both unbound: a binding overrides the gesture when it
-  is next evaluated.
-- Nothing is drawn while the series has no colormap.
+- The bar is an ordinary item: position it with `x`, `y`, or anchors. It does
+  not reserve layout space, and the default legend sits at the top right of
+  the plot area.
+- The default bar is vertical, with its minimum at the bottom.
+  `orientation: QAccelPlot.ColorBar.Horizontal` puts the minimum on the left.
+- Set `height` on a vertical bar, or `width` on a horizontal one, to change its
+  length. Raise `tickLabelWidth` when the labels of a vertical bar are clipped.
+- `ticker` configures the ticks, as on `Axis.ticker`.
+- `interactive: true` lets the user pan the range with a left drag, zoom it
+  with the wheel, and resolve it from the data again with a double-click. The
+  gestures set the colormap's `min` and `max`, so leave both unbound.
 
 ## Stream point data
 
@@ -197,10 +164,9 @@ Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
 
 ## Invalid points and logarithmic axes
 
-Non-finite coordinates are kept in storage, so indices stay stable, but they
-are not drawn, not picked, and do not contribute to axis data ranges. On a
-logarithmic axis, non-positive coordinates are skipped the same way. You do not
-need to filter them before handing data to the series.
+Non-finite coordinates, and non-positive ones on a logarithmic axis, are not
+drawn, not picked, and do not contribute to axis data ranges. They stay in
+storage, so indices are stable.
 
 ## Hover and tooltips
 
@@ -230,12 +196,9 @@ underneath still receive hover events elsewhere. For the lookup cost, see
 
 ## Limits
 
-- The GPU renders in single precision. `setData()` accepts doubles, from QML
-  points or a `std::vector<double>`, and uploads positions relative to an
-  origin taken from the first finite point, so values far from zero such as
-  epoch timestamps keep their resolution. Logarithmic dimensions are never
-  shifted. The `setDataF()` family takes floats and is not origin-shifted; use
-  it when the data is already single precision.
+- `setData()` keeps doubles and uploads positions relative to an origin near
+  the data, so values far from zero such as epoch timestamps stay precise.
+  `setDataF()` stores floats.
 - The number of drawable points is bounded by the GPU's maximum texture size:
   about 22 million points with values, or 33 million without, on a GPU with
   an 8192-pixel texture limit, and twice that with a 16384-pixel limit. Extra
