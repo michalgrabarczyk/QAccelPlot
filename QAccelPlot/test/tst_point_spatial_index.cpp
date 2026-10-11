@@ -46,6 +46,8 @@ private slots:
     void singlePointIsFoundInsideRadiusOnly();
     void duplicatePointsResolveToHighestIndex();
     void nearestMatchesBruteForce();
+    void pointsOnALineAreSplitAlongIt_data();
+    void pointsOnALineAreSplitAlongIt();
     void nonFinitePointsAreSkipped();
     void logarithmicMappingSkipsNonPositivePoints();
     void anisotropicRadiusUsesNormalizedDistance();
@@ -123,6 +125,47 @@ void PointSpatialIndexTest::nearestMatchesBruteForce()
         QCOMPARE(index.nearest(x, y, radiusX, radiusY), bruteForceNearest(xy, x, y, radiusX, radiusY));
     }
     QCOMPARE(index.nearest(10.0, -5.0, 1.0, 1.0), bruteForceNearest(xy, 10.0, -5.0, 1.0, 1.0));
+}
+
+void PointSpatialIndexTest::pointsOnALineAreSplitAlongIt_data()
+{
+    QTest::addColumn<bool>("horizontal");
+    QTest::addColumn<float>("length");
+
+    QTest::newRow("horizontal") << true << 100.0f;
+    QTest::newRow("vertical") << false << 100.0f;
+    // The extent along the line is 10^15 times the smallest extent the grid gives the other axis.
+    QTest::newRow("long horizontal") << true << 1.0e9f;
+    QTest::newRow("long vertical") << false << 1.0e9f;
+}
+
+void PointSpatialIndexTest::pointsOnALineAreSplitAlongIt()
+{
+    QFETCH(bool, horizontal);
+    QFETCH(float, length);
+
+    constexpr auto pointCount = 40000;
+    auto xy = std::vector<float>(pointCount * 2);
+    for (auto i = 0; i < pointCount; ++i) {
+        const auto along = length * static_cast<float>(i) / static_cast<float>(pointCount - 1);
+        xy[static_cast<std::size_t>(i) * 2] = horizontal ? along : 5.0f;
+        xy[static_cast<std::size_t>(i) * 2 + 1] = horizontal ? 5.0f : along;
+    }
+    auto index = PointSpatialIndex{};
+    index.build(xy.data(), pointCount);
+
+    // A single cell across the line would leave every query to test all the points.
+    constexpr auto maxGridDimension = 4096;
+    QCOMPARE(horizontal ? index.columnCount() : index.rowCount(), maxGridDimension);
+
+    const auto along = static_cast<double>(length) * 0.5;
+    const auto radius = static_cast<double>(length) * 1e-4;
+    const auto x = horizontal ? along : 5.0;
+    const auto y = horizontal ? 5.0 : along;
+    const auto radiusX = horizontal ? radius : 1.0;
+    const auto radiusY = horizontal ? 1.0 : radius;
+    QVERIFY(index.nearest(x, y, radiusX, radiusY) >= 0);
+    QCOMPARE(index.nearest(x, y, radiusX, radiusY), bruteForceNearest(xy, x, y, radiusX, radiusY));
 }
 
 void PointSpatialIndexTest::nonFinitePointsAreSkipped()

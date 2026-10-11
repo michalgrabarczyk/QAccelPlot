@@ -122,6 +122,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
 - `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.
+- Hovering a `PointCloud` whose points lie on a long horizontal line no longer
+  tests every point.
 - `PointCloud` no longer hovers points beyond the GPU texture capacity, which are not drawn.
 - `Colormap` now drops destroyed `stops` and updates its ramp when a stop changes.
 - `Colormap` ignores null entries in `stops` instead of crashing.

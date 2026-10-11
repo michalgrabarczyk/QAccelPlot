@@ -51,6 +51,10 @@ public:
     bool isEmpty() const;
     /// \brief Returns the number of indexed (valid) points.
     int validPointCount() const;
+    /// \brief Returns the number of grid columns of the last build; 0 when no point is indexed.
+    int columnCount() const;
+    /// \brief Returns the number of grid rows of the last build; 0 when no point is indexed.
+    int rowCount() const;
     /// \brief Returns the mapping used by the last build.
     Mapping mapping() const;
 
