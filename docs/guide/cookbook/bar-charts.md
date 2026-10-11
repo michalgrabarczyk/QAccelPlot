@@ -148,6 +148,8 @@ For the highest throughput, use `setDataF()`, or `postData()` from a worker
 thread; see the
 [Performance guide](../performance.md).
 
+## Invalid bars
+
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.
 

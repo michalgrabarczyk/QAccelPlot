@@ -162,13 +162,13 @@ Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
 - `clearData()` shows the new data at once.
 - While a transition is enabled, the float paths store doubles.
 
-## Invalid points and logarithmic axes
+## Invalid points
 
 Non-finite coordinates, and non-positive ones on a logarithmic axis, are not
 drawn, not picked, and do not contribute to axis data ranges. They stay in
 storage, so indices are stable.
 
-## Hover and tooltips
+## Hover
 
 `hoveredIndex` is the index of the valid point nearest to the pointer within
 `hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`, and a
