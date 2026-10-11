@@ -111,6 +111,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   or appear in `extraAxes`.
 - Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.
+- Zooming or panning an axis stops at the limits of a double. Zooming a
+  logarithmic axis far out no longer leaves a NaN viewport.
 - Axes and color ranges preserve distinct values below machine epsilon, so small
   data spans map across the plot instead of collapsing to one pixel.
 - `LineCurve` with both a line and markers is hovered along the line, not only on markers.
