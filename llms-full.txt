@@ -1803,22 +1803,14 @@ QAccelPlot.Plot {
 }
 ```
 
-Marker settings are grouped under `marker`. `marker.size` is the marker radius
-in pixels. Point clouds accept every marker shape except `None`; see the
-[shape table](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#marker-shapes). `Pixel` ignores `marker.size` and
-draws one pixel per point, which suits very dense clouds.
+`marker` takes the same `shape`, `size`, `filled`, and `strokeWidth` as on a
+`LineCurve`, except the shape `None`; see
+[Marker shapes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/#marker-shapes).
 
-Set `marker.filled: false` to draw closed shapes as outlines of
-`marker.strokeWidth` pixels. Hollow markers read well on dense clouds, where
-filled shapes merge into a solid mass. Line shapes and `Pixel` ignore both
-properties.
+Overlapping translucent markers blend separately, so dense regions read as
+density. Points are drawn in data order.
 
-Translucent colors, or an `opacity` below 1 on the cloud or a parent item, make
-dense regions read as density, because each overlapping marker blends
-separately. Points are drawn in data order, so put background points first
-when they should appear underneath.
-
-The default legend shows the marker shape and `color` for point clouds.
+The default legend shows the marker shape and `color`.
 
 ## Color points by value
 
