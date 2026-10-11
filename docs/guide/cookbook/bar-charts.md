@@ -110,7 +110,7 @@ are set with `border.width` and `border.color`.
 
 ## Hover
 
-`hoveredIndex` is the bar under the cursor, or -1. `barAt(index)` returns its
+`hoveredIndex` is the bar under the pointer, or -1. `barAt(index)` returns its
 `position`, `value`, and `category`; a ranged bar has `from` and `to` instead
 of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.

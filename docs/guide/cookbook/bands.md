@@ -101,8 +101,8 @@ gap there. Auto-ranging skips invalid values one by one.
 
 ## Hover
 
-`hovered` is `true` while the cursor is inside the band or on an edge line.
-Only the topmost series under the cursor is hovered, so nested bands highlight
+`hovered` is `true` while the pointer is inside the band or on an edge line.
+Only the topmost series under the pointer is hovered, so nested bands highlight
 one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over a band to leave
 hover to the band:
 
