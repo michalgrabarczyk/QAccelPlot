@@ -562,7 +562,10 @@ long rectangles make lookup `O(N)`.
 
 `BarSeries.hoveredIndex` indexes only bar positions, so tall bars don't count as
 long rectangles. It rebuilds its grid on the first pointer move after every data
-change. Set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+change.
+
+Set the environment variable `QACCELPLOT_HOVER_ENABLED=0` to turn hover off for
+every series and axis, for example in streaming-only views.
 
 ### Other rendering costs
 
