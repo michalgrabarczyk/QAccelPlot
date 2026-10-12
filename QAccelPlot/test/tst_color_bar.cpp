@@ -223,6 +223,8 @@ private slots:
     void dragPinsDataResolvedRange();
     void dragOnLogColormapPansInLogSpace();
     void rightButtonDoesNotPan();
+    void wheelMagnitudeIsIndependentOfEventCount_data();
+    void wheelMagnitudeIsIndependentOfEventCount();
     void wheelZoomsAroundCursor();
     void wheelOutUndoesWheelIn();
     void wheelOnLogColormapZoomsInLogSpace();
@@ -667,6 +669,37 @@ void ColorBarTest::rightButtonDoesNotPan()
     drag(scene.bar, scene.center(), scene.center() + QPointF{50.0, 0.0}, Qt::RightButton);
     QCOMPARE(scene.colormap.min(), 0.0);
     QCOMPARE(scene.colormap.max(), 1.0);
+}
+
+void ColorBarTest::wheelMagnitudeIsIndependentOfEventCount_data()
+{
+    QTest::addColumn<int>("delta");
+    QTest::addColumn<bool>("logarithmic");
+    for (const auto delta : {120, -120, 480, -480}) {
+        for (const auto logarithmic : {false, true}) {
+            QTest::newRow(qPrintable(QStringLiteral("%1-log%2").arg(delta).arg(logarithmic))) << delta << logarithmic;
+        }
+    }
+}
+
+void ColorBarTest::wheelMagnitudeIsIndependentOfEventCount()
+{
+    QFETCH(int, delta);
+    QFETCH(bool, logarithmic);
+    auto scene = InteractiveScene{Qt::Horizontal};
+    if (logarithmic) {
+        scene.colormap.setNorm(Colormap::Normalization::Log);
+    }
+    scene.colormap.setRange(1.0, 1000.0);
+    QVERIFY(wheel(scene.bar, scene.center(), delta));
+    const auto minimum = scene.colormap.min();
+    const auto maximum = scene.colormap.max();
+    scene.colormap.setRange(1.0, 1000.0);
+    for (auto event = 0; event < 4; ++event) {
+        QVERIFY(wheel(scene.bar, scene.center(), delta / 4));
+    }
+    QCOMPARE_NEAR(scene.colormap.min(), minimum);
+    QCOMPARE_NEAR(scene.colormap.max(), maximum);
 }
 
 void ColorBarTest::wheelZoomsAroundCursor()

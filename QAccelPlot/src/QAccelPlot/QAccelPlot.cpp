@@ -409,18 +409,18 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
     }
 
     const auto pos = event->position();
-    const auto zoomingIn = event->angleDelta().y() > 0;
+    const auto wheelSteps = event->angleDelta().y() / 120.0;
 
     // First try zooming any axis under the cursor, prioritizing primary axes over extra axes
     for (const auto axis : {xAxis_, x2Axis_, yAxis_, y2Axis_}) {
-        if (tryZoomAxisAtPosition(axis, pos, zoomingIn)) {
+        if (tryZoomAxisAtPosition(axis, pos, wheelSteps)) {
             event->accept();
             return;
         }
     }
 
     for (const auto axis : extraAxes_) {
-        if (tryZoomAxisAtPosition(axis, pos, zoomingIn)) {
+        if (tryZoomAxisAtPosition(axis, pos, wheelSteps)) {
             event->accept();
             return;
         }
@@ -431,13 +431,13 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
         const auto xRatio = horizontalRatio(pos, plotRect_);
         const auto yRatio = verticalRatio(pos, plotRect_);
 
-        zoomAxisAtRatio(xAxis_, xRatio, zoomingIn);
-        zoomAxisAtRatio(x2Axis_, xRatio, zoomingIn);
-        zoomAxisAtRatio(yAxis_, yRatio, zoomingIn);
-        zoomAxisAtRatio(y2Axis_, yRatio, zoomingIn);
+        zoomAxisAtRatio(xAxis_, xRatio, wheelSteps);
+        zoomAxisAtRatio(x2Axis_, xRatio, wheelSteps);
+        zoomAxisAtRatio(yAxis_, yRatio, wheelSteps);
+        zoomAxisAtRatio(y2Axis_, yRatio, wheelSteps);
         for (const auto axis : extraAxes_) {
             const auto ratio = (axis->orientation() == Qt::Horizontal) ? xRatio : yRatio;
-            zoomAxisAtRatio(axis, ratio, zoomingIn);
+            zoomAxisAtRatio(axis, ratio, wheelSteps);
         }
         event->accept();
         return;
@@ -792,7 +792,7 @@ bool QAccelPlot::tryForwardKeyEventToAxis(Axis* axis, const QPointF& mousePos, Q
     return false;
 }
 
-bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const bool zoomingIn)
+bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const qreal wheelSteps)
 {
     if (!axis || !axis->isVisible()) {
         return false;
@@ -802,16 +802,16 @@ bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const boo
         return false;
     }
     const auto ratio = (axis->orientation() == Qt::Horizontal) ? horizontalRatio(pos, rect) : verticalRatio(pos, rect);
-    zoomAxisAtRatio(axis, ratio, zoomingIn);
+    zoomAxisAtRatio(axis, ratio, wheelSteps);
     return true;
 }
 
-void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const bool zoomingIn)
+void QAccelPlot::zoomAxisAtRatio(Axis* axis, const qreal ratio, const qreal wheelSteps)
 {
     if (!axis) {
         return;
     }
-    zoomAxis(axis, Internal::wheelZoomFactor(axis->zoomScaleFactor(), zoomingIn), ratio);
+    zoomAxis(axis, Internal::wheelZoomFactor(axis->zoomScaleFactor(), wheelSteps > 0, std::abs(wheelSteps)), ratio);
 }
 
 void QAccelPlot::connectAxisSignals(Axis* axis)

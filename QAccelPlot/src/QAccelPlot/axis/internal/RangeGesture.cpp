@@ -65,7 +65,7 @@ ValueRange zoomedRange(const ValueRange& range, const qreal factor, const qreal 
     return usableOr({anchor - newExtent * anchorRatio, anchor + newExtent * (1.0 - anchorRatio)}, range, false);
 }
 
-qreal wheelZoomFactor(const qreal zoomScaleFactor, const bool zoomingIn)
+qreal wheelZoomFactor(const qreal zoomScaleFactor, const bool zoomingIn, const qreal steps)
 {
     auto zoomInFactor = zoomScaleFactor;
     if (zoomScaleFactor <= 0.0) {
@@ -73,7 +73,7 @@ qreal wheelZoomFactor(const qreal zoomScaleFactor, const bool zoomingIn)
     } else if (zoomScaleFactor >= 1.0) {
         zoomInFactor = kMaxEffectiveZoomFactor;
     }
-    return zoomingIn ? zoomInFactor : 1.0 / zoomInFactor;
+    return std::pow(zoomingIn ? zoomInFactor : 1.0 / zoomInFactor, steps);
 }
 
 } // namespace QAccelPlot::Internal

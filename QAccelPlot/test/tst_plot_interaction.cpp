@@ -101,6 +101,8 @@ class TestPlotInteraction : public QObject {
     Q_OBJECT
 
 private slots:
+    void wheelMagnitudeIsIndependentOfEventCount_data();
+    void wheelMagnitudeIsIndependentOfEventCount();
     void wheelInPlotArea_zoomsAroundCursor();
     void wheelOut_undoesWheelIn();
     void wheelOverAxis_zoomsOnlyThatAxis();
@@ -132,6 +134,43 @@ private slots:
 
     void plotMouseEvent_resetClearsAcceptance();
 };
+
+void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount_data()
+{
+    QTest::addColumn<int>("delta");
+    QTest::addColumn<bool>("logarithmic");
+    QTest::addColumn<bool>("overAxis");
+    for (const auto delta : {120, -120, 480, -480}) {
+        for (const auto logarithmic : {false, true}) {
+            for (const auto overAxis : {false, true}) {
+                QTest::newRow(qPrintable(QStringLiteral("%1-log%2-axis%3").arg(delta).arg(logarithmic).arg(overAxis))) << delta << logarithmic << overAxis;
+            }
+        }
+    }
+}
+
+void TestPlotInteraction::wheelMagnitudeIsIndependentOfEventCount()
+{
+    QFETCH(int, delta);
+    QFETCH(bool, logarithmic);
+    QFETCH(bool, overAxis);
+    auto plot = TestablePlot{};
+    plot.setSize({400, 300});
+    auto axis = QAccelPlot::Axis{};
+    plot.setXAxis(&axis);
+    axis.setLogScale(logarithmic);
+    setViewport(&axis, 1.0, 1000.0);
+    const auto cursor = overAxis ? axis.position() + QPointF{axis.width() / 2, axis.height() / 2} : plot.plotRect().center();
+    wheel(plot, cursor, delta);
+    const auto minimum = axis.viewportMin();
+    const auto maximum = axis.viewportMax();
+    setViewport(&axis, 1.0, 1000.0);
+    for (auto event = 0; event < 4; ++event) {
+        wheel(plot, cursor, delta / 4);
+    }
+    QCOMPARE_NEAR(axis.viewportMin(), minimum);
+    QCOMPARE_NEAR(axis.viewportMax(), maximum);
+}
 
 void TestPlotInteraction::wheelInPlotArea_zoomsAroundCursor()
 {
