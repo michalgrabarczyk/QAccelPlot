@@ -37,8 +37,8 @@ QAccelPlot.Plot {
 - Shift + left drag selects a region; Escape clears it. Ordinary left dragging
   still pans.
 
-[Rectangle zoom](rectangle-zoom.md) uses the same gesture by default. When both
-are enabled, `SelectionTool` takes it; change `modifiers` on one of them.
+[Rectangle zoom](rectangle-zoom.md) defaults to Ctrl + left drag. If both are
+set to the same gesture, `SelectionTool` takes it.
 
 ## Inspector
 

@@ -67,7 +67,7 @@ struct Fixture {
 };
 
 void mouse(TestablePlot& plot, const QEvent::Type type, const QPointF& pos, const Qt::MouseButton button, const Qt::MouseButtons buttons,
-    const Qt::KeyboardModifiers modifiers = Qt::ShiftModifier)
+    const Qt::KeyboardModifiers modifiers = Qt::ControlModifier)
 {
     auto event = QMouseEvent{type, pos, pos, pos, button, buttons, modifiers};
     if (type == QEvent::MouseButtonPress) {
@@ -79,12 +79,12 @@ void mouse(TestablePlot& plot, const QEvent::Type type, const QPointF& pos, cons
     }
 }
 
-void press(Fixture& fixture, const QPointF& pos, const Qt::KeyboardModifiers modifiers = Qt::ShiftModifier)
+void press(Fixture& fixture, const QPointF& pos, const Qt::KeyboardModifiers modifiers = Qt::ControlModifier)
 {
     mouse(fixture.plot, QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, modifiers);
 }
 
-void move(Fixture& fixture, const QPointF& pos, const Qt::KeyboardModifiers modifiers = Qt::ShiftModifier)
+void move(Fixture& fixture, const QPointF& pos, const Qt::KeyboardModifiers modifiers = Qt::ControlModifier)
 {
     mouse(fixture.plot, QEvent::MouseMove, pos, Qt::NoButton, Qt::LeftButton, modifiers);
 }
@@ -135,7 +135,7 @@ void TestRectangleZoom::configuration()
 {
     auto config = QAccelPlot::PlotRectangleZoom{};
     QVERIFY(!config.enabled());
-    QCOMPARE(config.modifiers(), static_cast<int>(Qt::ShiftModifier));
+    QCOMPARE(config.modifiers(), static_cast<int>(Qt::ControlModifier));
     QCOMPARE(config.minimumSize(), 6.0);
     QCOMPARE(config.fillColor(), QAccelPlot::ColorPalette::dark().rectangleZoomFill);
     QCOMPARE(config.borderColor(), QAccelPlot::ColorPalette::dark().rectangleZoomBorder);
@@ -156,8 +156,8 @@ void TestRectangleZoom::configuration()
     config.setMinimumSize(-2);
     config.setMinimumSize(std::numeric_limits<qreal>::quiet_NaN());
     config.setMinimumSize(std::numeric_limits<qreal>::infinity());
-    config.setModifiers(Qt::ControlModifier);
-    config.setModifiers(Qt::ControlModifier);
+    config.setModifiers(Qt::ShiftModifier);
+    config.setModifiers(Qt::ShiftModifier);
     config.setFillColor(Qt::red);
     config.setFillColor(Qt::red);
     config.setBorderColor(Qt::green);
@@ -337,15 +337,15 @@ void TestRectangleZoom::disabledFeaturePreservesPan()
 void TestRectangleZoom::configuredModifiersAndFrozenGesture()
 {
     auto f = Fixture{};
-    f.plot.rectangleZoom()->setModifiers(Qt::ControlModifier);
-    press(f, f.point(0.25, 0.25), Qt::ControlModifier);
+    f.plot.rectangleZoom()->setModifiers(Qt::ShiftModifier);
+    press(f, f.point(0.25, 0.25), Qt::ShiftModifier);
     move(f, f.point(0.75, 0.75), Qt::NoModifier);
     QVERIFY(f.plot.rectangleZoom()->active());
     release(f, f.point(0.75, 0.75));
     compareRange(f.x, 25, 75);
     setRange(f.x, 0, 100);
-    press(f, f.point(0.25, 0.25), Qt::ControlModifier | Qt::AltModifier);
-    move(f, f.point(0.5, 0.25), Qt::ControlModifier);
+    press(f, f.point(0.25, 0.25), Qt::ShiftModifier | Qt::AltModifier);
+    move(f, f.point(0.5, 0.25), Qt::ShiftModifier);
     release(f, f.point(0.5, 0.25));
     QVERIFY(!f.plot.rectangleZoom()->active());
     compareRange(f.x, -25, 75);
@@ -470,7 +470,7 @@ void TestRectangleZoom::wheelDuringSelectionIsConsumed()
 {
     auto f = Fixture{};
     press(f, f.point(0.25, 0.25));
-    auto e = QWheelEvent{f.point(0.5, 0.5), f.point(0.5, 0.5), QPoint{}, QPoint{0, 120}, Qt::LeftButton, Qt::ShiftModifier, Qt::NoScrollPhase, false};
+    auto e = QWheelEvent{f.point(0.5, 0.5), f.point(0.5, 0.5), QPoint{}, QPoint{0, 120}, Qt::LeftButton, Qt::ControlModifier, Qt::NoScrollPhase, false};
     f.plot.wheelEvent(&e);
     QVERIFY(e.isAccepted());
     compareRange(f.x, 0, 100);
@@ -484,7 +484,7 @@ void TestRectangleZoom::doubleClickCancelsAndRescales()
     auto f = Fixture{};
     f.x->setDataRange(20, 40);
     press(f, f.point(0.25, 0.25));
-    auto e = QMouseEvent{QEvent::MouseButtonDblClick, f.point(0.5, 0.5), f.point(0.5, 0.5), Qt::LeftButton, Qt::LeftButton, Qt::ShiftModifier};
+    auto e = QMouseEvent{QEvent::MouseButtonDblClick, f.point(0.5, 0.5), f.point(0.5, 0.5), Qt::LeftButton, Qt::LeftButton, Qt::ControlModifier};
     f.plot.mouseDoubleClickEvent(&e);
     QVERIFY(!f.plot.rectangleZoom()->active());
     compareRange(f.x, 20, 40);
@@ -498,12 +498,12 @@ void TestRectangleZoom::windowDragOutsidePlot()
     f.plot.setParentItem(window.contentItem());
     const auto start = f.point(0.25, 0.25).toPoint();
     const auto end = f.point(1.1, 1.1).toPoint();
-    QTest::mousePress(&window, Qt::LeftButton, Qt::ShiftModifier, start);
+    QTest::mousePress(&window, Qt::LeftButton, Qt::ControlModifier, start);
     QVERIFY(f.plot.rectangleZoom()->active());
     QTest::mouseMove(&window, end);
     const auto expected = QRectF{QPointF{start}, f.plot.plotRect().bottomRight()};
     QCOMPARE(f.plot.rectangleZoom()->selectionRect(), expected);
-    QTest::mouseRelease(&window, Qt::LeftButton, Qt::ShiftModifier, end);
+    QTest::mouseRelease(&window, Qt::LeftButton, Qt::ControlModifier, end);
     QVERIFY(!f.plot.rectangleZoom()->active());
     QVERIFY(f.x->viewportMin() > 20 && f.x->viewportMin() < 30);
     QCOMPARE(f.x->viewportMax(), 100.0);

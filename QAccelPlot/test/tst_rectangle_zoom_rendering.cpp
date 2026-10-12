@@ -38,7 +38,7 @@ void sendMouse(QQuickItem* plot, const QEvent::Type type, const QPointF& pos)
 {
     const auto button = type == QEvent::MouseMove ? Qt::NoButton : Qt::LeftButton;
     const auto buttons = type == QEvent::MouseButtonRelease ? Qt::NoButton : Qt::LeftButton;
-    auto event = QMouseEvent{type, pos, pos, pos, button, buttons, Qt::ShiftModifier};
+    auto event = QMouseEvent{type, pos, pos, pos, button, buttons, Qt::ControlModifier};
     QCoreApplication::sendEvent(plot, &event);
 }
 

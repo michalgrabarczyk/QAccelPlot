@@ -205,7 +205,7 @@ installed; see
 - Drag inside the plot area to pan all attached axes.
 - Use the mouse wheel over the plot to zoom all axes around the mouse pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
-- Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
+- Enable `rectangleZoom.enabled` for Ctrl + left drag rectangle zoom.
   See [Rectangle zoom](cookbook/rectangle-zoom.md).
 - Double-click the plot to rescale all axes to their data ranges.
 - Double-click an axis to rescale that axis only.

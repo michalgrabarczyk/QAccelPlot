@@ -24,7 +24,7 @@ class PlotRectangleZoom : public QObject {
     QML_ANONYMOUS
     /// \brief Enables rectangle selection with the left mouse button. Default: false.
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    /// \brief Required Qt::KeyboardModifiers for starting selection. Default: Qt::ShiftModifier.
+    /// \brief Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier.
     Q_PROPERTY(int modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     /// \brief Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater.
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
@@ -92,7 +92,7 @@ private:
     void setSelection(bool active, const QRectF& rect);
 
     bool enabled_{false};
-    int modifiers_{Qt::ShiftModifier};
+    int modifiers_{Qt::ControlModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
     QColor borderColor_{ColorPalette::dark().rectangleZoomBorder};

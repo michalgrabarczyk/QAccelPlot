@@ -39,7 +39,7 @@ Window {
 
         ExampleHeader {
             title: "Point cloud"
-            description: "200,000 points of a Clifford attractor, colored by the distance from the previous point. Click Morph to move them to another attractor, or Draw to show its points one after another. Hover a point to read it, Shift + drag to zoom, and drag or wheel the color bar to change its range."
+            description: "200,000 points of a Clifford attractor, colored by the distance from the previous point. Click Morph to move them to another attractor, or Draw to show its points one after another. Hover a point to read it, Ctrl + drag to zoom, and drag or wheel the color bar to change its range."
 
             Button {
                 text: "Morph"

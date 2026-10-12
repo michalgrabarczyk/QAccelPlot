@@ -33,6 +33,7 @@ class TestSelectionTool : public QObject {
 private slots:
     void gesture();
     void gestureGuards();
+    void besideRectangleZoom();
     void ranges();
     void boxAndCode();
     void followsData();
@@ -42,7 +43,6 @@ private slots:
 void TestSelectionTool::gesture()
 {
     auto rig = PlotRig{0, 10, 0, 10};
-    rig.plot.rectangleZoom()->setEnabled(true);
     auto* curve = rig.addCurve({5, 5});
     QTRY_COMPARE(rig.plot.series().size(), 1);
     auto tool = SelectionTool{};
@@ -52,11 +52,10 @@ void TestSelectionTool::gesture()
     const auto first = rig.pixel(2.5, 7.5);
     const auto last = rig.pixel(7.5, 2.5);
 
-    // The gesture takes precedence over rectangle zoom and leaves the viewport alone.
+    // The gesture leaves the viewport alone.
     auto press = QMouseEvent{QEvent::MouseButtonPress, first, first, Qt::LeftButton, Qt::LeftButton, Qt::ShiftModifier};
     rig.plot.mousePressEvent(&press);
     QVERIFY(tool.selecting());
-    QVERIFY(!rig.plot.rectangleZoom()->active());
     auto move = QMouseEvent{QEvent::MouseMove, last, last, Qt::NoButton, Qt::LeftButton, Qt::ShiftModifier};
     rig.plot.mouseMoveEvent(&move);
     QCOMPARE(tool.pixelRect(), (QRectF{first, last}.normalized()));
@@ -125,6 +124,36 @@ void TestSelectionTool::gestureGuards()
     rig.drag(first, last, Qt::NoModifier);
     QVERIFY(!tool.hasSelection());
     QVERIFY(rig.x.viewportMin() != 0);
+}
+
+void TestSelectionTool::besideRectangleZoom()
+{
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.plot.rectangleZoom()->setEnabled(true);
+    auto tool = SelectionTool{};
+    tool.setPlot(&rig.plot);
+    const auto first = rig.pixel(2.5, 7.5);
+    const auto last = rig.pixel(7.5, 2.5);
+
+    // The default gestures differ: Shift selects and Control zooms.
+    rig.drag(first, last);
+    QVERIFY(tool.hasSelection());
+    QCOMPARE(rig.x.viewportMin(), 0.0);
+    tool.clear();
+    rig.drag(first, last, Qt::ControlModifier);
+    QVERIFY(!tool.hasSelection());
+    QVERIFY(std::abs(rig.x.viewportMin() - 2.5) < 1e-9 && std::abs(rig.x.viewportMax() - 7.5) < 1e-9);
+
+    // On a shared gesture the tool takes precedence.
+    rig.x.setViewportMin(0);
+    rig.x.setViewportMax(10);
+    rig.plot.rectangleZoom()->setModifiers(Qt::ShiftModifier);
+    auto press = QMouseEvent{QEvent::MouseButtonPress, first, first, Qt::LeftButton, Qt::LeftButton, Qt::ShiftModifier};
+    rig.plot.mousePressEvent(&press);
+    QVERIFY(tool.selecting());
+    QVERIFY(!rig.plot.rectangleZoom()->active());
+    rig.plot.mouseUngrabEvent();
+    QCOMPARE(rig.x.viewportMin(), 0.0);
 }
 
 void TestSelectionTool::ranges()

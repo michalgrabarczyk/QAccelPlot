@@ -19,14 +19,15 @@ QAccelPlot.Plot {
 }
 ```
 
-- Shift + left drag selects a region; release to zoom all attached axes.
+- Ctrl + left drag (Command on macOS) selects a region; release to zoom all
+  attached axes.
 - Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
 - The selection is clipped to the plot area and must be at least
   `rectangleZoom.minimumSize` logical pixels wide and high, 6 by default.
 - `rectangleZoom.modifiers` must match exactly at press time; use
   `Qt.NoModifier` for unmodified dragging. A
-  [`SelectionTool`](data-inspection.md#selection) uses the same gesture by
-  default and takes it when both are enabled; change `modifiers` on one of them.
+  [`SelectionTool`](data-inspection.md#selection) uses Shift + left drag by
+  default; if both are set to the same gesture, the `SelectionTool` takes it.
 - `rectangleZoom.fillColor` and `borderColor` default to the dark palette's
   `rectangleZoomFill` and `rectangleZoomBorder`. Bind them to `Colors.light`
   for a light theme.

@@ -289,7 +289,7 @@ installed; see
 - Drag inside the plot area to pan all attached axes.
 - Use the mouse wheel over the plot to zoom all axes around the mouse pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
-- Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
+- Enable `rectangleZoom.enabled` for Ctrl + left drag rectangle zoom.
   See [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/).
 - Double-click the plot to rescale all axes to their data ranges.
 - Double-click an axis to rescale that axis only.
@@ -1556,8 +1556,8 @@ QAccelPlot.Plot {
 - Shift + left drag selects a region; Escape clears it. Ordinary left dragging
   still pans.
 
-[Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) uses the same gesture by default. When both
-are enabled, `SelectionTool` takes it; change `modifiers` on one of them.
+[Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) defaults to Ctrl + left drag. If both are
+set to the same gesture, `SelectionTool` takes it.
 
 ## Inspector
 
@@ -1903,14 +1903,15 @@ QAccelPlot.Plot {
 }
 ```
 
-- Shift + left drag selects a region; release to zoom all attached axes.
+- Ctrl + left drag (Command on macOS) selects a region; release to zoom all
+  attached axes.
 - Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.
 - The selection is clipped to the plot area and must be at least
   `rectangleZoom.minimumSize` logical pixels wide and high, 6 by default.
 - `rectangleZoom.modifiers` must match exactly at press time; use
   `Qt.NoModifier` for unmodified dragging. A
-  [`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses the same gesture by
-  default and takes it when both are enabled; change `modifiers` on one of them.
+  [`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/#selection) uses Shift + left drag by
+  default; if both are set to the same gesture, the `SelectionTool` takes it.
 - `rectangleZoom.fillColor` and `borderColor` default to the dark palette's
   `rectangleZoomFill` and `rectangleZoomBorder`. Bind them to `Colors.light`
   for a light theme.
