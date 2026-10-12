@@ -86,7 +86,7 @@ batch; see [Background data production](cookbook/background-data.md).
 
 ### Hover interactions
 
-Cost of one pointer move:
+Hover cost per mouse move:
 
 | Series | Cost |
 | --- | --- |
