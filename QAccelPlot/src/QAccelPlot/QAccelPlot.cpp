@@ -832,6 +832,7 @@ void QAccelPlot::connectAxisSignals(Axis* axis)
     connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
     connect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::sideChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
 }
@@ -854,6 +855,7 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
     disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update);
     disconnect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::sideChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes);
 }

@@ -35,6 +35,8 @@ private slots:
     void namedAxesAssignSidesAutomatically();
     void customAxisLayoutSizesUpdatePlotRect();
     void extraAxesUseIndividualLayoutSizes();
+    void extraAxisSideChangesRelayout_data();
+    void extraAxisSideChangesRelayout();
     void topSideExtraAxisStacksAboveThePlot();
     void rightSideExtraAxisStacksRightOfThePlot();
     void duplicateExtraAxisIsIgnored();
@@ -197,6 +199,36 @@ void TestPlotAppearance::extraAxesUseIndividualLayoutSizes()
     QCOMPARE(plot.plotRect(), QRectF(93.0, 10.0, 197.0, 132.0));
     QCOMPARE(horizontalAxis->height(), 38.0);
     QCOMPARE(verticalAxis->width(), 83.0);
+}
+
+void TestPlotAppearance::extraAxisSideChangesRelayout_data()
+{
+    QTest::addColumn<QAccelPlot::Axis::Side>("side");
+    QTest::newRow("top") << QAccelPlot::Axis::Top;
+    QTest::newRow("bottom") << QAccelPlot::Axis::Bottom;
+    QTest::newRow("left") << QAccelPlot::Axis::Left;
+    QTest::newRow("right") << QAccelPlot::Axis::Right;
+}
+
+void TestPlotAppearance::extraAxisSideChangesRelayout()
+{
+    QFETCH(QAccelPlot::Axis::Side, side);
+    auto plot = QAccelPlot::QAccelPlot{};
+    plot.setSize({400, 300});
+    auto axis = QAccelPlot::Axis{};
+    axis.setSide(side);
+    auto axes = plot.extraAxes();
+    axes.append(&axes, &axis);
+    const auto expectedRect = plot.plotRect();
+    const auto expectedPosition = axis.position();
+    axis.setSide(side == QAccelPlot::Axis::Top ? QAccelPlot::Axis::Bottom
+            : side == QAccelPlot::Axis::Bottom ? QAccelPlot::Axis::Top
+            : side == QAccelPlot::Axis::Left   ? QAccelPlot::Axis::Right
+                                               : QAccelPlot::Axis::Left);
+    QVERIFY(plot.plotRect() != expectedRect);
+    axis.setSide(side);
+    QCOMPARE(plot.plotRect(), expectedRect);
+    QCOMPARE(axis.position(), expectedPosition);
 }
 
 void TestPlotAppearance::topSideExtraAxisStacksAboveThePlot()
