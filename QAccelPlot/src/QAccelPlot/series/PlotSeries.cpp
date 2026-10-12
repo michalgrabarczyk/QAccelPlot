@@ -105,7 +105,9 @@ void PlotSeries::setXAxis(Axis* axis)
         connect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         xAxisDestroyed_ = connect(xAxis_, &QObject::destroyed, this, [this] {
             invalidateInspection();
+            onAxisScaleChanged();
             emit xAxisChanged();
+            update();
         });
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.
@@ -142,7 +144,9 @@ void PlotSeries::setYAxis(Axis* axis)
         connect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
         yAxisDestroyed_ = connect(yAxis_, &QObject::destroyed, this, [this] {
             invalidateInspection();
+            onAxisScaleChanged();
             emit yAxisChanged();
+            update();
         });
     }
     // Not skipped when the scales match: a destroyed previous axis can no longer report its scale.

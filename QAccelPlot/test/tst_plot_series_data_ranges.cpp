@@ -116,6 +116,8 @@ private slots:
     void dataBoundsSkipTheScan();
     void staleDataRangeIsAnnouncedOncePerRead();
     void replacingDestroyedLogAxisReportsScaleChange();
+    void destroyedLogAxisInvalidatesRanges_data();
+    void destroyedLogAxisInvalidatesRanges();
     void emptyPointCloudKeepsApplicationDataRange();
     void emptyRectangleSeriesKeepsApplicationDataRange();
     void emptyBarSeriesKeepsApplicationDataRange();
@@ -313,11 +315,37 @@ void PlotSeriesDataRangesTest::replacingDestroyedLogAxisReportsScaleChange()
     QCOMPARE(series.scaleChangeCount, 2);
 
     logAxis.reset();
+    QCOMPARE(series.scaleChangeCount, 4);
     auto linearAxis = Axis{};
     series.setXAxis(&linearAxis);
     series.setYAxis(&linearAxis);
 
-    QCOMPARE(series.scaleChangeCount, 4);
+    QCOMPARE(series.scaleChangeCount, 6);
+}
+
+void PlotSeriesDataRangesTest::destroyedLogAxisInvalidatesRanges_data()
+{
+    QTest::addColumn<bool>("horizontal");
+    QTest::newRow("x") << true;
+    QTest::newRow("y") << false;
+}
+
+void PlotSeriesDataRangesTest::destroyedLogAxisInvalidatesRanges()
+{
+    QFETCH(bool, horizontal);
+    auto curve = LineCurve{};
+    auto axis = std::make_unique<Axis>();
+    axis->setLogScale(true);
+    if (horizontal) {
+        curve.setXAxis(axis.get());
+        curve.setData(std::vector<double>{-2, 1, 2, 2}, 2);
+    } else {
+        curve.setYAxis(axis.get());
+        curve.setData(std::vector<double>{1, -2, 2, 2}, 2);
+    }
+    QCOMPARE((horizontal ? curve.xDataRange() : curve.yDataRange())->min, 2.0);
+    axis.reset();
+    QCOMPARE((horizontal ? curve.xDataRange() : curve.yDataRange())->min, -2.0);
 }
 
 void PlotSeriesDataRangesTest::emptyPointCloudKeepsApplicationDataRange()
