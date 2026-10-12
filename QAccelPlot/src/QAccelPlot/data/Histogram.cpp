@@ -212,7 +212,8 @@ std::vector<double> Histogram::linearEdges(const double min, const double max, c
     }
     auto edges = std::vector<double>(static_cast<std::size_t>(binCount) + 1);
     for (auto i = std::size_t{0}; i < edges.size(); ++i) {
-        edges[i] = min + (max - min) * static_cast<double>(i) / static_cast<double>(binCount);
+        const auto fraction = static_cast<double>(i) / static_cast<double>(binCount);
+        edges[i] = min < 0.0 && max > 0.0 ? min * (1.0 - fraction) + max * fraction : min + (max - min) * fraction;
     }
     edges.back() = max;
     return edges;

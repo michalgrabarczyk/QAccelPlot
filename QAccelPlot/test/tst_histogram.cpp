@@ -69,6 +69,8 @@ private slots:
     void fromCountsWrapsBinnedData();
     void fromCountsRejectsInvalidData();
     void linearEdgesAreEquallySpaced();
+    void largeLinearEdgesStayFinite_data();
+    void largeLinearEdgesStayFinite();
     void logEdgesAreEquallySpacedInLog();
     void decadeEdgesFollowLogAxisTicks();
     void decadeEdgesKeepTheRangeEnds();
@@ -275,6 +277,30 @@ void HistogramTest::fromCountsRejectsInvalidData()
     QCOMPARE(Histogram::fromCounts({0.0, 1.0, 2.0}, {3.0, kNaN}).binCount(), 0);
     expectWarning("Histogram needs at least two finite, strictly increasing edges");
     QCOMPARE(Histogram::fromCounts({1.0, 0.0}, {3.0}).binCount(), 0);
+}
+
+void HistogramTest::largeLinearEdgesStayFinite_data()
+{
+    QTest::addColumn<double>("minimum");
+    QTest::addColumn<double>("maximum");
+    QTest::newRow("positive") << 0.0 << 1e308;
+    QTest::newRow("negative") << -1e308 << 0.0;
+    QTest::newRow("opposite-signs") << -1e308 << 1e308;
+}
+
+void HistogramTest::largeLinearEdgesStayFinite()
+{
+    QFETCH(double, minimum);
+    QFETCH(double, maximum);
+    const auto edges = Histogram::linearEdges(minimum, maximum, 10);
+    QCOMPARE(edges.size(), std::size_t{11});
+    QCOMPARE(edges.front(), minimum);
+    QCOMPARE(edges.back(), maximum);
+    for (auto i = std::size_t{1}; i < edges.size(); ++i) {
+        QVERIFY(std::isfinite(edges[i]));
+        QVERIFY(edges[i] > edges[i - 1]);
+    }
+    QCOMPARE(edges[5], minimum * 0.5 + maximum * 0.5);
 }
 
 void HistogramTest::linearEdgesAreEquallySpaced()
