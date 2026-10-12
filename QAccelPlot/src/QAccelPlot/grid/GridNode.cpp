@@ -111,6 +111,9 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
     const auto* t = p.axis->ticker();
     const auto viewportLow = std::min(p.axis->viewportMin(), p.axis->viewportMax());
     const auto viewportHigh = std::max(p.axis->viewportMin(), p.axis->viewportMax());
+    if (!std::isfinite(viewportLow) || !std::isfinite(viewportHigh) || viewportLow >= viewportHigh) {
+        return;
+    }
     if (p.axis->logScale() && viewportLow > 0 && viewportHigh > 0) {
         const auto logMin = static_cast<int>(std::floor(std::log10(viewportLow)));
         const auto logMax = static_cast<int>(std::ceil(std::log10(viewportHigh)));
@@ -136,6 +139,9 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
         const auto subticks = t ? t->subtickCount() : 0;
         static constexpr auto kRelativeTolerance = 1e-9; // avoids dropping ticks that land exactly on viewport boundary
         const auto step = AxisTickPainter::computeNiceStep(viewportLow, viewportHigh, ticks);
+        if (!std::isfinite(step) || step <= 0) {
+            return;
+        }
         const auto firstTick = std::ceil(viewportLow / step) * step;
         const auto loopStart = firstTick - step;
         auto tickIndex = 0;
