@@ -276,6 +276,7 @@ InspectionPage SelectionTool::indices(PlotSeries* series, const int offset, cons
 
 void SelectionTool::clear()
 {
+    ++rowsGeneration_;
     cancelGesture();
     if (!hasSelection_) {
         return;

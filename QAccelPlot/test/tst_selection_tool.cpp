@@ -15,13 +15,29 @@
 #include <QtTest>
 
 #include <cmath>
+#include <functional>
 #include <limits>
 #include <memory>
+#include <utility>
 
 using namespace QAccelPlot;
 using namespace InspectionTest;
 
 namespace {
+
+class MutationFormatter final : public TickLabelFormatter {
+public:
+    mutable std::function<void()> action;
+
+protected:
+    QString doFormat(const qreal value, const qreal /*step*/) const override
+    {
+        if (action) {
+            std::exchange(action, {})();
+        }
+        return QString::number(value);
+    }
+};
 
 constexpr auto kInfinity = std::numeric_limits<double>::infinity();
 constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
@@ -31,6 +47,8 @@ constexpr auto kNaN = std::numeric_limits<double>::quiet_NaN();
 class TestSelectionTool : public QObject {
     Q_OBJECT
 private slots:
+    void formatterCanClearSelection_data();
+    void formatterCanClearSelection();
     void gesture();
     void gestureGuards();
     void besideRectangleZoom();
@@ -39,6 +57,35 @@ private slots:
     void followsData();
     void rectangle();
 };
+
+void TestSelectionTool::formatterCanClearSelection_data()
+{
+    QTest::addColumn<bool>("detach");
+    QTest::newRow("clear") << false;
+    QTest::newRow("detach-plot") << true;
+}
+
+void TestSelectionTool::formatterCanClearSelection()
+{
+    QFETCH(bool, detach);
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({1, 2});
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto tool = SelectionTool{};
+    tool.setPlot(&rig.plot);
+    auto formatter = MutationFormatter{};
+    rig.y.ticker()->setTickLabelFormatter(&formatter);
+    formatter.action = [&] {
+        if (detach) {
+            tool.setPlot(nullptr);
+        } else {
+            tool.clear();
+        }
+    };
+    QVERIFY(tool.select(0, 10, 0, 10));
+    QVERIFY(!tool.hasSelection());
+    QCOMPARE(tool.model()->count(), 0);
+}
 
 void TestSelectionTool::gesture()
 {
