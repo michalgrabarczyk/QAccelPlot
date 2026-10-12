@@ -63,8 +63,6 @@ Item {
                 id: wavelengthAxis
                 viewportMin: 400
                 viewportMax: 700
-                dataMin: 400
-                dataMax: 700
                 label: "Wavelength (nm)"
                 baselineColor: root.colorPalette.seriesPrimary
                 baselineWidth: 2
@@ -74,8 +72,6 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1.1
-                dataMin: 0
-                dataMax: 1.1
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative intensity"

@@ -112,16 +112,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 120
-                    dataMin: 0
-                    dataMax: 120
                     label: "Time (s)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    dataMin: 2
-                    dataMax: 6.5
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Pressure (bar)"
@@ -147,16 +143,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 120
-                    dataMin: 0
-                    dataMax: 120
                     label: "Time (s)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 2
                     viewportMax: 6.5
-                    dataMin: 2
-                    dataMax: 6.5
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Pressure (bar)"
@@ -187,16 +179,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 200
-                    dataMin: 0
-                    dataMax: 200
                     label: "Frequency (Hz)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 0.01
                     viewportMax: 100
-                    dataMin: 0.01
-                    dataMax: 100
                     logScale: true
                     axisTitlePadding: 40
                     layoutSize: 60

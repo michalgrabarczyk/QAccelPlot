@@ -189,16 +189,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -8
                     viewportMax: 8
-                    dataMin: -8
-                    dataMax: 8
                     label: "X"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: -5
                     viewportMax: 5
-                    dataMin: -5
-                    dataMax: 5
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Y"
@@ -248,8 +244,6 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -0.6
                     viewportMax: window.shapes.length - 0.4
-                    dataMin: -0.6
-                    dataMax: window.shapes.length - 0.4
                     layoutSize: 118
                     axisTitlePadding: 100
                     label: "Shape"
@@ -267,8 +261,6 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: -0.6
                     viewportMax: 1.6
-                    dataMin: -0.6
-                    dataMax: 1.6
                     layoutSize: 70
                     ticker.tickCount: 3
                     ticker.subtickCount: 0

@@ -55,8 +55,6 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 20000
-                dataMin: 20
-                dataMax: 20000
                 logScale: root.logarithmic
                 label: "Frequency (Hz)"
             }
@@ -64,8 +62,6 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -18
                 viewportMax: 3
-                dataMin: -18
-                dataMax: 3
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Relative level (dB)"

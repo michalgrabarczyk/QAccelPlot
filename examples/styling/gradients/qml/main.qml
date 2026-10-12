@@ -154,16 +154,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: -6
                     viewportMax: 6
-                    dataMin: -6
-                    dataMax: 6
                     label: "Hours from solar noon"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: -4
                     viewportMax: 6
-                    dataMin: -4
-                    dataMax: 6
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Net grid power (kW)"
@@ -215,16 +211,12 @@ Window {
                 xAxis: ExampleAxis {
                     viewportMin: 0
                     viewportMax: 100
-                    dataMin: 0
-                    dataMax: 100
                     label: "State of charge (%)"
                 }
 
                 yAxis: ExampleAxis {
                     viewportMin: 20
                     viewportMax: 30
-                    dataMin: 20
-                    dataMax: 30
                     axisTitlePadding: 40
                     layoutSize: 60
                     label: "Battery temperature (°C)"

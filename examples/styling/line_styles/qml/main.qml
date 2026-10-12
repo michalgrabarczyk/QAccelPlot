@@ -38,16 +38,12 @@ Window {
     component SampleAxis: ExampleAxis {
         viewportMin: 0
         viewportMax: 11
-        dataMin: 0
-        dataMax: 11
         label: "Sample"
     }
 
     component OffsetAxis: ExampleAxis {
         viewportMin: -0.1
         viewportMax: 4.1
-        dataMin: -0.1
-        dataMax: 4.1
         axisTitlePadding: 40
         layoutSize: 60
     }

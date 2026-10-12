@@ -221,8 +221,6 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1000
-                dataMin: 0
-                dataMax: 1000
                 label: "Distance (m)"
                 baselineWidth: 2
             }
@@ -230,8 +228,6 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 80
-                dataMin: 0
-                dataMax: 80
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Elevation (m)"
