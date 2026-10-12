@@ -189,7 +189,11 @@ LineCurve::LineCurve(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &LineCurve::onTransitionDestroyed);
 }
 
-LineCurve::~LineCurve() = default;
+LineCurve::~LineCurve()
+{
+    // runningChanged handlers can still read the series until QObject destruction.
+    transition_->cancel();
+}
 
 QColor LineCurve::color() const
 {

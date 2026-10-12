@@ -10,6 +10,7 @@
 #include "QAccelPlot/effects/Colormap.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/transitions/MorphTransition.hpp"
 
 #include <QHoverEvent>
 #include <QtTest/QtTest>
@@ -54,6 +55,7 @@ class PointCloudDataTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void destructionKeepsDataAliveDuringRunningChanged();
     void defaults();
     void hoverEnvironmentControlsAcceptance();
     void invalidArgumentsAreRejected();
@@ -79,6 +81,27 @@ private slots:
     void doubleDataSurvivesLogScaleChange();
     void dataTextureCapacityFollowsTextureHeight();
 };
+
+void PointCloudDataTest::destructionKeepsDataAliveDuringRunningChanged()
+{
+    auto transition = MorphTransition{};
+    auto* cloud = new PointCloud;
+    cloud->setTransition(&transition);
+    constexpr auto count = 1'000'000;
+    cloud->setData(std::vector<double>(count * 2, 42.0), count);
+    QVERIFY(transition.running());
+    auto guard = QPointer<PointCloud>{cloud};
+    auto notified = false;
+    connect(&transition, &DataTransition::runningChanged, this, [&] {
+        notified = true;
+        QVERIFY(guard);
+        QCOMPARE(guard->pointAt(count - 1), QPointF(42.0, 42.0));
+    });
+    delete cloud;
+    QVERIFY(notified);
+    QVERIFY(!transition.running());
+    QVERIFY(!guard);
+}
 
 void PointCloudDataTest::defaults()
 {
