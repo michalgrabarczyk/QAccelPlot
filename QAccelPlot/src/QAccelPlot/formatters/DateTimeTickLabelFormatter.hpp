@@ -16,6 +16,7 @@ namespace QAccelPlot {
 /// \brief A tick label formatter that displays tick values as formatted date/time strings.
 ///
 /// Tick values are interpreted as milliseconds since the Unix epoch (1970-01-01T00:00:00 UTC).
+/// Nonfinite values and values outside the qint64 millisecond range produce an empty label.
 ///
 /// \sa NumericTickLabelFormatter, TickLabelFormatter
 class DateTimeTickLabelFormatter : public TickLabelFormatter {
