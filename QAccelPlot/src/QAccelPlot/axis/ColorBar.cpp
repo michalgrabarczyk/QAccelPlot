@@ -51,10 +51,10 @@ qreal rampPosition(const qreal value, const qreal minimum, const qreal maximum, 
         }
         const auto logMin = std::log10(minimum);
         const auto logRange = std::log10(maximum) - logMin;
-        return nearly_equal(logRange, 0.0) ? 0.0 : (std::log10(value) - logMin) / logRange;
+        return nearlyEqual(logRange, 0.0) ? 0.0 : (std::log10(value) - logMin) / logRange;
     }
     const auto range = maximum - minimum;
-    return nearly_equal(range, 0.0) ? 0.0 : (value - minimum) / range;
+    return nearlyEqual(range, 0.0) ? 0.0 : (value - minimum) / range;
 }
 
 Internal::ValueRange resolvedRange(const PointCloud& series)
@@ -196,7 +196,7 @@ qreal ColorBar::labelPadding() const
 void ColorBar::setLabelPadding(const qreal padding)
 {
     const auto clampedPadding = std::max(qreal{0.0}, padding);
-    if (nearly_equal(labelPadding_, clampedPadding)) {
+    if (nearlyEqual(labelPadding_, clampedPadding)) {
         return;
     }
     labelPadding_ = clampedPadding;
@@ -212,7 +212,7 @@ qreal ColorBar::barThickness() const
 void ColorBar::setBarThickness(const qreal thickness)
 {
     const auto clampedThickness = std::max(qreal{0.0}, thickness);
-    if (nearly_equal(barThickness_, clampedThickness)) {
+    if (nearlyEqual(barThickness_, clampedThickness)) {
         return;
     }
     barThickness_ = clampedThickness;
@@ -243,7 +243,7 @@ qreal ColorBar::borderWidth() const
 void ColorBar::setBorderWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(borderWidth_, clampedWidth)) {
+    if (nearlyEqual(borderWidth_, clampedWidth)) {
         return;
     }
     borderWidth_ = clampedWidth;
@@ -259,7 +259,7 @@ qreal ColorBar::tickLabelWidth() const
 void ColorBar::setTickLabelWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(tickLabelWidth_, clampedWidth)) {
+    if (nearlyEqual(tickLabelWidth_, clampedWidth)) {
         return;
     }
     tickLabelWidth_ = clampedWidth;
@@ -296,7 +296,7 @@ qreal ColorBar::zoomScaleFactor() const
 void ColorBar::setZoomScaleFactor(const qreal factor)
 {
     const auto clampedFactor = std::clamp(factor, 0.0, 1.0);
-    if (nearly_equal(zoomScaleFactor_, clampedFactor)) {
+    if (nearlyEqual(zoomScaleFactor_, clampedFactor)) {
         return;
     }
     zoomScaleFactor_ = clampedFactor;
@@ -328,7 +328,7 @@ qreal ColorBar::valueToPixel(const qreal value, const qreal length) const
 
 qreal ColorBar::pixelToValue(const qreal pixel, const qreal length) const
 {
-    if (nearly_equal(length, 0.0)) {
+    if (nearlyEqual(length, 0.0)) {
         return valueMin_;
     }
     const auto position = orientation_ == Qt::Horizontal ? pixel / length : 1.0 - pixel / length;

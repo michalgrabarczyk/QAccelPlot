@@ -103,7 +103,7 @@ qreal GradientStroke::valueMin() const
 
 void GradientStroke::setValueMin(const qreal value)
 {
-    if (nearly_equal(valueMin_, value)) {
+    if (nearlyEqual(valueMin_, value)) {
         return;
     }
     valueMin_ = value;
@@ -134,7 +134,7 @@ qreal GradientStroke::valueMax() const
 
 void GradientStroke::setValueMax(const qreal value)
 {
-    if (nearly_equal(valueMax_, value)) {
+    if (nearlyEqual(valueMax_, value)) {
         return;
     }
     valueMax_ = value;

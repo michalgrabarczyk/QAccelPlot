@@ -213,7 +213,7 @@ qreal LineCurve::lineWidth() const
 
 void LineCurve::setLineWidth(qreal w)
 {
-    if (nearly_equal(lineWidth_, w)) {
+    if (nearlyEqual(lineWidth_, w)) {
         return;
     }
     lineWidth_ = w;
@@ -235,7 +235,7 @@ qreal LineCurve::hoverRadius() const
 void LineCurve::setHoverRadius(const qreal radius)
 {
     const auto clamped = std::max(radius, qreal{0.0});
-    if (nearly_equal(hoverRadius_, clamped)) {
+    if (nearlyEqual(hoverRadius_, clamped)) {
         return;
     }
     hoverRadius_ = clamped;
@@ -306,7 +306,7 @@ void LineCurve::setAntialiasingFeather(qreal feather)
     constexpr static auto kMinFeather = qreal{0.0};
     constexpr static auto kMaxFeather = qreal{10.0};
     const auto clamped = std::clamp(feather, kMinFeather, kMaxFeather);
-    if (nearly_equal(antialiasingFeather_, clamped)) {
+    if (nearlyEqual(antialiasingFeather_, clamped)) {
         return;
     }
     antialiasingFeather_ = clamped;

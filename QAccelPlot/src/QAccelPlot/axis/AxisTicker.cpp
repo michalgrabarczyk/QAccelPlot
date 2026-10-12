@@ -87,7 +87,7 @@ qreal AxisTicker::tickLength() const
 void AxisTicker::setTickLength(qreal length)
 {
     const auto half = length / 2.0;
-    if (nearly_equal(tickLengthIn_, half) && nearly_equal(tickLengthOut_, half)) {
+    if (nearlyEqual(tickLengthIn_, half) && nearlyEqual(tickLengthOut_, half)) {
         return;
     }
     tickLengthIn_ = half;
@@ -105,7 +105,7 @@ qreal AxisTicker::subtickLength() const
 void AxisTicker::setSubtickLength(qreal length)
 {
     const auto half = length / 2.0;
-    if (nearly_equal(subtickLengthIn_, half) && nearly_equal(subtickLengthOut_, half)) {
+    if (nearlyEqual(subtickLengthIn_, half) && nearlyEqual(subtickLengthOut_, half)) {
         return;
     }
     subtickLengthIn_ = half;
@@ -122,7 +122,7 @@ qreal AxisTicker::tickLengthIn() const
 
 void AxisTicker::setTickLengthIn(qreal length)
 {
-    if (nearly_equal(tickLengthIn_, length)) {
+    if (nearlyEqual(tickLengthIn_, length)) {
         return;
     }
     tickLengthIn_ = length;
@@ -137,7 +137,7 @@ qreal AxisTicker::tickLengthOut() const
 
 void AxisTicker::setTickLengthOut(qreal length)
 {
-    if (nearly_equal(tickLengthOut_, length)) {
+    if (nearlyEqual(tickLengthOut_, length)) {
         return;
     }
     tickLengthOut_ = length;
@@ -152,7 +152,7 @@ qreal AxisTicker::subtickLengthIn() const
 
 void AxisTicker::setSubtickLengthIn(qreal length)
 {
-    if (nearly_equal(subtickLengthIn_, length)) {
+    if (nearlyEqual(subtickLengthIn_, length)) {
         return;
     }
     subtickLengthIn_ = length;
@@ -167,7 +167,7 @@ qreal AxisTicker::subtickLengthOut() const
 
 void AxisTicker::setSubtickLengthOut(qreal length)
 {
-    if (nearly_equal(subtickLengthOut_, length)) {
+    if (nearlyEqual(subtickLengthOut_, length)) {
         return;
     }
     subtickLengthOut_ = length;
@@ -196,7 +196,7 @@ qreal AxisTicker::tickWidth() const
 
 void AxisTicker::setTickWidth(qreal width)
 {
-    if (nearly_equal(tickWidth_, width)) {
+    if (nearlyEqual(tickWidth_, width)) {
         return;
     }
     tickWidth_ = width;
@@ -210,7 +210,7 @@ qreal AxisTicker::subtickWidth() const
 
 void AxisTicker::setSubtickWidth(qreal width)
 {
-    if (nearly_equal(subtickWidth_, width)) {
+    if (nearlyEqual(subtickWidth_, width)) {
         return;
     }
     subtickWidth_ = width;
@@ -224,7 +224,7 @@ qreal AxisTicker::tickLabelPadding() const
 
 void AxisTicker::setTickLabelPadding(qreal padding)
 {
-    if (nearly_equal(tickLabelPadding_, padding)) {
+    if (nearlyEqual(tickLabelPadding_, padding)) {
         return;
     }
     tickLabelPadding_ = padding;
@@ -238,7 +238,7 @@ qreal AxisTicker::tickLabelRotation() const
 
 void AxisTicker::setTickLabelRotation(qreal rotation)
 {
-    if (nearly_equal(tickLabelRotation_, rotation)) {
+    if (nearlyEqual(tickLabelRotation_, rotation)) {
         return;
     }
     tickLabelRotation_ = rotation;

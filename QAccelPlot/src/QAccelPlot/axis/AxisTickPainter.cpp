@@ -304,7 +304,7 @@ void AxisTickPainter::paintSubtick(const PaintContext& ctx, const qreal value, c
 
 void AxisTickPainter::drawTickLabel(QPainter* painter, const QRectF& labelRect, const int alignment, const QString& label, const qreal rotation)
 {
-    if (nearly_equal(rotation, 0.0)) {
+    if (nearlyEqual(rotation, 0.0)) {
         painter->drawText(labelRect, alignment, label);
         return;
     }

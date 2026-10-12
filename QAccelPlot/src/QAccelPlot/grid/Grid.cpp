@@ -23,7 +23,7 @@ qreal Grid::lineWidth() const
 
 void Grid::setLineWidth(qreal w)
 {
-    if (nearly_equal(lineWidth_, w)) {
+    if (nearlyEqual(lineWidth_, w)) {
         return;
     }
     lineWidth_ = w;
@@ -37,7 +37,7 @@ qreal Grid::subGridLineWidth() const
 
 void Grid::setSubGridLineWidth(qreal w)
 {
-    if (nearly_equal(subGridLineWidth_, w)) {
+    if (nearlyEqual(subGridLineWidth_, w)) {
         return;
     }
     subGridLineWidth_ = w;

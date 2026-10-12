@@ -87,7 +87,7 @@ qreal Axis::viewportMin() const
 
 void Axis::setViewportMin(const qreal m)
 {
-    if (nearly_equal(viewportMin_, m)) {
+    if (nearlyEqual(viewportMin_, m)) {
         return;
     }
     viewportMin_ = m;
@@ -103,7 +103,7 @@ qreal Axis::viewportMax() const
 
 void Axis::setViewportMax(const qreal m)
 {
-    if (nearly_equal(viewportMax_, m)) {
+    if (nearlyEqual(viewportMax_, m)) {
         return;
     }
     viewportMax_ = m;
@@ -121,7 +121,7 @@ qreal Axis::dataMin() const
 void Axis::setDataMin(const qreal m)
 {
     ensureDataRange();
-    if (nearly_equal(dataMin_, m)) {
+    if (nearlyEqual(dataMin_, m)) {
         return;
     }
     dataMin_ = m;
@@ -138,7 +138,7 @@ qreal Axis::dataMax() const
 void Axis::setDataMax(const qreal m)
 {
     ensureDataRange();
-    if (nearly_equal(dataMax_, m)) {
+    if (nearlyEqual(dataMax_, m)) {
         return;
     }
     dataMax_ = m;
@@ -261,7 +261,7 @@ qreal Axis::baselineWidth() const
 void Axis::setBaselineWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(baselineWidth_, clampedWidth)) {
+    if (nearlyEqual(baselineWidth_, clampedWidth)) {
         return;
     }
     baselineWidth_ = clampedWidth;
@@ -291,7 +291,7 @@ qreal Axis::labelPadding() const
 
 void Axis::setLabelPadding(const qreal padding)
 {
-    if (nearly_equal(labelPadding_, padding)) {
+    if (nearlyEqual(labelPadding_, padding)) {
         return;
     }
     labelPadding_ = padding;
@@ -306,7 +306,7 @@ qreal Axis::baselinePadding() const
 
 void Axis::setBaselinePadding(const qreal padding)
 {
-    if (nearly_equal(baselinePadding_, padding)) {
+    if (nearlyEqual(baselinePadding_, padding)) {
         return;
     }
     baselinePadding_ = padding;
@@ -322,7 +322,7 @@ qreal Axis::layoutSize() const
 void Axis::setLayoutSize(const qreal size)
 {
     const auto clampedSize = std::max(qreal{0.0}, size);
-    if (nearly_equal(layoutSize_, clampedSize)) {
+    if (nearlyEqual(layoutSize_, clampedSize)) {
         return;
     }
     layoutSize_ = clampedSize;
@@ -366,7 +366,7 @@ qreal Axis::zoomScaleFactor() const
 void Axis::setZoomScaleFactor(const qreal factor)
 {
     const auto clampedFactor = std::clamp(factor, kMinZoomScaleFactor, kMaxZoomScaleFactor);
-    if (nearly_equal(zoomScaleFactor_, clampedFactor)) {
+    if (nearlyEqual(zoomScaleFactor_, clampedFactor)) {
         return;
     }
     zoomScaleFactor_ = clampedFactor;
@@ -501,7 +501,7 @@ AxisMapping Axis::mapping() const
     }
     result.origin = result.toMapped(viewportMin_);
     result.span = result.toMapped(viewportMax_) - result.origin;
-    result.valid = std::isfinite(result.origin) && std::isfinite(result.span) && !nearly_equal(result.span, 0.0);
+    result.valid = std::isfinite(result.origin) && std::isfinite(result.span) && !nearlyEqual(result.span, 0.0);
     return result;
 }
 
@@ -513,7 +513,7 @@ qreal Axis::coordToPixel(const qreal value, const qreal length) const
         return 0;
     }
     const auto axisMapping = mapping();
-    if (nearly_equal(axisMapping.span, 0.0)) {
+    if (nearlyEqual(axisMapping.span, 0.0)) {
         qCDebug(lcQAccelPlot) << "zero range (viewportMin=" << viewportMin_ << "viewportMax=" << viewportMax_ << "), returning 0";
         return 0;
     }
@@ -522,7 +522,7 @@ qreal Axis::coordToPixel(const qreal value, const qreal length) const
 
 qreal Axis::pixelToCoord(const qreal pos, const qreal length) const
 {
-    if (nearly_equal(length, 0.0)) {
+    if (nearlyEqual(length, 0.0)) {
         qCDebug(lcQAccelPlot) << "zero length, returning 0";
         return 0;
     }
@@ -571,10 +571,10 @@ void Axis::invalidateDataRange()
     const auto previousMax = dataMax_;
     dataRangeStale_ = true;
     ensureDataRange();
-    if (!nearly_equal(previousMin, dataMin_)) {
+    if (!nearlyEqual(previousMin, dataMin_)) {
         emit dataMinChanged();
     }
-    if (!nearly_equal(previousMax, dataMax_)) {
+    if (!nearlyEqual(previousMax, dataMax_)) {
         emit dataMaxChanged();
     }
     // An axis whose series were all cleared keeps its viewport instead of jumping to the fallback range.
@@ -613,8 +613,8 @@ void Axis::ensureDataRange() const
 
 void Axis::setDataRangeValues(const qreal min, const qreal max)
 {
-    const auto minChanged = !nearly_equal(dataMin_, min);
-    const auto maxChanged = !nearly_equal(dataMax_, max);
+    const auto minChanged = !nearlyEqual(dataMin_, min);
+    const auto maxChanged = !nearlyEqual(dataMax_, max);
     dataMin_ = min;
     dataMax_ = max;
     if (minChanged) {
@@ -647,8 +647,8 @@ Axis::DataRange Axis::dataFitRange() const
 
 void Axis::setViewportRange(const qreal min, const qreal max)
 {
-    const auto minChanged = !nearly_equal(viewportMin_, min);
-    const auto maxChanged = !nearly_equal(viewportMax_, max);
+    const auto minChanged = !nearlyEqual(viewportMin_, min);
+    const auto maxChanged = !nearlyEqual(viewportMax_, max);
     if (!minChanged && !maxChanged) {
         return;
     }
@@ -706,7 +706,7 @@ void Axis::mouseMoveEvent(QMouseEvent* event)
         lastMousePos_ = event->position();
 
         const auto dataLength = (orientation_ == Qt::Horizontal) ? width() - 2.0 * labelOverflow() : height() - 2.0 * labelOverflow();
-        if (nearly_equal(dataLength, 0.0)) {
+        if (nearlyEqual(dataLength, 0.0)) {
             return;
         }
 

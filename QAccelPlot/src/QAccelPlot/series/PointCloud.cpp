@@ -194,7 +194,7 @@ qreal PointCloud::antialiasingFeather() const
 void PointCloud::setAntialiasingFeather(const qreal feather)
 {
     const auto clamped = std::clamp(feather, kMinFeather, kMaxFeather);
-    if (nearly_equal(antialiasingFeather_, clamped)) {
+    if (nearlyEqual(antialiasingFeather_, clamped)) {
         return;
     }
     antialiasingFeather_ = clamped;
@@ -210,7 +210,7 @@ qreal PointCloud::hoverRadius() const
 void PointCloud::setHoverRadius(const qreal radius)
 {
     const auto clamped = std::max(radius, qreal{0.0});
-    if (nearly_equal(hoverRadius_, clamped)) {
+    if (nearlyEqual(hoverRadius_, clamped)) {
         return;
     }
     hoverRadius_ = clamped;
@@ -853,7 +853,7 @@ void PointCloud::updateValueRange()
 
     const auto resolvedMin = std::isnan(fixedMin) ? (foundValues ? minimum : 0.0) : fixedMin;
     const auto resolvedMax = std::isnan(fixedMax) ? (foundValues ? maximum : 1.0) : fixedMax;
-    if (nearly_equal(resolvedMin, dataValueMin_) && nearly_equal(resolvedMax, dataValueMax_)) {
+    if (nearlyEqual(resolvedMin, dataValueMin_) && nearlyEqual(resolvedMax, dataValueMax_)) {
         return;
     }
     dataValueMin_ = resolvedMin;

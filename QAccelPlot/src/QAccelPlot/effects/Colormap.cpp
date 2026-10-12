@@ -27,7 +27,7 @@ constexpr auto kNaN = std::numeric_limits<qreal>::quiet_NaN();
 bool sameBound(const qreal current, const qreal value)
 {
     // Both NaN means unset either way, and NaN never compares equal to itself.
-    return nearly_equal(current, value) || (std::isnan(current) && std::isnan(value));
+    return nearlyEqual(current, value) || (std::isnan(current) && std::isnan(value));
 }
 
 // 32 control points sampled at even spacing from the matplotlib ramps of the same name. Linear

@@ -27,7 +27,7 @@ qreal BandEdges::width() const
 void BandEdges::setWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(width_, clamped)) {
+    if (nearlyEqual(width_, clamped)) {
         return;
     }
     width_ = clamped;

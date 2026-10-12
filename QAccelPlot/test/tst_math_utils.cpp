@@ -24,7 +24,7 @@ private slots:
     void isValidSample();
 };
 
-using QAccelPlot::nearly_equal;
+using QAccelPlot::nearlyEqual;
 
 void TestMathUtils::defaultTolerance_data()
 {
@@ -80,7 +80,7 @@ void TestMathUtils::defaultTolerance()
     QFETCH(double, right);
     QFETCH(bool, expectedEqual);
 
-    QCOMPARE(nearly_equal(left, right), expectedEqual);
+    QCOMPARE(nearlyEqual(left, right), expectedEqual);
 }
 
 void TestMathUtils::customTolerance_data()
@@ -106,7 +106,7 @@ void TestMathUtils::customTolerance()
     QFETCH(double, absoluteTolerance);
     QFETCH(bool, expectedEqual);
 
-    QCOMPARE(nearly_equal(left, right, relativeTolerance, absoluteTolerance), expectedEqual);
+    QCOMPARE(nearlyEqual(left, right, relativeTolerance, absoluteTolerance), expectedEqual);
 }
 
 void TestMathUtils::isValidSample_data()

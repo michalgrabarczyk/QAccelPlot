@@ -39,7 +39,7 @@ qreal PlotBorder::width() const
 void PlotBorder::setWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(width_, clampedWidth)) {
+    if (nearlyEqual(width_, clampedWidth)) {
         return;
     }
     width_ = clampedWidth;

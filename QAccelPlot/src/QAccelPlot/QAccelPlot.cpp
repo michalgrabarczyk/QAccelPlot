@@ -63,7 +63,7 @@ std::optional<RectangleAxisRange> rectangleAxisRange(Axis* axis, const QRectF& s
     const auto maxPixel = horizontal ? selection.right() - plotRect.left() : selection.top() - plotRect.top();
     const auto min = axis->pixelToCoord(minPixel, length);
     const auto max = axis->pixelToCoord(maxPixel, length);
-    if (!std::isfinite(min) || !std::isfinite(max) || nearly_equal(min, max) || (axis->logScale() && (min <= 0.0 || max <= 0.0))) {
+    if (!std::isfinite(min) || !std::isfinite(max) || nearlyEqual(min, max) || (axis->logScale() && (min <= 0.0 || max <= 0.0))) {
         return std::nullopt;
     }
     return RectangleAxisRange{axis, min, max};
@@ -317,7 +317,7 @@ qreal QAccelPlot::padding() const
 
 void QAccelPlot::setPadding(const qreal p)
 {
-    if (nearly_equal(padding_, p)) {
+    if (nearlyEqual(padding_, p)) {
         return;
     }
     padding_ = p;

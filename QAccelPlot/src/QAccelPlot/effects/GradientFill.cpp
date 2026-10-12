@@ -103,7 +103,7 @@ qreal GradientFill::valueMin() const
 
 void GradientFill::setValueMin(const qreal value)
 {
-    if (nearly_equal(valueMin_, value)) {
+    if (nearlyEqual(valueMin_, value)) {
         return;
     }
 
@@ -135,7 +135,7 @@ qreal GradientFill::valueMax() const
 
 void GradientFill::setValueMax(const qreal value)
 {
-    if (nearly_equal(valueMax_, value)) {
+    if (nearlyEqual(valueMax_, value)) {
         return;
     }
 
@@ -167,7 +167,7 @@ qreal GradientFill::baselineValue() const
 
 void GradientFill::setBaselineValue(const qreal value)
 {
-    if (nearly_equal(baselineValue_, value)) {
+    if (nearlyEqual(baselineValue_, value)) {
         return;
     }
 
@@ -184,7 +184,7 @@ qreal GradientFill::opacity() const
 void GradientFill::setOpacity(const qreal value)
 {
     const auto clamped = std::clamp(value, qreal{0.0}, qreal{1.0});
-    if (nearly_equal(opacity_, clamped)) {
+    if (nearlyEqual(opacity_, clamped)) {
         return;
     }
 
