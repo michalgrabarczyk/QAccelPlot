@@ -131,7 +131,11 @@ PointCloud::PointCloud(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &PointCloud::transitionChanged);
 }
 
-PointCloud::~PointCloud() = default;
+PointCloud::~PointCloud()
+{
+    // runningChanged handlers can still read the series until QObject destruction.
+    transition_->cancel();
+}
 
 QColor PointCloud::color() const
 {

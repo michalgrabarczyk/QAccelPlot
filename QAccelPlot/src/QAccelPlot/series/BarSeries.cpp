@@ -103,7 +103,11 @@ BarSeries::BarSeries(QQuickItem* parent)
     connect(transition_.get(), &TransitionRunner::transitionDestroyed, this, &BarSeries::transitionChanged);
 }
 
-BarSeries::~BarSeries() = default;
+BarSeries::~BarSeries()
+{
+    // runningChanged handlers can still read the series until QObject destruction.
+    transition_->cancel();
+}
 
 Qt::Orientation BarSeries::orientation() const
 {
