@@ -171,6 +171,8 @@ class TestAxisTickPainter : public QObject {
     Q_OBJECT
 
 private slots:
+    void logTickControls_data();
+    void logTickControls();
     void initTestCase();
 
     void computeNiceStep_roundRange();
@@ -201,6 +203,29 @@ private slots:
     void axis_paintsTitleOnEverySide_data();
     void axis_paintsTitleOnEverySide();
 };
+
+void TestAxisTickPainter::logTickControls_data()
+{
+    QTest::addColumn<int>("majorCount");
+    QTest::addColumn<int>("minorCount");
+    QTest::newRow("no-major") << 0 << 10;
+    QTest::newRow("negative-major") << -1 << 10;
+    QTest::newRow("no-minor") << 5 << 0;
+    QTest::newRow("negative-minor") << 5 << -1;
+    QTest::newRow("enabled") << 5 << 10;
+}
+
+void TestAxisTickPainter::logTickControls()
+{
+    QFETCH(int, majorCount);
+    QFETCH(int, minorCount);
+    auto ticker = QAccelPlot::AxisTicker{};
+    ticker.setTickCount(majorCount);
+    ticker.setSubtickCount(minorCount);
+    const auto ticks = QAccelPlot::AxisTickPainter::computeTicks(1.0, 100.0, true, &ticker);
+    QCOMPARE(ticks.majorTicks.size(), majorCount > 0 ? 3 : 0);
+    QCOMPARE(ticks.subtickValues.size(), majorCount > 0 && minorCount > 0 ? 16 : 0);
+}
 
 void TestAxisTickPainter::initTestCase()
 {

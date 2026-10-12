@@ -60,7 +60,7 @@ QRectF clampTickLabelRect(const QRectF& rect, const qreal rotation, const Qt::Or
 
 AxisTicks AxisTickPainter::computeTicks(const qreal viewportMin, const qreal viewportMax, const bool logScale, const AxisTicker* ticker)
 {
-    if (ticker == nullptr) {
+    if (ticker == nullptr || ticker->tickCount() <= 0) {
         return {};
     }
     if (logScale && viewportMin > 0 && viewportMax > 0) {
@@ -142,7 +142,7 @@ AxisTicks AxisTickPainter::computeLogScaleTicks(const qreal viewportMin, const q
     const auto logMax = static_cast<int>(std::ceil(std::log10(viewportHigh)));
 
     auto ticks = AxisTicks{};
-    for (auto exponent = logMin; exponent < logMax; ++exponent) {
+    for (auto exponent = logMin; ticker.subtickCount() > 0 && exponent < logMax; ++exponent) {
         const auto value = std::pow(10.0, exponent);
         for (auto multiplier = 2; multiplier <= 9; ++multiplier) {
             const auto subValue = multiplier * value;
