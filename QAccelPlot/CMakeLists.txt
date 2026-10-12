@@ -66,7 +66,7 @@ endforeach()
 qt_add_qml_module(QAccelPlot
     OUTPUT_TARGETS _qaccelplot_qml_targets
     URI QAccelPlot
-    VERSION 1.0
+    VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     DEPENDENCIES QtQuick
     RESOURCE_PREFIX /qt-project.org/imports
     QML_FILES

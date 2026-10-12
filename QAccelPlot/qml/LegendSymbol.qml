@@ -6,7 +6,7 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 import QtQuick
-import QAccelPlot 1.0
+import QAccelPlot
 
 Item {
     id: root
