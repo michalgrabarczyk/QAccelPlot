@@ -111,6 +111,8 @@ public:
     /// Normalizes and clips the rectangle to plotRect; rejects selections smaller than rectangleZoom.minimumSize
     /// or ranges that are nonfinite, collapsed, or nonpositive on logarithmic axes. Does not require enabled.
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+    /// \brief Calls \c Axis::rescaleToData() on all attached axes.
+    Q_INVOKABLE void rescaleAllAxes();
 
     /// \brief Returns the last observed plot-local pointer position; the origin before the first pointer event.
     QPointF pointerPosition() const;
@@ -228,9 +230,6 @@ protected:
     void itemChange(ItemChange change, const ItemChangeData& value) override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
     /// \endcond
-
-    /// \brief Calls \c Axis::rescaleToData() on all attached axes.
-    Q_INVOKABLE void rescaleAllAxes();
 
 private:
     enum class DragMode { Idle, Pan, RectangleZoom };

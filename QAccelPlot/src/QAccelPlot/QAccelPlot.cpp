@@ -190,6 +190,18 @@ bool QAccelPlot::zoomToRect(const QRectF& rect)
     return true;
 }
 
+void QAccelPlot::rescaleAllAxes()
+{
+    for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
+        if (axis) {
+            axis->rescaleToData();
+        }
+    }
+    for (const auto axis : extraAxes_) {
+        axis->rescaleToData();
+    }
+}
+
 QPointF QAccelPlot::pointerPosition() const
 {
     return lastPointerPos_;
@@ -709,18 +721,6 @@ QSGNode* QAccelPlot::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     borderBottom->setColor(borderColor);
 
     return root;
-}
-
-void QAccelPlot::rescaleAllAxes()
-{
-    for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
-        if (axis) {
-            axis->rescaleToData();
-        }
-    }
-    for (const auto axis : extraAxes_) {
-        axis->rescaleToData();
-    }
 }
 
 bool QAccelPlot::isAxisRegistered(Axis* axis) const

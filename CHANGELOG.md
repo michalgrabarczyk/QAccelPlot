@@ -91,6 +91,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Renamed `nearly_equal()` in `MathUtils.hpp` to `nearlyEqual()`.
 - The QML module version follows the project version, 0.3 for now, instead of
   1.0. Replace `import QAccelPlot 1.0` with `import QAccelPlot`.
+- `PlotView::rescaleAllAxes()` is public instead of protected.
 
 ### Removed
 
