@@ -697,6 +697,13 @@ void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScal
         }
     }
 
+    if (!logScaleX) {
+        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    }
+    if (!logScaleY) {
+        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
+    }
+
     renderData_.resize(data_.size());
     for (auto i = 0; i < rectCount_; ++i) {
         const auto base = static_cast<size_t>(i) * 4;
@@ -704,6 +711,19 @@ void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScal
         renderData_[base + 1] = static_cast<float>(data_[base + 1] - renderOriginY_);
         renderData_[base + 2] = static_cast<float>(data_[base + 2] - renderOriginX_);
         renderData_[base + 3] = static_cast<float>(data_[base + 3] - renderOriginY_);
+    }
+}
+
+void RectangleSeries::onAxisRangeChanged()
+{
+    PlotSeries::onAxisRangeChanged();
+    if (!hasPreciseData() || dataChanged_ || !xAxis() || !yAxis()) {
+        return;
+    }
+    const auto rebaseX = !xAxis()->logScale() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
+    const auto rebaseY = !yAxis()->logScale() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
+    if (rebaseX || rebaseY) {
+        dataChanged_ = true;
     }
 }
 
