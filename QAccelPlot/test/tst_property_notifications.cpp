@@ -92,8 +92,8 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("Axis", "labelColor", QColor{Qt::cyan});
     row("Axis", "baselineColor", QColor{Qt::magenta});
     row("Axis", "hoverColor", QColor{Qt::yellow});
-    row("Axis", "labelPadding", 13);
-    row("Axis", "baselinePadding", 9);
+    row("Axis", "labelPadding", 13.0);
+    row("Axis", "baselinePadding", 9.0);
 
     row("AxisTicker", "subtickLengthIn", 7.0);
     row("AxisTicker", "subtickLengthOut", 6.0);

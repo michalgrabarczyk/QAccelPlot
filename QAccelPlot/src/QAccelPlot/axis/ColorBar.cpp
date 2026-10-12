@@ -288,12 +288,12 @@ void ColorBar::setInteractive(const bool interactive)
     emit interactiveChanged();
 }
 
-double ColorBar::zoomScaleFactor() const
+qreal ColorBar::zoomScaleFactor() const
 {
     return zoomScaleFactor_;
 }
 
-void ColorBar::setZoomScaleFactor(const double factor)
+void ColorBar::setZoomScaleFactor(const qreal factor)
 {
     const auto clampedFactor = std::clamp(factor, 0.0, 1.0);
     if (nearly_equal(zoomScaleFactor_, clampedFactor)) {

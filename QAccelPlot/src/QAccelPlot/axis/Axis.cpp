@@ -284,14 +284,14 @@ void Axis::setHoverColor(const QColor& c)
     update();
 }
 
-int Axis::labelPadding() const
+qreal Axis::labelPadding() const
 {
     return labelPadding_;
 }
 
-void Axis::setLabelPadding(const int padding)
+void Axis::setLabelPadding(const qreal padding)
 {
-    if (labelPadding_ == padding) {
+    if (nearly_equal(labelPadding_, padding)) {
         return;
     }
     labelPadding_ = padding;
@@ -299,14 +299,14 @@ void Axis::setLabelPadding(const int padding)
     update();
 }
 
-int Axis::baselinePadding() const
+qreal Axis::baselinePadding() const
 {
     return baselinePadding_;
 }
 
-void Axis::setBaselinePadding(const int padding)
+void Axis::setBaselinePadding(const qreal padding)
 {
-    if (baselinePadding_ == padding) {
+    if (nearly_equal(baselinePadding_, padding)) {
         return;
     }
     baselinePadding_ = padding;
@@ -358,12 +358,12 @@ void Axis::setLogScale(const bool on)
     invalidateTicks();
 }
 
-double Axis::zoomScaleFactor() const
+qreal Axis::zoomScaleFactor() const
 {
     return zoomScaleFactor_;
 }
 
-void Axis::setZoomScaleFactor(const double factor)
+void Axis::setZoomScaleFactor(const qreal factor)
 {
     const auto clampedFactor = std::clamp(factor, kMinZoomScaleFactor, kMaxZoomScaleFactor);
     if (nearly_equal(zoomScaleFactor_, clampedFactor)) {
@@ -416,8 +416,8 @@ void Axis::paint(QPainter* painter)
 
     // Ensure the axis line is far enough from the item edge to show inward ticks
     const auto maxIn = std::max(static_cast<qreal>(ticker_->tickLengthIn()), static_cast<qreal>(ticker_->subtickLengthIn()));
-    const auto pad = std::max(static_cast<qreal>(baselinePadding_), maxIn);
-    const auto overlap = pad - static_cast<qreal>(baselinePadding_);
+    const auto pad = std::max(baselinePadding_, maxIn);
+    const auto overlap = pad - baselinePadding_;
 
     // Fill only the axis area, not the overlap or label overflow regions
     auto bgRect = dataRect;
@@ -480,7 +480,7 @@ void Axis::paint(QPainter* painter)
 qreal Axis::inwardTickOverlap() const
 {
     const auto maxIn = std::max(static_cast<qreal>(ticker_->tickLengthIn()), static_cast<qreal>(ticker_->subtickLengthIn()));
-    return std::max(0.0, maxIn - static_cast<qreal>(baselinePadding_));
+    return std::max(0.0, maxIn - baselinePadding_);
 }
 
 qreal Axis::labelOverflow() const

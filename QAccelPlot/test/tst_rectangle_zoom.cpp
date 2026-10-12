@@ -135,7 +135,7 @@ void TestRectangleZoom::configuration()
 {
     auto config = QAccelPlot::PlotRectangleZoom{};
     QVERIFY(!config.enabled());
-    QCOMPARE(config.modifiers(), static_cast<int>(Qt::ControlModifier));
+    QCOMPARE(config.modifiers(), Qt::KeyboardModifiers{Qt::ControlModifier});
     QCOMPARE(config.minimumSize(), 6.0);
     QCOMPARE(config.fillColor(), QAccelPlot::ColorPalette::dark().rectangleZoomFill);
     QCOMPARE(config.borderColor(), QAccelPlot::ColorPalette::dark().rectangleZoomBorder);

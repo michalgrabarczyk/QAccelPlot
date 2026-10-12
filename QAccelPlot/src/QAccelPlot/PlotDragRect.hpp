@@ -27,7 +27,7 @@ public:
     [[nodiscard]] QRectF rect() const;
 
     /// \brief Returns true when the pressed modifiers are exactly the \a required ones.
-    [[nodiscard]] static bool modifiersMatch(int pressed, int required);
+    [[nodiscard]] static bool modifiersMatch(Qt::KeyboardModifiers pressed, Qt::KeyboardModifiers required);
     /// \brief Returns true when \a rect is at least \a minimumSize in every checked dimension.
     [[nodiscard]] static bool meetsMinimum(const QRectF& rect, qreal minimumSize, bool checkWidth = true, bool checkHeight = true);
 

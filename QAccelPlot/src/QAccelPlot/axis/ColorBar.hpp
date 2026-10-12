@@ -91,7 +91,7 @@ class ColorBar : public QQuickPaintedItem {
     /// \brief Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9.
     ///
     /// On a zoom-out step the range is multiplied by the reciprocal. Used only while \c interactive is set.
-    Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
     /// \brief Read-only: \c true while the mouse cursor is over the bar. Reported only while \c interactive is set.
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     /// \brief Read-only constant: tick appearance, count, and label formatter.
@@ -160,9 +160,9 @@ public:
     void setInteractive(bool interactive);
 
     /// \brief Returns the zoom scale factor.
-    double zoomScaleFactor() const;
+    qreal zoomScaleFactor() const;
     /// \brief Sets the zoom scale factor to \a factor (clamped to the range (0, 1)).
-    void setZoomScaleFactor(double factor);
+    void setZoomScaleFactor(qreal factor);
 
     /// \brief Returns \c true while the mouse cursor is over an interactive bar.
     bool hovered() const;
@@ -279,7 +279,7 @@ private:
     qreal borderWidth_{1.0};
     qreal tickLabelWidth_{16.0};
     bool interactive_{false};
-    double zoomScaleFactor_{0.9};
+    qreal zoomScaleFactor_{0.9};
     bool hovered_{false};
     AxisTicker* ticker_;
     bool isDragging_{false};

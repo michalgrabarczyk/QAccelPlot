@@ -65,9 +65,9 @@ class Axis : public QQuickPaintedItem {
     /// and y2Axis; set explicitly for an axis placed in extraAxes.
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
     /// \brief Pixels of padding between the baseline and the axis label. Default: 30.
-    Q_PROPERTY(int labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
     /// \brief Pixels of padding between the plot area edge and the baseline. Default: 0.
-    Q_PROPERTY(int baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
+    Q_PROPERTY(qreal baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
     /// \brief Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.
     Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
     /// \brief Read-only constant: tick appearance configuration object.
@@ -78,7 +78,7 @@ class Axis : public QQuickPaintedItem {
     ///
     /// On a zoom-in step the range is multiplied by this value; on zoom-out by its reciprocal.
     /// Decrease the factor (e.g. 0.5) to zoom faster; increase it toward 1.0 (e.g. 0.95) to zoom more slowly.
-    Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
     /// \brief Whether the viewport follows the data range. Default: \c false.
     ///
     /// While \c true, every data update of a bound series sets the viewport as \c rescaleToData() does, replacing
@@ -164,14 +164,14 @@ public:
     void setHoverColor(const QColor& c);
 
     /// \brief Returns the padding between the baseline and the axis label in pixels.
-    int labelPadding() const;
+    qreal labelPadding() const;
     /// \brief Sets the padding between the baseline and the axis label to \a padding pixels.
-    void setLabelPadding(int padding);
+    void setLabelPadding(qreal padding);
 
     /// \brief Returns the padding between the plot area edge and the baseline in pixels.
-    int baselinePadding() const;
+    qreal baselinePadding() const;
     /// \brief Sets the padding between the plot area edge and the baseline to \a padding pixels.
-    void setBaselinePadding(int padding);
+    void setBaselinePadding(qreal padding);
 
     /// \brief Returns the layout thickness in pixels.
     qreal layoutSize() const;
@@ -186,11 +186,11 @@ public:
     /// \brief Sets log-scale mode to \a on.
     void setLogScale(bool on);
     /// \brief Returns the zoom scale factor.
-    double zoomScaleFactor() const;
+    qreal zoomScaleFactor() const;
     /// \brief Sets the zoom scale factor to \a factor (clamped to the range (0, 1)).
     ///
     /// Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming.
-    void setZoomScaleFactor(double factor);
+    void setZoomScaleFactor(qreal factor);
 
     /// \brief Returns \c true when the viewport follows the data range.
     bool autoRescale() const;
@@ -330,11 +330,11 @@ private:
     QColor labelColor_;
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};
-    int labelPadding_{30};
-    int baselinePadding_{0};
+    qreal labelPadding_{30.0};
+    qreal baselinePadding_{0.0};
     qreal layoutSize_{50.0};
     bool logScale_{false};
-    double zoomScaleFactor_{0.9};
+    qreal zoomScaleFactor_{0.9};
     bool autoRescale_{false};
     bool extendWidgetForLabels_{true};
     bool clampEdgeLabels_{true};

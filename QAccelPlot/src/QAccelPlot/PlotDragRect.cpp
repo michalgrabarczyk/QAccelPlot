@@ -38,7 +38,7 @@ QRectF PlotDragRect::rect() const
     return QRectF{start_, end_}.normalized();
 }
 
-bool PlotDragRect::modifiersMatch(const int pressed, const int required)
+bool PlotDragRect::modifiersMatch(const Qt::KeyboardModifiers pressed, const Qt::KeyboardModifiers required)
 {
     return pressed == required;
 }

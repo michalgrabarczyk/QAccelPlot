@@ -31,12 +31,12 @@ void PlotRectangleZoom::setEnabled(bool value)
     emit enabledChanged();
 }
 
-int PlotRectangleZoom::modifiers() const
+Qt::KeyboardModifiers PlotRectangleZoom::modifiers() const
 {
     return modifiers_;
 }
 
-void PlotRectangleZoom::setModifiers(int value)
+void PlotRectangleZoom::setModifiers(const Qt::KeyboardModifiers value)
 {
     if (modifiers_ == value) {
         return;

@@ -607,10 +607,10 @@ void TestPlotInteraction::plotMouseEvent_resetClearsAcceptance()
     event.reset(Qt::RightButton, 12.5, -3.0, Qt::ShiftModifier);
 
     QVERIFY(!event.isAccepted());
-    QCOMPARE(event.button(), static_cast<int>(Qt::RightButton));
+    QCOMPARE(event.button(), Qt::RightButton);
     QCOMPARE(event.x(), 12.5);
     QCOMPARE(event.y(), -3.0);
-    QCOMPARE(event.modifiers(), static_cast<int>(Qt::ShiftModifier));
+    QCOMPARE(event.modifiers(), Qt::KeyboardModifiers{Qt::ShiftModifier});
 }
 
 QTEST_MAIN(TestPlotInteraction)

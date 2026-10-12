@@ -84,6 +84,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `valueMinSource`, and `gradientValueMaxSource` → `valueMaxSource`.
 - Renamed `Axis.axisTitlePadding` to `labelPadding` and `Axis.axisLinePadding` to
   `baselinePadding`.
+- `Axis.labelPadding`, `Axis.baselinePadding`, and `zoomScaleFactor` of `Axis` and
+  `ColorBar` are `qreal`.
+- `button` is a `Qt::MouseButton` and `modifiers` a `Qt::KeyboardModifiers` on
+  `PlotMouseEvent`, `SelectionTool`, and `PlotView.rectangleZoom`, instead of `int`.
 
 ### Removed
 

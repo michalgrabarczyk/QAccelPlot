@@ -14,7 +14,7 @@ PlotMouseEvent::PlotMouseEvent(QObject* parent)
 {
 }
 
-void PlotMouseEvent::reset(const int button, const qreal x, const qreal y, const int modifiers)
+void PlotMouseEvent::reset(const Qt::MouseButton button, const qreal x, const qreal y, const Qt::KeyboardModifiers modifiers)
 {
     button_ = button;
     x_ = x;
@@ -23,7 +23,7 @@ void PlotMouseEvent::reset(const int button, const qreal x, const qreal y, const
     accepted_ = false;
 }
 
-int PlotMouseEvent::button() const
+Qt::MouseButton PlotMouseEvent::button() const
 {
     return button_;
 }
@@ -38,7 +38,7 @@ qreal PlotMouseEvent::y() const
     return y_;
 }
 
-int PlotMouseEvent::modifiers() const
+Qt::KeyboardModifiers PlotMouseEvent::modifiers() const
 {
     return modifiers_;
 }
