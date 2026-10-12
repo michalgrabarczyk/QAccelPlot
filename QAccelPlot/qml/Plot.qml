@@ -25,7 +25,13 @@ PlotView {
 
     QtObject {
         id: internal
+        property Item activeLegend: null
+
         function setupLegend() {
+            if (activeLegend && activeLegend !== root.legend && activeLegend.parent === root) {
+                activeLegend.parent = null;
+            }
+            activeLegend = root.legend;
             if (root.legend) {
                 root.legend.parent = root;
                 root.legend.z = 1;
