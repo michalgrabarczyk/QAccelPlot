@@ -7,6 +7,8 @@
 //
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
+
 #include <QQuickWindow>
 #include <QSGRendererInterface>
 
@@ -20,6 +22,7 @@
 #endif
 
 #include <algorithm>
+#include <limits>
 
 namespace QAccelPlot::Internal {
 
@@ -62,6 +65,14 @@ int maxTextureSize(QQuickWindow* window)
     static const auto overrideSize = qEnvironmentVariableIntValue("QACCELPLOT_MAX_TEXTURE_SIZE");
     const auto gpuSize = gpuMaxTextureSize(window);
     return overrideSize > 0 ? std::min(overrideSize, gpuSize) : gpuSize;
+}
+
+int recordCapacity(QQuickWindow* window, const int floatsPerRecord, const int vertexBytesPerRecord)
+{
+    constexpr auto kMaxExactVertexId = qint64{1} << 24;
+    const auto textureRecords = dataTextureItemCapacity(maxTextureSize(window), floatsPerRecord);
+    const auto geometryRecords = qint64{std::numeric_limits<int>::max() / vertexBytesPerRecord};
+    return static_cast<int>(std::min({textureRecords, geometryRecords, kMaxExactVertexId}));
 }
 
 } // namespace QAccelPlot::Internal

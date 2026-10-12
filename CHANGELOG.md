@@ -157,6 +157,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Attaching an empty series no longer resets an axis's `dataMin` and `dataMax` to 0 and 1.
 - `RectangleSeries` and `PointCloud` render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).
+- `LineCurve`, `RectangleSeries`, and `BarSeries` draw only the records their GPU
+  buffers hold and warn about the rest, instead of overflowing the vertex buffer.
 - On Qt 6.2, only the topmost series under the cursor is hovered.
 - A destroyed series leaves `PlotView.series`, and a destroyed `PlotView` releases
   its children, before their own members are gone, so handlers of `seriesChanged`

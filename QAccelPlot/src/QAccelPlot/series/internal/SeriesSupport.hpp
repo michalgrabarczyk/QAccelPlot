@@ -26,4 +26,11 @@ bool supportsCustomShaderRendering(const QQuickWindow* window);
 /// result, for example to exercise capacity limits in tests.
 int maxTextureSize(QQuickWindow* window);
 
+/// \brief Returns how many records a series draws that reads them from the data texture by a float vertex id.
+///
+/// A record takes \a floatsPerRecord floats of the data texture and \a vertexBytesPerRecord bytes
+/// of vertices. The count is limited by the texture size of \a window's GPU, by the 2^24 ids a
+/// float holds exactly, and by \c QSGGeometry, which sizes its vertex buffer in \c int bytes.
+int recordCapacity(QQuickWindow* window, int floatsPerRecord, int vertexBytesPerRecord);
+
 } // namespace QAccelPlot::Internal

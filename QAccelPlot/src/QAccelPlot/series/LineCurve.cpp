@@ -167,6 +167,33 @@ template <typename Effect, typename Payload, typename RangeFn> Payload resolveGr
     return payload;
 }
 
+constexpr auto kLineVerticesPerPoint = 2;
+constexpr auto kMarkerVerticesPerPoint = 6;
+constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(LineVertex));
+// Markers carry their positions in the vertex buffer, which QSGGeometry sizes in int bytes.
+constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / (kMarkerVerticesPerPoint * static_cast<int>(sizeof(PointVertex)));
+// Float vertex ids, which the line shader reads its samples by, are exact up to 2^24.
+constexpr auto kMaxLinePoints = 1 << 24;
+
+// Number of points a curve with these parts draws in \a window.
+int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints)
+{
+    auto capacity = hasPoints ? kMaxMarkerPoints : std::numeric_limits<int>::max();
+    if (hasLine) {
+        capacity = std::min(capacity, Internal::recordCapacity(window, 2, kLineVertexBytesPerPoint));
+    }
+    return capacity;
+}
+
+void warnOnceIfOverCapacity(const int pointCount, const int capacity)
+{
+    static auto warned = false;
+    if (pointCount > capacity && !warned) {
+        qCWarning(lcQAccelPlot) << "LineCurve has" << pointCount << "points but draws at most" << capacity << "; the remaining points are not drawn.";
+        warned = true;
+    }
+}
+
 }
 
 LineCurve::LineCurve(QQuickItem* parent)
@@ -586,7 +613,9 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         styleChanged_ = false;
     }
 
-    const auto drawnPointCount = renderPointCount();
+    const auto capacity = pointCapacity(window(), hasLine, hasPoints);
+    warnOnceIfOverCapacity(renderPointCount(), capacity);
+    const auto drawnPointCount = std::min(renderPointCount(), capacity);
     const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {
         delete oldNode;
@@ -1199,10 +1228,11 @@ void LineCurve::rebuildVertexCache()
         return;
     }
     const auto isDash = lineStyle_ && lineStyle_->showLine() && lineStyle_->dashParameters().enabled;
-    if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2) {
+    // A cache of more points than the curve draws would not be used.
+    if (lineStyle_ && lineStyle_->showLine() && !isDash && renderPointCount() >= 2 && renderPointCount() <= kMaxLinePoints) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Line, renderPointCount(),
             [this](std::vector<char>& bytes) { lineRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
-    } else if (marker_->shape() != MarkerShape::None && renderPointCount() >= 1) {
+    } else if (marker_->shape() != MarkerShape::None && renderPointCount() >= 1 && renderPointCount() <= kMaxMarkerPoints) {
         vertexCache_.rebuild(LineCurveVertexCache::Layout::Points, renderPointCount(),
             [this](std::vector<char>& bytes) { pointRenderer_.buildVertexCache(renderData(), renderPointCount(), bytes); });
     } else {
