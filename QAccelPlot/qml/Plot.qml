@@ -43,7 +43,7 @@ PlotView {
     Binding {
         target: root.legend
         property: "x"
-        value: root.plotRect.x + root.plotRect.width - root.legend.width - 8
+        value: root.legend ? root.plotRect.x + root.plotRect.width - root.legend.width - 8 : 0
         when: root.legend !== null
     }
 

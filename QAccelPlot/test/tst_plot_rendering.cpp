@@ -12,6 +12,7 @@
 #include <QImage>
 #include <QQmlComponent>
 #include <QQmlEngine>
+#include <QQmlError>
 #include <QQuickItem>
 #include <QQuickWindow>
 #include <QSGRendererInterface>
@@ -170,6 +171,7 @@ private slots:
     void rendersFillStrokeRectanglesAndPoints();
     void rendersEveryPointOfSeveralPointClouds();
     void rendersPointsBeyondFirstTextureRows();
+    void plotWithoutLegendLogsNoWarnings();
 };
 
 void PlotRenderingTest::rendersFillStrokeRectanglesAndPoints()
@@ -312,6 +314,37 @@ void PlotRenderingTest::rendersPointsBeyondFirstTextureRows()
     QVERIFY(isColor(pixelAt(image, 3.0, 5.0), Qt::cyan));
     QVERIFY(isColor(pixelAt(image, 7.0, 5.0), Qt::cyan));
     QVERIFY(isColor(pixelAt(image, 5.0, 5.0), Qt::black));
+}
+
+void PlotRenderingTest::plotWithoutLegendLogsNoWarnings()
+{
+    auto engine = QQmlEngine{};
+    auto warnings = QStringList{};
+    connect(&engine, &QQmlEngine::warnings, this, [&warnings](const QList<QQmlError>& errors) {
+        for (const auto& error : errors) {
+            warnings.append(error.toString());
+        }
+    });
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot
+
+        Plot {
+            width: 400
+            height: 300
+            legend: null
+            xAxis: Axis {}
+            yAxis: Axis {}
+        }
+    )",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+
+    // A new size moves the plot area, which the legend position follows.
+    root->setProperty("width", 500);
+    QVERIFY2(warnings.isEmpty(), qPrintable(warnings.join(QLatin1Char('|'))));
 }
 
 } // namespace QAccelPlot
