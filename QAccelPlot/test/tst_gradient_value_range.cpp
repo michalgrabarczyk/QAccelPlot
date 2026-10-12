@@ -49,10 +49,10 @@ QObject* createGradient(QObject* parent)
 template <typename Effect> void configureRangeSources(Effect& effect, const GradientValueSource minSource, const GradientValueSource maxSource)
 {
     effect.setGradient(createGradient(&effect));
-    effect.setGradientValueMinSource(minSource);
-    effect.setGradientValueMin(kFixedValue);
-    effect.setGradientValueMaxSource(maxSource);
-    effect.setGradientValueMax(kFixedValue);
+    effect.setValueMinSource(minSource);
+    effect.setValueMin(kFixedValue);
+    effect.setValueMaxSource(maxSource);
+    effect.setValueMax(kFixedValue);
 }
 
 } // namespace

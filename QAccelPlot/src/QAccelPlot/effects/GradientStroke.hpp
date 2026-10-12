@@ -36,16 +36,16 @@ class GradientStroke : public LineCurveEffect {
     /// \brief Colormap supplying the color stops. Overrides \c gradient when set.
     ///
     /// Only the ramp is used. \c Colormap::min, \c Colormap::max, and \c Colormap::norm are ignored;
-    /// \c gradientValueMin and \c gradientValueMax place the ramp instead.
+    /// \c valueMin and \c valueMax place the ramp instead.
     Q_PROPERTY(Colormap* colormap READ colormap WRITE setColormap NOTIFY colormapChanged)
     /// \brief How the gradient normalization minimum is determined; see \c GradientValueSource.
-    Q_PROPERTY(GradientValueSource gradientValueMinSource READ gradientValueMinSource WRITE setGradientValueMinSource NOTIFY gradientValueMinSourceChanged)
-    /// \brief Data-space value that maps to gradient position 0.0. Only used when gradientValueMinSource is Fixed.
-    Q_PROPERTY(qreal gradientValueMin READ gradientValueMin WRITE setGradientValueMin NOTIFY gradientValueMinChanged)
+    Q_PROPERTY(GradientValueSource valueMinSource READ valueMinSource WRITE setValueMinSource NOTIFY valueMinSourceChanged)
+    /// \brief Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed.
+    Q_PROPERTY(qreal valueMin READ valueMin WRITE setValueMin NOTIFY valueMinChanged)
     /// \brief How the gradient normalization maximum is determined; see \c GradientValueSource.
-    Q_PROPERTY(GradientValueSource gradientValueMaxSource READ gradientValueMaxSource WRITE setGradientValueMaxSource NOTIFY gradientValueMaxSourceChanged)
-    /// \brief Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed.
-    Q_PROPERTY(qreal gradientValueMax READ gradientValueMax WRITE setGradientValueMax NOTIFY gradientValueMaxChanged)
+    Q_PROPERTY(GradientValueSource valueMaxSource READ valueMaxSource WRITE setValueMaxSource NOTIFY valueMaxSourceChanged)
+    /// \brief Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed.
+    Q_PROPERTY(qreal valueMax READ valueMax WRITE setValueMax NOTIFY valueMaxChanged)
 
 public:
     /// \brief Constructs a GradientStroke with the given \a parent.
@@ -67,24 +67,24 @@ public:
     void setColormap(Colormap* colormap);
 
     /// \brief Returns how the gradient normalization minimum is determined.
-    GradientValueSource gradientValueMinSource() const;
+    GradientValueSource valueMinSource() const;
     /// \brief Sets the gradient normalization minimum source to \a source.
-    void setGradientValueMinSource(GradientValueSource source);
+    void setValueMinSource(GradientValueSource source);
 
     /// \brief Returns the minimum data value for gradient normalization.
-    qreal gradientValueMin() const;
+    qreal valueMin() const;
     /// \brief Sets the minimum data value for gradient normalization to \a value.
-    void setGradientValueMin(qreal value);
+    void setValueMin(qreal value);
 
     /// \brief Returns how the gradient normalization maximum is determined.
-    GradientValueSource gradientValueMaxSource() const;
+    GradientValueSource valueMaxSource() const;
     /// \brief Sets the gradient normalization maximum source to \a source.
-    void setGradientValueMaxSource(GradientValueSource source);
+    void setValueMaxSource(GradientValueSource source);
 
     /// \brief Returns the maximum data value for gradient normalization.
-    qreal gradientValueMax() const;
+    qreal valueMax() const;
     /// \brief Sets the maximum data value for gradient normalization to \a value.
-    void setGradientValueMax(qreal value);
+    void setValueMax(qreal value);
 
     /// \brief Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes.
     ///
@@ -102,14 +102,14 @@ signals:
     void gradientChanged();
     /// \brief Emitted when the colormap property changes.
     void colormapChanged();
-    /// \brief Emitted when the gradientValueMinSource property changes.
-    void gradientValueMinSourceChanged();
-    /// \brief Emitted when the gradientValueMin property changes.
-    void gradientValueMinChanged();
-    /// \brief Emitted when the gradientValueMaxSource property changes.
-    void gradientValueMaxSourceChanged();
-    /// \brief Emitted when the gradientValueMax property changes.
-    void gradientValueMaxChanged();
+    /// \brief Emitted when the valueMinSource property changes.
+    void valueMinSourceChanged();
+    /// \brief Emitted when the valueMin property changes.
+    void valueMinChanged();
+    /// \brief Emitted when the valueMaxSource property changes.
+    void valueMaxSourceChanged();
+    /// \brief Emitted when the valueMax property changes.
+    void valueMaxChanged();
 
 private:
     GradientColorPayload readPayload() const;
@@ -125,10 +125,10 @@ private:
     QVector<QMetaObject::Connection> gradientConnections_;
     Colormap* colormap_{nullptr};
     QVector<QMetaObject::Connection> colormapConnections_;
-    GradientValueSource gradientValueMinSource_{GradientValueSource::DataRange};
-    qreal gradientValueMin_{0.0};
-    GradientValueSource gradientValueMaxSource_{GradientValueSource::DataRange};
-    qreal gradientValueMax_{0.0};
+    GradientValueSource valueMinSource_{GradientValueSource::DataRange};
+    qreal valueMin_{0.0};
+    GradientValueSource valueMaxSource_{GradientValueSource::DataRange};
+    qreal valueMax_{0.0};
     GradientColorPayload payload_;
 };
 

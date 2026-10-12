@@ -404,10 +404,10 @@ Window {
                         effects: [
                             QAccelPlot.GradientStroke {
                                 direction: Qt.Vertical
-                                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMin: -1
-                                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMax: 1
+                                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMin: -1
+                                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMax: 1
                                 colormap: QAccelPlot.Colormap {
                                     preset: QAccelPlot.Colormap.Plasma
                                 }
@@ -472,10 +472,10 @@ Window {
                         effects: [
                             QAccelPlot.GradientStroke {
                                 direction: Qt.Vertical
-                                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMin: -spirographPlot.curveSpan
-                                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMax: spirographPlot.curveSpan
+                                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMin: -spirographPlot.curveSpan
+                                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMax: spirographPlot.curveSpan
                                 colormap: QAccelPlot.Colormap {
                                     preset: QAccelPlot.Colormap.Viridis
                                 }

@@ -79,6 +79,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `Axis.orientation`, `ColorBar.orientation`, and the `direction` of `GradientFill`
   and `GradientStroke` take `Qt.Horizontal` / `Qt.Vertical`. This replaces
   `Axis.Orientation`, `ColorBar.Orientation`, and `GradientDirection`.
+- Renamed `GradientFill` and `GradientStroke` properties: `gradientValueMin` →
+  `valueMin`, `gradientValueMax` → `valueMax`, `gradientValueMinSource` →
+  `valueMinSource`, and `gradientValueMaxSource` → `valueMaxSource`.
 
 ### Removed
 

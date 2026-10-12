@@ -63,10 +63,10 @@ PlotView {
             },
             GradientFill {
                 direction: Qt.Vertical
-                gradientValueMinSource: GradientValueSource.Fixed
-                gradientValueMin: 0
-                gradientValueMaxSource: GradientValueSource.Fixed
-                gradientValueMax: 10
+                valueMinSource: GradientValueSource.Fixed
+                valueMin: 0
+                valueMaxSource: GradientValueSource.Fixed
+                valueMax: 10
                 opacity: 1
                 gradient: Gradient {
                     GradientStop { id: fillStop; position: 0; color: "lime" }

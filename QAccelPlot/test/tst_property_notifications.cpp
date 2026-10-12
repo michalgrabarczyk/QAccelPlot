@@ -123,20 +123,20 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("DateTimeTickLabelFormatter", "dateTimeFormat", QStringLiteral("yyyy"));
 
     row("GradientFill", "direction", QVariant::fromValue(Qt::Vertical));
-    row("GradientFill", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientFill", "gradientValueMin", -2.0);
-    row("GradientFill", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientFill", "gradientValueMax", 8.0);
+    row("GradientFill", "valueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientFill", "valueMin", -2.0);
+    row("GradientFill", "valueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientFill", "valueMax", 8.0);
     row("GradientFill", "baseline", QVariant::fromValue(GradientFillBaseline::Value));
     row("GradientFill", "baselineValue", 1.25);
     row("GradientFill", "opacity", 0.8);
     row("GradientFill", "enabled", false);
 
     row("GradientStroke", "direction", QVariant::fromValue(Qt::Vertical));
-    row("GradientStroke", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientStroke", "gradientValueMin", -2.0);
-    row("GradientStroke", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientStroke", "gradientValueMax", 8.0);
+    row("GradientStroke", "valueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientStroke", "valueMin", -2.0);
+    row("GradientStroke", "valueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientStroke", "valueMax", 8.0);
     row("GradientStroke", "enabled", false);
 
     row("Grid", "lineWidth", 3.0);
