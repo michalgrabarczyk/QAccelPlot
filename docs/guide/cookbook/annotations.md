@@ -82,7 +82,7 @@ Infinite edges don't change the axes' data ranges.
 | `minimumWidth`, `minimumHeight` | Minimum drawn size in pixels (default 1), so short events stay visible |
 | `border.width`, `border.color` | Outline inside each rectangle, e.g. to separate adjacent states |
 | `hoverColor` | Fill of the hovered rectangle |
-| [`hoveredIndex`][hovered-index], `rectangleAt()` | The rectangle under the pointer and its bounds, for tooltips |
+| [`hoveredIndex`][hovered-index], `rectangleAt()` | The rectangle under the mouse pointer and its bounds, for tooltips |
 
 A state timeline puts one lane per row, colored by category:
 
@@ -148,5 +148,5 @@ Complete sources:
 [pixel-to-data-y]: ../api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [data-anchor]: ../api/classQAccelPlot_1_1DataAnchor.md
 [rectangle-series]: ../api/classQAccelPlot_1_1RectangleSeries.md
-[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata
+[rectangle-series-set-data]: ../api/classQAccelPlot_1_1RectangleSeries.md#function-setdata-18
 [hovered-index]: ../api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12

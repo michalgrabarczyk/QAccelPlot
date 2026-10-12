@@ -43,16 +43,15 @@ QAccelPlot.Plot {
 
 ## Update every frame
 
-Pass each new buffer to [`setDataF()`][set-data-f]. No data update scans the
-buffer for its range; that happens only when something reads the range, such
-as a double-click rescale:
+Pass each new buffer to [`setDataF()`][set-data-f]:
 
 ```cpp
 curve->setDataF(std::move(points), pointCount);
 ```
 
-A rescale then fits the samples of that frame. To fit the nominal window
-instead, and skip the scan, pass its bounds with the data:
+A rescale fits the samples of the current frame. To fit the nominal window
+instead, pass its bounds with the data. This also skips the
+[range scan](../performance.md#data-ranges-are-computed-on-demand):
 
 ```cpp
 constexpr auto bounds = QAccelPlot::PlotSeries::DataBounds{-20.0, 0.0, -2.5, 2.5};
@@ -79,8 +78,8 @@ yAxis: QAccelPlot.Axis {
   `autoRescale` to `false` while the user navigates.
 - Appending only extends the data range. Replace the buffer with
   [`setDataF()`][set-data-f] to let the range shrink.
-- Each update scans the data for its range. Appending widens the range
-  without a scan, and data passed with bounds is not scanned.
+- Each update scans the data for its range, unless it appends or passes
+  bounds.
 - When the last series on the axis is cleared, the viewport is kept.
 
 ## Show dropouts as gaps
@@ -103,7 +102,7 @@ Complete sources:
 - [`examples/data/realtime`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime)
 - [`examples/data/missing_data`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/missing_data)
 
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [auto-rescale]: ../api/classQAccelPlot_1_1Axis.md#property-autorescale-12
 [append-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: ../api/classQAccelPlot_1_1Axis.md#function-rescaletodata

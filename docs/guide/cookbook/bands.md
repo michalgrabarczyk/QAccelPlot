@@ -14,10 +14,9 @@ high value at each X: confidence and prediction intervals, tolerance masks, and
 min/max or mean ± σ envelopes. Draw the center line with a separate
 `LineCurve`.
 
-Samples live in a GPU data texture, and the vertex buffer holds only sample
-indices. Panning and zooming change shader uniforms only, so a band of millions
-of samples costs nothing on the CPU per frame. Dashed edge lines are the
-exception: zooming recomputes their dash positions, one pass over the samples.
+Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
+edge lines are the exception: zooming recomputes their dash positions in one
+pass over the samples.
 
 ## Draw a band around a line
 
@@ -71,8 +70,6 @@ QAccelPlot.BandSeries {
 | `edges.color` | invalid | Uses the band's `color` at full opacity. |
 | `edges.lineStyle` | `SolidLine` | `DashLine` and `NoLine` also work. |
 
-The edge lines read the band's data texture; the samples are uploaded once.
-
 ## Feed data from C++
 
 Samples are interleaved `(x, low, high)` triples. The data API matches
@@ -104,10 +101,10 @@ gap there. Auto-ranging skips invalid values one by one.
 
 ## Hover
 
-`hovered` is `true` while the cursor is inside the band or on an edge line.
-Only the topmost series under the cursor is hovered, so nested bands highlight
-one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over a band to leave
-hover to the band:
+`hovered` is `true` while the mouse pointer is inside the band or on an edge
+line. Only the topmost series under the mouse pointer is hovered, so nested
+bands highlight one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over
+a band to leave hover to the band:
 
 ```qml
 QAccelPlot.BandSeries {
@@ -122,10 +119,6 @@ At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
 texture size is below 6144. Samples beyond the limit are not drawn, and a
 warning is logged once.
 
-Complete source:
-
-- [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands):
-  a forecast with nested prediction intervals, and a rolling mean ± 2σ band
-  over 10,000 samples of a simulated sensor.
+Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)
 
 [band-series]: ../api/classQAccelPlot_1_1BandSeries.md

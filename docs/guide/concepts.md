@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together."
+description: "QAccelPlot architecture explained — how Plot, PlotView, axes, series, DataAnchor, and the Qt Scene Graph rendering pipeline work together."
 ---
 
 <!--
@@ -34,9 +34,8 @@ Panning and zooming change the viewport. [`rescaleToData()`][rescale-to-data]
 sets the viewport to fit the data range, and [`autoRescale`][auto-rescale]
 does so on every data update. A series reports its extent to the
 axes set in its [`xAxis`][series-x-axis] and [`yAxis`][series-y-axis] properties.
-The extent is computed when it is read, so data updates do not scan the
-records unless something asks for the range; see
-[Data ranges are computed on demand](performance.md#data-ranges-are-computed-on-demand).
+The extent is
+[computed on demand](performance.md#data-ranges-are-computed-on-demand).
 
 | Plot property | Side |
 | --- | --- |
@@ -59,17 +58,20 @@ JavaScript callback.
 and legend symbol.
 
 `LineCurve` renders lines, markers, line styles, gradients, and fills. It
-stores points as interleaved floats and accepts data from QML or C++ buffers.
+accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports `hovered` within `hoverRadius` pixels of the line or over a marker.
 Set `hoverRadius: 0` on a line drawn over another series to leave hover to the
 series beneath.
+
+`PointCloud` renders unconnected points as markers, colored uniformly or by a
+per-point value through a `Colormap`. It reports the hovered point index.
 
 `BandSeries` fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores `(x, low, high)` triples and
 can draw lines along both edges.
 
 `RectangleSeries` renders many data-space rectangles in one item, such as event
-spans, bands, and state timelines. Infinite edges reach the plot edge, and a
+spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.
 
@@ -81,7 +83,10 @@ own extent as (from, to, value), e.g. the bins of a histogram.
 ## Invalid samples and gaps
 
 `LineCurve` applies one invalid-sample contract to rendering, gradient fills,
-dash patterns, transitions, auto-ranging, and hover hit testing.
+dash patterns, transitions, auto-ranging, and hover hit testing. For the other
+series, see [bands](cookbook/bands.md#invalid-samples),
+[point clouds](cookbook/point-clouds.md#invalid-points), and
+[bars](cookbook/bar-charts.md#invalid-bars).
 
 A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
@@ -158,5 +163,5 @@ Use [`LineCurve::postData()`][post-data] or a queued call. See
 [pixel-to-data-x]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatax
 [pixel-to-data-y]: api/classQAccelPlot_1_1QAccelPlot.md#function-pixeltodatay
 [is-inside-plot-area]: api/classQAccelPlot_1_1QAccelPlot.md#function-isinsideplotarea
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
 [line-curve]: api/classQAccelPlot_1_1LineCurve.md

@@ -33,7 +33,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`BandSeries`](api/classQAccelPlot_1_1BandSeries.md) — filled area between a
   low and a high value at each X, with optional edge lines.
 - [`RectangleSeries`](api/classQAccelPlot_1_1RectangleSeries.md) — many data-space
-  rectangles in one item: spans, bands, and state timelines.
+  rectangles in one item: spans and state timelines.
 - [`BarSeries`](api/classQAccelPlot_1_1BarSeries.md) — vertical, horizontal, and
   grouped bar charts, and ranged bars such as histogram bins.
 - [`Histogram`](api/classQAccelPlot_1_1Histogram.md) — samples counted into
@@ -49,14 +49,14 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`SelectionTool`](api/classQAccelPlot_1_1SelectionTool.md) — data-space box
   and range selection with per-series statistics.
 
-See [Data inspection](cookbook/data-inspection.md) for usage, query contracts, and readiness.
+See [Data inspection](cookbook/data-inspection.md) for usage and readiness.
 
 ## Feeding curve data
 
 - `setData()` — QML data or double-precision C++ containers.
 - `setDataF(std::vector<float>&&, count)` — large interleaved buffers on the
   curve's thread.
-- [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata) —
+- [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) —
   completed buffers from a worker thread.
 - `PlotSeries::DataBounds` — passed with the data when its extents are already known.
 - `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.

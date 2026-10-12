@@ -24,7 +24,7 @@ my-plot-app/
 Create `CMakeLists.txt`:
 
 ```cmake
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.16)
 
 project(MyPlotApp VERSION 1.0 LANGUAGES CXX)
 
@@ -61,24 +61,6 @@ target_link_libraries(MyPlotApp PRIVATE
 
 qt_import_qml_plugins(MyPlotApp)
 qt_finalize_executable(MyPlotApp)
-
-# Windows has no build RPATH, so deploy Qt for direct Explorer launches.
-if(WIN32)
-    find_program(MY_PLOT_APP_WINDEPLOYQT
-        NAMES windeployqt
-        HINTS "${Qt6_DIR}/../../../bin"
-        REQUIRED
-    )
-
-    add_custom_command(TARGET MyPlotApp POST_BUILD
-        COMMAND "${MY_PLOT_APP_WINDEPLOYQT}"
-            --qmldir "${CMAKE_CURRENT_SOURCE_DIR}/qml"
-            --no-translations
-            "$<TARGET_FILE:MyPlotApp>"
-        COMMENT "Deploying the Qt runtime beside MyPlotApp"
-        VERBATIM
-    )
-endif()
 ```
 
 - `QAccelPlot::QAccelPlot` links the library and its static QML plugin.
@@ -86,6 +68,30 @@ endif()
 - `ShaderTools` compiles the curve shaders at build time.
 - As a subproject, QAccelPlot's examples, tests, benchmarks, and install rules
   default to off.
+
+??? note "Windows: launching from Explorer"
+
+    Windows has no build RPATH. To start the application outside the IDE,
+    deploy the Qt runtime beside it by appending:
+
+    ```cmake
+    if(WIN32)
+        find_program(MY_PLOT_APP_WINDEPLOYQT
+            NAMES windeployqt
+            HINTS "${Qt6_DIR}/../../../bin"
+            REQUIRED
+        )
+
+        add_custom_command(TARGET MyPlotApp POST_BUILD
+            COMMAND "${MY_PLOT_APP_WINDEPLOYQT}"
+                --qmldir "${CMAKE_CURRENT_SOURCE_DIR}/qml"
+                --no-translations
+                "$<TARGET_FILE:MyPlotApp>"
+            COMMENT "Deploying the Qt runtime beside MyPlotApp"
+            VERBATIM
+        )
+    endif()
+    ```
 
 To use a local checkout, replace the `FetchContent` block with:
 
@@ -118,16 +124,12 @@ Window {
         xAxis: QAccelPlot.Axis {
             viewportMin: 0
             viewportMax: 10
-            dataMin: 0
-            dataMax: 10
             label: "Time (s)"
         }
 
         yAxis: QAccelPlot.Axis {
             viewportMin: -1.2
             viewportMax: 1.2
-            dataMin: -1.2
-            dataMax: 1.2
             label: "Amplitude"
             axisTitlePadding: 34
         }
@@ -144,8 +146,8 @@ Window {
 ```
 
 Every series needs an X and a Y axis. [`viewportMin`][viewport-min] and
-[`viewportMax`][viewport-max] set the visible range; [`dataMin`][data-min] and
-[`dataMax`][data-max] set the extent used when rescaling.
+[`viewportMax`][viewport-max] set the visible range. A rescale fits the
+viewport to the data of the attached series.
 
 ## 3. Supply data from C++
 
@@ -194,15 +196,14 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 ```
 
-If `QuickPrivate` is found, QAccelPlot uses it for faster live updates. Add
-`-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` to build against public Qt API only, for
-example when private Qt headers are not installed. See
+Add `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` when private Qt headers are not
+installed; see
 [texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## Default interaction
 
 - Drag inside the plot area to pan all attached axes.
-- Use the mouse wheel over the plot to zoom all axes around the pointer.
+- Use the mouse wheel over the plot to zoom all axes around the mouse pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
 - Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
   See [Rectangle zoom](cookbook/rectangle-zoom.md).
@@ -213,6 +214,4 @@ See [Troubleshooting](troubleshooting.md) for common setup issues.
 
 [viewport-min]: api/classQAccelPlot_1_1Axis.md#property-viewportmin-12
 [viewport-max]: api/classQAccelPlot_1_1Axis.md#property-viewportmax-12
-[data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
-[data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28

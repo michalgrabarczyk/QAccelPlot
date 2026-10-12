@@ -27,8 +27,8 @@ xAxis: QAccelPlot.Axis {
 }
 ```
 
-Supply epoch values through `setData()`, which keeps double precision. The `F`
-APIs are faster but store floats, which are less precise.
+Supply epoch values through `setData()`, which keeps double precision; the `F`
+APIs store floats.
 
 ## Categories
 
@@ -56,20 +56,17 @@ Enable a base-10 logarithmic mapping:
 xAxis: QAccelPlot.Axis {
     viewportMin: 20
     viewportMax: 20000
-    dataMin: 20
-    dataMax: 20000
     logScale: true
 }
 ```
 
-Logarithmic ranges must remain positive. Do not pass zero or negative bounds.
-The default `NumericTickLabelFormatter` labels each decade tick as a power of
-ten with a superscript exponent, such as `10⁻³`, `10²`, and `10³`.
+Logarithmic ranges must stay positive. The default
+`NumericTickLabelFormatter` labels each decade tick as a power of ten, such as
+`10⁻³` and `10²`.
 
 ## Application-specific labels
 
-`QAccelPlot.NumericTickLabelFormatter` is the default numeric format. For custom
-text, assign a JavaScript function to the formatter's
+For custom text, assign a JavaScript function to a formatter's
 [`tickLabel`][tick-label] property. It runs for every tick label, so keep it
 cheap:
 

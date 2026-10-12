@@ -36,8 +36,8 @@ To build without it:
 cmake -S . -B build -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
 ```
 
-This mode recreates the data texture on each update instead of updating it in
-place, which is slower for large data sets updated every frame.
+This is slower for large data sets updated every frame; see
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## The axes appear but the curve is blank
 
@@ -47,11 +47,9 @@ Check these conditions:
 2. At least two points exist when a line is enabled, or one point when only a
    marker is enabled.
 3. The viewport includes the point coordinates.
-4. The Qt Quick renderer is not using the software backend.
+4. The Qt Quick renderer is not using the software backend: QAccelPlot logs a
+   warning when it is. Check `QSG_RHI_BACKEND` and `QT_QUICK_BACKEND`.
 5. The data buffer contains exactly two floats per declared point.
-
-On the software backend, QAccelPlot logs a warning that curve rendering is
-unavailable.
 
 ## Rescale does not fit the data
 

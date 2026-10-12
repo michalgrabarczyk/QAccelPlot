@@ -10,8 +10,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 # Bar charts
 
 Use [`QAccelPlot.BarSeries`][bar-series] for bar charts. Each bar is a
-(position, value) pair. The series uploads two floats per bar and builds the
-bars in the shader, so changing `barWidth`, `barOffset`, or `baselineValue`
+(position, value) pair. Changing `barWidth`, `barOffset`, or `baselineValue`
 does not re-upload the data.
 
 ## Draw bars
@@ -111,32 +110,22 @@ are set with `border.width` and `border.color`.
 
 ## Hover
 
-`hoveredIndex` is the bar under the cursor, or -1. `barAt(index)` returns its
-`position`, `value`, and `category`; a ranged bar has `from` and `to` instead
-of `position`. Set `hoverColor` to highlight it.
+`hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
+returns its `position`, `value`, and `category`; a ranged bar has `from` and
+`to` instead of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 
 ## Animate data changes
 
-Assign a `QAccelPlot.MorphTransition` or a `QAccelPlot.DrawTransition` to
-`transition`:
-
-```qml
-QAccelPlot.BarSeries {
-    transition: QAccelPlot.MorphTransition {
-        duration: 500
-        easing.type: Easing.InOutCubic
-    }
-}
-```
+Assign a `MorphTransition` or a `DrawTransition` to `transition`, as for a
+[`LineCurve`](styling.md#animated-data-changes).
 
 - `MorphTransition` moves each bar to its new position and value. New bars
   grow from `baselineValue`, and removed bars shrink to it.
 - `DrawTransition` shows the new bars one after another.
 - `count`, `barAt()`, the data ranges, hover, and inspection use the new data
   from the start of the animation.
-- `clearData()`, and replacing, clearing, or cancelling `transition`, show the
-  new data at once.
+- `clearData()` shows the new data at once.
 - While a transition is enabled, the float paths store doubles.
 
 ## Feed data from C++
@@ -159,13 +148,11 @@ For the highest throughput, use `setDataF()`, or `postData()` from a worker
 thread; see the
 [Performance guide](../performance.md).
 
+## Invalid bars
+
 A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.
 
-Complete source:
-
-- [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart):
-  grouped and horizontal bars, a profit chart colored against a target
-  baseline, a hover tooltip, and animated updates.
+Complete source: [`examples/plot_types/bar_chart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart)
 
 [bar-series]: ../api/classQAccelPlot_1_1BarSeries.md

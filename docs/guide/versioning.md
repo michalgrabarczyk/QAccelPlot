@@ -34,9 +34,8 @@ Starting with version 1.0, QAccelPlot follows Semantic Versioning:
 
 ## Changelog
 
-`CHANGELOG.md` is the source of release notes. Changes collect under
-`[Unreleased]` and move to a dated version section on release; GitHub Release
-notes are taken from that section.
+The changelog has one dated section per release. Changes not yet released are
+under `[Unreleased]`.
 
 ## Pinning a dependency
 
@@ -69,6 +68,5 @@ GitHub Releases provide source `.zip` and `.tar.gz` archives only; build
 QAccelPlot from source with your application.
 
 A build with `QACCELPLOT_USE_QT_PRIVATE_API=ON` depends on a Qt private API and
-must use the same Qt version and toolchain as the application. No private type
-appears in QAccelPlot's public ABI. Rebuild QAccelPlot whenever the Qt version
-or compiler changes, in either mode.
+must use the same Qt version and toolchain as the application. Rebuild
+QAccelPlot whenever the Qt version or compiler changes, in either mode.

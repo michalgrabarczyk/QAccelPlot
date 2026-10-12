@@ -41,17 +41,15 @@ if (worker.tryConsume(batch)) {
 }
 ```
 
-The data range is scanned on the UI thread, and only when something reads it;
-see [Data ranges are computed on demand](../performance.md#data-ranges-are-computed-on-demand).
 If the worker already knows the extents, add them to the batch and pass them
-as `DataBounds` to skip that scan.
+as `DataBounds` to skip the
+[range scan](../performance.md#data-ranges-are-computed-on-demand) on the UI
+thread.
 
 The performance showcase also builds the vertex cache on the worker. Adopt that
 only after profiling the simpler handoff.
 
-Complete source:
-[`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance),
-a one-batch handoff with a worker-built vertex cache.
+Complete source: [`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 
-[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata
-[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[post-data]: ../api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[set-data-f]: ../api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26

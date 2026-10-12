@@ -22,21 +22,13 @@ QAccelPlot.Plot {
     xAxis: QAccelPlot.Axis {
         viewportMin: 0
         viewportMax: 24
-        dataMin: 0
-        dataMax: 24
         label: "Time of day (h)"
     }
 
     yAxis: QAccelPlot.Axis {
         viewportMin: 16
         viewportMax: 27
-        dataMin: 16
-        dataMax: 27
         label: "Temperature (°C)"
-    }
-
-    legend: QAccelPlot.Legend {
-        series: plot.series
     }
 
     QAccelPlot.LineCurve {
@@ -64,13 +56,11 @@ QAccelPlot.Plot {
 }
 ```
 
-[`Plot.series`][plot-series] updates as series are added or removed; binding
-it to `Legend.series` keeps legend entries in sync.
+`Plot` shows a legend entry for every series. Set `legendVisible: false` to
+hide it, or assign `legend` to replace it.
 
-QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-12)
+QML [`setData()`](../api/classQAccelPlot_1_1LineCurve.md#function-setdata-18)
 suits small or rarely changing data. For large or frequent updates, see
 [Select the data path](../performance.md#select-the-data-path).
 
 Complete source: [`examples/quickstart`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/quickstart)
-
-[plot-series]: ../api/classQAccelPlot_1_1QAccelPlot.md#property-series-12

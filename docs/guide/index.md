@@ -19,17 +19,22 @@ frame.
   [reference system](performance-comparison.md), without downsampling
 - **Data paths** — QML points, double vectors, moved `float` buffers, and
   worker-thread `postData()`
-- **Interaction** — pan, cursor-centered and per-axis zoom, rescale, hover hit
-  testing, and plot mouse events for custom tools
+- **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
+  hover hit testing, and plot mouse events for custom tools
+- **Inspection** — crosshair, tooltip, nearest-sample queries, and region
+  selection with statistics
 - **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions
-- **Layout** — secondary and extra axes, data-anchored QML overlays, and
-  `RectangleSeries` for event spans and state timelines
+- **Point clouds** — `PointCloud` for large scatter data, colored uniformly or
+  by value, with a `ColorBar`
 - **Bars** — `BarSeries` for vertical, horizontal, and grouped bar charts
 - **Histograms** — `Histogram` counts samples into equal or uneven bins, as
   counts or density
+- **Bands** — `BandSeries` for confidence intervals and envelopes
+- **Layout** — secondary and extra axes, data-anchored QML overlays, and
+  `RectangleSeries` for event spans and state timelines
 
 ### Quick start
 
@@ -53,8 +58,11 @@ See [Getting started](getting-started.md) for the full build and data setup.
 - **[Getting started](getting-started.md)** — CMake integration and a first plot.
 - **[Concepts](concepts.md)** — Axes, series, gaps, overlays, and threading.
 - **[Performance](performance.md)** — Data paths, worker handoff, and benchmarking.
+- **[Performance comparison](performance-comparison.md)** — Benchmark setup and results.
 - **[Cookbook](cookbook/index.md)** — Recipes for common tasks.
 - **[FAQ](faq.md)** — Licensing, threading, and compatibility.
+- **[Troubleshooting](troubleshooting.md)** — Blank curves, build errors, and stutter.
+- **[Versioning](versioning.md)** — Release numbers, pinning, and documentation versions.
 - **[API reference](api.md)** — Types, properties, methods, signals, and enums.
 
 Each recipe links to a complete, runnable
@@ -67,9 +75,9 @@ Each recipe links to a complete, runnable
 - Qt 6.2 or newer with Core, Gui, Quick, and ShaderTools
 - A hardware Qt Quick Scene Graph backend
 
-When the matching `QuickPrivate` component is available, it is used for
-in-place data texture updates. `-DQACCELPLOT_USE_QT_PRIVATE_API=OFF` forces a
-public-Qt-only build. QAccelPlot builds as a static library.
+QAccelPlot builds as a static library. Qt's `QuickPrivate` component is
+optional; see
+[texture upload modes](performance.md#select-the-texture-upload-mode).
 
 ## Licensing
 

@@ -1,5 +1,5 @@
 ---
-description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, point clouds, bar charts, bands, and background data production."
+description: "QAccelPlot cookbook — recipes for static plots, real-time scrolling data, axis formats, multiple axes, styling, annotations, data inspection, point clouds, rectangle zoom, bar charts, histograms, bands, and background data production."
 ---
 
 <!--
@@ -19,9 +19,9 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](multiple-axes.md) | Secondary scales and signals with different domains |
 | [Styling and transitions](styling.md) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](annotations.md) | Data-attached labels, regions, measurement tools, and mouse handling |
-| [Rectangle zoom](rectangle-zoom.md) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Data inspection](data-inspection.md) | Crosshair, tooltip, nearest-sample queries, region statistics, and selection |
 | [Point clouds](point-clouds.md) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
+| [Rectangle zoom](rectangle-zoom.md) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Bar charts](bar-charts.md) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
 | [Histograms](histograms.md) | Equal and uneven bins, counts or density, from QML or C++ |
 | [Bands](bands.md) | Confidence intervals and envelopes between a low and a high value, with edge lines |

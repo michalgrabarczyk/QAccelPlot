@@ -16,15 +16,14 @@ numbers, see the [performance comparison](performance-comparison.md).
 
 ## Select the data path
 
-| API | Use it when | Main cost |
+| API | Use it when | Cost |
 | --- | --- | --- |
-| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML, coordinates require double precision, or convenience matters most | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(xs, ys)`][set-data-vectors] | Existing C++ data is stored as separate double vectors or includes large coordinates | Allocation plus interleaving; coordinates remain doubles |
-| [`setData(std::vector<double>&&, count)`][set-data-vectors] | Existing C++ data is already interleaved as doubles, e.g. epoch timestamps | Buffer ownership is moved immediately; coordinates remain doubles |
-| [`setDataF(const float*, count)`][set-data-f-copy] | Existing interleaved memory remains caller-owned | One copy into a reusable buffer |
-| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | The caller is on the curve's thread, normally the UI thread | Buffer ownership is moved immediately |
-| [`postData(std::vector<float>&&, count)`][post-data] | A worker thread owns the completed buffer | Queues the same moved-buffer handoff |
-| [`postData(std::vector<double>&&, count)`][post-data] | A worker thread owns a completed interleaved buffer that needs double precision, such as epoch timestamps | Queues the same moved-buffer handoff as `setData(std::vector<double>&&, count)` |
+| [`setData(QList<QPointF>)`][set-data-points] | Data originates in QML | Allocation and interleaving |
+| [`setData(xs, ys)`][set-data-vectors] | C++ data is in separate double vectors | Allocation and interleaving |
+| [`setData(std::vector<double>&&, count)`][set-data-moved] | C++ data is interleaved doubles | Moved, no copy |
+| [`setDataF(const float*, count)`][set-data-f-copy] | Interleaved floats stay caller-owned | One copy into a reusable buffer |
+| [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] | Interleaved floats, on the curve's thread | Moved, no copy |
+| `postData()` with a [float][post-data] or [double][post-data-double] vector | A worker thread owns the completed buffer | Queues the moved-buffer handoff |
 
 Start with [`setDataF(std::vector<float>&&, count)`][set-data-f-moved] for large
 C++ data sets.
@@ -32,7 +31,10 @@ C++ data sets.
 Use a [`setData()`][set-data-points] overload for Unix-epoch timestamps, large
 coordinates, or small differences at a large offset. These paths keep doubles
 and rebase the GPU buffer so nearby values stay distinct. The `F` APIs store
-floats; use them only when float precision is sufficient.
+floats.
+
+The table shows `LineCurve`. Every series has `setData()`,
+`setDataF()`, and `postData()` overloads for its own record layout.
 
 [`setDataFWithCache()`][set-data-f-with-cache] also accepts a
 prebuilt vertex cache, so vertex assembly can move off the UI and render
@@ -70,55 +72,33 @@ valid, such as switching an axis to a logarithmic scale, discards them.
 - Reserve or resize the vector once before filling it.
 - Move the completed vector instead of copying it.
 - Publish no faster than the display presents frames.
-
-For a fixed streaming window, pass the window's bounds with each frame, as in the
-[`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
-Every series supports `setData()` for interleaved doubles, `setDataF()` for
-interleaved floats, and `postData()` for either moved vector type. The
-synchronous setters also accept a raw array, and data bounds.
-`PointCloud` can add per-point values, and `RectangleSeries` and `BarSeries`
-can add categories with their vector overloads.
+- For a fixed streaming window, pass the window's bounds with each frame, as in
+  the [`realtime` example](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/data/realtime).
 
 ## Keep work off the UI thread
 
 Generate data on a worker thread and hand off only completed buffers, using
 [`postData()`][post-data] or a queued call. Never write to a `QQuickItem` from
-the worker.
-
-If producers are faster than the display, keep at most one pending batch or a
-bounded queue. The
-[`performance` example worker](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/examples/showcases/performance/src/GenerationWorker.hpp)
-waits until the UI thread consumes the previous batch. See
-[Background data production](cookbook/background-data.md).
+the worker. If producers are faster than the display, keep at most one pending
+batch; see [Background data production](cookbook/background-data.md).
 
 ## Optional rendering costs
 
 ### Hover interactions
 
-`LineCurve` caches a bounding box for every 512 points. A pointer move checks
-the boxes, then tests only segments or markers inside matching boxes:
-`O(N / 512 + K)` for `K` candidates, `O(N)` in the worst case. With
-`hoverRadius: 0`, segments are not tested. The boxes are built during data
-handoff, not on the first hover. Hover highlighting and
-changes to solid-curve color or line width update shader uniforms without
-rebuilding geometry; gradient effects may need per-vertex work.
+Hover cost per mouse move:
 
-`QAccelPlot.PointCloud.hoveredIndex` and
-[`RectangleSeries.hoveredIndex`][hovered-index] answer the first pointer moves
-after a data change by testing every record: `O(N)`, roughly 1–2 ms per million
-records on a desktop CPU. Once those scans have cost as much as building a
-spatial index, the index is built (`O(N)`) and later moves test only the records
-near the pointer. Data replaced every frame never pays for an index; it costs
-one scan per frame while the pointer moves.
+| Series | Cost |
+| --- | --- |
+| `LineCurve` | Checks one bounding box per 512 points, then the segments and markers in the matching boxes. `hoverRadius: 0` skips the segments. |
+| `PointCloud`, `RectangleSeries` | Tests every record, roughly 1–2 ms per million, until those scans have cost as much as a spatial index. The index is then built, and later moves test only nearby records. Data replaced every frame never builds one. |
+| `BarSeries` | Builds a grid on the first move after a data change, then tests nearby bars. |
 
-With the index, a `PointCloud` move tests the points in the grid cells within
-the hover radius. A `RectangleSeries` move tests the rectangles in the cells
-around the pointer plus every rectangle spanning more than 64 cells, so many
-long rectangles make lookup `O(N)`.
+A `RectangleSeries` also tests every rectangle spanning more than 64 grid
+cells, so many long rectangles make its lookup `O(N)`.
 
-`BarSeries.hoveredIndex` indexes only bar positions, so tall bars don't count as
-long rectangles. It rebuilds its grid on the first pointer move after every data
-change. Set `QACCELPLOT_HOVER_ENABLED=0` for streaming-only views.
+Set the environment variable `QACCELPLOT_HOVER_ENABLED=0` to turn hover off for
+every series and axis, for example in streaming-only views.
 
 ### Other rendering costs
 
@@ -140,7 +120,7 @@ still schedules a redraw.
 ## Use a hardware backend
 
 Curves require a hardware Qt Quick Scene Graph backend: OpenGL, OpenGL ES,
-Direct3D, Vulkan, or Metal. The software backend skips curve rendering and
+Direct3D 11/12, Vulkan, or Metal. The software backend skips curve rendering and
 emits a warning. When a curve is blank or slow, check `QSG_RHI_BACKEND`,
 `QT_QUICK_BACKEND`, remote-desktop sessions, and GPU drivers.
 
@@ -154,75 +134,52 @@ on `QACCELPLOT_USE_QT_PRIVATE_API`:
 | `ON` (default when `Qt6::QuickPrivate` is found) | `QSGPlainTexture::setImage()` replaces the texture contents in place | Large data sets updated every frame |
 | `OFF` | `QQuickWindow::createTextureFromImage()` recreates the texture | Private Qt dependencies are unacceptable for packaging |
 
-The private call is confined to one internal source file; no private Qt types
-appear in public headers or ABI. Gradient textures always use the public path.
+No private Qt types appear in public headers or ABI. Gradient textures always
+use the public path.
 
-Benchmark both modes with your workload. The included live scenarios cover 1M,
-2M, 5M, and 10M points:
+Benchmark both modes with your workload, or configure the
+[included benchmarks](#included-benchmarks) once with each value.
 
-```sh
-cmake -S . -B build-private -DCMAKE_BUILD_TYPE=Release \
-  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
-  -DQACCELPLOT_USE_QT_PRIVATE_API=ON
-cmake -S . -B build-public -DCMAKE_BUILD_TYPE=Release \
-  -DQACCELPLOT_BUILD_BENCHMARKS=ON \
-  -DQACCELPLOT_USE_QT_PRIVATE_API=OFF
-```
+## Benchmarking
 
-## Benchmarking tips
+- Build QAccelPlot and the application in Release mode, and warm up shaders,
+  allocations, and caches before recording.
+- Record presented frames ([`QQuickWindow::frameSwapped`][frame-swapped]), not
+  timer callbacks, and report the frame-time distribution as well as the
+  average.
+- For streamed data, also report how many new datasets are applied per second:
+  several presented frames can show the same dataset.
+- Record the Qt version, OS, GPU, driver, graphics API, resolution, and device
+  pixel ratio with the result.
 
-1. Build QAccelPlot and the application in Release mode.
-2. Warm up shader compilation, allocations, and caches before recording.
-3. Record presented frames ([`QQuickWindow::frameSwapped`][frame-swapped]), not timer callbacks.
-4. For generated or streamed data, separately report how many new datasets are
-   applied per second. Presented FPS can be higher because several frames may
-   display the same dataset.
-5. Report frame-time distribution as well as average FPS.
-6. Record Qt version, OS, GPU, driver, graphics API, resolution, and device
-   pixel ratio.
-7. Separate static rendering, live updates, and data-ingestion measurements.
-8. Repeat the test and publish the scenario with the result.
+### Performance Lab
 
-The Performance Lab
-([`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance))
+[`examples/showcases/performance`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/showcases/performance)
 streams a `LineCurve`, a `PointCloud`, a `RectangleSeries`, and a `BarSeries`,
-one per tab. Only the visible tab generates data. Change one option at a time
-to see what it costs:
-
-| Tab | Options |
-| --- | --- |
-| All | Record count, series count (the same records split across 1 to 100 series), ingestion API, hover hit-testing |
-| `LineCurve` | Line width and style, markers, gradient effects, antialiasing, NaN gaps |
-| `PointCloud` | Marker shape, size, and fill, antialiasing, per-point values, automatic color range, invalid points |
-| `RectangleSeries` | Tile size, categories, border width, minimum size, hover highlight |
-| `BarSeries` | Categories, bar width, border width, minimum width, hover highlight |
-
-Display FPS stops at the display refresh rate, so compare options at a record
-count that keeps it below that rate. The lab reports:
+one per tab, with options for record and series count, ingestion API, hover,
+and rendering. Change one option at a time, at a record count that keeps
+display FPS below the refresh rate. The lab reports:
 
 - **Display FPS** — frames presented to the screen.
 - **Data Update Rate** (Hz) — new datasets applied to the plot per second,
-  including worker-side generation. This determines how smooth the changing
-  data looks.
+  including worker-side generation.
 - **Peak update gap** — the longest interval between two dataset applications
   in the last reporting period.
 - **Throughput** — points, rectangles, or bars updated per second.
 
-### What the included benchmarks measure
+### Included benchmarks
 
-- Data generation is excluded.
 - Frame time runs from just before the data or viewport update until
-  `QQuickRenderControl::endFrame()` returns. With offscreen frames this covers
-  data copy, scene-graph sync, texture staging, rendering, command submission,
-  and GPU completion.
-- Frame intervals are recorded separately for sustained-FPS results.
-- Warmup is time-based because offscreen runners are not capped at 60 Hz.
-- Static scenarios pan the viewport over one fixed buffer.
+  `QQuickRenderControl::endFrame()` returns: data copy, scene-graph sync,
+  texture staging, rendering, command submission, and GPU completion. Data
+  generation is excluded.
+- Live scenarios cover 1M, 2M, 5M, and 10M points; static scenarios
+  pan the viewport over one fixed buffer.
 - Multi-curve throughput counts points across all curves.
 - Separate executables measure CPU ingestion and vertex-cache building without
   rendering.
 
-Build the included benchmarks with:
+Build them with:
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
@@ -235,16 +192,17 @@ cmake --build build --config Release
 Scenarios are defined in
 [`benchmarks/common/BenchmarkScenario.cpp`](https://github.com/michalgrabarczyk/QAccelPlot/blob/main/benchmarks/common/BenchmarkScenario.cpp).
 
-[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-12
-[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-22
-[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-12
-[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-22
+[set-data-points]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-18
+[set-data-vectors]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-28
+[set-data-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdata-48
+[set-data-f-copy]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-16
+[set-data-f-moved]: api/classQAccelPlot_1_1LineCurve.md#function-setdataf-26
 [set-data-f-with-cache]: api/classQAccelPlot_1_1LineCurve.md#function-setdatafwithcache-12
 [append-data]: api/classQAccelPlot_1_1LineCurve.md#function-appenddata
 [rescale-to-data]: api/classQAccelPlot_1_1Axis.md#function-rescaletodata
 [auto-rescale]: api/classQAccelPlot_1_1Axis.md#property-autorescale-12
-[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata
-[hovered-index]: api/classQAccelPlot_1_1RectangleSeries.md#property-hoveredindex-12
+[post-data]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-22
+[post-data-double]: api/classQAccelPlot_1_1LineCurve.md#function-postdata-12
 [data-min]: api/classQAccelPlot_1_1Axis.md#property-datamin-12
 [data-max]: api/classQAccelPlot_1_1Axis.md#property-datamax-12
 [frame-swapped]: https://doc.qt.io/qt-6/qquickwindow.html#frameSwapped

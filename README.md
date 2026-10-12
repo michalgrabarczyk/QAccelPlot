@@ -24,7 +24,8 @@ level-of-detail (LOD) reduction.
 
 ## ⚡ Highlights
 
-- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, Direct3D 11/12, Vulkan, and Metal.
+- **GPU rendering**: Lines, markers, dashes, and gradients are drawn by shaders on OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, and Metal.
+- **Series types**: Line curves, point clouds, bars, histograms, bands, and rectangle spans.
 - **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
 - **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
 - **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
@@ -139,12 +140,9 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 
 ## 🧪 Testing
 
-- **[Unit tests](.github/workflows/ci.yml)**: plotting behavior, data
-  handling, axes, formatting, styling, interaction, and transitions, built
-  with GCC and Clang.
-- **[Code coverage](https://michalgrabarczyk.github.io/QAccelPlot/coverage/)**:
-  percentage of library C++ source lines exercised by unit tests, updated by
-  CI on `main`.
+- **[Unit tests](.github/workflows/ci.yml)** with GCC and Clang, and
+  **[code coverage](https://michalgrabarczyk.github.io/QAccelPlot/coverage/)**
+  of the library sources.
 - **[Performance benchmarks](.github/workflows/benchmark.yml)**: data-ingestion
   and rendering regressions.
 - **[Build and test](.github/workflows/build-and-test.yml)**: unit tests and
@@ -162,7 +160,7 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 - **Qt 6.2 or newer** with `Core`, `Gui`, `Quick`, and `ShaderTools`
 - Optional: the matching `QuickPrivate` component for faster live-data texture
   updates
-- A hardware Qt Quick Scene Graph backend (OpenGL, Direct3D 11/12, Vulkan, or Metal)
+- A hardware Qt Quick Scene Graph backend (OpenGL, OpenGL ES, Direct3D 11/12, Vulkan, or Metal)
 
 QAccelPlot builds as a static library.
 
@@ -204,10 +202,9 @@ ctest --test-dir build --output-on-failure
 
 Planned before 1.0:
 
-- Bar charts.
 - Heatmaps.
 - SVG and PNG export.
-- Box zoom and per-axis pan and zoom limits.
+- Per-axis pan and zoom limits.
 - Touch panning and pinch zoom.
 
 ---
@@ -229,14 +226,5 @@ QAccelPlot is available under a **dual-licensing model**:
 
 📧 For commercial licensing inquiries, contact: **[qaccelplot@gmail.com](mailto:qaccelplot@gmail.com)**
 
-| Intended Use Case | Open-Source (GPLv3 + FOSS Exception) | Commercial License |
-| :--- | :--- | :--- |
-| **GPLv3 Application** | ✅ Permitted under GPLv3 | Not required |
-| **Qualifying FOSS (MIT, BSD, Apache, LGPL, etc.)** | ✅ Permitted under Universal FOSS Exception | Not required |
-| **Commercial FOSS Product (Charging fee for FOSS)** | ✅ Permitted (Charging does not make software proprietary) | Not required |
-| **Proprietary / Closed-Source Distributed Product** | ❌ Not permitted | ✅ **Required** |
-| **Private / Internal Enterprise Use (No distribution)** | ✅ Permitted under GPLv3 terms | Not required |
-| **Server-Side / SaaS Use (No client distribution)** | ✅ Permitted (GPLv3 has no AGPL network-copyleft clause) | Not required |
-
-For licensing details and links to the full license texts, see
+For common situations and links to the full license texts, see
 [LICENSING.md](LICENSING.md).
