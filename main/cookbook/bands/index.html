@@ -1479,10 +1479,9 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 high value at each X: confidence and prediction intervals, tolerance masks, and
 min/max or mean ± σ envelopes. Draw the center line with a separate
 <code>LineCurve</code>.</p>
-<p>Samples live in a GPU data texture, and the vertex buffer holds only sample
-indices. Panning and zooming change shader uniforms only, so a band of millions
-of samples costs nothing on the CPU per frame. Dashed edge lines are the
-exception: zooming recomputes their dash positions, one pass over the samples.</p>
+<p>Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
+edge lines are the exception: zooming recomputes their dash positions in one
+pass over the samples.</p>
 <h2 id="draw-a-band-around-a-line">Draw a band around a line<a class="headerlink" href="#draw-a-band-around-a-line" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="kd">id: plot</span>
@@ -1545,7 +1544,6 @@ are separate bands, widest first.</p>
 </tr>
 </tbody>
 </table>
-<p>The edge lines read the band's data texture; the samples are uploaded once.</p>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Samples are interleaved <code>(x, low, high)</code> triples. The data API matches
 <code>LineCurve</code> with three values per sample:</p>
@@ -1570,10 +1568,10 @@ are separate bands, widest first.</p>
 strictly positive on a logarithmic axis. The fill and the edge lines leave a
 gap there. Auto-ranging skips invalid values one by one.</p>
 <h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
-<p><code>hovered</code> is <code>true</code> while the cursor is inside the band or on an edge line.
-Only the topmost series under the cursor is hovered, so nested bands highlight
-one at a time. Set <code>hoverRadius: 0</code> on a <code>LineCurve</code> drawn over a band to leave
-hover to the band:</p>
+<p><code>hovered</code> is <code>true</code> while the mouse pointer is inside the band or on an edge
+line. Only the topmost series under the mouse pointer is hovered, so nested
+bands highlight one at a time. Set <code>hoverRadius: 0</code> on a <code>LineCurve</code> drawn over
+a band to leave hover to the band:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BandSeries</span> <span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">color:</span> <span class="nx">hovered</span> <span class="o">?</span> <span class="s2">"#8065b5ff"</span> <span class="o">:</span> <span class="s2">"#4065b5ff"</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">edges.width:</span> <span class="nx">hovered</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span>
@@ -1583,12 +1581,7 @@ hover to the band:</p>
 <p>At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
 texture size is below 6144. Samples beyond the limit are not drawn, and a
 warning is logged once.</p>
-<p>Complete source:</p>
-<ul>
-<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands"><code>examples/plot_types/bands</code></a>:
-  a forecast with nested prediction intervals, and a rolling mean ± 2σ band
-  over 10,000 samples of a simulated sensor.</li>
-</ul>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands"><code>examples/plot_types/bands</code></a></p>
 
 
 

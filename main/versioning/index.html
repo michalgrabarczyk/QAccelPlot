@@ -1490,9 +1490,8 @@ changes and migration notes when upgrading.</p>
 <li>A major release may make breaking changes.</li>
 </ul>
 <h2 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h2>
-<p><code>CHANGELOG.md</code> is the source of release notes. Changes collect under
-<code>[Unreleased]</code> and move to a dated version section on release; GitHub Release
-notes are taken from that section.</p>
+<p>The changelog has one dated section per release. Changes not yet released are
+under <code>[Unreleased]</code>.</p>
 <h2 id="pinning-a-dependency">Pinning a dependency<a class="headerlink" href="#pinning-a-dependency" title="Permanent link">&para;</a></h2>
 <p>Pin a release tag rather than <code>main</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">FetchContent_Declare</span><span class="p">(</span>
@@ -1531,9 +1530,8 @@ includes the changelog from the same source revision.</p>
 <p>GitHub Releases provide source <code>.zip</code> and <code>.tar.gz</code> archives only; build
 QAccelPlot from source with your application.</p>
 <p>A build with <code>QACCELPLOT_USE_QT_PRIVATE_API=ON</code> depends on a Qt private API and
-must use the same Qt version and toolchain as the application. No private type
-appears in QAccelPlot's public ABI. Rebuild QAccelPlot whenever the Qt version
-or compiler changes, in either mode.</p>
+must use the same Qt version and toolchain as the application. Rebuild
+QAccelPlot whenever the Qt version or compiler changes, in either mode.</p>
 
 
 

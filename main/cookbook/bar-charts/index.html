@@ -922,6 +922,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#invalid-bars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid bars
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1474,6 +1485,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#invalid-bars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalid bars
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1498,8 +1520,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 
 <h1 id="bar-charts">Bar charts<a class="headerlink" href="#bar-charts" title="Permanent link">&para;</a></h1>
 <p>Use <a href="../../api/classQAccelPlot_1_1BarSeries/"><code>QAccelPlot.BarSeries</code></a> for bar charts. Each bar is a
-(position, value) pair. The series uploads two floats per bar and builds the
-bars in the shader, so changing <code>barWidth</code>, <code>barOffset</code>, or <code>baselineValue</code>
+(position, value) pair. Changing <code>barWidth</code>, <code>barOffset</code>, or <code>baselineValue</code>
 does not re-upload the data.</p>
 <h2 id="draw-bars">Draw bars<a class="headerlink" href="#draw-bars" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
@@ -1603,35 +1624,27 @@ category, or with one outside the list, use <code>color</code>.</p>
 <p><code>setCategories()</code> replaces the categories without changing the data. Outlines
 are set with <code>border.width</code> and <code>border.color</code>.</p>
 <h2 id="hover">Hover<a class="headerlink" href="#hover" title="Permanent link">&para;</a></h2>
-<p><code>hoveredIndex</code> is the bar under the cursor, or -1. <code>barAt(index)</code> returns its
-<code>position</code>, <code>value</code>, and <code>category</code>; a ranged bar has <code>from</code> and <code>to</code> instead
-of <code>position</code>. Set <code>hoverColor</code> to highlight it.
+<p><code>hoveredIndex</code> is the bar under the mouse pointer, or -1. <code>barAt(index)</code>
+returns its <code>position</code>, <code>value</code>, and <code>category</code>; a ranged bar has <code>from</code> and
+<code>to</code> instead of <code>position</code>. Set <code>hoverColor</code> to highlight it.
 <code>minimumWidth</code> also widens the hover area.</p>
 <h2 id="animate-data-changes">Animate data changes<a class="headerlink" href="#animate-data-changes" title="Permanent link">&para;</a></h2>
-<p>Assign a <code>QAccelPlot.MorphTransition</code> or a <code>QAccelPlot.DrawTransition</code> to
-<code>transition</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">BarSeries</span> <span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">transition:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">MorphTransition</span> <span class="p">{</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        <span class="k">duration:</span> <span class="mi">500</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="k">easing.type:</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">InOutCubic</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="p">}</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
-</code></pre></div>
+<p>Assign a <code>MorphTransition</code> or a <code>DrawTransition</code> to <code>transition</code>, as for a
+<a href="../styling/#animated-data-changes"><code>LineCurve</code></a>.</p>
 <ul>
 <li><code>MorphTransition</code> moves each bar to its new position and value. New bars
   grow from <code>baselineValue</code>, and removed bars shrink to it.</li>
 <li><code>DrawTransition</code> shows the new bars one after another.</li>
 <li><code>count</code>, <code>barAt()</code>, the data ranges, hover, and inspection use the new data
   from the start of the animation.</li>
-<li><code>clearData()</code>, and replacing, clearing, or cancelling <code>transition</code>, show the
-  new data at once.</li>
+<li><code>clearData()</code> shows the new data at once.</li>
 <li>While a transition is enabled, the float paths store doubles.</li>
 </ul>
 <h2 id="feed-data-from-c">Feed data from C++<a class="headerlink" href="#feed-data-from-c" title="Permanent link">&para;</a></h2>
 <p>Pass a vector of interleaved <code>(position, value)</code> pairs to <code>setData()</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Three bars: 4 at position 0, 7 at position 1, 5 at position 2.</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">};</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">bars</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </code></pre></div>
 <p><code>setData()</code> keeps doubles and uploads them relative to an origin near the
 data, so large positions such as epoch timestamps stay precise.</p>
@@ -1640,14 +1653,10 @@ data, so large positions such as epoch timestamps stay precise.</p>
 <p>For the highest throughput, use <code>setDataF()</code>, or <code>postData()</code> from a worker
 thread; see the
 <a href="../../performance/">Performance guide</a>.</p>
+<h2 id="invalid-bars">Invalid bars<a class="headerlink" href="#invalid-bars" title="Permanent link">&para;</a></h2>
 <p>A bar with a NaN or infinite position, or a NaN value, is not drawn. An
 infinite value reaches the plot edge.</p>
-<p>Complete source:</p>
-<ul>
-<li><a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart"><code>examples/plot_types/bar_chart</code></a>:
-  grouped and horizontal bars, a profit chart colored against a target
-  baseline, a hover tooltip, and animated updates.</li>
-</ul>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bar_chart"><code>examples/plot_types/bar_chart</code></a></p>
 
 
 

@@ -1515,8 +1515,8 @@ work.</p>
 <p>To build without it:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DQACCELPLOT_USE_QT_PRIVATE_API<span class="o">=</span>OFF
 </code></pre></div>
-<p>This mode recreates the data texture on each update instead of updating it in
-place, which is slower for large data sets updated every frame.</p>
+<p>This is slower for large data sets updated every frame; see
+<a href="../performance/#select-the-texture-upload-mode">texture upload modes</a>.</p>
 <h2 id="the-axes-appear-but-the-curve-is-blank">The axes appear but the curve is blank<a class="headerlink" href="#the-axes-appear-but-the-curve-is-blank" title="Permanent link">&para;</a></h2>
 <p>Check these conditions:</p>
 <ol>
@@ -1524,11 +1524,10 @@ place, which is slower for large data sets updated every frame.</p>
 <li>At least two points exist when a line is enabled, or one point when only a
    marker is enabled.</li>
 <li>The viewport includes the point coordinates.</li>
-<li>The Qt Quick renderer is not using the software backend.</li>
+<li>The Qt Quick renderer is not using the software backend: QAccelPlot logs a
+   warning when it is. Check <code>QSG_RHI_BACKEND</code> and <code>QT_QUICK_BACKEND</code>.</li>
 <li>The data buffer contains exactly two floats per declared point.</li>
 </ol>
-<p>On the software backend, QAccelPlot logs a warning that curve rendering is
-unavailable.</p>
 <h2 id="rescale-does-not-fit-the-data">Rescale does not fit the data<a class="headerlink" href="#rescale-does-not-fit-the-data" title="Permanent link">&para;</a></h2>
 <p>Data passed with <code>DataBounds</code> is not scanned: a rescale fits the given bounds,
 so they must cover the data. Every series attached to an axis contributes to

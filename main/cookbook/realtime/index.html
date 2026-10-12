@@ -1460,13 +1460,12 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="update-every-frame">Update every frame<a class="headerlink" href="#update-every-frame" title="Permanent link">&para;</a></h2>
-<p>Pass each new buffer to <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a>. No data update scans the
-buffer for its range; that happens only when something reads the range, such
-as a double-click rescale:</p>
+<p>Pass each new buffer to <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-26"><code>setDataF()</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">);</span>
 </code></pre></div>
-<p>A rescale then fits the samples of that frame. To fit the nominal window
-instead, and skip the scan, pass its bounds with the data:</p>
+<p>A rescale fits the samples of the current frame. To fit the nominal window
+instead, pass its bounds with the data. This also skips the
+<a href="../../performance/#data-ranges-are-computed-on-demand">range scan</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">PlotSeries</span><span class="o">::</span><span class="n">DataBounds</span><span class="p">{</span><span class="mf">-20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">};</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">curve</span><span class="o">-&gt;</span><span class="n">setDataF</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">points</span><span class="p">),</span><span class="w"> </span><span class="n">pointCount</span><span class="p">,</span><span class="w"> </span><span class="n">bounds</span><span class="p">);</span>
 </code></pre></div>
@@ -1485,9 +1484,9 @@ including each <a href="../../api/classQAccelPlot_1_1LineCurve/#function-appendd
 <li>A panned or zoomed viewport is replaced on the next update. Set
   <code>autoRescale</code> to <code>false</code> while the user navigates.</li>
 <li>Appending only extends the data range. Replace the buffer with
-  <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-22"><code>setDataF()</code></a> to let the range shrink.</li>
-<li>Each update scans the data for its range. Appending widens the range
-  without a scan, and data passed with bounds is not scanned.</li>
+  <a href="../../api/classQAccelPlot_1_1LineCurve/#function-setdataf-26"><code>setDataF()</code></a> to let the range shrink.</li>
+<li>Each update scans the data for its range, unless it appends or passes
+  bounds.</li>
 <li>When the last series on the axis is cleared, the viewport is kept.</li>
 </ul>
 <h2 id="show-dropouts-as-gaps">Show dropouts as gaps<a class="headerlink" href="#show-dropouts-as-gaps" title="Permanent link">&para;</a></h2>

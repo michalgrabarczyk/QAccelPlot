@@ -1298,37 +1298,32 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="rectangle-zoom">Rectangle zoom<a class="headerlink" href="#rectangle-zoom" title="Permanent link">&para;</a></h1>
-<p>Enable rectangle zoom on <code>Plot</code> or <code>PlotView</code>:</p>
+<p>Rectangle zoom is disabled by default. Enable it on <code>Plot</code> or <code>PlotView</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QAccelPlot</span> <span class="nx">as</span> <span class="nx">QAccelPlot</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nx">readonly</span> <span class="nx">property</span> <span class="nx">color</span> <span class="k">zoomBorderColor:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colors</span><span class="p">.</span><span class="nx">dark</span><span class="p">.</span><span class="nx">rectangleZoomBorder</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">rectangleZoom.enabled:</span> <span class="kc">true</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">rectangleZoom.modifiers:</span> <span class="nx">Qt</span><span class="p">.</span><span class="nx">ShiftModifier</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">rectangleZoom.minimumSize:</span> <span class="mi">6</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">rectangleZoom.fillColor:</span> <span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Colors</span><span class="p">.</span><span class="nx">dark</span><span class="p">.</span><span class="nx">rectangleZoomFill</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">rectangleZoom.borderColor:</span> <span class="nx">zoomBorderColor</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">rectangleZoom.enabled:</span> <span class="kc">true</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li>Shift + left drag selects a region; release to zoom all attached axes.</li>
 <li>Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.</li>
-<li>The selection is clipped to the plot area and must be at least 6 logical pixels
-  wide and high; adjust <code>rectangleZoom.minimumSize</code> to change this.</li>
+<li>The selection is clipped to the plot area and must be at least
+  <code>rectangleZoom.minimumSize</code> logical pixels wide and high, 6 by default.</li>
+<li><code>rectangleZoom.modifiers</code> must match exactly at press time; use
+  <code>Qt.NoModifier</code> for unmodified dragging. A
+  <a href="../data-inspection/#selection"><code>SelectionTool</code></a> uses the same gesture by
+  default and takes it when both are enabled; change <code>modifiers</code> on one of them.</li>
+<li><code>rectangleZoom.fillColor</code> and <code>borderColor</code> default to the dark palette's
+  <code>rectangleZoomFill</code> and <code>rectangleZoomBorder</code>. Bind them to <code>Colors.light</code>
+  for a light theme.</li>
 </ul>
-<p>Rectangle zoom is disabled by default. <code>rectangleZoom.modifiers</code> must match
-exactly at press time; use <code>Qt.NoModifier</code> for unmodified dragging.</p>
-<p>Bind <code>fillColor</code> to the palette's <code>rectangleZoomFill</code> and <code>borderColor</code> to
-<code>rectangleZoomBorder</code>. Both are gray in the dark theme and light gray in the light theme;
-the fill color includes 15% opacity.</p>
 <p>For a custom tool, call <a href="../../api/classQAccelPlot_1_1QAccelPlot/#function-zoomtorect"><code>zoomToRect()</code></a> with item-local pixels:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">const</span> <span class="nx">applied</span> <span class="o">=</span> <span class="nx">plot</span><span class="p">.</span><span class="nx">zoomToRect</span><span class="p">(</span><span class="nx">Qt</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">top</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">))</span>
 </code></pre></div>
 <p>It works with gestures disabled and supports logarithmic and reversed axes.
 It returns <code>false</code> without changing ranges if the selection or target axes are invalid.</p>
-<p>Complete source:
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a>.</p>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/point_cloud"><code>examples/plot_types/point_cloud</code></a></p>
 
 
 

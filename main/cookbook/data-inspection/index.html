@@ -774,10 +774,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rows" class="md-nav__link">
+  <a href="#tooltip-rows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rows
+        Tooltip rows
       
     </span>
   </a>
@@ -817,17 +817,6 @@
     <span class="md-ellipsis">
       
         Readiness
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pages-and-revisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pages and revisions
       
     </span>
   </a>
@@ -1422,10 +1411,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rows" class="md-nav__link">
+  <a href="#tooltip-rows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rows
+        Tooltip rows
       
     </span>
   </a>
@@ -1471,17 +1460,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pages-and-revisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pages and revisions
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1521,6 +1499,8 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 -->
 
 <h1 id="data-inspection">Data inspection<a class="headerlink" href="#data-inspection" title="Permanent link">&para;</a></h1>
+<p><code>PlotInspector</code> shows a crosshair, a marker on every series, and a tooltip at
+the cursor. <code>SelectionTool</code> selects a region and reports its statistics.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">import</span> <span class="nx">QAccelPlot</span> <span class="nx">as</span> <span class="nx">QAccelPlot</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">Plot</span> <span class="p">{</span>
@@ -1537,18 +1517,19 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 </code></pre></div>
 <ul>
 <li>Components declared inside a <code>PlotInspector</code> use it and are drawn in
-  declaration order, the last one on top.</li>
+  declaration order, the last one on top. A component declared elsewhere needs
+  <code>inspector:</code> set and is not restacked.</li>
 <li>They are children of <code>plotView.overlay</code>, an item above the series and the
   legend. Parent your own overlays to it instead of choosing a <code>z</code> relative to
   the series.</li>
-<li><code>SelectionTool</code> draws its rectangle in the same overlay, below everything else.</li>
-<li>A component declared elsewhere needs <code>inspector:</code> set and is not restacked.</li>
+<li>Shift + left drag selects a region; Escape clears it. Ordinary left dragging
+  still pans.</li>
 </ul>
-<p>Hovering shows a crosshair, a marker on every series, and a tooltip. Shift + left
-drag selects a region; Escape clears it. Ordinary left dragging still pans.</p>
+<p><a href="../rectangle-zoom/">Rectangle zoom</a> uses the same gesture by default. When both
+are enabled, <code>SelectionTool</code> takes it; change <code>modifiers</code> on one of them.</p>
 <h2 id="inspector">Inspector<a class="headerlink" href="#inspector" title="Permanent link">&para;</a></h2>
-<p><code>PlotInspector</code> queries every visible <code>LineCurve</code> and <code>PointCloud</code> of the plot
-at the cursor. Other series types have no row.</p>
+<p><a href="../../api/classQAccelPlot_1_1PlotInspector/"><code>PlotInspector</code></a> queries every visible <code>LineCurve</code> and
+<code>PointCloud</code> of the plot at the cursor. Other series types have no row.</p>
 <table>
 <thead>
 <tr>
@@ -1575,7 +1556,7 @@ at the cursor. Other series types have no row.</p>
 </tr>
 <tr>
 <td><code>summaries</code>, <code>summaryRadius</code></td>
-<td>Add the count and Y statistics of the samples within <code>summaryRadius</code> pixels of the cursor. Use it for dense data, where one pixel column holds many samples. <code>NearestY</code> covers the horizontal band around the cursor.</td>
+<td>Add the count and Y statistics of the samples within <code>summaryRadius</code> pixels of the cursor. Use it for dense data, where one pixel column holds many samples.</td>
 </tr>
 <tr>
 <td><code>includedSeries</code>, <code>excludedSeries</code></td>
@@ -1583,59 +1564,12 @@ at the cursor. Other series types have no row.</p>
 </tr>
 </tbody>
 </table>
-<p>Results:</p>
-<ul>
-<li><code>active</code> — the cursor is inside the plot area.</li>
-<li><code>position</code> — crosshair position in plot-local pixels. A coordinate the cursor
-  lacks is NaN.</li>
-<li><code>cursorX</code>, <code>cursorY</code>, <code>cursorXText</code>, <code>cursorYText</code> — crosshair position on the
-  plot's primary axes.</li>
-<li><code>validCount</code> — number of series with a match.</li>
-<li><code>model</code> — one row per inspected series.</li>
-</ul>
-<h3 id="rows">Rows<a class="headerlink" href="#rows" title="Permanent link">&para;</a></h3>
-<p><code>inspector.model</code> is a list model. Rows are created when the set of inspected
-series changes and updated in place as the cursor moves, so delegates are reused.</p>
-<table>
-<thead>
-<tr>
-<th>Role</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>series</code>, <code>seriesName</code>, <code>seriesColor</code></td>
-<td>The series, its name, and its <code>color</code>.</td>
-</tr>
-<tr>
-<td><code>valid</code>, <code>sampleStatus</code></td>
-<td>Whether a sample matched, and why not.</td>
-</tr>
-<tr>
-<td><code>sampleIndex</code>, <code>sampleX</code>, <code>sampleY</code>, <code>sampleValue</code></td>
-<td>The source index and values. <code>sampleValue</code> is the <code>PointCloud</code> scalar.</td>
-</tr>
-<tr>
-<td><code>xText</code>, <code>yText</code></td>
-<td>Values formatted by the series' axes.</td>
-</tr>
-<tr>
-<td><code>pixelPosition</code>, <code>distance</code>, <code>interpolated</code></td>
-<td>Plot-local sample position, pixel distance from the cursor, and whether the point is interpolated.</td>
-</tr>
-<tr>
-<td><code>hasSummary</code>, <code>summaryCount</code>, <code>minimum</code>, <code>maximum</code>, <code>mean</code>, <code>standardDeviation</code>, <code>minimumIndex</code>, <code>maximumIndex</code></td>
-<td>Neighborhood statistics.</td>
-</tr>
-<tr>
-<td><code>minimumText</code>, <code>maximumText</code>, <code>meanText</code></td>
-<td>Statistics formatted by the series' Y axis.</td>
-</tr>
-</tbody>
-</table>
-<p>Replace <code>InspectionTooltip.rowDelegate</code> to change a tooltip row. Declare the
-roles it uses as required properties:</p>
+<p>The inspector reports <code>active</code>, the crosshair <code>position</code>, <code>cursorX</code> and
+<code>cursorY</code> with their formatted texts, <code>validCount</code>, and <code>model</code>.</p>
+<h3 id="tooltip-rows">Tooltip rows<a class="headerlink" href="#tooltip-rows" title="Permanent link">&para;</a></h3>
+<p><code>inspector.model</code> has one row per inspected series, updated in place as the
+cursor moves. Replace <code>InspectionTooltip.rowDelegate</code> to change a tooltip row,
+and declare the roles it uses as required properties:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">InspectionTooltip</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">rowDelegate:</span> <span class="nx">Text</span> <span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="nx">required</span> <span class="nx">property</span> <span class="nx">bool</span> <span class="nx">valid</span>
@@ -1646,8 +1580,8 @@ roles it uses as required properties:</p>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">}</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </code></pre></div>
-<p>Texts use <code>Axis.formatValue(value, length)</code>: the axis' tick formatter with a
-precision one digit finer than a pixel, so they follow the zoom level.</p>
+<p><a href="../../api/classQAccelPlot_1_1InspectionRowModel/"><code>InspectionRowModel</code></a> lists the roles. Text roles such as <code>yText</code>
+use the axis' tick formatter at a precision that follows the zoom level.</p>
 <h3 id="cursor-from-code">Cursor from code<a class="headerlink" href="#cursor-from-code" title="Permanent link">&para;</a></h3>
 <p>Set <code>followPointer: false</code> and write <code>cursorX</code>, <code>cursorY</code>, or both to place the
 cursor in data coordinates. With one coordinate, series are matched along that
@@ -1656,80 +1590,53 @@ axis in every mode. Link two plots by binding one inspector to the other:</p>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">QAccelPlot</span><span class="p">.</span><span class="nx">PlotInspector</span> <span class="p">{</span> <span class="k">plot:</span> <span class="nx">bottomPlot</span><span class="p">;</span> <span class="k">followPointer:</span> <span class="kc">false</span><span class="p">;</span> <span class="k">cursorX:</span> <span class="nx">top</span><span class="p">.</span><span class="nx">cursorX</span> <span class="p">}</span>
 </code></pre></div>
 <p><code>stepCursor(n)</code> moves the cursor <code>n</code> source records along the first matching
-series and stops following the pointer; use it for keyboard navigation.</p>
-<p>A touch places the cursor at the touched point and leaves it there after the
-release.</p>
+series and stops following the mouse pointer; use it for keyboard navigation.</p>
 <h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
 <p>Every series exposes its queries as <code>series.inspection</code>. Call them on the series'
 thread. Pixel arguments are series-local logical pixels: map a plot-local
 position with <code>series.mapFromItem(plot, position)</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sampleAt(index)</code></td>
-<td>The record at a source index.</td>
-</tr>
-<tr>
-<td><code>nearest(position, radius)</code></td>
-<td>Nearest valid sample by screen distance.</td>
-</tr>
-<tr>
-<td><code>nearestByX(pixelX, radius)</code></td>
-<td>Nearest valid sample by horizontal distance.</td>
-</tr>
-<tr>
-<td><code>bracketByX(pixelX)</code></td>
-<td>The valid samples on either side, whether they are consecutive, and the point between them.</td>
-</tr>
-<tr>
-<td><code>nearestByY(pixelY, radius)</code>, <code>bracketByY(pixelY)</code></td>
-<td>The same along Y.</td>
-</tr>
-<tr>
-<td><code>summarize(xMin, xMax, yMin, yMax)</code></td>
-<td>Y statistics inside a region.</td>
-</tr>
-<tr>
-<td><code>summarizeRange(xMin, xMax)</code></td>
-<td>Y statistics over an X interval.</td>
-</tr>
-<tr>
-<td><code>indices(xMin, xMax, yMin, yMax, offset, limit)</code></td>
-<td>One page of source indices inside a region.</td>
-</tr>
-<tr>
-<td><code>recordAt(index)</code>, <code>recordAtPosition(position)</code></td>
-<td>Native record of a bar, rectangle, or band series.</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Results are value objects with a <code>status</code> and a <code>valid</code> flag. Compare <code>status</code>
-  with <code>QAccelPlot.Inspection.Ready</code>, <code>NoMatch</code>, <code>Idle</code>, <code>Preparing</code>,
-  <code>Unsupported</code>, <code>Unavailable</code>, <code>InvalidArgument</code>, or <code>Stale</code>.</li>
-<li>Regions are inclusive. Reversed limits are swapped. <code>Infinity</code> leaves a side
-  unbounded.</li>
-<li>Indices refer to the supplied records, including invalid ones. Invalid samples
-  (NaN, infinite, or non-positive on a logarithmic axis) never match.</li>
-<li>Equal distances resolve to the highest index.</li>
-<li>Statistics are sample-weighted, not time-weighted, and use original Y values.</li>
-<li>Queries cover all stored samples, also outside the viewport. They do not test
-  line segments, except for the interpolated point of <code>bracketByX()</code> and
-  <code>bracketByY()</code>.</li>
-<li><code>bracketByX()</code> and <code>bracketByY()</code>: <code>left</code> is the sample with the largest
-  coordinate at or below the position, <code>right</code> the one with the smallest
-  coordinate above it. Either is invalid beyond the extremes of the data.</li>
-</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">const</span> <span class="nx">sample</span> <span class="o">=</span> <span class="nx">curve</span><span class="p">.</span><span class="nx">inspection</span><span class="p">.</span><span class="nx">nearestByX</span><span class="p">(</span><span class="nx">curve</span><span class="p">.</span><span class="nx">mapFromItem</span><span class="p">(</span><span class="nx">plotView</span><span class="p">,</span> <span class="nx">plotView</span><span class="p">.</span><span class="nx">pointerPosition</span><span class="p">).</span><span class="nx">x</span><span class="p">)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span> <span class="p">(</span><span class="nx">sample</span><span class="p">.</span><span class="nx">valid</span><span class="p">)</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sample</span><span class="p">.</span><span class="nx">index</span><span class="p">,</span> <span class="nx">sample</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">sample</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
 </code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A record by index</td>
+<td><code>sampleAt()</code></td>
+</tr>
+<tr>
+<td>Nearest valid sample</td>
+<td><code>nearest()</code>, <code>nearestByX()</code>, <code>nearestByY()</code></td>
+</tr>
+<tr>
+<td>Samples on either side and the point between them</td>
+<td><code>bracketByX()</code>, <code>bracketByY()</code></td>
+</tr>
+<tr>
+<td>Y statistics of a region or an X interval</td>
+<td><code>summarize()</code>, <code>summarizeRange()</code></td>
+</tr>
+<tr>
+<td>Source indices inside a region, in pages</td>
+<td><code>indices()</code></td>
+</tr>
+<tr>
+<td>Native record of a bar, rectangle, or band series</td>
+<td><code>recordAt()</code>, <code>recordAtPosition()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Results carry a <code>status</code> and a <code>valid</code> flag. Compare <code>status</code> with
+<code>QAccelPlot.Inspection.Ready</code>, <code>NoMatch</code>, <code>Preparing</code>, or another status.
+<a href="../../api/classQAccelPlot_1_1SeriesInspection/"><code>SeriesInspection</code></a> specifies regions, tie-breaking, and
+paging.</p>
 <h3 id="readiness">Readiness<a class="headerlink" href="#readiness" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1755,50 +1662,31 @@ position with <code>series.mapFromItem(plot, position)</code>.</p>
 </table>
 <ul>
 <li><code>nearestByX()</code>, <code>bracketByX()</code>, and their Y counterparts need the order along
-  their own axis. Data ordered along the other axis only counts as unordered for
-  them; <code>status</code> and <code>prepare()</code> refer to queries that take any order.</li>
-<li>The index takes memory on top of the series' own data: about 40 MB per
-  million valid samples. <code>inspection.indexBytes()</code> reports the actual size.</li>
-<li>Requesting an index copies the series' buffer once on the UI thread; the rest
-  of the build runs on the worker.</li>
-<li>Any data change discards the index; the next query requests a new one. A
-  stream that replaces unordered data faster than it can be indexed never
-  becomes <code>Ready</code>.</li>
-<li><code>prepare()</code> starts indexing before the first query. <code>status</code> is <code>Idle</code> until
-  an index is requested.</li>
-<li>Inspection is <code>Unavailable</code> while a <code>LineCurve</code> data transition is pending and
-  for pixel queries without axes or size.</li>
+  their own axis.</li>
+<li><code>prepare()</code> starts indexing before the first query.</li>
+<li>Any data change discards the index. A stream that replaces unordered data
+  faster than it can be indexed never becomes <code>Ready</code>.</li>
+<li>The index takes about 40 MB per million valid samples;
+  <code>inspection.indexBytes()</code> reports the actual size.</li>
 </ul>
-<h3 id="pages-and-revisions">Pages and revisions<a class="headerlink" href="#pages-and-revisions" title="Permanent link">&para;</a></h3>
-<p><code>dataRevision</code> advances on every accepted data change. <code>indices()</code> returns
-<code>total</code>, <code>hasMore</code>, the effective <code>limit</code> (at most <code>maximumPageSize</code>), and the
-<code>dataRevision</code> it used. Pass that revision as the last argument of the next call
-to get <code>Stale</code> instead of indices of newer data. <code>sourceOrder</code> is false for
-indexed series, whose pages follow the index instead of ascending source order.
-In QML, <code>indices</code> is a list; <code>Array.from(page.indices)</code> gives a JavaScript array.</p>
 <h2 id="selection">Selection<a class="headerlink" href="#selection" title="Permanent link">&para;</a></h2>
-<p><code>SelectionTool</code> selects a <code>Box</code>, an <code>XRange</code>, or a <code>YRange</code>. <code>button</code>,
-<code>modifiers</code>, and <code>minimumSize</code> configure the gesture; the modifiers must match
-exactly and a shorter drag only clears the selection.</p>
+<p><a href="../../api/classQAccelPlot_1_1SelectionTool/"><code>SelectionTool</code></a> selects a <code>Box</code>, an <code>XRange</code>, or a <code>YRange</code>.
+<code>button</code>, <code>modifiers</code>, and <code>minimumSize</code> configure the gesture; the modifiers
+must match exactly and a shorter drag only clears the selection.</p>
 <ul>
 <li>The region is <code>xMin</code>, <code>xMax</code>, <code>yMin</code>, <code>yMax</code> in the coordinates of <code>xAxis</code> and
   <code>yAxis</code>, which default to the plot's primary axes. A range selection is
   unbounded in its other dimension.</li>
 <li>Visible XY series bound to the axis of every bounded dimension are selected,
   so an X range also covers series on a secondary Y axis.</li>
-<li><code>model</code> has one row per selected series with the summary roles listed above.</li>
-<li>The region is kept when data changes: rows are recomputed and
-  <code>indices(series, offset, limit)</code> runs against the current data.</li>
-<li><code>select(xMin, xMax, yMin, yMax)</code> sets the region from code. <code>clear()</code> and
-  Escape remove it. Changing the plot or the selection axes clears it.</li>
-<li><code>selectionChanged</code> reports a new or cleared region, <code>completed</code> a finished
-  gesture.</li>
+<li><code>model</code> has one row of statistics per selected series, recomputed when data
+  changes. <code>indices(series, offset, limit)</code> pages through the selected samples.</li>
+<li><code>select(xMin, xMax, yMin, yMax)</code> sets the region from code; <code>clear()</code> removes
+  it. <code>selectionChanged</code> reports a new or cleared region, <code>completed</code> a
+  finished gesture.</li>
+<li>Set <code>rectangleVisible: false</code> to draw <code>pixelRect</code> yourself.</li>
 </ul>
-<p>The tool draws <code>pixelRect</code> with its <code>fillColor</code> and <code>borderColor</code>, which default
-to the palette's <code>selectionFill</code> and <code>selectionBorder</code>. Set
-<code>rectangleVisible: false</code> to draw <code>pixelRect</code> yourself.</p>
-<p>Complete source:
-<a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection"><code>examples/interaction/data_inspection</code></a>.</p>
+<p>Complete source: <a href="https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/interaction/data_inspection"><code>examples/interaction/data_inspection</code></a></p>
 
 
 

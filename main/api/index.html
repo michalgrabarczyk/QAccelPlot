@@ -1412,7 +1412,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <li><a href="classQAccelPlot_1_1BandSeries/"><code>BandSeries</code></a> — filled area between a
   low and a high value at each X, with optional edge lines.</li>
 <li><a href="classQAccelPlot_1_1RectangleSeries/"><code>RectangleSeries</code></a> — many data-space
-  rectangles in one item: spans, bands, and state timelines.</li>
+  rectangles in one item: spans and state timelines.</li>
 <li><a href="classQAccelPlot_1_1BarSeries/"><code>BarSeries</code></a> — vertical, horizontal, and
   grouped bar charts, and ranged bars such as histogram bins.</li>
 <li><a href="classQAccelPlot_1_1Histogram/"><code>Histogram</code></a> — samples counted into
@@ -1428,13 +1428,13 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <li><a href="classQAccelPlot_1_1SelectionTool/"><code>SelectionTool</code></a> — data-space box
   and range selection with per-series statistics.</li>
 </ul>
-<p>See <a href="../cookbook/data-inspection/">Data inspection</a> for usage, query contracts, and readiness.</p>
+<p>See <a href="../cookbook/data-inspection/">Data inspection</a> for usage and readiness.</p>
 <h2 id="feeding-curve-data">Feeding curve data<a class="headerlink" href="#feeding-curve-data" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>setData()</code> — QML data or double-precision C++ containers.</li>
 <li><code>setDataF(std::vector&lt;float&gt;&amp;&amp;, count)</code> — large interleaved buffers on the
   curve's thread.</li>
-<li><a href="classQAccelPlot_1_1LineCurve/#function-postdata"><code>postData()</code></a> —
+<li><a href="classQAccelPlot_1_1LineCurve/#function-postdata-22"><code>postData()</code></a> —
   completed buffers from a worker thread.</li>
 <li><code>PlotSeries::DataBounds</code> — passed with the data when its extents are already known.</li>
 <li><code>NaN</code> marks a missing sample; <code>gaps.nanMode</code> breaks or connects the curve.

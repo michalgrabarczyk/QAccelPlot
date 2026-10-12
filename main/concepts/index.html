@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
+        <meta name="description" content="QAccelPlot architecture explained — how Plot, PlotView, axes, series, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
       
       
       
@@ -64,7 +64,7 @@
     
     
 
-<meta property="og:description" content="QAccelPlot architecture explained — how Plot, PlotView, Axes, LineCurve, RectangleSeries, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
+<meta property="og:description" content="QAccelPlot architecture explained — how Plot, PlotView, axes, series, DataAnchor, and the Qt Scene Graph rendering pipeline work together.">
 
 <script type="application/ld+json">
 {
@@ -1492,9 +1492,8 @@ place clipped overlays and custom tools.</p>
 sets the viewport to fit the data range, and <a href="../api/classQAccelPlot_1_1Axis/#property-autorescale-12"><code>autoRescale</code></a>
 does so on every data update. A series reports its extent to the
 axes set in its <a href="../api/classQAccelPlot_1_1PlotSeries/#property-xaxis-12"><code>xAxis</code></a> and <a href="../api/classQAccelPlot_1_1PlotSeries/#property-yaxis-12"><code>yAxis</code></a> properties.
-The extent is computed when it is read, so data updates do not scan the
-records unless something asks for the range; see
-<a href="../performance/#data-ranges-are-computed-on-demand">Data ranges are computed on demand</a>.</p>
+The extent is
+<a href="../performance/#data-ranges-are-computed-on-demand">computed on demand</a>.</p>
 <table>
 <thead>
 <tr>
@@ -1534,15 +1533,17 @@ JavaScript callback.</p>
 <p><code>PlotSeries</code> holds properties shared by all series: name, axes, plot rectangle,
 and legend symbol.</p>
 <p><code>LineCurve</code> renders lines, markers, line styles, gradients, and fills. It
-stores points as interleaved floats and accepts data from QML or C++ buffers.
+accepts data from QML or C++ buffers, as doubles or as interleaved floats.
 It reports <code>hovered</code> within <code>hoverRadius</code> pixels of the line or over a marker.
 Set <code>hoverRadius: 0</code> on a line drawn over another series to leave hover to the
 series beneath.</p>
+<p><code>PointCloud</code> renders unconnected points as markers, colored uniformly or by a
+per-point value through a <code>Colormap</code>. It reports the hovered point index.</p>
 <p><code>BandSeries</code> fills the area between a low and a high value at each X, such as
 confidence intervals and envelopes. It stores <code>(x, low, high)</code> triples and
 can draw lines along both edges.</p>
 <p><code>RectangleSeries</code> renders many data-space rectangles in one item, such as event
-spans, bands, and state timelines. Infinite edges reach the plot edge, and a
+spans and state timelines. Infinite edges reach the plot edge, and a
 per-rectangle category selects the fill color. It reports the hovered
 rectangle index.</p>
 <p><code>BarSeries</code> renders bar charts from (position, value) pairs. <code>barWidth</code>,
@@ -1551,7 +1552,10 @@ rectangle index.</p>
 own extent as (from, to, value), e.g. the bins of a histogram.</p>
 <h2 id="invalid-samples-and-gaps">Invalid samples and gaps<a class="headerlink" href="#invalid-samples-and-gaps" title="Permanent link">&para;</a></h2>
 <p><code>LineCurve</code> applies one invalid-sample contract to rendering, gradient fills,
-dash patterns, transitions, auto-ranging, and hover hit testing.</p>
+dash patterns, transitions, auto-ranging, and hover hit testing. For the other
+series, see <a href="../cookbook/bands/#invalid-samples">bands</a>,
+<a href="../cookbook/point-clouds/#invalid-points">point clouds</a>, and
+<a href="../cookbook/bar-charts/#invalid-bars">bars</a>.</p>
 <p>A sample is <strong>invalid</strong> when its X or Y coordinate is <code>NaN</code> or <code>±Inf</code>, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
 inserting a sample with a <code>NaN</code> coordinate. JavaScript <code>null</code> and <code>undefined</code>
@@ -1608,7 +1612,7 @@ the Scene Graph render thread. Curve renderers keep persistent Scene Graph
 nodes and use precompiled shaders for the active graphics API. The software
 backend cannot run these shaders.</p>
 <p>Produce data on a worker thread if needed, but never mutate UI objects from it.
-Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata"><code>LineCurve::postData()</code></a> or a queued call. See
+Use <a href="../api/classQAccelPlot_1_1LineCurve/#function-postdata-22"><code>LineCurve::postData()</code></a> or a queued call. See
 <a href="../cookbook/background-data/">Background data production</a>.</p>
 
 

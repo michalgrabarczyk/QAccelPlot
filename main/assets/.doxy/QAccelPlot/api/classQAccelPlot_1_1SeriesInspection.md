@@ -135,7 +135,10 @@ flowchart TB
 Available as `PlotSeries::inspection`. Call it on the series' thread. Pixel arguments are series-local logical pixels; regions are inclusive data-space limits, where an infinite limit leaves that side unbounded and reversed limits are swapped.
 
 
-`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series above a small size are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Other series types expose native records through `recordAt()` and `recordAtPosition()` only.
+Queries cover every stored sample, also outside the viewport, and match samples rather than the line segments between them. Invalid samples never match, and equal distances resolve to the highest index. Statistics are sample-weighted and use the original Y values.
+
+
+`LineCurve` and `PointCloud` answer every query. Series whose X or Y values are finite and non-decreasing are searched in place, need no preparation, and stay queryable while records are appended; queries along one axis, such as `nearestByX()`, need that order along their own axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a worker thread first; until then queries return `Inspection.Preparing`. Requesting an index copies the series' buffer once on the calling thread, the index takes about 40 MB per million valid samples, and any data change discards it. Other series types expose native records through `recordAt()` and `recordAtPosition()` only.
 
 
 

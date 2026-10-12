@@ -60,7 +60,7 @@ _One page of source indices inside a region._
 | ---: | :--- |
 | property quint64 | [**dataRevision**](structQAccelPlot_1_1InspectionPage.md#property-datarevision)  <br>_Data revision the indices refer to._  |
 | property bool | [**hasMore**](structQAccelPlot_1_1InspectionPage.md#property-hasmore)  <br>_True when matches remain after this page._  |
-| property QList&lt; int &gt; | [**indices**](structQAccelPlot_1_1InspectionPage.md#property-indices)  <br>_Matching source indices._  |
+| property QList&lt; int &gt; | [**indices**](structQAccelPlot_1_1InspectionPage.md#property-indices)  <br>_Matching source indices. In QML,_ `Array.from` _(page.indices) gives a JavaScript array._ |
 | property int | [**limit**](structQAccelPlot_1_1InspectionPage.md#property-limit)  <br>_Effective page size after clamping to the maximum._  |
 | property int | [**offset**](structQAccelPlot_1_1InspectionPage.md#property-offset)  <br>_Number of matches skipped before this page._  |
 | property bool | [**sourceOrder**](structQAccelPlot_1_1InspectionPage.md#property-sourceorder)  <br>_True when pages are in ascending source order; false for index traversal order._  |
@@ -171,13 +171,17 @@ More pages follow.
 
 ### property indices {#property-indices}
 
-_Matching source indices._ 
+_Matching source indices. In QML,_ `Array.from` _(page.indices) gives a JavaScript array._
 ```C++
 QList< int > QAccelPlot::InspectionPage::indices;
 ```
 
 
 
+Matching source indices. 
+
+
+        
 
 <hr>
 
