@@ -138,12 +138,13 @@ std::vector<double> countSamples(const Sample* samples, const std::size_t sample
     const auto first = edges.front();
     const auto last = edges.back();
     const auto binsPerUnit = static_cast<double>(edges.size() - 1) / (last - first);
+    const auto useUniformBin = uniform && std::isfinite(binsPerUnit) && binsPerUnit > 0.0;
     auto counts = std::vector<double>(edges.size() - 1, 0.0);
     for (auto i = std::size_t{0}; i < sampleCount; ++i) {
         const auto sample = static_cast<double>(samples[i]);
         // NaN fails both comparisons.
         if (sample >= first && sample <= last) {
-            counts[uniform ? uniformBin(edges, sample, binsPerUnit) : searchedBin(edges, sample)] += 1.0;
+            counts[useUniformBin ? uniformBin(edges, sample, binsPerUnit) : searchedBin(edges, sample)] += 1.0;
         }
     }
     return counts;

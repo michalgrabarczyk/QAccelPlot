@@ -11,6 +11,7 @@
 #include <QtTest/QtTest>
 
 #include <algorithm>
+#include <cfenv>
 #include <cmath>
 #include <limits>
 #include <random>
@@ -51,6 +52,8 @@ class HistogramTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void extremeEdgesAvoidInvalidArithmetic_data();
+    void extremeEdgesAvoidInvalidArithmetic();
     void defaultHistogramIsEmpty();
     void binsIncludeLowerEdgeAndLastBinIncludesUpperEdge();
     void nanAndOutOfRangeSamplesAreNotCounted();
@@ -78,6 +81,27 @@ private slots:
     void barListMatchesTheSeriesFormat();
     void dataFeedsABarSeries();
 };
+
+void HistogramTest::extremeEdgesAvoidInvalidArithmetic_data()
+{
+    QTest::addColumn<double>("minimum");
+    QTest::addColumn<double>("middle");
+    QTest::addColumn<double>("maximum");
+    QTest::newRow("subnormal") << 0.0 << 1e-310 << 2e-310;
+    QTest::newRow("overflowing-span") << -1e308 << 0.0 << 1e308;
+}
+
+void HistogramTest::extremeEdgesAvoidInvalidArithmetic()
+{
+    QFETCH(double, minimum);
+    QFETCH(double, middle);
+    QFETCH(double, maximum);
+    std::feclearexcept(FE_ALL_EXCEPT);
+    const auto histogram = histogramOf({minimum, middle, maximum}, {minimum, middle, maximum});
+    const auto invalid = std::fetestexcept(FE_INVALID);
+    QCOMPARE(histogram.values(), (Values{1.0, 2.0}));
+    QCOMPARE(invalid, 0);
+}
 
 void HistogramTest::defaultHistogramIsEmpty()
 {
