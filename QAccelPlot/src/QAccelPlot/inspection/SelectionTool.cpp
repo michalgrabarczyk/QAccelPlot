@@ -342,7 +342,14 @@ void SelectionTool::connectSeries(PlotSeries* series)
     connections_.push_back(connect(series, &PlotSeries::dataRevisionChanged, this, &SelectionTool::refreshRows));
     connections_.push_back(connect(series->inspection(), &SeriesInspection::statusChanged, this, &SelectionTool::refreshRows));
     connections_.push_back(connect(series, &PlotSeries::xAxisChanged, this, &SelectionTool::refreshRows));
-    connections_.push_back(connect(series, &PlotSeries::yAxisChanged, this, &SelectionTool::refreshRows));
+    connections_.push_back(connect(series, &PlotSeries::yAxisChanged, this, [this] {
+        reconnect();
+        refreshRows();
+    }));
+    if (auto* axis = series->yAxis()) {
+        connections_.push_back(connect(axis->ticker(), &AxisTicker::tickLabelFormatterChanged, this, &SelectionTool::refreshRows, Qt::UniqueConnection));
+        connections_.push_back(connect(axis->ticker(), &AxisTicker::tickLabelFormatChanged, this, &SelectionTool::refreshRows, Qt::UniqueConnection));
+    }
     connections_.push_back(connect(series, &QQuickItem::visibleChanged, this, &SelectionTool::refreshRows));
 }
 

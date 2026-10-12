@@ -8,6 +8,7 @@
 #include "InspectionPlotRig.hpp"
 
 #include <QAccelPlot/PlotRectangleZoom.hpp>
+#include <QAccelPlot/formatters/TextTickLabelFormatter.hpp>
 #include <QAccelPlot/inspection/SelectionTool.hpp>
 
 #include <QKeyEvent>
@@ -49,6 +50,8 @@ class TestSelectionTool : public QObject {
 private slots:
     void formatterCanClearSelection_data();
     void formatterCanClearSelection();
+    void formatterChangesRefreshLabels_data();
+    void formatterChangesRefreshLabels();
     void gesture();
     void gestureGuards();
     void besideRectangleZoom();
@@ -85,6 +88,41 @@ void TestSelectionTool::formatterCanClearSelection()
     QVERIFY(tool.select(0, 10, 0, 10));
     QVERIFY(!tool.hasSelection());
     QCOMPARE(tool.model()->count(), 0);
+}
+
+void TestSelectionTool::formatterChangesRefreshLabels_data()
+{
+    QTest::addColumn<int>("action");
+    QTest::newRow("replace") << 0;
+    QTest::newRow("configure") << 1;
+    QTest::newRow("destroy") << 2;
+}
+
+void TestSelectionTool::formatterChangesRefreshLabels()
+{
+    QFETCH(int, action);
+    auto rig = PlotRig{0, 10, 0, 10};
+    rig.addCurve({1, 1});
+    QTRY_COMPARE(rig.plot.series().size(), 1);
+    auto tool = SelectionTool{};
+    tool.setPlot(&rig.plot);
+    auto formatter = std::make_unique<TextTickLabelFormatter>();
+    formatter->setLabels({QStringLiteral("zero"), QStringLiteral("one")});
+    if (action != 0) {
+        rig.y.ticker()->setTickLabelFormatter(formatter.get());
+    }
+    QVERIFY(tool.select(0, 10, 0, 10));
+    auto expected = QStringLiteral("one");
+    if (action == 0) {
+        rig.y.ticker()->setTickLabelFormatter(formatter.get());
+    } else if (action == 1) {
+        formatter->setLabels({QStringLiteral("zero"), QStringLiteral("ONE")});
+        expected = QStringLiteral("ONE");
+    } else {
+        formatter.reset();
+        expected = QStringLiteral("1.000");
+    }
+    QCOMPARE(tool.model()->get(0).value("meanText").toString(), expected);
 }
 
 void TestSelectionTool::gesture()

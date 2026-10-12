@@ -28,15 +28,56 @@ InspectionRow rowFor(PlotSeries* series, const int index)
     return row;
 }
 
+class WatchedCurve : public LineCurve {
+public:
+    int nameWatchers() const
+    {
+        return receivers(SIGNAL(nameChanged()));
+    }
+};
+
 } // namespace
 
 class TestInspectionRowModel : public QObject {
     Q_OBJECT
 private slots:
+    void presentationChangesNotify_data();
+    void presentationChangesNotify();
     void get_returnsEveryRoleByName();
     void setRows_updatesInPlaceWhileSeriesAreUnchanged();
     void retainSeries_removesMissingAndDestroyedSeries();
 };
+
+void TestInspectionRowModel::presentationChangesNotify_data()
+{
+    QTest::addColumn<QByteArray>("property");
+    QTest::addColumn<QVariant>("value");
+    QTest::addColumn<int>("role");
+    QTest::newRow("name") << QByteArray{"name"} << QVariant{QStringLiteral("renamed")} << int{InspectionRowModel::SeriesNameRole};
+    QTest::newRow("fallback-name") << QByteArray{"objectName"} << QVariant{QStringLiteral("fallback")} << int{InspectionRowModel::SeriesNameRole};
+    QTest::newRow("color") << QByteArray{"color"} << QVariant{QColor{Qt::red}} << int{InspectionRowModel::SeriesColorRole};
+}
+
+void TestInspectionRowModel::presentationChangesNotify()
+{
+    QFETCH(QByteArray, property);
+    QFETCH(QVariant, value);
+    QFETCH(int, role);
+    auto curve = LineCurve{};
+    auto model = InspectionRowModel{};
+    model.setRows({rowFor(&curve, 0)});
+    model.setRows({rowFor(&curve, 1)});
+    auto changes = QSignalSpy{&model, &QAbstractItemModel::dataChanged};
+    QVERIFY(curve.setProperty(property.constData(), value));
+    QCOMPARE(changes.count(), 1);
+    QCOMPARE(changes.first().at(0).value<QModelIndex>(), model.index(0));
+    QCOMPARE(model.data(model.index(0), role), value);
+    model.setRows({});
+    changes.clear();
+    curve.setColor(Qt::yellow);
+    curve.setName(QStringLiteral("removed"));
+    QCOMPARE(changes.count(), 0);
+}
 
 void TestInspectionRowModel::get_returnsEveryRoleByName()
 {
@@ -106,13 +147,16 @@ void TestInspectionRowModel::setRows_updatesInPlaceWhileSeriesAreUnchanged()
 
 void TestInspectionRowModel::retainSeries_removesMissingAndDestroyedSeries()
 {
-    auto kept = LineCurve{};
-    auto dropped = LineCurve{};
+    auto kept = WatchedCurve{};
+    auto dropped = WatchedCurve{};
     auto destroyed = std::make_unique<LineCurve>();
     auto model = InspectionRowModel{};
     model.setRows({rowFor(&kept, 0), rowFor(&dropped, 1), rowFor(destroyed.get(), 2)});
     auto removals = QSignalSpy{&model, &QAbstractItemModel::rowsRemoved};
     auto resets = QSignalSpy{&model, &QAbstractItemModel::modelReset};
+    auto changes = QSignalSpy{&model, &QAbstractItemModel::dataChanged};
+    const auto keptWatchers = kept.nameWatchers();
+    const auto droppedWatchers = dropped.nameWatchers();
 
     destroyed.reset();
     model.retainSeries({&kept});
@@ -122,6 +166,10 @@ void TestInspectionRowModel::retainSeries_removesMissingAndDestroyedSeries()
     QCOMPARE(resets.count(), 0);
     model.retainSeries({&kept});
     QCOMPARE(removals.count(), 2);
+    QCOMPARE(kept.nameWatchers(), keptWatchers);
+    QCOMPARE(dropped.nameWatchers(), droppedWatchers - 1);
+    kept.setName(QStringLiteral("renamed"));
+    QCOMPARE(changes.count(), 1);
 }
 
 QTEST_MAIN(TestInspectionRowModel)
