@@ -203,7 +203,7 @@ installed; see
 ## Default interaction
 
 - Drag inside the plot area to pan all attached axes.
-- Use the mouse wheel over the plot to zoom all axes around the pointer.
+- Use the mouse wheel over the plot to zoom all axes around the mouse pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
 - Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
   See [Rectangle zoom](cookbook/rectangle-zoom.md).

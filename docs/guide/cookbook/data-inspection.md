@@ -90,7 +90,7 @@ QAccelPlot.PlotInspector { plot: bottomPlot; followPointer: false; cursorX: top.
 ```
 
 `stepCursor(n)` moves the cursor `n` source records along the first matching
-series and stops following the pointer; use it for keyboard navigation.
+series and stops following the mouse pointer; use it for keyboard navigation.
 
 ## Queries
 

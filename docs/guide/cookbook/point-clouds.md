@@ -170,9 +170,9 @@ storage, so indices are stable.
 
 ## Hover
 
-`hoveredIndex` is the index of the valid point nearest to the pointer within
-`hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`, and a
-`QAccelPlot.DataAnchor` to show a tooltip:
+`hoveredIndex` is the index of the valid point nearest to the mouse pointer
+within `hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`,
+and a `QAccelPlot.DataAnchor` to show a tooltip:
 
 ```qml
 QAccelPlot.DataAnchor {

@@ -287,7 +287,7 @@ installed; see
 ## Default interaction
 
 - Drag inside the plot area to pan all attached axes.
-- Use the mouse wheel over the plot to zoom all axes around the pointer.
+- Use the mouse wheel over the plot to zoom all axes around the mouse pointer.
 - Use the mouse wheel over an individual axis to zoom only that axis.
 - Enable `rectangleZoom.enabled` for Shift + left drag rectangle zoom.
   See [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/).
@@ -1452,7 +1452,7 @@ Infinite edges don't change the axes' data ranges.
 | `minimumWidth`, `minimumHeight` | Minimum drawn size in pixels (default 1), so short events stay visible |
 | `border.width`, `border.color` | Outline inside each rectangle, e.g. to separate adjacent states |
 | `hoverColor` | Fill of the hovered rectangle |
-| [`hoveredIndex`][hovered-index], `rectangleAt()` | The rectangle under the pointer and its bounds, for tooltips |
+| [`hoveredIndex`][hovered-index], `rectangleAt()` | The rectangle under the mouse pointer and its bounds, for tooltips |
 
 A state timeline puts one lane per row, colored by category:
 
@@ -1609,7 +1609,7 @@ QAccelPlot.PlotInspector { plot: bottomPlot; followPointer: false; cursorX: top.
 ```
 
 `stepCursor(n)` moves the cursor `n` source records along the first matching
-series and stops following the pointer; use it for keyboard navigation.
+series and stops following the mouse pointer; use it for keyboard navigation.
 
 ## Queries
 
@@ -1846,9 +1846,9 @@ storage, so indices are stable.
 
 ## Hover
 
-`hoveredIndex` is the index of the valid point nearest to the pointer within
-`hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`, and a
-`QAccelPlot.DataAnchor` to show a tooltip:
+`hoveredIndex` is the index of the valid point nearest to the mouse pointer
+within `hoverRadius` pixels, or `-1`. Combine it with `pointAt()`, `valueAt()`,
+and a `QAccelPlot.DataAnchor` to show a tooltip:
 
 ```qml
 QAccelPlot.DataAnchor {
@@ -2036,9 +2036,9 @@ are set with `border.width` and `border.color`.
 
 ## Hover
 
-`hoveredIndex` is the bar under the pointer, or -1. `barAt(index)` returns its
-`position`, `value`, and `category`; a ranged bar has `from` and `to` instead
-of `position`. Set `hoverColor` to highlight it.
+`hoveredIndex` is the bar under the mouse pointer, or -1. `barAt(index)`
+returns its `position`, `value`, and `category`; a ranged bar has `from` and
+`to` instead of `position`. Set `hoverColor` to highlight it.
 `minimumWidth` also widens the hover area.
 
 ## Animate data changes
@@ -2277,10 +2277,10 @@ gap there. Auto-ranging skips invalid values one by one.
 
 ## Hover
 
-`hovered` is `true` while the pointer is inside the band or on an edge line.
-Only the topmost series under the pointer is hovered, so nested bands highlight
-one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over a band to leave
-hover to the band:
+`hovered` is `true` while the mouse pointer is inside the band or on an edge
+line. Only the topmost series under the mouse pointer is hovered, so nested
+bands highlight one at a time. Set `hoverRadius: 0` on a `LineCurve` drawn over
+a band to leave hover to the band:
 
 ```qml
 QAccelPlot.BandSeries {
