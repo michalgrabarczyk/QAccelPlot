@@ -228,8 +228,6 @@ Window {
         yAxis: ExampleAxis {
             viewportMin: -equalAspectPlot.span
             viewportMax: equalAspectPlot.span
-            dataMin: -equalAspectPlot.span
-            dataMax: equalAspectPlot.span
             axisTitlePadding: 34
             layoutSize: 54
             label: equalAspectPlot.yLabel
@@ -381,16 +379,12 @@ Window {
                     xAxis: ExampleAxis {
                         viewportMin: -1.2
                         viewportMax: 1.2
-                        dataMin: -1.2
-                        dataMax: 1.2
                         label: "Channel X (V)"
                     }
 
                     yAxis: ExampleAxis {
                         viewportMin: -1.2
                         viewportMax: 1.2
-                        dataMin: -1.2
-                        dataMax: 1.2
                         axisTitlePadding: 34
                         layoutSize: 54
                         label: "Channel Y (V)"
@@ -535,16 +529,12 @@ Window {
                     xAxis: ExampleAxis {
                         viewportMin: -4
                         viewportMax: 4
-                        dataMin: -4
-                        dataMax: 4
                         label: "Position x"
                     }
 
                     yAxis: ExampleAxis {
                         viewportMin: -window.vanDerPolYSpan
                         viewportMax: window.vanDerPolYSpan
-                        dataMin: -window.vanDerPolYSpan
-                        dataMax: window.vanDerPolYSpan
                         axisTitlePadding: 34
                         layoutSize: 54
                         label: "Velocity dx/dt"

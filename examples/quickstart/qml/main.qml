@@ -50,8 +50,6 @@ Window {
             xAxis: QAccelPlot.Axis {
                 viewportMin: 0
                 viewportMax: 24
-                dataMin: 0
-                dataMax: 24
                 label: "Time of day (h)"
                 labelColor: colorPalette.axisLabel
                 labelFont.pixelSize: 13
@@ -63,8 +61,6 @@ Window {
             yAxis: QAccelPlot.Axis {
                 viewportMin: 16
                 viewportMax: 27
-                dataMin: 16
-                dataMax: 27
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"

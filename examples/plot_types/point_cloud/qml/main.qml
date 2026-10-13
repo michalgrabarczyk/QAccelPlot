@@ -94,16 +94,12 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: -3.2
                 viewportMax: 3.2
-                dataMin: -3.2
-                dataMax: 3.2
                 label: "x"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -1.6
                 viewportMax: 1.6
-                dataMin: -1.6
-                dataMax: 1.6
                 label: "y"
             }
 

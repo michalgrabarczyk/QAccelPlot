@@ -79,16 +79,12 @@ Window {
             xAxis: ThemedAxis {
                 viewportMin: 0
                 viewportMax: 12
-                dataMin: 0
-                dataMax: 12
                 label: "Month"
             }
 
             yAxis: ThemedAxis {
                 viewportMin: -5
                 viewportMax: 30
-                dataMin: -5
-                dataMax: 30
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"

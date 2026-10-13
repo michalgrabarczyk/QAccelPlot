@@ -68,16 +68,12 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 600
-                dataMin: 0
-                dataMax: 600
                 label: "Time (s)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -2.5
                 viewportMax: 4
-                dataMin: -2.5
-                dataMax: 4
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Acceleration (g)"

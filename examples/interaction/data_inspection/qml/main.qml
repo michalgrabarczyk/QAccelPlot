@@ -92,16 +92,12 @@ Window {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 50
-                dataMin: 0
-                dataMax: 50
                 label: "Time (s)"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: -2
                 viewportMax: 5
-                dataMin: -2
-                dataMax: 5
                 label: "Amplitude"
             }
 

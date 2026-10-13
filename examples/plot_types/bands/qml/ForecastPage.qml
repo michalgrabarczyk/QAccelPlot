@@ -87,16 +87,12 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 60
-                dataMin: 0
-                dataMax: 60
                 label: "Month"
             }
 
             yAxis: ExampleAxis {
                 viewportMin: 80
                 viewportMax: 280
-                dataMin: 80
-                dataMax: 280
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Demand (units)"

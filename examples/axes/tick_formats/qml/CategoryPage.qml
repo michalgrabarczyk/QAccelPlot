@@ -34,8 +34,6 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 6
-                dataMin: 0
-                dataMax: 6
                 label: "Day of week"
                 ticker.tickCount: 6
                 ticker.subtickCount: 0
@@ -47,8 +45,6 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 55
-                dataMin: 20
-                dataMax: 55
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Electricity use (kWh)"

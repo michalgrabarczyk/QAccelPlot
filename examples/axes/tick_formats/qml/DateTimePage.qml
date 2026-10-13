@@ -63,8 +63,6 @@ Item {
             xAxis: ExampleAxis {
                 viewportMin: root.traceStart
                 viewportMax: root.traceEnd
-                dataMin: root.traceStart
-                dataMax: root.traceEnd
                 label: "Trace time"
                 ticker.tickCount: 6
                 ticker.tickLabelFormatter: QAccelPlot.DateTimeTickLabelFormatter {
@@ -75,8 +73,6 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 20
                 viewportMax: 95
-                dataMin: 20
-                dataMax: 95
                 axisTitlePadding: 40
                 layoutSize: 60
                 label: "Response time (ms)"
