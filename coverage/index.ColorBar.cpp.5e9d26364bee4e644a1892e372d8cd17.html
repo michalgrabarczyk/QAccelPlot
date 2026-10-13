@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-13 19:02:14</td>
+      <td>2026-10-13 19:34:13</td>
     </tr>
   </table>
 </div>
@@ -52,9 +52,9 @@
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>241</td>
-      <td>360</td>
-      <td class="coverage-low">66.9%</td>
+      <td>239</td>
+      <td>358</td>
+      <td class="coverage-low">66.8%</td>
     </tr>
   </table>
 </div>
@@ -101,7 +101,7 @@
     <tr><td><a href="#l131">QAccelPlot::ColorBar::orientation() const (line 131)</a></td><td>called 10 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l342">QAccelPlot::ColorBar::paint(QPainter*) (line 342)</a></td><td>called 44 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l601">QAccelPlot::ColorBar::paintStrip(QPainter*) const (line 601)</a></td><td>called 42 times</td><td>73.0%</td></tr>
-    <tr><td><a href="#l631">QAccelPlot::ColorBar::paintTicks(QPainter*) const (line 631)</a></td><td>called 42 times</td><td>74.0%</td></tr>
+    <tr><td><a href="#l631">QAccelPlot::ColorBar::paintTicks(QPainter*) const (line 631)</a></td><td>called 42 times</td><td>71.0%</td></tr>
     <tr><td><a href="#l655">QAccelPlot::ColorBar::paintTitle(QPainter*) const (line 655)</a></td><td>called 42 times</td><td>77.0%</td></tr>
     <tr><td><a href="#l471">QAccelPlot::ColorBar::panRange(double) (line 471)</a></td><td>called 6 times</td><td>91.0%</td></tr>
     <tr><td><a href="#l329">QAccelPlot::ColorBar::pixelToValue(double, double) const (line 329)</a></td><td>called 9 times</td><td>100.0%</td></tr>
@@ -121,7 +121,7 @@
     <tr><td><a href="#l181">QAccelPlot::ColorBar::setLabelColor(QColor const&amp;) (line 181)</a></td><td>called 3 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l166">QAccelPlot::ColorBar::setLabelFont(QFont const&amp;) (line 166)</a></td><td>called 2 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l196">QAccelPlot::ColorBar::setLabelPadding(double) (line 196)</a></td><td>called 3 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l136">QAccelPlot::ColorBar::setOrientation(QAccelPlot::ColorBar::Orientation) (line 136)</a></td><td>called 35 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l136">QAccelPlot::ColorBar::setOrientation(Qt::Orientation) (line 136)</a></td><td>called 35 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l120">QAccelPlot::ColorBar::setSeries(QAccelPlot::PointCloud*) (line 120)</a></td><td>called 34 times</td><td>88.0%</td></tr>
     <tr><td><a href="#l259">QAccelPlot::ColorBar::setTickLabelWidth(double) (line 259)</a></td><td>called 8 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l296">QAccelPlot::ColorBar::setZoomScaleFactor(double) (line 296)</a></td><td>called 6 times</td><td>88.0%</td></tr>
@@ -549,7 +549,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">67</td>
-      <td class="src partialCoveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">logRange</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">logMin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">logRange</span><span class="p">;</span></td>
+      <td class="src partialCoveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">logRange</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">logMin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">logRange</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l55" href="#l55">55</a></td>
@@ -577,7 +577,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">229</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minimum</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">range</span><span class="p">;</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minimum</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">range</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l58" href="#l58">58</a></td>
@@ -1222,7 +1222,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">10</td>
-      <td class="src coveredLine"><span class="n">ColorBar</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">orientation</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">orientation</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l132" href="#l132">132</a></td>
@@ -1257,7 +1257,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">35</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">setOrientation</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Orientation</span><span class="w"> </span><span class="n">orientation</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">setOrientation</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Orientation</span><span class="w"> </span><span class="n">orientation</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l137" href="#l137">137</a></td>
@@ -1740,7 +1740,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">labelPadding_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedPadding</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">labelPadding_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedPadding</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l200" href="#l200">200</a></td>
@@ -1859,7 +1859,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">3</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">barThickness_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedThickness</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">barThickness_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedThickness</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l216" href="#l216">216</a></td>
@@ -2097,7 +2097,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">4</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">borderWidth_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedWidth</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">borderWidth_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedWidth</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l247" href="#l247">247</a></td>
@@ -2216,7 +2216,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">8</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">tickLabelWidth_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedWidth</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">tickLabelWidth_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedWidth</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l263" href="#l263">263</a></td>
@@ -2451,7 +2451,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">4</td>
-      <td class="src coveredLine"><span class="kt">double</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
+      <td class="src coveredLine"><span class="n">qreal</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">zoomScaleFactor</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l292" href="#l292">292</a></td>
@@ -2486,7 +2486,7 @@
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">setZoomScaleFactor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">factor</span><span class="p">)</span></td>
+      <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">setZoomScaleFactor</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">factor</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l297" href="#l297">297</a></td>
@@ -2521,7 +2521,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">zoomScaleFactor_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedFactor</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">zoomScaleFactor_</span><span class="p">,</span><span class="w"> </span><span class="n">clampedFactor</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l300" href="#l300">300</a></td>
@@ -2724,7 +2724,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">296</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l327" href="#l327">327</a></td>
@@ -2766,7 +2766,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">9</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearly_equal</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l332" href="#l332">332</a></td>
@@ -2794,7 +2794,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">8</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l335" href="#l335">335</a></td>
@@ -3250,7 +3250,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">6</td>
-      <td class="src partialCoveredLine"><span class="w">        </span><span class="n">panRange</span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="n">delta</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">);</span></td>
+      <td class="src partialCoveredLine"><span class="w">        </span><span class="n">panRange</span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="n">delta</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">delta</span><span class="p">.</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">length</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l389" href="#l389">389</a></td>
@@ -3592,7 +3592,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">105</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">anchorRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">left</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">strip</span><span class="p">.</span><span class="n">bottom</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">height</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">anchorRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">left</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">strip</span><span class="p">.</span><span class="n">bottom</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">strip</span><span class="p">.</span><span class="n">height</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l429" href="#l429">429</a></td>
@@ -3929,7 +3929,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">6</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">layout_</span><span class="p">.</span><span class="n">strip</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">layout_</span><span class="p">.</span><span class="n">strip</span><span class="p">.</span><span class="n">width</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">layout_</span><span class="p">.</span><span class="n">strip</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">layout_</span><span class="p">.</span><span class="n">strip</span><span class="p">.</span><span class="n">width</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l469" href="#l469">469</a></td>
@@ -4640,7 +4640,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">45</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l547" href="#l547">547</a></td>
@@ -4724,7 +4724,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">45</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l558" href="#l558">558</a></td>
@@ -4919,7 +4919,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">45</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l576" href="#l576">576</a></td>
@@ -5035,7 +5035,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">113</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tickLabelWidth_</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tickLabelHeight</span><span class="p">();</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tickLabelWidth_</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tickLabelHeight</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l589" href="#l589">589</a></td>
@@ -5177,7 +5177,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">42</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l606" href="#l606">606</a></td>
@@ -5494,7 +5494,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">42</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l635" href="#l635">635</a></td>
@@ -5580,16 +5580,9 @@
     <tr class="source-line">
       <td class="lineno"><a id="l642" href="#l642">642</a></td>
       <td class="linebranch">
-        <details class="linebranchDetails">
-          <summary class="linebranchSummary">2/2</summary>
-          <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 22 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 20 times.</div>
-          </div>
-        </details>
       </td>
       <td class="linecount coveredLine">42</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">params</span><span class="p">.</span><span class="n">orientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Vertical</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Horizontal</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">params</span><span class="p">.</span><span class="n">orientation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l643" href="#l643">643</a></td>
@@ -5603,7 +5596,7 @@
         </details>
       </td>
       <td class="linecount coveredLine">42</td>
-      <td class="src coveredLine"><span class="w">    </span><span class="n">params</span><span class="p">.</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Right</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Bottom</span><span class="p">;</span></td>
+      <td class="src coveredLine"><span class="w">    </span><span class="n">params</span><span class="p">.</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Right</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Axis</span><span class="o">::</span><span class="n">Bottom</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l644" href="#l644">644</a></td>
@@ -5792,7 +5785,7 @@
         </details>
       </td>
       <td class="linecount partialCoveredLine">2</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Vertical</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l665" href="#l665">665</a></td>
