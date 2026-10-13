@@ -69,7 +69,7 @@ flowchart TB
 | property QML\_ANONYMOUSbool | [**enabled**](classQAccelPlot_1_1PlotRectangleZoom.md#property-enabled-12)  <br>_Enables rectangle selection with the left mouse button. Default: false._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1PlotRectangleZoom.md#property-fillcolor-12)  <br>_Selection fill color. Default: Colors.dark.rectangleZoomFill._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1PlotRectangleZoom.md#property-minimumsize-12)  <br>_Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater._  |
-| property int | [**modifiers**](classQAccelPlot_1_1PlotRectangleZoom.md#property-modifiers-12)  <br>_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ShiftModifier._  |
+| property int | [**modifiers**](classQAccelPlot_1_1PlotRectangleZoom.md#property-modifiers-12)  <br>_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._  |
 | property QRectF | [**selectionRect**](classQAccelPlot_1_1PlotRectangleZoom.md#property-selectionrect-12)  <br>_Selection rectangle in plot item-local logical pixels; empty when inactive._  |
 
 
@@ -218,7 +218,7 @@ qreal QAccelPlot::PlotRectangleZoom::minimumSize;
 
 ### property modifiers {#property-modifiers-12}
 
-_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ShiftModifier._ 
+_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._ 
 ```C++
 int QAccelPlot::PlotRectangleZoom::modifiers;
 ```

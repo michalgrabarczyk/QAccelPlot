@@ -1306,14 +1306,15 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>Shift + left drag selects a region; release to zoom all attached axes.</li>
+<li>Ctrl + left drag (Command on macOS) selects a region; release to zoom all
+  attached axes.</li>
 <li>Escape cancels. Double-click rescales to the data. Ordinary left dragging pans.</li>
 <li>The selection is clipped to the plot area and must be at least
   <code>rectangleZoom.minimumSize</code> logical pixels wide and high, 6 by default.</li>
 <li><code>rectangleZoom.modifiers</code> must match exactly at press time; use
   <code>Qt.NoModifier</code> for unmodified dragging. A
-  <a href="../data-inspection/#selection"><code>SelectionTool</code></a> uses the same gesture by
-  default and takes it when both are enabled; change <code>modifiers</code> on one of them.</li>
+  <a href="../data-inspection/#selection"><code>SelectionTool</code></a> uses Shift + left drag by
+  default; if both are set to the same gesture, the <code>SelectionTool</code> takes it.</li>
 <li><code>rectangleZoom.fillColor</code> and <code>borderColor</code> default to the dark palette's
   <code>rectangleZoomFill</code> and <code>rectangleZoomBorder</code>. Bind them to <code>Colors.light</code>
   for a light theme.</li>

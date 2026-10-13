@@ -74,7 +74,7 @@ private:
     void setSelection(bool active, const QRectF& rect);
 
     bool enabled_{false};
-    int modifiers_{Qt::ShiftModifier};
+    int modifiers_{Qt::ControlModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
     QColor borderColor_{ColorPalette::dark().rectangleZoomBorder};

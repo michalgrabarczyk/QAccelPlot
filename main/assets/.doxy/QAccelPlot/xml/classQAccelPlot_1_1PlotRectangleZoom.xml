@@ -31,7 +31,7 @@
         <read>modifiers</read>
         <write>setModifiers</write>
         <briefdescription>
-<para>Required Qt::KeyboardModifiers for starting selection. Default: Qt::ShiftModifier. </para>
+<para>Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -164,7 +164,7 @@
         <argsstring></argsstring>
         <name>modifiers_</name>
         <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers_</qualifiedname>
-        <initializer>{Qt::ShiftModifier}</initializer>
+        <initializer>{Qt::ControlModifier}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
