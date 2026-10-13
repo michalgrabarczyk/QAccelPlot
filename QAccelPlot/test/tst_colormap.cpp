@@ -12,6 +12,7 @@
 #include <QQmlComponent>
 #include <QQmlEngine>
 #include <QQmlError>
+#include <QQmlListReference>
 #include <QQmlProperty>
 #include <QtTest/QtTest>
 
@@ -69,6 +70,7 @@ private slots:
     void boundsAreUnsetUntilAssigned();
     void setRangeNotifiesOnce();
     void qmlStopsOverridePreset();
+    void qmlNullStopsAreIgnored();
     void qmlGradientIsAccepted();
     void gradientFillFollowsColormap();
     void gradientStrokeFollowsColormap();
@@ -252,6 +254,36 @@ void ColormapTest::qmlStopsOverridePreset()
     // Explicit stops win over the preset, which would be black-to-white here.
     QCOMPARE(stops.front().color, QColor{"#ff0000"});
     QCOMPARE(stops.back().color, QColor{"#0000ff"});
+    delete root;
+}
+
+void ColormapTest::qmlNullStopsAreIgnored()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    // A JavaScript array reaches the list one element at a time, null elements included.
+    auto* root = build(engine, component,
+        "import QtQuick\n"
+        "import QAccelPlot\n"
+        "Item {\n"
+        "    id: root\n"
+        "    property alias colormap: map\n"
+        "    property var missing: null\n"
+        "    Gradient {\n"
+        "        GradientStop { id: first; position: 0.0; color: \"#ff0000\" }\n"
+        "        GradientStop { id: second; position: 1.0; color: \"#0000ff\" }\n"
+        "    }\n"
+        "    Colormap { id: map; stops: [root.missing, first, second] }\n"
+        "}\n");
+    QVERIFY(root);
+
+    auto* colormap = root->property("colormap").value<Colormap*>();
+    QVERIFY(colormap);
+    const auto& stops = colormap->resolvedStops();
+    QCOMPARE(stops.size(), std::size_t{2});
+    QCOMPARE(stops.front().color, QColor{"#ff0000"});
+    QCOMPARE(stops.back().color, QColor{"#0000ff"});
+    QCOMPARE(QQmlListReference(colormap, "stops").count(), 2);
     delete root;
 }
 
