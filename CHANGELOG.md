@@ -138,6 +138,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Replacing, clearing, cancelling, or destroying a running `LineCurve` transition,
   or calling `appendData()` during it, shows the new data instead of freezing the
   animation.
+- A `LineCurve` transition that starts from float data in `NanGapMode.Connect`
+  no longer crashes when the curve is hovered.
 - `RectangleSeries` no longer blocks hover for series underneath it.
 - `RectangleSeries` and `BarSeries` skip drawing on the software backend, like the
   other series, instead of corrupting memory when their data changes.
