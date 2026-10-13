@@ -1870,6 +1870,8 @@
   or calling <code>appendData()</code> during it, shows the new data instead of freezing the
   animation.</li>
 <li><code>RectangleSeries</code> no longer blocks hover for series underneath it.</li>
+<li><code>RectangleSeries</code> and <code>BarSeries</code> skip drawing on the software backend, like the
+  other series, instead of corrupting memory when their data changes.</li>
 <li>Attaching an empty series no longer resets an axis's <code>dataMin</code> and <code>dataMax</code> to 0 and 1.</li>
 <li><code>RectangleSeries</code> and <code>PointCloud</code> render up to about 16M rectangles or 22M points
   (data texture rows are 8192 texels wide).</li>
