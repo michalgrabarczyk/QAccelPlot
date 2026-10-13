@@ -1845,6 +1845,9 @@
 <li>Axes and color ranges preserve distinct values below machine epsilon, so small
   data spans map across the plot instead of collapsing to one pixel.</li>
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>
+<li>Hovering a <code>RectangleSeries</code> or <code>BarSeries</code> whose records share one coordinate
+  far from zero, such as a zero-width rectangle at a nanosecond timestamp, no
+  longer crashes.</li>
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
 <li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
