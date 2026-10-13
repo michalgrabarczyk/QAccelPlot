@@ -1869,6 +1869,8 @@
 <li>Replacing, clearing, cancelling, or destroying a running <code>LineCurve</code> transition,
   or calling <code>appendData()</code> during it, shows the new data instead of freezing the
   animation.</li>
+<li>A <code>LineCurve</code> transition that starts from float data in <code>NanGapMode.Connect</code>
+  no longer crashes when the curve is hovered.</li>
 <li><code>RectangleSeries</code> no longer blocks hover for series underneath it.</li>
 <li><code>RectangleSeries</code> and <code>BarSeries</code> skip drawing on the software backend, like the
   other series, instead of corrupting memory when their data changes.</li>
