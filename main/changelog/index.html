@@ -1853,6 +1853,7 @@
 <li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
 <li><code>PointCloud</code> no longer hovers points beyond the GPU texture capacity, which are not drawn.</li>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
+<li><code>Colormap</code> ignores null entries in <code>stops</code> instead of crashing.</li>
 <li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.</li>
 <li><code>LineCurve</code> transitions now advance on the GUI thread, so <code>DataTransition.running</code>
