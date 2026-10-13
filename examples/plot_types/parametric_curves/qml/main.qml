@@ -228,7 +228,7 @@ Window {
         yAxis: ExampleAxis {
             viewportMin: -equalAspectPlot.span
             viewportMax: equalAspectPlot.span
-            axisTitlePadding: 34
+            labelPadding: 34
             layoutSize: 54
             label: equalAspectPlot.yLabel
         }
@@ -385,7 +385,7 @@ Window {
                     yAxis: ExampleAxis {
                         viewportMin: -1.2
                         viewportMax: 1.2
-                        axisTitlePadding: 34
+                        labelPadding: 34
                         layoutSize: 54
                         label: "Channel Y (V)"
                     }
@@ -403,11 +403,11 @@ Window {
                         lineWidth: hovered ? 4 : 2
                         effects: [
                             QAccelPlot.GradientStroke {
-                                direction: QAccelPlot.GradientDirection.Vertical
-                                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMin: -1
-                                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMax: 1
+                                direction: Qt.Vertical
+                                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMin: -1
+                                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMax: 1
                                 colormap: QAccelPlot.Colormap {
                                     preset: QAccelPlot.Colormap.Plasma
                                 }
@@ -471,11 +471,11 @@ Window {
                         lineWidth: hovered ? 3 : 1.5
                         effects: [
                             QAccelPlot.GradientStroke {
-                                direction: QAccelPlot.GradientDirection.Vertical
-                                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMin: -spirographPlot.curveSpan
-                                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                                gradientValueMax: spirographPlot.curveSpan
+                                direction: Qt.Vertical
+                                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMin: -spirographPlot.curveSpan
+                                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                                valueMax: spirographPlot.curveSpan
                                 colormap: QAccelPlot.Colormap {
                                     preset: QAccelPlot.Colormap.Viridis
                                 }
@@ -535,7 +535,7 @@ Window {
                     yAxis: ExampleAxis {
                         viewportMin: -window.vanDerPolYSpan
                         viewportMax: window.vanDerPolYSpan
-                        axisTitlePadding: 34
+                        labelPadding: 34
                         layoutSize: 54
                         label: "Velocity dx/dt"
                     }

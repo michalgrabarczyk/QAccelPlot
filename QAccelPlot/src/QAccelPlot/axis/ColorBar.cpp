@@ -51,10 +51,10 @@ qreal rampPosition(const qreal value, const qreal minimum, const qreal maximum, 
         }
         const auto logMin = std::log10(minimum);
         const auto logRange = std::log10(maximum) - logMin;
-        return nearly_equal(logRange, 0.0) ? 0.0 : (std::log10(value) - logMin) / logRange;
+        return nearlyEqual(logRange, 0.0) ? 0.0 : (std::log10(value) - logMin) / logRange;
     }
     const auto range = maximum - minimum;
-    return nearly_equal(range, 0.0) ? 0.0 : (value - minimum) / range;
+    return nearlyEqual(range, 0.0) ? 0.0 : (value - minimum) / range;
 }
 
 Internal::ValueRange resolvedRange(const PointCloud& series)
@@ -128,12 +128,12 @@ void ColorBar::setSeries(PointCloud* series)
     invalidate();
 }
 
-ColorBar::Orientation ColorBar::orientation() const
+Qt::Orientation ColorBar::orientation() const
 {
     return orientation_;
 }
 
-void ColorBar::setOrientation(const Orientation orientation)
+void ColorBar::setOrientation(const Qt::Orientation orientation)
 {
     if (orientation_ == orientation) {
         return;
@@ -196,7 +196,7 @@ qreal ColorBar::labelPadding() const
 void ColorBar::setLabelPadding(const qreal padding)
 {
     const auto clampedPadding = std::max(qreal{0.0}, padding);
-    if (nearly_equal(labelPadding_, clampedPadding)) {
+    if (nearlyEqual(labelPadding_, clampedPadding)) {
         return;
     }
     labelPadding_ = clampedPadding;
@@ -212,7 +212,7 @@ qreal ColorBar::barThickness() const
 void ColorBar::setBarThickness(const qreal thickness)
 {
     const auto clampedThickness = std::max(qreal{0.0}, thickness);
-    if (nearly_equal(barThickness_, clampedThickness)) {
+    if (nearlyEqual(barThickness_, clampedThickness)) {
         return;
     }
     barThickness_ = clampedThickness;
@@ -243,7 +243,7 @@ qreal ColorBar::borderWidth() const
 void ColorBar::setBorderWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(borderWidth_, clampedWidth)) {
+    if (nearlyEqual(borderWidth_, clampedWidth)) {
         return;
     }
     borderWidth_ = clampedWidth;
@@ -259,7 +259,7 @@ qreal ColorBar::tickLabelWidth() const
 void ColorBar::setTickLabelWidth(const qreal width)
 {
     const auto clampedWidth = std::max(qreal{0.0}, width);
-    if (nearly_equal(tickLabelWidth_, clampedWidth)) {
+    if (nearlyEqual(tickLabelWidth_, clampedWidth)) {
         return;
     }
     tickLabelWidth_ = clampedWidth;
@@ -288,15 +288,15 @@ void ColorBar::setInteractive(const bool interactive)
     emit interactiveChanged();
 }
 
-double ColorBar::zoomScaleFactor() const
+qreal ColorBar::zoomScaleFactor() const
 {
     return zoomScaleFactor_;
 }
 
-void ColorBar::setZoomScaleFactor(const double factor)
+void ColorBar::setZoomScaleFactor(const qreal factor)
 {
     const auto clampedFactor = std::clamp(factor, 0.0, 1.0);
-    if (nearly_equal(zoomScaleFactor_, clampedFactor)) {
+    if (nearlyEqual(zoomScaleFactor_, clampedFactor)) {
         return;
     }
     zoomScaleFactor_ = clampedFactor;
@@ -323,15 +323,15 @@ void ColorBar::rescaleToData()
 qreal ColorBar::valueToPixel(const qreal value, const qreal length) const
 {
     const auto position = rampPosition(value, valueMin_, valueMax_, logScale_);
-    return orientation_ == Horizontal ? position * length : (1.0 - position) * length;
+    return orientation_ == Qt::Horizontal ? position * length : (1.0 - position) * length;
 }
 
 qreal ColorBar::pixelToValue(const qreal pixel, const qreal length) const
 {
-    if (nearly_equal(length, 0.0)) {
+    if (nearlyEqual(length, 0.0)) {
         return valueMin_;
     }
-    const auto position = orientation_ == Horizontal ? pixel / length : 1.0 - pixel / length;
+    const auto position = orientation_ == Qt::Horizontal ? pixel / length : 1.0 - pixel / length;
     if (logScale_) {
         const auto logMin = std::log10(valueMin_);
         return std::pow(10.0, logMin + position * (std::log10(valueMax_) - logMin));
@@ -385,7 +385,7 @@ void ColorBar::mouseMoveEvent(QMouseEvent* event)
     if (length > 0.0) {
         // The colors follow the cursor. Dragging right brings lower values into view. Dragging down
         // brings higher ones, because the minimum is at the bottom.
-        panRange(orientation_ == Horizontal ? -delta.x() / length : delta.y() / length);
+        panRange(orientation_ == Qt::Horizontal ? -delta.x() / length : delta.y() / length);
     }
     event->accept();
 }
@@ -425,7 +425,7 @@ void ColorBar::wheelEvent(QWheelEvent* event)
         return;
     }
     const auto position = event->position();
-    const auto anchorRatio = orientation_ == Horizontal ? (position.x() - strip.left()) / strip.width() : (strip.bottom() - position.y()) / strip.height();
+    const auto anchorRatio = orientation_ == Qt::Horizontal ? (position.x() - strip.left()) / strip.width() : (strip.bottom() - position.y()) / strip.height();
     zoomRange(Internal::wheelZoomFactor(zoomScaleFactor_, steps > 0), std::clamp(anchorRatio, 0.0, 1.0));
     event->accept();
 }
@@ -465,7 +465,7 @@ Colormap* ColorBar::seriesColormap() const
 
 qreal ColorBar::stripLength() const
 {
-    return orientation_ == Vertical ? layout_.strip.height() : layout_.strip.width();
+    return orientation_ == Qt::Vertical ? layout_.strip.height() : layout_.strip.width();
 }
 
 void ColorBar::panRange(const qreal fraction)
@@ -543,7 +543,7 @@ void ColorBar::updateImplicitSize()
 {
     const auto titleExtent = label_.isEmpty() ? qreal{0.0} : labelPadding_ + titleThickness();
     const auto thickness = std::ceil(titleOffset() - labelPadding_ + titleExtent);
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         setImplicitSize(thickness, kDefaultLength);
     } else {
         setImplicitSize(kDefaultLength, thickness);
@@ -554,7 +554,7 @@ ColorBar::Layout ColorBar::computeLayout() const
 {
     auto layout = Layout{};
     layout.endInset = endInset();
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         const auto length = std::max(qreal{0.0}, height() - 2.0 * layout.endInset);
         layout.strip = QRectF{0.0, layout.endInset, barThickness_, length};
         layout.tickArea = QRectF{0.0, layout.endInset, width(), length};
@@ -572,7 +572,7 @@ ColorBar::Layout ColorBar::computeLayout() const
 qreal ColorBar::endInset() const
 {
     const auto lineInset = std::max(borderWidth_, ticker_->tickWidth()) / 2.0;
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         return std::max(lineInset, tickLabelHeight() / 2.0);
     }
     return lineInset;
@@ -585,7 +585,7 @@ qreal ColorBar::tickLabelHeight() const
 
 qreal ColorBar::tickLabelThickness() const
 {
-    return orientation_ == Vertical ? tickLabelWidth_ : tickLabelHeight();
+    return orientation_ == Qt::Vertical ? tickLabelWidth_ : tickLabelHeight();
 }
 
 qreal ColorBar::titleThickness() const
@@ -602,7 +602,7 @@ void ColorBar::paintStrip(QPainter* painter) const
 {
     const auto& strip = layout_.strip;
     auto gradient = QLinearGradient{};
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         gradient.setStart(strip.bottomLeft());
         gradient.setFinalStop(strip.topLeft());
     } else {
@@ -631,7 +631,7 @@ void ColorBar::paintStrip(QPainter* painter) const
 void ColorBar::paintTicks(QPainter* painter) const
 {
     painter->save();
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         painter->setClipRect(layout_.tickClip, Qt::IntersectClip);
     }
     auto pen = QPen{ticker_->tickColor()};
@@ -639,8 +639,8 @@ void ColorBar::paintTicks(QPainter* painter) const
     painter->setPen(pen);
 
     auto params = AxisTickPainter::Params{};
-    params.orientation = orientation_ == Vertical ? Axis::Vertical : Axis::Horizontal;
-    params.side = orientation_ == Vertical ? Axis::Right : Axis::Bottom;
+    params.orientation = orientation_;
+    params.side = orientation_ == Qt::Vertical ? Axis::Right : Axis::Bottom;
     params.ticker = ticker_;
     params.hoverColor = ticker_->tickColor();
     params.defaultSubtickColor = ticker_->subtickColor();
@@ -661,7 +661,7 @@ void ColorBar::paintTitle(QPainter* painter) const
     painter->save();
     painter->setFont(labelFont_);
     painter->setPen(labelColor_);
-    if (orientation_ == Vertical) {
+    if (orientation_ == Qt::Vertical) {
         // Reads top to bottom, like a right-side axis title.
         painter->translate(title.center());
         painter->rotate(90.0);

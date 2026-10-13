@@ -45,8 +45,8 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(qreal dataMin READ dataMin WRITE setDataMin NOTIFY dataMinChanged)
     /// \brief Maximum data value of the series bound to this axis. Default: 1. Computed like \c dataMin.
     Q_PROPERTY(qreal dataMax READ dataMax WRITE setDataMax NOTIFY dataMaxChanged)
-    /// \brief Axis orientation: \c Axis.Horizontal or \c Axis.Vertical.
-    Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    /// \brief Axis orientation: \c Qt.Horizontal or \c Qt.Vertical.
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     /// \brief Optional axis label displayed alongside the axis line.
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     /// \brief Font used to render the axis label text. Default: application default font.
@@ -64,10 +64,10 @@ class Axis : public QQuickPaintedItem {
     /// \brief Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis,
     /// and y2Axis; set explicitly for an axis placed in extraAxes.
     Q_PROPERTY(Side side READ side WRITE setSide NOTIFY sideChanged)
-    /// \brief Pixels of padding between the axis line and the title text. Default: 30.
-    Q_PROPERTY(int axisTitlePadding READ axisTitlePadding WRITE setAxisTitlePadding NOTIFY axisTitlePaddingChanged)
-    /// \brief Pixels of padding between the plot area edge and the axis baseline. Default: 0.
-    Q_PROPERTY(int axisLinePadding READ axisLinePadding WRITE setAxisLinePadding NOTIFY axisLinePaddingChanged)
+    /// \brief Pixels of padding between the baseline and the axis label. Default: 30.
+    Q_PROPERTY(qreal labelPadding READ labelPadding WRITE setLabelPadding NOTIFY labelPaddingChanged)
+    /// \brief Pixels of padding between the plot area edge and the baseline. Default: 0.
+    Q_PROPERTY(qreal baselinePadding READ baselinePadding WRITE setBaselinePadding NOTIFY baselinePaddingChanged)
     /// \brief Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50.
     Q_PROPERTY(qreal layoutSize READ layoutSize WRITE setLayoutSize NOTIFY layoutSizeChanged)
     /// \brief Read-only constant: tick appearance configuration object.
@@ -78,7 +78,7 @@ class Axis : public QQuickPaintedItem {
     ///
     /// On a zoom-in step the range is multiplied by this value; on zoom-out by its reciprocal.
     /// Decrease the factor (e.g. 0.5) to zoom faster; increase it toward 1.0 (e.g. 0.95) to zoom more slowly.
-    Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
     /// \brief Whether the viewport follows the data range. Default: \c false.
     ///
     /// While \c true, every data update of a bound series sets the viewport as \c rescaleToData() does, replacing
@@ -88,10 +88,6 @@ class Axis : public QQuickPaintedItem {
     Q_PROPERTY(bool autoRescale READ autoRescale WRITE setAutoRescale NOTIFY autoRescaleChanged)
 
 public:
-    /// \brief Orientation of an axis.
-    enum Orientation { Horizontal, Vertical };
-    Q_ENUM(Orientation)
-
     /// \brief Side of the plot on which the axis is positioned.
     enum Side { Left, Top, Right, Bottom };
     Q_ENUM(Side)
@@ -125,9 +121,9 @@ public:
     Q_INVOKABLE void setDataRange(qreal min, qreal max);
 
     /// \brief Returns the axis orientation.
-    Orientation orientation() const;
+    Qt::Orientation orientation() const;
     /// \brief Sets the axis orientation to \a o.
-    void setOrientation(Orientation o);
+    void setOrientation(Qt::Orientation o);
 
     /// \brief Returns the axis label string.
     QString label() const;
@@ -167,15 +163,15 @@ public:
     /// \brief Sets the hovered color to \a c.
     void setHoverColor(const QColor& c);
 
-    /// \brief Returns the axis title padding in pixels.
-    int axisTitlePadding() const;
-    /// \brief Sets the axis title padding to \a padding pixels.
-    void setAxisTitlePadding(int padding);
+    /// \brief Returns the padding between the baseline and the axis label in pixels.
+    qreal labelPadding() const;
+    /// \brief Sets the padding between the baseline and the axis label to \a padding pixels.
+    void setLabelPadding(qreal padding);
 
-    /// \brief Returns the axis line padding in pixels.
-    int axisLinePadding() const;
-    /// \brief Sets the axis line padding to \a padding pixels.
-    void setAxisLinePadding(int padding);
+    /// \brief Returns the padding between the plot area edge and the baseline in pixels.
+    qreal baselinePadding() const;
+    /// \brief Sets the padding between the plot area edge and the baseline to \a padding pixels.
+    void setBaselinePadding(qreal padding);
 
     /// \brief Returns the layout thickness in pixels.
     qreal layoutSize() const;
@@ -190,11 +186,11 @@ public:
     /// \brief Sets log-scale mode to \a on.
     void setLogScale(bool on);
     /// \brief Returns the zoom scale factor.
-    double zoomScaleFactor() const;
+    qreal zoomScaleFactor() const;
     /// \brief Sets the zoom scale factor to \a factor (clamped to the range (0, 1)).
     ///
     /// Smaller values (e.g. 0.5) produce faster zooming; values closer to 1.0 (e.g. 0.95) produce slower zooming.
-    void setZoomScaleFactor(double factor);
+    void setZoomScaleFactor(qreal factor);
 
     /// \brief Returns \c true when the viewport follows the data range.
     bool autoRescale() const;
@@ -214,7 +210,7 @@ public:
     /// Draws the ticks and labels computed in \c updatePolish(); with the threaded render loop this runs on the render thread.
     void paint(QPainter* painter) override;
 
-    /// \brief Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area.
+    /// \brief Returns the inward tick overlap beyond \c baselinePadding, used by PlotView to size the plot area.
     qreal inwardTickOverlap() const;
 
     /// \brief Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds.
@@ -263,10 +259,10 @@ signals:
     void hoverColorChanged();
     /// \brief Emitted when the side property changes.
     void sideChanged();
-    /// \brief Emitted when the axisTitlePadding property changes.
-    void axisTitlePaddingChanged();
-    /// \brief Emitted when the axisLinePadding property changes.
-    void axisLinePaddingChanged();
+    /// \brief Emitted when the labelPadding property changes.
+    void labelPaddingChanged();
+    /// \brief Emitted when the baselinePadding property changes.
+    void baselinePaddingChanged();
     /// \brief Emitted when the layoutSize property changes.
     void layoutSizeChanged();
     /// \brief Emitted when the logScale property changes.
@@ -300,11 +296,11 @@ private:
 
     struct DataRangeSource {
         const PlotSeries* series;
-        Orientation dimension;
+        Qt::Orientation dimension;
     };
 
-    void addDataRangeSource(const PlotSeries* series, Orientation dimension);
-    void removeDataRangeSource(const PlotSeries* series, Orientation dimension);
+    void addDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
+    void removeDataRangeSource(const PlotSeries* series, Qt::Orientation dimension);
     void invalidateDataRange();
     void ensureDataRange() const;
     void setDataRangeValues(qreal min, qreal max);
@@ -334,15 +330,15 @@ private:
     QColor labelColor_;
     qreal baselineWidth_{2.0};
     QColor hoverColor_{ColorPalette::dark().hover};
-    int axisTitlePadding_{30};
-    int axisLinePadding_{0};
+    qreal labelPadding_{30.0};
+    qreal baselinePadding_{0.0};
     qreal layoutSize_{50.0};
     bool logScale_{false};
-    double zoomScaleFactor_{0.9};
+    qreal zoomScaleFactor_{0.9};
     bool autoRescale_{false};
     bool extendWidgetForLabels_{true};
     bool clampEdgeLabels_{true};
-    Orientation orientation_{Horizontal};
+    Qt::Orientation orientation_{Qt::Horizontal};
     Side side_{Bottom};
     AxisTicker* ticker_;
     AxisTicks ticks_;

@@ -124,7 +124,7 @@ void LineCurveRenderingTest::gradientDataRangeIsCurveExtent()
     curve.setLineStyle(nullptr);
     curve.marker()->setShape(QAccelPlot::LineCurve::MarkerShape::Square);
     auto* stroke = new QAccelPlot::GradientStroke(&curve);
-    stroke->setDirection(QAccelPlot::GradientDirection::Vertical);
+    stroke->setDirection(Qt::Vertical);
     stroke->setColormap(&colormap);
     auto effects = curve.effects();
     effects.append(&effects, stroke);

@@ -48,7 +48,7 @@ qreal SeriesMarker::size() const
 void SeriesMarker::setSize(const qreal size)
 {
     const auto clamped = std::max(size, qreal{0.0});
-    if (nearly_equal(size_, clamped)) {
+    if (nearlyEqual(size_, clamped)) {
         return;
     }
     size_ = clamped;
@@ -77,7 +77,7 @@ qreal SeriesMarker::strokeWidth() const
 void SeriesMarker::setStrokeWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(strokeWidth_, clamped)) {
+    if (nearlyEqual(strokeWidth_, clamped)) {
         return;
     }
     strokeWidth_ = clamped;

@@ -18,12 +18,12 @@ namespace QAccelPlot {
 /// Coordinates outside [0, 1] are intentionally preserved for interpolation.
 /// Renderers must clamp only after interpolation, immediately before sampling
 /// the gradient, so values beyond the configured range retain endpoint colors.
-inline float unboundedGradientCoordinate(const GradientDirection direction, const qreal value, const qreal minimum, const qreal maximum)
+inline float unboundedGradientCoordinate(const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum)
 {
     constexpr auto minimumRange = qreal{1e-12};
     const auto range = std::max(maximum - minimum, minimumRange);
     const auto normalized = (value - minimum) / range;
-    return static_cast<float>(direction == GradientDirection::Vertical ? 1.0 - normalized : normalized);
+    return static_cast<float>(direction == Qt::Vertical ? 1.0 - normalized : normalized);
 }
 
 /// \brief Fills each unset gradient value bound of \a payload from [\a dataMin, \a dataMax].

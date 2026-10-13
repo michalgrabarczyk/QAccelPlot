@@ -92,7 +92,7 @@ Window {
             yAxis: ExampleAxis {
                 viewportMin: -6
                 viewportMax: 8
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Pressure response (units)"
                 baselineWidth: 3

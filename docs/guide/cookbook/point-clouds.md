@@ -123,7 +123,7 @@ QAccelPlot.Plot {
   not reserve layout space, and the default legend sits at the top right of
   the plot area.
 - The default bar is vertical, with its minimum at the bottom.
-  `orientation: QAccelPlot.ColorBar.Horizontal` puts the minimum on the left.
+  `orientation: Qt.Horizontal` puts the minimum on the left.
 - Set `height` on a vertical bar, or `width` on a horizontal one, to change its
   length. Raise `tickLabelWidth` when the labels of a vertical bar are clipped.
 - `ticker` configures the ticks, as on `Axis.ticker`.

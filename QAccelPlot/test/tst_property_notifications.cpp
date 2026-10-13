@@ -92,15 +92,15 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
     row("Axis", "labelColor", QColor{Qt::cyan});
     row("Axis", "baselineColor", QColor{Qt::magenta});
     row("Axis", "hoverColor", QColor{Qt::yellow});
-    row("Axis", "axisTitlePadding", 13);
-    row("Axis", "axisLinePadding", 9);
+    row("Axis", "labelPadding", 13.0);
+    row("Axis", "baselinePadding", 9.0);
 
     row("AxisTicker", "subtickLengthIn", 7.0);
     row("AxisTicker", "subtickLengthOut", 6.0);
     row("AxisTicker", "subtickColor", QColor{Qt::darkRed});
     row("AxisTicker", "subtickWidth", 3.0);
 
-    row("ColorBar", "orientation", QVariant::fromValue(ColorBar::Horizontal));
+    row("ColorBar", "orientation", QVariant::fromValue(Qt::Horizontal));
     row("ColorBar", "label", QStringLiteral("Intensity"));
     row("ColorBar", "labelFont", QFont{QStringLiteral("Arial"), 17});
     row("ColorBar", "labelColor", QColor{Qt::cyan});
@@ -122,21 +122,21 @@ void PropertyNotificationsTest::writeNotifiesOnceAndRoundTrips_data()
 
     row("DateTimeTickLabelFormatter", "dateTimeFormat", QStringLiteral("yyyy"));
 
-    row("GradientFill", "direction", QVariant::fromValue(GradientDirection::Vertical));
-    row("GradientFill", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientFill", "gradientValueMin", -2.0);
-    row("GradientFill", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientFill", "gradientValueMax", 8.0);
+    row("GradientFill", "direction", QVariant::fromValue(Qt::Vertical));
+    row("GradientFill", "valueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientFill", "valueMin", -2.0);
+    row("GradientFill", "valueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientFill", "valueMax", 8.0);
     row("GradientFill", "baseline", QVariant::fromValue(GradientFillBaseline::Value));
     row("GradientFill", "baselineValue", 1.25);
     row("GradientFill", "opacity", 0.8);
     row("GradientFill", "enabled", false);
 
-    row("GradientStroke", "direction", QVariant::fromValue(GradientDirection::Vertical));
-    row("GradientStroke", "gradientValueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientStroke", "gradientValueMin", -2.0);
-    row("GradientStroke", "gradientValueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
-    row("GradientStroke", "gradientValueMax", 8.0);
+    row("GradientStroke", "direction", QVariant::fromValue(Qt::Vertical));
+    row("GradientStroke", "valueMinSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientStroke", "valueMin", -2.0);
+    row("GradientStroke", "valueMaxSource", QVariant::fromValue(GradientValueSource::Fixed));
+    row("GradientStroke", "valueMax", 8.0);
     row("GradientStroke", "enabled", false);
 
     row("Grid", "lineWidth", 3.0);

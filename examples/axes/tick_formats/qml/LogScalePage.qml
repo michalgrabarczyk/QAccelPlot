@@ -62,7 +62,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -18
                 viewportMax: 3
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Relative level (dB)"
             }

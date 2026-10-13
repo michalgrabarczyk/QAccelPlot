@@ -96,7 +96,7 @@ struct Scene {
     PointCloud cloud;
     TestableColorBar bar{window.contentItem()};
 
-    Scene(const ColorBar::Orientation orientation, const QSize& size)
+    Scene(const Qt::Orientation orientation, const QSize& size)
     {
         window.setColor(Qt::black);
         window.resize(size);
@@ -125,7 +125,7 @@ struct Scene {
     /// Length in pixels of the strip along the ramp, which is centered in the bar.
     qreal stripLength() const
     {
-        if (bar.orientation() == ColorBar::Horizontal) {
+        if (bar.orientation() == Qt::Horizontal) {
             return bar.width() - 1.0;
         }
         // Half a tick label is kept free at each end.
@@ -135,8 +135,8 @@ struct Scene {
 
 /// An interactive scene that has been rendered once, so the bar is laid out.
 struct InteractiveScene : Scene {
-    explicit InteractiveScene(const ColorBar::Orientation orientation)
-        : Scene{orientation, orientation == ColorBar::Vertical ? QSize{100, 200} : QSize{201, 60}}
+    explicit InteractiveScene(const Qt::Orientation orientation)
+        : Scene{orientation, orientation == Qt::Vertical ? QSize{100, 200} : QSize{201, 60}}
     {
         bar.setInteractive(true);
         render();
@@ -239,7 +239,7 @@ void ColorBarTest::defaults()
     const auto bar = ColorBar{};
 
     QCOMPARE(bar.series(), nullptr);
-    QCOMPARE(bar.orientation(), ColorBar::Vertical);
+    QCOMPARE(bar.orientation(), Qt::Vertical);
     QCOMPARE(bar.barThickness(), 12.0);
     QCOMPARE(bar.borderWidth(), 1.0);
     QCOMPARE(bar.labelPadding(), 6.0);
@@ -288,7 +288,7 @@ void ColorBarTest::clearsSeriesWhenDestroyed()
 
 void ColorBarTest::verticalStripRunsFromMinimumAtBottom()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     const auto image = scene.render();
     QVERIFY(!image.isNull());
 
@@ -302,7 +302,7 @@ void ColorBarTest::verticalStripRunsFromMinimumAtBottom()
 
 void ColorBarTest::horizontalStripRunsFromMinimumOnLeft()
 {
-    auto scene = Scene{ColorBar::Horizontal, QSize{200, 60}};
+    auto scene = Scene{Qt::Horizontal, QSize{200, 60}};
     const auto image = scene.render();
     QVERIFY(!image.isNull());
 
@@ -316,7 +316,7 @@ void ColorBarTest::horizontalStripRunsFromMinimumOnLeft()
 
 void ColorBarTest::reversedColormapFlipsStrip()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.colormap.setReversed(true);
     const auto image = scene.render();
     QVERIFY(!image.isNull());
@@ -327,7 +327,7 @@ void ColorBarTest::reversedColormapFlipsStrip()
 
 void ColorBarTest::drawsNothingWithoutColormap()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.setLabel(QStringLiteral("Value"));
     scene.cloud.setColormap(nullptr);
     const auto image = scene.render();
@@ -338,7 +338,7 @@ void ColorBarTest::drawsNothingWithoutColormap()
 
 void ColorBarTest::drawsLinearTicks()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.ticker()->setTickColor(Qt::green);
     const auto image = scene.render();
     QVERIFY(!image.isNull());
@@ -349,7 +349,7 @@ void ColorBarTest::drawsLinearTicks()
 
 void ColorBarTest::drawsLogTicks()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.ticker()->setTickColor(Qt::green);
     scene.colormap.setNorm(Colormap::Normalization::Log);
     scene.colormap.setMin(1.0);
@@ -363,7 +363,7 @@ void ColorBarTest::drawsLogTicks()
 
 void ColorBarTest::followsColormapChanges()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     QVERIFY(!scene.render().isNull());
     QCOMPARE(scene.bar.valueToPixel(1.0, 100.0), 0.0);
 
@@ -380,7 +380,7 @@ void ColorBarTest::followsColormapChanges()
 
 void ColorBarTest::followsReplacedColormap()
 {
-    auto scene = Scene{ColorBar::Horizontal, QSize{200, 60}};
+    auto scene = Scene{Qt::Horizontal, QSize{200, 60}};
     QVERIFY(!scene.render().isNull());
 
     auto replacement = Colormap{};
@@ -399,7 +399,7 @@ void ColorBarTest::followsReplacedColormap()
 
 void ColorBarTest::implicitSizeFitsContents()
 {
-    auto vertical = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto vertical = Scene{Qt::Vertical, QSize{100, 200}};
     QVERIFY(!vertical.render().isNull());
     QCOMPARE(vertical.bar.implicitHeight(), 160.0);
     // Strip, outward tick, and label padding, plus the reserved tick label width.
@@ -410,7 +410,7 @@ void ColorBarTest::implicitSizeFitsContents()
     vertical.render();
     QVERIFY(vertical.bar.implicitWidth() >= withoutTitle + vertical.bar.labelPadding() + QFontMetricsF{vertical.bar.labelFont()}.height());
 
-    auto horizontal = Scene{ColorBar::Horizontal, QSize{200, 60}};
+    auto horizontal = Scene{Qt::Horizontal, QSize{200, 60}};
     QVERIFY(!horizontal.render().isNull());
     QCOMPARE(horizontal.bar.implicitWidth(), 160.0);
     QVERIFY(horizontal.bar.implicitHeight() > 12.0 + 4.0 + 5.0);
@@ -418,7 +418,7 @@ void ColorBarTest::implicitSizeFitsContents()
 
 void ColorBarTest::tickLabelWidthFixesImplicitWidth()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     QVERIFY(!scene.render().isNull());
     // Strip, outward tick, and label padding.
     const auto beforeLabels = 12.0 + 4.0 + scene.bar.ticker()->tickLabelPadding();
@@ -437,7 +437,7 @@ void ColorBarTest::tickLabelWidthFixesImplicitWidth()
     QCOMPARE(scene.bar.implicitWidth(), beforeLabels);
 
     // The labels of a horizontal bar sit below the strip, so their width is not reserved.
-    scene.bar.setOrientation(ColorBar::Horizontal);
+    scene.bar.setOrientation(Qt::Horizontal);
     scene.render();
     const auto height = scene.bar.implicitHeight();
     scene.bar.setTickLabelWidth(40.0);
@@ -447,7 +447,7 @@ void ColorBarTest::tickLabelWidthFixesImplicitWidth()
 
 void ColorBarTest::tickLabelsAreClippedToTickLabelWidth()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.ticker()->setTickLabelColor(Qt::white);
     scene.colormap.setRange(-1000.5, 1000.5);
     // Strip, outward tick, and label padding.
@@ -464,7 +464,7 @@ void ColorBarTest::tickLabelsAreClippedToTickLabelWidth()
 
 void ColorBarTest::drawsTitleBesideTickLabels()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.setBorderWidth(0.0);
     QVERIFY(!scene.render().isNull());
     const auto titleColumn = static_cast<int>(scene.bar.implicitWidth());
@@ -494,7 +494,7 @@ void ColorBarTest::qmlColorBarInsidePlot()
             QAccelPlot.ColorBar {
                 objectName: "bar"
                 series: cloud
-                orientation: QAccelPlot.ColorBar.Horizontal
+                orientation: Qt.Horizontal
                 label: "Jump length"
             }
         }
@@ -508,14 +508,14 @@ void ColorBarTest::qmlColorBarInsidePlot()
     QVERIFY(bar);
     QVERIFY(cloud);
     QCOMPARE(bar->series(), cloud);
-    QCOMPARE(bar->orientation(), ColorBar::Horizontal);
+    QCOMPARE(bar->orientation(), Qt::Horizontal);
     QCOMPARE(bar->label(), QStringLiteral("Jump length"));
     QCOMPARE(root->property("series").value<QList<PlotSeries*>>().size(), 1);
 }
 
 void ColorBarTest::pixelToValueInvertsValueToPixel()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.colormap.setRange(2.0, 6.0);
     QVERIFY(!scene.render().isNull());
 
@@ -525,7 +525,7 @@ void ColorBarTest::pixelToValueInvertsValueToPixel()
     QCOMPARE_NEAR(scene.bar.pixelToValue(scene.bar.valueToPixel(3.5, 100.0), 100.0), 3.5);
     QCOMPARE(scene.bar.pixelToValue(10.0, 0.0), 2.0);
 
-    scene.bar.setOrientation(ColorBar::Horizontal);
+    scene.bar.setOrientation(Qt::Horizontal);
     scene.colormap.setNorm(Colormap::Normalization::Log);
     scene.colormap.setRange(1.0, 100.0);
     scene.render();
@@ -534,7 +534,7 @@ void ColorBarTest::pixelToValueInvertsValueToPixel()
 
 void ColorBarTest::gesturesAreIgnoredUnlessInteractive()
 {
-    auto scene = Scene{ColorBar::Horizontal, QSize{201, 60}};
+    auto scene = Scene{Qt::Horizontal, QSize{201, 60}};
     QVERIFY(!scene.render().isNull());
     const auto center = QPointF{100.5, 30.0};
 
@@ -552,7 +552,7 @@ void ColorBarTest::gesturesAreIgnoredUnlessInteractive()
 
 void ColorBarTest::hoverIsReportedWhileInteractive()
 {
-    auto scene = Scene{ColorBar::Vertical, QSize{100, 200}};
+    auto scene = Scene{Qt::Vertical, QSize{100, 200}};
     scene.bar.setInteractive(true);
     QVERIFY(scene.bar.acceptHoverEvents());
 
@@ -599,7 +599,7 @@ void ColorBarTest::qmlBorderColorFollowsHovered()
 
 void ColorBarTest::leavingInteractiveModeClearsHover()
 {
-    auto scene = InteractiveScene{ColorBar::Vertical};
+    auto scene = InteractiveScene{Qt::Vertical};
     auto enter = QAccelPlotTest::hoverEvent(QEvent::HoverEnter, scene.center(), scene.center());
     scene.bar.hoverEnterEvent(&enter);
     QVERIFY(scene.bar.hovered());
@@ -613,7 +613,7 @@ void ColorBarTest::leavingInteractiveModeClearsHover()
 
 void ColorBarTest::horizontalDragPansRange()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.colormap.setRange(10.0, 30.0);
 
     // The colors follow the cursor: dragging right by a quarter of the strip shows lower values.
@@ -624,7 +624,7 @@ void ColorBarTest::horizontalDragPansRange()
 
 void ColorBarTest::verticalDragIsInverted()
 {
-    auto scene = InteractiveScene{ColorBar::Vertical};
+    auto scene = InteractiveScene{Qt::Vertical};
     scene.colormap.setRange(10.0, 30.0);
 
     // The minimum is at the bottom, so dragging down shows higher values.
@@ -635,7 +635,7 @@ void ColorBarTest::verticalDragIsInverted()
 
 void ColorBarTest::dragPinsDataResolvedRange()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.cloud.setDataF(std::vector<float>{0.0f, 0.0f, 1.0f, 1.0f}, std::vector<float>{2.0f, 6.0f}, 2);
     scene.colormap.setRange(qQNaN(), qQNaN());
     QCOMPARE(scene.cloud.dataValueMin(), 2.0);
@@ -650,7 +650,7 @@ void ColorBarTest::dragPinsDataResolvedRange()
 
 void ColorBarTest::dragOnLogColormapPansInLogSpace()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.colormap.setNorm(Colormap::Normalization::Log);
     scene.colormap.setRange(1.0, 100.0);
 
@@ -662,7 +662,7 @@ void ColorBarTest::dragOnLogColormapPansInLogSpace()
 
 void ColorBarTest::rightButtonDoesNotPan()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
 
     drag(scene.bar, scene.center(), scene.center() + QPointF{50.0, 0.0}, Qt::RightButton);
     QCOMPARE(scene.colormap.min(), 0.0);
@@ -671,7 +671,7 @@ void ColorBarTest::rightButtonDoesNotPan()
 
 void ColorBarTest::wheelZoomsAroundCursor()
 {
-    auto scene = InteractiveScene{ColorBar::Vertical};
+    auto scene = InteractiveScene{Qt::Vertical};
     scene.colormap.setRange(0.0, 80.0);
     scene.bar.setZoomScaleFactor(0.5);
 
@@ -684,7 +684,7 @@ void ColorBarTest::wheelZoomsAroundCursor()
 
 void ColorBarTest::wheelOutUndoesWheelIn()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.colormap.setRange(-4.0, 12.0);
     const auto cursor = scene.center() + QPointF{30.0, 0.0};
 
@@ -697,7 +697,7 @@ void ColorBarTest::wheelOutUndoesWheelIn()
 
 void ColorBarTest::wheelOnLogColormapZoomsInLogSpace()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.colormap.setNorm(Colormap::Normalization::Log);
     scene.colormap.setRange(1.0, 10000.0);
     scene.bar.setZoomScaleFactor(0.5);
@@ -710,7 +710,7 @@ void ColorBarTest::wheelOnLogColormapZoomsInLogSpace()
 
 void ColorBarTest::zoomStopsAtSinglePrecision()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.colormap.setRange(1000.0, 1001.0);
     scene.bar.setZoomScaleFactor(0.5);
 
@@ -725,7 +725,7 @@ void ColorBarTest::zoomStopsAtSinglePrecision()
 
 void ColorBarTest::doubleClickRescalesToData()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.cloud.setDataF(std::vector<float>{0.0f, 0.0f, 1.0f, 1.0f}, std::vector<float>{2.0f, 6.0f}, 2);
     scene.colormap.setRange(3.0, 4.0);
 
@@ -738,7 +738,7 @@ void ColorBarTest::doubleClickRescalesToData()
 
 void ColorBarTest::gesturesAreIgnoredWithoutColormap()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     scene.cloud.setColormap(nullptr);
     scene.render();
 
@@ -755,7 +755,7 @@ void ColorBarTest::gesturesAreIgnoredWithoutColormap()
 
 void ColorBarTest::sharedColormapMovesEverySeries()
 {
-    auto scene = InteractiveScene{ColorBar::Horizontal};
+    auto scene = InteractiveScene{Qt::Horizontal};
     auto other = PointCloud{};
     other.setColormap(&scene.colormap);
     scene.colormap.setRange(10.0, 30.0);
@@ -826,7 +826,7 @@ void ColorBarTest::onlyInteractiveBarKeepsEventsFromPlot()
             QAccelPlot.ColorBar {
                 objectName: "bar"
                 series: cloud
-                orientation: QAccelPlot.ColorBar.Horizontal
+                orientation: Qt.Horizontal
                 x: plot.plotRect.x + 20
                 y: plot.plotRect.y + 20
             }

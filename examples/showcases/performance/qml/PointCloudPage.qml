@@ -31,7 +31,7 @@ QAccelPlot.Plot {
     yAxis: ExampleAxis {
         viewportMin: -1.15
         viewportMax: 1.15
-        axisTitlePadding: 40
+        labelPadding: 40
         layoutSize: 60
         label: "y"
     }

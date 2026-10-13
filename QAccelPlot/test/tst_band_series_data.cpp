@@ -43,7 +43,7 @@ struct BandFixture {
             axis->setViewportMin(0.0);
             axis->setViewportMax(10.0);
         }
-        yAxis.setOrientation(Axis::Vertical);
+        yAxis.setOrientation(Qt::Vertical);
         band.setParentItem(window.contentItem());
         band.setSize({100.0, 100.0});
         band.setPlotRect({0.0, 0.0, 100.0, 100.0});

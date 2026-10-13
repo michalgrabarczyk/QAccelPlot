@@ -85,7 +85,7 @@ qreal DataAnchor::dataX1() const
 
 void DataAnchor::setDataX1(const qreal value)
 {
-    if (nearly_equal(dataX1_, value)) {
+    if (nearlyEqual(dataX1_, value)) {
         return;
     }
     dataX1_ = value;
@@ -100,7 +100,7 @@ qreal DataAnchor::dataY1() const
 
 void DataAnchor::setDataY1(const qreal value)
 {
-    if (nearly_equal(dataY1_, value)) {
+    if (nearlyEqual(dataY1_, value)) {
         return;
     }
     dataY1_ = value;
@@ -115,7 +115,7 @@ qreal DataAnchor::dataX2() const
 
 void DataAnchor::setDataX2(const qreal value)
 {
-    if (nearly_equal(dataX2_, value)) {
+    if (nearlyEqual(dataX2_, value)) {
         return;
     }
     dataX2_ = value;
@@ -130,7 +130,7 @@ qreal DataAnchor::dataY2() const
 
 void DataAnchor::setDataY2(const qreal value)
 {
-    if (nearly_equal(dataY2_, value)) {
+    if (nearlyEqual(dataY2_, value)) {
         return;
     }
     dataY2_ = value;
@@ -145,7 +145,7 @@ qreal DataAnchor::hoverThreshold() const
 
 void DataAnchor::setHoverThreshold(const qreal threshold)
 {
-    if (nearly_equal(hoverThreshold_, threshold)) {
+    if (nearlyEqual(hoverThreshold_, threshold)) {
         return;
     }
     hoverThreshold_ = threshold;

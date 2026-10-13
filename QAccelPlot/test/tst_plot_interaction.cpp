@@ -113,6 +113,7 @@ private slots:
     void acceptedPressDoesNotStartDrag();
     void doubleClick_rescalesAxesToData();
     void acceptedDoubleClickDoesNotRescale();
+    void rescaleAllAxes_fitsEveryAxisToData();
 
     void axisZoomScaleFactor_clamps();
     void axisDrag_pansViewport();
@@ -349,6 +350,28 @@ void TestPlotInteraction::acceptedDoubleClickDoesNotRescale()
 
     QCOMPARE(xAxis->viewportMin(), 0.0);
     QCOMPARE(xAxis->viewportMax(), 100.0);
+}
+
+void TestPlotInteraction::rescaleAllAxes_fitsEveryAxisToData()
+{
+    auto plot = QAccelPlot::QAccelPlot{};
+    plot.setSize({300.0, 200.0});
+    auto* yAxis = new QAccelPlot::Axis{&plot};
+    auto* extraAxis = new QAccelPlot::Axis{&plot, QAccelPlot::Axis::Right};
+    plot.setYAxis(yAxis);
+    auto extraAxes = plot.extraAxes();
+    extraAxes.append(&extraAxes, extraAxis);
+    setViewport(yAxis, 0.0, 100.0);
+    setViewport(extraAxis, 0.0, 100.0);
+    yAxis->setDataRange(5.0, 25.0);
+    extraAxis->setDataRange(-3.0, 3.0);
+
+    plot.rescaleAllAxes();
+
+    QCOMPARE(yAxis->viewportMin(), 5.0);
+    QCOMPARE(yAxis->viewportMax(), 25.0);
+    QCOMPARE(extraAxis->viewportMin(), -3.0);
+    QCOMPARE(extraAxis->viewportMax(), 3.0);
 }
 
 void TestPlotInteraction::axisZoomScaleFactor_clamps()
@@ -607,10 +630,10 @@ void TestPlotInteraction::plotMouseEvent_resetClearsAcceptance()
     event.reset(Qt::RightButton, 12.5, -3.0, Qt::ShiftModifier);
 
     QVERIFY(!event.isAccepted());
-    QCOMPARE(event.button(), static_cast<int>(Qt::RightButton));
+    QCOMPARE(event.button(), Qt::RightButton);
     QCOMPARE(event.x(), 12.5);
     QCOMPARE(event.y(), -3.0);
-    QCOMPARE(event.modifiers(), static_cast<int>(Qt::ShiftModifier));
+    QCOMPARE(event.modifiers(), Qt::KeyboardModifiers{Qt::ShiftModifier});
 }
 
 QTEST_MAIN(TestPlotInteraction)

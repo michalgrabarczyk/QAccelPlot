@@ -160,7 +160,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: -4
                     viewportMax: 6
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Net grid power (kW)"
                 }
@@ -172,22 +172,22 @@ Window {
                     lineWidth: 3
                     effects: [
                         QAccelPlot.GradientFill {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
                             baseline: window.baselineIndex === 0 ? QAccelPlot.GradientFillBaseline.AxisMinimum : QAccelPlot.GradientFillBaseline.Value
                             baselineValue: 0
-                            gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: window.directionIndex === 0 ? -4 : -6
-                            gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
+                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMin: window.directionIndex === 0 ? -4 : -6
+                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
                             opacity: window.gradientOpacity
                             colormap: activeColormap
                         },
                         QAccelPlot.GradientStroke {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
-                            gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: window.directionIndex === 0 ? -4 : -6
-                            gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
+                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMin: window.directionIndex === 0 ? -4 : -6
+                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMax: window.directionIndex === 0 ? window.solarVerticalMaximum : 6
                             colormap: activeColormap
                         }
                     ]
@@ -217,7 +217,7 @@ Window {
                 yAxis: ExampleAxis {
                     viewportMin: 20
                     viewportMax: 30
-                    axisTitlePadding: 40
+                    labelPadding: 40
                     layoutSize: 60
                     label: "Battery temperature (°C)"
                 }
@@ -230,11 +230,11 @@ Window {
                     opacity: window.gradientOpacity
                     effects: [
                         QAccelPlot.GradientStroke {
-                            direction: window.directionIndex === 0 ? QAccelPlot.GradientDirection.Vertical : QAccelPlot.GradientDirection.Horizontal
-                            gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMin: window.directionIndex === 0 ? 20 : 0
-                            gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                            gradientValueMax: window.directionIndex === 0 ? window.batteryVerticalMaximum : 100
+                            direction: window.directionIndex === 0 ? Qt.Vertical : Qt.Horizontal
+                            valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMin: window.directionIndex === 0 ? 20 : 0
+                            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                            valueMax: window.directionIndex === 0 ? window.batteryVerticalMaximum : 100
                             colormap: activeColormap
                         }
                     ]

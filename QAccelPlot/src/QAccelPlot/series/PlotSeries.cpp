@@ -46,10 +46,10 @@ PlotSeries::~PlotSeries()
     setParentItem(nullptr);
 
     if (xAxis_) {
-        xAxis_->removeDataRangeSource(this, Axis::Horizontal);
+        xAxis_->removeDataRangeSource(this, Qt::Horizontal);
     }
     if (yAxis_) {
-        yAxis_->removeDataRangeSource(this, Axis::Vertical);
+        yAxis_->removeDataRangeSource(this, Qt::Vertical);
     }
 }
 
@@ -95,7 +95,7 @@ void PlotSeries::setXAxis(Axis* axis)
         disconnect(xAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(xAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
-        xAxis_->removeDataRangeSource(this, Axis::Horizontal);
+        xAxis_->removeDataRangeSource(this, Qt::Horizontal);
     }
     disconnect(xAxisDestroyed_);
     xAxis_ = axis;
@@ -112,7 +112,7 @@ void PlotSeries::setXAxis(Axis* axis)
     invalidateInspection();
     onAxisScaleChanged();
     if (xAxis_) {
-        xAxis_->addDataRangeSource(this, Axis::Horizontal);
+        xAxis_->addDataRangeSource(this, Qt::Horizontal);
     }
     emit xAxisChanged();
     update();
@@ -132,7 +132,7 @@ void PlotSeries::setYAxis(Axis* axis)
         disconnect(yAxis_, &Axis::rangeChanged, this, &PlotSeries::onAxisRangeChanged);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::invalidateInspection);
         disconnect(yAxis_, &Axis::logScaleChanged, this, &PlotSeries::onAxisScaleChanged);
-        yAxis_->removeDataRangeSource(this, Axis::Vertical);
+        yAxis_->removeDataRangeSource(this, Qt::Vertical);
     }
     disconnect(yAxisDestroyed_);
     yAxis_ = axis;
@@ -149,7 +149,7 @@ void PlotSeries::setYAxis(Axis* axis)
     invalidateInspection();
     onAxisScaleChanged();
     if (yAxis_) {
-        yAxis_->addDataRangeSource(this, Axis::Vertical);
+        yAxis_->addDataRangeSource(this, Qt::Vertical);
     }
     emit yAxisChanged();
     update();

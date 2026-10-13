@@ -156,7 +156,7 @@ qreal RectangleSeries::minimumWidth() const
 void RectangleSeries::setMinimumWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(minimumWidth_, clamped)) {
+    if (nearlyEqual(minimumWidth_, clamped)) {
         return;
     }
     minimumWidth_ = clamped;
@@ -172,7 +172,7 @@ qreal RectangleSeries::minimumHeight() const
 void RectangleSeries::setMinimumHeight(const qreal height)
 {
     const auto clamped = std::max(height, qreal{0.0});
-    if (nearly_equal(minimumHeight_, clamped)) {
+    if (nearlyEqual(minimumHeight_, clamped)) {
         return;
     }
     minimumHeight_ = clamped;

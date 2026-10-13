@@ -116,7 +116,7 @@ void TestColorPalette::qmlLegendDefaultsUseDarkPalette()
 
     QQmlComponent component(&engine);
     component.setData("import QtQuick\n"
-                      "import QAccelPlot 1.0\n"
+                      "import QAccelPlot\n"
                       "Legend { series: [] }\n",
         QUrl(QStringLiteral("qrc:/tst_color_palette/LegendDefaults.qml")));
     QScopedPointer<QObject> legend(component.create());

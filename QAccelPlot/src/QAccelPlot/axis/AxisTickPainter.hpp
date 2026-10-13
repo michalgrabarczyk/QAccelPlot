@@ -32,14 +32,14 @@ class AxisTickPainter {
 public:
     /// \brief All style inputs required for a single paint call, bundled to reduce parameter count.
     struct Params {
-        Axis::Orientation orientation{Axis::Horizontal}; ///< \brief Axis orientation.
-        Axis::Side side{Axis::Left};                     ///< \brief Axis side.
-        bool hovered{false};                             ///< \brief Whether the axis is currently hovered.
-        const AxisTicker* ticker{nullptr};               ///< \brief Tick style configuration object.
-        QColor hoverColor;                               ///< \brief Label/tick color when hovered.
-        QColor defaultSubtickColor;                      ///< \brief Sub-tick color when not hovered.
-        bool clampEdgeLabels{false};                     ///< \brief Whether labels at the extremes are clamped inward.
-        qreal labelOverflow{0.0};                        ///< \brief Extra space reserved for edge label overflow.
+        Qt::Orientation orientation{Qt::Horizontal}; ///< \brief Axis orientation.
+        Axis::Side side{Axis::Left};                 ///< \brief Axis side.
+        bool hovered{false};                         ///< \brief Whether the axis is currently hovered.
+        const AxisTicker* ticker{nullptr};           ///< \brief Tick style configuration object.
+        QColor hoverColor;                           ///< \brief Label/tick color when hovered.
+        QColor defaultSubtickColor;                  ///< \brief Sub-tick color when not hovered.
+        bool clampEdgeLabels{false};                 ///< \brief Whether labels at the extremes are clamped inward.
+        qreal labelOverflow{0.0};                    ///< \brief Extra space reserved for edge label overflow.
     };
 
     /// \brief Function type that maps a data value to a pixel position along the axis.

@@ -57,13 +57,13 @@ struct RectangleAxisRange {
 
 std::optional<RectangleAxisRange> rectangleAxisRange(Axis* axis, const QRectF& selection, const QRectF& plotRect)
 {
-    const auto horizontal = axis->orientation() == Axis::Horizontal;
+    const auto horizontal = axis->orientation() == Qt::Horizontal;
     const auto length = horizontal ? plotRect.width() : plotRect.height();
     const auto minPixel = horizontal ? selection.left() - plotRect.left() : selection.bottom() - plotRect.top();
     const auto maxPixel = horizontal ? selection.right() - plotRect.left() : selection.top() - plotRect.top();
     const auto min = axis->pixelToCoord(minPixel, length);
     const auto max = axis->pixelToCoord(maxPixel, length);
-    if (!std::isfinite(min) || !std::isfinite(max) || nearly_equal(min, max) || (axis->logScale() && (min <= 0.0 || max <= 0.0))) {
+    if (!std::isfinite(min) || !std::isfinite(max) || nearlyEqual(min, max) || (axis->logScale() && (min <= 0.0 || max <= 0.0))) {
         return std::nullopt;
     }
     return RectangleAxisRange{axis, min, max};
@@ -188,6 +188,18 @@ bool QAccelPlot::zoomToRect(const QRectF& rect)
         }
     }
     return true;
+}
+
+void QAccelPlot::rescaleAllAxes()
+{
+    for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
+        if (axis) {
+            axis->rescaleToData();
+        }
+    }
+    for (const auto axis : extraAxes_) {
+        axis->rescaleToData();
+    }
 }
 
 QPointF QAccelPlot::pointerPosition() const
@@ -317,7 +329,7 @@ qreal QAccelPlot::padding() const
 
 void QAccelPlot::setPadding(const qreal p)
 {
-    if (nearly_equal(padding_, p)) {
+    if (nearlyEqual(padding_, p)) {
         return;
     }
     padding_ = p;
@@ -424,7 +436,7 @@ void QAccelPlot::wheelEvent(QWheelEvent* event)
         zoomAxisAtRatio(yAxis_, yRatio, zoomingIn);
         zoomAxisAtRatio(y2Axis_, yRatio, zoomingIn);
         for (const auto axis : extraAxes_) {
-            const auto ratio = (axis->orientation() == Axis::Horizontal) ? xRatio : yRatio;
+            const auto ratio = (axis->orientation() == Qt::Horizontal) ? xRatio : yRatio;
             zoomAxisAtRatio(axis, ratio, zoomingIn);
         }
         event->accept();
@@ -439,14 +451,14 @@ void QAccelPlot::mousePressEvent(QMouseEvent* event)
     touchPointer_ = event->pointingDevice() && event->pointingDevice()->type() == QInputDevice::DeviceType::TouchScreen;
     touchPressed_ = touchPointer_;
     setPointer(event->position());
-    mousePressEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    mousePressEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
     emit mousePressed(&mousePressEvent_);
     if (mousePressEvent_.isAccepted()) {
         return;
     }
     if (event->button() == Qt::LeftButton) {
         setFocus(true);
-        if (rectangleZoom_->enabled() && PlotDragRect::modifiersMatch(static_cast<int>(event->modifiers()), rectangleZoom_->modifiers())) {
+        if (rectangleZoom_->enabled() && PlotDragRect::modifiersMatch(event->modifiers(), rectangleZoom_->modifiers())) {
             if (plotRect_.isEmpty() || !plotRect_.contains(event->position())) {
                 event->ignore();
                 return;
@@ -483,7 +495,7 @@ void QAccelPlot::hoverMoveEvent(QHoverEvent* event)
         return;
     }
 
-    mouseMoveEvent_.reset(static_cast<int>(Qt::NoButton), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    mouseMoveEvent_.reset(Qt::NoButton, event->position().x(), event->position().y(), event->modifiers());
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
         event->accept();
@@ -509,7 +521,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
     if (!touchPointer_ || event->buttons() != Qt::NoButton) {
         setPointer(event->position());
     }
-    mouseMoveEvent_.reset(static_cast<int>(event->buttons()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    mouseMoveEvent_.reset(static_cast<Qt::MouseButton>(static_cast<int>(event->buttons())), event->position().x(), event->position().y(), event->modifiers());
     emit mouseMoved(&mouseMoveEvent_);
     if (mouseMoveEvent_.isAccepted()) {
         return;
@@ -531,7 +543,7 @@ void QAccelPlot::mouseMoveEvent(QMouseEvent* event)
         panAxis(y2Axis_, delta.y(), ph);
 
         for (const auto axis : extraAxes_) {
-            if (axis->orientation() == Axis::Horizontal) {
+            if (axis->orientation() == Qt::Horizontal) {
                 panAxis(axis, -delta.x(), pw);
             } else {
                 panAxis(axis, delta.y(), ph);
@@ -547,7 +559,7 @@ void QAccelPlot::mouseReleaseEvent(QMouseEvent* event)
 {
     touchPressed_ = false;
     const auto endedDrag = event->button() == Qt::LeftButton && dragMode_ != DragMode::Idle;
-    mouseReleaseEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    mouseReleaseEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
     emit mouseReleased(&mouseReleaseEvent_);
     if (event->button() == Qt::LeftButton) {
         auto selection = QRectF{};
@@ -589,7 +601,7 @@ void QAccelPlot::focusOutEvent(QFocusEvent* event)
 void QAccelPlot::mouseDoubleClickEvent(QMouseEvent* event)
 {
     cancelRectangleSelection();
-    mouseDoubleClickEvent_.reset(static_cast<int>(event->button()), event->position().x(), event->position().y(), static_cast<int>(event->modifiers()));
+    mouseDoubleClickEvent_.reset(event->button(), event->position().x(), event->position().y(), event->modifiers());
     emit mouseDoubleClicked(&mouseDoubleClickEvent_);
     if (mouseDoubleClickEvent_.isAccepted()) {
         return;
@@ -711,18 +723,6 @@ QSGNode* QAccelPlot::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     return root;
 }
 
-void QAccelPlot::rescaleAllAxes()
-{
-    for (const auto axis : {xAxis_, yAxis_, x2Axis_, y2Axis_}) {
-        if (axis) {
-            axis->rescaleToData();
-        }
-    }
-    for (const auto axis : extraAxes_) {
-        axis->rescaleToData();
-    }
-}
-
 bool QAccelPlot::isAxisRegistered(Axis* axis) const
 {
     return axis && (axis == xAxis_ || axis == yAxis_ || axis == x2Axis_ || axis == y2Axis_ || extraAxes_.contains(axis));
@@ -801,7 +801,7 @@ bool QAccelPlot::tryZoomAxisAtPosition(Axis* axis, const QPointF& pos, const boo
     if (!rect.contains(pos)) {
         return false;
     }
-    const auto ratio = (axis->orientation() == Axis::Horizontal) ? horizontalRatio(pos, rect) : verticalRatio(pos, rect);
+    const auto ratio = (axis->orientation() == Qt::Horizontal) ? horizontalRatio(pos, rect) : verticalRatio(pos, rect);
     zoomAxisAtRatio(axis, ratio, zoomingIn);
     return true;
 }
@@ -830,7 +830,7 @@ void QAccelPlot::connectAxisSignals(Axis* axis)
     connect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update, Qt::UniqueConnection);
-    connect(axis, &Axis::axisLinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
+    connect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
     connect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes, Qt::UniqueConnection);
@@ -852,7 +852,7 @@ void QAccelPlot::disconnectAxisSignals(Axis* axis)
     disconnect(axis, &QObject::destroyed, this, &QAccelPlot::axisDestroyed);
     disconnect(axis->ticker(), &AxisTicker::tickCountChanged, this, &QAccelPlot::update);
     disconnect(axis->ticker(), &AxisTicker::subtickCountChanged, this, &QAccelPlot::update);
-    disconnect(axis, &Axis::axisLinePaddingChanged, this, &QAccelPlot::layoutAxes);
+    disconnect(axis, &Axis::baselinePaddingChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis, &Axis::orientationChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::tickLengthInChanged, this, &QAccelPlot::layoutAxes);
     disconnect(axis->ticker(), &AxisTicker::subtickLengthInChanged, this, &QAccelPlot::layoutAxes);
@@ -972,7 +972,7 @@ void QAccelPlot::layoutAxes()
         if (!axis->isVisible()) {
             continue;
         }
-        if (axis->orientation() == Axis::Horizontal) {
+        if (axis->orientation() == Qt::Horizontal) {
             if (axis->side() == Axis::Top) {
                 extraTopHeight += axis->layoutSize() + axis->inwardTickOverlap();
             } else {
@@ -1055,7 +1055,7 @@ void QAccelPlot::layoutAxes()
         }
         const auto ov = axis->inwardTickOverlap();
         const auto lOv = axis->labelOverflow();
-        if (axis->orientation() == Axis::Horizontal) {
+        if (axis->orientation() == Qt::Horizontal) {
             axis->setSize(QSizeF(plotW + 2.0 * lOv, axis->layoutSize() + ov));
             if (axis->side() == Axis::Top) {
                 axis->setPosition(QPointF(plotX - lOv, currentTop));

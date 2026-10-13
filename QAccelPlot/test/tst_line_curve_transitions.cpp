@@ -32,7 +32,7 @@ struct Scene {
     std::unique_ptr<LineCurve> curve;
 };
 
-std::unique_ptr<Axis> makeAxis(const Axis::Orientation orientation)
+std::unique_ptr<Axis> makeAxis(const Qt::Orientation orientation)
 {
     auto axis = std::make_unique<Axis>();
     axis->setOrientation(orientation);
@@ -98,8 +98,8 @@ void LineCurveTransitionsTest::init()
         QSKIP("Custom curve materials require a hardware scene graph backend");
     }
     scene_.window->resize(kSize, kSize);
-    scene_.xAxis = makeAxis(Axis::Horizontal);
-    scene_.yAxis = makeAxis(Axis::Vertical);
+    scene_.xAxis = makeAxis(Qt::Horizontal);
+    scene_.yAxis = makeAxis(Qt::Vertical);
     scene_.curve = std::make_unique<LineCurve>();
     scene_.curve->setParentItem(scene_.window->contentItem());
     scene_.curve->setXAxis(scene_.xAxis.get());

@@ -27,7 +27,7 @@ QAccelPlot.Plot {
     yAxis: ExampleAxis {
         viewportMin: -10
         viewportMax: 10
-        axisTitlePadding: 40
+        labelPadding: 40
         layoutSize: 60
         label: "Amplitude"
     }
@@ -67,11 +67,11 @@ QAccelPlot.Plot {
             // Fixed value ranges spare the effects a scan of the data per update.
             QAccelPlot.GradientStroke {
                 id: gradientStroke
-                direction: QAccelPlot.GradientDirection.Vertical
-                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                gradientValueMin: -8
-                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                gradientValueMax: 8
+                direction: Qt.Vertical
+                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                valueMin: -8
+                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                valueMax: 8
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma
                 }
@@ -79,13 +79,13 @@ QAccelPlot.Plot {
 
             QAccelPlot.GradientFill {
                 id: gradientFill
-                direction: QAccelPlot.GradientDirection.Vertical
+                direction: Qt.Vertical
                 baseline: QAccelPlot.GradientFillBaseline.Value
                 baselineValue: 0
-                gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-                gradientValueMin: -8
-                gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-                gradientValueMax: 8
+                valueMinSource: QAccelPlot.GradientValueSource.Fixed
+                valueMin: -8
+                valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+                valueMax: 8
                 opacity: 0.4
                 colormap: QAccelPlot.Colormap {
                     preset: QAccelPlot.Colormap.Plasma

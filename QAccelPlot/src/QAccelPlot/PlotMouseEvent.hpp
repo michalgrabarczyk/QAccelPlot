@@ -25,14 +25,14 @@ class PlotMouseEvent : public QObject {
     QML_NAMED_ELEMENT(PlotMouseEvent)
     QML_UNCREATABLE("PlotMouseEvent can only be created by QAccelPlot.")
 
-    /// \brief The mouse button involved (Qt::MouseButton value).
-    Q_PROPERTY(int button READ button CONSTANT)
+    /// \brief The mouse button that caused the event. A move reports the buttons held down, combined.
+    Q_PROPERTY(Qt::MouseButton button READ button CONSTANT)
     /// \brief Item-local pixel X coordinate of the event.
     Q_PROPERTY(qreal x READ x CONSTANT)
     /// \brief Item-local pixel Y coordinate of the event.
     Q_PROPERTY(qreal y READ y CONSTANT)
-    /// \brief Active keyboard modifiers at the time of the event (Qt::KeyboardModifiers value).
-    Q_PROPERTY(int modifiers READ modifiers CONSTANT)
+    /// \brief Active keyboard modifiers at the time of the event.
+    Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers CONSTANT)
     /// \brief Whether this event has been accepted by a handler.
     /// Read via \c isAccepted(); set via \c accept() or \c ignore().
     Q_PROPERTY(bool accepted READ isAccepted WRITE setAccepted)
@@ -41,14 +41,14 @@ public:
     /// \brief Constructs a PlotMouseEvent with an optional \p parent.
     explicit PlotMouseEvent(QObject* parent = nullptr);
 
-    /// \brief Returns the mouse button involved in the event (Qt::MouseButton value).
-    int button() const;
+    /// \brief Returns the mouse button that caused the event; for a move, the buttons held down, combined.
+    Qt::MouseButton button() const;
     /// \brief Returns the item-local pixel X coordinate of the event.
     qreal x() const;
     /// \brief Returns the item-local pixel Y coordinate of the event.
     qreal y() const;
-    /// \brief Returns the active keyboard modifiers at the time of the event (Qt::KeyboardModifiers value).
-    int modifiers() const;
+    /// \brief Returns the active keyboard modifiers at the time of the event.
+    Qt::KeyboardModifiers modifiers() const;
     /// \brief Returns true if the event has been accepted by a handler.
     bool isAccepted() const;
     /// \brief Accepts the event, suppressing the plot's built-in handling.
@@ -58,13 +58,13 @@ public:
     /// @brief Sets whether the event is accepted. Equivalent to \c accept() if \p accepted is true, or \c ignore() if false.
     void setAccepted(bool accepted);
     /// \brief Resets the event data for a new event. Called by QAccelPlot before emitting mouse signals.
-    void reset(int button, qreal x, qreal y, int modifiers);
+    void reset(Qt::MouseButton button, qreal x, qreal y, Qt::KeyboardModifiers modifiers);
 
 private:
-    int button_{0};
+    Qt::MouseButton button_{Qt::NoButton};
     qreal x_{0.0};
     qreal y_{0.0};
-    int modifiers_{0};
+    Qt::KeyboardModifiers modifiers_{Qt::NoModifier};
     bool accepted_{false};
 };
 

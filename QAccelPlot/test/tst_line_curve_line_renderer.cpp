@@ -87,11 +87,11 @@ void LineCurveLineRendererTest::decimatedFillKeepsPeaks()
         data[static_cast<std::size_t>(spike) * 2 + 1] = 1.0f;
     }
     auto xAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     xAxis.setViewportMin(0);
     xAxis.setViewportMax(kPointCount - 1);
     auto yAxis = Axis{};
-    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
     yAxis.setViewportMin(0);
     yAxis.setViewportMax(1);
     const auto gradient = GradientColorPayload{};

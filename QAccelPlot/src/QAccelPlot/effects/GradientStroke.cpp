@@ -26,12 +26,12 @@ GradientStroke::GradientStroke(QObject* parent)
     updatePayload();
 }
 
-GradientDirection GradientStroke::direction() const
+Qt::Orientation GradientStroke::direction() const
 {
     return direction_;
 }
 
-void GradientStroke::setDirection(GradientDirection direction)
+void GradientStroke::setDirection(Qt::Orientation direction)
 {
     if (direction_ == direction) {
         return;
@@ -80,65 +80,65 @@ void GradientStroke::setColormap(Colormap* colormap)
     emit effectChanged();
 }
 
-GradientValueSource GradientStroke::gradientValueMinSource() const
+GradientValueSource GradientStroke::valueMinSource() const
 {
-    return gradientValueMinSource_;
+    return valueMinSource_;
 }
 
-void GradientStroke::setGradientValueMinSource(GradientValueSource source)
+void GradientStroke::setValueMinSource(GradientValueSource source)
 {
-    if (gradientValueMinSource_ == source) {
+    if (valueMinSource_ == source) {
         return;
     }
 
-    gradientValueMinSource_ = source;
-    emit gradientValueMinSourceChanged();
+    valueMinSource_ = source;
+    emit valueMinSourceChanged();
     emit effectChanged();
 }
 
-qreal GradientStroke::gradientValueMin() const
+qreal GradientStroke::valueMin() const
 {
-    return gradientValueMin_;
+    return valueMin_;
 }
 
-void GradientStroke::setGradientValueMin(const qreal value)
+void GradientStroke::setValueMin(const qreal value)
 {
-    if (nearly_equal(gradientValueMin_, value)) {
+    if (nearlyEqual(valueMin_, value)) {
         return;
     }
-    gradientValueMin_ = value;
-    emit gradientValueMinChanged();
+    valueMin_ = value;
+    emit valueMinChanged();
     emit effectChanged();
 }
 
-GradientValueSource GradientStroke::gradientValueMaxSource() const
+GradientValueSource GradientStroke::valueMaxSource() const
 {
-    return gradientValueMaxSource_;
+    return valueMaxSource_;
 }
 
-void GradientStroke::setGradientValueMaxSource(GradientValueSource source)
+void GradientStroke::setValueMaxSource(GradientValueSource source)
 {
-    if (gradientValueMaxSource_ == source) {
+    if (valueMaxSource_ == source) {
         return;
     }
 
-    gradientValueMaxSource_ = source;
-    emit gradientValueMaxSourceChanged();
+    valueMaxSource_ = source;
+    emit valueMaxSourceChanged();
     emit effectChanged();
 }
 
-qreal GradientStroke::gradientValueMax() const
+qreal GradientStroke::valueMax() const
 {
-    return gradientValueMax_;
+    return valueMax_;
 }
 
-void GradientStroke::setGradientValueMax(const qreal value)
+void GradientStroke::setValueMax(const qreal value)
 {
-    if (nearly_equal(gradientValueMax_, value)) {
+    if (nearlyEqual(valueMax_, value)) {
         return;
     }
-    gradientValueMax_ = value;
-    emit gradientValueMaxChanged();
+    valueMax_ = value;
+    emit valueMaxChanged();
     emit effectChanged();
 }
 
@@ -172,8 +172,8 @@ GradientColorPayload GradientStroke::readPayload() const
         return payload;
     }
 
-    payload.gradientValueMin = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMin_} : std::nullopt;
-    payload.gradientValueMax = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMax_} : std::nullopt;
+    payload.gradientValueMin = (valueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMin_} : std::nullopt;
+    payload.gradientValueMax = (valueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMax_} : std::nullopt;
 
     return payload;
 }

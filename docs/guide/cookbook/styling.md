@@ -92,13 +92,13 @@ Effects are attached through the curve's [`effects`][effects] property:
 QAccelPlot.LineCurve {
     effects: [
         QAccelPlot.GradientFill {
-            direction: QAccelPlot.GradientDirection.Vertical
+            direction: Qt.Vertical
             baseline: QAccelPlot.GradientFillBaseline.Value
             baselineValue: 0
-            gradientValueMinSource: QAccelPlot.GradientValueSource.Fixed
-            gradientValueMin: -4
-            gradientValueMaxSource: QAccelPlot.GradientValueSource.Fixed
-            gradientValueMax: 8
+            valueMinSource: QAccelPlot.GradientValueSource.Fixed
+            valueMin: -4
+            valueMaxSource: QAccelPlot.GradientValueSource.Fixed
+            valueMax: 8
             opacity: 0.65
             colormap: QAccelPlot.Colormap { preset: QAccelPlot.Colormap.Viridis }
         }

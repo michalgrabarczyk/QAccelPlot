@@ -38,8 +38,8 @@ Item {
     property real seriesOpacity: 1
     property real groupOpacity: 1
 
-    Axis { id: xAxis; orientation: Axis.Horizontal; viewportMin: 0; viewportMax: 8 }
-    Axis { id: yAxis; orientation: Axis.Vertical; viewportMin: 0; viewportMax: 1 }
+    Axis { id: xAxis; orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 8 }
+    Axis { id: yAxis; orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }
 
     Item {
         anchors.fill: parent

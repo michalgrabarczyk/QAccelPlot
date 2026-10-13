@@ -72,7 +72,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 0
                 viewportMax: 1.1
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Relative intensity"
                 baselineWidth: 2
@@ -87,7 +87,7 @@ Item {
                     viewportMax: 700
                     dataMin: 400
                     dataMax: 700
-                    orientation: QAccelPlot.Axis.Horizontal
+                    orientation: Qt.Horizontal
                     side: QAccelPlot.Axis.Bottom
                     label: "Frequency (THz)"
                     baselineColor: root.colorPalette.seriesCyan

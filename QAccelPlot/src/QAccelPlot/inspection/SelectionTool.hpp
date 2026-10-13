@@ -40,9 +40,9 @@ class SelectionTool : public QObject {
     /// \brief Region a gesture selects: a box, an X range, or a Y range. Default: Box.
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
     /// \brief Mouse button that starts a gesture. Default: Qt.LeftButton.
-    Q_PROPERTY(int button READ button WRITE setButton NOTIFY buttonChanged)
+    Q_PROPERTY(Qt::MouseButton button READ button WRITE setButton NOTIFY buttonChanged)
     /// \brief Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier.
-    Q_PROPERTY(int modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
+    Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     /// \brief Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6.
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     /// \brief Fill color of the rectangle. Default: \c Colors.dark.selectionFill.
@@ -101,13 +101,13 @@ public:
     /// \brief Sets the region a gesture selects and cancels a gesture in progress.
     void setMode(Mode mode);
     /// \brief Returns the mouse button that starts a gesture.
-    int button() const;
+    Qt::MouseButton button() const;
     /// \brief Sets the mouse button that starts a gesture.
-    void setButton(int button);
+    void setButton(Qt::MouseButton button);
     /// \brief Returns the required keyboard modifiers.
-    int modifiers() const;
+    Qt::KeyboardModifiers modifiers() const;
     /// \brief Sets the exact keyboard modifiers required at press time.
-    void setModifiers(int modifiers);
+    void setModifiers(Qt::KeyboardModifiers modifiers);
     /// \brief Returns the smallest selecting gesture in logical pixels.
     qreal minimumSize() const;
     /// \brief Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values.
@@ -208,8 +208,8 @@ private:
     QPointer<Axis> yAxis_;
     bool enabled_{true};
     Mode mode_{Box};
-    int button_{Qt::LeftButton};
-    int modifiers_{Qt::ShiftModifier};
+    Qt::MouseButton button_{Qt::LeftButton};
+    Qt::KeyboardModifiers modifiers_{Qt::ShiftModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
     QColor borderColor_{ColorPalette::dark().selectionBorder};

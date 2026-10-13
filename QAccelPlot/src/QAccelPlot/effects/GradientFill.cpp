@@ -26,12 +26,12 @@ GradientFill::GradientFill(QObject* parent)
     updatePayload();
 }
 
-GradientDirection GradientFill::direction() const
+Qt::Orientation GradientFill::direction() const
 {
     return direction_;
 }
 
-void GradientFill::setDirection(GradientDirection direction)
+void GradientFill::setDirection(Qt::Orientation direction)
 {
     if (direction_ == direction) {
         return;
@@ -80,67 +80,67 @@ void GradientFill::setColormap(Colormap* colormap)
     emit effectChanged();
 }
 
-GradientValueSource GradientFill::gradientValueMinSource() const
+GradientValueSource GradientFill::valueMinSource() const
 {
-    return gradientValueMinSource_;
+    return valueMinSource_;
 }
 
-void GradientFill::setGradientValueMinSource(GradientValueSource source)
+void GradientFill::setValueMinSource(GradientValueSource source)
 {
-    if (gradientValueMinSource_ == source) {
+    if (valueMinSource_ == source) {
         return;
     }
 
-    gradientValueMinSource_ = source;
-    emit gradientValueMinSourceChanged();
+    valueMinSource_ = source;
+    emit valueMinSourceChanged();
     emit effectChanged();
 }
 
-qreal GradientFill::gradientValueMin() const
+qreal GradientFill::valueMin() const
 {
-    return gradientValueMin_;
+    return valueMin_;
 }
 
-void GradientFill::setGradientValueMin(const qreal value)
+void GradientFill::setValueMin(const qreal value)
 {
-    if (nearly_equal(gradientValueMin_, value)) {
+    if (nearlyEqual(valueMin_, value)) {
         return;
     }
 
-    gradientValueMin_ = value;
-    emit gradientValueMinChanged();
+    valueMin_ = value;
+    emit valueMinChanged();
     emit effectChanged();
 }
 
-GradientValueSource GradientFill::gradientValueMaxSource() const
+GradientValueSource GradientFill::valueMaxSource() const
 {
-    return gradientValueMaxSource_;
+    return valueMaxSource_;
 }
 
-void GradientFill::setGradientValueMaxSource(GradientValueSource source)
+void GradientFill::setValueMaxSource(GradientValueSource source)
 {
-    if (gradientValueMaxSource_ == source) {
+    if (valueMaxSource_ == source) {
         return;
     }
 
-    gradientValueMaxSource_ = source;
-    emit gradientValueMaxSourceChanged();
+    valueMaxSource_ = source;
+    emit valueMaxSourceChanged();
     emit effectChanged();
 }
 
-qreal GradientFill::gradientValueMax() const
+qreal GradientFill::valueMax() const
 {
-    return gradientValueMax_;
+    return valueMax_;
 }
 
-void GradientFill::setGradientValueMax(const qreal value)
+void GradientFill::setValueMax(const qreal value)
 {
-    if (nearly_equal(gradientValueMax_, value)) {
+    if (nearlyEqual(valueMax_, value)) {
         return;
     }
 
-    gradientValueMax_ = value;
-    emit gradientValueMaxChanged();
+    valueMax_ = value;
+    emit valueMaxChanged();
     emit effectChanged();
 }
 
@@ -167,7 +167,7 @@ qreal GradientFill::baselineValue() const
 
 void GradientFill::setBaselineValue(const qreal value)
 {
-    if (nearly_equal(baselineValue_, value)) {
+    if (nearlyEqual(baselineValue_, value)) {
         return;
     }
 
@@ -184,7 +184,7 @@ qreal GradientFill::opacity() const
 void GradientFill::setOpacity(const qreal value)
 {
     const auto clamped = std::clamp(value, qreal{0.0}, qreal{1.0});
-    if (nearly_equal(opacity_, clamped)) {
+    if (nearlyEqual(opacity_, clamped)) {
         return;
     }
 
@@ -213,8 +213,8 @@ GradientFillPayload GradientFill::readPayload() const
     auto payload = GradientFillPayload{};
     payload.enabled = enabled();
     payload.direction = direction_;
-    payload.gradientValueMin = (gradientValueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMin_} : std::nullopt;
-    payload.gradientValueMax = (gradientValueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{gradientValueMax_} : std::nullopt;
+    payload.gradientValueMin = (valueMinSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMin_} : std::nullopt;
+    payload.gradientValueMax = (valueMaxSource_ == GradientValueSource::Fixed) ? std::optional<qreal>{valueMax_} : std::nullopt;
     payload.baseline = baseline_;
     payload.baselineValue = baselineValue_;
     payload.opacity = static_cast<float>(opacity_);

@@ -55,8 +55,8 @@ RenderResult renderMarker(const MarkerStyle& style)
 
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
-    yAxis.setOrientation(Axis::Vertical);
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
     for (auto* axis : {&xAxis, &yAxis}) {
         axis->setViewportMin(0.0);
         axis->setViewportMax(1.0);
@@ -94,8 +94,8 @@ RenderResult renderPointCloudMarker(const MarkerStyle& style)
 
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
-    yAxis.setOrientation(Axis::Vertical);
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
     for (auto* axis : {&xAxis, &yAxis}) {
         axis->setViewportMin(0.0);
         axis->setViewportMax(1.0);
@@ -467,8 +467,8 @@ void MarkerShapesTest::pixelMarkerHitTestIgnoresMarkerSize()
 {
     auto xAxis = Axis{};
     auto yAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
-    yAxis.setOrientation(Axis::Vertical);
+    xAxis.setOrientation(Qt::Horizontal);
+    yAxis.setOrientation(Qt::Vertical);
     for (auto* axis : {&xAxis, &yAxis}) {
         axis->setViewportMin(0.0);
         axis->setViewportMax(1.0);
@@ -503,16 +503,16 @@ void MarkerShapesTest::gradientStrokeColorsMarkersBetweenStops()
                       "import QAccelPlot\n"
                       "LineCurve {\n"
                       "    width: 64; height: 64\n"
-                      "    xAxis: Axis { orientation: Axis.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
-                      "    yAxis: Axis { orientation: Axis.Vertical; viewportMin: 0; viewportMax: 1 }\n"
+                      "    xAxis: Axis { orientation: Qt.Horizontal; viewportMin: 0; viewportMax: 1 }\n"
+                      "    yAxis: Axis { orientation: Qt.Vertical; viewportMin: 0; viewportMax: 1 }\n"
                       "    lineStyle: NoLine {}\n"
                       "    marker.shape: LineCurve.Square\n"
                       "    marker.size: 8\n"
                       "    antialiasingEnabled: false\n"
                       "    effects: GradientStroke {\n"
-                      "        direction: GradientDirection.Horizontal\n"
-                      "        gradientValueMinSource: GradientValueSource.Fixed; gradientValueMin: 0\n"
-                      "        gradientValueMaxSource: GradientValueSource.Fixed; gradientValueMax: 1\n"
+                      "        direction: Qt.Horizontal\n"
+                      "        valueMinSource: GradientValueSource.Fixed; valueMin: 0\n"
+                      "        valueMaxSource: GradientValueSource.Fixed; valueMax: 1\n"
                       "        gradient: Gradient {\n"
                       "            GradientStop { position: 0.0; color: \"#ff0000\" }\n"
                       "            GradientStop { position: 0.5; color: \"#00ff00\" }\n"

@@ -13,7 +13,7 @@
 
 namespace QAccelPlot {
 
-// Default relative tolerance for nearly_equal. Two machine-epsilon steps keep
+// Default relative tolerance for nearlyEqual. Two machine-epsilon steps keep
 // the comparison close to representable double precision at every magnitude.
 // Can be overridden at compile time: -DQACCELPLOT_NEARLY_EQUAL_EPSILON=1e-9
 #ifndef QACCELPLOT_NEARLY_EQUAL_EPSILON
@@ -26,10 +26,10 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 // an optional absolute tolerance.
 //
 //  - If a == b exactly (including both infinite with the same sign), returns true.
-//  - The relative test scales with max(|a|, |b|) * eps_rel, preserving distinct
+//  - The relative test scales with max(|a|, |b|) * relativeEpsilon, preserving distinct
 //    values near zero.
-//  - Pass eps_abs explicitly when an absolute tolerance is needed.
-[[nodiscard]] inline bool nearly_equal(double a, double b, double eps_rel = kNearlyEqualEpsilon, double eps_abs = 0.0) noexcept
+//  - Pass absoluteEpsilon explicitly when an absolute tolerance is needed.
+[[nodiscard]] inline bool nearlyEqual(double a, double b, double relativeEpsilon = kNearlyEqualEpsilon, double absoluteEpsilon = 0.0) noexcept
 {
     if (a == b) {
         return true;
@@ -41,7 +41,7 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 
     const auto diff = std::abs(a - b);
     const auto scale = std::max(std::abs(a), std::abs(b));
-    return diff <= std::max(eps_abs, scale * eps_rel);
+    return diff <= std::max(absoluteEpsilon, scale * relativeEpsilon);
 }
 
 // Returns true when float coordinates stored relative to origin lose precision in the

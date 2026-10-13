@@ -60,7 +60,7 @@ float normalizedGradientValue(const GradientColorPayload& gradientPayload, const
 {
     const auto valueMin = gradientPayload.gradientValueMin.value_or(0.0);
     const auto valueMax = gradientPayload.gradientValueMax.value_or(1.0);
-    const auto value = (gradientPayload.direction == GradientDirection::Horizontal) ? dataX : dataY;
+    const auto value = (gradientPayload.direction == Qt::Horizontal) ? dataX : dataY;
     const auto normalized = unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
     if (std::isnan(normalized)) {
         // Invalid samples are culled by the vertex shader; any color is acceptable.

@@ -43,9 +43,9 @@ void BandSeriesCapacityTest::samplesBeyondCapacityAreNotDrawn()
     window.setColor(Qt::black);
     window.resize(kSize, kSize);
     auto xAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = Axis{};
-    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
 
     // Samples within the capacity cover the left half, the ones beyond it the right half.
     auto data = std::vector<float>{};

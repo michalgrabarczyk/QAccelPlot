@@ -172,7 +172,7 @@ Window {
                 viewportMin: window.horizontal ? -0.5 : 0
                 viewportMax: window.horizontal ? 11.5 : 160
                 layoutSize: 70
-                axisTitlePadding: 50
+                labelPadding: 50
                 label: window.horizontal ? "Month" : "Revenue (k$)"
                 ticker.tickCount: window.horizontal ? 12 : 9
                 ticker.subtickCount: window.horizontal ? 0 : 4
@@ -237,7 +237,7 @@ Window {
                 viewportMin: -15
                 viewportMax: 35
                 layoutSize: 70
-                axisTitlePadding: 50
+                labelPadding: 50
                 label: "Profit (k$)"
             }
 

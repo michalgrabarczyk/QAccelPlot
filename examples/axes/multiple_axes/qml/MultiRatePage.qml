@@ -50,7 +50,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: -1.8
                 viewportMax: 1.8
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Amplitude"
                 baselineWidth: 2
@@ -61,7 +61,7 @@ Item {
                     id: fastAxis
                     viewportMin: 0
                     viewportMax: 0.5
-                    orientation: QAccelPlot.Axis.Horizontal
+                    orientation: Qt.Horizontal
                     side: QAccelPlot.Axis.Bottom
                     label: "Fast channel time (s)"
                     baselineColor: root.colorPalette.seriesSecondary

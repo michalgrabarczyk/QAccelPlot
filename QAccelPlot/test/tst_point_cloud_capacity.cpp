@@ -43,9 +43,9 @@ void PointCloudCapacityTest::pointsBeyondCapacityAreNotHovered()
     window.setColor(Qt::black);
     window.resize(kSize, kSize);
     auto xAxis = Axis{};
-    xAxis.setOrientation(Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = Axis{};
-    yAxis.setOrientation(Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
 
     // Points within the capacity sit at the left, the ones beyond it at the right.
     auto data = std::vector<float>{};

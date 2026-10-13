@@ -61,7 +61,7 @@ Window {
             yAxis: QAccelPlot.Axis {
                 viewportMin: 16
                 viewportMax: 27
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Temperature (°C)"
                 labelColor: colorPalette.axisLabel

@@ -119,12 +119,12 @@ void SelectionTool::setMode(const Mode mode)
     emit modeChanged();
 }
 
-int SelectionTool::button() const
+Qt::MouseButton SelectionTool::button() const
 {
     return button_;
 }
 
-void SelectionTool::setButton(const int button)
+void SelectionTool::setButton(const Qt::MouseButton button)
 {
     if (button_ == button) {
         return;
@@ -134,12 +134,12 @@ void SelectionTool::setButton(const int button)
     emit buttonChanged();
 }
 
-int SelectionTool::modifiers() const
+Qt::KeyboardModifiers SelectionTool::modifiers() const
 {
     return modifiers_;
 }
 
-void SelectionTool::setModifiers(const int modifiers)
+void SelectionTool::setModifiers(const Qt::KeyboardModifiers modifiers)
 {
     if (modifiers_ == modifiers) {
         return;

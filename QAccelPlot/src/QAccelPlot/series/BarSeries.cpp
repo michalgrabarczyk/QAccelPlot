@@ -132,7 +132,7 @@ qreal BarSeries::barWidth() const
 void BarSeries::setBarWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(barWidth_, clamped)) {
+    if (nearlyEqual(barWidth_, clamped)) {
         return;
     }
     barWidth_ = clamped;
@@ -147,7 +147,7 @@ qreal BarSeries::barOffset() const
 
 void BarSeries::setBarOffset(const qreal offset)
 {
-    if (nearly_equal(barOffset_, offset)) {
+    if (nearlyEqual(barOffset_, offset)) {
         return;
     }
     barOffset_ = offset;
@@ -162,7 +162,7 @@ qreal BarSeries::baselineValue() const
 
 void BarSeries::setBaselineValue(const qreal baselineValue)
 {
-    if (std::isnan(baselineValue) || nearly_equal(baselineValue_, baselineValue)) {
+    if (std::isnan(baselineValue) || nearlyEqual(baselineValue_, baselineValue)) {
         return;
     }
     baselineValue_ = baselineValue;
@@ -178,7 +178,7 @@ qreal BarSeries::minimumWidth() const
 void BarSeries::setMinimumWidth(const qreal width)
 {
     const auto clamped = std::max(width, qreal{0.0});
-    if (nearly_equal(minimumWidth_, clamped)) {
+    if (nearlyEqual(minimumWidth_, clamped)) {
         return;
     }
     minimumWidth_ = clamped;

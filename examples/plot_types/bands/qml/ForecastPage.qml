@@ -93,7 +93,7 @@ Item {
             yAxis: ExampleAxis {
                 viewportMin: 80
                 viewportMax: 280
-                axisTitlePadding: 40
+                labelPadding: 40
                 layoutSize: 60
                 label: "Demand (units)"
             }

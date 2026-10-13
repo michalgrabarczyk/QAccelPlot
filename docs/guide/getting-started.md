@@ -131,7 +131,7 @@ Window {
             viewportMin: -1.2
             viewportMax: 1.2
             label: "Amplitude"
-            axisTitlePadding: 34
+            labelPadding: 34
         }
 
         QAccelPlot.LineCurve {

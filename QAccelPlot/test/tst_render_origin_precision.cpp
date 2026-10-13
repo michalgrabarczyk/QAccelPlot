@@ -41,7 +41,7 @@ std::vector<double> yearOfSamples()
     return data;
 }
 
-std::unique_ptr<Axis> makeAxis(const Axis::Orientation orientation, const qreal min, const qreal max)
+std::unique_ptr<Axis> makeAxis(const Qt::Orientation orientation, const qreal min, const qreal max)
 {
     auto axis = std::make_unique<Axis>();
     axis->setOrientation(orientation);
@@ -79,8 +79,8 @@ void RenderOriginPrecisionTest::init()
     }
     window_->setColor(Qt::black);
     window_->resize(kWidth, kHeight);
-    xAxis_ = makeAxis(Axis::Horizontal, kViewportStart, kViewportStart + kMarkerCount);
-    yAxis_ = makeAxis(Axis::Vertical, 0.0, 1.0);
+    xAxis_ = makeAxis(Qt::Horizontal, kViewportStart, kViewportStart + kMarkerCount);
+    yAxis_ = makeAxis(Qt::Vertical, 0.0, 1.0);
 }
 
 void RenderOriginPrecisionTest::cleanup()

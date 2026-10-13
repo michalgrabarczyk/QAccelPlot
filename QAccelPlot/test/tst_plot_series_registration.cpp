@@ -117,9 +117,9 @@ void PlotSeriesRegistrationTest::plotRectIsNeverAssignedOnRenderThread()
     }
     window.resize(300, 200);
     auto xAxis = QAccelPlot::Axis{};
-    xAxis.setOrientation(QAccelPlot::Axis::Horizontal);
+    xAxis.setOrientation(Qt::Horizontal);
     auto yAxis = QAccelPlot::Axis{};
-    yAxis.setOrientation(QAccelPlot::Axis::Vertical);
+    yAxis.setOrientation(Qt::Vertical);
     auto plot = std::make_unique<PlotView>(window.contentItem());
     plot->setSize({300, 200});
 
