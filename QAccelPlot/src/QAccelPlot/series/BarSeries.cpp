@@ -473,6 +473,15 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     if (drawnCount <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty() || !window) {
         return releaseNode(oldNode);
     }
+    if (!Internal::supportsCustomShaderRendering(window)) {
+        static auto warned = false;
+        if (!warned) {
+            qCWarning(lcQAccelPlot) << "BarSeries custom rendering requires a hardware scene graph backend. Skipping updatePaintNode on the software backend.";
+            warned = true;
+        }
+        delete oldNode;
+        return nullptr;
+    }
 
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     const auto nodeRecreated = !node;
