@@ -110,7 +110,8 @@ bool SpatialGrid::ItemBounds::isValid() const
 
 int SpatialGrid::cellIndex(const double value, const double min, const double cellSize, const int count)
 {
-    return static_cast<int>(std::clamp((value - min) / cellSize, 0.0, static_cast<double>(count - 1)));
+    const auto cell = (value - min) / cellSize;
+    return cell > 0.0 ? static_cast<int>(std::min(cell, static_cast<double>(count - 1))) : 0;
 }
 
 template <typename T>
@@ -199,12 +200,12 @@ template <typename T> void SpatialGrid::computeDataBounds(const T* data, const i
     maxX_ = boundedX_ ? maxX : 0.0;
     maxY_ = boundedY_ ? maxY : 0.0;
 
-    // Add small padding to avoid zero-size ranges
+    // Widen an extent of one value. Far from zero, adding 1 leaves a coordinate unchanged.
     if (maxX_ <= minX_) {
-        maxX_ = minX_ + 1.0;
+        maxX_ = std::max(minX_ + 1.0, std::nextafter(minX_, kInf));
     }
     if (maxY_ <= minY_) {
-        maxY_ = minY_ + 1.0;
+        maxY_ = std::max(minY_ + 1.0, std::nextafter(minY_, kInf));
     }
 }
 
