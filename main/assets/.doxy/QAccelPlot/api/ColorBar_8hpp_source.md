@@ -41,7 +41,7 @@ class ColorBar : public QQuickPaintedItem {
 
     
     Q_PROPERTY(PointCloud* series READ series WRITE setSeries NOTIFY seriesChanged)
-    Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
     Q_PROPERTY(QFont labelFont READ labelFont WRITE setLabelFont NOTIFY labelFontChanged)
     Q_PROPERTY(QColor labelColor READ labelColor WRITE setLabelColor NOTIFY labelColorChanged)
@@ -51,25 +51,18 @@ class ColorBar : public QQuickPaintedItem {
     Q_PROPERTY(qreal borderWidth READ borderWidth WRITE setBorderWidth NOTIFY borderWidthChanged)
     Q_PROPERTY(qreal tickLabelWidth READ tickLabelWidth WRITE setTickLabelWidth NOTIFY tickLabelWidthChanged)
     Q_PROPERTY(bool interactive READ interactive WRITE setInteractive NOTIFY interactiveChanged)
-    Q_PROPERTY(double zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
+    Q_PROPERTY(qreal zoomScaleFactor READ zoomScaleFactor WRITE setZoomScaleFactor NOTIFY zoomScaleFactorChanged)
     Q_PROPERTY(bool hovered READ hovered NOTIFY hoveredChanged)
     Q_PROPERTY(AxisTicker* ticker READ ticker CONSTANT)
 
 public:
-    enum Orientation {
-        Horizontal, 
-        Vertical    
-    };
-    Q_ENUM(Orientation)
-
-    
     explicit ColorBar(QQuickItem* parent = nullptr);
 
     PointCloud* series() const;
     void setSeries(PointCloud* series);
 
-    Orientation orientation() const;
-    void setOrientation(Orientation orientation);
+    Qt::Orientation orientation() const;
+    void setOrientation(Qt::Orientation orientation);
 
     QString label() const;
     void setLabel(const QString& label);
@@ -98,8 +91,8 @@ public:
     bool interactive() const;
     void setInteractive(bool interactive);
 
-    double zoomScaleFactor() const;
-    void setZoomScaleFactor(double factor);
+    qreal zoomScaleFactor() const;
+    void setZoomScaleFactor(qreal factor);
 
     bool hovered() const;
 
@@ -172,7 +165,7 @@ private:
     QPointer<PointCloud> series_;
     QList<QMetaObject::Connection> seriesConnections_;
     QMetaObject::Connection colormapConnection_;
-    Orientation orientation_{Vertical};
+    Qt::Orientation orientation_{Qt::Vertical};
     QString label_;
     QFont labelFont_;
     QColor labelColor_{ColorPalette::dark().axisLine};
@@ -182,7 +175,7 @@ private:
     qreal borderWidth_{1.0};
     qreal tickLabelWidth_{16.0};
     bool interactive_{false};
-    double zoomScaleFactor_{0.9};
+    qreal zoomScaleFactor_{0.9};
     bool hovered_{false};
     AxisTicker* ticker_;
     bool isDragging_{false};

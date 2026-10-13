@@ -1759,27 +1759,27 @@
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-16"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, int binCount) <br><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into</strong>binCount_ <em>equal bins spanning the finite samples.</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-16"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, int binCount) <br><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into__binCount</em> <em>equal bins spanning the finite samples.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-26"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, int binCount, double min, double max) <br><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into</strong>binCount_ <em>equal bins from__min</em> <em>to__max</em> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-26"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, int binCount, double min, double max) <br><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into__binCount</em> <em>equal bins from__min</em> <em>to__max</em> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-36"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, std::vector&lt; double &gt; edges) <br><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into the bins between</strong>edges_ <em>, which must be finite and strictly increasing.</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-36"><strong>fromSamples</strong></a> (const double * samples, std::size_t sampleCount, std::vector&lt; double &gt; edges) <br><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into the bins between__edges</em> <em>, which must be finite and strictly increasing.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-46"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, int binCount) <br><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__binCount</em> <em>).</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-46"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, int binCount) <br><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>binCount</em> <em>).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-56"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, int binCount, double min, double max) <br><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__binCount</em> <em>,__min</em> <em>,__max</em> <em>).</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-56"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, int binCount, double min, double max) <br><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>binCount</em> _,_<em>min</em> _,_<em>max</em> <em>).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Histogram</strong></a></td>
-<td style="text-align: left;"><a href="#function-fromsamples-66"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, std::vector&lt; double &gt; edges) <br><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__edges</em> <em>).</em></td>
+<td style="text-align: left;"><a href="#function-fromsamples-66"><strong>fromSamples</strong></a> (const float * samples, std::size_t sampleCount, std::vector&lt; double &gt; edges) <br><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>edges</em> <em>).</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::vector&lt; double &gt;</td>
@@ -1911,7 +1911,7 @@
 <hr>
 
 <h3 id="function-fromsamples-16">function fromSamples<a class="headerlink" href="#function-fromsamples-16" title="Permanent link">&para;</a></h3>
-<p><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into</strong>binCount_ <em>equal bins spanning the finite samples.</em>
+<p><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into__binCount</em> <em>equal bins spanning the finite samples.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>
@@ -1922,7 +1922,7 @@
 <hr>
 
 <h3 id="function-fromsamples-26">function fromSamples<a class="headerlink" href="#function-fromsamples-26" title="Permanent link">&para;</a></h3>
-<p><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into</strong>binCount_ <em>equal bins from__min</em> <em>to__max</em> <em>.</em>
+<p><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into__binCount</em> <em>equal bins from__min</em> <em>to__max</em> <em>.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>
@@ -1934,7 +1934,7 @@
 <hr>
 
 <h3 id="function-fromsamples-36">function fromSamples<a class="headerlink" href="#function-fromsamples-36" title="Permanent link">&para;</a></h3>
-<p><em>Counts</em> <em>sampleCount</em> <strong><em>samples</em> _into the bins between</strong>edges_ <em>, which must be finite and strictly increasing.</em>
+<p><em>Counts</em> <em>sampleCount</em> __<em>samples</em> <em>into the bins between__edges</em> <em>, which must be finite and strictly increasing.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>
@@ -1944,7 +1944,7 @@
 <hr>
 
 <h3 id="function-fromsamples-46">function fromSamples<a class="headerlink" href="#function-fromsamples-46" title="Permanent link">&para;</a></h3>
-<p><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__binCount</em> <em>).</em>
+<p><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>binCount</em> <em>).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>
@@ -1954,7 +1954,7 @@
 <hr>
 
 <h3 id="function-fromsamples-56">function fromSamples<a class="headerlink" href="#function-fromsamples-56" title="Permanent link">&para;</a></h3>
-<p><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__binCount</em> <em>,__min</em> <em>,__max</em> <em>).</em>
+<p><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>binCount</em> _,_<em>min</em> _,_<em>max</em> <em>).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>
@@ -1966,7 +1966,7 @@
 <hr>
 
 <h3 id="function-fromsamples-66">function fromSamples<a class="headerlink" href="#function-fromsamples-66" title="Permanent link">&para;</a></h3>
-<p><em>Float overload of</em> <code>fromSamples</code> <em>(__samples</em> <em>,__sampleCount</em> <em>,__edges</em> <em>).</em>
+<p><em>Float overload of</em> <code>fromSamples</code> _(_<em>samples</em> _,_<em>sampleCount</em> _,_<em>edges</em> <em>).</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">static</span><span class="w"> </span><span class="n">Histogram</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">Histogram</span><span class="o">::</span><span class="n">fromSamples</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">samples</span><span class="p">,</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">sampleCount</span><span class="p">,</span>

@@ -44,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**dimension**](#variable-dimension)  <br> |
+|  Qt::Orientation | [**dimension**](#variable-dimension)  <br> |
 |  const [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* | [**series**](#variable-series)  <br> |
 
 
@@ -99,7 +99,7 @@
 ### variable dimension {#variable-dimension}
 
 ```C++
-Orientation QAccelPlot::Axis::DataRangeSource::dimension;
+Qt::Orientation QAccelPlot::Axis::DataRangeSource::dimension;
 ```
 
 

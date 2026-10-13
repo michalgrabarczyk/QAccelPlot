@@ -1807,6 +1807,22 @@
   range has not been computed yet.</li>
 <li>Renamed <code>LineCurve::setDataFNoRangeWithCache()</code> to <code>setDataFWithCache()</code>.</li>
 <li>Renamed <code>Axis::updateDataRange()</code> to <code>setDataRange()</code>.</li>
+<li><code>Axis.orientation</code>, <code>ColorBar.orientation</code>, and the <code>direction</code> of <code>GradientFill</code>
+  and <code>GradientStroke</code> take <code>Qt.Horizontal</code> / <code>Qt.Vertical</code>. This replaces
+  <code>Axis.Orientation</code>, <code>ColorBar.Orientation</code>, and <code>GradientDirection</code>.</li>
+<li>Renamed <code>GradientFill</code> and <code>GradientStroke</code> properties: <code>gradientValueMin</code> →
+  <code>valueMin</code>, <code>gradientValueMax</code> → <code>valueMax</code>, <code>gradientValueMinSource</code> →
+  <code>valueMinSource</code>, and <code>gradientValueMaxSource</code> → <code>valueMaxSource</code>.</li>
+<li>Renamed <code>Axis.axisTitlePadding</code> to <code>labelPadding</code> and <code>Axis.axisLinePadding</code> to
+  <code>baselinePadding</code>.</li>
+<li><code>Axis.labelPadding</code>, <code>Axis.baselinePadding</code>, and <code>zoomScaleFactor</code> of <code>Axis</code> and
+  <code>ColorBar</code> are <code>qreal</code>.</li>
+<li><code>button</code> is a <code>Qt::MouseButton</code> and <code>modifiers</code> a <code>Qt::KeyboardModifiers</code> on
+  <code>PlotMouseEvent</code>, <code>SelectionTool</code>, and <code>PlotView.rectangleZoom</code>, instead of <code>int</code>.</li>
+<li>Renamed <code>nearly_equal()</code> in <code>MathUtils.hpp</code> to <code>nearlyEqual()</code>.</li>
+<li>The QML module version follows the project version, 0.3 for now, instead of
+  1.0. Replace <code>import QAccelPlot 1.0</code> with <code>import QAccelPlot</code>.</li>
+<li><code>PlotView::rescaleAllAxes()</code> is public instead of protected.</li>
 </ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 <ul>

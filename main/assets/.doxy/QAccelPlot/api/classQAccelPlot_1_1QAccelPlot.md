@@ -129,6 +129,7 @@ flowchart TB
 |  bool | [**pointerInside**](#function-pointerinside-22) () const<br>_Returns true while the observed pointer is inside plotRect._  |
 |  QPointF | [**pointerPosition**](#function-pointerposition-22) () const<br>_Returns the last observed plot-local pointer position; the origin before the first pointer event._  |
 |  [**PlotRectangleZoom**](classQAccelPlot_1_1PlotRectangleZoom.md) \* | [**rectangleZoom**](#function-rectanglezoom-22) () const<br>_Returns the rectangle zoom configuration object._  |
+|  Q\_INVOKABLE void | [**rescaleAllAxes**](#function-rescaleallaxes) () <br>_Calls_ `Axis::rescaleToData()` _on all attached axes._ |
 |  QList&lt; [**PlotSeries**](classQAccelPlot_1_1PlotSeries.md) \* &gt; | [**series**](#function-series-22) () const<br>_Returns all plot-series children currently registered with this canvas._  |
 |  void | [**setAxesAreaColor**](#function-setaxesareacolor) (const QColor & c) <br>_Sets the axes surround background color to_ _c_ _._ |
 |  void | [**setPadding**](#function-setpadding) (qreal p) <br>_Sets the canvas padding to_ _p_ _pixels._ |
@@ -167,11 +168,6 @@ flowchart TB
 
 
 
-## Protected Functions
-
-| Type | Name |
-| ---: | :--- |
-|  Q\_INVOKABLE void | [**rescaleAllAxes**](#function-rescaleallaxes) () <br>_Calls_ `Axis::rescaleToData()` _on all attached axes._ |
 
 
 
@@ -973,6 +969,21 @@ PlotRectangleZoom * QAccelPlot::QAccelPlot::rectangleZoom () const
 
 
 
+### function rescaleAllAxes {#function-rescaleallaxes}
+
+_Calls_ `Axis::rescaleToData()` _on all attached axes._
+```C++
+Q_INVOKABLE void QAccelPlot::QAccelPlot::rescaleAllAxes () 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function series {#function-series-22}
 
 _Returns all plot-series children currently registered with this canvas._ 
@@ -1189,23 +1200,6 @@ Q_INVOKABLE bool QAccelPlot::QAccelPlot::zoomToRect (
 _Destroys the plot after disconnecting attached axis signals._ 
 ```C++
 QAccelPlot::QAccelPlot::~QAccelPlot () override
-```
-
-
-
-
-<hr>
-## Protected Functions Documentation
-
-
-
-
-
-### function rescaleAllAxes {#function-rescaleallaxes}
-
-_Calls_ `Axis::rescaleToData()` _on all attached axes._
-```C++
-Q_INVOKABLE void QAccelPlot::QAccelPlot::rescaleAllAxes () 
 ```
 
 

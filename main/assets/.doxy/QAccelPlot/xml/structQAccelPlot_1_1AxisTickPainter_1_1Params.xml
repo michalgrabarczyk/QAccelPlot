@@ -4,13 +4,13 @@
     <compoundname>QAccelPlot::AxisTickPainter::Params</compoundname>
     <includes local="no">AxisTickPainter.hpp</includes>
     <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a4df969288041178d1c7ad3cb8bb8a28c" prot="public" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1Axis_1a8b3fd2b5709a90d5d87766c52768aa36" kindref="member">Axis::Orientation</ref></type>
-        <definition>Axis::Orientation QAccelPlot::AxisTickPainter::Params::orientation</definition>
+      <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a5d811ed997b4a7368384c7e2569a09df" prot="public" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::AxisTickPainter::Params::orientation</definition>
         <argsstring></argsstring>
         <name>orientation</name>
         <qualifiedname>QAccelPlot::AxisTickPainter::Params::orientation</qualifiedname>
-        <initializer>{Axis::Horizontal}</initializer>
+        <initializer>{Qt::Horizontal}</initializer>
         <briefdescription>
 <para><ref refid="classQAccelPlot_1_1Axis" kindref="compound">Axis</ref> orientation. </para>
         </briefdescription>
@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="35" column="27" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="35" bodyend="35"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" line="35" column="25" bodyfile="QAccelPlot/src/QAccelPlot/axis/AxisTickPainter.hpp" bodystart="35" bodyend="35"/>
       </memberdef>
       <memberdef kind="variable" id="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49f15832adc78dbc352a2506e34c7787" prot="public" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1Axis_1a53608b3c6fe0e1d195faa9b0c3b7a233" kindref="member">Axis::Side</ref></type>
@@ -161,7 +161,7 @@
       <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a7c0a3268ca5e6ce97ab4283b9f36ba55" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>hoverColor</name></member>
       <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49e1ad29634894f9c4e3201e5552c64f" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>hovered</name></member>
       <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a55da5f11220dbbc111e56bc1f20ec17b" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>labelOverflow</name></member>
-      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a4df969288041178d1c7ad3cb8bb8a28c" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>orientation</name></member>
+      <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a5d811ed997b4a7368384c7e2569a09df" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>orientation</name></member>
       <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a49f15832adc78dbc352a2506e34c7787" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>side</name></member>
       <member refid="structQAccelPlot_1_1AxisTickPainter_1_1Params_1a170a3d7f8fb11782d5da486a1d7f7094" prot="public" virt="non-virtual"><scope>QAccelPlot::AxisTickPainter::Params</scope><name>ticker</name></member>
     </listofallmembers>

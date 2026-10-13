@@ -138,18 +138,18 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a7ba009c32760eb70fc728f20636e3533" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotDragRect_1a3b37661d8dc6d5d8c2311cab2b352150" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>static bool QAccelPlot::PlotDragRect::modifiersMatch</definition>
-        <argsstring>(int pressed, int required)</argsstring>
+        <argsstring>(Qt::KeyboardModifiers pressed, Qt::KeyboardModifiers required)</argsstring>
         <name>modifiersMatch</name>
         <qualifiedname>QAccelPlot::PlotDragRect::modifiersMatch</qualifiedname>
         <param>
-          <type>int</type>
+          <type>Qt::KeyboardModifiers</type>
           <declname>pressed</declname>
         </param>
         <param>
-          <type>int</type>
+          <type>Qt::KeyboardModifiers</type>
           <declname>required</declname>
         </param>
         <briefdescription>
@@ -208,7 +208,7 @@
       <member refid="classQAccelPlot_1_1PlotDragRect_1af566454a83f94f6e384c35e3e918ea47" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>end</name></member>
       <member refid="classQAccelPlot_1_1PlotDragRect_1a7129ad997e231c3e3fc4339358f23beb" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>end_</name></member>
       <member refid="classQAccelPlot_1_1PlotDragRect_1a8ab7dcd956325dc753dd99f517fea7f6" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>meetsMinimum</name></member>
-      <member refid="classQAccelPlot_1_1PlotDragRect_1a7ba009c32760eb70fc728f20636e3533" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>modifiersMatch</name></member>
+      <member refid="classQAccelPlot_1_1PlotDragRect_1a3b37661d8dc6d5d8c2311cab2b352150" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>modifiersMatch</name></member>
       <member refid="classQAccelPlot_1_1PlotDragRect_1a6e306033feca8a5d850ccedef668ebf9" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>moveTo</name></member>
       <member refid="classQAccelPlot_1_1PlotDragRect_1ac704f5b5770fbb41afaa8c68ed71a340" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>rect</name></member>
       <member refid="classQAccelPlot_1_1PlotDragRect_1ac596d0003d0e41ef5e8153daddff6670" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotDragRect</scope><name>start_</name></member>

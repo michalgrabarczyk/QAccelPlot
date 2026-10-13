@@ -130,9 +130,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="41" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a482493a643a7684a5d68cc8c26a366d2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::button</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1af06eefdb199f43bab32a232779dcf3aa" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::SelectionTool::button</definition>
         <argsstring></argsstring>
         <name>button</name>
         <qualifiedname>QAccelPlot::SelectionTool::button</qualifiedname>
@@ -147,9 +147,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="43" column="5" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1a2dd0d1460e483c16fdc6dd4f6ae4b946" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::modifiers</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1SelectionTool_1ac27e10ef1e49ac9b47ab8a7f83e4274d" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers</definition>
         <argsstring></argsstring>
         <name>modifiers</name>
         <qualifiedname>QAccelPlot::SelectionTool::modifiers</qualifiedname>
@@ -434,9 +434,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="210" column="10" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="210" bodyend="210"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ae3c116c9c9ee2994265089147035f845" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::button_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1a0cf3c75d9f35a3b75ca36e6d94719b41" prot="private" static="no" mutable="no">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::SelectionTool::button_</definition>
         <argsstring></argsstring>
         <name>button_</name>
         <qualifiedname>QAccelPlot::SelectionTool::button_</qualifiedname>
@@ -447,11 +447,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="211" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="211" bodyend="211"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="211" column="21" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="211" bodyend="211"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ac130489459549525a3582648a3391c84" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::modifiers_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1ad9eb9343a70a1787cb095b594f7bf36e" prot="private" static="no" mutable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers_</definition>
         <argsstring></argsstring>
         <name>modifiers_</name>
         <qualifiedname>QAccelPlot::SelectionTool::modifiers_</qualifiedname>
@@ -462,7 +462,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="212" column="9" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="212" bodyend="212"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="212" column="27" bodyfile="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" bodystart="212" bodyend="212"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1SelectionTool_1add6ebc8920d08d7b4e9459b2d1cc68b3" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -816,9 +816,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="102" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a55d0ba8782f1f42174e97508afbb8758" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::button</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a5e465db7449aab54c2b53aec9e3128c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::MouseButton</type>
+        <definition>Qt::MouseButton QAccelPlot::SelectionTool::button</definition>
         <argsstring>() const</argsstring>
         <name>button</name>
         <qualifiedname>QAccelPlot::SelectionTool::button</qualifiedname>
@@ -829,16 +829,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="104" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="104" column="21"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a682c8d6b847be7a2b37efd2bb69f295f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1ac9ad9ad747495df362927304081f9cee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::SelectionTool::setButton</definition>
-        <argsstring>(int button)</argsstring>
+        <argsstring>(Qt::MouseButton button)</argsstring>
         <name>setButton</name>
         <qualifiedname>QAccelPlot::SelectionTool::setButton</qualifiedname>
         <param>
-          <type>int</type>
+          <type>Qt::MouseButton</type>
           <declname>button</declname>
         </param>
         <briefdescription>
@@ -850,9 +850,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="106" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a68386d81298c48e4e921da4ecbec3c43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::SelectionTool::modifiers</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a4265e345615078d305bdb626baa4a40f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers</definition>
         <argsstring>() const</argsstring>
         <name>modifiers</name>
         <qualifiedname>QAccelPlot::SelectionTool::modifiers</qualifiedname>
@@ -863,16 +863,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="108" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/inspection/SelectionTool.hpp" line="108" column="27"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1a73ea5168756a77bdb777e8c6f7517f90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1SelectionTool_1af125c2737ad6f40e673b1d9f544d6232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::SelectionTool::setModifiers</definition>
-        <argsstring>(int modifiers)</argsstring>
+        <argsstring>(Qt::KeyboardModifiers modifiers)</argsstring>
         <name>setModifiers</name>
         <qualifiedname>QAccelPlot::SelectionTool::setModifiers</qualifiedname>
         <param>
-          <type>int</type>
+          <type>Qt::KeyboardModifiers</type>
           <declname>modifiers</declname>
         </param>
         <briefdescription>
@@ -1693,9 +1693,9 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1ac3b660f6fb7cc7c8c02c885715ad42f9" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColor_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a476d72d0797e4d2d46bc4ffda21e28a6" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>borderColorChanged</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a2dda320d5bf84b04d53e4db8494db210a3498513b91f73b69e8a91a07d73589f3" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>Box</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a482493a643a7684a5d68cc8c26a366d2" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a55d0ba8782f1f42174e97508afbb8758" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1ae3c116c9c9ee2994265089147035f845" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1af06eefdb199f43bab32a232779dcf3aa" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a5e465db7449aab54c2b53aec9e3128c9" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a0cf3c75d9f35a3b75ca36e6d94719b41" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>button_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1abc56b7a76800775cd1088b912c5d14e1" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>buttonChanged</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1adac56b9ed68c65f5b22f128fdf21ade2" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>cancelGesture</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a0bc4ff93e10ea2926c25ed2b6179945a" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>clear</name></member>
@@ -1728,9 +1728,9 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1a5137b8c4cf816f58dd7582b83c5217f0" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ab63cf648a53671b4e9f589d9bc933c36" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad6b343d989482400e3f9f17ad4ec57c2" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>model_</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a2dd0d1460e483c16fdc6dd4f6ae4b946" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a68386d81298c48e4e921da4ecbec3c43" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1ac130489459549525a3582648a3391c84" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers_</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac27e10ef1e49ac9b47ab8a7f83e4274d" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1a4265e345615078d305bdb626baa4a40f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ad9eb9343a70a1787cb095b594f7bf36e" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiers_</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a668ffc7e330ede5641788259103cc205" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>modifiersChanged</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a6a6aa63fb0704d100c856b1d9c37f049" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>move</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a2a5bba858d000c6f352043cec6b841a5" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>pixelRect</name></member>
@@ -1762,12 +1762,12 @@
       <member refid="classQAccelPlot_1_1SelectionTool_1a6a7eefce6446bf3adb4c163124af5441" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>SelectionTool</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a4a00094d76e606bfc2798a8d3490fd36" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>selects</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a92e1cd2d957ca494f9c5b07ae809359a" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setBorderColor</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a682c8d6b847be7a2b37efd2bb69f295f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setButton</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1ac9ad9ad747495df362927304081f9cee" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setButton</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ae5ad9c004730614d4e9483c5b617830f" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setEnabled</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a1c7920926c2465388b1af6622171d420" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setFillColor</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ac34edcabbc3d600a08db159eb7a2c3db" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMinimumSize</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1afa44124a282a30d5c1611bbfdaa01692" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setMode</name></member>
-      <member refid="classQAccelPlot_1_1SelectionTool_1a73ea5168756a77bdb777e8c6f7517f90" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setModifiers</name></member>
+      <member refid="classQAccelPlot_1_1SelectionTool_1af125c2737ad6f40e673b1d9f544d6232" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setModifiers</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1a99106dbee9ec99c02e49357ebc627508" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setPlot</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1accc2e2ccedb486ad93218a3faa653e38" prot="public" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRectangleVisible</name></member>
       <member refid="classQAccelPlot_1_1SelectionTool_1ad06cc72e6981d2e6462a0f6eaca1635f" prot="private" virt="non-virtual"><scope>QAccelPlot::SelectionTool</scope><name>setRegion</name></member>

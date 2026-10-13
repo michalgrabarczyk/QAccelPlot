@@ -22,9 +22,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="26" column="5" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="26" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::PlotRectangleZoom::modifiers</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1PlotRectangleZoom_1a9ed7c5381552fcfe4cceb505d3a72619" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers</definition>
         <argsstring></argsstring>
         <name>modifiers</name>
         <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers</qualifiedname>
@@ -158,9 +158,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="94" column="10" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="94" bodyend="94"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1a94e3c722eb55777497a7b498690fb1e1" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int QAccelPlot::PlotRectangleZoom::modifiers_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1af83528d1940d5b2481af0da5868ede1f" prot="private" static="no" mutable="no">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers_</definition>
         <argsstring></argsstring>
         <name>modifiers_</name>
         <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers_</qualifiedname>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="95" column="9" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="95" bodyend="95"/>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="95" column="27" bodyfile="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" bodystart="95" bodyend="95"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1PlotRectangleZoom_1aeeb6fec076d5bd27f907325be8f2cc8a" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -303,9 +303,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="47" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a9b6fe0113531d644131641f1c95cb698" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int QAccelPlot::PlotRectangleZoom::modifiers</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1ab42f948a6ae128f132b676b838e6cb9c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::KeyboardModifiers</type>
+        <definition>Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers</definition>
         <argsstring>() const</argsstring>
         <name>modifiers</name>
         <qualifiedname>QAccelPlot::PlotRectangleZoom::modifiers</qualifiedname>
@@ -316,16 +316,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="50" column="9"/>
+        <location file="QAccelPlot/src/QAccelPlot/PlotRectangleZoom.hpp" line="50" column="27"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1PlotRectangleZoom_1a0defb1b53615f9b61e533fe0964ff2cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::PlotRectangleZoom::setModifiers</definition>
-        <argsstring>(int value)</argsstring>
+        <argsstring>(Qt::KeyboardModifiers value)</argsstring>
         <name>setModifiers</name>
         <qualifiedname>QAccelPlot::PlotRectangleZoom::setModifiers</qualifiedname>
         <param>
-          <type>int</type>
+          <type>Qt::KeyboardModifiers</type>
           <declname>value</declname>
         </param>
         <briefdescription>
@@ -650,9 +650,9 @@
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae9d60343d4a911f89438c44534be34f7" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSize</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1aeeb6fec076d5bd27f907325be8f2cc8a" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSize_</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ae52bf0d544fd77ce6bcf1a3bba16f155" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>minimumSizeChanged</name></member>
-      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ad80c29d81529043a1c91e8df0530b050" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
-      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9b6fe0113531d644131641f1c95cb698" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
-      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a94e3c722eb55777497a7b498690fb1e1" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers_</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a9ed7c5381552fcfe4cceb505d3a72619" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab42f948a6ae128f132b676b838e6cb9c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1af83528d1940d5b2481af0da5868ede1f" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiers_</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a66a75c5d346b6e1610151d53902c5d6c" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>modifiersChanged</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1ab3d1a3096224cc00e528f7a479a65a21" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>PlotRectangleZoom</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a86ae3b16a617a4a7aee0788e96d67dd5" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>QAccelPlot</name></member>
@@ -664,7 +664,7 @@
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a15863440f6eddb386f9e815ed90bc316" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setEnabled</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a0ea1d8841c0b532bbdb2f83d18db547b" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setFillColor</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a1946c49716b85d26f98e37fa8212db74" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setMinimumSize</name></member>
-      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a240baa959d1377e28c47d108addc9551" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setModifiers</name></member>
+      <member refid="classQAccelPlot_1_1PlotRectangleZoom_1a0defb1b53615f9b61e533fe0964ff2cc" prot="public" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setModifiers</name></member>
       <member refid="classQAccelPlot_1_1PlotRectangleZoom_1abc3154d3298ef42cb72df019e2bdb0ca" prot="private" virt="non-virtual"><scope>QAccelPlot::PlotRectangleZoom</scope><name>setSelection</name></member>
     </listofallmembers>
   </compounddef>

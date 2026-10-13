@@ -5,37 +5,6 @@
     <basecompoundref prot="public" virt="non-virtual">QQuickPaintedItem</basecompoundref>
     <includes local="no">ColorBar.hpp</includes>
     <innerclass refid="structQAccelPlot_1_1ColorBar_1_1Layout" prot="private">QAccelPlot::ColorBar::Layout</innerclass>
-    <sectiondef kind="public-type">
-      <memberdef kind="enum" id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" prot="public" static="no" strong="no">
-        <type></type>
-        <name>Orientation</name>
-        <qualifiedname>QAccelPlot::ColorBar::Orientation</qualifiedname>
-        <enumvalue id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" prot="public">
-          <name>Horizontal</name>
-          <briefdescription>
-<para>Minimum on the left, ticks below. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" prot="public">
-          <name>Vertical</name>
-          <briefdescription>
-<para>Minimum at the bottom, ticks on the right. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-<para>Direction of the color ramp. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="105" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="105" bodyend="108"/>
-      </memberdef>
-    </sectiondef>
     <sectiondef kind="property">
       <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1ab0ad22086be4316963dd5f10c8e061b1" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
         <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
@@ -54,16 +23,16 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="65" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
-        <definition>Orientation QAccelPlot::ColorBar::orientation</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a90834e8602c8225b5ba5384dfafc05ee" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ColorBar::orientation</definition>
         <argsstring></argsstring>
         <name>orientation</name>
         <qualifiedname>QAccelPlot::ColorBar::orientation</qualifiedname>
         <read>orientation</read>
         <write>setOrientation</write>
         <briefdescription>
-<para>Direction of the ramp: <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">ColorBar.Vertical</ref></computeroutput> or <computeroutput><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" kindref="member">ColorBar.Horizontal</ref></computeroutput>. Default: <computeroutput>Vertical</computeroutput>. </para>
+<para>Direction of the ramp: <computeroutput>Qt.Vertical</computeroutput> or <computeroutput>Qt.Horizontal</computeroutput>. Default: <computeroutput>Qt.Vertical</computeroutput>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -226,9 +195,9 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="90" column="5" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="90" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a6fcb3d97d4e9ab0a621daa5bf5e8f316" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
-        <type>double</type>
-        <definition>double QAccelPlot::ColorBar::zoomScaleFactor</definition>
+      <memberdef kind="property" id="classQAccelPlot_1_1ColorBar_1a01f0b2225c44d59f2e8f17a8cfd56d01" prot="public" static="no" readable="yes" writable="yes" gettable="no" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::zoomScaleFactor</definition>
         <argsstring></argsstring>
         <name>zoomScaleFactor</name>
         <qualifiedname>QAccelPlot::ColorBar::zoomScaleFactor</qualifiedname>
@@ -291,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="276" column="14" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="276" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="269" column="14" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="269" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ac05528ed26a421c1401d290629e0888f" prot="private" static="no" mutable="no">
         <type>QList&lt; QMetaObject::Connection &gt;</type>
@@ -305,7 +274,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="277" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="277" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="270" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="270" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a70e69eca7d8adc85a719d971fc92805e" prot="private" static="no" mutable="no">
         <type>QMetaObject::Connection</type>
@@ -319,22 +288,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="278" column="29" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="278" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="271" column="29" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="271" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a5dce5fd6ba789a6eb57eb0aa1cbb3123" prot="private" static="no" mutable="no">
-        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
-        <definition>Orientation QAccelPlot::ColorBar::orientation_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a676a109e8703819bfeed05a8c4f8eaf0" prot="private" static="no" mutable="no">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ColorBar::orientation_</definition>
         <argsstring></argsstring>
         <name>orientation_</name>
         <qualifiedname>QAccelPlot::ColorBar::orientation_</qualifiedname>
-        <initializer>{<ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" kindref="member">Vertical</ref>}</initializer>
+        <initializer>{Qt::Vertical}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="279" column="17" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="279" bodyend="279"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="272" column="21" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="272" bodyend="272"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a3e4049cb3180800c936161ab7b2196e3" prot="private" static="no" mutable="no">
         <type>QString</type>
@@ -348,7 +317,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="280" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="280" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="273" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="273" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ad4a52472c7fb8af460e8b6c13a397c5f" prot="private" static="no" mutable="no">
         <type>QFont</type>
@@ -362,7 +331,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="281" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="281" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="274" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="274" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ab49dc820641b677bc2d12c7949e1292c" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -377,7 +346,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="282" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="282" bodyend="282"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="275" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="275" bodyend="275"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ad4644efe22daa7b48f35c1699177ac98" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -392,7 +361,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="283" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="283" bodyend="283"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="276" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="276" bodyend="276"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a38e0cb089ebfa2e2ddbe644ae761a2b2" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -407,7 +376,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="284" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="284" bodyend="284"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="277" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="277" bodyend="277"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a4054fa31f2bb8ef74af0a1601ea55bbf" prot="private" static="no" mutable="no">
         <type>QColor</type>
@@ -422,7 +391,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="285" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="285" bodyend="285"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="278" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="278" bodyend="278"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1ac6552988ce6dad168cccc3cab10569eb" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -437,7 +406,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="286" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="286" bodyend="286"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="279" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="279" bodyend="279"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a4eef2723e6e98d4d989a4fbcee3f0d5f" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -452,7 +421,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="287" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="287" bodyend="287"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="280" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="280" bodyend="280"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aa1ffca7407baf6247f1f77459272d169" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -467,11 +436,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="288" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="288" bodyend="288"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="281" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="281" bodyend="281"/>
       </memberdef>
-      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a4848fd8f93003f52c139ae0458971e77" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double QAccelPlot::ColorBar::zoomScaleFactor_</definition>
+      <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a50d5e611d12c3d7f53a642dea80095f7" prot="private" static="no" mutable="no">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::zoomScaleFactor_</definition>
         <argsstring></argsstring>
         <name>zoomScaleFactor_</name>
         <qualifiedname>QAccelPlot::ColorBar::zoomScaleFactor_</qualifiedname>
@@ -482,7 +451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="289" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="289" bodyend="289"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="282" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="282" bodyend="282"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a85196a08c2272db5169637879d79bbe9" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -497,7 +466,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="290" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="290" bodyend="290"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="283" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="283" bodyend="283"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a3561709a783fe4657dab2b1cf828cf5a" prot="private" static="no" mutable="no">
         <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
@@ -511,7 +480,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="291" column="16" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="291" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="284" column="16" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="284" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aa14bda6c7191e2db2780fdfdb3abdc0c" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -526,7 +495,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="292" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="292" bodyend="292"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="285" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="285" bodyend="285"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a149695d834563b15373be3dd3a67abe1" prot="private" static="no" mutable="no">
         <type>QPointF</type>
@@ -540,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="293" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="293" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="286" column="13" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="286" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structQAccelPlot_1_1GradientStopData" kindref="compound">GradientStopData</ref> &gt;</type>
@@ -554,7 +523,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="296" column="17" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="296" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="289" column="17" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="289" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -569,7 +538,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="297" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="297" bodyend="297"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="290" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="290" bodyend="290"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" prot="private" static="no" mutable="no">
         <type>qreal</type>
@@ -584,7 +553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="298" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="298" bodyend="298"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="291" column="11" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="291" bodyend="291"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1af1423dbdf8e66a3dd125a06fb629dc63" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -599,7 +568,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="299" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="299" bodyend="299"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="292" column="10" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="292" bodyend="292"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1aad2f54b099b14dc09b9c02212ee8195b" prot="private" static="no" mutable="no">
         <type><ref refid="structQAccelPlot_1_1AxisTicks" kindref="compound">AxisTicks</ref></type>
@@ -613,7 +582,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="300" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="300" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="293" column="15" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="293" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classQAccelPlot_1_1ColorBar_1a2352959ad1605f096f4b90dd4980f03d" prot="private" static="no" mutable="no">
         <type>Layout</type>
@@ -627,7 +596,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="301" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="301" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="294" column="12" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="294" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -649,7 +618,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="112" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="105" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad0b680e75e82a86fed507bcea4234232" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1PointCloud" kindref="compound">PointCloud</ref> *</type>
@@ -664,7 +633,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="115" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="108" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -683,11 +652,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="117" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="110" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a0cd8beed6eead5106153536d8671a991" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
-        <definition>Orientation QAccelPlot::ColorBar::orientation</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aab19efae0a326279ef171c81bb22406a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Qt::Orientation</type>
+        <definition>Qt::Orientation QAccelPlot::ColorBar::orientation</definition>
         <argsstring>() const</argsstring>
         <name>orientation</name>
         <qualifiedname>QAccelPlot::ColorBar::orientation</qualifiedname>
@@ -698,16 +667,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="120" column="17"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="113" column="21"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a3848e694b7c42dcc05fc32af308168ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::ColorBar::setOrientation</definition>
-        <argsstring>(Orientation orientation)</argsstring>
+        <argsstring>(Qt::Orientation orientation)</argsstring>
         <name>setOrientation</name>
         <qualifiedname>QAccelPlot::ColorBar::setOrientation</qualifiedname>
         <param>
-          <type><ref refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" kindref="member">Orientation</ref></type>
+          <type>Qt::Orientation</type>
           <declname>orientation</declname>
         </param>
         <briefdescription>
@@ -717,7 +686,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="122" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="115" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1adefc69970edbe3c6273f770b0a5523e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QString</type>
@@ -732,7 +701,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="125" column="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="118" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a465e37ba4cbe58cb7b8e296bb176d1c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -751,7 +720,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="127" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="120" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1abe8290e8c357b9adbd539ab17a08ec5f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QFont</type>
@@ -766,7 +735,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="130" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="123" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -785,7 +754,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="132" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="125" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1abd425c79b41bf5d16d85cd41cf30a090" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -800,7 +769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="135" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="128" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -819,7 +788,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="137" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="130" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1adc92096ead2a9cc5f9ece98d3c008281" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -834,7 +803,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="140" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="133" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -853,7 +822,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="142" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="135" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad2580d791678ad1f83f19c0321f9b124" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -868,7 +837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="145" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="138" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af230a2b76f61ae160ff51f92bfb6f2e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -887,7 +856,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="147" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="140" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ab5ba78b5228b1ae1f255a3ff6103d6c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>QColor</type>
@@ -902,7 +871,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="150" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="143" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a87433ef40626118bb4e3f9db7064e7a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -921,7 +890,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="152" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="145" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad480aaac27702f143143e8fc20255fcd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -936,7 +905,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="155" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="148" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad3946834da2f1b8fd36504db9562a88e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -955,7 +924,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="157" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="150" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a123e6a16196a46835aabdcc29c6a500b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -970,7 +939,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="160" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="153" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aadc3f3dcec1597f8ea38741cc590e2f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -989,7 +958,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="162" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="155" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ab7d8d4d7d3ad610d6e6295cc2672805b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1004,7 +973,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="165" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="158" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a8ccc926cf1b1b78c0230e0653f1f858a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1023,11 +992,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="167" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="160" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9f8c2bda63ab9965d387cc19a91c09e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>double</type>
-        <definition>double QAccelPlot::ColorBar::zoomScaleFactor</definition>
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a833afc98680d6e85884ffa399e075d6a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>qreal</type>
+        <definition>qreal QAccelPlot::ColorBar::zoomScaleFactor</definition>
         <argsstring>() const</argsstring>
         <name>zoomScaleFactor</name>
         <qualifiedname>QAccelPlot::ColorBar::zoomScaleFactor</qualifiedname>
@@ -1038,16 +1007,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="170" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="163" column="11"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aadc2ba19f6a5654e20ee0790d16abee7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af16793eeee8f8e29ae2cca79b21c9a70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void QAccelPlot::ColorBar::setZoomScaleFactor</definition>
-        <argsstring>(double factor)</argsstring>
+        <argsstring>(qreal factor)</argsstring>
         <name>setZoomScaleFactor</name>
         <qualifiedname>QAccelPlot::ColorBar::setZoomScaleFactor</qualifiedname>
         <param>
-          <type>double</type>
+          <type>qreal</type>
           <declname>factor</declname>
         </param>
         <briefdescription>
@@ -1057,7 +1026,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="172" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="165" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a83980c7db46b5fbe319c191b1af3c8e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1072,7 +1041,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="175" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="168" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a46dfc8fa9724931e0222eb72094a940a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1AxisTicker" kindref="compound">AxisTicker</ref> *</type>
@@ -1087,7 +1056,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="178" column="16"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="171" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a80193407bf04596dd3b781fc3fad68aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>Q_INVOKABLE void</type>
@@ -1102,7 +1071,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="181" column="22"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="174" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1126,7 +1095,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="187" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="180" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a52244701cf67fb95a7b0d294ca803dca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1150,7 +1119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="191" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="184" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1169,7 +1138,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="194" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="187" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="signal">
@@ -1186,7 +1155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="198" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="191" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1201,7 +1170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="200" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="193" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a5d7eae31a728253c32b34e5f9ddfe71b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1216,7 +1185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="202" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="195" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a1bfbd9f2027afedd4ea01361a63ac09c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1231,7 +1200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="204" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="197" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1acee2bc5bc5edf5b7449bb5ac13f38b65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1246,7 +1215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="206" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="199" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a15bedd0b4f8a881693488d17c4f139ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1261,7 +1230,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="208" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="201" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a201a86776adb21902dd50056eeae5931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1276,7 +1245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="210" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="203" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a35dd81efe072da26c6a4b796114b20f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1291,7 +1260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="212" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="205" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1aac983210feb576718e6916554cf57b4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1306,7 +1275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="214" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="207" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1ab763ba56c7da41b3c7e6551a01a8ea23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1321,7 +1290,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="216" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="209" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1afaf1c1d3beda2766da6bd791eff05768" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1336,7 +1305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="218" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="211" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1afededb0b917ee1f0e1c4be0eba3ce380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1351,7 +1320,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="220" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="213" column="10"/>
       </memberdef>
       <memberdef kind="signal" id="classQAccelPlot_1_1ColorBar_1a942d9b015bcce214e9a6fad48f059507" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1366,7 +1335,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="222" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="215" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -1387,7 +1356,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="226" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="219" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af1ca4b9d71a6c35ac61f358061965738" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1406,7 +1375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="228" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="221" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a81bb71bb1f34a209cc2b971b8c95d3c5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1425,7 +1394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="230" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="223" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9c83fea582b2d950093fee82eaebfa04" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1444,7 +1413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="232" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="225" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aa002bb76995a6a17cd170e2155a2d13d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1463,7 +1432,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="234" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="227" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ac4577069a1d7fb6700da973d64745c5a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1482,7 +1451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="236" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="229" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a55585db197cf34f9047f019a4091df66" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1497,7 +1466,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="238" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="231" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a7ef1f76708ef12805ad0e99230802b34" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1516,7 +1485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="240" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="233" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1af6cba329303aa0ce2ec9c696ce6f6cbf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1531,7 +1500,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="242" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="235" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1554,7 +1523,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="244" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="237" column="10"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1574,7 +1543,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="256" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="249" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aaaf7c90d5b0266062633961a3e912a07" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classQAccelPlot_1_1Colormap" kindref="compound">Colormap</ref> *</type>
@@ -1588,7 +1557,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="257" column="14"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="250" column="14"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aaafc57769832cba4d6d23be7e2907d08" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1602,7 +1571,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="258" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="251" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aed6b64f14b1b709b3ef560078a148afe" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1620,7 +1589,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="259" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="252" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a30e47724579ee8a511f463669c90f36e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1642,7 +1611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="260" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="253" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ae5cc539f3170ac101be0fab89f103e78" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1656,7 +1625,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="261" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="254" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a5ebf8a44f01852540bcb91abee5bacdf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1670,7 +1639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="262" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="255" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a5cf931d18d5d44de566fe6f3fe41252d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1684,7 +1653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="263" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="256" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a66f599422717d919c81529540efcfbff" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1698,7 +1667,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="264" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="257" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a8c051389a73456fc06460c5baea25bb1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1712,7 +1681,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="265" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="258" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9ffdef7c9bdabd463265b76ab68ad483" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>Layout</type>
@@ -1726,7 +1695,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="266" column="12"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="259" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a70fd4230fdb60af367a3cff394a84157" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1740,7 +1709,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="267" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="260" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9c206cf126e70e8f7a658973bda689d9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1754,7 +1723,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="268" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="261" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a15a2ab4f5ad6952a74734ab393e9fee7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1768,7 +1737,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="269" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="262" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a9f647de5ff65a1ac32e31a6774b499e4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1782,7 +1751,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="270" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="263" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6cf2757918dabf983a1f1f36d95a5f10" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -1796,7 +1765,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="271" column="11"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="264" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1aec0e081953e5c5189d5b146f6b3a767e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1814,7 +1783,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="272" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="265" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1a6bde2ed387ebb8706d7a5f78306c0882" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1832,7 +1801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="273" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="266" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classQAccelPlot_1_1ColorBar_1ad445331b51651a8c1c7ea773108e5732" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1850,7 +1819,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="274" column="10"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="267" column="10"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1894,7 +1863,7 @@
         <label>QQuickPaintedItem</label>
       </node>
     </collaborationgraph>
-    <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="60" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="60" bodyend="302"/>
+    <location file="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" line="60" column="1" bodyfile="QAccelPlot/src/QAccelPlot/axis/ColorBar.hpp" bodystart="60" bodyend="295"/>
     <listofallmembers>
       <member refid="classQAccelPlot_1_1ColorBar_1ad1d28fc9a4461b123a94e8ee791948c4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThickness</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1ad2580d791678ad1f83f19c0321f9b124" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>barThickness</name></member>
@@ -1914,7 +1883,6 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a9ffdef7c9bdabd463265b76ab68ad483" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>computeLayout</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a70fd4230fdb60af367a3cff394a84157" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>endInset</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aba897979e781edf34478894b2e4ea0d6" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>geometryChange</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba86b2f74728794b23835f31f20f263cec" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Horizontal</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a0637686ece6f3ee55963db8a97157c98" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>hovered</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a83980c7db46b5fbe319c191b1af3c8e3" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>hovered</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a85196a08c2272db5169637879d79bbe9" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>hovered_</name></member>
@@ -1951,10 +1919,9 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a81bb71bb1f34a209cc2b971b8c95d3c5" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>mousePressEvent</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aa002bb76995a6a17cd170e2155a2d13d" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>mouseReleaseEvent</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a55585db197cf34f9047f019a4091df66" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>mouseUngrabEvent</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6b" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Orientation</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1acb95ea647ef39ae31c40a754d8d3dfb2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a0cd8beed6eead5106153536d8671a991" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a5dce5fd6ba789a6eb57eb0aa1cbb3123" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a90834e8602c8225b5ba5384dfafc05ee" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1aab19efae0a326279ef171c81bb22406a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a676a109e8703819bfeed05a8c4f8eaf0" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientation_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aac3a4fecb9eaadb002404ca4da95401a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>orientationChanged</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a23ed3d8e0bfcdd689ee9cc0c2ef8a282" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paint</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aec0e081953e5c5189d5b146f6b3a767e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>paintStrip</name></member>
@@ -1980,10 +1947,10 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a81704ea88fa9b5600e72c419665771f8" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelColor</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a068a74a924e42379c7bf87290336aed7" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelFont</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a38b16495b587b3b98185fc34dc97bc1a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setLabelPadding</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a251fc863249b981af4e869e935cda1b0" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setOrientation</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a3848e694b7c42dcc05fc32af308168ec" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setOrientation</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a2bebae04f369f8d79cc0015f7413affd" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setSeries</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aadc3f3dcec1597f8ea38741cc590e2f4" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setTickLabelWidth</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1aadc2ba19f6a5654e20ee0790d16abee7" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setZoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1af16793eeee8f8e29ae2cca79b21c9a70" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>setZoomScaleFactor</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1abe9eca849d5a80fead1222177ecc59d7" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>stops_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1aaafc57769832cba4d6d23be7e2907d08" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>stripLength</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a74db08270ec9b5389478e381b435ede2" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>ticker</name></member>
@@ -2003,12 +1970,11 @@
       <member refid="classQAccelPlot_1_1ColorBar_1a6fd046ca6822fedfb364a36ac3e724dc" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueMax_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1abcca2117c8d63913ecde0a912388a7a0" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueMin_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a6666a1cae7096bf5ef087d93fe94934d" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>valueToPixel</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a21e7c35ce634475cfd12a916e798fe6ba41cc29629e104e0b546a8cfff1529905" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>Vertical</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a7ef1f76708ef12805ad0e99230802b34" prot="protected" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>wheelEvent</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1a30e47724579ee8a511f463669c90f36e" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomRange</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a6fcb3d97d4e9ab0a621daa5bf5e8f316" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a9f8c2bda63ab9965d387cc19a91c09e3" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor</name></member>
-      <member refid="classQAccelPlot_1_1ColorBar_1a4848fd8f93003f52c139ae0458971e77" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor_</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a01f0b2225c44d59f2e8f17a8cfd56d01" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a833afc98680d6e85884ffa399e075d6a" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor</name></member>
+      <member refid="classQAccelPlot_1_1ColorBar_1a50d5e611d12c3d7f53a642dea80095f7" prot="private" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactor_</name></member>
       <member refid="classQAccelPlot_1_1ColorBar_1afededb0b917ee1f0e1c4be0eba3ce380" prot="public" virt="non-virtual"><scope>QAccelPlot::ColorBar</scope><name>zoomScaleFactorChanged</name></member>
     </listofallmembers>
   </compounddef>

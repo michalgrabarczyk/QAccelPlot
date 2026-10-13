@@ -42,7 +42,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **class** [**DrawTransition**](classQAccelPlot_1_1DrawTransition.md) _An animation transition that reveals the target data point by point from start to end._     
     * **struct** [**FillSamples**](structQAccelPlot_1_1FillSamples.md) _Samples of a gradient fill: one group per valid-sample run, broken at gaps._     
     * **struct** [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) _Render-thread snapshot of gradient stroke (line-color) parameters._     
-    * **namespace** [**GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md) _Namespace exposing the_ `GradientDirection` _enum to QML._    
     * **class** [**GradientFill**](classQAccelPlot_1_1GradientFill.md) _A_ [_**LineCurve**_](classQAccelPlot_1_1LineCurve.md) _effect that fills the area under the curve with a color gradient._    
     * **namespace** [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) _Namespace exposing the_ `GradientFillBaseline` _enum to QML._    
     * **class** [**GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md) _Scene-graph material that evaluates fill gradients per fragment._     

@@ -30,7 +30,7 @@ public:
     [[nodiscard]] bool active() const;
     [[nodiscard]] QRectF rect() const;
 
-    [[nodiscard]] static bool modifiersMatch(int pressed, int required);
+    [[nodiscard]] static bool modifiersMatch(Qt::KeyboardModifiers pressed, Qt::KeyboardModifiers required);
     [[nodiscard]] static bool meetsMinimum(const QRectF& rect, qreal minimumSize, bool checkWidth = true, bool checkHeight = true);
 
 private:

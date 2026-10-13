@@ -3,11 +3,6 @@
 
 
 
-## d
-
-* **Direction** ([**QAccelPlot::GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md))
-
-
 ## i
 
 * **InspectionAxis** ([**QAccelPlot**](namespaceQAccelPlot.md))

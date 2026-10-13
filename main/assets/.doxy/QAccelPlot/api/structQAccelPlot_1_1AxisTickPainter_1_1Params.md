@@ -50,7 +50,7 @@ _All style inputs required for a single paint call, bundled to reduce parameter 
 |  QColor | [**hoverColor**](#variable-hovercolor)  <br>_Label/tick color when hovered._  |
 |  bool | [**hovered**](#variable-hovered)   = `{false}`<br>_Whether the axis is currently hovered._  |
 |  qreal | [**labelOverflow**](#variable-labeloverflow)   = `{0.0}`<br>_Extra space reserved for edge label overflow._  |
-|  [**Axis::Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**orientation**](#variable-orientation)   = `{Axis::Horizontal}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation._ |
+|  Qt::Orientation | [**orientation**](#variable-orientation)   = `{Qt::Horizontal}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation._ |
 |  [**Axis::Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](#variable-side)   = `{Axis::Left}`<br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _side._ |
 |  const [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#variable-ticker)   = `{nullptr}`<br>_Tick style configuration object._  |
 
@@ -182,7 +182,7 @@ qreal QAccelPlot::AxisTickPainter::Params::labelOverflow;
 
 [_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation._
 ```C++
-Axis::Orientation QAccelPlot::AxisTickPainter::Params::orientation;
+Qt::Orientation QAccelPlot::AxisTickPainter::Params::orientation;
 ```
 
 

@@ -32,7 +32,7 @@ class PlotRectangleZoom : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    Q_PROPERTY(int modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
+    Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
@@ -45,8 +45,8 @@ public:
     bool enabled() const;
     void setEnabled(bool value);
 
-    int modifiers() const;
-    void setModifiers(int value);
+    Qt::KeyboardModifiers modifiers() const;
+    void setModifiers(Qt::KeyboardModifiers value);
 
     qreal minimumSize() const;
     void setMinimumSize(qreal value);
@@ -74,7 +74,7 @@ private:
     void setSelection(bool active, const QRectF& rect);
 
     bool enabled_{false};
-    int modifiers_{Qt::ControlModifier};
+    Qt::KeyboardModifiers modifiers_{Qt::ControlModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().rectangleZoomFill};
     QColor borderColor_{ColorPalette::dark().rectangleZoomBorder};

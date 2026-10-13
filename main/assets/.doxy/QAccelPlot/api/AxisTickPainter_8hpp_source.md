@@ -35,14 +35,14 @@ namespace QAccelPlot {
 class AxisTickPainter {
 public:
     struct Params {
-        Axis::Orientation orientation{Axis::Horizontal}; 
-        Axis::Side side{Axis::Left};                     
-        bool hovered{false};                             
-        const AxisTicker* ticker{nullptr};               
-        QColor hoverColor;                               
-        QColor defaultSubtickColor;                      
-        bool clampEdgeLabels{false};                     
-        qreal labelOverflow{0.0};                        
+        Qt::Orientation orientation{Qt::Horizontal}; 
+        Axis::Side side{Axis::Left};                 
+        bool hovered{false};                         
+        const AxisTicker* ticker{nullptr};           
+        QColor hoverColor;                           
+        QColor defaultSubtickColor;                  
+        bool clampEdgeLabels{false};                 
+        qreal labelOverflow{0.0};                    
     };
 
     using MapToPosition = std::function<qreal(qreal value, qreal length)>;

@@ -2057,7 +2057,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-appenddata"><strong>appendData</strong></a> (qreal x, qreal low, qreal high) <br><em>Appends the sample (</em> <em>x</em> <em>,__low</em> <em>,__high</em> <em>). Triggers a redraw.</em></td>
+<td style="text-align: left;"><a href="#function-appenddata"><strong>appendData</strong></a> (qreal x, qreal low, qreal high) <br><em>Appends the sample (</em> <em>x</em> _,_<em>low</em> _,_<em>high</em> <em>). Triggers a redraw.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual Q_INVOKABLE void</td>
@@ -2085,11 +2085,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int sampleCount) override<br><em>Thread-safe: queues</em> <code>setData</code> <em>(__data</em> <em>,__sampleCount</em> <em>) to the item's thread. No copy is made.</em></td>
+<td style="text-align: left;"><a href="#function-postdata-12"><strong>postData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int sampleCount) override<br><em>Thread-safe: queues</em> <code>setData</code> _(_<em>data</em> _,_<em>sampleCount</em> <em>) to the item's thread. No copy is made.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int sampleCount) override<br><em>Thread-safe: queues</em> <code>setDataF</code> <em>(__data</em> <em>,__sampleCount</em> <em>) to the item's thread. No copy is made.</em></td>
+<td style="text-align: left;"><a href="#function-postdata-22"><strong>postData</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int sampleCount) override<br><em>Thread-safe: queues</em> <code>setDataF</code> _(_<em>data</em> _,_<em>sampleCount</em> <em>) to the item's thread. No copy is made.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2097,11 +2097,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE void</td>
-<td style="text-align: left;"><a href="#function-setdata-18"><strong>setData</strong></a> (const QList&lt; qreal &gt; &amp; xs, const QList&lt; qreal &gt; &amp; lows, const QList&lt; qreal &gt; &amp; highs) <br><em>Replaces the samples with</em> <em>xs</em> <em>,__lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-18"><strong>setData</strong></a> (const QList&lt; qreal &gt; &amp; xs, const QList&lt; qreal &gt; &amp; lows, const QList&lt; qreal &gt; &amp; highs) <br><em>Replaces the samples with</em> <em>xs</em> _,_<em>lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-28"><strong>setData</strong></a> (const std::vector&lt; double &gt; &amp; xs, const std::vector&lt; double &gt; &amp; lows, const std::vector&lt; double &gt; &amp; highs) <br><em>Replaces the samples with</em> <em>xs</em> <em>,__lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-28"><strong>setData</strong></a> (const std::vector&lt; double &gt; &amp; xs, const std::vector&lt; double &gt; &amp; lows, const std::vector&lt; double &gt; &amp; highs) <br><em>Replaces the samples with</em> <em>xs</em> _,_<em>lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2109,7 +2109,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-setdata-48"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int sampleCount) override<br><em>Moves</em> <em>data</em> <em>(__sampleCount</em> <em>× 3 doubles: x, low, high) into the series. No copy is made.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-48"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int sampleCount) override<br><em>Moves</em> <em>data</em> _(_<em>sampleCount</em> <em>× 3 doubles: x, low, high) into the series. No copy is made.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2121,11 +2121,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-78"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-78"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdata-88"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="#function-setdata-88"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2133,7 +2133,7 @@
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
-<td style="text-align: left;"><a href="#function-setdataf-26"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int sampleCount) override<br><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__sampleCount</em> <em>× 3 floats) into the series.</em></td>
+<td style="text-align: left;"><a href="#function-setdataf-26"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int sampleCount) override<br><em>High-performance C++ overload: moves</em> <em>data</em> _(_<em>sampleCount</em> <em>× 3 floats) into the series.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2145,11 +2145,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdataf-56"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="#function-setdataf-56"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="#function-setdataf-66"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="#function-setdataf-66"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">Q_INVOKABLE QVariantMap</td>
@@ -2213,11 +2213,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-34"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-34"><strong>setData</strong></a> (const double * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdata-44"><strong>setData</strong></a> (std::vector&lt; double &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual void</td>
@@ -2229,11 +2229,11 @@
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-34"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-34"><strong>setDataF</strong></a> (const float * data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
-<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-44"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
+<td style="text-align: left;"><a href="../classQAccelPlot_1_1PlotSeries/#function-setdataf-44"><strong>setDataF</strong></a> (std::vector&lt; float &gt; &amp;&amp; data, int count, const <a href="../structQAccelPlot_1_1PlotSeries_1_1DataBounds/"><strong>DataBounds</strong></a> &amp; bounds) <br><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">void</td>
@@ -2449,7 +2449,7 @@
 <hr>
 
 <h3 id="function-appenddata">function appendData<a class="headerlink" href="#function-appenddata" title="Permanent link">&para;</a></h3>
-<p><em>Appends the sample (</em> <em>x</em> <em>,__low</em> <em>,__high</em> <em>). Triggers a redraw.</em>
+<p><em>Appends the sample (</em> <em>x</em> _,_<em>low</em> _,_<em>high</em> <em>). Triggers a redraw.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">appendData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">qreal</span><span class="w"> </span><span class="n">low</span><span class="p">,</span>
@@ -2499,7 +2499,7 @@
 <hr>
 
 <h3 id="function-postdata-12">function postData<a class="headerlink" href="#function-postdata-12" title="Permanent link">&para;</a></h3>
-<p><em>Thread-safe: queues</em> <code>setData</code> <em>(__data</em> <em>,__sampleCount</em> <em>) to the item's thread. No copy is made.</em>
+<p><em>Thread-safe: queues</em> <code>setData</code> _(_<em>data</em> _,_<em>sampleCount</em> <em>) to the item's thread. No copy is made.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleCount</span>
@@ -2509,7 +2509,7 @@
 <hr>
 
 <h3 id="function-postdata-22">function postData<a class="headerlink" href="#function-postdata-22" title="Permanent link">&para;</a></h3>
-<p><em>Thread-safe: queues</em> <code>setDataF</code> <em>(__data</em> <em>,__sampleCount</em> <em>) to the item's thread. No copy is made.</em>
+<p><em>Thread-safe: queues</em> <code>setDataF</code> _(_<em>data</em> _,_<em>sampleCount</em> <em>) to the item's thread. No copy is made.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">postData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleCount</span>
@@ -2527,7 +2527,7 @@
 <hr>
 
 <h3 id="function-setdata-18">function setData<a class="headerlink" href="#function-setdata-18" title="Permanent link">&para;</a></h3>
-<p><em>Replaces the samples with</em> <em>xs</em> <em>,__lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em>
+<p><em>Replaces the samples with</em> <em>xs</em> _,_<em>lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Q_INVOKABLE</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">xs</span><span class="p">,</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lows</span><span class="p">,</span>
@@ -2537,7 +2537,7 @@
 <hr>
 
 <h3 id="function-setdata-28">function setData<a class="headerlink" href="#function-setdata-28" title="Permanent link">&para;</a></h3>
-<p><em>Replaces the samples with</em> <em>xs</em> <em>,__lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em>
+<p><em>Replaces the samples with</em> <em>xs</em> _,_<em>lows</em> <em>, and__highs</em> <em>. If the sizes differ, the shortest length is used.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">xs</span><span class="p">,</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lows</span><span class="p">,</span>
@@ -2557,7 +2557,7 @@
 <hr>
 
 <h3 id="function-setdata-48">function setData<a class="headerlink" href="#function-setdata-48" title="Permanent link">&para;</a></h3>
-<p><em>Moves</em> <em>data</em> <em>(__sampleCount</em> <em>× 3 doubles: x, low, high) into the series. No copy is made.</em>
+<p><em>Moves</em> <em>data</em> _(_<em>sampleCount</em> <em>× 3 doubles: x, low, high) into the series. No copy is made.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleCount</span>
@@ -2587,7 +2587,7 @@
 <hr>
 
 <h3 id="function-setdata-78">function setData<a class="headerlink" href="#function-setdata-78" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
@@ -2597,7 +2597,7 @@
 <hr>
 
 <h3 id="function-setdata-88">function setData<a class="headerlink" href="#function-setdata-88" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setData</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<p><em>Like</em> <code>setData</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setData</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
@@ -2617,7 +2617,7 @@
 <hr>
 
 <h3 id="function-setdataf-26">function setDataF<a class="headerlink" href="#function-setdataf-26" title="Permanent link">&para;</a></h3>
-<p><em>High-performance C++ overload: moves</em> <em>data</em> <em>(__sampleCount</em> <em>× 3 floats) into the series.</em>
+<p><em>High-performance C++ overload: moves</em> <em>data</em> _(_<em>sampleCount</em> <em>× 3 floats) into the series.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sampleCount</span>
@@ -2647,7 +2647,7 @@
 <hr>
 
 <h3 id="function-setdataf-56">function setDataF<a class="headerlink" href="#function-setdataf-56" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
@@ -2657,7 +2657,7 @@
 <hr>
 
 <h3 id="function-setdataf-66">function setDataF<a class="headerlink" href="#function-setdataf-66" title="Permanent link">&para;</a></h3>
-<p><em>Like</em> <code>setDataF</code> <em>(__data</em> <em>,__count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
+<p><em>Like</em> <code>setDataF</code> _(_<em>data</em> _,_<em>count</em> <em>), with the data extents given as__bounds</em> <em>instead of scanned for.</em>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">QAccelPlot</span><span class="o">::</span><span class="n">BandSeries</span><span class="o">::</span><span class="n">setDataF</span><span class="w"> </span><span class="p">(</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>

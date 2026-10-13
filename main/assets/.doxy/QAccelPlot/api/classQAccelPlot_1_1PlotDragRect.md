@@ -73,7 +73,7 @@ _Rectangle dragged out inside the plot area, shared by rectangle zoom and data s
 | Type | Name |
 | ---: | :--- |
 |  bool | [**meetsMinimum**](#function-meetsminimum) (const QRectF & rect, qreal minimumSize, bool checkWidth=true, bool checkHeight=true) <br>_Returns true when_ _rect_ _is at least__minimumSize_ _in every checked dimension._ |
-|  bool | [**modifiersMatch**](#function-modifiersmatch) (int pressed, int required) <br>_Returns true when the pressed modifiers are exactly the_ _required_ _ones._ |
+|  bool | [**modifiersMatch**](#function-modifiersmatch) (Qt::KeyboardModifiers pressed, Qt::KeyboardModifiers required) <br>_Returns true when the pressed modifiers are exactly the_ _required_ _ones._ |
 
 
 
@@ -213,8 +213,8 @@ static bool QAccelPlot::PlotDragRect::meetsMinimum (
 _Returns true when the pressed modifiers are exactly the_ _required_ _ones._
 ```C++
 static bool QAccelPlot::PlotDragRect::modifiersMatch (
-    int pressed,
-    int required
+    Qt::KeyboardModifiers pressed,
+    Qt::KeyboardModifiers required
 ) 
 ```
 

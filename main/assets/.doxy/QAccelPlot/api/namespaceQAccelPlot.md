@@ -36,7 +36,6 @@
 
 | Type | Name |
 | ---: | :--- |
-| namespace | [**GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md) <br>_Namespace exposing the_ `GradientDirection` _enum to QML._ |
 | namespace | [**GradientFillBaselineNS**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md) <br>_Namespace exposing the_ `GradientFillBaseline` _enum to QML._ |
 | namespace | [**GradientValueSourceNS**](namespaceQAccelPlot_1_1GradientValueSourceNS.md) <br>_Namespace exposing the_ `GradientValueSource` _enum to QML._ |
 | namespace | [**InspectionNS**](namespaceQAccelPlot_1_1InspectionNS.md) <br>_Namespace exposing the inspection_ `Status` _enum to QML as_`Inspection` _._ |
@@ -159,7 +158,6 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**GradientDirectionNS::Direction**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**GradientDirection**](#typedef-gradientdirection)  <br> |
 | typedef [**GradientFillBaselineNS::Mode**](namespaceQAccelPlot_1_1GradientFillBaselineNS.md#enum-mode) | [**GradientFillBaseline**](#typedef-gradientfillbaseline)  <br> |
 | typedef [**GradientValueSourceNS::Source**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**GradientValueSource**](#typedef-gradientvaluesource)  <br> |
 | enum  | [**InspectionAxis**](#enum-inspectionaxis)  <br>_Data dimension a query measures along, or along which a series' records are ordered._  |
@@ -198,14 +196,14 @@
 |  double | [**distanceToInterval**](#function-distancetointerval) (double position, double a, double b) noexcept<br>_Returns the signed distance from_ _position_ _to the closed interval between__a_ _and__b_ _._ |
 |  bool | [**isEmptyChunk**](#function-isemptychunk) (const [**CurveChunk**](structQAccelPlot_1_1CurveChunk.md) & chunk) <br>_Returns_ `true` _when__chunk_ _contains no valid sample and can be skipped by hit tests._ |
 |  bool | [**isValidSample**](#function-isvalidsample) (double value, bool logScale) noexcept<br> |
-|  bool | [**nearly\_equal**](#function-nearly_equal) (double a, double b, double eps\_rel=kNearlyEqualEpsilon, double eps\_abs=0.0) noexcept<br> |
+|  bool | [**nearlyEqual**](#function-nearlyequal) (double a, double b, double relativeEpsilon=kNearlyEqualEpsilon, double absoluteEpsilon=0.0) noexcept<br> |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readEffectStops**](#function-readeffectstops) (const [**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap, QObject \* gradient) <br>_Returns the color stops of a gradient effect: the_ _colormap_ _ramp when set, otherwise the stops of__gradient_ _._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStopList**](#function-readgradientstoplist) (const QVariantList & stopObjects) <br>_Reads a list of stop objects, each exposing_ `position` _and_`color` _, into position order._ |
 |  std::vector&lt; [**GradientStopData**](structQAccelPlot_1_1GradientStopData.md) &gt; | [**readGradientStops**](#function-readgradientstops) (QObject \* gradient) <br>_Reads the stops of a QML_ `Gradient` _into position order, covering the full [0, 1] range._ |
 |  double | [**renderOriginForViewport**](#function-renderoriginforviewport) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 |  bool | [**renderOriginTooFar**](#function-renderorigintoofar) (double origin, double viewportMin, double viewportMax) noexcept<br> |
 |  void | [**resolveGradientValueRange**](#function-resolvegradientvaluerange) (Payload & payload, const qreal dataMin, const qreal dataMax) <br>_Fills each unset gradient value bound of_ _payload_ _from [__dataMin_ _,__dataMax_ _]._ |
-|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
+|  float | [**unboundedGradientCoordinate**](#function-unboundedgradientcoordinate) (const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum) <br>_Returns an unbounded palette coordinate for a data-space_ _value_ _._ |
 
 
 
@@ -236,20 +234,6 @@
 
 ## Public Types Documentation
 
-
-
-
-
-### typedef GradientDirection {#typedef-gradientdirection}
-
-```C++
-using QAccelPlot::GradientDirection = typedef GradientDirectionNS::Direction;
-```
-
-
-
-
-<hr>
 
 
 
@@ -414,14 +398,14 @@ inline bool QAccelPlot::isValidSample (
 
 
 
-### function nearly\_equal {#function-nearly_equal}
+### function nearlyEqual {#function-nearlyequal}
 
 ```C++
-inline bool QAccelPlot::nearly_equal (
+inline bool QAccelPlot::nearlyEqual (
     double a,
     double b,
-    double eps_rel=kNearlyEqualEpsilon,
-    double eps_abs=0.0
+    double relativeEpsilon=kNearlyEqualEpsilon,
+    double absoluteEpsilon=0.0
 ) noexcept
 ```
 
@@ -580,7 +564,7 @@ Bounds resolve independently, so a `Fixed` bound is kept when the other bound us
 _Returns an unbounded palette coordinate for a data-space_ _value_ _._
 ```C++
 inline float QAccelPlot::unboundedGradientCoordinate (
-    const GradientDirection direction,
+    const Qt::Orientation direction,
     const qreal value,
     const qreal minimum,
     const qreal maximum

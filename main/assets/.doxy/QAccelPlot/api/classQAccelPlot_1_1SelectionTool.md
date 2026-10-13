@@ -70,14 +70,14 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property QColor | [**borderColor**](classQAccelPlot_1_1SelectionTool.md#property-bordercolor-12)  <br>_Outline color of the rectangle. Default:_ `Colors.dark.selectionBorder` _._ |
-| property int | [**button**](classQAccelPlot_1_1SelectionTool.md#property-button-12)  <br>_Mouse button that starts a gesture. Default: Qt.LeftButton._  |
+| property Qt::MouseButton | [**button**](classQAccelPlot_1_1SelectionTool.md#property-button-12)  <br>_Mouse button that starts a gesture. Default: Qt.LeftButton._  |
 | property bool | [**enabled**](classQAccelPlot_1_1SelectionTool.md#property-enabled-12)  <br>_Enables gestures; disabling cancels a gesture in progress and keeps the selection. Default: true._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1SelectionTool.md#property-fillcolor-12)  <br>_Fill color of the rectangle. Default:_ `Colors.dark.selectionFill` _._ |
 | property bool | [**hasSelection**](classQAccelPlot_1_1SelectionTool.md#property-hasselection-12)  <br>_True while a region is selected._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1SelectionTool.md#property-minimumsize-12)  <br>_Smallest gesture in logical pixels that selects; a smaller one only clears the selection. Default: 6._  |
 | property [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](classQAccelPlot_1_1SelectionTool.md#property-mode-12)  <br>_Region a gesture selects: a box, an X range, or a Y range. Default: Box._  |
 | property [**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](classQAccelPlot_1_1SelectionTool.md#property-model-12)  <br>_Read-only constant: one row of region statistics per selected series._  |
-| property int | [**modifiers**](classQAccelPlot_1_1SelectionTool.md#property-modifiers-12)  <br>_Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier._  |
+| property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1SelectionTool.md#property-modifiers-12)  <br>_Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier._  |
 | property QRectF | [**pixelRect**](classQAccelPlot_1_1SelectionTool.md#property-pixelrect-12)  <br>_Gesture or selected region in plot-local logical pixels; empty without either._  |
 | property [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](classQAccelPlot_1_1SelectionTool.md#property-plot-12)  <br>_Plot receiving the selection gestures._  |
 | property bool | [**rectangleVisible**](classQAccelPlot_1_1SelectionTool.md#property-rectanglevisible-12)  <br>_Draws the gesture and the selected region. Disable it to draw_ `pixelRect` _yourself. Default: true._ |
@@ -121,7 +121,7 @@ flowchart TB
 | ---: | :--- |
 |   | [**SelectionTool**](#function-selectiontool) (QObject \* parent=nullptr) <br>_Constructs a tool without a plot._  |
 |  QColor | [**borderColor**](#function-bordercolor-22) () const<br>_Returns the rectangle's outline color._  |
-|  int | [**button**](#function-button-22) () const<br>_Returns the mouse button that starts a gesture._  |
+|  Qt::MouseButton | [**button**](#function-button-22) () const<br>_Returns the mouse button that starts a gesture._  |
 |  Q\_INVOKABLE void | [**clear**](#function-clear) () <br>_Cancels a gesture in progress and clears the selection._  |
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether gestures are enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the rectangle's fill color._  |
@@ -130,19 +130,19 @@ flowchart TB
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the smallest selecting gesture in logical pixels._  |
 |  [**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) | [**mode**](#function-mode-22) () const<br>_Returns the region a gesture selects._  |
 |  [**InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md) \* | [**model**](#function-model-22) () const<br>_Returns the model of per-series region statistics._  |
-|  int | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
+|  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
 |  QRectF | [**pixelRect**](#function-pixelrect-22) () const<br>_Returns the gesture or selected region in plot-local logical pixels._  |
 |  [**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* | [**plot**](#function-plot-22) () const<br>_Returns the attached plot._  |
 |  bool | [**rectangleVisible**](#function-rectanglevisible-22) () const<br>_Returns whether the tool draws its rectangle._  |
 |  Q\_INVOKABLE bool | [**select**](#function-select) (qreal xMin, qreal xMax, qreal yMin, qreal yMax) <br>_Selects the region with the given limits; returns false when a limit is NaN._  |
 |  bool | [**selecting**](#function-selecting-22) () const<br>_Returns true while a gesture is in progress._  |
 |  void | [**setBorderColor**](#function-setbordercolor) (const QColor & color) <br>_Sets the rectangle's outline color._  |
-|  void | [**setButton**](#function-setbutton) (int button) <br>_Sets the mouse button that starts a gesture._  |
+|  void | [**setButton**](#function-setbutton) (Qt::MouseButton button) <br>_Sets the mouse button that starts a gesture._  |
 |  void | [**setEnabled**](#function-setenabled) (bool enabled) <br>_Enables or disables gestures._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & color) <br>_Sets the rectangle's fill color._  |
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal size) <br>_Sets the smallest selecting gesture, clamping negative values to zero and ignoring nonfinite values._  |
 |  void | [**setMode**](#function-setmode) ([**Mode**](classQAccelPlot_1_1SelectionTool.md#enum-mode) mode) <br>_Sets the region a gesture selects and cancels a gesture in progress._  |
-|  void | [**setModifiers**](#function-setmodifiers) (int modifiers) <br>_Sets the exact keyboard modifiers required at press time._  |
+|  void | [**setModifiers**](#function-setmodifiers) (Qt::KeyboardModifiers modifiers) <br>_Sets the exact keyboard modifiers required at press time._  |
 |  void | [**setPlot**](#function-setplot) ([**::QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md) \* plot) <br>_Attaches to_ _plot_ _and clears the selection._ |
 |  void | [**setRectangleVisible**](#function-setrectanglevisible) (bool visible) <br>_Shows or hides the tool's rectangle._  |
 |  void | [**setXAxis**](#function-setxaxis) ([**Axis**](classQAccelPlot_1_1Axis.md) \* axis) <br>_Sets the X axis and clears the selection; null uses the plot's primary X axis._  |
@@ -240,7 +240,7 @@ QColor QAccelPlot::SelectionTool::borderColor;
 
 _Mouse button that starts a gesture. Default: Qt.LeftButton._ 
 ```C++
-int QAccelPlot::SelectionTool::button;
+Qt::MouseButton QAccelPlot::SelectionTool::button;
 ```
 
 
@@ -345,7 +345,7 @@ QAccelPlot::InspectionRowModel* QAccelPlot::SelectionTool::model;
 
 _Exact Qt::KeyboardModifiers required at press time. Default: Qt.ShiftModifier._ 
 ```C++
-int QAccelPlot::SelectionTool::modifiers;
+Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers;
 ```
 
 
@@ -771,7 +771,7 @@ QColor QAccelPlot::SelectionTool::borderColor () const
 
 _Returns the mouse button that starts a gesture._ 
 ```C++
-int QAccelPlot::SelectionTool::button () const
+Qt::MouseButton QAccelPlot::SelectionTool::button () const
 ```
 
 
@@ -910,7 +910,7 @@ InspectionRowModel * QAccelPlot::SelectionTool::model () const
 
 _Returns the required keyboard modifiers._ 
 ```C++
-int QAccelPlot::SelectionTool::modifiers () const
+Qt::KeyboardModifiers QAccelPlot::SelectionTool::modifiers () const
 ```
 
 
@@ -1023,7 +1023,7 @@ void QAccelPlot::SelectionTool::setBorderColor (
 _Sets the mouse button that starts a gesture._ 
 ```C++
 void QAccelPlot::SelectionTool::setButton (
-    int button
+    Qt::MouseButton button
 ) 
 ```
 
@@ -1108,7 +1108,7 @@ void QAccelPlot::SelectionTool::setMode (
 _Sets the exact keyboard modifiers required at press time._ 
 ```C++
 void QAccelPlot::SelectionTool::setModifiers (
-    int modifiers
+    Qt::KeyboardModifiers modifiers
 ) 
 ```
 

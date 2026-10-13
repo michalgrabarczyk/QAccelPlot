@@ -6,8 +6,6 @@
 ## a
 
 * **autoRescale\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **axisLinePadding\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
-* **axisTitlePadding\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **axisX** ([**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md))
 * **axisY** ([**QAccelPlot::AxisTickPainter::PaintContext**](structQAccelPlot_1_1AxisTickPainter_1_1PaintContext.md))
 * **arcLengthScale\_** ([**QAccelPlot::BandEdgeRenderer**](classQAccelPlot_1_1BandEdgeRenderer.md))
@@ -28,6 +26,7 @@
 ## b
 
 * **baselineColor\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
+* **baselinePadding\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **baselineWidth\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **barOffset** ([**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md))
 * **barWidth** ([**QAccelPlot::BarMaterial**](classQAccelPlot_1_1BarMaterial.md))
@@ -182,10 +181,6 @@
 * **gradientValueMax** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md))
 * **gradientValueMin** ([**QAccelPlot::GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md), [**QAccelPlot::GradientFillPayload**](structQAccelPlot_1_1GradientFillPayload.md), [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md))
 * **gradientConnections\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
-* **gradientValueMaxSource\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
-* **gradientValueMax\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
-* **gradientValueMinSource\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
-* **gradientValueMin\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **gradient\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **gradientTexture** ([**QAccelPlot::GradientFillMaterial**](classQAccelPlot_1_1GradientFillMaterial.md), [**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md))
 * **gradientDirection** ([**QAccelPlot::GradientLineMaterial**](classQAccelPlot_1_1GradientLineMaterial.md))
@@ -263,6 +258,7 @@
 
 * **labelColor\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **labelFont\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **labelPadding\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **label\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **lastMousePos\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::QAccelPlot**](classQAccelPlot_1_1QAccelPlot.md))
 * **layoutSize\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
@@ -272,7 +268,6 @@
 * **labelOverflow** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
 * **lineStyle\_** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **lowerEdgeRenderer\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
-* **labelPadding\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **layout\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
 * **logScaleX** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md), [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md), [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md), [**QAccelPlot::RectangleSeries::HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md))
 * **logScaleY** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md), [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md), [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md), [**QAccelPlot::RectangleSeries::HitTestInputs**](structQAccelPlot_1_1RectangleSeries_1_1HitTestInputs.md))
@@ -537,10 +532,12 @@
 * **valid** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **value** ([**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md))
 * **vertexCache\_** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
-* **valueMax\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
-* **valueMin\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
+* **valueMax\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
+* **valueMin\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **viewportSize** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md), [**QAccelPlot::Internal::RectUbo**](structQAccelPlot_1_1Internal_1_1RectUbo.md), [**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::LineStroke::Uniforms**](structQAccelPlot_1_1LineStroke_1_1Uniforms.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md), [**QAccelPlot::PointMaterial**](classQAccelPlot_1_1PointMaterial.md), [**QAccelPlot::BandEdgeRenderer::ArcLengthScale**](structQAccelPlot_1_1BandEdgeRenderer_1_1ArcLengthScale.md), [**QAccelPlot::BandSeries::RenderView**](structQAccelPlot_1_1BandSeries_1_1RenderView.md))
 * **values** ([**QAccelPlot::DataTransition::Dataset**](structQAccelPlot_1_1DataTransition_1_1Dataset.md), [**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md), [**QAccelPlot::BarSeries::Bars**](structQAccelPlot_1_1BarSeries_1_1Bars.md), [**QAccelPlot::PointCloud::Points**](structQAccelPlot_1_1PointCloud_1_1Points.md))
+* **valueMaxSource\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
+* **valueMinSource\_** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **values\_** ([**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md))
 * **valueStride** ([**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md))
 * **vertexCache** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md), [**QAccelPlot::PointCurveRenderParams**](structQAccelPlot_1_1PointCurveRenderParams.md))

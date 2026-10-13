@@ -104,7 +104,6 @@
     <innerclass refid="classQAccelPlot_1_1TextTickLabelFormatter" prot="public">QAccelPlot::TextTickLabelFormatter</innerclass>
     <innerclass refid="classQAccelPlot_1_1TickLabelFormatter" prot="public">QAccelPlot::TickLabelFormatter</innerclass>
     <innerclass refid="classQAccelPlot_1_1TransitionRunner" prot="public">QAccelPlot::TransitionRunner</innerclass>
-    <innernamespace refid="namespaceQAccelPlot_1_1GradientDirectionNS">QAccelPlot::GradientDirectionNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientFillBaselineNS">QAccelPlot::GradientFillBaselineNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1GradientValueSourceNS">QAccelPlot::GradientValueSourceNS</innernamespace>
     <innernamespace refid="namespaceQAccelPlot_1_1InspectionNS">QAccelPlot::InspectionNS</innernamespace>
@@ -143,20 +142,6 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="GradientColorTypes_8hpp_1abdfd4e46ff9d7137968ad094b723654a" prot="public" static="no">
-        <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirectionNS::Direction</ref></type>
-        <definition>using QAccelPlot::GradientDirection = typedef GradientDirectionNS::Direction</definition>
-        <argsstring></argsstring>
-        <name>GradientDirection</name>
-        <qualifiedname>QAccelPlot::GradientDirection</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="31" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a3128c25839dcba34322ff28cc4883a8f" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientFillBaselineNS_1aa8f6062e4bc8ee393ed7593de895b3be" kindref="member">GradientFillBaselineNS::Mode</ref></type>
         <definition>using QAccelPlot::GradientFillBaseline = typedef GradientFillBaselineNS::Mode</definition>
@@ -169,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="46" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="31" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="GradientColorTypes_8hpp_1a4e9f64212036d6f4c354c451ba2fc45e" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1GradientValueSourceNS_1a4f4cae6c359f1f803450a1140a54b721" kindref="member">GradientValueSourceNS::Source</ref></type>
@@ -183,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="61" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="61" bodyend="-1"/>
+        <location file="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" line="46" column="1" bodyfile="QAccelPlot/src/QAccelPlot/effects/GradientColorTypes.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="InspectionResult_8hpp_1a5f4b24dcd6ebda62dd105e6e3fad0ff8" prot="public" static="no">
         <type><ref refid="namespaceQAccelPlot_1_1InspectionNS_1af88a65809f202f2780f8465c0eb7c2d1" kindref="member">InspectionNS::Status</ref></type>
@@ -248,14 +233,14 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
-      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1a7bf07663badc325faab162a6bb3bcbf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="GradientCoordinateUtils_8hpp_1a7a483f340fdb2f9ed6987539809e69cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>float</type>
         <definition>float QAccelPlot::unboundedGradientCoordinate</definition>
-        <argsstring>(const GradientDirection direction, const qreal value, const qreal minimum, const qreal maximum)</argsstring>
+        <argsstring>(const Qt::Orientation direction, const qreal value, const qreal minimum, const qreal maximum)</argsstring>
         <name>unboundedGradientCoordinate</name>
         <qualifiedname>QAccelPlot::unboundedGradientCoordinate</qualifiedname>
         <param>
-          <type>const <ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+          <type>const Qt::Orientation</type>
           <declname>direction</declname>
         </param>
         <param>
@@ -413,12 +398,12 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" line="100" column="9" declfile="QAccelPlot/src/QAccelPlot/inspection/internal/InspectionTypes.hpp" declline="100" declcolumn="9"/>
       </memberdef>
-      <memberdef kind="function" id="MathUtils_8hpp_1a459990042b4307250ccb64794c713e8f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="MathUtils_8hpp_1a9b86bb1e432c9efd9b8e5af40a5f0ca3" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool QAccelPlot::nearly_equal</definition>
-        <argsstring>(double a, double b, double eps_rel=kNearlyEqualEpsilon, double eps_abs=0.0) noexcept</argsstring>
-        <name>nearly_equal</name>
-        <qualifiedname>QAccelPlot::nearly_equal</qualifiedname>
+        <definition>bool QAccelPlot::nearlyEqual</definition>
+        <argsstring>(double a, double b, double relativeEpsilon=kNearlyEqualEpsilon, double absoluteEpsilon=0.0) noexcept</argsstring>
+        <name>nearlyEqual</name>
+        <qualifiedname>QAccelPlot::nearlyEqual</qualifiedname>
         <param>
           <type>double</type>
           <declname>a</declname>
@@ -429,12 +414,12 @@
         </param>
         <param>
           <type>double</type>
-          <declname>eps_rel</declname>
+          <declname>relativeEpsilon</declname>
           <defval>kNearlyEqualEpsilon</defval>
         </param>
         <param>
           <type>double</type>
-          <declname>eps_abs</declname>
+          <declname>absoluteEpsilon</declname>
           <defval>0.0</defval>
         </param>
         <briefdescription>

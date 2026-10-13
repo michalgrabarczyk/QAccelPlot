@@ -35,8 +35,8 @@ class SelectionTool : public QObject {
     Q_PROPERTY(::QAccelPlot::Axis* yAxis READ yAxis WRITE setYAxis NOTIFY yAxisChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
-    Q_PROPERTY(int button READ button WRITE setButton NOTIFY buttonChanged)
-    Q_PROPERTY(int modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
+    Q_PROPERTY(Qt::MouseButton button READ button WRITE setButton NOTIFY buttonChanged)
+    Q_PROPERTY(Qt::KeyboardModifiers modifiers READ modifiers WRITE setModifiers NOTIFY modifiersChanged)
     Q_PROPERTY(qreal minimumSize READ minimumSize WRITE setMinimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
     Q_PROPERTY(QColor borderColor READ borderColor WRITE setBorderColor NOTIFY borderColorChanged)
@@ -71,10 +71,10 @@ public:
     void setEnabled(bool enabled);
     Mode mode() const;
     void setMode(Mode mode);
-    int button() const;
-    void setButton(int button);
-    int modifiers() const;
-    void setModifiers(int modifiers);
+    Qt::MouseButton button() const;
+    void setButton(Qt::MouseButton button);
+    Qt::KeyboardModifiers modifiers() const;
+    void setModifiers(Qt::KeyboardModifiers modifiers);
     qreal minimumSize() const;
     void setMinimumSize(qreal size);
     QColor fillColor() const;
@@ -141,8 +141,8 @@ private:
     QPointer<Axis> yAxis_;
     bool enabled_{true};
     Mode mode_{Box};
-    int button_{Qt::LeftButton};
-    int modifiers_{Qt::ShiftModifier};
+    Qt::MouseButton button_{Qt::LeftButton};
+    Qt::KeyboardModifiers modifiers_{Qt::ShiftModifier};
     qreal minimumSize_{6.0};
     QColor fillColor_{ColorPalette::dark().selectionFill};
     QColor borderColor_{ColorPalette::dark().selectionBorder};

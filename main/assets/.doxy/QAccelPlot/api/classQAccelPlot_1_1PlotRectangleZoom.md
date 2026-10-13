@@ -69,7 +69,7 @@ flowchart TB
 | property QML\_ANONYMOUSbool | [**enabled**](classQAccelPlot_1_1PlotRectangleZoom.md#property-enabled-12)  <br>_Enables rectangle selection with the left mouse button. Default: false._  |
 | property QColor | [**fillColor**](classQAccelPlot_1_1PlotRectangleZoom.md#property-fillcolor-12)  <br>_Selection fill color. Default: Colors.dark.rectangleZoomFill._  |
 | property qreal | [**minimumSize**](classQAccelPlot_1_1PlotRectangleZoom.md#property-minimumsize-12)  <br>_Minimum selection width and height in logical pixels. Default: 6; clamped to zero or greater._  |
-| property int | [**modifiers**](classQAccelPlot_1_1PlotRectangleZoom.md#property-modifiers-12)  <br>_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._  |
+| property Qt::KeyboardModifiers | [**modifiers**](classQAccelPlot_1_1PlotRectangleZoom.md#property-modifiers-12)  <br>_Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._  |
 | property QRectF | [**selectionRect**](classQAccelPlot_1_1PlotRectangleZoom.md#property-selectionrect-12)  <br>_Selection rectangle in plot item-local logical pixels; empty when inactive._  |
 
 
@@ -100,13 +100,13 @@ flowchart TB
 |  bool | [**enabled**](#function-enabled-22) () const<br>_Returns whether rectangle selection is enabled._  |
 |  QColor | [**fillColor**](#function-fillcolor-22) () const<br>_Returns the selection fill color._  |
 |  qreal | [**minimumSize**](#function-minimumsize-22) () const<br>_Returns the minimum selection width and height in logical pixels._  |
-|  int | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
+|  Qt::KeyboardModifiers | [**modifiers**](#function-modifiers-22) () const<br>_Returns the required keyboard modifiers._  |
 |  QRectF | [**selectionRect**](#function-selectionrect-22) () const<br>_Returns the current item-local selection rectangle._  |
 |  void | [**setBorderColor**](#function-setbordercolor) (const QColor & value) <br>_Sets the color of the one-logical-pixel selection outline._  |
 |  void | [**setEnabled**](#function-setenabled) (bool value) <br>_Enables or disables rectangle selection; changing this setting cancels an active selection._  |
 |  void | [**setFillColor**](#function-setfillcolor) (const QColor & value) <br>_Sets the selection fill color._  |
 |  void | [**setMinimumSize**](#function-setminimumsize) (qreal value) <br>_Sets the minimum size, clamping negative values to zero and ignoring nonfinite values._  |
-|  void | [**setModifiers**](#function-setmodifiers) (int value) <br>_Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging._  |
+|  void | [**setModifiers**](#function-setmodifiers) (Qt::KeyboardModifiers value) <br>_Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging._  |
 
 
 
@@ -220,7 +220,7 @@ qreal QAccelPlot::PlotRectangleZoom::minimumSize;
 
 _Required Qt::KeyboardModifiers for starting selection. Default: Qt::ControlModifier._ 
 ```C++
-int QAccelPlot::PlotRectangleZoom::modifiers;
+Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers;
 ```
 
 
@@ -451,7 +451,7 @@ qreal QAccelPlot::PlotRectangleZoom::minimumSize () const
 
 _Returns the required keyboard modifiers._ 
 ```C++
-int QAccelPlot::PlotRectangleZoom::modifiers () const
+Qt::KeyboardModifiers QAccelPlot::PlotRectangleZoom::modifiers () const
 ```
 
 
@@ -550,7 +550,7 @@ void QAccelPlot::PlotRectangleZoom::setMinimumSize (
 _Sets the exact keyboard modifiers required at press time; Qt::NoModifier allows unmodified dragging._ 
 ```C++
 void QAccelPlot::PlotRectangleZoom::setModifiers (
-    int value
+    Qt::KeyboardModifiers value
 ) 
 ```
 

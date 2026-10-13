@@ -20,7 +20,6 @@
 
 ## d
 
-* **Direction** ([**QAccelPlot::GradientDirectionNS**](namespaceQAccelPlot_1_1GradientDirectionNS.md))
 * **dataTextureHeight** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **dataTextureItemCapacity** ([**QAccelPlot::Internal**](namespaceQAccelPlot_1_1Internal.md))
 * **distanceToInterval** ([**QAccelPlot**](namespaceQAccelPlot.md))
@@ -38,7 +37,6 @@
 
 ## g
 
-* **GradientDirection** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **GradientFillBaseline** ([**QAccelPlot**](namespaceQAccelPlot.md))
 * **GradientValueSource** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
@@ -76,7 +74,7 @@
 * **nearest** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **nearestAlong** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **neighbors** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
-* **nearly\_equal** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## p

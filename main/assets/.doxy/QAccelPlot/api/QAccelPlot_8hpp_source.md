@@ -74,6 +74,7 @@ public:
     Q_INVOKABLE qreal pixelToDataY(qreal pixelY) const;
     Q_INVOKABLE bool isInsidePlotArea(qreal x, qreal y) const;
     Q_INVOKABLE bool zoomToRect(const QRectF& rect);
+    Q_INVOKABLE void rescaleAllAxes();
 
     QPointF pointerPosition() const;
     bool pointerInside() const;
@@ -146,8 +147,6 @@ protected:
     void geometryChange(const QRectF& newGeometry, const QRectF& oldGeometry) override; 
     void itemChange(ItemChange change, const ItemChangeData& value) override;
     QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*) override;
-
-    Q_INVOKABLE void rescaleAllAxes();
 
 private:
     enum class DragMode { Idle, Pan, RectangleZoom };

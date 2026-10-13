@@ -52,7 +52,6 @@ flowchart TB
 
 | Type | Name |
 | ---: | :--- |
-| enum  | [**Orientation**](#enum-orientation)  <br>_Orientation of an axis._  |
 | enum  | [**Side**](#enum-side)  <br>_Side of the plot on which the axis is positioned._  |
 
 
@@ -71,9 +70,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property bool | [**autoRescale**](classQAccelPlot_1_1Axis.md#property-autorescale-12)  <br>_Whether the viewport follows the data range. Default:_ `false` _._ |
-| property int | [**axisLinePadding**](classQAccelPlot_1_1Axis.md#property-axislinepadding-12)  <br>_Pixels of padding between the plot area edge and the axis baseline. Default: 0._  |
-| property int | [**axisTitlePadding**](classQAccelPlot_1_1Axis.md#property-axistitlepadding-12)  <br>_Pixels of padding between the axis line and the title text. Default: 30._  |
 | property QColor | [**baselineColor**](classQAccelPlot_1_1Axis.md#property-baselinecolor-12)  <br>_Color of the axis baseline. Default:_ `Colors.dark.axisLine` _._ |
+| property qreal | [**baselinePadding**](classQAccelPlot_1_1Axis.md#property-baselinepadding-12)  <br>_Pixels of padding between the plot area edge and the baseline. Default: 0._  |
 | property qreal | [**baselineWidth**](classQAccelPlot_1_1Axis.md#property-baselinewidth-12)  <br>_Width in pixels of the axis baseline. Default: 2._  |
 | property qreal | [**dataMax**](classQAccelPlot_1_1Axis.md#property-datamax-12)  <br>_Maximum data value of the series bound to this axis. Default: 1. Computed like_ `dataMin` _._ |
 | property qreal | [**dataMin**](classQAccelPlot_1_1Axis.md#property-datamin-12)  <br>_Minimum data value of the series bound to this axis. Default: 0._  |
@@ -82,14 +80,15 @@ flowchart TB
 | property QString | [**label**](classQAccelPlot_1_1Axis.md#property-label-12)  <br>_Optional axis label displayed alongside the axis line._  |
 | property QColor | [**labelColor**](classQAccelPlot_1_1Axis.md#property-labelcolor-12)  <br>_Optional axis-label color. When invalid, the baselineColor is used._  |
 | property QFont | [**labelFont**](classQAccelPlot_1_1Axis.md#property-labelfont-12)  <br>_Font used to render the axis label text. Default: application default font._  |
+| property qreal | [**labelPadding**](classQAccelPlot_1_1Axis.md#property-labelpadding-12)  <br>_Pixels of padding between the baseline and the axis label. Default: 30._  |
 | property qreal | [**layoutSize**](classQAccelPlot_1_1Axis.md#property-layoutsize-12)  <br>_Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50._  |
 | property bool | [**logScale**](classQAccelPlot_1_1Axis.md#property-logscale-12)  <br>_Whether the axis uses a base-10 logarithmic scale. Default:_ `false` _._ |
-| property [**Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**orientation**](classQAccelPlot_1_1Axis.md#property-orientation-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Axis.Horizontal` _or_`Axis.Vertical` _._ |
+| property Qt::Orientation | [**orientation**](classQAccelPlot_1_1Axis.md#property-orientation-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Qt.Horizontal` _or_`Qt.Vertical` _._ |
 | property [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](classQAccelPlot_1_1Axis.md#property-side-12)  <br>_Side of the plot on which the axis is drawn: Left, Top, Right, or Bottom. Assigned automatically for xAxis, yAxis, x2Axis, and y2Axis; set explicitly for an axis placed in extraAxes._  |
 | property [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](classQAccelPlot_1_1Axis.md#property-ticker-12)  <br>_Read-only constant: tick appearance configuration object._  |
 | property qreal | [**viewportMax**](classQAccelPlot_1_1Axis.md#property-viewportmax-12)  <br>_Upper bound of the visible range. Default: 1._  |
 | property qreal | [**viewportMin**](classQAccelPlot_1_1Axis.md#property-viewportmin-12)  <br>_Lower bound of the visible range. Default: 0._  |
-| property double | [**zoomScaleFactor**](classQAccelPlot_1_1Axis.md#property-zoomscalefactor-12)  <br>_Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
+| property qreal | [**zoomScaleFactor**](classQAccelPlot_1_1Axis.md#property-zoomscalefactor-12)  <br>_Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
 
 
 
@@ -99,9 +98,8 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | signal void | [**autoRescaleChanged**](classQAccelPlot_1_1Axis.md#signal-autorescalechanged)  <br>_Emitted when the autoRescale property changes._  |
-| signal void | [**axisLinePaddingChanged**](classQAccelPlot_1_1Axis.md#signal-axislinepaddingchanged)  <br>_Emitted when the axisLinePadding property changes._  |
-| signal void | [**axisTitlePaddingChanged**](classQAccelPlot_1_1Axis.md#signal-axistitlepaddingchanged)  <br>_Emitted when the axisTitlePadding property changes._  |
 | signal void | [**baselineColorChanged**](classQAccelPlot_1_1Axis.md#signal-baselinecolorchanged)  <br>_Emitted when the baselineColor property changes._  |
+| signal void | [**baselinePaddingChanged**](classQAccelPlot_1_1Axis.md#signal-baselinepaddingchanged)  <br>_Emitted when the baselinePadding property changes._  |
 | signal void | [**baselineWidthChanged**](classQAccelPlot_1_1Axis.md#signal-baselinewidthchanged)  <br>_Emitted when the baselineWidth property changes._  |
 | signal void | [**dataMaxChanged**](classQAccelPlot_1_1Axis.md#signal-datamaxchanged)  <br>_Emitted when the dataMax property changes._  |
 | signal void | [**dataMinChanged**](classQAccelPlot_1_1Axis.md#signal-dataminchanged)  <br>_Emitted when the dataMin property changes._  |
@@ -111,6 +109,7 @@ flowchart TB
 | signal void | [**labelChanged**](classQAccelPlot_1_1Axis.md#signal-labelchanged)  <br>_Emitted when the label property changes._  |
 | signal void | [**labelColorChanged**](classQAccelPlot_1_1Axis.md#signal-labelcolorchanged)  <br>_Emitted when the labelColor property changes._  |
 | signal void | [**labelFontChanged**](classQAccelPlot_1_1Axis.md#signal-labelfontchanged)  <br>_Emitted when the labelFont property changes._  |
+| signal void | [**labelPaddingChanged**](classQAccelPlot_1_1Axis.md#signal-labelpaddingchanged)  <br>_Emitted when the labelPadding property changes._  |
 | signal void | [**layoutSizeChanged**](classQAccelPlot_1_1Axis.md#signal-layoutsizechanged)  <br>_Emitted when the layoutSize property changes._  |
 | signal void | [**logScaleChanged**](classQAccelPlot_1_1Axis.md#signal-logscalechanged)  <br>_Emitted when the logScale property changes._  |
 | signal void | [**orientationChanged**](classQAccelPlot_1_1Axis.md#signal-orientationchanged)  <br>_Emitted when the orientation property changes._  |
@@ -129,9 +128,8 @@ flowchart TB
 | ---: | :--- |
 |   | [**Axis**](#function-axis) (QQuickItem \* parent=nullptr, [**Side**](classQAccelPlot_1_1Axis.md#enum-side) side=Bottom) <br>_Constructs an_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _with the given__parent_ _and initial__side_ _._ |
 |  bool | [**autoRescale**](#function-autorescale-22) () const<br>_Returns_ `true` _when the viewport follows the data range._ |
-|  int | [**axisLinePadding**](#function-axislinepadding-22) () const<br>_Returns the axis line padding in pixels._  |
-|  int | [**axisTitlePadding**](#function-axistitlepadding-22) () const<br>_Returns the axis title padding in pixels._  |
 |  QColor | [**baselineColor**](#function-baselinecolor-22) () const<br>_Returns the axis baseline color._  |
+|  qreal | [**baselinePadding**](#function-baselinepadding-22) () const<br>_Returns the padding between the plot area edge and the baseline in pixels._  |
 |  qreal | [**baselineWidth**](#function-baselinewidth-22) () const<br>_Returns the axis baseline width in pixels._  |
 |  Q\_INVOKABLE qreal | [**coordToPixel**](#function-coordtopixel) (qreal value, qreal length) const<br>_Maps a data-space_ _value_ _to a pixel position along an axis of__length_ _pixels._ |
 |  qreal | [**dataMax**](#function-datamax-22) () const<br>_Returns the maximum data value of the bound series, computing it if their data changed._  |
@@ -139,22 +137,22 @@ flowchart TB
 |  Q\_INVOKABLE QString | [**formatValue**](#function-formatvalue) (qreal value, qreal length) const<br>_Formats_ _value_ _for a readout on an axis of__length_ _pixels._ |
 |  QColor | [**hoverColor**](#function-hovercolor-22) () const<br>_Returns the hovered tick/label color._  |
 |  bool | [**hovered**](#function-hovered-22) () const<br>_Returns_ `true` _if the mouse is currently over the axis widget._ |
-|  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area._  |
+|  qreal | [**inwardTickOverlap**](#function-inwardtickoverlap) () const<br>_Returns the inward tick overlap beyond_ `baselinePadding` _, used by PlotView to size the plot area._ |
 |  QString | [**label**](#function-label-22) () const<br>_Returns the axis label string._  |
 |  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the axis-label color, or an invalid color when it follows baselineColor._  |
 |  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the axis label font._  |
 |  qreal | [**labelOverflow**](#function-labeloverflow) () const<br>_Returns extra width/height needed to accommodate edge tick labels that extend beyond the axis bounds._  |
+|  qreal | [**labelPadding**](#function-labelpadding-22) () const<br>_Returns the padding between the baseline and the axis label in pixels._  |
 |  qreal | [**layoutSize**](#function-layoutsize-22) () const<br>_Returns the layout thickness in pixels._  |
 |  bool | [**logScale**](#function-logscale-22) () const<br>_Returns_ `true` _when log scale is active._ |
 |  [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) | [**mapping**](#function-mapping) () const<br>_Returns a snapshot of the current viewport mapping._  |
-|  [**Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) | [**orientation**](#function-orientation-22) () const<br>_Returns the axis orientation._  |
+|  Qt::Orientation | [**orientation**](#function-orientation-22) () const<br>_Returns the axis orientation._  |
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the axis widget (tick marks, labels, label text, background)._  |
 |  Q\_INVOKABLE qreal | [**pixelToCoord**](#function-pixeltocoord) (qreal pos, qreal length) const<br>_Maps a pixel_ _pos_ _along an axis of__length_ _pixels back to a data-space value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Sets_ `viewportMin` _and_`viewportMax` _to the current_`dataMin` _/_`dataMax` _range._ |
 |  void | [**setAutoRescale**](#function-setautorescale) (bool on) <br>_Sets whether the viewport follows the data range to_ _on_ _. Enabling it rescales to the current data range._ |
-|  void | [**setAxisLinePadding**](#function-setaxislinepadding) (int padding) <br>_Sets the axis line padding to_ _padding_ _pixels._ |
-|  void | [**setAxisTitlePadding**](#function-setaxistitlepadding) (int padding) <br>_Sets the axis title padding to_ _padding_ _pixels._ |
 |  void | [**setBaselineColor**](#function-setbaselinecolor) (const QColor & c) <br>_Sets the axis baseline color to_ _c_ _._ |
+|  void | [**setBaselinePadding**](#function-setbaselinepadding) (qreal padding) <br>_Sets the padding between the plot area edge and the baseline to_ _padding_ _pixels._ |
 |  void | [**setBaselineWidth**](#function-setbaselinewidth) (qreal width) <br>_Sets the axis baseline width to_ _width_ _pixels. Negative values are clamped to zero._ |
 |  void | [**setDataMax**](#function-setdatamax) (qreal m) <br>_Sets the data maximum to_ _m_ _until a bound series with data changes its records._ |
 |  void | [**setDataMin**](#function-setdatamin) (qreal m) <br>_Sets the data minimum to_ _m_ _until a bound series with data changes its records._ |
@@ -163,19 +161,20 @@ flowchart TB
 |  void | [**setLabel**](#function-setlabel) (const QString & t) <br>_Sets the axis label to_ _t_ _._ |
 |  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & c) <br>_Sets the axis-label color to_ _c_ _. An invalid color restores the baselineColor fallback._ |
 |  void | [**setLabelFont**](#function-setlabelfont) (const QFont & f) <br>_Sets the axis label font to_ _f_ _._ |
+|  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the padding between the baseline and the axis label to_ _padding_ _pixels._ |
 |  void | [**setLayoutSize**](#function-setlayoutsize) (qreal size) <br>_Sets the layout thickness to_ _size_ _pixels. Negative values are clamped to zero._ |
 |  void | [**setLogScale**](#function-setlogscale) (bool on) <br>_Sets log-scale mode to_ _on_ _._ |
-|  void | [**setOrientation**](#function-setorientation) ([**Orientation**](classQAccelPlot_1_1Axis.md#enum-orientation) o) <br>_Sets the axis orientation to_ _o_ _._ |
+|  void | [**setOrientation**](#function-setorientation) (Qt::Orientation o) <br>_Sets the axis orientation to_ _o_ _._ |
 |  void | [**setSide**](#function-setside) ([**Side**](classQAccelPlot_1_1Axis.md#enum-side) s) <br>_Sets the axis side to_ _s_ _._ |
 |  void | [**setViewportMax**](#function-setviewportmax) (qreal m) <br>_Sets the upper bound of the visible range to_ _m_ _._ |
 |  void | [**setViewportMin**](#function-setviewportmin) (qreal m) <br>_Sets the lower bound of the visible range to_ _m_ _._ |
-|  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (double factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
+|  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (qreal factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
 |  [**Side**](classQAccelPlot_1_1Axis.md#enum-side) | [**side**](#function-side-22) () const<br>_Returns the axis side._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object._  |
 |  Q\_INVOKABLE void | [**toggleLogScale**](#function-togglelogscale) () <br>_Toggles the log-scale mode on or off._  |
 |  qreal | [**viewportMax**](#function-viewportmax-22) () const<br>_Returns the upper bound of the visible range._  |
 |  qreal | [**viewportMin**](#function-viewportmin-22) () const<br>_Returns the lower bound of the visible range._  |
-|  double | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
+|  qreal | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
 
 
 
@@ -236,24 +235,6 @@ Assign an [**Axis**](classQAccelPlot_1_1Axis.md) to the corresponding property o
 
 
 
-### enum Orientation {#enum-orientation}
-
-_Orientation of an axis._ 
-```C++
-enum QAccelPlot::Axis::Orientation {
-    Horizontal,
-    Vertical
-};
-```
-
-
-
-
-<hr>
-
-
-
-
 ### enum Side {#enum-side}
 
 _Side of the plot on which the axis is positioned._ 
@@ -295,41 +276,26 @@ While `true`, every data update of a bound series sets the viewport as `rescaleT
 
 
 
-### property axisLinePadding {#property-axislinepadding-12}
-
-_Pixels of padding between the plot area edge and the axis baseline. Default: 0._ 
-```C++
-int QAccelPlot::Axis::axisLinePadding;
-```
-
-
-
-
-<hr>
-
-
-
-
-### property axisTitlePadding {#property-axistitlepadding-12}
-
-_Pixels of padding between the axis line and the title text. Default: 30._ 
-```C++
-int QAccelPlot::Axis::axisTitlePadding;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### property baselineColor {#property-baselinecolor-12}
 
 _Color of the axis baseline. Default:_ `Colors.dark.axisLine` _._
 ```C++
 QColor QAccelPlot::Axis::baselineColor;
+```
+
+
+
+
+<hr>
+
+
+
+
+### property baselinePadding {#property-baselinepadding-12}
+
+_Pixels of padding between the plot area edge and the baseline. Default: 0._ 
+```C++
+qreal QAccelPlot::Axis::baselinePadding;
 ```
 
 
@@ -464,6 +430,21 @@ QFont QAccelPlot::Axis::labelFont;
 
 
 
+### property labelPadding {#property-labelpadding-12}
+
+_Pixels of padding between the baseline and the axis label. Default: 30._ 
+```C++
+qreal QAccelPlot::Axis::labelPadding;
+```
+
+
+
+
+<hr>
+
+
+
+
 ### property layoutSize {#property-layoutsize-12}
 
 _Layout thickness in pixels: width for vertical axes and height for horizontal axes. Default: 50._ 
@@ -496,9 +477,9 @@ bool QAccelPlot::Axis::logScale;
 
 ### property orientation {#property-orientation-12}
 
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Axis.Horizontal` _or_`Axis.Vertical` _._
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _orientation:_`Qt.Horizontal` _or_`Qt.Vertical` _._
 ```C++
-Orientation QAccelPlot::Axis::orientation;
+Qt::Orientation QAccelPlot::Axis::orientation;
 ```
 
 
@@ -573,7 +554,7 @@ qreal QAccelPlot::Axis::viewportMin;
 
 _Fraction by which the visible range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._ 
 ```C++
-double QAccelPlot::Axis::zoomScaleFactor;
+qreal QAccelPlot::Axis::zoomScaleFactor;
 ```
 
 
@@ -605,41 +586,26 @@ void QAccelPlot::Axis::autoRescaleChanged;
 
 
 
-### signal axisLinePaddingChanged {#signal-axislinepaddingchanged}
-
-_Emitted when the axisLinePadding property changes._ 
-```C++
-void QAccelPlot::Axis::axisLinePaddingChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
-### signal axisTitlePaddingChanged {#signal-axistitlepaddingchanged}
-
-_Emitted when the axisTitlePadding property changes._ 
-```C++
-void QAccelPlot::Axis::axisTitlePaddingChanged;
-```
-
-
-
-
-<hr>
-
-
-
-
 ### signal baselineColorChanged {#signal-baselinecolorchanged}
 
 _Emitted when the baselineColor property changes._ 
 ```C++
 void QAccelPlot::Axis::baselineColorChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal baselinePaddingChanged {#signal-baselinepaddingchanged}
+
+_Emitted when the baselinePadding property changes._ 
+```C++
+void QAccelPlot::Axis::baselinePaddingChanged;
 ```
 
 
@@ -775,6 +741,21 @@ void QAccelPlot::Axis::labelColorChanged;
 _Emitted when the labelFont property changes._ 
 ```C++
 void QAccelPlot::Axis::labelFontChanged;
+```
+
+
+
+
+<hr>
+
+
+
+
+### signal labelPaddingChanged {#signal-labelpaddingchanged}
+
+_Emitted when the labelPadding property changes._ 
+```C++
+void QAccelPlot::Axis::labelPaddingChanged;
 ```
 
 
@@ -940,41 +921,26 @@ bool QAccelPlot::Axis::autoRescale () const
 
 
 
-### function axisLinePadding {#function-axislinepadding-22}
-
-_Returns the axis line padding in pixels._ 
-```C++
-int QAccelPlot::Axis::axisLinePadding () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function axisTitlePadding {#function-axistitlepadding-22}
-
-_Returns the axis title padding in pixels._ 
-```C++
-int QAccelPlot::Axis::axisTitlePadding () const
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function baselineColor {#function-baselinecolor-22}
 
 _Returns the axis baseline color._ 
 ```C++
 QColor QAccelPlot::Axis::baselineColor () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function baselinePadding {#function-baselinepadding-22}
+
+_Returns the padding between the plot area edge and the baseline in pixels._ 
+```C++
+qreal QAccelPlot::Axis::baselinePadding () const
 ```
 
 
@@ -1102,7 +1068,7 @@ bool QAccelPlot::Axis::hovered () const
 
 ### function inwardTickOverlap {#function-inwardtickoverlap}
 
-_Returns the inward tick overlap beyond the axis line padding, used by PlotView to size the plot area._ 
+_Returns the inward tick overlap beyond_ `baselinePadding` _, used by PlotView to size the plot area._
 ```C++
 qreal QAccelPlot::Axis::inwardTickOverlap () const
 ```
@@ -1175,6 +1141,21 @@ qreal QAccelPlot::Axis::labelOverflow () const
 
 
 
+### function labelPadding {#function-labelpadding-22}
+
+_Returns the padding between the baseline and the axis label in pixels._ 
+```C++
+qreal QAccelPlot::Axis::labelPadding () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function layoutSize {#function-layoutsize-22}
 
 _Returns the layout thickness in pixels._ 
@@ -1224,7 +1205,7 @@ AxisMapping QAccelPlot::Axis::mapping () const
 
 _Returns the axis orientation._ 
 ```C++
-Orientation QAccelPlot::Axis::orientation () const
+Qt::Orientation QAccelPlot::Axis::orientation () const
 ```
 
 
@@ -1310,46 +1291,29 @@ void QAccelPlot::Axis::setAutoRescale (
 
 
 
-### function setAxisLinePadding {#function-setaxislinepadding}
-
-_Sets the axis line padding to_ _padding_ _pixels._
-```C++
-void QAccelPlot::Axis::setAxisLinePadding (
-    int padding
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
-### function setAxisTitlePadding {#function-setaxistitlepadding}
-
-_Sets the axis title padding to_ _padding_ _pixels._
-```C++
-void QAccelPlot::Axis::setAxisTitlePadding (
-    int padding
-) 
-```
-
-
-
-
-<hr>
-
-
-
-
 ### function setBaselineColor {#function-setbaselinecolor}
 
 _Sets the axis baseline color to_ _c_ _._
 ```C++
 void QAccelPlot::Axis::setBaselineColor (
     const QColor & c
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function setBaselinePadding {#function-setbaselinepadding}
+
+_Sets the padding between the plot area edge and the baseline to_ _padding_ _pixels._
+```C++
+void QAccelPlot::Axis::setBaselinePadding (
+    qreal padding
 ) 
 ```
 
@@ -1502,6 +1466,23 @@ void QAccelPlot::Axis::setLabelFont (
 
 
 
+### function setLabelPadding {#function-setlabelpadding}
+
+_Sets the padding between the baseline and the axis label to_ _padding_ _pixels._
+```C++
+void QAccelPlot::Axis::setLabelPadding (
+    qreal padding
+) 
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function setLayoutSize {#function-setlayoutsize}
 
 _Sets the layout thickness to_ _size_ _pixels. Negative values are clamped to zero._
@@ -1541,7 +1522,7 @@ void QAccelPlot::Axis::setLogScale (
 _Sets the axis orientation to_ _o_ _._
 ```C++
 void QAccelPlot::Axis::setOrientation (
-    Orientation o
+    Qt::Orientation o
 ) 
 ```
 
@@ -1609,7 +1590,7 @@ void QAccelPlot::Axis::setViewportMin (
 _Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._
 ```C++
 void QAccelPlot::Axis::setZoomScaleFactor (
-    double factor
+    qreal factor
 ) 
 ```
 
@@ -1704,7 +1685,7 @@ qreal QAccelPlot::Axis::viewportMin () const
 
 _Returns the zoom scale factor._ 
 ```C++
-double QAccelPlot::Axis::zoomScaleFactor () const
+qreal QAccelPlot::Axis::zoomScaleFactor () const
 ```
 
 

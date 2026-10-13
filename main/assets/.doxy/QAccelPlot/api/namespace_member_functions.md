@@ -57,7 +57,7 @@
 * **nearest** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **nearestAlong** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
 * **neighbors** ([**QAccelPlot::InspectionScan**](namespaceQAccelPlot_1_1InspectionScan.md))
-* **nearly\_equal** ([**QAccelPlot**](namespaceQAccelPlot.md))
+* **nearlyEqual** ([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## p

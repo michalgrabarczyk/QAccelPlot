@@ -1840,14 +1840,14 @@
         </inbodydescription>
         <location file="QAccelPlot/src/QAccelPlot/series/LineCurve.hpp" line="227" column="25"/>
       </memberdef>
-      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1adcbdeb736c1f4278274cdb5c53525cb5" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classQAccelPlot_1_1LineCurve_1a58128cbaede9eae5e069f04373741063" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::pair&lt; qreal, qreal &gt;</type>
         <definition>std::pair&lt; qreal, qreal &gt; QAccelPlot::LineCurve::gradientDataRange</definition>
-        <argsstring>(GradientDirection direction) const</argsstring>
+        <argsstring>(Qt::Orientation direction) const</argsstring>
         <name>gradientDataRange</name>
         <qualifiedname>QAccelPlot::LineCurve::gradientDataRange</qualifiedname>
         <param>
-          <type><ref refid="namespaceQAccelPlot_1_1GradientDirectionNS_1a592d1d184b9aeb9df76de0150dc35a20" kindref="member">GradientDirection</ref></type>
+          <type>Qt::Orientation</type>
           <declname>direction</declname>
         </param>
         <briefdescription>
@@ -2504,7 +2504,7 @@
       <member refid="classQAccelPlot_1_1LineCurve_1a304e3f9be82a9fea7cb84b0c55068d9c" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>gaps</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a7e81c6340766beef529e410f693f1337" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>gaps</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a0cea9b141c185d364d04d73e37aee689" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>gaps_</name></member>
-      <member refid="classQAccelPlot_1_1LineCurve_1adcbdeb736c1f4278274cdb5c53525cb5" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>gradientDataRange</name></member>
+      <member refid="classQAccelPlot_1_1LineCurve_1a58128cbaede9eae5e069f04373741063" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>gradientDataRange</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1aeb78384844d07268e0a6ef032f1f2071" prot="private" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>hasGradientEffect</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1a0eaa9a95ac71afbc392f9ea417cca6ad" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>hovered</name></member>
       <member refid="classQAccelPlot_1_1LineCurve_1afb02e47fcf5869ff3a5529a1ca64f949" prot="public" virt="non-virtual"><scope>QAccelPlot::LineCurve</scope><name>hovered</name></member>

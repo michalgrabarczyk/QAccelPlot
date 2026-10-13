@@ -25,20 +25,6 @@
 
 namespace QAccelPlot {
 
-namespace GradientDirectionNS {
-Q_NAMESPACE
-QML_NAMED_ELEMENT(GradientDirection)
-
-
-enum class Direction {
-    Horizontal, 
-    Vertical,   
-};
-Q_ENUM_NS(Direction)
-} // namespace GradientDirectionNS
-
-using GradientDirection = GradientDirectionNS::Direction;
-
 namespace GradientFillBaselineNS {
 Q_NAMESPACE
 QML_NAMED_ELEMENT(GradientFillBaseline)
@@ -88,9 +74,9 @@ struct GradientColorPayload {
         return enabled && stops.size() >= 2;
     }
 
-    bool enabled{false};                                        
-    GradientDirection direction{GradientDirection::Horizontal}; 
-    std::vector<GradientStopData> stops;                        
+    bool enabled{false};                       
+    Qt::Orientation direction{Qt::Horizontal}; 
+    std::vector<GradientStopData> stops;       
     std::optional<qreal> gradientValueMin;
     std::optional<qreal> gradientValueMax;
 };
@@ -101,9 +87,9 @@ struct GradientFillPayload {
         return enabled && opacity > 0.0f && stops.size() >= 2;
     }
 
-    bool enabled{false};                                        
-    GradientDirection direction{GradientDirection::Horizontal}; 
-    std::vector<GradientStopData> stops;                        
+    bool enabled{false};                       
+    Qt::Orientation direction{Qt::Horizontal}; 
+    std::vector<GradientStopData> stops;       
     std::optional<qreal> gradientValueMin;
     std::optional<qreal> gradientValueMax;
     GradientFillBaseline baseline{GradientFillBaseline::AxisMinimum}; 

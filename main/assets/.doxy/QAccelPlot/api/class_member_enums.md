@@ -38,11 +38,6 @@
 * **NoneShape** ([**QAccelPlot::SeriesMarker**](classQAccelPlot_1_1SeriesMarker.md))
 
 
-## o
-
-* **Orientation** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md), [**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
-
-
 ## p
 
 * **Preset** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))

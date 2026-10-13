@@ -48,11 +48,6 @@ flowchart TB
 
 
 
-## Public Types
-
-| Type | Name |
-| ---: | :--- |
-| enum  | [**Orientation**](#enum-orientation)  <br>_Direction of the color ramp._  |
 
 
 
@@ -78,11 +73,11 @@ flowchart TB
 | property QColor | [**labelColor**](classQAccelPlot_1_1ColorBar.md#property-labelcolor-12)  <br>_Color of the title. Default:_ `Colors.dark.axisLine` _._ |
 | property QFont | [**labelFont**](classQAccelPlot_1_1ColorBar.md#property-labelfont-12)  <br>_Font of the title. Default: application default font._  |
 | property qreal | [**labelPadding**](classQAccelPlot_1_1ColorBar.md#property-labelpadding-12)  <br>_Gap in pixels between the tick labels and the title. Default: 6._  |
-| property [**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `ColorBar.Vertical` _or_`ColorBar.Horizontal` _. Default:_`Vertical` _._ |
+| property Qt::Orientation | [**orientation**](classQAccelPlot_1_1ColorBar.md#property-orientation-12)  <br>_Direction of the ramp:_ `Qt.Vertical` _or_`Qt.Horizontal` _. Default:_`Qt.Vertical` _._ |
 | property [**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* | [**series**](classQAccelPlot_1_1ColorBar.md#property-series-12)  <br>_Series whose colormap and resolved value range are shown. Default: null._  |
 | property qreal | [**tickLabelWidth**](classQAccelPlot_1_1ColorBar.md#property-ticklabelwidth-12)  <br>_Width in pixels reserved for the tick labels of a vertical bar. Default: 16._  |
 | property [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](classQAccelPlot_1_1ColorBar.md#property-ticker-12)  <br>_Read-only constant: tick appearance, count, and label formatter._  |
-| property double | [**zoomScaleFactor**](classQAccelPlot_1_1ColorBar.md#property-zoomscalefactor-12)  <br>_Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
+| property qreal | [**zoomScaleFactor**](classQAccelPlot_1_1ColorBar.md#property-zoomscalefactor-12)  <br>_Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._  |
 
 
 
@@ -122,7 +117,7 @@ flowchart TB
 |  QColor | [**labelColor**](#function-labelcolor-22) () const<br>_Returns the title color._  |
 |  QFont | [**labelFont**](#function-labelfont-22) () const<br>_Returns the title font._  |
 |  qreal | [**labelPadding**](#function-labelpadding-22) () const<br>_Returns the gap between the tick labels and the title in pixels._  |
-|  [**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) | [**orientation**](#function-orientation-22) () const<br>_Returns the ramp direction._  |
+|  Qt::Orientation | [**orientation**](#function-orientation-22) () const<br>_Returns the ramp direction._  |
 |  void | [**paint**](#function-paint) (QPainter \* painter) override<br>_Paints the strip, ticks, tick labels, and title computed in_ `updatePolish()` _._ |
 |  qreal | [**pixelToValue**](#function-pixeltovalue) (qreal pixel, qreal length) const<br>_Maps a_ _pixel_ _position along a strip of__length_ _pixels back to a value._ |
 |  Q\_INVOKABLE void | [**rescaleToData**](#function-rescaletodata) () <br>_Unsets the colormap's_ `min` _and_`max` _, so the range is resolved from the data again._ |
@@ -135,14 +130,14 @@ flowchart TB
 |  void | [**setLabelColor**](#function-setlabelcolor) (const QColor & color) <br>_Sets the title color to_ _color_ _._ |
 |  void | [**setLabelFont**](#function-setlabelfont) (const QFont & font) <br>_Sets the title font to_ _font_ _._ |
 |  void | [**setLabelPadding**](#function-setlabelpadding) (qreal padding) <br>_Sets the gap between the tick labels and the title to_ _padding_ _pixels. Negative values are clamped to 0._ |
-|  void | [**setOrientation**](#function-setorientation) ([**Orientation**](classQAccelPlot_1_1ColorBar.md#enum-orientation) orientation) <br>_Sets the ramp direction to_ _orientation_ _._ |
+|  void | [**setOrientation**](#function-setorientation) (Qt::Orientation orientation) <br>_Sets the ramp direction to_ _orientation_ _._ |
 |  void | [**setSeries**](#function-setseries) ([**PointCloud**](classQAccelPlot_1_1PointCloud.md) \* series) <br>_Sets the series whose colormap is shown to_ _series_ _._ |
 |  void | [**setTickLabelWidth**](#function-setticklabelwidth) (qreal width) <br>_Sets the width reserved for tick labels to_ _width_ _pixels. Negative values are clamped to 0._ |
-|  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (double factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
+|  void | [**setZoomScaleFactor**](#function-setzoomscalefactor) (qreal factor) <br>_Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._ |
 |  qreal | [**tickLabelWidth**](#function-ticklabelwidth-22) () const<br>_Returns the width reserved for tick labels in pixels._  |
 |  [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) \* | [**ticker**](#function-ticker-22) () const<br>_Returns the tick configuration object. The object is owned by the color bar._  |
 |  qreal | [**valueToPixel**](#function-valuetopixel) (qreal value, qreal length) const<br>_Maps_ _value_ _to a pixel position along a strip of__length_ _pixels._ |
-|  double | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
+|  qreal | [**zoomScaleFactor**](#function-zoomscalefactor-22) () const<br>_Returns the zoom scale factor._  |
 
 
 
@@ -219,26 +214,6 @@ With `interactive` set, a left drag along the ramp pans the colormap's value ran
 
 
     
-## Public Types Documentation
-
-
-
-
-
-### enum Orientation {#enum-orientation}
-
-_Direction of the color ramp._ 
-```C++
-enum QAccelPlot::ColorBar::Orientation {
-    Horizontal,
-    Vertical
-};
-```
-
-
-
-
-<hr>
 ## Public Properties Documentation
 
 
@@ -386,9 +361,9 @@ qreal QAccelPlot::ColorBar::labelPadding;
 
 ### property orientation {#property-orientation-12}
 
-_Direction of the ramp:_ `ColorBar.Vertical` _or_`ColorBar.Horizontal` _. Default:_`Vertical` _._
+_Direction of the ramp:_ `Qt.Vertical` _or_`Qt.Horizontal` _. Default:_`Qt.Vertical` _._
 ```C++
-Orientation QAccelPlot::ColorBar::orientation;
+Qt::Orientation QAccelPlot::ColorBar::orientation;
 ```
 
 
@@ -456,7 +431,7 @@ Defaults differ from `Axis :` `tickLengthIn` 0, `tickLengthOut` 4, `subtickLengt
 
 _Fraction by which the value range is multiplied on each inward mouse-wheel step. Must be in (0, 1). Default: 0.9._ 
 ```C++
-double QAccelPlot::ColorBar::zoomScaleFactor;
+qreal QAccelPlot::ColorBar::zoomScaleFactor;
 ```
 
 
@@ -826,7 +801,7 @@ qreal QAccelPlot::ColorBar::labelPadding () const
 
 _Returns the ramp direction._ 
 ```C++
-Orientation QAccelPlot::ColorBar::orientation () const
+Qt::Orientation QAccelPlot::ColorBar::orientation () const
 ```
 
 
@@ -1047,7 +1022,7 @@ void QAccelPlot::ColorBar::setLabelPadding (
 _Sets the ramp direction to_ _orientation_ _._
 ```C++
 void QAccelPlot::ColorBar::setOrientation (
-    Orientation orientation
+    Qt::Orientation orientation
 ) 
 ```
 
@@ -1098,7 +1073,7 @@ void QAccelPlot::ColorBar::setTickLabelWidth (
 _Sets the zoom scale factor to_ _factor_ _(clamped to the range (0, 1))._
 ```C++
 void QAccelPlot::ColorBar::setZoomScaleFactor (
-    double factor
+    qreal factor
 ) 
 ```
 
@@ -1166,7 +1141,7 @@ Horizontal bars measure from the left edge, vertical bars from the top edge. Use
 
 _Returns the zoom scale factor._ 
 ```C++
-double QAccelPlot::ColorBar::zoomScaleFactor () const
+qreal QAccelPlot::ColorBar::zoomScaleFactor () const
 ```
 
 

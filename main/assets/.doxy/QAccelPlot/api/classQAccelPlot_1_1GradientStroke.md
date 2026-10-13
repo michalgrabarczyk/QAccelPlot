@@ -81,12 +81,12 @@ flowchart TB
 | Type | Name |
 | ---: | :--- |
 | property [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](classQAccelPlot_1_1GradientStroke.md#property-colormap-12)  <br>[_**Colormap**_](classQAccelPlot_1_1Colormap.md) _supplying the color stops. Overrides_`gradient` _when set._ |
-| property [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](classQAccelPlot_1_1GradientStroke.md#property-direction-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies (Horizontal or Vertical)._ |
+| property Qt::Orientation | [**direction**](classQAccelPlot_1_1GradientStroke.md#property-direction-12)  <br>[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies:_`Qt.Horizontal` _for X values,_`Qt.Vertical` _for Y values. Default:_`Qt.Horizontal` _._ |
 | property QObject \* | [**gradient**](classQAccelPlot_1_1GradientStroke.md#property-gradient-12)  <br>_A Qt_ `Gradient` _(or compatible) object supplying the color stops._ |
-| property qreal | [**gradientValueMax**](classQAccelPlot_1_1GradientStroke.md#property-gradientvaluemax-12)  <br>_Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed._  |
-| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMaxSource**](classQAccelPlot_1_1GradientStroke.md#property-gradientvaluemaxsource-12)  <br>_How the gradient normalization maximum is determined; see_ `GradientValueSource` _._ |
-| property qreal | [**gradientValueMin**](classQAccelPlot_1_1GradientStroke.md#property-gradientvaluemin-12)  <br>_Data-space value that maps to gradient position 0.0. Only used when gradientValueMinSource is Fixed._  |
-| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMinSource**](classQAccelPlot_1_1GradientStroke.md#property-gradientvalueminsource-12)  <br>_How the gradient normalization minimum is determined; see_ `GradientValueSource` _._ |
+| property qreal | [**valueMax**](classQAccelPlot_1_1GradientStroke.md#property-valuemax-12)  <br>_Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed._  |
+| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMaxSource**](classQAccelPlot_1_1GradientStroke.md#property-valuemaxsource-12)  <br>_How the gradient normalization maximum is determined; see_ `GradientValueSource` _._ |
+| property qreal | [**valueMin**](classQAccelPlot_1_1GradientStroke.md#property-valuemin-12)  <br>_Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed._  |
+| property [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](classQAccelPlot_1_1GradientStroke.md#property-valueminsource-12)  <br>_How the gradient normalization minimum is determined; see_ `GradientValueSource` _._ |
 
 
 ## Public Properties inherited from QAccelPlot::LineCurveEffect
@@ -109,10 +109,10 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | signal void | [**colormapChanged**](classQAccelPlot_1_1GradientStroke.md#signal-colormapchanged)  <br>_Emitted when the colormap property changes._  |
 | signal void | [**directionChanged**](classQAccelPlot_1_1GradientStroke.md#signal-directionchanged)  <br>_Emitted when the direction property changes._  |
 | signal void | [**gradientChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientchanged)  <br>_Emitted when the gradient property changes._  |
-| signal void | [**gradientValueMaxChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientvaluemaxchanged)  <br>_Emitted when the gradientValueMax property changes._  |
-| signal void | [**gradientValueMaxSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientvaluemaxsourcechanged)  <br>_Emitted when the gradientValueMaxSource property changes._  |
-| signal void | [**gradientValueMinChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientvalueminchanged)  <br>_Emitted when the gradientValueMin property changes._  |
-| signal void | [**gradientValueMinSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-gradientvalueminsourcechanged)  <br>_Emitted when the gradientValueMinSource property changes._  |
+| signal void | [**valueMaxChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valuemaxchanged)  <br>_Emitted when the valueMax property changes._  |
+| signal void | [**valueMaxSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valuemaxsourcechanged)  <br>_Emitted when the valueMaxSource property changes._  |
+| signal void | [**valueMinChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valueminchanged)  <br>_Emitted when the valueMin property changes._  |
+| signal void | [**valueMinSourceChanged**](classQAccelPlot_1_1GradientStroke.md#signal-valueminsourcechanged)  <br>_Emitted when the valueMinSource property changes._  |
 
 
 ## Public Signals inherited from QAccelPlot::LineCurveEffect
@@ -135,21 +135,21 @@ See [QAccelPlot::LineCurveEffect](classQAccelPlot_1_1LineCurveEffect.md)
 | ---: | :--- |
 |   | [**GradientStroke**](#function-gradientstroke) (QObject \* parent=nullptr) <br>_Constructs a_ [_**GradientStroke**_](classQAccelPlot_1_1GradientStroke.md) _with the given__parent_ _._ |
 |  [**Colormap**](classQAccelPlot_1_1Colormap.md) \* | [**colormap**](#function-colormap-22) () const<br>_Returns the colormap supplying color stops, or_ `nullptr` _when_`gradient` _supplies them._ |
-|  [**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) | [**direction**](#function-direction-22) () const<br>_Returns the gradient direction._  |
+|  Qt::Orientation | [**direction**](#function-direction-22) () const<br>_Returns the gradient direction._  |
 |  QObject \* | [**gradient**](#function-gradient-22) () const<br>_Returns the Qt Gradient object supplying color stops._  |
-|  qreal | [**gradientValueMax**](#function-gradientvaluemax-22) () const<br>_Returns the maximum data value for gradient normalization._  |
-|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMaxSource**](#function-gradientvaluemaxsource-22) () const<br>_Returns how the gradient normalization maximum is determined._  |
-|  qreal | [**gradientValueMin**](#function-gradientvaluemin-22) () const<br>_Returns the minimum data value for gradient normalization._  |
-|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**gradientValueMinSource**](#function-gradientvalueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
 |  const [**GradientColorPayload**](structQAccelPlot_1_1GradientColorPayload.md) & | [**payload**](#function-payload) () const<br>_Returns a snapshot of all stroke parameters, updated on the GUI thread when the effect changes._  |
 | virtual void | [**refresh**](#function-refresh) () override<br>_Re-reads the_ `gradient` _stops, which can change without a notification, and emits_`effectChanged()` _if they differ from the snapshot._ |
 |  void | [**setColormap**](#function-setcolormap) ([**Colormap**](classQAccelPlot_1_1Colormap.md) \* colormap) <br>_Sets the colormap to_ _colormap_ _. Pass_`nullptr` _to take the stops from_`gradient` _._ |
-|  void | [**setDirection**](#function-setdirection) ([**GradientDirection**](namespaceQAccelPlot_1_1GradientDirectionNS.md#enum-direction) direction) <br>_Sets the gradient direction to_ _direction_ _._ |
+|  void | [**setDirection**](#function-setdirection) (Qt::Orientation direction) <br>_Sets the gradient direction to_ _direction_ _._ |
 |  void | [**setGradient**](#function-setgradient) (QObject \* gradient) <br>_Sets the Qt Gradient object to_ _gradient_ _._ |
-|  void | [**setGradientValueMax**](#function-setgradientvaluemax) (qreal value) <br>_Sets the maximum data value for gradient normalization to_ _value_ _._ |
-|  void | [**setGradientValueMaxSource**](#function-setgradientvaluemaxsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization maximum source to_ _source_ _._ |
-|  void | [**setGradientValueMin**](#function-setgradientvaluemin) (qreal value) <br>_Sets the minimum data value for gradient normalization to_ _value_ _._ |
-|  void | [**setGradientValueMinSource**](#function-setgradientvalueminsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization minimum source to_ _source_ _._ |
+|  void | [**setValueMax**](#function-setvaluemax) (qreal value) <br>_Sets the maximum data value for gradient normalization to_ _value_ _._ |
+|  void | [**setValueMaxSource**](#function-setvaluemaxsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization maximum source to_ _source_ _._ |
+|  void | [**setValueMin**](#function-setvaluemin) (qreal value) <br>_Sets the minimum data value for gradient normalization to_ _value_ _._ |
+|  void | [**setValueMinSource**](#function-setvalueminsource) ([**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) source) <br>_Sets the gradient normalization minimum source to_ _source_ _._ |
+|  qreal | [**valueMax**](#function-valuemax-22) () const<br>_Returns the maximum data value for gradient normalization._  |
+|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMaxSource**](#function-valuemaxsource-22) () const<br>_Returns how the gradient normalization maximum is determined._  |
+|  qreal | [**valueMin**](#function-valuemin-22) () const<br>_Returns the minimum data value for gradient normalization._  |
+|  [**GradientValueSource**](namespaceQAccelPlot_1_1GradientValueSourceNS.md#enum-source) | [**valueMinSource**](#function-valueminsource-22) () const<br>_Returns how the gradient normalization minimum is determined._  |
 
 
 ## Public Functions inherited from QAccelPlot::LineCurveEffect
@@ -244,7 +244,7 @@ Colormap* QAccelPlot::GradientStroke::colormap;
 
 
 
-Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` are ignored; `gradientValueMin` and `gradientValueMax` place the ramp instead. 
+Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` are ignored; `valueMin` and `valueMax` place the ramp instead. 
 
 
         
@@ -256,9 +256,9 @@ Only the ramp is used. `Colormap::min`, `Colormap::max`, and `Colormap::norm` ar
 
 ### property direction {#property-direction-12}
 
-[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies (Horizontal or Vertical)._
+[_**Axis**_](classQAccelPlot_1_1Axis.md) _along which the gradient color varies:_`Qt.Horizontal` _for X values,_`Qt.Vertical` _for Y values. Default:_`Qt.Horizontal` _._
 ```C++
-GradientDirection QAccelPlot::GradientStroke::direction;
+Qt::Orientation QAccelPlot::GradientStroke::direction;
 ```
 
 
@@ -284,11 +284,11 @@ QObject* QAccelPlot::GradientStroke::gradient;
 
 
 
-### property gradientValueMax {#property-gradientvaluemax-12}
+### property valueMax {#property-valuemax-12}
 
-_Data-space value that maps to gradient position 1.0. Only used when gradientValueMaxSource is Fixed._ 
+_Data-space value that maps to gradient position 1.0. Only used when valueMaxSource is Fixed._ 
 ```C++
-qreal QAccelPlot::GradientStroke::gradientValueMax;
+qreal QAccelPlot::GradientStroke::valueMax;
 ```
 
 
@@ -299,11 +299,11 @@ qreal QAccelPlot::GradientStroke::gradientValueMax;
 
 
 
-### property gradientValueMaxSource {#property-gradientvaluemaxsource-12}
+### property valueMaxSource {#property-valuemaxsource-12}
 
 _How the gradient normalization maximum is determined; see_ `GradientValueSource` _._
 ```C++
-GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource;
+GradientValueSource QAccelPlot::GradientStroke::valueMaxSource;
 ```
 
 
@@ -314,11 +314,11 @@ GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource;
 
 
 
-### property gradientValueMin {#property-gradientvaluemin-12}
+### property valueMin {#property-valuemin-12}
 
-_Data-space value that maps to gradient position 0.0. Only used when gradientValueMinSource is Fixed._ 
+_Data-space value that maps to gradient position 0.0. Only used when valueMinSource is Fixed._ 
 ```C++
-qreal QAccelPlot::GradientStroke::gradientValueMin;
+qreal QAccelPlot::GradientStroke::valueMin;
 ```
 
 
@@ -329,11 +329,11 @@ qreal QAccelPlot::GradientStroke::gradientValueMin;
 
 
 
-### property gradientValueMinSource {#property-gradientvalueminsource-12}
+### property valueMinSource {#property-valueminsource-12}
 
 _How the gradient normalization minimum is determined; see_ `GradientValueSource` _._
 ```C++
-GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource;
+GradientValueSource QAccelPlot::GradientStroke::valueMinSource;
 ```
 
 
@@ -391,11 +391,11 @@ void QAccelPlot::GradientStroke::gradientChanged;
 
 
 
-### signal gradientValueMaxChanged {#signal-gradientvaluemaxchanged}
+### signal valueMaxChanged {#signal-valuemaxchanged}
 
-_Emitted when the gradientValueMax property changes._ 
+_Emitted when the valueMax property changes._ 
 ```C++
-void QAccelPlot::GradientStroke::gradientValueMaxChanged;
+void QAccelPlot::GradientStroke::valueMaxChanged;
 ```
 
 
@@ -406,11 +406,11 @@ void QAccelPlot::GradientStroke::gradientValueMaxChanged;
 
 
 
-### signal gradientValueMaxSourceChanged {#signal-gradientvaluemaxsourcechanged}
+### signal valueMaxSourceChanged {#signal-valuemaxsourcechanged}
 
-_Emitted when the gradientValueMaxSource property changes._ 
+_Emitted when the valueMaxSource property changes._ 
 ```C++
-void QAccelPlot::GradientStroke::gradientValueMaxSourceChanged;
+void QAccelPlot::GradientStroke::valueMaxSourceChanged;
 ```
 
 
@@ -421,11 +421,11 @@ void QAccelPlot::GradientStroke::gradientValueMaxSourceChanged;
 
 
 
-### signal gradientValueMinChanged {#signal-gradientvalueminchanged}
+### signal valueMinChanged {#signal-valueminchanged}
 
-_Emitted when the gradientValueMin property changes._ 
+_Emitted when the valueMin property changes._ 
 ```C++
-void QAccelPlot::GradientStroke::gradientValueMinChanged;
+void QAccelPlot::GradientStroke::valueMinChanged;
 ```
 
 
@@ -436,11 +436,11 @@ void QAccelPlot::GradientStroke::gradientValueMinChanged;
 
 
 
-### signal gradientValueMinSourceChanged {#signal-gradientvalueminsourcechanged}
+### signal valueMinSourceChanged {#signal-valueminsourcechanged}
 
-_Emitted when the gradientValueMinSource property changes._ 
+_Emitted when the valueMinSource property changes._ 
 ```C++
-void QAccelPlot::GradientStroke::gradientValueMinSourceChanged;
+void QAccelPlot::GradientStroke::valueMinSourceChanged;
 ```
 
 
@@ -489,7 +489,7 @@ Colormap * QAccelPlot::GradientStroke::colormap () const
 
 _Returns the gradient direction._ 
 ```C++
-GradientDirection QAccelPlot::GradientStroke::direction () const
+Qt::Orientation QAccelPlot::GradientStroke::direction () const
 ```
 
 
@@ -505,66 +505,6 @@ GradientDirection QAccelPlot::GradientStroke::direction () const
 _Returns the Qt Gradient object supplying color stops._ 
 ```C++
 QObject * QAccelPlot::GradientStroke::gradient () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function gradientValueMax {#function-gradientvaluemax-22}
-
-_Returns the maximum data value for gradient normalization._ 
-```C++
-qreal QAccelPlot::GradientStroke::gradientValueMax () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function gradientValueMaxSource {#function-gradientvaluemaxsource-22}
-
-_Returns how the gradient normalization maximum is determined._ 
-```C++
-GradientValueSource QAccelPlot::GradientStroke::gradientValueMaxSource () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function gradientValueMin {#function-gradientvaluemin-22}
-
-_Returns the minimum data value for gradient normalization._ 
-```C++
-qreal QAccelPlot::GradientStroke::gradientValueMin () const
-```
-
-
-
-
-<hr>
-
-
-
-
-### function gradientValueMinSource {#function-gradientvalueminsource-22}
-
-_Returns how the gradient normalization minimum is determined._ 
-```C++
-GradientValueSource QAccelPlot::GradientStroke::gradientValueMinSource () const
 ```
 
 
@@ -633,7 +573,7 @@ void QAccelPlot::GradientStroke::setColormap (
 _Sets the gradient direction to_ _direction_ _._
 ```C++
 void QAccelPlot::GradientStroke::setDirection (
-    GradientDirection direction
+    Qt::Orientation direction
 ) 
 ```
 
@@ -662,11 +602,11 @@ void QAccelPlot::GradientStroke::setGradient (
 
 
 
-### function setGradientValueMax {#function-setgradientvaluemax}
+### function setValueMax {#function-setvaluemax}
 
 _Sets the maximum data value for gradient normalization to_ _value_ _._
 ```C++
-void QAccelPlot::GradientStroke::setGradientValueMax (
+void QAccelPlot::GradientStroke::setValueMax (
     qreal value
 ) 
 ```
@@ -679,11 +619,11 @@ void QAccelPlot::GradientStroke::setGradientValueMax (
 
 
 
-### function setGradientValueMaxSource {#function-setgradientvaluemaxsource}
+### function setValueMaxSource {#function-setvaluemaxsource}
 
 _Sets the gradient normalization maximum source to_ _source_ _._
 ```C++
-void QAccelPlot::GradientStroke::setGradientValueMaxSource (
+void QAccelPlot::GradientStroke::setValueMaxSource (
     GradientValueSource source
 ) 
 ```
@@ -696,11 +636,11 @@ void QAccelPlot::GradientStroke::setGradientValueMaxSource (
 
 
 
-### function setGradientValueMin {#function-setgradientvaluemin}
+### function setValueMin {#function-setvaluemin}
 
 _Sets the minimum data value for gradient normalization to_ _value_ _._
 ```C++
-void QAccelPlot::GradientStroke::setGradientValueMin (
+void QAccelPlot::GradientStroke::setValueMin (
     qreal value
 ) 
 ```
@@ -713,13 +653,73 @@ void QAccelPlot::GradientStroke::setGradientValueMin (
 
 
 
-### function setGradientValueMinSource {#function-setgradientvalueminsource}
+### function setValueMinSource {#function-setvalueminsource}
 
 _Sets the gradient normalization minimum source to_ _source_ _._
 ```C++
-void QAccelPlot::GradientStroke::setGradientValueMinSource (
+void QAccelPlot::GradientStroke::setValueMinSource (
     GradientValueSource source
 ) 
+```
+
+
+
+
+<hr>
+
+
+
+
+### function valueMax {#function-valuemax-22}
+
+_Returns the maximum data value for gradient normalization._ 
+```C++
+qreal QAccelPlot::GradientStroke::valueMax () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function valueMaxSource {#function-valuemaxsource-22}
+
+_Returns how the gradient normalization maximum is determined._ 
+```C++
+GradientValueSource QAccelPlot::GradientStroke::valueMaxSource () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function valueMin {#function-valuemin-22}
+
+_Returns the minimum data value for gradient normalization._ 
+```C++
+qreal QAccelPlot::GradientStroke::valueMin () const
+```
+
+
+
+
+<hr>
+
+
+
+
+### function valueMinSource {#function-valueminsource-22}
+
+_Returns how the gradient normalization minimum is determined._ 
+```C++
+GradientValueSource QAccelPlot::GradientStroke::valueMinSource () const
 ```
 
 
