@@ -91,6 +91,16 @@ int PointSpatialIndex::validPointCount() const
     return static_cast<int>(points_.size());
 }
 
+int PointSpatialIndex::columnCount() const
+{
+    return columns_;
+}
+
+int PointSpatialIndex::rowCount() const
+{
+    return rows_;
+}
+
 PointSpatialIndex::Mapping PointSpatialIndex::mapping() const
 {
     return mapping_;
@@ -215,7 +225,8 @@ void PointSpatialIndex::computeGridDimensions()
     const auto cellCount = std::max(1.0, static_cast<double>(points_.size()) / kTargetPointsPerCell);
     // Square-ish cells in mapped space: columns / rows follows the aspect ratio of the extent.
     const auto aspect = extentX / extentY;
-    columns_ = std::clamp(static_cast<int>(std::ceil(std::sqrt(cellCount * aspect))), 1, kMaxGridDimension);
+    // Clamped before the conversion: for points on a line the aspect, and with it the count, exceeds an int.
+    columns_ = static_cast<int>(std::clamp(std::ceil(std::sqrt(cellCount * aspect)), 1.0, static_cast<double>(kMaxGridDimension)));
     rows_ = std::clamp(static_cast<int>(std::ceil(cellCount / columns_)), 1, kMaxGridDimension);
     cellWidth_ = extentX / columns_;
     cellHeight_ = extentY / rows_;
