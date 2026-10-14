@@ -109,6 +109,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   tick or subtick length.
 - An axis already assigned to a plot slot cannot also occupy another axis slot
   or appear in `extraAxes`.
+- `Plot` with `legend: null` no longer logs a TypeError.
 - Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.
 - Zooming or panning an axis stops at the limits of a double. Zooming a
