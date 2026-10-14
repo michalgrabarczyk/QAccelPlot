@@ -8,10 +8,13 @@
 name: Build and test
 
 on:
-  push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
+
+# A new push to a pull request cancels its previous run. Every other run gets its own group.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   build-and-test:
