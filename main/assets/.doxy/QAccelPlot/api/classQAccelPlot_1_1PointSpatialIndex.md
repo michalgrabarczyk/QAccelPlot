@@ -69,9 +69,11 @@ _Uniform-grid spatial index for nearest-point queries over large point sets._ [M
 |  void | [**build**](#function-build-12) (const float \* data, int pointCount, int stride, [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) mapping) <br>_Rebuilds the index from_ _pointCount_ _points in__data_ _using__stride_ _floats per point._ |
 |  void | [**build**](#function-build-22) (const float \* data, int pointCount, int stride=2) <br>_Rebuilds the index with the identity mapping, for linear axes._  |
 |  void | [**clear**](#function-clear) () <br>_Removes all indexed points._  |
+|  int | [**columnCount**](#function-columncount) () const<br>_Returns the number of grid columns of the last build; 0 when no point is indexed._  |
 |  bool | [**isEmpty**](#function-isempty) () const<br>_Returns_ `true` _when no valid point is indexed._ |
 |  [**Mapping**](structQAccelPlot_1_1PointSpatialIndex_1_1Mapping.md) | [**mapping**](#function-mapping) () const<br>_Returns the mapping used by the last build._  |
 |  int | [**nearest**](#function-nearest) (double x, double y, double radiusX, double radiusY) const<br>_Returns the index of the point nearest to (_ _x_ _,__y_ _) inside the ellipse with radii__radiusX_ _and__radiusY_ _, or -1 when none. All arguments are in mapped space._ |
+|  int | [**rowCount**](#function-rowcount) () const<br>_Returns the number of grid rows of the last build; 0 when no point is indexed._  |
 |  int | [**validPointCount**](#function-validpointcount) () const<br>_Returns the number of indexed (valid) points._  |
 
 
@@ -187,6 +189,21 @@ void QAccelPlot::PointSpatialIndex::clear ()
 
 
 
+### function columnCount {#function-columncount}
+
+_Returns the number of grid columns of the last build; 0 when no point is indexed._ 
+```C++
+int QAccelPlot::PointSpatialIndex::columnCount () const
+```
+
+
+
+
+<hr>
+
+
+
+
 ### function isEmpty {#function-isempty}
 
 _Returns_ `true` _when no valid point is indexed._
@@ -235,6 +252,21 @@ Distance is normalized by the radii, so an anisotropic pixel radius behaves like
 
 
         
+
+<hr>
+
+
+
+
+### function rowCount {#function-rowcount}
+
+_Returns the number of grid rows of the last build; 0 when no point is indexed._ 
+```C++
+int QAccelPlot::PointSpatialIndex::rowCount () const
+```
+
+
+
 
 <hr>
 

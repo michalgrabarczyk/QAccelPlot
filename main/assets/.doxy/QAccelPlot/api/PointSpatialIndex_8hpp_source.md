@@ -38,6 +38,8 @@ public:
 
     bool isEmpty() const;
     int validPointCount() const;
+    int columnCount() const;
+    int rowCount() const;
     Mapping mapping() const;
 
     int nearest(double x, double y, double radiusX, double radiusY) const;

@@ -1853,6 +1853,8 @@
 <li><code>GradientFill</code> on dense data reaches the curve's peaks and troughs.</li>
 <li>Gradient effects with a <code>DataRange</code> bound use the curve's own data extent, not the whole axis range.</li>
 <li><code>LineCurve</code> and <code>PointCloud</code> keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.</li>
+<li>Hovering a <code>PointCloud</code> whose points lie on a long horizontal line no longer
+  tests every point.</li>
 <li><code>PointCloud</code> no longer hovers points beyond the GPU texture capacity, which are not drawn.</li>
 <li><code>Colormap</code> now drops destroyed <code>stops</code> and updates its ramp when a stop changes.</li>
 <li><code>Colormap</code> ignores null entries in <code>stops</code> instead of crashing.</li>
