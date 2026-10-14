@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-14 20:19:00</td>
+      <td>2026-10-14 20:40:59</td>
     </tr>
   </table>
 </div>
@@ -40,8 +40,8 @@
     </tr>
     <tr>
       <th scope="row">Lines:</th>
-      <td>13</td>
-      <td>13</td>
+      <td>16</td>
+      <td>16</td>
       <td class="coverage-high">100.0%</td>
     </tr>
     <tr>
@@ -52,9 +52,9 @@
     </tr>
     <tr>
       <th scope="row">Branches:</th>
-      <td>5</td>
-      <td>8</td>
-      <td class="coverage-low">62.5%</td>
+      <td>13</td>
+      <td>16</td>
+      <td class="coverage-medium">81.2%</td>
     </tr>
   </table>
 </div>
@@ -70,10 +70,10 @@
       <th>Call count</th>
       <th>Block coverage</th>
     </tr>
-    <tr><td><a href="#l14">QAccelPlot::DateTimeTickLabelFormatter::DateTimeTickLabelFormatter(QObject*) (line 14)</a></td><td>called 7 times</td><td>80.0%</td></tr>
-    <tr><td><a href="#l19">QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat() const (line 19)</a></td><td>called 2 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l34">QAccelPlot::DateTimeTickLabelFormatter::doFormat(double, double) const (line 34)</a></td><td>called 2 times</td><td>78.0%</td></tr>
-    <tr><td><a href="#l24">QAccelPlot::DateTimeTickLabelFormatter::setDateTimeFormat(QString const&amp;) (line 24)</a></td><td>called 6 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l17">QAccelPlot::DateTimeTickLabelFormatter::DateTimeTickLabelFormatter(QObject*) (line 17)</a></td><td>called 14 times</td><td>80.0%</td></tr>
+    <tr><td><a href="#l22">QAccelPlot::DateTimeTickLabelFormatter::dateTimeFormat() const (line 22)</a></td><td>called 2 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l37">QAccelPlot::DateTimeTickLabelFormatter::doFormat(double, double) const (line 37)</a></td><td>called 16 times</td><td>88.0%</td></tr>
+    <tr><td><a href="#l27">QAccelPlot::DateTimeTickLabelFormatter::setDateTimeFormat(QString const&amp;) (line 27)</a></td><td>called 6 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -169,108 +169,129 @@
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l13" href="#l13">13</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "></td>
+      <td class="src "><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l14" href="#l14">14</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">7</td>
-      <td class="src coveredLine"><span class="n">DateTimeTickLabelFormatter</span><span class="o">::</span><span class="n">DateTimeTickLabelFormatter</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
+      <td class="linecount "></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l15" href="#l15">15</a></td>
       <td class="linebranch">
-        <details class="linebranchDetails">
-          <summary class="linebranchSummary">1/2</summary>
-          <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 2 taken 7 times.</div>
-            <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
-          </div>
-        </details>
       </td>
-      <td class="linecount partialCoveredLine">7</td>
-      <td class="src partialCoveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">TickLabelFormatter</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
+      <td class="linecount "></td>
+      <td class="src "><span class="k">namespace</span><span class="w"> </span><span class="nn">QAccelPlot</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l16" href="#l16">16</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
-      <td class="src "><span class="p">{</span></td>
+      <td class="src "></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l17" href="#l17">17</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">7</td>
-      <td class="src coveredLine"><span class="p">}</span></td>
+      <td class="linecount coveredLine">14</td>
+      <td class="src coveredLine"><span class="n">DateTimeTickLabelFormatter</span><span class="o">::</span><span class="n">DateTimeTickLabelFormatter</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l18" href="#l18">18</a></td>
+      <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">1/2</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 2 taken 14 times.</div>
+            <div class="notTakenBranch">&cross; Branch 3 not taken.</div>
+          </div>
+        </details>
+      </td>
+      <td class="linecount partialCoveredLine">14</td>
+      <td class="src partialCoveredLine"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">TickLabelFormatter</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l19" href="#l19">19</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="p">{</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l20" href="#l20">20</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">14</td>
+      <td class="src coveredLine"><span class="p">}</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l21" href="#l21">21</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l19" href="#l19">19</a></td>
+      <td class="lineno"><a id="l22" href="#l22">22</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
       <td class="src coveredLine"><span class="n">QString</span><span class="w"> </span><span class="nf">DateTimeTickLabelFormatter::dateTimeFormat</span><span class="p">()</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l20" href="#l20">20</a></td>
+      <td class="lineno"><a id="l23" href="#l23">23</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l21" href="#l21">21</a></td>
+      <td class="lineno"><a id="l24" href="#l24">24</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dateTimeFormat_</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l22" href="#l22">22</a></td>
+      <td class="lineno"><a id="l25" href="#l25">25</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l23" href="#l23">23</a></td>
+      <td class="lineno"><a id="l26" href="#l26">26</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l24" href="#l24">24</a></td>
+      <td class="lineno"><a id="l27" href="#l27">27</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">6</td>
       <td class="src coveredLine"><span class="kt">void</span><span class="w"> </span><span class="nf">DateTimeTickLabelFormatter::setDateTimeFormat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l25" href="#l25">25</a></td>
+      <td class="lineno"><a id="l28" href="#l28">28</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l26" href="#l26">26</a></td>
+      <td class="lineno"><a id="l29" href="#l29">29</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
@@ -284,70 +305,118 @@
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dateTimeFormat_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">format</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l27" href="#l27">27</a></td>
+      <td class="lineno"><a id="l30" href="#l30">30</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">2</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l28" href="#l28">28</a></td>
+      <td class="lineno"><a id="l31" href="#l31">31</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="w">    </span><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l29" href="#l29">29</a></td>
+      <td class="lineno"><a id="l32" href="#l32">32</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">4</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">dateTimeFormat_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">format</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l30" href="#l30">30</a></td>
+      <td class="lineno"><a id="l33" href="#l33">33</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">4</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">dateTimeFormatChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l31" href="#l31">31</a></td>
+      <td class="lineno"><a id="l34" href="#l34">34</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount coveredLine">4</td>
       <td class="src coveredLine"><span class="w">    </span><span class="n">emit</span><span class="w"> </span><span class="n">formatChanged</span><span class="p">();</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l32" href="#l32">32</a></td>
+      <td class="lineno"><a id="l35" href="#l35">35</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l33" href="#l33">33</a></td>
+      <td class="lineno"><a id="l36" href="#l36">36</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l34" href="#l34">34</a></td>
+      <td class="lineno"><a id="l37" href="#l37">37</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">2</td>
+      <td class="linecount coveredLine">16</td>
       <td class="src coveredLine"><span class="n">QString</span><span class="w"> </span><span class="nf">DateTimeTickLabelFormatter::doFormat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="p">[[</span><span class="na">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">tickStep</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l35" href="#l35">35</a></td>
+      <td class="lineno"><a id="l38" href="#l38">38</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l36" href="#l36">36</a></td>
+      <td class="lineno"><a id="l39" href="#l39">39</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">    </span><span class="c1">// qint64's maximum rounds up to 2^63 as a double, so the upper bound is exclusive.</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l40" href="#l40">40</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">16</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">qreal</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">qint64</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">());</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l41" href="#l41">41</a></td>
+      <td class="linebranch">
+        <details class="linebranchDetails">
+          <summary class="linebranchSummary">8/8</summary>
+          <div class="linebranchContents">
+            <div class="takenBranch">&check; Branch 1 taken 10 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 3 taken 6 times.</div>
+            <div class="takenBranch">&check; Branch 4 taken 4 times.</div>
+            <div class="takenBranch">&check; Branch 5 taken 4 times.</div>
+            <div class="takenBranch">&check; Branch 6 taken 2 times.</div>
+            <div class="takenBranch">&check; Branch 7 taken 14 times.</div>
+            <div class="takenBranch">&check; Branch 8 taken 2 times.</div>
+          </div>
+        </details>
+      </td>
+      <td class="linecount coveredLine">16</td>
+      <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="n">minimum</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l42" href="#l42">42</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount coveredLine">14</td>
+      <td class="src coveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l43" href="#l43">43</a></td>
+      <td class="linebranch">
+      </td>
+      <td class="linecount "></td>
+      <td class="src "><span class="w">    </span><span class="p">}</span></td>
+    </tr>
+    <tr class="source-line">
+      <td class="lineno"><a id="l44" href="#l44">44</a></td>
       <td class="linebranch">
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/4</summary>
@@ -363,28 +432,28 @@
       <td class="src partialCoveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">QDateTime</span><span class="o">::</span><span class="n">fromMSecsSinceEpoch</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">qint64</span><span class="o">&gt;</span><span class="p">(</span><span class="n">value</span><span class="p">)).</span><span class="n">toString</span><span class="p">(</span><span class="n">dateTimeFormat_</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l37" href="#l37">37</a></td>
+      <td class="lineno"><a id="l45" href="#l45">45</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l38" href="#l38">38</a></td>
+      <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l39" href="#l39">39</a></td>
+      <td class="lineno"><a id="l47" href="#l47">47</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
       <td class="src "><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span></td>
     </tr>
     <tr class="source-line">
-      <td class="lineno"><a id="l40" href="#l40">40</a></td>
+      <td class="lineno"><a id="l48" href="#l48">48</a></td>
       <td class="linebranch">
       </td>
       <td class="linecount "></td>
