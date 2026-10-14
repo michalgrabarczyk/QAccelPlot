@@ -16,6 +16,7 @@
 #include <QtTest/QtTest>
 
 #include <cmath>
+#include <limits>
 #include <memory>
 
 class TestFormatters : public QObject {
@@ -28,6 +29,8 @@ private slots:
     void numericLogTick();
     void tickLabelCallback_logTickReceivesValueAsStep();
 
+    void datetime_rejectsUnrepresentableMilliseconds_data();
+    void datetime_rejectsUnrepresentableMilliseconds();
     void datetime_defaultFormat();
     void datetime_customFormat();
     void datetime_formatChanged_emitsSignal();
@@ -134,6 +137,26 @@ void TestFormatters::tickLabelCallback_logTickReceivesValueAsStep()
     formatter.setTickLabel(engine.evaluate(QStringLiteral("(function(value, tickStep) { return value + '/' + tickStep; })")));
 
     QCOMPARE(formatter.formatLogTick(100.0), QStringLiteral("100/100"));
+}
+
+void TestFormatters::datetime_rejectsUnrepresentableMilliseconds_data()
+{
+    QTest::addColumn<qreal>("value");
+    QTest::newRow("nan") << qQNaN();
+    QTest::newRow("positive-infinity") << qInf();
+    QTest::newRow("negative-infinity") << -qInf();
+    QTest::newRow("large-positive") << qreal{1e20};
+    QTest::newRow("large-negative") << qreal{-1e20};
+    QTest::newRow("rounded-int64-max") << static_cast<qreal>(std::numeric_limits<qint64>::max());
+    QTest::newRow("below-int64-min") << std::nextafter(static_cast<qreal>(std::numeric_limits<qint64>::min()), -qInf());
+}
+
+void TestFormatters::datetime_rejectsUnrepresentableMilliseconds()
+{
+    QFETCH(qreal, value);
+    const auto formatter = QAccelPlot::DateTimeTickLabelFormatter{};
+    QVERIFY(formatter.format(value, 1.0).isEmpty());
+    QVERIFY(formatter.formatLogTick(value).isEmpty());
 }
 
 void TestFormatters::datetime_defaultFormat()

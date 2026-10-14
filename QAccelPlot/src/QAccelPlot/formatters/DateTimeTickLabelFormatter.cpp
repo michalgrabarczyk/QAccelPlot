@@ -9,6 +9,9 @@
 
 #include <QDateTime>
 
+#include <cmath>
+#include <limits>
+
 namespace QAccelPlot {
 
 DateTimeTickLabelFormatter::DateTimeTickLabelFormatter(QObject* parent)
@@ -33,6 +36,11 @@ void DateTimeTickLabelFormatter::setDateTimeFormat(const QString& format)
 
 QString DateTimeTickLabelFormatter::doFormat(const qreal value, [[maybe_unused]] const qreal tickStep) const
 {
+    // qint64's maximum rounds up to 2^63 as a double, so the upper bound is exclusive.
+    constexpr auto minimum = static_cast<qreal>(std::numeric_limits<qint64>::min());
+    if (!std::isfinite(value) || value < minimum || value >= -minimum) {
+        return {};
+    }
     return QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(value)).toString(dateTimeFormat_);
 }
 
