@@ -132,6 +132,7 @@ protected:
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
     void onAxisScaleChanged() override;
+    void onAxisRangeChanged() override;
     DataRanges computeDataRanges() const override;
 
 private:

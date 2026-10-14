@@ -289,6 +289,7 @@ See [QAccelPlot::PlotSeries](classQAccelPlot_1_1PlotSeries.md)
 |  void | [**hoverMoveEvent**](#function-hovermoveevent) (QHoverEvent \* event) override<br> |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecord**](#function-inspectionrecord) (int index) override const<br>_Returns the rectangle at_ _index_ _with its edges and category._ |
 | virtual [**InspectionRecord**](structQAccelPlot_1_1InspectionRecord.md) | [**inspectionRecordAt**](#function-inspectionrecordat) (const QPointF & position) override const<br>_Returns the rectangle drawn at the series-local_ _position_ _._ |
+| virtual void | [**onAxisRangeChanged**](#function-onaxisrangechanged) () override<br>_Moves the render origin to the new viewport when the uploaded float coordinates would lose precision there._  |
 | virtual void | [**onAxisScaleChanged**](#function-onaxisscalechanged) () override<br>_Invalidates uploaded coordinates when an axis changes scale._  |
 |  QSGNode \* | [**updatePaintNode**](#function-updatepaintnode) (QSGNode \* oldNode, UpdatePaintNodeData \*) override<br> |
 
@@ -1390,6 +1391,23 @@ virtual InspectionRecord QAccelPlot::RectangleSeries::inspectionRecordAt (
 
 
 Implements [*QAccelPlot::PlotSeries::inspectionRecordAt*](classQAccelPlot_1_1PlotSeries.md#function-inspectionrecordat)
+
+
+<hr>
+
+
+
+
+### function onAxisRangeChanged {#function-onaxisrangechanged}
+
+_Moves the render origin to the new viewport when the uploaded float coordinates would lose precision there._ 
+```C++
+virtual void QAccelPlot::RectangleSeries::onAxisRangeChanged () override
+```
+
+
+
+Implements [*QAccelPlot::PlotSeries::onAxisRangeChanged*](classQAccelPlot_1_1PlotSeries.md#function-onaxisrangechanged)
 
 
 <hr>

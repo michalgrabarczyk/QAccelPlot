@@ -1443,8 +1443,10 @@
         <name>onAxisRangeChanged</name>
         <qualifiedname>QAccelPlot::PlotSeries::onAxisRangeChanged</qualifiedname>
         <reimplementedby refid="classQAccelPlot_1_1BandSeries_1a8c09abc5ec9b899f713a66e6ff279a5c">onAxisRangeChanged</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1BarSeries_1af5b2820d9682c5ced2324f0908496f46">onAxisRangeChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1LineCurve_1ac4491b8ec7f7b84db8c34c21a75e3117">onAxisRangeChanged</reimplementedby>
         <reimplementedby refid="classQAccelPlot_1_1PointCloud_1a0ce99ed2eaa2a7743eafec4381d19820">onAxisRangeChanged</reimplementedby>
+        <reimplementedby refid="classQAccelPlot_1_1RectangleSeries_1a7cbc6b189040ec4e0111e76d1c10d54a">onAxisRangeChanged</reimplementedby>
         <briefdescription>
 <para>Called when the viewport of a bound axis changes. The default implementation schedules a repaint. </para>
         </briefdescription>

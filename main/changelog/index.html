@@ -1861,6 +1861,8 @@
 <li><code>Colormap</code> ignores null entries in <code>stops</code> instead of crashing.</li>
 <li>A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.</li>
+<li><code>RectangleSeries</code> and <code>BarSeries</code> keep double precision when the viewport is far
+  from the first record.</li>
 <li><code>LineCurve</code> transitions now advance on the GUI thread, so <code>DataTransition.running</code>
   changes, and the QML handlers and bindings that react to them, no longer run on
   the scene graph render thread.</li>
