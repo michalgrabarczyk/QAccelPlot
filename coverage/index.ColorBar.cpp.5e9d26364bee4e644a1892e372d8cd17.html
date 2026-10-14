@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <th scope="row">Date:</th>
-      <td>2026-10-14 19:56:47</td>
+      <td>2026-10-14 20:19:00</td>
     </tr>
   </table>
 </div>
@@ -74,7 +74,7 @@
     <tr><td><a href="#l71">QAccelPlot::(anonymous namespace)::isRepresentable(QAccelPlot::Internal::ValueRange const&amp;, bool) (line 71)</a></td><td>called 111 times</td><td>83.0%</td></tr>
     <tr><td><a href="#l74">QAccelPlot::(anonymous namespace)::isRepresentable(QAccelPlot::Internal::ValueRange const&amp;, bool)::{lambda(double)#1}::operator()(double) const (line 74)</a></td><td>called 222 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l65">QAccelPlot::(anonymous namespace)::mapsThroughLog(QAccelPlot::Colormap const&amp;, QAccelPlot::Internal::ValueRange const&amp;) (line 65)</a></td><td>called 111 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l46">QAccelPlot::(anonymous namespace)::rampPosition(double, double, double, bool) (line 46)</a></td><td>called 296 times</td><td>79.0%</td></tr>
+    <tr><td><a href="#l46">QAccelPlot::(anonymous namespace)::rampPosition(double, double, double, bool) (line 46)</a></td><td>called 240 times</td><td>79.0%</td></tr>
     <tr><td><a href="#l60">QAccelPlot::(anonymous namespace)::resolvedRange(QAccelPlot::PointCloud const&amp;) (line 60)</a></td><td>called 111 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l93">QAccelPlot::ColorBar::ColorBar(QQuickItem*) (line 93)</a></td><td>called 47 times</td><td>57.0%</td></tr>
     <tr><td><a href="#l207">QAccelPlot::ColorBar::barThickness() const (line 207)</a></td><td>called 4 times</td><td>100.0%</td></tr>
@@ -134,11 +134,11 @@
     <tr><td><a href="#l591">QAccelPlot::ColorBar::titleThickness() const (line 591)</a></td><td>called 48 times</td><td>78.0%</td></tr>
     <tr><td><a href="#l542">QAccelPlot::ColorBar::updateImplicitSize() (line 542)</a></td><td>called 45 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l433">QAccelPlot::ColorBar::updatePolish() (line 433)</a></td><td>called 45 times</td><td>93.0%</td></tr>
-    <tr><td><a href="#l323">QAccelPlot::ColorBar::valueToPixel(double, double) const (line 323)</a></td><td>called 296 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l323">QAccelPlot::ColorBar::valueToPixel(double, double) const (line 323)</a></td><td>called 240 times</td><td>100.0%</td></tr>
     <tr><td><a href="#l419">QAccelPlot::ColorBar::wheelEvent(QWheelEvent*) (line 419)</a></td><td>called 109 times</td><td>94.0%</td></tr>
     <tr><td><a href="#l480">QAccelPlot::ColorBar::zoomRange(double, double) (line 480)</a></td><td>called 105 times</td><td>91.0%</td></tr>
     <tr><td><a href="#l291">QAccelPlot::ColorBar::zoomScaleFactor() const (line 291)</a></td><td>called 4 times</td><td>100.0%</td></tr>
-    <tr><td><a href="#l651">auto QAccelPlot::ColorBar::paintTicks(QPainter*) const::{lambda(auto:1, auto:2)#1}::operator()&lt;double, double&gt;(double, double) const (line 651)</a></td><td>called 289 times</td><td>100.0%</td></tr>
+    <tr><td><a href="#l651">auto QAccelPlot::ColorBar::paintTicks(QPainter*) const::{lambda(auto:1, auto:2)#1}::operator()&lt;double, double&gt;(double, double) const (line 651)</a></td><td>called 233 times</td><td>100.0%</td></tr>
   </table>
 </details>
 
@@ -471,7 +471,7 @@
       <td class="lineno"><a id="l46" href="#l46">46</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">296</td>
+      <td class="linecount coveredLine">240</td>
       <td class="src coveredLine"><span class="n">qreal</span><span class="w"> </span><span class="nf">rampPosition</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">minimum</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">maximum</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">logScale</span><span class="p">)</span></td>
     </tr>
     <tr class="source-line">
@@ -487,12 +487,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 67 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 11 times.</div>
             <div class="takenBranch">&check; Branch 1 taken 229 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">296</td>
+      <td class="linecount coveredLine">240</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logScale</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -502,11 +502,11 @@
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 0 not taken.</div>
-            <div class="takenBranch">&check; Branch 1 taken 67 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 11 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">67</td>
+      <td class="linecount partialCoveredLine">11</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span></td>
     </tr>
     <tr class="source-line">
@@ -527,14 +527,14 @@
       <td class="lineno"><a id="l52" href="#l52">52</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">67</td>
+      <td class="linecount coveredLine">11</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">logMin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">minimum</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
       <td class="lineno"><a id="l53" href="#l53">53</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">67</td>
+      <td class="linecount coveredLine">11</td>
       <td class="src coveredLine"><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">logRange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">maximum</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">logMin</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -544,11 +544,11 @@
           <summary class="linebranchSummary">1/2</summary>
           <div class="linebranchContents">
             <div class="notTakenBranch">&cross; Branch 1 not taken.</div>
-            <div class="takenBranch">&check; Branch 2 taken 67 times.</div>
+            <div class="takenBranch">&check; Branch 2 taken 11 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount partialCoveredLine">67</td>
+      <td class="linecount partialCoveredLine">11</td>
       <td class="src partialCoveredLine"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">nearlyEqual</span><span class="p">(</span><span class="n">logRange</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">log10</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">logMin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">logRange</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -2695,7 +2695,7 @@
       <td class="lineno"><a id="l323" href="#l323">323</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">296</td>
+      <td class="linecount coveredLine">240</td>
       <td class="src coveredLine"><span class="n">qreal</span><span class="w"> </span><span class="n">ColorBar</span><span class="o">::</span><span class="n">valueToPixel</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">qreal</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="k">const</span></td>
     </tr>
     <tr class="source-line">
@@ -2709,7 +2709,7 @@
       <td class="lineno"><a id="l325" href="#l325">325</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">296</td>
+      <td class="linecount coveredLine">240</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rampPosition</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">valueMin_</span><span class="p">,</span><span class="w"> </span><span class="n">valueMax_</span><span class="p">,</span><span class="w"> </span><span class="n">logScale_</span><span class="p">);</span></td>
     </tr>
     <tr class="source-line">
@@ -2718,12 +2718,12 @@
         <details class="linebranchDetails">
           <summary class="linebranchSummary">2/2</summary>
           <div class="linebranchContents">
-            <div class="takenBranch">&check; Branch 0 taken 132 times.</div>
-            <div class="takenBranch">&check; Branch 1 taken 164 times.</div>
+            <div class="takenBranch">&check; Branch 0 taken 116 times.</div>
+            <div class="takenBranch">&check; Branch 1 taken 124 times.</div>
           </div>
         </details>
       </td>
-      <td class="linecount coveredLine">296</td>
+      <td class="linecount coveredLine">240</td>
       <td class="src coveredLine"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orientation_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Qt</span><span class="o">::</span><span class="n">Horizontal</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">length</span><span class="p">;</span></td>
     </tr>
     <tr class="source-line">
@@ -5672,7 +5672,7 @@
       <td class="lineno"><a id="l651" href="#l651">651</a></td>
       <td class="linebranch">
       </td>
-      <td class="linecount coveredLine">331</td>
+      <td class="linecount coveredLine">275</td>
       <td class="src coveredLine"><span class="w">        </span><span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">valueToPixel</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span><span class="w"> </span><span class="p">});</span></td>
     </tr>
     <tr class="source-line">
