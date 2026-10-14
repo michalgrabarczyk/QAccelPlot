@@ -17,6 +17,8 @@ private slots:
     void disabledTicksProduceNoGrid_data();
     void disabledTicksProduceNoGrid();
     void hiddenGridClearsGeometry();
+    void collapsedRangeProducesNoGrid_data();
+    void collapsedRangeProducesNoGrid();
 };
 
 void GridNodeTest::disabledTicksProduceNoGrid_data()
@@ -56,6 +58,25 @@ void GridNodeTest::hiddenGridClearsGeometry()
     grid.setSubGridVisible(false);
     node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
 
+    QCOMPARE(node.childCount(), 0);
+}
+
+void GridNodeTest::collapsedRangeProducesNoGrid_data()
+{
+    QTest::addColumn<double>("coordinate");
+    QTest::newRow("zero") << 0.0;
+    QTest::newRow("large") << 1e30;
+}
+
+void GridNodeTest::collapsedRangeProducesNoGrid()
+{
+    QFETCH(double, coordinate);
+    auto axis = QAccelPlot::Axis{};
+    axis.setViewportMin(coordinate);
+    axis.setViewportMax(coordinate);
+    auto grid = QAccelPlot::Grid{};
+    auto node = QAccelPlot::GridNode{};
+    node.update(&grid, &axis, nullptr, QRectF{0, 0, 100, 100});
     QCOMPARE(node.childCount(), 0);
 }
 
