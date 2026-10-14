@@ -6,8 +6,10 @@
 // See COMMERCIAL-LICENSING.md for contact information.
 //
 #include "QAccelPlot/axis/Axis.hpp"
+#include "QAccelPlot/series/BarSeries.hpp"
 #include "QAccelPlot/series/LineCurve.hpp"
 #include "QAccelPlot/series/PointCloud.hpp"
+#include "QAccelPlot/series/RectangleSeries.hpp"
 
 #include <QGuiApplication>
 #include <QImage>
@@ -41,6 +43,30 @@ std::vector<double> yearOfSamples()
     return data;
 }
 
+// Width of the rectangles and bars that take the place of the markers: 4 px.
+constexpr auto kMarkWidthMs = 0.4;
+
+// One rectangle at the start of the year and one over each of the ten samples at its end.
+std::vector<double> yearOfRectangles()
+{
+    auto data = std::vector<double>{kYearStart, 0.0, kYearStart + kMarkWidthMs, 1.0};
+    for (auto i = 0; i < kMarkerCount; ++i) {
+        const auto center = kViewportStart + i + 0.5;
+        data.insert(data.end(), {center - kMarkWidthMs / 2, 0.0, center + kMarkWidthMs / 2, 1.0});
+    }
+    return data;
+}
+
+// The samples as bars that reach the top of the plot.
+std::vector<double> yearOfBars()
+{
+    auto data = yearOfSamples();
+    for (auto i = std::size_t{1}; i < data.size(); i += 2) {
+        data[i] = 1.0;
+    }
+    return data;
+}
+
 std::unique_ptr<Axis> makeAxis(const Qt::Orientation orientation, const qreal min, const qreal max)
 {
     auto axis = std::make_unique<Axis>();
@@ -62,9 +88,17 @@ private slots:
     void lineCurveKeepsPrecisionAfterPanning();
     void pointCloudKeepsMillisecondPrecision();
     void pointCloudKeepsPrecisionAfterPanning();
+    void rectangleSeriesKeepsMillisecondPrecision();
+    void rectangleSeriesKeepsPrecisionAfterPanning();
+    void barSeriesKeepsMillisecondPrecision();
+    void barSeriesKeepsPrecisionAfterPanning();
 
 private:
     void verifyMarkersAtEveryMillisecond();
+    // Shows the start of the year until \a setData has run, then its end.
+    template <typename SetData> void setDataBeforePanning(const SetData& setData);
+    void addRectangles(RectangleSeries& rectangles);
+    void addBars(BarSeries& bars);
 
     std::unique_ptr<QQuickWindow> window_;
     std::unique_ptr<Axis> xAxis_;
@@ -174,6 +208,74 @@ void RenderOriginPrecisionTest::pointCloudKeepsPrecisionAfterPanning()
     cloud.setData(yearOfSamples(), kMarkerCount + 1);
     xAxis_->setViewportMin(kViewportStart);
     xAxis_->setViewportMax(kViewportStart + kMarkerCount);
+
+    verifyMarkersAtEveryMillisecond();
+}
+
+template <typename SetData> void RenderOriginPrecisionTest::setDataBeforePanning(const SetData& setData)
+{
+    xAxis_->setViewportMin(kYearStart);
+    xAxis_->setViewportMax(kYearStart + kMarkerCount);
+    setData();
+    // The series draws once with the start of the year in view.
+    window_->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window_.get()));
+    QVERIFY(!window_->grabWindow().isNull());
+    xAxis_->setViewportMin(kViewportStart);
+    xAxis_->setViewportMax(kViewportStart + kMarkerCount);
+}
+
+void RenderOriginPrecisionTest::addRectangles(RectangleSeries& rectangles)
+{
+    rectangles.setParentItem(window_->contentItem());
+    rectangles.setXAxis(xAxis_.get());
+    rectangles.setYAxis(yAxis_.get());
+    rectangles.setPlotRect({0, 0, kWidth, kHeight});
+    rectangles.setColor(Qt::white);
+}
+
+void RenderOriginPrecisionTest::addBars(BarSeries& bars)
+{
+    bars.setParentItem(window_->contentItem());
+    bars.setXAxis(xAxis_.get());
+    bars.setYAxis(yAxis_.get());
+    bars.setPlotRect({0, 0, kWidth, kHeight});
+    bars.setColor(Qt::white);
+    bars.setBarWidth(kMarkWidthMs);
+}
+
+void RenderOriginPrecisionTest::rectangleSeriesKeepsMillisecondPrecision()
+{
+    auto rectangles = RectangleSeries{};
+    addRectangles(rectangles);
+    rectangles.setData(yearOfRectangles(), kMarkerCount + 1);
+
+    verifyMarkersAtEveryMillisecond();
+}
+
+void RenderOriginPrecisionTest::rectangleSeriesKeepsPrecisionAfterPanning()
+{
+    auto rectangles = RectangleSeries{};
+    addRectangles(rectangles);
+    setDataBeforePanning([&rectangles] { rectangles.setData(yearOfRectangles(), kMarkerCount + 1); });
+
+    verifyMarkersAtEveryMillisecond();
+}
+
+void RenderOriginPrecisionTest::barSeriesKeepsMillisecondPrecision()
+{
+    auto bars = BarSeries{};
+    addBars(bars);
+    bars.setData(yearOfBars(), kMarkerCount + 1);
+
+    verifyMarkersAtEveryMillisecond();
+}
+
+void RenderOriginPrecisionTest::barSeriesKeepsPrecisionAfterPanning()
+{
+    auto bars = BarSeries{};
+    addBars(bars);
+    setDataBeforePanning([&bars] { bars.setData(yearOfBars(), kMarkerCount + 1); });
 
     verifyMarkersAtEveryMillisecond();
 }

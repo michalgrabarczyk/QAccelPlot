@@ -549,6 +549,22 @@ void BarSeries::onAxisScaleChanged()
     update();
 }
 
+void BarSeries::onAxisRangeChanged()
+{
+    PlotSeries::onAxisRangeChanged();
+    if (!rendersDoubles() || dataChanged_ || !xAxis() || !yAxis()) {
+        return;
+    }
+    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
+    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
+    const auto rebasePosition
+        = !positionAxis->logScale() && renderOriginTooFar(renderOriginPosition_, positionAxis->viewportMin(), positionAxis->viewportMax());
+    const auto rebaseValue = !valueAxis->logScale() && renderOriginTooFar(renderOriginValue_, valueAxis->viewportMin(), valueAxis->viewportMax());
+    if (rebasePosition || rebaseValue) {
+        dataChanged_ = true;
+    }
+}
+
 bool BarSeries::validateRawDataArguments(const void* data, const int barCount) const
 {
     if (barCount < 0) {
@@ -1005,6 +1021,15 @@ void BarSeries::rebuildRenderData(const bool logScalePosition, const bool logSca
             renderOriginValue_ = bars[base + valueOffset];
             foundValueOrigin = true;
         }
+    }
+
+    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
+    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
+    if (!logScalePosition) {
+        renderOriginPosition_ = renderOriginForViewport(renderOriginPosition_, positionAxis->viewportMin(), positionAxis->viewportMax());
+    }
+    if (!logScaleValue) {
+        renderOriginValue_ = renderOriginForViewport(renderOriginValue_, valueAxis->viewportMin(), valueAxis->viewportMax());
     }
 
     renderData_.resize(bars.size());

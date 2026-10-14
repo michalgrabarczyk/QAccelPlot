@@ -130,6 +130,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `Colormap` ignores null entries in `stops` instead of crashing.
 - A series whose log-scale axis was destroyed refreshes its data ranges when bound
   to a linear axis.
+- `RectangleSeries` and `BarSeries` keep double precision when the viewport is far
+  from the first record.
 - `LineCurve` transitions now advance on the GUI thread, so `DataTransition.running`
   changes, and the QML handlers and bindings that react to them, no longer run on
   the scene graph render thread.

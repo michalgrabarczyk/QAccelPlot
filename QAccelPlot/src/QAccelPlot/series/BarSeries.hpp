@@ -255,6 +255,8 @@ protected:
     void hoverLeaveEvent(QHoverEvent* event) override;
     /// \brief Refreshes data ranges and uploaded coordinates when an axis changes scale.
     void onAxisScaleChanged() override;
+    /// \brief Moves the render origin to the new viewport when the uploaded float coordinates would lose precision there.
+    void onAxisRangeChanged() override;
     DataRanges computeDataRanges() const override;
 
 private:
