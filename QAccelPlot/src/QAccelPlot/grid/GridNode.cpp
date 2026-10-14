@@ -109,6 +109,9 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
         return;
     }
     const auto* t = p.axis->ticker();
+    if (t && t->tickCount() <= 0) {
+        return;
+    }
     const auto viewportLow = std::min(p.axis->viewportMin(), p.axis->viewportMax());
     const auto viewportHigh = std::max(p.axis->viewportMin(), p.axis->viewportMax());
     if (!std::isfinite(viewportLow) || !std::isfinite(viewportHigh) || viewportLow >= viewportHigh) {
@@ -122,7 +125,7 @@ void GridNode::collectAxisGridLines(QVector<QRectF>& mainRects, QVector<QRectF>&
             if (p.gridLinesVisible && val >= viewportLow && val <= viewportHigh) {
                 mainRects.append(p.makeRect(val, grid->lineWidth() / 2.0));
             }
-            if (p.subGridLinesVisible && e < logMax) {
+            if (p.subGridLinesVisible && e < logMax && (!t || t->subtickCount() > 0)) {
                 for (int k = 2; k <= 9; ++k) {
                     const auto subVal = k * val;
                     if (subVal >= viewportLow && subVal <= viewportHigh) {
