@@ -1842,6 +1842,8 @@
   or appear in <code>extraAxes</code>.</li>
 <li>Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.</li>
+<li>Zooming or panning an axis stops at the limits of a double. Zooming a
+  logarithmic axis far out no longer leaves a NaN viewport.</li>
 <li>Axes and color ranges preserve distinct values below machine epsilon, so small
   data spans map across the plot instead of collapsing to one pixel.</li>
 <li><code>LineCurve</code> with both a line and markers is hovered along the line, not only on markers.</li>

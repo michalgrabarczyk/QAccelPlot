@@ -246,7 +246,7 @@ ValueRange QAccelPlot::Internal::pannedRange (
 
 
 
-With _logarithmic_ set, the shift is applied in `log10` space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. 
+With _logarithmic_ set, the shift is applied in `log10` space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns _range_ unchanged when a bound would leave the range of a double. 
 
 
         
@@ -370,7 +370,7 @@ ValueRange QAccelPlot::Internal::zoomedRange (
 
 
 
-_anchorRatio_ is a position inside the range: 0 at `min` and 1 at `max`. With _logarithmic_ set, the extent is measured in `log10` space. A range that is not positive is zoomed linearly instead. 
+_anchorRatio_ is a position inside the range: 0 at `min` and 1 at `max`. With _logarithmic_ set, the extent is measured in `log10` space. A range that is not positive is zoomed linearly instead. Returns _range_ unchanged when a bound would leave the range of a double: it would not be finite, or in `log10` space it would reach zero. 
 
 
         

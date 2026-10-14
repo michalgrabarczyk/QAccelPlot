@@ -47,11 +47,11 @@
 <para>Returns <emphasis>range</emphasis> shifted by <emphasis>fraction</emphasis> of its extent; a positive <emphasis>fraction</emphasis> raises both bounds. </para>
         </briefdescription>
         <detaileddescription>
-<para>With <emphasis>logarithmic</emphasis> set, the shift is applied in <computeroutput>log10</computeroutput> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. </para>
+<para>With <emphasis>logarithmic</emphasis> set, the shift is applied in <computeroutput>log10</computeroutput> space, so both bounds are scaled by the same ratio. A range that is not positive is shifted linearly instead. Returns <emphasis>range</emphasis> unchanged when a bound would leave the range of a double. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="24" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="24" declcolumn="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="25" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="25" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="RangeGesture_8hpp_1a4a90cd70f2514e64a984dae98d06a599" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structQAccelPlot_1_1Internal_1_1ValueRange" kindref="compound">ValueRange</ref></type>
@@ -79,11 +79,11 @@
 <para>Returns <emphasis>range</emphasis> with its extent multiplied by <emphasis>factor</emphasis>, keeping the value at <emphasis>anchorRatio</emphasis> in place. </para>
         </briefdescription>
         <detaileddescription>
-<para><emphasis>anchorRatio</emphasis> is a position inside the range: 0 at <computeroutput>min</computeroutput> and 1 at <computeroutput>max</computeroutput>. With <emphasis>logarithmic</emphasis> set, the extent is measured in <computeroutput>log10</computeroutput> space. A range that is not positive is zoomed linearly instead. </para>
+<para><emphasis>anchorRatio</emphasis> is a position inside the range: 0 at <computeroutput>min</computeroutput> and 1 at <computeroutput>max</computeroutput>. With <emphasis>logarithmic</emphasis> set, the extent is measured in <computeroutput>log10</computeroutput> space. A range that is not positive is zoomed linearly instead. Returns <emphasis>range</emphasis> unchanged when a bound would leave the range of a double: it would not be finite, or in <computeroutput>log10</computeroutput> space it would reach zero. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="31" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="31" declcolumn="13"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="33" column="13" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="33" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="RangeGesture_8hpp_1a8ed54085a791bb22144445ef05224b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>qreal</type>
@@ -107,7 +107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="38" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="38" declcolumn="8"/>
+        <location file="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" line="40" column="8" declfile="QAccelPlot/src/QAccelPlot/axis/internal/RangeGesture.hpp" declline="40" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="DataTextureLayout_8hpp_1a5c264763c864fb6d047f69120859f093" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr int</type>
