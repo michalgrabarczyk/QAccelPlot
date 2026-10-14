@@ -44,6 +44,11 @@ private slots:
     void zoomKeepsAnchorInPlace();
     void zoomInLogSpaceKeepsAnchorInPlace();
     void zoomOutUndoesZoomIn();
+    void zoomPastTheRangeOfADoubleReturnsRangeUnchanged_data();
+    void zoomPastTheRangeOfADoubleReturnsRangeUnchanged();
+    void panPastTheRangeOfADoubleReturnsRangeUnchanged_data();
+    void panPastTheRangeOfADoubleReturnsRangeUnchanged();
+    void repeatedLogZoomOutStaysUsable();
     void wheelZoomFactorIsReciprocalWhenZoomingOut();
     void wheelZoomFactorAlwaysZooms();
 };
@@ -104,6 +109,70 @@ void RangeGestureTest::zoomOutUndoesZoomIn()
     const auto restored = zoomedRange(zoomedIn, wheelZoomFactor(0.9, false), 0.3, false);
     QCOMPARE_NEAR(restored.min, -4.0);
     QCOMPARE_NEAR(restored.max, 12.0);
+}
+
+void RangeGestureTest::zoomPastTheRangeOfADoubleReturnsRangeUnchanged_data()
+{
+    QTest::addColumn<qreal>("min");
+    QTest::addColumn<qreal>("max");
+    QTest::addColumn<bool>("logarithmic");
+
+    // Tripling 400 decades reaches 10^-600 and 10^600, which a double stores as 0 and infinity.
+    QTest::newRow("log") << 1e-200 << 1e200 << true;
+    QTest::newRow("linear") << -1e308 << 1e308 << false;
+}
+
+void RangeGestureTest::zoomPastTheRangeOfADoubleReturnsRangeUnchanged()
+{
+    QFETCH(qreal, min);
+    QFETCH(qreal, max);
+    QFETCH(bool, logarithmic);
+
+    // Compared exactly: QCOMPARE takes any two values near zero for equal.
+    const auto range = zoomedRange({min, max}, 3.0, 0.5, logarithmic);
+    QVERIFY(range.min == min);
+    QVERIFY(range.max == max);
+}
+
+void RangeGestureTest::panPastTheRangeOfADoubleReturnsRangeUnchanged_data()
+{
+    QTest::addColumn<qreal>("min");
+    QTest::addColumn<qreal>("max");
+    QTest::addColumn<qreal>("fraction");
+    QTest::addColumn<bool>("logarithmic");
+
+    QTest::newRow("log up") << 1e300 << 1e308 << 1.0 << true;
+    QTest::newRow("log down") << 1e-308 << 1e-300 << -4.0 << true;
+    QTest::newRow("linear up") << 1e307 << 1.5e308 << 1.0 << false;
+    QTest::newRow("linear down") << -1.5e308 << -1e307 << -1.0 << false;
+}
+
+void RangeGestureTest::panPastTheRangeOfADoubleReturnsRangeUnchanged()
+{
+    QFETCH(qreal, min);
+    QFETCH(qreal, max);
+    QFETCH(qreal, fraction);
+    QFETCH(bool, logarithmic);
+
+    const auto range = pannedRange({min, max}, fraction, logarithmic);
+    QVERIFY(range.min == min);
+    QVERIFY(range.max == max);
+}
+
+void RangeGestureTest::repeatedLogZoomOutStaysUsable()
+{
+    auto range = ValueRange{1.0, 1000.0};
+    for (auto step = 0; step < 200; ++step) {
+        range = zoomedRange(range, wheelZoomFactor(0.9, false), 0.5, true);
+    }
+    QVERIFY(std::isfinite(range.max));
+    QVERIFY(range.min > 0.0);
+    QVERIFY(range.min < range.max);
+
+    // The range still zooms back in.
+    const auto narrowed = zoomedRange(range, wheelZoomFactor(0.9, true), 0.5, true);
+    QVERIFY(narrowed.min > range.min);
+    QVERIFY(narrowed.max < range.max);
 }
 
 void RangeGestureTest::wheelZoomFactorIsReciprocalWhenZoomingOut()

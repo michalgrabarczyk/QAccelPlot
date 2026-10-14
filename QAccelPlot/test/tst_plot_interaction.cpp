@@ -106,6 +106,7 @@ private slots:
     void wheelOverAxis_zoomsOnlyThatAxis();
     void wheelOutsidePlotAndAxes_isIgnored();
     void wheelOnLogAxis_zoomsInLogSpace();
+    void wheelOutOnLogAxis_keepsAUsableViewport();
     void zoomScaleFactor_extremesStillZoom_data();
     void zoomScaleFactor_extremesStillZoom();
     void dragInPlotArea_pansAllAxes();
@@ -227,6 +228,30 @@ void TestPlotInteraction::wheelOnLogAxis_zoomsInLogSpace()
     const auto logMax = std::log10(xAxis->viewportMax());
     QCOMPARE_NEAR(logMax - logMin, 4.0 * 0.9);
     QCOMPARE_NEAR((logMin + logMax) / 2.0, 2.0);
+}
+
+void TestPlotInteraction::wheelOutOnLogAxis_keepsAUsableViewport()
+{
+    auto plot = TestablePlot{};
+    plot.setSize({300.0, 200.0});
+    auto* xAxis = new QAccelPlot::Axis{&plot};
+    plot.setXAxis(xAxis);
+    setViewport(xAxis, 1.0, 1e3);
+    xAxis->setLogScale(true);
+
+    // Each step widens the viewport by a ninth, so 100 steps ask for far more decades than a double has.
+    const auto rect = plot.plotRect();
+    const auto cursor = QPointF{rect.x() + rect.width() * 0.5, rect.center().y()};
+    for (auto step = 0; step < 100; ++step) {
+        wheel(plot, cursor, -kWheelStep);
+    }
+    QVERIFY(std::isfinite(xAxis->viewportMax()));
+    QVERIFY(xAxis->viewportMin() > 0.0);
+    QVERIFY(xAxis->viewportMin() < xAxis->viewportMax());
+
+    const auto widest = xAxis->viewportMax();
+    wheel(plot, cursor, kWheelStep);
+    QVERIFY(xAxis->viewportMax() < widest);
 }
 
 void TestPlotInteraction::zoomScaleFactor_extremesStillZoom_data()
