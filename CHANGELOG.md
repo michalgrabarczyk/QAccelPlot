@@ -161,6 +161,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - A destroyed series leaves `PlotView.series`, and a destroyed `PlotView` releases
   its children, before their own members are gone, so handlers of `seriesChanged`
   no longer see a half-destroyed plot or series.
+- Destroying a `LineCurve`, `PointCloud`, or `BarSeries` while a transition runs
+  no longer lets `runningChanged` handlers read freed series data.
+- `Grid` skips drawing for a collapsed or nonfinite viewport instead of
+  generating degenerate geometry.
+- `Histogram` no longer performs an undefined bin conversion for extreme or
+  nonfinite edges, and interpolates edges across zero without overflowing.
+- Rescaling to flat data at the limits of a double keeps the viewport finite and
+  nonempty.
+- Changing an `Axis.side` relays out the plot axes.
+- Destroying an axis invalidates the scale caches of the series that used it.
 
 ## [0.3.0] — 2026-09-25
 
