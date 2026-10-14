@@ -18,8 +18,44 @@ permissions:
   contents: read
 
 jobs:
+  # Pull requests run the full suite, and are rebased onto main before merging, so a push to
+  # main only builds. The coverage jobs below also run there to publish the report.
+  build:
+    name: Build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install system dependencies
+        run: bash .github/scripts/apt_install.sh build-essential cmake ninja-build libgl1-mesa-dev libxcb-cursor0 libxkbcommon-x11-0
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.3.1
+        with:
+          version: '6.7.3'
+          target: desktop
+          modules: qtshadertools
+          cache: true
+          setup-python: false
+
+      - name: Configure CMake
+        run: >-
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DQACCELPLOT_BUILD_TESTS=ON
+          -DQACCELPLOT_BUILD_EXAMPLES=ON
+          -DQACCELPLOT_BUILD_BENCHMARKS=ON
+          -DQACCELPLOT_WARNINGS_AS_ERRORS=ON
+
+      - name: Build library, examples, benchmarks, and unit tests
+        run: cmake --build build --config Release --parallel 2
+
   build-and-test:
     name: ${{ matrix.compiler }} / Qt private API ${{ matrix.qt_private_api }}
+    if: github.event_name != 'push'
     # Pinned so the preinstalled Clang version stays fixed.
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -77,6 +113,7 @@ jobs:
   # installed package, and against the checkout through add_subdirectory.
   package:
     name: Package / Qt ${{ matrix.qt_version }} / ${{ matrix.os_name }}
+    if: github.event_name != 'push'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     strategy:
@@ -173,6 +210,7 @@ jobs:
   # locks inside Qt, and reports every handoff between threads as a race.
   sanitizers:
     name: ASan and UBSan
+    if: github.event_name != 'push'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
