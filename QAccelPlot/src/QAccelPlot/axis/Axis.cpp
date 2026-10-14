@@ -639,10 +639,12 @@ Axis::DataRange Axis::dataFitRange() const
     // otherwise give a zero-width viewport. Synthesize a small range around the value instead.
     if (logScale_) {
         const auto center = dataMin_ > 0 ? dataMin_ : kLogScaleMinPositiveValue;
-        return {center / kLogScaleRangeFactor, center * kLogScaleRangeFactor};
+        return {std::max(std::numeric_limits<qreal>::denorm_min(), center / kLogScaleRangeFactor),
+            std::min(std::numeric_limits<qreal>::max(), center * kLogScaleRangeFactor)};
     }
-    const auto half = dataMin_ != 0.0 ? std::abs(dataMin_) * kFlatLinearRangeFraction : kFlatLinearZeroHalfRange;
-    return {dataMin_ - half, dataMin_ + half};
+    const auto half
+        = dataMin_ != 0.0 ? std::max(std::numeric_limits<qreal>::denorm_min(), std::abs(dataMin_) * kFlatLinearRangeFraction) : kFlatLinearZeroHalfRange;
+    return {std::max(std::numeric_limits<qreal>::lowest(), dataMin_ - half), std::min(std::numeric_limits<qreal>::max(), dataMin_ + half)};
 }
 
 void Axis::setViewportRange(const qreal min, const qreal max)

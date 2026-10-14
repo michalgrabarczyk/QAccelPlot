@@ -10,6 +10,8 @@
 #include <QQmlParserStatus>
 #include <QSignalSpy>
 #include <QtTest/QtTest>
+#include <cmath>
+#include <limits>
 
 namespace QAccelPlot {
 
@@ -17,6 +19,8 @@ class AxisRescaleTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void extremeFlatDataKeepsFiniteRange_data();
+    void extremeFlatDataKeepsFiniteRange();
     void flatLinearData_synthesizesRangeAroundValue();
     void flatLinearZeroData_usesFixedFallbackRange();
     void flatLinearTinyValue_keepsRangeProportionalToMagnitude();
@@ -33,6 +37,37 @@ private slots:
     void autoRescale_logScaleKeepsViewportPositive();
     void autoRescale_fitsDeclaredRangeOnComponentCompletion();
 };
+
+void AxisRescaleTest::extremeFlatDataKeepsFiniteRange_data()
+{
+    QTest::addColumn<double>("value");
+    QTest::addColumn<bool>("logarithmic");
+    const auto largest = std::numeric_limits<double>::max();
+    const auto smallest = std::numeric_limits<double>::denorm_min();
+    QTest::newRow("linear-positive") << largest << false;
+    QTest::newRow("linear-negative") << -largest << false;
+    QTest::newRow("linear-subnormal") << smallest << false;
+    QTest::newRow("log-large") << largest << true;
+    QTest::newRow("log-subnormal") << smallest << true;
+}
+
+void AxisRescaleTest::extremeFlatDataKeepsFiniteRange()
+{
+    QFETCH(double, value);
+    QFETCH(bool, logarithmic);
+    auto axis = Axis{};
+    axis.setLogScale(logarithmic);
+    axis.setDataRange(value, value);
+    axis.rescaleToData();
+    QVERIFY(std::isfinite(axis.viewportMin()));
+    QVERIFY(std::isfinite(axis.viewportMax()));
+    QVERIFY(axis.viewportMin() < axis.viewportMax());
+    QVERIFY(axis.viewportMin() <= value);
+    QVERIFY(axis.viewportMax() >= value);
+    if (logarithmic) {
+        QVERIFY(axis.viewportMin() > 0.0);
+    }
+}
 
 void AxisRescaleTest::flatLinearData_synthesizesRangeAroundValue()
 {
