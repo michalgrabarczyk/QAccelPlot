@@ -49,7 +49,7 @@ struct DataExtents {
 // Returns true when a dimension is empty (min > max) or both its bounds are valid.
 bool isValidExtent(const qreal min, const qreal max, const bool logScale)
 {
-    return min > max || (isValidSample(min, logScale) && isValidSample(max, logScale));
+    return min > max || (isValidCoordinate(min, logScale) && isValidCoordinate(max, logScale));
 }
 
 // Extents of the valid coordinates in data points [begin, end) of interleaved data.
@@ -89,11 +89,11 @@ template <typename T> DataExtents computeValidExtents(const T* data, const std::
     for (auto i = begin; i < end; ++i) {
         const auto x = static_cast<qreal>(data[i * 2]);
         const auto y = static_cast<qreal>(data[i * 2 + 1]);
-        if (isValidSample(x, logScaleX)) {
+        if (isValidCoordinate(x, logScaleX)) {
             extents.xMin = std::min(extents.xMin, x);
             extents.xMax = std::max(extents.xMax, x);
         }
-        if (isValidSample(y, logScaleY)) {
+        if (isValidCoordinate(y, logScaleY)) {
             extents.yMin = std::min(extents.yMin, y);
             extents.yMax = std::max(extents.yMax, y);
         }

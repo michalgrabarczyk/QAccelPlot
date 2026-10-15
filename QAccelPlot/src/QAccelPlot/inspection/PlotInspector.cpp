@@ -160,19 +160,19 @@ void PlotInspector::setRadius(const qreal radius)
     emit radiusChanged();
 }
 
-bool PlotInspector::snapToSample() const
+bool PlotInspector::snapToDataPoint() const
 {
-    return snapToSample_;
+    return snapToDataPoint_;
 }
 
-void PlotInspector::setSnapToSample(const bool enabled)
+void PlotInspector::setSnapToDataPoint(const bool enabled)
 {
-    if (snapToSample_ == enabled) {
+    if (snapToDataPoint_ == enabled) {
         return;
     }
-    snapToSample_ = enabled;
+    snapToDataPoint_ = enabled;
     schedule();
-    emit snapToSampleChanged();
+    emit snapToDataPointChanged();
 }
 
 bool PlotInspector::interpolate() const
@@ -368,16 +368,16 @@ void PlotInspector::stepCursor(const int steps)
     }
     const auto direction = steps > 0 ? 1 : -1;
     for (const auto& row : model_->rows()) {
-        if (!row.series || !row.sample.valid()) {
+        if (!row.series || !row.dataPoint.valid()) {
             continue;
         }
         auto* inspection = row.series->inspection();
-        auto target = row.sample;
+        auto target = row.dataPoint;
         auto remaining = std::abs(steps);
         // An interpolated row sits between its index and the next one.
-        auto index = row.sample.index + (row.sample.interpolated && direction < 0 ? 0 : direction);
+        auto index = row.dataPoint.index + (row.dataPoint.interpolated && direction < 0 ? 0 : direction);
         for (; remaining > 0; index += direction) {
-            const auto candidate = inspection->sampleAt(index);
+            const auto candidate = inspection->dataPointAt(index);
             if (candidate.valid()) {
                 target = candidate;
                 --remaining;
@@ -546,9 +546,9 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
         query.boundYAxis = series->yAxis();
         query.size = series->size();
         const auto local = series->mapFromItem(plot_, point);
-        query.row.sample = mode == NearestXY ? series->inspection()->nearest(local, radius_) : sampleAlong(*series->inspection(), mode, local);
-        if (query.row.sample.valid()) {
-            query.row.pixelPosition = series->mapToItem(plot_, query.row.sample.pixelPosition);
+        query.row.dataPoint = mode == NearestXY ? series->inspection()->nearest(local, radius_) : dataPointAlong(*series->inspection(), mode, local);
+        if (query.row.dataPoint.valid()) {
+            query.row.pixelPosition = series->mapToItem(plot_, query.row.dataPoint.pixelPosition);
         }
         if (summaries_) {
             query.row.hasSummary = true;
@@ -559,13 +559,13 @@ QList<PlotInspector::Query> PlotInspector::queryRows(const QPointF& cursor) cons
     return queries;
 }
 
-InspectionSample PlotInspector::sampleAlong(SeriesInspection& inspection, const Mode mode, const QPointF& local) const
+InspectionDataPoint PlotInspector::dataPointAlong(SeriesInspection& inspection, const Mode mode, const QPointF& local) const
 {
     const auto byX = mode == NearestX;
     const auto pixel = byX ? local.x() : local.y();
     const auto bracket = byX ? inspection.bracketByX(pixel) : inspection.bracketByY(pixel);
     if (!bracket.valid()) {
-        auto result = InspectionSample{};
+        auto result = InspectionDataPoint{};
         result.status = bracket.status;
         result.dataRevision = bracket.dataRevision;
         return result;
@@ -600,9 +600,9 @@ void PlotInspector::formatRows(QList<Query>& queries) const
 {
     for (auto& query : queries) {
         auto& row = query.row;
-        if (row.sample.valid()) {
-            row.xText = format(query.xAxis, row.sample.x(), query.size.width());
-            row.yText = format(query.yAxis, row.sample.y(), query.size.height());
+        if (row.dataPoint.valid()) {
+            row.xText = format(query.xAxis, row.dataPoint.x(), query.size.width());
+            row.yText = format(query.yAxis, row.dataPoint.y(), query.size.height());
         }
         if (row.summary.valid()) {
             row.minimumText = format(query.yAxis, row.summary.minimum, query.size.height());
@@ -616,18 +616,19 @@ bool PlotInspector::current(const QList<Query>& queries) const
 {
     return std::all_of(queries.cbegin(), queries.cend(), [](const Query& query) {
         const auto& series = query.row.series;
-        return series && series->dataRevision() == query.row.sample.dataRevision && series->xAxis() == query.boundXAxis && series->yAxis() == query.boundYAxis;
+        return series && series->dataRevision() == query.row.dataPoint.dataRevision && series->xAxis() == query.boundXAxis
+            && series->yAxis() == query.boundYAxis;
     });
 }
 
 QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPointF& cursor) const
 {
-    if (!snapToSample_) {
+    if (!snapToDataPoint_) {
         return cursor;
     }
     const auto* closest = static_cast<const InspectionRow*>(nullptr);
     for (const auto& query : queries) {
-        if (query.row.sample.valid() && (!closest || query.row.sample.distance < closest->sample.distance)) {
+        if (query.row.dataPoint.valid() && (!closest || query.row.dataPoint.distance < closest->dataPoint.distance)) {
             closest = &query.row;
         }
     }
@@ -642,7 +643,7 @@ QPointF PlotInspector::snappedPosition(const QList<Query>& queries, const QPoint
 void PlotInspector::publish(const State& state)
 {
     const auto validCount
-        = static_cast<int>(std::count_if(state.rows.cbegin(), state.rows.cend(), [](const InspectionRow& row) { return row.sample.valid(); }));
+        = static_cast<int>(std::count_if(state.rows.cbegin(), state.rows.cend(), [](const InspectionRow& row) { return row.dataPoint.valid(); }));
     const auto activeDiffers = active_ != state.active;
     const auto positionDiffers = !samePoint(position_, state.position);
     const auto cursorDiffers

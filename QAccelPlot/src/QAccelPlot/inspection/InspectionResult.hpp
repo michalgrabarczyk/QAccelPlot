@@ -43,7 +43,7 @@ Q_ENUM_NS(Status)
 using InspectionStatus = InspectionNS::Status;
 
 /// \brief One XY source data point returned by an inspection query.
-struct InspectionSample {
+struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome.
@@ -136,21 +136,21 @@ struct InspectionBracket {
     /// \brief Data revision the query ran against.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
     /// \brief Valid data point with the largest coordinate at or below the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionSample left MEMBER left CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
     /// \brief Valid data point with the smallest coordinate above the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionSample right MEMBER right CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
     /// \brief True when both neighbors exist and their source indices are consecutive.
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
     /// \brief Point on the straight on-screen segment between adjacent neighbors; invalid otherwise.
-    Q_PROPERTY(::QAccelPlot::InspectionSample interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; ///< \brief Query outcome.
     quint64 dataRevision{0};                            ///< \brief Data revision.
-    InspectionSample left;                              ///< \brief Neighbor at or before the position.
-    InspectionSample right;                             ///< \brief Neighbor after the position.
+    InspectionDataPoint left;                           ///< \brief Neighbor at or before the position.
+    InspectionDataPoint right;                          ///< \brief Neighbor after the position.
     bool adjacent{false};                               ///< \brief Consecutive source indices.
-    InspectionSample interpolated;                      ///< \brief Interpolated point between adjacent neighbors.
+    InspectionDataPoint interpolated;                   ///< \brief Interpolated point between adjacent neighbors.
 
     /// \brief Returns true when status is \c Ready.
     bool valid() const;

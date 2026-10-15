@@ -69,13 +69,13 @@ public:
     Q_INVOKABLE void prepare();
 
     /// \brief Returns the record at \a index; \c NoMatch with its raw coordinates when the record is invalid.
-    Q_INVOKABLE ::QAccelPlot::InspectionSample sampleAt(int index) const;
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint dataPointAt(int index) const;
     /// \brief Returns the valid data point nearest to \a position within \a radius pixels on screen.
-    Q_INVOKABLE ::QAccelPlot::InspectionSample nearest(const QPointF& position, qreal radius = 10);
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearest(const QPointF& position, qreal radius = 10);
     /// \brief Returns the valid data point nearest to \a pixelX horizontally, within \a radius pixels.
-    Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
     /// \brief Returns the valid data point nearest to \a pixelY vertically, within \a radius pixels.
-    Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
+    Q_INVOKABLE ::QAccelPlot::InspectionDataPoint nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
     /// \brief Returns the valid data points on either side of \a pixelX and the point between them.
     Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByX(qreal pixelX);
     /// \brief Returns the valid data points whose Y is on either side of \a pixelY and the point between them.
@@ -111,12 +111,12 @@ private:
     // A series that is not ordered as the query needs requests its index and reports Preparing until it is built.
     InspectionStatus acquire(const InspectionSource& source, std::optional<InspectionAxis> along);
     std::optional<InspectionMetric> metric() const;
-    InspectionSample nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
+    InspectionDataPoint nearestAlong(InspectionAxis axis, qreal pixel, qreal radius);
     InspectionBracket bracketAlong(InspectionAxis axis, qreal pixel);
-    InspectionSample makeSample(const InspectionSource& source, int index, qreal distance) const;
+    InspectionDataPoint makeSample(const InspectionSource& source, int index, qreal distance) const;
     // Interpolates along the straight on-screen segment, which also follows logarithmic axes.
-    InspectionSample interpolate(
-        const InspectionMetric& metric, InspectionAxis axis, const InspectionSample& left, const InspectionSample& right, qreal pixel) const;
+    InspectionDataPoint interpolate(
+        const InspectionMetric& metric, InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right, qreal pixel) const;
 
     PlotSeries& series_;
     std::unique_ptr<Private> d_;

@@ -74,7 +74,7 @@ inline constexpr double kNearlyEqualEpsilon = QACCELPLOT_NEARLY_EQUAL_EPSILON;
 // Implemented with plain comparisons (false for NaN and +/-Inf) rather than
 // std::isfinite(), which some standard libraries do not inline. This check runs
 // per coordinate on multi-million-point buffers.
-[[nodiscard]] inline bool isValidSample(double value, bool logScale) noexcept
+[[nodiscard]] inline bool isValidCoordinate(double value, bool logScale) noexcept
 {
     return value >= std::numeric_limits<double>::lowest() && value <= std::numeric_limits<double>::max() && (!logScale || value > 0.0);
 }

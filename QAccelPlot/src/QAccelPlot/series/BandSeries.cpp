@@ -342,8 +342,8 @@ double BandSeries::value(const int index, const int component) const
 
 bool BandSeries::sampleValid(const int index) const
 {
-    return isValidSample(value(index, 0), logScaleX()) && isValidSample(value(index, kLowComponent), logScaleY())
-        && isValidSample(value(index, kHighComponent), logScaleY());
+    return isValidCoordinate(value(index, 0), logScaleX()) && isValidCoordinate(value(index, kLowComponent), logScaleY())
+        && isValidCoordinate(value(index, kHighComponent), logScaleY());
 }
 
 void BandSeries::updateXAscending()
@@ -356,7 +356,7 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
 {
     const auto logX = logScaleX();
     const auto logY = logScaleY();
-    if (!xAscending_ || !isValidSample(x, logX)) {
+    if (!xAscending_ || !isValidCoordinate(x, logX)) {
         return std::nullopt;
     }
     // First data point whose X is not below x.

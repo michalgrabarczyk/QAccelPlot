@@ -47,7 +47,7 @@ class PlotInspector : public QObject {
     /// \brief Pick distance in logical pixels. In \c NearestX and \c NearestY mode it only limits matches beyond a series' extreme data points. Default: 16.
     Q_PROPERTY(qreal radius READ radius WRITE setRadius NOTIFY radiusChanged)
     /// \brief Moves the crosshair to the closest matching data point. Default: false.
-    Q_PROPERTY(bool snapToSample READ snapToSample WRITE setSnapToSample NOTIFY snapToSampleChanged)
+    Q_PROPERTY(bool snapToDataPoint READ snapToDataPoint WRITE setSnapToDataPoint NOTIFY snapToDataPointChanged)
     /// \brief In \c NearestX and \c NearestY mode, reports the point on the line between two consecutive data points instead of the nearer one. Default: false.
     Q_PROPERTY(bool interpolate READ interpolate WRITE setInterpolate NOTIFY interpolateChanged)
     /// \brief Adds Y statistics of the data points around the cursor to every row. Default: false.
@@ -113,9 +113,9 @@ public:
     /// \brief Sets the pick distance; negative and NaN values are ignored.
     void setRadius(qreal radius);
     /// \brief Returns whether the crosshair snaps to the closest matching data point.
-    bool snapToSample() const;
+    bool snapToDataPoint() const;
     /// \brief Enables or disables crosshair snapping.
-    void setSnapToSample(bool enabled);
+    void setSnapToDataPoint(bool enabled);
     /// \brief Returns whether \c NearestX and \c NearestY rows are interpolated between data points.
     bool interpolate() const;
     /// \brief Enables or disables interpolation between consecutive data points.
@@ -175,8 +175,8 @@ signals:
     void modeChanged();
     /// \brief Emitted when the radius property changes.
     void radiusChanged();
-    /// \brief Emitted when the snapToSample property changes.
-    void snapToSampleChanged();
+    /// \brief Emitted when the snapToDataPoint property changes.
+    void snapToDataPointChanged();
     /// \brief Emitted when the interpolate property changes.
     void interpolateChanged();
     /// \brief Emitted when the summaries property changes.
@@ -219,7 +219,7 @@ private:
     bool inspect(const QPointF& cursor, State& state) const;
     QList<Query> queryRows(const QPointF& cursor) const;
     // Between two data points a series always matches; the radius only limits how far past its ends it still does.
-    InspectionSample sampleAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
+    InspectionDataPoint dataPointAlong(SeriesInspection& inspection, Mode mode, const QPointF& local) const;
     InspectionSummary summarize(PlotSeries& series, const QPointF& local, Mode mode) const;
     void formatRows(QList<Query>& queries) const;
     bool current(const QList<Query>& queries) const;
@@ -230,7 +230,7 @@ private:
     bool enabled_{true};
     Mode mode_{NearestX};
     qreal radius_{16};
-    bool snapToSample_{false};
+    bool snapToDataPoint_{false};
     bool interpolate_{false};
     bool summaries_{false};
     qreal summaryRadius_{0.5};

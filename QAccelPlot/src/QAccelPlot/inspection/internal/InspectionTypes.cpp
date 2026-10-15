@@ -45,7 +45,7 @@ double InspectionSource::value(const int index) const noexcept
 
 bool InspectionSource::valid(const int index) const noexcept
 {
-    return isValidSample(x(index), logX) && isValidSample(y(index), logY);
+    return isValidCoordinate(x(index), logX) && isValidCoordinate(y(index), logY);
 }
 
 double InspectionMetric::pixelX(const double value) const noexcept

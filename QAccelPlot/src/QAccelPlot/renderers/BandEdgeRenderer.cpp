@@ -91,7 +91,7 @@ std::vector<float> BandEdgeRenderer::arcLengths(const BandEdgeRenderParams& para
         const auto x = samples.value(i, 0);
         const auto low = samples.value(i, 1);
         const auto high = samples.value(i, 2);
-        if (!isValidSample(x, uniforms.logScaleX) || !isValidSample(low, uniforms.logScaleY) || !isValidSample(high, uniforms.logScaleY)) {
+        if (!isValidCoordinate(x, uniforms.logScaleX) || !isValidCoordinate(low, uniforms.logScaleY) || !isValidCoordinate(high, uniforms.logScaleY)) {
             return std::nullopt;
         }
         const auto y = upper ? std::max(low, high) : std::min(low, high);

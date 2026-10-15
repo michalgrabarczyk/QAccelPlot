@@ -23,15 +23,15 @@ constexpr auto kMinRunSamples = int{2};
 
 bool isValidPair(const double x, const double y, const bool logScaleX, const bool logScaleY)
 {
-    return isValidSample(x, logScaleX) && isValidSample(y, logScaleY);
+    return isValidCoordinate(x, logScaleX) && isValidCoordinate(y, logScaleY);
 }
 
 // The scans below are specialized on the buffer type so the float/double
 // dispatch in CurveDataView happens once per call instead of once per data point.
 
-template <typename T> std::vector<SampleRun> findRuns(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
+template <typename T> std::vector<DataPointRun> findRuns(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
-    auto runs = std::vector<SampleRun>{};
+    auto runs = std::vector<DataPointRun>{};
     auto runStart = int{-1};
     for (auto i = int{0}; i < pointCount; ++i) {
         const auto offset = static_cast<std::size_t>(i) * 2;
@@ -39,12 +39,12 @@ template <typename T> std::vector<SampleRun> findRuns(const T* data, const int p
         if (valid && runStart < 0) {
             runStart = i;
         } else if (!valid && runStart >= 0) {
-            runs.push_back(SampleRun{runStart, i - runStart});
+            runs.push_back(DataPointRun{runStart, i - runStart});
             runStart = -1;
         }
     }
     if (runStart >= 0) {
-        runs.push_back(SampleRun{runStart, pointCount - runStart});
+        runs.push_back(DataPointRun{runStart, pointCount - runStart});
     }
     return runs;
 }
@@ -56,12 +56,12 @@ bool isValidPoint(const CurveDataView& data, const int index, const bool logScal
     return isValidPair(data.x(index), data.y(index), logScaleX, logScaleY);
 }
 
-std::vector<SampleRun> findValidRuns(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
+std::vector<DataPointRun> findValidRuns(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
     return data.doubleData ? findRuns(data.doubleData, pointCount, logScaleX, logScaleY) : findRuns(data.floatData, pointCount, logScaleX, logScaleY);
 }
 
-std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, const int maxSampledPoints)
+std::vector<int> planRunSampling(const std::vector<DataPointRun>& runs, const int maxSampledPoints)
 {
     auto totalSamples = qint64{0};
     for (const auto& run : runs) {
@@ -87,7 +87,7 @@ std::vector<int> planRunSampling(const std::vector<SampleRun>& runs, const int m
     return sampled;
 }
 
-void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, const int sampledCount, std::vector<int>& indices)
+void appendEnvelopeSamples(const CurveDataView& data, const DataPointRun& run, const int sampledCount, std::vector<int>& indices)
 {
     if (sampledCount >= run.count || sampledCount < kMinRunSamples) {
         for (auto sample = 0; sample < std::min(sampledCount, run.count); ++sample) {

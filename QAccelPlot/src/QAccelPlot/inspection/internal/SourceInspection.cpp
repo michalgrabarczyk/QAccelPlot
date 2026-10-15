@@ -118,7 +118,7 @@ bool SourceInspection::isSorted(const InspectionSource& source, const Inspection
     auto previous = std::numeric_limits<double>::lowest();
     for (auto i = 0; i < source.count; ++i) {
         const auto value = source.coordinate(axis, i);
-        if (!isValidSample(value, false) || value < previous) {
+        if (!isValidCoordinate(value, false) || value < previous) {
             return false;
         }
         previous = value;

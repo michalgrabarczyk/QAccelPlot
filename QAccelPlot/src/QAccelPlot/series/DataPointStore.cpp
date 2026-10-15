@@ -44,7 +44,7 @@ struct Bounds {
 // True when an extent from the unchecked pass is empty, or its bounds are valid coordinates.
 bool fastBoundsUsable(const Bounds& bounds, const bool logScale)
 {
-    return bounds.min > bounds.max || (isValidSample(bounds.min, logScale) && isValidSample(bounds.max, logScale));
+    return bounds.min > bounds.max || (isValidCoordinate(bounds.min, logScale) && isValidCoordinate(bounds.max, logScale));
 }
 
 // The first pass is a branch-free min/max scan in the buffer's own type. It is exact whenever every
@@ -349,14 +349,14 @@ DataPointStore::Extents DataPointStore::extents(const bool logScaleX, const bool
             for (auto column = 0; column < columns; ++column) {
                 const auto value = data.value(i, column);
                 hasNaN = hasNaN || std::isnan(value);
-                allValid = allValid && isValidSample(value, logScaleOf(column));
+                allValid = allValid && isValidCoordinate(value, logScaleOf(column));
             }
             if ((layout_.rangeRule == RangeRule::WholeDataPoint && !allValid) || (layout_.rangeRule == RangeRule::SkipOnNaN && hasNaN)) {
                 continue;
             }
             for (auto column = 0; column < columns; ++column) {
                 const auto value = data.value(i, column);
-                if (isValidSample(value, logScaleOf(column))) {
+                if (isValidCoordinate(value, logScaleOf(column))) {
                     columnBounds[column].include(value);
                 }
             }
@@ -515,7 +515,7 @@ bool DataPointStore::dataPointValid(const View& view, const int index) const noe
 {
     for (auto column = 0; column < columnCount(); ++column) {
         const auto logScale = layout_.columns[static_cast<std::size_t>(column)] == Dimension::X ? x_.logScale : y_.logScale;
-        if (!isValidSample(view.value(index, column), logScale)) {
+        if (!isValidCoordinate(view.value(index, column), logScale)) {
             return false;
         }
     }

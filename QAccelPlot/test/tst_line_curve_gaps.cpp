@@ -130,7 +130,7 @@ void LineCurveGapsTest::findValidRunsSplitsAtInvalidSamples()
 
 void LineCurveGapsTest::planRunSamplingKeepsSmallCurvesIntact()
 {
-    const auto runs = std::vector<SampleRun>{{0, 10}, {11, 1}, {13, 20}};
+    const auto runs = std::vector<DataPointRun>{{0, 10}, {11, 1}, {13, 20}};
     const auto sampled = LineCurveGapFilter::planRunSampling(runs, 100);
 
     QVERIFY(sampled == (std::vector<int>{10, 0, 20}));
@@ -138,7 +138,7 @@ void LineCurveGapsTest::planRunSamplingKeepsSmallCurvesIntact()
 
 void LineCurveGapsTest::planRunSamplingDistributesBudget()
 {
-    const auto runs = std::vector<SampleRun>{{0, 1000}, {1001, 3000}, {4002, 3}};
+    const auto runs = std::vector<DataPointRun>{{0, 1000}, {1001, 3000}, {4002, 3}};
     const auto sampled = LineCurveGapFilter::planRunSampling(runs, 400);
 
     QCOMPARE(sampled.size(), std::size_t{3});
@@ -154,7 +154,7 @@ void LineCurveGapsTest::envelopeSamplesKeepEndpointsAndPeaks()
     data[120 * 2 + 1] = 5.0f;
     data[140 * 2 + 1] = -5.0f;
     const auto view = CurveDataView{data.data(), nullptr};
-    const auto run = SampleRun{100, 51};
+    const auto run = DataPointRun{100, 51};
 
     auto all = std::vector<int>{};
     LineCurveGapFilter::appendEnvelopeSamples(view, run, 51, all);

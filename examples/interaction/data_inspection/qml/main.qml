@@ -123,7 +123,7 @@ Window {
                 plot: plotView
                 mode: [QAccelPlot.PlotInspector.NearestX, QAccelPlot.PlotInspector.NearestY, QAccelPlot.PlotInspector.NearestXY][queryMode.currentIndex]
                 summaries: summariesToggle.checked
-                snapToSample: snapping.checked
+                snapToDataPoint: snapping.checked
                 enabled: !selection.selecting
                 followPointer: !root.pinnedCursor
                 cursorX: 23.4

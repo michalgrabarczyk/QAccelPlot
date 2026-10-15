@@ -9,17 +9,17 @@
 
 namespace QAccelPlot {
 
-bool InspectionSample::valid() const
+bool InspectionDataPoint::valid() const
 {
     return status == InspectionStatus::Ready;
 }
 
-qreal InspectionSample::x() const
+qreal InspectionDataPoint::x() const
 {
     return position.x();
 }
 
-qreal InspectionSample::y() const
+qreal InspectionDataPoint::y() const
 {
     return position.y();
 }

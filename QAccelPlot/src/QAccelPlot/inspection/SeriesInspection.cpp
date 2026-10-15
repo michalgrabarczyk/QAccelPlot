@@ -53,7 +53,7 @@ bool appendKeepsOrder(const InspectionSource& source, const InspectionAxis axis)
 {
     const auto last = source.count - 1;
     const auto value = source.coordinate(axis, last);
-    return isValidSample(value, false) && (last == 0 || value >= source.coordinate(axis, last - 1));
+    return isValidCoordinate(value, false) && (last == 0 || value >= source.coordinate(axis, last - 1));
 }
 
 } // namespace
@@ -246,9 +246,9 @@ void SeriesInspection::prepare()
     acquire(series_.inspectionSource(), std::nullopt);
 }
 
-InspectionSample SeriesInspection::sampleAt(const int index) const
+InspectionDataPoint SeriesInspection::dataPointAt(const int index) const
 {
-    auto result = InspectionSample{};
+    auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
     const auto source = series_.inspectionSource();
     if (!source.supported()) {
@@ -266,9 +266,9 @@ InspectionSample SeriesInspection::sampleAt(const int index) const
     return result;
 }
 
-InspectionSample SeriesInspection::nearest(const QPointF& position, const qreal radius)
+InspectionDataPoint SeriesInspection::nearest(const QPointF& position, const qreal radius)
 {
-    auto result = InspectionSample{};
+    auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
     const auto source = series_.inspectionSource();
     result.status = acquire(source, std::nullopt);
@@ -288,12 +288,12 @@ InspectionSample SeriesInspection::nearest(const QPointF& position, const qreal 
     return makeSample(source, hit.index, hit.distance);
 }
 
-InspectionSample SeriesInspection::nearestByX(const qreal pixelX, const qreal radius)
+InspectionDataPoint SeriesInspection::nearestByX(const qreal pixelX, const qreal radius)
 {
     return nearestAlong(InspectionAxis::X, pixelX, radius);
 }
 
-InspectionSample SeriesInspection::nearestByY(const qreal pixelY, const qreal radius)
+InspectionDataPoint SeriesInspection::nearestByY(const qreal pixelY, const qreal radius)
 {
     return nearestAlong(InspectionAxis::Y, pixelY, radius);
 }
@@ -436,9 +436,9 @@ std::optional<InspectionMetric> SeriesInspection::metric() const
     return result;
 }
 
-InspectionSample SeriesInspection::nearestAlong(const InspectionAxis axis, const qreal pixel, const qreal radius)
+InspectionDataPoint SeriesInspection::nearestAlong(const InspectionAxis axis, const qreal pixel, const qreal radius)
 {
-    auto result = InspectionSample{};
+    auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
     const auto source = series_.inspectionSource();
     result.status = acquire(source, axis);
@@ -485,9 +485,9 @@ InspectionBracket SeriesInspection::bracketAlong(const InspectionAxis axis, cons
     return result;
 }
 
-InspectionSample SeriesInspection::makeSample(const InspectionSource& source, const int index, const qreal distance) const
+InspectionDataPoint SeriesInspection::makeSample(const InspectionSource& source, const int index, const qreal distance) const
 {
-    auto result = InspectionSample{};
+    auto result = InspectionDataPoint{};
     result.dataRevision = series_.dataRevision();
     if (index < 0) {
         return result;
@@ -503,10 +503,10 @@ InspectionSample SeriesInspection::makeSample(const InspectionSource& source, co
     return result;
 }
 
-InspectionSample SeriesInspection::interpolate(
-    const InspectionMetric& metric, const InspectionAxis axis, const InspectionSample& left, const InspectionSample& right, const qreal pixel) const
+InspectionDataPoint SeriesInspection::interpolate(
+    const InspectionMetric& metric, const InspectionAxis axis, const InspectionDataPoint& left, const InspectionDataPoint& right, const qreal pixel) const
 {
-    auto result = InspectionSample{};
+    auto result = InspectionDataPoint{};
     result.dataRevision = left.dataRevision;
     const auto alongX = axis == InspectionAxis::X;
     const auto from = alongX ? left.pixelPosition.x() : left.pixelPosition.y();

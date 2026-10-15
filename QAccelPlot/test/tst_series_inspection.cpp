@@ -68,7 +68,7 @@ void compareAgainstScan(PointCloud& cloud, const std::vector<double>& data, cons
         auto nearestYDistance = kInfinity;
         auto inside = 0;
         for (auto i = 0; i < count; ++i) {
-            const auto pixel = inspection->sampleAt(i).pixelPosition;
+            const auto pixel = inspection->dataPointAt(i).pixelPosition;
             const auto distance = std::hypot(pixel.x() - position.x(), pixel.y() - position.y());
             if (distance <= nearestDistance) {
                 nearestDistance = distance;
@@ -128,13 +128,13 @@ void TestSeriesInspection::precisionAndGaps()
     // Ordered X is searched in place: there is nothing to prepare.
     QCOMPARE(inspection->status(), InspectionStatus::Ready);
     QCOMPARE(inspection->indexBytes(), quint64{0});
-    QCOMPARE(inspection->sampleAt(2).index, 2);
-    QCOMPARE(inspection->sampleAt(2).x(), 1e12 + .5);
-    const auto gap = inspection->sampleAt(1);
+    QCOMPARE(inspection->dataPointAt(2).index, 2);
+    QCOMPARE(inspection->dataPointAt(2).x(), 1e12 + .5);
+    const auto gap = inspection->dataPointAt(1);
     QCOMPARE(gap.status, InspectionStatus::NoMatch);
     QCOMPARE(gap.x(), 1e12 + .25);
     QVERIFY(std::isnan(gap.y()));
-    QCOMPARE(inspection->sampleAt(4).status, InspectionStatus::InvalidArgument);
+    QCOMPARE(inspection->dataPointAt(4).status, InspectionStatus::InvalidArgument);
     // Equal distances resolve to the highest index.
     QCOMPARE(inspection->nearestByX(500, 0).index, 3);
     QCOMPARE(inspection->nearest({500, 120}, 1).index, 2);
@@ -213,7 +213,7 @@ void TestSeriesInspection::replacementAndScale()
     x.setLogScale(true);
     QVERIFY(status.count() > 0);
     QCOMPARE(inspection->summarizeRange(-2, 2).count, 1);
-    QCOMPARE(inspection->sampleAt(0).status, InspectionStatus::NoMatch);
+    QCOMPARE(inspection->dataPointAt(0).status, InspectionStatus::NoMatch);
     cloud.clearData();
     QCOMPARE(inspection->summarizeRange(-2, 2).count, 0);
     QCOMPARE(inspection->status(), InspectionStatus::Ready);
@@ -320,12 +320,12 @@ void TestSeriesInspection::transition()
     curve.setTransition(&animation);
     curve.setData(std::vector<double>{1, 2, 3, 4}, 2);
     auto* inspection = curve.inspection();
-    QCOMPARE(inspection->sampleAt(0).status, InspectionStatus::Unavailable);
+    QCOMPARE(inspection->dataPointAt(0).status, InspectionStatus::Unavailable);
     QCOMPARE(inspection->status(), InspectionStatus::Unavailable);
     QCOMPARE(inspection->summarizeRange(0, 10).status, InspectionStatus::Unavailable);
     animation.cancel();
     QCOMPARE(inspection->status(), InspectionStatus::Ready);
-    QCOMPARE(inspection->sampleAt(1).position, QPointF(3, 4));
+    QCOMPARE(inspection->dataPointAt(1).position, QPointF(3, 4));
     QCOMPARE(inspection->summarizeRange(0, 10).count, 2);
 }
 
@@ -411,7 +411,7 @@ void TestSeriesInspection::zeroRadiusMapping()
         x.setLogScale(logarithmic);
         y.setLogScale(logarithmic);
         for (auto index = 0; index < 3; ++index) {
-            const auto position = cloud.inspection()->sampleAt(index).pixelPosition;
+            const auto position = cloud.inspection()->dataPointAt(index).pixelPosition;
             QCOMPARE(cloud.inspection()->nearest(position, 0).index, index);
             QCOMPARE(cloud.inspection()->nearestByX(position.x(), 0).index, index);
         }
@@ -482,7 +482,7 @@ void TestSeriesInspection::orderedAlongY()
     QVERIFY(std::abs(bracket.interpolated.x() - (std::sin(400.0) + std::sin(400.01)) / 2) < 1e-6);
     QVERIFY(!inspection->bracketByY(pixelY(-5)).left.valid());
     QVERIFY(!inspection->bracketByY(pixelY(count + 5.0)).right.valid());
-    const auto target = inspection->sampleAt(70000).pixelPosition;
+    const auto target = inspection->dataPointAt(70000).pixelPosition;
     QCOMPARE(inspection->nearest(target, 0).index, 70000);
     QCOMPARE(inspection->summarize(-kInfinity, kInfinity, 1000, 1999).count, 1000);
     QCOMPARE(inspection->summarize(0, kInfinity, 0, 313).count, 314);
@@ -564,7 +564,7 @@ void TestSeriesInspection::nativeRecords()
     QCOMPARE(bars.inspection()->status(), InspectionStatus::Unsupported);
     QCOMPARE(bars.inspection()->nearest({1, 1}).status, InspectionStatus::Unsupported);
     QCOMPARE(bands.inspection()->summarizeRange(0, 5).status, InspectionStatus::Unsupported);
-    QCOMPARE(bands.inspection()->sampleAt(0).status, InspectionStatus::Unsupported);
+    QCOMPARE(bands.inspection()->dataPointAt(0).status, InspectionStatus::Unsupported);
     // XY series have no native records.
     auto curve = LineCurve{};
     QCOMPARE(curve.inspection()->recordAt(0).status, InspectionStatus::Unsupported);

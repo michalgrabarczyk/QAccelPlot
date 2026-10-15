@@ -17,16 +17,16 @@ namespace QAccelPlot {
 
 /// \brief Inspection result of one series, as shown by one row of an \c InspectionRowModel.
 struct InspectionRow {
-    QPointer<PlotSeries> series; ///< \brief Series the row describes.
-    InspectionSample sample;     ///< \brief Sample at the cursor; invalid for selection rows.
-    QPointF pixelPosition;       ///< \brief Data point position in plot-local logical pixels.
-    QString xText;               ///< \brief Data point X formatted by the series' X axis.
-    QString yText;               ///< \brief Data point Y formatted by the series' Y axis.
-    bool hasSummary{false};      ///< \brief Whether \c summary was requested.
-    InspectionSummary summary;   ///< \brief Region statistics.
-    QString minimumText;         ///< \brief Summary minimum formatted by the series' Y axis.
-    QString maximumText;         ///< \brief Summary maximum formatted by the series' Y axis.
-    QString meanText;            ///< \brief Summary mean formatted by the series' Y axis.
+    QPointer<PlotSeries> series;   ///< \brief Series the row describes.
+    InspectionDataPoint dataPoint; ///< \brief Data point at the cursor; invalid for selection rows.
+    QPointF pixelPosition;         ///< \brief Data point position in plot-local logical pixels.
+    QString xText;                 ///< \brief Data point X formatted by the series' X axis.
+    QString yText;                 ///< \brief Data point Y formatted by the series' Y axis.
+    bool hasSummary{false};        ///< \brief Whether \c summary was requested.
+    InspectionSummary summary;     ///< \brief Region statistics.
+    QString minimumText;           ///< \brief Summary minimum formatted by the series' Y axis.
+    QString maximumText;           ///< \brief Summary maximum formatted by the series' Y axis.
+    QString meanText;              ///< \brief Summary mean formatted by the series' Y axis.
 };
 
 /// \brief List model with one stable row per inspected series.
@@ -35,8 +35,8 @@ struct InspectionRow {
 /// only when the set of inspected series changes; cursor movement updates rows in place, so
 /// delegates are reused.
 ///
-/// Roles: \c series, \c seriesName, \c seriesColor, \c valid, \c sampleStatus, \c sampleIndex,
-/// \c sampleX, \c sampleY, \c sampleValue, \c xText, \c yText, \c pixelPosition, \c distance,
+/// Roles: \c series, \c seriesName, \c seriesColor, \c valid, \c dataPointStatus, \c dataPointIndex,
+/// \c dataPointX, \c dataPointY, \c dataPointValue, \c xText, \c yText, \c pixelPosition, \c distance,
 /// \c interpolated, \c hasSummary, \c summaryStatus, \c summaryCount, \c minimum, \c maximum,
 /// \c mean, \c standardDeviation, \c minimumIndex, \c maximumIndex, \c minimumText,
 /// \c maximumText, and \c meanText.
@@ -53,11 +53,11 @@ public:
         SeriesNameRole,
         SeriesColorRole,
         ValidRole,
-        SampleStatusRole,
-        SampleIndexRole,
-        SampleXRole,
-        SampleYRole,
-        SampleValueRole,
+        DataPointStatusRole,
+        DataPointIndexRole,
+        DataPointXRole,
+        DataPointYRole,
+        DataPointValueRole,
         XTextRole,
         YTextRole,
         PixelPositionRole,
