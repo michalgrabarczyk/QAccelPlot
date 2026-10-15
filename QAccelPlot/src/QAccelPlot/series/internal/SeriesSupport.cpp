@@ -7,6 +7,9 @@
 //
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include "QAccelPlot/QAccelPlotLogging.hpp"
+#include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
+
 #include <QQuickWindow>
 #include <QSGRendererInterface>
 
@@ -20,6 +23,7 @@
 #endif
 
 #include <algorithm>
+#include <limits>
 
 namespace QAccelPlot::Internal {
 
@@ -62,6 +66,24 @@ int maxTextureSize(QQuickWindow* window)
     static const auto overrideSize = qEnvironmentVariableIntValue("QACCELPLOT_MAX_TEXTURE_SIZE");
     const auto gpuSize = gpuMaxTextureSize(window);
     return overrideSize > 0 ? std::min(overrideSize, gpuSize) : gpuSize;
+}
+
+int recordCapacity(QQuickWindow* window, const int floatsPerRecord, const int vertexBytesPerRecord)
+{
+    constexpr auto kMaxExactVertexId = qint64{1} << 24;
+    const auto textureRecords = dataTextureItemCapacity(maxTextureSize(window), floatsPerRecord);
+    const auto geometryRecords = qint64{std::numeric_limits<int>::max() / vertexBytesPerRecord};
+    return static_cast<int>(std::min({textureRecords, geometryRecords, kMaxExactVertexId}));
+}
+
+bool warnIfOutgrowsCapacity(const bool wasOverCapacity, const int recordCount, const int capacity, const char* seriesType, const char* records)
+{
+    const auto overCapacity = recordCount > capacity;
+    if (overCapacity && !wasOverCapacity) {
+        qCWarning(lcQAccelPlot) << seriesType << "has" << recordCount << records << "but draws at most" << capacity << "; the remaining" << records
+                                << "are not drawn.";
+    }
+    return overCapacity;
 }
 
 } // namespace QAccelPlot::Internal

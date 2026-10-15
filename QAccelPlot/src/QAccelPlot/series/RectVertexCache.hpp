@@ -28,6 +28,8 @@ public:
 
     /// \brief Number of vertices per rectangle.
     static constexpr int kVerticesPerRect{6};
+    /// \brief Size of the vertices of one rectangle in bytes.
+    static constexpr int kBytesPerRect{72};
 
     /// \brief Rebuilds the vertices of \a rectCount rectangles, keeping the allocation when it fits.
     ///

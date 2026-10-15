@@ -474,6 +474,8 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* window = this->window();
     const auto drawnCount = drawnBarCount();
+    const auto capacity = Internal::recordCapacity(window, valuesPerBar(), RectVertexCache::kBytesPerRect);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, drawnCount, capacity, "BarSeries", "bars");
     if (drawnCount <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty() || !window) {
         return releaseNode(oldNode);
     }
@@ -499,10 +501,12 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
         node->setFlag(QSGNode::OwnsMaterial);
     }
 
+    const auto renderCount = std::min(drawnCount, capacity);
+
     // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
-    const auto rebuildVertices = !vertexCache_.valid();
+    const auto rebuildVertices = !vertexCache_.valid() || vertexCache_.vertexCount() != renderCount * RectVertexCache::kVerticesPerRect;
     if (rebuildVertices) {
-        buildVertexCache();
+        buildVertexCache(renderCount);
     }
     if (rebuildVertices || nodeRecreated) {
         vertexCache_.copyTo(*node->geometry());
@@ -516,11 +520,11 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
             const auto logValue = isHorizontal() ? xAxis()->logScale() : yAxis()->logScale();
             rebuildRenderData(logPosition, logValue);
         }
-        material->uploadTexture(window, renderData_.data(), drawnCount * valuesPerBar());
+        material->uploadTexture(window, renderData_.data(), renderCount * valuesPerBar());
         dataChanged_ = false;
     }
 
-    updateMaterial(*material);
+    updateMaterial(*material, renderCount);
     node->markDirty(QSGNode::DirtyMaterial);
     return node;
 }
@@ -895,7 +899,7 @@ QSGNode* BarSeries::releaseNode(QSGNode* oldNode) const
     return nullptr;
 }
 
-void BarSeries::updateMaterial(BarMaterial& material) const
+void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) const
 {
     const auto horizontal = isHorizontal();
     const auto originX = horizontal ? renderOriginValue_ : renderOriginPosition_;
@@ -908,7 +912,7 @@ void BarSeries::updateMaterial(BarMaterial& material) const
     material.logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material.useVertexColor = drawnCategories().empty() ? 0.0f : 1.0f;
-    material.rectCount = static_cast<float>(drawnBarCount());
+    material.rectCount = static_cast<float>(renderCount);
     material.minimumSize = horizontal ? QVector2D(0.0f, minimumSize) : QVector2D(minimumSize, 0.0f);
     material.borderWidth = static_cast<float>(border_->width());
     material.borderColor = border_->color();
@@ -944,13 +948,13 @@ void BarSeries::ensureSpatialGrid() const
     spatialGridValid_ = true;
 }
 
-void BarSeries::buildVertexCache()
+void BarSeries::buildVertexCache(const int barCount)
 {
     auto colorAt = RectVertexCache::ColorFunction{};
     if (!drawnCategories().empty()) {
         colorAt = [this](const int index) { return barColor(index); };
     }
-    vertexCache_.rebuild(drawnBarCount(), colorAt);
+    vertexCache_.rebuild(barCount, colorAt);
 }
 
 PlotSeries::DataRanges BarSeries::computeDataRanges() const

@@ -16,6 +16,7 @@ namespace QAccelPlot {
 void RectVertexCache::rebuild(const int rectCount, const ColorFunction& colorAt)
 {
     static_assert(sizeof(Vertex) == 12, "Must match DataTextureMaterial::attributeSet()");
+    static_assert(sizeof(Vertex) * kVerticesPerRect == kBytesPerRect);
     vertices_.resize(static_cast<size_t>(rectCount) * kVerticesPerRect);
     for (auto i = 0; i < rectCount; ++i) {
         const auto base = static_cast<size_t>(i) * kVerticesPerRect;

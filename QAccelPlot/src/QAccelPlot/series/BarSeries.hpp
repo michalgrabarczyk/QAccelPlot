@@ -317,9 +317,11 @@ private:
     bool containsInPixels(int index, const QPointF& position) const;
     void setHoveredIndex(int index);
     QSGNode* releaseNode(QSGNode* oldNode) const;
-    void updateMaterial(BarMaterial& material) const;
+    // Sets the uniforms for drawing the first \a renderCount of the drawn bars.
+    void updateMaterial(BarMaterial& material, int renderCount) const;
     void ensureSpatialGrid() const;
-    void buildVertexCache();
+    // Builds the vertices of the first \a barCount of the drawn bars.
+    void buildVertexCache(int barCount);
     // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision data_ or
     // transition bars, so the GPU upload stays accurate for large positions without double-precision textures.
     void rebuildRenderData(bool logScalePosition, bool logScaleValue);
@@ -350,6 +352,8 @@ private:
     qreal renderOriginValue_{0.0};
     int barCount_{0};
     bool dataChanged_{false};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.

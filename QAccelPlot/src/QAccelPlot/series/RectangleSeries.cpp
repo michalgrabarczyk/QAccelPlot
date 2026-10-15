@@ -52,6 +52,8 @@ struct FiniteBounds {
     qreal yMax{std::numeric_limits<qreal>::lowest()};
 };
 
+constexpr auto kValuesPerRectangle = 4;
+
 // Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone.
 template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount)
 {
@@ -495,6 +497,9 @@ void RectangleSeries::setHoveredIndex(const int index)
 
 QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
+    auto* window = this->window();
+    const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, rectCount_, capacity, "RectangleSeries", "rectangles");
     if (rectCount_ <= 0) {
         delete oldNode;
         return nullptr;
@@ -505,7 +510,6 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         return nullptr;
     }
 
-    auto* window = this->window();
     if (!window) {
         qCDebug(lcQAccelPlot) << "null window, returning nullptr";
         delete oldNode;
@@ -525,10 +529,14 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;
     const auto nodeRecreated = !node;
+    const auto drawnCount = std::min(rectCount_, capacity);
+    if (vertexCache_.vertexCount() != drawnCount * RectVertexCache::kVerticesPerRect) {
+        vertexCache_.invalidate();
+    }
 
     if (!node) {
         if (!vertexCache_.valid()) {
-            buildVertexCache();
+            buildVertexCache(drawnCount);
         }
 
         auto* geometry = new QSGGeometry(DataTextureMaterial::attributeSet(), 0);
@@ -547,7 +555,7 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
 
         // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.
         if (!vertexCache_.valid()) {
-            buildVertexCache();
+            buildVertexCache(drawnCount);
             vertexCache_.copyTo(*node->geometry());
             node->markDirty(QSGNode::DirtyGeometry);
         }
@@ -558,12 +566,12 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         if (hasPreciseData()) {
             rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
         }
-        const auto numFloats = rectCount_ * 4;
+        const auto numFloats = drawnCount * kValuesPerRectangle;
         material->uploadTexture(window, renderData_.data(), numFloats);
         dataChanged_ = false;
     }
 
-    updateMaterial(*material);
+    updateMaterial(*material, drawnCount);
     node->markDirty(QSGNode::DirtyMaterial);
 
     return node;
@@ -596,7 +604,7 @@ void RectangleSeries::onAxisScaleChanged()
     update();
 }
 
-void RectangleSeries::updateMaterial(RectMaterial& material) const
+void RectangleSeries::updateMaterial(RectMaterial& material, const int drawnCount) const
 {
     material.color = color_;
     material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
@@ -605,7 +613,7 @@ void RectangleSeries::updateMaterial(RectMaterial& material) const
     material.logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
     material.useVertexColor = hasCategories() ? 1.0f : 0.0f;
-    material.rectCount = static_cast<float>(rectCount_);
+    material.rectCount = static_cast<float>(drawnCount);
     material.minimumSize = QVector2D(static_cast<float>(minimumWidth_), static_cast<float>(minimumHeight_));
     material.borderWidth = static_cast<float>(border_->width());
     material.borderColor = border_->color();
@@ -734,13 +742,13 @@ PlotSeries::DataRanges RectangleSeries::computeDataRanges() const
     return {DataExtent{bounds.xMin, bounds.xMax}, DataExtent{bounds.yMin, bounds.yMax}};
 }
 
-void RectangleSeries::buildVertexCache()
+void RectangleSeries::buildVertexCache(const int rectCount)
 {
     auto colorAt = RectVertexCache::ColorFunction{};
     if (hasCategories()) {
         colorAt = [this](const int index) { return rectangleColor(index); };
     }
-    vertexCache_.rebuild(rectCount_, colorAt);
+    vertexCache_.rebuild(rectCount, colorAt);
 }
 
 } // namespace QAccelPlot
