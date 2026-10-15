@@ -49,6 +49,7 @@ private slots:
     void rectangleAtReturnsBounds();
     void missingEdgesAreUnbounded();
     void unboundedAndInvalidEdgesAreExcludedFromRanges();
+    void logAxisExcludesNonPositiveEdgesFromRanges();
     void variantListCategoriesAreStored();
     void categoriesFollowTheData();
     void mismatchedCategoriesAreRejected();
@@ -461,6 +462,35 @@ void RectangleSeriesDataTest::unboundedAndInvalidEdgesAreExcludedFromRanges()
     rectangles.setData(std::vector<double>{8.0, -kInf, 12.0, kInf}, 1);
     QCOMPARE(yAxis.dataMin(), 100.0);
     QCOMPARE(yAxis.dataMax(), 200.0);
+}
+
+void RectangleSeriesDataTest::logAxisExcludesNonPositiveEdgesFromRanges()
+{
+    auto xAxis = Axis{};
+    auto yAxis = Axis{};
+    yAxis.setViewportMin(1.0);
+    yAxis.setViewportMax(1000.0);
+    yAxis.setLogScale(true);
+    auto rectangles = RectangleSeries{};
+    rectangles.setXAxis(&xAxis);
+    rectangles.setYAxis(&yAxis);
+
+    rectangles.setData(std::vector<double>{-2.0, 0.0, 1.0, 500.0, 2.0, 10.0, 3.0, 20.0}, 2);
+    QCOMPARE(xAxis.dataMin(), -2.0);
+    QCOMPARE(xAxis.dataMax(), 3.0);
+    QCOMPARE(yAxis.dataMin(), 10.0);
+    QCOMPARE(yAxis.dataMax(), 500.0);
+
+    rectangles.setDataF(std::vector<float>{0.0F, -1.0F, 1.0F, 50.0F}, 1);
+    QCOMPARE(yAxis.dataMin(), 50.0);
+    QCOMPARE(yAxis.dataMax(), 50.0);
+
+    yAxis.setLogScale(false);
+    QCOMPARE(yAxis.dataMin(), -1.0);
+
+    xAxis.setLogScale(true);
+    QCOMPARE(xAxis.dataMin(), 1.0);
+    QCOMPARE(xAxis.dataMax(), 1.0);
 }
 
 void RectangleSeriesDataTest::variantListCategoriesAreStored()

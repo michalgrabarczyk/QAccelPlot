@@ -110,6 +110,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - An axis already assigned to a plot slot cannot also occupy another axis slot
   or appear in `extraAxes`.
 - `Plot` with `legend: null` no longer logs a TypeError.
+- On a logarithmic axis, `RectangleSeries` edges at or below zero no longer
+  widen the data range, so autoscaling no longer reaches down to 1e-10.
 - Rescaling a logarithmic axis with an entirely non-positive data range keeps
   its viewport positive and usable.
 - Zooming or panning an axis stops at the limits of a double. Zooming a
