@@ -220,19 +220,23 @@ void PlotSeries::setData(const double* data, const int count)
     if (!validateRawDataArguments(data, count)) {
         return;
     }
-    const auto previousCount = dataPoints_.count();
-    dataPoints_.assignPrecise(data, count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    auto input = DataPointInput{};
+    input.doubleArray = data;
+    input.count = count;
+    input.stride = dataPointValueCount();
+    applyDataPoints(std::move(input));
 }
 
 void PlotSeries::setData(std::vector<double>&& data, const int count)
 {
-    if (!validateDataSize(data.size(), count, false)) {
+    if (!validateDataSize(data.size(), count, false, dataPointValueCount())) {
         return;
     }
-    const auto previousCount = dataPoints_.count();
-    dataPoints_.setPrecise(std::move(data), count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    auto input = DataPointInput{};
+    input.doubles = std::move(data);
+    input.count = count;
+    input.stride = dataPointValueCount();
+    applyDataPoints(std::move(input));
 }
 
 void PlotSeries::setDataF(const float* data, const int count)
@@ -240,19 +244,25 @@ void PlotSeries::setDataF(const float* data, const int count)
     if (!validateRawDataArguments(data, count)) {
         return;
     }
-    const auto previousCount = dataPoints_.count();
-    dataPoints_.assignFloat(data, count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    auto input = DataPointInput{};
+    input.floatArray = data;
+    input.count = count;
+    input.stride = dataPointValueCount();
+    input.precise = false;
+    applyDataPoints(std::move(input));
 }
 
 void PlotSeries::setDataF(std::vector<float>&& data, const int count)
 {
-    if (!validateDataSize(data.size(), count, true)) {
+    if (!validateDataSize(data.size(), count, true, dataPointValueCount())) {
         return;
     }
-    const auto previousCount = dataPoints_.count();
-    dataPoints_.setFloat(std::move(data), count);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+    auto input = DataPointInput{};
+    input.floats = std::move(data);
+    input.count = count;
+    input.stride = dataPointValueCount();
+    input.precise = false;
+    applyDataPoints(std::move(input));
 }
 
 void PlotSeries::setData(const double* data, const int count, const DataBounds& bounds)
@@ -311,6 +321,47 @@ std::optional<PlotSeries::DataExtent> PlotSeries::yDataRange() const
 {
     ensureDataRanges();
     return yDataExtent_;
+}
+
+std::vector<double> PlotSeries::DataPointInput::toDoubles() &&
+{
+    const auto size = static_cast<std::size_t>(std::max(count, 0)) * static_cast<std::size_t>(stride);
+    if (doubleArray) {
+        return std::vector<double>(doubleArray, doubleArray + size);
+    }
+    if (floatArray) {
+        return std::vector<double>(floatArray, floatArray + size);
+    }
+    if (precise) {
+        return std::move(doubles);
+    }
+    return std::vector<double>(floats.cbegin(), floats.cend());
+}
+
+void PlotSeries::applyDataPoints(DataPointInput&& input)
+{
+    storeDataPoints(std::move(input));
+}
+
+void PlotSeries::storeDataPoints(DataPointInput&& input)
+{
+    const auto previousCount = dataPoints_.count();
+    if (input.doubleArray) {
+        dataPoints_.assignPrecise(input.doubleArray, input.count);
+    } else if (input.floatArray) {
+        // Reuses the allocation of the stored data points.
+        dataPoints_.assignFloat(input.floatArray, input.count);
+    } else if (input.precise) {
+        dataPoints_.setPrecise(std::move(input.doubles), input.count);
+    } else {
+        dataPoints_.setFloat(std::move(input.floats), input.count);
+    }
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+int PlotSeries::dataPointValueCount() const
+{
+    return dataPoints_.columnCount();
 }
 
 DataPointStore& PlotSeries::dataPoints()

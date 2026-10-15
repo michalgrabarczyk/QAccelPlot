@@ -30,32 +30,9 @@ public:
     using PlotSeries::setData;
     using PlotSeries::setDataF;
 
-    void setData(const double*, int) override
+    void applyDataPoints(DataPointInput&& /*input*/) override
     {
         invalidateDataRanges();
-    }
-
-    void setData(std::vector<double>&&, int) override
-    {
-        invalidateDataRanges();
-    }
-
-    void setDataF(const float*, int) override
-    {
-        invalidateDataRanges();
-    }
-
-    void setDataF(std::vector<float>&&, int) override
-    {
-        invalidateDataRanges();
-    }
-
-    void postData(std::vector<double>&&, int) override
-    {
-    }
-
-    void postData(std::vector<float>&&, int) override
-    {
     }
 
     void clearData() override

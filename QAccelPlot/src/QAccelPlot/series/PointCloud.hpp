@@ -160,20 +160,8 @@ public:
     /// \brief Returns the value of point \a index, or NaN when out of range or no values are stored.
     Q_INVOKABLE qreal valueAt(int index) const;
 
-    /// \brief Copies \a pointCount interleaved double XY pairs and clears values.
-    void setData(const double* xyInterleaved, int pointCount) override;
-    /// \brief Moves \a pointCount interleaved XY pairs of doubles into the cloud and clears values.
-    ///
-    /// The GPU renders in single precision, so positions are uploaded relative to an origin
-    /// taken from the first finite point. Coordinates far from zero, such as epoch timestamps,
-    /// therefore keep their resolution. Logarithmic dimensions are never origin-shifted.
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
-    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
     /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     using PlotSeries::postData;
@@ -224,6 +212,8 @@ protected:
     /// \endcond
 
 protected:
+    /// \brief Applies new points without values, animating to them when a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
     /// \brief Rebuilds the hover index, because log dimensions map points differently.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the hover index, the value range, and the count after the points changed.

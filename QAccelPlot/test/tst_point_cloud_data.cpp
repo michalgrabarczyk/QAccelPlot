@@ -58,7 +58,7 @@ private slots:
     void destructionKeepsDataAliveDuringRunningChanged();
     void defaults();
     void hoverEnvironmentControlsAcceptance();
-    void invalidArgumentsAreRejected();
+    void invalidValuesAreRejected();
     void countChangedTracksCountAndValuePresence();
     void dataRangesSkipNonFinitePoints();
     void dataRangesFollowLogarithmicAxes();
@@ -142,20 +142,16 @@ void PointCloudDataTest::hoverEnvironmentControlsAcceptance()
     QVERIFY(!hoverDisabledCloud.acceptHoverEvents());
 }
 
-void PointCloudDataTest::invalidArgumentsAreRejected()
+void PointCloudDataTest::invalidValuesAreRejected()
 {
     auto cloud = PointCloud{};
     cloud.setDataF(std::vector<float>{1.0f, 2.0f}, 1);
     auto countSpy = QSignalSpy{&cloud, &PointCloud::countChanged};
 
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud data point count cannot be negative.*"));
-    cloud.setDataF(std::vector<float>{}, -1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received 3 coordinates for 2 points.*"));
-    cloud.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f}, 2);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received 1 values for 2 points.*"));
     cloud.setDataF(std::vector<float>{1.0f, 2.0f, 3.0f, 4.0f}, std::vector<float>{1.0f}, 2);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received a null data pointer.*"));
-    cloud.setDataF(nullptr, 3);
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received 1 values for 2 points.*"));
+    cloud.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, std::vector<float>{1.0f}, 2);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud received 3 values for 1 points.*"));
     cloud.setValues({1.0, 2.0, 3.0});
 

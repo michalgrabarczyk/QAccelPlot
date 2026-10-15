@@ -134,13 +134,13 @@ public:
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
     /// Each concrete series defines its data point layout (XY pairs or rectangle edges).
-    virtual void setData(const double* data, int count);
+    void setData(const double* data, int count);
     /// \brief Replaces the series data by moving an interleaved double buffer.
-    virtual void setData(std::vector<double>&& data, int count);
+    void setData(std::vector<double>&& data, int count);
     /// \brief Replaces the series data with \a count data points copied from an interleaved float array.
-    virtual void setDataF(const float* data, int count);
+    void setDataF(const float* data, int count);
     /// \brief Replaces the series data by moving an interleaved float buffer.
-    virtual void setDataF(std::vector<float>&& data, int count);
+    void setDataF(std::vector<float>&& data, int count);
     /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
     void setData(const double* data, int count, const DataBounds& bounds);
     /// \brief Like \c setData(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
@@ -150,9 +150,9 @@ public:
     /// \brief Like \c setDataF(\a data, \a count), with the data extents given as \a bounds instead of scanned for.
     void setDataF(std::vector<float>&& data, int count, const DataBounds& bounds);
     /// \brief Queues a moved double buffer for assignment on the series' thread.
-    virtual void postData(std::vector<double>&& data, int count);
+    void postData(std::vector<double>&& data, int count);
     /// \brief Queues a moved float buffer for assignment on the series' thread.
-    virtual void postData(std::vector<float>&& data, int count);
+    void postData(std::vector<float>&& data, int count);
     /// \brief Removes all data points from the series.
     virtual void clearData();
 
@@ -183,6 +183,33 @@ protected:
 
     /// \brief Creates a series whose data points have \a layout; \a wording names them in warnings.
     PlotSeries(DataPointStore::Layout layout, DataPointWording wording, QQuickItem* parent);
+
+    /// \brief Data points passed to \c setData() or \c setDataF(), already checked.
+    ///
+    /// Holds either a moved buffer or an array to copy, of double or float values.
+    struct DataPointInput {
+        std::vector<double> doubles;        ///< \brief Moved double values, when \c precise is set and \c doubleArray is null.
+        std::vector<float> floats;          ///< \brief Moved float values, when \c precise is not set and \c floatArray is null.
+        const double* doubleArray{nullptr}; ///< \brief Double values to copy.
+        const float* floatArray{nullptr};   ///< \brief Float values to copy.
+        int count{0};                       ///< \brief Number of data points.
+        int stride{0};                      ///< \brief Values per data point.
+        bool precise{true};                 ///< \brief Whether the values are doubles.
+
+        /// \brief Returns the values as doubles, moved, copied, or converted.
+        std::vector<double> toDoubles() &&;
+    };
+
+    /// \brief Applies data points passed to \c setData() or \c setDataF().
+    ///
+    /// The default stores them; series that animate data changes override it.
+    virtual void applyDataPoints(DataPointInput&& input);
+    /// \brief Stores \a input as the data points and finishes the change.
+    void storeDataPoints(DataPointInput&& input);
+    /// \brief Returns the number of values per data point that \c setData() and \c setDataF() take.
+    ///
+    /// The default is one per coordinate column.
+    virtual int dataPointValueCount() const;
 
     /// \brief How the records changed in a data update.
     enum class DataChange {

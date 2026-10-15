@@ -150,16 +150,6 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    /// \brief Copies \a pointCount interleaved double XY pairs, retaining full precision.
-    void setData(const double* xyInterleaved, int pointCount) override;
-    /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
-    /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief High-performance C++ overload: copies a raw interleaved float array of \a pointCount XY pairs into the
-    /// curve's reusable buffer.
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
-    void setDataF(std::vector<float>&& data, int pointCount) override;
     using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
@@ -181,6 +171,8 @@ protected:
     /// \endcond
     /// \brief Returns \c true if \a point lies within the curve's hit-test region.
     bool contains(const QPointF& point) const override;
+    /// \brief Applies new points, animating to them when a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
     /// \brief Refreshes cached geometry when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
     /// \brief Refreshes the vertex cache and the hit-test chunks after the points changed.

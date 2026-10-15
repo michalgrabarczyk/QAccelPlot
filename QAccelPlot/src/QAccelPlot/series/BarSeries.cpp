@@ -315,35 +315,12 @@ void BarSeries::setData(const QVariantList& bars)
     }
 }
 
-void BarSeries::setData(const double* data, const int barCount)
-{
-    if (!validateRawDataArguments(data, barCount)) {
-        return;
-    }
-    applyData(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), {}, barCount);
-}
-
-void BarSeries::setData(std::vector<double>&& data, const int barCount)
-{
-    setData(std::move(data), {}, barCount);
-}
-
 void BarSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), barCount)) {
         return;
     }
     applyData(std::move(data), std::move(categories), barCount);
-}
-
-void BarSeries::setDataF(const float* data, const int barCount)
-{
-    setDataFFromArray(data, barCount);
-}
-
-void BarSeries::setDataF(std::vector<float>&& data, const int barCount)
-{
-    setDataF(std::move(data), {}, barCount);
 }
 
 void BarSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -544,6 +521,23 @@ void BarSeries::hoverLeaveEvent(QHoverEvent* event)
     QQuickItem::hoverLeaveEvent(event);
 }
 
+void BarSeries::applyDataPoints(DataPointInput&& input)
+{
+    const auto barCount = input.count;
+    if (input.floatArray) {
+        setDataFFromArray(input.floatArray, barCount);
+    } else if (!input.precise) {
+        applyFloatData(std::move(input.floats), {}, barCount);
+    } else {
+        applyData(std::move(input).toDoubles(), {}, barCount);
+    }
+}
+
+int BarSeries::dataPointValueCount() const
+{
+    return 2;
+}
+
 void BarSeries::onAxisScaleChanged()
 {
     update();
@@ -618,9 +612,6 @@ void BarSeries::applyFloatBars(std::vector<float>&& data, std::vector<int>&& cat
 
 void BarSeries::setDataFFromArray(const float* data, const int barCount)
 {
-    if (!validateRawDataArguments(data, barCount)) {
-        return;
-    }
     if (transition_->enabled()) {
         // Transitions animate doubles.
         applyBars(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), false, {}, barCount, true);

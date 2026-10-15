@@ -355,42 +355,6 @@ void LineCurve::setData(const std::vector<double>& xs, const std::vector<double>
     applyNewData(std::move(newData), newCount);
 }
 
-void LineCurve::setData(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto data = std::vector<double>{};
-    if (pointCount > 0) {
-        data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
-    }
-    applyNewData(std::move(data), pointCount);
-}
-
-void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    if (!validateDataSize(xyInterleaved.size(), pointCount, false)) {
-        return;
-    }
-    applyNewData(std::move(xyInterleaved), pointCount);
-}
-
-void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    applyFloatArray(xyInterleaved, pointCount);
-}
-
-void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
-{
-    if (!validateDataSize(data.size(), pointCount, true)) {
-        return;
-    }
-    applyNewData(std::move(data), pointCount);
-}
-
 void LineCurve::setDataFWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
 {
     if (!validateDataSize(data.size(), pointCount, true)) {
@@ -636,6 +600,18 @@ bool LineCurve::contains(const QPointF& point) const
     }
 
     return false;
+}
+
+void LineCurve::applyDataPoints(DataPointInput&& input)
+{
+    if (input.floatArray) {
+        applyFloatArray(input.floatArray, input.count);
+    } else if (!input.precise) {
+        applyNewData(std::move(input.floats), input.count);
+    } else {
+        const auto count = input.count;
+        applyNewData(std::move(input).toDoubles(), count);
+    }
 }
 
 void LineCurve::onAxisScaleChanged()

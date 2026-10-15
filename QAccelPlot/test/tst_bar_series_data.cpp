@@ -13,7 +13,6 @@
 #include <QSGGeometryNode>
 #include <QtTest/QtTest>
 
-#include <array>
 #include <limits>
 #include <memory>
 #include <thread>
@@ -52,11 +51,9 @@ private slots:
     void defaultsMatchDocumentation();
     void variantListNumbersUseIndexPositions();
     void variantListObjectsReadPositionValueAndCategory();
-    void invalidRawArgumentsAreRejected();
     void movedDataWithWrongSizeIsRejected();
     void floatDataIsApplied();
     void postedDataIsAppliedFromWorkerThread();
-    void postedFloatDataIsAppliedFromWorkerThread();
     void clearDataRemovesBars();
     void barAtReturnsPositionValueAndCategory();
     void mismatchedCategoriesAreRejected();
@@ -66,7 +63,6 @@ private slots:
     void horizontalBarsSwapTheAxes();
     void logValueAxisExcludesNonPositiveValues();
     void dataBoundsReplaceTheRangeScan();
-    void rawDoubleDataIsCopiedAndNullIsRejected();
     void propertiesClampAndNotify();
     void epochPositionsAreUploadedRelativeToAnOrigin();
     void geometryIsPassedToTheMaterial();
@@ -123,30 +119,9 @@ void BarSeriesDataTest::variantListObjectsReadPositionValueAndCategory()
     QVERIFY(!bars.barAt(0).contains(QStringLiteral("category")));
 }
 
-void BarSeriesDataTest::invalidRawArgumentsAreRejected()
-{
-    auto bars = BarSeries{};
-    const auto data = std::array<double, 2>{0.0, 1.0};
-    const auto floatData = std::array<float, 2>{0.0f, 1.0f};
-    bars.setData(data.data(), 1);
-    auto countSpy = QSignalSpy{&bars, &BarSeries::countChanged};
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received a null data pointer.*"));
-    bars.setData(static_cast<const double*>(nullptr), 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries data bar count cannot be negative.*"));
-    bars.setData(data.data(), -1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries data bar count cannot be negative.*"));
-    bars.setDataF(floatData.data(), -1);
-
-    QCOMPARE(bars.count(), 1);
-    QCOMPARE(countSpy.count(), 0);
-}
-
 void BarSeriesDataTest::movedDataWithWrongSizeIsRejected()
 {
     auto bars = BarSeries{};
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received 3 values for 2 bars.*"));
-    bars.setData(std::vector<double>{0.0, 1.0, 2.0}, 2);
     QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received 1 categories for 2 bars.*"));
     bars.setDataF(std::vector<float>{0.0f, 1.0f, 2.0f, 3.0f}, std::vector<int>{0}, 2);
     QCOMPARE(bars.count(), 0);
@@ -180,16 +155,6 @@ void BarSeriesDataTest::postedDataIsAppliedFromWorkerThread()
     QTRY_COMPARE(bars.count(), 2);
     QCOMPARE(bars.barAt(1).value(QStringLiteral("position")).toDouble(), 7.0);
     QCOMPARE(bars.barAt(1).value(QStringLiteral("category")).toInt(), 1);
-}
-
-void BarSeriesDataTest::postedFloatDataIsAppliedFromWorkerThread()
-{
-    auto bars = BarSeries{};
-    auto worker = std::thread{[&bars]() { bars.postData(std::vector<float>{3.0f, 4.0f, 5.0f, 6.0f}, 2); }};
-    worker.join();
-
-    QTRY_COMPARE(bars.count(), 2);
-    QCOMPARE(bars.barAt(0).value(QStringLiteral("value")).toDouble(), 4.0);
 }
 
 void BarSeriesDataTest::clearDataRemovesBars()
@@ -351,27 +316,6 @@ void BarSeriesDataTest::dataBoundsReplaceTheRangeScan()
     bars.setDataF(std::vector<float>{3.0f, 4.0f}, 1, PlotSeries::DataBounds{-1.0, 1.0, -2.0, 2.0});
     QCOMPARE(xAxis.dataMax(), 1.0);
     QCOMPARE(yAxis.dataMin(), -2.0);
-}
-
-void BarSeriesDataTest::rawDoubleDataIsCopiedAndNullIsRejected()
-{
-    auto xAxis = Axis{};
-    auto bars = BarSeries{};
-    bars.setXAxis(&xAxis);
-    bars.setBarWidth(0.0);
-    bars.setData(std::vector<double>{3.0, 4.0}, 1);
-    QCOMPARE(xAxis.dataMax(), 3.0);
-    const auto raw = std::array<double, 2>{10.0, 20.0};
-
-    bars.setData(raw.data(), 1);
-    QCOMPARE(bars.barAt(0).value(QStringLiteral("position")).toDouble(), 10.0);
-    QCOMPARE(xAxis.dataMax(), 10.0);
-
-    bars.setData(static_cast<const double*>(nullptr), 0);
-    QCOMPARE(bars.count(), 0);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BarSeries received a null data pointer.*"));
-    bars.setData(static_cast<const double*>(nullptr), 1);
-    QCOMPARE(bars.count(), 0);
 }
 
 void BarSeriesDataTest::propertiesClampAndNotify()

@@ -281,52 +281,12 @@ qreal PointCloud::valueAt(const int index) const
     return static_cast<qreal>(dataPoints().attribute(index));
 }
 
-void PointCloud::setData(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<double>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    applyDoubleData(std::move(xy), {}, pointCount);
-}
-
-void PointCloud::setData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    setData(std::move(xyInterleaved), {}, pointCount);
-}
-
 void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
     if (!validateDataSize(xyInterleaved.size(), pointCount, false) || !validateValues(values.size(), pointCount)) {
         return;
     }
     applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount);
-}
-
-void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    if (transition_->enabled()) {
-        // Transitions animate doubles.
-        auto xy = std::vector<double>(xyInterleaved, xyInterleaved + static_cast<std::size_t>(std::max(pointCount, 0)) * kPositionStride);
-        applyDoubleData(std::move(xy), {}, pointCount);
-        return;
-    }
-    const auto previousCount = count();
-    discardTransition();
-    // Reuses the allocation of the stored points.
-    dataPoints().assignFloat(xyInterleaved, pointCount);
-    notifyDataPointsChanged(DataChange::Replaced, previousCount);
-}
-
-void PointCloud::setDataF(std::vector<float>&& xyInterleaved, const int pointCount)
-{
-    setDataF(std::move(xyInterleaved), {}, pointCount);
 }
 
 void PointCloud::setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
@@ -574,6 +534,29 @@ void PointCloud::finishValueChange(const int previousCount)
     onDataPointsChanged(DataChange::Replaced, previousCount);
     inspectionDataChanged();
     update();
+}
+
+void PointCloud::applyDataPoints(DataPointInput&& input)
+{
+    const auto pointCount = input.count;
+    if (input.precise) {
+        applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
+        return;
+    }
+    if (!input.floatArray) {
+        applyData(std::move(input.floats), {}, pointCount);
+        return;
+    }
+    if (transition_->enabled()) {
+        // Transitions animate doubles.
+        applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
+        return;
+    }
+    const auto previousCount = count();
+    discardTransition();
+    // Reuses the allocation of the stored points.
+    dataPoints().assignFloat(input.floatArray, pointCount);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void PointCloud::onAxisScaleChanged()

@@ -162,20 +162,8 @@ public:
     /// \c value, and an optional \c category, and a missing \c from or \c to is NaN.
     Q_INVOKABLE void setData(const QVariantList& bars);
 
-    /// \brief Loads bars from a C++ raw double array of \a barCount interleaved (position, value) pairs.
-    void setData(const double* data, int barCount) override;
-
-    /// \brief Moves \a data (\a barCount × 2 doubles: position, value) into the series and clears categories. No copy is made.
-    void setData(std::vector<double>&& data, int barCount) override;
-
     /// \brief Moves \a data and per-bar \a categories (empty, or exactly \a barCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int barCount);
-
-    /// \brief High-performance C++ overload: copies \a barCount × 2 floats (position, value) from \a data and clears categories.
-    void setDataF(const float* data, int barCount) override;
-
-    /// \brief High-performance C++ overload: moves \a data (\a barCount × 2 floats) into the series and clears categories.
-    void setDataF(std::vector<float>&& data, int barCount) override;
 
     /// \brief Like \c setDataF(\a data, \a barCount) and also moves per-bar \a categories (empty, or exactly \a barCount) into the series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int barCount);
@@ -248,6 +236,10 @@ protected:
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
+    /// \brief Applies new (position, value) bars, animating to them when a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
+    /// \brief Returns 2: \c setData() and \c setDataF() take (position, value) bars, whatever the current layout.
+    int dataPointValueCount() const override;
     /// \brief Repaints with the coordinates mapped for the new scale.
     void onAxisScaleChanged() override;
     DataRanges computeDataRanges() const override;

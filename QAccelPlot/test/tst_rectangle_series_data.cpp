@@ -32,18 +32,14 @@ class RectangleSeriesDataTest : public QObject {
 
 private slots:
     void hoverEnvironmentControlsAcceptance();
-    void invalidRawArgumentsAreRejected();
     void rawDoubleDataPreservesModernEpochPrecision();
     void variantListDataPreservesModernEpochPrecision();
     void movedDataIsApplied();
-    void movedDataWithWrongSizeIsRejected();
     void noRangeDataDoesNotReportRanges();
-    void rawDoubleDataIsCopiedAndNullIsRejected();
     void floatDataIsApplied();
     void dataBoundsReplaceTheRangeScan();
     void floatDataIsUploadedWithoutOrigin();
     void postedFloatDataIsAppliedFromWorkerThread();
-    void postedDataIsAppliedFromWorkerThread();
     void clearDataRemovesRectangles();
     void countChangedOnlyWhenCountChanges();
     void rectangleAtReturnsBounds();
@@ -77,28 +73,6 @@ void RectangleSeriesDataTest::hoverEnvironmentControlsAcceptance()
 
     QVERIFY(defaultRectangles.acceptHoverEvents());
     QVERIFY(!hoverDisabledRectangles.acceptHoverEvents());
-}
-
-void RectangleSeriesDataTest::invalidRawArgumentsAreRejected()
-{
-    auto rectangles = RectangleSeries{};
-    const auto data = std::array<double, 4>{0.0, 1.0, 2.0, 3.0};
-    const auto floatData = std::array<float, 4>{0.0f, 1.0f, 2.0f, 3.0f};
-    auto countSpy = QSignalSpy{&rectangles, &RectangleSeries::countChanged};
-
-    rectangles.setData(data.data(), 1);
-    QCOMPARE(rectangles.count(), 1);
-    QCOMPARE(countSpy.count(), 1);
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer.*"));
-    rectangles.setData(static_cast<const double*>(nullptr), 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
-    rectangles.setData(data.data(), -1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
-    rectangles.setDataF(floatData.data(), -1);
-
-    QCOMPARE(rectangles.count(), 1);
-    QCOMPARE(countSpy.count(), 1);
 }
 
 void RectangleSeriesDataTest::rawDoubleDataPreservesModernEpochPrecision()
@@ -156,20 +130,6 @@ void RectangleSeriesDataTest::movedDataIsApplied()
     QCOMPARE(xAxis.dataMax(), 7.0);
 }
 
-void RectangleSeriesDataTest::movedDataWithWrongSizeIsRejected()
-{
-    auto rectangles = RectangleSeries{};
-    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received 3 coordinates for 1 rectangles; expected 4"));
-    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0}, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries data rectangle count cannot be negative.*"));
-    rectangles.setData(std::vector<double>{}, -1);
-
-    QCOMPARE(rectangles.count(), 1);
-    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("y2")).toDouble(), 4.0);
-}
-
 void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
 {
     auto xAxis = Axis{};
@@ -211,26 +171,6 @@ void RectangleSeriesDataTest::noRangeDataDoesNotReportRanges()
     QCOMPARE(rectangles.count(), 1);
     QVERIFY(!rectangles.rectangleAt(0).contains(QStringLiteral("category")));
     QCOMPARE(xAxis.dataMax(), 92.0);
-}
-
-void RectangleSeriesDataTest::rawDoubleDataIsCopiedAndNullIsRejected()
-{
-    auto xAxis = Axis{};
-    auto rectangles = RectangleSeries{};
-    rectangles.setXAxis(&xAxis);
-    rectangles.setData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
-    QCOMPARE(xAxis.dataMax(), 3.0);
-    const auto raw = std::array<double, 4>{10.0, 20.0, 30.0, 40.0};
-
-    rectangles.setData(raw.data(), 1);
-    QCOMPARE(rectangles.rectangleAt(0).value(QStringLiteral("x1")).toDouble(), 10.0);
-    QCOMPARE(xAxis.dataMax(), 30.0);
-
-    rectangles.setData(static_cast<const double*>(nullptr), 0);
-    QCOMPARE(rectangles.count(), 0);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("RectangleSeries received a null data pointer.*"));
-    rectangles.setData(static_cast<const double*>(nullptr), 1);
-    QCOMPARE(rectangles.count(), 0);
 }
 
 void RectangleSeriesDataTest::floatDataIsApplied()
@@ -349,21 +289,6 @@ void RectangleSeriesDataTest::postedFloatDataIsAppliedFromWorkerThread()
     QTRY_COMPARE(rectangles.count(), 2);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 9.0);
     QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("category")).toInt(), 5);
-}
-
-void RectangleSeriesDataTest::postedDataIsAppliedFromWorkerThread()
-{
-    auto rectangles = RectangleSeries{};
-    auto worker = std::thread{[&rectangles]() {
-        rectangles.postData(std::vector<double>{1.0, 2.0, 3.0, 4.0}, 1);
-        rectangles.postData(std::vector<double>{5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0}, 2);
-    }};
-    worker.join();
-
-    // Queued: nothing is applied until the event loop runs.
-    QCOMPARE(rectangles.count(), 0);
-    QTRY_COMPARE(rectangles.count(), 2);
-    QCOMPARE(rectangles.rectangleAt(1).value(QStringLiteral("x1")).toDouble(), 9.0);
 }
 
 void RectangleSeriesDataTest::clearDataRemovesRectangles()
