@@ -32,6 +32,13 @@ struct AxisTicks {
     QList<AxisTick> majorTicks; 
 };
 
+struct AxisTickValues {
+    QList<qreal> majorValues;   
+    QList<qreal> subtickValues; 
+    qreal step{0.0};            
+    bool logScale{false};       
+};
+
 } // namespace QAccelPlot
 ```
 

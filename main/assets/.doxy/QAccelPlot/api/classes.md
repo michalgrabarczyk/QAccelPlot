@@ -17,6 +17,8 @@
 ([**QAccelPlot**](namespaceQAccelPlot.md))
 * [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md)
 ([**QAccelPlot**](namespaceQAccelPlot.md))
+* [**AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md)
+([**QAccelPlot**](namespaceQAccelPlot.md))
 
 
 ## b

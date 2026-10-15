@@ -56,6 +56,8 @@ public:
 
     static AxisTicks computeTicks(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
 
+    static AxisTickValues computeTickValues(qreal viewportMin, qreal viewportMax, bool logScale, const AxisTicker* ticker);
+
     static void paintTicks(
         QPainter* painter, const QRectF& rect, qreal axisX, qreal axisY, const Params& params, const AxisTicks& ticks, const MapToPosition& mapToPosition);
 
@@ -64,8 +66,8 @@ public:
     static QSizeF tickLabelSize(const QFontMetricsF& metrics, const QString& label);
 
 private:
-    static AxisTicks computeLogScaleTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
-    static AxisTicks computeLinearTicks(qreal viewportMin, qreal viewportMax, const AxisTicker& ticker);
+    static AxisTickValues computeLogScaleTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
+    static AxisTickValues computeLinearTickValues(qreal viewportLow, qreal viewportHigh, const AxisTicker& ticker);
     static void paintTick(const PaintContext& ctx, const AxisTick& tick, const Params& params, const MapToPosition& mapToPosition);
     static void paintSubtick(const PaintContext& ctx, qreal value, const Params& params, const MapToPosition& mapToPosition);
     static void drawTickLabel(QPainter* painter, const QRectF& labelRect, int alignment, const QString& label, qreal rotation);

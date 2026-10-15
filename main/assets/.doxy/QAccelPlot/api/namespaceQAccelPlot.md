@@ -54,6 +54,7 @@
 | struct | [**AxisMapping**](structQAccelPlot_1_1AxisMapping.md) <br>_Snapshot of an axis viewport that maps between data values and pixel positions._  |
 | struct | [**AxisTick**](structQAccelPlot_1_1AxisTick.md) <br>_A single major tick: its data-space value and its formatted label._  |
 | class | [**AxisTickPainter**](classQAccelPlot_1_1AxisTickPainter.md) <br>_Internal helper that computes and paints tick marks and labels for a single_ [_**Axis**_](classQAccelPlot_1_1Axis.md) _._ |
+| struct | [**AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md) <br>_The visible tick and subtick values for one axis viewport, without labels._  |
 | class | [**AxisTicker**](classQAccelPlot_1_1AxisTicker.md) <br>_Controls the visual appearance of ticks, sub-ticks, and tick labels on an_ `Axis` _._ |
 | struct | [**AxisTicks**](structQAccelPlot_1_1AxisTicks.md) <br>_The visible tick and subtick values, with formatted labels, for one axis viewport._  |
 | class | [**BandEdgeMaterial**](classQAccelPlot_1_1BandEdgeMaterial.md) <br>_Line material for the lower or upper edge line of a band, reading_ `(x, low, high)` _samples._ |

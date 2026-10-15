@@ -267,6 +267,7 @@
 * **logarithmic** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **label** ([**QAccelPlot::AxisTick**](structQAccelPlot_1_1AxisTick.md))
 * **labelOverflow** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md))
+* **logScale** ([**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md))
 * **lineStyle\_** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md))
 * **lowerEdgeRenderer\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))
 * **layout\_** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md), [**QAccelPlot::LineCurveVertexCache**](classQAccelPlot_1_1LineCurveVertexCache.md))
@@ -295,6 +296,7 @@
 
 ## m
 
+* **majorValues** ([**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md))
 * **majorTicks** ([**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md))
 * **minimumWidth\_** ([**QAccelPlot::BarSeries**](classQAccelPlot_1_1BarSeries.md), [**QAccelPlot::RectangleSeries**](classQAccelPlot_1_1RectangleSeries.md))
 * **max\_** ([**QAccelPlot::Colormap**](classQAccelPlot_1_1Colormap.md))
@@ -436,12 +438,13 @@
 * **side\_** ([**QAccelPlot::Axis**](classQAccelPlot_1_1Axis.md))
 * **span** ([**QAccelPlot::AxisMapping**](structQAccelPlot_1_1AxisMapping.md))
 * **side** ([**QAccelPlot::AxisTickPainter::Params**](structQAccelPlot_1_1AxisTickPainter_1_1Params.md), [**QAccelPlot::LineVertex**](structQAccelPlot_1_1LineVertex.md))
+* **step** ([**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md))
+* **subtickValues** ([**QAccelPlot::AxisTickValues**](structQAccelPlot_1_1AxisTickValues.md), [**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md))
 * **subtickColor\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickCount\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickLengthIn\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickLengthOut\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
 * **subtickWidth\_** ([**QAccelPlot::AxisTicker**](classQAccelPlot_1_1AxisTicker.md))
-* **subtickValues** ([**QAccelPlot::AxisTicks**](structQAccelPlot_1_1AxisTicks.md))
 * **samples** ([**QAccelPlot::BandEdgeRenderParams**](structQAccelPlot_1_1BandEdgeRenderParams.md), [**QAccelPlot::LineCurveLineRenderer::FillSampleCache**](structQAccelPlot_1_1LineCurveLineRenderer_1_1FillSampleCache.md))
 * **sampleCount** ([**QAccelPlot::BandMaterial**](classQAccelPlot_1_1BandMaterial.md))
 * **sampleCount\_** ([**QAccelPlot::BandSeries**](classQAccelPlot_1_1BandSeries.md))

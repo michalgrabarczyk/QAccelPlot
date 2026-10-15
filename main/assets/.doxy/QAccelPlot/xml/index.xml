@@ -260,11 +260,12 @@
   <compound refid="classQAccelPlot_1_1AxisTickPainter" kind="class"><name>QAccelPlot::AxisTickPainter</name>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a59cd16c0e4339baa05c739211b3b0e02" kind="typedef"><name>MapToPosition</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1ab562bfd5e90de190ede26dee32247ae7" kind="function"><name>computeTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1aa8dd989ea1edb1442179ac87ac00bb5c" kind="function"><name>computeTickValues</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1ac1c0a474b369ec774d8e969ce16b91a0" kind="function"><name>paintTicks</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1abcb7eeba5fcb783759bbe4c62413bf40" kind="function"><name>computeNiceStep</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a51a073feeab54964b7384724777edfd4" kind="function"><name>tickLabelSize</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1a00159f15c3f914ae3bb1c8da2b6e7395" kind="function"><name>computeLogScaleTicks</name></member>
-    <member refid="classQAccelPlot_1_1AxisTickPainter_1ad30214f52f54f29e80d6ce3440c3fdc3" kind="function"><name>computeLinearTicks</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1a71cd5d66792fa3430cbd9c6d472ebefa" kind="function"><name>computeLogScaleTickValues</name></member>
+    <member refid="classQAccelPlot_1_1AxisTickPainter_1af09d6c027ac09a53e80ca2321255b42f" kind="function"><name>computeLinearTickValues</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a8d6b6ad233c09a08397023116bbd1a1b" kind="function"><name>paintTick</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1acd9fc3813a7ab9d4a2e391e523d27cec" kind="function"><name>paintSubtick</name></member>
     <member refid="classQAccelPlot_1_1AxisTickPainter_1a2d26f0fe16b8e81e1de7ba0525472531" kind="function"><name>drawTickLabel</name></member>
@@ -272,6 +273,12 @@
   <compound refid="structQAccelPlot_1_1AxisTicks" kind="struct"><name>QAccelPlot::AxisTicks</name>
     <member refid="structQAccelPlot_1_1AxisTicks_1a17edc5acc84db9dc646cde77ab9fb595" kind="variable"><name>subtickValues</name></member>
     <member refid="structQAccelPlot_1_1AxisTicks_1af03ec06095f8e4075ca77ae61581630b" kind="variable"><name>majorTicks</name></member>
+  </compound>
+  <compound refid="structQAccelPlot_1_1AxisTickValues" kind="struct"><name>QAccelPlot::AxisTickValues</name>
+    <member refid="structQAccelPlot_1_1AxisTickValues_1a8e5608e9d6dde06b8f23b02c592f05a1" kind="variable"><name>majorValues</name></member>
+    <member refid="structQAccelPlot_1_1AxisTickValues_1ab350b4d1488eef9cc59ac1d220d5e5ad" kind="variable"><name>subtickValues</name></member>
+    <member refid="structQAccelPlot_1_1AxisTickValues_1ab9e44d9ede62613b1ac2de94fb65981c" kind="variable"><name>step</name></member>
+    <member refid="structQAccelPlot_1_1AxisTickValues_1a336022e74ae8df9b4f092c3e4a4978ae" kind="variable"><name>logScale</name></member>
   </compound>
   <compound refid="classQAccelPlot_1_1BandEdgeMaterial" kind="class"><name>QAccelPlot::BandEdgeMaterial</name>
     <member refid="classQAccelPlot_1_1BandEdgeMaterial_1a132219890ce800578cec91df33a814f7" kind="enum"><name>Edge</name></member>
