@@ -168,11 +168,42 @@ class PlotRenderingTest : public QObject {
     Q_OBJECT
 
 private slots:
+    void replacingLegendDetachesPreviousItem();
     void rendersFillStrokeRectanglesAndPoints();
     void rendersEveryPointOfSeveralPointClouds();
     void rendersPointsBeyondFirstTextureRows();
     void plotWithoutLegendLogsNoWarnings();
 };
+
+void PlotRenderingTest::replacingLegendDetachesPreviousItem()
+{
+    auto engine = QQmlEngine{};
+    auto component = QQmlComponent{&engine};
+    component.setData(R"(
+        import QtQuick
+        import QAccelPlot as QAccelPlot
+        QAccelPlot.Plot {
+            width: 400; height: 300
+            property Item firstLegend: Rectangle { width: 40; height: 20; color: "red" }
+            property Item secondLegend: Rectangle { width: 40; height: 20; color: "blue" }
+            legend: firstLegend
+        }
+    )",
+        QUrl{});
+    const auto root = std::unique_ptr<QObject>{component.create()};
+    QVERIFY2(root, qPrintable(component.errorString()));
+    auto* plot = qobject_cast<QQuickItem*>(root.get());
+    auto* first = root->property("firstLegend").value<QQuickItem*>();
+    auto* second = root->property("secondLegend").value<QQuickItem*>();
+    QVERIFY(plot && first && second);
+    QCOMPARE(first->parentItem(), plot);
+    QVERIFY(root->setProperty("legend", QVariant::fromValue(second)));
+    QCOMPARE(second->parentItem(), plot);
+    QVERIFY(first->parentItem() == nullptr);
+    QVERIFY(root->setProperty("legend", QVariant::fromValue(first)));
+    QCOMPARE(first->parentItem(), plot);
+    QVERIFY(second->parentItem() == nullptr);
+}
 
 void PlotRenderingTest::rendersFillStrokeRectanglesAndPoints()
 {
