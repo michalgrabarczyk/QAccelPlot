@@ -31,4 +31,14 @@ struct AxisTicks {
     QList<AxisTick> majorTicks; ///< \brief Visible major ticks with their labels.
 };
 
+/// \brief The visible tick and subtick values for one axis viewport, without labels.
+///
+/// Built by \c AxisTickPainter::computeTickValues(). Grid lines and tick marks are both placed from it.
+struct AxisTickValues {
+    QList<qreal> majorValues;   ///< \brief Data-space values of the visible major ticks.
+    QList<qreal> subtickValues; ///< \brief Data-space values of the visible subticks.
+    qreal step{0.0};            ///< \brief Major tick step on a linear scale; 0 on a logarithmic scale.
+    bool logScale{false};       ///< \brief Whether the values were placed at powers of ten.
+};
+
 } // namespace QAccelPlot
