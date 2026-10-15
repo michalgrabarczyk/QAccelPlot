@@ -724,6 +724,7 @@
 * **storageBytes** ([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md), [**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 * **summarize** ([**QAccelPlot::InspectionIndex**](classQAccelPlot_1_1InspectionIndex.md), [**QAccelPlot::PlotInspector**](classQAccelPlot_1_1PlotInspector.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md), [**QAccelPlot::SourceInspection**](classQAccelPlot_1_1SourceInspection.md))
 * **sameSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
+* **seriesAppearanceChanged** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **setRows** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **supported** ([**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **setAntialiasingEnabled** ([**QAccelPlot::LineCurve**](classQAccelPlot_1_1LineCurve.md), [**QAccelPlot::PointCloud**](classQAccelPlot_1_1PointCloud.md))
@@ -867,6 +868,7 @@
 * **uploadTexture** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
 * **updatePayload** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **update** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
+* **unwatchSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **updateFillGeometry** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateLineMaterial** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateLineVertices** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
@@ -907,6 +909,7 @@
 * **width** ([**QAccelPlot::BandEdges**](classQAccelPlot_1_1BandEdges.md), [**QAccelPlot::PlotBorder**](classQAccelPlot_1_1PlotBorder.md), [**QAccelPlot::RectangleBorder**](classQAccelPlot_1_1RectangleBorder.md))
 * **wheelEvent** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **writeCommonUniforms** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
+* **watchSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 
 
 ## x

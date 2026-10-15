@@ -1095,6 +1095,7 @@
 * **sample** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md))
 * **summary** ([**QAccelPlot::InspectionRow**](structQAccelPlot_1_1InspectionRow.md), [**QAccelPlot::InspectionIndex::Node**](structQAccelPlot_1_1InspectionIndex_1_1Node.md))
 * **sameSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
+* **seriesAppearanceChanged** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **setRows** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **supported** ([**QAccelPlot::InspectionSource**](structQAccelPlot_1_1InspectionSource.md), [**QAccelPlot::SeriesInspection**](classQAccelPlot_1_1SeriesInspection.md))
 * **scanCost\_** ([**QAccelPlot::Internal::HoverIndexBudget**](classQAccelPlot_1_1Internal_1_1HoverIndexBudget.md))
@@ -1287,6 +1288,7 @@
 * **updatePayload** ([**QAccelPlot::GradientFill**](classQAccelPlot_1_1GradientFill.md), [**QAccelPlot::GradientStroke**](classQAccelPlot_1_1GradientStroke.md))
 * **update** ([**QAccelPlot::GridNode**](classQAccelPlot_1_1GridNode.md))
 * **uniform\_** ([**QAccelPlot::Histogram**](classQAccelPlot_1_1Histogram.md))
+* **unwatchSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **updateFillGeometry** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateLineMaterial** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
 * **updateLineVertices** ([**QAccelPlot::LineCurveLineRenderer**](classQAccelPlot_1_1LineCurveLineRenderer.md))
@@ -1346,6 +1348,7 @@
 * **wheelEvent** ([**QAccelPlot::ColorBar**](classQAccelPlot_1_1ColorBar.md))
 * **warnedAboutTextureSize\_** ([**QAccelPlot::DataTexture**](classQAccelPlot_1_1DataTexture.md))
 * **writeCommonUniforms** ([**QAccelPlot::DataTextureMaterial**](classQAccelPlot_1_1DataTextureMaterial.md))
+* **watchSeries** ([**QAccelPlot::InspectionRowModel**](classQAccelPlot_1_1InspectionRowModel.md))
 * **window** ([**QAccelPlot::LineCurveRenderParams**](structQAccelPlot_1_1LineCurveRenderParams.md))
 * **window\_** ([**QAccelPlot::TransitionRunner**](classQAccelPlot_1_1TransitionRunner.md))
 

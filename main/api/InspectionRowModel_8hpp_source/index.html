@@ -1359,12 +1359,15 @@
 <a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">countChanged</span><span class="p">();</span>
 <a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
 <a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="k">private</span><span class="o">:</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">sameSeries</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">InspectionRow</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">rows</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
-<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">InspectionRow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rows_</span><span class="p">;</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="p">};</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="n">Q_SLOT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">seriesAppearanceChanged</span><span class="p">();</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">watchSeries</span><span class="p">(</span><span class="n">PlotSeries</span><span class="o">*</span><span class="w"> </span><span class="n">series</span><span class="p">);</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">unwatchSeries</span><span class="p">(</span><span class="n">PlotSeries</span><span class="o">*</span><span class="w"> </span><span class="n">series</span><span class="p">);</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">sameSeries</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">InspectionRow</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">rows</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
-<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">    </span><span class="n">QList</span><span class="o">&lt;</span><span class="n">InspectionRow</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rows_</span><span class="p">;</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="p">};</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace QAccelPlot</span>
 </code></pre></div>
 
 
