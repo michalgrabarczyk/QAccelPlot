@@ -24,7 +24,7 @@ layout(std140, binding = 0) uniform buf {
     vec2 viewportSize;    //  96-103
     float logScaleX;      // 104-107
     float logScaleY;      // 108-111
-    float sampleCount;    // 112-115
+    float dataPointCount;    // 112-115
     float opacity;        // 116-119: inherited item opacity
 } ubuf;
 
@@ -34,50 +34,50 @@ layout(binding = 1) uniform sampler2D dataSampler;
 #include "math_utils.glsl"
 #include "data_mapping.glsl"
 
-// Fetches sample `index` as (x, low, high) and returns whether all three values are valid:
+// Fetches data point `index` as (x, low, high) and returns whether all three values are valid:
 // finite and strictly positive on log-scale dimensions.
-bool fetchBandSample(int index, out vec3 bandSample) {
-    bandSample = vec3(0.0);
-    // Vertices past the last sample are reserved for appended data and never drawn.
-    if (index >= int(ubuf.sampleCount)) {
+bool fetchDataPoint(int index, out vec3 dataPoint) {
+    dataPoint = vec3(0.0);
+    // Vertices past the last data point are reserved for appended data and never drawn.
+    if (index >= int(ubuf.dataPointCount)) {
         return false;
     }
     int base = index * 3;
     uint xBits = fetchFloatBits(base);
     uint lowBits = fetchFloatBits(base + 1);
     uint highBits = fetchFloatBits(base + 2);
-    bandSample = vec3(uintBitsToFloat(xBits), uintBitsToFloat(lowBits), uintBitsToFloat(highBits));
+    dataPoint = vec3(uintBitsToFloat(xBits), uintBitsToFloat(lowBits), uintBitsToFloat(highBits));
     if (!isFiniteBits(xBits) || !isFiniteBits(lowBits) || !isFiniteBits(highBits)) {
         return false;
     }
-    return (ubuf.logScaleX < 0.5 || bandSample.x > 0.0) && (ubuf.logScaleY < 0.5 || (bandSample.y > 0.0 && bandSample.z > 0.0));
+    return (ubuf.logScaleX < 0.5 || dataPoint.x > 0.0) && (ubuf.logScaleY < 0.5 || (dataPoint.y > 0.0 && dataPoint.z > 0.0));
 }
 
-// Pixel position of this vertex's edge. Each sample draws min(low, high) on the lower edge, so
+// Pixel position of this vertex's edge. Each data point draws min(low, high) on the lower edge, so
 // swapped or crossing values never fold the strip over itself and blend twice.
-vec2 edgeLocal(vec3 bandSample) {
-    float y = edge < 0.5 ? min(bandSample.y, bandSample.z) : max(bandSample.y, bandSample.z);
-    return dataToLocal(vec2(bandSample.x, y));
+vec2 edgeLocal(vec3 dataPoint) {
+    float y = edge < 0.5 ? min(dataPoint.y, dataPoint.z) : max(dataPoint.y, dataPoint.z);
+    return dataToLocal(vec2(dataPoint.x, y));
 }
 
 void main() {
     v_color = vec4(ubuf.color.rgb, ubuf.color.a * ubuf.opacity);
 
     int index = int(id);
-    vec3 bandSample;
-    if (fetchBandSample(index, bandSample)) {
+    vec3 dataPoint;
+    if (fetchDataPoint(index, dataPoint)) {
         v_validWeight = 1.0;
-        gl_Position = ubuf.matrix * vec4(edgeLocal(bandSample), 0.0, 1.0);
+        gl_Position = ubuf.matrix * vec4(edgeLocal(dataPoint), 0.0, 1.0);
         return;
     }
 
-    // An invalid sample collapses onto the same edge of an adjacent valid sample, so the
+    // An invalid data point collapses onto the same edge of an adjacent valid data point, so the
     // triangles reaching into the gap have no area and every fragment near it is discarded.
     v_validWeight = kInvalidVertexWeight;
     vec3 neighbor;
-    if (index > 0 && fetchBandSample(index - 1, neighbor)) {
+    if (index > 0 && fetchDataPoint(index - 1, neighbor)) {
         gl_Position = ubuf.matrix * vec4(edgeLocal(neighbor), 0.0, 1.0);
-    } else if (index + 1 < int(ubuf.sampleCount) && fetchBandSample(index + 1, neighbor)) {
+    } else if (index + 1 < int(ubuf.dataPointCount) && fetchDataPoint(index + 1, neighbor)) {
         gl_Position = ubuf.matrix * vec4(edgeLocal(neighbor), 0.0, 1.0);
     } else {
         gl_Position = kCulledClipPosition;

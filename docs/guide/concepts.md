@@ -80,21 +80,21 @@ rectangle index.
 `orientation` selects vertical or horizontal bars. Ranged bars carry their
 own extent as (from, to, value), e.g. the bins of a histogram.
 
-## Invalid samples and gaps
+## Invalid data points and gaps
 
-`LineCurve` applies one invalid-sample contract to rendering, gradient fills,
+`LineCurve` applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
-series, see [bands](cookbook/bands.md#invalid-samples),
+series, see [bands](cookbook/bands.md#invalid-data-points),
 [point clouds](cookbook/point-clouds.md#invalid-points), and
 [bars](cookbook/bar-charts.md#invalid-bars).
 
-A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
+A data point is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
-inserting a sample with a `NaN` coordinate. JavaScript `null` and `undefined`
+inserting a data point with a `NaN` coordinate. JavaScript `null` and `undefined`
 are not gap markers.
 
 Gap rendering is configured through the curve's [`gaps`][line-curve] grouped
-property. `gaps.nanMode` selects how the line and fill treat invalid samples:
+property. `gaps.nanMode` selects how the line and fill treat invalid data points:
 
 ```qml
 QAccelPlot.LineCurve {
@@ -104,23 +104,23 @@ QAccelPlot.LineCurve {
 
 | `gaps.nanMode` | Behavior |
 | --- | --- |
-| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line. |
-| `NanGapMode.Connect` | Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples. |
+| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line. |
+| `NanGapMode.Connect` | Invalid data points are skipped and the line, fill, and hit test join the nearest valid data points. |
 
-Despite its name, `nanMode` applies to every invalid sample, including `±Inf`
+Despite its name, `nanMode` applies to every invalid data point, including `±Inf`
 and non-positive log-axis values.
 
 In both modes:
 
-- **Markers** are never drawn for invalid samples.
-- **Auto-ranging** judges each coordinate on its own. A sample with a valid X
+- **Markers** are never drawn for invalid data points.
+- **Auto-ranging** judges each coordinate on its own. A data point with a valid X
   and an invalid Y still extends the X range, so a dropout keeps its timestamp.
   If a dimension has no valid coordinate, the series clears that range.
 - **Dash patterns** continue across a gap; the gap contributes no dash length.
-- **`MorphTransition`** shows a sample that becomes invalid as a gap
-  immediately, and a sample that becomes valid jumps to its target instead of
+- **`MorphTransition`** shows a data point that becomes invalid as a gap
+  immediately, and a data point that becomes valid jumps to its target instead of
   animating from `NaN`.
-- **Hover** never reports a hit on an invalid sample or across a break.
+- **Hover** never reports a hit on an invalid data point or across a break.
 
 ## Composition and overlays
 

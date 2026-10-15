@@ -782,7 +782,7 @@ qreal Axis::valueResolution(const qreal value, const qreal length) const
     if (!axisMapping.valid || !std::isfinite(perPixel) || !(perPixel > 0.0)) {
         return 0.0;
     }
-    // One decimal digit finer than a pixel, so neighboring samples in dense data stay distinguishable.
+    // One decimal digit finer than a pixel, so neighboring data points in dense data stay distinguishable.
     return std::pow(10.0, std::floor(std::log10(perPixel)) - 1.0);
 }
 

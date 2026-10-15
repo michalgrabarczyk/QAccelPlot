@@ -37,7 +37,7 @@ struct InspectionSource {
     /// \brief Returns the coordinate of record \a index along \a axis.
     [[nodiscard]] double coordinate(InspectionAxis axis, int index) const noexcept;
     [[nodiscard]] double value(int index) const noexcept;
-    /// \brief Applies the invalid-sample contract shared with rendering.
+    /// \brief Applies the invalid-data-point contract shared with rendering.
     [[nodiscard]] bool valid(int index) const noexcept;
 };
 
@@ -66,22 +66,22 @@ struct InspectionBounds {
     [[nodiscard]] bool contains(double x, double y) const noexcept;
 };
 
-/// \brief Nearest-sample result: source index and pixel distance, or index -1.
+/// \brief Nearest-data-point result: source index and pixel distance, or index -1.
 struct InspectionHit {
     int index{-1};
     double distance{std::numeric_limits<double>::infinity()};
 
-    /// \brief Keeps the closer candidate; equal distances resolve to the highest index, the sample drawn last.
+    /// \brief Keeps the closer candidate; equal distances resolve to the highest index, the data point drawn last.
     void consider(int candidate, double candidateDistance) noexcept;
 };
 
-/// \brief Source indices of the valid samples on either side of an X value, or -1.
+/// \brief Source indices of the valid data points on either side of an X value, or -1.
 struct InspectionNeighbors {
     int left{-1};
     int right{-1};
 };
 
-/// \brief Running sample-weighted Y statistics that can be merged across disjoint sample sets.
+/// \brief Running data-point-weighted Y statistics that can be merged across disjoint data point sets.
 struct SummaryAccumulator {
     int count{0};
     int minimumIndex{-1};

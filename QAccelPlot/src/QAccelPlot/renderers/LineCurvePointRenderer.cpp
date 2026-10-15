@@ -63,7 +63,7 @@ float normalizedGradientValue(const GradientColorPayload& gradientPayload, const
     const auto value = (gradientPayload.direction == Qt::Horizontal) ? dataX : dataY;
     const auto normalized = unboundedGradientCoordinate(gradientPayload.direction, value, valueMin, valueMax);
     if (std::isnan(normalized)) {
-        // Invalid samples are culled by the vertex shader; any color is acceptable.
+        // Invalid data points are culled by the vertex shader; any color is acceptable.
         return 0.0f;
     }
     return std::clamp(normalized, 0.0f, 1.0f);

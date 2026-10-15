@@ -45,43 +45,19 @@ QColor defaultRectangleColor()
     return color;
 }
 
-struct FiniteBounds {
-    qreal xMin{std::numeric_limits<qreal>::max()};
-    qreal xMax{std::numeric_limits<qreal>::lowest()};
-    qreal yMin{std::numeric_limits<qreal>::max()};
-    qreal yMax{std::numeric_limits<qreal>::lowest()};
-};
-
 constexpr auto kValuesPerRectangle = 4;
 
-// Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone. On a log
-// axis a non-positive edge reaches the plot edge like an infinite one, so it doesn't widen them either.
-template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount, const bool logScaleX, const bool logScaleY)
+// Infinite edges don't widen the data ranges, so a full-height span leaves Y autoscaling alone.
+DataPointStore::Layout rectangleLayout()
 {
-    auto bounds = FiniteBounds{};
-    const auto include = [](const T value, const bool logScale, qreal& min, qreal& max) {
-        if (isValidSample(static_cast<double>(value), logScale)) {
-            min = std::min(min, static_cast<qreal>(value));
-            max = std::max(max, static_cast<qreal>(value));
-        }
-    };
-    for (int i = 0; i < rectCount; ++i) {
-        const auto* rect = data + static_cast<size_t>(i) * 4;
-        if (std::isnan(rect[0]) || std::isnan(rect[1]) || std::isnan(rect[2]) || std::isnan(rect[3])) {
-            continue;
-        }
-        include(rect[0], logScaleX, bounds.xMin, bounds.xMax);
-        include(rect[2], logScaleX, bounds.xMin, bounds.xMax);
-        include(rect[1], logScaleY, bounds.yMin, bounds.yMax);
-        include(rect[3], logScaleY, bounds.yMin, bounds.yMax);
-    }
-    return bounds;
+    using Dimension = DataPointStore::Dimension;
+    return {{Dimension::X, Dimension::Y, Dimension::X, Dimension::Y}, DataPointStore::RangeRule::SkipOnNaN, 0};
 }
 
 }
 
 RectangleSeries::RectangleSeries(QQuickItem* parent)
-    : PlotSeries(parent)
+    : PlotSeries(rectangleLayout(), DataPointWording{"data rectangle", "rectangles", "coordinates", "coordinates"}, parent)
     , color_(defaultRectangleColor())
     , spatialGridBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerRectangle))
 {
@@ -185,7 +161,7 @@ void RectangleSeries::setMinimumHeight(const qreal height)
 
 int RectangleSeries::count() const
 {
-    return rectCount_;
+    return dataPoints().count();
 }
 
 int RectangleSeries::hoveredIndex() const
@@ -222,52 +198,20 @@ void RectangleSeries::setData(const QVariantList& rects)
     applyData(std::move(data), std::move(categories), static_cast<int>(rects.size()));
 }
 
-void RectangleSeries::setData(const double* data, const int rectCount)
-{
-    if (!validateRawDataArguments(data, rectCount)) {
-        return;
-    }
-    auto buffer = std::vector<double>{};
-    if (rectCount > 0) {
-        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
-    }
-    applyData(std::move(buffer), {}, rectCount);
-}
-
-void RectangleSeries::setData(std::vector<double>&& data, const int rectCount)
-{
-    setData(std::move(data), {}, rectCount);
-}
-
 void RectangleSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
-    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+    if (!validateDataSize(data.size(), rectCount, false) || !validateCategories(categories.size(), rectCount)) {
         return;
     }
     applyData(std::move(data), std::move(categories), rectCount);
 }
 
-void RectangleSeries::setDataF(const float* data, const int rectCount)
-{
-    setDataFFromArray(data, rectCount);
-}
-
-void RectangleSeries::setDataF(std::vector<float>&& data, const int rectCount)
-{
-    setDataF(std::move(data), {}, rectCount);
-}
-
 void RectangleSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
-    if (!validateDataArguments(data.size(), categories.size(), rectCount)) {
+    if (!validateDataSize(data.size(), rectCount, true) || !validateCategories(categories.size(), rectCount)) {
         return;
     }
     applyFloatData(std::move(data), std::move(categories), rectCount);
-}
-
-void RectangleSeries::postData(std::vector<double>&& data, const int rectCount)
-{
-    postData(std::move(data), {}, rectCount);
 }
 
 void RectangleSeries::postData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
@@ -278,11 +222,6 @@ void RectangleSeries::postData(std::vector<double>&& data, std::vector<int>&& ca
             setData(std::move(rects), std::move(rectCategories), rectCount);
         },
         Qt::QueuedConnection);
-}
-
-void RectangleSeries::postData(std::vector<float>&& data, const int rectCount)
-{
-    postData(std::move(data), {}, rectCount);
 }
 
 void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
@@ -297,16 +236,15 @@ void RectangleSeries::postData(std::vector<float>&& data, std::vector<int>&& cat
 
 void RectangleSeries::clearData()
 {
-    applyData({}, {}, 0);
+    PlotSeries::clearData();
 }
 
 void RectangleSeries::setCategories(const QList<int>& categories)
 {
-    if (!categories.isEmpty() && categories.size() != rectCount_) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries received" << categories.size() << "categories for" << rectCount_ << "rectangles";
+    if (!validateCategories(static_cast<std::size_t>(categories.size()), count())) {
         return;
     }
-    categories_.assign(categories.cbegin(), categories.cend());
+    dataPoints().setCategories(std::vector<int>(categories.cbegin(), categories.cend()));
     vertexCache_.invalidate();
     inspectionDataChanged();
     update();
@@ -314,7 +252,7 @@ void RectangleSeries::setCategories(const QList<int>& categories)
 
 QVariantMap RectangleSeries::rectangleAt(const int index) const
 {
-    if (index < 0 || index >= rectCount_) {
+    if (index < 0 || index >= count()) {
         return {};
     }
     const auto& keys = rectangleKeys();
@@ -323,14 +261,14 @@ QVariantMap RectangleSeries::rectangleAt(const int index) const
         rect.insert(keys[k], coordinate(index, static_cast<int>(k)));
     }
     if (hasCategories()) {
-        rect.insert(QStringLiteral("category"), categories_[static_cast<size_t>(index)]);
+        rect.insert(QStringLiteral("category"), dataPoints().categories()[static_cast<size_t>(index)]);
     }
     return rect;
 }
 
 int RectangleSeries::rectangleIndexAt(const QPointF& position) const
 {
-    if (rectCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
+    if (count() <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
     }
     const auto inputs = hitTestInputs(position);
@@ -349,7 +287,7 @@ bool RectangleSeries::contains(const QPointF& point) const
 InspectionRecord RectangleSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};
-    if (index < 0 || index >= rectCount_) {
+    if (index < 0 || index >= count()) {
         result.status = InspectionStatus::InvalidArgument;
         return result;
     }
@@ -367,30 +305,8 @@ InspectionRecord RectangleSeries::inspectionRecordAt(const QPointF& position) co
     return index < 0 ? InspectionRecord{} : inspectionRecord(index);
 }
 
-bool RectangleSeries::validateRawDataArguments(const void* data, const int rectCount) const
+bool RectangleSeries::validateCategories(const std::size_t categoryCount, const int rectCount) const
 {
-    if (rectCount < 0) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries data rectangle count cannot be negative:" << rectCount;
-        return false;
-    }
-    if (rectCount > 0 && !data) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries received a null data pointer for" << rectCount << "rectangles";
-        return false;
-    }
-    return true;
-}
-
-bool RectangleSeries::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int rectCount) const
-{
-    if (rectCount < 0) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries data rectangle count cannot be negative:" << rectCount;
-        return false;
-    }
-    const auto expectedValueCount = static_cast<std::size_t>(rectCount) * 4;
-    if (valueCount != expectedValueCount) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries received" << valueCount << "coordinates for" << rectCount << "rectangles; expected" << expectedValueCount;
-        return false;
-    }
     if (categoryCount != 0 && categoryCount != static_cast<std::size_t>(rectCount)) {
         qCWarning(lcQAccelPlot) << "RectangleSeries received" << categoryCount << "categories for" << rectCount << "rectangles";
         return false;
@@ -400,76 +316,50 @@ bool RectangleSeries::validateDataArguments(const std::size_t valueCount, const 
 
 void RectangleSeries::applyData(std::vector<double>&& data, std::vector<int>&& categories, const int rectCount)
 {
-    data_ = std::move(data);
-    finishDataChange(std::move(categories), rectCount);
+    const auto previousCount = count();
+    dataPoints().setPrecise(std::move(data), rectCount);
+    dataPoints().setCategories(std::move(categories));
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void RectangleSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int rectCount)
 {
-    data_ = std::vector<double>{};
-    renderData_ = std::move(data);
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    finishDataChange(std::move(categories), rectCount);
+    const auto previousCount = count();
+    dataPoints().setFloat(std::move(data), rectCount);
+    dataPoints().setCategories(std::move(categories));
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void RectangleSeries::setDataFFromArray(const float* data, const int rectCount)
+void RectangleSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
 {
-    if (!validateRawDataArguments(data, rectCount)) {
-        return;
-    }
-    auto buffer = std::move(renderData_);
-    if (rectCount > 0) {
-        buffer.assign(data, data + static_cast<size_t>(rectCount) * 4);
-    } else {
-        buffer.clear();
-    }
-    applyFloatData(std::move(buffer), {}, rectCount);
-}
-
-void RectangleSeries::finishDataChange(std::vector<int>&& categories, const int rectCount)
-{
-    const auto previousCount = rectCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
-    if (rectCount != rectCount_ || hasCategories() || !categories.empty()) {
+    if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
         vertexCache_.invalidate();
     }
-    categories_ = std::move(categories);
-    rectCount_ = rectCount;
-    dataChanged_ = true;
     spatialGridValid_ = false;
     spatialGridBudget_->reset();
     lastHitTest_.reset();
-    invalidateDataRanges();
-    if (hoveredIndex_ >= rectCount_) {
+    if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
     }
-    if (previousCount != rectCount_) {
+    if (previousCount != count()) {
         emit countChanged();
     }
-    inspectionDataChanged();
-    update();
-}
-
-bool RectangleSeries::hasPreciseData() const
-{
-    return !data_.empty();
 }
 
 double RectangleSeries::coordinate(const int index, const int component) const
 {
-    const auto offset = static_cast<size_t>(index) * 4 + static_cast<size_t>(component);
-    return hasPreciseData() ? data_[offset] : static_cast<double>(renderData_[offset]);
+    return dataPoints().value(index, component);
 }
 
 bool RectangleSeries::hasCategories() const
 {
-    return !categories_.empty();
+    return dataPoints().hasCategories();
 }
 
 QColor RectangleSeries::rectangleColor(const int index) const
 {
-    const auto category = hasCategories() ? categories_[static_cast<size_t>(index)] : -1;
+    const auto category = hasCategories() ? dataPoints().categories()[static_cast<size_t>(index)] : -1;
     return category >= 0 && category < categoryColors_.size() ? categoryColors_[category] : color_;
 }
 
@@ -500,8 +390,8 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
 {
     auto* window = this->window();
     const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, rectCount_, capacity, "RectangleSeries", "rectangles");
-    if (rectCount_ <= 0) {
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, count(), capacity, "RectangleSeries", "rectangles");
+    if (count() <= 0) {
         delete oldNode;
         return nullptr;
     }
@@ -530,7 +420,7 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;
     const auto nodeRecreated = !node;
-    const auto drawnCount = std::min(rectCount_, capacity);
+    const auto drawnCount = std::min(count(), capacity);
     if (vertexCache_.vertexCount() != drawnCount * RectVertexCache::kVerticesPerRect) {
         vertexCache_.invalidate();
     }
@@ -562,14 +452,9 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         }
     }
 
-    // Upload data texture
-    if (dataChanged_ || nodeRecreated) {
-        if (hasPreciseData()) {
-            rebuildRenderData(xAxis()->logScale(), yAxis()->logScale());
-        }
-        const auto numFloats = drawnCount * kValuesPerRectangle;
-        material->uploadTexture(window, renderData_.data(), numFloats);
-        dataChanged_ = false;
+    if (dataPoints().renderRevision() != uploadedRevision_ || nodeRecreated) {
+        material->uploadTexture(window, dataPoints().renderData().data(), drawnCount * kValuesPerRectangle);
+        uploadedRevision_ = dataPoints().renderRevision();
     }
 
     updateMaterial(*material, drawnCount);
@@ -598,19 +483,16 @@ void RectangleSeries::hoverLeaveEvent(QHoverEvent* event)
 
 void RectangleSeries::onAxisScaleChanged()
 {
-    // Only origin-shifted double data depends on the scale; float data is uploaded as is.
-    if (hasPreciseData()) {
-        dataChanged_ = true;
-    }
-    invalidateDataRanges();
     update();
 }
 
 void RectangleSeries::updateMaterial(RectMaterial& material, const int drawnCount) const
 {
+    const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
+    const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
     material.color = color_;
-    material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
-    material.domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY));
+    material.domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - originX), static_cast<float>(yAxis()->viewportMax() - originY));
     material.viewportSize = QVector2D(static_cast<float>(width()), static_cast<float>(height()));
     material.logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material.logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
@@ -628,14 +510,15 @@ bool RectangleSeries::spatialGridReady() const
     if (spatialGridValid_) {
         return true;
     }
-    if (!spatialGridBudget_->buildDue(rectCount_)) {
+    const auto rectangles = dataPoints().view();
+    if (!spatialGridBudget_->buildDue(rectangles.count)) {
         return false;
     }
-    spatialGridBudget_->timeBuild(rectCount_, [&] {
-        if (hasPreciseData()) {
-            spatialGrid_.build(data_.data(), rectCount_);
+    spatialGridBudget_->timeBuild(rectangles.count, [&] {
+        if (rectangles.precise) {
+            spatialGrid_.build(rectangles.precise, rectangles.count);
         } else {
-            spatialGrid_.buildF(renderData_.data(), rectCount_);
+            spatialGrid_.buildF(rectangles.floats, rectangles.count);
         }
     });
     spatialGridValid_ = true;
@@ -670,81 +553,11 @@ int RectangleSeries::topmostRectangleAt(const QPointF& position) const
     if (spatialGridReady()) {
         return spatialGrid_.queryTopmost(minX, minY, maxX, maxY, accept);
     }
+    const auto rectangles = dataPoints().view();
     return spatialGridBudget_->timeScan([&] {
-        return hasPreciseData() ? SpatialGrid::scanTopmost(data_.data(), rectCount_, minX, minY, maxX, maxY, accept)
-                                : SpatialGrid::scanTopmostF(renderData_.data(), rectCount_, minX, minY, maxX, maxY, accept);
+        return rectangles.precise ? SpatialGrid::scanTopmost(rectangles.precise, rectangles.count, minX, minY, maxX, maxY, accept)
+                                  : SpatialGrid::scanTopmostF(rectangles.floats, rectangles.count, minX, minY, maxX, maxY, accept);
     });
-}
-
-void RectangleSeries::rebuildRenderData(const bool logScaleX, const bool logScaleY)
-{
-    // Log-scale coordinates aren't translation-invariant (log10(x - origin) != log10(x) -
-    // log10(origin)), so origin-shifting is skipped for a log-scale axis, matching LineCurve.
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    auto foundOriginX = logScaleX;
-    auto foundOriginY = logScaleY;
-
-    for (auto i = 0; i < rectCount_ && !(foundOriginX && foundOriginY); ++i) {
-        const auto base = static_cast<size_t>(i) * 4;
-        if (!foundOriginX) {
-            if (std::isfinite(data_[base])) {
-                renderOriginX_ = data_[base];
-                foundOriginX = true;
-            } else if (std::isfinite(data_[base + 2])) {
-                renderOriginX_ = data_[base + 2];
-                foundOriginX = true;
-            }
-        }
-        if (!foundOriginY) {
-            if (std::isfinite(data_[base + 1])) {
-                renderOriginY_ = data_[base + 1];
-                foundOriginY = true;
-            } else if (std::isfinite(data_[base + 3])) {
-                renderOriginY_ = data_[base + 3];
-                foundOriginY = true;
-            }
-        }
-    }
-
-    if (!logScaleX) {
-        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    }
-    if (!logScaleY) {
-        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    }
-
-    renderData_.resize(data_.size());
-    for (auto i = 0; i < rectCount_; ++i) {
-        const auto base = static_cast<size_t>(i) * 4;
-        renderData_[base] = static_cast<float>(data_[base] - renderOriginX_);
-        renderData_[base + 1] = static_cast<float>(data_[base + 1] - renderOriginY_);
-        renderData_[base + 2] = static_cast<float>(data_[base + 2] - renderOriginX_);
-        renderData_[base + 3] = static_cast<float>(data_[base + 3] - renderOriginY_);
-    }
-}
-
-void RectangleSeries::onAxisRangeChanged()
-{
-    PlotSeries::onAxisRangeChanged();
-    if (!hasPreciseData() || dataChanged_ || !xAxis() || !yAxis()) {
-        return;
-    }
-    const auto rebaseX = !xAxis()->logScale() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    const auto rebaseY = !yAxis()->logScale() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    if (rebaseX || rebaseY) {
-        dataChanged_ = true;
-    }
-}
-
-PlotSeries::DataRanges RectangleSeries::computeDataRanges() const
-{
-    const auto logScaleX = xAxis() && xAxis()->logScale();
-    const auto logScaleY = yAxis() && yAxis()->logScale();
-    const auto bounds
-        = hasPreciseData() ? finiteBounds(data_.data(), rectCount_, logScaleX, logScaleY) : finiteBounds(renderData_.data(), rectCount_, logScaleX, logScaleY);
-    // A dimension without a valid edge has min > max, which the base class treats as unset.
-    return {DataExtent{bounds.xMin, bounds.xMax}, DataExtent{bounds.yMin, bounds.yMax}};
 }
 
 void RectangleSeries::buildVertexCache(const int rectCount)
@@ -754,6 +567,7 @@ void RectangleSeries::buildVertexCache(const int rectCount)
         colorAt = [this](const int index) { return rectangleColor(index); };
     }
     vertexCache_.rebuild(rectCount, colorAt);
+    vertexCacheHasCategories_ = hasCategories();
 }
 
 } // namespace QAccelPlot

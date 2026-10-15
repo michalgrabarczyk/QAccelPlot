@@ -31,10 +31,10 @@ class BandSeriesCapacityTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void samplesBeyondCapacityAreNotDrawn();
+    void dataPointsBeyondCapacityAreNotDrawn();
 };
 
-void BandSeriesCapacityTest::samplesBeyondCapacityAreNotDrawn()
+void BandSeriesCapacityTest::dataPointsBeyondCapacityAreNotDrawn()
 {
     auto window = QQuickWindow{};
     if (window.rendererInterface()->graphicsApi() == QSGRendererInterface::Software) {
@@ -60,7 +60,7 @@ void BandSeriesCapacityTest::samplesBeyondCapacityAreNotDrawn()
     band.setYAxis(&yAxis);
     band.setPlotRect({0, 0, kSize, kSize});
     band.setColor(Qt::white);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries has 4000 samples but draws at most 2730.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries has 4000 data points but draws at most 2730.*"));
     band.setDataF(std::move(data), kSampleCount);
 
     window.show();

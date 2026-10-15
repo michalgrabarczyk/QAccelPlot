@@ -33,12 +33,12 @@ public:
     /// \brief Returns the bytes held by cached statistics.
     [[nodiscard]] std::size_t storageBytes() const;
 
-    /// \brief Returns the valid sample nearest to \a pixel along the ordered axis.
+    /// \brief Returns the valid data point nearest to \a pixel along the ordered axis.
     [[nodiscard]] InspectionHit nearestAlong(
         const InspectionSource& source, const InspectionMetric& metric, InspectionAxis order, double pixel, double radius) const;
     [[nodiscard]] InspectionHit nearest(
         const InspectionSource& source, const InspectionMetric& metric, InspectionAxis order, const QPointF& position, double radius);
-    /// \brief Returns the valid samples on either side of \a value on the ordered axis.
+    /// \brief Returns the valid data points on either side of \a value on the ordered axis.
     [[nodiscard]] InspectionNeighbors neighbors(const InspectionSource& source, InspectionAxis order, double value) const;
     [[nodiscard]] SummaryAccumulator summarize(const InspectionSource& source, InspectionAxis order, const InspectionBounds& bounds);
     void collect(const InspectionSource& source, InspectionAxis order, const InspectionBounds& bounds, int offset, int limit, QList<int>& indices);
@@ -55,7 +55,7 @@ private:
 
     void syncBlocks(int count);
     const Block& block(const InspectionSource& source, int index);
-    // Tells how the samples of a whole block inside the ordered-axis range relate to the bounds of the other axis.
+    // Tells how the data points of a whole block inside the ordered-axis range relate to the bounds of the other axis.
     Coverage coverage(const InspectionSource& source, InspectionAxis order, const InspectionBounds& bounds, int first, int end);
     bool visitBlock(
         const InspectionSource& source, const InspectionMetric& metric, InspectionAxis order, const QPointF& position, int index, InspectionHit& best);
@@ -66,10 +66,10 @@ private:
 /// \brief Inspection queries that scan every record; used for small series that are not ordered along the queried axis.
 namespace InspectionScan {
 
-/// \brief Returns the valid sample nearest to \a pixel along \a axis.
+/// \brief Returns the valid data point nearest to \a pixel along \a axis.
 [[nodiscard]] InspectionHit nearestAlong(const InspectionSource& source, const InspectionMetric& metric, InspectionAxis axis, double pixel, double radius);
 [[nodiscard]] InspectionHit nearest(const InspectionSource& source, const InspectionMetric& metric, const QPointF& position, double radius);
-/// \brief Returns the valid samples on either side of \a value on \a axis.
+/// \brief Returns the valid data points on either side of \a value on \a axis.
 [[nodiscard]] InspectionNeighbors neighbors(const InspectionSource& source, InspectionAxis axis, double value);
 [[nodiscard]] SummaryAccumulator summarize(const InspectionSource& source, const InspectionBounds& bounds);
 void collect(const InspectionSource& source, const InspectionBounds& bounds, int offset, int limit, QList<int>& indices);

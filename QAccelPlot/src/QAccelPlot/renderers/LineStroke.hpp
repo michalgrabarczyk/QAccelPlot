@@ -47,7 +47,7 @@ struct Uniforms {
     QVector2D viewportSize;    ///< \brief Viewport size in pixels.
     bool logScaleX;            ///< \brief Whether the X axis uses log scale.
     bool logScaleY;            ///< \brief Whether the Y axis uses log scale.
-    int pointCount;            ///< \brief Number of samples in the data texture.
+    int pointCount;            ///< \brief Number of data points in the data texture.
     bool antialiasingEnabled;  ///< \brief Whether GPU-side anti-aliasing is active.
     qreal antialiasingFeather; ///< \brief Anti-aliasing feather width in pixels.
     DashParameters dash;       ///< \brief Dash pattern; disabled for solid lines.
@@ -59,19 +59,19 @@ const QSGGeometry::AttributeSet& vertexAttributes();
 /// \brief Returns a triangle-strip node with \a vertexCount line vertices that owns \a material.
 QSGGeometryNode* createNode(int vertexCount, QSGMaterial* material);
 
-/// \brief Writes two ribbon vertices per sample for \a pointCount samples into \a vertices.
+/// \brief Writes two ribbon vertices per data point for \a pointCount data points into \a vertices.
 ///
-/// \a arcLengths holds cumulative lengths of the leading samples, or is empty for solid lines. Samples
+/// \a arcLengths holds cumulative lengths of the leading data points, or is empty for solid lines. Data points
 /// past its end, such as vertices reserved for appended data, repeat its last length.
 void writeVertices(LineVertex* vertices, int pointCount, const QColor& color, const std::vector<float>& arcLengths);
 
 /// \brief Copies \a uniforms into \a material.
 void applyUniforms(LineMaterial& material, const Uniforms& uniforms);
 
-/// \brief Returns the cumulative pixel length at each of \a pointCount samples, for dash patterns.
+/// \brief Returns the cumulative pixel length at each of \a pointCount data points, for dash patterns.
 ///
-/// \a pixelAt returns the pixel position of a sample, or \c std::nullopt for an invalid sample.
-/// Segments touching an invalid sample add no length, so the dash phase continues across a gap.
+/// \a pixelAt returns the pixel position of a data point, or \c std::nullopt for an invalid data point.
+/// Segments touching an invalid data point add no length, so the dash phase continues across a gap.
 template <typename PixelAt> std::vector<float> arcLengths(const int pointCount, const PixelAt& pixelAt)
 {
     auto lengths = std::vector<float>(static_cast<std::size_t>(std::max(pointCount, 0)));

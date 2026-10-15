@@ -21,9 +21,9 @@ InspectionRow rowFor(PlotSeries* series, const int index)
 {
     auto row = InspectionRow{};
     row.series = series;
-    row.sample.status = InspectionStatus::Ready;
-    row.sample.index = index;
-    row.sample.position = {1.5, 2.5};
+    row.dataPoint.status = InspectionStatus::Ready;
+    row.dataPoint.index = index;
+    row.dataPoint.position = {1.5, 2.5};
     row.xText = QStringLiteral("1.5");
     return row;
 }
@@ -98,14 +98,14 @@ void TestInspectionRowModel::get_returnsEveryRoleByName()
     QCOMPARE(values.value("seriesName").toString(), QStringLiteral("signal"));
     QCOMPARE(values.value("seriesColor").value<QColor>(), QColor{Qt::red});
     QVERIFY(values.value("valid").toBool());
-    QCOMPARE(values.value("sampleIndex").toInt(), 7);
-    QCOMPARE(values.value("sampleX").toDouble(), 1.5);
-    QCOMPARE(values.value("sampleY").toDouble(), 2.5);
+    QCOMPARE(values.value("dataPointIndex").toInt(), 7);
+    QCOMPARE(values.value("dataPointX").toDouble(), 1.5);
+    QCOMPARE(values.value("dataPointY").toDouble(), 2.5);
     QCOMPARE(values.value("xText").toString(), QStringLiteral("1.5"));
     QVERIFY(values.value("hasSummary").toBool());
     QCOMPARE(values.value("summaryCount").toInt(), 3);
     QCOMPARE(values.value("maximum").toDouble(), 9.0);
-    QCOMPARE(model.data(model.index(0), InspectionRowModel::SampleIndexRole).toInt(), 7);
+    QCOMPARE(model.data(model.index(0), InspectionRowModel::DataPointIndexRole).toInt(), 7);
     // A series without a name falls back to its object name.
     curve.setName({});
     curve.setObjectName(QStringLiteral("fallback"));
@@ -134,7 +134,7 @@ void TestInspectionRowModel::setRows_updatesInPlaceWhileSeriesAreUnchanged()
     QCOMPARE(changes.count(), 1);
     QCOMPARE(changes.first().at(0).toModelIndex().row(), 0);
     QCOMPARE(changes.first().at(1).toModelIndex().row(), 1);
-    QCOMPARE(model.get(1).value("sampleIndex").toInt(), 6);
+    QCOMPARE(model.get(1).value("dataPointIndex").toInt(), 6);
 
     // A different set of series replaces the rows.
     model.setRows({rowFor(&second, 6), rowFor(&first, 5)});

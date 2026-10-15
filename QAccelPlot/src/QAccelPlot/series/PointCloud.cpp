@@ -41,7 +41,6 @@ constexpr auto kAssumedIndexCostPerPoint = std::chrono::nanoseconds{15};
 // point_shapes.glsl shader include, which selects a shape by the value minus one.
 
 constexpr auto kPositionStride = 2;
-constexpr auto kValueStride = 3;
 constexpr auto kVerticesPerPoint = 6;
 constexpr auto kMinFeather = qreal{0.0};
 constexpr auto kMaxFeather = qreal{10.0};
@@ -86,15 +85,11 @@ const std::vector<GradientStopData>& neutralColorStops()
     return stops;
 }
 
-bool isDrawableCoordinate(const qreal value, const bool logarithmic)
-{
-    return std::isfinite(value) && (!logarithmic || value > 0.0);
-}
-
 } // namespace
 
 PointCloud::PointCloud(QQuickItem* parent)
-    : PlotSeries(parent)
+    : PlotSeries(DataPointStore::Layout{{DataPointStore::Dimension::X, DataPointStore::Dimension::Y}, DataPointStore::RangeRule::WholeDataPoint, 1},
+          DataPointWording{"data point", "points", "coordinates", "coordinates"}, parent)
     , transition_(std::make_unique<TransitionRunner>(this))
     , spatialIndexBudget_(std::make_unique<Internal::HoverIndexBudget>(kAssumedIndexCostPerPoint))
 {
@@ -103,16 +98,6 @@ PointCloud::PointCloud(QQuickItem* parent)
     setAcceptedMouseButtons(Qt::NoButton);
     setLegendSymbol(LegendSymbol::Marker);
 
-    connect(this, &PlotSeries::xAxisChanged, this, [this]() {
-        reconnectAxisSignals();
-        invalidateDataRanges();
-        invalidateSpatialIndex();
-    });
-    connect(this, &PlotSeries::yAxisChanged, this, [this]() {
-        reconnectAxisSignals();
-        invalidateDataRanges();
-        invalidateSpatialIndex();
-    });
     for (const auto signal : {&SeriesMarker::shapeChanged, &SeriesMarker::sizeChanged, &SeriesMarker::filledChanged, &SeriesMarker::strokeWidthChanged}) {
         connect(marker_, signal, this, &QQuickItem::update);
     }
@@ -225,12 +210,12 @@ void PointCloud::setTransition(DataTransition* transition)
 
 int PointCloud::count() const
 {
-    return pointCount_;
+    return dataPoints().count();
 }
 
 bool PointCloud::hasValues() const
 {
-    return hasValues_;
+    return dataPoints().hasAttributes();
 }
 
 int PointCloud::hoveredIndex() const
@@ -262,11 +247,10 @@ void PointCloud::setData(const QList<QPointF>& points)
 
 void PointCloud::setValues(const QList<qreal>& values)
 {
-    if (values.isEmpty() && !hasValues_) {
+    if (values.isEmpty() && !hasValues()) {
         return;
     }
-    if (!values.isEmpty() && values.size() != pointCount_) {
-        qCWarning(lcQAccelPlot) << "PointCloud received" << values.size() << "values for" << pointCount_ << "points";
+    if (!values.isEmpty() && !validateValues(static_cast<std::size_t>(values.size()), count())) {
         return;
     }
     auto pointValues = std::vector<float>(static_cast<std::size_t>(values.size()));
@@ -275,85 +259,42 @@ void PointCloud::setValues(const QList<qreal>& values)
         animateValues(std::move(pointValues));
         return;
     }
-    // The values are written into the upload buffer, which must hold the data.
+    const auto previousCount = count();
     endTransition();
-    storeValues(pointValues);
+    dataPoints().setAttributes(std::move(pointValues));
+    finishValueChange(previousCount);
 }
 
 QPointF PointCloud::pointAt(const int index) const
 {
-    if (index < 0 || index >= pointCount_) {
+    if (index < 0 || index >= count()) {
         return {kNaN, kNaN};
     }
-    if (hasPreciseData()) {
-        const auto base = static_cast<std::size_t>(index) * 2;
-        return {dataD_[base], dataD_[base + 1]};
-    }
-    const auto base = static_cast<std::size_t>(index) * static_cast<std::size_t>(stride());
-    return {static_cast<qreal>(data_[base]), static_cast<qreal>(data_[base + 1])};
+    return {dataPoints().value(index, 0), dataPoints().value(index, 1)};
 }
 
 qreal PointCloud::valueAt(const int index) const
 {
-    if (!hasValues_ || index < 0 || index >= pointCount_) {
+    if (!hasValues() || index < 0 || index >= count()) {
         return kNaN;
     }
-    return static_cast<qreal>(storedValue(static_cast<std::size_t>(index)));
-}
-
-void PointCloud::setData(const double* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<double>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    setData(std::move(xy), pointCount);
-}
-
-void PointCloud::setData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    setData(std::move(xyInterleaved), {}, pointCount);
+    return static_cast<qreal>(dataPoints().attribute(index));
 }
 
 void PointCloud::setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+    if (!validateDataSize(xyInterleaved.size(), pointCount, false) || !validateValues(values.size(), pointCount)) {
         return;
     }
     applyDoubleData(std::move(xyInterleaved), std::move(values), pointCount);
 }
 
-void PointCloud::setDataF(const float* xyInterleaved, const int pointCount)
-{
-    if (!validateRawDataArguments(xyInterleaved, pointCount)) {
-        return;
-    }
-    auto xy = std::vector<float>{};
-    if (pointCount > 0) {
-        xy.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * kPositionStride);
-    }
-    applyData(std::move(xy), {}, pointCount);
-}
-
-void PointCloud::setDataF(std::vector<float>&& xyInterleaved, const int pointCount)
-{
-    setDataF(std::move(xyInterleaved), {}, pointCount);
-}
-
 void PointCloud::setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    if (!validateDataArguments(xyInterleaved.size(), values.size(), pointCount)) {
+    if (!validateDataSize(xyInterleaved.size(), pointCount, true) || !validateValues(values.size(), pointCount)) {
         return;
     }
     applyData(std::move(xyInterleaved), std::move(values), pointCount);
-}
-
-void PointCloud::postData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    postData(std::move(xyInterleaved), {}, pointCount);
 }
 
 void PointCloud::postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
@@ -364,11 +305,6 @@ void PointCloud::postData(std::vector<double>&& xyInterleaved, std::vector<float
             setData(std::move(xy), std::move(pointValues), pointCount);
         },
         Qt::QueuedConnection);
-}
-
-void PointCloud::postData(std::vector<float>&& xyInterleaved, const int pointCount)
-{
-    postData(std::move(xyInterleaved), {}, pointCount);
 }
 
 void PointCloud::postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
@@ -388,7 +324,7 @@ void PointCloud::clearData()
 
 int PointCloud::pointIndexAt(const QPointF& position) const
 {
-    if (pointCount_ <= 0 || !xAxis() || !yAxis() || width() <= 0.0 || height() <= 0.0 || hoverRadius_ <= 0.0) {
+    if (count() <= 0 || !xAxis() || !yAxis() || width() <= 0.0 || height() <= 0.0 || hoverRadius_ <= 0.0) {
         return -1;
     }
 
@@ -413,7 +349,15 @@ int PointCloud::pointIndexAt(const QPointF& position) const
     // these differences, but the cursor itself must move into the index's origin-relative space.
     const auto radiusX = std::abs(viewportMaxX - viewportMinX) / width() * hoverRadius_;
     const auto radiusY = std::abs(viewportMaxY - viewportMinY) / height() * hoverRadius_;
-    const auto query = HoverQuery{cursorX - renderOriginX_, cursorY - renderOriginY_, radiusX, radiusY, {logX, logY}};
+    // The index holds the render data, which is relative to the render origin.
+    const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
+    const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
+    const auto query = HoverQuery{cursorX - originX, cursorY - originY, radiusX, radiusY, {logX, logY}};
+    if (indexedRevision_ != dataPoints().renderRevision()) {
+        spatialIndexValid_ = false;
+        lastHoverQuery_.reset();
+        indexedRevision_ = dataPoints().renderRevision();
+    }
     if (!(lastHoverQuery_ == query)) {
         lastHoverIndex_ = nearestPoint(query);
         lastHoverQuery_ = query;
@@ -428,22 +372,18 @@ bool PointCloud::contains(const QPointF& point) const
 
 InspectionSource PointCloud::inspectionSource() const
 {
+    const auto points = dataPoints().view();
     auto source = InspectionSource{};
-    source.count = pointCount_;
-    source.logX = xAxis() && xAxis()->logScale();
-    source.logY = yAxis() && yAxis()->logScale();
-    // The upload buffer holds the transition points during an animation, so precise data is read
-    // from its own storage.
-    const auto precise = hasPreciseData();
-    if (precise) {
-        source.doubles = dataD_.data();
-    } else {
-        source.floats = data_.data();
-        source.floatStride = stride();
-    }
-    if (hasValues_) {
-        source.values = precise ? valuesF_.data() : data_.data() + 2;
-        source.valueStride = precise ? 1 : kValueStride;
+    source.count = points.count;
+    source.logX = logScaleX();
+    source.logY = logScaleY();
+    source.doubles = points.precise;
+    source.floats = points.floats;
+    source.floatStride = points.stride;
+    const auto values = dataPoints().attributes();
+    if (values.data) {
+        source.values = values.data;
+        source.valueStride = values.stride;
     }
     return source;
 }
@@ -462,10 +402,12 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
         delete oldNode;
         return nullptr;
     }
-    const auto capacity = pointCapacity(window, stride());
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, pointCount_, capacity, "PointCloud", "points");
+    const auto& points = dataPoints();
+    const auto stride = points.renderStride();
+    const auto capacity = pointCapacity(window, stride);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, count(), capacity, "PointCloud", "points");
     const auto plotArea = resolvePlotRect();
-    if (pointCount_ <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
+    if (count() <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
         delete oldNode;
         return nullptr;
     }
@@ -474,7 +416,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
         renderCapacity_ = capacity;
         invalidateSpatialIndex();
     }
-    const auto renderCount = std::min(pointCount_, capacity);
+    const auto renderCount = std::min(points.renderCount(), capacity);
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointCloudNode();
     auto* material = static_cast<PointCloudMaterial*>(node->material());
 
@@ -486,20 +428,21 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     }
 
     // A freshly created node owns a new material, so it always needs the data texture.
-    if (dataChanged_ || !oldNode || !material->dataTexture) {
-        material->uploadTexture(window, data_.data(), renderCount * stride());
-        dataChanged_ = false;
+    if (points.renderRevision() != uploadedRevision_ || !oldNode || !material->dataTexture) {
+        material->uploadTexture(window, points.renderData().data(), renderCount * stride);
+        uploadedRevision_ = points.renderRevision();
     }
 
-    const auto useValueColor = colormap_ && hasValues_ && colorStops_.size() >= 2;
+    const auto useValueColor = colormap_ && hasValues() && colorStops_.size() >= 2;
     // The fragment shader always samples the colormap, so a neutral texture keeps the sampler valid.
     material->colorMap.upload(window, useValueColor ? colorStops_ : neutralColorStops());
 
     material->color = color_;
-    // data_ is origin-relative, so the domain must be shifted by the same origin. Both are zero
-    // for float data and for logarithmic dimensions, which are never shifted.
-    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
-    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    // The render data is origin-relative, so the domain is shifted by the same origin.
+    const auto originX = points.renderOrigin(DataPointStore::Dimension::X);
+    const auto originY = points.renderOrigin(DataPointStore::Dimension::Y);
+    material->domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY));
+    material->domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - originX), static_cast<float>(yAxis()->viewportMax() - originY));
     material->viewportSize = QVector2D(static_cast<float>(plotArea.width()), static_cast<float>(plotArea.height()));
     material->logScaleX = xAxis()->logScale() ? 1.0f : 0.0f;
     material->logScaleY = yAxis()->logScale() ? 1.0f : 0.0f;
@@ -512,7 +455,7 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
     material->antialiasingFeather = static_cast<float>(antialiasingFeather_);
     material->valueMin = static_cast<float>(dataValueMin_);
     material->valueMax = static_cast<float>(dataValueMax_);
-    material->stride = static_cast<float>(stride());
+    material->stride = static_cast<float>(stride);
     material->shapeType = static_cast<int>(marker_->shape()) - 1;
     node->markDirty(QSGNode::DirtyMaterial);
 
@@ -544,32 +487,10 @@ void PointCloud::onColormapUpdated()
     update();
 }
 
-bool PointCloud::validateDataArguments(const std::size_t xyFloatCount, const std::size_t valueCount, const int pointCount) const
+bool PointCloud::validateValues(const std::size_t valueCount, const int pointCount) const
 {
-    if (pointCount < 0) {
-        qCWarning(lcQAccelPlot) << "PointCloud data point count cannot be negative:" << pointCount;
-        return false;
-    }
-    const auto expectedFloatCount = static_cast<std::size_t>(pointCount) * kPositionStride;
-    if (xyFloatCount != expectedFloatCount) {
-        qCWarning(lcQAccelPlot) << "PointCloud received" << xyFloatCount << "coordinates for" << pointCount << "points; expected" << expectedFloatCount;
-        return false;
-    }
     if (valueCount != 0 && valueCount != static_cast<std::size_t>(pointCount)) {
         qCWarning(lcQAccelPlot) << "PointCloud received" << valueCount << "values for" << pointCount << "points";
-        return false;
-    }
-    return true;
-}
-
-bool PointCloud::validateRawDataArguments(const void* xyInterleaved, const int pointCount) const
-{
-    if (pointCount < 0) {
-        qCWarning(lcQAccelPlot) << "PointCloud data point count cannot be negative:" << pointCount;
-        return false;
-    }
-    if (pointCount > 0 && !xyInterleaved) {
-        qCWarning(lcQAccelPlot) << "PointCloud received a null data pointer for" << pointCount << "points";
         return false;
     }
     return true;
@@ -587,243 +508,74 @@ void PointCloud::applyData(std::vector<float>&& xyInterleaved, std::vector<float
 
 void PointCloud::applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    const auto previousCount = pointCount_;
-    const auto hadValues = hasValues_;
+    const auto previousCount = count();
     discardTransition();
-    storeInterleaved(std::move(xyInterleaved), values, pointCount);
-    finishDataChange(previousCount, hadValues, true);
-}
-
-void PointCloud::storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, const int pointCount)
-{
-    pointCount_ = pointCount;
-    hasValues_ = !values.empty();
-    // The *F APIs supply single precision, so any previously stored precise data is stale.
-    dataD_.clear();
-    valuesF_.clear();
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    if (!hasValues_) {
-        data_ = std::move(xyInterleaved);
-        return;
-    }
-
-    // Interleave into the existing buffer; its capacity is reused across same-sized updates.
-    data_.resize(static_cast<std::size_t>(pointCount) * kValueStride);
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount); ++index) {
-        data_[index * 3] = xyInterleaved[index * 2];
-        data_[index * 3 + 1] = xyInterleaved[index * 2 + 1];
-        data_[index * 3 + 2] = values[index];
-    }
-}
-
-void PointCloud::storeValues(const std::vector<float>& values)
-{
-    const auto hadValues = hasValues_;
-    if (values.empty()) {
-        // Compact (x, y, value) to (x, y) in place; destinations never overtake sources.
-        for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-            data_[index * 2] = data_[index * 3];
-            data_[index * 2 + 1] = data_[index * 3 + 1];
-        }
-        data_.resize(static_cast<std::size_t>(pointCount_) * kPositionStride);
-        hasValues_ = false;
-        valuesF_.clear();
-        finishDataChange(pointCount_, hadValues, false);
-        return;
-    }
-
-    if (!hasValues_) {
-        // Expand (x, y) to (x, y, value) in place, back to front so no source is overwritten early.
-        data_.resize(static_cast<std::size_t>(pointCount_) * kValueStride);
-        for (auto index = static_cast<std::size_t>(pointCount_); index-- > 0;) {
-            data_[index * 3 + 1] = data_[index * 2 + 1];
-            data_[index * 3] = data_[index * 2];
-        }
-        hasValues_ = true;
-    }
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        data_[index * 3 + 2] = values[index];
-    }
-    // Keep the sidecar in step, so rebuilding the upload buffer after a scale change
-    // does not lose the values.
-    if (hasPreciseData()) {
-        valuesF_ = values;
-    }
-    finishDataChange(pointCount_, hadValues, false);
-}
-
-bool PointCloud::hasPreciseData() const
-{
-    return !dataD_.empty();
+    dataPoints().setFloat(std::move(xyInterleaved), pointCount, std::move(values));
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void PointCloud::applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, const int pointCount)
 {
-    const auto previousCount = pointCount_;
-    const auto hadValues = hasValues_;
+    const auto previousCount = count();
     const auto animate = transition_->enabled();
     // Copied before the data changes: a transition starts from the points drawn now.
     auto drawn = animate ? drawnPoints() : Points{};
-
-    dataD_ = std::move(xyInterleaved);
-    pointCount_ = pointCount;
-    hasValues_ = !values.empty();
-    valuesF_ = std::move(values);
+    dataPoints().setPrecise(std::move(xyInterleaved), pointCount, std::move(values));
     if (animate) {
         startTransition(std::move(drawn));
     } else {
         discardTransition();
     }
-    rebuildRenderData();
-    finishDataChange(previousCount, hadValues, true);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-void PointCloud::animateValues(std::vector<float>&& values)
+void PointCloud::finishValueChange(const int previousCount)
 {
-    const auto hadValues = hasValues_;
-    auto drawn = drawnPoints();
-    promotePositionsToDoubles();
-    hasValues_ = !values.empty();
-    valuesF_ = std::move(values);
-    startTransition(std::move(drawn));
-    rebuildRenderData();
-    finishDataChange(pointCount_, hadValues, false);
-}
-
-void PointCloud::rebuildRenderData()
-{
-    if (dataD_.empty()) {
-        return;
-    }
-
-    const auto animated = animating();
-    const auto strideFloats = static_cast<std::size_t>(stride());
-    const auto& points = animated ? transitionPoints_ : dataD_;
-    const auto pointStride = animated ? strideFloats : std::size_t{kPositionStride};
-    updateRenderOrigin(points, pointStride);
-
-    data_.resize(static_cast<std::size_t>(pointCount_) * strideFloats);
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        const auto* point = points.data() + index * pointStride;
-        data_[index * strideFloats] = static_cast<float>(point[0] - renderOriginX_);
-        data_[index * strideFloats + 1] = static_cast<float>(point[1] - renderOriginY_);
-        if (hasValues_) {
-            data_[index * strideFloats + 2] = animated ? static_cast<float>(point[2]) : valuesF_[index];
-        }
-    }
-
-    dataChanged_ = true;
-    invalidateSpatialIndex();
-}
-
-void PointCloud::updateRenderOrigin(const std::vector<double>& points, const std::size_t pointStride)
-{
-    const auto logX = xAxis() && xAxis()->logScale();
-    const auto logY = yAxis() && yAxis()->logScale();
-    renderLogScaleX_ = logX;
-    renderLogScaleY_ = logY;
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-
-    auto foundOriginX = logX;
-    auto foundOriginY = logY;
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_) && !(foundOriginX && foundOriginY); ++index) {
-        const auto x = points[index * pointStride];
-        const auto y = points[index * pointStride + 1];
-        if (!foundOriginX && std::isfinite(x)) {
-            renderOriginX_ = x;
-            foundOriginX = true;
-        }
-        if (!foundOriginY && std::isfinite(y)) {
-            renderOriginY_ = y;
-            foundOriginY = true;
-        }
-    }
-    if (!logX && xAxis()) {
-        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    }
-    if (!logY && yAxis()) {
-        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    }
-}
-
-void PointCloud::onAxisScaleChanged()
-{
-    if (!hasPreciseData()) {
-        return;
-    }
-    const auto logX = xAxis() && xAxis()->logScale();
-    const auto logY = yAxis() && yAxis()->logScale();
-    if (logX == renderLogScaleX_ && logY == renderLogScaleY_) {
-        return;
-    }
-    rebuildRenderData();
-    update();
-}
-
-void PointCloud::onAxisRangeChanged()
-{
-    PlotSeries::onAxisRangeChanged();
-    if (!hasPreciseData()) {
-        return;
-    }
-    const auto rebaseX = !renderLogScaleX_ && xAxis() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    const auto rebaseY = !renderLogScaleY_ && yAxis() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    if (rebaseX || rebaseY) {
-        rebuildRenderData();
-    }
-}
-
-void PointCloud::finishDataChange(const int previousCount, const bool hadValues, const bool positionsChanged)
-{
-    dataChanged_ = true;
-    invalidateSpatialIndex();
-    if (positionsChanged) {
-        invalidateDataRanges();
-    }
-    updateValueRange();
-    if (hoveredIndex_ >= pointCount_) {
-        setHoveredIndex(-1);
-    }
-    if (previousCount != pointCount_ || hadValues != hasValues_) {
-        emit countChanged();
-    }
+    onDataPointsChanged(DataChange::Replaced, previousCount);
     inspectionDataChanged();
     update();
 }
 
-PlotSeries::DataRanges PointCloud::computeDataRanges() const
+void PointCloud::applyDataPoints(DataPointInput&& input)
 {
-    const auto logX = xAxis() && xAxis()->logScale();
-    const auto logY = yAxis() && yAxis()->logScale();
-    const auto pointStride = static_cast<std::size_t>(stride());
-
-    auto xMin = std::numeric_limits<qreal>::max();
-    auto xMax = std::numeric_limits<qreal>::lowest();
-    auto yMin = std::numeric_limits<qreal>::max();
-    auto yMax = std::numeric_limits<qreal>::lowest();
-    auto anyValid = false;
-    // data_ is origin-shifted when precise coordinates are stored, so range reporting reads
-    // dataD_ instead: the axes must see the real data extents.
-    const auto precise = hasPreciseData();
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        const auto x = precise ? dataD_[index * 2] : static_cast<qreal>(data_[index * pointStride]);
-        const auto y = precise ? dataD_[index * 2 + 1] : static_cast<qreal>(data_[index * pointStride + 1]);
-        if (!isDrawableCoordinate(x, logX) || !isDrawableCoordinate(y, logY)) {
-            continue;
-        }
-        xMin = std::min(xMin, x);
-        xMax = std::max(xMax, x);
-        yMin = std::min(yMin, y);
-        yMax = std::max(yMax, y);
-        anyValid = true;
+    const auto pointCount = input.count;
+    if (input.precise) {
+        applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
+        return;
     }
-
-    if (!anyValid) {
-        return {};
+    if (!input.floatArray) {
+        applyData(std::move(input.floats), {}, pointCount);
+        return;
     }
-    return {DataExtent{xMin, xMax}, DataExtent{yMin, yMax}};
+    if (transition_->enabled()) {
+        // Transitions animate doubles.
+        applyDoubleData(std::move(input).toDoubles(), {}, pointCount);
+        return;
+    }
+    const auto previousCount = count();
+    discardTransition();
+    // Reuses the allocation of the stored points.
+    dataPoints().assignFloat(input.floatArray, pointCount);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+void PointCloud::onAxisScaleChanged()
+{
+    invalidateSpatialIndex();
+    update();
+}
+
+void PointCloud::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
+{
+    invalidateSpatialIndex();
+    updateValueRange();
+    if (hoveredIndex_ >= count()) {
+        setHoveredIndex(-1);
+    }
+    if (previousCount != count() || reportedHasValues_ != hasValues()) {
+        reportedHasValues_ = hasValues();
+        emit countChanged();
+    }
 }
 
 void PointCloud::updateValueRange()
@@ -833,9 +585,10 @@ void PointCloud::updateValueRange()
     const auto fixedMin = colormap_ ? colormap_->min() : kNaN;
     const auto fixedMax = colormap_ ? colormap_->max() : kNaN;
     const auto needsDataRange = std::isnan(fixedMin) || std::isnan(fixedMax);
-    if (hasValues_ && needsDataRange) {
-        for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-            const auto value = storedValue(index);
+    const auto values = dataPoints().attributes();
+    if (values.data && needsDataRange) {
+        for (auto index = std::size_t{0}; index < static_cast<std::size_t>(count()); ++index) {
+            const auto value = values.data[index * static_cast<std::size_t>(values.stride)];
             if (!std::isfinite(value)) {
                 continue;
             }
@@ -854,25 +607,6 @@ void PointCloud::updateValueRange()
     dataValueMax_ = resolvedMax;
     emit valueRangeChanged();
     update();
-}
-
-void PointCloud::reconnectAxisSignals()
-{
-    for (const auto& connection : axisConnections_) {
-        disconnect(connection);
-    }
-    axisConnections_.clear();
-
-    const auto onLogScaleChanged = [this]() {
-        invalidateDataRanges();
-        invalidateSpatialIndex();
-        update();
-    };
-    for (auto* axis : {xAxis(), yAxis()}) {
-        if (axis) {
-            axisConnections_.append(connect(axis, &Axis::logScaleChanged, this, onLogScaleChanged));
-        }
-    }
 }
 
 void PointCloud::reconnectColormapSignals()
@@ -908,14 +642,9 @@ void PointCloud::setHoveredIndex(const int index)
     emit hoveredIndexChanged();
 }
 
-int PointCloud::stride() const
-{
-    return hasValues_ ? kValueStride : kPositionStride;
-}
-
 int PointCloud::hoverPointCount() const
 {
-    return std::min(pointCount_, renderCapacity_);
+    return std::min(dataPoints().renderCount(), renderCapacity_);
 }
 
 void PointCloud::invalidateSpatialIndex()
@@ -934,7 +663,8 @@ bool PointCloud::spatialIndexReady(const PointSpatialIndex::Mapping mapping) con
     if (!spatialIndexBudget_->buildDue(count)) {
         return false;
     }
-    spatialIndexBudget_->timeBuild(count, [&] { spatialIndex_.build(data_.data(), count, stride(), mapping); });
+    const auto& points = dataPoints();
+    spatialIndexBudget_->timeBuild(count, [&] { spatialIndex_.build(points.renderData().data(), count, points.renderStride(), mapping); });
     spatialIndexValid_ = true;
     return true;
 }
@@ -949,106 +679,105 @@ int PointCloud::nearestPoint(const HoverQuery& query) const
     if (spatialIndexReady(query.mapping)) {
         return spatialIndex_.nearest(query.x, query.y, query.radiusX, query.radiusY);
     }
+    const auto& points = dataPoints();
     return spatialIndexBudget_->timeScan([&] {
-        return PointSpatialIndex::nearestByScan(data_.data(), hoverPointCount(), stride(), query.mapping, query.x, query.y, query.radiusX, query.radiusY);
+        return PointSpatialIndex::nearestByScan(
+            points.renderData().data(), hoverPointCount(), points.renderStride(), query.mapping, query.x, query.y, query.radiusX, query.radiusY);
     });
-}
-
-void PointCloud::promotePositionsToDoubles()
-{
-    if (hasPreciseData()) {
-        return;
-    }
-    const auto pointStride = static_cast<std::size_t>(stride());
-    dataD_.resize(static_cast<std::size_t>(pointCount_) * kPositionStride);
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        dataD_[index * 2] = data_[index * pointStride];
-        dataD_[index * 2 + 1] = data_[index * pointStride + 1];
-    }
-}
-
-float PointCloud::storedValue(const std::size_t index) const
-{
-    // The upload buffer holds the transition points during an animation, so precise data keeps its own values.
-    return hasPreciseData() ? valuesF_[index] : data_[index * kValueStride + 2];
 }
 
 std::vector<double> PointCloud::interleavedData() const
 {
-    const auto pointStride = static_cast<std::size_t>(stride());
-    if (!hasPreciseData()) {
-        return std::vector<double>(data_.cbegin(), data_.cbegin() + static_cast<std::ptrdiff_t>(static_cast<std::size_t>(pointCount_) * pointStride));
-    }
-    auto points = std::vector<double>(static_cast<std::size_t>(pointCount_) * pointStride);
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(pointCount_); ++index) {
-        points[index * pointStride] = dataD_[index * 2];
-        points[index * pointStride + 1] = dataD_[index * 2 + 1];
-        if (hasValues_) {
-            points[index * pointStride + 2] = valuesF_[index];
+    const auto& points = dataPoints();
+    const auto view = points.view();
+    const auto stride = static_cast<std::size_t>(points.renderStride());
+    auto data = std::vector<double>(static_cast<std::size_t>(view.count) * stride);
+    for (auto index = 0; index < view.count; ++index) {
+        auto* point = data.data() + static_cast<std::size_t>(index) * stride;
+        point[0] = view.value(index, 0);
+        point[1] = view.value(index, 1);
+        if (stride > kPositionStride) {
+            point[2] = points.attribute(index);
         }
     }
-    return points;
-}
-
-bool PointCloud::animating() const
-{
-    return !transitionPoints_.empty();
+    return data;
 }
 
 PointCloud::Points PointCloud::drawnPoints() const
 {
-    return {animating() ? transitionPoints_ : interleavedData(), pointCount_, stride()};
+    const auto& points = dataPoints();
+    if (!points.hasDrawn()) {
+        return {interleavedData(), count(), points.renderStride()};
+    }
+    const auto drawn = points.drawnView();
+    const auto size = static_cast<std::size_t>(drawn.count) * static_cast<std::size_t>(drawn.stride);
+    return {std::vector<double>(drawn.precise, drawn.precise + size), drawn.count, drawn.stride};
+}
+
+void PointCloud::animateValues(std::vector<float>&& values)
+{
+    const auto previousCount = count();
+    auto drawn = drawnPoints();
+    dataPoints().promoteToPrecise();
+    dataPoints().setAttributes(std::move(values));
+    startTransition(std::move(drawn));
+    finishValueChange(previousCount);
 }
 
 void PointCloud::startTransition(Points&& drawn)
 {
-    if (pointCount_ == 0) {
+    const auto pointCount = count();
+    if (pointCount == 0) {
         discardTransition();
         return;
     }
-    const auto pointStride = static_cast<std::size_t>(stride());
+    const auto pointStride = static_cast<std::size_t>(dataPoints().renderStride());
     const auto drawnStride = static_cast<std::size_t>(drawn.stride);
     // A value animates only when the drawn point and the new one both have one.
     const auto sharedValues = std::min(pointStride, drawnStride);
     auto target = interleavedData();
     auto start = target;
-    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(std::min(drawn.count, pointCount_)); ++index) {
+    for (auto index = std::size_t{0}; index < static_cast<std::size_t>(std::min(drawn.count, pointCount)); ++index) {
         const auto drawnPoint = drawn.values.cbegin() + static_cast<std::ptrdiff_t>(index * drawnStride);
         std::copy_n(drawnPoint, sharedValues, start.begin() + static_cast<std::ptrdiff_t>(index * pointStride));
     }
 
-    transitionPoints_ = std::move(start);
-    transition_->start(transitionPoints_, pointCount_, std::move(target), pointCount_, stride());
+    transition_->start(start, pointCount, std::move(target), pointCount, static_cast<int>(pointStride));
+    frameBuffer_ = dataPoints().setDrawn(std::move(start), pointCount);
+    invalidateSpatialIndex();
 }
 
 void PointCloud::advanceTransition()
 {
     auto shownCount = 0;
-    transition_->advance(transitionPoints_, shownCount);
+    transition_->advance(frameBuffer_, shownCount);
     if (!transition_->pending()) {
         endTransition();
         return;
     }
     // A transition may show fewer points, as DrawTransition does; the others are not drawn.
-    transitionPoints_.resize(static_cast<std::size_t>(pointCount_) * static_cast<std::size_t>(stride()), kNaN);
-    rebuildRenderData();
+    const auto pointCount = count();
+    frameBuffer_.resize(static_cast<std::size_t>(pointCount) * static_cast<std::size_t>(dataPoints().renderStride()), kNaN);
+    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), pointCount);
+    invalidateSpatialIndex();
     update();
 }
 
 void PointCloud::endTransition()
 {
-    if (!animating()) {
+    if (!dataPoints().hasDrawn()) {
         return;
     }
     discardTransition();
-    rebuildRenderData();
     update();
 }
 
 void PointCloud::discardTransition()
 {
     transition_->cancel();
-    transitionPoints_ = std::vector<double>{};
+    dataPoints().clearDrawn();
+    frameBuffer_ = std::vector<double>{};
+    invalidateSpatialIndex();
 }
 
 } // namespace QAccelPlot

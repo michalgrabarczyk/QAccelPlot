@@ -20,8 +20,8 @@ private slots:
     void defaultTolerance();
     void customTolerance_data();
     void customTolerance();
-    void isValidSample_data();
-    void isValidSample();
+    void isValidCoordinate_data();
+    void isValidCoordinate();
 };
 
 using QAccelPlot::nearlyEqual;
@@ -109,7 +109,7 @@ void TestMathUtils::customTolerance()
     QCOMPARE(nearlyEqual(left, right, relativeTolerance, absoluteTolerance), expectedEqual);
 }
 
-void TestMathUtils::isValidSample_data()
+void TestMathUtils::isValidCoordinate_data()
 {
     QTest::addColumn<double>("value");
     QTest::addColumn<bool>("logScale");
@@ -137,13 +137,13 @@ void TestMathUtils::isValidSample_data()
     QTest::newRow("positive-infinity-log") << inf << true << false;
 }
 
-void TestMathUtils::isValidSample()
+void TestMathUtils::isValidCoordinate()
 {
     QFETCH(double, value);
     QFETCH(bool, logScale);
     QFETCH(bool, expected);
 
-    QCOMPARE(QAccelPlot::isValidSample(value, logScale), expected);
+    QCOMPARE(QAccelPlot::isValidCoordinate(value, logScale), expected);
 }
 
 QTEST_GUILESS_MAIN(TestMathUtils)

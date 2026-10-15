@@ -42,8 +42,8 @@ Q_ENUM_NS(Status)
 
 using InspectionStatus = InspectionNS::Status;
 
-/// \brief One XY source sample returned by an inspection query.
-struct InspectionSample {
+/// \brief One XY source data point returned by an inspection query.
+struct InspectionDataPoint {
     Q_GADGET
     QML_ANONYMOUS
     /// \brief Query outcome.
@@ -64,7 +64,7 @@ struct InspectionSample {
     Q_PROPERTY(QPointF pixelPosition MEMBER pixelPosition CONSTANT)
     /// \brief Distance from the query position in logical pixels.
     Q_PROPERTY(qreal distance MEMBER distance CONSTANT)
-    /// \brief True when the coordinates are interpolated between two samples; index is then the left neighbor.
+    /// \brief True when the coordinates are interpolated between two data points; index is then the left neighbor.
     Q_PROPERTY(bool interpolated MEMBER interpolated CONSTANT)
 
 public:
@@ -85,7 +85,7 @@ public:
     qreal y() const;
 };
 
-/// \brief Sample-weighted Y statistics over the valid samples inside a region.
+/// \brief Data-point-weighted Y statistics over the valid data points inside a region.
 struct InspectionSummary {
     Q_GADGET
     QML_ANONYMOUS
@@ -95,7 +95,7 @@ struct InspectionSummary {
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    /// \brief Number of matching samples.
+    /// \brief Number of matching data points.
     Q_PROPERTY(int count MEMBER count CONSTANT)
     /// \brief Smallest Y; NaN for an empty region.
     Q_PROPERTY(qreal minimum MEMBER minimum CONSTANT)
@@ -113,7 +113,7 @@ struct InspectionSummary {
 public:
     InspectionStatus status{InspectionStatus::NoMatch};               ///< \brief Query outcome.
     quint64 dataRevision{0};                                          ///< \brief Data revision.
-    int count{0};                                                     ///< \brief Matching samples.
+    int count{0};                                                     ///< \brief Matching data points.
     qreal minimum{std::numeric_limits<qreal>::quiet_NaN()};           ///< \brief Smallest Y.
     qreal maximum{std::numeric_limits<qreal>::quiet_NaN()};           ///< \brief Largest Y.
     int minimumIndex{-1};                                             ///< \brief Index of the smallest Y.
@@ -125,7 +125,7 @@ public:
     bool valid() const;
 };
 
-/// \brief The valid samples on either side of a position on one axis.
+/// \brief The valid data points on either side of a position on one axis.
 struct InspectionBracket {
     Q_GADGET
     QML_ANONYMOUS
@@ -135,22 +135,22 @@ struct InspectionBracket {
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the query ran against.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    /// \brief Valid sample with the largest coordinate at or below the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionSample left MEMBER left CONSTANT)
-    /// \brief Valid sample with the smallest coordinate above the position; invalid when there is none.
-    Q_PROPERTY(::QAccelPlot::InspectionSample right MEMBER right CONSTANT)
+    /// \brief Valid data point with the largest coordinate at or below the position; invalid when there is none.
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint left MEMBER left CONSTANT)
+    /// \brief Valid data point with the smallest coordinate above the position; invalid when there is none.
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint right MEMBER right CONSTANT)
     /// \brief True when both neighbors exist and their source indices are consecutive.
     Q_PROPERTY(bool adjacent MEMBER adjacent CONSTANT)
     /// \brief Point on the straight on-screen segment between adjacent neighbors; invalid otherwise.
-    Q_PROPERTY(::QAccelPlot::InspectionSample interpolated MEMBER interpolated CONSTANT)
+    Q_PROPERTY(::QAccelPlot::InspectionDataPoint interpolated MEMBER interpolated CONSTANT)
 
 public:
     InspectionStatus status{InspectionStatus::NoMatch}; ///< \brief Query outcome.
     quint64 dataRevision{0};                            ///< \brief Data revision.
-    InspectionSample left;                              ///< \brief Neighbor at or before the position.
-    InspectionSample right;                             ///< \brief Neighbor after the position.
+    InspectionDataPoint left;                           ///< \brief Neighbor at or before the position.
+    InspectionDataPoint right;                          ///< \brief Neighbor after the position.
     bool adjacent{false};                               ///< \brief Consecutive source indices.
-    InspectionSample interpolated;                      ///< \brief Interpolated point between adjacent neighbors.
+    InspectionDataPoint interpolated;                   ///< \brief Interpolated point between adjacent neighbors.
 
     /// \brief Returns true when status is \c Ready.
     bool valid() const;
@@ -166,7 +166,7 @@ struct InspectionPage {
     Q_PROPERTY(bool valid READ valid CONSTANT)
     /// \brief Data revision the indices refer to.
     Q_PROPERTY(quint64 dataRevision MEMBER dataRevision CONSTANT)
-    /// \brief Number of matching samples in the whole region.
+    /// \brief Number of matching data points in the whole region.
     Q_PROPERTY(int total MEMBER total CONSTANT)
     /// \brief Number of matches skipped before this page.
     Q_PROPERTY(int offset MEMBER offset CONSTANT)

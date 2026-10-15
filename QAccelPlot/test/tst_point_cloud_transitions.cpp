@@ -380,9 +380,9 @@ void PointCloudTransitionsTest::dataIsTheNewOneFromTheStart()
     QTRY_VERIFY(shows({{5.0, 4.0, Qt::red}}));
     QCOMPARE(scene_.cloud->pointAt(0), QPointF(8.0, 6.0));
     QCOMPARE(scene_.cloud->valueAt(0), 5.0);
-    const auto sample = scene_.cloud->inspection()->sampleAt(0);
-    QCOMPARE(sample.position, QPointF(8.0, 6.0));
-    QCOMPARE(sample.value, 5.0);
+    const auto dataPoint = scene_.cloud->inspection()->dataPointAt(0);
+    QCOMPARE(dataPoint.position, QPointF(8.0, 6.0));
+    QCOMPARE(dataPoint.value, 5.0);
     scene_.cloud->setTransition(nullptr);
 }
 

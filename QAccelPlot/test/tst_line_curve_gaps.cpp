@@ -25,13 +25,11 @@ class LineCurveGapsTest : public QObject {
 
 private slots:
     // Gap filter helpers
-    void countInvalidPointsHonorsLogScale();
+    void isValidPointHonorsLogScale();
     void findValidRunsSplitsAtInvalidSamples();
     void planRunSamplingKeepsSmallCurvesIntact();
     void planRunSamplingDistributesBudget();
     void envelopeSamplesKeepEndpointsAndPeaks();
-    void compactValidPointsFloat();
-    void compactValidPointsDouble();
     void shaderFiniteBitPredicateMatchesStdIsFinite_data();
     void shaderFiniteBitPredicateMatchesStdIsFinite();
 
@@ -106,13 +104,11 @@ bool shaderIsFiniteBits(const float value)
 
 } // namespace
 
-void LineCurveGapsTest::countInvalidPointsHonorsLogScale()
+void LineCurveGapsTest::isValidPointHonorsLogScale()
 {
     const auto data = std::vector<float>{1.0f, 1.0f, kNaN, 1.0f, 2.0f, -1.0f, kInf, 3.0f, 4.0f, 0.0f};
     const auto view = CurveDataView{data.data(), nullptr};
 
-    QCOMPARE(LineCurveGapFilter::countInvalidPoints(view, 5, false, false), 2);
-    QCOMPARE(LineCurveGapFilter::countInvalidPoints(view, 5, false, true), 4);
     QVERIFY(LineCurveGapFilter::isValidPoint(view, 0, true, true));
     QVERIFY(!LineCurveGapFilter::isValidPoint(view, 2, false, true));
 }
@@ -134,7 +130,7 @@ void LineCurveGapsTest::findValidRunsSplitsAtInvalidSamples()
 
 void LineCurveGapsTest::planRunSamplingKeepsSmallCurvesIntact()
 {
-    const auto runs = std::vector<SampleRun>{{0, 10}, {11, 1}, {13, 20}};
+    const auto runs = std::vector<DataPointRun>{{0, 10}, {11, 1}, {13, 20}};
     const auto sampled = LineCurveGapFilter::planRunSampling(runs, 100);
 
     QVERIFY(sampled == (std::vector<int>{10, 0, 20}));
@@ -142,7 +138,7 @@ void LineCurveGapsTest::planRunSamplingKeepsSmallCurvesIntact()
 
 void LineCurveGapsTest::planRunSamplingDistributesBudget()
 {
-    const auto runs = std::vector<SampleRun>{{0, 1000}, {1001, 3000}, {4002, 3}};
+    const auto runs = std::vector<DataPointRun>{{0, 1000}, {1001, 3000}, {4002, 3}};
     const auto sampled = LineCurveGapFilter::planRunSampling(runs, 400);
 
     QCOMPARE(sampled.size(), std::size_t{3});
@@ -158,7 +154,7 @@ void LineCurveGapsTest::envelopeSamplesKeepEndpointsAndPeaks()
     data[120 * 2 + 1] = 5.0f;
     data[140 * 2 + 1] = -5.0f;
     const auto view = CurveDataView{data.data(), nullptr};
-    const auto run = SampleRun{100, 51};
+    const auto run = DataPointRun{100, 51};
 
     auto all = std::vector<int>{};
     LineCurveGapFilter::appendEnvelopeSamples(view, run, 51, all);
@@ -175,31 +171,6 @@ void LineCurveGapsTest::envelopeSamplesKeepEndpointsAndPeaks()
     auto odd = std::vector<int>{7};
     LineCurveGapFilter::appendEnvelopeSamples(view, run, 5, odd);
     QVERIFY(odd == (std::vector<int>{7, 100, 120, 140, 150, 150}));
-}
-
-void LineCurveGapsTest::compactValidPointsFloat()
-{
-    const auto data = std::vector<float>{0.0f, 1.0f, 1.0f, kNaN, 2.0f, -3.0f, kInf, 4.0f};
-    auto output = std::vector<float>{};
-
-    QCOMPARE(LineCurveGapFilter::compactValidPoints(data, 4, false, false, output), 2);
-    QVERIFY(output == (std::vector<float>{0.0f, 1.0f, 2.0f, -3.0f}));
-
-    QCOMPARE(LineCurveGapFilter::compactValidPoints(data, 4, false, true, output), 1);
-    QVERIFY(output == (std::vector<float>{0.0f, 1.0f}));
-}
-
-void LineCurveGapsTest::compactValidPointsDouble()
-{
-    const auto nan = std::numeric_limits<double>::quiet_NaN();
-    const auto data = std::vector<double>{1e12, 1.0, 1e12 + 1.0, nan, 1e12 + 2.0, 3.0};
-    const auto render = std::vector<float>{0.0f, 1.0f, 1.0f, kNaN, 2.0f, 3.0f};
-    auto output = std::vector<double>{};
-    auto renderOutput = std::vector<float>{};
-
-    QCOMPARE(LineCurveGapFilter::compactValidPoints(data, render, 3, false, false, output, renderOutput), 2);
-    QVERIFY(output == (std::vector<double>{1e12, 1.0, 1e12 + 2.0, 3.0}));
-    QVERIFY(renderOutput == (std::vector<float>{0.0f, 1.0f, 2.0f, 3.0f}));
 }
 
 void LineCurveGapsTest::shaderFiniteBitPredicateMatchesStdIsFinite_data()

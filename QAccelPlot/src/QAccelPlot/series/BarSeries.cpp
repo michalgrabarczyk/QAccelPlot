@@ -74,6 +74,21 @@ struct Extent {
     }
 };
 
+// The coordinate columns of a bar: the position ones on the position axis, then the value.
+std::vector<DataPointStore::Dimension> barColumns(const Qt::Orientation orientation, const bool ranged)
+{
+    using Dimension = DataPointStore::Dimension;
+    const auto position = orientation == Qt::Horizontal ? Dimension::Y : Dimension::X;
+    const auto value = orientation == Qt::Horizontal ? Dimension::X : Dimension::Y;
+    return ranged ? std::vector<Dimension>{position, position, value} : std::vector<Dimension>{position, value};
+}
+
+// BarSeries reports its own data ranges, which add the bar width and the baseline.
+DataPointStore::Layout barLayout(const Qt::Orientation orientation, const bool ranged)
+{
+    return {barColumns(orientation, ranged), DataPointStore::RangeRule::EachCoordinate, 0};
+}
+
 // Appends bars \a begin to \a end of \a source to \a bars with \a restValue as their value: the
 // state a bar grows from, or shrinks to.
 void appendRestingBars(std::vector<double>& bars, const std::vector<double>& source, const int begin, const int end, const int stride, const double restValue)
@@ -88,7 +103,7 @@ void appendRestingBars(std::vector<double>& bars, const std::vector<double>& sou
 }
 
 BarSeries::BarSeries(QQuickItem* parent)
-    : PlotSeries(parent)
+    : PlotSeries(barLayout(Qt::Vertical, false), DataPointWording{"data bar", "bars", "values", "values"}, parent)
     , color_(ColorPalette::dark().seriesPrimary)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
@@ -120,10 +135,7 @@ void BarSeries::setOrientation(const Qt::Orientation orientation)
         return;
     }
     orientation_ = orientation;
-    // The render origins depend on which axis, and so which log scale, each coordinate maps to.
-    if (rendersDoubles()) {
-        dataChanged_ = true;
-    }
+    dataPoints().remapColumns(barColumns(orientation_, valuesPerBar() == 3));
     onGeometryChanged();
     emit orientationChanged();
 }
@@ -260,7 +272,7 @@ void BarSeries::setTransition(DataTransition* transition)
 
 int BarSeries::count() const
 {
-    return barCount_;
+    return dataPoints().count();
 }
 
 int BarSeries::hoveredIndex() const
@@ -303,35 +315,12 @@ void BarSeries::setData(const QVariantList& bars)
     }
 }
 
-void BarSeries::setData(const double* data, const int barCount)
-{
-    if (!validateRawDataArguments(data, barCount)) {
-        return;
-    }
-    applyData(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), {}, barCount);
-}
-
-void BarSeries::setData(std::vector<double>&& data, const int barCount)
-{
-    setData(std::move(data), {}, barCount);
-}
-
 void BarSeries::setData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     if (!validateDataArguments(data.size(), categories.size(), barCount)) {
         return;
     }
     applyData(std::move(data), std::move(categories), barCount);
-}
-
-void BarSeries::setDataF(const float* data, const int barCount)
-{
-    setDataFFromArray(data, barCount);
-}
-
-void BarSeries::setDataF(std::vector<float>&& data, const int barCount)
-{
-    setDataF(std::move(data), {}, barCount);
 }
 
 void BarSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -342,11 +331,6 @@ void BarSeries::setDataF(std::vector<float>&& data, std::vector<int>&& categorie
     applyFloatData(std::move(data), std::move(categories), barCount);
 }
 
-void BarSeries::postData(std::vector<double>&& data, const int barCount)
-{
-    postData(std::move(data), {}, barCount);
-}
-
 void BarSeries::postData(std::vector<double>&& data, std::vector<int>&& categories, const int barCount)
 {
     QMetaObject::invokeMethod(
@@ -355,11 +339,6 @@ void BarSeries::postData(std::vector<double>&& data, std::vector<int>&& categori
             setData(std::move(bars), std::move(barCategories), barCount);
         },
         Qt::QueuedConnection);
-}
-
-void BarSeries::postData(std::vector<float>&& data, const int barCount)
-{
-    postData(std::move(data), {}, barCount);
 }
 
 void BarSeries::postData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -397,13 +376,13 @@ void BarSeries::clearData()
 
 void BarSeries::setCategories(const QList<int>& categories)
 {
-    if (!categories.isEmpty() && categories.size() != barCount_) {
-        qCWarning(lcQAccelPlot) << "BarSeries received" << categories.size() << "categories for" << barCount_ << "bars";
+    if (!categories.isEmpty() && categories.size() != count()) {
+        qCWarning(lcQAccelPlot) << "BarSeries received" << categories.size() << "categories for" << count() << "bars";
         return;
     }
-    categories_.assign(categories.cbegin(), categories.cend());
+    dataPoints().setCategories(std::vector<int>(categories.cbegin(), categories.cend()));
     if (animating()) {
-        transitionBars_.categories = transitionCategories(transitionBars_.categories, transitionBars_.count);
+        transitionCategories_ = transitionCategories(transitionCategories_, drawnBarCount());
     }
     vertexCache_.invalidate();
     inspectionDataChanged();
@@ -412,25 +391,25 @@ void BarSeries::setCategories(const QList<int>& categories)
 
 QVariantMap BarSeries::barAt(const int index) const
 {
-    if (index < 0 || index >= barCount_) {
+    if (index < 0 || index >= count()) {
         return {};
     }
     auto bar = QVariantMap{{QStringLiteral("value"), value(index)}};
-    if (ranged_) {
+    if (valuesPerBar() == 3) {
         bar.insert(QStringLiteral("from"), component(index, 0));
         bar.insert(QStringLiteral("to"), component(index, 1));
     } else {
         bar.insert(QStringLiteral("position"), component(index, 0));
     }
     if (hasCategories()) {
-        bar.insert(QStringLiteral("category"), categories_[static_cast<size_t>(index)]);
+        bar.insert(QStringLiteral("category"), dataPoints().categories()[static_cast<size_t>(index)]);
     }
     return bar;
 }
 
 int BarSeries::barIndexAt(const QPointF& position) const
 {
-    if (barCount_ <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
+    if (count() <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty()) {
         return -1;
     }
     // A bar widened to contain the cursor has its center within half the minimum width of it,
@@ -454,7 +433,7 @@ bool BarSeries::contains(const QPointF& point) const
 InspectionRecord BarSeries::inspectionRecord(const int index) const
 {
     auto result = InspectionRecord{};
-    if (index < 0 || index >= barCount_) {
+    if (index < 0 || index >= count()) {
         result.status = InspectionStatus::InvalidArgument;
         return result;
     }
@@ -514,14 +493,9 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
     }
 
     auto* material = static_cast<BarMaterial*>(node->material());
-    if (dataChanged_ || nodeRecreated) {
-        if (rendersDoubles()) {
-            const auto logPosition = isHorizontal() ? yAxis()->logScale() : xAxis()->logScale();
-            const auto logValue = isHorizontal() ? xAxis()->logScale() : yAxis()->logScale();
-            rebuildRenderData(logPosition, logValue);
-        }
-        material->uploadTexture(window, renderData_.data(), renderCount * valuesPerBar());
-        dataChanged_ = false;
+    if (dataPoints().renderRevision() != uploadedRevision_ || nodeRecreated) {
+        material->uploadTexture(window, dataPoints().renderData().data(), renderCount * valuesPerBar());
+        uploadedRevision_ = dataPoints().renderRevision();
     }
 
     updateMaterial(*material, renderCount);
@@ -547,54 +521,31 @@ void BarSeries::hoverLeaveEvent(QHoverEvent* event)
     QQuickItem::hoverLeaveEvent(event);
 }
 
+void BarSeries::applyDataPoints(DataPointInput&& input)
+{
+    const auto barCount = input.count;
+    if (input.floatArray) {
+        setDataFFromArray(input.floatArray, barCount);
+    } else if (!input.precise) {
+        applyFloatData(std::move(input.floats), {}, barCount);
+    } else {
+        applyData(std::move(input).toDoubles(), {}, barCount);
+    }
+}
+
+int BarSeries::dataPointValueCount() const
+{
+    return 2;
+}
+
 void BarSeries::onAxisScaleChanged()
 {
-    // Only origin-shifted double data depends on the scale; float data is uploaded as is.
-    if (rendersDoubles()) {
-        dataChanged_ = true;
-    }
-    invalidateDataRanges();
     update();
-}
-
-void BarSeries::onAxisRangeChanged()
-{
-    PlotSeries::onAxisRangeChanged();
-    if (!rendersDoubles() || dataChanged_ || !xAxis() || !yAxis()) {
-        return;
-    }
-    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
-    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
-    const auto rebasePosition
-        = !positionAxis->logScale() && renderOriginTooFar(renderOriginPosition_, positionAxis->viewportMin(), positionAxis->viewportMax());
-    const auto rebaseValue = !valueAxis->logScale() && renderOriginTooFar(renderOriginValue_, valueAxis->viewportMin(), valueAxis->viewportMax());
-    if (rebasePosition || rebaseValue) {
-        dataChanged_ = true;
-    }
-}
-
-bool BarSeries::validateRawDataArguments(const void* data, const int barCount) const
-{
-    if (barCount < 0) {
-        qCWarning(lcQAccelPlot) << "BarSeries data bar count cannot be negative:" << barCount;
-        return false;
-    }
-    if (barCount > 0 && !data) {
-        qCWarning(lcQAccelPlot) << "BarSeries received a null data pointer for" << barCount << "bars";
-        return false;
-    }
-    return true;
 }
 
 bool BarSeries::validateDataArguments(const std::size_t valueCount, const std::size_t categoryCount, const int barCount, const int barValueCount) const
 {
-    if (barCount < 0) {
-        qCWarning(lcQAccelPlot) << "BarSeries data bar count cannot be negative:" << barCount;
-        return false;
-    }
-    const auto expectedValueCount = static_cast<std::size_t>(barCount) * static_cast<std::size_t>(barValueCount);
-    if (valueCount != expectedValueCount) {
-        qCWarning(lcQAccelPlot) << "BarSeries received" << valueCount << "values for" << barCount << "bars; expected" << expectedValueCount;
+    if (!validateDataSize(valueCount, barCount, false, barValueCount)) {
         return false;
     }
     if (categoryCount != 0 && categoryCount != static_cast<std::size_t>(barCount)) {
@@ -614,19 +565,29 @@ void BarSeries::applyRangedData(std::vector<double>&& data, std::vector<int>&& c
     applyBars(std::move(data), true, std::move(categories), barCount, transition_->enabled());
 }
 
+void BarSeries::setRanged(const bool ranged)
+{
+    if ((valuesPerBar() == 3) != ranged) {
+        dataPoints().setLayout(barLayout(orientation_, ranged));
+    }
+}
+
 void BarSeries::applyBars(std::vector<double>&& data, const bool ranged, std::vector<int>&& categories, const int barCount, const bool animate)
 {
     // Copied before the data changes: a transition starts from the bars drawn now.
     auto drawn = animate ? drawnBars() : Bars{};
-    data_ = std::move(data);
-    ranged_ = ranged;
-    const auto previousCount = storeBars(std::move(categories), barCount);
-    if (animate) {
-        startTransition(std::move(drawn));
-    } else {
+    const auto previousCount = count();
+    // Ended first: bars of another layout drop the drawn ones along with the data.
+    if (!animate) {
         endTransition();
     }
-    notifyDataChanged(previousCount);
+    setRanged(ranged);
+    dataPoints().setPrecise(std::move(data), barCount);
+    dataPoints().setCategories(std::move(categories));
+    if (animate) {
+        startTransition(std::move(drawn));
+    }
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
@@ -641,96 +602,88 @@ void BarSeries::applyFloatData(std::vector<float>&& data, std::vector<int>&& cat
 
 void BarSeries::applyFloatBars(std::vector<float>&& data, std::vector<int>&& categories, const int barCount)
 {
-    data_ = std::vector<double>{};
-    ranged_ = false;
-    renderData_ = std::move(data);
-    renderOriginPosition_ = 0.0;
-    renderOriginValue_ = 0.0;
-    const auto previousCount = storeBars(std::move(categories), barCount);
+    const auto previousCount = count();
     endTransition();
-    notifyDataChanged(previousCount);
+    setRanged(false);
+    dataPoints().setFloat(std::move(data), barCount);
+    dataPoints().setCategories(std::move(categories));
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void BarSeries::setDataFFromArray(const float* data, const int barCount)
 {
-    if (!validateRawDataArguments(data, barCount)) {
-        return;
-    }
-    const auto* end = data + static_cast<size_t>(barCount) * 2;
     if (transition_->enabled()) {
-        // Transitions animate doubles, from the drawn bars that renderData_ may hold.
-        applyBars(std::vector<double>(data, end), false, {}, barCount, true);
+        // Transitions animate doubles.
+        applyBars(std::vector<double>(data, data + static_cast<size_t>(barCount) * 2), false, {}, barCount, true);
         return;
     }
-    auto buffer = std::move(renderData_);
-    buffer.assign(data, end);
-    applyFloatBars(std::move(buffer), {}, barCount);
+    const auto previousCount = count();
+    endTransition();
+    setRanged(false);
+    // Reuses the allocation of the stored bars.
+    dataPoints().assignFloat(data, barCount);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
-int BarSeries::storeBars(std::vector<int>&& categories, const int barCount)
+void BarSeries::onDataPointsChanged(const DataChange /*change*/, const int previousCount)
 {
-    const auto previousCount = barCount_;
     // Vertex colors depend on the categories, but not on the coordinates.
-    if (barCount != barCount_ || hasCategories() || !categories.empty()) {
+    if (count() != previousCount || vertexCacheHasCategories_ || hasCategories()) {
         vertexCache_.invalidate();
     }
-    categories_ = std::move(categories);
-    barCount_ = barCount;
-    dataChanged_ = true;
     spatialGridValid_ = false;
-    return previousCount;
-}
-
-void BarSeries::notifyDataChanged(const int previousCount)
-{
-    invalidateDataRanges();
-    if (hoveredIndex_ >= barCount_) {
+    if (hoveredIndex_ >= count()) {
         setHoveredIndex(-1);
     }
-    if (previousCount != barCount_) {
+    if (previousCount != count()) {
         emit countChanged();
     }
-    inspectionDataChanged();
-    update();
 }
 
 bool BarSeries::animating() const
 {
-    return transitionBars_.count > 0;
+    return dataPoints().hasDrawn();
+}
+
+std::vector<double> BarSeries::storedBars() const
+{
+    const auto bars = dataPoints().view();
+    const auto size = static_cast<size_t>(bars.count) * static_cast<size_t>(bars.stride);
+    if (bars.precise) {
+        return std::vector<double>(bars.precise, bars.precise + size);
+    }
+    return std::vector<double>(bars.floats, bars.floats + size);
 }
 
 BarSeries::Bars BarSeries::drawnBars() const
 {
-    if (animating()) {
-        return transitionBars_;
+    if (!animating()) {
+        return Bars{storedBars(), dataPoints().categories(), count(), valuesPerBar()};
     }
-    auto bars = Bars{{}, categories_, barCount_, valuesPerBar()};
-    if (hasPreciseData()) {
-        bars.values = data_;
-    } else {
-        bars.values.assign(renderData_.cbegin(), renderData_.cbegin() + static_cast<std::ptrdiff_t>(barCount_) * bars.stride);
-    }
-    return bars;
+    const auto drawn = dataPoints().drawnView();
+    const auto size = static_cast<size_t>(drawn.count) * static_cast<size_t>(drawn.stride);
+    return Bars{std::vector<double>(drawn.precise, drawn.precise + size), transitionCategories_, drawn.count, drawn.stride};
 }
 
 int BarSeries::drawnBarCount() const
 {
-    return animating() ? transitionBars_.count : barCount_;
+    return dataPoints().renderCount();
 }
 
 const std::vector<int>& BarSeries::drawnCategories() const
 {
-    return animating() ? transitionBars_.categories : categories_;
+    return animating() ? transitionCategories_ : dataPoints().categories();
 }
 
 std::vector<int> BarSeries::transitionCategories(const std::vector<int>& previous, const int transitionBarCount) const
 {
-    if (categories_.empty() && previous.empty()) {
+    const auto& current = dataPoints().categories();
+    if (current.empty() && previous.empty()) {
         return {};
     }
     auto categories = std::vector<int>(static_cast<size_t>(transitionBarCount), -1);
-    std::copy(categories_.cbegin(), categories_.cend(), categories.begin());
-    for (auto index = static_cast<size_t>(barCount_); index < std::min(previous.size(), categories.size()); ++index) {
+    std::copy(current.cbegin(), current.cend(), categories.begin());
+    for (auto index = static_cast<size_t>(count()); index < std::min(previous.size(), categories.size()); ++index) {
         categories[index] = previous[index];
     }
     return categories;
@@ -743,46 +696,48 @@ void BarSeries::startTransition(Bars&& drawn)
     if (drawn.stride != stride) {
         drawn = Bars{};
     }
-    const auto transitionBarCount = std::max(drawn.count, barCount_);
+    const auto transitionBarCount = std::max(drawn.count, count());
     if (transitionBarCount == 0) {
         endTransition();
         return;
     }
-    auto target = data_;
-    appendRestingBars(target, drawn.values, barCount_, transitionBarCount, stride, baselineValue_);
-    appendRestingBars(drawn.values, data_, drawn.count, transitionBarCount, stride, baselineValue_);
+    const auto stored = storedBars();
+    auto target = stored;
+    appendRestingBars(target, drawn.values, count(), transitionBarCount, stride, baselineValue_);
+    appendRestingBars(drawn.values, stored, drawn.count, transitionBarCount, stride, baselineValue_);
 
-    transitionBars_.categories = transitionCategories(drawn.categories, transitionBarCount);
-    transitionBars_.values = std::move(drawn.values);
-    transitionBars_.count = transitionBarCount;
-    transitionBars_.stride = stride;
+    transitionCategories_ = transitionCategories(drawn.categories, transitionBarCount);
     vertexCache_.invalidate();
-    transition_->start(transitionBars_.values, transitionBarCount, std::move(target), transitionBarCount, stride);
+    transition_->start(drawn.values, transitionBarCount, std::move(target), transitionBarCount, stride);
+    frameBuffer_ = dataPoints().setDrawn(std::move(drawn.values), transitionBarCount);
 }
 
 void BarSeries::advanceTransition()
 {
+    const auto transitionBarCount = drawnBarCount();
     auto shownCount = 0;
-    transition_->advance(transitionBars_.values, shownCount);
+    transition_->advance(frameBuffer_, shownCount);
     if (!transition_->pending()) {
         endTransition();
         return;
     }
     // A transition may show fewer bars, as DrawTransition does; the others are not drawn.
-    transitionBars_.values.resize(static_cast<size_t>(transitionBars_.count) * static_cast<size_t>(transitionBars_.stride), kNaN);
-    dataChanged_ = true;
+    frameBuffer_.resize(static_cast<size_t>(transitionBarCount) * static_cast<size_t>(valuesPerBar()), kNaN);
+    frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), transitionBarCount);
     update();
 }
 
 void BarSeries::endTransition()
 {
+    // Cancelled even without drawn bars: new bars of another layout drop them first.
+    transition_->cancel();
     if (!animating()) {
         return;
     }
-    transition_->cancel();
-    transitionBars_ = Bars{};
+    dataPoints().clearDrawn();
+    transitionCategories_.clear();
+    frameBuffer_ = std::vector<double>{};
     vertexCache_.invalidate();
-    dataChanged_ = true;
     update();
 }
 
@@ -798,25 +753,14 @@ bool BarSeries::isHorizontal() const
     return orientation_ == Qt::Horizontal;
 }
 
-bool BarSeries::hasPreciseData() const
-{
-    return !data_.empty();
-}
-
-bool BarSeries::rendersDoubles() const
-{
-    return animating() || hasPreciseData();
-}
-
 int BarSeries::valuesPerBar() const
 {
-    return ranged_ ? 3 : 2;
+    return dataPoints().columnCount();
 }
 
 double BarSeries::component(const int index, const int offset) const
 {
-    const auto position = static_cast<size_t>(index) * static_cast<size_t>(valuesPerBar()) + static_cast<size_t>(offset);
-    return hasPreciseData() ? data_[position] : static_cast<double>(renderData_[position]);
+    return dataPoints().value(index, offset);
 }
 
 double BarSeries::value(const int index) const
@@ -826,7 +770,7 @@ double BarSeries::value(const int index) const
 
 std::array<double, 2> BarSeries::positionSpan(const int index) const
 {
-    if (ranged_) {
+    if (valuesPerBar() == 3) {
         const auto from = component(index, 0);
         const auto to = component(index, 1);
         return std::isnan(from) || std::isnan(to) ? std::array<double, 2>{kNaN, kNaN} : std::array<double, 2>{from, to};
@@ -853,7 +797,7 @@ std::array<double, 4> BarSeries::barRect(const int index) const
 
 bool BarSeries::hasCategories() const
 {
-    return !categories_.empty();
+    return dataPoints().hasCategories();
 }
 
 QColor BarSeries::barColor(const int index) const
@@ -892,7 +836,7 @@ void BarSeries::setHoveredIndex(const int index)
 
 QSGNode* BarSeries::releaseNode(QSGNode* oldNode) const
 {
-    if (barCount_ > 0) {
+    if (count() > 0) {
         qCDebug(lcQAccelPlot) << "BarSeries has no axes, plot area, or window; not drawing";
     }
     delete oldNode;
@@ -902,8 +846,8 @@ QSGNode* BarSeries::releaseNode(QSGNode* oldNode) const
 void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) const
 {
     const auto horizontal = isHorizontal();
-    const auto originX = horizontal ? renderOriginValue_ : renderOriginPosition_;
-    const auto originY = horizontal ? renderOriginPosition_ : renderOriginValue_;
+    const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
+    const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
     const auto minimumSize = static_cast<float>(minimumWidth_);
     material.color = color_;
     material.domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY));
@@ -920,9 +864,9 @@ void BarSeries::updateMaterial(BarMaterial& material, const int renderCount) con
     material.hoveredIndex = hoverColor_.isValid() ? static_cast<float>(hoveredIndex_) : -1.0f;
     material.barWidth = static_cast<float>(barWidth_);
     material.barOffset = static_cast<float>(barOffset_);
-    material.baseline = static_cast<float>(baselineValue_ - renderOriginValue_);
+    material.baseline = static_cast<float>(baselineValue_ - (horizontal ? originX : originY));
     material.horizontal = horizontal ? 1.0f : 0.0f;
-    material.ranged = ranged_ ? 1.0f : 0.0f;
+    material.ranged = valuesPerBar() == 3 ? 1.0f : 0.0f;
 }
 
 void BarSeries::ensureSpatialGrid() const
@@ -935,8 +879,8 @@ void BarSeries::ensureSpatialGrid() const
     // checks the value extent instead.
     constexpr auto kInf = std::numeric_limits<double>::infinity();
     const auto valueStart = isHorizontal() ? 0 : 1;
-    hitRects_.resize(static_cast<size_t>(barCount_) * 4);
-    for (auto i = 0; i < barCount_; ++i) {
+    hitRects_.resize(static_cast<size_t>(count()) * 4);
+    for (auto i = 0; i < count(); ++i) {
         auto rect = barRect(i);
         if (!std::isnan(rect[0])) {
             rect[static_cast<size_t>(valueStart)] = -kInf;
@@ -944,7 +888,7 @@ void BarSeries::ensureSpatialGrid() const
         }
         std::copy(rect.cbegin(), rect.cend(), hitRects_.begin() + static_cast<std::ptrdiff_t>(i) * 4);
     }
-    spatialGrid_.build(hitRects_.data(), barCount_);
+    spatialGrid_.build(hitRects_.data(), count());
     spatialGridValid_ = true;
 }
 
@@ -955,6 +899,7 @@ void BarSeries::buildVertexCache(const int barCount)
         colorAt = [this](const int index) { return barColor(index); };
     }
     vertexCache_.rebuild(barCount, colorAt);
+    vertexCacheHasCategories_ = !drawnCategories().empty();
 }
 
 PlotSeries::DataRanges BarSeries::computeDataRanges() const
@@ -967,9 +912,10 @@ PlotSeries::DataRanges BarSeries::computeDataRanges() const
     // A ranged bar contributes its two edges, any other bar its position.
     auto positions = Extent{};
     auto values = Extent{};
-    for (auto i = 0; i < barCount_; ++i) {
+    const auto ranged = valuesPerBar() == 3;
+    for (auto i = 0; i < count(); ++i) {
         const auto first = component(i, 0);
-        const auto last = ranged_ ? component(i, 1) : first;
+        const auto last = ranged ? component(i, 1) : first;
         const auto barValue = value(i);
         if (std::isnan(first) || std::isnan(last) || std::isnan(barValue)) {
             continue;
@@ -995,7 +941,7 @@ PlotSeries::DataRanges BarSeries::computeDataRanges() const
 
     auto positionMin = positions.min;
     auto positionMax = positions.max;
-    if (!ranged_) {
+    if (!ranged) {
         // Widen by half a bar so the outer bars are fully in view, unless that leaves a log axis' domain.
         const auto widenedMin = positions.min + barOffset_ - 0.5 * barWidth_;
         positionMin = isPlaceable(widenedMin, logPosition) ? widenedMin : positions.min;
@@ -1004,49 +950,6 @@ PlotSeries::DataRanges BarSeries::computeDataRanges() const
     const auto positionExtent = std::optional<DataExtent>{DataExtent{positionMin, positionMax}};
     const auto valueExtent = values.isEmpty() ? std::optional<DataExtent>{} : DataExtent{values.min, values.max};
     return isHorizontal() ? DataRanges{valueExtent, positionExtent} : DataRanges{positionExtent, valueExtent};
-}
-
-void BarSeries::rebuildRenderData(const bool logScalePosition, const bool logScaleValue)
-{
-    // Log-scale coordinates aren't translation-invariant, so origin-shifting is skipped for a
-    // log-scale axis, matching RectangleSeries.
-    renderOriginPosition_ = 0.0;
-    renderOriginValue_ = 0.0;
-    // The value is the last component of a bar; the ones before it lie on the position axis.
-    const auto stride = static_cast<size_t>(valuesPerBar());
-    const auto valueOffset = stride - 1;
-    const auto& bars = animating() ? transitionBars_.values : data_;
-    auto foundPositionOrigin = logScalePosition;
-    auto foundValueOrigin = logScaleValue;
-    for (auto base = size_t{0}; base < bars.size() && !(foundPositionOrigin && foundValueOrigin); base += stride) {
-        for (auto offset = size_t{0}; offset < valueOffset && !foundPositionOrigin; ++offset) {
-            if (std::isfinite(bars[base + offset])) {
-                renderOriginPosition_ = bars[base + offset];
-                foundPositionOrigin = true;
-            }
-        }
-        if (!foundValueOrigin && std::isfinite(bars[base + valueOffset])) {
-            renderOriginValue_ = bars[base + valueOffset];
-            foundValueOrigin = true;
-        }
-    }
-
-    const auto* positionAxis = isHorizontal() ? yAxis() : xAxis();
-    const auto* valueAxis = isHorizontal() ? xAxis() : yAxis();
-    if (!logScalePosition) {
-        renderOriginPosition_ = renderOriginForViewport(renderOriginPosition_, positionAxis->viewportMin(), positionAxis->viewportMax());
-    }
-    if (!logScaleValue) {
-        renderOriginValue_ = renderOriginForViewport(renderOriginValue_, valueAxis->viewportMin(), valueAxis->viewportMax());
-    }
-
-    renderData_.resize(bars.size());
-    for (auto base = size_t{0}; base < bars.size(); base += stride) {
-        for (auto offset = size_t{0}; offset < valueOffset; ++offset) {
-            renderData_[base + offset] = static_cast<float>(bars[base + offset] - renderOriginPosition_);
-        }
-        renderData_[base + valueOffset] = static_cast<float>(bars[base + valueOffset] - renderOriginValue_);
-    }
 }
 
 } // namespace QAccelPlot

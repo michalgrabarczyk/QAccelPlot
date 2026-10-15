@@ -66,20 +66,20 @@ void TestInspectionQml::queriesRowsAndSelection()
             }
             function queries() {
                 const inspection = curve.inspection;
-                const sample = inspection.nearestByX(curve.width / 2);
+                const dataPoint = inspection.nearestByX(curve.width / 2);
                 const bracket = inspection.bracketByX(curve.width / 4);
                 const byY = inspection.nearestByY(0);
                 const bracketY = inspection.bracketByY(curve.height / 2);
                 const summary = inspection.summarizeRange(-Infinity, Infinity);
                 const page = inspection.indices(-Infinity, Infinity, -Infinity, Infinity, 1, 10);
-                return [inspection.status === QAccelPlot.Inspection.Ready, sample.valid, sample.status === QAccelPlot.Inspection.Ready,
-                    sample.index, sample.y, bracket.left.index, bracket.interpolated.y.toFixed(6), summary.count, summary.mean, page.total,
-                    page.indices.length, page.indices[0], root.xAxis.formatValue(sample.x, curve.width), byY.index, bracketY.left.index,
+                return [inspection.status === QAccelPlot.Inspection.Ready, dataPoint.valid, dataPoint.status === QAccelPlot.Inspection.Ready,
+                    dataPoint.index, dataPoint.y, bracket.left.index, bracket.interpolated.y.toFixed(6), summary.count, summary.mean, page.total,
+                    page.indices.length, page.indices[0], root.xAxis.formatValue(dataPoint.x, curve.width), byY.index, bracketY.left.index,
                     QAccelPlot.PlotInspector.NearestY].join("|");
             }
             function rows() {
                 const row = inspector.model.get(0);
-                return [inspector.model.count, row.seriesName, row.valid, row.sampleIndex, row.yText].join("|");
+                return [inspector.model.count, row.seriesName, row.valid, row.dataPointIndex, row.yText].join("|");
             }
             function selection() {
                 tool.select(0, 5, -Infinity, Infinity);

@@ -29,7 +29,7 @@ level-of-detail (LOD) reduction.
 - **Interactive at full data size**: Pan, cursor-centered zoom, per-axis zoom, and double-click rescale work out of the box. Hover hit testing uses cached block bounds, so it stays responsive on large curves.
 - **Fast data paths**: Move interleaved `float` buffers into a curve, or hand buffers off from worker threads with `postData()`. Data ranges are computed only when needed.
 - **QML-native**: Plots, axes, and series are `QQuickItem`/`QObject` types that compose with Qt Quick layouts and bindings.
-- **Invalid samples**: `NaN`, `±Inf`, and non-positive log-axis values render as gaps or are connected across.
+- **Invalid data points**: `NaN`, `±Inf`, and non-positive log-axis values render as gaps or are connected across.
 
 ---
 
@@ -131,10 +131,10 @@ Explore runnable applications in the [`examples/`](examples/) directory:
 | Axes | **[Tick Formats](examples/axes/tick_formats/)** | Category, logarithmic, and date/time tick labels. |
 | Axes | **[Multiple Axes](examples/axes/multiple_axes/)** | Dual wavelength/frequency scale, multi-rate time axes, and ECG panels sharing one time axis. |
 | Data | **[Realtime](examples/data/realtime/)** | Scrolling vibration signal in a 20-second window, updated every frame. |
-| Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid samples drawn as gaps or connected. |
+| Data | **[Missing Data](examples/data/missing_data/)** | NaN, ±Inf, and log-invalid data points drawn as gaps or connected. |
 | Interaction | **[Annotations](examples/interaction/annotations/)** | QML overlays anchored to data coordinates. |
 | Interaction | **[Measurement Tools](examples/interaction/measurement_tools/)** | Distance ruler, angle tool, rectangular selection, and point markers. |
-| Interaction | **[Data Inspection](examples/interaction/data_inspection/)** | Crosshair, per-series tooltip, and region selection with statistics over one million samples. |
+| Interaction | **[Data Inspection](examples/interaction/data_inspection/)** | Crosshair, per-series tooltip, and region selection with statistics over one million data points. |
 
 ---
 

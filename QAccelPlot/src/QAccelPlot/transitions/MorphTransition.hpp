@@ -29,7 +29,7 @@ public:
     /// \brief Constructs a MorphTransition with the given \a parent.
     explicit MorphTransition(QObject* parent = nullptr);
 
-    /// \brief Returns the coordinate between \a from and \a to at \a easedProgress, honoring the invalid-sample contract.
+    /// \brief Returns the coordinate between \a from and \a to at \a easedProgress, honoring the invalid-data-point contract.
     static double interpolateCoordinate(double from, double to, double easedProgress);
 
 protected:

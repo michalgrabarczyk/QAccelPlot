@@ -160,30 +160,15 @@ public:
     /// \brief Returns the value of point \a index, or NaN when out of range or no values are stored.
     Q_INVOKABLE qreal valueAt(int index) const;
 
-    /// \brief Copies \a pointCount interleaved double XY pairs and clears values.
-    void setData(const double* xyInterleaved, int pointCount) override;
-    /// \brief Moves \a pointCount interleaved XY pairs of doubles into the cloud and clears values.
-    ///
-    /// The GPU renders in single precision, so positions are uploaded relative to an origin
-    /// taken from the first finite point. Coordinates far from zero, such as epoch timestamps,
-    /// therefore keep their resolution. Logarithmic dimensions are never origin-shifted.
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Sets double-precision positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Copies \a pointCount interleaved XY pairs from \a xyInterleaved and clears values.
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    /// \brief Moves \a xyInterleaved (\a pointCount XY pairs) into the cloud and clears values. No copy is made.
-    void setDataF(std::vector<float>&& xyInterleaved, int pointCount) override;
     /// \brief Sets positions and per-point \a values (empty, or exactly \a pointCount floats).
     void setDataF(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
-    /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a pointCount) to the item's thread.
-    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
     /// \brief Thread-safe: queues \c setData(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
     void postData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a pointCount) to the item's thread.
-    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
     /// \brief Thread-safe: queues \c setDataF(\a xyInterleaved, \a values, \a pointCount) to the item's thread.
     void postData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Removes all points and values.
@@ -227,11 +212,12 @@ protected:
     /// \endcond
 
 protected:
-    /// \brief Rebuilds the origin-relative upload buffer, because log dimensions are not shifted.
+    /// \brief Applies new points without values, animating to them when a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
+    /// \brief Rebuilds the hover index, because log dimensions map points differently.
     void onAxisScaleChanged() override;
-    DataRanges computeDataRanges() const override;
-    /// \brief Moves the render origin to the new viewport when the float upload buffer would lose precision there.
-    void onAxisRangeChanged() override;
+    /// \brief Refreshes the hover index, the value range, and the count after the points changed.
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
     Q_SLOT void onColormapUpdated();
@@ -243,21 +229,17 @@ private:
         int stride{2};
     };
 
-    bool validateDataArguments(std::size_t xyFloatCount, std::size_t valueCount, int pointCount) const;
-    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
+    bool validateValues(std::size_t valueCount, int pointCount) const;
     void applyData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Replaces the points with float data, without a transition.
     void applyFloatData(std::vector<float>&& xyInterleaved, std::vector<float>&& values, int pointCount);
-    void storeInterleaved(std::vector<float>&& xyInterleaved, const std::vector<float>& values, int pointCount);
-    /// \brief Writes \a values, empty for none, into the upload buffer in place.
-    void storeValues(const std::vector<float>& values);
-    void finishDataChange(int previousCount, bool hadValues, bool positionsChanged);
+    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
+    /// \brief Finishes a change of the values alone, which leaves the data ranges as they are.
+    void finishValueChange(int previousCount);
     void updateValueRange();
-    void reconnectAxisSignals();
     void reconnectColormapSignals();
     void refreshColorStops();
     void setHoveredIndex(int index);
-    int stride() const;
     /// \brief Returns the number of points that take part in hover: those the data texture holds.
     int hoverPointCount() const;
     void invalidateSpatialIndex();
@@ -276,28 +258,10 @@ private:
     };
 
     int nearestPoint(const HoverQuery& query) const;
-    void applyDoubleData(std::vector<double>&& xyInterleaved, std::vector<float>&& values, int pointCount);
     /// \brief Replaces the values, animating from the drawn points.
     void animateValues(std::vector<float>&& values);
-    /// \brief Builds the single-precision upload buffer from \c dataD_ and \c valuesF_, or from the transition points during an animation.
-    ///
-    /// Subtracts a per-dimension origin, so coordinates far from zero keep their resolution.
-    void rebuildRenderData();
-    /// \brief Sets the render origin of each dimension from \a points, of \a pointStride doubles each.
-    ///
-    /// The origin is the first finite coordinate, or the viewport center when that is far from the
-    /// viewport, matching \c LineCurve. A logarithmic dimension is never shifted: the vertex shader
-    /// takes log10 of the uploaded value, which a shift would invalidate.
-    void updateRenderOrigin(const std::vector<double>& points, std::size_t pointStride);
-    bool hasPreciseData() const;
-    /// \brief Stores the positions as doubles, which transitions animate.
-    void promotePositionsToDoubles();
-    /// \brief Returns the value of point \a index, which must have one.
-    float storedValue(std::size_t index) const;
-    /// \brief Returns the data as \c stride() doubles per point.
+    /// \brief Returns the data as one point of doubles per stride: (x, y), or (x, y, value).
     std::vector<double> interleavedData() const;
-    /// \brief Returns \c true while \c transitionPoints_ is drawn instead of the data.
-    bool animating() const;
     /// \brief Returns the points drawn now: the transition points, or the data.
     Points drawnPoints() const;
     /// \brief Animates from \a drawn to the data. A point without a counterpart starts at its new position.
@@ -317,36 +281,15 @@ private:
     qreal hoverRadius_{6.0};
     int hoveredIndex_{-1};
     std::unique_ptr<TransitionRunner> transition_;
-    // Points drawn instead of the data while a transition runs: stride() doubles for each point
-    // of the data. Empty otherwise.
-    std::vector<double> transitionPoints_;
+    // The previous transition frame, reused for the next one.
+    std::vector<double> frameBuffer_;
 
-    // Precise interleaved (x, y) pairs, populated by the double setData() overloads and by every
-    // data update while a transition is enabled. Empty when the float *F APIs supplied the data,
-    // which is already single precision.
-    std::vector<double> dataD_;
-    // Per-point values kept alongside dataD_, so the upload buffer can be rebuilt when an
-    // axis switches scale without the caller resupplying them.
-    std::vector<float> valuesF_;
-    // Origin subtracted from dataD_ when building data_, so the float upload keeps its
-    // resolution near the data. Zero for a dimension that is unshifted or logarithmic.
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-
-    // The points as drawn: (x, y) per point, or (x, y, value) when hasValues_ is true. This buffer
-    // is uploaded to the GPU, and hover hit tests search it.
-    // It holds the float data itself, or dataD_ relative to the render origin, or, during an
-    // animation, the transition points relative to the render origin.
-    std::vector<float> data_;
-    int pointCount_{0};
-    bool hasValues_{false};
+    // hasValues() as countChanged() last reported it.
+    bool reportedHasValues_{false};
     qreal dataValueMin_{0.0};
     qreal dataValueMax_{1.0};
-
-    // True when the data texture must be re-uploaded on the next paint.
-    bool dataChanged_{true};
+    // Render revision of the data points last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
 
@@ -356,13 +299,14 @@ private:
 
     mutable PointSpatialIndex spatialIndex_;
     mutable bool spatialIndexValid_{false};
+    // Render revision of the data points the spatial index holds.
+    mutable std::uint64_t indexedRevision_{0};
     std::unique_ptr<Internal::HoverIndexBudget> spatialIndexBudget_;
     // The last hover query and its answer. Qt tests contains() several times per hover event
     // before the handler asks again, each time at the same position.
     mutable std::optional<HoverQuery> lastHoverQuery_;
     mutable int lastHoverIndex_{-1};
 
-    QList<QMetaObject::Connection> axisConnections_;
     QList<QMetaObject::Connection> gradientConnections_;
 };
 

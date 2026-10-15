@@ -25,6 +25,7 @@
 #include <QQuickItem>
 
 #include <memory>
+#include <optional>
 #include <utility>
 #include <vector>
 
@@ -54,12 +55,12 @@ class TransitionRunner;
 /// Several curves can share one transition. Replacing or clearing \c transition, cancelling it, or
 /// appending data during an animation skips to the new data.
 ///
-/// \par Invalid samples and gaps
-/// A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
-/// log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from
+/// \par Invalid data points and gaps
+/// A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
+/// log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from
 /// auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and
 /// gradient fill treat them is controlled by the \c gaps grouped property: <tt>gaps.nanMode</tt> \c Break (default)
-/// leaves a gap, \c Connect joins the neighboring valid samples. Insert \c NaN to mark missing telemetry explicitly.
+/// leaves a gap, \c Connect joins the neighboring valid data points. Insert \c NaN to mark missing telemetry explicitly.
 ///
 /// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
 class LineCurve : public PlotSeries {
@@ -149,29 +150,13 @@ public:
     Q_INVOKABLE void setData(const QList<QPointF>& data);
     /// \brief Sets data from separate X and Y vectors. If sizes don't match, the shorter length is used.
     void setData(const std::vector<double>& xs, const std::vector<double>& ys);
-    /// \brief Copies \a pointCount interleaved double XY pairs, retaining full precision.
-    void setData(const double* xyInterleaved, int pointCount) override;
-    /// \brief Sets data by moving a pre-filled interleaved double vector of \a pointCount XY pairs <tt>[x0, y0, x1, y1, …]</tt>.
-    /// Retains double precision, e.g. for large timestamp values, without re-interleaving.
-    void setData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief High-performance C++ overload: copies a raw interleaved float array of \a pointCount XY pairs into the
-    /// curve's reusable buffer.
-    void setDataF(const float* xyInterleaved, int pointCount) override;
-    /// \brief High-performance C++ overload: sets data by moving a pre-filled float vector of \a pointCount XY pairs.
-    void setDataF(std::vector<float>&& data, int pointCount) override;
+    using PlotSeries::postData;
     using PlotSeries::setData;
     using PlotSeries::setDataF;
     /// \brief Like \c setDataF(vector) but also accepts a pre-built \a vertexCache, bypassing main-thread rebuild.
     void setDataFWithCache(std::vector<float>&& data, int pointCount, std::vector<char>&& vertexCache);
     /// \brief Like \c setDataFWithCache(vector) but copies from a raw interleaved float array.
     void setDataFWithCache(const float* xyInterleaved, int pointCount, std::vector<char>&& vertexCache);
-    /// \brief Posts double-precision interleaved XY data to the curve from any thread. Equivalent to calling
-    /// \c setData(std::vector<double>&&, int) on the UI thread. The data vector is moved into the queued call; no copy
-    /// is made. This call is thread-safe.
-    void postData(std::vector<double>&& xyInterleaved, int pointCount) override;
-    /// \brief Posts data to the curve from any thread. Equivalent to calling \c setDataF() on the UI thread.
-    /// The data vector is moved into the queued call; no copy is made. This call is thread-safe.
-    void postData(std::vector<float>&& xyInterleaved, int pointCount) override;
     /// \brief Removes all data points from the curve.
     Q_INVOKABLE void clearData() override;
 
@@ -186,11 +171,12 @@ protected:
     /// \endcond
     /// \brief Returns \c true if \a point lies within the curve's hit-test region.
     bool contains(const QPointF& point) const override;
-    /// \brief Refreshes ranges and cached geometry when a bound axis changes between linear and log scale.
+    /// \brief Applies new points, animating to them when a transition is enabled.
+    void applyDataPoints(DataPointInput&& input) override;
+    /// \brief Refreshes cached geometry when a bound axis changes between linear and log scale.
     void onAxisScaleChanged() override;
-    DataRanges computeDataRanges() const override;
-    /// \brief Moves the render origin to the new viewport when the float render data would lose precision there.
-    void onAxisRangeChanged() override;
+    /// \brief Refreshes the vertex cache and the hit-test chunks after the points changed.
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 signals:
     /// \brief Emitted when the color property changes.
@@ -227,25 +213,15 @@ private:
     GradientFillPayload resolveGradientFillPayload() const;
     std::pair<qreal, qreal> gradientDataRange(Qt::Orientation direction) const;
 
-    enum class DataType { Float, Double };
-
-    bool logScaleX() const;
-    bool logScaleY() const;
     void applyNewData(std::vector<float>&& newData, int newPointCount);
     void applyNewData(std::vector<double>&& newData, int newPointCount);
-    bool validateRawDataArguments(const void* xyInterleaved, int pointCount) const;
-    bool validateVectorDataArguments(const std::vector<float>& data, int pointCount) const;
-    bool validateVectorDataArguments(const std::vector<double>& data, int pointCount) const;
-    void copyRawData(const float* xyInterleaved, int pointCount);
-    void promoteFloatDataToDouble();
-    void rebuildDoubleRenderData(bool logScaleX, bool logScaleY);
+    // Replaces the points with float data copied from \a xyInterleaved, without a transition.
+    void applyFloatArray(const float* xyInterleaved, int pointCount);
     const std::vector<float>& renderData() const;
     CurveDataView sourceDataView() const;
-    // Number of samples in renderData() / sourceDataView(); smaller than pointCount_
-    // when NanGapMode::Connect has removed invalid samples.
+    // Number of data points in renderData() / sourceDataView(); smaller than the point count
+    // when NanGapMode::Connect has removed invalid data points.
     int renderPointCount() const;
-    void rebuildGapConnectData();
-    void releaseGapConnectData();
     void refreshVertexCacheForDataChange();
     void installVertexCache(std::vector<char>&& vertexCache);
     std::size_t expectedVertexCacheSize() const;
@@ -258,29 +234,23 @@ private:
     void cancelRunningTransition();
     // Shows the target data of a transition that stopped before its end.
     void finishTransition();
+    // Starts a transition from the points drawn now to the stored points, the new data.
+    void startTransition(std::vector<double>&& from, int fromCount);
     // Effects refresh on the GUI thread once per frame, from QQuickWindow::afterAnimating.
     void connectAnimationTicks(QQuickWindow* window);
     void refreshEffects();
     void advanceTransition();
-    void applyTransitionData();
 
     QColor color_{ColorPalette::dark().seriesPrimary};
     qreal lineWidth_{1.0};
     bool hovered_{false};
     qreal hoverRadius_{10.0};
-    DataType dataType_{DataType::Double};
-    std::vector<double> data_;      // precise interleaved x,y pairs used by setData()
-    std::vector<float> dataF_;      // interleaved x,y pairs used by the *F APIs
-    std::vector<float> renderData_; // origin-relative GPU data derived from data_
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    bool renderLogScaleX_{false};
-    bool renderLogScaleY_{false};
-    bool renderOriginXSettled_{false};
-    bool renderOriginYSettled_{false};
-    int pointCount_{0};
-    // While its run is pending, data_ holds an animation frame and the run holds the data set by the caller.
+    // While its run is pending, the frames are the store's drawn points; the stored points are its target.
     std::unique_ptr<TransitionRunner> transition_;
+    // The previous transition frame, reused for the next one.
+    std::vector<double> frameBuffer_;
+    // A vertex cache passed with the data, installed once the data points changed.
+    std::optional<std::vector<char>> pendingVertexCache_;
     QPointer<QQuickWindow> animationTickWindow_;
     QPointer<LineStyle> lineStyle_{new SolidLine{this}};
     bool antialiasingEnabled_{true};
@@ -288,20 +258,18 @@ private:
     bool styleChanged_{false};
     LineCurveGaps* gaps_{new LineCurveGaps{this}};
     SeriesMarker* marker_{new SeriesMarker{MarkerShape::None, 4.0, SeriesMarker::NoneShape::Accepted, this}};
-    // NanGapMode::Connect copies with invalid samples removed. Only populated when
-    // Connect mode is on and the data contains invalid samples.
-    bool gapConnectCompacted_{false};
-    int gapConnectPointCount_{0};
-    std::vector<double> gapConnectData_;      // valid double samples (double data only)
-    std::vector<float> gapConnectRenderData_; // valid GPU samples; also the source view for float data
     QList<LineCurveEffect*> effects_;
     LineCurveLineRenderer lineRenderer_;
     LineCurvePointRenderer pointRenderer_;
 
-    // True when vertex buffer needs to be rebuilt (data, style or point-count changed).
-    // Does NOT include axis-range, color, lineWidth, or markerSize changes — those
-    // only require a material-uniform update, which happens every frame in paint().
+    // True when vertex buffer needs to be rebuilt (style or point-count changed). A change of the
+    // render data is told by its revision. Does NOT include axis-range, color, lineWidth, or
+    // markerSize changes — those only require a material-uniform update, which happens every frame in paint().
     bool dataChanged_{true};
+    // Render revision of the points last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
+    // Render revision of the points the vertex cache was built from.
+    std::uint64_t vertexCacheRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
 

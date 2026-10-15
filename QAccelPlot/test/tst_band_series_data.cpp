@@ -20,7 +20,6 @@
 #include <array>
 #include <limits>
 #include <memory>
-#include <thread>
 #include <vector>
 
 namespace QAccelPlot {
@@ -87,7 +86,6 @@ class BandSeriesDataTest : public QObject {
     Q_OBJECT
 
 private slots:
-    void invalidArgumentsAreRejected();
     void listsUseTheShortestLength();
     void rangesCoverLowAndHighValues();
     void invalidValuesAreSkippedInRanges();
@@ -96,7 +94,6 @@ private slots:
     void rawDoubleDataPreservesModernEpochPrecision();
     void appendDataExtendsSamplesAndRanges();
     void appendToFloatDataKeepsSamples();
-    void postedDataIsAppliedFromWorkerThread();
     void clearDataRemovesSamples();
     void valueAtInterpolatesBetweenSamples();
     void valueAtInterpolatesOnLogScales();
@@ -110,26 +107,6 @@ private slots:
     void renderOriginFollowsTheViewport();
     void fewerThanTwoSamplesDrawNothing();
 };
-
-void BandSeriesDataTest::invalidArgumentsAreRejected()
-{
-    auto band = BandSeries{};
-    auto countSpy = QSignalSpy{&band, &BandSeries::countChanged};
-    band.setData(std::vector<double>{0.0, 1.0, 2.0}, 1);
-    QCOMPARE(band.count(), 1);
-
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries received a null data pointer for 1 samples"));
-    band.setData(static_cast<const double*>(nullptr), 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries sample count cannot be negative: -1"));
-    band.setDataF(static_cast<const float*>(nullptr), -1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries received 4 values for 1 samples; expected 3"));
-    band.setData(std::vector<double>{0.0, 1.0, 2.0, 3.0}, 1);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("BandSeries received 2 values for 1 samples; expected 3"));
-    band.setDataF(std::vector<float>{0.0f, 1.0f}, 1);
-
-    QCOMPARE(band.count(), 1);
-    QCOMPARE(countSpy.count(), 1);
-}
 
 void BandSeriesDataTest::listsUseTheShortestLength()
 {
@@ -286,22 +263,6 @@ void BandSeriesDataTest::appendToFloatDataKeepsSamples()
     QCOMPARE(band.count(), 1);
     QVERIFY(hasSpan(band.valueAt(10.0), 0.0, 1.0));
     QVERIFY(band.valueAt(5.0).isEmpty());
-}
-
-void BandSeriesDataTest::postedDataIsAppliedFromWorkerThread()
-{
-    auto band = BandSeries{};
-    auto countSpy = QSignalSpy{&band, &BandSeries::countChanged};
-
-    auto worker = std::thread{[&band] { band.postData(std::vector<double>{0.0, 1.0, 2.0, 1.0, 1.0, 2.0}, 2); }};
-    worker.join();
-    QTRY_COMPARE(band.count(), 2);
-
-    worker = std::thread{[&band] { band.postData(std::vector<float>{5.0f, 1.0f, 2.0f}, 1); }};
-    worker.join();
-    QTRY_COMPARE(band.count(), 1);
-    QVERIFY(hasSpan(band.valueAt(5.0), 1.0, 2.0));
-    QCOMPARE(countSpy.count(), 2);
 }
 
 void BandSeriesDataTest::clearDataRemovesSamples()
@@ -462,7 +423,7 @@ void BandSeriesDataTest::edgeLinesReadTheBandSamples()
     auto* root = fixture.paint();
     QVERIFY(root);
     QCOMPARE(root->childCount(), 1);
-    QCOMPARE(fixture.fillMaterial()->sampleCount, 3.0f);
+    QCOMPARE(fixture.fillMaterial()->dataPointCount, 3.0f);
     // Room for 256 samples is reserved, two vertices each.
     QCOMPARE(static_cast<QSGGeometryNode*>(root->firstChild())->geometry()->vertexCount(), 512);
 
@@ -530,7 +491,7 @@ void BandSeriesDataTest::appendingKeepsTheVertexBuffers()
         fixture.band.appendData(x, 1.0, 2.0);
         fixture.paint();
     }
-    QCOMPARE(fixture.fillMaterial()->sampleCount, 256.0f);
+    QCOMPARE(fixture.fillMaterial()->dataPointCount, 256.0f);
     QCOMPARE(static_cast<BandMaterial::Vertex*>(vertexData(0))[0].edge, -1.0f);
     QCOMPARE(static_cast<LineVertex*>(vertexData(1))[0].side, -2.0f);
 

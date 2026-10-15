@@ -118,7 +118,7 @@ bool SourceInspection::isSorted(const InspectionSource& source, const Inspection
     auto previous = std::numeric_limits<double>::lowest();
     for (auto i = 0; i < source.count; ++i) {
         const auto value = source.coordinate(axis, i);
-        if (!isValidSample(value, false) || value < previous) {
+        if (!isValidCoordinate(value, false) || value < previous) {
             return false;
         }
         previous = value;
@@ -157,7 +157,7 @@ InspectionHit SourceInspection::nearestAlong(
     }
     auto after = nextValid(source, pivot);
     if (after >= 0) {
-        // Among samples sharing this coordinate, the highest index is the one drawn last.
+        // Among data points sharing this coordinate, the highest index is the one drawn last.
         const auto shared = source.coordinate(order, after);
         for (auto i = after + 1; i < source.count && source.coordinate(order, i) == shared; ++i) {
             if (source.valid(i)) {
@@ -236,7 +236,7 @@ void SourceInspection::collect(
         const auto covered = coverage(source, order, bounds, index, end);
         const auto matches = covered == Coverage::Full ? block(source, index / kBlockSize).stats.count : 0;
         if (covered == Coverage::Full && offset >= matches) {
-            // Every valid sample of the block matches, so the whole block can be skipped.
+            // Every valid data point of the block matches, so the whole block can be skipped.
             offset -= matches;
         } else if (covered != Coverage::None) {
             scanCollect(source, bounds, index, end, offset, limit, indices);

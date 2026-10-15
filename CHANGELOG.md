@@ -13,8 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Data inspection via `PlotInspector` and `SelectionTool`: a crosshair,
   per-series markers, and a tooltip at the cursor, region selection with
   statistics, theme colors, and a Data inspection example.
-- Sample queries on every series via `PlotSeries.inspection`: the nearest sample,
-  its neighbors, statistics of a region, and the indices inside it.
+- Data point queries on every series via `PlotSeries.inspection`: the nearest
+  data point, its neighbors, statistics of a region, and the indices inside it.
 - `PlotView.overlay` for items drawn above the series, and the pointer position
   via `pointerPosition` and `pointerInside`.
 - `Axis.formatValue()`, which formats a value at the precision of the current
@@ -51,6 +51,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- `PlotSeries::setData()`, `setDataF()`, and `postData()` are no longer virtual:
+  C++ subclasses pass their data point layout to the `PlotSeries` constructor.
 - Renamed the C++ and QML `RectangleList` type to `RectangleSeries`. Include
   `<QAccelPlot/series/RectangleSeries.hpp>` in C++ code.
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
@@ -124,7 +126,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   longer crashes.
 - `GradientFill` on dense data reaches the curve's peaks and troughs.
 - Gradient effects with a `DataRange` bound use the curve's own data extent, not the whole axis range.
-- `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first sample, e.g. at the end of a long timestamp series.
+- `LineCurve` and `PointCloud` keep double precision when the viewport is far from the first data point, e.g. at the end of a long timestamp series.
 - Hovering a `PointCloud` whose points lie on a long horizontal line no longer
   tests every point.
 - `PointCloud` no longer hovers points beyond the GPU texture capacity, which are not drawn.

@@ -9,6 +9,7 @@
 
 #include "QAccelPlot/materials/BandEdgeMaterial.hpp"
 #include "QAccelPlot/renderers/LineStroke.hpp"
+#include "QAccelPlot/series/DataPointStore.hpp"
 
 #include <QSGGeometryNode>
 #include <QVector2D>
@@ -22,30 +23,16 @@ namespace QAccelPlot {
 class Axis;
 class DataTexture;
 
-/// \brief Read-only view over interleaved <tt>(x, low, high)</tt> band samples in float or double precision.
-struct BandSamples {
-    const float* floatData{nullptr};   ///< \brief Float samples, or \c nullptr when \c doubleData is set.
-    const double* doubleData{nullptr}; ///< \brief Double samples, or \c nullptr when \c floatData is set.
-    int count{0};                      ///< \brief Number of samples.
-
-    /// \brief Returns value \a component (0 = x, 1 = low, 2 = high) of sample \a index without narrowing double data.
-    qreal value(const int index, const int component) const
-    {
-        const auto offset = static_cast<std::size_t>(index) * 3 + static_cast<std::size_t>(component);
-        return doubleData ? static_cast<qreal>(doubleData[offset]) : static_cast<qreal>(floatData[offset]);
-    }
-};
-
 /// \brief Inputs for BandEdgeRenderer::paint(), assembled while the GUI thread is blocked.
 struct BandEdgeRenderParams {
     std::shared_ptr<DataTexture> dataTexture; ///< \brief The band's data texture; the edge line never uploads data itself.
-    BandSamples samples;                      ///< \brief CPU copy of the band samples, used for dash lengths.
-    LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c samples.count.
+    DataPointStore::View dataPoints;          ///< \brief The band's <tt>(x, low, high)</tt> data points, used for dash lengths.
+    LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c dataPoints.count.
     Axis* xAxis;                              ///< \brief Horizontal axis.
     Axis* yAxis;                              ///< \brief Vertical axis.
-    bool dataChanged;                         ///< \brief Whether the samples changed since the last paint.
-    /// \brief Samples the vertex buffer holds room for, at least \c samples.count, so appends rarely resize it.
-    int reservedSampleCount;
+    bool dataChanged;                         ///< \brief Whether the data points changed since the last paint.
+    /// \brief Data points the vertex buffer holds room for, at least \c dataPoints.count, so appends rarely resize it.
+    int reservedCount;
 };
 
 /// \brief Internal renderer for the lower or upper edge line of a \c BandSeries.

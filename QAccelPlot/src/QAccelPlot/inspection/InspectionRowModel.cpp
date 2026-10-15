@@ -25,21 +25,21 @@ QString seriesName(const PlotSeries* series)
     return series->name().isEmpty() ? series->objectName() : series->name();
 }
 
-QVariant sampleData(const InspectionRow& row, const int role)
+QVariant dataPointData(const InspectionRow& row, const int role)
 {
     switch (role) {
     case InspectionRowModel::ValidRole:
-        return row.sample.valid();
-    case InspectionRowModel::SampleStatusRole:
-        return QVariant::fromValue(row.sample.status);
-    case InspectionRowModel::SampleIndexRole:
-        return row.sample.index;
-    case InspectionRowModel::SampleXRole:
-        return row.sample.x();
-    case InspectionRowModel::SampleYRole:
-        return row.sample.y();
-    case InspectionRowModel::SampleValueRole:
-        return row.sample.value;
+        return row.dataPoint.valid();
+    case InspectionRowModel::DataPointStatusRole:
+        return QVariant::fromValue(row.dataPoint.status);
+    case InspectionRowModel::DataPointIndexRole:
+        return row.dataPoint.index;
+    case InspectionRowModel::DataPointXRole:
+        return row.dataPoint.x();
+    case InspectionRowModel::DataPointYRole:
+        return row.dataPoint.y();
+    case InspectionRowModel::DataPointValueRole:
+        return row.dataPoint.value;
     case InspectionRowModel::XTextRole:
         return row.xText;
     case InspectionRowModel::YTextRole:
@@ -47,9 +47,9 @@ QVariant sampleData(const InspectionRow& row, const int role)
     case InspectionRowModel::PixelPositionRole:
         return row.pixelPosition;
     case InspectionRowModel::DistanceRole:
-        return row.sample.distance;
+        return row.dataPoint.distance;
     case InspectionRowModel::InterpolatedRole:
-        return row.sample.interpolated;
+        return row.dataPoint.interpolated;
     default:
         return {};
     }
@@ -113,18 +113,19 @@ QVariant InspectionRowModel::data(const QModelIndex& index, const int role) cons
     case SeriesColorRole:
         return row.series ? row.series->property("color") : QVariant{QColor{}};
     default:
-        return role < HasSummaryRole ? sampleData(row, role) : summaryData(row, role);
+        return role < HasSummaryRole ? dataPointData(row, role) : summaryData(row, role);
     }
 }
 
 QHash<int, QByteArray> InspectionRowModel::roleNames() const
 {
-    return {{SeriesRole, "series"}, {SeriesNameRole, "seriesName"}, {SeriesColorRole, "seriesColor"}, {ValidRole, "valid"}, {SampleStatusRole, "sampleStatus"},
-        {SampleIndexRole, "sampleIndex"}, {SampleXRole, "sampleX"}, {SampleYRole, "sampleY"}, {SampleValueRole, "sampleValue"}, {XTextRole, "xText"},
-        {YTextRole, "yText"}, {PixelPositionRole, "pixelPosition"}, {DistanceRole, "distance"}, {InterpolatedRole, "interpolated"},
-        {HasSummaryRole, "hasSummary"}, {SummaryStatusRole, "summaryStatus"}, {SummaryCountRole, "summaryCount"}, {MinimumRole, "minimum"},
-        {MaximumRole, "maximum"}, {MeanRole, "mean"}, {StandardDeviationRole, "standardDeviation"}, {MinimumIndexRole, "minimumIndex"},
-        {MaximumIndexRole, "maximumIndex"}, {MinimumTextRole, "minimumText"}, {MaximumTextRole, "maximumText"}, {MeanTextRole, "meanText"}};
+    return {{SeriesRole, "series"}, {SeriesNameRole, "seriesName"}, {SeriesColorRole, "seriesColor"}, {ValidRole, "valid"},
+        {DataPointStatusRole, "dataPointStatus"}, {DataPointIndexRole, "dataPointIndex"}, {DataPointXRole, "dataPointX"}, {DataPointYRole, "dataPointY"},
+        {DataPointValueRole, "dataPointValue"}, {XTextRole, "xText"}, {YTextRole, "yText"}, {PixelPositionRole, "pixelPosition"}, {DistanceRole, "distance"},
+        {InterpolatedRole, "interpolated"}, {HasSummaryRole, "hasSummary"}, {SummaryStatusRole, "summaryStatus"}, {SummaryCountRole, "summaryCount"},
+        {MinimumRole, "minimum"}, {MaximumRole, "maximum"}, {MeanRole, "mean"}, {StandardDeviationRole, "standardDeviation"},
+        {MinimumIndexRole, "minimumIndex"}, {MaximumIndexRole, "maximumIndex"}, {MinimumTextRole, "minimumText"}, {MaximumTextRole, "maximumText"},
+        {MeanTextRole, "meanText"}};
 }
 
 int InspectionRowModel::count() const

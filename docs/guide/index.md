@@ -21,9 +21,9 @@ frame.
   worker-thread `postData()`
 - **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
   hover hit testing, and plot mouse events for custom tools
-- **Inspection** — crosshair, tooltip, nearest-sample queries, and region
+- **Inspection** — crosshair, tooltip, nearest-data-point queries, and region
   selection with statistics
-- **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
+- **Invalid data points** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions

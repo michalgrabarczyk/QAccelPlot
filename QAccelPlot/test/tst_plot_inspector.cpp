@@ -148,8 +148,8 @@ void TestPlotInspector::rows()
     QCOMPARE(row.value("seriesName").toString(), QStringLiteral("curve"));
     QCOMPARE(row.value("seriesColor").value<QColor>(), curve->color());
     QVERIFY(row.value("valid").toBool());
-    QCOMPARE(row.value("sampleIndex").toInt(), 0);
-    QCOMPARE(row.value("sampleY").toDouble(), 3.14159);
+    QCOMPARE(row.value("dataPointIndex").toInt(), 0);
+    QCOMPARE(row.value("dataPointY").toDouble(), 3.14159);
     // Texts follow the pixel resolution instead of the tick step.
     QCOMPARE(row.value("yText").toString(), QStringLiteral("3.142"));
     QCOMPARE(row.value("xText").toString(), QStringLiteral("1.000"));
@@ -160,7 +160,7 @@ void TestPlotInspector::rows()
     auto changes = QSignalSpy{model, &QAbstractItemModel::dataChanged};
     rig.hover(rig.pixel(8, 5));
     inspector.refresh();
-    QCOMPARE(model->get(0).value("sampleIndex").toInt(), 1);
+    QCOMPARE(model->get(0).value("dataPointIndex").toInt(), 1);
     QCOMPARE(resets.count(), 1);
     QCOMPARE(changes.count(), 1);
 
@@ -191,7 +191,7 @@ void TestPlotInspector::matching()
     QVERIFY(rowAt(rig.pixel(9.1, 5)).value("valid").toBool());
     const auto beyond = rowAt(rig.pixel(9.9, 5));
     QVERIFY(!beyond.value("valid").toBool());
-    QCOMPARE(beyond.value("sampleStatus").value<InspectionStatus>(), InspectionStatus::NoMatch);
+    QCOMPARE(beyond.value("dataPointStatus").value<InspectionStatus>(), InspectionStatus::NoMatch);
     QCOMPARE(inspector.validCount(), 0);
 
     // NearestXY always applies the radius.
@@ -204,8 +204,8 @@ void TestPlotInspector::matching()
     inspector.setInterpolate(true);
     const auto between = rowAt(rig.pixel(5, 5));
     QVERIFY(between.value("interpolated").toBool());
-    QVERIFY(std::abs(between.value("sampleX").toDouble() - 5.0) < 1e-9);
-    QVERIFY(std::abs(between.value("sampleY").toDouble() - 4.5) < 1e-9);
+    QVERIFY(std::abs(between.value("dataPointX").toDouble() - 5.0) < 1e-9);
+    QVERIFY(std::abs(between.value("dataPointY").toDouble() - 4.5) < 1e-9);
 }
 
 void TestPlotInspector::matchingByY()
@@ -224,8 +224,8 @@ void TestPlotInspector::matchingByY()
     };
 
     // Between two samples a series matches whatever the horizontal distance; past its ends the radius decides.
-    QCOMPARE(rowAt(rig.pixel(9, 2)).value("sampleIndex").toInt(), 0);
-    QCOMPARE(rowAt(rig.pixel(1, 8)).value("sampleIndex").toInt(), 1);
+    QCOMPARE(rowAt(rig.pixel(9, 2)).value("dataPointIndex").toInt(), 0);
+    QCOMPARE(rowAt(rig.pixel(1, 8)).value("dataPointIndex").toInt(), 1);
     QVERIFY(rowAt(rig.pixel(5, 9.1)).value("valid").toBool());
     QVERIFY(!rowAt(rig.pixel(5, 9.9)).value("valid").toBool());
 
@@ -233,12 +233,12 @@ void TestPlotInspector::matchingByY()
     inspector.setInterpolate(true);
     const auto between = rowAt(rig.pixel(9, 5));
     QVERIFY(between.value("interpolated").toBool());
-    QVERIFY(std::abs(between.value("sampleX").toDouble() - 4.5) < 1e-9);
-    QVERIFY(std::abs(between.value("sampleY").toDouble() - 5.0) < 1e-9);
+    QVERIFY(std::abs(between.value("dataPointX").toDouble() - 4.5) < 1e-9);
+    QVERIFY(std::abs(between.value("dataPointY").toDouble() - 5.0) < 1e-9);
     inspector.setInterpolate(false);
 
     // Snapping moves the crosshair's Y only, and summaries cover the band around the cursor.
-    inspector.setSnapToSample(true);
+    inspector.setSnapToDataPoint(true);
     inspector.setSummaries(true);
     inspector.setSummaryRadius(1000);
     const auto snapped = rowAt(rig.pixel(9, 2));
@@ -247,7 +247,7 @@ void TestPlotInspector::matchingByY()
     QCOMPARE(snapped.value("summaryCount").toInt(), 2);
 
     // A cursor set from code with only a Y has no vertical line and matches by Y in every mode.
-    inspector.setSnapToSample(false);
+    inspector.setSnapToDataPoint(false);
     inspector.setMode(PlotInspector::NearestX);
     inspector.setFollowPointer(false);
     inspector.setCursorY(8);
@@ -255,7 +255,7 @@ void TestPlotInspector::matchingByY()
     QVERIFY(inspector.active());
     QVERIFY(std::isnan(inspector.position().x()));
     QCOMPARE(inspector.position().y(), rig.pixel(0, 8).y());
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 1);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 1);
     QCOMPARE(inspector.cursorXText(), QString{});
     QCOMPARE(inspector.cursorYText(), QStringLiteral("8.000"));
 }
@@ -371,7 +371,7 @@ void TestPlotInspector::cursor()
     QVERIFY(inspector.active());
     QCOMPARE(inspector.position().x(), rig.pixel(5.2, 0).x());
     QVERIFY(std::isnan(inspector.position().y()));
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 2);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 2);
     QCOMPARE(inspector.cursorYText(), QString{});
     inspector.setCursorY(4);
     inspector.refresh();
@@ -379,12 +379,12 @@ void TestPlotInspector::cursor()
 
     // Stepping walks the records of the first matching series.
     inspector.stepCursor(1);
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 3);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 3);
     QVERIFY(std::abs(inspector.cursorX() - 7.0) < 1e-9);
     inspector.stepCursor(-2);
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 1);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 1);
     inspector.stepCursor(-10);
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 0);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 0);
 
     // Outside the viewport the cursor is inactive but kept.
     inspector.setCursorX(50);
@@ -398,7 +398,7 @@ void TestPlotInspector::cursor()
     inspector.refresh();
     inspector.stepCursor(1);
     QVERIFY(!inspector.followPointer());
-    QCOMPARE(inspector.model()->get(0).value("sampleIndex").toInt(), 2);
+    QCOMPARE(inspector.model()->get(0).value("dataPointIndex").toInt(), 2);
 }
 
 void TestPlotInspector::snapsToClosest()
@@ -411,7 +411,7 @@ void TestPlotInspector::snapsToClosest()
     inspector.setPlot(&rig.plot);
     inspector.setMode(PlotInspector::NearestXY);
     inspector.setRadius(1000);
-    inspector.setSnapToSample(true);
+    inspector.setSnapToDataPoint(true);
     rig.hover(rig.pixel(5, 5));
     inspector.refresh();
     QCOMPARE(inspector.validCount(), 2);
@@ -447,7 +447,7 @@ void TestPlotInspector::formatterMutation()
     QCOMPARE(inspector.model()->count(), 1);
     QTRY_COMPARE(inspector.validCount(), 1);
     QCOMPARE(inspector.model()->get(0).value("series").value<PlotSeries*>(), curve);
-    QCOMPARE(inspector.model()->get(0).value("sampleY").toDouble(), 8.0);
+    QCOMPARE(inspector.model()->get(0).value("dataPointY").toDouble(), 8.0);
     rig.x.ticker()->setTickLabelFormatter(nullptr);
 }
 

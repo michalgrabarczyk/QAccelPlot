@@ -10,6 +10,7 @@
 #include "BenchmarkScenario.hpp"
 
 #include <QAccelPlot/renderers/LineCurveLineRenderer.hpp>
+#include <QAccelPlot/series/DataPointStore.hpp>
 #include <QAccelPlot/series/LineCurve.hpp>
 #include <QAccelPlot/series/PointCloud.hpp>
 #include <QAccelPlot/series/PointSpatialIndex.hpp>
@@ -34,6 +35,18 @@ std::vector<float> makeSineData(const int pointCount)
     for (auto i = 0; i < pointCount; ++i) {
         data[static_cast<std::size_t>(i) * 2] = static_cast<float>(i);
         data[static_cast<std::size_t>(i) * 2 + 1] = std::sin(static_cast<float>(i) * 0.01f);
+    }
+    return data;
+}
+
+// A sine over epoch-millisecond timestamps, which float data could not resolve.
+std::vector<double> makeEpochSineData(const int pointCount)
+{
+    constexpr auto kEpochMs = 1.7e12;
+    auto data = std::vector<double>(static_cast<std::size_t>(pointCount) * 2);
+    for (auto i = 0; i < pointCount; ++i) {
+        data[static_cast<std::size_t>(i) * 2] = kEpochMs + static_cast<double>(i);
+        data[static_cast<std::size_t>(i) * 2 + 1] = std::sin(static_cast<double>(i) * 0.01);
     }
     return data;
 }
@@ -120,6 +133,38 @@ void runDataIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScena
     runTimedLoop(reporter, scenario, [&]() { dataCopy = data; }, [&]() { curve.setDataF(std::move(dataCopy), pointCount); });
 }
 
+void runDoubleIngestionBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
+{
+    const auto pointCount = scenario.pointCount();
+    const auto data = makeEpochSineData(pointCount);
+    auto curve = LineCurve{};
+    auto dataCopy = std::vector<double>{};
+
+    // Includes building the float render data relative to the render origin.
+    runTimedLoop(reporter, scenario, [&]() { dataCopy = data; }, [&]() { curve.setData(std::move(dataCopy), pointCount); });
+}
+
+void runRenderOriginRebaseBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
+{
+    const auto pointCount = scenario.pointCount();
+    using Dimension = DataPointStore::Dimension;
+    auto store = DataPointStore{DataPointStore::Layout{{Dimension::X, Dimension::Y}, DataPointStore::RangeRule::EachCoordinate, 0}};
+    store.setPrecise(makeEpochSineData(pointCount), pointCount);
+    const auto first = store.value(0, 0);
+    const auto last = store.value(pointCount - 1, 0);
+    auto atEnd = false;
+
+    // Each iteration moves the viewport to the other end of the data, far enough to move the origin.
+    runTimedLoop(
+        reporter, scenario, []() {},
+        [&]() {
+            atEnd = !atEnd;
+            const auto center = atEnd ? last : first;
+            store.setDimensionState(Dimension::X, DataPointStore::DimensionState{false, DataPointStore::Viewport{center - 5.0, center + 5.0}});
+            static_cast<void>(store.renderData());
+        });
+}
+
 void runVertexCacheBenchmark(BenchmarkReporter& reporter, const BenchmarkScenario& scenario)
 {
     const auto pointCount = scenario.pointCount();
@@ -193,6 +238,10 @@ int main(int argc, char* argv[])
     for (const auto& scenario : scenarios) {
         if (scenario.name().startsWith("data_ingestion")) {
             runDataIngestionBenchmark(reporter, scenario);
+        } else if (scenario.name().startsWith("double_ingestion")) {
+            runDoubleIngestionBenchmark(reporter, scenario);
+        } else if (scenario.name().startsWith("render_origin_rebase")) {
+            runRenderOriginRebaseBenchmark(reporter, scenario);
         } else if (scenario.name().startsWith("vertex_cache")) {
             runVertexCacheBenchmark(reporter, scenario);
         } else if (scenario.name().startsWith("point_cloud_ingestion")) {
