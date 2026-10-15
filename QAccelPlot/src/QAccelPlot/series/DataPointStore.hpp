@@ -119,6 +119,8 @@ public:
     /// \brief Replaces the float attributes: empty, or \c attributeCount floats per data point.
     void setAttributes(std::vector<float>&& attributes);
     /// \brief Replaces the categories: empty, or one per data point.
+    ///
+    /// Replacing the data points drops the categories; appending gives the new data point -1.
     void setCategories(std::vector<int>&& categories);
     /// \brief Appends one double data point of \c columnCount() coordinates; promotes float data first.
     ///

@@ -114,6 +114,7 @@ void DataPointStore::setPrecise(std::vector<double>&& coordinates, const int cou
     count_ = count;
     isPrecise_ = true;
     hasAttributes_ = !attributes_.empty() && layout_.attributeCount > 0;
+    categories_.clear();
     dataPointsChanged();
 }
 
@@ -129,6 +130,7 @@ void DataPointStore::assignPrecise(const double* coordinates, const int count)
     count_ = count;
     isPrecise_ = true;
     hasAttributes_ = false;
+    categories_.clear();
     dataPointsChanged();
 }
 
@@ -138,6 +140,7 @@ void DataPointStore::setFloat(std::vector<float>&& coordinates, const int count,
     Q_ASSERT(attributes.empty() || attributes.size() == static_cast<std::size_t>(count) * static_cast<std::size_t>(layout_.attributeCount));
     count_ = count;
     storeFloatCoordinates(std::move(coordinates), std::move(attributes));
+    categories_.clear();
     dataPointsChanged();
 }
 
@@ -153,6 +156,7 @@ void DataPointStore::assignFloat(const float* coordinates, const int count)
     count_ = count;
     isPrecise_ = false;
     hasAttributes_ = false;
+    categories_.clear();
     dataPointsChanged();
 }
 
@@ -554,7 +558,7 @@ void DataPointStore::storeFloatCoordinates(std::vector<float>&& coordinates, std
 
 void DataPointStore::dataPointsChanged()
 {
-    if (!categories_.empty() && categories_.size() != static_cast<std::size_t>(count_)) {
+    if (categories_.size() != static_cast<std::size_t>(count_)) {
         categories_.clear();
     }
     if (hasDrawn_ && drawn_.size() != static_cast<std::size_t>(drawnCount_) * static_cast<std::size_t>(renderStride())) {

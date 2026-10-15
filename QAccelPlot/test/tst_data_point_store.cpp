@@ -71,7 +71,7 @@ private slots:
     void drawnDataPointsReplaceTheRenderedOnes();
     void skipInvalidLeavesInvalidDataPointsOut();
     void skipInvalidFollowsTheScale();
-    void categoriesAreDroppedWhenTheCountChanges();
+    void categoriesFollowTheDataPoints();
     void clearEmptiesTheStore();
 };
 
@@ -398,17 +398,18 @@ void DataPointStoreTest::skipInvalidFollowsTheScale()
     QCOMPARE(store.renderCount(), 2);
 }
 
-void DataPointStoreTest::categoriesAreDroppedWhenTheCountChanges()
+void DataPointStoreTest::categoriesFollowTheDataPoints()
 {
     auto store = xyStore();
     store.setPrecise({1.0, 2.0, 3.0, 4.0}, 2);
     store.setCategories({0, 1});
     QVERIFY(store.hasCategories());
 
-    store.setPrecise({5.0, 6.0, 7.0, 8.0}, 2);
-    QCOMPARE(store.categories(), (std::vector<int>{0, 1}));
+    const auto point = std::array<double, 2>{5.0, 6.0};
+    store.append(point.data());
+    QCOMPARE(store.categories(), (std::vector<int>{0, 1, -1}));
 
-    store.setPrecise({5.0, 6.0}, 1);
+    store.setPrecise({5.0, 6.0, 7.0, 8.0}, 2);
     QVERIFY(!store.hasCategories());
 }
 

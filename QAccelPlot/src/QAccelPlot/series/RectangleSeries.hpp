@@ -122,36 +122,20 @@ public:
     /// the fill color from \c categoryColors.
     Q_INVOKABLE void setData(const QVariantList& rects);
 
-    /// \brief Loads rectangles from a C++ raw double array, preserving full precision for large
-    /// coordinates (e.g. modern Unix-epoch timestamps). \a data must have \a rectCount × 4 doubles.
-    void setData(const double* data, int rectCount) override;
-
-    /// \brief Moves \a data (\a rectCount × 4 doubles: x1, y1, x2, y2) into the series and clears categories. No copy is made.
-    void setData(std::vector<double>&& data, int rectCount) override;
+    // The PlotSeries overloads take interleaved (x1, y1, x2, y2) rectangles, as doubles or floats,
+    // and clear the categories.
+    using PlotSeries::postData;
+    using PlotSeries::setData;
+    using PlotSeries::setDataF;
 
     /// \brief Moves \a data and per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
 
-    /// \brief High-performance C++ overload: copies \a rectCount × 4 floats (x1, y1, x2, y2) from \a data and clears categories.
-    void setDataF(const float* data, int rectCount) override;
-
-    /// \brief High-performance C++ overload: moves \a data (\a rectCount × 4 floats) into the series and clears categories.
-    void setDataF(std::vector<float>&& data, int rectCount) override;
-
     /// \brief Like \c setDataF(\a data, \a rectCount) and also moves per-rectangle \a categories (empty, or exactly \a rectCount) into the series.
     void setDataF(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
 
-    using PlotSeries::setData;
-    using PlotSeries::setDataF;
-
-    /// \brief Thread-safe: queues \c setData(\a data, \a rectCount) to the item's thread.
-    void postData(std::vector<double>&& data, int rectCount) override;
-
     /// \brief Thread-safe: queues \c setData(\a data, \a categories, \a rectCount) to the item's thread.
     void postData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
-
-    /// \brief Thread-safe: queues \c setDataF(\a data, \a rectCount) to the item's thread.
-    void postData(std::vector<float>&& data, int rectCount) override;
 
     /// \brief Thread-safe: queues \c setDataF(\a data, \a categories, \a rectCount) to the item's thread.
     void postData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
@@ -200,21 +184,15 @@ protected:
     void hoverEnterEvent(QHoverEvent* event) override;
     void hoverMoveEvent(QHoverEvent* event) override;
     void hoverLeaveEvent(QHoverEvent* event) override;
-    /// \brief Invalidates uploaded coordinates when an axis changes scale.
+    /// \brief Repaints with the coordinates mapped for the new scale.
     void onAxisScaleChanged() override;
-    /// \brief Moves the render origin to the new viewport when the uploaded float coordinates would lose precision there.
-    void onAxisRangeChanged() override;
-    DataRanges computeDataRanges() const override;
+    /// \brief Refreshes the vertices, the hover index, and the count after the rectangles changed.
+    void onDataPointsChanged(DataChange change, int previousCount) override;
 
 private:
-    bool validateRawDataArguments(const void* data, int rectCount) const;
-    bool validateDataArguments(std::size_t valueCount, std::size_t categoryCount, int rectCount) const;
+    bool validateCategories(std::size_t categoryCount, int rectCount) const;
     void applyData(std::vector<double>&& data, std::vector<int>&& categories, int rectCount);
     void applyFloatData(std::vector<float>&& data, std::vector<int>&& categories, int rectCount);
-    void setDataFFromArray(const float* data, int rectCount);
-    void finishDataChange(std::vector<int>&& categories, int rectCount);
-    // True when the double setData() overloads supplied the data; false for the setDataF() overloads.
-    bool hasPreciseData() const;
     // Returns edge \a component (0 = x1, 1 = y1, 2 = x2, 3 = y2) of rectangle \a index.
     double coordinate(int index, int component) const;
     bool hasCategories() const;
@@ -247,10 +225,6 @@ private:
     int topmostRectangleAt(const QPointF& position) const;
     // Builds the vertices of the first \a rectCount rectangles.
     void buildVertexCache(int rectCount);
-    // Rebuilds renderData_ (origin-relative float coordinates) from the double-precision
-    // data_, so the GPU upload stays accurate for large coordinates
-    // (e.g. modern Unix-epoch timestamps) without needing double-precision textures.
-    void rebuildRenderData(bool logScaleX, bool logScaleY);
 
     QColor color_;
     QList<QColor> categoryColors_;
@@ -259,20 +233,14 @@ private:
     qreal minimumWidth_{1.0};
     qreal minimumHeight_{1.0};
     int hoveredIndex_{-1};
-    // Data: 4 doubles per rect (x1, y1, x2, y2), full precision. Empty when setDataF() supplied the data.
-    std::vector<double> data_;
-    // One category per rect, or empty when no rectangle has one.
-    std::vector<int> categories_;
-    // Uploaded to the GPU: an origin-relative float mirror of data_, or the setDataF() data itself.
-    std::vector<float> renderData_;
-    qreal renderOriginX_{0.0};
-    qreal renderOriginY_{0.0};
-    int rectCount_{0};
-    bool dataChanged_{false};
+    // Render revision of the rectangles last uploaded to the GPU.
+    std::uint64_t uploadedRevision_{0};
     // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
     bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
+    // Whether the vertex cache holds category colors.
+    bool vertexCacheHasCategories_{false};
     // Built once scanning the same data has cost as much as the build, so streaming skips it.
     mutable SpatialGrid spatialGrid_;
     mutable bool spatialGridValid_{false};
