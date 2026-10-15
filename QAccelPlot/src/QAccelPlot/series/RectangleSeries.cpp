@@ -54,12 +54,13 @@ struct FiniteBounds {
 
 constexpr auto kValuesPerRectangle = 4;
 
-// Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone.
-template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount)
+// Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone. On a log
+// axis a non-positive edge reaches the plot edge like an infinite one, so it doesn't widen them either.
+template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount, const bool logScaleX, const bool logScaleY)
 {
     auto bounds = FiniteBounds{};
-    const auto include = [](const T value, qreal& min, qreal& max) {
-        if (std::isfinite(value)) {
+    const auto include = [](const T value, const bool logScale, qreal& min, qreal& max) {
+        if (isValidSample(static_cast<double>(value), logScale)) {
             min = std::min(min, static_cast<qreal>(value));
             max = std::max(max, static_cast<qreal>(value));
         }
@@ -69,10 +70,10 @@ template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCou
         if (std::isnan(rect[0]) || std::isnan(rect[1]) || std::isnan(rect[2]) || std::isnan(rect[3])) {
             continue;
         }
-        include(rect[0], bounds.xMin, bounds.xMax);
-        include(rect[2], bounds.xMin, bounds.xMax);
-        include(rect[1], bounds.yMin, bounds.yMax);
-        include(rect[3], bounds.yMin, bounds.yMax);
+        include(rect[0], logScaleX, bounds.xMin, bounds.xMax);
+        include(rect[2], logScaleX, bounds.xMin, bounds.xMax);
+        include(rect[1], logScaleY, bounds.yMin, bounds.yMax);
+        include(rect[3], logScaleY, bounds.yMin, bounds.yMax);
     }
     return bounds;
 }
@@ -601,6 +602,7 @@ void RectangleSeries::onAxisScaleChanged()
     if (hasPreciseData()) {
         dataChanged_ = true;
     }
+    invalidateDataRanges();
     update();
 }
 
@@ -737,8 +739,11 @@ void RectangleSeries::onAxisRangeChanged()
 
 PlotSeries::DataRanges RectangleSeries::computeDataRanges() const
 {
-    const auto bounds = hasPreciseData() ? finiteBounds(data_.data(), rectCount_) : finiteBounds(renderData_.data(), rectCount_);
-    // A dimension without a finite edge has min > max, which the base class treats as unset.
+    const auto logScaleX = xAxis() && xAxis()->logScale();
+    const auto logScaleY = yAxis() && yAxis()->logScale();
+    const auto bounds
+        = hasPreciseData() ? finiteBounds(data_.data(), rectCount_, logScaleX, logScaleY) : finiteBounds(renderData_.data(), rectCount_, logScaleX, logScaleY);
+    // A dimension without a valid edge has min > max, which the base class treats as unset.
     return {DataExtent{bounds.xMin, bounds.xMax}, DataExtent{bounds.yMin, bounds.yMax}};
 }
 
