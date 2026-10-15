@@ -7,6 +7,7 @@
 //
 #include "QAccelPlot/series/internal/SeriesSupport.hpp"
 
+#include "QAccelPlot/QAccelPlotLogging.hpp"
 #include "QAccelPlot/materials/internal/DataTextureLayout.hpp"
 
 #include <QQuickWindow>
@@ -73,6 +74,16 @@ int recordCapacity(QQuickWindow* window, const int floatsPerRecord, const int ve
     const auto textureRecords = dataTextureItemCapacity(maxTextureSize(window), floatsPerRecord);
     const auto geometryRecords = qint64{std::numeric_limits<int>::max() / vertexBytesPerRecord};
     return static_cast<int>(std::min({textureRecords, geometryRecords, kMaxExactVertexId}));
+}
+
+bool warnIfOutgrowsCapacity(const bool wasOverCapacity, const int recordCount, const int capacity, const char* seriesType, const char* records)
+{
+    const auto overCapacity = recordCount > capacity;
+    if (overCapacity && !wasOverCapacity) {
+        qCWarning(lcQAccelPlot) << seriesType << "has" << recordCount << records << "but draws at most" << capacity << "; the remaining" << records
+                                << "are not drawn.";
+    }
+    return overCapacity;
 }
 
 } // namespace QAccelPlot::Internal

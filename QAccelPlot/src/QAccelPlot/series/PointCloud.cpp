@@ -55,16 +55,6 @@ int pointCapacity(QQuickWindow* window, const int stride)
     return static_cast<int>(std::min<qint64>(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), stride), maxGeometryPoints));
 }
 
-void warnOnceIfOverCapacity(const int pointCount, const int capacity)
-{
-    static auto warned = false;
-    if (pointCount > capacity && !warned) {
-        qCWarning(lcQAccelPlot) << "PointCloud has" << pointCount << "points but the GPU data texture holds at most" << capacity
-                                << "; the remaining points are not drawn.";
-        warned = true;
-    }
-}
-
 QSGGeometryNode* createPointCloudNode()
 {
     auto* geometry = new QSGGeometry(PointCloudMaterial::attributeSet(), 0);
@@ -472,18 +462,18 @@ QSGNode* PointCloud::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* upda
         delete oldNode;
         return nullptr;
     }
+    const auto capacity = pointCapacity(window, stride());
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, pointCount_, capacity, "PointCloud", "points");
     const auto plotArea = resolvePlotRect();
     if (pointCount_ <= 0 || !xAxis() || !yAxis() || plotArea.width() <= 0.0 || plotArea.height() <= 0.0) {
         delete oldNode;
         return nullptr;
     }
 
-    const auto capacity = pointCapacity(window, stride());
     if (capacity != renderCapacity_) {
         renderCapacity_ = capacity;
         invalidateSpatialIndex();
     }
-    warnOnceIfOverCapacity(pointCount_, capacity);
     const auto renderCount = std::min(pointCount_, capacity);
     auto* node = oldNode ? static_cast<QSGGeometryNode*>(oldNode) : createPointCloudNode();
     auto* material = static_cast<PointCloudMaterial*>(node->material());

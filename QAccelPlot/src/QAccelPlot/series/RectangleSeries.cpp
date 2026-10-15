@@ -54,16 +54,6 @@ struct FiniteBounds {
 
 constexpr auto kValuesPerRectangle = 4;
 
-void warnOnceIfOverCapacity(const int rectCount, const int capacity)
-{
-    static auto warned = false;
-    if (rectCount > capacity && !warned) {
-        qCWarning(lcQAccelPlot) << "RectangleSeries has" << rectCount << "rectangles but draws at most" << capacity
-                                << "; the remaining rectangles are not drawn.";
-        warned = true;
-    }
-}
-
 // Infinite edges don't widen the bounds, so a full-height span leaves Y autoscaling alone.
 template <typename T> FiniteBounds finiteBounds(const T* data, const int rectCount)
 {
@@ -507,6 +497,9 @@ void RectangleSeries::setHoveredIndex(const int index)
 
 QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
+    auto* window = this->window();
+    const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, rectCount_, capacity, "RectangleSeries", "rectangles");
     if (rectCount_ <= 0) {
         delete oldNode;
         return nullptr;
@@ -517,7 +510,6 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
         return nullptr;
     }
 
-    auto* window = this->window();
     if (!window) {
         qCDebug(lcQAccelPlot) << "null window, returning nullptr";
         delete oldNode;
@@ -537,8 +529,6 @@ QSGNode* RectangleSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*
     auto* node = static_cast<QSGGeometryNode*>(oldNode);
     RectMaterial* material = nullptr;
     const auto nodeRecreated = !node;
-    const auto capacity = Internal::recordCapacity(window, kValuesPerRectangle, RectVertexCache::kBytesPerRect);
-    warnOnceIfOverCapacity(rectCount_, capacity);
     const auto drawnCount = std::min(rectCount_, capacity);
     if (vertexCache_.vertexCount() != drawnCount * RectVertexCache::kVerticesPerRect) {
         vertexCache_.invalidate();

@@ -185,15 +185,6 @@ int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints
     return capacity;
 }
 
-void warnOnceIfOverCapacity(const int pointCount, const int capacity)
-{
-    static auto warned = false;
-    if (pointCount > capacity && !warned) {
-        qCWarning(lcQAccelPlot) << "LineCurve has" << pointCount << "points but draws at most" << capacity << "; the remaining points are not drawn.";
-        warned = true;
-    }
-}
-
 }
 
 LineCurve::LineCurve(QQuickItem* parent)
@@ -614,7 +605,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     const auto capacity = pointCapacity(window(), hasLine, hasPoints);
-    warnOnceIfOverCapacity(renderPointCount(), capacity);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, renderPointCount(), capacity, "LineCurve", "points");
     const auto drawnPointCount = std::min(renderPointCount(), capacity);
     const auto minPoints = hasPoints ? 1 : 2;
     if (drawnPointCount < minPoints) {

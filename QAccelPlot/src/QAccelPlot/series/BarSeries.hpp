@@ -352,6 +352,8 @@ private:
     qreal renderOriginValue_{0.0};
     int barCount_{0};
     bool dataChanged_{false};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Built on the first hit test after a data or geometry change, so streaming without hover skips it.

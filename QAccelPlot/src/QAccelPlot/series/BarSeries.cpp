@@ -74,15 +74,6 @@ struct Extent {
     }
 };
 
-void warnOnceIfOverCapacity(const int barCount, const int capacity)
-{
-    static auto warned = false;
-    if (barCount > capacity && !warned) {
-        qCWarning(lcQAccelPlot) << "BarSeries has" << barCount << "bars but draws at most" << capacity << "; the remaining bars are not drawn.";
-        warned = true;
-    }
-}
-
 // Appends bars \a begin to \a end of \a source to \a bars with \a restValue as their value: the
 // state a bar grows from, or shrinks to.
 void appendRestingBars(std::vector<double>& bars, const std::vector<double>& source, const int begin, const int end, const int stride, const double restValue)
@@ -483,6 +474,8 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
 {
     auto* window = this->window();
     const auto drawnCount = drawnBarCount();
+    const auto capacity = Internal::recordCapacity(window, valuesPerBar(), RectVertexCache::kBytesPerRect);
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, drawnCount, capacity, "BarSeries", "bars");
     if (drawnCount <= 0 || !xAxis() || !yAxis() || plotRect().isEmpty() || !window) {
         return releaseNode(oldNode);
     }
@@ -508,8 +501,6 @@ QSGNode* BarSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData*)
         node->setFlag(QSGNode::OwnsMaterial);
     }
 
-    const auto capacity = Internal::recordCapacity(window, valuesPerBar(), RectVertexCache::kBytesPerRect);
-    warnOnceIfOverCapacity(drawnCount, capacity);
     const auto renderCount = std::min(drawnCount, capacity);
 
     // Vertices hold only ids and category colors, so coordinate changes don't rebuild them.

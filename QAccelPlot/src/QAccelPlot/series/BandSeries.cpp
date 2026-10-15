@@ -124,15 +124,6 @@ int reservedSampleCount(const int drawnSampleCount)
     return std::max(reserved, drawnSampleCount);
 }
 
-void warnOnceIfOverCapacity(const int sampleCount, const int capacity)
-{
-    static auto warned = false;
-    if (sampleCount > capacity && !warned) {
-        qCWarning(lcQAccelPlot) << "BandSeries has" << sampleCount << "samples but draws at most" << capacity << "; the remaining samples are not drawn.";
-        warned = true;
-    }
-}
-
 QSGGeometryNode* createFillNode()
 {
     auto* geometry = new QSGGeometry(BandMaterial::vertexAttributes(), 0);
@@ -337,6 +328,8 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         delete oldNode;
         return nullptr;
     }
+    const auto capacity = sampleCapacity(window());
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, sampleCount_, capacity, "BandSeries", "samples");
     if (sampleCount_ < 2 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty()) {
         delete oldNode;
         return nullptr;
@@ -693,7 +686,6 @@ BandSeries::RenderView BandSeries::renderView() const
 {
     const auto rect = resolvePlotRect();
     const auto capacity = sampleCapacity(window());
-    warnOnceIfOverCapacity(sampleCount_, capacity);
     return RenderView{
         QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_)),
         QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_)),

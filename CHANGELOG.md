@@ -159,6 +159,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   (data texture rows are 8192 texels wide).
 - `LineCurve`, `RectangleSeries`, and `BarSeries` draw only the records their GPU
   buffers hold and warn about the rest, instead of overflowing the vertex buffer.
+  These series, `BandSeries`, and `PointCloud` warn each time their data outgrows
+  the capacity, not once per application.
 - On Qt 6.2, only the topmost series under the cursor is hovered.
 - A destroyed series leaves `PlotView.series`, and a destroyed `PlotView` releases
   its children, before their own members are gone, so handlers of `seriesChanged`

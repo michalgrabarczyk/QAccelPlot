@@ -59,7 +59,7 @@ void PointCloudCapacityTest::pointsBeyondCapacityAreNotHovered()
     cloud.setYAxis(&yAxis);
     cloud.setPlotRect({0, 0, kSize, kSize});
     cloud.setColor(Qt::white);
-    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud has 6000 points but the GPU data texture holds at most 4096.*"));
+    QTest::ignoreMessage(QtWarningMsg, QRegularExpression("PointCloud has 6000 points but draws at most 4096.*"));
     cloud.setDataF(std::move(data), kPointCount);
 
     window.show();

@@ -269,6 +269,8 @@ private:
     qreal renderOriginY_{0.0};
     int rectCount_{0};
     bool dataChanged_{false};
+    // Whether the last frame held more records than the GPU buffers do; warns on each crossing.
+    bool overCapacity_{false};
     // Vertex colors are category colors when categories are set; otherwise \c color is a uniform.
     RectVertexCache vertexCache_;
     // Built once scanning the same data has cost as much as the build, so streaming skips it.
