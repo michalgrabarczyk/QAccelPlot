@@ -35,7 +35,21 @@ namespace QAccelPlot {
 /// backed by the series' data points. Concrete series define their data point layout, rendering,
 /// and hit testing.
 ///
-/// \sa LineCurve, PointCloud, RectangleSeries, QAccelPlot
+/// \c setData(), \c setDataF(), and \c postData() take interleaved values, one data point after
+/// another, in the layout of the series:
+///
+/// | Series             | Data point        | Values |
+/// | ------------------ | ----------------- | ------ |
+/// | \c LineCurve       | (x, y)            | 2      |
+/// | \c PointCloud      | (x, y)            | 2      |
+/// | \c RectangleSeries | (x1, y1, x2, y2)  | 4      |
+/// | \c BarSeries       | (position, value) | 2      |
+/// | \c BandSeries      | (x, low, high)    | 3      |
+///
+/// The buffer holds \a count times that many values. Series-specific setters take other layouts,
+/// such as point values, categories, or ranged bars.
+///
+/// \sa LineCurve, PointCloud, RectangleSeries, BarSeries, BandSeries, QAccelPlot
 class PlotSeries : public QQuickItem {
     Q_OBJECT
     QML_NAMED_ELEMENT(PlotSeries)
@@ -133,7 +147,8 @@ public:
     void setLegendSymbol(LegendSymbol symbol);
 
     /// \brief Replaces the series data with \a count data points copied from an interleaved double array.
-    /// Each concrete series defines its data point layout (XY pairs or rectangle edges).
+    ///
+    /// See the class description for the data point layout of each series.
     void setData(const double* data, int count);
     /// \brief Replaces the series data by moving an interleaved double buffer.
     void setData(std::vector<double>&& data, int count);
