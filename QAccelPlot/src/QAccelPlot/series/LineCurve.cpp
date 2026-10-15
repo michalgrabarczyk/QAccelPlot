@@ -24,8 +24,8 @@
 #include <QtMath>
 
 #include <algorithm>
+#include <array>
 #include <cmath>
-#include <cstring>
 #include <limits>
 #include <type_traits>
 
@@ -101,32 +101,6 @@ template <typename T> DataExtents computeValidExtents(const T* data, const std::
     return extents;
 }
 
-template <typename T> bool validateInterleavedVector(const std::vector<T>& data, const int pointCount)
-{
-    static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>, "LineCurve data must be float or double");
-    if (pointCount < 0) {
-        qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;
-        return false;
-    }
-
-    const auto expectedValueCount = static_cast<std::size_t>(pointCount) * 2;
-    if (data.size() != expectedValueCount) {
-        if constexpr (std::is_same_v<T, float>) {
-            qCWarning(lcQAccelPlot) << "LineCurve received" << data.size() << "floats for" << pointCount << "points; expected" << expectedValueCount;
-        } else {
-            qCWarning(lcQAccelPlot) << "LineCurve received" << data.size() << "doubles for" << pointCount << "points; expected" << expectedValueCount;
-        }
-        return false;
-    }
-    return true;
-}
-
-template <typename T> DataExtents computeDataExtents(const std::vector<T>& buf, const int count, const bool logScaleX, const bool logScaleY)
-{
-    const auto available = std::min(static_cast<std::size_t>(std::max(count, 0)), buf.size() / 2);
-    return computeValidExtents(buf.data(), 0, available, logScaleX, logScaleY);
-}
-
 // Data-space culling box for the inclusive index range [first, last]. It covers
 // every valid coordinate, which keeps it conservative for hit tests; a range
 // without valid coordinates yields min > max and is skipped.
@@ -188,7 +162,8 @@ int pointCapacity(QQuickWindow* window, const bool hasLine, const bool hasPoints
 }
 
 LineCurve::LineCurve(QQuickItem* parent)
-    : PlotSeries(parent)
+    : PlotSeries(DataPointStore::Layout{{DataPointStore::Dimension::X, DataPointStore::Dimension::Y}, DataPointStore::RangeRule::EachCoordinate, 0},
+          DataPointWording{"data point", "points", "doubles", "floats"}, parent)
     , transition_(std::make_unique<TransitionRunner>(this))
 {
     setFlag(ItemHasContents, true);
@@ -354,35 +329,8 @@ SeriesMarker* LineCurve::marker() const
 void LineCurve::appendData(const qreal x, const qreal y)
 {
     finishTransition();
-    promoteFloatDataToDouble();
-
-    const auto logX = logScaleX();
-    const auto logY = logScaleY();
-    const auto canExtendRenderData = renderOriginXSettled_ && renderOriginYSettled_ && renderLogScaleX_ == logX && renderLogScaleY_ == logY
-        && renderData_.size() == static_cast<std::size_t>(pointCount_) * 2;
-
-    data_.push_back(static_cast<double>(x));
-    data_.push_back(static_cast<double>(y));
-    pointCount_++;
-
-    // Each coordinate is judged on its own, matching computeDataRanges().
-    if (isValidSample(x, logX)) {
-        extendXDataRange(x);
-    }
-    if (isValidSample(y, logY)) {
-        extendYDataRange(y);
-    }
-    if (canExtendRenderData) {
-        renderData_.push_back(static_cast<float>(x - renderOriginX_));
-        renderData_.push_back(static_cast<float>(y - renderOriginY_));
-    } else {
-        rebuildDoubleRenderData(logX, logY);
-    }
-    rebuildGapConnectData();
-
-    invalidateData();
-    inspectionDataChanged(DataChange::Appended);
-    update();
+    const auto point = std::array<double, 2>{x, y};
+    appendDataPoint(point.data());
 }
 
 void LineCurve::setData(const QList<QPointF>& data)
@@ -416,12 +364,12 @@ void LineCurve::setData(const double* xyInterleaved, const int pointCount)
     if (pointCount > 0) {
         data.assign(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2);
     }
-    setData(std::move(data), pointCount);
+    applyNewData(std::move(data), pointCount);
 }
 
 void LineCurve::setData(std::vector<double>&& xyInterleaved, const int pointCount)
 {
-    if (!validateVectorDataArguments(xyInterleaved, pointCount)) {
+    if (!validateDataSize(xyInterleaved.size(), pointCount, false)) {
         return;
     }
     applyNewData(std::move(xyInterleaved), pointCount);
@@ -432,31 +380,12 @@ void LineCurve::setDataF(const float* xyInterleaved, const int pointCount)
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
         return;
     }
-
-    if (transition_->enabled()) {
-        auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
-        if (pointCount > 0) {
-            std::memcpy(newData.data(), xyInterleaved, newData.size() * sizeof(float));
-        }
-        applyNewData(std::move(newData), pointCount);
-        return;
-    }
-
-    cancelRunningTransition();
-    copyRawData(xyInterleaved, pointCount);
-    pointCount_ = pointCount;
-    rebuildGapConnectData();
-    refreshVertexCacheForDataChange();
-    rebuildChunks();
-    dataChanged_ = true;
-    invalidateDataRanges();
-    inspectionDataChanged();
-    update();
+    applyFloatArray(xyInterleaved, pointCount);
 }
 
 void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
 {
-    if (!validateVectorDataArguments(data, pointCount)) {
+    if (!validateDataSize(data.size(), pointCount, true)) {
         return;
     }
     applyNewData(std::move(data), pointCount);
@@ -464,31 +393,13 @@ void LineCurve::setDataF(std::vector<float>&& data, const int pointCount)
 
 void LineCurve::setDataFWithCache(std::vector<float>&& data, const int pointCount, std::vector<char>&& vertexCache)
 {
-    if (!validateVectorDataArguments(data, pointCount)) {
+    if (!validateDataSize(data.size(), pointCount, true)) {
         return;
     }
-    if (transition_->enabled()) {
-        applyNewData(std::move(data), pointCount);
-        return;
+    if (!transition_->enabled()) {
+        pendingVertexCache_ = std::move(vertexCache);
     }
-
-    cancelRunningTransition();
-    pointCount_ = pointCount;
-    dataType_ = DataType::Float;
-    data_.clear();
-    renderData_.clear();
-    dataF_ = std::move(data);
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    renderLogScaleX_ = false;
-    renderLogScaleY_ = false;
-    rebuildGapConnectData();
-    installVertexCache(std::move(vertexCache));
-    dataChanged_ = true;
-    chunksValid_ = false;
-    invalidateDataRanges();
-    inspectionDataChanged();
-    update();
+    applyNewData(std::move(data), pointCount);
 }
 
 void LineCurve::setDataFWithCache(const float* xyInterleaved, const int pointCount, std::vector<char>&& vertexCache)
@@ -496,73 +407,29 @@ void LineCurve::setDataFWithCache(const float* xyInterleaved, const int pointCou
     if (!validateRawDataArguments(xyInterleaved, pointCount)) {
         return;
     }
-
-    if (transition_->enabled()) {
-        auto newData = std::vector<float>(static_cast<std::size_t>(pointCount) * 2);
-        if (pointCount > 0) {
-            std::memcpy(newData.data(), xyInterleaved, newData.size() * sizeof(float));
-        }
-        applyNewData(std::move(newData), pointCount);
-        return;
+    if (!transition_->enabled()) {
+        pendingVertexCache_ = std::move(vertexCache);
     }
-
-    cancelRunningTransition();
-    copyRawData(xyInterleaved, pointCount);
-    pointCount_ = pointCount;
-    rebuildGapConnectData();
-    installVertexCache(std::move(vertexCache));
-    dataChanged_ = true;
-    chunksValid_ = false;
-    invalidateDataRanges();
-    inspectionDataChanged();
-    update();
-}
-
-void LineCurve::postData(std::vector<double>&& xyInterleaved, const int pointCount)
-{
-    QMetaObject::invokeMethod(
-        this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setData(std::move(data), pointCount); }, Qt::QueuedConnection);
-}
-
-void LineCurve::postData(std::vector<float>&& xyInterleaved, const int pointCount)
-{
-    QMetaObject::invokeMethod(
-        this, [this, data = std::move(xyInterleaved), pointCount]() mutable { setDataF(std::move(data), pointCount); }, Qt::QueuedConnection);
+    applyFloatArray(xyInterleaved, pointCount);
 }
 
 void LineCurve::clearData()
 {
+    const auto previousCount = dataPoints().count();
     cancelRunningTransition();
-    data_.clear();
-    dataF_.clear();
-    renderData_.clear();
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    renderLogScaleX_ = false;
-    renderLogScaleY_ = false;
-    renderOriginXSettled_ = false;
-    renderOriginYSettled_ = false;
-    pointCount_ = 0;
-    releaseGapConnectData();
-    invalidateVertices();
-    chunks_.clear();
-    chunksValid_ = true;
-    invalidateDataRanges();
-    inspectionDataChanged();
-    update();
+    dataPoints().clear();
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 InspectionSource LineCurve::inspectionSource() const
 {
+    const auto points = dataPoints().view();
     auto source = InspectionSource{};
-    source.count = pointCount_;
+    source.count = points.count;
     source.logX = logScaleX();
     source.logY = logScaleY();
-    if (dataType_ == DataType::Double) {
-        source.doubles = data_.data();
-    } else {
-        source.floats = dataF_.data();
-    }
+    source.doubles = points.precise;
+    source.floats = points.floats;
     return source;
 }
 
@@ -613,15 +480,24 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
         return nullptr;
     }
 
+    // The marker cache holds render positions, which a new render origin moves.
+    const auto revision = dataPoints().renderRevision();
+    if (revision != vertexCacheRevision_ && !vertexCache_.isReusableForDataChange(LineCurveVertexCache::Layout::Line, drawnPointCount)) {
+        vertexCache_.invalidate();
+    }
+    const auto dataChanged = dataChanged_ || revision != uploadedRevision_;
+
     const auto pr = resolvePlotRect();
-    const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - renderOriginX_), static_cast<float>(yAxis()->viewportMin() - renderOriginY_));
-    const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - renderOriginX_), static_cast<float>(yAxis()->viewportMax() - renderOriginY_));
+    const auto originX = dataPoints().renderOrigin(DataPointStore::Dimension::X);
+    const auto originY = dataPoints().renderOrigin(DataPointStore::Dimension::Y);
+    const auto domainMin = QVector2D(static_cast<float>(xAxis()->viewportMin() - originX), static_cast<float>(yAxis()->viewportMin() - originY));
+    const auto domainMax = QVector2D(static_cast<float>(xAxis()->viewportMax() - originX), static_cast<float>(yAxis()->viewportMax() - originY));
     const auto viewportSize = QVector2D(static_cast<float>(pr.width()), static_cast<float>(pr.height()));
     const auto gradientPayload = resolveGradientColorPayload();
     const auto gradientFillPayload = resolveGradientFillPayload();
     auto renderGradientPayload = gradientPayload;
-    if (dataType_ == DataType::Double && renderGradientPayload.isValid()) {
-        const auto origin = renderGradientPayload.direction == Qt::Horizontal ? renderOriginX_ : renderOriginY_;
+    if (renderGradientPayload.isValid()) {
+        const auto origin = renderGradientPayload.direction == Qt::Horizontal ? originX : originY;
         if (renderGradientPayload.gradientValueMin.has_value()) {
             renderGradientPayload.gradientValueMin = *renderGradientPayload.gradientValueMin - origin;
         }
@@ -657,7 +533,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     QSGNode* pointNode = nullptr;
 
     if (hasLine) {
-        const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged_, color_, hovered_, lineWidth_,
+        const auto lineParams = LineCurveRenderParams{window(), renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered_, lineWidth_,
             domainMin, domainMax, viewportSize, xAxis(), yAxis(), xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_,
             renderGradientPayload, gradientFillPayload, hasPoints ? nullptr : cache, lineStyle_};
         lineNode = lineRenderer_.paint(lineOldNode, lineParams);
@@ -665,7 +541,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
 
     if (hasPoints) {
         const auto shapeType = static_cast<int>(marker_->shape()) - 1;
-        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged_, color_, hovered_, marker_->size(),
+        const auto pointParams = PointCurveRenderParams{renderData(), sourceDataView(), drawnPointCount, dataChanged, color_, hovered_, marker_->size(),
             domainMin, domainMax, viewportSize, xAxis()->logScale(), yAxis()->logScale(), antialiasingEnabled_, antialiasingFeather_, gradientPayload,
             hasLine ? nullptr : cache, shapeType, marker_->strokeWidth(), marker_->filled()};
         pointNode = pointRenderer_.paint(pointOldNode, pointParams);
@@ -696,6 +572,7 @@ QSGNode* LineCurve::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updat
     }
 
     dataChanged_ = false;
+    uploadedRevision_ = revision;
     return node;
 }
 
@@ -763,48 +640,27 @@ bool LineCurve::contains(const QPointF& point) const
 
 void LineCurve::onAxisScaleChanged()
 {
-    // Log scale changes which samples are valid.
-    invalidateDataRanges();
-    rebuildDoubleRenderData(logScaleX(), logScaleY());
-    rebuildGapConnectData();
     invalidateData();
     refreshVertexCacheForDataChange();
     update();
 }
 
-PlotSeries::DataRanges LineCurve::computeDataRanges() const
+void LineCurve::onDataPointsChanged(const DataChange change, const int /*previousCount*/)
 {
-    const auto logX = logScaleX();
-    const auto logY = logScaleY();
-    const auto extents = [this, logX, logY] {
-        // A running transition ends at its target, so the axes fit the target from the start.
-        if (transition_->pending()) {
-            return computeDataExtents(transition_->targetData(), transition_->targetPointCount(), logX, logY);
-        }
-        if (dataType_ == DataType::Double) {
-            return computeDataExtents(data_, pointCount_, logX, logY);
-        }
-        return computeDataExtents(dataF_, pointCount_, logX, logY);
-    }();
-    // A dimension without a valid coordinate has min > max, which the base class treats as unset.
-    return {DataExtent{extents.xMin, extents.xMax}, DataExtent{extents.yMin, extents.yMax}};
-}
-
-void LineCurve::onAxisRangeChanged()
-{
-    PlotSeries::onAxisRangeChanged();
-    if (dataType_ != DataType::Double) {
+    if (change == DataChange::Appended) {
+        invalidateData();
         return;
     }
-    const auto rebaseX = !renderLogScaleX_ && xAxis() && renderOriginTooFar(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    const auto rebaseY = !renderLogScaleY_ && yAxis() && renderOriginTooFar(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    if (!rebaseX && !rebaseY) {
-        return;
-    }
-    rebuildDoubleRenderData(logScaleX(), logScaleY());
-    rebuildGapConnectData();
     dataChanged_ = true;
+    if (pendingVertexCache_) {
+        chunksValid_ = false;
+        installVertexCache(*std::exchange(pendingVertexCache_, std::nullopt));
+        return;
+    }
     refreshVertexCacheForDataChange();
+    // Pre-build chunk AABBs on the caller thread alongside the vertex cache so that
+    // hover hit-tests never block on a lazy O(N) rebuild during live rendering.
+    rebuildChunks();
 }
 
 void LineCurve::onTransitionDestroyed()
@@ -829,7 +685,7 @@ void LineCurve::onLineStyleDestroyed()
 
 void LineCurve::onNanGapModeChanged()
 {
-    rebuildGapConnectData();
+    dataPoints().setSkipInvalid(gaps_->nanMode() == NanGapMode::Connect);
     invalidateData();
     refreshVertexCacheForDataChange();
     update();
@@ -925,230 +781,68 @@ std::pair<qreal, qreal> LineCurve::gradientDataRange(const Qt::Orientation direc
     return axis ? std::pair{axis->dataMin(), axis->dataMax()} : std::pair{kFallbackDataMin, kFallbackDataMax};
 }
 
-bool LineCurve::logScaleX() const
-{
-    return xAxis() && xAxis()->logScale();
-}
-
-bool LineCurve::logScaleY() const
-{
-    return yAxis() && yAxis()->logScale();
-}
-
 void LineCurve::applyNewData(std::vector<float>&& newData, const int newPointCount)
 {
     if (transition_->enabled()) {
-        auto preciseData = std::vector<double>(newData.begin(), newData.end());
-        applyNewData(std::move(preciseData), newPointCount);
-    } else {
-        cancelRunningTransition();
-        dataType_ = DataType::Float;
-        pointCount_ = newPointCount;
-        data_.clear();
-        renderData_.clear();
-        dataF_ = std::move(newData);
-        renderOriginX_ = 0.0;
-        renderOriginY_ = 0.0;
-        renderLogScaleX_ = false;
-        renderLogScaleY_ = false;
-        rebuildGapConnectData();
-        refreshVertexCacheForDataChange();
-
-        // Pre-build chunk AABBs on the caller thread alongside the vertex cache so that
-        // hover hit-tests never block on a lazy O(N) rebuild during live rendering.
-        rebuildChunks();
-
-        dataChanged_ = true;
-        invalidateDataRanges();
-        inspectionDataChanged();
-        update();
+        // Transitions animate doubles.
+        applyNewData(std::vector<double>(newData.begin(), newData.end()), newPointCount);
+        return;
     }
+    const auto previousCount = dataPoints().count();
+    cancelRunningTransition();
+    dataPoints().setFloat(std::move(newData), newPointCount);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 void LineCurve::applyNewData(std::vector<double>&& newData, const int newPointCount)
 {
+    const auto previousCount = dataPoints().count();
+    if (!transition_->enabled()) {
+        cancelRunningTransition();
+        dataPoints().setPrecise(std::move(newData), newPointCount);
+        notifyDataPointsChanged(DataChange::Replaced, previousCount);
+        return;
+    }
+    // Copied before the data changes: the transition starts from the points drawn now.
+    const auto drawn = dataPoints().drawnView();
+    auto from = std::vector<double>(static_cast<std::size_t>(drawn.count) * 2);
+    for (auto index = 0; index < drawn.count; ++index) {
+        from[static_cast<std::size_t>(index) * 2] = drawn.value(index, 0);
+        from[static_cast<std::size_t>(index) * 2 + 1] = drawn.value(index, 1);
+    }
+    dataPoints().setPrecise(std::vector<double>(newData), newPointCount);
+    startTransition(std::move(from), drawn.count);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
+}
+
+void LineCurve::applyFloatArray(const float* xyInterleaved, const int pointCount)
+{
     if (transition_->enabled()) {
-        promoteFloatDataToDouble();
-        dataType_ = DataType::Double;
-        transition_->start(data_, pointCount_, std::move(newData), newPointCount);
-
-        // Do not update pointCount_ here. transition_->advance() updates it through its
-        // output argument when it produces data_; changing only the count now would
-        // make it refer to a buffer that has not been produced yet.
-        invalidateData();
-        invalidateDataRanges();
-        inspectionDataChanged();
-        update();
+        // Transitions animate doubles.
+        applyNewData(std::vector<double>(xyInterleaved, xyInterleaved + static_cast<std::size_t>(pointCount) * 2), pointCount);
         return;
     }
-
+    const auto previousCount = dataPoints().count();
     cancelRunningTransition();
-    dataType_ = DataType::Double;
-    pointCount_ = newPointCount;
-    dataF_.clear();
-    data_ = std::move(newData);
-    rebuildDoubleRenderData(logScaleX(), logScaleY());
-    rebuildGapConnectData();
-    refreshVertexCacheForDataChange();
-    rebuildChunks();
-    dataChanged_ = true;
-    invalidateDataRanges();
-    inspectionDataChanged();
-    update();
-}
-
-bool LineCurve::validateRawDataArguments(const void* xyInterleaved, const int pointCount) const
-{
-    if (pointCount < 0) {
-        qCWarning(lcQAccelPlot) << "LineCurve data point count cannot be negative:" << pointCount;
-        return false;
-    }
-    if (pointCount > 0 && !xyInterleaved) {
-        qCWarning(lcQAccelPlot) << "LineCurve received a null data pointer for" << pointCount << "points";
-        return false;
-    }
-    return true;
-}
-
-bool LineCurve::validateVectorDataArguments(const std::vector<float>& data, const int pointCount) const
-{
-    return validateInterleavedVector(data, pointCount);
-}
-
-bool LineCurve::validateVectorDataArguments(const std::vector<double>& data, const int pointCount) const
-{
-    return validateInterleavedVector(data, pointCount);
-}
-
-void LineCurve::copyRawData(const float* xyInterleaved, const int pointCount)
-{
-    const auto floatCount = static_cast<std::size_t>(pointCount) * 2;
-    dataType_ = DataType::Float;
-    data_.clear();
-    renderData_.clear();
-    dataF_.resize(floatCount);
-    if (floatCount > 0) {
-        std::memcpy(dataF_.data(), xyInterleaved, floatCount * sizeof(float));
-    }
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    renderLogScaleX_ = false;
-    renderLogScaleY_ = false;
-}
-
-void LineCurve::promoteFloatDataToDouble()
-{
-    if (dataType_ == DataType::Double) {
-        return;
-    }
-
-    data_.assign(dataF_.begin(), dataF_.end());
-    dataF_.clear();
-    dataType_ = DataType::Double;
-    rebuildDoubleRenderData(xAxis() && xAxis()->logScale(), yAxis() && yAxis()->logScale());
-    rebuildGapConnectData();
-}
-
-void LineCurve::rebuildDoubleRenderData(const bool logScaleX, const bool logScaleY)
-{
-    if (dataType_ != DataType::Double) {
-        return;
-    }
-
-    renderLogScaleX_ = logScaleX;
-    renderLogScaleY_ = logScaleY;
-    renderOriginX_ = 0.0;
-    renderOriginY_ = 0.0;
-    auto foundOriginX = logScaleX;
-    auto foundOriginY = logScaleY;
-
-    for (auto i = int{0}; i < pointCount_; ++i) {
-        const auto x = data_[static_cast<std::size_t>(i) * 2];
-        const auto y = data_[static_cast<std::size_t>(i) * 2 + 1];
-        if (!foundOriginX && std::isfinite(x)) {
-            renderOriginX_ = x;
-            foundOriginX = true;
-        }
-        if (!foundOriginY && std::isfinite(y)) {
-            renderOriginY_ = y;
-            foundOriginY = true;
-        }
-        if (foundOriginX && foundOriginY) {
-            break;
-        }
-    }
-    // Log dimensions are never shifted: the vertex shader takes log10 of the uploaded value.
-    if (!logScaleX && xAxis()) {
-        renderOriginX_ = renderOriginForViewport(renderOriginX_, xAxis()->viewportMin(), xAxis()->viewportMax());
-    }
-    if (!logScaleY && yAxis()) {
-        renderOriginY_ = renderOriginForViewport(renderOriginY_, yAxis()->viewportMin(), yAxis()->viewportMax());
-    }
-
-    renderOriginXSettled_ = foundOriginX;
-    renderOriginYSettled_ = foundOriginY;
-
-    renderData_.resize(static_cast<std::size_t>(pointCount_) * 2);
-    for (auto i = int{0}; i < pointCount_; ++i) {
-        const auto offset = static_cast<std::size_t>(i) * 2;
-        renderData_[offset] = static_cast<float>(data_[offset] - renderOriginX_);
-        renderData_[offset + 1] = static_cast<float>(data_[offset + 1] - renderOriginY_);
-    }
+    // Reuses the allocation of the stored points.
+    dataPoints().assignFloat(xyInterleaved, pointCount);
+    notifyDataPointsChanged(DataChange::Replaced, previousCount);
 }
 
 const std::vector<float>& LineCurve::renderData() const
 {
-    if (gapConnectCompacted_) {
-        return gapConnectRenderData_;
-    }
-    return dataType_ == DataType::Double ? renderData_ : dataF_;
+    return dataPoints().renderData();
 }
 
 CurveDataView LineCurve::sourceDataView() const
 {
-    if (dataType_ == DataType::Double) {
-        return CurveDataView{nullptr, gapConnectCompacted_ ? gapConnectData_.data() : data_.data()};
-    }
-    return CurveDataView{gapConnectCompacted_ ? gapConnectRenderData_.data() : dataF_.data(), nullptr};
+    const auto points = dataPoints().renderedView();
+    return CurveDataView{points.floats, points.precise};
 }
 
 int LineCurve::renderPointCount() const
 {
-    return gapConnectCompacted_ ? gapConnectPointCount_ : pointCount_;
-}
-
-void LineCurve::rebuildGapConnectData()
-{
-    const auto renderDataReady = dataType_ == DataType::Float || renderData_.size() >= static_cast<std::size_t>(pointCount_) * 2;
-    if (gaps_->nanMode() != NanGapMode::Connect || pointCount_ <= 0 || !renderDataReady) {
-        releaseGapConnectData();
-        return;
-    }
-
-    const auto logX = logScaleX();
-    const auto logY = logScaleY();
-    const auto fullSource = dataType_ == DataType::Double ? CurveDataView{nullptr, data_.data()} : CurveDataView{dataF_.data(), nullptr};
-    if (LineCurveGapFilter::countInvalidPoints(fullSource, pointCount_, logX, logY) == 0) {
-        // Nothing to remove: render the original buffers without copying.
-        releaseGapConnectData();
-        return;
-    }
-
-    if (dataType_ == DataType::Double) {
-        gapConnectPointCount_ = LineCurveGapFilter::compactValidPoints(data_, renderData_, pointCount_, logX, logY, gapConnectData_, gapConnectRenderData_);
-    } else {
-        gapConnectData_.clear();
-        gapConnectPointCount_ = LineCurveGapFilter::compactValidPoints(dataF_, pointCount_, logX, logY, gapConnectRenderData_);
-    }
-    gapConnectCompacted_ = true;
-}
-
-void LineCurve::releaseGapConnectData()
-{
-    gapConnectCompacted_ = false;
-    gapConnectPointCount_ = 0;
-    gapConnectData_.clear();
-    gapConnectRenderData_.clear();
+    return dataPoints().renderCount();
 }
 
 void LineCurve::refreshVertexCacheForDataChange()
@@ -1194,7 +888,7 @@ std::size_t LineCurve::expectedVertexCacheSize() const
 
 void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 {
-    if (gapConnectCompacted_) {
+    if (renderPointCount() != dataPoints().count()) {
         // Externally built caches describe the uncompacted samples. Connect mode
         // removed invalid samples, so the cache is rebuilt for the compacted data.
         vertexCache_.invalidate();
@@ -1210,6 +904,7 @@ void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 
     const auto layout = (lineStyle_ && lineStyle_->showLine()) ? LineCurveVertexCache::Layout::Line : LineCurveVertexCache::Layout::Points;
     (void)vertexCache_.install(std::move(vertexCache), layout, renderPointCount(), expectedSize);
+    vertexCacheRevision_ = dataPoints().renderRevision();
 }
 
 void LineCurve::rebuildVertexCache()
@@ -1229,6 +924,7 @@ void LineCurve::rebuildVertexCache()
     } else {
         vertexCache_.invalidate();
     }
+    vertexCacheRevision_ = dataPoints().renderRevision();
 }
 
 void LineCurve::rebuildChunks() const
@@ -1275,13 +971,27 @@ void LineCurve::invalidateData()
 void LineCurve::cancelRunningTransition()
 {
     transition_->cancel();
+    dataPoints().clearDrawn();
+    frameBuffer_ = std::vector<double>{};
 }
 
 void LineCurve::finishTransition()
 {
-    if (transition_->finish(data_, pointCount_)) {
-        applyTransitionData();
+    if (!transition_->pending()) {
+        return;
     }
+    // The stored points are already the target of the run.
+    cancelRunningTransition();
+    invalidateData();
+    invalidateInspection();
+    update();
+}
+
+void LineCurve::startTransition(std::vector<double>&& from, const int fromCount)
+{
+    const auto target = dataPoints().view();
+    transition_->start(from, fromCount, std::vector<double>(target.precise, target.precise + static_cast<std::size_t>(target.count) * 2), target.count);
+    frameBuffer_ = dataPoints().setDrawn(std::move(from), fromCount);
 }
 
 void LineCurve::connectAnimationTicks(QQuickWindow* window)
@@ -1309,19 +1019,17 @@ void LineCurve::refreshEffects()
 
 void LineCurve::advanceTransition()
 {
-    transition_->advance(data_, pointCount_);
-    applyTransitionData();
-}
-
-void LineCurve::applyTransitionData()
-{
-    dataType_ = DataType::Double;
-    rebuildDoubleRenderData(logScaleX(), logScaleY());
-    rebuildGapConnectData();
-    invalidateData();
-    if (!transition_->pending()) {
+    auto frameCount = 0;
+    transition_->advance(frameBuffer_, frameCount);
+    if (transition_->pending()) {
+        frameBuffer_ = dataPoints().setDrawn(std::move(frameBuffer_), frameCount);
+    } else {
+        // The run ended at its target, which the stored points already are.
+        dataPoints().clearDrawn();
+        frameBuffer_ = std::vector<double>{};
         invalidateInspection();
     }
+    invalidateData();
     update();
 }
 

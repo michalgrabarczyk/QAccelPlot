@@ -367,14 +367,15 @@ void DataPointStoreTest::skipInvalidLeavesInvalidDataPointsOut()
     floats.setSkipInvalid(true);
     QCOMPARE(floats.renderCount(), 2);
     QCOMPARE(renderValues(floats), (std::vector<float>{1.0F, 2.0F, 4.0F, 5.0F}));
-    QCOMPARE(floats.drawnView().value(1, 0), 4.0);
+    QCOMPARE(floats.renderedView().value(1, 0), 4.0);
+    QCOMPARE(floats.drawnView().count, 3);
     QCOMPARE(floats.view().count, 3);
 
     auto doubles = xyStore();
     doubles.setPrecise({kEpochMs, 1.0, kEpochMs + 1.0, kInf, kEpochMs + 2.0, 3.0}, 3);
     doubles.setSkipInvalid(true);
     QCOMPARE(renderValues(doubles), (std::vector<float>{0.0F, 0.0F, 2.0F, 2.0F}));
-    QCOMPARE(doubles.drawnView().value(1, 0), kEpochMs + 2.0);
+    QCOMPARE(doubles.renderedView().value(1, 0), kEpochMs + 2.0);
 
     auto valid = xyStore();
     valid.setFloat({1.0F, 2.0F}, 1);

@@ -407,6 +407,11 @@ bool DataPointStore::hasDrawn() const noexcept
 
 DataPointStore::View DataPointStore::drawnView() const
 {
+    return sourceView();
+}
+
+DataPointStore::View DataPointStore::renderedView() const
+{
     ensureCompacted();
     if (!compacted_.active) {
         return sourceView();

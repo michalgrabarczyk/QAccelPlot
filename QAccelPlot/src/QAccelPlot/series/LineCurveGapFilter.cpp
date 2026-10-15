@@ -29,15 +29,6 @@ bool isValidPair(const double x, const double y, const bool logScaleX, const boo
 // The scans below are specialized on the buffer type so the float/double
 // dispatch in CurveDataView happens once per call instead of once per sample.
 
-template <typename T> int countInvalid(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
-{
-    auto invalidCount = int{0};
-    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
-        invalidCount += isValidPair(data[i * 2], data[i * 2 + 1], logScaleX, logScaleY) ? 0 : 1;
-    }
-    return invalidCount;
-}
-
 template <typename T> std::vector<SampleRun> findRuns(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
     auto runs = std::vector<SampleRun>{};
@@ -63,11 +54,6 @@ template <typename T> std::vector<SampleRun> findRuns(const T* data, const int p
 bool isValidPoint(const CurveDataView& data, const int index, const bool logScaleX, const bool logScaleY)
 {
     return isValidPair(data.x(index), data.y(index), logScaleX, logScaleY);
-}
-
-int countInvalidPoints(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
-{
-    return data.doubleData ? countInvalid(data.doubleData, pointCount, logScaleX, logScaleY) : countInvalid(data.floatData, pointCount, logScaleX, logScaleY);
 }
 
 std::vector<SampleRun> findValidRuns(const CurveDataView& data, const int pointCount, const bool logScaleX, const bool logScaleY)
@@ -133,43 +119,6 @@ void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, cons
         indices.push_back(last);
     }
     indices.push_back(last);
-}
-
-int compactValidPoints(const std::vector<float>& data, const int pointCount, const bool logScaleX, const bool logScaleY, std::vector<float>& output)
-{
-    output.resize(static_cast<std::size_t>(pointCount) * 2);
-    auto written = std::size_t{0};
-    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
-        const auto x = data[i * 2];
-        const auto y = data[i * 2 + 1];
-        if (isValidPair(x, y, logScaleX, logScaleY)) {
-            output[written * 2] = x;
-            output[written * 2 + 1] = y;
-            ++written;
-        }
-    }
-    output.resize(written * 2);
-    return static_cast<int>(written);
-}
-
-int compactValidPoints(const std::vector<double>& data, const std::vector<float>& renderData, const int pointCount, const bool logScaleX, const bool logScaleY,
-    std::vector<double>& output, std::vector<float>& renderOutput)
-{
-    output.resize(static_cast<std::size_t>(pointCount) * 2);
-    renderOutput.resize(static_cast<std::size_t>(pointCount) * 2);
-    auto written = std::size_t{0};
-    for (auto i = std::size_t{0}; i < static_cast<std::size_t>(pointCount); ++i) {
-        if (isValidPair(data[i * 2], data[i * 2 + 1], logScaleX, logScaleY)) {
-            output[written * 2] = data[i * 2];
-            output[written * 2 + 1] = data[i * 2 + 1];
-            renderOutput[written * 2] = renderData[i * 2];
-            renderOutput[written * 2 + 1] = renderData[i * 2 + 1];
-            ++written;
-        }
-    }
-    output.resize(written * 2);
-    renderOutput.resize(written * 2);
-    return static_cast<int>(written);
 }
 
 } // namespace QAccelPlot::LineCurveGapFilter

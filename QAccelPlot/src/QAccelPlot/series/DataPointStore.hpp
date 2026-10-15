@@ -170,11 +170,12 @@ public:
     /// \brief Returns whether drawn data points replace the stored ones.
     [[nodiscard]] bool hasDrawn() const noexcept;
     /// \brief Returns the data points that are drawn: the drawn ones, or the stored ones.
-    ///
-    /// With \c skipInvalid() set, invalid data points are left out.
     [[nodiscard]] View drawnView() const;
+    /// \brief Returns the data points the render data is built from: \c drawnView(), without the
+    /// invalid data points when \c skipInvalid() is set.
+    [[nodiscard]] View renderedView() const;
 
-    /// \brief Leaves invalid data points out of the render data and \c drawnView().
+    /// \brief Leaves invalid data points out of the render data and \c renderedView().
     ///
     /// A data point is invalid when any coordinate is invalid on the current scale.
     void setSkipInvalid(bool skip);
