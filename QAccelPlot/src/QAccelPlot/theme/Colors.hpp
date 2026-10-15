@@ -38,6 +38,9 @@ class Colors : public QObject {
     Q_OBJECT
     QML_NAMED_ELEMENT(Colors)
     QML_SINGLETON
+    // Qt 6.3 and 6.4 register a singleton of a 0.x module without a name unless the added
+    // version names major version 0 explicitly.
+    QML_ADDED_IN_VERSION(0, 0)
     /// \brief Read-only constant: dark theme palette. C++ property defaults use these colors.
     Q_PROPERTY(ColorPalette* dark READ dark CONSTANT)
     /// \brief Read-only constant: light theme palette.
