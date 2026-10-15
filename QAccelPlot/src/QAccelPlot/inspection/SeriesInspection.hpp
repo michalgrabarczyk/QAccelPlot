@@ -23,15 +23,15 @@ enum class InspectionAxis;
 struct InspectionMetric;
 struct InspectionSource;
 
-/// \brief Data queries for one series: nearest samples, brackets, region statistics, and index pages.
+/// \brief Data queries for one series: nearest data points, brackets, region statistics, and index pages.
 ///
 /// Available as \c PlotSeries::inspection. Call it on the series' thread. Pixel arguments are
 /// series-local logical pixels; regions are inclusive data-space limits, where an infinite limit
 /// leaves that side unbounded and reversed limits are swapped.
 ///
-/// Queries cover every stored sample, also outside the viewport, and match samples rather than
-/// the line segments between them. Invalid samples never match, and equal distances resolve to
-/// the highest index. Statistics are sample-weighted and use the original Y values.
+/// Queries cover every stored data point, also outside the viewport, and match data points rather than
+/// the line segments between them. Invalid data points never match, and equal distances resolve to
+/// the highest index. Statistics are data-point-weighted and use the original Y values.
 ///
 /// \c LineCurve and \c PointCloud answer every query. Series whose X or Y values are finite and
 /// non-decreasing are searched in place, need no preparation, and stay queryable while records
@@ -39,16 +39,16 @@ struct InspectionSource;
 /// axis. Other series of up to 20,000 records are scanned per query. Larger ones are indexed on a
 /// worker thread first; until then queries return \c Inspection.Preparing. Requesting an index
 /// copies the series' buffer once on the calling thread, the index takes about 40 MB per million
-/// valid samples, and any data change discards it. Other series types expose native records
+/// valid data points, and any data change discards it. Other series types expose native records
 /// through \c recordAt() and \c recordAtPosition() only.
 ///
 /// \sa PlotInspector, SelectionTool
 class SeriesInspection : public QObject {
     Q_OBJECT
     QML_ANONYMOUS
-    /// \brief Readiness for sample queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
+    /// \brief Readiness for data point queries: \c Ready, \c Idle, \c Preparing, \c Unsupported, or \c Unavailable.
     Q_PROPERTY(::QAccelPlot::InspectionNS::Status status READ status NOTIFY statusChanged)
-    /// \brief Whether the series has XY records that sample queries can search.
+    /// \brief Whether the series has XY records that data point queries can search.
     Q_PROPERTY(bool supported READ supported NOTIFY statusChanged)
     /// \brief Largest page returned by \c indices().
     Q_PROPERTY(int maximumPageSize READ maximumPageSize CONSTANT)
@@ -56,9 +56,9 @@ class SeriesInspection : public QObject {
 public:
     ~SeriesInspection() override;
 
-    /// \brief Returns the readiness for sample queries.
+    /// \brief Returns the readiness for data point queries.
     InspectionStatus status() const;
-    /// \brief Returns whether the series has XY records that sample queries can search.
+    /// \brief Returns whether the series has XY records that data point queries can search.
     bool supported() const;
     /// \brief Returns the largest page returned by \c indices().
     int maximumPageSize() const;
@@ -70,19 +70,19 @@ public:
 
     /// \brief Returns the record at \a index; \c NoMatch with its raw coordinates when the record is invalid.
     Q_INVOKABLE ::QAccelPlot::InspectionSample sampleAt(int index) const;
-    /// \brief Returns the valid sample nearest to \a position within \a radius pixels on screen.
+    /// \brief Returns the valid data point nearest to \a position within \a radius pixels on screen.
     Q_INVOKABLE ::QAccelPlot::InspectionSample nearest(const QPointF& position, qreal radius = 10);
-    /// \brief Returns the valid sample nearest to \a pixelX horizontally, within \a radius pixels.
+    /// \brief Returns the valid data point nearest to \a pixelX horizontally, within \a radius pixels.
     Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByX(qreal pixelX, qreal radius = std::numeric_limits<qreal>::infinity());
-    /// \brief Returns the valid sample nearest to \a pixelY vertically, within \a radius pixels.
+    /// \brief Returns the valid data point nearest to \a pixelY vertically, within \a radius pixels.
     Q_INVOKABLE ::QAccelPlot::InspectionSample nearestByY(qreal pixelY, qreal radius = std::numeric_limits<qreal>::infinity());
-    /// \brief Returns the valid samples on either side of \a pixelX and the point between them.
+    /// \brief Returns the valid data points on either side of \a pixelX and the point between them.
     Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByX(qreal pixelX);
-    /// \brief Returns the valid samples whose Y is on either side of \a pixelY and the point between them.
+    /// \brief Returns the valid data points whose Y is on either side of \a pixelY and the point between them.
     Q_INVOKABLE ::QAccelPlot::InspectionBracket bracketByY(qreal pixelY);
-    /// \brief Returns Y statistics of the valid samples inside the region.
+    /// \brief Returns Y statistics of the valid data points inside the region.
     Q_INVOKABLE ::QAccelPlot::InspectionSummary summarize(qreal xMin, qreal xMax, qreal yMin, qreal yMax);
-    /// \brief Returns Y statistics of the valid samples whose X lies in the interval.
+    /// \brief Returns Y statistics of the valid data points whose X lies in the interval.
     Q_INVOKABLE ::QAccelPlot::InspectionSummary summarizeRange(qreal xMin, qreal xMax);
     /// \brief Returns up to \a limit source indices inside the region, skipping the first \a offset matches.
     ///

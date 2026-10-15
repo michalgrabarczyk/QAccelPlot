@@ -74,7 +74,7 @@ InspectionHit InspectionIndex::nearestAlong(const InspectionMetric& metric, cons
         consider(*std::prev(it));
     }
     if (it != sorted.end()) {
-        // Among samples sharing this coordinate, the highest index is the one drawn last.
+        // Among data points sharing this coordinate, the highest index is the one drawn last.
         const auto end = std::upper_bound(it, sorted.end(), key(axis, *it), [this, axis](const double limit, const int i) { return limit < key(axis, i); });
         consider(*std::prev(end));
     }

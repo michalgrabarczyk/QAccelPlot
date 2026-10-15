@@ -35,7 +35,7 @@ QSGGeometryNode* BandEdgeRenderer::paint(QSGGeometryNode* oldNode, const BandEdg
     material->useVertexColor = 0.0f;
     material->dataTexture = params.dataTexture;
 
-    // Vertices hold only sample indices unless a dash pattern needs screen-space arc lengths.
+    // Vertices hold only data point indices unless a dash pattern needs screen-space arc lengths.
     // Those change with the data and the zoom, but not while panning.
     const auto dashed = params.uniforms.dash.enabled;
     auto lengthsStale = false;
@@ -86,7 +86,7 @@ std::vector<float> BandEdgeRenderer::arcLengths(const BandEdgeRenderParams& para
     const auto upper = edge_ == BandEdgeMaterial::Edge::Upper;
     const auto& samples = params.samples;
     const auto& uniforms = params.uniforms;
-    // Like band_edge.glsl: the drawn bound of each sample, invalid wherever the fill has a gap.
+    // Like band_edge.glsl: the drawn bound of each data point, invalid wherever the fill has a gap.
     return LineStroke::arcLengths(samples.count, [&](const int i) -> std::optional<QPointF> {
         const auto x = samples.value(i, 0);
         const auto low = samples.value(i, 1);

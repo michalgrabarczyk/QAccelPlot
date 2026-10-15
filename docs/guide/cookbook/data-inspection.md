@@ -1,5 +1,5 @@
 ---
-description: "Crosshairs, tooltips, nearest-sample queries, region statistics, and selection for large and live datasets."
+description: "Crosshairs, tooltips, nearest-data-point queries, region statistics, and selection for large and live datasets."
 ---
 
 <!--
@@ -47,11 +47,11 @@ set to the same gesture, `SelectionTool` takes it.
 
 | Property | Effect |
 | --- | --- |
-| `mode` | `NearestX` reports each series at the cursor's X. `NearestY` does the same at the cursor's Y, for series whose independent variable is Y. `NearestXY` picks the sample closest on screen. |
-| `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme samples; between two samples a series always matches. |
-| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive samples. |
-| `snapToSample` | Move the crosshair to the closest matching sample. |
-| `summaries`, `summaryRadius` | Add the count and Y statistics of the samples within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many samples. |
+| `mode` | `NearestX` reports each series at the cursor's X. `NearestY` does the same at the cursor's Y, for series whose independent variable is Y. `NearestXY` picks the data point closest on screen. |
+| `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme data points; between two data points a series always matches. |
+| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive data points. |
+| `snapToSample` | Move the crosshair to the closest matching data point. |
+| `summaries`, `summaryRadius` | Add the count and Y statistics of the data points within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many data points. |
 | `includedSeries`, `excludedSeries` | Restrict the inspected series. |
 
 The inspector reports `active`, the crosshair `position`, `cursorX` and
@@ -99,16 +99,16 @@ thread. Pixel arguments are series-local logical pixels: map a plot-local
 position with `series.mapFromItem(plot, position)`.
 
 ```qml
-const sample = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
-if (sample.valid)
-    console.log(sample.index, sample.x, sample.y)
+const dataPoint = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
+if (dataPoint.valid)
+    console.log(dataPoint.index, dataPoint.x, dataPoint.y)
 ```
 
 | Query | Methods |
 | --- | --- |
-| A record by index | `sampleAt()` |
-| Nearest valid sample | `nearest()`, `nearestByX()`, `nearestByY()` |
-| Samples on either side and the point between them | `bracketByX()`, `bracketByY()` |
+| A data point by index | `sampleAt()` |
+| Nearest valid data point | `nearest()`, `nearestByX()`, `nearestByY()` |
+| Data points on either side and the point between them | `bracketByX()`, `bracketByY()` |
 | Y statistics of a region or an X interval | `summarize()`, `summarizeRange()` |
 | Source indices inside a region, in pages | `indices()` |
 | Native record of a bar, rectangle, or band series | `recordAt()`, `recordAtPosition()` |
@@ -131,7 +131,7 @@ paging.
 - `prepare()` starts indexing before the first query.
 - Any data change discards the index. A stream that replaces unordered data
   faster than it can be indexed never becomes `Ready`.
-- The index takes about 40 MB per million valid samples;
+- The index takes about 40 MB per million valid data points;
   `inspection.indexBytes()` reports the actual size.
 
 ## Selection
@@ -146,7 +146,7 @@ must match exactly and a shorter drag only clears the selection.
 - Visible XY series bound to the axis of every bounded dimension are selected,
   so an X range also covers series on a secondary Y axis.
 - `model` has one row of statistics per selected series, recomputed when data
-  changes. `indices(series, offset, limit)` pages through the selected samples.
+  changes. `indices(series, offset, limit)` pages through the selected data points.
 - `select(xMin, xMax, yMin, yMax)` sets the region from code; `clear()` removes
   it. `selectionChanged` reports a new or cleared region, `completed` a
   finished gesture.

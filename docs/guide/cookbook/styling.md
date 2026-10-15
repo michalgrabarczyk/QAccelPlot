@@ -79,7 +79,7 @@ QAccelPlot.LineCurve {
 }
 ```
 
-`Pixel` draws each sample as one logical pixel and ignores `marker.size` and
+`Pixel` draws each data point as one logical pixel and ignores `marker.size` and
 anti-aliasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a `Pixel` marker within 3 px.
@@ -128,7 +128,7 @@ data-derived bounds make colors follow the current range.
 ## Animated data changes
 
 Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] to
-interpolate from old to new samples, or a `QAccelPlot.DrawTransition` to reveal
+interpolate from old to new data points, or a `QAccelPlot.DrawTransition` to reveal
 the new curve:
 
 ```qml

@@ -17,10 +17,10 @@ namespace NanGapModeNS {
 Q_NAMESPACE
 QML_NAMED_ELEMENT(NanGapMode)
 
-/// \brief Rendering strategies for invalid samples: NaN, ±Inf, or a non-positive value on a log-scale axis.
+/// \brief Rendering strategies for invalid data points: NaN, ±Inf, or a non-positive value on a log-scale axis.
 enum class Mode {
-    Break,   ///< \brief No line segment or fill is drawn to or from an invalid sample.
-    Connect, ///< \brief Invalid samples are skipped; the line and fill join the neighboring valid samples.
+    Break,   ///< \brief No line segment or fill is drawn to or from an invalid data point.
+    Connect, ///< \brief Invalid data points are skipped; the line and fill join the neighboring valid data points.
 };
 Q_ENUM_NS(Mode)
 } // namespace NanGapModeNS
@@ -32,8 +32,8 @@ using NanGapMode = NanGapModeNS::Mode;
 /// Accessible via the \c LineCurve::gaps CONSTANT grouped property, for example
 /// <tt>gaps.nanMode: QAccelPlot.NanGapMode.Connect</tt>.
 ///
-/// A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
-/// log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from
+/// A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
+/// log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from
 /// auto-ranging coordinate by coordinate, regardless of \c nanMode.
 ///
 /// \sa LineCurve
@@ -48,9 +48,9 @@ public:
     /// \brief Constructs a LineCurveGaps with the given \a parent.
     explicit LineCurveGaps(QObject* parent = nullptr);
 
-    /// \brief Returns how invalid samples are rendered.
+    /// \brief Returns how invalid data points are rendered.
     NanGapMode nanMode() const;
-    /// \brief Sets how invalid samples are rendered to \a mode.
+    /// \brief Sets how invalid data points are rendered to \a mode.
     void setNanMode(NanGapMode mode);
 
 signals:

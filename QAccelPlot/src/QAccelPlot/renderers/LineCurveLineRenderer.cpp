@@ -303,8 +303,8 @@ void LineCurveLineRenderer::updateFillGeometry(QSGGeometryNode* fillNode, const 
 
 const FillSamples& LineCurveLineRenderer::fillSamples(const LineCurveRenderParams& params) const
 {
-    // The fill is rebuilt every frame (it is assembled in pixel space), but its samples
-    // only change with the data, so scanning every sample is limited to data updates.
+    // The fill is rebuilt every frame (it is assembled in pixel space), but its data points
+    // only change with the data, so scanning every data point is limited to data updates.
     auto& cache = fillSampleCache_;
     const auto* dataIdentity
         = params.sourceData.doubleData ? static_cast<const void*>(params.sourceData.doubleData) : static_cast<const void*>(params.sourceData.floatData);

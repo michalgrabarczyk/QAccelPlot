@@ -49,7 +49,7 @@ Pass each new buffer to [`setDataF()`][set-data-f]:
 curve->setDataF(std::move(points), pointCount);
 ```
 
-A rescale fits the samples of the current frame. To fit the nominal window
+A rescale fits the data points of the current frame. To fit the nominal window
 instead, pass its bounds with the data. This also skips the
 [range scan](../performance.md#data-ranges-are-computed-on-demand):
 
@@ -84,7 +84,7 @@ yAxis: QAccelPlot.Axis {
 
 ## Show dropouts as gaps
 
-Write `NaN` for lost or invalid samples instead of repeating or dropping them.
+Write `NaN` for lost or invalid data points instead of repeating or dropping them.
 The curve breaks there, and the gap is excluded from auto-ranging and hover:
 
 ```cpp
@@ -95,7 +95,7 @@ points[index * 2 + 1] = value;
 
 To draw across dropouts instead, set
 `gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
-[Invalid samples and gaps](../concepts.md#invalid-samples-and-gaps).
+[Invalid data points and gaps](../concepts.md#invalid-data-points-and-gaps).
 
 Complete sources:
 

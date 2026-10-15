@@ -19,9 +19,9 @@ namespace QAccelPlot {
 struct InspectionRow {
     QPointer<PlotSeries> series; ///< \brief Series the row describes.
     InspectionSample sample;     ///< \brief Sample at the cursor; invalid for selection rows.
-    QPointF pixelPosition;       ///< \brief Sample position in plot-local logical pixels.
-    QString xText;               ///< \brief Sample X formatted by the series' X axis.
-    QString yText;               ///< \brief Sample Y formatted by the series' Y axis.
+    QPointF pixelPosition;       ///< \brief Data point position in plot-local logical pixels.
+    QString xText;               ///< \brief Data point X formatted by the series' X axis.
+    QString yText;               ///< \brief Data point Y formatted by the series' Y axis.
     bool hasSummary{false};      ///< \brief Whether \c summary was requested.
     InspectionSummary summary;   ///< \brief Region statistics.
     QString minimumText;         ///< \brief Summary minimum formatted by the series' Y axis.

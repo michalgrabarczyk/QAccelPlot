@@ -1,5 +1,5 @@
 ---
-description: "Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of samples."
+description: "Draw confidence intervals, forecast ranges, and min/max or mean ± σ envelopes in QAccelPlot with BandSeries: fills between a low and a high value, edge lines, hover, and streaming millions of data points."
 ---
 
 <!--
@@ -16,7 +16,7 @@ min/max or mean ± σ envelopes. Draw the center line with a separate
 
 Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
 edge lines are the exception: zooming recomputes their dash positions in one
-pass over the samples.
+pass over the data points.
 
 ## Draw a band around a line
 
@@ -47,7 +47,7 @@ QAccelPlot.Plot {
 Declare the band before the line so the line is drawn on top. Nested intervals
 are separate bands, widest first.
 
-At each sample the band spans from the smaller to the larger of `low` and
+At each data point the band spans from the smaller to the larger of `low` and
 `high`, so swapped values still fill correctly.
 
 The default legend shows a `Fill` swatch in the band's `color`.
@@ -72,16 +72,16 @@ QAccelPlot.BandSeries {
 
 ## Feed data from C++
 
-Samples are interleaved `(x, low, high)` triples. The data API matches
-`LineCurve` with three values per sample:
+Data points are interleaved `(x, low, high)` triples. The data API matches
+`LineCurve` with three values per data point:
 
 ```cpp
-auto samples = std::vector<double>{};
-samples.reserve(count * 3);
+auto dataPoints = std::vector<double>{};
+dataPoints.reserve(count * 3);
 for (auto i = 0; i < count; ++i) {
-    samples.insert(samples.end(), {x[i], mean[i] - 2 * sigma[i], mean[i] + 2 * sigma[i]});
+    dataPoints.insert(dataPoints.end(), {x[i], mean[i] - 2 * sigma[i], mean[i] + 2 * sigma[i]});
 }
-band->setData(std::move(samples), count);
+band->setData(std::move(dataPoints), count);
 ```
 
 For float buffers, worker-thread handoff, and data bounds, see
@@ -91,11 +91,11 @@ For float buffers, worker-thread handoff, and data bounds, see
   viewport, so epoch timestamps stay precise. `setDataF()` stores floats.
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
-- `appendData(x, low, high)` adds one sample.
+- `appendData(x, low, high)` adds one data point.
 
-## Invalid samples
+## Invalid data points
 
-A sample is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
+A data point is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
 strictly positive on a logarithmic axis. The fill and the edge lines leave a
 gap there. Auto-ranging skips invalid values one by one.
 
@@ -115,8 +115,8 @@ QAccelPlot.BandSeries {
 
 ## Limits
 
-At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
-texture size is below 6144. Samples beyond the limit are not drawn, and a
+At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum
+texture size is below 6144. Data points beyond the limit are not drawn, and a
 warning is logged once.
 
 Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)

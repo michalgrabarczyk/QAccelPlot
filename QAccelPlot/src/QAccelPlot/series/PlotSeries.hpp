@@ -242,7 +242,7 @@ protected:
     void inspectionDataChanged(DataChange change = DataChange::Replaced);
     /// \brief Refreshes the data queries after record validity changed without a data change, such as an axis scale switch.
     void invalidateInspection();
-    /// \brief Returns a view of the XY records that sample queries search. The default has none.
+    /// \brief Returns a view of the XY records that data point queries search. The default has none.
     virtual InspectionSource inspectionSource() const;
     /// \brief Returns false while the records are ambiguous, such as during a data transition. Default: true.
     virtual bool inspectionAvailable() const;
@@ -277,7 +277,7 @@ protected:
     void extendYDataRange(qreal y);
     /// \brief Called when a bound axis switches between linear and logarithmic scale, or a different axis is bound.
     ///
-    /// Log scale changes which samples are valid. The data ranges of a changed scale are already invalidated; series
+    /// Log scale changes which data points are valid. The data ranges of a changed scale are already invalidated; series
     /// override this to refresh cached geometry. The default implementation does nothing.
     virtual void onAxisScaleChanged();
     /// \brief Called when the viewport of a bound axis changes. The default implementation schedules a repaint.

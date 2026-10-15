@@ -22,9 +22,9 @@ frame.
   worker-thread `postData()`
 - **Interaction** — pan, cursor-centered, per-axis, and rectangle zoom, rescale,
   hover hit testing, and plot mouse events for custom tools
-- **Inspection** — crosshair, tooltip, nearest-sample queries, and region
+- **Inspection** — crosshair, tooltip, nearest-data-point queries, and region
   selection with statistics
-- **Invalid samples** — `NaN`, `±Inf`, and non-positive log values break or
+- **Invalid data points** — `NaN`, `±Inf`, and non-positive log values break or
   connect the curve consistently
 - **Curves** — solid, dashed, and marker-only styles; gradient fills and
   strokes; morph and draw transitions
@@ -378,21 +378,21 @@ rectangle index.
 `orientation` selects vertical or horizontal bars. Ranged bars carry their
 own extent as (from, to, value), e.g. the bins of a histogram.
 
-## Invalid samples and gaps
+## Invalid data points and gaps
 
-`LineCurve` applies one invalid-sample contract to rendering, gradient fills,
+`LineCurve` applies one invalid-data-point contract to rendering, gradient fills,
 dash patterns, transitions, auto-ranging, and hover hit testing. For the other
-series, see [bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/#invalid-samples),
+series, see [bands](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bands/#invalid-data-points),
 [point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/#invalid-points), and
 [bars](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/#invalid-bars).
 
-A sample is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
+A data point is **invalid** when its X or Y coordinate is `NaN` or `±Inf`, or when a
 coordinate is zero or negative on a logarithmic axis. Mark missing data by
-inserting a sample with a `NaN` coordinate. JavaScript `null` and `undefined`
+inserting a data point with a `NaN` coordinate. JavaScript `null` and `undefined`
 are not gap markers.
 
 Gap rendering is configured through the curve's [`gaps`][line-curve] grouped
-property. `gaps.nanMode` selects how the line and fill treat invalid samples:
+property. `gaps.nanMode` selects how the line and fill treat invalid data points:
 
 ```qml
 QAccelPlot.LineCurve {
@@ -402,23 +402,23 @@ QAccelPlot.LineCurve {
 
 | `gaps.nanMode` | Behavior |
 | --- | --- |
-| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid sample. Valid neighbors end squarely, and a valid sample isolated between two invalid samples draws no line. |
-| `NanGapMode.Connect` | Invalid samples are skipped and the line, fill, and hit test join the nearest valid samples. |
+| `NanGapMode.Break` (default) | No segment or fill is drawn to or from an invalid data point. Valid neighbors end squarely, and a valid data point isolated between two invalid data points draws no line. |
+| `NanGapMode.Connect` | Invalid data points are skipped and the line, fill, and hit test join the nearest valid data points. |
 
-Despite its name, `nanMode` applies to every invalid sample, including `±Inf`
+Despite its name, `nanMode` applies to every invalid data point, including `±Inf`
 and non-positive log-axis values.
 
 In both modes:
 
-- **Markers** are never drawn for invalid samples.
-- **Auto-ranging** judges each coordinate on its own. A sample with a valid X
+- **Markers** are never drawn for invalid data points.
+- **Auto-ranging** judges each coordinate on its own. A data point with a valid X
   and an invalid Y still extends the X range, so a dropout keeps its timestamp.
   If a dimension has no valid coordinate, the series clears that range.
 - **Dash patterns** continue across a gap; the gap contributes no dash length.
-- **`MorphTransition`** shows a sample that becomes invalid as a gap
-  immediately, and a sample that becomes valid jumps to its target instead of
+- **`MorphTransition`** shows a data point that becomes invalid as a gap
+  immediately, and a data point that becomes valid jumps to its target instead of
   animating from `NaN`.
-- **Hover** never reports a hit on an invalid sample or across a break.
+- **Hover** never reports a hit on an invalid data point or across a break.
 
 ## Composition and overlays
 
@@ -840,7 +840,7 @@ Each recipe links to a complete runnable example.
 | [Multiple axes](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/multiple-axes/) | Secondary scales and signals with different domains |
 | [Styling and transitions](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/styling/) | Dashes, markers, gradients, fills, and animated updates |
 | [Annotations and tools](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/annotations/) | Data-attached labels, regions, measurement tools, and mouse handling |
-| [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/) | Crosshair, tooltip, nearest-sample queries, region statistics, and selection |
+| [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/data-inspection/) | Crosshair, tooltip, nearest-data-point queries, region statistics, and selection |
 | [Point clouds](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/point-clouds/) | Large unconnected scatter data, coloring points by value, color bars, and hover picking |
 | [Rectangle zoom](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/rectangle-zoom/) | Drag a region to zoom all axes, or zoom from a custom tool |
 | [Bar charts](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/bar-charts/) | Vertical, horizontal, and grouped bars, baselines, category colors, and hover |
@@ -961,7 +961,7 @@ Pass each new buffer to [`setDataF()`][set-data-f]:
 curve->setDataF(std::move(points), pointCount);
 ```
 
-A rescale fits the samples of the current frame. To fit the nominal window
+A rescale fits the data points of the current frame. To fit the nominal window
 instead, pass its bounds with the data. This also skips the
 [range scan](https://michalgrabarczyk.github.io/QAccelPlot/performance/#data-ranges-are-computed-on-demand):
 
@@ -996,7 +996,7 @@ yAxis: QAccelPlot.Axis {
 
 ## Show dropouts as gaps
 
-Write `NaN` for lost or invalid samples instead of repeating or dropping them.
+Write `NaN` for lost or invalid data points instead of repeating or dropping them.
 The curve breaks there, and the gap is excluded from auto-ranging and hover:
 
 ```cpp
@@ -1007,7 +1007,7 @@ points[index * 2 + 1] = value;
 
 To draw across dropouts instead, set
 `gaps.nanMode: QAccelPlot.NanGapMode.Connect`. See
-[Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
+[Invalid data points and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-data-points-and-gaps).
 
 Complete sources:
 
@@ -1286,7 +1286,7 @@ QAccelPlot.LineCurve {
 }
 ```
 
-`Pixel` draws each sample as one logical pixel and ignores `marker.size` and
+`Pixel` draws each data point as one logical pixel and ignores `marker.size` and
 anti-aliasing. Use it with a semi-transparent color for scatter plots with
 hundreds of thousands of points, where overlapping points build up density.
 Hover still detects a `Pixel` marker within 3 px.
@@ -1335,7 +1335,7 @@ data-derived bounds make colors follow the current range.
 ## Animated data changes
 
 Assign a `QAccelPlot.MorphTransition` to [`transition`][transition] to
-interpolate from old to new samples, or a `QAccelPlot.DrawTransition` to reveal
+interpolate from old to new data points, or a `QAccelPlot.DrawTransition` to reveal
 the new curve:
 
 ```qml
@@ -1566,11 +1566,11 @@ set to the same gesture, `SelectionTool` takes it.
 
 | Property | Effect |
 | --- | --- |
-| `mode` | `NearestX` reports each series at the cursor's X. `NearestY` does the same at the cursor's Y, for series whose independent variable is Y. `NearestXY` picks the sample closest on screen. |
-| `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme samples; between two samples a series always matches. |
-| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive samples. |
-| `snapToSample` | Move the crosshair to the closest matching sample. |
-| `summaries`, `summaryRadius` | Add the count and Y statistics of the samples within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many samples. |
+| `mode` | `NearestX` reports each series at the cursor's X. `NearestY` does the same at the cursor's Y, for series whose independent variable is Y. `NearestXY` picks the data point closest on screen. |
+| `radius` | Pick distance in logical pixels. In `NearestX` and `NearestY` it only applies beyond a series' extreme data points; between two data points a series always matches. |
+| `interpolate` | In `NearestX` and `NearestY`, report the point on the line between two consecutive data points. |
+| `snapToSample` | Move the crosshair to the closest matching data point. |
+| `summaries`, `summaryRadius` | Add the count and Y statistics of the data points within `summaryRadius` pixels of the cursor. Use it for dense data, where one pixel column holds many data points. |
 | `includedSeries`, `excludedSeries` | Restrict the inspected series. |
 
 The inspector reports `active`, the crosshair `position`, `cursorX` and
@@ -1618,16 +1618,16 @@ thread. Pixel arguments are series-local logical pixels: map a plot-local
 position with `series.mapFromItem(plot, position)`.
 
 ```qml
-const sample = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
-if (sample.valid)
-    console.log(sample.index, sample.x, sample.y)
+const dataPoint = curve.inspection.nearestByX(curve.mapFromItem(plotView, plotView.pointerPosition).x)
+if (dataPoint.valid)
+    console.log(dataPoint.index, dataPoint.x, dataPoint.y)
 ```
 
 | Query | Methods |
 | --- | --- |
-| A record by index | `sampleAt()` |
-| Nearest valid sample | `nearest()`, `nearestByX()`, `nearestByY()` |
-| Samples on either side and the point between them | `bracketByX()`, `bracketByY()` |
+| A data point by index | `sampleAt()` |
+| Nearest valid data point | `nearest()`, `nearestByX()`, `nearestByY()` |
+| Data points on either side and the point between them | `bracketByX()`, `bracketByY()` |
 | Y statistics of a region or an X interval | `summarize()`, `summarizeRange()` |
 | Source indices inside a region, in pages | `indices()` |
 | Native record of a bar, rectangle, or band series | `recordAt()`, `recordAtPosition()` |
@@ -1650,7 +1650,7 @@ paging.
 - `prepare()` starts indexing before the first query.
 - Any data change discards the index. A stream that replaces unordered data
   faster than it can be indexed never becomes `Ready`.
-- The index takes about 40 MB per million valid samples;
+- The index takes about 40 MB per million valid data points;
   `inspection.indexBytes()` reports the actual size.
 
 ## Selection
@@ -1665,7 +1665,7 @@ must match exactly and a shorter drag only clears the selection.
 - Visible XY series bound to the axis of every bounded dimension are selected,
   so an X range also covers series on a secondary Y axis.
 - `model` has one row of statistics per selected series, recomputed when data
-  changes. `indices(series, offset, limit)` pages through the selected samples.
+  changes. `indices(series, offset, limit)` pages through the selected data points.
 - `select(xMin, xMax, yMin, yMax)` sets the region from code; `clear()` removes
   it. `selectionChanged` reports a new or cleared region, `completed` a
   finished gesture.
@@ -2193,7 +2193,7 @@ min/max or mean ± σ envelopes. Draw the center line with a separate
 
 Panning and zooming a band costs nothing on the CPU, whatever its size. Dashed
 edge lines are the exception: zooming recomputes their dash positions in one
-pass over the samples.
+pass over the data points.
 
 ## Draw a band around a line
 
@@ -2224,7 +2224,7 @@ QAccelPlot.Plot {
 Declare the band before the line so the line is drawn on top. Nested intervals
 are separate bands, widest first.
 
-At each sample the band spans from the smaller to the larger of `low` and
+At each data point the band spans from the smaller to the larger of `low` and
 `high`, so swapped values still fill correctly.
 
 The default legend shows a `Fill` swatch in the band's `color`.
@@ -2249,16 +2249,16 @@ QAccelPlot.BandSeries {
 
 ## Feed data from C++
 
-Samples are interleaved `(x, low, high)` triples. The data API matches
-`LineCurve` with three values per sample:
+Data points are interleaved `(x, low, high)` triples. The data API matches
+`LineCurve` with three values per data point:
 
 ```cpp
-auto samples = std::vector<double>{};
-samples.reserve(count * 3);
+auto dataPoints = std::vector<double>{};
+dataPoints.reserve(count * 3);
 for (auto i = 0; i < count; ++i) {
-    samples.insert(samples.end(), {x[i], mean[i] - 2 * sigma[i], mean[i] + 2 * sigma[i]});
+    dataPoints.insert(dataPoints.end(), {x[i], mean[i] - 2 * sigma[i], mean[i] + 2 * sigma[i]});
 }
-band->setData(std::move(samples), count);
+band->setData(std::move(dataPoints), count);
 ```
 
 For float buffers, worker-thread handoff, and data bounds, see
@@ -2268,11 +2268,11 @@ For float buffers, worker-thread handoff, and data bounds, see
   viewport, so epoch timestamps stay precise. `setDataF()` stores floats.
 - `postData()` hands a buffer over from any thread without copying it.
 - `setData(xs, lows, highs)` takes three separate arrays, from QML or C++.
-- `appendData(x, low, high)` adds one sample.
+- `appendData(x, low, high)` adds one data point.
 
-## Invalid samples
+## Invalid data points
 
-A sample is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
+A data point is invalid when `x`, `low`, or `high` is `NaN` or `±Inf`, or is not
 strictly positive on a logarithmic axis. The fill and the edge lines leave a
 gap there. Auto-ranging skips invalid values one by one.
 
@@ -2292,8 +2292,8 @@ QAccelPlot.BandSeries {
 
 ## Limits
 
-At most 16,777,216 (2^24) samples are drawn, fewer on GPUs whose maximum
-texture size is below 6144. Samples beyond the limit are not drawn, and a
+At most 16,777,216 (2^24) data points are drawn, fewer on GPUs whose maximum
+texture size is below 6144. Data points beyond the limit are not drawn, and a
 warning is logged once.
 
 Complete source: [`examples/plot_types/bands`](https://github.com/michalgrabarczyk/QAccelPlot/tree/main/examples/plot_types/bands)
@@ -2393,7 +2393,7 @@ Complete source: [`examples/showcases/performance`](https://github.com/michalgra
 - [`PlotMouseEvent`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotMouseEvent/) — mouse
   positions in plot and data coordinates.
 - [`SeriesInspection`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SeriesInspection/) — per-series
-  data queries: nearest samples, brackets, region statistics, and index pages.
+  data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1PlotInspector/) — cursor state and
   one model row per series for crosshairs and tooltips.
 - [`SelectionTool`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1SelectionTool/) — data-space box
@@ -2409,7 +2409,7 @@ See [Data inspection](https://michalgrabarczyk.github.io/QAccelPlot/cookbook/dat
 - [`postData()`](https://michalgrabarczyk.github.io/QAccelPlot/api/classQAccelPlot_1_1LineCurve/#function-postdata-22) —
   completed buffers from a worker thread.
 - `PlotSeries::DataBounds` — passed with the data when its extents are already known.
-- `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.
-  See [Invalid samples and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-samples-and-gaps).
+- `NaN` marks a missing data point; `gaps.nanMode` breaks or connects the curve.
+  See [Invalid data points and gaps](https://michalgrabarczyk.github.io/QAccelPlot/concepts/#invalid-data-points-and-gaps).
 
 See [Select the data path](https://michalgrabarczyk.github.io/QAccelPlot/performance/#select-the-data-path).

@@ -13,15 +13,15 @@
 
 namespace QAccelPlot {
 
-/// \brief QSGMaterial that fills a band between the low and high values of <tt>(x, low, high)</tt> samples.
+/// \brief QSGMaterial that fills a band between the low and high values of <tt>(x, low, high)</tt> data points.
 ///
-/// The data texture holds three floats per sample. Vertices carry only a sample index and an edge
+/// The data texture holds three floats per data point. Vertices carry only a data point index and an edge
 /// selector, so panning and zooming change uniforms only.
 class BandMaterial : public DataTextureMaterial {
 public:
-    /// \brief Vertex layout of the band triangle strip: two vertices per sample.
+    /// \brief Vertex layout of the band triangle strip: two vertices per data point.
     struct Vertex {
-        float id;   ///< \brief Sample index in the data texture.
+        float id;   ///< \brief Data point index in the data texture.
         float edge; ///< \brief 0 for the lower edge, 1 for the upper edge.
     };
 
@@ -36,7 +36,7 @@ public:
     /// \brief Returns the vertex attribute set matching \c Vertex: \c {float id, float edge} (8 bytes).
     static const QSGGeometry::AttributeSet& vertexAttributes();
 
-    float sampleCount{0.0f}; ///< \brief Number of samples in the data texture (used to clamp neighbor lookups).
+    float sampleCount{0.0f}; ///< \brief Number of data points in the data texture (used to clamp neighbor lookups).
 
 protected:
     /// \brief Compares the band-specific uniforms after the base-class comparison succeeds.

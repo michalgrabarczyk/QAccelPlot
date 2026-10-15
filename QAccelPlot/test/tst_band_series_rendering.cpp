@@ -265,7 +265,7 @@ private slots:
     void edgeLinesFollowBothBounds();
     void edgeLinesFollowTheDrawnBoundsAndGaps();
     void logScaleBandIsDrawn();
-    void samplesBeyondFirstTextureRowsAreDrawn();
+    void dataPointsBeyondFirstTextureRowsAreDrawn();
     void appendedEpochSamplesAreDrawnInPlace();
     void hoverReachesStackedBands();
 };
@@ -383,7 +383,7 @@ void BandSeriesRenderingTest::logScaleBandIsDrawn()
     QVERIFY(isColor(image.pixelColor(scene.pixel(5.0, 300.0)), Qt::black));
 }
 
-void BandSeriesRenderingTest::samplesBeyondFirstTextureRowsAreDrawn()
+void BandSeriesRenderingTest::dataPointsBeyondFirstTextureRowsAreDrawn()
 {
     auto scene = SceneWindow{kLargeScene};
     if (scene.isSoftware()) {

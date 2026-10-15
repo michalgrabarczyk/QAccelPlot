@@ -11,12 +11,12 @@
 
 namespace QAccelPlot {
 
-/// \brief Line material for the lower or upper edge line of a band, reading <tt>(x, low, high)</tt> samples.
+/// \brief Line material for the lower or upper edge line of a band, reading <tt>(x, low, high)</tt> data points.
 ///
-/// Uses the line uniforms and fragment stage; only the vertex stage reads three floats per sample.
+/// Uses the line uniforms and fragment stage; only the vertex stage reads three floats per data point.
 class BandEdgeMaterial : public LineMaterial {
 public:
-    /// \brief Which value of each sample the edge line draws.
+    /// \brief Which value of each data point the edge line draws.
     enum class Edge { Lower, Upper };
 
     /// \brief Constructs a material for the \a edge line.

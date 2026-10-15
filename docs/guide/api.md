@@ -43,7 +43,7 @@ SPDX-License-Identifier: GPL-3.0-only WITH Universal-FOSS-exception-1.0
 - [`PlotMouseEvent`](api/classQAccelPlot_1_1PlotMouseEvent.md) — mouse
   positions in plot and data coordinates.
 - [`SeriesInspection`](api/classQAccelPlot_1_1SeriesInspection.md) — per-series
-  data queries: nearest samples, brackets, region statistics, and index pages.
+  data queries: nearest data points, brackets, region statistics, and index pages.
 - [`PlotInspector`](api/classQAccelPlot_1_1PlotInspector.md) — cursor state and
   one model row per series for crosshairs and tooltips.
 - [`SelectionTool`](api/classQAccelPlot_1_1SelectionTool.md) — data-space box
@@ -59,7 +59,7 @@ See [Data inspection](cookbook/data-inspection.md) for usage and readiness.
 - [`postData()`](api/classQAccelPlot_1_1LineCurve.md#function-postdata-22) —
   completed buffers from a worker thread.
 - `PlotSeries::DataBounds` — passed with the data when its extents are already known.
-- `NaN` marks a missing sample; `gaps.nanMode` breaks or connects the curve.
-  See [Invalid samples and gaps](concepts.md#invalid-samples-and-gaps).
+- `NaN` marks a missing data point; `gaps.nanMode` breaks or connects the curve.
+  See [Invalid data points and gaps](concepts.md#invalid-data-points-and-gaps).
 
 See [Select the data path](performance.md#select-the-data-path).

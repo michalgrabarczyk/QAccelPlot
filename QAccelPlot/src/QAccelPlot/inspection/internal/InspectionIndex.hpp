@@ -16,7 +16,7 @@
 
 namespace QAccelPlot {
 
-/// \brief Immutable k-d tree over the valid samples of a series, with their order along each axis.
+/// \brief Immutable k-d tree over the valid data points of a series, with their order along each axis.
 class InspectionIndex {
 public:
     struct Point {
@@ -28,10 +28,10 @@ public:
     /// \brief Builds the tree from \a points; returns false when \a cancelled was set meanwhile.
     bool build(std::vector<Point>&& points, bool logX, bool logY, const std::atomic_bool& cancelled);
     [[nodiscard]] std::size_t storageBytes() const;
-    /// \brief Returns the sample nearest to \a pixel along \a axis.
+    /// \brief Returns the data point nearest to \a pixel along \a axis.
     [[nodiscard]] InspectionHit nearestAlong(const InspectionMetric& metric, InspectionAxis axis, double pixel, double radius) const;
     [[nodiscard]] InspectionHit nearest(const InspectionMetric& metric, const QPointF& position, double radius) const;
-    /// \brief Returns the samples on either side of \a value on \a axis.
+    /// \brief Returns the data points on either side of \a value on \a axis.
     [[nodiscard]] InspectionNeighbors neighbors(InspectionAxis axis, double value) const;
     [[nodiscard]] SummaryAccumulator summarize(const InspectionBounds& bounds) const;
     void collect(const InspectionBounds& bounds, int offset, int limit, QList<int>& indices) const;

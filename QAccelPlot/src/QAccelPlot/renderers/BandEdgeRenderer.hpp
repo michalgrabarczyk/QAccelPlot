@@ -30,8 +30,8 @@ struct BandEdgeRenderParams {
     LineStroke::Uniforms uniforms;            ///< \brief Line uniforms; \c uniforms.pointCount equals \c samples.count.
     Axis* xAxis;                              ///< \brief Horizontal axis.
     Axis* yAxis;                              ///< \brief Vertical axis.
-    bool dataChanged;                         ///< \brief Whether the samples changed since the last paint.
-    /// \brief Samples the vertex buffer holds room for, at least \c samples.count, so appends rarely resize it.
+    bool dataChanged;                         ///< \brief Whether the data points changed since the last paint.
+    /// \brief Data points the vertex buffer holds room for, at least \c samples.count, so appends rarely resize it.
     int reservedSampleCount;
 };
 

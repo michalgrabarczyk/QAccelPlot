@@ -18,7 +18,7 @@ namespace QAccelPlot::LineCurveGapFilter {
 
 namespace {
 
-// Minimum number of samples a run needs to span an area or a segment.
+// Minimum number of data points a run needs to span an area or a segment.
 constexpr auto kMinRunSamples = int{2};
 
 bool isValidPair(const double x, const double y, const bool logScaleX, const bool logScaleY)
@@ -27,7 +27,7 @@ bool isValidPair(const double x, const double y, const bool logScaleX, const boo
 }
 
 // The scans below are specialized on the buffer type so the float/double
-// dispatch in CurveDataView happens once per call instead of once per sample.
+// dispatch in CurveDataView happens once per call instead of once per data point.
 
 template <typename T> std::vector<SampleRun> findRuns(const T* data, const int pointCount, const bool logScaleX, const bool logScaleY)
 {
@@ -114,7 +114,7 @@ void appendEnvelopeSamples(const CurveDataView& data, const SampleRun& run, cons
         indices.push_back(std::min(lowest, highest));
         indices.push_back(std::max(lowest, highest));
     }
-    // An odd slot count leaves one slot, which repeats the last sample as a degenerate vertex.
+    // An odd slot count leaves one slot, which repeats the last data point as a degenerate vertex.
     if (interiorSlots % 2 != 0) {
         indices.push_back(last);
     }

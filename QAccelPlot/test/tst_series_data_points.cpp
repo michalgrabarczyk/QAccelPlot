@@ -88,7 +88,7 @@ void SeriesDataPointsTest::addSeriesRows()
     QTest::newRow("RectangleSeries") << static_cast<int>(SeriesType::Rectangles) << 4 << "RectangleSeries" << "data rectangle" << "rectangles" << "coordinates"
                                      << "coordinates";
     QTest::newRow("BarSeries") << static_cast<int>(SeriesType::Bars) << 2 << "BarSeries" << "data bar" << "bars" << "values" << "values";
-    QTest::newRow("BandSeries") << static_cast<int>(SeriesType::Band) << 3 << "BandSeries" << "sample" << "samples" << "values" << "values";
+    QTest::newRow("BandSeries") << static_cast<int>(SeriesType::Band) << 3 << "BandSeries" << "data point" << "data points" << "values" << "values";
 }
 
 void SeriesDataPointsTest::invalidArgumentsAreRejected_data()

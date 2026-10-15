@@ -52,7 +52,7 @@ bool isValidExtent(const qreal min, const qreal max, const bool logScale)
     return min > max || (isValidSample(min, logScale) && isValidSample(max, logScale));
 }
 
-// Extents of the valid coordinates in samples [begin, end) of interleaved data.
+// Extents of the valid coordinates in data points [begin, end) of interleaved data.
 // Each coordinate is judged on its own: an invalid Y does not remove its X from
 // the X extent, and vice versa.
 //
@@ -146,7 +146,7 @@ constexpr auto kMarkerVerticesPerPoint = 6;
 constexpr auto kLineVertexBytesPerPoint = kLineVerticesPerPoint * static_cast<int>(sizeof(LineVertex));
 // Markers carry their positions in the vertex buffer, which QSGGeometry sizes in int bytes.
 constexpr auto kMaxMarkerPoints = std::numeric_limits<int>::max() / (kMarkerVerticesPerPoint * static_cast<int>(sizeof(PointVertex)));
-// Float vertex ids, which the line shader reads its samples by, are exact up to 2^24.
+// Float vertex ids, which the line shader reads its data points by, are exact up to 2^24.
 constexpr auto kMaxLinePoints = 1 << 24;
 
 // Number of points a curve with these parts draws in \a window.
@@ -865,8 +865,8 @@ std::size_t LineCurve::expectedVertexCacheSize() const
 void LineCurve::installVertexCache(std::vector<char>&& vertexCache)
 {
     if (renderPointCount() != dataPoints().count()) {
-        // Externally built caches describe the uncompacted samples. Connect mode
-        // removed invalid samples, so the cache is rebuilt for the compacted data.
+        // Externally built caches describe the uncompacted data points. Connect mode
+        // removed invalid data points, so the cache is rebuilt for the compacted data.
         vertexCache_.invalidate();
         refreshVertexCacheForDataChange();
         return;
@@ -920,8 +920,8 @@ void LineCurve::rebuildChunks() const
     for (auto start = int{0}; start < pointCount; start += kChunkSize) {
         const auto count = std::min(kChunkSize, pointCount - start);
         // Extend AABB one point beyond the chunk boundary on each side so that
-        // line segments bridging adjacent chunks are fully covered. Invalid samples
-        // are excluded; a chunk without valid samples keeps min > max and is skipped.
+        // line segments bridging adjacent chunks are fully covered. Invalid data points
+        // are excluded; a chunk without valid data points keeps min > max and is skipped.
         const auto aabbBegin = std::max(0, start - 1);
         const auto aabbEnd = std::min(start + count, pointCount - 1); // inclusive
         const auto extents = sourceData.doubleData ? computeChunkExtents(sourceData.doubleData, aabbBegin, aabbEnd, logX, logY)

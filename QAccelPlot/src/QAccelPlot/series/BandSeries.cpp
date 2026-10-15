@@ -29,7 +29,7 @@ namespace QAccelPlot {
 
 namespace {
 
-// Values per sample: x, low, high.
+// Values per data point: x, low, high.
 constexpr auto kStride = 3;
 constexpr auto kLowComponent = 1;
 constexpr auto kHighComponent = 2;
@@ -84,7 +84,7 @@ int sampleCapacity(QQuickWindow* window)
     return static_cast<int>(std::min(Internal::dataTextureItemCapacity(Internal::maxTextureSize(window), kStride), kMaxExactVertexId));
 }
 
-// Samples the vertex buffers hold room for: the next power of two, so appending one sample at a
+// Data points the vertex buffers hold room for: the next power of two, so appending one data point at a
 // time rebuilds the vertices only when the count crosses one. Vertex ids stay exact floats.
 int reservedSampleCount(const int drawnSampleCount)
 {
@@ -114,7 +114,7 @@ QSGGeometryNode* createFillNode()
 BandSeries::BandSeries(QQuickItem* parent)
     : PlotSeries(DataPointStore::Layout{{DataPointStore::Dimension::X, DataPointStore::Dimension::Y, DataPointStore::Dimension::Y},
                      DataPointStore::RangeRule::EachCoordinate, 0},
-          DataPointWording{"sample", "samples", "values", "values"}, parent)
+          DataPointWording{"data point", "data points", "values", "values"}, parent)
     , color_(defaultBandColor())
 {
     setFlag(ItemHasContents, true);
@@ -223,7 +223,7 @@ InspectionRecord BandSeries::inspectionRecordAt(const QPointF& position) const
     if (!xAxis() || width() <= 0 || !contains(position)) {
         return result;
     }
-    // A band is continuous between its samples, so a hit reports interpolated limits rather than a source record.
+    // A band is continuous between its data points, so a hit reports interpolated limits rather than a source record.
     result.fields = valueAt(xAxis()->pixelToCoord(position.x(), width()));
     if (!result.fields.isEmpty()) {
         result.interpolated = true;
@@ -244,7 +244,7 @@ QSGNode* BandSeries::updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* /*up
         return nullptr;
     }
     const auto capacity = sampleCapacity(window());
-    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, dataPoints().count(), capacity, "BandSeries", "samples");
+    overCapacity_ = Internal::warnIfOutgrowsCapacity(overCapacity_, dataPoints().count(), capacity, "BandSeries", "data points");
     if (dataPoints().count() < 2 || !xAxis() || !yAxis() || resolvePlotRect().isEmpty()) {
         delete oldNode;
         return nullptr;
@@ -359,7 +359,7 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
     if (!xAscending_ || !isValidSample(x, logX)) {
         return std::nullopt;
     }
-    // First sample whose X is not below x.
+    // First data point whose X is not below x.
     auto first = int{0};
     const auto sampleCount = dataPoints().count();
     auto last = sampleCount;
@@ -377,7 +377,7 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
         return Span{std::min(low, high), std::max(low, high)};
     };
     if (first < sampleCount && value(first, 0) == x) {
-        // Samples sharing this X draw a vertical step; the band there covers all of them.
+        // Data points sharing this X draw a vertical step; the band there covers all of them.
         auto span = std::optional<Span>{};
         for (auto index = first; index < sampleCount && value(index, 0) == x; ++index) {
             if (sampleValid(index)) {
@@ -390,7 +390,7 @@ std::optional<BandSeries::Span> BandSeries::spanAt(const qreal x) const
     if (first == 0 || first == sampleCount || !sampleValid(first - 1) || !sampleValid(first)) {
         return std::nullopt;
     }
-    // Interpolate in axis space, as the shader draws straight edges between the mapped samples.
+    // Interpolate in axis space, as the shader draws straight edges between the mapped data points.
     const auto x0 = toAxisSpace(value(first - 1, 0), logX);
     const auto t = (toAxisSpace(x, logX) - x0) / (toAxisSpace(value(first, 0), logX) - x0);
     const auto lerp = [t, logY](const qreal from, const qreal to) {
@@ -461,8 +461,8 @@ void BandSeries::updateFillNode(QSGGeometryNode* node, const RenderView& view, c
 {
     auto* geometry = node->geometry();
     const auto vertexCount = view.reservedSampleCount * 2;
-    // Vertices hold only sample indices and edge selectors, so only a change of the reserved room
-    // rebuilds them. band.vert hides the vertices past the drawn samples.
+    // Vertices hold only data point indices and edge selectors, so only a change of the reserved room
+    // rebuilds them. band.vert hides the vertices past the drawn data points.
     if (geometry->vertexCount() != vertexCount) {
         geometry->allocate(vertexCount);
         auto* vertices = static_cast<BandMaterial::Vertex*>(geometry->vertexData());

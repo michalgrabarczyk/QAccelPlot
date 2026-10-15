@@ -8,7 +8,7 @@
 import QtQuick
 import QAccelPlot as QAccelPlot
 
-// Dots marking the sample each series of a PlotInspector matched.
+// Dots marking the data point each series of a PlotInspector matched.
 Item {
     id: root
 

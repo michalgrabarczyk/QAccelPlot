@@ -55,12 +55,12 @@ class TransitionRunner;
 /// Several curves can share one transition. Replacing or clearing \c transition, cancelling it, or
 /// appending data during an animation skips to the new data.
 ///
-/// \par Invalid samples and gaps
-/// A sample is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
-/// log-scale axis. Invalid samples are never drawn as markers, never hit-tested, and are excluded from
+/// \par Invalid data points and gaps
+/// A data point is invalid when its X or Y coordinate is NaN or ±Inf, or is not strictly positive on a
+/// log-scale axis. Invalid data points are never drawn as markers, never hit-tested, and are excluded from
 /// auto-ranging coordinate by coordinate (a finite X with an invalid Y still extends the X range). How the line and
 /// gradient fill treat them is controlled by the \c gaps grouped property: <tt>gaps.nanMode</tt> \c Break (default)
-/// leaves a gap, \c Connect joins the neighboring valid samples. Insert \c NaN to mark missing telemetry explicitly.
+/// leaves a gap, \c Connect joins the neighboring valid data points. Insert \c NaN to mark missing telemetry explicitly.
 ///
 /// \sa Axis, SeriesMarker, GradientFill, GradientStroke, DrawTransition, MorphTransition
 class LineCurve : public PlotSeries {
@@ -219,8 +219,8 @@ private:
     void applyFloatArray(const float* xyInterleaved, int pointCount);
     const std::vector<float>& renderData() const;
     CurveDataView sourceDataView() const;
-    // Number of samples in renderData() / sourceDataView(); smaller than the point count
-    // when NanGapMode::Connect has removed invalid samples.
+    // Number of data points in renderData() / sourceDataView(); smaller than the point count
+    // when NanGapMode::Connect has removed invalid data points.
     int renderPointCount() const;
     void refreshVertexCacheForDataChange();
     void installVertexCache(std::vector<char>&& vertexCache);
