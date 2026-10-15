@@ -51,6 +51,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- `PlotSeries::setData()`, `setDataF()`, and `postData()` are no longer virtual:
+  C++ subclasses pass their data point layout to the `PlotSeries` constructor.
 - Renamed the C++ and QML `RectangleList` type to `RectangleSeries`. Include
   `<QAccelPlot/series/RectangleSeries.hpp>` in C++ code.
 - `GradientStroke::payload()` and `GradientFill::payload()` return a reference to
